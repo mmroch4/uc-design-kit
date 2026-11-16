@@ -28,6 +28,12 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   (`UC.registerRunner`, `UC_COURSE.runner`); built in: Codapi and JavaScript
   in a Web Worker.
 
+### Changed
+- `<uc-this-week>`: the current week is highlighted with a soft accent
+  background instead of an accent border.
+- `<uc-deadlines view="table">` status badges: done is green, next is amber
+  (new block `uc-tag--success`).
+
 ### Fixed
 - `<uc-code editable>`: space after the longest line; the caret stays visible on long lines (the editor
   scrolls with it), and the code no longer flickers on every key.
