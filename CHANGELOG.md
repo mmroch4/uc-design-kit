@@ -83,6 +83,10 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   (new block `uc-tag--success`).
 
 ### Fixed
+- `UC.addTranslations` called from a script loaded after the kit now re-renders
+  the components on the page when the dictionary is for the active language.
+- Code font ligatures (JetBrains Mono joins `->`, `-<`) are off in `code`,
+  `kbd`, `samp` and `pre`, as they already were in `<uc-code>`.
 - `<uc-code editable>`: space after the longest line; the caret stays visible on long lines (the editor
   scrolls with it), and the code no longer flickers on every key.
 - The kit is now revalidated on every load (`_headers`), so pages and kit

@@ -19,7 +19,8 @@
 }
 :where(a:hover) { color: var(--uc-color-accent-strong); }
 
-:where(code, kbd, samp, pre) { font-family: var(--uc-font-mono); font-size: 0.9em; }
+/* No ligatures: in code every character must read as typed ("->" is not "→"). */
+:where(code, kbd, samp, pre) { font-family: var(--uc-font-mono); font-size: 0.9em; font-variant-ligatures: none; }
 :where(:not(pre) > code) {
   padding: 0.1em 0.35em;
   border-radius: var(--uc-radius-sm);
