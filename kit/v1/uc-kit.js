@@ -3634,6 +3634,8 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
           "aria-describedby": this.hintId,
           onInput: () => this.onInput(),
           onKeydown: (event) => this.onKeydown(event),
+          // The textarea scrolls (so the browser keeps the caret in view); the highlighted layer follows it.
+          onScroll: () => this.syncScroll(),
         });
         this.textarea.value = this.code;
         this.hint = h("p", { class: "uc-code__hint", id: this.hintId });
@@ -3719,18 +3721,39 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       loadHighlighter(this.language)
         .then((hljs) => {
           if (code !== this.code) return; // Outdated: a newer edit will highlight again.
-          const result = hljs.highlight(code, { language: this.language, ignoreIllegals: true });
-          this.output.innerHTML = result.value + (code.endsWith("\n") ? " " : "");
-          this.output.className = "uc-code__code hljs";
+          this.highlighter = hljs;
+          this.paint(hljs);
         })
         .catch((error) => warnOnce(`${error.message}; showing plain code`));
+    }
+
+    /** Writes the highlighted code (synchronous once highlight.js is loaded). */
+    paint(hljs) {
+      const code = this.code;
+      const result = hljs.highlight(code, { language: this.language, ignoreIllegals: true });
+      this.output.innerHTML = result.value + (code.endsWith("\n") ? " " : "");
+      this.output.className = "uc-code__code hljs";
+      this.syncScroll();
+    }
+
+    /** Keeps the highlighted layer aligned with the textarea's scroll position. */
+    syncScroll() {
+      if (!this.textarea) return;
+      this.pre.scrollLeft = this.textarea.scrollLeft;
+      this.pre.scrollTop = this.textarea.scrollTop;
     }
 
     /* --- Editing ------------------------------------------------------ */
 
     onInput() {
       this.code = this.textarea.value;
+      // Repaint in the same frame: switching to plain text and back made the block flicker on every key.
+      if (this.highlighter) {
+        this.paint(this.highlighter);
+        return;
+      }
       this.showPlain();
+      this.syncScroll();
       clearTimeout(this.highlightTimer);
       this.highlightTimer = setTimeout(() => this.highlight(), HIGHLIGHT_DELAY_MS);
     }
@@ -3765,8 +3788,11 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     onReset() {
       this.code = this.original;
       this.textarea.value = this.original;
-      this.showPlain();
-      this.highlight();
+      if (this.highlighter) this.paint(this.highlighter);
+      else {
+        this.showPlain();
+        this.highlight();
+      }
       this.textarea.focus();
       this.textarea.setSelectionRange(0, 0);
     }

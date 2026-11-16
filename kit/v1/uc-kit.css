@@ -1446,19 +1446,24 @@
   font-family: inherit;
 }
 
-/* Editable: a transparent textarea stacked over the highlighted <pre>, in one grid cell. */
+/* Editable: a transparent textarea stacked over the highlighted <pre>, in one grid cell.
+   The textarea is the scroll container (the browser keeps the caret visible);
+   the <pre> is clipped and follows its scroll position from script. */
 :where(.uc-code__editor) {
   display: grid;
-  grid-template-columns: minmax(100%, max-content);
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
   background: var(--uc-color-surface);
 }
+:where(.uc-code__editor > .uc-code__pre) { overflow: hidden; }
 :where(.uc-code__editor > .uc-code__pre, .uc-code__editor > .uc-code__input) { grid-area: 1 / 1; }
 :where(.uc-code__input) {
   display: block;
   width: 100%;
   height: 100%;
   min-height: 0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   resize: none;
   background: transparent;
   color: transparent;

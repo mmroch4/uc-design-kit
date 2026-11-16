@@ -23,8 +23,15 @@ from `https://uc-design-kit.miguelrocha.dev/kit/v1/` and the examples from
 ## Headers
 
 `_headers` (repository root) sets CORS for `/kit/*` so course sites on any
-domain can load the kit, a one-hour cache for the kit (fixes inside `v1` are
-picked up within the hour), and basic security headers.
+domain can load the kit, and basic security headers. The kit is served with
+`Cache-Control: public, max-age=0, must-revalidate`: browsers keep a copy but
+ask the server whether it changed (a cheap 304), so a page and the kit it
+needs are never out of step after a deploy.
+
+On a custom domain, Cloudflare's zone settings can override this. In the
+domain's dashboard, set **Caching → Configuration → Browser Cache TTL** to
+**Respect Existing Headers**, and after changing it use **Purge Everything**
+once.
 
 ## Releasing
 
