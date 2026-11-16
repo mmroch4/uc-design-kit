@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 9 · Recursividade · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 9 de Estruturas de Dados (CC1007): exemplos de recursividade (máximo e soma de um array, capicuas, flood fill, subconjuntos e permutações) e problemas ED200, ED201 e ED202.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="9">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 9</span>
+          <span class="uc-mono uc-muted">18–21 nov</span>
+        </p>
+        <h1>Aula 9 · Recursividade</h1>
+      </div>
+
+      <!-- Exercícios para submissão -->
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob200.html">[ED200] Contagem de Células</a> (peso 50%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob201.html">[ED201] Playlist</a> (peso 50%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob202.html">[ED202] Procurando Pokemons</a> (peso 50%) <span class="uc-muted">(exercício do guião principal)</span></li>
+        </ul>
+        <p class="uc-prose"><strong>Prazo de submissão:</strong> 30 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
+        <div class="uc-callout">
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <ul class="uc-bullets">
+            <li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.</li>
+            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+            <li>Para ter 100% bastará sempre resolver os exercícios do guião principal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Exercício 1 -->
+      <section class="uc-section" aria-labelledby="exemplos-recursividade">
+        <h2 id="exemplos-recursividade">Exercício 1) Exemplos de Recursividade</h2>
+        <p class="uc-prose"><strong>1. Verifique o seguinte código que calcula o máximo de um intervalo dado de um array de três formas diferentes (uma iterativa e duas recursivas).</strong></p>
+        <uc-code lang="java" filename="TestMax.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// 3 versoes para descobrir o maximo de um intervalo de um array:
+// (uma iterativa e duas recursivas)
+// -----------------------------------------------------------
+
+public class TestMax {
+
+   // Os 3 metodos seguintes recebem array v[] e duas posicoes start e end
+   // e devolvem o maior numero do array entre start e end (inclusive)
+
+   // --------------------------------------------------------
+
+   // Versao iterativa
+   static int maxIt(int v[], int start, int end) {
+      int maxSoFar = v[start];                // Maior ate agora
+      for (int i=start+1; i<=end; i++)        // Percorrer intervalo
+         maxSoFar = Math.max(maxSoFar, v[i]); // Actualizar maximo
+      return maxSoFar;
+   }
+
+   // --------------------------------------------------------
+
+   // Versao recursiva 1: dividir em elemento inicial e resto da lista
+   static int maxRec1(int v[], int start, int end) {
+      if (start == end) return v[start];  // caso base (tamanho 1)
+      int max = maxRec1(v, start+1, end); // chamada recursiva (resto da lista)
+      return Math.max(v[start], max);     // combinar resultado
+   }
+
+   // --------------------------------------------------------
+
+   // Versao recursiva 2: dividir em metade esquerda e metade direita
+   static int maxRec2(int v[], int start, int end) {
+      if (start == end) return v[start];    // caso base (tamanho 1)
+      int middle = (start + end) / 2;       // ponto medio
+      int max1 = maxRec2(v, start, middle); // recursao na metade esquerda
+      int max2 = maxRec2(v, middle+1, end); // recursao na metade direita
+      return Math.max(max1, max2);          // combinar resultado
+   }
+
+   // --------------------------------------------------------
+
+   public static void main(String[] args) {
+      int v[] = {1,5,2,8,4,3,7,6}; // Inicializacao de array
+
+      System.out.println("maxIt: " + maxIt(v, 0, v.length-1));
+      System.out.println("maxRec1: " + maxRec1(v, 0, v.length-1));
+      System.out.println("maxRec2: " + maxRec2(v, 0, v.length-1));
+   }
+
+}
+          </script>
+        </uc-code>
+
+        <uc-exercise id="soma-recursiva" title="Calculando recursivamente a soma de um array">
+          <p>Usando como base o código do máximo, implemente e teste duas versões recursivas de um método para calcular a soma dos elementos entre <em>start</em> e <em>end</em> do array <em>v[]</em>:</p>
+          <ul class="uc-bullets">
+            <li><code>static int sumRec1(int v[], int start, int end)</code> – divide o array entre o primeiro elemento e o resto do array</li>
+            <li><code>static int sumRec2(int v[], int start, int end)</code> – divide o array entre metade esquerda e metade direita</li>
+          </ul>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Fica tudo igual exceto a operação de combinar os resultados. Ao invés de ficar com o máximo... basta somar!</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 2 -->
+      <section class="uc-section" aria-labelledby="capicuas">
+        <h2 id="capicuas">Exercício 2) Capicuas</h2>
+        <p class="uc-prose"><strong>1. Verifique o seguinte código que inverte um array de forma recursiva. Compile, teste e verifique que percebe exatamente como o código está a funcionar.</strong></p>
+        <uc-code lang="java" filename="TestReverse.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2024/2025 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Invertendo um array (versao recursiva)
+// -----------------------------------------------------------
+
+import java.util.Arrays;
+
+public class TestReverse {
+
+   // Inverter array v entre posicoes start e end
+   static void reverse(int v[], int start, int end) {
+      if (start>=end) return;     // Caso base: array de tamanho < 2
+      int tmp = v[start];         // Trocar primeiro com ultimo
+      v[start] = v[end];
+      v[end] = tmp;
+      reverse(v, start+1, end-1); // Chamada recursiva para o resto
+   }
+
+   // -----------------------------------------------------------
+
+   public static void main(String[] args) {
+      int v[] = {2,4,6,8,10}; // Inicializacao de array
+
+      System.out.println("Antes do reverse: " + Arrays.toString(v));
+      reverse(v, 0, v.length-1);
+      System.out.println("Depois do reverse: " + Arrays.toString(v));
+   }
+}
+          </script>
+        </uc-code>
+
+        <uc-exercise id="capicua" title="Capicuas">
+          <p>Usando como base o código da inversão, implemente e teste um <strong>método recursivo</strong> para saber se o array representa uma capicua (uma capicua é um número que é igual quando lido da direita para a esquerda ou da esquerda para a direita).</p>
+          <ul class="uc-bullets">
+            <li><code>static boolean capicua(int v[], int start, int end)</code> – devolve <em>true</em> se <em>v</em> é capicua ou <em>false</em> caso contrário</li>
+          </ul>
+          <p>Exemplos:</p>
+          <ul class="uc-bullets">
+            <li><code>capicua([1,2,3,2,1], 0, 4)</code> deve devolver <em>true</em></li>
+            <li><code>capicua([5,8,8,5], 0, 3)</code> deve devolver <em>true</em></li>
+            <li><code>capicua([1,2,3,1], 0, 3)</code> deve devolver <em>false</em></li>
+            <li><code>capicua([5,8,7,5], 0, 3)</code> deve devolver <em>false</em></li>
+          </ul>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Fica tudo muito parecido, mas agora é preciso trabalhar com valores booleanos.</li>
+              <li>Para ser capicua é preciso que o primeiro seja igual ao último <strong>E</strong> que o resto seja capicua (como fazer um <em>E</em> lógico em Java?).</li>
+              <li>No caso base (palavra de tamanho inferior a 2) qual é agora o resultado?</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 3 -->
+      <section class="uc-section" aria-labelledby="flood-fill">
+        <h2 id="flood-fill">Exercício 3) Flood Fill</h2>
+        <p class="uc-prose"><strong>1.</strong> Verifique o seguinte código que permite executar a técnica de <em lang="en">"flood fill"</em> de forma recursiva. Compile, teste e verifique que percebe como o código está a funcionar. Note que precisa de dar input ao programa (um exemplo é fornecido na página com o código). Se o ficheiro com input se chamar <code>floodfill.txt</code>, uma maneira de executar o programa seria:</p>
+        <uc-code lang="bash" no-download>
+          <script type="text/plain">
+java TestFloodFill < floodfill.txt
+          </script>
+        </uc-code>
+        <ul class="uc-bullets">
+          <li>Exemplo de um ficheiro de input <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/floodfill.txt">floodfill.txt</a></li>
+        </ul>
+        <uc-code lang="java" filename="TestFloodFill.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de flood fill
+// -----------------------------------------------------------
+
+import java.util.Scanner;
+
+public class TestFloodFill {
+   static int rows;            // Numero de linhas
+   static int cols;            // Numero de colunas
+   static char m[][];          // Matriz de celulas
+   static boolean visited[][]; // Saber se uma dada posicao ja foi visitada
+
+   // Tamanho da mancha que inclui posicao (y,x)
+   static int t(int y, int x) {
+      if (y<0 || y>=rows || x<0 || x>=cols) return 0; // Caso base: fora dos limites
+      if (visited[y][x]) return 0;  // Caso base: celula ja visitada
+      if (m[y][x] == '.') return 0; // Caso base: celula vazia
+      int count = 1;          // celula nao vazia
+      visited[y][x] = true;   // marcar como visitada
+      count += t(y-1, x);     // Adicionando celulas nao vizinhas
+      count += t(y+1, x);
+      count += t(y, x+1);
+      count += t(y, x-1);
+      return count;
+   }
+
+   // -----------------------------------------------------------
+
+   public static void main(String[] args) {
+      Scanner in = new Scanner(System.in);
+
+      // Leitura de uma matriz de caracteres
+      rows = in.nextInt();
+      cols = in.nextInt();
+      m = new char[rows][cols];
+      visited = new boolean[rows][cols];
+      for (int i=0; i<rows; i++)
+         m[i] = in.next().toCharArray();
+
+      // Teste do metodo t(y,x)
+      System.out.printf("t(0,0) = %d\n", t(0,0));
+      System.out.printf("t(2,5) = %d\n", t(2,5));
+      System.out.printf("t(4,0) = %d\n", t(4,0));
+   }
+
+}
+          </script>
+        </uc-code>
+        <p class="aula-label">Exemplo de input manual (ver conteúdo do ficheiro floodfill.txt)</p>
+        <uc-code lang="plaintext" filename="floodfill.txt" no-download>
+          <script type="text/plain">
+5 7
+##.#...
+.###...
+.....##
+.#...##
+##.....
+          </script>
+        </uc-code>
+
+        <uc-exercise id="contagem-celulas" title="Resolvendo um problema: [ED200] Contagem de Células">
+          <p>Resolva o exercício <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob200.html">[ED200] Contagem de Células</a> e submeta-o também no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a> para testar a sua solução.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>O tipo de input é quase igual pelo que o código é aplicável quase diretamente.</li>
+              <li>Cuidado com a noção de vizinhança. Para o problema [ED200], as células também são adjacentes diagonalmente. O que precisa de mudar no código na função recursiva?</li>
+              <li>Para descobrir o micróbio de tamanho máximo, basta contar a "mancha" de cada posição possível da matriz e guardar o máximo.</li>
+              <li>Para cada nova matriz, o que é preciso "reinicializar"? Qual o estado da matriz <code>visited[][]</code> depois de verificada a matriz anterior? Como deve esta estar antes de iniciar um novo flood fill?</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 4 -->
+      <section class="uc-section" aria-labelledby="subconjuntos">
+        <h2 id="subconjuntos">Exercício 4) Subconjuntos</h2>
+        <p class="uc-prose"><strong>1. Verifique o seguinte código para gerar subconjuntos.</strong></p>
+        <uc-code lang="java" filename="TestSets.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Geracao de subconjuntos
+// -----------------------------------------------------------
+
+public class TestSets {
+
+   // Escrever todos os subconjuntos do array v[]
+   static void sets(int v[]) {
+      // array de booleanos para representar o conjunto
+      boolean used[] = new boolean[v.length];
+      goSets(0, v, used); // chamar funcao recursiva
+   }
+
+   // Gera todos os subconjuntos a partir da posicao 'cur'
+   static void goSets(int cur, int v[], boolean used[]) {
+      if (cur == v.length) {  // Caso base: terminamos o conjunto
+         // Escrever conjunto
+         System.out.print("Set:");
+         for (int i=0; i<v.length; i++)
+            if (used[i]) System.out.print(" " + v[i]);
+         System.out.println();
+      } else {                // Se nao terminamos, continuar a gerar
+         used[cur] = true;      // Subconjuntos que incluem o elemento actual
+         goSets(cur+1, v, used);// Chamada recursiva
+         used[cur] = false;     // Subconjuntos que nao incluem o el. actual
+         goSets(cur+1, v, used);// Chamada recursiva
+      }
+   }
+
+   // -----------------------------------------------------------
+
+   public static void main(String[] args) {
+      int v[] = {2,4,6,8}; // Inicializacao de array
+
+      sets(v);
+   }
+}
+          </script>
+        </uc-code>
+
+        <uc-exercise id="playlist" title="Resolvendo um problema: [ED201] Playlist">
+          <p>Resolva o exercício <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob201.html">[ED201] Playlist</a> e submeta-o também no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a> para testar a sua solução.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>A que equivale tentar exaustivamente todas as possíveis playlists? No fundo queremos todos os subconjuntos!</li>
+              <li>Para testar uma playlist, ao invés de imprimir um subconjunto, queremos somar a duração das músicas desse conjunto.</li>
+              <li>De todos os subconjuntos, guardamos o melhor (o que tiver maior soma e for menor que D).</li>
+              <li>Nota: esta solução de pesquisa exaustiva gerando todos os subconjuntos é <em>exponencial</em> – o problema pode ser resolvido de forma <em>polinomial</em> usando <strong>programação dinâmica</strong> (esta técnica não será abordada em Estruturas de Dados).</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 5 -->
+      <section class="uc-section" aria-labelledby="permutacoes">
+        <h2 id="permutacoes">Exercício 5) Permutações</h2>
+        <p class="uc-prose"><strong>1. Verifique o seguinte código que gera todas as permutações de um dado array.</strong></p>
+        <uc-code lang="java" filename="TestPerm.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Geracao de permutacoes
+// -----------------------------------------------------------
+
+public class TestPerm {
+    // Escrever todos as permutacoes do array v[]
+    static void permutations(int v[]) {
+        boolean used[] = new boolean[v.length]; // $i$ esta na permutacao?
+        int perm[] = new int[v.length];         // permutacao actual
+        goPerm(0, v, used, perm); // chamar funcao recursiva
+    }
+    // Gera todos os subconjuntos a partir da posicao 'cur'
+    static void goPerm(int cur, int v[], boolean used[], int perm[]) {
+        if (cur == v.length) {  // Caso base: terminamos a permutacao
+            for (int i=0; i<v.length; i++) // Escrever a permutacao
+                System.out.print(v[perm[i]] + " ");
+            System.out.println();
+        } else { // Se nao terminamos, continuar a gerar
+            for (int i=0; i<v.length; i++) // Tentar todos os elementos
+                if (!used[i]) {
+                    used[i] = true; perm[cur] = i;
+                    goPerm(cur+1, v, used, perm);
+                    used[i] = false;
+                }
+        }
+    }
+
+    // -----------------------------------------------------------
+
+    public static void main(String[] args) {
+        int v[] = {2,4,6,8}; // Inicializacao de array
+
+        permutations(v);
+    }
+}
+          </script>
+        </uc-code>
+
+        <uc-exercise id="procurando-pokemons" title="Resolvendo um problema: [ED202] Procurando Pokemons">
+          <p>Resolva o exercício <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob202.html">[ED202] Procurando Pokemons</a> e submeta-o também no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a> para testar a sua solução.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>A que equivale tentar exaustivamente todos os possíveis caminhos? No fundo queremos todas as permutações dos sítios, pois um caminho fica completamente definido pela ordem em que visitamos os locais.</li>
+              <li>Para testar uma permutação, ao invés de imprimir, queremos somar as distâncias percorridas.</li>
+              <li>De todas as permutações, guardamos a melhor (a que tiver menor soma).</li>
+              <li>Nota: este problema corresponde na sua essência a uma versão euclidiana do <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem"><em lang="en">Traveling Salesman Problem</em></a>, que é um problema complicado e sem ser conhecida uma maneira polinomial (no tempo) de encontrar uma solução ótima.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <p class="uc-muted">DCC/FCUP · Última atualização do original: 15/11/2025</p>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula08.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 8 · Complexidade algorítmica</strong>
+        </a>
+        <a class="uc-card" href="aula10.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 10 · Árvores binárias</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

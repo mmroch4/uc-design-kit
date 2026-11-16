@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 7 · Listas, pilhas e filas · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 7 de Estruturas de Dados (CC1007): listas circulares, listas duplamente ligadas, pilhas e filas em Java, com os problemas ED006, ED194, ED195, ED196 e ED197.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="7">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 7</span>
+          <span class="uc-mono uc-muted">4–7 nov</span>
+        </p>
+        <h1>Aula 7 · Listas, pilhas e filas</h1>
+      </div>
+
+      <!-- Exercícios para submissão -->
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob006.html">[ED006] Pim, Pam, Pum</a> (peso 20%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob194.html">[ED194] Invertendo uma Pilha</a> (peso 20%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob195.html">[ED195] Expressões bem balanceadas</a> (peso 20%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob196.html">[ED196] Duas filas</a> (peso 20%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob197.html">[ED197] União Ordenada</a> (peso 20%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob005.html">[ED005] Notação Polaca Invertida</a> (peso 20%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob007.html">[ED007] Entre Parênteses</a> (peso 20%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob029.html">[ED029] Confusão no Aeroporto</a> (peso 20%) <span class="uc-muted">(exercício do guião principal)</span></li>
+        </ul>
+        <p class="uc-prose"><strong>Prazo de submissão:</strong> 20 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
+        <div class="uc-callout">
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <ul class="uc-bullets">
+            <li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.</li>
+            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+            <li>Para ter 100% bastará sempre resolver os exercícios do guião principal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Exercício 1 -->
+      <section class="uc-section" aria-labelledby="listas-circulares">
+        <h2 id="listas-circulares">Exercício 1) Listas circulares</h2>
+        <p class="uc-prose">Nas teóricas falámos de mais tipos de listas ligadas, incluindo a noção de listas circulares, onde o último elemento "aponta" para o primeiro, de forma circular:</p>
+        <p><img src="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/images/circular.png" width="500" height="173" alt="Lista ligada circular: cada nó aponta para o seguinte e o último nó aponta de volta para o primeiro."></p>
+        <p class="uc-prose"><strong>Verifique o seguinte código que implementa em Java um conjunto de operações sobre listas circulares</strong></p>
+
+        <uc-code lang="java" filename="Node.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Classe com um no generico
+// -----------------------------------------------------------
+
+public class Node<T> {
+   private T value;      // Valor guardado no no
+   private Node<T> next; // Referencia para o proximo no da lista
+
+   // Construtor
+   Node(T v, Node<T> n) {
+      value = v;
+      next = n;
+   }
+
+   // Getters e Setters
+   public T getValue() { return value; }
+   public Node<T> getNext() { return next; }
+   public void setValue(T v) { value=v; }
+   public void setNext(Node<T> n) { next = n; }
+}
+</script>
+        </uc-code>
+
+        <uc-code lang="java" filename="CircularLinkedList.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Lista ligada circular simples
+// (implementada apenas com "last": o primeiro e o last.next)
+// -----------------------------------------------------------
+
+public class CircularLinkedList<T> {
+   private Node<T> last; // Ultimo no da lista
+   private int size;     // Tamanho da lista
+
+   // Construtor (cria lista vazia)
+   CircularLinkedList() {
+      last = null;
+      size = 0;
+   }
+
+   // Retorna o tamanho da lista
+   public int size() {
+      return size;
+   }
+
+   // Devolve true se a lista estiver vazia ou falso caso contrario
+   public boolean isEmpty() {
+      return (size == 0);
+   }
+
+   // Retorna o primeiro valor da lista (ou null se a lista for vazia)
+   public T getFirst() {
+      if (isEmpty()) return null;
+      return last.getNext().getValue();
+   }
+
+   // Retorna o ultimo valor da lista (ou null se a lista for vazia)
+   public T getLast() {
+      if (isEmpty()) return null;
+      return last.getValue();
+   }
+
+   // Roda a lista (o primeiro passa a ser o novo ultimo da lista)
+   public void rotate() {
+      if (!isEmpty()) // Se estiver vazia nao faz nada
+         last = last.getNext();
+   }
+
+   // Adiciona v ao inicio da lista
+   public void addFirst(T v) {
+      if (isEmpty()) {
+         last = new Node<T>(v, null);
+         last.setNext(last); // Apontar para si proprio em "loop"
+      } else {
+         Node<T> newNode = new Node<T>(v, last.getNext());
+         last.setNext(newNode);
+      }
+      size++;
+   }
+
+   // Adiciona v ao final da lista
+   public void addLast(T v) {
+      addFirst(v);
+      last = last.getNext();
+   }
+
+   // Remove o primeiro elemento da lista (se for vazia nao faz nada)
+   public void removeFirst() {
+      if (isEmpty()) return;
+      if (size == 1) last = null;
+      else last.setNext(last.getNext().getNext());
+      size--;
+   }
+
+   // Remove o ultimo elemento da lista (se for vazia nao faz nada)
+   public void removeLast() {
+      if (isEmpty()) return;
+      if (size == 1) {
+         last = null;
+      } else {
+         Node<T> cur = last.getNext();
+         for (int i=0; i<size-2; i++)
+            cur = cur.getNext();
+         last = cur;
+         last.setNext(last.getNext().getNext());
+      }
+      size--;
+   }
+
+   // Converte a lista para uma String
+   public String toString() {
+      String str = "{";
+      if (!isEmpty()) {
+         Node<T> cur = last.getNext();
+         for (int i=0; i<size; i++) {
+            str += cur.getValue();
+            if (cur != last) str += ",";
+            cur = cur.getNext();
+         }
+      }
+      str += "}";
+      return str;
+   }
+}
+</script>
+        </uc-code>
+
+        <p class="aula-label">Exemplo de utilização</p>
+        <uc-code lang="java" filename="TestCircularLinkedList.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao da lista circular
+// -----------------------------------------------------------
+
+public class TestCircularLinkedList {
+   public static void main(String[] args) {
+
+      // Simulando processos (A,B,C,D) e escalonamento round-robin
+      // Criacao de lista de caracteres
+      CircularLinkedList<Character> list = new CircularLinkedList<Character>();
+
+      // Adicionando letras de 'A' a 'E'
+      list.addLast('A');
+      list.addLast('B');
+      list.addLast('C');
+      list.addLast('D');
+
+      // Mostrando rotacao a funcionar
+      System.out.println("8 rondas round-robin");
+      for (int i=1; i<=8; i++) {
+         System.out.println(i + ": " + list);
+         list.rotate();
+      }
+
+      // Inserir e retirar elemento no final
+      list.addLast('E');
+      System.out.println("addLast('E'): " + list);
+      list.removeLast();
+      System.out.println("removeLast(): " + list);
+
+      // Inserir retirar elemento no inicio
+      list.addFirst('F');
+      System.out.println("addFirst('F'): " + list);
+      list.removeFirst();
+      System.out.println("removeFirst(): " + list);
+
+   }
+}
+</script>
+        </uc-code>
+
+        <uc-exercise id="executar-lista-circular" title="Execute o código anterior">
+          <p>Compile o código e execute a classe <code>TestCircularLinkedList</code> para ver as listas circulares em funcionamento. Procure acompanhar cada uma das linhas de código e o seu efeito. Note em particular o que faz o método <code>rotate()</code> que "roda" os elementos, colocando o primeiro elemento no final da lista e avançando o segundo elemento para o início da fila.</p>
+        </uc-exercise>
+
+        <uc-exercise id="pim-pam-pum" title="Resolver um problema: Pim, Pam, Pum">
+          <p>Resolva o exercício <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob006.html">[ED006] Pim, Pam, Pum</a> e submeta também no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a> para testar a sua resolução.</p>
+          <details class="uc-hint">
+            <summary>Dicas</summary>
+            <ul class="uc-bullets">
+              <li>Comece por ler a linha com a frase de contagem para uma String (use o método <code>nextLine()</code> da classe <em>Scanner</em> e não se esqueça de "escapar" o resto da linha anterior).</li>
+              <li>Para saber o tamanho da frase basta por exemplo usar o método <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#split-java.lang.String-">split</a> da classe <em>String</em>. Se a linha estiver guardada numa string chamada <em>line</em>, então <code>line.split(" ")</code> devolve um array contendo as palavras e <code>line.split(" ").length</code> devolve a quantidade de elementos nesse array.</li>
+              <li>Agora é só simular o jogo a acontecer. De cada vez chame <code>rotate()</code> o número de vezes necessário (<strong>o tamanho da frase menos um, porque já está no primeiro elemento da contagem</strong>) e remova o primeiro elemento (método <code>removeFirst()</code>). No final é só ver qual a criança que sobrou na lista circular (método <code>getFirst()</code>).</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 2 -->
+      <section class="uc-section" aria-labelledby="listas-duplas">
+        <h2 id="listas-duplas">Exercício 2) Listas duplamente ligadas</h2>
+        <p class="uc-prose"><strong>Verifique o seguinte código que implementa em Java um conjunto de operações sobre listas duplamente ligadas</strong></p>
+
+        <uc-code lang="java" filename="DNode.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2425/
+// -----------------------------------------------------------
+// Classe com um no generico com dupla ligacao
+// -----------------------------------------------------------
+
+public class DNode<T> {
+   private T value;       // Valor guardado no no
+   private DNode<T> prev; // Referencia para o no anterior da lista
+   private DNode<T> next; // Referencia para o proximo no da lista
+
+   // Construtor
+   DNode(T v, DNode<T> p, DNode<T> n) {
+      value = v;
+      prev = p;
+      next = n;
+   }
+
+   // Getters e Setters
+   public T getValue() { return value; }
+   public DNode<T> getPrev() { return prev; }
+   public DNode<T> getNext() { return next; }
+   public void setValue(T v) { value=v; }
+   public void setPrev(DNode<T> p) { prev = p; }
+   public void setNext(DNode<T> n) { next = n; }
+}
+</script>
+        </uc-code>
+
+        <uc-code lang="java" filename="DoublyLinkedList.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Lista duplamente ligada
+// (implementada com sentinelas - nos "dummy" no inicio e no fim
+//  que facilitam a implementacao e evitam casos excepcionais)
+// -----------------------------------------------------------
+
+public class DoublyLinkedList<T> {
+   private DNode<T> first; // Primeiro no da lista
+   private DNode<T> last;  // Ultimo no da lista
+   private int size;       // Tamanho da lista
+
+   // Construtor (cria lista vazia com dois nos sentinelas)
+   DoublyLinkedList() {
+      first = new DNode<T>(null, null, null);
+      last = new DNode<T>(null, first, null); // Antes do ultimo vem o primeiro
+      first.setNext(last);  // A seguir ao primeiro vem o ultimo
+      size = 0;
+   }
+
+   // Retorna o tamanho da lista
+   public int size() {
+      return size;
+   }
+
+   // Devolve true se a lista estiver vazia ou falso caso contrario
+   public boolean isEmpty() {
+      return (size == 0);
+   }
+
+   // Retorna o primeiro valor da lista (ou null se a lista for vazia)
+   public T getFirst() {
+      if (isEmpty()) return null;
+      return first.getNext().getValue();
+   }
+
+   // Retorna o ultimo valor da lista (ou null se a lista for vazia)
+   public T getLast() {
+      if (isEmpty()) return null;
+      return last.getPrev().getValue();
+   }
+
+   // Adiciona v ao inicio da lista
+   public void addFirst(T v) {
+      addBetween(v, first, first.getNext());
+   }
+
+   // Adiciona v ao final da lista
+   public void addLast(T v) {
+      addBetween(v, last.getPrev(), last);
+   }
+
+   // Adiciona elemento entre dois nos n1 e n2
+   private void addBetween(T v, DNode<T> n1, DNode<T> n2) {
+      DNode<T> newNode = new DNode<T>(v, n1, n2);
+      n1.setNext(newNode);
+      n2.setPrev(newNode);
+      size++;
+   }
+
+   // Remove o primeiro elemento da lista (se for vazia nao faz nada)
+   public void removeFirst() {
+      if (isEmpty()) return;
+      remove(first.getNext());
+   }
+
+   // Remove o ultimo elemento da lista (se for vazia nao faz nada)
+   public void removeLast() {
+      if (isEmpty()) return;
+      remove(last.getPrev());
+   }
+
+   // Remove um no da lista
+   private void remove(DNode<T> n) {
+      DNode<T> prev = n.getPrev();
+      DNode<T> next = n.getNext();
+      prev.setNext(next);
+      next.setPrev(prev);
+      size--;
+   }
+
+   // Converte a lista para uma String
+   public String toString() {
+      String str = "{";
+      DNode<T> cur = first.getNext();
+      for (int i=0; i<size; i++) {
+         str += cur.getValue();
+         cur = cur.getNext();
+         if (cur != last) str += ",";
+      }
+      str += "}";
+      return str;
+   }
+}
+</script>
+        </uc-code>
+
+        <p class="aula-label">Exemplo de utilização</p>
+        <uc-code lang="java" filename="TestDoublyLinkedList.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao da lista duplamente ligada
+// -----------------------------------------------------------
+
+public class TestDoublyLinkedList {
+   public static void main(String[] args) {
+
+      // Criacao de lista de inteiros
+      DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+      // Escrevendo lista (no inicio esta vazia)
+      System.out.println(list);
+
+      // Verificando se esta vazia
+      System.out.println("isEmpty? " + list.isEmpty());
+
+      // Adicionando numeros de 1 a 5 ao final da lista
+      for (int i=1; i<=5; i++)
+         list.addLast(i);
+      System.out.println(list);
+
+      // Adicionando numeros de 6 a 10 ao inicio da lista
+      for (int i=6; i<=10; i++)
+         list.addFirst(i);
+      System.out.println(list);
+
+      // Verificando o tamanho da lista
+      System.out.println("size = " + list.size());
+
+      // Retirando o primeiro elemento
+      list.removeFirst();
+      System.out.println(list);
+
+      // Retirando o ultimo elemento
+      list.removeLast();
+      System.out.println(list);
+
+      // Verificando se esta vazia
+      System.out.println("isEmpty? " + list.isEmpty());
+
+      // Escreve o primeiro e ultimo elementos
+      System.out.println("getFirst() = " + list.getFirst());
+      System.out.println("getLast() = " + list.getLast());
+
+   }
+}
+</script>
+        </uc-code>
+
+        <uc-exercise id="executar-lista-dupla" title="Execute o código anterior">
+          <p>Compile o código e execute a classe <code>TestDoublyLinkedList</code> para ver as listas duplamente ligadas em funcionamento. Procure acompanhar cada uma das linhas de código e o seu efeito.</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 3 -->
+      <section class="uc-section" aria-labelledby="pilhas">
+        <h2 id="pilhas">Exercício 3) Pilhas</h2>
+        <p class="uc-prose">Um TAD <strong>Pilha</strong> é uma sequência de elementos LIFO (<em lang="en">Last-In-First-Out</em>) onde temos duas operações para modificar o conteúdo:</p>
+        <ul class="uc-bullets">
+          <li>podemos adicionar um elemento <em>x</em> chamando <code>push(x)</code></li>
+          <li>podemos remover e obter o elemento que adicionámos mais recentemente usando <code>pop()</code></li>
+        </ul>
+        <p><img src="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/images/stack.png" width="796" height="170" alt="Pilha: os elementos são colocados (push) e retirados (pop) sempre pelo topo."></p>
+        <p class="uc-prose"><strong>Verifique o seguinte código que implementa em Java um conjunto de operações sobre Pilhas</strong></p>
+
+        <p class="aula-label">Interface</p>
+        <uc-code lang="java" filename="MyStack.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Interface para o TAD Pilha
+// -----------------------------------------------------------
+
+public interface MyStack<T> {
+
+   // Metodos que modificam a pilha
+   public void push(T v); // Coloca um valor no topo da pilha
+   public T pop();        // Retira e retorna o valor no topo da pilha
+
+   // Metodos que acedem a informacao (sem modificar)
+   public T top();           // Retorna valor no topo da pilha
+   public int size();        // Retorna quantidade de elementos na pilha
+   public boolean isEmpty(); // Indica se a pilha esta vazia
+}
+</script>
+        </uc-code>
+
+        <p class="aula-label">Exemplo de utilização</p>
+        <uc-code lang="java" filename="TestMyStack.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao do TAD Pilha
+// -----------------------------------------------------------
+
+public class TestMyStack {
+   public static void main(String[] args) {
+
+      // Criacao da pilha
+      MyStack<Integer> s = new LinkedListStack<Integer>();
+      //MyStack<Integer> s = new ArrayStack<Integer>();
+
+      // Exemplo de insercao de elementos na pilha
+      for (int i=1; i<=8; i++)
+         s.push(i); // insere i no topo da pilha
+      System.out.println(s);
+
+      // Exemplo de remocao de elementos na pilha
+      for (int i=0; i<4; i++) {
+         int aux = s.pop(); // retira o elemento no topo da pilha
+         System.out.println("s.pop() = " + aux);
+      }
+      System.out.println(s);
+
+      // Exemplo de utilizacao dos outros metodos
+      System.out.println("s.size() = " + s.size());
+      System.out.println("s.isEmpty() = " + s.isEmpty());
+      System.out.println("s.top() = " + s.top());
+   }
+}
+</script>
+        </uc-code>
+
+        <p class="aula-label">Implementação com listas ligadas</p>
+        <uc-code lang="java" filename="LinkedListStack.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Implementacao do TAD Pilha usando lista duplamente ligada
+// -----------------------------------------------------------
+
+public class LinkedListStack<T> implements MyStack<T> {
+   private DoublyLinkedList<T> list;
+
+   LinkedListStack() { list = new DoublyLinkedList<T>();}
+
+   public void push(T v) { list.addFirst(v); }
+   public T pop() {
+      T ans = list.getFirst();
+      list.removeFirst();
+      return ans;
+   }
+   public T top() { return list.getFirst();}
+   public int size() {return list.size();}
+   public boolean isEmpty() {return list.isEmpty();}
+
+   public String toString() {return list.toString();}
+}
+</script>
+        </uc-code>
+
+        <p class="aula-label">Implementação com arrays</p>
+        <uc-code lang="java" filename="ArrayStack.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Implementacao de Pilha usando array
+//
+// Nota: o Java proibe a criacao de arrays genericos. Para efeitos
+// de demonstracao, usamos aqui um array de Objects e um cast
+// (que provoca um aviso de compilacao que e "evitado" com a linha do
+// Supress Warning). De um modo geral, para genericos, o ideal seria
+// nao usar um array "nativo", mas sim algo como um ArrayList, mas
+// aqui queremos demonstrar como pode ser feito.
+// -----------------------------------------------------------
+
+import java.util.Arrays;
+
+public class ArrayStack<T> implements MyStack<T> {
+   public static final int CAPACITY = 1000; // Capacidade padrao
+   private T[] data;                        // Array para conter elementos
+   private int size;                        // Quantidade de elementos
+
+   ArrayStack() {
+      this(CAPACITY);
+   }
+
+   @SuppressWarnings("unchecked")
+   ArrayStack(int capacity) {
+      data = (T[]) new Object[capacity];
+      size = 0;
+   }
+
+   public void push(T v) {
+      if (size >= data.length) throw new RuntimeException("Stack is full");
+      data[size++] = v;
+   }
+
+   public T pop() {
+      if (isEmpty()) return null;
+      return data[--size];
+   }
+
+   public T top() { return data[size-1];}
+   public int size() {return size;}
+   public boolean isEmpty() {return (size==0);}
+
+   public String toString() {
+      String str = "[";
+      for (int i=size-1; i>=0; i--) {
+         str += data[i];
+         if (i>0) str += ",";
+      }
+      str += "]";
+      return str;
+   }
+}
+</script>
+        </uc-code>
+
+        <uc-exercise id="executar-pilha" title="Execute o código anterior">
+          <p>Compile o código e execute a classe <code>TestMyStack</code> para ver a pilha em funcionamento.</p>
+          <p>Procure acompanhar cada uma das linhas de código e o seu efeito. Note em particular os métodos do TAD (basta ver o interface) e como criar a Pilha (a variável do tipo do interface atribuída a uma implementação desse mesmo interface).</p>
+        </uc-exercise>
+
+        <uc-exercise id="inverter-pilha" title="Como inverter uma pilha">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob194.html">[ED194] Invertendo uma Pilha</a> e poderá também submeter a sua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <details class="uc-hint">
+            <summary>Dicas</summary>
+            <p>Basta retirar <em>n</em> elementos da pilha (usando a operação <em>pop</em>) e depois voltar a inserir pela ordem correta (usando a operação <em>push</em>). À medida que vai retirando os elementos pode por exemplo guardá-los... num array.</p>
+          </details>
+          <p><strong>Nota:</strong> se quiser testar o método pode optar por adicionar um <code>main</code> à sua classe <code>ED194</code> (não será chamado no Mooshak) ou criar uma classe adicional no seu computador para fazer chamadas a <code>ED194</code>.</p>
+          <details class="uc-hint">
+            <summary>Exemplo de programa para testar o problema [ED194]</summary>
+            <uc-code lang="java" filename="ED194.java" editable>
+<script type="text/plain">
+// Pode submeter uma classe como esta.
+// - No seu computador pode testar com "java ED194"
+// - O mooshak apenas irá chamar o seu método reverse
+public class ED194 {
+
+   // Método que deve implementar
+   public static void reverse(MyStack<Integer> s, int n) {
+      // Deve colocar aqui o código para resolver o problema
+   }
+
+   // Main apenas para testar no seu computador
+   public static void main(String[] args) {
+      MyStack<Integer> s = new LinkedListStack<Integer>();
+
+      for (int i=5; i>0; i--)
+         s.push(i);
+      System.out.println(s); // Antes da chamada a reverse
+      reverse(s, 3);
+      System.out.println(s); // Depois da chamada a reverse
+   }
+}
+</script>
+            </uc-code>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="expressoes-balanceadas" title="Expressões bem balanceadas">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob195.html">[ED195] Expressões bem balanceadas</a> e poderá também submeter a sua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <details class="uc-hint">
+            <summary>Dicas</summary>
+            <ul class="uc-bullets">
+              <li>Para iterar sobre todos os caracteres da string <em>s</em> pode usar o método <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#charAt-int-">charAt(int index)</a> da classe String. Por exemplo, <code>s.charAt(i)</code> devolve o <em>i</em>-ésimo caracter da string <em>s</em>. Note que as posições válidas vão desde 0 até <code>s.length()-1</code>.</li>
+              <li>Use uma pilha de caracteres (<code>MyStack&lt;Character&gt;</code>) para ir guardando os parênteses de <em>abertura</em>: <code>'('</code> e <code>'['</code>. Cada vez que apanhar um parênteses de <em>fecho</em>, verifique se corresponde ao tipo do último parênteses aberto (que está no topo da pilha).</li>
+              <li>Qual o estado final da pilha numa expressão bem formada? Como pode determinar que ficaram parênteses por fechar?</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 4 -->
+      <section class="uc-section" aria-labelledby="filas">
+        <h2 id="filas">Exercício 4) Filas</h2>
+        <p class="uc-prose">Um TAD <strong>Fila</strong> é uma sequência de elementos FIFO (<em lang="en">First-In-First-Out</em>) onde temos duas operações para modificar o conteúdo:</p>
+        <ul class="uc-bullets">
+          <li>podemos adicionar um elemento <em>x</em> chamando <code>enqueue(x)</code></li>
+          <li>podemos remover e obter o elemento que adicionámos há mais tempo usando <code>dequeue()</code></li>
+        </ul>
+        <p><img src="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/images/queue.png" width="821" height="90" alt="Fila: os elementos entram (enqueue) pelo final e saem (dequeue) pelo início."></p>
+        <p class="uc-prose"><strong>Verifique o seguinte código que implementa em Java um conjunto de operações sobre filas</strong></p>
+
+        <p class="aula-label">Interface</p>
+        <uc-code lang="java" filename="MyQueue.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Interface para o TAD Fila
+// -----------------------------------------------------------
+
+public interface MyQueue<T> {
+
+   // Metodos que modificam a fila
+   public void enqueue(T v); // Coloca um valor no final da fila
+   public T dequeue();       // Retira e retorna o valor no inicio da fila
+
+   // Metodos que acedem a informacao (sem modificar)
+   public T first();         // Retorna valor no inicio da fila
+   public int size();        // Retorna quantidade de elementos na fila
+   public boolean isEmpty(); // Indica se a fila esta vazia
+}
+</script>
+        </uc-code>
+
+        <p class="aula-label">Exemplo de utilização</p>
+        <uc-code lang="java" filename="TestMyQueue.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao do TAD Fila
+// -----------------------------------------------------------
+
+public class TestMyQueue {
+   public static void main(String[] args) {
+
+      // Criacao da fila
+      MyQueue<Integer> q = new LinkedListQueue<Integer>();
+
+      // Exemplo de insercao de elementos na fila
+      for (int i=1; i<=8; i++)
+         q.enqueue(i); // insere i no final da fila
+      System.out.println(q);
+
+      // Exemplo de remocao de elementos da fila
+      for (int i=0; i<4; i++) {
+         int aux = q.dequeue(); // retira o elemento no inicio da fila
+         System.out.println("q.dequeue() = " + aux);
+      }
+      System.out.println(q);
+
+      // Exemplo de utilizacao dos outros metodos
+      System.out.println("q.size() = " + q.size());
+      System.out.println("q.isEmpty() = " + q.isEmpty());
+      System.out.println("q.first() = " + q.first());
+   }
+}
+</script>
+        </uc-code>
+
+        <p class="aula-label">Implementação com listas ligadas</p>
+        <uc-code lang="java" filename="LinkedListQueue.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Implementacao do TAD Fila usando lista duplamente ligada
+// -----------------------------------------------------------
+
+public class LinkedListQueue<T> implements MyQueue<T> {
+   private DoublyLinkedList<T> list;
+
+   LinkedListQueue() { list = new DoublyLinkedList<T>();}
+
+   public void enqueue(T v) { list.addLast(v); }
+   public T dequeue() {
+      T ans = list.getFirst();
+      list.removeFirst();
+      return ans;
+   }
+   public T first() { return list.getFirst();}
+   public int size() {return list.size();}
+   public boolean isEmpty() {return list.isEmpty();}
+
+   public String toString() {return list.toString();}
+}
+</script>
+        </uc-code>
+
+        <uc-exercise id="executar-fila" title="Execute o código anterior">
+          <p>Compile o código e execute a classe <code>TestMyQueue</code> para ver a Fila em funcionamento.</p>
+          <p>Procure acompanhar cada uma das linhas de código e o seu efeito. Note em particular os métodos do TAD (basta ver o interface) e como criar a Fila (a variável do tipo do interface atribuída a uma implementação desse mesmo interface).</p>
+        </uc-exercise>
+
+        <uc-exercise id="duas-filas" title="Como usar filas">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob196.html">[ED196] Duas filas</a> e poderá também submeter a sua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <details class="uc-hint">
+            <summary>Dicas</summary>
+            <ul class="uc-bullets">
+              <li>A ideia é ir retirando elementos à fila (dois a dois) enquanto a fila não estiver vazia. Que método da fila serve para verificar se a fila ainda tem elementos?</li>
+              <li>Consoante a operação, devemos colocar logo numa certa lista, ou comparar os tamanhos. Que método da fila serve para ver o tamanho de uma fila?</li>
+            </ul>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="uniao-ordenada" title="União ordenada">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob197.html">[ED197] União Ordenada</a> e poderá também submeter a sua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <details class="uc-hint">
+            <summary>Dicas</summary>
+            <ul class="uc-bullets">
+              <li>Comece por criar uma nova fila de inteiros que irá conter a união (<code>MyQueue&lt;Integer&gt; q = new LinkedListQueue&lt;Integer&gt;();</code>)</li>
+              <li>Depois, a ideia é "espreitar" o primeiro elemento de cada fila e escolher o que for menor. Que método da fila serve para ver o primeiro elemento?</li>
+              <li>Se uma das filas ficar vazia, o que falta fazer?</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula06.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 6 · Listas ligadas simples</strong>
+        </a>
+        <a class="uc-card" href="aula08.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 8 · Complexidade algorítmica</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

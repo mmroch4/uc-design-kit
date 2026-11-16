@@ -227,7 +227,8 @@ configuration. Children, if any, are appended below the tagline.
 
 #### `<uc-notices>`
 
-Lists `UC_COURSE.notices`, newest first.
+Lists `UC_COURSE.notices`, newest first. A notice dated after "today" is
+hidden until that day, so notices can be written in advance.
 
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
@@ -467,7 +468,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-grid` | Responsive auto-fit grid. `--uc-grid-min` sets the minimum column width (default 220px). |
 | `uc-stack` | Vertical rhythm container (`gap` from `--uc-stack-gap`). |
 | `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--muted`. |
-| `uc-table` | Put on a wrapper `<div>` around a `<table>`: horizontal scroll, borders, header style. |
+| `uc-table` | Put on a wrapper `<div>` around a `<table>`: horizontal scroll, borders, header style. While the table overflows, the kit makes the wrapper focusable (`tabindex="0"`, `role="region"`, labelled by the `<caption>`) so it can be scrolled with the keyboard. Set `--uc-table-min` (default `560px`) to change the minimum table width. |
 | `uc-links` | A `<ul>` of links with a secondary description in a `<span>`. |
 | `uc-shortcuts` | A `<nav>` or `<ul>` of large link buttons (quick access). |
 | `uc-callout` | Soft grey panel; `uc-callout--warning` for amber. |

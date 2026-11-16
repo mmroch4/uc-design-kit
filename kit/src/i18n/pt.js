@@ -6,6 +6,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     switchLanguage: "Mudar para {language}",
     external: "(site externo)",
     requiresLogin: "Requer autenticação",
+    scrollableTable: "Tabela com deslocamento horizontal",
   },
   nav: {
     label: "Secções da cadeira",

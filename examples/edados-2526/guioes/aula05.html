@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 5 · Tipos abstratos de dados · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 5 de Estruturas de Dados (CC1007): o TAD Conjunto com ArrayList e com array de booleanos, medição de tempos de execução e o TAD BigNumber.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="5">
+
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 5</span>
+          <span class="uc-mono uc-muted">14–17 out</span>
+        </p>
+        <h1>Aula 5 · Tipos abstratos de dados</h1>
+        <p class="uc-prose">Nesta aula implementas o TAD Conjunto de duas formas diferentes e comparas o tempo de execução de cada uma.</p>
+      </div>
+
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob247.html">[ED247] TAD Conjunto (ArrayListIntSet)</a> (peso 50%, exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob248.html">[ED248] TAD Conjunto (BooleanArrayIntSet)</a> (peso 50%, exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob185.html">[ED185] TAD Números Arbitrariamente Grandes (BigNumber)</a> (peso 25%, exercício extra)</li>
+        </ul>
+        <p><strong>Prazo de submissão:</strong> 4 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
+        <div class="uc-callout">
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <ul class="uc-bullets">
+            <li>Depois do prazo os problemas continuam disponíveis no Mooshak, mas as submissões não contam para a nota.</li>
+            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, podes ter pontuação máxima mesmo sem ter feito tudo.</li>
+            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolvas todos os problemas, o máximo numa aula é de 100%.</li>
+            <li>Para ter 100% basta sempre resolver os exercícios do guião principal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="uc-section" aria-labelledby="exercicios">
+        <h2 id="exercicios">Exercícios</h2>
+
+        <uc-exercise id="tad-conjunto" title="TAD Conjunto: exemplo de implementação e utilização" open>
+          <p><strong>Introdução e conceitos associados.</strong> Nas teóricas falámos de vários conceitos que deves rever, em particular:</p>
+          <ul class="uc-bullets">
+            <li><strong>Interface:</strong> definição dos métodos de um TAD (em abstrato, sem indicar implementação).</li>
+            <li><strong>Implementação de uma interface:</strong> uma classe X que implementa uma interface Y é declarada como <code>class X implements Y</code> e tem de implementar todos os métodos definidos na interface.</li>
+            <li><strong>TAD Conjunto:</strong> um tipo abstrato de dados que implementa um conjunto (usámos como exemplo um conjunto de números inteiros e operações como adicionar, remover ou verificar se um número está contido no conjunto).</li>
+          </ul>
+          <p>Resolve o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html">[ED247] TAD Conjunto (ArrayListIntSet)</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>. Vais ter de implementar dois métodos novos: <code>equals</code> e <code>intersection</code>.</p>
+          <details class="uc-hint">
+            <summary>Dicas</summary>
+            <ul class="uc-bullets">
+              <li>Deves submeter um ficheiro apenas com a classe que implementa a interface, <code>ArrayListIntSet</code>.</li>
+              <li>Em ambos os métodos recebes um <code>IntSet s</code>, por isso só podes chamar os métodos da interface sobre esse objeto <code>s</code>.</li>
+              <li>Para fazer o <code>equals(IntSet s)</code> podes, por exemplo, verificar se o tamanho de ambos os objetos (<code>this</code> e <code>s</code>) é igual e depois percorrer todos os elementos de <code>this</code> e verificar se estão em <code>s</code> (usando o método <code>contains</code>).</li>
+              <li>Para fazer o <code>intersection(IntSet s)</code> começa por criar um novo conjunto <code>tmp</code> (como criar? Vê o código exemplo no enunciado… e deve ter espaço para quantos elementos?); depois percorre todos os elementos de <code>this</code> e verifica se estão em <code>s</code> (usando o método <code>contains</code>); caso estejam, adiciona-os a <code>tmp</code>.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="tempo-de-execucao" title="Medir o tempo de execução do TAD Conjunto">
+          <p><strong>Descobrir a quantidade de números únicos.</strong> Usa a implementação de conjunto para descobrir a quantidade de números únicos (não repetidos) no input. O algoritmo deve ser algo como:</p>
+          <ul class="uc-bullets">
+            <li>criar um conjunto <code>s</code> vazio;</li>
+            <li>enquanto houver um número <code>x</code> para ler, adicionar <code>x</code> ao conjunto <code>s</code>;</li>
+            <li>no fim, escrever a quantidade de elementos em <code>s</code>.</li>
+          </ul>
+          <p>Testa o teu programa com os seguintes ficheiros <em>N</em>.txt, cada um com <em>N</em> números entre 1 e <em>N</em> (se precisares, podes parar a execução com <kbd>Ctrl</kbd>+<kbd>C</kbd>):</p>
+          <div class="uc-table">
+            <table>
+              <thead><tr><th scope="col">Ficheiro</th><th scope="col">Números únicos</th></tr></thead>
+              <tbody>
+                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/1000.txt">1000.txt</a></td><td class="uc-mono">644</td></tr>
+                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/10000.txt">10000.txt</a></td><td class="uc-mono">6309</td></tr>
+                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/100000.txt">100000.txt</a></td><td class="uc-mono">63273</td></tr>
+                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/500000.txt">500000.txt</a></td><td class="uc-mono">316074</td></tr>
+                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/1000000.txt">1000000.txt</a></td><td class="uc-mono">632432</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Mede o <strong>tempo de execução</strong> para cada um destes casos de teste. Por exemplo, para o caso de 1000 números, supondo que o teu programa está numa classe <code>Unique</code>, podes fazer:</p>
+          <uc-code lang="bash" no-download>
+            <script type="text/plain">
+              $ time java Unique < 1000.txt
+            </script>
+          </uc-code>
+          <p>Como foi crescendo o tempo?</p>
+        </uc-exercise>
+
+        <uc-exercise id="conjunto-eficiente" title="Um TAD Conjunto mais eficiente">
+          <p>O objetivo deste exercício é criar uma nova implementação do TAD Conjunto que seja mais eficiente, do ponto de vista do tempo de execução, nos métodos <code>contains</code>, <code>add</code> e <code>remove</code>. Para isso cria uma nova classe que implemente a interface <code>IntSet</code> (como definida no problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html">[ED247]</a>):</p>
+          <uc-code lang="java" filename="BooleanArrayIntSet.java" editable>
+            <script type="text/plain">
+              class BooleanArrayIntSet implements IntSet {
+                 // Deverá colocar aqui os atributos e métodos
+              }
+            </script>
+          </uc-code>
+          <p>A ideia é usar um array de valores booleanos para dizer se um número está ou não no conjunto:</p>
+          <ul class="uc-bullets">
+            <li>manter um array <code>isElem[]</code> de valores booleanos (verdadeiro ou falso);</li>
+            <li><code>isElem[i]</code> diz se o número <em>i</em> está ou não no conjunto;</li>
+            <li>o tamanho do array determina o maior número possível;</li>
+            <li>manter numa outra variável <code>size</code> o número de elementos.</li>
+          </ul>
+          <p>Por exemplo, o conjunto {1, 5, 7} seria representado por <code>isElem[] = {F,T,F,F,F,T,F,T,F,F}</code> e <code>size = 3</code>:</p>
+          <div class="uc-table">
+            <table>
+              <caption class="uc-visually-hidden">Array isElem para o conjunto {1, 5, 7}</caption>
+              <thead><tr><th scope="row">Índice</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th></tr></thead>
+              <tbody><tr><th scope="row">isElem</th><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td></tr></tbody>
+            </table>
+          </div>
+          <ol class="uc-bullets">
+            <li><strong>Criar o código.</strong> Cria um ficheiro <code>BooleanArrayIntSet.java</code> que implemente a ideia descrita acima para o TAD Conjunto (como pode ser um construtor da classe?). Testa os teus métodos, usando por exemplo a classe <code>TestSet</code> que já tens definida: tens de mudar a declaração da variável <code>s</code> para passar a usar esta nova implementação.</li>
+            <li><strong>Verificar a eficiência.</strong> Modifica o código que conta os números únicos para passar a usar a tua nova implementação de <code>IntSet</code>. Testa o funcionamento e mede o tempo de execução. É melhor ou pior do que a implementação anterior? Agora deves conseguir executar o caso de 1 milhão de números em muito menos tempo.</li>
+            <li><strong>Vantagens e desvantagens.</strong> Sabendo que esta nova implementação é mais eficiente na inserção de números, que outras vantagens e desvantagens vês em relação à implementação anterior, uma lista de números usando arrays?</li>
+            <li>Em <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob248.html">[ED248] TAD Conjunto (BooleanArrayIntSet)</a> encontras a descrição completa do problema e podes submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</li>
+          </ol>
+        </uc-exercise>
+      </section>
+
+      <section class="uc-section" aria-labelledby="extra">
+        <h2 id="extra">Exercício de submissão extra para consolidação de conhecimentos</h2>
+
+        <uc-exercise id="big-number" title="TAD BigNumber: números arbitrariamente grandes">
+          <p>Os tipos de dados primitivos do Java têm limites para os números que conseguem representar. O objetivo deste exercício é implementar um TAD que represente <strong>números inteiros positivos arbitrariamente grandes</strong>, ou seja, com o número de dígitos que quisermos (o Java já tem uma <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">classe para representar números com precisão arbitrária</a>, mas aqui a ideia é seres tu a implementar uma).</p>
+          <p>Resolve o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob185.html">[ED185] TAD Números Arbitrariamente Grandes (BigNumber)</a> e submete-o no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <details class="uc-hint">
+            <summary>Dica: armazenar o número</summary>
+            <p>Uma sugestão simples é usar um array com um dígito em cada posição, o que te vai simplificar a vida depois para somar e multiplicar. Coloca o dígito menos significativo na posição zero, e assim por diante. Por exemplo, o número "23454760" ficaria guardado num array assim:</p>
+            <div class="uc-table">
+              <table>
+                <caption class="uc-visually-hidden">Dígitos de 23454760, do menos para o mais significativo</caption>
+                <tbody><tr><td>0</td><td>6</td><td>7</td><td>4</td><td>5</td><td>4</td><td>3</td><td>2</td></tr></tbody>
+              </table>
+            </div>
+            <p>Se optares pelo array de dígitos, podes simplesmente declará-lo com o tamanho máximo permitido (1000 dígitos) e guardar o número de dígitos significativos atualmente armazenados numa outra variável <code>size</code>, por exemplo.</p>
+            <p>Para converter um carácter no dígito correspondente, basta subtrair-lhe <code>'0'</code> (por exemplo, <code>char c = '2'; int d = c - '0';</code> coloca um 2 no inteiro <code>d</code>).</p>
+          </details>
+          <details class="uc-hint">
+            <summary>Dica: somar dois números</summary>
+            <p>Ainda te lembras de como somar manualmente dois números? Exemplo:</p>
+            <uc-code lang="plaintext" no-copy no-download>
+              <script type="text/plain">
+                  123
+                + 789
+                -----
+                  912
+              </script>
+            </uc-code>
+          </details>
+          <details class="uc-hint">
+            <summary>Dica: multiplicar dois números</summary>
+            <p>Ainda te lembras de como multiplicar manualmente dois números? Exemplo:</p>
+            <uc-code lang="plaintext" no-copy no-download>
+              <script type="text/plain">
+                   123
+                 x 789
+                ------
+                  1107
+                  984
+                 861
+                ------
+                 97047
+              </script>
+            </uc-code>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula04.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 4 · Programação estruturada</strong>
+        </a>
+        <a class="uc-card" href="aula06.html" style="text-align: right">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 6 · Listas ligadas simples</strong>
+        </a>
+      </nav>
+    </uc-guide>
+  </uc-page>
+</body>
+</html>

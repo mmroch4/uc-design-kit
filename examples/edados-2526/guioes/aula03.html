@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 3 · Introdução a classes · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 3 de Estruturas de Dados (CC1007): classes, objetos, referências, construtores, membros estáticos e os TAD Rectângulo e Matriz no Mooshak (ED186, ED187, ED216).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="3">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 3</span>
+          <span class="uc-mono uc-muted">30 set – 3 out</span>
+        </p>
+        <h1>Aula 3 · Introdução a classes</h1>
+      </div>
+
+      <!-- Exercícios para submissão -->
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob186.html">[ED186] TAD Rectângulo (Rectangle)</a> (peso 50%) (exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob187.html">[ED187] TAD Matriz (Matrix)</a> (peso 50%) (exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob216.html">[ED216] Contando Cardinais</a> (peso 25%) (exercício extra)</li>
+        </ul>
+        <div class="uc-callout">
+          <p><strong>Prazo de submissão:</strong> 14 de outubro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <p>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br>
+            Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.<br>
+            Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br>
+            Para ter 100% bastará sempre resolver os exercícios do guião principal.</p>
+        </div>
+      </section>
+
+      <!-- Exercício 1 do original -->
+      <section class="uc-section" aria-labelledby="classes">
+        <h2 id="classes">1. Introdução às classes</h2>
+        <uc-code lang="java" filename="TestAluno.java">
+          <script type="text/plain">
+            // Uma classe simples para representar um aluno
+            class Aluno {
+               // Atributos da classe (variáveis para conter informação)
+               String nome;
+               int numero;
+
+               // Construtor "padrão"
+               Aluno() {
+                  nome = "indefinido";
+                  numero = -1;
+               }
+            }
+
+            // Classe principal contendo o main para testar a classe Aluno
+            public class TestAluno {
+               public static void main(String[] args) {
+                  Aluno a = new Aluno();
+                  System.out.println("a.nome = " + a.nome);
+                  System.out.println("a.numero = " + a.numero);
+               }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="varias-classes" title="Várias classes num ficheiro">
+          <p>Copie o código de cima para um ficheiro <code>TestAluno.java</code>. Compile o código. Quantos ficheiros <code>.class</code> foram criados?</p>
+          <p class="uc-muted"><em>(usualmente temos um ficheiro para cada classe, mas também é possível ter várias classes num só ficheiro)</em></p>
+        </uc-exercise>
+
+        <uc-exercise id="executar-classe" title="Executar uma classe">
+          <p>Experimente executar a classe <code>Aluno</code> (<code>$ java Aluno</code>). O que acontece? Porquê? Experimente agora executar a classe <code>TestAluno</code> e verifique que tal já é possível, pois esta classe contém um método <code>main</code> com a assinatura esperada.</p>
+        </uc-exercise>
+
+        <uc-exercise id="referencias" title="Referências">
+          <ol>
+            <li>
+              <p>Adicione a seguinte linha na parte final do método <code>main</code>:</p>
+              <uc-code lang="java" no-download>
+                <script type="text/plain">
+                  System.out.println("a = " + a);
+                </script>
+              </uc-code>
+              <p>Experimente compilar e executar. O que acontece? Note que está a imprimir... a referência ao objecto!</p>
+            </li>
+            <li>
+              <p>Sem apagar a linha que imprimia a referência, adicione agora o seguinte método à classe <code>Aluno</code>:</p>
+              <uc-code lang="java" no-download>
+                <script type="text/plain">
+                  public String toString() {
+                     return "(" + nome + "," + numero + ")";
+                  }
+                </script>
+              </uc-code>
+              <p>Compile e execute. O que acontece? De um modo geral, se quiser modificar o que é escrito quando imprimir uma referência a um objecto, basta implementar um método <code>public String toString()</code> que devolva uma <code>String</code> que represente o objecto.</p>
+              <p><em>Obs:</em> tecnicamente, estamos a fazer <strong><em lang="en">override</em></strong> do método <code>toString()</code> padrão de todos os objectos. O que é usualmente imprimido é fruto da implementação padrão que pode ser vista <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#toString()">na documentação da classe Object</a>.</p>
+            </li>
+            <li>
+              <p>Acrescente o seguinte código ao <code>main</code>:</p>
+              <uc-code lang="java" no-download>
+                <script type="text/plain">
+                  Aluno b = new Aluno();
+                  Aluno c = b;
+                  b.nome = "modificado";
+                  System.out.println("b = " + b);
+                  System.out.println("c = " + c);
+                </script>
+              </uc-code>
+              <p>Compile e execute. O que é mostrado? Uma referência é "quase como um apontador" e ao usarmos o operador <code>=</code> não estamos a copiar todos os atributos (variáveis) da classe, mas sim a colocar a referência a apontar para a mesma instância do objecto.</p>
+            </li>
+          </ol>
+        </uc-exercise>
+
+        <uc-exercise id="construtores" title="Construtores e overload de métodos">
+          <p>Seria útil poder dar valores diferentes aos atributos de um aluno quando o criamos. Vamos criar um construtor para isso. Acrescente o seguinte código à classe <code>Aluno</code>:</p>
+          <uc-code lang="java" no-download>
+            <script type="text/plain">
+              Aluno(String n, int mec) {
+                 nome = n;
+                 numero = mec;
+              }
+            </script>
+          </uc-code>
+          <p>Já no método <code>main</code> acrescente o seguinte pedaço de código para testar:</p>
+          <uc-code lang="java" no-download>
+            <script type="text/plain">
+              Aluno d = new Aluno();
+              Aluno e = new Aluno("Manuel", 201506234);
+              System.out.println("d = " + d);
+              System.out.println("e = " + e);
+            </script>
+          </uc-code>
+          <p>Compile e execute. O que é mostrado? No Java podem existir várias funções com o mesmo nome mas com argumentos diferentes. Quando o código é executado é chamada a função que corresponde aos argumentos utilizados. Experimente por exemplo tentar criar um objecto com <code>Aluno f = new Aluno("Maria");</code>. O que acontece? Porquê?</p>
+        </uc-exercise>
+
+        <uc-exercise id="novo-metodo" title="Criando um novo método">
+          <p>Para além dos atributos (variáveis contendo dados) e de métodos construtores, uma classe pode conter métodos implementando quaisquer funções que necessite. Assumindo que um número mecanográfico tem sempre 9 dígitos e que os primeiros 4 indicam o ano de entrada na universidade, vamos criar um método para devolver o ano de um aluno. Acrescente o seguinte código à classe <code>Aluno</code>:</p>
+          <uc-code lang="java" no-download>
+            <script type="text/plain">
+              int ano() {
+                 return numero / 100000;
+              }
+            </script>
+          </uc-code>
+          <p>Já no <code>main</code> acrescente o seguinte para testar:</p>
+          <uc-code lang="java" no-download>
+            <script type="text/plain">
+              Aluno g = new Aluno("Ana", 201408762);
+              Aluno h = new Aluno("Bruno", 201508145);
+              System.out.println(g.ano() + " " + h.ano());
+            </script>
+          </uc-code>
+          <p>Compile e execute para verificar o funcionamento.</p>
+        </uc-exercise>
+
+        <uc-exercise id="null-pointer" title="Arrays de objectos e o NullPointerException">
+          <p>Experimente adicionar o seguinte código ao seu <code>main</code>:</p>
+          <uc-code lang="java" no-download>
+            <script type="text/plain">
+              int n = 3;
+              Aluno[] v = new Aluno[n];
+              for (int i=0; i<n; i++)
+                 System.out.println("v[" + i + "] = " + v[i]);
+              v[0].nome = "Pedro";
+            </script>
+          </uc-code>
+          <p>Compile e execute. O que acontece?</p>
+          <p>Quando cria um array de objectos, cada uma das suas posições fica com uma referência. No entanto as referências ainda estão todas a apontar para <code>null</code>, que é o valor padrão de uma referência, ou seja, ainda não foram criadas as instâncias correspondentes a cada um dos objectos. E quando se tenta aceder ao atributo <code>nome</code> de uma referência nula, obtém-se... um <code>NullPointerException</code>! Para inicializar podia fazer algo como <code>for (int i=0; i&lt;n; i++) v[i] = new Aluno();</code> a seguir a declarar o array (experimente essa adição e verifique que já não obtém nenhum erro na execução).</p>
+        </uc-exercise>
+
+        <uc-exercise id="estaticos" title="Variáveis e métodos estáticos">
+          <p>Cada instância de um objecto tem uma cópia diferente de todas as suas variáveis. E se quisermos ter uma variável comum a todas as instâncias de um <code>Aluno</code>? Para isso podemos usar o qualificador <code>static</code>.</p>
+          <ul class="uc-bullets">
+            <li>Adicione a linha <code>public static int contador = 0;</code> logo a seguir à linha <code>class Aluno {</code>.</li>
+            <li>Acrescente também a linha <code>contador++;</code> aos dois construtores que criou.</li>
+            <li>Na função <code>main</code> acrescente a linha <code>System.out.println("contador = " + Aluno.contador);</code> logo no início e também no final, depois de criados todos os alunos.</li>
+          </ul>
+          <p>O que é imprimido? Que valor tinha o contador no início e que valor tem no final depois de todas as chamadas a <code>new Aluno</code>? Note também como pode chamar a variável mesmo antes de criar um qualquer objecto desse tipo (usando para isso <code>NomeDaClasse.VariavelEstatica</code>).</p>
+          <p>Do mesmo modo que uma variável pode ser estática, também um método o pode ser, e nesse caso só poderá chamar variáveis estáticas, pois as outras variáveis estão associadas a uma única instância de um objecto.</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 2 do original -->
+      <section class="uc-section" aria-labelledby="geometricos">
+        <h2 id="geometricos">2. Objectos geométricos</h2>
+        <uc-code lang="java" filename="TestGeometry.java">
+          <script type="text/plain">
+            // Uma classe simples para representar um ponto 2D
+            class Point {
+               int x, y;
+
+               Point() {
+                  x = y = 0;
+               }
+
+               Point(int x0, int y0) {
+                  x = x0;
+                  y = y0;
+               }
+
+               // Devolve uma representação em texto do conteúdo de um Ponto
+               public String toString() {
+                  return "(" + x + "," + y + ")";
+               }
+            }
+
+            // Classe principal com a função main
+            public class TestGeometry {
+               public static void main (String[] args){
+                  Point p1 = new Point();
+                  System.out.println("p1 original: " + p1);
+                  p1.x = 1;
+                  System.out.println("p1 modificado: " + p1);
+
+                  Point p2 = new Point(2,3);
+                  System.out.println("p2: " + p2);
+               }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="criando-pontos" title="Criando pontos">
+          <p>Compile e execute este código. Procure perceber o que fazem cada uma das linhas de código dadas.</p>
+        </uc-exercise>
+
+        <uc-exercise id="rectangle" title="Criação de uma nova classe e métodos associados">
+          <p>O objectivo deste exercício é a criação de uma nova classe <strong>Rectangle</strong> para representar um rectângulo.</p>
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob186.html">[ED186] TAD Rectângulo (Rectangle)</a> e poderá também submeter a sua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <p>Notas/Dicas:</p>
+          <ul class="uc-bullets">
+            <li>TAD é o acrónimo de "Tipo Abstracto de Dados" e vamos falar nele nas próximas semanas nas teóricas.</li>
+            <li>Deverá submeter um ficheiro apenas com a classe <code>Rectangle</code>. O Mooshak já tem implementada a classe <code>Point</code> e irá criar várias instâncias da sua classe <code>Rectangle</code> usando os construtores definidos e irá fazer uma série de testes aos métodos por si implementados.</li>
+            <li>O enunciado no Mooshak inclui um <strong>exemplo de utilização</strong> que poderá usar para testar o seu programa.</li>
+            <li>Deve implementar um método de cada vez e ir testando o seu funcionamento para garantir que está a funcionar como desejado.</li>
+            <li>Este problema do Mooshak inclui pontuação parcial, o que significa que poderá ver que métodos é que já estão correctamente implementados, mesmo que não tenha ainda feito todos.</li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="generalizando" title="Generalizando uma classe">
+          <p>Como poderia modificar a classe <code>Point</code> para passar a aceitar pontos a 3 dimensões? E para aceitar pontos com <var>N</var> dimensões? Consegue modificar a classe para que aceite também a dimensão como parâmetro de criação do ponto?</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 3 do original -->
+      <section class="uc-section" aria-labelledby="matrizes">
+        <h2 id="matrizes">3. Uma classe para representar matrizes</h2>
+        <uc-code lang="java" filename="TestMatrix.java">
+          <script type="text/plain">
+            import java.util.Scanner;
+
+            class Matrix {
+               int data[][]; // os elementos da matriz em si
+               int rows;     // numero de linhas
+               int cols;     // numero de colunas
+
+               // construtor padrao de matriz
+               Matrix(int r, int c) {
+                  data = new int[r][c];
+                  rows = r;
+                  cols = c;
+               }
+
+               // Ler os rows x cols elementos da matriz
+               public void read(Scanner in) {
+                  for (int i=0; i<rows; i++)
+                     for (int j=0; j<cols; j++)
+                        data[i][j] = in.nextInt();
+               }
+
+               // Representacao em String da matrix
+               public String toString() {
+                  String ans = "";
+                  for (int i=0; i<rows; i++) {
+                     for (int j=0; j<cols; j++)
+                        ans += data[i][j] + " ";
+                     ans += "\n";
+                  }
+                  return ans;
+               }
+            }
+
+            public class TestMatrix {
+               public static void main(String[] args) {
+                  Scanner stdin = new Scanner(System.in);
+
+                  Matrix m = new Matrix(stdin.nextInt(), stdin.nextInt());
+                  m.read(stdin);
+                  System.out.print(m);
+               }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="executando-matrix" title="Executando o programa">
+          <p>Compile e execute o código acima, redirecionando o input a partir do ficheiro <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/matrix.txt"><code>matrix.txt</code></a></p>
+          <uc-code lang="bash" no-download>
+            <script type="text/plain">
+              $ java TestMatrix < matrix.txt
+            </script>
+          </uc-code>
+          <p>Procure compreender todas as partes do código.</p>
+        </uc-exercise>
+
+        <uc-exercise id="excepcao" title="Lançando uma excepção">
+          <p>Acrescente no final (mas dentro) do método <code>main</code> o seguinte código:</p>
+          <uc-code lang="java" no-download>
+            <script type="text/plain">
+              throw new RuntimeException("My Runtime Exception.");
+            </script>
+          </uc-code>
+          <p>Execute o programa e verifique que agora uma excepção é gerada com a mensagem que foi indicada.</p>
+        </uc-exercise>
+
+        <uc-exercise id="matrix" title="Criação de alguns métodos associados">
+          <p>O objectivo deste exercício é a criação de vários métodos estáticos que acrescentam funcionalidades a esta classe de matrizes.</p>
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob187.html">[ED187] TAD Matriz (Matrix)</a>. O problema também está disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <ul class="uc-bullets">
+            <li>O funcionamento deste problema é igual ao dos rectângulos. Deverá apenas submeter a classe <code>Matrix</code> e tem disponível um exemplo de utilização no enunciado do problema.</li>
+          </ul>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercícios extra do original -->
+      <section class="uc-section" aria-labelledby="extra">
+        <h2 id="extra">4. Exercícios extra para consolidação de conhecimentos</h2>
+
+        <uc-exercise id="fraction" title="Uma classe para frações">
+          <ul class="uc-bullets">
+            <li>Crie uma classe <strong>Fraction</strong> para representar <strong>frações</strong>, que deverá conter como atributos dois inteiros: o <em>numerador</em> e o <em>denominador</em>. Não se esqueça de criar os respectivos construtores.</li>
+            <li>Adicione à classe os seguintes métodos:
+              <ol>
+                <li><code>public String toString()</code><br>
+                  Devolva uma representação em texto no formato <var>u</var> + <var>n</var>/<var>d</var> onde <var>u</var> são unidades e <var>n</var>/<var>d</var> uma fração menor que 1.<br>
+                  Exemplo: a fração 7/3 seria descrita como <code>"2 + 1/3"</code></li>
+                <li><code>public Fraction add(Fraction f)</code><br>
+                  Devolve uma nova fração que é o resultado de adicionar <var>f</var> à fração</li>
+                <li><code>public Fraction multiply(Fraction f)</code><br>
+                  Devolve uma nova fração que é o resultado de multiplicar <var>f</var> pela fração</li>
+                <li><code>public void simplify()</code><br>
+                  Simplifica a fração dividindo o numerador e o denominador pelo seu máximo divisor comum (MDC).<br>
+                  Exemplo: 18/48 ficaria simplificada para 3/8, sendo que MDC(18,48)=6.<br>
+                  Para calcular o máximo divisor comum pode usar o <a href="https://pt.wikipedia.org/wiki/Algoritmo_de_Euclides">Algoritmo de Euclides</a>.</li>
+              </ol>
+            </li>
+            <li>Teste a sua classe.</li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="aleatorios" title="Números aleatórios">
+          <p>Adicione um construtor novo à classe <code>Matrix</code> que dadas as dimensões e dois inteiros <strong>min</strong> e <strong>max</strong> cria uma nova matriz preenchida com números aleatórios entre <strong>min</strong> e <strong>max</strong>. A única dica que vamos dar é que existe uma classe <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Random.html">java.util.Random</a> para lidar com geração de números (pseudo)aleatórios.</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula02.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 2 · Input/Output e Mooshak</strong>
+        </a>
+        <a class="uc-card" href="aula04.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 4 · Programação estruturada</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

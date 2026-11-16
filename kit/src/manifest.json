@@ -26,6 +26,7 @@
     "components/uc-team.js",
     "components/uc-code.js",
     "components/uc-question.js",
+    "core/tables.js",
     "core/bootstrap.js"
   ],
   "css": [

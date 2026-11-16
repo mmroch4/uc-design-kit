@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1.º Teste Prático · Informações · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Informações para o 1.º teste prático de Estruturas de Dados (CC1007), 12 de novembro de 2025: data, turnos, laboratórios, método, pontuação e problemas de treino no Mooshak.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="8">
+
+      <!-- Cabeçalho -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 8</span>
+          <span class="uc-mono uc-muted">12 nov · 1h40m · laboratórios FC6</span>
+        </p>
+        <h1>Informações para o 1.º Teste Prático</h1>
+      </div>
+
+      <!-- Informações gerais -->
+      <section class="uc-section" aria-labelledby="gerais">
+        <h2 id="gerais">Informações gerais</h2>
+        <ul class="uc-bullets">
+          <li><strong>Data:</strong> 12 de novembro de 2025</li>
+          <li><strong>Hora:</strong> Existirão dois turnos: 16:00 e 18:00. [ver atribuição de turno e sala (a divulgar dia 11)]</li>
+          <li><strong>Local:</strong> Laboratórios:
+            <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69108">L1 (FC6 1.55)</a>,
+            <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69045">L2 (FC6 1.57)</a>,
+            <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69183">L3 (FC6 1.63)</a>,
+            <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69064">L4 (FC6 1.65)</a>,
+            <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69101">L8 (FC6 0.08)</a>,
+            <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69035">L10 (FC6 1.82)</a> e
+            <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69149">L11 (FC6 1.84)</a>.</li>
+          <li><strong>Duração:</strong> 1h40m (exercícios dimensionados para menos tempo)</li>
+          <li><strong>Método:</strong> o teste será presencial (nos laboratórios do DCC, que têm Linux e os editores habituais) e irão ter acesso a computador, documentação do Java, código base (essencialmente o que está na <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/index.html">lista de código exemplo</a>) e irão submeter no Mooshak, sendo que poderão ver alguns casos de teste quando falham, tal como nas aulas práticas.</li>
+          <li><strong>Pontuação:</strong> este teste vale 2.5 valores para a nota final. São 3 exercícios cotados com 30%+30%+40%.<br>
+            Em cada exercício podem existir cotações parciais (ex: passa nalguns testes, falha noutros). Só em casos muito excepcionais a pontuação será diferente da atribuída pelo Mooshak. Podem acontecer casos onde recebem mais pontos do que o Mooshak atribuiu (ex: está tudo certo e falta apenas um ponto e vírgula :)) ou menos pontos (ex: não fizeram o pedido ou tentaram fazer "batota"). Se tentarem genuinamente fazer os problemas não vão ter nenhum "problema".</li>
+        </ul>
+      </section>
+
+      <!-- Objectivos por exercício -->
+      <section class="uc-section" aria-labelledby="objectivos">
+        <h2 id="objectivos">Objectivos específicos para cada exercício e problemas de treino</h2>
+
+        <uc-exercise id="tp1-ciclos-arrays" title="[30%] Exercício 1: problemas simples com ciclos e arrays">
+          <p>Terão de implementar um programa pequeno que lê da entrada padrão um ou mais números e imprime algo. O exercício será de dificuldade simples e passará na sua essência por saber ler, criar variáveis (e possivelmente arrays) e saber usar ciclos.</p>
+          <p><strong>Problemas de treino:</strong>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob89.html">[ED89]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob183.html">[ED183]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob120.html">[ED120]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob243.html">[ED243]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob231.html">[ED231]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob235.html">[ED235]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob254.html">[ED254]</a>
+          </p>
+        </uc-exercise>
+
+        <uc-exercise id="tp1-listas-ligadas" title="[30%] Exercício 2: implementação de métodos para listas ligadas simples">
+          <p>Terão de adicionar um ou mais pequenos métodos à classe <strong>SinglyLinkedList</strong>. Será dada como base a implementação dada nas aulas (<a href="../materiais.html">ver slides</a> | <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/lista_ligada_simples.html">ver implementação</a>) e serão descritos os métodos a implementar, incluindo a assinatura do método (qual o tipo de retorno e o tipo dos argumentos). Irão submeter a classe como nas aulas (com os novos métodos adicionados).</p>
+          <p><strong>Problemas de treino:</strong>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob188.html">[ED188]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob189.html">[ED189]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob190.html">[ED190]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob191.html">[ED191]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob192.html">[ED192]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob193.html">[ED193]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob232.html">[ED232]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob236.html">[ED236]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob269.html">[ED269]</a>
+          </p>
+        </uc-exercise>
+
+        <uc-exercise id="tp1-listas-pilhas-filas" title="[40%] Exercício 3: programa completo (incluindo ler e escrever) que usa listas, pilhas e/ou filas">
+          <p>Problema com base do algoritmo a usar descrito no enunciado. O tema do problema implicará que é conveniente usar listas, pilhas ou filas, mas poderão usar qualquer implementação (ex: usar a base de código dada nas aulas, usar TADs do próprio Java, ou usar uma qualquer implementação vossa).</p>
+          <p><strong>Problemas de treino:</strong>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob005.html">[ED005]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob006.html">[ED006]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob007.html">[ED007]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob237.html">[ED237]</a>
+            <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob282.html">[ED282]</a>
+          </p>
+        </uc-exercise>
+      </section>
+
+      <p class="uc-muted uc-small">Fernando Silva (DCC/FCUP)</p>
+
+      <!-- Aulas à volta do teste -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula07.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 7 · Listas, pilhas e filas</strong>
+        </a>
+        <a class="uc-card" href="aula08.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 8 · Complexidade algorítmica</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

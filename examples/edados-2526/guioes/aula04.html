@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 4 · Programação estruturada · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 4 de Estruturas de Dados (CC1007): programação estruturada com o Jogo do Galo, o Jogo da Vida, a Sopa de Letras e o Mundo da Tartaruga.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="4">
+
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 4</span>
+          <span class="uc-mono uc-muted">7–10 out</span>
+        </p>
+        <h1>Aula 4 · Programação estruturada</h1>
+        <p class="uc-prose">Nesta aula resolves problemas maiores de forma organizada: dividir em métodos, generalizar código repetido e testar cada parte à medida que a escreves.</p>
+      </div>
+
+      <!-- Exercícios que contam para a componente R da avaliação -->
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob004.html">[ED004] Jogo do Galo</a> (peso 10%, exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob088.html">[ED088] Jogo da Vida</a> (peso 50%, exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob015.html">[ED015] Sopa de Letras</a> (peso 50%, exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob101.html">[ED101] O Mundo da Tartaruga</a> (peso 25%, exercício extra)</li>
+        </ul>
+        <p><strong>Prazo de submissão:</strong> 28 de outubro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
+        <div class="uc-callout">
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <ul class="uc-bullets">
+            <li>Depois do prazo os problemas continuam disponíveis no Mooshak, mas as submissões não contam para a nota.</li>
+            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, podes ter pontuação máxima mesmo sem ter feito tudo.</li>
+            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolvas todos os problemas, o máximo numa aula é de 100%.</li>
+            <li>Para ter 100% basta sempre resolver os exercícios do guião principal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="uc-section" aria-labelledby="exercicios">
+        <h2 id="exercicios">Exercícios</h2>
+
+        <uc-exercise id="jogo-do-galo" title="Jogo do Galo" open>
+          <p>Resolve o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob004.html">[ED004] Jogo do Galo</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <p class="aula-label">Dicas e notas</p>
+          <ul class="uc-bullets">
+            <li>Podes começar por criar uma solução adaptada para as colunas, linhas e diagonais e verificar que a tua solução está correta.</li>
+            <li>Cria os teus casos de teste e testa se a tua solução está correta.</li>
+            <li>Depois dos passos anteriores, vais verificar que, na tua primeira solução, o código que usaste para verificar as linhas é muito parecido com o que usaste para as colunas e diagonais.</li>
+            <li>Tenta encontrar uma solução que generalize a verificação das linhas para que possa ser usada nas restantes verificações (colunas e diagonais).</li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="jogo-da-vida" title="Jogo da Vida">
+          <p>Resolve o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob088.html">[ED088] Jogo da Vida</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <p class="aula-label">Dicas e notas</p>
+          <ul class="uc-bullets">
+            <li>O <a href="https://pt.wikipedia.org/wiki/Jogo_da_vida">Jogo da Vida</a> é talvez o mais conhecido autómato celular e foi criado para simular a vida através de regras simples.</li>
+            <li>O objetivo principal é que submetas um código adequado e estruturado.</li>
+            <li>Começa por ler o enunciado do problema, com especial atenção às regras que definem como é criada uma nova geração a partir do estado atual do jogo.</li>
+            <li>Depois de ler, experimenta interagir um pouco com o jogo, para garantir que percebeste as regras:
+              <ul class="uc-bullets">
+                <li>Vai, por exemplo, a este simulador: <a href="https://playgameoflife.com/">playgameoflife.com</a>.</li>
+                <li>Usa o botão <em lang="en">Next</em> para ir vendo como aparece cada nova geração.</li>
+                <li>Com o botão <em lang="en">Start</em> vês as várias gerações a aparecer sem teres de carregar num botão para cada uma (também podes mudar a velocidade das iterações).</li>
+                <li>No <em lang="en">lexicon</em> podes ver outras formas de vida iniciais (estados do tabuleiro) que dão origem a resultados interessantes (carregando na figura consegues colocá-las no simulador).</li>
+              </ul>
+            </li>
+            <li>Para este problema sugerimos que uses o seguinte esqueleto de código, que contém métodos que deves completar. Depois do código vem explicado um conjunto de passos para completar o exercício.</li>
+          </ul>
+          <uc-code lang="java" filename="ED088.java" editable>
+            <script type="text/plain">
+              /* -----------------------------------
+                Estruturas de Dados 2024/2025
+                Jogo da Vida [ED088]
+              ----------------------------------- */
+
+              import java.util.Scanner;
+
+              // Classe para representar um jogo
+              class Game {
+                  final char DEAD = '.';  // Constante que indica uma celula morta
+                  final char ALIVE = 'O'; // Constante que indica uma celula viva
+                  private int rows, cols; // Numero de linhas e colunas
+                  private char m[][];     // Matriz para representar o estado do jogo
+
+                  // Construtor: inicializa as variaveis tendo em conta a dimensao dada
+                  Game(int r, int c) {
+                      rows = r;
+                      cols = c;
+                      m = new char[r][c];
+                  }
+
+                  // Metodo para ler o estado inicial para a matriz m[][]
+                  public void read(Scanner in) {
+                      for (int i = 0; i < rows; i++)
+                          m[i] = in.next().toCharArray();
+                  }
+
+                  // Metodo para escrever a matriz m[][]
+                  public void write() {
+                      // ... por completar
+                  }
+
+                  // Deve devolver o numero de celulas vivas que sao vizinhas de (y,x)
+                  private int countAlive(int y, int x) {
+                      int count = 0;
+                      // ... por completar
+                      return count;
+                  }
+
+                  // Deve fazer uma iteracao: cria nova geracao a partir da actual
+                  public void iterate() {
+                      // ... por completar
+                  }
+              }
+
+              // Classe principal com o main()
+              public class ED088 {
+                  public static void main(String[] args) {
+                      Scanner in = new Scanner(System.in);
+
+                      // Ler linhas, colunas e numero de iteracoes
+                      int rows = in.nextInt();
+                      int cols = in.nextInt();
+                      int n = in.nextInt();
+
+                      // Criar objecto para conter o jogo e ler estado inicial
+                      Game g = new Game(rows, cols);
+                      g.read(in);
+
+                      //... por completar
+                  }
+              }
+            </script>
+          </uc-code>
+          <p class="aula-label">Passos sugeridos</p>
+          <ol class="uc-bullets">
+            <li>Começa por completar o método <code>write()</code> da classe <code>Game</code>, que deve escrever a matriz <code>m[][]</code> na saída padrão. Chama <code>g.write()</code> no método <code>main</code> para testar se o que fizeste está a funcionar. <strong>Sempre que implementares novos métodos, testa o seu funcionamento individual!</strong></li>
+            <li>Implementa o método <code>int countAlive(int y, int x)</code>. Este método deve percorrer as oito células vizinhas da posição <em>(y,x)</em> e contar quantas são iguais a <code>ALIVE</code> (ou seja, iguais a <code>'O'</code>). Não te esqueças de testar depois de implementar!</li>
+            <li>Implementa o método <code>void iterate()</code>, que faz uma iteração do jogo da vida, ou seja, produz a nova geração a partir da atual. Para isso podes criar uma nova matriz (por exemplo com <code>char m2[][] = new char[rows][cols];</code>), percorrer todas as posições e colocar <code>DEAD</code> ou <code>ALIVE</code> consoante o número de vizinhos (aqui chamas o <code>countAlive(y,x)</code> que implementaste antes). No fim, copia o conteúdo da nova matriz (<code>m2[][]</code>) para a matriz que contém o estado atual (<code>m[][]</code>). É fundamental não escrever logo na matriz <code>m[][]</code> enquanto vais criando a nova geração, por causa da regra do enunciado: <q>todos os nascimentos e mortes de células têm lugar em simultâneo, isto é, as alterações têm por base o estado atual e nunca o estado futuro</q>.</li>
+            <li>Para terminar, completa o método <code>main</code>: chama <em>n</em> vezes o método que faz uma iteração (<code>g.iterate()</code>) e no fim escreve o resultado (<code>g.write()</code>).</li>
+          </ol>
+        </uc-exercise>
+
+        <uc-exercise id="sopa-de-letras" title="Sopa de Letras">
+          <p>Neste exercício a ideia é tentares <strong>resolver o problema de forma organizada e estruturada</strong> sozinho. O problema é o <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob015.html">[ED015] Sopa de Letras</a>, também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <p class="aula-label">Antes de começar a escrever código</p>
+          <ul class="uc-bullets">
+            <li>Lê todo o enunciado com atenção e percebe as tarefas e as restrições (limites do input).</li>
+            <li>Pensa em como vais organizar o código: como dividir as tarefas em blocos pequenos? Que classes usar? Onde guardar os dados? Que métodos criar?</li>
+          </ul>
+          <p class="aula-label">Durante a implementação</p>
+          <ul class="uc-bullets">
+            <li>Cria métodos: <strong>não faças tudo no <code>main</code></strong>.</li>
+            <li>Escreve <strong>código para humanos</strong> (a melhor documentação é um código bem escrito).</li>
+            <li>Acrescenta <strong>comentários</strong> às partes não triviais (para que da próxima vez que leres o teu código ainda o percebas).</li>
+            <li><strong>Generaliza:</strong> evita <em lang="en">copy+paste</em> e escreve código que generaliza uma tarefa e pode ser reutilizado.</li>
+            <li><strong>Testa o teu programa à medida que o vais implementando.</strong> Cada vez que crias um método, testa-o chamando-o e imprimindo os resultados.</li>
+            <li><strong>Testa o teu programa no fim da implementação e antes de submeter.</strong> Usa os exemplos do enunciado e também outros casos feitos por ti. Não dependas do Mooshak para testar o teu código: no futuro não vais ter os testes já preparados.</li>
+          </ul>
+        </uc-exercise>
+      </section>
+
+      <section class="uc-section" aria-labelledby="extra">
+        <h2 id="extra">Exercícios extra para consolidação de conhecimentos</h2>
+
+        <uc-exercise id="mundo-da-tartaruga" title="O Mundo da Tartaruga">
+          <p>Para cimentar os teus conhecimentos sobre programação bem estruturada, segue mais um problema: <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob101.html">[ED101] O Mundo da Tartaruga</a>, também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+        </uc-exercise>
+
+        <uc-exercise id="tartaruga-grafica" title="O Mundo da Tartaruga… gráfico!">
+          <p>Se já fizeste todos os outros exercícios e quiseres brincar um pouco com interfaces gráficas no seguimento do problema anterior, podes usar um TAD de desenho chamado StdDraw, implementado por docentes da Universidade de Princeton. Começa por descarregar o ficheiro <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/StdDraw.java">StdDraw.java</a>, compila-o e executa-o. Deves ver uma janela como a que se segue:</p>
+          <p><img src="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/images/stddraw.png" alt="Janela do StdDraw com as figuras de exemplo desenhadas pelo método main." style="max-width: 100%; height: auto"></p>
+          <p>Espreita o método <code>main</code> para ver como as imagens da janela foram geradas. Como referência, podes consultar a <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdDraw.html">documentação da classe StdDraw</a>.</p>
+          <p>A ideia deste exercício é criar uma classe para <a href="https://en.wikipedia.org/wiki/Turtle_graphics" lang="en">Turtle Graphics</a>, um termo que designa um tipo de criação de desenhos usando um "cursor" que vai "andando" por um plano. Desenhas num plano cartesiano (com tamanho dado na construção do objeto) e tens um "cursor", a tartaruga, com uma posição e orientação, que pode andar na direção atual e tem um lápis que pode estar levantado ou pousado.</p>
+          <ol class="uc-bullets">
+            <li><strong>Classe e construtores.</strong> Cria uma classe <code>Turtle</code> que guarda a posição da tartaruga (coordenadas x e y), a orientação atual (uma direção em graus) e o estado do lápis (pousado/levantado). A classe deve também guardar o tamanho da área de desenho. Cria um construtor padrão que coloca a tartaruga na posição (0,0), com orientação de 0 graus e o lápis pousado.</li>
+            <li><strong>Métodos iniciais.</strong> Cria os seguintes métodos numa classe <code>LibTurtle</code>:
+              <ul class="uc-bullets">
+                <li>um método para pousar e outro para levantar o lápis;</li>
+                <li>um método para rodar <em>x</em> graus (pode ser um número positivo ou negativo);</li>
+                <li>um método para andar para a "frente" (consoante a direção) <em>x</em> píxeis. Se o lápis estiver pousado, isto deve dar origem a uma linha.</li>
+              </ul>
+            </li>
+            <li>Cria métodos para desenhar:
+              <ul class="uc-bullets">
+                <li>um quadrado com lado de <em>x</em> píxeis (andar <em>x</em> para a frente, rodar 90 graus, andar <em>x</em> para a frente, rodar 90 graus, e assim mais duas vezes até fechar o quadrado);</li>
+                <li>um polígono regular de <em>n</em> lados, cada um com <em>x</em> píxeis (uma generalização do quadrado);</li>
+                <li>uma espiral.</li>
+              </ul>
+            </li>
+            <li>Cria um método para <a href="https://en.wikipedia.org/wiki/Brownian_motion">movimento browniano</a>: uma tartaruga desorientada, que executa ciclicamente (<em>n</em> vezes) os seguintes passos: rodar para uma direção aleatória e andar para a frente <em>x</em> píxeis.</li>
+            <li>Cria código para ler de um ficheiro comandos para "dirigir" a tartaruga. Um exemplo seria:
+              <uc-code lang="plaintext" filename="comandos.txt">
+                <script type="text/plain">
+                  forward 50
+                  rotate 90
+                  penUp
+                  forward 100
+                  rotate 20
+                  penDown
+                  forward 30
+                </script>
+              </uc-code>
+            </li>
+          </ol>
+        </uc-exercise>
+      </section>
+
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula03.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 3 · Introdução a classes</strong>
+        </a>
+        <a class="uc-card" href="aula05.html" style="text-align: right">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 5 · Tipos abstratos de dados</strong>
+        </a>
+      </nav>
+    </uc-guide>
+  </uc-page>
+</body>
+</html>
