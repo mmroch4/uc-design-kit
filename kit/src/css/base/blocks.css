@@ -95,7 +95,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--uc-space-3);
+  gap: var(--uc-space-2);
   min-height: 48px;
   padding: 0 var(--uc-space-4);
   border: 1px solid var(--uc-color-border);
