@@ -1,0 +1,28 @@
+/* <uc-team> — teaching team as cards or a table. */
+:where(uc-team) { display: block; }
+:where(.uc-team__section) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-3);
+}
+:where(.uc-team__cards) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+:where(.uc-team__card) {
+  --uc-card-padding: var(--uc-space-4) var(--uc-space-5);
+  gap: 0;
+  margin: 0;
+}
+:where(.uc-team__card .uc-team__name) { font-weight: 600; }
+:where(.uc-team__role, .uc-team__contact) {
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+  overflow-wrap: anywhere;
+}
+:where(.uc-team__contact) { display: block; }
+:where(.uc-team__table) { --uc-table-min: 480px; }
+:where(.uc-team__table td) { vertical-align: middle; }
+:where(.uc-team__person .uc-team__name) { font-weight: 500; }
+:where(.uc-team__classes) { font-size: var(--uc-font-size-md); }

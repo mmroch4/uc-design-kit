@@ -1,0 +1,162 @@
+/* <uc-code> — code block with toolbar, optional editor and token-based highlighting. */
+:where(uc-code) {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Without JavaScript: show the authored code (a <script type="text/plain"> is displayed as text). */
+:where(uc-code:not(.uc-code) > script[type="text/plain"], uc-code:not(.uc-code) > pre) {
+  display: block;
+  margin: 0;
+  padding: var(--uc-space-4) var(--uc-space-5);
+  overflow-x: auto;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface-sunken);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  line-height: 1.7;
+  white-space: pre;
+}
+
+:where(.uc-code) {
+  overflow: hidden;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+
+:where(.uc-code__header) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uc-space-2) var(--uc-space-3);
+  padding: var(--uc-space-2) var(--uc-space-3) var(--uc-space-2) var(--uc-space-5);
+  border-bottom: 1px solid var(--uc-color-border);
+  background: var(--uc-color-surface-sunken);
+}
+:where(.uc-code__title) {
+  min-width: 0;
+  color: var(--uc-color-text-secondary);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-sm);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+:where(.uc-code__actions) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-2);
+}
+:where(.uc-code__button, .uc-code__run) {
+  padding: 0 var(--uc-space-3);
+  white-space: nowrap;
+}
+:where(.uc-code__button--copy svg) { color: inherit; }
+
+/* Code area: only this part scrolls horizontally, never the page. */
+:where(.uc-code__scroll) {
+  overflow-x: auto;
+  background: var(--uc-color-surface-sunken);
+}
+:where(.uc-code__scroll:focus-visible) { outline-offset: -2px; }
+:where(.uc-code__pre, .uc-code__input) {
+  margin: 0;
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 0;
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  font-variant-ligatures: none;
+  line-height: 1.7;
+  letter-spacing: 0;
+  tab-size: 4;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+:where(.uc-code__pre) {
+  overflow: visible;
+  color: var(--uc-color-text);
+}
+:where(.uc-code__code) {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+/* Editable: a transparent textarea stacked over the highlighted <pre>, in one grid cell. */
+:where(.uc-code__editor) {
+  display: grid;
+  grid-template-columns: minmax(100%, max-content);
+  background: var(--uc-color-surface);
+}
+:where(.uc-code__editor > .uc-code__pre, .uc-code__editor > .uc-code__input) { grid-area: 1 / 1; }
+:where(.uc-code__input) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  resize: none;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--uc-color-text);
+  -webkit-text-fill-color: transparent;
+}
+:where(.uc-code__input)::selection {
+  background: color-mix(in srgb, var(--uc-color-accent) 22%, transparent);
+  color: transparent;
+}
+:where(.uc-code__input:focus) { outline: none; }
+:where(.uc-code__editor:focus-within) {
+  outline: var(--uc-focus-ring);
+  outline-offset: -2px;
+}
+:where(.uc-code__hint) {
+  display: none;
+  padding: var(--uc-space-2) var(--uc-space-5);
+  border-top: 1px solid var(--uc-color-border);
+  background: var(--uc-color-surface-sunken);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-sm);
+}
+:where(.uc-code__body:focus-within .uc-code__hint) { display: block; }
+
+@media (max-width: 760px) {
+  :where(.uc-code__header) { padding-left: var(--uc-space-4); }
+  :where(.uc-code__pre, .uc-code__input) { padding: var(--uc-space-3) var(--uc-space-4); }
+}
+
+/* Syntax colours (highlight.js classes), from kit tokens; all reach 4.5:1 on the code background. */
+:where(.uc-code .hljs-keyword, .uc-code .hljs-selector-tag, .uc-code .hljs-meta .hljs-keyword) {
+  color: var(--uc-color-accent);
+  font-weight: 500;
+}
+:where(.uc-code .hljs-type, .uc-code .hljs-title.class_, .uc-code .hljs-built_in, .uc-code .hljs-number, .uc-code .hljs-literal, .uc-code .hljs-symbol) {
+  color: var(--uc-color-warning-text);
+}
+:where(.uc-code .hljs-string, .uc-code .hljs-regexp, .uc-code .hljs-char, .uc-code .hljs-addition) {
+  color: var(--uc-color-success-text);
+}
+:where(.uc-code .hljs-comment, .uc-code .hljs-quote) {
+  color: var(--uc-color-text-muted);
+  font-style: italic;
+}
+:where(.uc-code .hljs-doctag, .uc-code .hljs-meta, .uc-code .hljs-attr, .uc-code .hljs-attribute, .uc-code .hljs-variable, .uc-code .hljs-template-variable) {
+  color: var(--uc-color-accent-strong);
+}
+:where(.uc-code .hljs-title.function_, .uc-code .hljs-section, .uc-code .hljs-name, .uc-code .hljs-tag) {
+  color: var(--uc-color-text);
+  font-weight: 600;
+}
+:where(.uc-code .hljs-deletion) { color: var(--uc-color-danger-text); }
+:where(.uc-code .hljs-emphasis) { font-style: italic; }
+:where(.uc-code .hljs-strong) { font-weight: 600; }
+/* In the editor, glyph widths must match the textarea exactly: no weight or style changes. */
+:where(.uc-code--editable .uc-code__pre *) {
+  font-weight: inherit;
+  font-style: inherit;
+}

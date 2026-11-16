@@ -74,8 +74,10 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     reset: "Reset",
     editable: "Editable code",
     testOn: "Test on {platform}",
+    tabHint: "Tab inserts spaces. To leave the editor, press Esc and then Tab.",
   },
   question: {
+    label: "Quick check",
     check: "Check",
     correct: "Correct!",
     incorrect: "Not quite. Try again.",

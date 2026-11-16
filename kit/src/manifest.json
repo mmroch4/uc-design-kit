@@ -22,6 +22,9 @@
     "components/uc-this-week.js",
     "components/uc-exercise.js",
     "components/uc-guide.js",
+    "components/uc-team.js",
+    "components/uc-code.js",
+    "components/uc-question.js",
     "core/bootstrap.js"
   ],
   "css": [
@@ -40,6 +43,9 @@
     "css/components/uc-weeks.css",
     "css/components/uc-this-week.css",
     "css/components/uc-exercise.css",
-    "css/components/uc-guide.css"
+    "css/components/uc-guide.css",
+    "css/components/uc-team.css",
+    "css/components/uc-code.css",
+    "css/components/uc-question.css"
   ]
 }

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-question · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Perguntas de verificação (teste)</span>
+      <span lang="en">Self-check questions (test)</span>
+    </h1>
+
+    <h2>
+      <span lang="pt">Uma resposta certa</span>
+      <span lang="en">One correct answer</span>
+    </h2>
+    <uc-question>
+      <p lang="pt">Que percurso visita a raiz primeiro?</p>
+      <p lang="en">Which traversal visits the root first?</p>
+      <ul>
+        <li data-correct><span lang="pt">Pré-ordem</span><span lang="en">Pre-order</span></li>
+        <li><span lang="pt">Em-ordem</span><span lang="en">In-order</span></li>
+        <li><span lang="pt">Pós-ordem</span><span lang="en">Post-order</span></li>
+      </ul>
+      <p data-explanation>
+        <span lang="pt">Em pré-ordem visita-se o nó antes das subárvores.</span>
+        <span lang="en">Pre-order visits the node before its subtrees.</span>
+      </p>
+    </uc-question>
+
+    <h2>
+      <span lang="pt">Várias respostas certas (<code>multiple</code>)</span>
+      <span lang="en">Several correct answers (<code>multiple</code>)</span>
+    </h2>
+    <uc-question multiple>
+      <p>Quais destas estruturas garantem acesso em <code>O(1)</code> ao primeiro elemento?</p>
+      <p class="uc-muted">Escolhe todas as opções certas.</p>
+      <ul>
+        <li data-correct>Lista ligada com referência para a cabeça</li>
+        <li data-correct>Array dinâmico (<code>ArrayList</code>)</li>
+        <li>Árvore binária de pesquisa (o mínimo)</li>
+        <li>Uma opção com um texto muito comprido para testar a quebra de linha em ecrãs estreitos: https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/very-long-file-name.pdf</li>
+      </ul>
+      <p data-explanation>Ambas guardam o primeiro elemento numa posição conhecida; na árvore é preciso descer até à folha mais à esquerda.</p>
+    </uc-question>
+
+    <h2>
+      <span lang="pt">Sem explicação</span>
+      <span lang="en">Without explanation</span>
+    </h2>
+    <uc-question>
+      <p>Qual é a altura de uma árvore só com a raiz?</p>
+      <ul>
+        <li data-correct><code>0</code></li>
+        <li><code>1</code></li>
+        <li><code>-1</code></li>
+      </ul>
+    </uc-question>
+  </uc-page>
+</body>
+</html>

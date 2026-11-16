@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-team · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    /* Page-specific team: adds e-mail, office, a LocalizedText role, a lecturer and a member without details. */
+    window.UC_COURSE.team = [
+      { name: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds", role: "coordinator", classes: ["T1", "T2"],
+        office: "Gab. 1.25", email: "fds@example.org" },
+      { name: "Eduardo R. B. Marques", url: "https://www.dcc.fc.up.pt/~edrdo/", role: "assistant", classes: ["PL1", "PL5", "PL7"] },
+      { name: "Joana Leite", role: "assistant", classes: ["PL2", "PL3"], email: "joana.leite.with.a.very.long.address@example.org" },
+      { name: "Duarte Nóbrega", role: "lecturer", classes: ["PL4", "PL8"] },
+      { name: "Maria Pedroto", role: { pt: "Monitora", en: "Teaching assistant" }, classes: ["PL6"] },
+      { name: "Ana Sem Turmas" }
+    ];
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="schedule">
+    <h1>
+      <span lang="pt">Equipa (teste)</span>
+      <span lang="en">Team (test)</span>
+    </h1>
+
+    <!-- Default: cards, localised heading. -->
+    <uc-team></uc-team>
+
+    <!-- Table view with a custom heading; e-mail and office under the name. -->
+    <uc-team view="table" heading="Equipa docente · tabela"></uc-team>
+
+    <!-- Role filter: only lab-class assistants, no heading. -->
+    <section class="uc-section" aria-labelledby="filter">
+      <h2 id="filter">
+        <span lang="pt">Filtro por função: <code>role="assistant"</code>, <code>heading="none"</code></span>
+        <span lang="en">Role filter: <code>role="assistant"</code>, <code>heading="none"</code></span>
+      </h2>
+      <uc-team role="assistant" heading="none"></uc-team>
+    </section>
+
+    <!-- Several roles, with teacher-written children kept after the list. -->
+    <uc-team role="coordinator lecturer" view="table" heading="Regente e docentes">
+      <p class="uc-muted">
+        <span lang="pt">Atendimento por marcação, por e-mail.</span>
+        <span lang="en">Office hours by appointment, by e-mail.</span>
+      </p>
+    </uc-team>
+
+    <!-- Empty result: the element hides itself. -->
+    <section class="uc-section" aria-labelledby="empty">
+      <h2 id="empty">
+        <span lang="pt">Sem resultados (<code>role="nobody"</code>): nada aparece abaixo</span>
+        <span lang="en">No results (<code>role="nobody"</code>): nothing appears below</span>
+      </h2>
+      <uc-team role="nobody"></uc-team>
+    </section>
+  </uc-page>
+</body>
+</html>

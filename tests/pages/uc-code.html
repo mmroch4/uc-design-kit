@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-code · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Blocos de código (teste)</span>
+      <span lang="en">Code blocks (test)</span>
+    </h1>
+    <p class="uc-muted">
+      <span lang="pt">Sem JavaScript, os blocos com <code>&lt;script type="text/plain"&gt;</code> são mostrados como texto simples pelo CSS do kit; sem o CSS do kit não aparecem. Sem rede, o realce de sintaxe não carrega e o código fica legível, sem cores.</span>
+      <span lang="en">Without JavaScript, <code>&lt;script type="text/plain"&gt;</code> blocks are shown as plain text by the kit CSS; without the kit CSS they do not appear. Offline, highlighting does not load and the code stays readable, uncoloured.</span>
+    </p>
+
+    <h2>Java · <code>&lt;script type="text/plain"&gt;</code> · filename</h2>
+    <uc-code lang="java" filename="BTNode.java">
+      <script type="text/plain">
+        public class BTNode<T> {
+            private T value;
+            private BTNode<T> left, right;   // null when there is no child
+
+            public T getValue()          { return value; }
+            public BTNode<T> getLeft()   { return left; }
+            public BTNode<T> getRight()  { return right; }
+        }
+      </script>
+    </uc-code>
+
+    <h2>Python · <code>&lt;pre&gt;&lt;code&gt;</code> · <span lang="pt">sem nome de ficheiro</span><span lang="en">no file name</span></h2>
+    <uc-code lang="python">
+      <pre><code>def depth(node):
+    """Height of the tree rooted at node (-1 when empty)."""
+    if node is None:
+        return -1
+    return 1 + max(depth(node.left), depth(node.right))
+
+print(depth(root) &gt; 2 and "deep" or "shallow")</code></pre>
+    </uc-code>
+
+    <h2><code>editable</code> · <code>run</code> (Mooshak)</h2>
+    <uc-code lang="java" filename="BTree.java" editable run="https://mooshak.dcc.fc.up.pt/~edados/problem/A">
+      <script type="text/plain">
+        public int numberNodes() {
+            return numberNodes(root);
+        }
+
+        private int numberNodes(BTNode<T> n) {
+            // TODO: 1 + nodes on the left + nodes on the right
+            return 0;
+        }
+      </script>
+    </uc-code>
+
+    <h2><span lang="pt">Linha comprida</span><span lang="en">Long line</span> · <code>run</code> <span lang="pt">noutro site</span><span lang="en">on another site</span> · <code>no-download</code></h2>
+    <uc-code lang="c" filename="main.c" no-download run="https://example.org/judge/42">
+      <script type="text/plain">
+        #include <stdio.h>
+
+        int main(void) {
+            printf("This is a very long line that must scroll horizontally inside the code block and never make the whole page scroll at 360 px: %d %d %d\n", 1, 2, 3);
+            return 0;
+        }
+      </script>
+    </uc-code>
+
+    <h2><code>no-copy</code> <code>no-download</code> · <span lang="pt">sem linguagem</span><span lang="en">no language</span></h2>
+    <uc-code no-copy no-download>
+      <pre><code>$ javac BTree.java &amp;&amp; java BTree &lt; input.txt
+5 3 1 4 8 7 9</code></pre>
+    </uc-code>
+
+    <h2><span lang="pt">Linguagem sem realce disponível</span><span lang="en">Language without highlighting</span> (<code>lang="brainfuck"</code>)</h2>
+    <uc-code lang="brainfuck">
+      <script type="text/plain">
+        ++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.
+      </script>
+    </uc-code>
+  </uc-page>
+</body>
+</html>

@@ -1303,3 +1303,289 @@
 @media print {
   :where(.uc-guide__aside) { display: none; }
 }
+
+/* --- css/components/uc-team.css --- */
+/* <uc-team> — teaching team as cards or a table. */
+:where(uc-team) { display: block; }
+:where(.uc-team__section) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-3);
+}
+:where(.uc-team__cards) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+:where(.uc-team__card) {
+  --uc-card-padding: var(--uc-space-4) var(--uc-space-5);
+  gap: 0;
+  margin: 0;
+}
+:where(.uc-team__card .uc-team__name) { font-weight: 600; }
+:where(.uc-team__role, .uc-team__contact) {
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+  overflow-wrap: anywhere;
+}
+:where(.uc-team__contact) { display: block; }
+:where(.uc-team__table) { --uc-table-min: 480px; }
+:where(.uc-team__table td) { vertical-align: middle; }
+:where(.uc-team__person .uc-team__name) { font-weight: 500; }
+:where(.uc-team__classes) { font-size: var(--uc-font-size-md); }
+
+/* --- css/components/uc-code.css --- */
+/* <uc-code> — code block with toolbar, optional editor and token-based highlighting. */
+:where(uc-code) {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Without JavaScript: show the authored code (a <script type="text/plain"> is displayed as text). */
+:where(uc-code:not(.uc-code) > script[type="text/plain"], uc-code:not(.uc-code) > pre) {
+  display: block;
+  margin: 0;
+  padding: var(--uc-space-4) var(--uc-space-5);
+  overflow-x: auto;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface-sunken);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  line-height: 1.7;
+  white-space: pre;
+}
+
+:where(.uc-code) {
+  overflow: hidden;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+
+:where(.uc-code__header) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uc-space-2) var(--uc-space-3);
+  padding: var(--uc-space-2) var(--uc-space-3) var(--uc-space-2) var(--uc-space-5);
+  border-bottom: 1px solid var(--uc-color-border);
+  background: var(--uc-color-surface-sunken);
+}
+:where(.uc-code__title) {
+  min-width: 0;
+  color: var(--uc-color-text-secondary);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-sm);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+:where(.uc-code__actions) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-2);
+}
+:where(.uc-code__button, .uc-code__run) {
+  padding: 0 var(--uc-space-3);
+  white-space: nowrap;
+}
+:where(.uc-code__button--copy svg) { color: inherit; }
+
+/* Code area: only this part scrolls horizontally, never the page. */
+:where(.uc-code__scroll) {
+  overflow-x: auto;
+  background: var(--uc-color-surface-sunken);
+}
+:where(.uc-code__scroll:focus-visible) { outline-offset: -2px; }
+:where(.uc-code__pre, .uc-code__input) {
+  margin: 0;
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 0;
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  font-variant-ligatures: none;
+  line-height: 1.7;
+  letter-spacing: 0;
+  tab-size: 4;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+:where(.uc-code__pre) {
+  overflow: visible;
+  color: var(--uc-color-text);
+}
+:where(.uc-code__code) {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+/* Editable: a transparent textarea stacked over the highlighted <pre>, in one grid cell. */
+:where(.uc-code__editor) {
+  display: grid;
+  grid-template-columns: minmax(100%, max-content);
+  background: var(--uc-color-surface);
+}
+:where(.uc-code__editor > .uc-code__pre, .uc-code__editor > .uc-code__input) { grid-area: 1 / 1; }
+:where(.uc-code__input) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  resize: none;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--uc-color-text);
+  -webkit-text-fill-color: transparent;
+}
+:where(.uc-code__input)::selection {
+  background: color-mix(in srgb, var(--uc-color-accent) 22%, transparent);
+  color: transparent;
+}
+:where(.uc-code__input:focus) { outline: none; }
+:where(.uc-code__editor:focus-within) {
+  outline: var(--uc-focus-ring);
+  outline-offset: -2px;
+}
+:where(.uc-code__hint) {
+  display: none;
+  padding: var(--uc-space-2) var(--uc-space-5);
+  border-top: 1px solid var(--uc-color-border);
+  background: var(--uc-color-surface-sunken);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-sm);
+}
+:where(.uc-code__body:focus-within .uc-code__hint) { display: block; }
+
+@media (max-width: 760px) {
+  :where(.uc-code__header) { padding-left: var(--uc-space-4); }
+  :where(.uc-code__pre, .uc-code__input) { padding: var(--uc-space-3) var(--uc-space-4); }
+}
+
+/* Syntax colours (highlight.js classes), from kit tokens; all reach 4.5:1 on the code background. */
+:where(.uc-code .hljs-keyword, .uc-code .hljs-selector-tag, .uc-code .hljs-meta .hljs-keyword) {
+  color: var(--uc-color-accent);
+  font-weight: 500;
+}
+:where(.uc-code .hljs-type, .uc-code .hljs-title.class_, .uc-code .hljs-built_in, .uc-code .hljs-number, .uc-code .hljs-literal, .uc-code .hljs-symbol) {
+  color: var(--uc-color-warning-text);
+}
+:where(.uc-code .hljs-string, .uc-code .hljs-regexp, .uc-code .hljs-char, .uc-code .hljs-addition) {
+  color: var(--uc-color-success-text);
+}
+:where(.uc-code .hljs-comment, .uc-code .hljs-quote) {
+  color: var(--uc-color-text-muted);
+  font-style: italic;
+}
+:where(.uc-code .hljs-doctag, .uc-code .hljs-meta, .uc-code .hljs-attr, .uc-code .hljs-attribute, .uc-code .hljs-variable, .uc-code .hljs-template-variable) {
+  color: var(--uc-color-accent-strong);
+}
+:where(.uc-code .hljs-title.function_, .uc-code .hljs-section, .uc-code .hljs-name, .uc-code .hljs-tag) {
+  color: var(--uc-color-text);
+  font-weight: 600;
+}
+:where(.uc-code .hljs-deletion) { color: var(--uc-color-danger-text); }
+:where(.uc-code .hljs-emphasis) { font-style: italic; }
+:where(.uc-code .hljs-strong) { font-weight: 600; }
+/* In the editor, glyph widths must match the textarea exactly: no weight or style changes. */
+:where(.uc-code--editable .uc-code__pre *) {
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+/* --- css/components/uc-question.css --- */
+/* <uc-question> — self-check question card. */
+:where(uc-question) { display: block; }
+:where(.uc-question) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--uc-space-4);
+  padding: var(--uc-space-5) var(--uc-space-6);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+:where(.uc-question__tag) { align-self: flex-start; }
+:where(.uc-question__prompt) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-2);
+  font-weight: 600;
+}
+:where(.uc-question__options) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+:where(.uc-question__option) {
+  display: flex;
+  align-items: center;
+  gap: var(--uc-space-3);
+  min-height: 48px;
+  padding: var(--uc-space-2) var(--uc-space-4);
+  border: 1px solid var(--uc-color-border);
+  border-radius: 10px;
+  background: var(--uc-color-surface);
+  color: var(--uc-color-text);
+  font-size: var(--uc-font-size-body-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+:where(.uc-question__option:hover) { border-color: var(--uc-color-text-subtle); }
+:where(.uc-question__option:has(.uc-question__input:checked)) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent-soft);
+}
+:where(.uc-question__option:has(.uc-question__input:focus-visible)) {
+  outline: var(--uc-focus-ring);
+  outline-offset: 2px;
+}
+:where(.uc-question__option--correct) {
+  border-color: var(--uc-color-success-text);
+  background: var(--uc-color-success-bg);
+}
+:where(.uc-question__option--correct:has(.uc-question__input:checked)) {
+  border-color: var(--uc-color-success-text);
+  background: var(--uc-color-success-bg);
+}
+:where(.uc-question__input) {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--uc-color-accent);
+}
+:where(.uc-question__input:focus-visible) { outline-offset: 3px; }
+:where(.uc-question__label) { min-width: 0; overflow-wrap: anywhere; }
+:where(.uc-question__actions) { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); }
+:where(.uc-question__feedback) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-2);
+  font-size: var(--uc-font-size-body-sm);
+}
+/* The live region stays rendered (so announcements work) but takes no space while empty. */
+:where(.uc-question__feedback--none) { margin-top: calc(-1 * var(--uc-space-4)); }
+:where(.uc-question__message) {
+  display: flex;
+  align-items: center;
+  gap: var(--uc-space-2);
+}
+:where(.uc-question__feedback--correct .uc-question__message) { color: var(--uc-color-success-text); }
+:where(.uc-question__feedback--incorrect .uc-question__message) { color: var(--uc-color-warning-text); font-weight: 500; }
+:where(.uc-question__feedback--empty .uc-question__message) { color: var(--uc-color-text-muted); }
+:where(.uc-question__explanation) { color: var(--uc-color-text-secondary); }
+
+@media (max-width: 760px) {
+  :where(.uc-question) { padding: var(--uc-space-4); }
+}
