@@ -1,0 +1,78 @@
+/* Design tokens. Every visual decision in the kit reads from these properties. */
+:root {
+  /* Colour: accent (overridden by UC_COURSE.accentColor) */
+  --uc-color-accent: #1D4ED8;
+  --uc-color-accent-strong: color-mix(in srgb, var(--uc-color-accent) 70%, #000);
+  --uc-color-accent-soft: color-mix(in srgb, var(--uc-color-accent) 8%, #fff);
+  --uc-color-highlight: color-mix(in srgb, var(--uc-color-accent) 5%, #fff);
+  --uc-color-on-accent: #FFFFFF;
+
+  /* Colour: neutrals */
+  --uc-color-text: #18181B;
+  --uc-color-text-secondary: #3F3F46;
+  --uc-color-text-muted: #52525B;
+  --uc-color-text-subtle: #71717A;
+  --uc-color-border: #E4E4E7;
+  --uc-color-surface: #FFFFFF;
+  --uc-color-surface-muted: #F4F4F5;
+  --uc-color-surface-sunken: #FAFAFA;
+
+  /* Colour: warning / assessment */
+  --uc-color-warning-text: #92400E;
+  --uc-color-warning-bg: #FEF3C7;
+  --uc-color-warning-surface: #FFFBEB;
+  --uc-color-warning-border: #FDE68A;
+
+  /* Colour: success (self-check feedback) */
+  --uc-color-success-text: #166534;
+  --uc-color-success-bg: #DCFCE7;
+  --uc-color-danger-text: #991B1B;
+  --uc-color-danger-bg: #FEE2E2;
+
+  /* Typography */
+  --uc-font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --uc-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --uc-font-size-base: 16px;
+  --uc-font-size-xs: 0.75rem;   /* 12px */
+  --uc-font-size-sm: 0.8125rem; /* 13px */
+  --uc-font-size-md: 0.875rem;  /* 14px */
+  --uc-font-size-body-sm: 0.9375rem; /* 15px */
+  --uc-font-size-lg: 1.125rem;  /* 18px */
+  --uc-font-size-h3: 1.25rem;   /* 20px */
+  --uc-font-size-h2: 1.375rem;  /* 22px */
+  --uc-font-size-h1: 2.25rem;   /* 36px */
+  --uc-font-size-display: 2.5rem; /* 40px */
+  --uc-line-height: 1.6;
+  --uc-line-height-tight: 1.25;
+
+  /* Shape and space */
+  --uc-radius-sm: 6px;
+  --uc-radius-md: 8px;
+  --uc-radius-lg: 12px;
+  --uc-space-1: 4px;
+  --uc-space-2: 8px;
+  --uc-space-3: 12px;
+  --uc-space-4: 16px;
+  --uc-space-5: 20px;
+  --uc-space-6: 24px;
+  --uc-space-7: 28px;
+  --uc-space-8: 32px;
+  --uc-space-10: 40px;
+  --uc-space-12: 48px;
+
+  /* Layout */
+  --uc-content-max: 1200px;
+  --uc-sidebar-width: 216px;
+  --uc-header-height: 64px;
+  --uc-gutter: var(--uc-space-8);
+  --uc-target-min: 44px;
+  --uc-focus-ring: 2px solid var(--uc-color-accent);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --uc-gutter: var(--uc-space-4);
+    --uc-font-size-h1: 1.875rem;
+    --uc-font-size-display: 2rem;
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-page · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <uc-hero></uc-hero>
+    <section class="uc-section" aria-labelledby="bilingual">
+      <h2 id="bilingual">
+        <span lang="pt">Conteúdo bilingue</span>
+        <span lang="en">Bilingual content</span>
+      </h2>
+      <p lang="pt">Este parágrafo só aparece em português.</p>
+      <p lang="en">This paragraph only appears in English.</p>
+      <p>Untagged content is always visible: <code>LinkedList&lt;T&gt;</code>.</p>
+    </section>
+    <section class="uc-section" aria-labelledby="long">
+      <h2 id="long">Long words</h2>
+      <p>https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/very-long-file-name-without-spaces.pdf</p>
+    </section>
+  </uc-page>
+</body>
+</html>

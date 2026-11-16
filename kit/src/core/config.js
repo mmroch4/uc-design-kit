@@ -1,0 +1,121 @@
+/**
+ * Reads window.UC_COURSE, applies defaults and validates it.
+ * Problems are reported with console.warn so a typo never breaks the page.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const BUILTIN_PAGES = {
+    home: "index.html",
+    weeks: "weeks.html",
+    assessment: "assessment.html",
+    materials: "materials.html",
+    schedule: "schedule.html",
+    about: "about.html",
+  };
+  const DEADLINE_KINDS = ["assessment", "exam", "quiz", "submission", "other"];
+  const DEFAULT_WEEKS = 14;
+
+  function warn(message) {
+    console.warn(`[uc-kit] course.js: ${message}`);
+  }
+
+  const asArray = (value) => (Array.isArray(value) ? value : []);
+
+  function normalizePage(entry, index) {
+    const page = typeof entry === "string" ? { id: entry } : { ...entry };
+    if (!page.id) {
+      warn(`pages[${index}] has no id`);
+      page.id = `page-${index}`;
+    }
+    if (!page.href) {
+      page.href = BUILTIN_PAGES[page.id];
+      if (!page.href) warn(`pages[${index}] ("${page.id}") is not a built-in page and needs an href`);
+    }
+    page.builtin = page.id in BUILTIN_PAGES;
+    page.label = page.label || null;
+    return page;
+  }
+
+  function normalizeDeadline(entry, index) {
+    const deadline = { kind: "other", links: [], ...entry };
+    if (!deadline.id) warn(`deadlines[${index}] has no id`);
+    if (!deadline.title) warn(`deadlines[${index}] ("${deadline.id}") has no title`);
+    if (!DEADLINE_KINDS.includes(deadline.kind)) {
+      warn(`deadlines[${index}] has unknown kind "${deadline.kind}"`);
+      deadline.kind = "other";
+    }
+    const parsed = UC.internal.parseDeadlineDate(deadline.date);
+    if (parsed.precision === "invalid") warn(`deadlines[${index}] has an invalid date "${deadline.date}"`);
+    deadline.parsed = parsed;
+    deadline.endDate = UC.internal.parseDay(deadline.end);
+    deadline.links = asArray(deadline.links);
+    return deadline;
+  }
+
+  function normalizeNotice(entry, index) {
+    const date = UC.internal.parseDay(entry && entry.date);
+    if (!date) warn(`notices[${index}] has an invalid date "${entry && entry.date}"`);
+    return { ...entry, parsedDate: date };
+  }
+
+  function normalize(raw) {
+    const htmlLang = (document.documentElement.getAttribute("lang") || "pt").trim();
+    const languages = asArray(raw.languages).length ? raw.languages.slice() : [htmlLang];
+
+    if (!raw.title) warn("title is required");
+
+    const semester = raw.semester || {};
+    const teachingDays = asArray(semester.teachingDays).length === 2 ? semester.teachingDays : [1, 5];
+
+    const deadlines = asArray(raw.deadlines).map(normalizeDeadline);
+    deadlines.sort((a, b) => {
+      const da = a.parsed.date;
+      const db = b.parsed.date;
+      if (!da && !db) return 0;
+      if (!da) return 1;
+      if (!db) return -1;
+      return da - db;
+    });
+
+    const notices = asArray(raw.notices).map(normalizeNotice);
+    notices.sort((a, b) => (b.parsedDate || 0) - (a.parsedDate || 0));
+
+    return Object.freeze({
+      ...raw,
+      languages,
+      title: raw.title || document.title,
+      semester: {
+        start: semester.start || null,
+        weeks: Number(semester.weeks) || DEFAULT_WEEKS,
+        teachingDays,
+        breaks: asArray(semester.breaks),
+      },
+      pages: asArray(raw.pages).length ? raw.pages.map(normalizePage) : [normalizePage("home", 0)],
+      platforms: asArray(raw.platforms),
+      team: asArray(raw.team),
+      deadlines,
+      notices,
+      logo: raw.logo === undefined ? "default" : raw.logo,
+    });
+  }
+
+  function applyAccentColor(color) {
+    if (!color) return;
+    if (typeof CSS !== "undefined" && CSS.supports && !CSS.supports("color", color)) {
+      warn(`accentColor "${color}" is not a valid CSS colour`);
+      return;
+    }
+    document.documentElement.style.setProperty("--uc-color-accent", color);
+  }
+
+  const raw = window.UC_COURSE;
+  if (!raw || typeof raw !== "object") {
+    console.warn("[uc-kit] window.UC_COURSE is missing: load course.js before uc-kit.js. Using defaults.");
+  }
+  UC.course = normalize(raw && typeof raw === "object" ? raw : {});
+  applyAccentColor(UC.course.accentColor);
+
+  UC.internal.builtinPages = BUILTIN_PAGES;
+})(window.UC);

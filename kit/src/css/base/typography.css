@@ -1,0 +1,37 @@
+/* Default typography for teacher-written content. */
+:where(h1, h2, h3, h4) {
+  margin: 0;
+  color: var(--uc-color-text);
+  line-height: var(--uc-line-height-tight);
+}
+:where(h1) { font-size: var(--uc-font-size-h1); font-weight: 700; letter-spacing: -0.02em; }
+:where(h2) { font-size: var(--uc-font-size-h2); font-weight: 600; }
+:where(h3) { font-size: var(--uc-font-size-h3); font-weight: 600; }
+:where(h4) { font-size: 1rem; font-weight: 600; }
+
+:where(p) { margin: 0; }
+:where(ul, ol) { margin: 0; padding-left: 1.25rem; }
+:where(li + li) { margin-top: var(--uc-space-1); }
+
+:where(a) {
+  color: var(--uc-color-accent);
+  text-underline-offset: 3px;
+}
+:where(a:hover) { color: var(--uc-color-accent-strong); }
+
+:where(code, kbd, samp, pre) { font-family: var(--uc-font-mono); font-size: 0.9em; }
+:where(:not(pre) > code) {
+  padding: 0.1em 0.35em;
+  border-radius: var(--uc-radius-sm);
+  background: var(--uc-color-surface-muted);
+}
+:where(pre) { margin: 0; overflow-x: auto; }
+
+:where(strong, b) { font-weight: 600; }
+:where(hr) { border: 0; border-top: 1px solid var(--uc-color-border); margin: var(--uc-space-8) 0; }
+
+:where(table) { border-collapse: collapse; width: 100%; }
+:where(th) { text-align: left; }
+
+/* Long words (URLs, identifiers) must never cause horizontal scroll. */
+:where(p, li, dd, td, th, h1, h2, h3) { overflow-wrap: break-word; }

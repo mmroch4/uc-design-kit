@@ -4,3 +4,4 @@ playwright-report/
 tests/screenshots/
 .DS_Store
 *.log
+scripts/.*

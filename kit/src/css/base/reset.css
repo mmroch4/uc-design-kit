@@ -1,0 +1,36 @@
+/* Minimal reset. All selectors use :where() so any author rule wins. */
+:where(*, *::before, *::after) { box-sizing: border-box; }
+
+:where(html) {
+  font-size: var(--uc-font-size-base);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+:where(body) {
+  margin: 0;
+  background: var(--uc-color-surface);
+  color: var(--uc-color-text);
+  font-family: var(--uc-font-sans);
+  line-height: var(--uc-line-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(img, svg, video) { max-width: 100%; height: auto; }
+:where(svg) { flex-shrink: 0; }
+:where(button, input, select, textarea) { font: inherit; color: inherit; }
+:where(button) { cursor: pointer; }
+:where([hidden]) { display: none !important; }
+
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: var(--uc-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(*, *::before, *::after) {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
