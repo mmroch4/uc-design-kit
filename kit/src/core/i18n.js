@@ -22,6 +22,12 @@
   /** Adds or overrides interface strings for a language. Nested objects are flattened. */
   UC.addTranslations = function addTranslations(lang, dictionary) {
     dictionaries[lang] = Object.assign(dictionaries[lang] || Object.create(null), flatten(dictionary, "", {}));
+    // Strings for the active language added after components rendered (a script
+    // loaded after the kit) must show at once, not on the next language change.
+    const active = UC.lang;
+    if (active && UC.internal.rerenderAll && (lang === active || lang === active.split("-")[0])) {
+      UC.internal.rerenderAll();
+    }
   };
 
   function lookup(lang, key) {

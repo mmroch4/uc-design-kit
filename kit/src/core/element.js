@@ -11,8 +11,27 @@
   "use strict";
   if (UC.__duplicate) return;
 
+  /** Connected kit elements, so they can be re-rendered when translations arrive. */
+  const connected = new Set();
+  let rerenderQueued = false;
+
+  /**
+   * Re-renders every connected kit element once, after the current script.
+   * Used when interface strings for the active language are added after the
+   * components rendered (an extension script loaded after the kit).
+   */
+  UC.internal.rerenderAll = function rerenderAll() {
+    if (rerenderQueued) return;
+    rerenderQueued = true;
+    queueMicrotask(() => {
+      rerenderQueued = false;
+      connected.forEach((element) => element.render());
+    });
+  };
+
   class UCElement extends HTMLElement {
     connectedCallback() {
+      connected.add(this);
       if (!this.__ucSetupDone) {
         this.__ucSetupDone = true;
         this.setup();
@@ -25,6 +44,7 @@
     }
 
     disconnectedCallback() {
+      connected.delete(this);
       if (this.__ucLanguageListener) {
         document.removeEventListener("uc:languagechange", this.__ucLanguageListener);
         this.__ucLanguageListener = null;
