@@ -10,7 +10,7 @@
   if (UC.__duplicate) return;
 
   const { h, flag, parseDeadlineDate, toISO } = UC.internal;
-  const FORMATS = ["short", "long", "weekday"];
+  const FORMATS = ["short", "medium", "long", "weekday"];
 
   class UCDate extends UC.Element {
     static get observedAttributes() {

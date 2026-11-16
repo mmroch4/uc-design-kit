@@ -88,7 +88,7 @@
     const parsed = value instanceof Date ? { precision: "day", date: value } : parseDeadlineDate(value);
     if (parsed.precision === "none" || parsed.precision === "invalid") return UC.t("deadlines.toBeScheduled");
     if (parsed.precision === "month") return fill(UC.t("dates.format.month"), parts(parsed.date));
-    const key = format === "long" || format === "weekday" ? format : "short";
+    const key = ["medium", "long", "weekday"].includes(format) ? format : "short";
     return fill(UC.t(`dates.format.${key}`), parts(parsed.date));
   };
 

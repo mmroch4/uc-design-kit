@@ -154,6 +154,10 @@ pages: [
 When `href` is a `LocalizedText`, switching language navigates to the page in
 the other language instead of toggling content in place.
 
+Relative `href`s are relative to `course.js`, not to the page. A page in a
+subfolder (e.g. `guioes/aula10.html` loading `../course.js`) therefore gets
+navigation and breadcrumb links such as `../semanas.html` automatically.
+
 ### 2.4 Team member
 
 | Field | Type | Notes |
@@ -242,13 +246,16 @@ Lists `UC_COURSE.deadlines`.
 | `view` | `list` \| `table` | `list` | `table` adds status and links columns. |
 | `filter` | `upcoming` \| `past` \| `all` | `upcoming` (list), `all` (table) | |
 | `kind` | space-separated kinds | all | e.g. `kind="assessment exam"`. |
+| `per-kind` | number | none | At most this many items of each kind, e.g. `per-kind="1"` shows only the next quiz. |
 | `limit` | number | none | |
 | `heading` | text \| `none` | localised "Upcoming dates" | |
 
 Status shown in the table view: *Done* (date passed), *Next* (the first
 upcoming), *Scheduled* (later), *To be scheduled* (`date: null` or month only).
 A deadline with an `end` date counts as upcoming until it ends and is shown as
-a range. Children written inside the element are kept below the list.
+a range. Children written inside the element are kept below the list. In
+the list view the time goes at the start of the note line ("21:00 · Mooshak");
+the table view shows dates with the year.
 
 #### `<uc-date>`
 
@@ -258,7 +265,7 @@ Prints a date inline, formatted in the active language.
 | --- | --- | --- |
 | `deadline` | deadline id | Uses that deadline's date (and time, with `with-time`). |
 | `value` | `ISODate` | A literal date. |
-| `format` | `short` \| `long` \| `weekday` | `short` = "12 nov", `long` = "12 de novembro de 2025", `weekday` = "quarta-feira, 12 nov". Default `short`. |
+| `format` | `short` \| `medium` \| `long` \| `weekday` | `short` = "12 nov", `medium` = "12 nov 2025", `long` = "12 de novembro de 2025", `weekday` = "quarta-feira, 12 nov". Default `short`. |
 | `with-time` | boolean | Appends the time. |
 
 ### 3.3 Weekly calendar
@@ -273,6 +280,7 @@ after the last week.
 | --- | --- | --- |
 | `no-breaks` | boolean | breaks are inserted |
 | `no-deadlines` | boolean | deadlines are shown inside their week |
+| `kind` | space-separated kinds | all kinds; e.g. `kind="assessment exam"` leaves quizzes to the weeks' own rows |
 
 #### `<uc-week>`
 
@@ -323,6 +331,7 @@ skipped). Outside the semester it shows the next relevant date.
 | Attribute | Values | Default |
 | --- | --- | --- |
 | `source` | URL | the `weeks` page from `pages` |
+| `kind` | space-separated kinds | all kinds; use it to avoid repeating a deadline the week's rows already mention |
 
 ### 3.4 People
 
@@ -429,8 +438,13 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-shortcuts` | A `<nav>` or `<ul>` of large link buttons (quick access). |
 | `uc-callout` | Soft grey panel; `uc-callout--warning` for amber. |
 | `uc-checklist` | A `<ul>` with check icons. |
+| `uc-split` | Two columns (main + narrower side) that stack below 960px. |
+| `uc-section` | Vertical spacing between page sections. |
+| `uc-bullets` | A `<ul>` with simple bullets and comfortable spacing. |
+| `uc-button` | Link or button styled as a button; `uc-button--primary` filled, `uc-button--sm` compact (tables, toolbars). |
 | `uc-lead` | Larger intro paragraph. |
-| `uc-muted`, `uc-mono` | Text utilities. |
+| `uc-prose` | Readable text column (max 720px, secondary colour). |
+| `uc-muted`, `uc-mono`, `uc-small` | Text utilities. |
 | `uc-visually-hidden` | Hidden visually, available to screen readers. |
 
 ## 5. Design tokens (CSS custom properties)
@@ -441,6 +455,7 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | --- | --- | --- |
 | `--uc-color-accent` | `#1D4ED8` | Links, active navigation, primary buttons. Set from `accentColor`. |
 | `--uc-color-accent-strong` | derived (darker) | Hover. |
+| `--uc-color-on-accent` | `#FFFFFF` | Text on accent backgrounds (primary buttons). |
 | `--uc-color-accent-soft` | derived (`#EFF4FF`) | Active nav background, accent tags. |
 | `--uc-color-highlight` | derived (`#F3F6FF`) | Current week band. |
 | `--uc-color-text` | `#18181B` | Body text. |
@@ -462,6 +477,7 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | `--uc-space-1` … `--uc-space-12` | `4px` steps | Spacing scale. |
 | `--uc-content-max` | `1200px` | Page width. |
 | `--uc-sidebar-width` | `216px` | Navigation column. |
+| `--uc-main-gap` | `48px` | Space between the main content's top-level blocks. |
 | `--uc-target-min` | `44px` | Minimum touch target. |
 | `--uc-focus-ring` | `2px solid var(--uc-color-accent)` | Focus outline. |
 

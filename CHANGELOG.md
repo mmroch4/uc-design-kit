@@ -21,3 +21,11 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `<uc-exercise>` (hints, solutions, "mark as done").
 - `<uc-team>`, `<uc-code>` (highlight.js from cdnjs, copy, download, editor)
   and `<uc-question>`.
+- `per-kind` on `<uc-deadlines>`, `kind` on `<uc-weeks>` and `<uc-this-week>`,
+  `medium` date format, `uc-split` and `uc-button--sm` blocks.
+
+### Fixed
+- Page links from pages in subfolders: `pages[].href` is now relative to
+  `course.js`.
+- "null" printed in `<uc-exercise>` without `mooshak` and in `<uc-hero>`
+  without `code` or `tagline`.

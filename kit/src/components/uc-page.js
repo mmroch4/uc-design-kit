@@ -223,7 +223,7 @@
             "span",
             { class: "uc-footer__updated" },
             UC.internal.tNodes("footer.updated", {
-              date: h("time", { datetime: course.updated }, UC.formatDate(course.updated, "long")),
+              date: h("time", { datetime: course.updated }, UC.formatDate(course.updated, "medium")),
             }),
           )
         : null;

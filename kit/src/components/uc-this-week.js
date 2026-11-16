@@ -83,7 +83,13 @@
 
   class UCThisWeek extends UC.Element {
     static get observedAttributes() {
-      return ["source"];
+      return ["source", "kind"];
+    }
+
+    /** Keeps only the deadlines whose kind is listed in the `kind` attribute (all when absent). */
+    ofKinds(deadlines) {
+      const kinds = (this.getAttribute("kind") || "").split(/\s+/).filter(Boolean);
+      return kinds.length ? deadlines.filter((deadline) => kinds.includes(deadline.kind)) : deadlines;
     }
 
     attributeChangedCallback() {
@@ -105,9 +111,9 @@
       const last = calendar.weeks[calendar.weeks.length - 1];
 
       let content;
-      if (!first) content = this.renderOutside(null, upcomingDeadlines(today).slice(0, UPCOMING_LIMIT));
-      else if (today < first.monday) content = this.renderOutside("before", upcomingDeadlines(today).slice(0, 1), first);
-      else if (today >= addDays(last.monday, 7)) content = this.renderOutside("after", upcomingDeadlines(today).slice(0, UPCOMING_LIMIT));
+      if (!first) content = this.renderOutside(null, this.ofKinds(upcomingDeadlines(today)).slice(0, UPCOMING_LIMIT));
+      else if (today < first.monday) content = this.renderOutside("before", this.ofKinds(upcomingDeadlines(today)).slice(0, 1), first);
+      else if (today >= addDays(last.monday, 7)) content = this.renderOutside("after", this.ofKinds(upcomingDeadlines(today)).slice(0, UPCOMING_LIMIT));
       else content = this.renderInside(calendar, today);
 
       this.replaceChildren(
@@ -141,7 +147,7 @@
 
       const items = [];
       if (week) items.push(...this.fetchedItems(week.n));
-      UC.internal.deadlinesBetween(monday, addDays(monday, 14)).forEach((deadline) => items.push(this.deadlineItem(deadline)));
+      this.ofKinds(UC.internal.deadlinesBetween(monday, addDays(monday, 14))).forEach((deadline) => items.push(this.deadlineItem(deadline)));
 
       return [
         this.heading("weeks.thisWeek", meta),

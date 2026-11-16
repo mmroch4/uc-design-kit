@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page in a subfolder · test</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <h1>Página numa subpasta</h1>
+    <p>Os links da navegação e o breadcrumb do guião devem apontar para <code>../</code>,
+      porque as páginas em <code>course.js</code> são relativas a <code>course.js</code>.</p>
+    <uc-guide week="10">
+      <h1>Guião de teste</h1>
+      <h2>Secção</h2>
+      <p>Conteúdo.</p>
+    </uc-guide>
+  </uc-page>
+  <script>
+    // Fails the page check (console.error) when page links do not resolve to ../
+    document.addEventListener("uc:ready", () => {
+      const nav = document.querySelector('.uc-nav a[href$="uc-deadlines.html"]');
+      if (!nav || nav.getAttribute("href") !== "../uc-deadlines.html") {
+        console.error("subfolder: nav link not resolved against course.js:", nav && nav.getAttribute("href"));
+      }
+      const crumb = document.querySelector('.uc-guide a[href$="#week-10"]');
+      if (!crumb || crumb.getAttribute("href") !== "../uc-weeks.html#week-10") {
+        console.error("subfolder: breadcrumb not resolved:", crumb && crumb.getAttribute("href"));
+      }
+    });
+  </script>
+</body>
+</html>

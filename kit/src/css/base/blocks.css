@@ -198,3 +198,25 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* Two columns that stack on narrow screens: main content + a narrower side
+   column (e.g. notices next to upcoming dates). */
+:where(.uc-split) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--uc-space-10);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  :where(.uc-split) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Smaller button for dense tables and toolbars. */
+:where(.uc-button--sm) {
+  min-height: 2rem;
+  padding: 0.25rem 0.625rem;
+  font-size: var(--uc-font-size-sm);
+}
