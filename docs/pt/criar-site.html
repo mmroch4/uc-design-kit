@@ -121,14 +121,16 @@ python3 -m http.server 8000
   ],
 };</code></pre></uc-code>
         <p>Guarda-se e recarrega-se a página. O título vem do <code>course.js</code> e os prazos aparecem por ordem, só os que ainda não passaram:</p>
-        <!-- docs:demo src="../demos/getting-started/course.html" title="título e próximos prazos a partir do course.js" height="492" -->
+        <!-- docs:demo src="../demos/getting-started/course.html" title="título e próximos prazos a partir do course.js" height="528" -->
         <div class="docs-demo" id="demo-getting-started-course">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../demos/getting-started/course.html" title="Demonstração: título e próximos prazos a partir do course.js" loading="lazy" style="height: 492px"></iframe>
+            <iframe class="docs-demo__frame" src="../demos/getting-started/course.html" title="Demonstração: título e próximos prazos a partir do course.js" loading="lazy" style="height: 528px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;uc-hero&gt;&lt;/uc-hero&gt;
-&lt;uc-deadlines&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
+&lt;uc-deadlines&gt;
+  &lt;a href=&quot;#&quot;&gt;Regras de avaliação&lt;/a&gt;
+&lt;/uc-deadlines&gt;</code></pre></uc-code>
           </div>
           <a class="docs-demo__open" href="../demos/getting-started/course.html">Abrir demo</a>
         </div>
