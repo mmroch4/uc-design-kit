@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Materiais · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Materiais de Estruturas de Dados 2025/26: slides das teóricas, código, guiões, Mooshak, Java, sítios para praticar e bibliografia.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <style>
+    /* Botões PT/EN da tabela de slides. */
+    .pdf-links { display: flex; gap: var(--uc-space-2); }
+    .pdf {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: var(--uc-target-min); min-height: 36px; padding: 0 var(--uc-space-3);
+      border: 1px solid var(--uc-color-border); border-radius: var(--uc-radius-md);
+      font-size: var(--uc-font-size-sm); font-weight: 600; text-decoration: none;
+    }
+    .pdf:hover { border-color: var(--uc-color-accent); }
+    #slides-table td { vertical-align: middle; }
+    /* Cartões da bibliografia. */
+    .book { --uc-card-padding: var(--uc-space-5); gap: 6px; }
+    .book__kind { font-size: var(--uc-font-size-xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--uc-color-text-muted); }
+    .book__kind--main { color: var(--uc-color-accent); }
+    .book__title { font-weight: 600; }
+    .links-grid h2 { font-size: var(--uc-font-size-h3); }
+  </style>
+</head>
+<body>
+  <uc-page current="materials">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Materiais</h1>
+      <p class="uc-prose">Slides, código e guiões das aulas, ferramentas de Java e Mooshak, bibliografia e sítios para praticar.</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="slides">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--uc-space-3); flex-wrap: wrap">
+        <h2 id="slides">Slides das teóricas</h2>
+        <span class="uc-muted uc-small">PDF em português e inglês</span>
+      </div>
+      <!-- Slides: um capítulo por linha. Os PDF estão no site original. -->
+      <div class="uc-table" id="slides-table">
+        <table>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col">Capítulo</th><th scope="col">Páginas</th><th scope="col">Atualizado</th><th scope="col">PDF</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="uc-mono uc-muted">0</td><td>Apresentação e funcionamento</td><td class="uc-mono">19</td><td class="uc-mono uc-muted">—</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 0 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/01-funcionamento-en.pdf" aria-label="Capítulo 0 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">1</td><td>Introdução ao Java</td><td class="uc-mono">69</td><td class="uc-mono uc-muted">—</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 1 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/1_java-en.pdf" aria-label="Capítulo 1 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">2</td><td>Programação estruturada</td><td class="uc-mono">18</td><td class="uc-mono uc-muted">—</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 2 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/2_estruturada-en.pdf" aria-label="Capítulo 2 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">3</td><td>Tipos abstratos de dados</td><td class="uc-mono">55</td><td class="uc-mono">6 out</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 3 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/3_tads-en.pdf" aria-label="Capítulo 3 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">4</td><td>Listas ligadas, pilhas, filas e deques</td><td class="uc-mono">52</td><td class="uc-mono">14 out</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 4 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/slides.html" aria-label="Capítulo 4 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">5</td><td>Noções de complexidade de algoritmos</td><td class="uc-mono">67</td><td class="uc-mono">4 nov</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 5 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/slides.html" aria-label="Capítulo 5 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">6</td><td>Recursividade</td><td class="uc-mono">19</td><td class="uc-mono">15 nov</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 6 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/slides.html" aria-label="Capítulo 6 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">7</td><td>Árvores binárias</td><td class="uc-mono">35</td><td class="uc-mono">18 nov</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 7 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/slides.html" aria-label="Capítulo 7 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">8</td><td>Árvores binárias de pesquisa</td><td class="uc-mono">50</td><td class="uc-mono">20 nov</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 8 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/slides.html" aria-label="Capítulo 8 em inglês">EN</a></span></td></tr>
+            <tr><td class="uc-mono uc-muted">9</td><td>Filas de prioridade e heaps</td><td class="uc-mono">30</td><td class="uc-mono">8 dez</td><td><span class="pdf-links"><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos.html" aria-label="Capítulo 9 em português">PT</a><a class="pdf" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/9_heaps-en.pdf" aria-label="Capítulo 9 em inglês">EN</a></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="uc-grid links-grid" style="--uc-grid-min: 280px; --uc-grid-gap: var(--uc-space-10)">
+      <section class="uc-section" aria-labelledby="aulas" style="gap: var(--uc-space-2)">
+        <h2 id="aulas">Aulas práticas e código</h2>
+        <ul class="uc-links">
+          <li><a href="semanas.html">Guiões das aulas práticas</a><span>Um guião por aula, organizados por semana</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/index.html">Programas exemplo das teóricas</a><span>Código Java mostrado nas aulas</span></li>
+        </ul>
+      </section>
+      <section class="uc-section" aria-labelledby="mooshak" style="gap: var(--uc-space-2)">
+        <h2 id="mooshak">Mooshak</h2>
+        <ul class="uc-links">
+          <li><a href="https://mooshak.dcc.fc.up.pt/~edados/">Entrar e lista de problemas</a><span>Exercícios, quizzes e avaliações práticas</span></li>
+          <li><p class="uc-small">Não tens password? Cada estudante tem a sua. Pede-a ao Prof. Fernando Silva.</p></li>
+        </ul>
+      </section>
+      <section class="uc-section" aria-labelledby="java" style="gap: var(--uc-space-2)">
+        <h2 id="java">Java</h2>
+        <ul class="uc-links">
+          <li><a href="https://docs.oracle.com/en/java/javase/">Documentação da API do Java</a><span>Inclui a classe Scanner</span></li>
+          <li><a href="https://www.oracle.com/java/technologies/downloads/">Instalar o Java (JDK)</a><span>Oracle</span></li>
+          <li><a href="https://www.oracle.com/java/technologies/javase/codeconventions-contents.html">Convenções de código</a><span>Estilo recomendado</span></li>
+        </ul>
+      </section>
+      <section class="uc-section" aria-labelledby="praticar" style="gap: var(--uc-space-2)">
+        <h2 id="praticar">Praticar e visualizar</h2>
+        <ul class="uc-links">
+          <li><a href="https://visualgo.net/en">VisuAlgo</a><span>Estruturas de dados e algoritmos animados</span></li>
+          <li><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">Data Structures Visualizations</a><span>Universidade de São Francisco</span></li>
+          <li><a href="https://codingbat.com/java">CodingBat</a><span>Pequenos exercícios de Java</span></li>
+          <li><p><a href="https://cses.fi/">CSES</a> · <a href="https://open.kattis.com/">Kattis</a> · <a href="https://codeforces.com/">Codeforces</a></p><span>Juízes online e concursos</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="uc-section" aria-labelledby="biblio">
+      <h2 id="biblio">Bibliografia</h2>
+      <div class="uc-grid" style="--uc-grid-min: 280px">
+        <div class="uc-card book">
+          <span class="book__kind book__kind--main">Principal</span>
+          <span class="book__title">Building Java Programs: a Back to Basics Approach</span>
+          <span class="uc-muted uc-small">Stuart Reges e Marty Stepp · 5.ª ed., Pearson, 2020</span>
+        </div>
+        <div class="uc-card book">
+          <span class="book__kind book__kind--main">Principal</span>
+          <span class="book__title">Data Structures and Algorithms in Java</span>
+          <span class="uc-muted uc-small">Michael T. Goodrich e Roberto Tamassia · 6.ª ed., 2014</span>
+        </div>
+        <div class="uc-card book">
+          <span class="book__kind">Recomendado</span>
+          <span class="book__title">Introduction to Algorithms</span>
+          <span class="uc-muted uc-small">Cormen, Leiserson, Rivest e Stein · 4.ª ed., MIT Press, 2022</span>
+        </div>
+        <div class="uc-card book">
+          <span class="book__kind">Recomendado · grátis</span>
+          <span class="book__title"><a href="http://greenteapress.com/wp/think-java-2e/">Think Java</a></span>
+          <span class="uc-muted uc-small">Allen B. Downey e Chris Mayfield · 2.ª ed., 2020 · PDF</span>
+        </div>
+        <div class="uc-card book">
+          <span class="book__kind">Recomendado · grátis</span>
+          <span class="book__title"><a href="http://greenteapress.com/wp/think-data-structures/">Think Data Structures</a></span>
+          <span class="uc-muted uc-small">Allen B. Downey · 2017 · PDF</span>
+        </div>
+      </div>
+    </section>
+  </uc-page>
+</body>
+</html>

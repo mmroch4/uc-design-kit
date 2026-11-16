@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semanas · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Calendário semanal de Estruturas de Dados 2025/26: matéria das teóricas, slides, guiões das aulas práticas, quizzes e sumários.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Semanas</h1>
+      <p class="uc-prose">Tudo o que acontece em cada semana num só sítio: matéria das teóricas, guião da prática, quiz e slides. Clica numa semana para ver os detalhes. As semanas que ainda não começaram aparecem a cinzento.</p>
+
+      <!--
+        Uma <uc-week> por semana. As datas são calculadas a partir de course.js
+        (semester.start e breaks); a semana atual abre sozinha.
+        As avaliações são escritas à mão com <uc-event deadline="…"> (no-deadlines
+        evita repetir aqui os quizzes, que já estão na linha "Quiz").
+      -->
+      <uc-weeks no-deadlines>
+        <uc-week n="1" title="Apresentação e introdução ao Java">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 1 e 2 · <a href="materiais.html#slides">slides 0 e 1</a></dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01.html">Aula 1: Introdução ao Java</a></dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="1">
+              <li>Programa, bibliografia, funcionamento e avaliação. História e modelo de programação do Java. Tipos básicos.</li>
+              <li>Conversão entre tipos, operadores e precedência, ciclos e execução condicional.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="2" title="Classes, objetos, arrays e Scanner">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 3 e 4 · slides 1</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula02.html">Aula 2: I/O com a classe Scanner</a></dd>
+            <dt>Quiz</dt>
+            <dd>#01 Introdução ao Java I · 23 a 30 set</dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="3">
+              <li>Controlo de fluxo e ciclos. Classe, objeto, atributo, métodos e construtor.</li>
+              <li>Métodos estáticos, Strings, arrays e matrizes. Input/Output com Scanner.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="3" title="Programação estruturada e tipos abstratos de dados">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 5 e 6 · slides 2 e 3</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula03.html">Aula 3: Introdução a classes</a></dd>
+            <dt>Quiz</dt>
+            <dd>#02 Introdução ao Java II · 30 set a 7 out</dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="5">
+              <li>Output formatado e regras de boa programação. Código modular, casos de teste e assert. Resolução modular do Jogo do Galo.</li>
+              <li>Abstração, encapsulamento e modularidade. Conceito de TAD e TAD vetor. Interfaces e classes, visibilidade, getters e setters.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="4" title="Genéricos, herança e listas ligadas">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 7 e 8 · slides 3</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula04.html">Aula 4: Programação estruturada</a></dd>
+            <dt>Quiz</dt>
+            <dd>#03 Introdução ao Java III · 7 a 14 out</dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="7">
+              <li>TAD Conjunto com arrays. Exceções. Tipos genéricos, boxing e unboxing. Herança: superclasse e subclasse.</li>
+              <li>Override, classes e métodos abstratos, progressões com herança. Estruturas sequenciais e conceito de lista ligada.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="5" title="Listas ligadas, circulares e duplamente ligadas">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 9 e 10 · slides 4</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula05.html">Aula 5: Tipos abstratos de dados</a></dd>
+            <dt>Quiz</dt>
+            <dd>#04 TADs I · 14 a 21 out</dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="9">
+              <li>Implementação de listas ligadas: nó e lista, adicionar, remover, aceder e imprimir. Nós genéricos. Listas circulares e escalonamento Round-Robin.</li>
+              <li>Round-Robin com lista circular. Listas duplamente ligadas e sentinelas.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="6" title="Pilhas, filas e deques">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 11 e 12 · slides 4</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula06.html">Aula 6: Listas ligadas simples</a></dd>
+            <dt>Quiz</dt>
+            <dd>#05 TADs II e listas I · 21 a 28 out</dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="11">
+              <li>TAD Pilha e TAD Fila com listas ligadas, TAD Deque. TADs sequenciais na API do Java, Iterable e foreach.</li>
+              <li>Problemas com pilhas e filas: ED195 Expressões Bem Balanceadas e ED029 Confusão no Aeroporto.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <!-- A pausa de 27 a 31 out (Atividades FCUP II) é inserida automaticamente. -->
+
+        <uc-week n="7" title="Complexidade algorítmica">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 13 e 14 · slides 5</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula07.html">Aula 7: Listas, pilhas e filas</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/teste_pratico1.html">treino para a AP1</a></dd>
+            <dt>Quiz</dt>
+            <dd>#06 Listas II · 4 a 11 nov</dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="13">
+              <li>Algoritmo, instância, correção e eficiência. Caixeiro-viajante: heurísticas e solução exaustiva. Complexidade temporal e espacial; P, NP-difícil e NP-completo. Modelo RAM; pior caso, caso médio e melhor caso.</li>
+              <li>Análise assintótica e notações Θ, Ω e O. Previsão do tempo de execução. Complexidade dos métodos de listas ligadas simples, duplas e circulares.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="8" title="Recorrências e recursividade">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 15 e 16 · slides 5 e 6</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula08.html">Aula 8: Complexidade algorítmica</a></dd>
+            <dt>Quiz</dt>
+            <dd>#07 Complexidade I · 11 a 18 nov</dd>
+          </dl>
+          <uc-event deadline="ap1"></uc-event>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="15">
+              <li>Complexidade de ciclos e somatórios. Algoritmos recursivos de dividir para conquistar: MergeSort e MaxD&amp;C com árvores de recorrência.</li>
+              <li>Funções recursivas em Java e pilha de execução. Tail e tree recursion, casos base e recursão infinita. Merge sort, flood fill, subconjuntos e permutações.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="9" title="Árvores binárias">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 17 e 18 · slides 7 e 8</dd>
+            <dt>Prática</dt>
+            <dd><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula09.html">Aula 9: Recursividade</a></dd>
+            <dt>Quiz</dt>
+            <dd>#08 Complexidade II e recursividade · 18 a 25 nov</dd>
+          </dl>
+          <details>
+            <summary>Sumários</summary>
+            <ol start="17">
+              <li>Estruturas não lineares e terminologia. Árvore binária genérica: contagem de nós, altura e procura. Pesquisa em profundidade: preorder, inorder e postorder.</li>
+              <li>Pesquisa em largura. Leitura de uma árvore em preorder e complexidade. Objetos comparáveis e motivação para as árvores binárias de pesquisa: propriedades, inserir, remover e pesquisar.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="10" title="Árvores binárias de pesquisa e dicionários">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 19 e 20 · <a href="materiais.html#slides">slides 8</a></dd>
+            <dt>Prática</dt>
+            <dd><a href="guioes/aula10.html">Aula 10: Árvores binárias</a></dd>
+            <dt>Quiz</dt>
+            <dd>#09 Árvores binárias · fecha 2 dez às 21h</dd>
+          </dl>
+          <details open>
+            <summary>Sumários</summary>
+            <ol start="19">
+              <li>Leitura de uma árvore em preorder e complexidade temporal. Árvores binárias de pesquisa: conceito, propriedades, inserir, remover e pesquisar.</li>
+              <li>Complexidade numa BST, altura e equilíbrio. Interface Comparable. Dicionários: conceito, API e implementação com BST. API do Java para conjuntos e dicionários.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <!-- Semanas futuras: o guião e os sumários entram quando a aula for dada. -->
+        <uc-week n="11" title="Filas de prioridade e heaps">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 21 e 22 · slides 9</dd>
+            <dt>Prática</dt>
+            <dd>Aula 11: Árvores binárias de pesquisa</dd>
+            <dt>Quiz</dt>
+            <dd>#10 Árvores binárias de pesquisa · 2 a 9 dez</dd>
+          </dl>
+        </uc-week>
+
+        <uc-week n="12" title="Comparadores e revisões">
+          <dl>
+            <dt>Teóricas</dt>
+            <dd>Aulas 23 e 24 · slides 9</dd>
+            <dt>Prática</dt>
+            <dd>Aula 12: Filas de prioridade e revisões</dd>
+            <dt>Quiz</dt>
+            <dd>#11 Dicionários e filas de prioridade · 9 a 16 dez</dd>
+          </dl>
+        </uc-week>
+
+        <!-- Avaliações depois da última semana: título, data e ligações vêm de course.js. -->
+        <uc-event deadline="ap2"></uc-event>
+        <uc-event deadline="exam"></uc-event>
+      </uc-weeks>
+    </div>
+  </uc-page>
+</body>
+</html>

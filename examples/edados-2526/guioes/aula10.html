@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 10 · Árvores binárias · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 10 de Estruturas de Dados (CC1007): métodos recursivos sobre árvores binárias e percursos em pré-ordem, em-ordem, pós-ordem e largura.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <!-- Extensão desta cadeira: demonstração animada dos percursos -->
+  <link rel="stylesheet" href="../extensions/uc-bst-traversal.css">
+  <!-- Pequenos ajustes desta página (só tokens --uc-*) -->
+  <style>
+    .aula-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3); margin: 0; font-size: var(--uc-font-size-sm); }
+    .aula-label {
+      margin: 0 0 var(--uc-space-2);
+      font-size: var(--uc-font-size-xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--uc-color-text-subtle);
+    }
+    .aula-actions { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); margin: 0; }
+    .aula-pager { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
+    .aula-pager > .uc-card { display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: var(--uc-color-text); }
+    .aula-pager > .uc-card span { font-size: var(--uc-font-size-sm); }
+    .aula-pager__next { text-align: right; background: var(--uc-color-surface-sunken); color: var(--uc-color-text-muted); }
+  </style>
+  <script src="../course.js"></script>
+  <script>
+    // Este guião está numa subpasta (guioes/): os links do menu e do caminho
+    // de navegação apontam para as páginas da pasta de cima.
+    // Temporário: o kit v1 ainda não resolve estes links a partir de subpastas.
+    UC_COURSE.pages = UC_COURSE.pages.map(function (page) {
+      if (typeof page === "string") page = { id: page, href: page === "home" ? "index.html" : page + ".html" };
+      return Object.assign({}, page, { href: "../" + page.href });
+    });
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../extensions/uc-bst-traversal.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <!-- week="10": o caminho de navegação liga a semanas.html#week-10 -->
+    <uc-guide week="10">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 10</span>
+          <span class="uc-mono uc-muted">25–28 nov · 2 h · FC6</span>
+        </p>
+        <h1>Aula 10 · Árvores binárias</h1>
+        <p class="uc-prose">Nesta aula vais implementar métodos recursivos sobre árvores binárias genéricas e perceber, passo a passo, a ordem pela qual cada percurso visita os nós.</p>
+        <div class="uc-card">
+          <p class="aula-label">Objetivos</p>
+          <ul class="uc-bullets">
+            <li>Escrever funções recursivas sobre <code>BTree&lt;T&gt;</code></li>
+            <li>Distinguir pré-ordem, em-ordem, pós-ordem e largura</li>
+            <li>Usar uma fila para percorrer por níveis</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 1. Preparar -->
+      <section class="uc-section" aria-labelledby="preparar">
+        <h2 id="preparar">1. Preparar</h2>
+        <p class="uc-prose">Copia o código base para o teu editor (botão <em>Descarregar</em> em cada bloco). A classe <code>BTree</code> guarda apenas a raiz; cada nó conhece o seu valor e os dois filhos.</p>
+        <p class="aula-actions">
+          <a class="uc-button" href="../materiais.html">Slides 7: Árvores binárias</a>
+          <a class="uc-button" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/index.html">Programas exemplo das teóricas</a>
+        </p>
+        <uc-code lang="java" filename="BTNode.java">
+          <script type="text/plain">
+            public class BTNode<T> {
+              private T value;
+              private BTNode<T> left, right;   // null quando não há filho
+
+              public T getValue()            { return value; }
+              public BTNode<T> getLeft()     { return left; }
+              public BTNode<T> getRight()    { return right; }
+            }
+          </script>
+        </uc-code>
+      </section>
+
+      <!-- 2. Ver os percursos: usa a extensão <uc-bst-traversal> (pasta extensions/) -->
+      <section class="uc-section" aria-labelledby="percursos">
+        <h2 id="percursos">2. Ver os percursos</h2>
+        <p class="uc-prose">Escolhe um percurso e carrega em Reproduzir, ou avança um passo de cada vez. O nó a azul é o que está a ser visitado agora.</p>
+
+        <!-- values: valores inseridos, por esta ordem, numa árvore binária de pesquisa vazia -->
+        <uc-bst-traversal values="5 3 8 1 4 7 9">
+          <p>Árvore de exemplo: raiz 5; filhos de 5: 3 e 8; filhos de 3: 1 e 4; filhos de 8: 7 e 9.</p>
+          <ul>
+            <li>Pré-ordem: <code>5 3 1 4 8 7 9</code></li>
+            <li>Em-ordem: <code>1 3 4 5 7 8 9</code></li>
+            <li>Pós-ordem: <code>1 4 3 7 9 8 5</code></li>
+            <li>Largura: <code>5 3 8 1 4 7 9</code></li>
+          </ul>
+        </uc-bst-traversal>
+
+        <uc-question>
+          <p>Qual é a altura da árvore acima? (uma árvore só com a raiz tem altura 0)</p>
+          <ul>
+            <li><code>1</code></li>
+            <li data-correct><code>2</code></li>
+            <li><code>3</code></li>
+            <li><code>4</code></li>
+          </ul>
+          <p data-explanation>O caminho mais longo da raiz a uma folha, por exemplo 5 → 3 → 1, tem 2 ligações. Conta ligações, não nós.</p>
+        </uc-question>
+      </section>
+
+      <!-- 3. Exercícios: o estado "feito" fica guardado no browser de cada estudante -->
+      <section class="uc-section" aria-labelledby="exercicios">
+        <h2 id="exercicios">3. Exercícios</h2>
+        <p class="uc-muted">Os exercícios 1 a 5 são para fazer na aula. O 6 é extra.</p>
+
+        <uc-exercise id="contar-nos" title="Contar nós" level="easy" mooshak="BT01" open>
+          <p>Implementa <code>int numberNodes()</code>, que devolve o número de nós da árvore. Uma árvore vazia tem 0 nós. Completa o código aqui e testa no Mooshak.</p>
+          <uc-code lang="java" filename="BTree.java" editable run="https://mooshak.dcc.fc.up.pt/~edados/">
+            <script type="text/plain">
+              public int numberNodes() {
+                return numberNodes(root);
+              }
+
+              private int numberNodes(BTNode<T> n) {
+                if (n == null) return 0;
+                // completa aqui
+                return 1;
+              }
+            </script>
+          </uc-code>
+          <p class="uc-muted">Árvore de teste (pré-ordem, N = vazio): <code>5 3 1 N N 4 N N 8 7 N N 9 N N</code></p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <p>O número de nós de uma árvore é 1 (a raiz) mais os nós da subárvore esquerda mais os da direita. Cria um método privado que recebe um nó.</p>
+          </details>
+          <details class="uc-solution">
+            <summary>Solução</summary>
+            <uc-code lang="java" no-download>
+              <script type="text/plain">
+                private int numberNodes(BTNode<T> n) {
+                  if (n == null) return 0;
+                  return 1 + numberNodes(n.getLeft()) + numberNodes(n.getRight());
+                }
+              </script>
+            </uc-code>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="altura" title="Altura da árvore" level="easy" mooshak="BT02">
+          <p>Implementa <code>int depth()</code>. Uma árvore só com a raiz tem altura 0 e uma árvore vazia tem altura −1.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <p>A altura é 1 mais a maior das alturas das subárvores.</p>
+          </details>
+          <details class="uc-solution">
+            <summary>Solução</summary>
+            <uc-code lang="java" no-download>
+              <script type="text/plain">
+                private int depth(BTNode<T> n) {
+                  if (n == null) return -1;
+                  return 1 + Math.max(depth(n.getLeft()), depth(n.getRight()));
+                }
+              </script>
+            </uc-code>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="procurar" title="Procurar um valor" level="easy" mooshak="BT03">
+          <p>Implementa <code>boolean contains(T value)</code>: devolve <code>true</code> se algum nó tiver o valor dado. Usa <code>equals</code>, não <code>==</code>.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <p>Se o valor não está na raiz, procura na subárvore esquerda e depois na direita.</p>
+          </details>
+          <details class="uc-solution">
+            <summary>Solução</summary>
+            <uc-code lang="java" no-download>
+              <script type="text/plain">
+                private boolean contains(BTNode<T> n, T value) {
+                  if (n == null) return false;
+                  if (n.getValue().equals(value)) return true;
+                  return contains(n.getLeft(), value) || contains(n.getRight(), value);
+                }
+              </script>
+            </uc-code>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="profundidade" title="Percursos em profundidade" level="medium" mooshak="BT04">
+          <p>Escreve <code>printPreOrder()</code>, <code>printInOrder()</code> e <code>printPostOrder()</code>. Confirma a ordem com a <a href="#percursos">demonstração acima</a>.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <p>Os três métodos diferem apenas na posição da instrução que imprime o nó.</p>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="largura" title="Percurso em largura" level="medium" mooshak="BT05">
+          <p>Implementa <code>printBFS()</code>, que imprime os nós nível a nível, da esquerda para a direita. Usa a tua <code>MyQueue</code> da aula 7; na demonstração, escolhe Largura para ver a fila a mudar.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <p>Começa com a raiz na fila; enquanto a fila não estiver vazia, retira um nó, imprime-o e acrescenta os filhos.</p>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="folhas-nivel" title="Desafio: contar folhas por nível" level="hard" mooshak="BT06">
+          <p>Implementa <code>int leavesAtLevel(int k)</code>, que devolve quantas folhas existem exatamente no nível <code>k</code> (a raiz está no nível 0). Na árvore da demonstração, <code>leavesAtLevel(2)</code> devolve 4.</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <p>Passa o nível atual como argumento do método recursivo.</p>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula09.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 9 · Recursividade</strong>
+        </a>
+        <div class="uc-card aula-pager__next">
+          <span class="uc-muted">Seguinte · disponível a 2 dez →</span>
+          <strong>Aula 11 · Árvores binárias de pesquisa</strong>
+        </div>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sobre a UC · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Ficha da unidade curricular Estruturas de Dados (CC1007): objetivos, programa, métodos de ensino e cursos.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <style>
+    .desc { font-size: var(--uc-font-size-body-sm); }
+    /* Programa: lista numerada 01, 02, … */
+    .program { list-style: none; margin: 0; padding: 0; max-width: 760px; }
+    .program > li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--uc-space-4); margin: 0; padding: var(--uc-space-4) 0; border-top: 1px solid var(--uc-color-border); }
+    .program > li:first-child { border-top: 0; }
+    .program__n { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
+    .program h3 { font-size: 1rem; }
+    .program p { font-size: var(--uc-font-size-body-sm); color: var(--uc-color-text-muted); }
+    .method { --uc-card-padding: var(--uc-space-6); }
+    .method h3 { font-size: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); list-style: none; margin: 0; padding: 0; }
+    .tags > li { margin: 0; }
+  </style>
+</head>
+<body>
+  <uc-page current="about">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <p class="uc-mono uc-muted" style="font-size: var(--uc-font-size-sm)">Ficha da unidade curricular · CC1007</p>
+      <h1>Sobre a UC</h1>
+      <p class="uc-prose uc-lead">Reforçar as competências de programação, com ênfase no desenho e implementação das principais estruturas de dados e respetivos algoritmos. A abordagem é orientada a objetos, em Java, e introduz noções de eficiência e de análise de complexidade.</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="objetivos">
+      <h2 id="objetivos">No final da UC deverás ser capaz de</h2>
+      <ul class="uc-bullets">
+        <li>aplicar os princípios da programação orientada a objetos: herança, polimorfismo, interfaces, classes de coleção e iteradores;</li>
+        <li>escrever classes que implementem listas, pilhas, filas, conjuntos, dicionários, tabelas de dispersão e árvores binárias;</li>
+        <li>usar bem as APIs que já implementam listas, pilhas, filas, conjuntos e tabelas de dispersão;</li>
+        <li>aplicar recursividade, pesquisa com retrocesso e dividir para conquistar;</li>
+        <li>analisar a complexidade de algoritmos e reconhecer as principais classes de complexidade;</li>
+        <li>usar estes conhecimentos para resolver problemas concretos.</li>
+      </ul>
+    </section>
+
+    <section class="uc-section" aria-labelledby="programa">
+      <h2 id="programa">Programa</h2>
+      <ol class="program">
+        <li><span class="program__n" aria-hidden="true">01</span><div><h3>A linguagem Java</h3><p>Classes, objetos, atributos e métodos; tipos primitivos, Strings, wrappers, arrays e enumerados; controlo de fluxo; Input/Output e Scanner; pacotes e biblioteca padrão; estilo e documentação.</p></div></li>
+        <li><span class="program__n" aria-hidden="true">02</span><div><h3>Programação orientada a objetos</h3><p>Herança e reutilização, hierarquia de classes, polimorfismo, interfaces e tipos abstratos de dados, genéricos e iteradores.</p></div></li>
+        <li><span class="program__n" aria-hidden="true">03</span><div><h3>Análise de algoritmos</h3><p>Análise assintótica; principais classes de complexidade e sua comparação.</p></div></li>
+        <li><span class="program__n" aria-hidden="true">04</span><div><h3>Técnicas de desenho de algoritmos</h3><p>Programação estruturada, recursividade, pesquisa exaustiva e backtracking, dividir para conquistar.</p></div></li>
+        <li><span class="program__n" aria-hidden="true">05</span><div><h3>Estruturas de dados fundamentais</h3><p>Vetores e matrizes; listas ligadas simples, circulares e duplamente ligadas; árvores binárias, árvores de pesquisa e heaps.</p></div></li>
+        <li><span class="program__n" aria-hidden="true">06</span><div><h3>Tipos abstratos de dados</h3><p>Sequências, pilhas, filas e deques; conjuntos e dicionários; filas de prioridade.</p></div></li>
+        <li><span class="program__n" aria-hidden="true">07</span><div><h3>Ordenação e pesquisa</h3><p>Métodos de ordenação e de pesquisa.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="uc-section" aria-labelledby="metodos">
+      <h2 id="metodos">Métodos de ensino</h2>
+      <div class="uc-grid" style="--uc-grid-min: 280px">
+        <div class="uc-card method">
+          <h3>Aulas teóricas</h3>
+          <p class="uc-muted desc">Exposição dos conceitos com slides, exemplos em Java e casos práticos. Resolução interativa de exercícios e comparação de soluções.</p>
+        </div>
+        <div class="uc-card method">
+          <h3>Aulas práticas (laboratório)</h3>
+          <p class="uc-muted desc">Apoio às dúvidas nos exercícios propostos: exercícios de treino e de avaliação em Java, e quizzes de escolha múltipla para a frequência.</p>
+        </div>
+      </div>
+      <p class="uc-muted desc">Bibliografia e regras de avaliação: <a href="materiais.html#biblio">Materiais</a> · <a href="avaliacao.html">Avaliação</a></p>
+    </section>
+
+    <section class="uc-section" aria-labelledby="cursos">
+      <h2 id="cursos">Cursos</h2>
+      <p class="uc-prose">Unidade curricular obrigatória do 2.º ano, 1.º semestre, na <a href="https://www.fc.up.pt">Faculdade de Ciências da Universidade do Porto</a>:</p>
+      <ul class="tags">
+        <li class="uc-tag">Licenciatura em Ciência de Computadores</li>
+        <li class="uc-tag">Licenciatura em Inteligência Artificial e Ciência de Dados</li>
+        <li class="uc-tag">Licenciatura em Bioinformática</li>
+        <li class="uc-tag">Formação Complementar (Minor) em Informática</li>
+      </ul>
+    </section>
+  </uc-page>
+</body>
+</html>
