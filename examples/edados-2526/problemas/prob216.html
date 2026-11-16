@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED216] Contando Cardinais · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED216 (Contando Cardinais) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED216</li></ol>
+    </nav>
+    <h1>[ED216] Contando Cardinais</h1>
+    <div class="uc-content">
+      <h2>O problema</h2>
+      <p>Dada uma matriz de caracteres (<code>'.'</code> ou <code>'#'</code>), a sua tarefa é indicar o tamanho do maior segmento contíguo (horizontal ou vertical) de caracteres <code>'#'</code>, bem como o número de segmentos desse tamanho.
+
+      </p><p>Considera por exemplo a seguinte matriz de 4 linhas por 8 colunas:
+
+      </p><pre>.....#..
+##...#..
+.#..###.
+####.#..</pre>
+      <p>Nesta matriz o maior segmento contíguo tem tamanho 4. A figura seguinte ilustra alguns dos segmentos contíguos de cardinais na matriz, sendo que os dois últimos são os únicos de tamanho máximo:
+
+      </p><pre>.....#..        .....#..        .....#..        .....#..        .....#..        .....#..
+## ..#..        ##...#..        ##...#..        ##...#..        ##...#..        ##...#..
+.#..###.        .#..###.        .#..###.        .#..###.        .#..###.        .#..###.
+####.#..        ####.#..        ####.#..        ####.#..        ####.#..        ####.#..
+
+Exemplo de      Exemplo de      Exemplo de      Exemplo de      Exemplo de      Exemplo de
+um segmento     um segmento     um segmento     outro segmento  um segmento     outro segmento
+de tamanho 1    de tamanho 2    de tamanho 3    de tamanho 3    de tamanho 4    de tamanho 4</pre>
+      <h2>Input</h2>
+      <p>A primeira linha contém dois inteiros <strong>L</strong> (1≤L≤50) e <strong>C</strong> (1≤C≤50), o número de linhas e colunas da matriz. Segue-se a matriz em si, representada por <strong>L</strong> linhas, cada uma com <strong>C</strong> caracteres, que serão sempre <code>'.'</code> ou <code>'#'</code>.
+
+      </p><h2>Output</h2>
+      <p>O output deverá ser uma única linha com dois inteiros separados por um espaço: o primeiro inteiro deve indicar o tamanho do segmento máximo e o segundo inteiro deve indicar o número de segmentos com esse tamanho máximo.
+
+      </p><h2>Exemplo de input/output 1</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <td>
+      <pre>4 8
+.....#..
+##...#..
+.#..###.
+####.#..</pre>
+      </td>
+      <td><code>4 2</code></td>
+      </table></div>
+      <h2>Exemplo de input/output 2</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <td>
+      <pre>3 3
+#..
+##.
+.#.</pre>
+      </td>
+      <td><code>2 3</code></td>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob216.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob216.html</a>.</p>
+  </uc-page>
+</body>
+</html>

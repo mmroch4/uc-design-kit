@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED300] Hiérarquias de Nós · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED300 (Hiérarquias de Nós) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED300</li></ol>
+    </nav>
+    <h1>[ED300] Hiérarquias de Nós</h1>
+    <div class="uc-content">
+      1;95;0c
+
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter um programa
+      completo. Use o esqueleto de código dado que tem a estrutura
+      necessária para representar uma versão de árvores de inteiros. Deve
+      acrescentar os métodos que são pedidos e fazer escrever o
+      output conforme solicitado. O input está considerado já no esqueleto
+      de código dado.
+      </p></div></p>
+
+      <h2>Código Base</h2>
+      <p><img alt="" class="uc-content__float" height="222" loading="lazy" src="imagens/arvores.png" width="382"/>O esqueleto de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/public_html/codigo2526/P300_aval.java">código base a usar</a> inclui uma classe
+      <code>BTNode<t></t></code> genérica e uma
+      classe <code>BTree</code> específica de uma árvore de inteiros. Preserve a estrutura
+      dada, acrescente os métodos necessários, compile e teste localmente e submeta o ficheiro
+      que tem o nome da classeque que contém o método <code>main()</code>.</p>
+      <h2>Métodos a implementar</h2>
+      <p>Acrescente à classe <code>BTree</code> o método
+      solicitado, devendo depois invocar esse método a partir do
+      método <code>main()</code>):
+
+      </p><ul>
+      <li><strong>public int
+          countNodesWithGrandParentMultipleOfK(int k)</strong> <em>(50% da
+          cotação)</em><br/> Deve devolver <strong>o número de nós que têm um nó
+          avô (grand-parent) que seja múltiplo de <code>k</code></strong> (<code>k &gt; 0</code>). O resultado será 0
+          se não houver nenhum nó que satisfaça a propriedade. A figura
+          ilustra duas árvores, uma com 8 nós (sinalizados a fundo amarelo)
+          que satisfazem a propriedade de o nó avô ser múltiplo de <code>k</code> e outra em
+          que apenas 3 satisfazem.<br/> <img alt="" height="421" loading="lazy" src="imagens/300.png" width="697"/>
+      </li></ul>
+      <h2>Notas</h2>
+      <ul>
+      <li>Pode implementar métodos auxiliares, se quiser.
+        </li><li>Teste localmente antes de submeter. Basta fazer copy-paste do input.
+        </li><li>Em todos os casos de teste as árvores têm entre 1 a 100 nós.
+      </li></ul>
+      <h2>Definição do Input/Output</h2>
+      <p>No <strong>input</strong> aparece um primeiro valor inteiro, <code>NC</code> com o número de
+      casos a analisar. Para cada caso, é dada uma lista de valores que
+      caracterizam uma árvore é em preorder (a leitura está
+      no programa dado), seguindo-se de um valor inteiro que determina o
+      <code>k</code>.</p>
+      <p>O <strong>output</strong> deve começar por identificar numa linha o caso,
+      seguindo-se o número de nós que têm um nó-avô que
+      seja múltiplo do k dado.
+
+      </p><h2>Exemplos de Input/Output</h2>
+      <p>Os exemplos correspondem às árvores da figura.</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>2
+20 10 4 2 N N 7 N N 6 12 N N 18 N N 25 22 N N 30 N N
+5
+21 10 4 2 N N 7 N N 6 12 N N N 25 22 N N N
+5</pre>
+      </td>
+      <td>
+      <pre>Case 1:
+Num Nodes with Grand Parente multiple of 5= 8
+Case 2:
+Num Nodes with Grand Parente multiple of 5= 3</pre>
+      </td>
+      </tr>
+      </table></div>
+      <p>Nota: o valor "5" no output corresponde ao valor de "k" dado no
+      input.</p>
+
+      <p><strong>Estruturas de Dados (CC1007), DCC-FCUP</strong></p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob300.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob300.html</a>.</p>
+  </uc-page>
+</body>
+</html>

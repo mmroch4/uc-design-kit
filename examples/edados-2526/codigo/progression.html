@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progressões (exemplo de herança em Java) · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Progressões (exemplo de herança em Java).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Progressões</li></ol>
+    </nav>
+    <h1>Progressões (exemplo de herança em Java)</h1>
+    <section class="uc-section" aria-labelledby="progression">
+      <h2 id="progression">Superclasse · Progression.java</h2>
+      <uc-code lang="java" filename="Progression.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Uma classe para progressoes
+// Ultima alteracao: 16/03/2019
+// -----------------------------------------------------------
+
+// Gera uma progressao. Por omissao e simplesmente: 0, 1, 2, ...
+public class Progression {
+   protected long current; // valor actual
+
+   // Por omissao comeca em 0. This chama construtor da propria classe
+   Progression() { this(0); }
+   
+   // Constroi progressao comencando num dado valor
+   Progression(long start) { current = start; }
+
+   // Devolve o valor actual e avanca a sequencia
+   public long nextValue( ) {
+      long answer = current;
+      advance();
+      return answer;
+   }
+
+   // Avanca para o proximo valor da sequenca
+   protected void advance( ) {
+      current++;
+   }
+
+   // Escreve os proximos n valores da progressao
+   public void printProgression(int n) {
+      for (int i=0; i<n; i++)
+         System.out.print(nextValue() + " ");
+      System.out.println();
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="arithmeticprogression">
+      <h2 id="arithmeticprogression">Subclasse com implementação para progressões aritméticas · ArithmeticProgression.java</h2>
+      <uc-code lang="java" filename="ArithmeticProgression.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Progressoes aritmeticas (subclasse de Progression)
+// Ultima alteracao: 16/03/2019
+// -----------------------------------------------------------
+
+public class ArithmeticProgression extends Progression {
+   protected long increment;
+
+   // Por omissao cria progressao: 0, 1, 2, ...
+   public ArithmeticProgression() { this(1, 0); }
+   
+   // Cria progressao: 0, stepsize, 2*stepsize,...
+   public ArithmeticProgression(long stepsize) { this(stepsize, 0); }
+
+   // Cria progressao com um dado incremento e um dado inicio
+   public ArithmeticProgression(long stepsize, long start) {
+      super(start);
+      increment = stepsize;
+   }
+   
+   protected void advance( ) {
+      current += increment;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="geometricprogression">
+      <h2 id="geometricprogression">Subclasse com implementação para progressões geométricas · GeometricProgression.java</h2>
+      <uc-code lang="java" filename="GeometricProgression.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Progressoes geometricas (subclasse de Progression)
+// Ultima alteracao: 16/03/2019
+// -----------------------------------------------------------
+
+public class GeometricProgression extends Progression {
+   protected long base;
+
+   // Por omissao cria progressao: 1, 2, 4, 8, 16, ...
+   public GeometricProgression() { this(2, 1); }
+   
+   // Cria progressao: 1, b, b^2, b^3, ...
+   public GeometricProgression(long b) { this(b, 1); }
+
+   // Cria progressao com uma dada base e um dado inicio
+   public GeometricProgression(long b, long start) {
+      super(start);
+      base = b;
+   }
+   
+   protected void advance( ) {
+      current *= base;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="fibonacciprogression">
+      <h2 id="fibonacciprogression">Subclasse com implementação para sequência de Fibonacci · FibonacciProgression.java</h2>
+      <uc-code lang="java" filename="FibonacciProgression.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Sequencia de Fibonacci (subclasse de Progression)
+// Ultima alteracao: 16/03/2019
+// -----------------------------------------------------------
+
+
+class FibonacciProgression extends Progression {
+   protected long prev;
+
+   // Por omissao cria fibonacci classico: 0, 1, 1, 2, 3, 5, ...
+   public FibonacciProgression() { this(0, 1); }
+   
+   // Cria fibonacci com dois valores iniciais dados
+   public FibonacciProgression(long first, long second) {
+      super(first);
+      prev = second - first; // valor ficticio antes do first
+   }
+   
+   protected void advance( ) {
+      long temp = prev + current;
+      prev = current;
+      current = temp;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testprogression">
+      <h2 id="testprogression">Exemplo de utilização · TestProgression.java</h2>
+      <uc-code lang="java" filename="TestProgression.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao das classes de progressoes
+// Ultima alteracao: 16/03/2019
+// -----------------------------------------------------------
+
+public class TestProgression {
+   public static void main(String[ ] args) {
+      Progression prog;
+
+      System.out.print("Default Progression: ");
+      prog = new Progression();
+      prog.printProgression(10); // 0 1 2 3 4 5 6 7 8 9
+
+      System.out.print("Progression with start 4: ");
+      prog = new Progression(4);
+      prog.printProgression(10); // 4 5 6 7 8 9 10 11 12 13
+      
+      System.out.print("Arithmetic progression with default increment: ");
+      prog = new ArithmeticProgression();
+      prog.printProgression(10); // 0 1 2 3 4 5 6 7 8 9
+      
+      System.out.print("Arithmetic progression with increment 5: ");
+      prog = new ArithmeticProgression(5);
+      prog.printProgression(10); // 0 5 10 15 20 25 30 35 40 45
+      
+      System.out.print("Arithmetic progression with start 2: ");
+      prog = new ArithmeticProgression(5, 2);
+      prog.printProgression(10); // 2 7 12 17 22 27 32 37 42 47
+      
+      System.out.print("Geometric progression with default base: ");
+      prog = new GeometricProgression( );
+      prog.printProgression(10); // 1 2 4 8 16 32 64 128 256 512
+      
+      System.out.print("Geometric progression with base 3: ");      
+      prog = new GeometricProgression(3);
+      prog.printProgression(10); // 1 3 9 27 81 243 729 2187 6561 19683
+
+      System.out.print("Fibonacci progression with default start values: ");
+      prog = new FibonacciProgression( );
+      prog.printProgression(10); // 0 1 1 2 3 5 8 13 21 34
+
+      System.out.print("Fibonacci progression with start values 4 and 6: ");
+      prog = new FibonacciProgression(4, 6);
+      prog.printProgression(8); // 4 6 10 16 26 42 68 110
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="progression.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/progression.html</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED243] Pizza · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED243 (Pizza) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED243</li></ol>
+    </nav>
+    <h1>[ED243] Pizza</h1>
+    <div class="uc-content">
+      <h2>O problema</h2>
+      <p>
+      <img alt="" class="uc-content__float" height="225" loading="lazy" src="imagens/prob243.jpg" width="400"/>
+      Depois de um longo dia a tentar salvar a princesa Peach das garras do malvado Bowser, o Super Mario está cheio de fome. Por isso mesmo, decidiu encomendar pizza no restaurante do amigo Yoshi.</p>
+      <p>O restaurante tem na sua ementa <strong>P</strong> pizzas. Os ingredientes das pizzas são identificados por inteiros positivos, sendo que a <em>i</em>-ésima pizza da ementa contém <strong>K<sub>i</sub></strong> ingredientes, com identificadores <strong>b<sub>i,1</sub></strong>, <strong>b<sub>i,2</sub></strong>, ..., <strong>b<sub>i,K<sub>i</sub></sub></strong>.</p>
+      <p>O Mario é muito picuinhas com as suas pizzas e ele não gosta nada de <strong>N</strong> ingredientes, com identificadores <strong>a<sub>1</sub></strong>, <strong>a<sub>2</sub></strong>, ..., <strong>a<sub>N</sub></strong>, e por isso ele quer encomendar uma pizza que não contenha nenhum desses ingredientes. Tens de ajudar o Mario a perceber qual o número de pizzas da ementa que o Mario pode encomendar, ou seja, que não contêm nenhum  dos ingredientes que o Mario não gosta.</p>
+      <h2>Input</h2>
+      <p>A primeira linha de input um inteiro <strong>N</strong> (<em>1 ≤ N ≤ 100</em>), o número de ingredientes, seguida de <strong>N</strong> inteiros distintos <strong>a<sub>i</sub></strong> (<em>1 ≤ a<sub>i</sub> ≤ 100</em>), os identificadores dos ingredientes que o Mario não gosta.</p>
+      <p>A segunda linha contém um inteiro <strong>P</strong>, o número de pizzas. Seguem-se <strong>P</strong> linhas, cada uma descrevendo uma pizza da ementa. A <em>i</em>-ésima linha começa com um inteiro <strong>K<sub>i</sub></strong> (<em>1 ≤ K<sub>i</sub> ≤ 100</em>), o número de ingredientes dessa pizza, seguido de <strong>K<sub>i</sub></strong> inteiros distintos <strong>b<sub>i,j<sub></sub></sub></strong> (<em>1 ≤ b<sub>i,j</sub> ≤ 100</em>), os identificadores dos ingredientes da <em>i</em>-ésima pizza.</p>
+      <p>É garantido que não existem duas pizzas completamente iguais.</p>
+      <h2>Output</h2>
+      <p>Uma linha com um inteiro indicando o número de diferentes pizzas que o Mario pode encomendar.</p>
+      <h2>Exemplo de input/output 1</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>1 2
+3
+1 1
+1 2
+1 3</pre>
+      </td>
+      <td>
+      <pre>2</pre>
+      </td>
+      </tr>
+      </table></div>
+      <p>Explicação do exemplo 1: O Mario pode encomendar a 1ª e a 3ª pizzas (não tem contêm o ingrediente 2), mas não pode encomendar a 2ª pizza.
+
+      </p><h2>Exemplo de input/output 2</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>2 1 2
+5
+3 3 5 7
+2 4 1
+3 1 3 2
+2 3 4
+1 9</pre>
+      </td>
+      <td>
+      <pre>3</pre>
+      </td>
+      </tr>
+      </table></div>
+      <p>Explicação do exemplo 2: O Mario pode encomendar a 1ª, 3ª e 4ª pizzas (não contêm os ingredientes 1 ou 2).
+
+      </p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob243.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob243.html</a>.</p>
+  </uc-page>
+</body>
+</html>

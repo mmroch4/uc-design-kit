@@ -28,12 +28,12 @@
         <h2 id="submissao">Exercícios para submissão</h2>
         <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
         <ul class="uc-bullets">
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob208.html">[ED208] Mínimo e Máximo</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob164.html">[ED164] Quantas Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob172.html">[ED172] Contagem de Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob209.html">[ED209] Intervalo de valores</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob210.html">[ED210] Será uma árvore de pesquisa?</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob165.html">[ED165] Somas</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="../problemas/prob208.html">[ED208] Mínimo e Máximo</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="../problemas/prob164.html">[ED164] Quantas Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="../problemas/prob172.html">[ED172] Contagem de Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="../problemas/prob209.html">[ED209] Intervalo de valores</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="../problemas/prob210.html">[ED210] Será uma árvore de pesquisa?</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="../problemas/prob165.html">[ED165] Somas</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
         </ul>
         <p class="uc-prose"><strong>Prazo de submissão:</strong> 15 de dezembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
         <div class="uc-callout">
@@ -350,7 +350,7 @@ $ java TestBSTree
             </script>
           </uc-code>
           <p>Espreite e acompanhe a implementação do método <code>insert</code> da classe <code>BSTree</code>. Relembre que numa árvore binária de pesquisa, para um qualquer nó, todos os elementos da subárvore esquerda são menores e todos os elementos da subárvore direita são maiores. Para o ajudar a compreender, a imagem seguinte mostra o conteúdo da árvore após cada inserção (em cada passo o elemento inserido está indicado a amarelo):</p>
-          <p><img src="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/images/bst_insert.png" width="1342" height="681" style="max-width:100%;height:auto" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
+          <p><img src="../imagens/bst_insert.png" width="1342" height="681" style="max-width:100%;height:auto" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
           <ul class="uc-bullets">
             <li>Depois da remoção de 14, que número ficou na raiz? Acompanhe a implementação do método <code>remove</code> da classe <code>BSTree</code> para verificar como isto é feito.</li>
           </ul>
@@ -371,7 +371,7 @@ $ java TestBSTree
         <h2 id="exercicio-bst">Exercício 2) Um exercício envolvendo árvores binárias de pesquisa</h2>
         <p class="uc-prose">Neste exercício vai poder garantir que percebe como internamente a árvore binária de pesquisa está organizada.</p>
         <uc-exercise id="minimo-maximo" title="Descobrindo o mínimo e o máximo">
-          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob208.html">[ED208] Mínimo e máximo</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
+          <p>Resolva o problema <a href="../problemas/prob208.html">[ED208] Mínimo e máximo</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
           <details class="uc-hint">
             <summary>Dica</summary>
             <ul>
@@ -388,7 +388,7 @@ $ java TestBSTree
         <h2 id="conjuntos">Exercício 3) Usando árvores binárias de pesquisa para representar conjuntos</h2>
         <p class="uc-prose">Uma árvore binária de pesquisa mapeia muito bem num TAD <strong>conjunto</strong>. Este exercício pede-lhe precisamente para resolver de forma simples um pequeno problema que na sua essência pode ser resolvido pensando em conjuntos.</p>
         <uc-exercise id="quantas-palavras" title="[ED164] Quantas palavras?">
-          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob164.html">[ED164] Quantas palavras?</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
+          <p>Resolva o problema <a href="../problemas/prob164.html">[ED164] Quantas palavras?</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
           <details class="uc-hint">
             <summary>Dica</summary>
             <ul>
@@ -687,7 +687,7 @@ public class TestForEach {
         </uc-code>
 
         <uc-exercise id="contagem-palavras" title="Um pequeno exercício para usar dicionários: [ED172] Contagem de palavras">
-          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob172.html">[ED172] Contagem de palavras</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
+          <p>Resolva o problema <a href="../problemas/prob172.html">[ED172] Contagem de palavras</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
           <details class="uc-hint">
             <summary>Dica</summary>
             <ul>
@@ -712,7 +712,7 @@ public class TestForEach {
         <uc-exercise id="intervalo-valores" title="[ED209] Intervalo de valores">
           <p>Para consolidar os seus conhecimentos sobre como <strong>percorrer internamente</strong> uma árvore de pesquisa, resolva o seguinte problema (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>):</p>
           <ul class="uc-bullets">
-            <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob209.html">[ED209] Intervalo de valores</a></li>
+            <li><a href="../problemas/prob209.html">[ED209] Intervalo de valores</a></li>
           </ul>
           <details class="uc-hint">
             <summary>Dica</summary>
@@ -727,7 +727,7 @@ public class TestForEach {
         <uc-exercise id="sera-arvore-pesquisa" title="[ED210] Será uma árvore de pesquisa?">
           <p>Para garantir que percebe as condições necessárias para uma árvore binária ser de <strong>pesquisa</strong>, resolva o seguinte problema (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>):</p>
           <ul class="uc-bullets">
-            <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob210.html">[ED210] Será uma árvore de pesquisa?</a></li>
+            <li><a href="../problemas/prob210.html">[ED210] Será uma árvore de pesquisa?</a></li>
           </ul>
           <details class="uc-hint">
             <summary>Dica</summary>
@@ -747,7 +747,7 @@ public class TestForEach {
         <uc-exercise id="somas" title="[ED165] Somas">
           <p>Para consolidar os seus conhecimentos sobre o uso de árvores binárias de pesquisa como TAD <strong>conjunto</strong>, resolva o seguinte problema (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>):</p>
           <ul class="uc-bullets">
-            <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob165.html">[ED165] Somas</a></li>
+            <li><a href="../problemas/prob165.html">[ED165] Somas</a></li>
           </ul>
           <details class="uc-hint">
             <summary>Dica</summary>

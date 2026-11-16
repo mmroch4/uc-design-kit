@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instruções de Ciclo · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Instruções de Ciclo.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Instruções de Ciclo</li></ol>
+    </nav>
+    <h1>Instruções de Ciclo</h1>
+    <section class="uc-section" aria-labelledby="testfor">
+      <h2 id="testfor">TestFor.java</h2>
+      <uc-code lang="java" filename="TestFor.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Instrucoes de Ciclo: for
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+class TestFor {
+  public static void main(String[] args) {
+    System.out.println("isPrime(19) = " + isPrime(19));
+  } 
+
+  public static boolean isPrime(int n) {
+    for(int divisor = 2; divisor < n/2; divisor++) 
+      if ( (n % divisor) == 0 ) 
+        return false;        
+    return true;
+  }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testwhile">
+      <h2 id="testwhile">TestWhile.java</h2>
+      <uc-code lang="java" filename="TestWhile.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Instrucoes de Ciclo: while
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+class TestWhile {
+   public static void main(String[] args) {
+      System.out.println("isPrime(19) = " + isPrime(19));
+   } 
+   
+   public static boolean isPrime(int n) {
+      int divisor = 2;
+      while (divisor*divisor <= n) {
+         if ( (n % divisor) == 0 ) 
+            return false;
+         divisor++;
+      }
+      return true;
+   }   
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testdowhile">
+      <h2 id="testdowhile">TestDoWhile.java</h2>
+      <uc-code lang="java" filename="TestDoWhile.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Instrucoes de Ciclo: do while
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+class TestDoWhile {
+  public static void main(String[] args) {
+    System.out.println("isPrime(19) = " + isPrime(19));
+  } 
+
+  public static boolean isPrime(int n) {
+      int divisor = 2;
+      do {
+         if ( (n % divisor) == 0 )
+            return false;
+         divisor++;
+      } while (divisor*divisor <= n);
+      return true;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testbreak">
+      <h2 id="testbreak">TestBreak.java</h2>
+      <uc-code lang="java" filename="TestBreak.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Instrucoes de Ciclo: break
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+class TestBreak {
+   public static void main(String[] args) {
+      for (int i=1; i<=2; i++) {
+         for (int j=1; j<=10; j++) {
+            if (j == 3) break;
+            // Linha seguinte so sera executada quando j < 3
+            System.out.println("ciclo j = " + j + " | i = " + i);
+         }
+         System.out.println("ciclo i = " + i);
+      }
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testcontinue">
+      <h2 id="testcontinue">TestContinue.java</h2>
+      <uc-code lang="java" filename="TestContinue.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Instrucoes de Ciclo: continue
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+class TestContinue {
+   public static void main(String[] args) {
+      for (int i=1; i<=4; i++) {
+         System.out.println("[antes] i = " + i);
+         if (i > 2) continue;
+         // Linha seguinte so sera executada quando i <= 2
+         System.out.println("[depois] i = " + i); 
+      }
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="ciclo.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/ciclo.html</a>.</p>
+  </uc-page>
+</body>
+</html>

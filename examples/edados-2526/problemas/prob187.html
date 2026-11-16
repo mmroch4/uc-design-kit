@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED187] TAD Matriz (Matrix) · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED187 (TAD Matriz (Matrix)) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED187</li></ol>
+    </nav>
+    <h1>[ED187] TAD Matriz (Matrix)</h1>
+    <div class="uc-content">
+      <p><img alt="" class="uc-content__float" height="114" loading="lazy" src="imagens/prob187.gif" width="205"/><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas
+      submeter uma classe <strong>Matrix</strong> (e não um programa completo).</div>
+      </p><h2>O problema</h2>
+      <p>A sua tarefa é criar uma classe <strong>Matrix</strong> para representar uma Matriz. Deverá começar por usar a seguinte classe:
+
+       </p><pre>import java.util.Scanner;
+
+class Matrix {
+   int data[][]; // os elementos da matriz em si
+   int rows;     // numero de linhas
+   int cols;     // numero de colunas
+
+   // construtor padrao de matriz
+   Matrix(int r, int c) {
+      data = new int[r][c];
+      rows = r;
+      cols = c;
+   }
+
+   // Ler os rows x cols elementos da matriz
+   public void read(Scanner in) {
+      for (int i=0; i&lt;rows; i++)
+         for (int j=0; j&lt;cols; j++)
+            data[i][j] = in.nextInt();
+   }
+
+   // Representacao em String da matriz
+   public String toString() {
+      String ans = "";
+      for (int i=0; i&lt;rows; i++) {
+         for (int j=0; j&lt;cols; j++)
+            ans += data[i][j] + " ";
+         ans += "\n";
+      }
+      return ans;
+   }   
+}</pre>
+      <p>Deverá acrescentar os seguintes métodos à classe:
+        </p><ul>
+      <li><strong>public static Matrix identity(int n)</strong> - devolver uma nova <a href="https://pt.wikipedia.org/wiki/Matriz_identidade">matriz identidade</a> de ordem <em>n</em>.
+          </li><li><strong>public Matrix transpose()</strong> - devolve uma nova matriz, que é a <a href="https://pt.wikipedia.org/wiki/Matriz_transposta">transposta</a> da matriz.
+          </li><li><strong>public Matrix sum(Matrix m)</strong> - devolve uma nova matriz que é o resultado da <a href="https://pt.wikipedia.org/wiki/Adi%C3%A7%C3%A3o_de_matrizes">soma termo a termo</a> da matriz com <em>m</em>.
+          </li><li><strong>public Matrix multiply(Matrix m)</strong> - devolve uma nova matriz que é o resultado da <a href="https://pt.wikipedia.org/wiki/Produto_de_matrizes">multiplicação</a> da matriz com <em>m</em>.
+        </li></ul>
+      <p>Um exemplo de utilização seria:
+
+      </p><pre>import java.util.Scanner;
+
+class TestMatrix {
+   public static void main(String[] args) {
+      Scanner stdin = new Scanner(System.in);
+
+      Matrix m1 = Matrix.identity(5);
+      System.out.println(m1);
+      
+      Matrix m2 = new Matrix(stdin.nextInt(), stdin.nextInt());
+      m2.read(stdin);
+      System.out.println(m2);
+      Matrix m3 = new Matrix(stdin.nextInt(), stdin.nextInt());
+      m3.read(stdin);
+      System.out.println(m3);
+      Matrix m4 = new Matrix(stdin.nextInt(), stdin.nextInt());
+      m4.read(stdin);
+      System.out.println(m4);
+
+      Matrix m5 = m1.transpose();
+      System.out.println(m5);
+      Matrix m6 = m2.transpose();
+      System.out.println(m6);
+
+      Matrix m7 = m2.sum(m3);
+      System.out.println(m7);
+      Matrix m8 = m2.multiply(m4);
+      System.out.println(m8);
+   }
+}</pre>
+      <p>Se o programa anterior for alimentado com o input:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr><td><pre>3 5
+1 2 3 4 5
+6 7 8 9 10
+11 12 13 14 15
+
+3 5
+6 7 8 9 10
+1 2 3 4 5
+11 12 13 14 15
+
+5 4
+1 2 2 1
+3 4 4 3
+5 6 6 5
+7 8 8 7
+9 10 10 9</pre></td></tr>
+      </table></div>
+      <p>Deverá produzir o output:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr><td><pre>1 0 0 0 0 
+0 1 0 0 0 
+0 0 1 0 0 
+0 0 0 1 0 
+0 0 0 0 1 
+
+1 2 3 4 5 
+6 7 8 9 10 
+11 12 13 14 15 
+
+6 7 8 9 10 
+1 2 3 4 5 
+11 12 13 14 15 
+
+1 2 2 1 
+3 4 4 3 
+5 6 6 5 
+7 8 8 7 
+9 10 10 9 
+
+1 0 0 0 0 
+0 1 0 0 0 
+0 0 1 0 0 
+0 0 0 1 0 
+0 0 0 0 1 
+
+1 6 11 
+2 7 12 
+3 8 13 
+4 9 14 
+5 10 15 
+
+7 9 11 13 15 
+7 9 11 13 15 
+22 24 26 28 30 
+
+95 110 110 95 
+220 260 260 220 
+345 410 410 345 
+    </pre></td></tr>
+      </table></div>
+      <h2>Input e Output</h2>
+      <p>Se submeter no Mooshak deverá apenas submeter a
+      classe <strong>Matrix</strong>. O Mooshak irá chamar criar várias instâncias da
+      sua classe usando o construtores definido e irá fazer uma série de
+      testes aos métodos por si implementados (como mostrado no exemplo de
+      utilização). É garantido que os métodos são chamados de forma correcta
+      (os argumentos fazem sentido e não geram excepções).
+
+      </p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob187.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob187.html</a>.</p>
+  </uc-page>
+</body>
+</html>

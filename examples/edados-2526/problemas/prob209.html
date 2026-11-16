@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED209] Intervalo de valores · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED209 (Intervalo de valores) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED209</li></ol>
+    </nav>
+    <h1>[ED209] Intervalo de valores</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>BSTree&lt;T&gt;</strong> (e não um programa completo).</div>
+      </p><h2>Código Base</h2>
+      <p>Use como base as classes <strong>BSTree&lt;T&gt;</strong> e <strong>BSTNode&lt;T&gt;</strong>.
+
+      </p><h2>O problema</h2>
+      <p>Acrescente à classe dada um método <strong>public int countBetween(T a, T b)</strong> que devolve a <strong>quantidade de elementos que são ≥a e ≤b</strong>, ou seja, que estão no intervalo <em>[a,b]</em>.
+
+      </p><p>É garantido que a árvore binária é de pesquisa e que não é vazia (tem pelo menos um valor armazenado. É também garantido que <em>a≤b</em>
+      </p><p>A figura seguinte ilustra uma árvore binária de pesquisa.
+
+      </p><p><img alt="" height="263" loading="lazy" src="imagens/209.png" width="298"/></p>
+      <p>Se a árvore for chamada de <em>t</em>, então alguns exemplos de chamadas seriam:
+
+        </p><ul>
+      <li>t.countBetween(5,44) = 6 <em>(valores 6, 7, 8, 10, 23 e 42)</em>
+      </li><li>t.countBetween(7,10) = 3 <em>(valores 7, 8 e 10)</em>
+      </li><li>t.countBetween(0,90) = 11 <em>(todos os valores da árvore)</em>
+      </li><li>t.countBetween(60,80) = 0 <em>(nenhum valor da árvore)</em>
+      </li></ul>
+      <h2>Submissão</h2>
+      <p>Deverá submeter apenas a classe <strong>BSTree&lt;T&gt;</strong>, acrescentando o método <strong>countBetween</strong> como pedido <strong>(e sem apagar ou modificar nenhum dos outros métodos dados como base)</strong>. Pode assumir que terá acesso no Mooshak à classe BSTNode&lt;T&gt; (não a pode mudar) e se precisar pode criar outros métodos auxiliares. O Mooshak irá criar várias instâncias da sua classe e irá fazer uma série de testes ao método por si implementado.
+
+      </p><h2>Exemplos de Input/Output</h2>
+      <p>Os exemplos correspondem à árvore da figura do enunciado.</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Chamada</th>
+      <th scope="col">Valor de retorno</th>
+      </tr>
+      <tr>
+      <td>t.countBetween(5,44)</td>
+      <td>6</td>
+      </tr>
+      <tr>
+      <td>t.countBetween(7,10)</td>
+      <td>3</td>
+      </tr>
+      <tr>
+      <td>t.countBetween(0,90)</td>
+      <td>11</td>
+      </tr>
+      <tr>
+      <td>t.countBetween(60,80)</td>
+      <td>0</td>
+      </tr>
+      <tr>
+      <td>t.countBetween(8,54)</td>
+      <td>5</td>
+      </tr>
+      <tr>
+      <td>t.countBetween(2,22)</td>
+      <td>7</td>
+      </tr>
+      <tr>
+      <td>t.countBetween(2,2)</td>
+      <td>1</td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob209.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob209.html</a>.</p>
+  </uc-page>
+</body>
+</html>

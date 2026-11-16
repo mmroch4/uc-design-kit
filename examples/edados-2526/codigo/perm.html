@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerando Permutações · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Gerando Permutações.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">TestPerm</li></ol>
+    </nav>
+    <h1>Gerando Permutações</h1>
+    <section class="uc-section" aria-labelledby="testperm">
+      <h2 id="testperm">TestPerm.java</h2>
+      <uc-code lang="java" filename="TestPerm.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Geracao de permutacoes
+// Ultima alteracao: 10/05/2019
+// -----------------------------------------------------------
+
+public class TestPerm {
+    // Escrever todos as permutacoes do array v[]
+    static void permutations(int v[]) {
+	boolean used[] = new boolean[v.length]; // $i$ esta na permutacao?
+	int perm[] = new int[v.length];         // permutacao actual
+	goPerm(0, v, used, perm); // chamar funcao recursiva
+    }
+    // Gera todos os subconjuntos a partir da posicao 'cur'
+    static void goPerm(int cur, int v[], boolean used[], int perm[]) {
+	if (cur == v.length) {  // Caso base: terminamos a permutacao
+	    for (int i=0; i<v.length; i++) // Escrever a permutacao
+		System.out.print(v[perm[i]] + " ");
+	    System.out.println();
+	} else { // Se nao terminamos, continuar a gerar
+	    for (int i=0; i<v.length; i++) // Tentar todos os elementos
+		if (!used[i]) { 
+		    used[i] = true; perm[cur] = i;
+		    goPerm(cur+1, v, used, perm);
+		    used[i] = false;
+		}
+	}
+    }   
+
+   // -----------------------------------------------------------
+   
+   public static void main(String[] args) {
+      int v[] = {2,4,6,8}; // Inicializacao de array
+
+      permutations(v);
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="perm.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/perm.html</a>.</p>
+  </uc-page>
+</body>
+</html>

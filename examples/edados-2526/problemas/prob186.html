@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED186] TAD Rectângulo (Rectangle) · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED186 (TAD Rectângulo (Rectangle)) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED186</li></ol>
+    </nav>
+    <h1>[ED186] TAD Rectângulo (Rectangle)</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter a
+      classe <strong>Rectangle</strong> (e não um programa completo).</div>
+      </p><h2>O problema</h2>
+      <p>Para este problema pode assumir que o seu código terá acesso a uma classe <strong>Point</strong> assim definida:
+
+      </p><pre>// Uma classe simples para representar um ponto 2D
+class Point {
+   int x, y;
+
+   Point() {
+      x = y = 0;
+   }
+   
+   Point(int x0, int y0) {
+      x = x0;
+      y = y0;
+   }
+
+   public String toString() {
+      return "(" + x + "," + y + ")";
+   }
+}</pre>
+      <p><img alt="" class="uc-content__float" height="188" loading="lazy" src="imagens/prob186.jpg" width="300"/>A sua tarefa é criar uma classe <strong>Rectangle</strong> para representar um rectângulo. A classe deverá ter como atributos (variáveis) dois pontos (da classe anterior), representando os pontos inferior esquerdo e superior direito do rectângulo e deverá ter os seguintes métodos:
+
+        </p><ul>
+      <li><strong>Construtores:</strong>
+      <ul>
+      <li><strong>Rectangle(int x1,int y1,int x2,int y2)</strong> - Pode assumir que x1&lt;x2 e que y1&lt;y2. 
+      	</li><li><strong>Rectangle(Point p1, Point p2)</strong> - Pode assumir que p1.x&lt;p2.x e que p1.y&lt;p2.y.
+            </li></ul>
+      </li><li><strong>Operações:</strong>
+      <ul>
+      <li><strong>public int area()</strong> - devolve a área do rectângulo 
+      	</li><li><strong>public int perimeter()</strong> - devolve o perímetro do rectângulo 
+      	</li><li><strong>public boolean pointInside(Point p)</strong> - devolve <em>true</em> se o ponto <em>p</em> está dentro do rectângulo (tocar nas bordas é considerado dentro) ou <em>false</em> caso contrário.
+      	</li><li><strong>public boolean rectangleInside(Rectangle r)</strong> - devolve <em>true</em> se o rectâgulo <em>r</em> está contido dentro do rectângulo ou <em>false</em> caso contrário.
+            </li></ul>
+      </li></ul>
+      <p>Um exemplo de utilização seria:
+
+      </p><pre>class TestRectangle {
+   public static void main(String[] args) {
+      Point a = new Point(1,1);
+      Point b = new Point(2,2);
+      Point c = new Point(3,4);
+      Point d = new Point(8,2);
+      
+      Rectangle amarelo  = new Rectangle(a, c);
+      Rectangle laranja  = new Rectangle(2, 3, 9, 6);
+      Rectangle verde    = new Rectangle(3, 4, 4, 5);
+      Rectangle azul     = new Rectangle(5, 1, 6, 5);
+      Rectangle vermelho = new Rectangle(7, 3, 9, 5);
+      
+      System.out.println("Perimetro do retangulo amarelo = " + amarelo.perimeter()); // 10
+      System.out.println("Perimetro do retangulo laranja = " + laranja.perimeter()); // 20
+      
+      System.out.println("Area do retangulo amarelo = " + amarelo.area()); // 6
+      System.out.println("Area do retangulo laranja = " + laranja.area()); // 21                   
+      
+      System.out.println("Ponto B dentro rectangulo amarelo? " + amarelo.pointInside(b)); // true
+      System.out.println("Ponto D dentro rectangulo amarelo? " + amarelo.pointInside(d)); // false
+      
+      System.out.println("Retangulo verde dentro do laranja? " + laranja.rectangleInside(verde));       // true
+      System.out.println("Retangulo azul dentro do laranja? " + laranja.rectangleInside(azul));         // false
+      System.out.println("Retangulo vermelho dentro do laranja? " + laranja.rectangleInside(vermelho)); // true
+   }
+}</pre>
+      <p>Este exemplo corresponde à seguinte figura:
+
+      </p><p><img alt="" height="345" loading="lazy" src="imagens/rectangulos.png" width="442"/>
+      </p><h2>Input e Output</h2>
+      <p>Deverá apenas submeter a classe <strong>Rectangle</strong>. O Mooshak irá
+      criar várias instâncias da sua classe usando os construtores definidos
+      e irá fazer uma série de testes aos métodos implementados por si.
+
+      </p><p>É garantido que o construtor é chamado de forma correcta (ponto
+      inferior esquerdo e ponto superior direito) e que todos os números são
+      inteiros positivos que cabem num <em>int</em>.
+
+      </p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob186.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob186.html</a>.</p>
+  </uc-page>
+</body>
+</html>

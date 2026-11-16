@@ -485,6 +485,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-button` | Link or button styled as a button; `uc-button--primary` filled, `uc-button--sm` compact (tables, toolbars). |
 | `uc-lead` | Larger intro paragraph. |
 | `uc-prose` | Readable text column (max 720px, secondary colour). |
+| `uc-content` | Wrapper for plain HTML written without kit classes (pasted from an older site or an editor): spacing for headings, paragraphs, lists, tables, `<pre>` and images. `<img class="uc-content__float">` floats right on wide screens. |
 | `uc-muted`, `uc-mono`, `uc-small` | Text utilities. |
 | `uc-visually-hidden` | Hidden visually, available to screen readers. |
 

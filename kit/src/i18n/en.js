@@ -7,6 +7,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     external: "(external site)",
     requiresLogin: "Requires login",
     scrollableTable: "Horizontally scrollable table",
+    scrollableText: "Horizontally scrollable text",
   },
   nav: {
     label: "Course sections",

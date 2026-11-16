@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED197] União ordenada · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED197 (União ordenada) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED197</li></ol>
+    </nav>
+    <h1>[ED197] União ordenada</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Se submeter este problema no Mooshak, deverá
+      apenas submeter uma classe <strong>ED197</strong> contendo um método
+      estático <strong>merge</strong> como a seguir descrito (não é necessário um
+      programa completo).</div>
+      </p><p>Pode assumir que terá acesso no Mooshak às "classes de filas" mencionadas na respectiva aula pratica.
+
+      </p>
+      <h2>Método a submeter</h2>
+      <p><strong><code>public static MyQueue&lt;Integer&gt; merge(MyQueue&lt;Integer&gt; a, MyQueue&lt;Integer&gt; b)</code></strong> da
+        classe <strong><code>ED197</code></strong>
+      <p>Assumindo que as filas <code>a</code> e <code>b</code> vêm ordenadas de forma crescente, este método deve criar e devolver uma nova fila que é a união ordenada (<em>merge</em>) das duas filas. Por exemplo, juntar [2,4,8,10] com [1,4,9] daria [1,2,4,4,8,9,10]. As duas filas iniciais podem ser destruidas durante o processo de junção.
+      </p>
+      <h2>Exemplos de input/output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Fila <em>a</em></th>
+      <th scope="col">Fila <em>b</em></th>
+      <th scope="col">Resultado de <em>merge(a,b)</em></th>
+      </tr>
+      <tr>
+      <td>{2,4,8,10}</td>
+      <td>{1,4,9}</td>
+      <td>{1,2,4,4,8,9,10}</td>
+      </tr>
+      <tr>
+      <td>{1,2,4,5}</td>
+      <td>{2,3,5,6,8}</td>
+      <td>{1,2,2,3,4,5,5,6,8}</td>
+      </tr>
+      </table></div>
+
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob197.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob197.html</a>.</p>
+  </uc-page>
+</body>
+</html>

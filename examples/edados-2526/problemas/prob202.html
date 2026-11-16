@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED202] Procurando Pokemons · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED202 (Procurando Pokemons) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED202</li></ol>
+    </nav>
+    <h1>[ED202] Procurando Pokemons</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshak, deverá submeter uma
+      classe <strong>ED202</strong> contendo um programa completo para resolver o
+      problema (ou seja, com o método main).
+      </p></div></p>
+      <p><img alt="" class="uc-content__float" height="265" loading="lazy" src="imagens/202.png" width="300"/>O Aniceto chegou agora mesmo à Estação de S. Bento pronto para um dia em cheio a apanhar pokemons. Depois de ter falado com vários amigos, ele sabe exactamente onde estão os pokemons mais valiosos e a que sítios pretende ir: Torre dos Clérigos, Câmara Municipal, Ribeiro, Alfândega, Palácio de Cristal e Praça dos Leões. Partindo de S. Bento, o Aniceto pretende passar exactamente uma única vez por cada um destes sítios e depois voltar a S. Bento para apanhar o comboio de regresso a casa. Preguiçoso como é, pretende andar o menos possível, e por isso precisa da tua ajuda para saber que caminho tomar. Para te ajudar, ele fez uma tabela com as distâncias (em km) entre os vários sítios:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr><th scope="col"> </th><th scope="col">SaoBento  </th><th scope="col">Camara    </th><th scope="col">Clerigos  </th><th scope="col">Ribeira   </th><th scope="col">Alfandega </th><th scope="col">Palacio   </th><th scope="col">Leoes</th></tr>
+      <tr><th scope="col">SaoBento</th><td>-------</td><td>0.49      </td><td>0.34      </td><td>0.55      </td><td>0.95      </td><td>1.30      </td><td>0.45</td></tr>
+      <tr><th scope="col">Camara</th><td>0.49      </td><td>-------      </td><td>0.57      </td><td>1.03      </td><td>1.17      </td><td>1.33      </td><td>0.52</td></tr>
+      <tr><th scope="col">Clerigos</th><td>0.34      </td><td>0.57      </td><td>-------      </td><td>0.62      </td><td>0.64      </td><td>0.96      </td><td>0.17</td></tr>
+      <tr><th scope="col">Ribeira</th><td>0.55      </td><td>1.03      </td><td>0.62      </td><td>-------      </td><td>0.88      </td><td>1.41      </td><td>0.79</td></tr>
+      <tr><th scope="col">Alfandega</th><td>0.95      </td><td>1.17      </td><td>0.64      </td><td>0.88      </td><td>-------      </td><td>0.56      </td><td>0.64</td></tr>
+      <tr><th scope="col">Palacio</th><td>1.30      </td><td>1.33      </td><td>0.96      </td><td>1.41      </td><td>0.56      </td><td>-------      </td><td>0.87</td></tr>
+      <tr><th scope="col">Leoes</th><td>0.45      </td><td>0.52      </td><td>0.17      </td><td>0.79      </td><td>0.64      </td><td>0.87      </td><td>-------</td></tr>
+      </table></div>
+      <p>O Aniceto pode escolher ir aos vários locais por qualquer ordem. Obviamente que a ordem que escolhe influencia fortemente o comprimento do percurso que vai fazer. As figuras seguintes ilustram dois possíveis caminhos e o respectivo comprimento:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td><img alt="" height="701" loading="lazy" src="imagens/202_map1.png" width="862"/></td>
+      <td> </td>
+      <td><img alt="" height="701" loading="lazy" src="imagens/202_map2.png" width="862"/></td>
+      </tr>
+      <tr>
+      <td>Total: <strong>4.28km</strong> = 0.34+0.62+0.88+0.56+0.87+0.52+0.49</td>
+      <td> </td>
+      <td>Total: <strong>4.13km</strong> = 0.55+0.88+0.56+0.96+0.17+0.52+0.49</td>
+      </tr>
+      </table></div>
+      <p>Apesar de parecerem bons caminhos, nenhuma das imagens anteriores representa um percurso ótimo. De facto, o Aniceto pode percorrer apenas 4.09km se fizer o percurso da imagem seguinte:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td><img alt="" height="701" loading="lazy" src="imagens/202_map3.png" width="862"/></td>
+      </tr>
+      <tr>
+      <td>Total: <strong>4.09km</strong> = 0.55+0.88+0.56+0.87+0.17+0.57+0.49</td>
+      </tr>
+      </table></div>
+      <p>Tens de ajudar o Aniceto a escolher o percurso ótimo, não só para esta sua vinda ao Porto, mas para qualquer outra viagem para apanhar Pokemons que ele tenha planeado!
+
+      </p><h2>O Problema</h2>
+      <p>Dado um conjunto de locais e a distância entre eles, tens de descobrir qual o tamanho do menor percurso que passa por todos os pontos voltando no final ao local inicial.
+
+      </p><h2>Input</h2>
+      <p>Na primeira linha do input vem um número <strong>N</strong> (<em>3
+          ≤ N ≤ 10</em>) indicando o número de locais a considerar. Na segunda linha vêm exactamente <strong>N</strong> palavras indicando o nome dos locais. Cada nome contém apenas letras e tem um tamanho entre 1 e 30. O primeiro local indicado é o sítio onde o Aniceto está inicialmente.</p>
+      <p>Seguem-se exactamente <strong>N</strong> linhas, cada uma com <strong>N</strong> números, indicando a matriz de distâncias entre os locais. A <em>j</em>-ésima coluna da <em>i</em>-ésima linha representa a distância entre o local <em>i</em> e o local <em>j</em> (verifica o exemplo para perceberes melhor). Esta matriz é garantidamente simétrica, ou seja, distância(i,j)=distância(j,i).
+
+      </p><h2>Output</h2>
+      <p>O output é constituído por uma linha contendo um único número indicando o comprimento do menor caminho que passa por todos os locais e volta ao local inicial, tal como atrás descrito. Este número deve vir arredondado a duas casas decimais.
+
+      </p><h2>Exemplo de Input</h2>
+      <pre>7
+SaoBento  Camara    Clerigos  Ribeira   Alfandega Palacio   Leoes
+0.00      0.49      0.34      0.55      0.95      1.30      0.45
+0.49      0.00      0.57      1.03      1.17      1.33      0.52
+0.34      0.57      0.00      0.62      0.64      0.96      0.17
+0.55      1.03      0.62      0.00      0.88      1.41      0.79
+0.95      1.17      0.64      0.88      0.00      0.56      0.64
+1.30      1.33      0.96      1.41      0.56      0.00      0.87
+0.45      0.52      0.17      0.79      0.64      0.87      0.00</pre>
+      <p><em>(Nota que o exemplo de input corresponde à imagem do enunciado)</em>
+      </p><h2>Exemplo de Output</h2>
+      <pre>4.09</pre>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob202.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob202.html</a>.</p>
+  </uc-page>
+</body>
+</html>

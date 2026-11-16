@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista Ligada Simples · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Lista Ligada Simples.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">SinglyLinkedList</li></ol>
+    </nav>
+    <h1>Lista Ligada Simples</h1>
+    <section class="uc-section" aria-labelledby="node">
+      <h2 id="node">Implementação · Node.java</h2>
+      <uc-code lang="java" filename="Node.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Classe com um no generico
+// Ultima alteracao: 03/04/2018
+// -----------------------------------------------------------
+
+public class Node<T> {
+   private T value;      // Valor guardado no no
+   private Node<T> next; // Referencia para o proximo no da lista
+
+   // Construtor
+   Node(T v, Node<T> n) {
+      value = v;
+      next = n;
+   }
+
+   // Getters e Setters
+   public T getValue() { return value; }
+   public Node<T> getNext()  { return next; }
+   public void setValue(T v) { value=v; }
+   public void setNext(Node<T> n) { next = n; }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="singlylinkedlist">
+      <h2 id="singlylinkedlist">Implementação · SinglyLinkedList.java</h2>
+      <uc-code lang="java" filename="SinglyLinkedList.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Lista ligada simples
+// Ultima alteracao: 03/04/2018
+// -----------------------------------------------------------
+
+public class SinglyLinkedList<T> {
+   private Node<T> first;    // Primeiro no da lista
+   private int size;         // Tamanho da lista
+
+   // Construtor (cria lista vazia)
+   SinglyLinkedList() {
+      first = null;
+      size = 0;
+   }
+
+   // Retorna o tamanho da lista
+   public int size() {
+      return size;
+   }
+
+   // Devolve true se a lista estiver vazia ou falso caso contrario
+   public boolean isEmpty() {
+      return (size == 0);
+   }
+   
+   // Adiciona v ao inicio da lista
+   public void addFirst(T v) {
+      Node<T> newNode = new Node<T>(v, first); 
+      first = newNode;
+      size++;
+   }
+
+   // Adiciona v ao final da lista
+   public void addLast(T v) {
+      Node<T> newNode = new Node<T>(v, null); 
+      if (isEmpty()) {
+         first = newNode;
+      } else {
+         Node<T> cur = first;
+         while (cur.getNext() != null)
+            cur = cur.getNext();
+         cur.setNext(newNode);         
+      }
+      size++;
+   }
+
+   // Retorna o primeiro valor da lista (ou null se a lista for vazia)
+   public T getFirst() {
+      if (isEmpty()) return null;
+      return first.getValue();
+   }
+
+   // Retorna o ultimo valor da lista (ou null se a lista for vazia)
+   public T getLast() {
+      if (isEmpty()) return null;
+      Node<T> cur = first;
+      while (cur.getNext() != null)
+         cur = cur.getNext();
+      return cur.getValue();      
+   }
+
+   // Remove o primeiro elemento da lista (se for vazia nao faz nada)
+   public void removeFirst() {
+      if (isEmpty()) return;
+      first = first.getNext();
+      size--;
+   }
+
+   // Remove o ultimo elemento da lista (se for vazia nao faz nada)
+   public void removeLast() {
+      if (isEmpty()) return;
+      if (size == 1) {
+         first = null;
+      } else {
+         // Ciclo com for e uso de de size para mostrar alternativa ao while
+         Node<T> cur = first;
+         for (int i=0; i<size-2; i++)
+            cur = cur.getNext();
+         cur.setNext(cur.getNext().getNext());
+      }
+      size--;
+   }
+   
+   // Converte a lista para uma String
+   public String toString() {
+      String str = "{";      
+      Node<T> cur = first;
+      while (cur != null) {
+         str += cur.getValue();
+         cur = cur.getNext();
+         if (cur != null) str += ",";                     
+      }      
+      str += "}";
+      return str;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testsinglylinkedlist">
+      <h2 id="testsinglylinkedlist">Exemplo de utilização · TestSinglyLinkedList.java</h2>
+      <uc-code lang="java" filename="TestSinglyLinkedList.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao da lista ligada simples
+// Ultima alteracao: 01/04/2018
+// -----------------------------------------------------------
+
+public class TestSinglyLinkedList {
+   public static void main(String[] args) {
+
+      // Criacao de lista de inteiros
+      SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+
+      // Escrevendo lista (no inicio esta vazia)
+      System.out.println(list);
+
+      // Verificando se esta vazia
+      System.out.println("isEmpty? " + list.isEmpty());     
+      
+      // Adicionando numeros de 1 a 5 ao final da lista
+      for (int i=1; i<=5; i++)
+         list.addLast(i);
+      System.out.println(list);
+
+      // Adicionando numeros de 6 a 10 ao inicio da lista
+      for (int i=6; i<=10; i++)
+         list.addFirst(i);
+      System.out.println(list);
+
+      // Verificando o tamanho da lista
+      System.out.println("size = " + list.size());
+
+      // Retirando o primeiro elemento
+      list.removeFirst();
+      System.out.println(list);
+
+      // Retirando o ultimo elemento
+      list.removeLast();
+      System.out.println(list);
+
+      // Verificando se esta vazia
+      System.out.println("isEmpty? " + list.isEmpty());
+
+      // Escreve o primeiro e ultimo elementos
+      System.out.println("getFirst() = " + list.getFirst());
+      System.out.println("getLast() = " + list.getLast());
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="lista_ligada_simples.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/lista_ligada_simples.html</a>.</p>
+  </uc-page>
+</body>
+</html>

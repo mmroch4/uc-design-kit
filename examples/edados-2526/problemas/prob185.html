@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED185] TAD Números Arbitrariamente Grandes (BigNumber) · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED185 (TAD Números Arbitrariamente Grandes (BigNumber)) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED185</li></ol>
+    </nav>
+    <h1>[ED185] TAD Números Arbitrariamente Grandes (BigNumber)</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Neste problema deverá apenas submeter uma classe <strong>BigNumber</strong> (e não um programa completo).</div>
+      </p><h2>O problema</h2>
+      <p><img alt="" class="uc-content__float" height="169" loading="lazy" src="imagens/prob185.jpg" width="300"/>A sua tarefa é criar uma classe <strong>BigNumber</strong>, que implementa um número arbitrariamente grande (com tantos dígitos quanto o necessário). A classe deverá suportar quaisquer números inteiros positivos, e deverá implementar os seguintes métodos:
+
+        </p><ul>
+      <li><strong>Construtores:</strong>
+      <ul>
+      <li><strong>BigNumber(String n)</strong> - Inicializa o número a partir da String <em>n</em> (supondo que a String só contém dígitos e não tem zeros à esquerda)
+            </li></ul>
+      </li><li><strong>Métodos padrão:</strong>
+      <ul>
+      <li><strong>public boolean equals(BigNumber n)</strong> - devolve <em>true</em> caso o número seja igual a n, ou <em>false</em> caso contrário
+      	</li><li><strong>public String toString()</strong> - devolve uma String representando o número (os dígitos em si)
+            </li></ul>
+      </li><li><strong>Operações:</strong>
+      <ul>
+      <li><strong>public BigNumber add(BigNumber n)</strong> - devolve um novo BigNumber igual à soma de <em>n</em> com o próprio objecto (<em>this + n</em>).
+      	</li><li><strong>public BigNumber multiply(BigNumber n)</strong> - devolve um novo BigNumber igual à multiplicação de <em>n</em> com o próprio objecto (<em>this * n</em>).
+            </li></ul>
+      </li></ul>
+      <p>Um exemplo de utilização seria:
+
+      </p><pre>class TestBigNumber {
+   public static void main(String[] args) {
+      BigNumber n1 = new BigNumber("1234567890");
+      System.out.println(n1); // Escreve "1234567890"
+
+      BigNumber n2 = new BigNumber("42");
+      BigNumber n3 = new BigNumber("1234567890");
+      System.out.println(n1.equals(n2)); // Escreve "false"
+      System.out.println(n1.equals(n3)); // Escreve "true"
+      
+      BigNumber n4 = new BigNumber("46711237126582920746212");
+      BigNumber n5 = new BigNumber("8765432110");
+      BigNumber n6 = n1.add(n3);
+      System.out.println(n6); // Escreve "2469135780"
+      BigNumber n7 = n1.add(n4);
+      System.out.println(n7); // Escreve "46711237126584155314102"
+      BigNumber n8 = n1.add(n5);
+      System.out.println(n8); // Escreve "10000000000"
+
+      BigNumber n9 = n1.multiply(n3);
+      System.out.println(n9); // Escreve "1524157875019052100"
+      BigNumber n10 = n1.multiply(n4);
+      System.out.println(n10); // Escreve "57668193458655139375688174332680"
+   }
+}</pre>
+      <h2>Input e Output</h2>
+      <p>Deverá apenas submeter a classe <strong>BigNumber</strong>. O Mooshak irá chamar criar várias instâncias da sua classe usando o construtores definido e irá fazer uma série de testes aos métodos por si implementados (como mostrado no exemplo de utilização).</p>
+      <p>É garantido que o números guardados serão sempre positivos e que nunca terão mais do que 1000 dígitos.</p>
+      <p>É garantido que os métodos são chamados de forma correcta (os argumentos fazem sentido e não geram excepções).</p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob185.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob185.html</a>.</p>
+  </uc-page>
+</body>
+</html>

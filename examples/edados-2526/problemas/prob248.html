@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED248] TAD Conjunto (BooleanArrayIntSet) · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED248 (TAD Conjunto (BooleanArrayIntSet)) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED248</li></ol>
+    </nav>
+    <h1>[ED248] TAD Conjunto (BooleanArrayIntSet)</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Neste problema deverá apenas submeter uma classe <strong>BooleanArrayIntSet</strong> (e não um programa completo).</div>
+      </p><h2><img alt="" class="uc-content__float" height="193" loading="lazy" src="imagens/prob248.jpg" width="300"/>O problema</h2>
+      <p>A sua tarefa é criar uma classe <strong>BooleanArrayIntSet</strong>, que representa um conjunto de números inteiros, implementando o seguinte interface:
+
+      </p><pre>// Interface que define o TAD conjunto de numeros inteiros
+interface IntSet {
+    public boolean contains(int x);       // Retorna true se x esta no conjunto
+    public boolean add(int x);            // Adiciona x ao conjunto (devolve true se conseguir)
+    public boolean remove(int x);         // Remove x do conjunto (devolve true se conseguir)
+    public int     size();                // Retorna o numero de elementos do conjunto
+    public void    clear();               // Limpa o conjunto (torna-o vazio)
+    public boolean equals(IntSet s);      // Retorna true se ambos os conjuntos sao iguais
+    public IntSet intersection(IntSet s); // devolve um novo conjunto: a intersecao de ambos
+}</pre>
+      <p>Note que esta implementação deverá ser eficiente e demorar tempo
+      constante nos métodos <code>contains</code>, <code>add</code>
+      e <code>remove</code> (ou seja, uma implementação como a
+      do <a href="../downloads/ArrayListIntSet.java">ArrayListIntSet</a>
+      deverá ter execeder o tempo limite nos casos de teste grandes). A
+      sugestão é usar um array de booleanos como explicado na aula pratica.</p>
+      <p>Para testar pode fazer algo como o seguinte:
+
+      </p><pre>public class TestED248 {
+    public static void main(String[] args) {
+	int n = 1000000;                      
+	IntSet s = new BooleanArrayIntSet(n); // Criar array de booleanos para numeros no intervalo [1,n]
+	boolean tmp;
+		
+	System.out.println("Adicionando todos os numeros entre 1 e " + n + "...");
+	for (int i=1; i&lt;=n; i++)
+	    tmp = s.add(i);
+
+	System.out.println("Adicionando novamente todos os numeros entre 1 e " + n + "...");
+	for (int i=1; i&lt;=n; i++)
+	    tmp = s.add(i);
+
+	System.out.println("Verificando se todos os numeros entre 1 e " + n + " existem...");
+	for (int i=1; i&lt;=n; i++)
+	    tmp = s.contains(i);
+
+	System.out.println("Removendo todos os numeros entre 1 e " + n + "...");
+	for (int i=1; i&lt;=n; i++)
+	    tmp = s.remove(i);
+    }
+}</pre>
+      <p>Quando executado este código deverá demorar muito menos que 1 segundo e dar o seguinte output:</p>
+      <pre>Adicionando todos os numeros entre 1 e 1000000...
+Adicionando novamente todos os numeros entre 1 e 1000000...
+Verificando se todos os numeros entre 1 e 1000000 existem...
+Removendo todos os numeros entre 1 e 1000000...</pre>
+      <h2>Input e Output</h2>
+      <p>Deverá apenas submeter a classe <strong>BooleanArrayIntSet</strong>. O Mooshak irá criar várias instâncias da sua classe usando um construtor como mostrado no exemplo de utilização <strong>(construtor com um argumento inteiro <em>n</em> indicando que deve suportar números no intervalo [1,n])</strong> e irá fazer uma série de testes aos métodos por si implementados.</p>
+      <p>É garantido que o conjunto nunca terá mais do que 100 números diferentes, e que todos os números serão inteiros positivos entre 1 e 1000 (inclusive) para todos os testes excepto o último. No último teste, destinado a verificar a eficiênca, poderão ser usados números até 1 milhão e feitas milhões de adições, inserções ou verificações <strong>(neste teste terá "Time Limit Exceeded" se a sua classe não for eficiente nestas operações)</strong>.</p>
+      <p>É garantido que os métodos são chamados de forma correcta (os argumentos fazem sentido e não geram excepções).</p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob248.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob248.html</a>.</p>
+  </uc-page>
+</body>
+</html>

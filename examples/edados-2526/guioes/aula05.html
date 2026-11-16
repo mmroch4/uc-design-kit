@@ -27,9 +27,9 @@
         <h2 id="submissao">Exercícios para submissão</h2>
         <p class="uc-prose">Para efeitos da <a href="../avaliacao.html">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
         <ul class="uc-bullets">
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob247.html">[ED247] TAD Conjunto (ArrayListIntSet)</a> (peso 50%, exercício do guião principal)</li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob248.html">[ED248] TAD Conjunto (BooleanArrayIntSet)</a> (peso 50%, exercício do guião principal)</li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob185.html">[ED185] TAD Números Arbitrariamente Grandes (BigNumber)</a> (peso 25%, exercício extra)</li>
+          <li><a href="../problemas/prob247.html">[ED247] TAD Conjunto (ArrayListIntSet)</a> (peso 50%, exercício do guião principal)</li>
+          <li><a href="../problemas/prob248.html">[ED248] TAD Conjunto (BooleanArrayIntSet)</a> (peso 50%, exercício do guião principal)</li>
+          <li><a href="../problemas/prob185.html">[ED185] TAD Números Arbitrariamente Grandes (BigNumber)</a> (peso 25%, exercício extra)</li>
         </ul>
         <p><strong>Prazo de submissão:</strong> 4 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
         <div class="uc-callout">
@@ -53,7 +53,7 @@
             <li><strong>Implementação de uma interface:</strong> uma classe X que implementa uma interface Y é declarada como <code>class X implements Y</code> e tem de implementar todos os métodos definidos na interface.</li>
             <li><strong>TAD Conjunto:</strong> um tipo abstrato de dados que implementa um conjunto (usámos como exemplo um conjunto de números inteiros e operações como adicionar, remover ou verificar se um número está contido no conjunto).</li>
           </ul>
-          <p>Resolve o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html">[ED247] TAD Conjunto (ArrayListIntSet)</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>. Vais ter de implementar dois métodos novos: <code>equals</code> e <code>intersection</code>.</p>
+          <p>Resolve o problema <a href="../problemas/prob247.html">[ED247] TAD Conjunto (ArrayListIntSet)</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>. Vais ter de implementar dois métodos novos: <code>equals</code> e <code>intersection</code>.</p>
           <details class="uc-hint">
             <summary>Dicas</summary>
             <ul class="uc-bullets">
@@ -77,11 +77,11 @@
             <table>
               <thead><tr><th scope="col">Ficheiro</th><th scope="col">Números únicos</th></tr></thead>
               <tbody>
-                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/1000.txt">1000.txt</a></td><td class="uc-mono">644</td></tr>
-                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/10000.txt">10000.txt</a></td><td class="uc-mono">6309</td></tr>
-                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/100000.txt">100000.txt</a></td><td class="uc-mono">63273</td></tr>
-                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/500000.txt">500000.txt</a></td><td class="uc-mono">316074</td></tr>
-                <tr><td><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/1000000.txt">1000000.txt</a></td><td class="uc-mono">632432</td></tr>
+                <tr><td><a href="../downloads/1000.txt">1000.txt</a></td><td class="uc-mono">644</td></tr>
+                <tr><td><a href="../downloads/10000.txt">10000.txt</a></td><td class="uc-mono">6309</td></tr>
+                <tr><td><a href="../downloads/100000.txt">100000.txt</a></td><td class="uc-mono">63273</td></tr>
+                <tr><td><a href="../downloads/500000.txt">500000.txt</a></td><td class="uc-mono">316074</td></tr>
+                <tr><td><a href="../downloads/1000000.txt">1000000.txt</a></td><td class="uc-mono">632432</td></tr>
               </tbody>
             </table>
           </div>
@@ -95,7 +95,7 @@
         </uc-exercise>
 
         <uc-exercise id="conjunto-eficiente" title="Um TAD Conjunto mais eficiente">
-          <p>O objetivo deste exercício é criar uma nova implementação do TAD Conjunto que seja mais eficiente, do ponto de vista do tempo de execução, nos métodos <code>contains</code>, <code>add</code> e <code>remove</code>. Para isso cria uma nova classe que implemente a interface <code>IntSet</code> (como definida no problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html">[ED247]</a>):</p>
+          <p>O objetivo deste exercício é criar uma nova implementação do TAD Conjunto que seja mais eficiente, do ponto de vista do tempo de execução, nos métodos <code>contains</code>, <code>add</code> e <code>remove</code>. Para isso cria uma nova classe que implemente a interface <code>IntSet</code> (como definida no problema <a href="../problemas/prob247.html">[ED247]</a>):</p>
           <uc-code lang="java" filename="BooleanArrayIntSet.java" editable>
             <script type="text/plain">
               class BooleanArrayIntSet implements IntSet {
@@ -122,7 +122,7 @@
             <li><strong>Criar o código.</strong> Cria um ficheiro <code>BooleanArrayIntSet.java</code> que implemente a ideia descrita acima para o TAD Conjunto (como pode ser um construtor da classe?). Testa os teus métodos, usando por exemplo a classe <code>TestSet</code> que já tens definida: tens de mudar a declaração da variável <code>s</code> para passar a usar esta nova implementação.</li>
             <li><strong>Verificar a eficiência.</strong> Modifica o código que conta os números únicos para passar a usar a tua nova implementação de <code>IntSet</code>. Testa o funcionamento e mede o tempo de execução. É melhor ou pior do que a implementação anterior? Agora deves conseguir executar o caso de 1 milhão de números em muito menos tempo.</li>
             <li><strong>Vantagens e desvantagens.</strong> Sabendo que esta nova implementação é mais eficiente na inserção de números, que outras vantagens e desvantagens vês em relação à implementação anterior, uma lista de números usando arrays?</li>
-            <li>Em <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob248.html">[ED248] TAD Conjunto (BooleanArrayIntSet)</a> encontras a descrição completa do problema e podes submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</li>
+            <li>Em <a href="../problemas/prob248.html">[ED248] TAD Conjunto (BooleanArrayIntSet)</a> encontras a descrição completa do problema e podes submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</li>
           </ol>
         </uc-exercise>
       </section>
@@ -132,7 +132,7 @@
 
         <uc-exercise id="big-number" title="TAD BigNumber: números arbitrariamente grandes">
           <p>Os tipos de dados primitivos do Java têm limites para os números que conseguem representar. O objetivo deste exercício é implementar um TAD que represente <strong>números inteiros positivos arbitrariamente grandes</strong>, ou seja, com o número de dígitos que quisermos (o Java já tem uma <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">classe para representar números com precisão arbitrária</a>, mas aqui a ideia é seres tu a implementar uma).</p>
-          <p>Resolve o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob185.html">[ED185] TAD Números Arbitrariamente Grandes (BigNumber)</a> e submete-o no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
+          <p>Resolve o problema <a href="../problemas/prob185.html">[ED185] TAD Números Arbitrariamente Grandes (BigNumber)</a> e submete-o no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
           <details class="uc-hint">
             <summary>Dica: armazenar o número</summary>
             <p>Uma sugestão simples é usar um array com um dígito em cada posição, o que te vai simplificar a vida depois para somar e multiplicar. Coloca o dígito menos significativo na posição zero, e assim por diante. Por exemplo, o número "23454760" ficaria guardado num array assim:</p>

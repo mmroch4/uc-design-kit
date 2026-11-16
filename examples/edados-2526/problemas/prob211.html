@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED211] Contando os números pares · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED211 (Contando os números pares) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED211</li></ol>
+    </nav>
+    <h1>[ED211] Contando os números pares</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>ED211</strong> contendo um método estático <strong>countEven</strong> como a seguir descrito (não é necessário um programa completo).</div>
+      </p><p>Pode assumir que o Mooshak terá acesso às classes descritas no enunciado do exercício 2 da aula prática.
+
+      </p>
+      <h2>Método a submeter</h2>
+      <p><strong><code>public static int countEven(BTree&lt;Integer&gt; t)</code></strong> da
+        classe <strong><code>ED211</code></strong>
+      <p>Deve devolver a quantidade de números pares que são elementos da árvore. Pode assumir que todos os valores são inteiros positivos.
+
+          </p><p>A figura seguinte ilustra três diferentes árvores e a respectiva quantidade de números pares. 
+
+      </p><p><img alt="" height="222" loading="lazy" src="imagens/211.png" width="499"/></p>
+      <h2>Exemplos de Input/Output</h2>
+      <p>Os exemplos correspondem às árvores da figura do enunciado.</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Árvore <em>t</em> (em preorder com N<br/>a ser uma subárvore nula)</th>
+      <th scope="col">countEven(t)</th>
+      </tr>
+      <tr>
+      <td>6 3 2 N N 5 N N 10 8 N N 25 N N</td>
+      <td>4</td>
+      </tr>
+      <tr>
+      <td>1 13 3 N N 9 N N 34 N N</td>
+      <td>1</td>
+      </tr>
+      <tr>
+      <td>8 91 47 N N N 55 22 N N 40 N N</td>
+      <td>3</td>
+      </tr>
+      </table></div>
+
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob211.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob211.html</a>.</p>
+  </uc-page>
+</body>
+</html>

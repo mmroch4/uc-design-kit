@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED231] Estatísticas Epidemiológicas · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED231 (Estatísticas Epidemiológicas) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED231</li></ol>
+    </nav>
+    <h1>[ED231] Estatísticas Epidemiológicas</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED231</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).</p></div></p>
+
+      <p><img alt="" class="uc-content__float" height="230" loading="lazy" src="imagens/231.jpg" width="410"/>A divisão de epidemiologia e estatística do serviço de saúde da Algoritmolândia tem disponíveis os dados de propagação de um novo vírus ED-VIR-20, sendo registado diariamente o número total de casos confirmados. Será que podes ajudá-los a calcular algumas estatísticas sobre esses dados? 
+
+      </p><h2>Input</h2>
+      <p>Na primeira linha do <em>input</em> vem um número <strong>N</strong> indicando o número de dias consecutivos durante os quais foi registo o total de casos confirmados (<em>2 ≤ N ≤ 100</em>).
+
+      </p><p>A segunda linha contém uma sequência de <strong>N</strong> inteiros <strong>C<sub>(i)</sub></strong> separados por um espaço, indicando o número de casos confirmados em cada dia (<em>0 ≤ C<sub>(i)</sub> ≤ 10<sup>5</sup></em>). A sequência é garantidamente crescente (<em>C<sub>(i-1)</sub> ≤ C<sub>(i)</sub></em>).
+
+      </p><p>A terceira linha contém o valor de uma <strong>flag</strong> que pode tomar os valores 1, 2 ou 3. Este valor indica qual a subtarefa a que deve responder.</p>
+      <h2>Output</h2>
+      <p>O output depende do valor da flag dada no input:
+
+      </p><p><strong>Se a flag for 1</strong> <em>(30%)</em>, deve imprimir uma linha contendo dois inteiros separado por um espaço: <strong>o valor mínimo e o valor máximo de novos casos por dia</strong>. O valor de novos casos no dia <em>i</em> é igual a <em>C<sub>(i)</sub> - C<sub>(i-1)</sub></em>.</p>
+      <p><strong>Se a flag for 2</strong> <em>(40%)</em>: deve imprimir uma linha contendo dois inteiros separado por um espaço: <strong>a quantidade de períodos de baixa propagação</strong> e <strong>o maior tamanho de um período de baixa propagação</strong>. Um <strong>período de baixa propagação</strong> é definido como sendo uma sequência de dias consecutivos onde a subida percentual diária de casos confirmados é sempre inferior ou igual a 5%. O seu tamanho é a quantidade de números na sequência. A subida percentual no dia <em>i</em> é igual a <em>(C<sub>(i)</sub> - C<sub>(i-1)</sub>) / C<sub>(i-1)</sub></em>. É garantido nesta flag que pelo menos um dia tem subida inferior ou igual a 5%.
+
+      </p><p><strong>Se a flag for 3</strong> <em>(30%)</em>, deve imprimir um pequeno <strong>gráfico de barras indicando o total de casos confirmados por dia</strong>. A cada coluna do gráfico corresponde um dia <em>i</em>, e a altura da barra corresponde ao número de casos nesse dia <em>C<sub>i</sub></em>. A barra deve ser desenhada usando carateres '#', onde cada '#' corresponde a 100 casos, ou seja, o número de '#' no dia <em>i</em> corresponde a <em>C<sub>(i)</sub> / 100</em>. Os espaços em branco no gráfico devem ser representados pelo carater '.', e não devem ser imprimidas mais linhas do que o necessário (tantas linhas quantas as necessárias para conter a maior barra, sendo garantida que existe pelo menos um dia com pelo menos 100 casos). Verifiquem o exemplo de input para confirmar se perceberam o pedido.
+
+      </p><h2>Exemplo de Input/Output para Flag 1</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
+      <tr>
+      <td>
+      <pre>8
+2 4 8 14 19 25 28 29
+1</pre>
+      </td><td>
+      <pre>1 6</pre>
+      </td>
+      <td>
+      Os aumentos são de +2, +4, +6, +5, +6, +3, +1.<br/>
+      O menor aumento corresponde a +1; o maior aumento corresponde a +6.
+      </td>
+      </tr></table></div>
+      <h2>Exemplo de Input/Output para Flag 2</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
+      <tr>
+      <td>
+      <pre>11
+100 105 110 116 121 128 140 141 146 150 153
+2</pre>
+      </td><td>
+      <pre>3 4</pre>
+      </td>
+      <td>
+      As subidas percentuais diárias são: 5.00%, 4.76%, 5.45%, 4.31%, 5.79%, 9.38%, 0.71%, 3.55%, 2.74%, 2.00%<br/>
+      As subidas inferiores ou iguais a 5% estão indicadas a verde. Um período de baixa propagação é uma sequência de dias a verde.<br/>
+      Existem 3 periodos de dias consecutivos a verde, de tamanhos 2, 1 e 4.
+      </td>
+      </tr></table></div>
+      <h2>Exemplo de Input/Output para Flag 3</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
+      <tr>
+      <td>
+      <pre>8
+42 100 202 299 407 603 1045 1320
+3</pre>
+      </td><td>
+      <pre>.......#
+.......#
+.......#
+......##
+......##
+......##
+......##
+.....###
+.....###
+....####
+....####
+..######
+.#######</pre>
+      </td>
+      <td>
+      O gráfico 8 colunas (8 dias) e 13 linhas (a altura da maior barra é de 13, correspondendo ao dia com 1320).<br/>
+      A altura de cada barra é o valor desse dia a dividir por 100.<br/>
+      Os '.' correspondem a espaços no gráfico sem barra.
+      </td>
+      </tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob231.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob231.html</a>.</p>
+  </uc-page>
+</body>
+</html>

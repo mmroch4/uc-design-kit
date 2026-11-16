@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED005] Notação Polaca Invertida · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED005 (Notação Polaca Invertida) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED005</li></ol>
+    </nav>
+    <h1>[ED005] Notação Polaca Invertida</h1>
+    <div class="uc-content">
+      <p>Para efeitos da nota atribuida à resolução de exercícios ao longo do semestre - <strong>Submeter até 23:59 de 26 de Novembro</strong><br/>
+      <em>(o problema continuará depois disponível para submissão, mas sem contar para a nota)</em><br/>
+      <strong>[para perceber o contexto do problema deve <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/praticas/aula07.html">ler o guião da aula #07</a>]</strong></p>
+
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED005</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
+      Pode assumir que no Mooshak terá acesso às classes de listas, pilhas e filas como dadas nas aulas (ou seja, não precisa de as incluir no código submetido).
+      </p></div>
+      <h2>O problema</h2>
+      <p><img alt="" class="uc-content__float" height="128" loading="lazy" src="imagens/prob005.jpg" width="182"/>
+      Quando andaste na escola primária, aprendeste que os diferentes operadores aritméticos têm diferentes precedências.
+      Isso acontece em todos os países, e por exemplo os ingleses usam a mnemónica: <em>"<strong>P</strong>lease <strong>E</strong>xcuse <strong>M</strong>y <strong>D</strong>ear <strong>A</strong>unt <strong>S</strong>ally"</em>, que indica a ordem dos operadores (<strong>P</strong>arenteses, <strong>E</strong>xponenciação, <strong>M</strong>ultiplicação, <strong>D</strong>ivisão, <strong>A</strong>dição, <strong>S</strong>ubtração).
+
+      </p><p>Por exemplo, a expressão:
+      </p><pre>1 + 2 x 3 = ?</pre>
+      dá como resultado <code>7</code>, pois o operador multiplicação tem precedência.
+
+      <p>Se quiseremos avaliar primeiro a soma a expressão tem de ser:
+      </p><pre>(1 + 2) x 3 = ?</pre>
+      No entanto, nos tempos iniciais das calculadoras electrónicas, revelou-se complicado analisar
+      este tipo de expressões.
+
+      <p>Por isso mesmo, em 1920, o matemático polaco <strong>Jan Lukasiewicz</strong> criou uma notação que
+      tornava desnecessário o uso de parenteses, garantindo sempre que as operações eram efectuadas como
+      desejado. A notação consistia basicamente em escrever os operadores antes dos números e não no meio deles.
+
+      </p><p>Já em 1950, o <em>computer scientist</em> <strong>Charles L. Hamblin</strong> propôs um esquema onde os operadores
+      apareciam a seguir aos números, em vez de ser antes. Esta notação acbou por ser muito usada, devido entre
+      outras coisas à sua fácil implementação num sistema automático usando uma pilha, e ficou conhecida como
+      <strong>Notação Polaca Invertida (RPN)</strong> (ou <em>postfix</em>). Em RPN, uma expressão arbitrariamente
+      complexa pode ser escrita sem o uso de parenteses.</p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Notação Normal</th>
+      <th scope="col">Notação Polaca Invertida (RPN)</th>
+      </tr>
+      <tr>
+      <td>1 + 1</td>
+      <td>1 1 +</td>
+      </tr>
+      <tr>
+      <td>3 * (4 + 5)</td>
+      <td>3 4 5 + *</td>
+      </tr>
+      <tr>
+      <td>3 + 4 * 5</td>
+      <td>3 4 5 * +</td>
+      </tr>
+      </table></div>
+      <p>A tua tarefa é criar um programa capaz de calcular o valor final de expressões dadas em RPN, sabendo que
+      um algoritmo para as analisar é:
+
+      </p><ul>
+      <li>Criar uma pilha 
+        </li><li>Ir da esquerda para a direita lendo elemento a elemento e:
+        <ul>
+      <li>Se o elemento for um número, inseri-lo na pilha
+      	</li><li>Se for um operador, retirar dois valores da pilha, aplicar esse operador, e inserir o resultado na pilha
+        </li></ul>
+      </li><li>No final, fica apenas um valor na pilha, que é o resultado da expressão
+        </li><li>Se a pilha não corresponder a alguma das coisas que foi dita atrás (por exemplo, ficar vazia), então a expressão é incorrecta.
+      </li></ul>
+      <h2>Input</h2>
+      <p>A primeira linha contém um número <strong>N</strong>, indicando o número de expressões a analisar.
+      </p><p>As seguintes <strong>N</strong> linhas contêm expressões RPN, contendo
+      </p><ul>
+      <li> Dígitos, representando números inteiro
+        </li><li> Caracteres, representando operações (+, -, * , /)
+      </li></ul>
+      <p>Podes assumir que os números são sempre inteiros, que os cálculos intermédios vão dar sempre números
+      inteiros, e que só aparecem os quatro tipos básicos de operações atrás citados.
+
+      </p><h2>Output</h2>
+      <p>Uma linha para cada expressão, indicando o resultado final caso a expressão seja correcta,
+      ou <code><strong>Expressao Incorrecta</strong></code>, caso contrário.
+
+      </p><h2>Exemplo de input/output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>6
+1 1 +
+3 4 5 + *
+3 4 5 * +
+1 +
+1 1 1 +
+2 3 8 2 / - 1 + *</pre>
+      </td>
+      <td>
+      <pre>2
+27
+23
+Expressao Incorrecta
+Expressao Incorrecta
+0
+	   </pre></td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob005.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob005.html</a>.</p>
+  </uc-page>
+</body>
+</html>

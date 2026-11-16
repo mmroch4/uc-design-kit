@@ -50,4 +50,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-[MIT](LICENSE)
+[MIT](LICENSE), for the kit. The course content in `examples/edados-2526/` is by Fernando Silva (DCC/FCUP) and is not covered by it; see [its notice](examples/edados-2526/NOTICE.md).

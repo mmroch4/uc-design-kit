@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Breve Introdução à linguagem Java · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Estruturas de Dados (CC1007), aulas práticas: Breve Introdução à linguagem Java.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../semanas.html">Semanas</a></li><li aria-current="page">Breve Introdução à linguagem Java</li></ol>
+    </nav>
+    <h1>Breve Introdução à linguagem Java</h1>
+    <div class="uc-content">
+      <ul>
+      <li><a href="#compile">Compilação e execução de um programa em Java</a>
+      </li><li><a href="#types">Tipos de dados em Java</a>
+      </li><li><a href="#operators">Operadores Aritméticos e Relacionais</a>
+      </li><li><a href="#flow">Instruções de controle de fluxo</a>
+      </li><li><a href="#classes">Objectos e Classes</a>
+      </li><li><a href="#access">Acesso às variáveis e métodos de classes</a>
+      </li></ul>
+
+      <h2 id="compile">Compilação e execução de um programa em Java</h2>
+
+      Ficheiro: <strong><code>Hello.java</code></strong>
+      <pre>// Java Hello World
+class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello World !");
+    }
+}</pre>
+      <ul>
+      <li>Como compilar o programa? $ javac Hello.java
+      </li><li>Como executar o programa? $ java Hello
+      </li><li>O nome do ficheiro contendo código tem de ter o nome da classe <em>executável</em> mais a extensão <code>.java</code>
+      </li><li>A compilação da classe dá origem a um ficheiro com o mesmo nome, mas com a extensão <code>.class</code>
+      </li><li>Para executar, chama-se o nome da classe e não o nome do ficheiro (ex: <code>java Hello</code> e não <code>java Hello.class</code>)
+      </li></ul>
+
+      <h2 id="types">Tipos de dados em Java<a> </a></h2>
+      <p>Os tipos primitivos (ou "simples") em Java são (todos os outros tipos são objectos):
+
+      </p><blockquote>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Tipo</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Formato</th>
+      </tr>
+      <tr>
+      <td colspan="3"><em>Inteiros</em></td>
+      </tr>
+      <tr>
+      <td><code>byte</code></td>
+      <td>Byte-length integer</td>
+      <td>8-bit two's complement [-2<sup>7</sup>, 2<sup>7</sup>-1]</td>
+      </tr>
+      <tr>
+      <td><code>short</code></td>
+      <td>Short integer</td>
+      <td>16-bit two's complement [-2<sup>15</sup>, 2<sup>15</sup>-1]</td>
+      </tr>
+      <tr>
+      <td><code>int</code></td>
+      <td>Integer</td>
+      <td>32-bit two's complement [-2<sup>31</sup>, 2<sup>31</sup>-1]</td>
+      </tr>
+      <tr>
+      <td><code>long</code></td>
+      <td>Long integer</td>
+      <td>64-bit two's complement [-2<sup>63</sup>, 2<sup>63</sup>-1]</td>
+      </tr>
+      <tr>
+      <td colspan="3"><em>Reais</em></td>
+      </tr>
+      <tr>
+      <td><code>float</code></td>
+      <td>Single-precision floating point</td>
+      <td>32-bit IEEE 754</td>
+      </tr>
+      <tr>
+      <td><code>double</code></td>
+      <td>Double-precision floating point</td>
+      <td>64-bit IEEE 754</td>
+      </tr>
+      <tr>
+      <td colspan="3"><em>Outros tipos</em></td>
+      </tr>
+      <tr>
+      <td><code>char</code></td>
+      <td>A single character</td>
+      <td>16-bit Unicode character</td>
+      </tr>
+      <tr>
+      <td><code>boolean</code></td>
+      <td>A boolean value (<code>true</code> or <code>false</code>)</td>
+      <td>true or false</td>
+      </tr>
+      </table></div>
+      </blockquote>
+      <p>As variáveis são declaradas de um modo semelhante ao C (no entanto deve notar-se que, à semelhança do C++, podem ser
+      declaradas variáveis a meio do código). Tal como no C, as variáveis têm um âmbito limitado:
+
+      </p><pre>class MinhaClasse {
+    // variáveis globais - válidas em todos os métodos da classe
+    ...
+    public void metodoA( argumentos ) {
+       // variáveis locais - validas dentro do método onde estão definidas
+       for ( ... ) {
+            // variáveis temporárias - validas apenas no código dentro do ciclo
+        }
+        ...
+    }
+    ...
+}</pre>
+      <p>Exemplo demonstrando alguns dos limites dos tipos básicos do Java:
+
+      </p><pre>public class MaxVariablesDemo {
+    public static void main(String args[]) {
+
+        // integers
+        byte largestByte = Byte.MAX_VALUE;
+        short largestShort = Short.MAX_VALUE;
+        int largestInteger = Integer.MAX_VALUE;
+        long largestLong = Long.MAX_VALUE;
+
+        // real numbers
+        float largestFloat = Float.MAX_VALUE;
+        double largestDouble = Double.MAX_VALUE;
+
+        // other primitive types
+        char aChar = 'S';
+        boolean aBoolean = true;
+
+        // display them all
+        System.out.println("The largest byte value is " + largestByte);
+        System.out.println("The largest short value is " + largestShort);
+        System.out.println("The largest integer value is " + largestInteger);
+        System.out.println("The largest long value is " + largestLong);
+
+        System.out.println("The largest float value is " + largestFloat);
+        System.out.println("The largest double value is " + largestDouble);
+
+        if (Character.isUpperCase(aChar)) {
+            System.out.println("The character " + aChar + " is upper case.");
+        } else {
+            System.out.println("The character " + aChar + " is lower case.");
+        }
+        System.out.println("The value of aBoolean is " + aBoolean);
+    }
+}</pre>
+      <p>Resultado da execução:<br/>
+
+         The largest byte value is 127<br/>
+         The largest short value is 32767<br/>
+         The largest integer value is 2147483647<br/>
+         The largest long value is 9223372036854775807<br/>
+         The largest float value is 3.40282e+38<br/>
+         The largest double value is 1.79769e+308<br/>
+         The character S is upper case.<br/>
+         The value of aBoolean is true
+
+      </p><p>Em Java as constantes são variáveis declaradas com a palavra-chave <code>final</code>.
+
+      </p><pre>final int a = 10;
+int b = 15;
+
+// a = 11; -&gt; iria dar um erro
+b = 11; // atribuição válida</pre>
+      <p>Em Java a conversão de dados entre variáveis é automática quando:</p>
+      <ul>
+      <li>As variáveis são de tipo compatível
+        </li><li>A variável de destino tem um tipo que é "maior" do que a de origem 
+      </li></ul>
+      <p>Quando isso não acontece, temos de usar uma conversão explícita, denominada cast:</p>
+      <ul>
+      <li><code>var = (tipo-var-destino) var2</code>
+      </li></ul>
+      <p>Exemplos:</p>
+      <pre>long a = 1;
+int b = 2;
+
+a = b; // Conversão válida
+//b = a   Conversão inválida
+b = (int) a; // Conversão válida</pre>
+      <p>Em Java os arrays são objectos, mas o acesso aos seus valores é idêntico ao C.
+
+      </p><pre>int nr_dias_mes[] = new int[12];
+int matriz[][] = new int[100][10];
+char vogais[]={'a','e','i','o','u'};
+
+// Exemplo de alteração de valores
+nr_dias_mes[0]=31;
+nr_dias_mes[1]=28;</pre>
+      <p>Tal como os arrays, em Java as strings
+      são objectos, e têm uma série de <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">métodos</a>
+      já definidos.
+
+      </p><pre>String s = "Hello World";
+
+s = s + " !";
+System.out.println(s);
+System.out.println("Posicao 4 = " + s.charAt(4));
+System.out.println("Tamanho = " + s.length());</pre>
+
+      <h2 id="operators">Operadores Aritméticos e Relacionais<a> </a></h2>
+      <p>São usados operadores semelhantes ao C:
+
+      </p><blockquote>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Operador</th>
+      <th scope="col">Explicação</th>
+      </tr>
+      <tr><td colspan="2"><em>Operadores matemáticos</em></td></tr>
+      <tr><td><strong><code>+</code></strong></td><td>Soma</td></tr>
+      <tr><td><strong><code>-</code></strong></td><td>Subtracção</td></tr>
+      <tr><td><strong><code>*</code></strong></td><td>Multiplicação</td></tr>
+      <tr><td><strong><code>/</code></strong></td><td>Divisão</td></tr>
+      <tr><td><strong><code>%</code></strong></td><td>Módulo (resto da divisão inteira)</td></tr>
+      <tr><td colspan="2"><em>Operadores unários</em></td></tr>
+      <tr><td><strong><code>-</code></strong></td><td>Complemento binário</td></tr>
+      <tr><td><strong><code>&amp;</code></strong></td><td>AND binário</td></tr>
+      <tr><td><strong><code>|</code></strong></td><td>OR binário</td></tr>
+      <tr><td><strong><code>^</code></strong></td><td>XOR binário</td></tr>
+      <tr><td><strong><code>&lt;&lt;, &gt;&gt;</code></strong></td><td>shift binário</td></tr>
+      <tr><td colspan="2"><em>Operadores relacionais</em></td></tr>
+      <tr><td><strong><code>==</code></strong></td><td>... igual a ...</td></tr>
+      <tr><td><strong><code>!=</code></strong></td><td>... diferente de ...</td></tr>
+      <tr><td><strong><code>&lt;</code></strong></td><td>... menor que ...</td></tr>
+      <tr><td><strong><code>&lt;=</code></strong></td><td>... menor ou igual a ...</td></tr>
+      <tr><td><strong><code>&gt;</code></strong></td><td>... maior que ...</td></tr>
+      <tr><td><strong><code>&gt;=</code></strong></td><td>... maior ou igual a ...</td></tr>
+      <tr><td colspan="2"><em>Operadores lógicos</em></td></tr>
+      <tr><td><strong><code>!</code></strong></td><td>Negação (NOT)</td></tr>
+      <tr><td><strong><code>&amp;</code></strong></td><td>Conjunção (AND)</td></tr>
+      <tr><td><strong><code>|</code></strong></td><td>Disjunção (OR)</td></tr>
+      <tr><td><strong><code>&amp;&amp;, ||</code></strong></td><td>AND e OR antecipados<br/>(expressão lógica é avaliada antes de terminar)</td></tr>
+      </table></div>
+      </blockquote>
+      <p>Tal como no C, são válidas construções como <strong><code>++var</code></strong>, <strong><code>var++</code></strong> ou <strong><code>var1+=var2</code></strong></p>
+      <h2 id="flow">Instruções de controle de fluxo<a> </a></h2>
+      <p>As instruções são em tudo semelhantes ao C:
+
+      </p><blockquote>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Expressão</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Sintaxe</th>
+      <th scope="col">Exemplo</th>
+      </tr>
+      <tr>
+      <td>while</td>
+      <td>ciclo</td>
+      <td><code><strong>while (</strong>expressão-de-teste<strong>)</strong> {<br/><em>   código</em><br/><strong>};</strong></code></td>
+      <td>
+      <pre>int i = 5;
+while (i&gt;0) {
+  i--;
+}</pre></td>
+      </tr>
+      <tr>
+      <td>do while</td>
+      <td>ciclo</td>
+      <td><code><strong>do {</strong><br/><em>   código</em><br/><strong>} while (</strong>expressão-de-teste<strong>);</strong></code></td>
+      <td>
+      <pre>int i = 5;
+do {
+  i--;
+} while (i&gt;0);</pre>
+      </td>
+      </tr>
+      <tr>
+      <td>for</td>
+      <td>ciclo</td>
+      <td><code><strong>for (</strong>código-inicial;expr-de-teste;código-entre-iterações<strong>) {</strong><br/>   código <br/><strong>};</strong></code></td>
+      <td>
+      <pre>for (i=0; i&lt;5; i++) {
+  System.out.println(i);
+}</pre>
+      </td>
+      </tr>
+      <tr>
+      <td>if</td>
+      <td>decisão</td>
+      <td><code><strong>if (</strong>expressao-de-teste<strong>) {</strong><br/>   código <br/><strong>};</strong></code></td>
+      <td>
+      <pre>if (a&gt;max) {
+  max=a
+}</pre>
+      </td>
+      </tr>
+      <tr>
+      <td>?</td>
+      <td>decisão</td>
+      <td><code>expressão-de-teste <strong>?</strong> valor-verdadeira <strong>:</strong> valor-falsa</code></td>
+      <td>
+      <pre>max = a&gt;b ? a : b</pre>
+      </td>
+      </tr>
+      <tr>
+      <td>switch</td>
+      <td>decisão</td>
+      <td><code><strong>switch (</strong>variável<strong>) {<br/>   case</strong> c1<strong>:</strong> /* Bloco variável==c1 */<br/>
+                código<br/>
+                break;<br/>
+          (...)<br/>
+          <strong>default:</strong> /* Bloco por defeito */<br/>
+                  código<br/>
+                  break;<br/>
+      <strong>}</strong>
+      </code></td>
+      <td>
+      <pre>switch (i) {
+  case 1:
+    System.out.println("um"); break;
+  case 2:
+    System.out.println("dois"); break;
+  default:
+    System.out.println("outro numero"); break;
+}</pre></td>
+      </tr>
+      <tr>
+      <td>break</td>
+      <td>salto</td>
+      <td><code><strong>break</strong> [nome-label] <strong>;</strong></code></td>
+      <td rowspan="4">
+      <pre>/* supondo que v1 e v2 estão ordenados,
+verificar se algum número de v1 está em v2*/
+boolean numberInArray(int v1[], int v2[]) {
+    int i, j;
+    ciclo1:
+    for (i=0; i&lt;v1.length; i++) {
+	if (i&gt;1 &amp;&amp; (v1[i]==v1[i-1])) continue;
+	for (j=0; j&lt;v2.length; j++)
+	    if (v1[i] == v2[j]) break ciclo1;
+	    else if (v1[i] &gt; v2[j]) break;
+    }    return (i&lt;v1.length);
+}</pre></td>
+      </tr>
+      <tr>
+      <td>continue</td>
+      <td>salto</td>
+      <td><code><strong>continue</strong> [nome-label] <strong>;</strong></code></td>
+      </tr>
+      <tr>
+      <td>label</td>
+      <td>salto</td>
+      <td><code>nome-label<strong>:</strong></code></td>
+      </tr>
+      <tr>
+      <td>return</td>
+      <td>salto</td>
+      <td><code><strong>return</strong> valor<strong>;</strong></code></td>
+      </tr>
+      </table></div>
+      nota: <code>[ expr ]</code> significa que <code>expr</code> é opcional
+      </blockquote>
+
+      <h2 id="classes">Objectos e Classes<a> </a></h2>
+      <p>Uma classe é definida usando a palavra reservada class com a seguinte sintaxe:
+
+      </p><pre>class NomeDaClasse {
+    declaração-de-variáveis;
+    declaração-de-métodos;
+}</pre>
+      <p>Segue o exemplo de uma classe muito simples, contendo apenas dois métodos.<br/>
+      A classe Interruptor pretende modelar um vulgar comutador que tenha duas posições: "ligado" e "desligado":
+
+      </p><pre>class Interruptor {
+    boolean ligado;
+
+    void actuar(boolean estado) {
+        ligado=estado;
+    }
+
+    void mostrarEstado() {
+        if (ligado) {
+            System.out.println("O interruptor está LIGADO");
+        } else {
+            System.out.println("O interruptor está DESLIGADO");
+        }
+    }
+}</pre>
+      <p>Veja-se também um exemplo de uso dessa classe:
+
+      </p><pre>Interruptor i = new Interruptor();
+i.Actuar(true);
+i.MostrarEstado();</pre>
+
+      <h2 id="access">Acesso às variáveis e métodos de classes<a> </a></h2>
+      <p>Em Java, podem estar os seguintes qualificadores antes de um método ou variável de uma classe:</p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Accessível em:</th>
+      <th scope="col">public</th>
+      <th scope="col">protected</th>
+      <th scope="col">default</th>
+      <th scope="col">private</th>
+      </tr>
+      <tr>
+      <td>mesma classe</td>
+      <td>Sim</td>
+      <td>Sim</td>
+      <td>Sim</td>
+      <td>Sim</td>
+      </tr>
+      <tr>
+      <td>classe do mesmo package</td>
+      <td>Sim</td>
+      <td>Sim</td>
+      <td>Sim</td>
+      <td>Não</td>
+      </tr>
+      <tr>
+      <td>sub-classe num package diferente</td>
+      <td>Sim</td>
+      <td>Sim</td>
+      <td>Não</td>
+      <td>Não</td>
+      </tr>
+      <tr>
+      <td>não sub-classe em package diferente</td>
+      <td>Sim</td>
+      <td>Não</td>
+      <td>Não</td>
+      <td>Não</td>
+      </tr>
+      </table></div>
+
+      <p>Baseado em material didático de <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro
+      (DCC-FCUP)</a><strong>
+      </strong></p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="aula01-intro.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html</a>.</p>
+  </uc-page>
+</body>
+</html>

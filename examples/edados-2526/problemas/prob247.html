@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED247] TAD Conjunto (ArrayListIntSet) · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED247 (TAD Conjunto (ArrayListIntSet)) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED247</li></ol>
+    </nav>
+    <h1>[ED247] TAD Conjunto (ArrayListIntSet)</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Neste problema deverá apenas submeter uma classe <strong>ArrayListIntSet</strong> (e não um programa completo).</div>
+      </p><h2><img alt="" class="uc-content__float" height="283" loading="lazy" src="imagens/prob247.png" width="270"/>O problema</h2>
+      <p>Para este problema deve usar como base a classe <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/codigo/ArrayListIntSet.java">ArrayListIntSet</a>.</p>
+      <p>A sua tarefa é criar uma classe <strong>ArrayListIntSet</strong>, que representa um conjunto de números inteiros, implementando o seguinte interface:
+
+      </p><pre>// Interface que define o TAD conjunto de numeros inteiros
+public interface IntSet {
+    public boolean contains(int x);       // Retorna true se x esta no conjunto
+    public boolean add(int x);            // Adiciona x ao conjunto (devolve true se conseguir)
+    public boolean remove(int x);         // Remove x do conjunto (devolve true se conseguir)
+    public int     size();                // Retorna o numero de elementos do conjunto
+    public void    clear();               // Limpa o conjunto (torna-o vazio)
+
+    // Metodos a adicionar (nao existentes na classe base)
+    public boolean equals(IntSet s);      // Retorna true se ambos os conjuntos sao iguais
+    public IntSet intersection(IntSet s); // devolve um novo conjunto: a intersecao de ambos
+}</pre>
+      <p>Note que pode manter todo o código existente e apenas precisa de implementar dois novos métodos (<code>equals</code> e <code>intersection</code>) que deverá acrescentar à classe. Um exemplo de utilização seria:
+
+      </p><pre>public class TestED247 {
+    public static void main(String[] args) {
+	IntSet s1 = new ArrayListIntSet(100);
+	IntSet s2 = new ArrayListIntSet(100);
+
+	for (int i=1; i&lt;=5; i++)
+	    s1.add(i);
+	System.out.println("s1 = " + s1 + " | tamanho = " + s1.size());
+
+	for (int i=3; i&lt;=7; i++)
+	    s2.add(i);
+	System.out.println("s2 = " + s2 + " | tamanho = " + s2.size());
+
+	IntSet s3 = s1.intersection(s2);
+	System.out.println("s3 = " + s3 + " | tamanho = " + s3.size());
+
+	IntSet s4 = s2.intersection(s1);
+	System.out.println("s4 = " + s4 + " | tamanho = " + s4.size());
+
+	System.out.println("s1.equals(s2) = " + s1.equals(s2));
+	System.out.println("s3.equals(s4) = " + s3.equals(s4));
+    }
+}</pre>
+      <p>Quando executado este código deverá dar o seguinte output:</p>
+      <pre>s1 = {1,2,3,4,5} | tamanho = 5
+s2 = {3,4,5,6,7} | tamanho = 5
+s3 = {3,4,5} | tamanho = 3
+s4 = {3,4,5} | tamanho = 3
+s1.equals(s2) = false
+s3.equals(s4) = true</pre>
+      <h2>Input e Output</h2>
+      <p>Deverá apenas submeter a classe <strong>ArrayListIntSet</strong>. O Mooshak irá criar várias instâncias da sua classe usando o construtor (como mostrado no exemplo de utilização) e irá fazer uma série de testes aos métodos por si implementados.</p>
+      <p>É garantido que o conjunto nunca terá mais do que 100 números diferentes, e que todos os números serão inteiros positivos entre 1 e 1000 (inclusive).</p>
+      <p>É garantido que os métodos são chamados de forma correcta (os argumentos fazem sentido e não geram excepções).</p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob247.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html</a>.</p>
+  </uc-page>
+</body>
+</html>

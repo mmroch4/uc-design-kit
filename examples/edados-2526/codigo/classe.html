@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uma primeira classe · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Uma primeira classe.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Uma primeira classe</li></ol>
+    </nav>
+    <h1>Uma primeira classe</h1>
+    <section class="uc-section" aria-labelledby="point">
+      <h2 id="point">Point.java</h2>
+      <uc-code lang="java" filename="Point.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// TAD Ponto 2D (num plano) como falado nas primeiras aulas
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+public class Point {
+   // Variavel estatica com nr pontos criados
+   static int npoints = 0; 
+   
+   // Atributos
+   int x;
+   int y;
+
+   // Construtor que recebe o conteudo a colocar nos atributos
+   Point(int xvalue, int yvalue) {
+      x = xvalue;
+      y = yvalue;
+      npoints++;
+   }
+
+   // Construtor padrao (sem argumentos)
+   Point() { 
+      x = 0;
+      y = 0;
+      npoints++;
+   }
+   
+   // Metodo para mostrar o conteudo das variaveis x e y
+   void show() {
+      System.out.println("(" + x + "," + y + ")");
+   }
+
+   // mostra conteudo da variavel estatica
+   static void showNumPoints() {
+      System.out.println("npoints = " + npoints);
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testpoint">
+      <h2 id="testpoint">TestPoint.java</h2>
+      <uc-code lang="java" filename="TestPoint.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao do TAD Ponto
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+public class TestPoint {
+   public static void main(String[] args) {
+      // E possivel chamar metodo estatico mesmo sem objectos criados
+      Point.showNumPoints();   // Escreve npoints = 0
+
+      Point p1 = new Point();      // p1 fica com (0,0)
+      p1.show();
+      Point p2 = new Point(42,13); // p2 fica com (42,13)
+      p2.show();
+      
+      Point.showNumPoints();   // Escreve npoints = 2
+
+      Point p3 = new Point(1,1);  // p3 fica com (1,1)
+      Point p4 = new Point(1,1);  // p4 fica com (1,1)
+      System.out.println(p3==p4); // escreve false, porque sao referências 
+                                  // para objectos diferentes, embora tenham
+                                  // o mesmo conteudo
+
+      Point.showNumPoints();   // Escreve npoints = 4
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="classe.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/classe.html</a>.</p>
+  </uc-page>
+</body>
+</html>

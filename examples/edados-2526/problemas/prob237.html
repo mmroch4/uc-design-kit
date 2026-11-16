@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED237] Round-Robin · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED237 (Round-Robin) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED237</li></ol>
+    </nav>
+    <h1>[ED237] Round-Robin</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Neste problema deverá submeter uma classe <strong>ED237</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
+      Pode assumir que no Mooshak <strong>terá acesso a todas as classes base dadas listas, pilhas e filas</strong> (não precisa de as incluir na submissão).
+      </div></p>
+
+      <h2><img alt="" class="uc-content__float" height="539" loading="lazy" src="imagens/237.jpg" width="960"/>Problema</h2>
+
+      Suponha que tem uma fila de processos para serem executados por um processador e que usa o seguinte algoritmo de <em>scheduling</em> com uma estratégia <em>round-robin:</em>
+      <ol>
+      <li>Pega no primeiro processo da fila e executa-o durante um máximo de <em>T</em> segundos
+        </li><li>Se o processo ainda não terminou, é enviado para o final da fila passando a faltar menos <em>T</em> segundos para ele terminar
+        </li><li>Volta ao primeiro ponto, continuando a processar sempre o primeiro processo da fila até todos os processos terem terminado. 
+      </li></ol>
+      <p>Imagine por exemplo que <em>T=5</em> e que tinha a seguinte fila, onde o número indica o tempo restante. O processador iria passar por 7 iterações antes de terminar:</p>
+      <p><strong>Tempo actual: 0 segundos (0 iterações do processador)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>emacs<br/>9</td>
+      <td>firefox<br/>3</td>
+      <td>bash<br/>12</td>
+      <td>dia<br/>5</td>
+      </tr>
+      </table></div>
+      <p>O processador começa por executar <em>emacs</em> durante 5 segundos. Ficam ainda a faltar 4 segundos e esse processo é agora colocado no final da fila:</p>
+      <p><strong>Tempo actual: 5 segundos (1 iteração do processador)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>firefox<br/>3</td>
+      <td>bash<br/>12</td>
+      <td>dia<br/>5</td>
+      <td>emacs<br/>4</td>
+      </tr>
+      </table></div>
+      <p>Como <em>firefox</em> tem menos tempo do que 5 segundos, é executado durante os 3 segundos que precisa e termina. O algoritmo continua a ser executado até terminarem todos os processos:</p>
+      <p><strong>Tempo actual: 8 segundos (2 iterações do processador)</strong> [termina "firefox"]
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>bash<br/>12</td>
+      <td>dia<br/>5</td>
+      <td>emacs<br/>4</td>
+      </tr>
+      </table></div>
+      <p><strong>Tempo actual: 13 segundos (3 iterações do processador)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>dia<br/>5</td>
+      <td>emacs<br/>4</td>
+      <td>bash<br/>7</td>
+      </tr>
+      </table></div>
+      <p><strong>Tempo actual: 18 segundos (4 iterações do processador)</strong> [termina "dia"]
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>emacs<br/>4</td>
+      <td>bash<br/>7</td>
+      </tr>
+      </table></div>
+      <p><strong>Tempo actual: 22 segundos (5 iterações do processador)</strong> [termina "emacs"]
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>bash<br/>7</td>
+      </tr>
+      </table></div>
+      <p><strong>Tempo actual: 27 segundos (6 iterações do processador)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>bash<br/>2</td>
+      </tr>
+      </table></div>
+      <p><strong>Tempo actual: 29 segundos (7 iterações do processador)</strong> [termina "bash"]<br/>
+      <strong><div class="uc-callout uc-callout--warning">Fila vazia</div></strong>
+      </p><p>A sua tarefa é escrever um método para simular este processo, escrevendo para o ecrã cada vez que termina um processo uma linha no formato <code>NOME_PROCESSO a b</code>, onde <em>a</em> é o tempo quando o processo terminou e <em>b</em> é o número de iterações do processador quando tal aconteceu. Por exemplo, se fosse dada a fila anterior e com <em>T=5</em>, o output devia ser:
+
+      </p><pre>firefox 8 2
+dia 18 4
+emacs 22 5
+bash 29 7</pre>
+      <p><strong>Dicas:</strong> <em>(é livre para fazer fazer como quiser, mas é sugerido fazer da seguinte maneira)</em>:
+        </p><ul>
+      <li>Crie uma classe <em>Process</em> para conter um processo, com dois atributos: <em>name</em> e <em>time</em> (tempo restante)
+          </li><li>Para representar os processos, use uma fila (<em>MyQueue&lt;Process&gt;</em>), ou uma lista circular (<em>CircularLinkedList&lt;Process&gt;</em>).
+          </li><li>Precisa de continuar a processar enquanto a fila (ou lista) não estiver vazia, dando sempre tempo de execução ao primeiro processo da fila (ou lista)
+          </li><li>Cuidado com os casos onde o processo tem menos tempo restante do que <em>T</em>
+      </li></ul>
+      <h2>Input</h2>
+      <p>A primeira linha contém um inteiro <strong>T</strong>, o tempo de execução máximo por iteração. A segunda linha contém um inteiro <strong>N</strong>, o número de processos da fila. Seguem-se <strong>N</strong> linhas com os processos no formato <code>NOME_PROCESSO TEMPO_NECESSÁRIO</code>. O nome é constituído unicamente por letras minúsculas e o tempo é um inteiro.
+
+      </p><h2>Output</h2>
+      <p>O output deve conter <strong>N</strong> linhas, descrevendo os processos pela ordem em que foram terminando no formato <code>NOME_PROCESSO TEMPO_TERMINAÇÃO NUM_ITERAÇÕES</code>.
+
+      </p><h2>Exemplo de Input/Output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td><pre>5
+4
+emacs 9
+firefox 3
+bash 12
+dia 5</pre></td>
+      <td><pre>firefox 8 2
+dia 18 4
+emacs 22 5
+bash 29 7</pre></td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob237.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob237.html</a>.</p>
+  </uc-page>
+</body>
+</html>

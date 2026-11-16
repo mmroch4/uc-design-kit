@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flood Fill · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Flood Fill.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">TestFloodFill</li></ol>
+    </nav>
+    <h1>Flood Fill</h1>
+    <section class="uc-section" aria-labelledby="testfloodfill">
+      <h2 id="testfloodfill">TestFloodFill.java</h2>
+      <uc-code lang="java" filename="TestFloodFill.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de flood fill
+// Ultima alteracao: 21/04/2018
+// -----------------------------------------------------------
+
+import java.util.Scanner;
+
+public class TestFloodFill {
+   static int rows;            // Numero de linhas
+   static int cols;            // Numero de colunas   
+   static char m[][];          // Matriz de celulas
+   static boolean visited[][]; // Saber se uma dada posicao ja foi visitada
+
+   // Tamanho da mancha que inclui posicao (y,x)
+   static int t(int y, int x) {
+      if (y<0 || y>=rows || x<0 || x>=cols) return 0; // Caso base: fora dos limites
+      if (visited[y][x]) return 0;  // Caso base: celula ja visitada
+      if (m[y][x] == '.') return 0; // Caso base: celula vazia
+      int count = 1;        // celula nao vazia
+      visited[y][x] = true; // marcar como visitada
+      count += t(y-1, x);   // Adicionando celulas nao vizinhas
+      count += t(y+1, x);
+      count += t(y, x+1);
+      count += t(y, x-1);
+      return count;
+   }
+   
+   // -----------------------------------------------------------
+   
+   public static void main(String[] args) {
+      Scanner in = new Scanner(System.in);
+
+      // Leitura de uma matriz de caracteres
+      rows = in.nextInt();
+      cols = in.nextInt();
+      m = new char[rows][cols];
+      visited = new boolean[rows][cols];
+      for (int i=0; i<rows; i++)
+         m[i] = in.next().toCharArray();
+
+      // Teste do metodo t(y,x)
+      System.out.printf("t(0,0) = %d\n", t(0,0));
+      System.out.printf("t(2,5) = %d\n", t(2,5));
+      System.out.printf("t(4,0) = %d\n", t(4,0));      
+   }
+   
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="sec-2">
+      <h2 id="sec-2">Exemplo de input</h2>
+      <uc-code lang="plaintext" no-download>
+        <script type="text/plain">
+5 7
+##.#...
+.###...
+.....##
+.#...##
+##.....
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="flood_fill.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/flood_fill.html</a>.</p>
+  </uc-page>
+</body>
+</html>

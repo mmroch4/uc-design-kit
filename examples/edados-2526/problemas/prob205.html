@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED205] Árvores estritamente binárias · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED205 (Árvores estritamente binárias) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED205</li></ol>
+    </nav>
+    <h1>[ED205] Árvores estritamente binárias</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).</div>
+      </p><h2>Código Base</h2>
+      <p>Use como base as classes <strong>BTree&lt;T&gt;</strong> e <strong>BTNode&lt;T&gt;</strong> conforme descritas no exercício 2 da aula prática.
+
+      </p><h2>O problema</h2>
+      <p>Acrescente à classe dada um novo método <strong>public boolean strict()</strong> que <strong>devolve <em>true</em> se a árvore for estritamente binária ou <em>false</em> caso contrário.</strong>.
+
+      </p><p>Uma árvore é <strong>estritamente binária</strong> se não existir nenhum nó só com um filho, ou seja, se todos os seus nós têm exactamente dois filhos ou são folhas (zero filhos). A figura seguinte ilustra seis árvores binárias, sendo que as três primeiras são estritamente binárias e as três últimas não (a ver vermelho estão indicados os nós que não respeitam a condição pedida). 
+
+      </p><p><img alt="" height="242" loading="lazy" src="imagens/205.png" width="1018"/>
+      </p><h2>Submissão</h2>
+      <p>Deverá submeter apenas a classe <strong>BTree&lt;T&gt;</strong>, acrescentando o método <strong>strict</strong> como pedido <strong>(e sem apagar ou modificar nenhum dos outros métodos dados como base)</strong>. Pode assumir que terá acesso no Mooshak à classe BTNode&lt;T&gt; (não a pode mudar) e se precisar pode criar outros métodos auxiliares. O Mooshak irá criar várias instâncias da sua classe e irá fazer uma série de testes ao método por si implementado.
+
+      </p><h2>Exemplos de Input/Output</h2>
+      <p>Os exemplos correspondem às seis árvores da figura:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Árvore em <em>preorder</em></th>
+      <th scope="col">  Chamada   </th>
+      <th scope="col">Valor de retorno</th>
+      </tr>
+      <tr>
+      <td>t = 6 3 2 N N 5 N N 10 8 N N 25 N N</td>
+      <td> t.strict() </td>
+      <td>true</td>
+      </tr>
+      <tr>
+      <td>t = 6 3 2 N N 5 N N 10 N N</td>
+      <td>t.strict()</td>
+      <td>true</td>
+      </tr>
+      <tr>
+      <td>t = 6 3 N N 10 N N</td>
+      <td>t.strict()</td>
+      <td>true</td>
+      </tr>
+      <tr>
+      <td>t = 6 3 2 N N N 10 8 N N 25 N N</td>
+      <td>t.strict()</td>
+      <td>false</td>
+      </tr>
+      <tr>
+      <td>t = 6 3 2 N N 5 N N N</td>
+      <td>t.strict()</td>
+      <td>false</td>
+      </tr>
+      <tr>
+      <td>t = 6 3 N 5 N N 10 N 25 N N</td>
+      <td>t.strict()</td>
+      <td>false</td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob205.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob205.html</a>.</p>
+  </uc-page>
+</body>
+</html>

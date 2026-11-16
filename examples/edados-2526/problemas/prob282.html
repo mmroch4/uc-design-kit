@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED282] Black Friday · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED282 (Black Friday) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED282</li></ol>
+    </nav>
+    <h1>[ED282] Black Friday</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED282</strong> contendo um programa completo para resolver o problema (ou seja, com o método main). Pode assumir que no Mooshak terá acesso a todas as classes base dadas de listas, pilhas e filas dadas nas aulas (não precisa de as incluir na submissão). 
+      </p></div></p>
+
+      <p><img alt="" class="uc-content__float" height="222" loading="lazy" src="imagens/prob282.png" width="150"/>
+        Um vendedor de uma loja tecnológica tem uma enorme fila de clientes acampados à porta da loja e dispostos a comprar todas as televisões em desconto para poderem ver o mundial de futebol. Ele sabe que só pode vender um total de <strong>T</strong> televisões por dia a cada cliente. Decidiu por isso usar o seguinte algoritmo:</p>
+      <ol>
+      <li>Pega no primeiro cliente da fila e vende-lhe um máximo de <em>T</em> televisões
+          <ul>
+      <li>Se o cliente já comprou todas as televisões que queria sai da fila contente e volta para casa
+            </li><li>Caso contrário, o cliente volta para o final da fila e o número de televisões que ainda quer comprar é decrementando em <em>T</em>
+      </li></ul>
+      </li><li>Se a certa altura o primeiro cliente da fila for um cliente que já foi atendido nesse dia, o vendedor fecha a loja. Regressa depois no dia seguinte para continuar a vender televisões aos clientes que ainda estão na fila, recomeçando a partir do ponto um.
+      </li></ol>
+      <p>Imagina por exemplo que <em>T=3</em> e que tinha a seguinte fila, onde o número indica a quantidade de televisões que cada cliente quer comprar. Iria acontecer o seguinte:</p>
+
+      <h2>Dia 1</h2>
+      <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 0 / no total = 0)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>pedro<br/>6</td>
+      <td>miguel<br/>8</td>
+      <td>helder<br/>10</td>
+      <td>maria<br/>2</td>
+      </tr>
+      </table></div>
+      <p>O vendedor começa por atender o <em>pedro</em>, que é movido para o final da fila com menos 3 televisões para comprar:</p>
+      <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 3 / no total = 3)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>miguel<br/>8</td>
+      <td>helder<br/>10</td>
+      <td>maria<br/>2</td>
+      <td>pedro<br/>3</td>
+      </tr>
+      </table></div>
+      <p>Vende 3 televisões a <em>miguel</em>, que é movido para o final da fila com menos 3 televisões para comprar:</p>
+      <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 6 / no total = 6)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>helder<br/>10</td>
+      <td>maria<br/>2</td>
+      <td>pedro<br/>3</td>
+      <td>miguel<br/>5</td>
+      </tr>
+      </table></div>
+      <p>Vende 3 televisões a <em>helder</em>, que é movido para o final da fila com menos 3 televisões para comprar:</p>
+      <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 9 / no total = 9)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>maria<br/>2</td>
+      <td>pedro<br/>3</td>
+      <td>miguel<br/>5</td>
+      <td>helder<br/>7</td>
+      </tr>
+      </table></div>
+      <p>Vende 2 televisões a <em>maria</em>, que tendo obtido tudo o que queria sai da fila:</p>
+      <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 11 / no total = 11)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>pedro<br/>3</td>
+      <td>miguel<br/>5</td>
+      <td>helder<br/>7</td>
+      </tr>
+      </table></div>
+      <p>Neste momento <em>pedro</em> está no início da fila e já tinha sido atendido nesse dia, pelo que o vendedor fecha a loja, vai descansar e regressa apenas no dia seguinte.</p>
+
+      <h2>Dia 2</h2>
+      <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 0 / no total = 11)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>pedro<br/>3</td>
+      <td>miguel<br/>5</td>
+      <td>helder<br/>7</td>
+      </tr>
+      </table></div>
+      <p>O vendedor atende o <em>pedro</em>, resultando em:</p>
+      <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 3 / no total = 14)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>miguel<br/>5</td>
+      <td>helder<br/>7</td>
+      </tr>
+      </table></div>
+      <p>O vendedor atende o <em>miguel</em>, resultando em:</p>
+      <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 6 / no total = 17)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>helder<br/>7</td>
+      <td>miguel<br/>2</td>
+      </tr>
+      </table></div>
+      <p>O vendedor atende o <em>helder</em>, resultando em:</p>
+      <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 9 / no total = 20)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>miguel<br/>2</td>
+      <td>helder<br/>4</td>
+      </tr>
+      </table></div>
+      <p>Neste momento <em>miguel</em> está no início da fila e já tinha sido atendido nesse dia, pelo que o vendedor fecha a loja, vai descansar e regressa apenas no dia seguinte.</p>
+
+      <h2>Dia 3</h2>
+      <p><strong>Dia 3 | Quantidade de TVs vendidas (no dia = 0 / no total = 20)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>miguel<br/>2</td>
+      <td>helder<br/>4</td>
+      </tr>
+      </table></div>
+      <p>O vendedor atende o <em>miguel</em>, resultando em:</p>
+      <p><strong>Dia 3 | Quantidade de TVs vendidas (no dia = 2 / no total = 22)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>helder<br/>4</td>
+      </tr>
+      </table></div>
+      <p>O vendedor atende o <em>helder</em>, resultando em:</p>
+      <p><strong>Dia 3 | Quantidade de TVs vendidas (no dia = 5 / no total = 25)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>helder<br/>1</td>
+      </tr>
+      </table></div>
+      <p>Neste momento <em>helder</em> está no início da fila e já tinha sido atendido nesse dia, pelo que o vendedor fecha a loja, vai descansar e regressa apenas no dia seguinte.</p>
+
+      <h2>Dia 4</h2>
+      <p><strong>Dia 4 | Quantidade de TVs vendidas (no dia = 0 / no total = 25)</strong>
+      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>helder<br/>1</td>
+      </tr>
+      </table></div>
+      <p>O vendedor a última televisão ao <em>helder</em>, esvaziando a fila:</p>
+      <p><strong>Dia 4 | Quantidade de TVs vendidas (no dia = 1 / no total = 26)</strong><br/>
+      <strong><div class="uc-callout uc-callout--warning">Fila vazia</div></strong>
+      </p>
+      <p>A tua tarefa é simular este processo, escrevendo de cada vez que um cliente sai da fila <code>NOME_CLIENTE DIA TVS_DIA TVS_TOTAL</code> onde <em>DIA</em> é o dia em que a cliente comprou a sua última televisão, <em>TVS_DIA</em> é a quantidade de TVs vendida nesse dia e <em>TVS_TOTAL</em> é a quantidade total de TVs vendida (as quantidades de TVs devem ser no momento em que o cliente sai da fila, depois de ter comprado todas as suas TVs). Se fosse o exemplo dado anteriormente, o output devia ser:
+
+      </p><pre>maria 1 11 11
+pedro 2 3 14
+miguel 3 2 22
+helder 4 1 26</pre>
+      <p><strong>Dicas:</strong> <em>(é livre para fazer fazer como quiser, incluindo usar listas do próprio Java, mas é sugerido fazer da seguinte maneira)</em>:
+        </p><ul>
+      <li>Crie uma classe <em>Cliente</em> para conter um cliente, com dois atributos: <em>name</em> e <em>tvs</em> (nome e número de televisões que ainda quer comprar)
+          </li><li>Para representar as dúvidas, use uma fila (<em>MyQueue&lt;Client&gt;</em>).
+          </li><li>Mantenha três variáveis indicado o dia atual, a quantidade de TVs vendida no dia e quantidade total de TVs já vendidas.
+          </li><li>Simule o processo descrito em cima. Por exemplo, se o cliente ainda quer comprar mais do que <em>T</em> televisões, decremente <em>tvs</em> e adicione novamente o cliente ao final da fila...
+        </li></ul>
+      <h2>Input</h2>
+      <p>A primeira linha contém um inteiros <strong>T</strong> (<em>1≤T≤100</em>), o máximo diário de televisões que podem ser vendidas ao mesmo cliente. A segunda linha contém um inteiro <strong>N</strong>, o número de clientes na fila. Seguem-se <strong>N</strong> linhas (<em>1≤N≤100</em>) descrevendo os clientes na ordem em que estão inicialmente na fila, cada linha no formato <code>NOME_CLIENTE NUMERO_TVS</code>. O nome é constituído unicamente por letras minúsculas (e tem tamanho inferior a 10) e TVS é um inteiro positivo menor ou igual a 100.</p>
+      <h2>Output</h2>
+      <p>O output deve conter <strong>N</strong> linhas, descrevendo os clientes, pela ordem em que cada uma das suas últimas dúvidas foram sendo esclarecidas, no formato <code>NOME_CLIENTE DIA TVS_DIA TVS_TOTAL</code>, como foi atrás escrito.</p>
+      <h2>Exemplo de Input/Output </h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td><pre>3
+4
+pedro 6
+miguel 8
+helder 10
+maria 2</pre></td>
+      <td><pre>maria 1 11 11
+pedro 2 3 14
+miguel 3 2 22
+helder 4 1 26</pre></td>
+      </tr>
+      </table></div>
+
+      <p><strong>Teste Prático de Estruturas de Dados (CC1007)</strong></p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob282.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob282.html</a>.</p>
+  </uc-page>
+</body>
+</html>

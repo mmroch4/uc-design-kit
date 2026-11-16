@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED015] Sopa de Letras · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED015 (Sopa de Letras) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED015</li></ol>
+    </nav>
+    <h1>[ED015] Sopa de Letras</h1>
+    <div class="uc-content">
+      <h2>O problema</h2>
+      <p>Todos conhecem o puzzle da "Sopa de Letras", que consiste basicamente em encontrar palavras, num
+      emaranhado de letras.
+
+      </p><p>Uma sopa de letras é basicamente um quadriculado de letras, sempre maiúsculas, e uma palavra pode ser
+      encontrada apenas na horizontal (da direita para a esquerda ou da esquerda para a direita) ou na vertical
+      (de cima para baixo, ou de baixo para cima). Para este problema, <strong>as
+          palavras não podem vir na diagonal</strong>.
+
+      </p><p>A tua tarefa é resolver uma sopa de letras.
+
+      </p><p>Por exemplo, imagina que tinhas de procurar as seguintes palavras na sopa de letras da figura:
+
+      </p><pre>SOPA
+LETRA
+EDA</pre>
+      <img alt="" height="178" loading="lazy" src="imagens/prob015.jpg" width="700"/>
+      <p>A ideia é que o teu programa descubra onde estão as palavras. Para que mostres que realmente as
+      descobriste, todas as letras que não pertencem a palavras devem ser substituidas por um ponto, como
+      exemplificado na figura. Consulta o exemplo de input e output para clarificares o que deves fazer.
+
+      </p><h2>Input</h2>
+      <p>Um ficheiro de input contém vários casos de teste.
+      </p><p>A primeira linha de teste contém dois números <code>LINS COLS</code>, indicando respectivamente
+      o número de linhas e colunas da sopa de letras (<code>1 ≤ LINS,COLS ≤ 100</code>).
+      </p><p>Seguem-se LINS linhas de input, cada uma contendo COLS letras maiúsculas, sem espaços a separá-las.
+      </p><p>De seguida vem <code>N</code> (<code>1 ≤ N ≤ 50</code>), o número de palavras a pesquisar, sendo que as N linhas
+      seguintes contêm precisamente as palavras, também apenas representadas por letras maiúsculas (cada palavra
+      tem o tamanho máximo de 50 letras). É garantido que todas estas palavras aparecem no input apenas uma só vez
+      (numa das quatro direcções válidas)
+      </p><p>Um caso com 0 linhas e 0 colunas sinaliza o final do input, e não deve ser processado.
+
+      </p><h2>Output</h2>
+      <p>Para cada caso deve começar por ser imprimida uma linha de output, <code>"Input #NUM"</code>, onde
+      <code>NUM</code> representa o número do caso, seguido da impressão da sopa de letras, no formato pedido,
+      com as palavras destacadas.
+
+      </p><p>Vê o exemplo para clarificar a maneira como deve ser feito o output.</p><h2>Exemplo de input/output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>4 5
+SBCDA
+OFGHD
+PJKLE
+ARTEL
+3
+SOPA
+LETRA
+EDA
+8 10
+EABDFGHJNM
+SASDDFOCVB
+TXSCSFTCAQ
+EZVFACILSD
+AQWUHNUFSV
+PROBLEMADA
+HCVDASEFVB
+WMLFACIFSD
+5
+ESTE
+PROBLEMA
+FICA
+MUITO
+FACIL
+0 0</pre>
+      </td>
+      <td>
+      <pre>Input #1
+S...A
+O...D
+P...E
+ARTEL
+Input #2
+E.........
+S.....O...
+T.....T...
+E..FACIL..
+......U...
+PROBLEMA..
+..........
+....ACIF..</pre></td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob015.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob015.html</a>.</p>
+  </uc-page>
+</body>
+</html>

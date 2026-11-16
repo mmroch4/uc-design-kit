@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED301] Triagem de Manchester · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED301 (Triagem de Manchester) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED301</li></ol>
+    </nav>
+    <h1>[ED301] Triagem de Manchester</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter um programa
+      completo e poderá fazer uso da API do Java. Use o esqueleto de código dado que tem a estrutura
+      necessária para representar uma versão de árvores de inteiros. Deve
+      acrescentar os métodos que são pedidos e fazer escrever o
+      output conforme solicitado. O input está considerado já no esqueleto
+      de código dado.
+      </p></div></p>
+
+      <h2>Introdução</h2>
+      <p>
+      As urgências Hospitalares existem para o atendimento rápido das
+      situações de risco para a saúde, pelo que é claro que quanto mais
+      grave a situação clínica mais rapidamente os pacientes devem ser
+      atendidos. O Sistema de Triagem de Manchester, teve origem, tal como o
+      nome indica, na cidade de Manchester, em Inglaterra, está testado
+      internacionalmente e em funcionamento em vários hospitais
+      portugueses. Está acreditado pelo Ministério da Saúde, Ordem dos
+      Médicos, Ordem dos Enfermeiros e é entendido como mais um passo, no
+      sentido de melhor atender quem recorre a um Serviço de Urgência, no
+      qual se exige rapidez, na proporção da gravidade. Este sistema utiliza
+      um protocolo clínico que permite classificar a gravidade da situação
+      de cada doente que recorre ao Serviço de Urgência. Este método permite
+      uma rápida identificação dos doentes que recorrem ao Serviço de
+      Urgência, permitindo atender, em primeiro lugar, os doentes mais
+      graves e não, necessariamente, quem chega primeiro. </p>
+      <p>
+      Como se faz a Triagem de Prioridades?
+      </p>
+      <p>
+      Após efetuar a sua inscrição na Admissão de Doentes será encaminhado
+      para o gabinete de triagem, onde será submetido a uma observação
+      prévia, com identificação de um conjunto de sintomas ou de sinais que
+      permitem atribuir uma cor que corresponde a um grau de prioridade
+      clínica no atendimento e a um tempo de espera recomendado, até à
+      primeira observação médica. Existem 5 cores, vermelho, laranja,
+      amarelo, verde e azul, cada uma representando um grau de gravidade e
+      um tempo de espera recomendado para o doente ser submetido a
+      observação médica. A tabela seguinte faz o resumo das cores:</p>
+      <p>
+      Figura com as cores da triagem de Manchester:
+
+      <img alt="" class="uc-content__float" height="186" loading="lazy" src="imagens/301.png" width="687"/></p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Cor</th> <th scope="col">Situação</th>
+      </tr>
+      <tr>
+      <td>Vermelho</td><td>Emergente</td>
+      </tr>
+      <tr>
+      <td>Laranja</td><td>Muito Urgente</td>
+      </tr>
+      <tr>
+      <td>Amarelo</td><td>Urgente</td>
+      </tr>
+      <tr>
+      <td>Verde</td><td>Pouco Urgente</td>
+      </tr>
+      <tr>
+      <td>Azul</td><td>Não Urgente</td>
+      </tr>
+      </table></div>
+      <p>
+      O que acontece de seguida?
+      </p>
+      <p>
+      Decorrente do contacto inicial no gabinete de triagem, o doente é identificado com uma cor, representando um grau de gravidade e um tempo de espera recomendado para atendimento. Aos doentes com patologias mais graves é atribuída a cor vermelha, que corresponde a um atendimento imediato. Os casos muito urgentes recebem a cor laranja, com um tempo de espera recomendado de 10 minutos. Os casos urgentes, com a cor amarela, têm um tempo de espera recomendado de 60 minutos. Os doentes que recebem a cor verde e azul são casos de menor gravidade (pouco ou não urgentes) que, como tal, devem ser atendidos no espaço de duas e quatro horas, respetivamente, após atendimento dos doentes mais graves.</p>
+      <h2>O problema</h2>
+      <p> A sua tarefa é criar uma ferramenta informática
+      que permita gerir o atendimento dos pacientes numa urgência,
+      escolhendo quem é atendido primeiro e gerando estatísticas acerca dos
+      tempos de espera resultantes. Para tal, considere que a urgência
+      possui <em>N</em> equipas de urgência para atenderem um doente de cada
+      vez (considere-se <code>1 &lt;= N &lt;= 5</code>). Cada doente que chega à
+      urgência tem um resultado de triagem que inclui a cor atribuída pelo
+      protocolo de Manchester (Vermelho, Laranja, Amarelo, Verde, Azul), o
+      tempo de chegada ao hospital, e o tempo que o seu atendimento
+      demorará. A ordem para doentes da mesma cor é garantida pelo
+      tempo de chegada à triagem, o que corresponde a dizer que
+      existe uma fila associada a cada cor atribuida na triagem. Quando uma
+      equipa de atendimento está livre, as filas são consultadas devendo ser
+      escolhido sempre um doente que está na frente de uma fila com maior
+      grau de urgência. Em caso de empate, deverá ser escolhido o doente que
+      chegou primeiro ao Hospital. Quando todos os doentes tiverem sido
+      atendidos, o programa termina.</p>
+      <h2>Input</h2>
+      <p>
+      A primeira linha do input contém o valor de uma <code>flag</code>
+      (0, 1, ou 2) que determina o tipo de resultados que pretendemos
+      observar. Segue-se numa segunda linha o número de equipas a fazerem
+      atendimento na urgência (valor de 1 a 5). As linhas seguintes, em
+      número indeterminado, fornecem informação de doentes que acabaram a
+      triagem inicial de atribuição de cor para serem atendidos. Cada linha possui uma string com o nome do
+      doente, seguida de uma string prioridade com a cor codificada pelo
+      protocolo de Manchester (“Vermelho”, “Laranja”, “Amarelo”, “Verde”,
+      “Azul”), de um inteiro <code>t_chegada</code> com o tempo de chegada em minutos ao
+      hospital (<code>0 &lt;= t_chegada &lt; 1440</code>), e de um inteiro <code>t_atend</code> com o tempo
+      que demorará o atendimento do doente.
+      </p>
+      <h2>Output</h2>
+      <p>Se <code>flag==0</code>, deverá apresentar
+      a cor ou cores de prioridade mais atribuída(s) na triagem. O output
+      deverá ser uma ou mais linhas, cada linha com uma string com o nome da
+      cor mais atribuída, seguida de um inteiro com o número de doentes com
+      essa cor. Haverá mais linhas no output caso se verifique um empate,
+      i.e. mais do que uma cor com o valor máximo.</p>
+      <p>
+      Se <code>flag==1</code> deverá apresentar a sequência em que os doentes
+      foram atendidos durante esse dia. Para tal, apresente uma linha por
+      doente, ordenada pela ordem de atendimento. Cada linha deverá ter uma
+      string com o nome do doente, seguida de um inteiro com o tempo de
+      chegada ao hospital, um inteiro com o tempo de espera até à entrada
+      num posto de atendimento, e um inteiro com o tempo de saída do
+      Hospital. No final deverá apresentar o tempo médio de espera
+      para ser atendido (tempo médio em minutos de espera dos doentes).  Nesta flag, o número de equipas
+      de atendimento dado no input será sempre 1, o que simplifica muito a tomada
+      de decisão sobre o atendimento. </p>
+      <p>
+      No caso de se ter <code>flag==2</code>, o número de equipas dado no input
+      é é um valor de 2 a 5, obrigando a cuidados na tomada de
+      decisão sobre quem faz o atendimento. Neste caso deverá apresentar:
+      </p><ul>
+      <li> as estatísticas de cada equipa
+      de atendimento desse dia na urgência do Hospital.</li>
+      <li> o tempo médio de espera para ser atendido (tempo médio em
+      minutos de espera dos doentes).</li>
+      </ul>
+      <p>
+      Veja os exemplos de output para perceber os cabeçalhos e formatos de
+      escrita pretendidos.
+
+      </p><p><strong>
+      NOTA IMPORTANTE: para resolver este problema é-lhe fornecido uma <a href="../downloads/TManchester_v0.java">uma parte de código</a> que poderá re-utilizar e completar de modo a responder ao solicitado.
+      </strong></p>
+      <h2>Exemplos:</h2>
+      <h2>
+      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
+
+      <tr>
+      <th scope="col"><p>Input</p> </th>
+      <th scope="col"> <p>Output</p></th>
+      </tr>
+      <tr>
+      <td>
+      <pre>0
+2
+MiguelCoimbra Laranja 0 20
+RitaRibeiro Verde 0 5
+FernandoSilva Amarelo 5 15</pre>
+      </td>
+      <td> <pre>Laranja 1
+Amarelo 1
+Verde 1</pre> </td>
+      </tr>
+      </table></div>
+      <h2>
+      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
+
+      <tr>
+      <th scope="col"><p>Input</p> </th>
+      <th scope="col"> <p>Output</p></th>
+      </tr>
+      <tr>
+      <td>
+      <pre>1
+1
+MiguelCoimbra Laranja 0 20
+RitaRibeiro Verde 0 5
+FernandoSilva Amarelo 5 15</pre>
+      </td>
+      <td> <pre>---------------------------
+Lista dos doentes atendidos
+---------------------------
+MiguelCoimbra 0 0 20
+FernandoSilva 5 15 35
+RitaRibeiro 0 35 40
+---------------------------
+Tempo medio de espera: 16.7</pre> </td>
+      </tr>
+      </table></div>
+      <h2>
+      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
+
+      <tr>
+      <th scope="col"><p>Input</p> </th>
+      <th scope="col"> <p>Output</p></th>
+      </tr>
+      <tr>
+      <td>
+      <pre>2
+2
+MiguelCoimbra Laranja 0 20
+RitaRibeiro Verde 0 5
+FernandoSilva Amarelo 5 15</pre>
+      </td>
+      <td> <pre>-----------------------
+Equipa NDoentes MediaTA
+-----------------------
+     0        1    20.0
+     1        2    10.0
+---------------------------
+Tempo medio de espera: 0.0</pre> </td>
+      </tr>
+      </table></div>
+      <h3>Referência:</h3>
+
+      1. “Protocolo da Triagem de Manchester”, Link: <code>https://www.grupoportuguestriagem.pt/grupo-portugues-triagem/protocolo-triagem-manchester/</code> (consultado em Abril 2012)
+
+      <p><strong>Estruturas de Dados (CC1007), DCC-FCUP</strong></p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob301.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob301.html</a>.</p>
+  </uc-page>
+</body>
+</html>

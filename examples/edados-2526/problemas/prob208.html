@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED208] Mínimo e máximo · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED208 (Mínimo e máximo) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED208</li></ol>
+    </nav>
+    <h1>[ED208] Mínimo e máximo</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>BSTree&lt;T&gt;</strong> (e não um programa completo).</div>
+      </p><h2>Código Base</h2>
+      <p>Use como base as classes <strong>BSTree&lt;T&gt;</strong> e <strong>BSTNode&lt;T&gt;</strong>.
+
+      </p><h2>O problema</h2>
+      <p>Acrescente à classe dada dois novos métodos:
+        </p><ul>
+      <li><strong>public T minValue()</strong> que devolva o menor valor armazenado na árvore.
+          </li><li><strong>public T maxValue()</strong> que devolva o maior valor armazenado na árvore.
+        </li></ul>
+      <p>É garantido que a árvore binária é de pesquisa e que não é vazia (tem pelo menos um valor armazenado.
+
+      </p><p>A figura seguinte ilustra uma árvore binária de pesquisa com valor mínimo X e valor máximo Y.
+
+      </p><p><img alt="" height="182" loading="lazy" src="imagens/208.png" width="262"/></p>
+      <h2>Submissão</h2>
+      <p>Deverá submeter apenas a classe <strong>BSTree&lt;T&gt;</strong>, acrescentando o método <strong>minValue</strong> e <strong>maxValue</strong> como pedido <strong>(e sem apagar ou modificar nenhum dos outros métodos dados como base)</strong>. Pode assumir que terá acesso no Mooshak à classe BSTNode&lt;T&gt; (não a pode mudar) e se precisar pode criar outros métodos auxiliares. O Mooshak irá criar várias instâncias da sua classe e irá fazer uma série de testes ao método por si implementado.
+
+      </p><h2>Exemplos de Input/Output</h2>
+      <p>O primeiro exemplo corresponde à árvore da figura do enunciado.</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Valores da árvore <em>t</em><br/><em>(pela ordem de inserção)</em>   </th>
+      <th scope="col">t.minValue()</th>
+      <th scope="col">t.maxValue()</th>
+      </tr>
+      <tr>
+      <td>5 3 10 1 4 7 42</td>
+      <td>1</td>
+      <td>42</td>
+      </tr>
+      <tr>
+      <td>14 4 18 3 9 16 20 7 15 17 5</td>
+      <td>3</td>
+      <td>20</td>
+      </tr>
+      <tr>
+      <td>"ana" "pedro" "duarte" "afonso" "carlos" "luis"</td>
+      <td>"afonso"</td>
+      <td>"pedro"</td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob208.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob208.html</a>.</p>
+  </uc-page>
+</body>
+</html>
