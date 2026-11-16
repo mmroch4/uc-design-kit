@@ -11,6 +11,7 @@
     "core/language.js",
     "core/dom.js",
     "core/element.js",
+    "core/runners.js",
     "components/uc-page.js",
     "components/uc-hero.js",
     "components/uc-notices.js",

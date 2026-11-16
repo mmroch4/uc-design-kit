@@ -181,6 +181,18 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     editable: "Código editável",
     testOn: "Testar no {platform}",
     tabHint: "Tab insere espaços. Para sair do editor, carrega em Esc e depois em Tab.",
+    run: "Executar",
+    runTests: "Executar testes",
+    running: "A executar…",
+    output: "Resultado",
+    error: "Erro",
+    runFailed: "Não foi possível executar o código ({reason}).",
+    testsPassed: "{passed} de {total} testes passaram",
+    passed: "Passou",
+    failed: "Falhou",
+    expected: "Esperado",
+    got: "Obtido",
+    noOutput: "(sem resultado)",
   },
   question: {
     label: "Verificação rápida",
@@ -284,6 +296,18 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     editable: "Editable code",
     testOn: "Test on {platform}",
     tabHint: "Tab inserts spaces. To leave the editor, press Esc and then Tab.",
+    run: "Run",
+    runTests: "Run tests",
+    running: "Running…",
+    output: "Output",
+    error: "Error",
+    runFailed: "Could not run the code ({reason}).",
+    testsPassed: "{passed} of {total} tests passed",
+    passed: "Passed",
+    failed: "Failed",
+    expected: "Expected",
+    got: "Got",
+    noOutput: "(no output)",
   },
   question: {
     label: "Quick check",
@@ -846,6 +870,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     checkCircle: `<svg ${SVG_ATTRS} width="22" height="22" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>`,
     copy: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>`,
     download: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>`,
+    play: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"><path d="M7 5v14l12-7z"/></svg>`,
     reset: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg>`,
     tree: `<svg ${SVG_ATTRS} width="28" height="28" viewBox="0 0 28 28" stroke-width="2"><circle cx="14" cy="5" r="3"/><circle cx="6" cy="22" r="3"/><circle cx="22" cy="22" r="3"/><path d="M12.5 7.5 7.5 19.5M15.5 7.5l5 12"/></svg>`,
   };
@@ -960,6 +985,177 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       pending.splice(0).forEach(([name, constructor]) => register(name, constructor));
     });
   }
+})(window.UC);
+
+/* --- core/runners.js --- */
+/**
+ * Code runners: the pluggable back ends that execute code for
+ * <uc-code run>. See docs/api.md, section 7.1.
+ *
+ * A runner is an object with a `run(request, options)` method returning a
+ * Promise of a result:
+ *
+ *   request = {
+ *     language: "java",              // the block's language (data-lang)
+ *     files: { "": "...", "BTree.java": "..." },  // "" is the entry file
+ *   }
+ *   result  = { ok: true, stdout: "...", stderr: "...", duration: 314 }
+ *
+ * `options` is the runner's own section of UC_COURSE.runner (for example
+ * `runner.codapi`). Pages never talk to a provider directly: they only say
+ * `<uc-code run>`, and course.js picks the provider, so a course can move
+ * from the public Codapi service to a self-hosted one (or to Judge0, or to
+ * an in-browser engine) by changing configuration only.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const registry = new Map();
+
+  /** Default configuration, merged under UC_COURSE.runner. */
+  const DEFAULTS = {
+    provider: "codapi",
+    languages: { javascript: "browser", js: "browser" },
+    codapi: {
+      url: "https://api.codapi.org/v1",
+      // Block language → Codapi sandbox name, when they differ.
+      sandboxes: { c: "gcc", "c++": "cpp", py: "python" },
+      timeout: 20000,
+    },
+    browser: { timeout: 5000 },
+  };
+
+  /**
+   * Registers (or replaces) a runner under `name`.
+   * @param {string} name
+   * @param {{ run: function(object, object): Promise<object> }} runner
+   */
+  UC.registerRunner = function registerRunner(name, runner) {
+    if (!name || !runner || typeof runner.run !== "function") {
+      console.warn("[uc-kit] UC.registerRunner(name, runner): runner needs a run(request, options) method");
+      return;
+    }
+    registry.set(String(name), runner);
+  };
+
+  function config() {
+    const own = (UC.course && UC.course.runner) || {};
+    const merged = { ...DEFAULTS, ...own };
+    merged.languages = { ...DEFAULTS.languages, ...(own.languages || {}) };
+    Object.keys(DEFAULTS).forEach((key) => {
+      if (DEFAULTS[key] && typeof DEFAULTS[key] === "object" && key !== "languages") {
+        merged[key] = { ...DEFAULTS[key], ...(own[key] || {}) };
+      }
+    });
+    return merged;
+  }
+
+  /**
+   * Runs code with the runner configured for `request.language`.
+   * Always resolves to a result object; failures to reach the runner reject
+   * with an Error whose message can be shown to the student.
+   */
+  UC.internal.runCode = function runCode(request) {
+    const settings = config();
+    const name = settings.languages[request.language] || settings.provider;
+    const runner = registry.get(name);
+    if (!runner) return Promise.reject(new Error(`unknown runner "${name}"`));
+    return Promise.resolve(runner.run(request, settings[name] || {})).then((result) => ({
+      ok: Boolean(result && result.ok),
+      stdout: String((result && result.stdout) || ""),
+      stderr: String((result && result.stderr) || ""),
+      duration: Number((result && result.duration) || 0),
+    }));
+  };
+
+  /** Whether a runner is configured and registered for `language`. */
+  UC.internal.canRun = function canRun(language) {
+    const settings = config();
+    return registry.has(settings.languages[language] || settings.provider);
+  };
+
+  /* ----------------------------------------------------------------------
+   * Built-in runner: Codapi (https://codapi.org), public or self-hosted.
+   * -------------------------------------------------------------------- */
+
+  UC.registerRunner("codapi", {
+    run(request, options) {
+      const sandbox = (options.sandboxes && options.sandboxes[request.language]) || request.language;
+      const controller = typeof AbortController === "function" ? new AbortController() : null;
+      const timer = controller ? setTimeout(() => controller.abort(), options.timeout) : null;
+      return fetch(`${String(options.url).replace(/\/$/, "")}/exec`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ sandbox, command: "run", files: request.files }),
+        signal: controller ? controller.signal : undefined,
+      })
+        .then((response) =>
+          response.json().catch(() => ({})).then((body) => {
+            // Codapi answers 4xx with a JSON body for unknown sandboxes and limits.
+            if (!response.ok && !body.stderr) throw new Error(`HTTP ${response.status}`);
+            return body;
+          }),
+        )
+        .catch((error) => {
+          throw new Error(error.name === "AbortError" ? "timeout" : error.message);
+        })
+        .finally(() => clearTimeout(timer));
+    },
+  });
+
+  /* ----------------------------------------------------------------------
+   * Built-in runner: JavaScript in a Web Worker (no network, no DOM).
+   * -------------------------------------------------------------------- */
+
+  const WORKER_SOURCE = `
+    self.onmessage = (event) => {
+      const out = [], err = [];
+      const show = (value) => typeof value === "string" ? value : (() => { try { return JSON.stringify(value); } catch (e) { return String(value); } })();
+      const line = (args) => args.map(show).join(" ");
+      console.log = console.info = (...args) => out.push(line(args));
+      console.error = console.warn = (...args) => err.push(line(args));
+      const started = Date.now();
+      let ok = true;
+      try { (0, eval)(event.data); } catch (error) { ok = false; err.push(String(error)); }
+      self.postMessage({ ok, stdout: out.join("\\n"), stderr: err.join("\\n"), duration: Date.now() - started });
+    };
+  `;
+
+  UC.registerRunner("browser", {
+    run(request, options) {
+      const files = request.files || {};
+      // The entry file runs last, after any helper files.
+      const code = Object.keys(files)
+        .sort((a, b) => (a === "" ? 1 : b === "" ? -1 : 0))
+        .map((name) => files[name])
+        .join("\n;\n");
+      return new Promise((resolve, reject) => {
+        let worker;
+        try {
+          worker = new Worker(URL.createObjectURL(new Blob([WORKER_SOURCE], { type: "text/javascript" })));
+        } catch (error) {
+          reject(new Error("workers unavailable"));
+          return;
+        }
+        const timer = setTimeout(() => {
+          worker.terminate();
+          reject(new Error("timeout"));
+        }, options.timeout);
+        worker.onmessage = (event) => {
+          clearTimeout(timer);
+          worker.terminate();
+          resolve(event.data);
+        };
+        worker.onerror = (event) => {
+          clearTimeout(timer);
+          worker.terminate();
+          resolve({ ok: false, stdout: "", stderr: event.message || "error", duration: 0 });
+        };
+        worker.postMessage(code);
+      });
+    },
+  });
 })(window.UC);
 
 /* --- components/uc-page.js --- */
@@ -3082,7 +3278,9 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
 /* --- components/uc-code.js --- */
 /**
  * <uc-code> — code block with syntax highlighting, copy, download, an
- * optional editable mode and an optional "Test on…" link.
+ * optional editable mode, and either a "Test on…" link (`run="URL"`) or
+ * in-page execution with optional tests (`run` without a value), through
+ * the runners in core/runners.js.
  * See docs/api.md, section 3.5.
  *
  * Highlighting uses highlight.js from cdnjs, loaded on first use (once per
@@ -3233,12 +3431,29 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     return lines.map((line) => line.slice(common)).join("\n");
   }
 
-  /** Finds the authored source element: <script type="text/plain"> or <pre>. */
+  /** Finds the authored source element: <script type="text/plain"> or <pre> (not the harness). */
   function findSource(element) {
     for (const child of element.children) {
-      if (child.matches('script[type="text/plain"]') || child.matches("pre")) return child;
+      if (child.matches('script[type="text/plain"]:not([data-harness])') || child.matches("pre")) return child;
     }
     return null;
+  }
+
+  /** Reads the teacher's tests: <ol data-tests><li data-expected="…">name</li></ol>. */
+  function readTests(element) {
+    const list = Array.from(element.children).find((child) => child.matches("[data-tests]"));
+    if (!list) return [];
+    return Array.from(list.querySelectorAll("li")).map((item) => ({
+      name: item.textContent.trim(),
+      expected: item.hasAttribute("data-expected") ? item.getAttribute("data-expected") : "",
+    }));
+  }
+
+  /** Output lines with trailing spaces and trailing empty lines removed. */
+  function outputLines(text) {
+    const lines = String(text).replace(/\r\n?/g, "\n").split("\n").map((line) => line.replace(/\s+$/, ""));
+    while (lines.length && lines[lines.length - 1] === "") lines.pop();
+    return lines;
   }
 
   function sourceLanguage(source) {
@@ -3328,6 +3543,27 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       this.escapePressed = false;
       this.hintId = uid("uc-code-hint");
       this.titleId = uid("uc-code-title");
+      // In-page execution: optional hidden files and tests. A harness script
+      // without `filename` is the entry file; with one, it is a support file.
+      this.harness = null;
+      this.supportFiles = {};
+      for (const child of this.children) {
+        if (!child.matches('script[type="text/plain"][data-harness]')) continue;
+        const name = child.getAttribute("filename");
+        const code = normalizeSource(child.textContent);
+        if (name) this.supportFiles[name] = code;
+        else if (!this.harness) this.harness = { code };
+      }
+      this.tests = readTests(this);
+      this.running = false;
+      this.result = null;
+    }
+
+    /** "execute" for `run` without a value, "link" for `run="URL"`, else null. */
+    get runMode() {
+      if (!this.hasAttribute("run")) return null;
+      const value = this.getAttribute("run").trim();
+      return value === "" || value === "run" ? "execute" : "link";
     }
 
     get editable() {
@@ -3374,6 +3610,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
         this.scroller.removeAttribute("aria-labelledby");
       }
 
+      this.renderResult();
       if (focusedAction) this.header.querySelector(`[data-action="${focusedAction}"]`)?.focus();
     }
 
@@ -3408,7 +3645,8 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       }
 
       this.showPlain();
-      this.prepend(this.header, this.body, this.status);
+      this.results = h("div", { class: "uc-code__results", hidden: true });
+      this.prepend(this.header, this.body, this.results, this.status);
       // The authored source is kept in the DOM, hidden, so nothing is lost.
       if (this.source.matches("pre")) this.source.hidden = true;
       this.highlight();
@@ -3429,7 +3667,18 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
         actions.push(this.button("download", "download", this.t("code.download"), () => downloadText(this.code, this.downloadName())));
       }
       if (this.editable) actions.push(this.button("reset", "reset", this.t("code.reset"), () => this.onReset()));
-      const run = this.getAttribute("run");
+      if (this.runMode === "execute") {
+        const label = this.t(this.running ? "code.running" : this.tests.length ? "code.runTests" : "code.run");
+        const button = h(
+          "button",
+          { type: "button", class: "uc-button uc-button--primary uc-code__run", "data-action": "execute", onClick: () => this.onRun() },
+          icon("play"),
+          h("span", {}, label),
+        );
+        if (this.running) button.setAttribute("aria-disabled", "true");
+        actions.push(button);
+      }
+      const run = this.runMode === "link" ? this.getAttribute("run") : null;
       if (run) {
         const external = isExternal(run);
         actions.push(
@@ -3520,6 +3769,109 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       this.highlight();
       this.textarea.focus();
       this.textarea.setSelectionRange(0, 0);
+    }
+
+    /* --- Running ------------------------------------------------------ */
+
+    /** The files sent to the runner: the student's code plus the hidden harness files. */
+    files() {
+      if (!this.harness) return { ...this.supportFiles, "": this.code };
+      const name = this.getAttribute("filename") || `code.${(this.languageInfo() || { ext: "txt" }).ext}`;
+      return { ...this.supportFiles, "": this.harness.code, [name]: this.code };
+    }
+
+    onRun() {
+      if (this.running) return;
+      this.running = true;
+      this.result = null;
+      this.render();
+      this.announce(this.t("code.running"));
+      UC.internal
+        .runCode({ language: this.language, files: this.files() })
+        .then((result) => {
+          this.result = { ...result, tests: this.checkTests(result) };
+        })
+        .catch((error) => {
+          this.result = { failed: true, reason: error.message };
+        })
+        .finally(() => {
+          this.running = false;
+          this.render();
+          this.announce(this.summary());
+        });
+    }
+
+    /** Compares output line i with test i. Returns null when there are no tests. */
+    checkTests(result) {
+      if (!this.tests.length) return null;
+      const lines = result.ok ? outputLines(result.stdout) : [];
+      return this.tests.map((test, index) => {
+        const got = index < lines.length ? lines[index] : null;
+        return { ...test, got, passed: got !== null && got === test.expected.replace(/\s+$/, "") };
+      });
+    }
+
+    summary() {
+      const result = this.result;
+      if (!result) return "";
+      if (result.failed) return this.t("code.runFailed", { reason: result.reason });
+      if (result.tests) {
+        const passed = result.tests.filter((test) => test.passed).length;
+        return this.t("code.testsPassed", { passed, total: result.tests.length });
+      }
+      return result.ok ? this.t("code.output") : this.t("code.error");
+    }
+
+    renderResult() {
+      if (!this.results) return;
+      const result = this.result;
+      this.results.hidden = !result;
+      if (!result) {
+        this.results.replaceChildren();
+        return;
+      }
+      const parts = [];
+      if (result.failed) {
+        parts.push(h("p", { class: "uc-code__results-error" }, this.t("code.runFailed", { reason: result.reason })));
+      } else {
+        if (result.tests) {
+          const passed = result.tests.filter((test) => test.passed).length;
+          const all = passed === result.tests.length;
+          parts.push(
+            h("p", { class: `uc-code__results-summary${all ? " uc-code__results-summary--passed" : ""}` }, this.summary()),
+            h(
+              "ol",
+              { class: "uc-code__tests" },
+              result.tests.map((test) =>
+                h(
+                  "li",
+                  { class: `uc-code__test uc-code__test--${test.passed ? "passed" : "failed"}` },
+                  h("span", { class: "uc-code__test-mark", "aria-hidden": "true" }, test.passed ? "✓" : "✗"),
+                  h("span", { class: "uc-visually-hidden" }, `${this.t(test.passed ? "code.passed" : "code.failed")}: `),
+                  h("span", { class: "uc-code__test-name" }, test.name),
+                  test.passed
+                    ? null
+                    : h(
+                        "span",
+                        { class: "uc-code__test-detail" },
+                        `${this.t("code.expected")}: `,
+                        h("code", {}, test.expected || this.t("code.noOutput")),
+                        ` · ${this.t("code.got")}: `,
+                        h("code", {}, test.got === null || test.got === "" ? this.t("code.noOutput") : test.got),
+                      ),
+                ),
+              ),
+            ),
+          );
+        }
+        const showOutput = !result.tests || !result.ok;
+        if (showOutput) {
+          parts.push(h("p", { class: "uc-code__results-label" }, this.t(result.ok ? "code.output" : "code.error")));
+          if (result.stdout || result.ok) parts.push(h("pre", { class: "uc-code__results-output" }, result.stdout || this.t("code.noOutput")));
+        }
+        if (result.stderr) parts.push(h("pre", { class: "uc-code__results-output uc-code__results-output--stderr" }, result.stderr));
+      }
+      this.results.replaceChildren(...parts);
     }
 
     /* --- Copy --------------------------------------------------------- */

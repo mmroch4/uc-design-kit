@@ -92,19 +92,60 @@
         <p class="uc-muted">Os exercícios 1 a 5 são para fazer na aula. O 6 é extra.</p>
 
         <uc-exercise id="contar-nos" title="Contar nós" level="easy" open>
-          <p>Implementa <code>int numberNodes()</code>, que devolve o número de nós da árvore. Uma árvore vazia tem 0 nós. Completa o código aqui e descarrega-o para testar no teu computador.</p>
-          <uc-code lang="java" filename="BTree.java" editable>
+          <p>Implementa <code>int numberNodes()</code>, que devolve o número de nós da árvore. Uma árvore vazia tem 0 nós. Completa o código e carrega em Executar testes.</p>
+          <!-- run: executa na página. O script data-harness (escondido) é o main que testa o código;
+               cada linha que imprime é comparada com o data-expected do teste com o mesmo número. -->
+          <uc-code lang="java" filename="BTree.java" editable run>
             <script type="text/plain">
-              public int numberNodes() {
-                return numberNodes(root);
-              }
+              public class BTree<T> {
+                  BTNode<T> root;
 
-              private int numberNodes(BTNode<T> n) {
-                if (n == null) return 0;
-                // completa aqui
-                return 1;
+                  public int numberNodes() {
+                      return numberNodes(root);
+                  }
+
+                  private int numberNodes(BTNode<T> n) {
+                      if (n == null) return 0;
+                      // completa aqui
+                      return 1;
+                  }
               }
             </script>
+            <script type="text/plain" data-harness filename="BTNode.java">
+              public class BTNode<T> {
+                  private T value;
+                  private BTNode<T> left, right;
+                  BTNode(T value, BTNode<T> left, BTNode<T> right) {
+                      this.value = value; this.left = left; this.right = right;
+                  }
+                  public T getValue()          { return value; }
+                  public BTNode<T> getLeft()   { return left; }
+                  public BTNode<T> getRight()  { return right; }
+              }
+            </script>
+            <script type="text/plain" data-harness>
+              public class Main {
+                  static BTNode<Integer> node(int v, BTNode<Integer> l, BTNode<Integer> r) { return new BTNode<>(v, l, r); }
+                  static BTNode<Integer> leaf(int v) { return node(v, null, null); }
+                  static int count(BTNode<Integer> root) {
+                      BTree<Integer> tree = new BTree<>();
+                      tree.root = root;
+                      return tree.numberNodes();
+                  }
+                  public static void main(String[] args) {
+                      System.out.println(count(null));
+                      System.out.println(count(leaf(5)));
+                      System.out.println(count(node(5, node(3, leaf(1), leaf(4)), node(8, leaf(7), leaf(9)))));
+                      System.out.println(count(node(1, null, node(2, null, node(3, null, leaf(4))))));
+                  }
+              }
+            </script>
+            <ol data-tests>
+              <li data-expected="0">Árvore vazia</li>
+              <li data-expected="1">Só a raiz</li>
+              <li data-expected="7">Árvore de teste (5 3 1 N N 4 N N 8 7 N N 9 N N)</li>
+              <li data-expected="4">Árvore em linha (1 → 2 → 3 → 4)</li>
+            </ol>
           </uc-code>
           <p class="uc-muted">Árvore de teste (pré-ordem, N = vazio): <code>5 3 1 N N 4 N N 8 7 N N 9 N N</code></p>
           <details class="uc-hint">

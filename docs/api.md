@@ -128,6 +128,7 @@ window.UC_COURSE = {
 | `footer` | `HTMLText` | no | course title + institution | Footer left side. |
 | `updated` | `ISODate` | no | — | "Last updated" in the footer. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
+| `runner` | object | no | Codapi + browser | Where `<uc-code run>` executes code. See 7.1. |
 
 ### 2.3 Pages
 
@@ -385,7 +386,8 @@ Like `<uc-week>`, the `title` attribute is removed after it is read.
 
 #### `<uc-code>`
 
-A code block with syntax highlighting, copy and download buttons.
+A code block with syntax highlighting, copy and download buttons, and
+optional in-page execution with tests.
 
 | Attribute | Values | Notes |
 | --- | --- | --- |
@@ -393,7 +395,7 @@ A code block with syntax highlighting, copy and download buttons.
 | `filename` | text | Shown in the header and used for downloads. |
 | `editable` | boolean | Makes the code editable with a "Reset" button. |
 | `no-copy`, `no-download` | boolean | Hide buttons. |
-| `run` | URL | Optional "Test on…" link (e.g. Mooshak problem). |
+| `run` | boolean \| URL | Without a value: a "Run" button that executes the code in the page (see below). With a URL: a "Test on…" link to an external platform. |
 
 Code is given as a `<script type="text/plain">` child (no HTML escaping
 needed) or as `<pre><code>` with escaped HTML. The kit CSS shows the script's
@@ -404,6 +406,38 @@ highlight.js 11.9.0 is loaded from cdnjs on first use; less common grammars
 or for an unknown language, the code stays readable as plain text. `lang="java"`
 is not a valid language tag, so after upgrade the element moves it to
 `data-lang`; in custom CSS select `uc-code[data-lang="java"]`.
+
+**Running code.** With `run` (no value) the block gets a "Run" button. The
+code is sent to the runner configured for its language (7.1) and the output
+and errors are shown under the code. Two optional children turn it into a
+small automatic check:
+
+```html
+<uc-code lang="java" filename="BTree.java" editable run>
+  <script type="text/plain">…student's starting code…</script>
+  <script type="text/plain" data-harness filename="BTNode.java">…</script>
+  <script type="text/plain" data-harness>
+    public class Main {
+      public static void main(String[] args) { /* prints one line per test */ }
+    }
+  </script>
+  <ol data-tests>
+    <li data-expected="0">Empty tree has 0 nodes</li>
+    <li data-expected="3">Tree with three nodes</li>
+  </ol>
+</uc-code>
+```
+
+- `script[data-harness]`: hidden code that runs *as the entry file*; the
+  student's code is sent as a second file named by `filename`. For Java the
+  harness must start with `public class Main` (Codapi's entry point).
+- `script[data-harness][filename]`: an extra hidden file, e.g. a `BTNode.java`
+  the student's code uses. In Java each public class needs its own file.
+- `ol[data-tests]`: line *i* of the program's output is compared with test
+  *i*'s `data-expected` (trailing spaces ignored). Results are shown as ✓/✗
+  with the expected and obtained values; the button reads "Run tests".
+- Neither is shown on the page; without JavaScript only the code appears.
+- Programs cannot read standard input: the harness provides the data.
 
 #### `<uc-question>`
 
@@ -524,6 +558,7 @@ external request if a course prefers.
 | `UC.Element` | Base class for components (see below). |
 | `UC.define(name, class)` | Registers a component once (safe to call twice). |
 | `UC.addTranslations(lang, dict)` | Adds or overrides interface strings. |
+| `UC.registerRunner(name, runner)` | Adds or replaces a code runner (7.1). |
 
 `UC.Element` extends `HTMLElement` and provides `render()` (called on
 connect and on language change), `this.t()`, `this.text()`, and
@@ -542,6 +577,50 @@ Events on `document`:
 | `uc:ready` | Configuration loaded and built-in components defined. |
 | `uc:languagechange` | After the active language changes. `event.detail.lang`. |
 | `uc:exercisechange` | Bubbles from a `<uc-exercise>` when it is marked done or not done. |
+
+### 7.1 Code runners
+
+Pages never talk to an execution service directly: `<uc-code run>` asks
+the kit, and the kit picks a *runner* from `UC_COURSE.runner`. Changing
+provider (public Codapi, a self-hosted Codapi, Judge0, an in-browser
+engine…) is a configuration change; no page has to be edited.
+
+```js
+// course.js — all fields optional; these are the defaults.
+runner: {
+  provider: "codapi",                    // runner for languages not listed below
+  languages: { javascript: "browser", js: "browser" },
+  codapi: {
+    url: "https://api.codapi.org/v1",    // or a self-hosted Codapi
+    sandboxes: { c: "gcc", "c++": "cpp", py: "python" },  // block lang → sandbox
+    timeout: 20000,
+  },
+  browser: { timeout: 5000 },
+},
+```
+
+Built-in runners:
+
+| Name | Runs | Notes |
+| --- | --- | --- |
+| `codapi` | Java, Python, C (`gcc`), C++, Haskell… | Sends the files to Codapi's `/exec`. The public service is free and rate limited; a course with many students should self-host it. |
+| `browser` | JavaScript | Web Worker, no network, no DOM; `console.log` is the output. |
+
+A runner is an object with `run(request, options)` that returns a Promise:
+
+```js
+UC.registerRunner("judge0", {
+  run({ language, files }, options) {   // files[""] is the entry file
+    // options = UC_COURSE.runner.judge0
+    return fetch(/* … */).then(() => ({ ok: true, stdout: "…", stderr: "", duration: 120 }));
+  },
+});
+// course.js: runner: { provider: "judge0", judge0: { url: "…" } }
+```
+
+Reject the Promise only when the code could not be run at all (network,
+timeout); compilation and runtime errors resolve with `ok: false` and the
+message in `stderr`.
 
 ## 8. Customisation levels
 
@@ -568,5 +647,6 @@ teacher rule wins.
 ## 10. Out of scope for v1
 
 - Dark theme (tokens make it possible later).
-- Running code in the browser (CheerpJ, Pyodide) — possible as extensions.
+- In-browser engines for languages other than JavaScript (CheerpJ, Pyodide)
+  — possible as runners (7.1).
 - Any server-side feature (search, authentication, forms).
