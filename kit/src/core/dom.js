@@ -48,6 +48,7 @@
     checkCircle: `<svg ${SVG_ATTRS} width="22" height="22" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>`,
     copy: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>`,
     download: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>`,
+    play: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"><path d="M7 5v14l12-7z"/></svg>`,
     reset: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg>`,
     tree: `<svg ${SVG_ATTRS} width="28" height="28" viewBox="0 0 28 28" stroke-width="2"><circle cx="14" cy="5" r="3"/><circle cx="6" cy="22" r="3"/><circle cx="22" cy="22" r="3"/><path d="M12.5 7.5 7.5 19.5M15.5 7.5l5 12"/></svg>`,
   };

@@ -1,6 +1,8 @@
 /**
  * <uc-code> — code block with syntax highlighting, copy, download, an
- * optional editable mode and an optional "Test on…" link.
+ * optional editable mode, and either a "Test on…" link (`run="URL"`) or
+ * in-page execution with optional tests (`run` without a value), through
+ * the runners in core/runners.js.
  * See docs/api.md, section 3.5.
  *
  * Highlighting uses highlight.js from cdnjs, loaded on first use (once per
@@ -151,12 +153,29 @@
     return lines.map((line) => line.slice(common)).join("\n");
   }
 
-  /** Finds the authored source element: <script type="text/plain"> or <pre>. */
+  /** Finds the authored source element: <script type="text/plain"> or <pre> (not the harness). */
   function findSource(element) {
     for (const child of element.children) {
-      if (child.matches('script[type="text/plain"]') || child.matches("pre")) return child;
+      if (child.matches('script[type="text/plain"]:not([data-harness])') || child.matches("pre")) return child;
     }
     return null;
+  }
+
+  /** Reads the teacher's tests: <ol data-tests><li data-expected="…">name</li></ol>. */
+  function readTests(element) {
+    const list = Array.from(element.children).find((child) => child.matches("[data-tests]"));
+    if (!list) return [];
+    return Array.from(list.querySelectorAll("li")).map((item) => ({
+      name: item.textContent.trim(),
+      expected: item.hasAttribute("data-expected") ? item.getAttribute("data-expected") : "",
+    }));
+  }
+
+  /** Output lines with trailing spaces and trailing empty lines removed. */
+  function outputLines(text) {
+    const lines = String(text).replace(/\r\n?/g, "\n").split("\n").map((line) => line.replace(/\s+$/, ""));
+    while (lines.length && lines[lines.length - 1] === "") lines.pop();
+    return lines;
   }
 
   function sourceLanguage(source) {
@@ -246,6 +265,27 @@
       this.escapePressed = false;
       this.hintId = uid("uc-code-hint");
       this.titleId = uid("uc-code-title");
+      // In-page execution: optional hidden files and tests. A harness script
+      // without `filename` is the entry file; with one, it is a support file.
+      this.harness = null;
+      this.supportFiles = {};
+      for (const child of this.children) {
+        if (!child.matches('script[type="text/plain"][data-harness]')) continue;
+        const name = child.getAttribute("filename");
+        const code = normalizeSource(child.textContent);
+        if (name) this.supportFiles[name] = code;
+        else if (!this.harness) this.harness = { code };
+      }
+      this.tests = readTests(this);
+      this.running = false;
+      this.result = null;
+    }
+
+    /** "execute" for `run` without a value, "link" for `run="URL"`, else null. */
+    get runMode() {
+      if (!this.hasAttribute("run")) return null;
+      const value = this.getAttribute("run").trim();
+      return value === "" || value === "run" ? "execute" : "link";
     }
 
     get editable() {
@@ -292,6 +332,7 @@
         this.scroller.removeAttribute("aria-labelledby");
       }
 
+      this.renderResult();
       if (focusedAction) this.header.querySelector(`[data-action="${focusedAction}"]`)?.focus();
     }
 
@@ -326,7 +367,8 @@
       }
 
       this.showPlain();
-      this.prepend(this.header, this.body, this.status);
+      this.results = h("div", { class: "uc-code__results", hidden: true });
+      this.prepend(this.header, this.body, this.results, this.status);
       // The authored source is kept in the DOM, hidden, so nothing is lost.
       if (this.source.matches("pre")) this.source.hidden = true;
       this.highlight();
@@ -347,7 +389,18 @@
         actions.push(this.button("download", "download", this.t("code.download"), () => downloadText(this.code, this.downloadName())));
       }
       if (this.editable) actions.push(this.button("reset", "reset", this.t("code.reset"), () => this.onReset()));
-      const run = this.getAttribute("run");
+      if (this.runMode === "execute") {
+        const label = this.t(this.running ? "code.running" : this.tests.length ? "code.runTests" : "code.run");
+        const button = h(
+          "button",
+          { type: "button", class: "uc-button uc-button--primary uc-code__run", "data-action": "execute", onClick: () => this.onRun() },
+          icon("play"),
+          h("span", {}, label),
+        );
+        if (this.running) button.setAttribute("aria-disabled", "true");
+        actions.push(button);
+      }
+      const run = this.runMode === "link" ? this.getAttribute("run") : null;
       if (run) {
         const external = isExternal(run);
         actions.push(
@@ -438,6 +491,109 @@
       this.highlight();
       this.textarea.focus();
       this.textarea.setSelectionRange(0, 0);
+    }
+
+    /* --- Running ------------------------------------------------------ */
+
+    /** The files sent to the runner: the student's code plus the hidden harness files. */
+    files() {
+      if (!this.harness) return { ...this.supportFiles, "": this.code };
+      const name = this.getAttribute("filename") || `code.${(this.languageInfo() || { ext: "txt" }).ext}`;
+      return { ...this.supportFiles, "": this.harness.code, [name]: this.code };
+    }
+
+    onRun() {
+      if (this.running) return;
+      this.running = true;
+      this.result = null;
+      this.render();
+      this.announce(this.t("code.running"));
+      UC.internal
+        .runCode({ language: this.language, files: this.files() })
+        .then((result) => {
+          this.result = { ...result, tests: this.checkTests(result) };
+        })
+        .catch((error) => {
+          this.result = { failed: true, reason: error.message };
+        })
+        .finally(() => {
+          this.running = false;
+          this.render();
+          this.announce(this.summary());
+        });
+    }
+
+    /** Compares output line i with test i. Returns null when there are no tests. */
+    checkTests(result) {
+      if (!this.tests.length) return null;
+      const lines = result.ok ? outputLines(result.stdout) : [];
+      return this.tests.map((test, index) => {
+        const got = index < lines.length ? lines[index] : null;
+        return { ...test, got, passed: got !== null && got === test.expected.replace(/\s+$/, "") };
+      });
+    }
+
+    summary() {
+      const result = this.result;
+      if (!result) return "";
+      if (result.failed) return this.t("code.runFailed", { reason: result.reason });
+      if (result.tests) {
+        const passed = result.tests.filter((test) => test.passed).length;
+        return this.t("code.testsPassed", { passed, total: result.tests.length });
+      }
+      return result.ok ? this.t("code.output") : this.t("code.error");
+    }
+
+    renderResult() {
+      if (!this.results) return;
+      const result = this.result;
+      this.results.hidden = !result;
+      if (!result) {
+        this.results.replaceChildren();
+        return;
+      }
+      const parts = [];
+      if (result.failed) {
+        parts.push(h("p", { class: "uc-code__results-error" }, this.t("code.runFailed", { reason: result.reason })));
+      } else {
+        if (result.tests) {
+          const passed = result.tests.filter((test) => test.passed).length;
+          const all = passed === result.tests.length;
+          parts.push(
+            h("p", { class: `uc-code__results-summary${all ? " uc-code__results-summary--passed" : ""}` }, this.summary()),
+            h(
+              "ol",
+              { class: "uc-code__tests" },
+              result.tests.map((test) =>
+                h(
+                  "li",
+                  { class: `uc-code__test uc-code__test--${test.passed ? "passed" : "failed"}` },
+                  h("span", { class: "uc-code__test-mark", "aria-hidden": "true" }, test.passed ? "✓" : "✗"),
+                  h("span", { class: "uc-visually-hidden" }, `${this.t(test.passed ? "code.passed" : "code.failed")}: `),
+                  h("span", { class: "uc-code__test-name" }, test.name),
+                  test.passed
+                    ? null
+                    : h(
+                        "span",
+                        { class: "uc-code__test-detail" },
+                        `${this.t("code.expected")}: `,
+                        h("code", {}, test.expected || this.t("code.noOutput")),
+                        ` · ${this.t("code.got")}: `,
+                        h("code", {}, test.got === null || test.got === "" ? this.t("code.noOutput") : test.got),
+                      ),
+                ),
+              ),
+            ),
+          );
+        }
+        const showOutput = !result.tests || !result.ok;
+        if (showOutput) {
+          parts.push(h("p", { class: "uc-code__results-label" }, this.t(result.ok ? "code.output" : "code.error")));
+          if (result.stdout || result.ok) parts.push(h("pre", { class: "uc-code__results-output" }, result.stdout || this.t("code.noOutput")));
+        }
+        if (result.stderr) parts.push(h("pre", { class: "uc-code__results-output uc-code__results-output--stderr" }, result.stderr));
+      }
+      this.results.replaceChildren(...parts);
     }
 
     /* --- Copy --------------------------------------------------------- */

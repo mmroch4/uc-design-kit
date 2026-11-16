@@ -23,6 +23,10 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   and `<uc-question>`.
 - `per-kind` on `<uc-deadlines>`, `kind` on `<uc-weeks>` and `<uc-this-week>`,
   `medium` date format, `uc-split` and `uc-button--sm` blocks.
+- In-page code execution: `<uc-code run>` (no value) adds a "Run" button,
+  with optional hidden harness and tests shown as ✓/✗. Runners are pluggable
+  (`UC.registerRunner`, `UC_COURSE.runner`); built in: Codapi and JavaScript
+  in a Web Worker.
 
 ### Fixed
 - Page links from pages in subfolders: `pages[].href` is now relative to

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-code run · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Executar código na página (teste)</span>
+      <span lang="en">Running code in the page (test)</span>
+    </h1>
+    <p class="uc-muted">
+      <span lang="pt">Estes blocos usam JavaScript, que corre no browser (Web Worker) sem rede. Java, Python, C e outras linguagens correm no Codapi, configurado em <code>UC_COURSE.runner</code>.</span>
+      <span lang="en">These blocks use JavaScript, which runs in the browser (Web Worker) without a network. Java, Python, C and other languages run on Codapi, set up in <code>UC_COURSE.runner</code>.</span>
+    </p>
+
+    <h2><code>run</code></h2>
+    <uc-code lang="javascript" id="plain" run>
+      <script type="text/plain">
+        const squares = [1, 2, 3].map((n) => n * n);
+        console.log(squares.join(" "));
+      </script>
+    </uc-code>
+
+    <h2><code>run</code> · <code>editable</code> · <span lang="pt">testes</span><span lang="en">tests</span></h2>
+    <uc-code lang="javascript" filename="sum.js" id="tested" editable run>
+      <script type="text/plain">
+        function sum(list) {
+          // TODO: add every element of list
+          return 0;
+        }
+      </script>
+      <script type="text/plain" data-harness filename="data.js">
+        const single = [5];
+      </script>
+      <script type="text/plain" data-harness>
+        console.log(sum([]));
+        console.log(sum(single));
+        console.log(sum([1, 2, 3]));
+      </script>
+      <ol data-tests>
+        <li data-expected="0">sum([]) = 0</li>
+        <li data-expected="5">sum([5]) = 5</li>
+        <li data-expected="6">sum([1, 2, 3]) = 6</li>
+      </ol>
+    </uc-code>
+
+    <h2><span lang="pt">Erro</span><span lang="en">Error</span></h2>
+    <uc-code lang="javascript" id="broken" run>
+      <script type="text/plain">
+        console.log("before");
+        undefinedFunction();
+      </script>
+    </uc-code>
+  </uc-page>
+  <script>
+    // Fails the page check (console.error) when runners or results are wrong.
+    document.addEventListener("uc:ready", () => {
+      const fail = (...args) => console.error("uc-code run:", ...args);
+      const run = UC.internal.runCode;
+      run({ language: "javascript", files: { "": "console.log(6 * 7)" } }).then((r) => {
+        if (!r.ok || r.stdout !== "42") fail("plain run", r);
+      }, (e) => fail("plain run rejected", e.message));
+      run({ language: "js", files: { "": "f()", "lib.js": "function f(){ console.log('lib') }" } }).then((r) => {
+        if (!r.ok || r.stdout !== "lib") fail("helper files before entry", r);
+      }, (e) => fail("helper run rejected", e.message));
+      run({ language: "javascript", files: { "": "nope()" } }).then((r) => {
+        if (r.ok || !/nope/.test(r.stderr)) fail("error result", r);
+      }, (e) => fail("error run rejected", e.message));
+      if (!UC.internal.canRun("javascript")) fail("canRun(javascript) is false");
+
+      // A registered runner replaces a built-in one; languages without their own runner use the provider (codapi).
+      UC.registerRunner("codapi", { run: (request) => Promise.resolve({ ok: true, stdout: request.files[""] }) });
+      run({ language: "echo", files: { "": "hi" } }).then((r) => {
+        if (r.stdout !== "hi" || r.duration !== 0) fail("custom runner", r);
+      }, (e) => fail("custom runner rejected", e.message));
+    });
+  </script>
+</body>
+</html>

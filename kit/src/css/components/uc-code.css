@@ -160,3 +160,59 @@
   font-weight: inherit;
   font-style: inherit;
 }
+
+/* Teacher tests and the harness are inputs to the runner, never shown as authored. */
+:where(uc-code > [data-tests]) { display: none; }
+
+/* Results of an in-page run (`run` without a value). */
+:where(.uc-code__results) {
+  display: grid;
+  gap: var(--uc-space-3);
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border-top: 1px solid var(--uc-color-border);
+  background: var(--uc-color-surface);
+  font-size: var(--uc-font-size-sm);
+}
+:where(.uc-code__results[hidden]) { display: none; }
+:where(.uc-code__results p) { margin: 0; }
+:where(.uc-code__results-summary, .uc-code__results-label) {
+  color: var(--uc-color-text-secondary);
+  font-weight: 600;
+}
+:where(.uc-code__results-summary--passed) { color: var(--uc-color-success-text); }
+:where(.uc-code__results-error) { color: var(--uc-color-danger-text); }
+:where(.uc-code__tests) {
+  display: grid;
+  gap: var(--uc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where(.uc-code__test) {
+  display: grid;
+  grid-template-columns: 1.25em 1fr;
+  gap: 0 var(--uc-space-2);
+  align-items: baseline;
+}
+:where(.uc-code__test-mark) { font-weight: 700; }
+:where(.uc-code__test--passed .uc-code__test-mark) { color: var(--uc-color-success-text); }
+:where(.uc-code__test--failed .uc-code__test-mark) { color: var(--uc-color-danger-text); }
+:where(.uc-code__test-detail) {
+  grid-column: 2;
+  color: var(--uc-color-text-muted);
+  overflow-wrap: anywhere;
+}
+:where(.uc-code__results-output) {
+  max-height: 20rem;
+  margin: 0;
+  padding: var(--uc-space-3) var(--uc-space-4);
+  overflow: auto;
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface-sunken);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-sm);
+  line-height: 1.6;
+  white-space: pre;
+}
+:where(.uc-code__results-output--stderr) { color: var(--uc-color-danger-text); }
+:where(.uc-code__run[aria-disabled="true"]) { opacity: 0.7; cursor: progress; }
