@@ -516,7 +516,7 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | `--uc-target-min` | `44px` | Minimum touch target. |
 | `--uc-focus-ring` | `2px solid var(--uc-color-accent)` | Focus outline. |
 
-Fonts (Inter, JetBrains Mono) are loaded from Google Fonts by `uc-kit.css`.
+Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` avoids the
 external request if a course prefers.
 

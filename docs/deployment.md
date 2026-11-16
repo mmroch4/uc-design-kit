@@ -24,9 +24,21 @@ from `https://uc-design-kit.miguelrocha.dev/kit/v1/` and the examples from
 
 `_headers` (repository root) sets CORS for `/kit/*` so course sites on any
 domain can load the kit, and basic security headers. The kit is served with
-`Cache-Control: public, max-age=0, must-revalidate`: browsers keep a copy but
-ask the server whether it changed (a cheap 304), so a page and the kit it
-needs are never out of step after a deploy.
+`Cache-Control: public, max-age=300, stale-while-revalidate=604800`: for five
+minutes browsers use their copy without asking, and after that they still use
+it straight away while checking for a new version in the background. Pages
+therefore never wait for the kit on a repeat visit. The price is that the
+first visit after a deploy may still use the previous kit once, which is fine
+because `kit/v1/` stays backwards compatible. Each example's `course.js` and
+`theme.css` use the same rule with `max-age=60`.
+
+The fonts (Inter and JetBrains Mono) are served from `kit/v1/fonts/`, so a
+page makes no requests to third-party servers to render.
+
+Cloudflare Pages redirects `page.html` to `page` (a 308 redirect, about
+100 ms). Links keep the `.html` extension so that sites also work from any
+other web server and from the file system; on a department server there is no
+redirect.
 
 On a custom domain, Cloudflare's zone settings can override this. In the
 domain's dashboard, set **Caching → Configuration → Browser Cache TTL** to
