@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-date: outra língua · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script>
+    // This demo is bilingual: it adds English to the demo course; ?lang=en shows the English version.
+    window.UC_COURSE.languages = ["pt", "en"];
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <p lang="pt">O teste prático é a <uc-date deadline="teste" format="weekday" with-time></uc-date>.</p>
+    <p lang="en">The practical test is on <uc-date deadline="teste" format="weekday" with-time></uc-date>.</p>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>
