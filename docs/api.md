@@ -211,9 +211,10 @@ Common behaviour:
 
 Renders the skip link, header (logo, title, edition, institution, language
 switch), navigation (sidebar on desktop, collapsible menu on phones), the
-`<main>` landmark around its children, and the footer. Until the kit has run,
-`<uc-page>` is hidden, so the page appears once, already laid out, with no
-layout shift. If the kit script fails to load, the content is shown after 2 s;
+`<main>` landmark around its children, and the footer. Until the kit has run and
+the web fonts are ready (waiting at most 300 ms for them), `<uc-page>` is
+hidden, so the page appears once, already laid out and in its final font. The
+kit then adds `.uc-visible` to `<html>`. If the kit script fails to load, the content is shown after 2 s;
 with JavaScript disabled it is shown at once.
 
 | Attribute | Values | Default | Notes |

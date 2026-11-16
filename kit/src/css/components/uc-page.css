@@ -7,23 +7,25 @@
 }
 
 /*
- * Before the kit runs, the page is kept hidden: the kit builds the header, the
- * navigation and the components in one go, so showing the raw content first would
- * make everything jump (layout shift). The kit normally runs before the first paint
- * or a few milliseconds after it. If it never runs (script blocked or missing), the
- * content is revealed after 2 s with a readable width; without JavaScript at all it
- * is shown straight away.
+ * Until the kit has built the page and its fonts are ready, the page is kept hidden:
+ * showing the raw content first would make everything jump (layout shift), and
+ * showing it before the web font is ready would make the text change font (flash).
+ * The kit reveals it by adding .uc-visible to <html>, normally a few milliseconds
+ * after the first paint. If the kit never runs (script blocked or missing), the
+ * content is revealed after 2 s; without JavaScript at all it is shown straight away.
  */
 :where(uc-page:not(.uc-page)) {
   max-width: var(--uc-content-max);
   margin: 0 auto;
   padding: var(--uc-space-8) var(--uc-gutter);
+}
+:where(html:not(.uc-visible) uc-page) {
   visibility: hidden;
   animation: uc-page-reveal 0s 2s forwards;
 }
 @keyframes uc-page-reveal { to { visibility: visible; } }
 @media (scripting: none) {
-  :where(uc-page:not(.uc-page)) { visibility: visible; animation: none; }
+  :where(html:not(.uc-visible) uc-page) { visibility: visible; animation: none; }
 }
 
 :where(.uc-skip-link) {

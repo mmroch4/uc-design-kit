@@ -34,9 +34,11 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   in a Web Worker.
 
 ### Changed
-- `<uc-page>` stays hidden until the kit has built the page (revealed after 2 s
-  if the kit never runs, at once without JavaScript), so the header, navigation
-  and components no longer make the content jump on load.
+- `<uc-page>` stays hidden until the kit has built the page and the web fonts
+  are ready (at most 300 ms of waiting for fonts; revealed after 2 s if the kit
+  never runs, at once without JavaScript), so the header, navigation and
+  components no longer make the content jump, and the text no longer switches
+  font, on load. The kit marks this with `.uc-visible` on `<html>`.
 - `<uc-this-week>` keeps the last copy of the weeks page in `localStorage` and
   renders from it straight away, refreshing when the new copy arrives.
 - The kit is cached for 5 minutes and then revalidated in the background
