@@ -591,6 +591,160 @@
   color: var(--uc-color-text-secondary);
 }
 
+/* --- css/components/uc-notices.css --- */
+/* <uc-notices> */
+:where(uc-notices) { display: block; }
+
+:where(.uc-notices__section) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-3);
+}
+
+:where(.uc-notices__list) { list-style: none; margin: 0; padding: 0; }
+:where(.uc-notices__item) {
+  display: flex;
+  gap: var(--uc-space-4);
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--uc-color-border);
+}
+:where(.uc-notices__item:first-child) { border-top: 0; }
+
+:where(.uc-notices__date) {
+  flex: 0 0 var(--uc-notices-date-width, 64px);
+  padding-top: 1px;
+  color: var(--uc-color-text-muted);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+}
+
+:where(.uc-notices__body) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-1);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:where(.uc-notices__details) {
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+}
+:where(.uc-notices__badge) { margin-left: 2px; }
+
+:where(.uc-notices__earlier) {
+  padding-top: var(--uc-space-3);
+  border-top: 1px solid var(--uc-color-border);
+}
+:where(.uc-notices__earlier--only) { padding-top: 0; border-top: 0; }
+:where(.uc-notices__summary) {
+  display: flex;
+  align-items: center;
+  gap: var(--uc-space-2);
+  width: fit-content;
+  min-height: var(--uc-target-min);
+  color: var(--uc-color-accent);
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+}
+:where(.uc-notices__summary)::-webkit-details-marker { display: none; }
+:where(.uc-notices__summary:hover) { color: var(--uc-color-accent-strong); }
+:where(.uc-notices__summary svg) { flex: none; transition: transform 0.15s ease; }
+:where(.uc-notices__earlier[open] > .uc-notices__summary svg) { transform: rotate(180deg); }
+
+:where(.uc-notices__empty) { color: var(--uc-color-text-muted); }
+:where(.uc-notices__more) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-4);
+  font-size: var(--uc-font-size-body-sm);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.uc-notices__summary svg) { transition: none; }
+}
+
+/* --- css/components/uc-deadlines.css --- */
+/* <uc-deadlines> */
+:where(uc-deadlines) { display: block; }
+
+:where(.uc-deadlines__section) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-3);
+}
+
+/* List view */
+:where(.uc-deadlines__list) { list-style: none; margin: 0; padding: 0; }
+:where(.uc-deadlines__item) {
+  display: flex;
+  gap: var(--uc-space-4);
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--uc-color-border);
+}
+:where(.uc-deadlines__item:first-child) { border-top: 0; }
+
+:where(.uc-deadlines__list .uc-deadlines__date) {
+  /* Wide enough for "September" or "scheduled" on one line; longer labels wrap. */
+  flex: 0 0 var(--uc-deadlines-date-width, 5.25rem);
+  padding-top: 1px;
+  color: var(--uc-color-accent);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  font-weight: 500;
+}
+:where(.uc-deadlines__item--past .uc-deadlines__date, .uc-deadlines__item--unscheduled .uc-deadlines__date) {
+  color: var(--uc-color-text-muted);
+}
+
+:where(.uc-deadlines__body) {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:where(.uc-deadlines__list .uc-deadlines__title) { font-weight: 500; }
+:where(.uc-deadlines__list .uc-deadlines__note, .uc-deadlines__list .uc-deadlines__links) {
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+}
+
+/* Table view */
+:where(.uc-deadlines .uc-table) { --uc-table-min: 640px; }
+:where(.uc-deadlines tbody th.uc-deadlines__title) {
+  background: none;
+  color: var(--uc-color-text);
+  font-size: inherit;
+  font-weight: 500;
+  min-width: 10em;
+  overflow-wrap: anywhere;
+}
+:where(.uc-deadlines tbody tr:last-child th) { border-bottom: 0; }
+:where(.uc-deadlines td.uc-deadlines__details) { min-width: 12em; overflow-wrap: anywhere; }
+:where(.uc-deadlines td.uc-deadlines__date, .uc-deadlines td.uc-deadlines__time) {
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  white-space: nowrap;
+}
+:where(.uc-deadlines td .uc-deadlines__note, .uc-deadlines td .uc-deadlines__links) { display: block; }
+:where(.uc-deadlines__none) { color: var(--uc-color-text-subtle); }
+
+:where(.uc-deadlines__empty) { color: var(--uc-color-text-muted); }
+:where(.uc-deadlines__more) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-4);
+  font-size: var(--uc-font-size-body-sm);
+  font-weight: 500;
+}
+
+/* --- css/components/uc-date.css --- */
+/* <uc-date> — inline; the generated <time> inherits the surrounding text style. */
+:where(uc-date) { display: inline; }
+
 /* --- css/components/uc-event.css --- */
 /* <uc-event>: highlighted assessment or exam (docs/api.md, section 3.3). */
 
