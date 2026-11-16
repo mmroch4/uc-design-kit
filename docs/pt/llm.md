@@ -75,6 +75,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 
 ## Ver também
 
+- [Migrar um site existente](https://uc-design-kit.miguelrocha.dev/docs/pt/migrar.md): o pedido para um assistente que trabalha com ficheiros, como o Claude Code ou o Codex.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md): o mesmo caminho, feito à mão.
 - [Padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md): o que um bom resultado deve parecer.
 - [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md).

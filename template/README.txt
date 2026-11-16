@@ -25,6 +25,10 @@ Ficheiros
   semanas.html    calendário semana a semana
   avaliacao.html  regras e datas de avaliação
   sobre.html      objetivos, programa e equipa
+  AGENTS.md       instruções para assistentes de IA (Claude Code, Codex…)
+
+Migrar um site antigo com um assistente de IA:
+https://uc-design-kit.miguelrocha.dev/docs/pt/migrar.html
 
 Documentação: https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.html
 Licença do kit: MIT. O conteúdo que escrever é seu.

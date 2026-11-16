@@ -74,6 +74,8 @@ O site original tinha dezenas de páginas em HTML simples. Em vez de as reescrev
 
 Os resultados, presenças e turnos da avaliação, com dados de alunos, não foram copiados: as páginas ligam ao site original.
 
+Para fazer o mesmo com um assistente de programação, ver [Migrar um site existente](https://uc-design-kit.miguelrocha.dev/docs/pt/migrar.md).
+
 ## Ver também
 
 - [Padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md): as mesmas estruturas, com o curso fictício, prontas a copiar.

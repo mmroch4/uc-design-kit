@@ -7,6 +7,10 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Migration with a coding agent: the page "Migrar um site existente" with a
+  ready-to-paste prompt for Claude Code, Codex and similar agents, and
+  `template/AGENTS.md` (kit rules and the migration procedure), now part of
+  the template zip.
 - Documentation for language models: `llms.txt` (index and rules) and
   `llms-full.txt` (every page as Markdown, plus `docs/api.md`) at the site
   root, a `.md` version of every documentation page (linked from its
