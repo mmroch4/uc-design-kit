@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-this-week · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-this-week do UC Design Kit.">
+  <meta name="description" content="Documentação do componente uc-this-week do UC Design Kit: o cartão Esta semana da página inicial, com a semana atual, os prazos e as linhas lidas da página de semanas.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -15,24 +15,318 @@
 </head>
 <body class="docs">
   <!-- docs:header -->
-<!-- /docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
   <div class="docs-layout">
     <!-- docs:sidebar -->
-<!-- /docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html" aria-current="page"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
     <main class="docs-main" id="content">
       <article class="docs-article">
         <header class="docs-page-header">
-          <p class="docs-eyebrow">Componentes</p>
+          <p class="docs-eyebrow">Componentes · Calendário</p>
           <h1><code>&lt;uc-this-week&gt;</code></h1>
-          <p class="docs-lead">Página em preparação.</p>
+          <p class="docs-lead">O cartão "Esta semana" da página inicial: número e datas da semana, prazos desta semana e da seguinte e uma ligação para a semana na página de semanas. Num site publicado, mostra também o título e as linhas da semana, lidos dessa página.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
+
+        <!-- docs:demo src="../../demos/uc-this-week/basic.html" title="cartão da semana 10" height="442" -->
+        <div class="docs-demo" id="demo-uc-this-week-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-this-week/basic.html" title="Demonstração: cartão da semana 10" loading="lazy" style="height: 442px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-this-week&gt;&lt;/uc-this-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-this-week/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Hoje é 27 de novembro de 2025 no curso fictício, na semana 10. O título "Pesquisa binária e árvores" e as linhas Teóricas e Prática vêm da <a href="../../demos/semanas.html">página de semanas da demonstração</a>; a entrega do trabalho 2 vem do <code>course.js</code>. Se esta documentação for aberta a partir do disco (<code>file://</code>), o cartão mostra só as datas, a entrega e a ligação.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>Põe-se o elemento vazio na página inicial. Tudo o resto vem do <code>course.js</code> e da página de semanas.</p>
+        <uc-code lang="html" filename="index.html" no-download><pre><code>&lt;uc-page current="home"&gt;
+  &lt;uc-hero&gt;&lt;/uc-hero&gt;
+  &lt;uc-this-week&gt;&lt;/uc-this-week&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+        <p>O cartão precisa do calendário do semestre e de saber qual é a página de semanas, a entrada <code>weeks</code> de <code>pages</code>:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  semester: {
+    start: "2025-09-15",
+    weeks: 12,
+    breaks: [{ start: "2025-10-27", end: "2025-10-31", label: "Semana de estudo" }],
+  },
+  // "Ver semana 10" links to semanas.html#week-10
+  pages: ["home", { id: "weeks", href: "semanas.html" }],
+  deadlines: [
+    { id: "t2", title: "Entrega do trabalho 2", date: "2025-11-28", kind: "submission" },
+  ],
+};</code></pre></uc-code>
+        <p>Na página de semanas, cada semana é uma <a href="uc-week.html"><code>&lt;uc-week&gt;</code></a> com um <code>&lt;dl&gt;</code>: são as suas linhas que o cartão mostra (ver <a href="#pagina-de-semanas">A página de semanas</a>).</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="outra-pagina-de-semanas">Outra página de semanas e conteúdo extra</h3>
+        <p><code>source</code> indica de que página ler as semanas, quando não é a de <code>pages</code>. Ao contrário dos <code>href</code> de <code>pages</code>, é relativo à página onde está o cartão, não ao <code>course.js</code>. O que se escrever dentro do elemento aparece no fim do cartão.</p>
+        <!-- docs:demo src="../../demos/uc-this-week/source.html" title="cartão com source e uma frase no fim" height="487" -->
+        <div class="docs-demo" id="demo-uc-this-week-source">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-this-week/source.html" title="Demonstração: cartão com source e uma frase no fim" loading="lazy" style="height: 487px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-this-week source=&quot;../semanas.html&quot;&gt;
+  &lt;p class=&quot;uc-muted&quot;&gt;Dúvidas? Fala connosco nas aulas práticas.&lt;/p&gt;
+&lt;/uc-this-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-this-week/source.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="filtrar-prazos">Filtrar prazos por tipo</h3>
+        <p><code>kind</code> mostra só os prazos desses tipos, separados por espaços. Com <code>kind="assessment exam"</code>, a entrega do trabalho 2 sai do cartão. Convém quando as linhas da semana já mencionam as entregas, para não as repetir.</p>
+        <!-- docs:demo src="../../demos/uc-this-week/kind.html" title="cartão só com avaliações e exames" height="335" -->
+        <div class="docs-demo" id="demo-uc-this-week-kind">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-this-week/kind.html" title="Demonstração: cartão só com avaliações e exames" loading="lazy" style="height: 335px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-this-week kind=&quot;assessment exam&quot;&gt;&lt;/uc-this-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-this-week/kind.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="antes-do-semestre">Antes do semestre</h3>
+        <p>Antes da semana 1, o cartão chama-se "A seguir", diz quando o semestre começa e mostra o primeiro prazo marcado. Esta demonstração abre com <code>?today=2025-09-01</code>.</p>
+        <!-- docs:demo src="../../demos/uc-this-week/before.html?today=2025-09-01" title="cartão antes do início do semestre" height="346" -->
+        <div class="docs-demo" id="demo-uc-this-week-before">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-this-week/before.html?today=2025-09-01" title="Demonstração: cartão antes do início do semestre" loading="lazy" style="height: 346px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-this-week&gt;&lt;/uc-this-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-this-week/before.html?today=2025-09-01">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="semana-sem-aulas">Semana sem aulas</h3>
+        <p>Numa interrupção, o cartão mostra as datas e o nome da interrupção, os prazos das duas semanas seguintes (aqui não há nenhum) e a ligação para a próxima semana de aulas. Esta demonstração abre com <code>?today=2025-10-29</code>, na semana de estudo.</p>
+        <!-- docs:demo src="../../demos/uc-this-week/break.html?today=2025-10-29" title="cartão durante a semana de estudo" height="198" -->
+        <div class="docs-demo" id="demo-uc-this-week-break">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-this-week/break.html?today=2025-10-29" title="Demonstração: cartão durante a semana de estudo" loading="lazy" style="height: 198px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-this-week&gt;&lt;/uc-this-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-this-week/break.html?today=2025-10-29">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="depois-do-semestre">Depois do semestre</h3>
+        <p>Depois da última semana, diz que o semestre terminou e mostra até três prazos que ainda faltam, como o exame. Esta demonstração abre com <code>?today=2025-12-20</code>.</p>
+        <!-- docs:demo src="../../demos/uc-this-week/after.html?today=2025-12-20" title="cartão depois do fim do semestre" height="282" -->
+        <div class="docs-demo" id="demo-uc-this-week-after">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-this-week/after.html?today=2025-12-20" title="Demonstração: cartão depois do fim do semestre" loading="lazy" style="height: 282px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-this-week&gt;&lt;/uc-this-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-this-week/after.html?today=2025-12-20">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-this-week</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>source</code></td><td>URL</td><td>a página <code>weeks</code> de <code>pages</code></td><td>Página de onde ler o título e as linhas da semana atual. Relativa à página onde está o cartão.</td></tr>
+              <tr><td><code>kind</code></td><td>tipos separados por espaços</td><td>todos</td><td>Só mostra prazos destes tipos, por exemplo <code>kind="assessment exam"</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>Campos do <code>course.js</code> que o componente lê. Sem <code>semester.start</code>, o cartão chama-se "A seguir" e mostra só os próximos três prazos.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-this-week</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>semester.start</code>, <code>semester.weeks</code></td><td>Saber em que semana se está, ou se o semestre ainda não começou ou já acabou (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>semester.breaks</code></td><td>Reconhecer uma semana sem aulas e mostrar o seu nome (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>semester.teachingDays</code></td><td>Os dias mostrados no intervalo, por exemplo "24–28 nov" (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>pages</code></td><td>A página <code>weeks</code>: destino de "Ver semana 10" e, sem <code>source</code>, a página lida (<a href="../course-js.html#paginas">páginas</a>).</td></tr>
+              <tr><td><code>deadlines</code></td><td>Os prazos desta semana e da seguinte, ou os próximos fora do semestre (<a href="../course-js.html#prazos">prazos</a>).</td></tr>
+              <tr><td><code>today</code></td><td>Fixar o dia de hoje; <code>?today=AAAA-MM-DD</code> no endereço tem prioridade (<a href="../course-js.html#campos-avancado">avançado</a>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Sem a página <code>weeks</code> em <code>pages</code>, o cartão não tem a ligação "Ver semana" (e, sem <code>source</code>, não lê nenhuma página). Os <code>url</code> e <code>links</code> dos prazos são relativos à página que mostra o cartão, não ao <code>course.js</code>.</p>
+
+        <h2 id="pagina-de-semanas">A página de semanas: HTTP e <code>file://</code></h2>
+        <p>O título e as linhas da semana atual não estão no <code>course.js</code>: estão na página de semanas, escritos uma só vez. Quando o site é servido por HTTP ou HTTPS (publicado, ou com um servidor local), o cartão pede essa página, procura a <code>&lt;uc-week n="10"&gt;</code> e copia o título (o <code>title-&lt;lang&gt;</code> da língua ativa, se existir) e as linhas do <code>&lt;dl&gt;</code>: cada <code>&lt;dt&gt;</code> passa a etiqueta e os seus <code>&lt;dd&gt;</code> o valor. Grupos <code>&lt;div&gt;</code> dentro do <code>&lt;dl&gt;</code> também servem, e um <code>lang</code> num <code>&lt;dt&gt;</code> ou <code>&lt;dd&gt;</code> mantém-se, por isso o conteúdo bilingue funciona.</p>
+        <p>Das linhas copiam-se o texto e alguns elementos de texto (<code>a</code>, <code>strong</code>, <code>b</code>, <code>em</code>, <code>i</code>, <code>code</code>, <code>span</code>, <code>time</code>, <code>br</code>); os outros são substituídos pelo seu conteúdo, e os scripts são ignorados. As ligações relativas são corrigidas para continuarem a apontar para o mesmo sítio a partir da página inicial.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">O que o cartão mostra conforme a forma de abrir o site</caption>
+            <thead>
+              <tr><th scope="col">Aberto</th><th scope="col">O cartão mostra</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Por HTTP ou HTTPS</td><td>Semana e datas, título da semana, linhas do <code>&lt;dl&gt;</code>, prazos e ligação "Ver semana".</td></tr>
+              <tr><td>A partir do disco (<code>file://</code>)</td><td>Semana e datas, prazos e ligação "Ver semana". Os navegadores não deixam uma página local ler outra, por isso o pedido nem é feito.</td></tr>
+              <tr><td>Por HTTP, se a página de semanas falhar</td><td>O mesmo que em <code>file://</code>, sem erro visível.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A última cópia da página de semanas fica guardada no <code>localStorage</code> do navegador. Nas visitas seguintes, o cartão aparece logo completo e não cresce quando o pedido termina; se a página tiver mudado, o cartão atualiza-se. Para ver o cartão completo ao preparar o site no computador, basta um servidor local, por exemplo <code>python3 -m http.server</code> na pasta do site.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-this-week</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-this-week</code></td><td>O próprio <code>&lt;uc-this-week&gt;</code>.</td></tr>
+              <tr><td><code>.uc-this-week__card</code></td><td>O cartão (também <code>.uc-card</code> e <code>.uc-card--accent</code>).</td></tr>
+              <tr><td><code>.uc-this-week__header</code>, <code>__heading</code>, <code>__meta</code></td><td>A linha de cima, o título "Esta semana" ou "A seguir" e "Semana 10 · 24–28 nov".</td></tr>
+              <tr><td><code>.uc-this-week__week-title</code></td><td>O título da semana, lido da página de semanas.</td></tr>
+              <tr><td><code>.uc-this-week__message</code></td><td>"O semestre começa a…" ou "O semestre terminou."</td></tr>
+              <tr><td><code>.uc-this-week__items</code>, <code>__item</code></td><td>A grelha de linhas e prazos, e cada um deles.</td></tr>
+              <tr><td><code>.uc-this-week__label</code>, <code>__title</code>, <code>__detail</code>, <code>__date</code></td><td>Partes de um item: etiqueta ("Teóricas", "Entrega"), título do prazo, valor ou nota, e data.</td></tr>
+              <tr><td><code>.uc-this-week__more</code>, <code>__link</code></td><td>O parágrafo e a ligação "Ver semana 10".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Cartão branco com contorno, em vez do fundo na cor do curso. */
+.uc-this-week__card {
+  background: var(--uc-color-surface);
+  border-color: var(--uc-color-border);
+}
+
+/* Linhas umas por baixo das outras. */
+.uc-this-week__items { grid-template-columns: 1fr; gap: var(--uc-space-4); }</code></pre></uc-code>
+        <p>O fundo do cartão é <code>--uc-color-accent-soft</code>, derivado da cor do curso. Para mudar só a cor, basta <code>accentColor</code> no <code>course.js</code>.</p>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>O cartão é uma <code>&lt;section&gt;</code> com o nome do seu título, um <code>&lt;h2&gt;</code> "Esta semana" ou "A seguir", por isso aparece na lista de regiões e de títulos dos leitores de ecrã. As datas estão em <code>&lt;time datetime&gt;</code> e a ligação diz o número da semana ("Ver semana 10").</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Pôr o cartão onde um título de nível 2 faça sentido, normalmente logo a seguir ao <code>&lt;uc-hero&gt;</code>. As etiquetas e ligações do <code>&lt;dl&gt;</code> da página de semanas são lidas aqui fora de contexto: "Guião 10" diz mais do que "aqui".</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>O cartão é todo gerado: sem JavaScript, só aparece o que foi escrito dentro do elemento. Convém que a página inicial tenha também uma ligação simples para a página de semanas, como a da navegação do <code>&lt;uc-page&gt;</code> ou um atalho.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a> e <a href="uc-week.html"><code>&lt;uc-week&gt;</code></a>: a página de semanas que o cartão lê.</li>
+          <li><a href="uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a>: a lista completa das próximas datas.</li>
+          <li><a href="uc-hero.html"><code>&lt;uc-hero&gt;</code></a>: o topo da página inicial, que costuma vir antes do cartão.</li>
+          <li><a href="../publicar.html">Publicar</a>: o cartão só fica completo num site servido por HTTP.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/index.html">a página inicial de Estruturas de Dados 2025/26</a>.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
-<!-- /docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-event.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-event</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-team.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-team</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-this-week.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
     </main>
     <aside class="docs-aside">
       <!-- docs:toc -->
-<!-- /docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#outra-pagina-de-semanas">Outra página de semanas e conteúdo extra</a></li>
+          <li class="docs-toc__sub"><a href="#filtrar-prazos">Filtrar prazos por tipo</a></li>
+          <li class="docs-toc__sub"><a href="#antes-do-semestre">Antes do semestre</a></li>
+          <li class="docs-toc__sub"><a href="#semana-sem-aulas">Semana sem aulas</a></li>
+          <li class="docs-toc__sub"><a href="#depois-do-semestre">Depois do semestre</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#pagina-de-semanas">A página de semanas: HTTP e file://</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
     </aside>
   </div>
 </body>
