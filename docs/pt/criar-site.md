@@ -30,6 +30,7 @@ mv uc-template 2627
 | `sobre.html` | Objetivos, programa, horário em tabela e equipa. |
 | `theme.css` | Estilos próprios, vazio com um exemplo comentado. |
 | `README.txt` | Estes passos, em resumo. |
+| `AGENTS.md` | As regras do kit para assistentes de programação (Claude Code, Codex). Ver [O ficheiro AGENTS.md](https://uc-design-kit.miguelrocha.dev/docs/pt/migrar.md#agents). |
 
 ## 2. Abrir no browser
 
