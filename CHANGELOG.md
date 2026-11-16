@@ -7,6 +7,8 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `<pre data-copy>`: a copy button for preformatted text such as problem
+  input/output examples. The EDados problem pages use it on every example.
 - `.uc-content` block for plain HTML without kit classes (pasted or migrated
   pages): spacing for headings, lists, tables, `<pre>` and floated images.
 - EDados 2025/26 example: problem statements (`problemas/`), lecture code

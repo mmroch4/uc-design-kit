@@ -10,6 +10,7 @@
     "core/config.js",
     "core/language.js",
     "core/dom.js",
+    "core/clipboard.js",
     "core/element.js",
     "core/runners.js",
     "components/uc-page.js",
@@ -27,6 +28,7 @@
     "components/uc-code.js",
     "components/uc-question.js",
     "core/tables.js",
+    "core/copy-blocks.js",
     "core/bootstrap.js"
   ],
   "css": [

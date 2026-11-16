@@ -13,7 +13,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, uid, isExternal, flag } = UC.internal;
+  const { h, icon, uid, isExternal, flag, copyText } = UC.internal;
 
   /* ----------------------------------------------------------------------
    * highlight.js loader
@@ -182,32 +182,6 @@
     const code = source && source.querySelector && source.querySelector("code");
     const match = code && /(?:^|\s)(?:language|lang)-(\S+)/.exec(code.className);
     return match ? match[1] : "";
-  }
-
-  /** Copies text to the clipboard. Resolves on success. */
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
-    }
-    return legacyCopy(text);
-  }
-
-  function legacyCopy(text) {
-    return new Promise((resolve, reject) => {
-      const area = h("textarea", { class: "uc-visually-hidden", readonly: true, "aria-hidden": "true", tabindex: "-1" });
-      area.value = text;
-      document.body.appendChild(area);
-      area.select();
-      let ok = false;
-      try {
-        ok = document.execCommand("copy");
-      } catch (error) {
-        ok = false;
-      }
-      area.remove();
-      if (ok) resolve();
-      else reject(new Error("copy failed"));
-    });
   }
 
   function downloadText(text, name) {
