@@ -6,31 +6,25 @@
   <title>Início · Estruturas de Dados 2025/26</title>
   <meta name="description" content="Estruturas de Dados (CC1007), DCC/FCUP, 2025/26: esta semana, avisos, próximas datas de avaliação e equipa docente.">
   <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
   <script src="course.js"></script>
   <script src="../../kit/v1/uc-kit.js" defer></script>
-  <style>
-    /* Avisos e próximas datas lado a lado; em ecrãs estreitos ficam um por baixo do outro. */
-    .home-row { display: flex; flex-wrap: wrap; gap: var(--uc-space-10); }
-    .home-row > :first-child { flex: 3 1 380px; min-width: 0; }
-    .home-row > :last-child { flex: 2 1 260px; min-width: 0; }
-    /* Atalhos: espaço menor entre o texto e a seta, para caberem numa linha. */
-    .uc-shortcuts a { gap: var(--uc-space-2); }
-  </style>
 </head>
 <body>
   <uc-page current="home">
     <!-- Código, título e descrição: vêm de course.js (code, title, tagline). -->
     <uc-hero></uc-hero>
 
-    <!-- Cartão "Esta semana": datas calculadas; matéria lida de semanas.html. -->
-    <uc-this-week></uc-this-week>
+    <!-- Cartão "Esta semana": datas calculadas; matéria lida de semanas.html.
+         kind: o quiz já aparece nas linhas da semana, por isso só se juntam avaliações e exames. -->
+    <uc-this-week kind="assessment exam submission"></uc-this-week>
 
-    <div class="home-row">
+    <div class="uc-split">
       <!-- Avisos: editar em course.js (notices). -->
       <uc-notices></uc-notices>
 
-      <!-- Próximas datas: editar em course.js (deadlines). -->
-      <uc-deadlines limit="5">
+      <!-- Próximas datas: editar em course.js (deadlines). per-kind="1": só o próximo de cada tipo. -->
+      <uc-deadlines per-kind="1">
         <a href="avaliacao.html">Ver regras de avaliação</a>
       </uc-deadlines>
     </div>

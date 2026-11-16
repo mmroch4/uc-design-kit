@@ -6,6 +6,7 @@
   <title>Semanas · Estruturas de Dados 2025/26</title>
   <meta name="description" content="Calendário semanal de Estruturas de Dados 2025/26: matéria das teóricas, slides, guiões das aulas práticas, quizzes e sumários.">
   <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
   <script src="course.js"></script>
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
@@ -18,10 +19,10 @@
       <!--
         Uma <uc-week> por semana. As datas são calculadas a partir de course.js
         (semester.start e breaks); a semana atual abre sozinha.
-        As avaliações são escritas à mão com <uc-event deadline="…"> (no-deadlines
-        evita repetir aqui os quizzes, que já estão na linha "Quiz").
+        As avaliações e exames de course.js (deadlines) aparecem sozinhos na semana
+        certa; kind="…" deixa de fora os quizzes, que já estão na linha "Quiz".
       -->
-      <uc-weeks no-deadlines>
+      <uc-weeks kind="assessment exam submission">
         <uc-week n="1" title="Apresentação e introdução ao Java">
           <dl>
             <dt>Teóricas</dt>
@@ -157,7 +158,6 @@
             <dt>Quiz</dt>
             <dd>#07 Complexidade I · 11 a 18 nov</dd>
           </dl>
-          <uc-event deadline="ap1"></uc-event>
           <details>
             <summary>Sumários</summary>
             <ol start="15">
@@ -227,8 +227,6 @@
         </uc-week>
 
         <!-- Avaliações depois da última semana: título, data e ligações vêm de course.js. -->
-        <uc-event deadline="ap2"></uc-event>
-        <uc-event deadline="exam"></uc-event>
       </uc-weeks>
     </div>
   </uc-page>

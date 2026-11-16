@@ -6,35 +6,10 @@
   <title>Aula 10 · Árvores binárias · Estruturas de Dados 2025/26</title>
   <meta name="description" content="Guião da aula prática 10 de Estruturas de Dados (CC1007): métodos recursivos sobre árvores binárias e percursos em pré-ordem, em-ordem, pós-ordem e largura.">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
   <!-- Extensão desta cadeira: demonstração animada dos percursos -->
   <link rel="stylesheet" href="../extensions/uc-bst-traversal.css">
-  <!-- Pequenos ajustes desta página (só tokens --uc-*) -->
-  <style>
-    .aula-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3); margin: 0; font-size: var(--uc-font-size-sm); }
-    .aula-label {
-      margin: 0 0 var(--uc-space-2);
-      font-size: var(--uc-font-size-xs);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--uc-color-text-subtle);
-    }
-    .aula-actions { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); margin: 0; }
-    .aula-pager { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
-    .aula-pager > .uc-card { display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: var(--uc-color-text); }
-    .aula-pager > .uc-card span { font-size: var(--uc-font-size-sm); }
-    .aula-pager__next { text-align: right; background: var(--uc-color-surface-sunken); color: var(--uc-color-text-muted); }
-  </style>
   <script src="../course.js"></script>
-  <script>
-    // Este guião está numa subpasta (guioes/): os links do menu e do caminho
-    // de navegação apontam para as páginas da pasta de cima.
-    // Temporário: o kit v1 ainda não resolve estes links a partir de subpastas.
-    UC_COURSE.pages = UC_COURSE.pages.map(function (page) {
-      if (typeof page === "string") page = { id: page, href: page === "home" ? "index.html" : page + ".html" };
-      return Object.assign({}, page, { href: "../" + page.href });
-    });
-  </script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../extensions/uc-bst-traversal.js" defer></script>
 </head>
@@ -116,7 +91,7 @@
         <h2 id="exercicios">3. Exercícios</h2>
         <p class="uc-muted">Os exercícios 1 a 5 são para fazer na aula. O 6 é extra.</p>
 
-        <uc-exercise id="contar-nos" title="Contar nós" level="easy" mooshak="BT01" open>
+        <uc-exercise id="contar-nos" title="Contar nós" level="easy" open>
           <p>Implementa <code>int numberNodes()</code>, que devolve o número de nós da árvore. Uma árvore vazia tem 0 nós. Completa o código aqui e testa no Mooshak.</p>
           <uc-code lang="java" filename="BTree.java" editable run="https://mooshak.dcc.fc.up.pt/~edados/">
             <script type="text/plain">
@@ -149,7 +124,7 @@
           </details>
         </uc-exercise>
 
-        <uc-exercise id="altura" title="Altura da árvore" level="easy" mooshak="BT02">
+        <uc-exercise id="altura" title="Altura da árvore" level="easy">
           <p>Implementa <code>int depth()</code>. Uma árvore só com a raiz tem altura 0 e uma árvore vazia tem altura −1.</p>
           <details class="uc-hint">
             <summary>Dica</summary>
@@ -168,7 +143,7 @@
           </details>
         </uc-exercise>
 
-        <uc-exercise id="procurar" title="Procurar um valor" level="easy" mooshak="BT03">
+        <uc-exercise id="procurar" title="Procurar um valor" level="easy">
           <p>Implementa <code>boolean contains(T value)</code>: devolve <code>true</code> se algum nó tiver o valor dado. Usa <code>equals</code>, não <code>==</code>.</p>
           <details class="uc-hint">
             <summary>Dica</summary>
@@ -188,7 +163,7 @@
           </details>
         </uc-exercise>
 
-        <uc-exercise id="profundidade" title="Percursos em profundidade" level="medium" mooshak="BT04">
+        <uc-exercise id="profundidade" title="Percursos em profundidade" level="medium">
           <p>Escreve <code>printPreOrder()</code>, <code>printInOrder()</code> e <code>printPostOrder()</code>. Confirma a ordem com a <a href="#percursos">demonstração acima</a>.</p>
           <details class="uc-hint">
             <summary>Dica</summary>
@@ -196,7 +171,7 @@
           </details>
         </uc-exercise>
 
-        <uc-exercise id="largura" title="Percurso em largura" level="medium" mooshak="BT05">
+        <uc-exercise id="largura" title="Percurso em largura" level="medium">
           <p>Implementa <code>printBFS()</code>, que imprime os nós nível a nível, da esquerda para a direita. Usa a tua <code>MyQueue</code> da aula 7; na demonstração, escolhe Largura para ver a fila a mudar.</p>
           <details class="uc-hint">
             <summary>Dica</summary>
@@ -204,7 +179,7 @@
           </details>
         </uc-exercise>
 
-        <uc-exercise id="folhas-nivel" title="Desafio: contar folhas por nível" level="hard" mooshak="BT06">
+        <uc-exercise id="folhas-nivel" title="Desafio: contar folhas por nível" level="hard">
           <p>Implementa <code>int leavesAtLevel(int k)</code>, que devolve quantas folhas existem exatamente no nível <code>k</code> (a raiz está no nível 0). Na árvore da demonstração, <code>leavesAtLevel(2)</code> devolve 4.</p>
           <details class="uc-hint">
             <summary>Dica</summary>
