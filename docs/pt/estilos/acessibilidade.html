@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Acessibilidade · UC Design Kit</title>
-  <meta name="description" content="O que o kit garante e o que fica a cargo de quem escreve as páginas.">
+  <meta name="description" content="O que o UC Design Kit garante em acessibilidade (WCAG 2.1 AA) e o que cabe a quem escreve o site, com uma lista de verificação.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -97,11 +97,121 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Estilos</p>
           <h1>Acessibilidade</h1>
-          <p class="docs-lead">O que o kit garante e o que fica a cargo de quem escreve as páginas.</p>
+          <p class="docs-lead">O kit tem como objetivo o nível AA das WCAG 2.1: tudo funciona com teclado, o foco vê-se, as cores têm contraste suficiente e o conteúdo lê-se sem JavaScript. O que o kit não pode fazer é escrever bem o conteúdo: textos alternativos, títulos, ligações e ficheiros cabem a quem faz o site.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="objetivo">O objetivo e como é testado</h2>
+        <p>O alvo são as <a href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</a>, nível AA, a norma de referência para os sites do setor público na União Europeia, incluindo as universidades públicas. Cada alteração ao kit passa por um teste automático que abre todas as páginas do repositório (o exemplo, o modelo, esta documentação e as suas demonstrações) num navegador e verifica:</p>
+        <ul>
+          <li>que o <a href="https://github.com/dequelabs/axe-core">axe-core</a> não encontra violações graves ou críticas das regras WCAG 2.1 A e AA;</li>
+          <li>que não há deslocamento horizontal numa janela de 360 px;</li>
+          <li>que o conteúdo continua lá com o JavaScript desligado;</li>
+          <li>que não há erros na consola nem ficheiros em falta.</li>
+        </ul>
+        <p>Um teste automático encontra só parte dos problemas. O resto (se o texto alternativo descreve a imagem, se os títulos fazem sentido) depende do conteúdo e verifica-se à mão.</p>
+
+        <h2 id="o-que-o-kit-garante">O que o kit garante</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>Teclado e foco</h3>
+            <p>Tudo o que reage ao rato reage ao teclado: menus, semanas, dicas, perguntas, botões de copiar e de executar. Ligações, botões e campos mostram um contorno de 2 px na cor do curso quando recebem foco pelo teclado (<code>--uc-focus-ring</code>). O menu do telemóvel fecha com Escape e devolve o foco ao botão que o abriu.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Estrutura da página</h3>
+            <p><a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a> cria as regiões <code>header</code>, <code>nav</code>, <code>main</code> e <code>footer</code>, uma ligação "Saltar para o conteúdo" como primeiro elemento focável e marca a página atual na navegação com <code>aria-current="page"</code>. <a href="../componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a> dá o <code>&lt;h1&gt;</code> da página inicial.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Contraste</h3>
+            <p>Com as cores por omissão, todo o texto tem pelo menos 4,5:1 sobre o seu fundo; o mais claro, <code>--uc-color-text-subtle</code>, tem 4,8:1 sobre branco. As etiquetas, os avisos e as caixas de sucesso e de erro também. A informação nunca está só na cor: a semana atual tem a etiqueta "Esta semana", os prazos dizem o estado por extenso.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Sem JavaScript</h3>
+            <p>O conteúdo escrito no HTML vê-se sempre, mesmo que o kit não carregue. Perde-se o que é gerado: cabeçalho, navegação, datas calculadas, prazos e avisos do <code>course.js</code>. Cada página de componente tem uma secção "Sem JavaScript" com os pormenores.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Ecrãs pequenos e zoom</h3>
+            <p>Os tamanhos de letra são em <code>rem</code> e acompanham o tamanho escolhido no navegador. Nenhuma página do kit desliza para o lado a 360 px: tabelas e blocos de código largos deslizam dentro da sua caixa, que o teclado consegue deslocar (ver <a href="elementos.html">Blocos: elementos</a>). Os botões têm 44 px de altura (<code>--uc-target-min</code>), exceto os compactos, com 32 px.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Movimento reduzido</h3>
+            <p>Com "reduzir movimento" ligado no sistema, as transições e animações do kit passam a instantâneas e o deslocamento suave do índice dos guiões deixa de o ser.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Anúncios</h3>
+            <p>Mudanças que não se veem onde está o foco são anunciadas aos leitores de ecrã: "Copiado" depois de copiar código, a correção de uma <a href="../componentes/uc-question.html">pergunta</a>. Os botões só com ícone têm nome acessível, e as ligações que o kit gera para outros sites (plataformas, Mooshak) dizem "(site externo)".</p>
+          </div>
+          <div class="uc-card">
+            <h3>Língua</h3>
+            <p>O kit põe no <code>&lt;html lang&gt;</code> a língua ativa, para os leitores de ecrã escolherem a pronúncia, e os textos que gera ("Esta semana", "Próximas datas") vêm nessa língua.</p>
+          </div>
+        </div>
+
+        <h2 id="o-que-cabe-a-quem-escreve">O que cabe a quem escreve</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>Texto alternativo</h3>
+            <p>Cada <code>&lt;img&gt;</code> tem <code>alt</code>. Numa figura com informação (um diagrama, um gráfico), o <code>alt</code> diz o que a figura mostra; se for longa, a explicação vai no texto. Uma imagem só decorativa leva <code>alt=""</code>, para ser ignorada.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Títulos por ordem</h3>
+            <p>Um <code>&lt;h1&gt;</code> por página, depois <code>&lt;h2&gt;</code> para as secções e <code>&lt;h3&gt;</code> dentro delas, sem saltar níveis. Os leitores de ecrã navegam pelos títulos; um título escolhido pelo tamanho da letra estraga esse índice. O tamanho muda-se com CSS.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Texto das ligações</h3>
+            <p>O texto de cada ligação diz para onde vai, mesmo lido fora da frase: "Guião 10", "Enunciado do trabalho 2 (PDF)". "Aqui", "ver" ou o endereço completo não ajudam. Ligações repetidas ("PDF", "Ler") completam-se com <code>uc-visually-hidden</code>.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Tabelas</h3>
+            <p>Só para dados, não para alinhar a página (para isso há <a href="layout.html">uc-grid e uc-split</a>). Cada tabela tem <code>&lt;caption&gt;</code> e cabeçalhos <code>&lt;th scope="col"&gt;</code> ou <code>scope="row"</code>.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Passagens noutra língua</h3>
+            <p>Uma citação ou um termo noutra língua leva <code>lang</code>: <code>&lt;span lang="en"&gt;</code>. Num site com várias línguas no <code>course.js</code>, o kit esconde os elementos com <code>lang</code> de outra língua configurada; para manter uma citação visível acrescenta-se <code>data-uc-keep-lang</code> (ver <a href="../linguas.html">Línguas</a>).</p>
+          </div>
+          <div class="uc-card">
+            <h3>PDF e outros ficheiros</h3>
+            <p>O kit não toca nos ficheiros ligados. Slides e enunciados em PDF devem ter texto selecionável (não digitalizações), títulos e ordem de leitura; os vídeos, legendas. Na ligação, indicar o formato e o tamanho ajuda quem está no telemóvel.</p>
+          </div>
+          <div class="uc-card">
+            <h3>A cor do curso</h3>
+            <p>O kit não verifica o <code>accentColor</code>. Como é a cor das ligações sobre branco e o fundo do texto branco dos botões principais, precisa de pelo menos 4,5:1 de contraste com branco. O azul por omissão tem 6,7:1. Ver <a href="cor.html">Cor</a>.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Cor e posição</h3>
+            <p>Nada se indica só pela cor ("os exercícios a vermelho são obrigatórios") nem só pela posição ("o botão à direita"). Uma <a href="elementos.html">etiqueta</a> com texto ou uma palavra no próprio texto resolvem.</p>
+          </div>
+        </div>
+
+        <h2 id="lista">Lista de verificação</h2>
+        <p>Antes de publicar uma página nova, ou no início de cada ano:</p>
+        <ul class="uc-checklist">
+          <li>Cada imagem tem <code>alt</code>; as decorativas têm <code>alt=""</code>.</li>
+          <li>A página tem um só <code>&lt;h1&gt;</code> e os títulos seguem a ordem, sem saltar níveis.</li>
+          <li>Cada ligação faz sentido lida sozinha; nenhuma diz só "aqui".</li>
+          <li>Cada tabela tem <code>&lt;caption&gt;</code> e <code>&lt;th scope&gt;</code>, e está dentro de um <code>uc-table</code>.</li>
+          <li>O <code>&lt;html lang&gt;</code> está certo e as passagens noutra língua têm <code>lang</code>.</li>
+          <li>Os PDF têm texto selecionável e os vídeos têm legendas.</li>
+          <li>O <code>accentColor</code>, se mudou, tem pelo menos 4,5:1 de contraste com branco.</li>
+          <li>Nenhuma instrução depende só da cor ou da posição.</li>
+          <li>Percorrida só com a tecla Tab, a página mostra sempre onde está o foco e chega a todas as ligações.</li>
+          <li>Com o zoom do navegador a 200%, nada fica cortado nem tapado.</li>
+        </ul>
+
+        <h2 id="verificar">Como verificar</h2>
+        <p>Três verificações rápidas apanham a maior parte dos problemas de conteúdo:</p>
+        <ul>
+          <li><strong>Teclado</strong>: pôr o rato de lado e percorrer a página com Tab, Shift+Tab, Enter e Espaço.</li>
+          <li><strong>Ferramentas do navegador</strong>: o Lighthouse do Chrome ou a extensão axe DevTools listam imagens sem <code>alt</code>, títulos fora de ordem e contraste insuficiente.</li>
+          <li><strong>Leitor de ecrã</strong>: o NVDA (Windows) ou o VoiceOver (macOS, iOS) a ler a lista de títulos e de ligações mostra se a página se percebe sem a ver.</li>
+        </ul>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="cor.html">Cor</a>: os tokens de cor e o contraste.</li>
+          <li><a href="elementos.html">Blocos: elementos</a>: tabelas com teclado, <code>uc-visually-hidden</code>.</li>
+          <li><a href="../linguas.html">Línguas</a>: páginas e passagens em mais de uma língua.</li>
+          <li><a href="../componentes/index.html">Componentes</a>: cada página tem uma secção de acessibilidade própria.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +234,12 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#objetivo">O objetivo e como é testado</a></li>
+          <li><a href="#o-que-o-kit-garante">O que o kit garante</a></li>
+          <li><a href="#o-que-cabe-a-quem-escreve">O que cabe a quem escreve</a></li>
+          <li><a href="#lista">Lista de verificação</a></li>
+          <li><a href="#verificar">Como verificar</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->
