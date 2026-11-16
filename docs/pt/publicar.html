@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publicar · UC Design Kit</title>
+  <meta name="description" content="Publicar um site feito com o UC Design Kit no servidor do departamento (~/public_html), no GitHub Pages ou no Cloudflare Pages; versão do kit e cache.">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../assets/kit-config.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="index.html" aria-current="true">Documentação</a>
+        <a href="../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="index.html">Introdução</a></li>
+          <li><a href="criar-site.html">Criar o meu site</a></li>
+          <li><a href="estrutura.html">Estrutura de um site</a></li>
+          <li><a href="course-js.html">O ficheiro course.js</a></li>
+          <li><a href="linguas.html">Línguas</a></li>
+          <li><a href="novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="publicar.html" aria-current="page">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Começar</p>
+          <h1>Publicar</h1>
+          <p class="docs-lead">O site é uma pasta de ficheiros estáticos, sem passo de compilação: publica-se copiando-a para qualquer servidor web. Aqui ficam três opções, do servidor do departamento a serviços gratuitos.</p>
+        </header>
+
+        <h2 id="antes">Antes de publicar</h2>
+        <ul class="uc-checklist">
+          <li>Não há <code>today</code> no <code>course.js</code> (fixa o dia de "hoje" para toda a gente).</li>
+          <li>A consola do browser não mostra avisos <code>[uc-kit]</code>.</li>
+          <li>Os links são relativos e com <code>.html</code> (ver <a href="estrutura.html#links">Links e ficheiros</a>).</li>
+          <li>O <code>updated</code> do <code>course.js</code> tem a data de hoje.</li>
+        </ul>
+
+        <h2 id="dcc">Servidor do departamento (~/public_html)</h2>
+        <p>No DCC, como em muitos departamentos, cada conta tem uma pasta <code>~/public_html</code> servida em <code>https://www.dcc.fc.up.pt/~utilizador/</code>. Uma pasta <code>~/public_html/aulas/minha-uc/2627/</code> fica em <code>https://www.dcc.fc.up.pt/~utilizador/aulas/minha-uc/2627/</code>.</p>
+        <p>A cópia faz-se por SSH a partir do computador onde se edita o site. Nos exemplos, <code>utilizador@servidor</code> é a conta e a máquina de acesso por SSH do departamento (a mesma que se usa para entrar remotamente).</p>
+        <h3 id="dcc-primeira-vez">Primeira vez: copiar a pasta</h3>
+        <uc-code lang="bash" no-download><pre><code>ssh utilizador@servidor "mkdir -p ~/public_html/aulas/minha-uc"
+scp -r 2627 utilizador@servidor:public_html/aulas/minha-uc/</code></pre></uc-code>
+        <h3 id="dcc-atualizar">Atualizar: só o que mudou</h3>
+        <p>O <code>rsync</code> envia só os ficheiros alterados. Com <code>--delete</code> também apaga no servidor o que foi apagado localmente; o <code>--dry-run</code> mostra o que faria sem fazer nada.</p>
+        <uc-code lang="bash" no-download><pre><code>rsync -av --delete --dry-run 2627/ utilizador@servidor:public_html/aulas/minha-uc/2627/
+rsync -av --delete 2627/ utilizador@servidor:public_html/aulas/minha-uc/2627/</code></pre></uc-code>
+        <p>A barra no fim de <code>2627/</code> importa: copia o conteúdo da pasta para dentro da pasta de destino, em vez de criar <code>2627/2627</code>. Quem preferir uma interface gráfica pode usar um cliente SFTP (FileZilla, Cyberduck, WinSCP) com os mesmos dados.</p>
+        <h3 id="dcc-permissoes">Permissões</h3>
+        <p>O servidor web só mostra ficheiros que todos podem ler. Se uma página der "Forbidden" (erro 403), dá-se permissão de leitura a tudo e de passagem às pastas:</p>
+        <uc-code lang="bash" no-download><pre><code>ssh utilizador@servidor "chmod -R a+rX ~/public_html/aulas/minha-uc"</code></pre></uc-code>
+        <p>A pasta pessoal e a <code>public_html</code> também precisam de permissão de passagem (<code>chmod a+x ~ ~/public_html</code>). Ficheiros que não devem ser públicos (enunciados de testes por sair, notas) não se põem na pasta, porque tudo o que lá está pode ser descarregado por quem souber o endereço.</p>
+
+        <h2 id="github-pages">GitHub Pages</h2>
+        <p>Útil quando o site já está num repositório, por exemplo para ter histórico de alterações ou vários professores a editar.</p>
+        <ol>
+          <li>Criar um repositório público com as pastas dos anos na raiz (<code>2526/</code>, <code>2627/</code>) ou só a pasta do ano.</li>
+          <li>Em <strong>Settings → Pages</strong>, escolher <strong>Deploy from a branch</strong>, o ramo <code>main</code> e a pasta <code>/ (root)</code>.</li>
+          <li>O site fica em <code>https://utilizador.github.io/repositorio/2627/</code>, e atualiza-se a cada <code>git push</code>, em cerca de um minuto.</li>
+        </ol>
+        <p>Convém acrescentar à raiz do repositório um ficheiro vazio chamado <code>.nojekyll</code>: diz ao GitHub para servir os ficheiros como estão, sem os processar com o Jekyll.</p>
+        <uc-code lang="bash" no-download><pre><code>touch .nojekyll
+git add . && git commit -m "Site 2026/27" && git push</code></pre></uc-code>
+
+        <h2 id="cloudflare">Cloudflare Pages</h2>
+        <p>Gratuito, rápido em qualquer país e com um endereço de pré-visualização para cada alteração. Há duas formas:</p>
+        <ul>
+          <li><strong>Sem Git.</strong> Em <strong>Workers &amp; Pages → Create → Pages → Upload assets</strong>, arrasta-se a pasta do site. Para atualizar, cria-se um novo deployment com a pasta nova.</li>
+          <li><strong>Com Git.</strong> <strong>Connect to Git</strong>, escolhe-se o repositório e deixa-se o comando de build vazio e a pasta de saída <code>/</code>. Cada <code>git push</code> publica.</li>
+        </ul>
+        <p>O site fica em <code>https://projeto.pages.dev/</code> e pode ter um domínio próprio. O Cloudflare Pages redireciona <code>pagina.html</code> para <code>pagina</code>; os links com <code>.html</code> continuam a funcionar (o redirecionamento custa uma fração de segundo) e mantêm o site portável para outros servidores.</p>
+
+        <h2 id="versao">Versão do kit</h2>
+        <p>As páginas carregam o kit de <code>https://uc-design-kit.miguelrocha.dev/kit/v1/</code>. Há duas formas de escolher a versão:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Endereços do kit</caption>
+            <thead>
+              <tr><th scope="col">Endereço</th><th scope="col">O que se recebe</th><th scope="col">Quando usar</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>kit/v1/</code></td><td>Sempre a versão 1 mais recente. Recebe correções e novidades sem mudar nada, e nunca muda de forma incompatível.</td><td>Por omissão. É o que o modelo usa.</td></tr>
+              <tr><td><code>kit/v1.0.0/</code></td><td>Uma versão exata, que nunca muda. O browser guarda-a durante um ano sem voltar a perguntar, por isso as visitas seguintes são as mais rápidas.</td><td>Para ter o mesmo kit durante todo o semestre. Atualiza-se no início do ano (ver <a href="novo-ano.html#kit">Novo ano letivo</a>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Para fixar a versão troca-se <code>v1</code> pelo número nos três endereços do <code>&lt;head&gt;</code> (o <code>preload</code> da letra, o CSS e o JavaScript). As versões publicadas e o que mudou em cada uma estão no <a href="https://github.com/mmroch4/uc-design-kit/blob/main/CHANGELOG.md">CHANGELOG</a>.</p>
+
+        <h2 id="cache">Cache</h2>
+        <ul>
+          <li><strong>O kit</strong> (<code>kit/v1/</code>) fica guardado no browser durante 5 minutos e depois é verificado em segundo plano: uma correção ao kit chega aos alunos na visita seguinte, sem que esperem por ela.</li>
+          <li><strong>Os ficheiros do site</strong> (<code>course.js</code>, páginas) seguem as regras do servidor onde estão. Os servidores de departamento costumam fazer o browser confirmar se houve alterações, por isso um aviso novo aparece ao recarregar. Se um aluno vir uma versão antiga, Ctrl+F5 (ou Cmd+Shift+R) força a atualização.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="novo-ano.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Novo ano letivo</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="componentes/uc-week.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-week</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/publicar.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#antes">Antes de publicar</a></li>
+          <li><a href="#dcc">Servidor do departamento (~/public_html)</a></li>
+          <li class="docs-toc__sub"><a href="#dcc-primeira-vez">Primeira vez: copiar a pasta</a></li>
+          <li class="docs-toc__sub"><a href="#dcc-atualizar">Atualizar: só o que mudou</a></li>
+          <li class="docs-toc__sub"><a href="#dcc-permissoes">Permissões</a></li>
+          <li><a href="#github-pages">GitHub Pages</a></li>
+          <li><a href="#cloudflare">Cloudflare Pages</a></li>
+          <li><a href="#versao">Versão do kit</a></li>
+          <li><a href="#cache">Cache</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

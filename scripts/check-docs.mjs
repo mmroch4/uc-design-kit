@@ -7,7 +7,8 @@
  *   - headings: every h2 of an article has an id, and ids are unique ("Nesta página")
  *   - links: local href/src targets exist; #anchors into documentation pages exist
  *   - coverage: a component page's "Atributos" table (h2#atributos) lists exactly
- *     the attributes of that component in docs/api.md, section 3
+ *     the attributes of that component in docs/api.md, section 3; the course.js
+ *     page lists exactly the types, fields and built-in pages of section 2
  *
  * Components of api.md without a page are listed as pending. With --strict
  * (used once every component has a page) they fail the check.
@@ -74,6 +75,75 @@ function documentedAttributes(content) {
   return names;
 }
 
+/* ---------- api.md section 2: course.js ---------- */
+
+// Subsection of api.md section 2 → id of the h2 of the course.js page that
+// documents it. The first column of the subsection's first table is compared
+// with the first <code> of each row of the tables in that h2 section.
+const COURSE_PAGE = "pt/course-js.html";
+const COURSE_SECTIONS = { "2.1": "tipos", "2.2": "campos", "2.3": "paginas", "2.4": "equipa", "2.5": "prazos", "2.6": "avisos" };
+
+/** Map of subsection number ("2.2") → names in the first column of its first table. */
+export async function apiCourseTables() {
+  const api = await readFile(path.join(ROOT, "docs/api.md"), "utf8");
+  const section = api.split(/^## /m).find((part) => part.startsWith("2. Course configuration"));
+  const tables = new Map();
+  for (const block of section.split(/^### /m).slice(1)) {
+    const number = block.match(/^(\d+\.\d+)\s/);
+    if (!number) continue;
+    const names = new Set();
+    let started = false;
+    for (const line of block.split("\n")) {
+      if (!line.startsWith("|")) {
+        if (started) break;
+        continue;
+      }
+      const cell = line.split("|")[1];
+      if (!started) {
+        started = true; // header row
+        continue;
+      }
+      if (/^\s*-+\s*$/.test(cell)) continue;
+      const code = cell.match(/`([^`]+)`/);
+      if (code) names.add(code[1]);
+    }
+    if (names.size) tables.set(number[1], names);
+  }
+  return tables;
+}
+
+/** First <code> of each body row of the tables between <h2 id="…"> and the next h2. */
+function sectionRowNames(content, id) {
+  const section = content.match(new RegExp(`<h2 id="${id}">[\\s\\S]*?(?=<h2\\b|<\\/article>)`));
+  if (!section) return null;
+  const names = new Set();
+  for (const row of section[0].matchAll(/<tr>\s*<td>([\s\S]*?)<\/td>/g)) {
+    const code = row[1].match(/<code>([\s\S]*?)<\/code>/);
+    if (code) names.add(stripTags(code[1]));
+  }
+  return names;
+}
+
+async function checkCoursePage() {
+  const file = path.join(DOCS, COURSE_PAGE);
+  if (!(await exists(file))) return;
+  const content = await readFile(file, "utf8");
+  for (const [number, expected] of await apiCourseTables()) {
+    const id = COURSE_SECTIONS[number];
+    if (!id) {
+      problems.push(`docs/api.md: section ${number} has no section on ${rel(file)} (add it to COURSE_SECTIONS)`);
+      continue;
+    }
+    const listed = sectionRowNames(content, id);
+    if (!listed) {
+      problems.push(`${rel(file)}: no <h2 id="${id}"> section (docs/api.md ${number})`);
+      continue;
+    }
+    for (const name of expected) if (!listed.has(name)) problems.push(`${rel(file)}: "${name}" from docs/api.md ${number} is not documented in #${id}`);
+    for (const name of listed) if (!expected.has(name)) problems.push(`${rel(file)}: "${name}" in #${id} is not in docs/api.md ${number}`);
+  }
+}
+
 /* ---------- links ---------- */
 
 function idsOf(content) {
@@ -137,6 +207,8 @@ async function main() {
       documented.add(entry.component);
     }
   }
+
+  await checkCoursePage();
 
   const files = [...pages.map((page) => page.file), path.join(ROOT, "index.html")];
   for (const file of files) {

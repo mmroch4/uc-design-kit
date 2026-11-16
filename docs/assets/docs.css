@@ -211,6 +211,19 @@
 .docs-article .uc-table td:first-child code { white-space: nowrap; }
 .docs-article .uc-table { margin-top: var(--uc-space-4); }
 
+/* Field tables (course.js page): one table per group, same columns in all of
+   them; the type is a second line under the field name. */
+.docs-fields table { table-layout: fixed; }
+.docs-fields th:nth-child(1) { width: 29%; }
+.docs-fields th:nth-child(2) { width: 17%; }
+.docs-fields th:nth-child(3) { width: 15%; }
+.docs-type {
+  display: block;
+  margin-top: var(--uc-space-1);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+}
+
 /* Two-column list of definitions (e.g. "what the component does / what the author does"). */
 .docs-grid-2 {
   display: grid;

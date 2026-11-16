@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O ficheiro course.js · UC Design Kit</title>
+  <meta name="description" content="Todos os campos do course.js do UC Design Kit, com tipo, valor por omissão e exemplo, e os erros mais comuns.">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../assets/kit-config.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="index.html" aria-current="true">Documentação</a>
+        <a href="../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="index.html">Introdução</a></li>
+          <li><a href="criar-site.html">Criar o meu site</a></li>
+          <li><a href="estrutura.html">Estrutura de um site</a></li>
+          <li><a href="course-js.html" aria-current="page">O ficheiro course.js</a></li>
+          <li><a href="linguas.html">Línguas</a></li>
+          <li><a href="novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Começar</p>
+          <h1>O ficheiro course.js</h1>
+          <p class="docs-lead">O <code>course.js</code> guarda o que muda de ano para ano ou aparece em mais de uma página. É JavaScript, mas só tem uma atribuição: um objeto em <code>window.UC_COURSE</code>. Só o título é obrigatório.</p>
+        </header>
+
+        <h2 id="forma">A forma do ficheiro</h2>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  code: "AP0001",
+  title: "Algoritmos e Programação",
+  edition: "2025/26",
+  semester: { start: "2025-09-15", weeks: 12 },
+  pages: ["home", { id: "weeks", href: "semanas.html" }],
+  deadlines: [
+    { id: "t2", title: "Entrega do trabalho 2", kind: "submission", date: "2025-11-28", time: "23:59" },
+  ],
+};</code></pre></uc-code>
+        <p>Cada página carrega-o antes do kit (ver <a href="estrutura.html#head">o &lt;head&gt; de cada página</a>). O kit lê-o uma vez, completa o que falta com os valores por omissão e avisa na consola do browser, com mensagens <code>[uc-kit] course.js: …</code>, quando um valor não é válido. Um erro num campo nunca impede a página de aparecer.</p>
+        <p>Nas tabelas, a coluna <strong>Necessário</strong> diz quando preencher o campo:</p>
+        <ul>
+          <li><span class="uc-tag uc-tag--warning">Obrigatório</span> sem ele o kit avisa e usa o <code>&lt;title&gt;</code> da página.</li>
+          <li><span class="uc-tag uc-tag--accent">Recomendado</span> sem ele há funcionalidades que não aparecem (por exemplo, sem <code>semester.start</code> não há datas nas semanas).</li>
+          <li><span class="uc-tag uc-tag--muted">Opcional</span> tem um valor por omissão razoável.</li>
+        </ul>
+
+        <h2 id="tipos">Tipos</h2>
+        <p>Além de texto, números e listas, os campos usam quatro tipos:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Tipos de valores do course.js</caption>
+            <thead>
+              <tr><th scope="col">Tipo</th><th scope="col">Forma</th><th scope="col">Exemplo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>LocalizedText</code></td><td>Um texto igual em todas as línguas, ou um objeto com um texto por língua. Se faltar uma língua usa-se a primeira de <code>languages</code>.</td><td><code>"Exame"</code><br><code>{ pt: "Exame", en: "Exam" }</code></td></tr>
+              <tr><td><code>ISODate</code></td><td><code>"AAAA-MM-DD"</code>, com zeros. Um prazo aceita ainda <code>"AAAA-MM"</code> (só o mês) e <code>null</code> (a marcar).</td><td><code>"2025-09-15"</code></td></tr>
+              <tr><td><code>Time</code></td><td><code>"HH:MM"</code>, 24 horas.</td><td><code>"09:30"</code></td></tr>
+              <tr><td><code>HTMLText</code></td><td>Um <code>LocalizedText</code> que pode ter HTML simples (links, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>). É inserido como HTML: as aspas dentro do texto escrevem-se <code>\"</code>.</td><td><code>"Ver &lt;a href=\"avaliacao.html\"&gt;regras&lt;/a&gt;"</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="campos">Campos</h2>
+        <h3 id="campos-curso">Curso</h3>
+        <div class="uc-table docs-fields">
+          <table>
+            <caption class="uc-visually-hidden">Campos de identificação do curso</caption>
+            <thead>
+              <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>title</code><span class="docs-type"><code>LocalizedText</code></span></td><td><span class="uc-tag uc-tag--warning">Obrigatório</span></td><td>—</td><td>Nome da cadeira: cabeçalho, <code>&lt;uc-hero&gt;</code> e rodapé.</td></tr>
+              <tr><td><code>code</code><span class="docs-type">texto</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>Código acima do título, por exemplo <code>"CC1007"</code>.</td></tr>
+              <tr><td><code>tagline</code><span class="docs-type"><code>LocalizedText</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>Uma frase sobre a cadeira, mostrada por <code>&lt;uc-hero&gt;</code>.</td></tr>
+              <tr><td><code>edition</code><span class="docs-type">texto</span></td><td><span class="uc-tag uc-tag--accent">Recomendado</span></td><td>—</td><td>Ano letivo ao lado do título, por exemplo <code>"2025/26"</code>.</td></tr>
+              <tr><td><code>institution</code><span class="docs-type"><code>{ name, url? }</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>Departamento ou faculdade, no cabeçalho.</td></tr>
+              <tr><td><code>accentColor</code><span class="docs-type">cor CSS</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>"#1D4ED8"</code></td><td>Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco.</td></tr>
+              <tr><td><code>logo</code><span class="docs-type">URL ou <code>null</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>ícone de árvore</td><td>Imagem no cabeçalho, relativa à página; <code>null</code> esconde-a.</td></tr>
+              <tr><td><code>footer</code><span class="docs-type"><code>HTMLText</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>título e instituição</td><td>Lado esquerdo do rodapé.</td></tr>
+              <tr><td><code>updated</code><span class="docs-type"><code>ISODate</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>"Atualizado a …" no rodapé. Muda-se à mão quando se publica.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="campos-linguas">Línguas</h3>
+        <div class="uc-table docs-fields">
+          <table>
+            <caption class="uc-visually-hidden">Campo de línguas</caption>
+            <thead>
+              <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>languages</code><span class="docs-type">lista de códigos</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>o <code>&lt;html lang&gt;</code></td><td>Por exemplo <code>["pt", "en"]</code>. A primeira é a de omissão; com mais de uma aparece o seletor de língua. Ver <a href="linguas.html">Línguas</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="campos-semestre">Semestre</h3>
+        <div class="uc-table docs-fields">
+          <table>
+            <caption class="uc-visually-hidden">Campos do semestre</caption>
+            <thead>
+              <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>semester.start</code><span class="docs-type"><code>ISODate</code></span></td><td><span class="uc-tag uc-tag--accent">Recomendado</span></td><td>—</td><td>Primeiro dia de aulas. A semana 1 é a semana do calendário que o contém. Sem ele, as semanas não têm datas e "Esta semana" não aparece.</td></tr>
+              <tr><td><code>semester.weeks</code><span class="docs-type">número</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>14</code></td><td>Número de semanas de aulas, sem contar as interrupções.</td></tr>
+              <tr><td><code>semester.teachingDays</code><span class="docs-type"><code>[de, até]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[1, 5]</code></td><td>Dias com aulas (1 = segunda … 7 = domingo). As datas das semanas mostram-se com estes dias: <code>[2, 5]</code> dá "25–28 nov".</td></tr>
+              <tr><td><code>semester.breaks</code><span class="docs-type"><code>{ start, end, label }[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Semanas sem aulas. Não são numeradas e aparecem entre as semanas em <code>&lt;uc-weeks&gt;</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="campos-navegacao">Navegação</h3>
+        <div class="uc-table docs-fields">
+          <table>
+            <caption class="uc-visually-hidden">Campos de navegação</caption>
+            <thead>
+              <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>pages</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--accent">Recomendado</span></td><td><code>["home"]</code></td><td>Páginas da navegação, por ordem. Ver <a href="#paginas">Páginas</a>.</td></tr>
+              <tr><td><code>platforms</code><span class="docs-type"><code>{ label, url }[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="campos-conteudo">Equipa, prazos e avisos</h3>
+        <div class="uc-table docs-fields">
+          <table>
+            <caption class="uc-visually-hidden">Campos de conteúdo</caption>
+            <thead>
+              <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>team</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Equipa docente, mostrada por <code>&lt;uc-team&gt;</code>. Ver <a href="#equipa">Equipa</a>.</td></tr>
+              <tr><td><code>deadlines</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Prazos, testes e exames: aparecem na página inicial, na semana certa e na avaliação. Ver <a href="#prazos">Prazos</a>.</td></tr>
+              <tr><td><code>notices</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Avisos de <code>&lt;uc-notices&gt;</code>. Ver <a href="#avisos">Avisos</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="campos-avancado">Avançado</h3>
+        <div class="uc-table docs-fields">
+          <table>
+            <caption class="uc-visually-hidden">Campos avançados</caption>
+            <thead>
+              <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>today</code><span class="docs-type"><code>ISODate</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>a data real</td><td>Fixa o dia de "hoje", para demonstrações e capturas. Não deixar num site publicado. <code>?today=AAAA-MM-DD</code> no endereço sobrepõe-se a ele.</td></tr>
+              <tr><td><code>runner</code><span class="docs-type">objeto</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>Codapi e browser</td><td>Onde <code>&lt;uc-code run&gt;</code> executa o código: <code>{ provider, languages, codapi, browser }</code>. Trocar de serviço (Codapi próprio, Judge0) é só mudar este campo; explica-se no grupo Personalizar (em preparação).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="paginas">Páginas</h2>
+        <p>Cada entrada de <code>pages</code> é um identificador ou um objeto com <code>id</code>, <code>href</code> e <code>label</code>:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>pages: [
+  "home",                                          // index.html, "Início"
+  { id: "weeks", href: "semanas.html" },           // identificador do kit, ficheiro próprio
+  { id: "projects", href: "projetos.html", label: { pt: "Projetos", en: "Projects" } },
+  { id: "about", href: { pt: "sobre.html", en: "about.html" } },   // um ficheiro por língua
+],</code></pre></uc-code>
+        <ul>
+          <li><strong><code>id</code></strong> identifica a página; é o valor de <code>&lt;uc-page current&gt;</code>.</li>
+          <li><strong><code>href</code></strong> é relativo ao <code>course.js</code>, por isso funciona igual em páginas de subpastas. Um <code>LocalizedText</code> indica um ficheiro por língua.</li>
+          <li><strong><code>label</code></strong> é o nome na navegação; obrigatório para identificadores que não são do kit.</li>
+        </ul>
+        <p>Os identificadores do kit já têm ficheiro e nome:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Identificadores de página do kit</caption>
+            <thead>
+              <tr><th scope="col">Identificador</th><th scope="col">Ficheiro por omissão</th><th scope="col">Nome (pt / en)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>home</code></td><td><code>index.html</code></td><td>Início / Home</td></tr>
+              <tr><td><code>weeks</code></td><td><code>weeks.html</code></td><td>Semanas / Weeks</td></tr>
+              <tr><td><code>assessment</code></td><td><code>assessment.html</code></td><td>Avaliação / Assessment</td></tr>
+              <tr><td><code>materials</code></td><td><code>materials.html</code></td><td>Materiais / Materials</td></tr>
+              <tr><td><code>schedule</code></td><td><code>schedule.html</code></td><td>Horários e equipa / Schedule and team</td></tr>
+              <tr><td><code>about</code></td><td><code>about.html</code></td><td>Sobre a UC / About the course</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="equipa">Equipa</h2>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>team: [
+  { name: "Ana Silva", url: "https://example.org/~ana", role: "coordinator",
+    classes: ["T1", "T2"], office: "Gab. 1.25" },
+  { name: "Rui Costa", email: "rui@example.org", role: "assistant", classes: ["PL1", "PL3"] },
+  { name: "Inês Rocha", role: { pt: "Monitora", en: "Teaching assistant" } },
+],</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos de um membro da equipa</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>name</code></td><td>texto</td><td>Obrigatório.</td></tr>
+              <tr><td><code>url</code></td><td>URL</td><td>Página pessoal; o nome passa a link.</td></tr>
+              <tr><td><code>email</code></td><td>texto</td><td>Mostrado como link <code>mailto:</code>.</td></tr>
+              <tr><td><code>role</code></td><td><code>"coordinator"</code>, <code>"lecturer"</code>, <code>"assistant"</code> ou <code>LocalizedText</code></td><td>Os três papéis do kit são traduzidos (Regente, Docente, Práticas); qualquer outro texto aparece como está.</td></tr>
+              <tr><td><code>classes</code></td><td>lista de textos</td><td>Turmas, por exemplo <code>["PL1", "PL5"]</code>.</td></tr>
+              <tr><td><code>office</code></td><td>texto</td><td>Gabinete, por exemplo <code>"Gab. 1.25"</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="prazos">Prazos</h2>
+        <p>Um prazo escreve-se uma vez e aparece onde fizer falta: na lista de próximas datas, dentro da semana em que cai, no cartão "Esta semana" e na tabela da avaliação.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>deadlines: [
+  { id: "t2", title: "Entrega do trabalho 2", date: "2025-11-28", time: "23:59", kind: "submission",
+    note: "Pela plataforma de entregas", url: "trabalhos/t2.html" },
+  { id: "quiz5", title: "Quiz 5", date: "2025-11-17", end: "2025-11-24", kind: "quiz" },
+  { id: "teste", title: "Teste prático", date: "2025-12-10", time: "14:00", kind: "assessment",
+    links: [{ label: "Turnos", url: "avaliacao/turnos.pdf" }] },
+  { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },   // dia por marcar
+  { id: "recurso", title: "Exame de recurso", date: null, kind: "exam" },        // a marcar
+],</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos de um prazo</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>id</code></td><td>texto</td><td>Obrigatório e único. Usado por <code>&lt;uc-date deadline&gt;</code> e <code>&lt;uc-event deadline&gt;</code>.</td></tr>
+              <tr><td><code>title</code></td><td><code>LocalizedText</code></td><td>Obrigatório.</td></tr>
+              <tr><td><code>date</code></td><td><code>ISODate</code>, <code>"AAAA-MM"</code> ou <code>null</code></td><td>Dia do prazo; só o mês quando o dia não se sabe; <code>null</code> quando está por marcar.</td></tr>
+              <tr><td><code>time</code></td><td><code>Time</code></td><td>Hora de início ou limite.</td></tr>
+              <tr><td><code>end</code></td><td><code>ISODate</code></td><td>Último dia, para prazos de vários dias (um quiz aberto uma semana). Conta como próximo até acabar.</td></tr>
+              <tr><td><code>kind</code></td><td><code>"assessment"</code>, <code>"exam"</code>, <code>"quiz"</code>, <code>"submission"</code>, <code>"other"</code></td><td>Tipo: muda a etiqueta e permite filtrar (<code>kind="assessment exam"</code> nos componentes). Por omissão <code>"other"</code>.</td></tr>
+              <tr><td><code>note</code></td><td><code>HTMLText</code></td><td>Linha secundária curta: turnos, salas, plataforma.</td></tr>
+              <tr><td><code>url</code></td><td>URL</td><td>Página com mais informação; o título passa a link.</td></tr>
+              <tr><td><code>links</code></td><td><code>{ label, url }[]</code></td><td>Links extra (resultados, turnos).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="avisos">Avisos</h2>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>notices: [
+  { date: "2025-11-27",
+    text: "Saíram as notas do teste 1. Ver &lt;a href=\"avaliacao.html\"&gt;Avaliação&lt;/a&gt;." },
+  { date: "2025-12-01", text: "Não há aula teórica na segunda-feira.",
+    details: "A matéria passa para quarta." },
+],</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos de um aviso</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>date</code></td><td><code>ISODate</code></td><td>Obrigatório. Os avisos mostram-se do mais recente para o mais antigo, e um aviso com data futura só aparece nesse dia: podem escrever-se com antecedência.</td></tr>
+              <tr><td><code>text</code></td><td><code>HTMLText</code></td><td>Obrigatório. Uma linha.</td></tr>
+              <tr><td><code>details</code></td><td><code>HTMLText</code></td><td>Segunda linha, opcional.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="erros-comuns">Erros comuns</h2>
+        <p>O kit avisa na consola (F12) com mensagens começadas por <code>[uc-kit]</code>. Estes são os casos mais frequentes:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Erros comuns no course.js</caption>
+            <thead>
+              <tr><th scope="col">Sintoma</th><th scope="col">Causa e solução</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>O cabeçalho mostra o título do separador e a navegação só tem "Início"; na consola, <code>SyntaxError</code></td><td>Erro de sintaxe no <code>course.js</code>: falta uma vírgula entre campos, sobra uma chaveta ou uma aspa ficou por fechar. A consola indica a linha.</td></tr>
+              <tr><td><code>window.UC_COURSE is missing</code></td><td>O <code>course.js</code> não foi carregado, ou foi carregado depois do kit. Confirmar o caminho (<code>../course.js</code> numa subpasta) e que vem antes de <code>uc-kit.js</code>, sem <code>defer</code>.</td></tr>
+              <tr><td><code>has an invalid date "2025-9-1"</code></td><td>As datas levam zeros: <code>"2025-09-01"</code>.</td></tr>
+              <tr><td><code>has unknown kind "teste"</code></td><td><code>kind</code> aceita só <code>assessment</code>, <code>exam</code>, <code>quiz</code>, <code>submission</code> e <code>other</code>; o nome que se mostra vai em <code>title</code>.</td></tr>
+              <tr><td><code>is not a built-in page and needs an href</code></td><td>Uma página com identificador próprio precisa de <code>href</code> e <code>label</code>.</td></tr>
+              <tr><td>As semanas não têm datas</td><td>Falta <code>semester.start</code>, ou a data não é válida.</td></tr>
+              <tr><td>A semana 1 começa uma semana mais cedo ou mais tarde</td><td>A semana 1 é a semana do calendário (segunda a domingo) que contém <code>semester.start</code>. Confirmar o dia e as interrupções em <code>breaks</code>.</td></tr>
+              <tr><td>Um aviso não aparece</td><td>Tem uma data futura: só aparece nesse dia. Para testar, abrir a página com <code>?today=</code>.</td></tr>
+              <tr><td>Aspas partem o texto de um aviso</td><td>Dentro de um texto entre <code>"</code>, as aspas do HTML escrevem-se <code>\"</code>, ou usam-se plicas à volta do texto.</td></tr>
+              <tr><td>Tudo aparece num dia errado</td><td>Ficou um <code>today</code> no <code>course.js</code>. Apagar a linha.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="estrutura.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Estrutura de um site</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="linguas.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Línguas</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/course-js.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#forma">A forma do ficheiro</a></li>
+          <li><a href="#tipos">Tipos</a></li>
+          <li><a href="#campos">Campos</a></li>
+          <li class="docs-toc__sub"><a href="#campos-curso">Curso</a></li>
+          <li class="docs-toc__sub"><a href="#campos-linguas">Línguas</a></li>
+          <li class="docs-toc__sub"><a href="#campos-semestre">Semestre</a></li>
+          <li class="docs-toc__sub"><a href="#campos-navegacao">Navegação</a></li>
+          <li class="docs-toc__sub"><a href="#campos-conteudo">Equipa, prazos e avisos</a></li>
+          <li class="docs-toc__sub"><a href="#campos-avancado">Avançado</a></li>
+          <li><a href="#paginas">Páginas</a></li>
+          <li><a href="#equipa">Equipa</a></li>
+          <li><a href="#prazos">Prazos</a></li>
+          <li><a href="#avisos">Avisos</a></li>
+          <li><a href="#erros-comuns">Erros comuns</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>
