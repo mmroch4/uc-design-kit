@@ -177,6 +177,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
   code: {
     copy: "Copiar",
     copied: "Copiado",
+    copyNamed: "Copiar {name}",
     copyFailed: "Não foi possível copiar",
     download: "Descarregar",
     reset: "Repor",
@@ -294,6 +295,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   code: {
     copy: "Copy",
     copied: "Copied",
+    copyNamed: "Copy {name}",
     copyFailed: "Could not copy",
     download: "Download",
     reset: "Reset",
@@ -911,6 +913,44 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   }
 
   Object.assign(UC.internal, { h, append, fragment, icon, uid, isExternal, flag, number });
+})(window.UC);
+
+/* --- core/clipboard.js --- */
+/** Clipboard helper shared by <uc-code> and copyable preformatted blocks. */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h } = UC.internal;
+
+  /** Copies text to the clipboard. Resolves on success, rejects otherwise. */
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
+    }
+    return legacyCopy(text);
+  }
+
+  // Pages opened from file:// or plain http have no async clipboard API.
+  function legacyCopy(text) {
+    return new Promise((resolve, reject) => {
+      const area = h("textarea", { class: "uc-visually-hidden", readonly: true, "aria-hidden": "true", tabindex: "-1" });
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (error) {
+        ok = false;
+      }
+      area.remove();
+      if (ok) resolve();
+      else reject(new Error("copy failed"));
+    });
+  }
+
+  Object.assign(UC.internal, { copyText });
 })(window.UC);
 
 /* --- core/element.js --- */
@@ -3322,7 +3362,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, uid, isExternal, flag } = UC.internal;
+  const { h, icon, uid, isExternal, flag, copyText } = UC.internal;
 
   /* ----------------------------------------------------------------------
    * highlight.js loader
@@ -3491,32 +3531,6 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     const code = source && source.querySelector && source.querySelector("code");
     const match = code && /(?:^|\s)(?:language|lang)-(\S+)/.exec(code.className);
     return match ? match[1] : "";
-  }
-
-  /** Copies text to the clipboard. Resolves on success. */
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
-    }
-    return legacyCopy(text);
-  }
-
-  function legacyCopy(text) {
-    return new Promise((resolve, reject) => {
-      const area = h("textarea", { class: "uc-visually-hidden", readonly: true, "aria-hidden": "true", tabindex: "-1" });
-      area.value = text;
-      document.body.appendChild(area);
-      area.select();
-      let ok = false;
-      try {
-        ok = document.execCommand("copy");
-      } catch (error) {
-        ok = false;
-      }
-      area.remove();
-      if (ok) resolve();
-      else reject(new Error("copy failed"));
-    });
   }
 
   function downloadText(text, name) {
@@ -4177,6 +4191,97 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     // Components render their tables after the page loads (uc-deadlines, uc-team).
     new MutationObserver((records) => {
       for (const record of records) record.addedNodes.forEach((node) => node.nodeType === 1 && watch(node));
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
+})(window.UC);
+
+/* --- core/copy-blocks.js --- */
+/**
+ * Copy buttons for preformatted text: <pre data-copy>.
+ *
+ * Meant for things students paste somewhere else, such as the input and output
+ * of a problem's examples. The <pre> is wrapped in .uc-copy-block, which holds a
+ * small button in its top-right corner. The button copies the text exactly as
+ * written (line breaks included) and confirms with a check mark and a polite
+ * screen-reader announcement. Without JavaScript the <pre> shows as before.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, icon, copyText } = UC.internal;
+
+  const SELECTOR = "pre[data-copy]";
+  const RESET_MS = 2000;
+  const enhanced = new WeakSet();
+  let liveRegion = null;
+
+  function announce(message) {
+    if (!liveRegion) {
+      liveRegion = h("div", { class: "uc-visually-hidden", role: "status", "aria-live": "polite" });
+      document.body.appendChild(liveRegion);
+    }
+    liveRegion.textContent = "";
+    // A fresh text node after clearing makes screen readers repeat the message.
+    setTimeout(() => {
+      liveRegion.textContent = message;
+    }, 50);
+  }
+
+  /** The button's accessible name: data-copy="..." names what is copied ("Input"). */
+  function labelFor(pre) {
+    const what = pre.getAttribute("data-copy").trim();
+    return what ? UC.t("code.copyNamed", { name: what }) : UC.t("code.copy");
+  }
+
+  function setState(button, copied) {
+    button.replaceChildren(icon(copied ? "check" : "copy"));
+    button.classList.toggle("is-copied", copied);
+  }
+
+  function enhance(pre) {
+    if (enhanced.has(pre) || pre.closest("uc-code")) return;
+    enhanced.add(pre);
+
+    const label = labelFor(pre);
+    const button = h("button", {
+      type: "button",
+      class: "uc-button uc-copy-block__button",
+      "aria-label": label,
+      title: label,
+    });
+    setState(button, false);
+
+    let timer = null;
+    button.addEventListener("click", () => {
+      copyText(pre.textContent)
+        .then(() => {
+          setState(button, true);
+          announce(UC.t("code.copied"));
+          clearTimeout(timer);
+          timer = setTimeout(() => setState(button, false), RESET_MS);
+        })
+        .catch(() => announce(UC.t("code.copyFailed")));
+    });
+
+    const wrapper = h("div", { class: "uc-copy-block" });
+    pre.replaceWith(wrapper);
+    wrapper.append(pre, button);
+  }
+
+  function scan(root) {
+    if (root.matches && root.matches(SELECTOR)) enhance(root);
+    if (root.querySelectorAll) root.querySelectorAll(SELECTOR).forEach(enhance);
+  }
+
+  function start() {
+    scan(document);
+    // Content added later (components that render teacher HTML) gets buttons too.
+    new MutationObserver((records) => {
+      for (const record of records) record.addedNodes.forEach((node) => node.nodeType === 1 && scan(node));
     }).observe(document.body, { childList: true, subtree: true });
   }
 

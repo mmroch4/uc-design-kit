@@ -255,3 +255,20 @@
 @media (max-width: 640px) {
   :where(.uc-content .uc-content__float) { float: none; display: block; max-width: 100%; margin: 0 0 var(--uc-space-4); }
 }
+
+/*
+ * <pre data-copy>: core/copy-blocks.js wraps the block in .uc-copy-block and adds
+ * a copy button in its top-right corner. The text keeps clear of the button.
+ */
+:where(.uc-copy-block) { position: relative; }
+:where(.uc-copy-block > pre) { min-height: 2.75rem; padding-right: 2.75rem; }
+:where(.uc-copy-block__button) {
+  position: absolute;
+  top: var(--uc-space-1);
+  right: var(--uc-space-1);
+  width: 2rem;
+  min-height: 2rem;
+  padding: 0;
+  color: var(--uc-color-text-secondary);
+}
+:where(.uc-copy-block__button.is-copied) { border-color: var(--uc-color-success-text); color: var(--uc-color-success-text); }

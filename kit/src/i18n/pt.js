@@ -71,6 +71,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
   code: {
     copy: "Copiar",
     copied: "Copiado",
+    copyNamed: "Copiar {name}",
     copyFailed: "Não foi possível copiar",
     download: "Descarregar",
     reset: "Repor",

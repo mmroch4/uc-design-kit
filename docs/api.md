@@ -486,6 +486,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-lead` | Larger intro paragraph. |
 | `uc-prose` | Readable text column (max 720px, secondary colour). |
 | `uc-content` | Wrapper for plain HTML written without kit classes (pasted from an older site or an editor): spacing for headings, paragraphs, lists, tables, `<pre>` and images. `<img class="uc-content__float">` floats right on wide screens. |
+| `<pre data-copy>` | Adds a copy button to the top-right corner of a preformatted block (for example the input and output of a problem's examples). The value names what is copied in the button's accessible label: `data-copy="Input"` reads "Copiar Input"; an empty value reads "Copiar". Works anywhere on the page, not only inside `uc-content`. |
 | `uc-muted`, `uc-mono`, `uc-small` | Text utilities. |
 | `uc-visually-hidden` | Hidden visually, available to screen readers. |
 
