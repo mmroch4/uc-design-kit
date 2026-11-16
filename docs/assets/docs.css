@@ -828,3 +828,123 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
 
 /* Short class tables: no minimum width, so they fit a phone without scrolling. */
 .docs-compact { --uc-table-min: 0; }
+/* ---------- styles pages (Estilos) ---------- */
+
+/* Colour swatches: the colour is var(--token) itself, so it never lies. */
+.docs-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(176px, 100%), 1fr));
+  gap: var(--uc-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.docs-article .docs-swatches > li { margin: 0; }
+.docs-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  padding-bottom: var(--uc-space-3);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  font-size: var(--uc-font-size-md);
+  line-height: 1.5;
+}
+.docs-swatch__color {
+  display: block;
+  height: 64px;
+  margin-bottom: var(--uc-space-2);
+  border-bottom: 1px solid var(--uc-color-border);
+}
+.docs-swatch > :not(.docs-swatch__color) { margin-inline: var(--uc-space-3); }
+.docs-swatch__name { color: var(--uc-color-text); font-weight: 600; }
+.docs-swatch code { align-self: flex-start; padding: 0; background: none; font-size: var(--uc-font-size-sm); overflow-wrap: anywhere; }
+.docs-swatch__value { color: var(--uc-color-text-muted); font-family: var(--uc-font-mono); font-size: var(--uc-font-size-sm); }
+
+/* Colour dot before a value in the token tables. */
+.docs-dot {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-right: var(--uc-space-2);
+  border: 1px solid var(--uc-color-border);
+  border-radius: 50%;
+  vertical-align: -0.125rem;
+}
+.docs-tokens { --uc-table-min: 720px; }
+.docs-tokens td:nth-child(2) { white-space: nowrap; }
+.docs-tokens td:nth-child(2) code { white-space: normal; }
+
+/* Contrast sample: large bold text (3:1 suffices), readable even for the failing pair. */
+.docs-pair {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 2rem;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-sm);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Font specimens and the type scale. */
+.docs-specimens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--uc-space-4);
+}
+.docs-specimen > code { padding: 0; background: none; color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
+.docs-article .docs-specimen__sample { color: var(--uc-color-text); font-size: 2.5rem; font-weight: 600; line-height: 1.2; }
+.docs-ligatures { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); }
+
+.docs-article .docs-type-scale { margin-inline: 0; padding: 0; list-style: none; border-top: 1px solid var(--uc-color-border); }
+.docs-article .docs-type-scale > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--uc-space-1) var(--uc-space-6);
+  margin: 0;
+  padding: var(--uc-space-3) 0;
+  border-bottom: 1px solid var(--uc-color-border);
+}
+.docs-type-scale__sample { min-width: 0; color: var(--uc-color-text); line-height: var(--uc-line-height-tight); overflow-wrap: anywhere; }
+.docs-type-scale__meta { flex: 0 0 15rem; color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); line-height: 1.5; }
+.docs-type-scale__meta code { font-size: inherit; }
+
+/* Spacing bars (the width is the token) and corner samples. */
+.docs-space__bar {
+  display: block;
+  height: 1rem;
+  margin-top: 0.25rem;
+  border-radius: 2px;
+  background: var(--uc-color-accent);
+}
+.docs-article .docs-radii {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(176px, 100%), 1fr));
+  gap: var(--uc-space-4);
+  margin-inline: 0;
+  padding: 0;
+  list-style: none;
+}
+.docs-article .docs-radii > li { display: flex; flex-direction: column; gap: 2px; margin: 0; font-size: var(--uc-font-size-md); line-height: 1.5; }
+.docs-radii > li > code { align-self: flex-start; }
+.docs-radii__box {
+  display: block;
+  height: 72px;
+  margin-bottom: var(--uc-space-2);
+  border: 2px solid var(--uc-color-accent);
+  background: var(--uc-color-accent-soft);
+}
+
+/* Touch target and focus ring samples. */
+.docs-target-sample { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3); }
+.docs-focus-sample { outline: var(--uc-focus-ring); outline-offset: 2px; }
+
+@media (max-width: 480px) {
+  .docs-swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

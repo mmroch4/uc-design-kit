@@ -10,7 +10,9 @@
  *     the attributes of that component in docs/api.md, section 3; the course.js
  *     page lists exactly the types, fields and built-in pages of section 2;
  *     every CSS building block of section 4 is named in a heading of the
- *     Estilos "Blocos" pages or the Typography page
+ *     Estilos "Blocos" pages or the Typography page;
+ *     the Tokens page has a row for every token of section 5 (ranges expanded
+ *     from kit/src/css) and no token unknown to api.md and the kit's CSS
  *
  * Components of api.md without a page are listed as pending. With --strict
  * (used once every component has a page) they fail the check.
@@ -202,6 +204,92 @@ async function checkBlockPages() {
   }
 }
 
+/* ---------- api.md section 5: design tokens ---------- */
+
+// The Tokens page lists one token per table row (first <code> of the row).
+// It must list every token of api.md section 5; a row may also name a token
+// the kit's CSS defines or reads without it being in api.md (internal ones).
+const TOKENS_PAGE = "pt/estilos/tokens.html";
+
+/**
+ * Tokens in the first column of the tables of api.md section 5: exact names,
+ * plus ranges ("`--uc-space-1` … `--uc-space-12`") as a name prefix.
+ * "`--uc-radius-sm` / `-md` / `-lg`" names three tokens.
+ */
+export async function apiTokens() {
+  const api = await readFile(path.join(ROOT, "docs/api.md"), "utf8");
+  const section = api.split(/^## /m).find((part) => part.startsWith("5. Design tokens"));
+  const names = new Set();
+  const prefixes = [];
+  let inTable = false;
+  for (const line of section.split("\n")) {
+    if (!line.startsWith("|")) {
+      inTable = false;
+      continue;
+    }
+    const cell = line.split("|")[1];
+    if (!inTable) {
+      inTable = true; // header row
+      continue;
+    }
+    if (/^\s*-+\s*$/.test(cell)) continue;
+    const codes = Array.from(cell.matchAll(/`([^`]+)`/g), (match) => match[1]);
+    const full = codes.filter((code) => code.startsWith("--uc-"));
+    if (cell.includes("…") && full.length === 2) {
+      prefixes.push(commonPrefix(full[0], full[1]));
+      for (const name of full) names.add(name);
+      continue;
+    }
+    let last = null;
+    for (const code of codes) {
+      if (code.startsWith("--uc-")) {
+        last = code;
+        names.add(code);
+      } else if (last && /^-[a-z0-9]+$/.test(code)) {
+        names.add(last.replace(/-[a-z0-9]+$/, code)); // `-md` after `--uc-radius-sm`
+      }
+    }
+  }
+  return { names, prefixes };
+}
+
+/** Longest common prefix of two token names, cut after its last "-". */
+function commonPrefix(a, b) {
+  let length = 0;
+  while (length < a.length && a[length] === b[length]) length += 1;
+  return a.slice(0, a.lastIndexOf("-", length - 1) + 1);
+}
+
+/** Every --uc-* name the kit's CSS defines or reads. */
+async function kitTokens() {
+  const names = new Set();
+  const files = (await walk(path.join(ROOT, "kit/src/css"))).filter((file) => file.endsWith(".css"));
+  for (const file of files) {
+    for (const match of (await readFile(file, "utf8")).matchAll(/--uc-[a-z0-9-]*[a-z0-9]/g)) names.add(match[0]);
+  }
+  return names;
+}
+
+async function checkTokensPage() {
+  const file = path.join(DOCS, TOKENS_PAGE);
+  if (!(await exists(file))) return;
+  const article = (await readFile(file, "utf8")).match(/<article\b[^>]*>([\s\S]*?)<\/article>/);
+  const listed = new Set();
+  for (const row of article ? article[1].matchAll(/<tr>\s*<td>([\s\S]*?)<\/td>/g) : []) {
+    const code = row[1].match(/<code>([\s\S]*?)<\/code>/);
+    if (code && stripTags(code[1]).startsWith("--uc-")) listed.add(stripTags(code[1]));
+  }
+  const { names, prefixes } = await apiTokens();
+  const kit = await kitTokens();
+  // A range of api.md stands for every token of the kit with that prefix.
+  const expected = new Set(names);
+  for (const name of kit) if (prefixes.some((prefix) => name.startsWith(prefix))) expected.add(name);
+  for (const name of expected) if (!listed.has(name)) problems.push(`${rel(file)}: token "${name}" from docs/api.md section 5 has no row`);
+  for (const name of listed) {
+    if (!expected.has(name) && !kit.has(name)) problems.push(`${rel(file)}: token "${name}" is neither in docs/api.md section 5 nor in kit/src/css`);
+  }
+}
+
 /* ---------- links ---------- */
 
 function idsOf(content) {
@@ -268,6 +356,7 @@ async function main() {
 
   await checkCoursePage();
   await checkBlockPages();
+  await checkTokensPage();
 
   const files = [...pages.map((page) => page.file), path.join(ROOT, "index.html")];
   for (const file of files) {

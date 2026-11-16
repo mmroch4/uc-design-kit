@@ -12,6 +12,7 @@
   <script src="../../assets/kit-config.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/styles.js" defer></script>
 </head>
 <body class="docs">
   <!-- docs:header -->
@@ -97,11 +98,81 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Estilos</p>
           <h1>Espaço e forma</h1>
-          <p class="docs-lead">A escala de espaçamento, os cantos, as larguras do layout e os alvos de toque.</p>
+          <p class="docs-lead">Uma escala de espaço em passos de 4 px, três raios de canto, as larguras da página e os dois pontos em que o layout muda. Tudo o que toca no ecrã tem pelo menos 44 px e mostra onde está o foco do teclado.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="escala">Escala de espaço</h2>
+        <p>Margens, espaços entre blocos e margens interiores saem desta escala. Cada barra tem a largura do token; o valor é calculado nesta página.</p>
+        <div class="uc-table docs-space">
+          <table>
+            <caption class="uc-visually-hidden">Escala de espaço</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Medida</th><th scope="col">Uso típico</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-space-1</code></td><td><span class="uc-mono" data-token="--uc-space-1" data-kind="length">4px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-1)"></span></td><td>Entre itens de uma lista, entre ícone e texto.</td></tr>
+              <tr><td><code>--uc-space-2</code></td><td><span class="uc-mono" data-token="--uc-space-2" data-kind="length">8px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-2)"></span></td><td>Dentro de cartões e caixas, entre etiquetas.</td></tr>
+              <tr><td><code>--uc-space-3</code></td><td><span class="uc-mono" data-token="--uc-space-3" data-kind="length">12px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-3)"></span></td><td>Células de tabela, colunas de <code>uc-grid</code>.</td></tr>
+              <tr><td><code>--uc-space-4</code></td><td><span class="uc-mono" data-token="--uc-space-4" data-kind="length">16px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-4)"></span></td><td>Entre blocos de uma secção (<code>uc-stack</code>, <code>uc-section</code>).</td></tr>
+              <tr><td><code>--uc-space-5</code></td><td><span class="uc-mono" data-token="--uc-space-5" data-kind="length">20px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-5)"></span></td><td>Margem interior de cartões, em cima e em baixo.</td></tr>
+              <tr><td><code>--uc-space-6</code></td><td><span class="uc-mono" data-token="--uc-space-6" data-kind="length">24px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-6)"></span></td><td>Margem interior de cartões, dos lados.</td></tr>
+              <tr><td><code>--uc-space-7</code></td><td><span class="uc-mono" data-token="--uc-space-7" data-kind="length">28px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-7)"></span></td><td>Pouco usado.</td></tr>
+              <tr><td><code>--uc-space-8</code></td><td><span class="uc-mono" data-token="--uc-space-8" data-kind="length">32px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-8)"></span></td><td>Margem lateral da página, antes de um <code>&lt;h3&gt;</code>.</td></tr>
+              <tr><td><code>--uc-space-10</code></td><td><span class="uc-mono" data-token="--uc-space-10" data-kind="length">40px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-10)"></span></td><td>Antes de um <code>&lt;h2&gt;</code>, entre as colunas de <code>uc-split</code>.</td></tr>
+              <tr><td><code>--uc-space-12</code></td><td><span class="uc-mono" data-token="--uc-space-12" data-kind="length">48px</span></td><td><span class="docs-space__bar" style="width: var(--uc-space-12)"></span></td><td>Entre as secções de uma página.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A escala não tem os passos 9 e 11. O espaço cresce com o nível: pouco dentro de um bloco, mais entre blocos, mais ainda entre secções. Uma página arrumada assim lê-se pelos espaços antes de se ler o texto.</p>
+        <p>Em CSS próprio usa-se a escala em vez de px soltos (<code>margin-top: var(--uc-space-6)</code>): se a cadeira apertar ou alargar a escala, o CSS próprio acompanha.</p>
+
+        <h2 id="cantos">Cantos</h2>
+        <ul class="docs-radii">
+          <li><span class="docs-radii__box" style="border-radius: var(--uc-radius-sm)"></span><code>--uc-radius-sm</code> <span class="uc-mono" data-token="--uc-radius-sm" data-kind="length">6px</span><span class="uc-muted">Etiquetas, <code>code</code> no texto</span></li>
+          <li><span class="docs-radii__box" style="border-radius: var(--uc-radius-md)"></span><code>--uc-radius-md</code> <span class="uc-mono" data-token="--uc-radius-md" data-kind="length">8px</span><span class="uc-muted">Botões, <code>&lt;pre&gt;</code>, campos</span></li>
+          <li><span class="docs-radii__box" style="border-radius: var(--uc-radius-lg)"></span><code>--uc-radius-lg</code> <span class="uc-mono" data-token="--uc-radius-lg" data-kind="length">12px</span><span class="uc-muted">Cartões, tabelas, caixas, blocos de código</span></li>
+        </ul>
+        <p>Quanto maior a superfície, maior o raio. Para um site de cantos retos, põem-se os três a <code>0</code> no <code>theme.css</code>.</p>
+
+        <h2 id="larguras">Larguras e pontos de quebra</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Larguras da página</caption>
+            <thead>
+              <tr><th scope="col">Medida</th><th scope="col">Valor</th><th scope="col">O que é</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-content-max</code></td><td><span class="uc-mono" data-token="--uc-content-max" data-kind="length">1200px</span></td><td>Largura máxima da página de <a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a>, navegação incluída.</td></tr>
+              <tr><td><code>--uc-sidebar-width</code></td><td><span class="uc-mono" data-token="--uc-sidebar-width" data-kind="length">216px</span></td><td>Coluna da navegação lateral.</td></tr>
+              <tr><td><code>--uc-gutter</code></td><td><span class="uc-mono" data-token="--uc-gutter" data-kind="length">32px</span></td><td>Margem lateral da página; 16 px abaixo de 760 px.</td></tr>
+              <tr><td><code>--uc-header-height</code></td><td><span class="uc-mono" data-token="--uc-header-height" data-kind="length">64px</span></td><td>Altura da barra de topo; a navegação lateral fica fixa por baixo dela.</td></tr>
+              <tr><td>Introdução</td><td><span class="uc-mono">680px</span></td><td>Largura máxima de <code>uc-lead</code>.</td></tr>
+              <tr><td>Texto</td><td><span class="uc-mono">720px</span></td><td>Largura máxima de <code>uc-prose</code> e <code>uc-bullets</code>.</td></tr>
+              <tr><td>HTML sem classes</td><td><span class="uc-mono">760px</span></td><td>Largura máxima de <code>uc-content</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O layout muda em dois pontos:</p>
+        <ul>
+          <li><strong>960 px.</strong> Abaixo, a navegação lateral passa para um botão por cima do conteúdo e <code>uc-split</code> passa a uma coluna.</li>
+          <li><strong>760 px.</strong> Abaixo, a margem lateral passa a 16 px, os títulos <code>-h1</code> e <code>-display</code> encolhem, o cabeçalho das semanas e dos exercícios arruma-se em linhas e as margens interiores de vários componentes diminuem.</li>
+        </ul>
+        <p>Os pontos de quebra estão escritos no <code>uc-kit.css</code>, não são tokens: as variáveis CSS não podem ser usadas em <code>@media</code>. Num <code>theme.css</code> usam-se os mesmos valores para o CSS próprio mudar ao mesmo tempo que o kit. A disposição das páginas está em <a href="layout.html">Blocos: layout</a>.</p>
+
+        <h2 id="alvos-de-toque">Alvos de toque</h2>
+        <p>Botões, links da navegação, cabeçalhos das semanas e exercícios têm pelo menos <code>--uc-target-min</code> de altura (<span data-token="--uc-target-min" data-kind="length">44px</span>), o tamanho de um dedo. Abaixo de 960 px, os links da navegação crescem para 48 px.</p>
+        <p class="docs-target-sample">
+          <a class="uc-button" href="#alvos-de-toque">Botão</a>
+          <a class="uc-button uc-button--sm" href="#alvos-de-toque">Botão pequeno</a>
+        </p>
+        <p><code>uc-button--sm</code> (32 px) fica abaixo, para tabelas e barras de ferramentas onde há muitos botões juntos; não se usa como botão principal de uma página.</p>
+
+        <h2 id="foco">Anel de foco</h2>
+        <p>Quem navega com o teclado vê sempre onde está. Tudo o que recebe foco (links, botões, <code>&lt;summary&gt;</code>, campos) mostra um contorno de <code>--uc-focus-ring</code> (<code data-token="--uc-focus-ring">2px solid #1D4ED8</code>) a 2 px do elemento, só quando o foco vem do teclado (<code>:focus-visible</code>).</p>
+        <p class="docs-target-sample">
+          <span class="uc-button docs-focus-sample">Assim fica com foco</span>
+        </p>
+        <p>O anel usa a cor de destaque, por isso acompanha o <code>accentColor</code>. Em CSS próprio nunca se tira o contorno (<code>outline: none</code>) sem pôr outro igualmente visível. Ver <a href="acessibilidade.html">Acessibilidade</a>.</p>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +195,11 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#escala">Escala de espaço</a></li>
+          <li><a href="#cantos">Cantos</a></li>
+          <li><a href="#larguras">Larguras e pontos de quebra</a></li>
+          <li><a href="#alvos-de-toque">Alvos de toque</a></li>
+          <li><a href="#foco">Anel de foco</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->
