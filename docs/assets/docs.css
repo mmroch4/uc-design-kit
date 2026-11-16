@@ -823,3 +823,8 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
   .docs-theme-controls { padding: var(--uc-space-4); }
   .docs-theme-toolbar { flex-direction: column; align-items: flex-start; }
 }
+
+/* ---------- blocks pages (Estilos) ---------- */
+
+/* Short class tables: no minimum width, so they fit a phone without scrolling. */
+.docs-compact { --uc-table-min: 0; }
