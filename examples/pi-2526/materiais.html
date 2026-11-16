@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Materiais · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Materiais de Programação Imperativa 2025/26: slides das teóricas, guiões, problemas e código, documentação de C, Mooshak, bibliografia e sítios para praticar.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1><span lang="pt">Materiais</span><span lang="en">Materials</span></h1>
+      <p class="uc-prose" lang="pt">Slides das teóricas, guiões, problemas e código das aulas, documentação de C, Mooshak, bibliografia e sítios para praticar.</p>
+      <p class="uc-prose" lang="en">Lecture slides, lab guides, problems and code, C documentation, Mooshak, bibliography and places to practise.</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="slides">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--uc-space-3); flex-wrap: wrap">
+        <h2 id="slides"><span lang="pt">Slides das teóricas</span><span lang="en">Lecture slides</span></h2>
+        <span class="uc-muted uc-small"><span lang="pt">PDF em inglês</span><span lang="en">PDF in English</span></span>
+      </div>
+      <!-- Slides: um capítulo por linha. A última coluna são os capítulos do livro de K. N. King. -->
+      <div class="uc-table" id="slides-table">
+        <table>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col"><span lang="pt">Capítulo</span><span lang="en">Chapter</span></th><th scope="col"><span lang="pt">Páginas</span><span lang="en">Pages</span></th><th scope="col"><span lang="pt">Atualizado</span><span lang="en">Updated</span></th><th scope="col"><span lang="pt">Livro (K. N. King)</span><span lang="en">Book (K. N. King)</span></th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="uc-mono uc-muted">0</td><td><a href="slides/0-funcionamento.pdf"><span lang="pt">Apresentação e funcionamento</span><span lang="en">About the course</span></a></td><td class="uc-mono">—</td><td class="uc-mono uc-muted">—</td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">1a</td><td><a href="slides/1_intro.pdf"><span lang="pt">Introdução ao C (parte 1)</span><span lang="en">Introduction to C (part 1)</span></a></td><td class="uc-mono">44</td><td class="uc-mono uc-muted"><uc-date value="2026-02-19">19/02</uc-date></td><td class="uc-mono">1–5</td></tr>
+            <tr><td class="uc-mono uc-muted">1b</td><td><a href="slides/1_intro_part2.pdf"><span lang="pt">Introdução ao C (parte 2)</span><span lang="en">Introduction to C (part 2)</span></a></td><td class="uc-mono">55</td><td class="uc-mono uc-muted"><uc-date value="2026-02-26">26/02</uc-date></td><td class="uc-mono">6–8</td></tr>
+            <tr><td class="uc-mono uc-muted">2</td><td><a href="slides/2_strings_arrayarguments.pdf"><span lang="pt">Strings e funções com arrays como argumentos</span><span lang="en">Strings and functions with arrays as arguments</span></a></td><td class="uc-mono">32</td><td class="uc-mono uc-muted"><uc-date value="2026-03-05">05/03</uc-date></td><td class="uc-mono">9, 13</td></tr>
+            <tr><td class="uc-mono uc-muted">3</td><td><a href="slides/3_pointers.pdf"><span lang="pt">Apontadores</span><span lang="en">Pointers</span></a></td><td class="uc-mono">29</td><td class="uc-mono uc-muted"><uc-date value="2026-03-10">10/03</uc-date></td><td class="uc-mono">11, 12</td></tr>
+            <tr><td class="uc-mono uc-muted">4</td><td><a href="slides/4_exercisesArrays.pdf"><span lang="pt">Exercícios com arrays</span><span lang="en">Exercises with arrays</span></a></td><td class="uc-mono">19</td><td class="uc-mono uc-muted"><uc-date value="2026-03-12">12/03</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">5</td><td><a href="slides/5_recursion.pdf"><span lang="pt">Recursão</span><span lang="en">Recursion</span></a></td><td class="uc-mono">22</td><td class="uc-mono uc-muted"><uc-date value="2026-03-17">17/03</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">6</td><td><a href="slides/6_searchAndsort.pdf"><span lang="pt">Pesquisa e ordenação I</span><span lang="en">Searching and sorting I</span></a></td><td class="uc-mono">16</td><td class="uc-mono uc-muted"><uc-date value="2026-03-24">24/03</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">7</td><td><a href="slides/7_structures.pdf"><span lang="pt">Estruturas</span><span lang="en">Structures</span></a></td><td class="uc-mono">23</td><td class="uc-mono uc-muted"><uc-date value="2026-03-25">25/03</uc-date></td><td class="uc-mono">16</td></tr>
+            <tr><td class="uc-mono uc-muted">8</td><td><a href="slides/8_dynamicmemory.pdf"><span lang="pt">Alocação dinâmica de memória</span><span lang="en">Dynamic memory allocation</span></a></td><td class="uc-mono">28</td><td class="uc-mono uc-muted"><uc-date value="2026-04-17">17/04</uc-date></td><td class="uc-mono">17 (17.1–17.4)</td></tr>
+            <tr><td class="uc-mono uc-muted">9</td><td><a href="slides/9_exercisesStrs.pdf"><span lang="pt">Exercícios</span><span lang="en">Practical exercises</span></a></td><td class="uc-mono">12</td><td class="uc-mono uc-muted"><uc-date value="2026-04-17">17/04</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">10</td><td><a href="slides/10_debugging.pdf"><span lang="pt">Debugging e asserções</span><span lang="en">Debugging and assertions</span></a></td><td class="uc-mono">17</td><td class="uc-mono uc-muted"><uc-date value="2026-04-23">23/04</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">11</td><td><a href="slides/11_recursividade2.pdf"><span lang="pt">Recursão e ordenação (2)</span><span lang="en">Recursion and sorting (2)</span></a></td><td class="uc-mono">22</td><td class="uc-mono uc-muted"><uc-date value="2026-04-28">28/04</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">12</td><td><a href="slides/12_lists.pdf"><span lang="pt">Listas, pilhas e filas</span><span lang="en">Lists, stacks and queues</span></a></td><td class="uc-mono">41</td><td class="uc-mono uc-muted"><uc-date value="2026-04-30">30/04</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">13</td><td><a href="slides/13_complexity.pdf"><span lang="pt">Breve introdução à complexidade e eficiência de algoritmos</span><span lang="en">Brief introduction to complexity and efficiency of algorithms</span></a></td><td class="uc-mono">18</td><td class="uc-mono uc-muted"><uc-date value="2026-05-19">19/05</uc-date></td><td class="uc-mono">—</td></tr>
+            <tr><td class="uc-mono uc-muted">14</td><td><a href="slides/14_files.pdf"><span lang="pt">I/O com ficheiros</span><span lang="en">File I/O</span></a></td><td class="uc-mono">34</td><td class="uc-mono uc-muted"><uc-date value="2026-05-25">25/05</uc-date></td><td class="uc-mono">22</td></tr>
+            <tr><td class="uc-mono uc-muted">15</td><td><a href="slides/15_makefiles.pdf"><span lang="pt">Módulos e Makefiles</span><span lang="en">Modules and Makefiles</span></a></td><td class="uc-mono">33</td><td class="uc-mono uc-muted"><uc-date value="2026-05-26">26/05</uc-date></td><td class="uc-mono">10, 15, 19</td></tr>
+            <tr><td class="uc-mono uc-muted">16</td><td><a href="slides/16_trees.pdf"><span lang="pt">Árvores binárias</span><span lang="en">Binary trees</span></a></td><td class="uc-mono">18</td><td class="uc-mono uc-muted"><uc-date value="2026-05-28">28/05</uc-date></td><td class="uc-mono">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="uc-grid links-grid" style="--uc-grid-min: 280px; --uc-grid-gap: var(--uc-space-10)">
+      <section class="uc-section" aria-labelledby="aulas" style="gap: var(--uc-space-2)">
+        <h2 id="aulas"><span lang="pt">Aulas práticas e código</span><span lang="en">Lab classes and code</span></h2>
+        <ul class="uc-links" lang="pt">
+          <li><a href="semanas.html">Guiões das aulas práticas</a><span>Um guião por aula, organizados por semana</span></li>
+          <li><a href="problemas/index.html">Lista de problemas</a><span>Enunciados dos problemas do Mooshak</span></li>
+          <li><a href="codigo/index.html">Programas exemplo das teóricas</a><span>Código C mostrado nas aulas</span></li>
+          <li><a href="praticas/1_intro_c.pdf">Breve introdução ao C</a><span>PDF das aulas práticas</span></li>
+          <li><a href="comandos.html">Alguns comandos do Linux</a><span>Referência rápida</span></li>
+        </ul>
+        <ul class="uc-links" lang="en">
+          <li><a href="semanas.html">Lab class guides</a><span>One guide per class, organised by week</span></li>
+          <li><a href="problemas/index.html">List of problems</a><span>Mooshak problem statements</span></li>
+          <li><a href="codigo/index.html">Example programs from lectures</a><span>C code shown in class</span></li>
+          <li><a href="praticas/1_intro_c.pdf">Brief introduction to C</a><span>PDF for the lab classes</span></li>
+          <li><a href="comandos.html">Some Linux commands</a><span>Quick reference</span></li>
+        </ul>
+      </section>
+      <section class="uc-section" aria-labelledby="mooshak" style="gap: var(--uc-space-2)">
+        <h2 id="mooshak">Mooshak</h2>
+        <ul class="uc-links" lang="pt">
+          <li><a href="https://mooshak.dcc.fc.up.pt/~pi/">Entrar no Mooshak</a><span>Problemas semanais e avaliações práticas</span></li>
+          <li><a href="guioes/ajuda.html">Ajuda do Mooshak</a><span>Como submeter e ler as respostas</span></li>
+          <li><p class="uc-small">As passwords são geradas para cada estudante e enviadas para o email institucional. Se não encontrares a mensagem, vê o SPAM ou pede-a ao docente da tua aula prática.</p></li>
+        </ul>
+        <ul class="uc-links" lang="en">
+          <li><a href="https://mooshak.dcc.fc.up.pt/~pi/">Log in to Mooshak</a><span>Weekly problems and practical evaluations</span></li>
+          <li><a href="guioes/ajuda.html">Mooshak help</a><span>How to submit and read the answers</span></li>
+          <li><p class="uc-small">Passwords are generated for each student and sent to the institutional email. If you didn't receive it, check your SPAM or ask the lecturer of your lab class.</p></li>
+        </ul>
+      </section>
+      <section class="uc-section" aria-labelledby="c" style="gap: var(--uc-space-2)">
+        <h2 id="c"><span lang="pt">Linguagem C</span><span lang="en">The C language</span></h2>
+        <ul class="uc-links">
+          <li><a href="https://en.cppreference.com/w/c">cppreference</a><span><span lang="pt">Referência da linguagem e da biblioteca padrão</span><span lang="en">Language and standard library reference</span></span></li>
+          <li><a href="https://devdocs.io/c/">DevDocs</a><span><span lang="pt">A mesma referência, com pesquisa</span><span lang="en">The same reference, searchable</span></span></li>
+          <li><a href="https://linux.die.net/man/">Linux man pages</a><span><span lang="pt">Páginas de manual das funções</span><span lang="en">Manual pages of the functions</span></span></li>
+          <li><a href="https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html">GNU C manual</a><span><span lang="pt">Manual de referência do C</span><span lang="en">C reference manual</span></span></li>
+          <li><a href="https://www.geeksforgeeks.org/c-programming-language/">GeeksforGeeks</a><span><span lang="pt">Tutoriais e exemplos</span><span lang="en">Tutorials and examples</span></span></li>
+        </ul>
+      </section>
+      <section class="uc-section" aria-labelledby="praticar" style="gap: var(--uc-space-2)">
+        <h2 id="praticar"><span lang="pt">Praticar e visualizar</span><span lang="en">Practise and visualise</span></h2>
+        <ul class="uc-links">
+          <li><a href="https://visualgo.net/en">VisuAlgo</a><span><span lang="pt">Estruturas de dados e algoritmos animados</span><span lang="en">Data structures and algorithms through animation</span></span></li>
+          <li><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">Data Structures Visualizations</a><span><span lang="pt">Universidade de São Francisco</span><span lang="en">University of San Francisco</span></span></li>
+          <li><p><a href="https://onlinejudge.org/">UVa</a> · <a href="https://uhunt.onlinejudge.org/">uHunt</a> · <a href="https://www.spoj.com/">SPOJ</a> · <a href="https://open.kattis.com/">Kattis</a> · <a href="https://cses.fi/">CSES</a></p><span><span lang="pt">Juízes online</span><span lang="en">Online judges</span></span></li>
+          <li><p><a href="https://codeforces.com/">Codeforces</a> · <a href="https://atcoder.jp/">AtCoder</a> · <a href="https://www.topcoder.com/">TopCoder</a> · <a href="https://projecteuler.net/">Project Euler</a></p><span><span lang="pt">Concursos e comunidades</span><span lang="en">Contests and communities</span></span></li>
+        </ul>
+      </section>
+      <section class="uc-section" aria-labelledby="algoritmos" style="gap: var(--uc-space-2)">
+        <h2 id="algoritmos"><span lang="pt">Repositórios de algoritmos</span><span lang="en">Algorithm archives</span></h2>
+        <ul class="uc-links">
+          <li><a href="https://xlinux.nist.gov/dads/">Dictionary of Algorithms and Data Structures</a><span>NIST</span></li>
+          <li><a href="https://www.algorist.com/algorist.html">The Stony Brook Algorithm Repository</a><span><span lang="pt">Implementações por problema</span><span lang="en">Implementations by problem</span></span></li>
+          <li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=alg_index"><span lang="pt">Tutoriais de algoritmos do Topcoder</span><span lang="en">Topcoder tutorials on algorithms</span></a><span><span lang="pt">Explicações com exemplos</span><span lang="en">Explanations with examples</span></span></li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="uc-section" aria-labelledby="biblio">
+      <h2 id="biblio"><span lang="pt">Bibliografia</span><span lang="en">Bibliography</span></h2>
+      <div class="uc-grid" style="--uc-grid-min: 280px">
+        <div class="uc-card book">
+          <span class="book__kind book__kind--main"><span lang="pt">Principal</span><span lang="en">Primary</span></span>
+          <span class="book__title">C Programming: A Modern Approach</span>
+          <span class="uc-muted uc-small">K. N. King · <span lang="pt">2.ª ed.</span><span lang="en">2nd ed.</span>, 2008</span>
+        </div>
+        <div class="uc-card book">
+          <span class="book__kind book__kind--main"><span lang="pt">Principal</span><span lang="en">Primary</span></span>
+          <span class="book__title">The C Programming Language</span>
+          <span class="uc-muted uc-small">Brian Kernighan <span lang="pt">e</span><span lang="en">and</span> Dennis Ritchie · <span lang="pt">2.ª ed.</span><span lang="en">2nd ed.</span>, Pearson, 1988</span>
+        </div>
+        <div class="uc-card book">
+          <span class="book__kind"><span lang="pt">Recomendado</span><span lang="en">Recommended</span></span>
+          <span class="book__title">Introduction to Algorithms</span>
+          <span class="uc-muted uc-small">Cormen, Leiserson, Rivest <span lang="pt">e</span><span lang="en">and</span> Stein · <span lang="pt">4.ª ed.</span><span lang="en">4th ed.</span>, MIT Press, 2022</span>
+        </div>
+        <div class="uc-card book">
+          <span class="book__kind"><span lang="pt">Recomendado</span><span lang="en">Recommended</span></span>
+          <span class="book__title">Algorithms</span>
+          <span class="uc-muted uc-small">Robert Sedgewick <span lang="pt">e</span><span lang="en">and</span> Kevin Wayne · <span lang="pt">4.ª ed.</span><span lang="en">4th ed.</span>, Addison-Wesley, 2011</span>
+        </div>
+      </div>
+    </section>
+
+    <p class="uc-muted uc-small source-note" lang="pt">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos.html">site original</a>.</p>
+    <p class="uc-muted uc-small source-note" lang="en">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/slides.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>
