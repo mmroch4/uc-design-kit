@@ -213,6 +213,7 @@
 }
 :where(.uc-tag--accent) { background: var(--uc-color-accent-soft); color: var(--uc-color-accent); }
 :where(.uc-tag--warning) { background: var(--uc-color-warning-bg); color: var(--uc-color-warning-text); }
+:where(.uc-tag--success) { background: var(--uc-color-success-bg); color: var(--uc-color-success-text); }
 :where(.uc-tag--muted) { background: var(--uc-color-surface-muted); color: var(--uc-color-text-secondary); }
 
 :where(.uc-table) {
@@ -922,9 +923,12 @@
 
 :where(uc-this-week) { display: block; }
 
+/* The current week stands out with a soft accent background, not a coloured border. */
 :where(.uc-this-week__card) {
   gap: var(--uc-space-5);
   padding: var(--uc-space-7);
+  border-color: transparent;
+  background: var(--uc-color-accent-soft);
 }
 
 :where(.uc-this-week__header) {

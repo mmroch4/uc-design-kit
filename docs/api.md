@@ -466,7 +466,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-card` | Bordered surface. `uc-card--accent` for the highlighted variant. |
 | `uc-grid` | Responsive auto-fit grid. `--uc-grid-min` sets the minimum column width (default 220px). |
 | `uc-stack` | Vertical rhythm container (`gap` from `--uc-stack-gap`). |
-| `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--muted`. |
+| `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--muted`. |
 | `uc-table` | Put on a wrapper `<div>` around a `<table>`: horizontal scroll, borders, header style. |
 | `uc-links` | A `<ul>` of links with a secondary description in a `<span>`. |
 | `uc-shortcuts` | A `<nav>` or `<ul>` of large link buttons (quick access). |

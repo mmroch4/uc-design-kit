@@ -13,8 +13,8 @@
   const FILTERS = ["upcoming", "past", "all"];
   const TABLE_COLUMNS = ["item", "date", "time", "details", "status"];
   const STATUS_TAG = {
-    done: "uc-tag uc-tag--muted",
-    next: "uc-tag uc-tag--accent",
+    done: "uc-tag uc-tag--success",
+    next: "uc-tag uc-tag--warning",
     scheduled: "uc-tag",
     toBeScheduled: "uc-tag",
   };
