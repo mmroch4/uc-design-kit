@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-notices · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-notices do UC Design Kit.">
+  <meta name="description" content="Documentação do componente uc-notices do UC Design Kit: os avisos do course.js, do mais recente para o mais antigo, com a etiqueta Novo e os avisos antigos recolhidos.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -15,24 +15,287 @@
 </head>
 <body class="docs">
   <!-- docs:header -->
-<!-- /docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
   <div class="docs-layout">
     <!-- docs:sidebar -->
-<!-- /docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html" aria-current="page"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
     <main class="docs-main" id="content">
       <article class="docs-article">
         <header class="docs-page-header">
-          <p class="docs-eyebrow">Componentes</p>
+          <p class="docs-eyebrow">Componentes · Datas e avisos</p>
           <h1><code>&lt;uc-notices&gt;</code></h1>
-          <p class="docs-lead">Página em preparação.</p>
+          <p class="docs-lead">Os avisos da UC, do mais recente para o mais antigo. Os avisos dos últimos dias levam a etiqueta "Novo", os mais antigos ficam recolhidos e um aviso com data futura só aparece nesse dia.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
+
+        <!-- docs:demo src="../../demos/uc-notices/basic.html" title="avisos do curso de demonstração" height="455" -->
+        <div class="docs-demo" id="demo-uc-notices-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-notices/basic.html" title="Demonstração: avisos do curso de demonstração" loading="lazy" style="height: 455px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-notices&gt;&lt;/uc-notices&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-notices/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Há seis avisos com data até hoje: os cinco mais recentes aparecem na lista e o sexto fica em "Avisos anteriores (1)". O aviso de 25 de novembro tem menos de sete dias e leva a etiqueta "Novo". O aviso de 1 de dezembro ainda não aparece.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>O elemento fica vazio na página. Os avisos escrevem-se no <code>course.js</code>, cada um com a data e o texto, e opcionalmente uma segunda linha em <code>details</code>.</p>
+        <uc-code lang="html" filename="index.html" no-download><pre><code>&lt;uc-notices&gt;&lt;/uc-notices&gt;</code></pre></uc-code>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  notices: [
+    { date: "2025-12-01", text: "Salas do teste prático afixadas" },
+    { date: "2025-11-25",
+      text: "Enunciado do trabalho 2 corrigido: ver a alínea 3",
+      details: "A função pedida devolve uma lista, não um vetor." },
+    { date: "2025-11-06",
+      text: 'Notas do trabalho 1 disponíveis em &lt;a href="avaliacao.html"&gt;Avaliação&lt;/a&gt;' },
+  ],
+};</code></pre></uc-code>
+        <p>A ordem no ficheiro não importa: o kit ordena os avisos por data. O texto pode ter HTML simples (ligações, <code>&lt;strong&gt;</code>, <code>&lt;code&gt;</code>). As ligações dentro dos avisos são relativas à página que os mostra, não ao <code>course.js</code>; como os avisos costumam estar na página inicial, na raiz do site, isso raramente faz diferença (ver <a href="../estrutura.html#subpastas">Páginas em subpastas</a>).</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="limite">Limite</h3>
+        <p><code>limit</code> diz quantos avisos aparecem na lista. Os restantes ficam em "Avisos anteriores (n)", que abre e fecha. Com <code>limit="0"</code>, todos os avisos ficam recolhidos.</p>
+        <!-- docs:demo src="../../demos/uc-notices/limit.html" title="três avisos e os restantes recolhidos" height="346" -->
+        <div class="docs-demo" id="demo-uc-notices-limit">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-notices/limit.html" title="Demonstração: três avisos e os restantes recolhidos" loading="lazy" style="height: 346px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-notices limit=&quot;3&quot;&gt;&lt;/uc-notices&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-notices/limit.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="avisos-novos">Avisos novos</h3>
+        <p><code>new-days</code> diz durante quantos dias um aviso leva a etiqueta "Novo", contando o próprio dia. Com <code>new-days="14"</code>, o aviso de 20 de novembro também é novo; com <code>new-days="0"</code>, nenhum é.</p>
+        <!-- docs:demo src="../../demos/uc-notices/new-days.html" title="avisos novos nos últimos 14 dias" height="346" -->
+        <div class="docs-demo" id="demo-uc-notices-new-days">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-notices/new-days.html" title="Demonstração: avisos novos nos últimos 14 dias" loading="lazy" style="height: 346px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-notices limit=&quot;3&quot; new-days=&quot;14&quot;&gt;&lt;/uc-notices&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-notices/new-days.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="aviso-futuro">Aviso escrito com antecedência</h3>
+        <p>Um aviso com data futura fica escondido até esse dia. Pode escrever-se na sexta-feira o aviso de segunda e publicar o site de uma vez. Esta demonstração tem o mesmo <code>limit="3"</code> dos exemplos anteriores, mas abre a 2 de dezembro com <code>?today=2025-12-02</code>: o aviso de 1 de dezembro aparece no topo, com a etiqueta "Novo".</p>
+        <!-- docs:demo src="../../demos/uc-notices/future.html?today=2025-12-02" title="aviso de 1 de dezembro visível a 2 de dezembro" height="346" -->
+        <div class="docs-demo" id="demo-uc-notices-future">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-notices/future.html?today=2025-12-02" title="Demonstração: aviso de 1 de dezembro visível a 2 de dezembro" loading="lazy" style="height: 346px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-notices limit=&quot;3&quot;&gt;&lt;/uc-notices&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-notices/future.html?today=2025-12-02">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="titulo-e-conteudo-extra">Título e conteúdo extra</h3>
+        <p><code>heading</code> muda o título da secção; <code>heading="none"</code> tira-o, quando a página já tem um título por cima. O que se escrever dentro do elemento fica por baixo da lista, por exemplo ligações para as regras de avaliação ou para o fórum.</p>
+        <!-- docs:demo src="../../demos/uc-notices/heading-extra.html" title="título próprio e ligações por baixo da lista" height="328" -->
+        <div class="docs-demo" id="demo-uc-notices-heading-extra">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-notices/heading-extra.html" title="Demonstração: título próprio e ligações por baixo da lista" loading="lazy" style="height: 328px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-notices heading=&quot;Últimas notícias&quot; limit=&quot;2&quot;&gt;
+  &lt;a href=&quot;#&quot;&gt;Regras de avaliação&lt;/a&gt;
+  &lt;a href=&quot;#&quot;&gt;Fórum da UC&lt;/a&gt;
+&lt;/uc-notices&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-notices/heading-extra.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-notices</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>limit</code></td><td>número</td><td><code>5</code></td><td>Quantos avisos aparecem na lista. Os mais antigos ficam em "Avisos anteriores (n)", fechado.</td></tr>
+              <tr><td><code>new-days</code></td><td>número</td><td><code>7</code></td><td>Um aviso com menos de este número de dias leva a etiqueta "Novo". Um aviso de hoje conta como 0 dias.</td></tr>
+              <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td>"Avisos"</td><td>Título da secção, num <code>&lt;h2&gt;</code>. Com <code>none</code>, a secção fica sem título.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>Campos do <code>course.js</code> que o componente lê. Sem <code>notices</code>, mostra "Ainda não há avisos.".</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-notices</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="../course-js.html#avisos"><code>notices</code></a></td><td>Os avisos: <code>date</code>, <code>text</code> e, opcional, <code>details</code>.</td></tr>
+              <tr><td><a href="../course-js.html#campos-avancado"><code>today</code></a></td><td>Fixar o dia de hoje (demonstrações, capturas). O endereço <code>?today=AAAA-MM-DD</code> tem prioridade.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A referência completa dos campos está em <a href="../course-js.html#avisos">O ficheiro course.js</a>.</p>
+
+        <h2 id="datas">Datas e ordem</h2>
+        <ul>
+          <li><strong>Ordem</strong>: do mais recente para o mais antigo, seja qual for a ordem no <code>course.js</code>.</li>
+          <li><strong>Avisos futuros</strong>: um aviso cuja data ainda não chegou não aparece nem conta para o <code>limit</code>. Aparece sozinho no próprio dia, sem voltar a publicar o site.</li>
+          <li><strong>Novo</strong>: a etiqueta aparece enquanto o aviso tiver menos de <code>new-days</code> dias. Com o valor por omissão, um aviso de quinta-feira é novo até à quarta-feira seguinte.</li>
+          <li><strong>Data</strong>: mostra-se curta, na língua ativa ("25 nov"). Um aviso com data inválida é mostrado no fim, sem data, e o kit deixa um aviso na consola.</li>
+        </ul>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-notices</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-notices</code></td><td>O próprio <code>&lt;uc-notices&gt;</code>.</td></tr>
+              <tr><td><code>.uc-notices__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-notices__list</code>, <code>__item</code></td><td>A lista e cada aviso.</td></tr>
+              <tr><td><code>.uc-notices__item--new</code></td><td>Um aviso com a etiqueta "Novo".</td></tr>
+              <tr><td><code>.uc-notices__date</code></td><td>A data, à esquerda.</td></tr>
+              <tr><td><code>.uc-notices__body</code>, <code>__text</code>, <code>__details</code></td><td>O texto do aviso e a segunda linha.</td></tr>
+              <tr><td><code>.uc-notices__badge</code></td><td>A etiqueta "Novo".</td></tr>
+              <tr><td><code>.uc-notices__earlier</code>, <code>__summary</code></td><td>O bloco "Avisos anteriores (n)" e a linha que o abre.</td></tr>
+              <tr><td><code>.uc-notices__more</code></td><td>O conteúdo escrito dentro do elemento.</td></tr>
+              <tr><td><code>.uc-notices__empty</code></td><td>A frase "Ainda não há avisos.".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Avisos novos com uma barra à esquerda. */
+.uc-notices__item--new {
+  box-shadow: inset 3px 0 0 var(--uc-color-accent);
+  padding-left: var(--uc-space-3);
+}
+
+/* Texto dos avisos em letra normal e a segunda linha mais pequena. */
+.uc-notices__text { font-weight: 400; }
+.uc-notices__details { font-size: var(--uc-font-size-body-sm); }</code></pre></uc-code>
+        <p>A etiqueta "Novo" usa <code>--uc-color-warning-text</code> e <code>--uc-color-warning-bg</code>, os mesmos tokens das etiquetas de avaliação.</p>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>Gera uma <code>&lt;section&gt;</code> com o nome do título, uma lista <code>&lt;ul&gt;</code> e as datas num <code>&lt;time datetime&gt;</code>. "Novo" é texto, não só cor. Os avisos anteriores usam <code>&lt;details&gt;</code> nativo, que abre com Enter ou Espaço e anuncia se está aberto.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Avisos de uma linha que se percebam sozinhos, ligações com texto que diga para onde vão e, com <code>heading="none"</code>, um título na página logo antes do elemento.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Os avisos vêm do <code>course.js</code> e só aparecem com o kit. Sem JavaScript, fica visível apenas o que estiver escrito dentro do elemento. Se um aviso for indispensável (uma mudança de sala no dia do exame), convém repeti-lo no HTML da página.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a>: as próximas datas, normalmente ao lado dos avisos na página inicial.</li>
+          <li><a href="uc-hero.html"><code>&lt;uc-hero&gt;</code></a>: o título do curso, por cima dos avisos.</li>
+          <li><a href="../course-js.html#avisos">Avisos no course.js</a>: os campos de cada aviso.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/index.html">a página inicial de Estruturas de Dados 2025/26</a>.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
-<!-- /docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-hero.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-hero</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-deadlines.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-deadlines</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-notices.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
     </main>
     <aside class="docs-aside">
       <!-- docs:toc -->
-<!-- /docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#limite">Limite</a></li>
+          <li class="docs-toc__sub"><a href="#avisos-novos">Avisos novos</a></li>
+          <li class="docs-toc__sub"><a href="#aviso-futuro">Aviso escrito com antecedência</a></li>
+          <li class="docs-toc__sub"><a href="#titulo-e-conteudo-extra">Título e conteúdo extra</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#datas">Datas e ordem</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
     </aside>
   </div>
 </body>

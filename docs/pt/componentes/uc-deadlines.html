@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-deadlines · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-deadlines do UC Design Kit.">
+  <meta name="description" content="Documentação do componente uc-deadlines do UC Design Kit: os prazos do course.js como lista de próximas datas ou como tabela com o estado de cada prova.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -15,24 +15,322 @@
 </head>
 <body class="docs">
   <!-- docs:header -->
-<!-- /docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
   <div class="docs-layout">
     <!-- docs:sidebar -->
-<!-- /docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html" aria-current="page"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
     <main class="docs-main" id="content">
       <article class="docs-article">
         <header class="docs-page-header">
-          <p class="docs-eyebrow">Componentes</p>
+          <p class="docs-eyebrow">Componentes · Datas e avisos</p>
           <h1><code>&lt;uc-deadlines&gt;</code></h1>
-          <p class="docs-lead">Página em preparação.</p>
+          <p class="docs-lead">Os prazos do <code>course.js</code>: uma lista curta das próximas datas para a página inicial, ou uma tabela com todas as provas e o estado de cada uma para a página da avaliação.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
+
+        <!-- docs:demo src="../../demos/uc-deadlines/basic.html" title="próximas datas do curso de demonstração" height="316" -->
+        <div class="docs-demo" id="demo-uc-deadlines-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/basic.html" title="Demonstração: próximas datas do curso de demonstração" loading="lazy" style="height: 316px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-deadlines&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-deadlines/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Aparecem os prazos que ainda não passaram, por ordem de data: a entrega do trabalho 2, o teste prático e o exame, de que só se sabe o mês. A hora vai no início da linha de baixo, antes da nota.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>O elemento fica vazio na página. Cada prazo escreve-se uma vez no <code>course.js</code> e aparece em todos os componentes que o usam: aqui, na semana em que cai e no cartão "Esta semana".</p>
+        <uc-code lang="html" filename="index.html" no-download><pre><code>&lt;uc-deadlines&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  deadlines: [
+    { id: "t2", title: "Entrega do trabalho 2", date: "2025-11-28", time: "23:59",
+      kind: "submission", note: "Pela plataforma de entregas" },
+    { id: "teste", title: "Teste prático", date: "2025-12-10", time: "14:00",
+      kind: "assessment", note: "Laboratórios 1 e 2" },
+    { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },
+  ],
+};</code></pre></uc-code>
+        <p>A ordem no ficheiro não importa: o kit ordena os prazos por data e põe no fim os que ainda não têm data. O <code>url</code> de um prazo transforma o título numa ligação e <code>links</code> acrescenta ligações por baixo. Tal como as ligações dentro dos avisos, estes endereços são relativos à página que mostra o prazo, não ao <code>course.js</code> (ver <a href="../estrutura.html#subpastas">Páginas em subpastas</a>).</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+        <p>Os exemplos seguintes juntam ao curso de demonstração mais quatro prazos: o trabalho 1, já entregue, dois quizzes abertos durante uma semana e o exame de recurso, ainda sem data.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>{ id: "t1", title: "Entrega do trabalho 1", date: "2025-10-31", time: "23:59",
+  kind: "submission", links: [{ label: "Notas", url: "notas/t1.pdf" }] },
+{ id: "quiz4", title: "Quiz 4", date: "2025-11-24", end: "2025-11-30", kind: "quiz",
+  note: "Na plataforma de entregas", url: "quizzes.html" },
+{ id: "quiz5", title: "Quiz 5", date: "2025-12-01", end: "2025-12-07", kind: "quiz",
+  note: "Na plataforma de entregas" },
+{ id: "recurso", title: "Exame de recurso", date: null, kind: "exam" },</code></pre></uc-code>
+
+        <h3 id="tabela">Tabela</h3>
+        <p>Com <code>view="table"</code>, os prazos aparecem numa tabela com a prova, a data com o ano, a hora, a informação (nota e ligações) e o estado. A tabela mostra todos os prazos, passados e futuros, e num ecrã estreito desliza na horizontal.</p>
+        <!-- docs:demo src="../../demos/uc-deadlines/table.html" title="tabela de prazos com estados" height="484" -->
+        <div class="docs-demo" id="demo-uc-deadlines-table">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/table.html" title="Demonstração: tabela de prazos com estados" loading="lazy" style="height: 484px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-deadlines view=&quot;table&quot; heading=&quot;Calendário de avaliação&quot;&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-deadlines/table.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="filtro">Passados e futuros</h3>
+        <p><code>filter</code> escolhe que prazos aparecem: <code>upcoming</code> (os que ainda não passaram, por omissão na lista), <code>past</code> (os que já passaram) ou <code>all</code> (todos, por omissão na tabela). Na lista, as datas dos prazos que já passaram e dos que estão por marcar ficam a cinzento.</p>
+        <!-- docs:demo src="../../demos/uc-deadlines/all.html" title="lista com todos os prazos" height="624" -->
+        <div class="docs-demo" id="demo-uc-deadlines-all">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/all.html" title="Demonstração: lista com todos os prazos" loading="lazy" style="height: 624px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-deadlines filter=&quot;all&quot; heading=&quot;Todas as datas&quot;&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-deadlines/all.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="tipos">Só alguns tipos</h3>
+        <p><code>kind</code> recebe um ou mais tipos separados por espaços: <code>assessment</code>, <code>exam</code>, <code>quiz</code>, <code>submission</code> ou <code>other</code>. Na página da avaliação, por exemplo, só as provas que contam para a nota.</p>
+        <!-- docs:demo src="../../demos/uc-deadlines/kind.html" title="só testes e exames" height="293" -->
+        <div class="docs-demo" id="demo-uc-deadlines-kind">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/kind.html" title="Demonstração: só testes e exames" loading="lazy" style="height: 293px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-deadlines kind=&quot;assessment exam&quot; heading=&quot;Avaliação&quot;&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-deadlines/kind.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="um-de-cada-tipo">Um de cada tipo</h3>
+        <p><code>per-kind="1"</code> mostra só o próximo prazo de cada tipo. Na página inicial, evita que uma série de quizzes semanais ocupe a lista toda: aparece o quiz 4, mas não o 5, e o exame da época normal, mas não o de recurso.</p>
+        <!-- docs:demo src="../../demos/uc-deadlines/per-kind.html" title="o próximo prazo de cada tipo" height="393" -->
+        <div class="docs-demo" id="demo-uc-deadlines-per-kind">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/per-kind.html" title="Demonstração: o próximo prazo de cada tipo" loading="lazy" style="height: 393px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-deadlines per-kind=&quot;1&quot;&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-deadlines/per-kind.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="limite-e-conteudo-extra">Limite, título e conteúdo extra</h3>
+        <p><code>limit</code> corta a lista depois de aplicar os outros filtros. <code>heading</code> muda o título da secção, e <code>heading="none"</code> tira-o. O que se escrever dentro do elemento fica por baixo da lista, por exemplo uma ligação para a página com todas as datas.</p>
+        <!-- docs:demo src="../../demos/uc-deadlines/limit.html" title="dois prazos e uma ligação por baixo" height="277" -->
+        <div class="docs-demo" id="demo-uc-deadlines-limit">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/limit.html" title="Demonstração: dois prazos e uma ligação por baixo" loading="lazy" style="height: 277px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-deadlines limit=&quot;2&quot; heading=&quot;A seguir&quot;&gt;
+  &lt;a href=&quot;#&quot;&gt;Ver todas as datas&lt;/a&gt;
+&lt;/uc-deadlines&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-deadlines/limit.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-deadlines</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>view</code></td><td><code>list</code> ou <code>table</code></td><td><code>list</code></td><td>Lista compacta ou tabela com hora, informação e estado.</td></tr>
+              <tr><td><code>filter</code></td><td><code>upcoming</code>, <code>past</code> ou <code>all</code></td><td><code>upcoming</code> (lista), <code>all</code> (tabela)</td><td>Prazos que ainda não passaram, que já passaram, ou todos.</td></tr>
+              <tr><td><code>kind</code></td><td>tipos separados por espaços</td><td>todos</td><td>Só os prazos destes tipos, por exemplo <code>kind="assessment exam"</code>.</td></tr>
+              <tr><td><code>per-kind</code></td><td>número</td><td>sem limite</td><td>No máximo este número de prazos de cada tipo. <code>per-kind="1"</code> mostra só o próximo quiz, a próxima entrega…</td></tr>
+              <tr><td><code>limit</code></td><td>número</td><td>sem limite</td><td>No máximo este número de prazos no total, depois dos outros filtros.</td></tr>
+              <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td>"Próximas datas"</td><td>Título da secção, num <code>&lt;h2&gt;</code>. Com <code>none</code>, a secção fica sem título.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>Campos do <code>course.js</code> que o componente lê. Sem <code>deadlines</code>, mostra "Não há datas marcadas.".</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-deadlines</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="../course-js.html#prazos"><code>deadlines</code></a></td><td>Os prazos: <code>id</code>, <code>title</code>, <code>date</code>, <code>time</code>, <code>end</code>, <code>kind</code>, <code>note</code>, <code>url</code> e <code>links</code>.</td></tr>
+              <tr><td><a href="../course-js.html#campos-avancado"><code>today</code></a></td><td>Fixar o dia de hoje (demonstrações, capturas). O endereço <code>?today=AAAA-MM-DD</code> tem prioridade.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A referência completa dos campos está em <a href="../course-js.html#prazos">O ficheiro course.js</a>.</p>
+
+        <h2 id="estados">Estados e datas</h2>
+        <p>A tabela mostra o estado de cada prazo, calculado em relação a hoje:</p>
+        <ul>
+          <li><strong>Concluída</strong> (verde): o prazo já passou.</li>
+          <li><strong>Próxima</strong> (amarelo): o primeiro prazo com dia marcado que ainda não passou. Pode ser um prazo já a decorrer, como o quiz 4 no exemplo.</li>
+          <li><strong>Marcada</strong>: os prazos seguintes com dia marcado.</li>
+          <li><strong>Por marcar</strong>: os prazos com <code>date: null</code> ou só com o mês.</li>
+        </ul>
+        <p>O estado conta só com os prazos que aparecem: numa tabela com <code>kind="assessment exam"</code>, "Próxima" é a próxima prova dessas, mesmo que antes haja uma entrega.</p>
+        <p>Um prazo passa quando acaba o seu último dia:</p>
+        <ul>
+          <li><strong>Um dia</strong> (<code>"2025-12-10"</code>): conta como próximo até ao fim desse dia, seja qual for a hora.</li>
+          <li><strong>Vários dias</strong> (com <code>end</code>): conta como próximo até ao fim de <code>end</code> e mostra-se como intervalo, "24–30 nov".</li>
+          <li><strong>Só o mês</strong> (<code>"2026-01"</code>): mostra-se "janeiro 2026" e conta como próximo até ao fim do mês.</li>
+          <li><strong>Sem data</strong> (<code>null</code>): mostra-se "Por marcar", fica no fim e nunca passa.</li>
+        </ul>
+        <p>Na lista, a data é curta ("10 dez") e a hora vai no início da linha da nota ("14:00 · Laboratórios 1 e 2"). Na tabela, a data leva o ano ("10 dez 2025") e a hora tem coluna própria.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. Cada item da lista e cada linha da tabela têm também <code>data-kind</code> com o tipo do prazo.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-deadlines</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-deadlines</code>, <code>.uc-deadlines--table</code></td><td>O próprio <code>&lt;uc-deadlines&gt;</code>; o modificador na vista de tabela.</td></tr>
+              <tr><td><code>.uc-deadlines__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-deadlines__list</code>, <code>__item</code></td><td>A lista e cada prazo.</td></tr>
+              <tr><td><code>.uc-deadlines__item--past</code>, <code>--unscheduled</code></td><td>Prazo que já passou; prazo sem data.</td></tr>
+              <tr><td><code>.uc-deadlines__row</code></td><td>Cada linha da tabela.</td></tr>
+              <tr><td><code>.uc-deadlines__row--done</code>, <code>--next</code>, <code>--scheduled</code>, <code>--toBeScheduled</code></td><td>Estado da linha.</td></tr>
+              <tr><td><code>.uc-deadlines__date</code>, <code>__time</code></td><td>A data e a hora.</td></tr>
+              <tr><td><code>.uc-deadlines__body</code>, <code>__title</code></td><td>O texto do prazo (lista) e o título (lista e tabela).</td></tr>
+              <tr><td><code>.uc-deadlines__note</code>, <code>__links</code></td><td>A nota e as ligações extra.</td></tr>
+              <tr><td><code>.uc-deadlines__details</code>, <code>__status</code></td><td>As colunas "Informação" e "Estado" da tabela.</td></tr>
+              <tr><td><code>.uc-deadlines__none</code></td><td>O travessão de uma célula vazia.</td></tr>
+              <tr><td><code>.uc-deadlines__more</code></td><td>O conteúdo escrito dentro do elemento.</td></tr>
+              <tr><td><code>.uc-deadlines__empty</code></td><td>A frase "Não há datas marcadas.".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Exames a vermelho escuro na lista. */
+.uc-deadlines__item[data-kind="exam"] .uc-deadlines__date { color: #9F1239; }
+
+/* Na tabela, as provas já feitas a cinzento. */
+.uc-deadlines__row--done { color: var(--uc-color-text-muted); }</code></pre></uc-code>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>Gera uma <code>&lt;section&gt;</code> com o nome do título e as datas num <code>&lt;time datetime&gt;</code>. Na tabela, o título de cada prova é o cabeçalho da linha, o estado é texto e não só cor, e a tabela recebe foco com o teclado quando precisa de deslizar.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Títulos de prazos que se percebam fora de contexto ("Entrega do trabalho 2", não "Entrega"), etiquetas de <code>links</code> que digam o que abrem e, com <code>heading="none"</code>, um título na página logo antes do elemento.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Os prazos vêm do <code>course.js</code> e só aparecem com o kit. Sem JavaScript, fica visível apenas o que estiver escrito dentro do elemento: uma ligação para a página da avaliação, onde as datas também estejam escritas, garante que ninguém fica sem elas.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-date.html"><code>&lt;uc-date&gt;</code></a>: a data de um prazo no meio de um parágrafo.</li>
+          <li><a href="uc-week.html"><code>&lt;uc-week&gt;</code></a>: os prazos aparecem também na semana em que caem.</li>
+          <li><a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>: um prazo ou avaliação escrito à mão dentro de uma semana.</li>
+          <li><a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>: o cartão "Esta semana", com os prazos da semana atual.</li>
+          <li><a href="uc-notices.html"><code>&lt;uc-notices&gt;</code></a>: os avisos, normalmente ao lado das próximas datas.</li>
+          <li><a href="../course-js.html#prazos">Prazos no course.js</a>: os campos de cada prazo.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/index.html">a página inicial</a> (lista com <code>per-kind="1"</code>) e <a href="../../../examples/edados-2526/avaliacao.html">a página da avaliação</a> (tabela) de Estruturas de Dados 2025/26.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
-<!-- /docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-notices.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-notices</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-date.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-date</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-deadlines.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
     </main>
     <aside class="docs-aside">
       <!-- docs:toc -->
-<!-- /docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#tabela">Tabela</a></li>
+          <li class="docs-toc__sub"><a href="#filtro">Passados e futuros</a></li>
+          <li class="docs-toc__sub"><a href="#tipos">Só alguns tipos</a></li>
+          <li class="docs-toc__sub"><a href="#um-de-cada-tipo">Um de cada tipo</a></li>
+          <li class="docs-toc__sub"><a href="#limite-e-conteudo-extra">Limite, título e conteúdo extra</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#estados">Estados e datas</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
     </aside>
   </div>
 </body>
