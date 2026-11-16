@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nível 4: HTML livre · UC Design Kit</title>
+  <meta name="description" content="Misturar HTML próprio com o kit sem partir o layout.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="course-js.html">Nível 0: course.js</a></li>
+          <li><a href="tokens.html">Nível 1: tokens</a></li>
+          <li><a href="css.html">Nível 2: CSS livre</a></li>
+          <li><a href="componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="html.html" aria-current="page">Nível 4: HTML livre</a></li>
+          <li><a href="tema.html">Personalizador de tema</a></li>
+          <li><a href="execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Personalizar</p>
+          <h1>Nível 4: HTML livre</h1>
+          <p class="docs-lead">Uma página do kit é HTML normal: dentro do <code>&lt;uc-page&gt;</code> pode estar qualquer marcação, com ou sem componentes. É o nível para aproveitar páginas de um site antigo ou para uma página com um aspeto muito próprio. O preço é perder o comportamento automático do kit nessa parte da página.</p>
+        </header>
+
+        <p>Um guião vindo do site antigo, colado dentro de <code>&lt;uc-page&gt;</code> com uma só classe à volta:</p>
+        <!-- docs:demo src="../../demos/customize/free-html.html" title="HTML colado dentro de uc-content numa página do kit" height="892" -->
+        <div class="docs-demo" id="demo-customize-free-html">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/customize/free-html.html" title="Demonstração: HTML colado dentro de uc-content numa página do kit" loading="lazy" style="height: 892px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page current=&quot;weeks&quot;&gt;
+  &lt;div class=&quot;uc-content&quot;&gt;
+    &lt;h1&gt;Guião 10: árvores binárias de pesquisa&lt;/h1&gt;
+    &lt;img class=&quot;uc-content__float&quot; src=&quot;img/bst.svg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;Árvore binária de pesquisa com raiz 8; filhos 3 e 10; 3 tem os filhos 1 e 6, 10 tem o filho 14.&quot;&gt;
+    &lt;p&gt;Este texto veio do site antigo da cadeira e não usa classes do kit. Dentro de &lt;code&gt;uc-content&lt;/code&gt; ganha os espaços, a letra e as cores do resto da página.&lt;/p&gt;
+    &lt;p lang=&quot;pt&quot;&gt;Este parágrafo só aparece em português.&lt;/p&gt;
+    &lt;p lang=&quot;en&quot;&gt;This paragraph only appears in English.&lt;/p&gt;
+    &lt;h2&gt;Exemplo&lt;/h2&gt;
+    &lt;p&gt;Inserir os valores pela ordem dada e escrever a altura da árvore.&lt;/p&gt;
+    &lt;pre data-copy=&quot;Input&quot;&gt;8 3 10 1 6 14&lt;/pre&gt;
+    &lt;div class=&quot;uc-table&quot;&gt;
+      &lt;table&gt;
+        &lt;caption&gt;Custo das operações numa árvore com n nós&lt;/caption&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Operação&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Árvore equilibrada&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Pior caso&lt;/th&gt;&lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;&lt;td&gt;Procurar&lt;/td&gt;&lt;td&gt;O(log n)&lt;/td&gt;&lt;td&gt;O(n)&lt;/td&gt;&lt;/tr&gt;
+          &lt;tr&gt;&lt;td&gt;Inserir&lt;/td&gt;&lt;td&gt;O(log n)&lt;/td&gt;&lt;td&gt;O(n)&lt;/td&gt;&lt;/tr&gt;
+          &lt;tr&gt;&lt;td&gt;Remover&lt;/td&gt;&lt;td&gt;O(log n)&lt;/td&gt;&lt;td&gt;O(n)&lt;/td&gt;&lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/customize/free-html.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="dentro-da-pagina">Dentro do uc-page</h2>
+        <p>Tudo o que se escreve dentro de <code>&lt;uc-page&gt;</code> vai para a coluna principal, entre o cabeçalho e o rodapé que o kit desenha. Cada filho direto é um bloco, separado do seguinte por <code>--uc-main-gap</code> (48px). Para que partes relacionadas fiquem juntas (um título e o seu texto), agrupam-se num <code>&lt;section&gt;</code> ou <code>&lt;div&gt;</code>:</p>
+        <uc-code lang="html" filename="materiais.html" no-download><pre><code>&lt;uc-page current="materials"&gt;
+  &lt;h1&gt;Materiais&lt;/h1&gt;
+
+  &lt;section class="uc-section"&gt;
+    &lt;h2&gt;Livros&lt;/h2&gt;
+    &lt;ul class="uc-bullets"&gt;
+      &lt;li&gt;…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+
+  &lt;div class="uc-content"&gt;
+    …HTML from the old site…
+  &lt;/div&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+        <p>Não se escreve <code>&lt;main&gt;</code>, cabeçalho nem rodapé (o <code>&lt;uc-page&gt;</code> gera-os), e mantém-se um só <code>&lt;h1&gt;</code> por página.</p>
+
+        <h2 id="uc-content">HTML colado: uc-content</h2>
+        <p>HTML escrito sem as classes do kit (de um site antigo, de um editor, exportado de outro formato) fica legível dentro de <code>&lt;div class="uc-content"&gt;</code>: espaço entre títulos, parágrafos e listas, blocos <code>&lt;pre&gt;</code> com fundo e deslize horizontal, imagens que nunca passam da largura da coluna e uma largura máxima de leitura.</p>
+        <ul>
+          <li><code>&lt;img class="uc-content__float"&gt;</code> fica à direita do texto em ecrãs largos e passa para cima do texto nos estreitos.</li>
+          <li>As tabelas ficam dentro de <code>&lt;div class="uc-table"&gt;</code>, como no exemplo, para terem bordas e deslizarem na horizontal num telemóvel.</li>
+          <li>Blocos de classes do kit (<code>uc-callout</code>, <code>uc-table</code>) e componentes podem estar lá dentro.</li>
+        </ul>
+        <p>A lista completa do que <code>uc-content</code> faz está em <a href="../estilos/elementos.html">Blocos: elementos</a>.</p>
+
+        <h2 id="regras">Regras para não partir o layout</h2>
+        <ul>
+          <li><strong>Sem larguras fixas.</strong> <code>width: 900px</code> num bloco obriga o telemóvel a deslizar na horizontal. Usa-se <code>max-width</code>, percentagens, ou nada.</li>
+          <li><strong>Tabelas em <code>.uc-table</code>.</strong> Uma tabela larga sem este invólucro alarga a página inteira. Com ele, só a tabela desliza, e o kit torna-a acessível pelo teclado; um <code>&lt;caption&gt;</code> dá-lhe nome.</li>
+          <li><strong>Imagens com <code>width</code> e <code>height</code></strong> e com <code>alt</code>. O kit limita a largura a 100% da coluna; as dimensões evitam que o texto salte enquanto a imagem carrega.</li>
+          <li><strong>Vídeos e <code>&lt;iframe&gt;</code></strong> com <code>width: 100%</code> e <code>aspect-ratio: 16 / 9</code> em vez das dimensões fixas que os serviços de vídeo sugerem.</li>
+          <li><strong>Código</strong> em <a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a>, ou em <code>&lt;pre&gt;</code> dentro de <code>uc-content</code>: nunca numa linha que alargue a página.</li>
+          <li><strong>Estilos no <code>theme.css</code></strong>, com classes próprias e tokens (<a href="css.html">nível 2</a>), e não em atributos <code>style</code> com cores fixas, que não seguem <code>accentColor</code>.</li>
+          <li><strong>Não carregar a folha de estilos do site antigo</strong> em páginas do kit: as regras globais dela (para <code>body</code>, <code>h1</code>, <code>table</code>) ganham às do kit e desfazem o layout. Copia-se para o <code>theme.css</code> só o que for preciso, com classes.</li>
+          <li><strong>Ver a página com 360px de largura</strong> (modo de dispositivo das ferramentas do browser) antes de publicar.</li>
+        </ul>
+
+        <h2 id="o-que-funciona">O que continua a funcionar</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">O que o kit faz também no HTML livre</caption>
+            <thead>
+              <tr><th scope="col">Funcionalidade</th><th scope="col">Como</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Conteúdo em duas línguas</td><td>Qualquer elemento com <code>lang</code> de uma língua configurada que não está ativa fica escondido, como os dois parágrafos do exemplo. Ver <a href="../linguas.html#mesma-pagina">Línguas</a>.</td></tr>
+              <tr><td>Botão de copiar</td><td><code>&lt;pre data-copy&gt;</code> ganha um botão de copiar em qualquer sítio da página, também fora de <code>uc-content</code>.</td></tr>
+              <tr><td>Tabelas largas</td><td><code>.uc-table</code> desliza e recebe foco do teclado quando não cabe.</td></tr>
+              <tr><td>Letra, cores, foco</td><td>Os estilos base do kit valem para todo o HTML: tipo de letra, títulos, links, contorno de foco.</td></tr>
+              <tr><td>Componentes</td><td>Qualquer componente pode estar no meio do HTML livre: um <a href="../componentes/uc-date.html"><code>&lt;uc-date&gt;</code></a> numa frase, um <a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a> num guião antigo.</td></tr>
+              <tr><td>Navegação e rodapé</td><td>Continuam a vir do <code>course.js</code>, à volta do conteúdo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="o-que-nao-funciona">O que não funciona</h2>
+        <ul>
+          <li><strong>Nada é calculado.</strong> Datas, números de semana, "Esta semana", prazos que desaparecem quando passam: num texto escrito à mão ficam como foram escritos. Para uma data que muda com a língua usa-se <code>&lt;uc-date&gt;</code>; para semanas, <a href="../componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a>.</li>
+          <li><strong>Textos traduzidos só com <code>lang</code>.</strong> O kit não traduz texto escrito à mão; cada língua escreve-se à parte.</li>
+          <li><strong><code>lang</code> de línguas não configuradas.</strong> Um <code>&lt;span lang="fr"&gt;</code> num site com <code>languages: ["pt", "en"]</code> nunca é escondido, o que é o comportamento certo para uma citação.</li>
+          <li><strong>Scripts do site antigo.</strong> Código que dependia de jQuery ou de outra biblioteca não corre sozinho; ou se carrega essa biblioteca na página, ou se reescreve o comportamento como um <a href="componentes.html">componente próprio</a>.</li>
+          <li><strong>Links relativos.</strong> Continuam relativos à página: HTML colado de outra pasta pode precisar de caminhos novos (ver <a href="../estrutura.html#links">Links e ficheiros</a>).</li>
+        </ul>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="../estrutura.html#pagina">O corpo de uma página</a>.</li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a> e <a href="../estilos/superficies.html">superfícies e listas</a>: as classes que arrumam conteúdo sem CSS próprio.</li>
+          <li><a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="componentes.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Nível 3: componentes próprios</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="tema.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Personalizador de tema</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/personalizar/html.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#dentro-da-pagina">Dentro do uc-page</a></li>
+          <li><a href="#uc-content">HTML colado: uc-content</a></li>
+          <li><a href="#regras">Regras para não partir o layout</a></li>
+          <li><a href="#o-que-funciona">O que continua a funcionar</a></li>
+          <li><a href="#o-que-nao-funciona">O que não funciona</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

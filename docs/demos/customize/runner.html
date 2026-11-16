@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Execução de código: o pedido que um runner recebe · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script>
+    // JavaScript goes to the "inspect" runner, which only describes what it received.
+    UC_COURSE.runner = { languages: { js: "inspect" }, inspect: { course: "AP0001" } };
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="extensions/inspect-runner.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-code lang="js" filename="sum.js" run>
+      <script type="text/plain">
+        function sum(values) {
+          return values.reduce((total, value) => total + value, 0);
+        }
+      </script>
+      <script type="text/plain" data-harness filename="data.js">
+        const DATA = [1, 2, 3];
+      </script>
+      <script type="text/plain" data-harness>
+        console.log(sum(DATA));
+      </script>
+    </uc-code>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

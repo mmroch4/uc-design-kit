@@ -507,10 +507,10 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | Token | Default | Use |
 | --- | --- | --- |
 | `--uc-color-accent` | `#1D4ED8` | Links, active navigation, primary buttons. Set from `accentColor`. |
-| `--uc-color-accent-strong` | derived (darker) | Hover. |
+| `--uc-color-accent-strong` | derived (70% accent, 30% black) | Hover. |
 | `--uc-color-on-accent` | `#FFFFFF` | Text on accent backgrounds (primary buttons). |
-| `--uc-color-accent-soft` | derived (`#EFF4FF`) | Active nav background, accent tags. |
-| `--uc-color-highlight` | derived (`#F3F6FF`) | Current week band. |
+| `--uc-color-accent-soft` | derived (`#EDF1FC`: 8% accent on white) | Active nav background, accent tags. |
+| `--uc-color-highlight` | derived (`#F4F6FD`: 5% accent on white) | Current week band. |
 | `--uc-color-text` | `#18181B` | Body text. |
 | `--uc-color-text-secondary` | `#3F3F46` | Secondary paragraphs. |
 | `--uc-color-text-muted` | `#52525B` | Metadata, labels. |
@@ -523,20 +523,43 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | `--uc-color-warning-bg` | `#FEF3C7` | Assessment and "new" badges (background). |
 | `--uc-color-warning-surface` | `#FFFBEB` | Event panels. |
 | `--uc-color-warning-border` | `#FDE68A` | Event panel borders. |
+| `--uc-color-success-text` | `#166534` | Correct answers, exercises marked done, `uc-tag--success` (text). |
+| `--uc-color-success-bg` | `#DCFCE7` | The same (background). |
+| `--uc-color-danger-text` | `#991B1B` | Failed tests, run errors, wrong answers. |
+| `--uc-color-danger-bg` | `#FEE2E2` | Background paired with `--uc-color-danger-text`. |
 | `--uc-font-sans` | `Inter, system-ui, sans-serif` | Body. |
 | `--uc-font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Code, dates, codes. |
 | `--uc-font-size-base` | `16px` | Root size; the type scale is relative to it. |
+| `--uc-font-size-xs` … `--uc-font-size-display` | `0.75rem` … `2.5rem` | Type scale: `-xs` 12px, `-sm` 13px, `-md` 14px, `-body-sm` 15px, `-lg` 18px, `-h3` 20px, `-h2` 22px, `-h1` 36px, `-display` 40px (at the 16px base). Below 760px `-h1` is `1.875rem` and `-display` `2rem`. |
+| `--uc-line-height` / `--uc-line-height-tight` | `1.6` / `1.25` | Body text / headings. |
 | `--uc-radius-sm` / `-md` / `-lg` | `6px` / `8px` / `12px` | Corners. |
 | `--uc-space-1` … `--uc-space-12` | `4px` steps | Spacing scale. |
 | `--uc-content-max` | `1200px` | Page width. |
 | `--uc-sidebar-width` | `216px` | Navigation column. |
-| `--uc-main-gap` | `48px` | Space between the main content's top-level blocks. |
+| `--uc-header-height` | `64px` | Height of the `<uc-page>` top bar; sticky offsets use it. |
+| `--uc-gutter` | `32px` (`16px` below 760px) | Horizontal page padding. |
 | `--uc-target-min` | `44px` | Minimum touch target. |
 | `--uc-focus-ring` | `2px solid var(--uc-color-accent)` | Focus outline. |
 
+**Local tokens.** These are not defined on `:root`: the kit reads them with a
+fallback, so they can be set on `:root` for the whole site or on one element
+(`style="--uc-grid-min: 160px"`) to change only that block.
+
+| Token | Fallback | Use |
+| --- | --- | --- |
+| `--uc-grid-min` | `220px` | Minimum column width of `uc-grid`. |
+| `--uc-grid-gap` | `12px` | Gap of `uc-grid`. |
+| `--uc-stack-gap` | `16px` | Gap of `uc-stack`. |
+| `--uc-table-min` | `560px` | Minimum table width inside `uc-table`. |
+| `--uc-card-padding` | `20px 24px` | Padding of `uc-card` (team cards use `16px 20px`). |
+| `--uc-main-gap` | `48px` | Space between the top-level blocks of the `<uc-page>` main content. |
+| `--uc-guide-gap` | `48px` | Space between the blocks of a `<uc-guide>`. |
+| `--uc-notices-date-width` | `64px` | Date column of `<uc-notices>`. |
+| `--uc-deadlines-date-width` | `5.25rem` | Date column of `<uc-deadlines>` in the list view. |
+
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
-Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` avoids the
-external request if a course prefers.
+Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the
+system font and skips downloading Inter, if a course prefers.
 
 ## 6. Languages
 

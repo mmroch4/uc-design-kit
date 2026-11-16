@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blocos: elementos · UC Design Kit</title>
+  <meta name="description" content="Elementos do UC Design Kit: uc-button, uc-tag, uc-table, pre data-copy e os utilitários de texto.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="index.html">Princípios de design</a></li>
+          <li><a href="cor.html">Cor</a></li>
+          <li><a href="tipografia.html">Tipografia</a></li>
+          <li><a href="espaco.html">Espaço e forma</a></li>
+          <li><a href="tokens.html">Tokens</a></li>
+          <li><a href="layout.html">Blocos: layout</a></li>
+          <li><a href="superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="elementos.html" aria-current="page">Blocos: elementos</a></li>
+          <li><a href="acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Estilos</p>
+          <h1>Blocos: elementos</h1>
+          <p class="docs-lead">Botões, etiquetas, tabelas, blocos de texto com botão de copiar e utilitários de texto. Os três primeiros são só CSS; as tabelas e o <code>&lt;pre data-copy&gt;</code> têm também um pouco de JavaScript do kit para o teclado e para copiar.</p>
+        </header>
+
+        <p>As classes de texto para parágrafos de introdução, colunas de leitura e HTML colado de outro sítio (<code>uc-lead</code>, <code>uc-prose</code>, <code>uc-content</code>) estão em <a href="tipografia.html">Tipografia</a>.</p>
+
+        <h2 id="button"><code>uc-button</code></h2>
+        <p>Uma ligação ou um <code>&lt;button&gt;</code> com aspeto de botão, com 44 px de altura mínima.</p>
+        <!-- docs:demo src="../../demos/blocks/button.html" title="botão principal, botão normal e botão nativo" height="92" -->
+        <div class="docs-demo" id="demo-blocks-button">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/button.html" title="Demonstração: botão principal, botão normal e botão nativo" loading="lazy" style="height: 92px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;a class=&quot;uc-button uc-button--primary&quot; href=&quot;../avaliacao.html&quot;&gt;Regras de avaliação&lt;/a&gt;
+&lt;a class=&quot;uc-button&quot; href=&quot;../semanas.html&quot;&gt;Ver as semanas&lt;/a&gt;
+&lt;button class=&quot;uc-button&quot; type=&quot;button&quot;&gt;Imprimir&lt;/button&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/button.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="button-primary"><code>uc-button--primary</code></h3>
+        <p>Preenchido na cor do curso, com o texto em <code>--uc-color-on-accent</code>. Um por zona da página, para a ação principal; está no exemplo acima.</p>
+
+        <h3 id="button-sm"><code>uc-button--sm</code></h3>
+        <p>Compacto, com 32 px de altura e letra de 13 px, para tabelas e barras de ferramentas. Combina com <code>--primary</code>.</p>
+        <!-- docs:demo src="../../demos/blocks/button-sm.html" title="três botões compactos" height="80" -->
+        <div class="docs-demo" id="demo-blocks-button-sm">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/button-sm.html" title="Demonstração: três botões compactos" loading="lazy" style="height: 80px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;a class=&quot;uc-button uc-button--sm&quot; href=&quot;../semanas.html&quot;&gt;Enunciado&lt;/a&gt;
+&lt;a class=&quot;uc-button uc-button--sm&quot; href=&quot;../semanas.html&quot;&gt;Código base&lt;/a&gt;
+&lt;a class=&quot;uc-button uc-button--sm uc-button--primary&quot; href=&quot;../semanas.html&quot;&gt;Entregar&lt;/a&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/button-sm.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes e tokens de uc-button</caption>
+            <thead>
+              <tr><th scope="col">Classe ou token</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-button</code></td><td>Borda <code>--uc-color-border</code>, fundo <code>--uc-color-surface</code>, raio <code>--uc-radius-md</code>; borda e texto na cor do curso em <code>:hover</code>.</td></tr>
+              <tr><td><code>uc-button--primary</code></td><td>Fundo e borda <code>--uc-color-accent</code>; <code>--uc-color-accent-strong</code> em <code>:hover</code>.</td></tr>
+              <tr><td><code>uc-button--sm</code></td><td>Altura mínima <code>2rem</code>, letra <code>--uc-font-size-sm</code>.</td></tr>
+              <tr><td><code>--uc-target-min</code></td><td>Altura mínima do botão normal; por omissão <code>44px</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Uma ligação leva a outra página ou ficheiro; um <code>&lt;button type="button"&gt;</code> faz uma ação na página. A classe não muda o elemento: um <code>&lt;a&gt;</code> com aspeto de botão continua a ser lido como ligação, e é isso que se quer. O texto diz o que acontece ("Descarregar o enunciado"), não "Clique aqui".</p>
+
+        <h2 id="tag"><code>uc-tag</code></h2>
+        <p>Uma etiqueta pequena, em linha com o texto, para classificar: tipo de aula, estado, novidade.</p>
+        <!-- docs:demo src="../../demos/blocks/tag.html" title="as cinco variantes de etiqueta" height="72" -->
+        <div class="docs-demo" id="demo-blocks-tag">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/tag.html" title="Demonstração: as cinco variantes de etiqueta" loading="lazy" style="height: 72px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;span class=&quot;uc-tag&quot;&gt;Teórica&lt;/span&gt;
+&lt;span class=&quot;uc-tag uc-tag--accent&quot;&gt;Esta semana&lt;/span&gt;
+&lt;span class=&quot;uc-tag uc-tag--warning&quot;&gt;Avaliação&lt;/span&gt;
+&lt;span class=&quot;uc-tag uc-tag--success&quot;&gt;Entregue&lt;/span&gt;
+&lt;span class=&quot;uc-tag uc-tag--muted&quot;&gt;Opcional&lt;/span&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/tag.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="tag-variants">Variantes</h3>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Variantes de uc-tag</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Cores</th><th scope="col">Uso típico</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-tag</code></td><td><code>--uc-color-surface-muted</code>, texto <code>--uc-color-text-secondary</code></td><td>Neutra.</td></tr>
+              <tr><td><code>uc-tag--accent</code></td><td><code>--uc-color-accent-soft</code>, texto <code>--uc-color-accent</code></td><td>"Esta semana", destaque.</td></tr>
+              <tr><td><code>uc-tag--warning</code></td><td><code>--uc-color-warning-bg</code>, texto <code>--uc-color-warning-text</code></td><td>Avaliação, "Novo", obrigatório.</td></tr>
+              <tr><td><code>uc-tag--success</code></td><td><code>--uc-color-success-bg</code>, texto <code>--uc-color-success-text</code></td><td>Feito, entregue, certo.</td></tr>
+              <tr><td><code>uc-tag--muted</code></td><td>As mesmas da neutra</td><td>Opcional, secundário.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar. <code>--muted</code> tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.</p>
+
+        <h2 id="table"><code>uc-table</code></h2>
+        <p>Vai num <code>&lt;div&gt;</code> à volta de uma <code>&lt;table&gt;</code>: dá-lhe borda, cabeçalho e, quando a tabela não cabe, deslocamento horizontal dentro da caixa, sem empurrar a página.</p>
+        <!-- docs:demo src="../../demos/blocks/table.html" title="horário com seis colunas" height="242" -->
+        <div class="docs-demo" id="demo-blocks-table">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/table.html" title="Demonstração: horário com seis colunas" loading="lazy" style="height: 242px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-table&quot;&gt;
+  &lt;table&gt;
+    &lt;caption class=&quot;uc-visually-hidden&quot;&gt;Horário das aulas&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Turma&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Tipo&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Dia&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Hora&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Sala&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Docente&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td class=&quot;uc-mono&quot;&gt;T1&lt;/td&gt;&lt;td&gt;Teórica&lt;/td&gt;&lt;td&gt;2.ª feira&lt;/td&gt;&lt;td class=&quot;uc-mono&quot;&gt;10:00–12:00&lt;/td&gt;&lt;td&gt;Anfiteatro 1&lt;/td&gt;&lt;td&gt;Ana Ribeiro&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class=&quot;uc-mono&quot;&gt;PL1&lt;/td&gt;&lt;td&gt;Prática&lt;/td&gt;&lt;td&gt;3.ª feira&lt;/td&gt;&lt;td class=&quot;uc-mono&quot;&gt;14:00–16:00&lt;/td&gt;&lt;td&gt;Laboratório 1&lt;/td&gt;&lt;td&gt;Carla Nunes&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td class=&quot;uc-mono&quot;&gt;PL2&lt;/td&gt;&lt;td&gt;Prática&lt;/td&gt;&lt;td&gt;3.ª feira&lt;/td&gt;&lt;td class=&quot;uc-mono&quot;&gt;16:00–18:00&lt;/td&gt;&lt;td&gt;Laboratório 2&lt;/td&gt;&lt;td&gt;Diogo Teixeira&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/table.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A tabela tem pelo menos 560 px de largura; no telemóvel desliza para o lado dentro da caixa. Enquanto não couber, o kit torna a caixa focável (<code>tabindex="0"</code>, <code>role="region"</code>) e dá-lhe o nome do <code>&lt;caption&gt;</code>, para se poder deslocar com as setas do teclado. Sem <code>&lt;caption&gt;</code>, o nome é "Tabela com deslocamento horizontal". Quando volta a caber, deixa de ser focável.</p>
+
+        <h3 id="table-min">Largura mínima</h3>
+        <p><code>--uc-table-min</code> muda essa largura. Com <code>0</code>, uma tabela de duas ou três colunas curtas cabe no telemóvel sem deslocamento.</p>
+        <!-- docs:demo src="../../demos/blocks/table-min.html" title="tabela de duas colunas sem largura mínima" height="242" -->
+        <div class="docs-demo" id="demo-blocks-table-min">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/table-min.html" title="Demonstração: tabela de duas colunas sem largura mínima" loading="lazy" style="height: 242px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-table&quot; style=&quot;--uc-table-min: 0&quot;&gt;
+  &lt;table&gt;
+    &lt;caption class=&quot;uc-visually-hidden&quot;&gt;Pesos da avaliação&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Componente&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Peso&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Exame&lt;/td&gt;&lt;td&gt;60%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Trabalhos&lt;/td&gt;&lt;td&gt;20%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Teste prático&lt;/td&gt;&lt;td&gt;20%&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/table-min.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="table-caption">Legenda</h3>
+        <p>Cada tabela deve ter um <code>&lt;caption&gt;</code> como primeiro filho: é o nome que os leitores de ecrã anunciam e o que o kit usa para a região focável. Se o título já está por cima da tabela, a legenda esconde-se com <code>uc-visually-hidden</code>, como nas demonstrações. Os cabeçalhos são <code>&lt;th scope="col"&gt;</code> (ou <code>scope="row"</code> na primeira coluna).</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes e tokens de uc-table</caption>
+            <thead>
+              <tr><th scope="col">Classe ou token</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-table</code></td><td>No contentor: <code>overflow-x: auto</code>, borda, raio <code>--uc-radius-lg</code>. Células com 12 × 16 px, cabeçalho em <code>--uc-color-surface-sunken</code>.</td></tr>
+              <tr><td><code>--uc-table-min</code></td><td>Largura mínima da <code>&lt;table&gt;</code>; por omissão <code>560px</code>.</td></tr>
+              <tr><td><code>uc-mono</code></td><td>Numa célula, para códigos de turma, horas e salas que se comparam em coluna.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O mesmo comportamento de teclado aplica-se às tabelas que os componentes geram (<a href="../componentes/uc-deadlines.html"><code>&lt;uc-deadlines view="table"&gt;</code></a>, <a href="../componentes/uc-team.html"><code>&lt;uc-team view="table"&gt;</code></a>) e aos <code>&lt;pre&gt;</code> largos dentro de <code>uc-content</code>.</p>
+
+        <h2 id="pre-data-copy"><code>&lt;pre data-copy&gt;</code></h2>
+        <p>Acrescenta um botão de copiar ao canto de um bloco de texto pré-formatado, para o que o estudante cola noutro sítio: a entrada e a saída de um exemplo, um comando.</p>
+        <!-- docs:demo src="../../demos/blocks/pre-copy.html" title="entrada e saída de um exemplo com botões de copiar" height="263" -->
+        <div class="docs-demo" id="demo-blocks-pre-copy">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/pre-copy.html" title="Demonstração: entrada e saída de um exemplo com botões de copiar" loading="lazy" style="height: 263px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-content&quot;&gt;
+  &lt;p&gt;Exemplo de entrada:&lt;/p&gt;
+  &lt;pre data-copy=&quot;Input&quot;&gt;5
+3 1 4 1 5&lt;/pre&gt;
+  &lt;p&gt;Saída esperada:&lt;/p&gt;
+  &lt;pre data-copy=&quot;Output&quot;&gt;1 1 3 4 5&lt;/pre&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/pre-copy.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>O valor do atributo nomeia o que se copia no nome acessível do botão: <code>data-copy="Input"</code> lê-se "Copiar Input"; vazio, lê-se "Copiar". O texto é copiado tal como está escrito, com as mudanças de linha, e a confirmação ("Copiado") é anunciada aos leitores de ecrã. Funciona em qualquer parte da página e também no HTML que os componentes mostram depois de carregar.</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes de pre data-copy</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-copy-block</code></td><td>O contentor que o kit põe à volta do <code>&lt;pre&gt;</code>.</td></tr>
+              <tr><td><code>.uc-copy-block__button</code></td><td>O botão (um <code>uc-button</code> de 32 px); <code>.is-copied</code> enquanto mostra o visto.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O <code>&lt;pre&gt;</code> não tem fundo próprio fora de <code>uc-content</code>; a demonstração usa <code>uc-content</code> para lhe dar caixa. Dentro de um <a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a> o atributo é ignorado, porque esse componente já tem o seu botão. Sem JavaScript, o bloco mostra-se sem botão.</p>
+
+        <h2 id="utilitarios">Utilitários de texto</h2>
+        <p>Três classes de uma só propriedade, para usar em qualquer elemento de texto.</p>
+        <!-- docs:demo src="../../demos/blocks/text-utilities.html" title="texto secundário, monoespaçado e pequeno" height="154" -->
+        <div class="docs-demo" id="demo-blocks-text-utilities">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/text-utilities.html" title="Demonstração: texto secundário, monoespaçado e pequeno" loading="lazy" style="height: 154px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;p class=&quot;uc-muted&quot;&gt;Última atualização: 20 de novembro de 2025&lt;/p&gt;
+&lt;p&gt;Código da unidade curricular: &lt;span class=&quot;uc-mono&quot;&gt;AP0001&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;uc-small&quot;&gt;As salas podem mudar durante o semestre; confirmar nos avisos.&lt;/p&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/text-utilities.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="muted"><code>uc-muted</code></h3>
+        <p>Cor <code>--uc-color-text-muted</code>, para metadados: datas de atualização, tamanhos de ficheiro, notas. Tem mais de 7:1 de contraste sobre branco.</p>
+
+        <h3 id="mono"><code>uc-mono</code></h3>
+        <p>Letra <code>--uc-font-mono</code>, para códigos, horas e identificadores que não são código-fonte. Para código, usa-se <code>&lt;code&gt;</code>, que já tem esta letra.</p>
+
+        <h3 id="small"><code>uc-small</code></h3>
+        <p>Tamanho <code>--uc-font-size-md</code> (14 px), para notas de rodapé e legendas. Não convém para parágrafos inteiros.</p>
+
+        <h2 id="visually-hidden"><code>uc-visually-hidden</code></h2>
+        <p>Esconde um elemento do ecrã mas não dos leitores de ecrã. Serve para completar um texto que só é claro com a vista: um botão só com ícone, ligações repetidas como "PDF", a legenda de uma tabela já com título.</p>
+        <!-- docs:demo src="../../demos/blocks/visually-hidden.html" title="ligação PDF com texto escondido e botão só com ícone" height="92" -->
+        <div class="docs-demo" id="demo-blocks-visually-hidden">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/visually-hidden.html" title="Demonstração: ligação PDF com texto escondido e botão só com ícone" loading="lazy" style="height: 92px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;a class=&quot;uc-button uc-button--sm&quot; href=&quot;../semanas.html&quot;&gt;PDF&lt;span class=&quot;uc-visually-hidden&quot;&gt; do enunciado do trabalho 2&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&quot;uc-button&quot; href=&quot;../index.html&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M3 11l9-7 9 7v9H3z&quot;/&gt;&lt;/svg&gt;
+  &lt;span class=&quot;uc-visually-hidden&quot;&gt;Página inicial&lt;/span&gt;
+&lt;/a&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/visually-hidden.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>O primeiro botão lê-se "PDF do enunciado do trabalho 2"; o segundo, "Página inicial". O ícone tem <code>aria-hidden="true"</code>. Ao contrário de <code>hidden</code> ou <code>display: none</code>, o texto continua disponível para os leitores de ecrã.</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classe uc-visually-hidden</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-visually-hidden</code></td><td>Caixa de 1 × 1 px recortada, fora do fluxo (<code>position: absolute !important</code>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Não se usa em elementos que recebem foco, como uma ligação inteira: o foco iria para algo invisível.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="tipografia.html">Tipografia</a>: <code>uc-lead</code>, <code>uc-prose</code>, <code>uc-content</code> e a escala de letra.</li>
+          <li><a href="superficies.html">Blocos: superfícies e listas</a> e <a href="layout.html">Blocos: layout</a>.</li>
+          <li><a href="acessibilidade.html">Acessibilidade</a>: o que o kit garante e o que cabe a quem escreve.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="superficies.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Blocos: superfícies e listas</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="acessibilidade.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Acessibilidade</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/estilos/elementos.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#button">uc-button</a></li>
+          <li class="docs-toc__sub"><a href="#button-primary">uc-button--primary</a></li>
+          <li class="docs-toc__sub"><a href="#button-sm">uc-button--sm</a></li>
+          <li><a href="#tag">uc-tag</a></li>
+          <li class="docs-toc__sub"><a href="#tag-variants">Variantes</a></li>
+          <li><a href="#table">uc-table</a></li>
+          <li class="docs-toc__sub"><a href="#table-min">Largura mínima</a></li>
+          <li class="docs-toc__sub"><a href="#table-caption">Legenda</a></li>
+          <li><a href="#pre-data-copy">&lt;pre data-copy&gt;</a></li>
+          <li><a href="#utilitarios">Utilitários de texto</a></li>
+          <li class="docs-toc__sub"><a href="#muted">uc-muted</a></li>
+          <li class="docs-toc__sub"><a href="#mono">uc-mono</a></li>
+          <li class="docs-toc__sub"><a href="#small">uc-small</a></li>
+          <li><a href="#visually-hidden">uc-visually-hidden</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

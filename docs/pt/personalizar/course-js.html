@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nível 0: course.js · UC Design Kit</title>
+  <meta name="description" content="Cor, logótipo, páginas e línguas a partir do course.js.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="course-js.html" aria-current="page">Nível 0: course.js</a></li>
+          <li><a href="tokens.html">Nível 1: tokens</a></li>
+          <li><a href="css.html">Nível 2: CSS livre</a></li>
+          <li><a href="componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="html.html">Nível 4: HTML livre</a></li>
+          <li><a href="tema.html">Personalizador de tema</a></li>
+          <li><a href="execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Personalizar</p>
+          <h1>Nível 0: course.js</h1>
+          <p class="docs-lead">Quatro campos do <code>course.js</code> mudam o aspeto e a navegação de todas as páginas sem uma linha de CSS: <code>accentColor</code>, <code>logo</code>, <code>pages</code> e <code>languages</code>. É o primeiro nível a experimentar e o que menos manutenção pede.</p>
+        </header>
+
+        <p>O curso de demonstração com outra cor e sem logótipo. Nada no HTML mudou, só o <code>course.js</code>:</p>
+        <!-- docs:demo src="../../demos/customize/accent.html" title="o curso de demonstração com accentColor verde-azulado e sem logótipo" height="738" -->
+        <div class="docs-demo" id="demo-customize-accent">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/customize/accent.html" title="Demonstração: o curso de demonstração com accentColor verde-azulado e sem logótipo" loading="lazy" style="height: 738px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page current=&quot;home&quot;&gt;
+  &lt;uc-hero&gt;&lt;/uc-hero&gt;
+  &lt;uc-week n=&quot;10&quot; title=&quot;Pesquisa binária e árvores&quot;&gt;
+    &lt;p&gt;Guião 10: &lt;a href=&quot;#&quot;&gt;inserir e procurar numa árvore&lt;/a&gt;.&lt;/p&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/customize/accent.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="cor">Cor do curso</h2>
+        <p>A cor de destaque aparece nos links, na navegação ativa, nos botões principais, na faixa da semana atual e nas palavras reservadas do código. Muda-se em três passos:</p>
+        <ol>
+          <li><strong>Escolher a cor.</strong> Tem de ter contraste de pelo menos 4.5:1 com o branco, porque é a cor dos links e do texto dos botões. Cores claras (amarelo, verde-lima, azul-céu) não servem; os tons escuros da mesma cor sim. O <a href="tema.html">Personalizador de tema</a> mostra o contraste de cada cor.</li>
+          <li><strong>Escrever o campo.</strong> Aceita qualquer cor CSS: <code>"#0F766E"</code>, <code>"rgb(15 118 110)"</code>, <code>"teal"</code>.
+            <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  accentColor: "#0F766E",
+  // …
+};</code></pre></uc-code>
+          </li>
+          <li><strong>Recarregar a página.</strong> As variantes são calculadas a partir desta cor: mais escura para o <em>hover</em>, quase branca para os fundos da navegação e das etiquetas, e um pouco mais clara para a semana atual. Não é preciso defini-las.</li>
+        </ol>
+        <p>Uma cor que o browser não reconhece é ignorada, com um aviso <code>[uc-kit] course.js: accentColor … is not a valid CSS colour</code> na consola, e fica o azul do kit. O campo está descrito em <a href="../course-js.html#campos-curso">Curso</a>.</p>
+        <div class="uc-callout">
+          <p><strong>accentColor ou token?</strong> O kit aplica <code>accentColor</code> diretamente no elemento <code>&lt;html&gt;</code>, por isso ganha a um <code>--uc-color-accent</code> escrito no <code>theme.css</code>. A cor do curso define-se num só sítio, de preferência no <code>course.js</code>; para a controlar no <code>theme.css</code>, apaga-se o campo <code>accentColor</code> (o modelo traz-o preenchido). O <a href="tokens.html">nível 1</a> fica para o resto dos tokens.</p>
+        </div>
+
+        <h2 id="logotipo">Logótipo</h2>
+        <p>O cabeçalho mostra, antes do nome do curso, um ícone de árvore do kit. O campo <code>logo</code> troca-o por uma imagem ou esconde-o:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>logo: "logo.svg",   // an image next to course.js
+logo: null,         // no image, only the course name</code></pre></uc-code>
+        <ul>
+          <li><strong>Tamanho.</strong> A imagem é mostrada com 28 × 28 px. Uma imagem quadrada em SVG fica nítida em qualquer ecrã; em PNG, convém ter pelo menos 56 × 56 px.</li>
+          <li><strong>Caminho.</strong> Ao contrário dos <code>href</code> das páginas, o caminho do logótipo é relativo à página que o mostra. Num site com páginas em subpastas (<code>guioes/aula10.html</code>), <code>"logo.svg"</code> deixa de ser encontrado nessas páginas; um endereço absoluto (<code>"https://…/logo.svg"</code>) funciona em todas.</li>
+          <li><strong>Texto alternativo.</strong> Fica vazio, porque o nome do curso está mesmo ao lado. A imagem deve ter contraste suficiente com o fundo branco.</li>
+        </ul>
+        <p>Ver <a href="../course-js.html#campos-curso">Curso</a> e, para o cabeçalho completo, <a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a>.</p>
+
+        <h2 id="paginas">Páginas e navegação</h2>
+        <p>A navegação lateral, o seu nome e a sua ordem vêm de <code>pages</code>. Mudar a ordem, dar outro nome a uma página do kit ou acrescentar uma página própria é editar esta lista:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>pages: [
+  "home",
+  { id: "weeks", href: "semanas.html" },
+  { id: "projects", href: "projetos.html", label: { pt: "Projetos", en: "Projects" } },
+  { id: "about", href: "sobre.html", label: "Ficha da UC" },
+],
+platforms: [
+  { label: "Plataforma de entregas", url: "https://example.org/entregas" },
+],</code></pre></uc-code>
+        <ol>
+          <li>Cria-se o ficheiro da página (por exemplo <code>projetos.html</code>, copiado de outra página).</li>
+          <li>Acrescenta-se a entrada a <code>pages</code>, na posição em que deve aparecer. Um identificador que não é do kit precisa de <code>label</code>.</li>
+          <li>Na página nova, <code>&lt;uc-page current="projects"&gt;</code> marca-a como ativa na navegação.</li>
+        </ol>
+        <p>As ligações externas (Moodle, plataforma de submissões, fórum) vão para <code>platforms</code> e aparecem num grupo separado da navegação. Os pormenores estão em <a href="../course-js.html#paginas">Páginas</a> e <a href="../course-js.html#campos-navegacao">Navegação</a>.</p>
+
+        <h2 id="linguas">Línguas</h2>
+        <p>Com mais de uma língua em <code>languages</code>, o cabeçalho ganha o botão de troca de língua e o kit passa a esconder o conteúdo marcado com a língua que não está ativa:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>languages: ["pt", "en"],   // the first one is the default</code></pre></uc-code>
+        <p>Os textos do kit (navegação, datas, botões) mudam sozinhos. O conteúdo escreve-se nas duas línguas, na mesma página ou num ficheiro por língua; ver <a href="../linguas.html">Línguas</a> e <a href="../course-js.html#campos-linguas">os campos de línguas</a>.</p>
+
+        <h2 id="limites">Quando não chega</h2>
+        <p>O <code>course.js</code> não muda cantos, letra nem cores de estado, nem o aspeto de uma parte de um componente. Para isso passa-se ao <a href="tokens.html">nível 1: tokens</a> e, se for preciso, ao <a href="css.html">nível 2: CSS livre</a>. O campo <code>runner</code>, que escolhe o serviço que executa código, tem a sua página: <a href="execucao.html">Execução de código</a>.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="index.html">Personalizar: visão geral</a> dos cinco níveis.</li>
+          <li><a href="../course-js.html">O ficheiro course.js</a>: todos os campos e erros comuns.</li>
+          <li><a href="../estilos/cor.html">Cor</a>: como o kit usa a cor de destaque.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="index.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Visão geral</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="tokens.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Nível 1: tokens</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/personalizar/course-js.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#cor">Cor do curso</a></li>
+          <li><a href="#logotipo">Logótipo</a></li>
+          <li><a href="#paginas">Páginas e navegação</a></li>
+          <li><a href="#linguas">Línguas</a></li>
+          <li><a href="#limites">Quando não chega</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

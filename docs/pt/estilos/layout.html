@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blocos: layout · UC Design Kit</title>
+  <meta name="description" content="Blocos de layout do UC Design Kit: uc-section, uc-stack, uc-grid e uc-split, com os tokens locais que leem.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="index.html">Princípios de design</a></li>
+          <li><a href="cor.html">Cor</a></li>
+          <li><a href="tipografia.html">Tipografia</a></li>
+          <li><a href="espaco.html">Espaço e forma</a></li>
+          <li><a href="tokens.html">Tokens</a></li>
+          <li><a href="layout.html" aria-current="page">Blocos: layout</a></li>
+          <li><a href="superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="elementos.html">Blocos: elementos</a></li>
+          <li><a href="acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Estilos</p>
+          <h1>Blocos: layout</h1>
+          <p class="docs-lead">Quatro classes que arrumam o conteúdo na página: secções, pilhas com espaço regular, grelhas que se adaptam à largura e duas colunas que empilham no telemóvel. São só CSS e funcionam em qualquer página que carregue o <code>uc-kit.css</code>.</p>
+        </header>
+
+        <p>Todas as regras dos blocos usam <code>:where()</code> e têm especificidade zero: uma regra do <code>theme.css</code> ganha sempre, sem <code>!important</code>. Os valores de espaço vêm da escala <code>--uc-space-*</code> (ver <a href="espaco.html">Espaço e forma</a>); alguns blocos leem também um <strong>token local</strong>, que se pode definir no próprio elemento para mudar só esse bloco (ver <a href="tokens.html">Tokens</a>).</p>
+
+        <h2 id="section"><code>uc-section</code></h2>
+        <p>Uma secção da página: um título e o que lhe pertence, com 16 px entre cada elemento.</p>
+        <!-- docs:demo src="../../demos/blocks/section.html" title="secção com título, parágrafo e lista" height="193" -->
+        <div class="docs-demo" id="demo-blocks-section">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/section.html" title="Demonstração: secção com título, parágrafo e lista" loading="lazy" style="height: 193px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;section class=&quot;uc-section&quot; aria-labelledby=&quot;regras&quot;&gt;
+  &lt;h2 id=&quot;regras&quot;&gt;Regras&lt;/h2&gt;
+  &lt;p&gt;Os trabalhos são individuais e entregues pela plataforma de entregas.&lt;/p&gt;
+  &lt;ul class=&quot;uc-bullets&quot;&gt;
+    &lt;li&gt;Entregas fora do prazo não são aceites.&lt;/li&gt;
+    &lt;li&gt;O teste prático é feito nos laboratórios, sem consulta.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/section.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>O espaço <em>entre</em> secções não vem desta classe: dentro de <a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a>, os blocos de topo do conteúdo ficam a 48 px uns dos outros (token local <code>--uc-main-gap</code>). Fora do <code>&lt;uc-page&gt;</code>, juntam-se as secções num <code>uc-stack</code> com um espaço maior.</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes e tokens de uc-section</caption>
+            <thead>
+              <tr><th scope="col">Classe ou token</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-section</code></td><td>Coluna flex com <code>gap: var(--uc-space-4)</code> (16 px).</td></tr>
+              <tr><td><code>--uc-main-gap</code></td><td>Espaço entre os blocos de topo do <code>&lt;uc-page&gt;</code>; por omissão <code>48px</code>. Não é lido pela secção.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Usa-se com <code>&lt;section&gt;</code> e <code>aria-labelledby</code> a apontar para o título: a secção passa a ser uma região com nome, que os leitores de ecrã listam. O título é um <code>&lt;h2&gt;</code> numa página com <code>&lt;uc-hero&gt;</code> ou outro <code>&lt;h1&gt;</code>.</p>
+
+        <h2 id="stack"><code>uc-stack</code></h2>
+        <p>Empilha os filhos na vertical com o mesmo espaço entre todos, sem margens nos próprios elementos.</p>
+        <!-- docs:demo src="../../demos/blocks/stack.html" title="três blocos empilhados" height="197" -->
+        <div class="docs-demo" id="demo-blocks-stack">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/stack.html" title="Demonstração: três blocos empilhados" loading="lazy" style="height: 197px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-stack&quot;&gt;
+  &lt;p&gt;O teste prático é a 10 de dezembro, às 14:00, nos laboratórios 1 e 2.&lt;/p&gt;
+  &lt;div class=&quot;uc-callout&quot;&gt;
+    &lt;p&gt;Levar o cartão de estudante: sem ele não é possível entrar na sala.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p&gt;A matéria é a das semanas 1 a 11.&lt;/p&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/stack.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="stack-gap">Outro espaço</h3>
+        <p>O token local <code>--uc-stack-gap</code> muda o espaço só dessa pilha. É o padrão do modelo para o cabeçalho de uma página interior: título e frase de introdução mais próximos.</p>
+        <!-- docs:demo src="../../demos/blocks/stack-gap.html" title="título e introdução com 8 px entre eles" height="153" -->
+        <div class="docs-demo" id="demo-blocks-stack-gap">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/stack-gap.html" title="Demonstração: título e introdução com 8 px entre eles" loading="lazy" style="height: 153px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-stack&quot; style=&quot;--uc-stack-gap: var(--uc-space-2)&quot;&gt;
+  &lt;h1&gt;Avaliação&lt;/h1&gt;
+  &lt;p class=&quot;uc-prose&quot;&gt;A nota final soma duas componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total.&lt;/p&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/stack-gap.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes e tokens de uc-stack</caption>
+            <thead>
+              <tr><th scope="col">Classe ou token</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-stack</code></td><td>Coluna flex; os filhos ocupam a largura toda.</td></tr>
+              <tr><td><code>--uc-stack-gap</code></td><td>Espaço entre filhos; por omissão <code>16px</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Os filhos de uma coluna flex esticam à largura do contentor: um <code>uc-button</code> ou uma <code>uc-tag</code> soltos dentro de uma pilha ficam com a largura toda. Para o evitar, o botão vai dentro de um <code>&lt;p&gt;</code>.</p>
+
+        <h2 id="grid"><code>uc-grid</code></h2>
+        <p>Uma grelha de colunas iguais: cabem tantas quantas a largura permite, cada uma com pelo menos 220 px, e no telemóvel fica uma só.</p>
+        <!-- docs:demo src="../../demos/blocks/grid.html" title="três cartões em grelha" height="175" -->
+        <div class="docs-demo" id="demo-blocks-grid">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/grid.html" title="Demonstração: três cartões em grelha" loading="lazy" style="height: 175px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-grid&quot;&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;
+    &lt;h3&gt;Exame&lt;/h3&gt;
+    &lt;p&gt;&lt;strong&gt;60%&lt;/strong&gt; · época normal ou recurso, sem consulta.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;
+    &lt;h3&gt;Trabalhos&lt;/h3&gt;
+    &lt;p&gt;&lt;strong&gt;20%&lt;/strong&gt; · dois trabalhos individuais.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;
+    &lt;h3&gt;Teste prático&lt;/h3&gt;
+    &lt;p&gt;&lt;strong&gt;20%&lt;/strong&gt; · nos laboratórios, a 10 de dezembro.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/grid.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="grid-min">Colunas mais estreitas</h3>
+        <p>Com <code>--uc-grid-min</code> mais pequeno cabem mais colunas. Útil para turmas, horários ou plataformas, com pouco texto cada.</p>
+        <!-- docs:demo src="../../demos/blocks/grid-min.html" title="seis cartões com colunas de pelo menos 140 px" height="263" -->
+        <div class="docs-demo" id="demo-blocks-grid-min">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/grid-min.html" title="Demonstração: seis cartões com colunas de pelo menos 140 px" loading="lazy" style="height: 263px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-grid&quot; style=&quot;--uc-grid-min: 140px&quot;&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;&lt;strong&gt;T1&lt;/strong&gt;&lt;span class=&quot;uc-muted&quot;&gt;2.ª, 10:00&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;&lt;strong&gt;T2&lt;/strong&gt;&lt;span class=&quot;uc-muted&quot;&gt;4.ª, 10:00&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;&lt;strong&gt;PL1&lt;/strong&gt;&lt;span class=&quot;uc-muted&quot;&gt;3.ª, 14:00&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;&lt;strong&gt;PL2&lt;/strong&gt;&lt;span class=&quot;uc-muted&quot;&gt;3.ª, 16:00&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;&lt;strong&gt;PL3&lt;/strong&gt;&lt;span class=&quot;uc-muted&quot;&gt;5.ª, 14:00&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;uc-card&quot;&gt;&lt;strong&gt;PL4&lt;/strong&gt;&lt;span class=&quot;uc-muted&quot;&gt;5.ª, 16:00&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/grid-min.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes e tokens de uc-grid</caption>
+            <thead>
+              <tr><th scope="col">Classe ou token</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-grid</code></td><td><code>repeat(auto-fit, minmax(…, 1fr))</code>: colunas de largura igual que preenchem a linha.</td></tr>
+              <tr><td><code>--uc-grid-min</code></td><td>Largura mínima de cada coluna; por omissão <code>220px</code>. Nunca passa a largura do contentor.</td></tr>
+              <tr><td><code>--uc-grid-gap</code></td><td>Espaço entre células; por omissão <code>12px</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>As células de uma linha ficam com a mesma altura. A ordem de leitura é a do HTML (da esquerda para a direita, linha a linha), por isso escreve-se pela ordem em que se quer que seja lido.</p>
+
+        <h2 id="split"><code>uc-split</code></h2>
+        <p>Duas colunas, a principal mais larga (proporção 3:2), que passam a uma só com a janela até 960 px de largura.</p>
+        <!-- docs:demo src="../../demos/blocks/split.html" title="texto principal e caixa lateral" height="323" -->
+        <div class="docs-demo" id="demo-blocks-split">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/split.html" title="Demonstração: texto principal e caixa lateral" loading="lazy" style="height: 323px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-split&quot;&gt;
+  &lt;section class=&quot;uc-section&quot; aria-labelledby=&quot;trabalho&quot;&gt;
+    &lt;h2 id=&quot;trabalho&quot;&gt;Trabalho 2&lt;/h2&gt;
+    &lt;p&gt;Implementar uma árvore binária de pesquisa com inserção, remoção e as três travessias, e medir o tempo de pesquisa com um milhão de chaves.&lt;/p&gt;
+    &lt;p&gt;O enunciado e o código base estão na página das semanas.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;div class=&quot;uc-callout&quot;&gt;
+    &lt;h3&gt;Entrega&lt;/h3&gt;
+    &lt;p&gt;Até 28 de novembro, às 23:59, pela plataforma de entregas.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/split.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A pré-visualização é mais estreita do que 960 px, por isso mostra as colunas empilhadas; em "Abrir demo", numa janela larga, aparecem lado a lado. A página inicial do modelo usa-o para os avisos ao lado das próximas datas.</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes de uc-split</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-split</code></td><td>Grelha <code>1.5fr 1fr</code> com 40 px entre colunas e alinhamento ao topo; uma coluna até 960 px.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Foi pensado para dois filhos. Quando empilha, a segunda coluna fica por baixo, por isso o que importa mais vai primeiro no HTML. O ponto de quebra é o da janela, não o do contentor, e não se muda com um token.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="superficies.html">Blocos: superfícies e listas</a>: cartões, caixas e listas para pôr dentro destes blocos.</li>
+          <li><a href="espaco.html">Espaço e forma</a>: a escala de espaços e os raios.</li>
+          <li><a href="../estrutura.html">Estrutura de um site</a> e <a href="../criar-site.html">Criar um site</a>: onde estes blocos aparecem no modelo.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="tokens.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Tokens</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="superficies.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Blocos: superfícies e listas</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/estilos/layout.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#section">uc-section</a></li>
+          <li><a href="#stack">uc-stack</a></li>
+          <li class="docs-toc__sub"><a href="#stack-gap">Outro espaço</a></li>
+          <li><a href="#grid">uc-grid</a></li>
+          <li class="docs-toc__sub"><a href="#grid-min">Colunas mais estreitas</a></li>
+          <li><a href="#split">uc-split</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

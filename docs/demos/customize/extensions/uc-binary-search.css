@@ -1,0 +1,65 @@
+/*
+ * Styles for <uc-binary-search> (see uc-binary-search.js).
+ * Only --uc-* tokens, so the widget follows accentColor and theme.css.
+ * Selectors use :where() like the kit's: zero specificity, any page rule wins.
+ */
+
+/* Without JavaScript the element is a block holding the fallback text. */
+:where(uc-binary-search) { display: block; }
+
+:where(.uc-binary-search__widget) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-4);
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+
+:where(.uc-binary-search__cells) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:where(.uc-binary-search__cell) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.75rem;
+  margin: 0;
+  padding: var(--uc-space-1) var(--uc-space-2);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-sm);
+  font-family: var(--uc-font-mono);
+}
+:where(.uc-binary-search__index) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-xs); }
+:where(.uc-binary-search__value) { font-weight: 600; }
+
+/* States: outside the range (struck through, not only greyed), middle, found. */
+:where(.uc-binary-search__cell[data-state="out"]) {
+  background: var(--uc-color-surface-muted);
+  color: var(--uc-color-text-muted);
+  text-decoration: line-through;
+}
+:where(.uc-binary-search__cell[data-state="mid"]) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent-soft);
+  box-shadow: inset 0 0 0 1px var(--uc-color-accent);
+}
+:where(.uc-binary-search__cell[data-state="found"]) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent);
+  color: var(--uc-color-on-accent);
+}
+:where(.uc-binary-search__cell[data-state="found"] .uc-binary-search__index) { color: inherit; }
+
+/* Two lines reserved, so the buttons do not jump while stepping. */
+:where(.uc-binary-search__status) { min-height: calc(2 * var(--uc-line-height) * 1em); margin: 0; }
+
+:where(.uc-binary-search__actions) { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); }
+:where(.uc-binary-search__actions [aria-disabled="true"]) { opacity: 0.6; cursor: not-allowed; }

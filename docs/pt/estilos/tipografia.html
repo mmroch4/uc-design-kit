@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tipografia · UC Design Kit</title>
+  <meta name="description" content="Inter e JetBrains Mono, a escala de tamanhos e as classes de texto do kit.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/styles.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="index.html">Princípios de design</a></li>
+          <li><a href="cor.html">Cor</a></li>
+          <li><a href="tipografia.html" aria-current="page">Tipografia</a></li>
+          <li><a href="espaco.html">Espaço e forma</a></li>
+          <li><a href="tokens.html">Tokens</a></li>
+          <li><a href="layout.html">Blocos: layout</a></li>
+          <li><a href="superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="elementos.html">Blocos: elementos</a></li>
+          <li><a href="acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Estilos</p>
+          <h1>Tipografia</h1>
+          <p class="docs-lead">Duas famílias de letra servidas com o kit, uma escala de nove tamanhos e três classes para blocos de texto: <code>uc-lead</code>, <code>uc-prose</code> e <code>uc-content</code>.</p>
+        </header>
+
+        <h2 id="familias">Famílias</h2>
+        <div class="docs-specimens">
+          <div class="uc-card docs-specimen">
+            <p class="docs-specimen__sample" style="font-family: var(--uc-font-sans)">Aa Inter</p>
+            <p>Texto, títulos e navegação. Pesos de 400 a 700.</p>
+            <code data-token="--uc-font-sans">Inter, system-ui, -apple-system, "Segoe UI", sans-serif</code>
+          </div>
+          <div class="uc-card docs-specimen">
+            <p class="docs-specimen__sample" style="font-family: var(--uc-font-mono)">Aa Mono</p>
+            <p>Código, datas e números de semana. Pesos de 400 a 500.</p>
+            <code data-token="--uc-font-mono">"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace</code>
+          </div>
+        </div>
+        <p>As duas são servidas com o kit, em <code>kit/v1/fonts/</code> (ficheiros <code>woff2</code> variáveis, licença SIL Open Font License). Nenhuma página faz pedidos a terceiros, e o navegador só descarrega os subconjuntos de que precisa (latino; latino estendido e grego quando a página os usa). O <code>&lt;head&gt;</code> das páginas pode pedir a letra do texto mais cedo com um <code>preload</code>; ver <a href="../estrutura.html#head">O &lt;head&gt; de cada página</a>.</p>
+        <p>Para usar a letra do sistema e não descarregar a Inter, muda-se o token no <code>theme.css</code>:</p>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>:root {
+  --uc-font-sans: system-ui, sans-serif;
+}</code></pre></uc-code>
+
+        <h3 id="sem-ligaduras">Código sem ligaduras</h3>
+        <p>A JetBrains Mono junta alguns pares de carateres num só símbolo (<code>-&gt;</code> numa seta, <code>&lt;=</code> num sinal de menor ou igual). Em código, cada caráter tem de aparecer como se escreve, por isso o kit desliga as ligaduras em <code>code</code>, <code>pre</code>, <code>kbd</code> e <code>samp</code>:</p>
+        <p class="docs-ligatures"><code>a -&gt; b</code> <code>x &lt;= y</code> <code>i != j</code> <code>p &gt;&gt;= 1</code></p>
+
+        <h2 id="escala">Escala</h2>
+        <p>Os tamanhos são relativos ao tamanho da raiz (<code>--uc-font-size-base</code>, 16 px). Cada linha está escrita no seu tamanho; o valor ao lado é calculado nesta página.</p>
+        <ul class="docs-type-scale">
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-display); font-weight: 700">Algoritmos</span><span class="docs-type-scale__meta"><code>--uc-font-size-display</code> <span data-token="--uc-font-size-display" data-kind="length">2.5rem (40px)</span><br>Título de <a href="../componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-h1); font-weight: 700">Avaliação</span><span class="docs-type-scale__meta"><code>--uc-font-size-h1</code> <span data-token="--uc-font-size-h1" data-kind="length">2.25rem (36px)</span><br><code>&lt;h1&gt;</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-h2); font-weight: 600">Componentes da avaliação</span><span class="docs-type-scale__meta"><code>--uc-font-size-h2</code> <span data-token="--uc-font-size-h2" data-kind="length">1.375rem (22px)</span><br><code>&lt;h2&gt;</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-h3); font-weight: 600">Projeto 1</span><span class="docs-type-scale__meta"><code>--uc-font-size-h3</code> <span data-token="--uc-font-size-h3" data-kind="length">1.25rem (20px)</span><br><code>&lt;h3&gt;</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-lg)">Dois projetos e um teste.</span><span class="docs-type-scale__meta"><code>--uc-font-size-lg</code> <span data-token="--uc-font-size-lg" data-kind="length">1.125rem (18px)</span><br><code>uc-lead</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-base)">Os projetos fazem-se em grupos de dois.</span><span class="docs-type-scale__meta"><code>--uc-font-size-base</code> <span data-token="--uc-font-size-base" data-kind="length">16px</span><br>Texto</span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-body-sm)">Teóricas: listas ligadas, slides 9.</span><span class="docs-type-scale__meta"><code>--uc-font-size-body-sm</code> <span data-token="--uc-font-size-body-sm" data-kind="length">0.9375rem (15px)</span><br>Tabelas, semanas, avisos</span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-md)">Atualizado a 24 de novembro.</span><span class="docs-type-scale__meta"><code>--uc-font-size-md</code> <span data-token="--uc-font-size-md" data-kind="length">0.875rem (14px)</span><br>Texto secundário, botões, <code>uc-small</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-sm)">Componente · Peso · Data</span><span class="docs-type-scale__meta"><code>--uc-font-size-sm</code> <span data-token="--uc-font-size-sm" data-kind="length">0.8125rem (13px)</span><br>Cabeçalhos de tabela</span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-xs); font-weight: 600">AVALIAÇÃO</span><span class="docs-type-scale__meta"><code>--uc-font-size-xs</code> <span data-token="--uc-font-size-xs" data-kind="length">0.75rem (12px)</span><br>Etiquetas (<code>uc-tag</code>)</span></li>
+        </ul>
+        <p>Abaixo de 760 px de largura, <code>-h1</code> passa a 30 px e <code>-display</code> a 32 px, para os títulos longos não ocuparem o ecrã do telemóvel. Os outros tamanhos não mudam: o texto de uma página lê-se igual no telemóvel.</p>
+
+        <h2 id="titulos">Títulos, pesos e entrelinha</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Estilo dos títulos e do texto</caption>
+            <thead>
+              <tr><th scope="col">Elemento</th><th scope="col">Tamanho</th><th scope="col">Peso</th><th scope="col">Entrelinha</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>&lt;h1&gt;</code></td><td><code>--uc-font-size-h1</code></td><td>700, espaçamento <code>-0.02em</code></td><td><code>--uc-line-height-tight</code> (<span data-token="--uc-line-height-tight">1.25</span>)</td></tr>
+              <tr><td><code>&lt;h2&gt;</code></td><td><code>--uc-font-size-h2</code></td><td>600</td><td><code>--uc-line-height-tight</code></td></tr>
+              <tr><td><code>&lt;h3&gt;</code></td><td><code>--uc-font-size-h3</code></td><td>600</td><td><code>--uc-line-height-tight</code></td></tr>
+              <tr><td><code>&lt;h4&gt;</code></td><td><code>1rem</code></td><td>600</td><td><code>--uc-line-height-tight</code></td></tr>
+              <tr><td>Texto</td><td><code>--uc-font-size-base</code></td><td>400; <code>&lt;strong&gt;</code> 600</td><td><code>--uc-line-height</code> (<span data-token="--uc-line-height">1.6</span>)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Usam-se só quatro pesos: 400 no texto, 500 em botões e links de listas, 600 em títulos, etiquetas e <code>&lt;strong&gt;</code>, 700 no <code>&lt;h1&gt;</code>. Uma página tem um só <code>&lt;h1&gt;</code>; os níveis seguintes não se saltam (<code>&lt;h2&gt;</code> antes de <code>&lt;h3&gt;</code>).</p>
+
+        <h2 id="introducao-e-texto">Introdução e texto: <code>uc-lead</code> e <code>uc-prose</code></h2>
+        <p><code>uc-lead</code> é o parágrafo de introdução por baixo do título: maior, cinzento e com no máximo 680 px. <code>uc-prose</code> limita um bloco de texto a 720 px, cerca de 80 carateres por linha, a largura que ainda se lê sem perder a linha.</p>
+        <!-- docs:demo src="../../demos/styles/text.html" title="título, introdução e texto" height="205" -->
+        <div class="docs-demo" id="demo-styles-text">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/text.html" title="Demonstração: título, introdução e texto" loading="lazy" style="height: 205px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;h1&gt;Avaliação&lt;/h1&gt;
+&lt;p class=&quot;uc-lead&quot;&gt;Dois projetos e um teste. O teste pode ser substituído pelo exame.&lt;/p&gt;
+&lt;div class=&quot;uc-prose&quot;&gt;
+  &lt;p&gt;Os projetos fazem-se em grupos de dois e entregam-se no Moodle até às 23h59 do dia indicado. Cada dia de atraso desconta um valor, até ao máximo de três dias.&lt;/p&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/text.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="uc-content">HTML sem classes: <code>uc-content</code></h2>
+        <p>Texto copiado de um site antigo ou exportado de um editor não tem classes do kit. Dentro de <code>uc-content</code> recebe o espaçamento certo: títulos com espaço antes, parágrafos e listas separados, tabelas a toda a largura, <code>&lt;pre&gt;</code> com fundo, imagens que não saem da coluna. O bloco tem no máximo 760 px.</p>
+        <!-- docs:demo src="../../demos/styles/content.html" title="HTML sem classes dentro de uc-content" height="529" -->
+        <div class="docs-demo" id="demo-styles-content">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/content.html" title="Demonstração: HTML sem classes dentro de uc-content" loading="lazy" style="height: 529px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;div class=&quot;uc-content&quot;&gt;
+      &lt;h2&gt;Objetivos&lt;/h2&gt;
+      &lt;p&gt;No fim desta aula, o estudante sabe implementar uma &lt;strong&gt;pesquisa binária&lt;/strong&gt; e justificar o número de comparações.&lt;/p&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Pesquisa linear e pesquisa binária.&lt;/li&gt;
+        &lt;li&gt;Invariante de ciclo.&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;h3&gt;Exemplo&lt;/h3&gt;
+      &lt;p&gt;Para o vetor &lt;code&gt;[2, 5, 8, 13]&lt;/code&gt; e o valor &lt;code&gt;8&lt;/code&gt;:&lt;/p&gt;
+      &lt;pre&gt;lo = 0, hi = 3 -&amp;gt; mid = 1
+lo = 2, hi = 3 -&amp;gt; mid = 2, encontrado&lt;/pre&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;n&lt;/th&gt;&lt;th&gt;Comparações no pior caso&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;1 000&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;1 000 000&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/content.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Uma imagem com <code>class="uc-content__float"</code> fica à direita do texto em ecrãs largos e ocupa a largura toda no telemóvel. Em páginas novas, os blocos do kit (<a href="superficies.html">superfícies e listas</a>) dão mais controlo; <code>uc-content</code> serve para não ter de reescrever o que já existe.</p>
+
+        <h2 id="utilitarios">Classes de texto</h2>
+        <p><code>uc-muted</code> (cor discreta), <code>uc-mono</code> (letra de código) e <code>uc-small</code> (14 px) mudam só um pedaço de texto. Estão descritas em <a href="elementos.html">Blocos: elementos</a>.</p>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="cor.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Cor</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="espaco.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Espaço e forma</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/estilos/tipografia.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#familias">Famílias</a></li>
+          <li class="docs-toc__sub"><a href="#sem-ligaduras">Código sem ligaduras</a></li>
+          <li><a href="#escala">Escala</a></li>
+          <li><a href="#titulos">Títulos, pesos e entrelinha</a></li>
+          <li><a href="#introducao-e-texto">Introdução e texto: uc-lead e uc-prose</a></li>
+          <li><a href="#uc-content">HTML sem classes: uc-content</a></li>
+          <li><a href="#utilitarios">Classes de texto</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

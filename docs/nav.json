@@ -52,6 +52,33 @@
             { "title": "uc-code", "path": "pt/componentes/uc-code.html", "code": true, "component": "uc-code" },
             { "title": "uc-question", "path": "pt/componentes/uc-question.html", "code": true, "component": "uc-question" }
           ]
+        },
+        {
+          "title": "Estilos",
+          "pages": [
+            { "title": "Princípios de design", "path": "pt/estilos/index.html" },
+            { "title": "Cor", "path": "pt/estilos/cor.html" },
+            { "title": "Tipografia", "path": "pt/estilos/tipografia.html" },
+            { "title": "Espaço e forma", "path": "pt/estilos/espaco.html" },
+            { "title": "Tokens", "path": "pt/estilos/tokens.html" },
+            { "title": "Blocos: layout", "path": "pt/estilos/layout.html" },
+            { "title": "Blocos: superfícies e listas", "path": "pt/estilos/superficies.html" },
+            { "title": "Blocos: elementos", "path": "pt/estilos/elementos.html" },
+            { "title": "Acessibilidade", "path": "pt/estilos/acessibilidade.html" }
+          ]
+        },
+        {
+          "title": "Personalizar",
+          "pages": [
+            { "title": "Visão geral", "path": "pt/personalizar/index.html" },
+            { "title": "Nível 0: course.js", "path": "pt/personalizar/course-js.html" },
+            { "title": "Nível 1: tokens", "path": "pt/personalizar/tokens.html" },
+            { "title": "Nível 2: CSS livre", "path": "pt/personalizar/css.html" },
+            { "title": "Nível 3: componentes próprios", "path": "pt/personalizar/componentes.html" },
+            { "title": "Nível 4: HTML livre", "path": "pt/personalizar/html.html" },
+            { "title": "Personalizador de tema", "path": "pt/personalizar/tema.html" },
+            { "title": "Execução de código", "path": "pt/personalizar/execucao.html" }
+          ]
         }
       ]
     }
