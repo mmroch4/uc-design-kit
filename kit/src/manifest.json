@@ -13,6 +13,13 @@
     "core/element.js",
     "components/uc-page.js",
     "components/uc-hero.js",
+    "components/uc-notices.js",
+    "components/uc-deadlines.js",
+    "components/uc-date.js",
+    "components/uc-event.js",
+    "components/uc-week.js",
+    "components/uc-weeks.js",
+    "components/uc-this-week.js",
     "components/uc-exercise.js",
     "components/uc-guide.js",
     "core/bootstrap.js"
@@ -25,6 +32,13 @@
     "css/base/blocks.css",
     "css/components/uc-page.css",
     "css/components/uc-hero.css",
+    "css/components/uc-notices.css",
+    "css/components/uc-deadlines.css",
+    "css/components/uc-date.css",
+    "css/components/uc-event.css",
+    "css/components/uc-week.css",
+    "css/components/uc-weeks.css",
+    "css/components/uc-this-week.css",
     "css/components/uc-exercise.css",
     "css/components/uc-guide.css"
   ]

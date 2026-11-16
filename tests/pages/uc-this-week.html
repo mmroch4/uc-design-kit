@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-this-week · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <uc-hero></uc-hero>
+
+    <!-- Default: source is the "weeks" page from course.js (uc-weeks.html). -->
+    <uc-this-week></uc-this-week>
+
+    <section class="uc-section" aria-labelledby="states">
+      <h2 id="states"><span lang="pt">Outros estados</span><span lang="en">Other states</span></h2>
+      <p lang="pt">Abre esta página com <a href="?today=2025-09-01">?today=2025-09-01</a> (antes do semestre), <a href="?today=2025-10-29">?today=2025-10-29</a> (pausa) ou <a href="?today=2026-02-15">?today=2026-02-15</a> (depois do semestre). Em <code>file://</code> o cartão mostra só datas e prazos.</p>
+      <p lang="en">Open this page with <a href="?today=2025-09-01">?today=2025-09-01</a> (before the semester), <a href="?today=2025-10-29">?today=2025-10-29</a> (break) or <a href="?today=2026-02-15">?today=2026-02-15</a> (after the semester). On <code>file://</code> the card only shows dates and deadlines.</p>
+      <p lang="pt">Cartão com <code>source</code> explícito e conteúdo do professor no fim:</p>
+      <p lang="en">Card with an explicit <code>source</code> and teacher content at the end:</p>
+      <uc-this-week source="uc-weeks.html">
+        <p class="uc-muted"><span lang="pt">Dúvidas? Fala connosco nas aulas práticas.</span><span lang="en">Questions? Talk to us in the lab classes.</span></p>
+      </uc-this-week>
+    </section>
+  </uc-page>
+</body>
+</html>

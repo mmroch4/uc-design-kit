@@ -1,0 +1,23 @@
+/* <uc-event>: highlighted assessment or exam (docs/api.md, section 3.3). */
+
+:where(uc-event) { display: block; }
+
+:where(.uc-event) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--uc-space-2) var(--uc-space-3);
+  margin: var(--uc-space-2) 0;
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 1px solid var(--uc-color-warning-border);
+  border-radius: 10px;
+  background: var(--uc-color-warning-surface);
+}
+:where(.uc-week__body > .uc-event) { margin: var(--uc-space-1) 0; }
+
+:where(.uc-event__title) { font-weight: 600; }
+:where(a.uc-event__title) { color: var(--uc-color-text); }
+:where(a.uc-event__title:hover) { color: var(--uc-color-accent); }
+:where(.uc-event__date) { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-md); white-space: nowrap; }
+:where(.uc-event__note) { color: var(--uc-color-text-secondary); font-size: var(--uc-font-size-md); }
+:where(.uc-event__link, .uc-event > a:not(.uc-event__title)) { font-size: var(--uc-font-size-md); }
