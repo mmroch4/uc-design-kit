@@ -7,6 +7,9 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Fonts are served with the kit from `kit/v1/fonts/` (no Google Fonts request),
+  including the Greek subset of Inter.
+- Site favicon.
 - `.uc-table` wrappers that scroll sideways become keyboard-focusable regions
   (labelled by the table caption) while they overflow.
 - Repository scaffold, licence and contribution guide.
@@ -31,6 +34,8 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   in a Web Worker.
 
 ### Changed
+- The kit is cached for 5 minutes and then revalidated in the background
+  (`stale-while-revalidate`), so repeat visits no longer wait for the server.
 - `<uc-notices>` hides notices dated in the future until their day.
 - `<uc-this-week>`: the current week is highlighted with a soft accent
   background instead of an accent border.
