@@ -97,11 +97,465 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Personalizar</p>
           <h1>Nível 3: componentes próprios</h1>
-          <p class="docs-lead">Escrever um componente próprio com UC.define.</p>
+          <p class="docs-lead">Um componente próprio é um elemento HTML novo, escrito em JavaScript com a mesma API dos componentes do kit. Serve para o que é só da cadeira: uma animação de um algoritmo, um simulador, um exercício com um comportamento especial. Não precisa de instalação nem de compilação: é um ficheiro <code>.js</code> e, se tiver estilos, um <code>.css</code>.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <p>O exemplo desta página, um passo a passo de uma pesquisa binária feito para o curso de demonstração:</p>
+        <!-- docs:demo src="../../demos/customize/component.html" title="componente próprio uc-binary-search" height="252" -->
+        <div class="docs-demo" id="demo-customize-component">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/customize/component.html" title="Demonstração: componente próprio uc-binary-search" loading="lazy" style="height: 252px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-binary-search values=&quot;2 5 8 12 16 23 38 56 72 91&quot; target=&quot;23&quot;&gt;
+  &lt;p&gt;Pesquisa binária de 23 em 2 5 8 12 16 23 38 56 72 91: o meio é 16, depois 56 e depois 23, encontrado em 3 passos.&lt;/p&gt;
+&lt;/uc-binary-search&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/customize/component.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="quando">Quando escrever um</h2>
+        <p>Um componente é código JavaScript que o professor mantém: textos nas línguas do curso, acessibilidade, alternativa sem JavaScript. Compensa quando o mesmo comportamento se repete em várias páginas ou quando não há outra forma de o mostrar. Antes, convém confirmar que não chega um componente do kit (<a href="../componentes/uc-question.html"><code>&lt;uc-question&gt;</code></a>, <a href="../componentes/uc-code.html"><code>&lt;uc-code run&gt;</code></a>…) com <a href="css.html">CSS próprio</a>.</p>
+
+        <h2 id="ficheiros">Ficheiros e carregamento</h2>
+        <p>Os componentes próprios ficam na pasta <code>extensions/</code>, um ficheiro por componente, com o nome do elemento:</p>
+        <uc-code lang="text" no-download><pre><code>2526/
+├── course.js
+├── theme.css
+├── extensions/
+│   ├── uc-binary-search.js
+│   └── uc-binary-search.css
+└── guioes/
+    └── aula10.html</code></pre></uc-code>
+        <p>Carregam-se só nas páginas que os usam: o CSS depois do <code>theme.css</code>, e o JavaScript <strong>depois do kit e também com <code>defer</code></strong>, para <code>window.UC</code> já existir quando o ficheiro corre:</p>
+        <uc-code lang="html" filename="guioes/aula10.html" no-download><pre><code>&lt;link rel="stylesheet" href="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.css"&gt;
+&lt;link rel="stylesheet" href="../theme.css"&gt;
+&lt;link rel="stylesheet" href="../extensions/uc-binary-search.css"&gt;
+&lt;script src="../course.js"&gt;&lt;/script&gt;
+&lt;script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer&gt;&lt;/script&gt;
+&lt;script src="../extensions/uc-binary-search.js" defer&gt;&lt;/script&gt;</code></pre></uc-code>
+        <p>Os componentes ficam no DOM normal da página (<em>light DOM</em>), como os do kit: não se usa <em>shadow DOM</em>. Assim herdam a letra e as cores, os tokens funcionam lá dentro e o <code>theme.css</code> chega-lhes.</p>
+
+        <h2 id="nome">O nome</h2>
+        <p>O nome de um elemento personalizado tem de ter um hífen. A <a href="https://github.com/mmroch4/uc-design-kit/blob/main/docs/api.md">API do kit</a> e o exemplo de Estruturas de Dados (<code>uc-bst-traversal</code>) usam o prefixo <code>uc-</code> seguido de um nome específico; esta documentação segue a mesma regra.</p>
+        <ul>
+          <li>Um nome concreto, que descreva o que faz: <code>uc-binary-search</code>, <code>uc-bst-traversal</code>, <code>uc-turing-machine</code>. Nomes genéricos (<code>uc-quiz</code>, <code>uc-table</code>, <code>uc-tabs</code>) podem vir a ser usados pelo kit.</li>
+          <li>Se o kit vier a ter um componente com o mesmo nome, fica o primeiro a ser registado (o do kit, que carrega antes) e o próprio é ignorado. <code>UC.define</code> nunca dá erro por um nome repetido.</li>
+          <li>As classes do HTML gerado seguem o mesmo nome: <code>uc-binary-search__cell</code>, <code>uc-binary-search__status</code>.</li>
+        </ul>
+
+        <h2 id="estrutura">A estrutura de um componente</h2>
+        <p>Um componente estende <code>UC.Element</code> e regista-se com <code>UC.define</code>. O esqueleto:</p>
+        <uc-code lang="js" filename="extensions/uc-my-widget.js" no-download><pre><code>(function () {
+  "use strict";
+
+  if (!window.UC || !window.UC.Element) {
+    console.error("[uc-my-widget] Load uc-kit.js before this extension.");
+    return;
+  }
+  const UC = window.UC;
+
+  UC.addTranslations("pt", { myWidget: { start: "Começar" } });
+  UC.addTranslations("en", { myWidget: { start: "Start" } });
+
+  class UCMyWidget extends UC.Element {
+    setup() {
+      // Once: read attributes, keep the children, build the fixed structure.
+      this.button = document.createElement("button");
+      this.button.type = "button";
+      this.button.className = "uc-button";
+      this.append(this.button);
+    }
+
+    render() {
+      // On connection and after every language change: update texts and state.
+      this.button.textContent = this.t("myWidget.start");
+    }
+  }
+
+  UC.define("uc-my-widget", UCMyWidget);
+})();</code></pre></uc-code>
+        <p>A função à volta de tudo evita criar variáveis globais. O que a classe recebe do kit:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">API disponível num componente</caption>
+            <thead>
+              <tr><th scope="col">Membro</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>setup()</code></td><td>Corre uma vez, na primeira vez que o elemento entra na página. Lê os atributos, guarda os filhos escritos pelo professor e constrói a estrutura fixa.</td></tr>
+              <tr><td><code>render()</code></td><td>Corre a cada ligação à página, depois de cada mudança de língua e quando chegam textos novos para a língua ativa. Atualiza textos e estado; nunca duplica conteúdo.</td></tr>
+              <tr><td><code>this.t(key, params?)</code></td><td>Um texto da interface na língua ativa. <code>{nome}</code> no texto é substituído por <code>params.nome</code>.</td></tr>
+              <tr><td><code>this.text(value)</code></td><td>Um <code>LocalizedText</code> do <code>course.js</code> na língua ativa: <code>this.text(this.course.title)</code>.</td></tr>
+              <tr><td><code>this.course</code></td><td>O <code>course.js</code> já normalizado (só de leitura): <code>semester</code>, <code>deadlines</code>, <code>team</code>…</td></tr>
+              <tr><td><code>UC.lang</code>, <code>UC.today()</code></td><td>A língua ativa e o dia de hoje (respeita <code>today</code> e <code>?today=</code>).</td></tr>
+              <tr><td><code>UC.formatDate(date, format?)</code></td><td>Uma data escrita como em <a href="../componentes/uc-date.html"><code>&lt;uc-date&gt;</code></a>.</td></tr>
+              <tr><td><code>UC.weekOf(date)</code>, <code>UC.weekDates(n)</code></td><td>A semana letiva de uma data e as datas da semana <em>n</em>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><code>setup()</code> não está na lista da API pública em <code>docs/api.md</code>, que só nomeia <code>render()</code>, mas é o que os componentes do kit e o exemplo de Estruturas de Dados usam. Um componente pode fazer tudo em <code>render()</code>, desde que o resultado seja o mesmo à segunda chamada.</p>
+
+        <h2 id="ciclo">Ciclo de vida</h2>
+        <ol>
+          <li>O kit regista os componentes quando o HTML da página já foi lido, por isso <code>setup()</code> encontra sempre os filhos do elemento.</li>
+          <li><code>setup()</code> corre uma vez; logo a seguir corre <code>render()</code>.</li>
+          <li>Quando a língua muda, o kit chama <code>render()</code> de novo, em todos os componentes ligados. Não é preciso ouvir <code>uc:languagechange</code> dentro de um componente.</li>
+          <li>Se o elemento sair da página e voltar a entrar, só <code>render()</code> corre outra vez.</li>
+        </ol>
+        <p>Por isso <code>render()</code> tem de ser idempotente: muda texto, atributos e classes de elementos criados em <code>setup()</code>; não acrescenta elementos novos a cada chamada.</p>
+
+        <h2 id="textos">Textos e línguas</h2>
+        <p>Os textos da interface do componente não se escrevem no código: dão-se ao kit com <code>UC.addTranslations</code>, uma vez por língua, num grupo com o nome do componente para não colidir com as chaves do kit:</p>
+        <uc-code lang="js" no-download><pre><code>UC.addTranslations("pt", {
+  binarySearch: { step: "Passo", found: "Encontrado na posição {mid} em {n} passos." },
+});
+UC.addTranslations("en", {
+  binarySearch: { step: "Step", found: "Found at position {mid} in {n} steps." },
+});
+
+this.t("binarySearch.found", { mid: 5, n: 3 });  // "Encontrado na posição 5 em 3 passos."</code></pre></uc-code>
+        <ul>
+          <li>Uma chave que falta na língua ativa usa o texto em inglês; se também faltar, aparece a própria chave e um aviso <code>[uc-kit] missing translation</code> na consola.</li>
+          <li>Os textos que vêm do HTML (os atributos e os filhos escritos pelo professor) não passam por aqui: escrevem-se na língua da página, ou duas vezes com <code>lang</code> (ver <a href="../linguas.html">Línguas</a>).</li>
+          <li>Para uma língua que o kit não traz, o mesmo <code>UC.addTranslations</code> acrescenta os textos do kit; ver <a href="../linguas.html#outra-lingua">Acrescentar uma língua</a>.</li>
+        </ul>
+
+        <h2 id="eventos">Eventos</h2>
+        <p>O kit lança três eventos em <code>document</code>:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Eventos do kit</caption>
+            <thead>
+              <tr><th scope="col">Evento</th><th scope="col">Quando</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc:ready</code></td><td>A configuração foi lida e os componentes do kit foram registados.</td></tr>
+              <tr><td><code>uc:languagechange</code></td><td>Depois de a língua mudar; <code>event.detail.lang</code> é a nova língua.</td></tr>
+              <tr><td><code>uc:exercisechange</code></td><td>Um <a href="../componentes/uc-exercise.html#feito"><code>&lt;uc-exercise&gt;</code></a> foi marcado como feito ou por fazer (sobe desde o exercício).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Um ficheiro em <code>extensions/</code> carregado depois do kit com <code>defer</code> corre com o kit já pronto: <code>uc:ready</code> já foi lançado e não volta a ser. Esse ficheiro pode usar <code>UC</code> diretamente. O evento serve a um script escrito no <code>&lt;head&gt;</code> antes do kit; nesse caso também se pode testar a classe <code>uc-ready</code> no <code>&lt;html&gt;</code>.</p>
+        <uc-code lang="js" no-download><pre><code>// Count the exercises marked as done on this page.
+document.addEventListener("uc:exercisechange", () =&gt; {
+  const done = document.querySelectorAll("uc-exercise.uc-exercise--done").length;
+  console.log(`${done} exercises done`);
+});</code></pre></uc-code>
+
+        <h2 id="exemplo">Exemplo completo: pesquisa binária</h2>
+        <p>O componente da demonstração no início da página. O professor escreve os valores, o valor a procurar e uma frase para quem não tem JavaScript:</p>
+        <uc-code lang="html" filename="guioes/aula10.html" no-download><pre><code>&lt;uc-binary-search values="2 5 8 12 16 23 38 56 72 91" target="23"&gt;
+  &lt;p&gt;Pesquisa binária de 23 em 2 5 8 12 16 23 38 56 72 91: o meio é 16,
+     depois 56 e depois 23, encontrado em 3 passos.&lt;/p&gt;
+&lt;/uc-binary-search&gt;</code></pre></uc-code>
+        <p>Com <code>?lang=en</code> (e <code>languages: ["pt", "en"]</code>), o mesmo elemento mostra os textos em inglês sem mudar o HTML:</p>
+        <!-- docs:demo src="../../demos/customize/component.html?lang=en" title="o mesmo componente em inglês" height="252" -->
+        <div class="docs-demo" id="demo-customize-component">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/customize/component.html?lang=en" title="Demonstração: o mesmo componente em inglês" loading="lazy" style="height: 252px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-binary-search values=&quot;2 5 8 12 16 23 38 56 72 91&quot; target=&quot;23&quot;&gt;
+  &lt;p&gt;Pesquisa binária de 23 em 2 5 8 12 16 23 38 56 72 91: o meio é 16, depois 56 e depois 23, encontrado em 3 passos.&lt;/p&gt;
+&lt;/uc-binary-search&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/customize/component.html?lang=en">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>O ficheiro inteiro tem pouco mais de 150 linhas:</p>
+        <uc-code lang="js" filename="extensions/uc-binary-search.js" collapsible no-download><pre><code>/*
+ * &lt;uc-binary-search&gt;: steps through a binary search on a sorted list.
+ * A level 3 extension written for the documentation's fictional course.
+ *
+ * Attributes:
+ *   values  sorted integers separated by spaces (required)
+ *   target  the value to look for (required)
+ *
+ * The element's children are the fallback shown without JavaScript. They are
+ * kept, hidden, once the widget is built.
+ */
+(function () {
+  "use strict";
+
+  // The kit must be loaded first: fail loudly, not silently.
+  if (!window.UC || !window.UC.Element) {
+    console.error("[uc-binary-search] Load uc-kit.js before this extension.");
+    return;
+  }
+
+  const UC = window.UC;
+
+  /* ---------- 1. Interface texts, namespaced so they never clash with the kit's ---------- */
+
+  UC.addTranslations("pt", {
+    binarySearch: {
+      label: "Pesquisa binária de {target}",
+      step: "Passo",
+      reset: "Recomeçar",
+      start: "Procura-se {target}. Carregar em Passo para começar.",
+      range: "Passo {n}: posições {lo} a {hi}, meio na posição {mid} com {value}.",
+      right: "{value} é menor do que {target}: continua à direita.",
+      left: "{value} é maior do que {target}: continua à esquerda.",
+      found: "Encontrado na posição {mid} em {n} passos.",
+      missing: "{target} não está na lista.",
+      noValues: "Faltam os atributos values e target.",
+    },
+  });
+
+  UC.addTranslations("en", {
+    binarySearch: {
+      label: "Binary search for {target}",
+      step: "Step",
+      reset: "Start again",
+      start: "Looking for {target}. Press Step to begin.",
+      range: "Step {n}: positions {lo} to {hi}, middle at position {mid} holding {value}.",
+      right: "{value} is less than {target}: go right.",
+      left: "{value} is greater than {target}: go left.",
+      found: "Found at position {mid} in {n} steps.",
+      missing: "{target} is not in the list.",
+      noValues: "The values and target attributes are missing.",
+    },
+  });
+
+  /* ---------- 2. Helpers ---------- */
+
+  /** Creates an element with attributes and children (text is never parsed as HTML). */
+  function el(tag, attributes, ...children) {
+    const node = document.createElement(tag);
+    Object.entries(attributes || {}).forEach(([name, value]) =&gt; node.setAttribute(name, value));
+    node.append(...children);
+    return node;
+  }
+
+  /** Every comparison of a binary search for `target` in the sorted `values`. */
+  function search(values, target) {
+    const steps = [];
+    let lo = 0;
+    let hi = values.length - 1;
+    while (lo &lt;= hi) {
+      const mid = Math.floor((lo + hi) / 2);
+      const outcome = values[mid] === target ? "found" : values[mid] &lt; target ? "right" : "left";
+      steps.push({ lo, hi, mid, outcome });
+      if (outcome === "found") break;
+      if (outcome === "right") lo = mid + 1;
+      else hi = mid - 1;
+    }
+    return steps;
+  }
+
+  /* ---------- 3. The component ---------- */
+
+  class UCBinarySearch extends UC.Element {
+    /** Once: read the attributes, keep the fallback, build the fixed structure. */
+    setup() {
+      this.values = (this.getAttribute("values") || "").trim().split(/\s+/).filter(Boolean).map(Number);
+      this.target = Number(this.getAttribute("target"));
+      this.valid = this.values.length &gt; 0 &amp;&amp; this.values.every(Number.isFinite) &amp;&amp; this.hasAttribute("target");
+
+      this.fallback = el("div", { class: "uc-binary-search__fallback" }, ...Array.from(this.childNodes));
+      this.append(this.fallback);
+      if (!this.valid) {
+        this.message = el("p", { class: "uc-binary-search__message" });
+        this.append(this.message);
+        return;
+      }
+      this.fallback.hidden = true;
+
+      this.steps = search(this.values, this.target);
+      this.current = -1; // no step shown yet
+
+      this.cells = this.values.map((value, index) =&gt;
+        el(
+          "li",
+          { class: "uc-binary-search__cell" },
+          el("span", { class: "uc-binary-search__index" }, String(index)),
+          el("span", { class: "uc-binary-search__value" }, String(value)),
+        ),
+      );
+      this.status = el("p", { class: "uc-binary-search__status", "aria-live": "polite" });
+      this.stepButton = el("button", { type: "button", class: "uc-button uc-button--sm uc-button--primary" });
+      this.resetButton = el("button", { type: "button", class: "uc-button uc-button--sm" });
+      this.stepButton.addEventListener("click", () =&gt; this.next());
+      this.resetButton.addEventListener("click", () =&gt; this.reset());
+
+      this.widget = el(
+        "div",
+        { class: "uc-binary-search__widget", role: "group" },
+        el("ol", { class: "uc-binary-search__cells" }, ...this.cells),
+        this.status,
+        el("div", { class: "uc-binary-search__actions" }, this.stepButton, this.resetButton),
+      );
+      this.append(this.widget);
+    }
+
+    /** On connection and after every language change: texts and state, never new content. */
+    render() {
+      if (!this.valid) {
+        this.message.textContent = this.t("binarySearch.noValues");
+        return;
+      }
+      const step = this.steps[this.current] || null;
+      const done = this.current === this.steps.length - 1;
+
+      this.widget.setAttribute("aria-label", this.t("binarySearch.label", { target: this.target }));
+      this.stepButton.textContent = this.t("binarySearch.step");
+      this.resetButton.textContent = this.t("binarySearch.reset");
+      // aria-disabled instead of disabled: the button keeps the keyboard focus.
+      this.stepButton.setAttribute("aria-disabled", String(done));
+
+      this.cells.forEach((cell, index) =&gt; {
+        let state = "";
+        if (step &amp;&amp; (index &lt; step.lo || index &gt; step.hi)) state = "out";
+        if (step &amp;&amp; index === step.mid) state = step.outcome === "found" ? "found" : "mid";
+        if (state) cell.dataset.state = state;
+        else delete cell.dataset.state;
+      });
+
+      this.status.textContent = step ? this.describe(step) : this.t("binarySearch.start", { target: this.target });
+    }
+
+    describe(step) {
+      const params = { ...step, n: this.current + 1, value: this.values[step.mid], target: this.target };
+      const sentences = [this.t("binarySearch.range", params)];
+      sentences.push(this.t(`binarySearch.${step.outcome}`, params));
+      if (step.outcome !== "found" &amp;&amp; this.current === this.steps.length - 1) {
+        sentences.push(this.t("binarySearch.missing", params));
+      }
+      return sentences.join(" ");
+    }
+
+    next() {
+      if (this.current &gt;= this.steps.length - 1) return;
+      this.current += 1;
+      this.render();
+    }
+
+    reset() {
+      this.current = -1;
+      this.render();
+    }
+  }
+
+  UC.define("uc-binary-search", UCBinarySearch);
+})();</code></pre></uc-code>
+        <ul>
+          <li><strong>Textos</strong> (1): pt e en, num grupo <code>binarySearch</code>. Uma terceira língua acrescenta-se com mais um <code>UC.addTranslations</code>.</li>
+          <li><strong>Elementos criados com <code>createElement</code></strong> (2): os valores vêm de atributos e entram como texto, nunca como HTML.</li>
+          <li><strong><code>setup()</code></strong> lê os atributos, guarda os filhos num bloco escondido e constrói a lista, a frase e os botões. Com atributos em falta, mostra a frase do professor e um aviso.</li>
+          <li><strong><code>render()</code></strong> só muda textos, o atributo <code>data-state</code> de cada célula e <code>aria-disabled</code>. Chamado duas vezes seguidas, dá o mesmo resultado.</li>
+        </ul>
+        <p>E os estilos:</p>
+        <uc-code lang="css" filename="extensions/uc-binary-search.css" collapsible no-download><pre><code>/*
+ * Styles for &lt;uc-binary-search&gt; (see uc-binary-search.js).
+ * Only --uc-* tokens, so the widget follows accentColor and theme.css.
+ * Selectors use :where() like the kit's: zero specificity, any page rule wins.
+ */
+
+/* Without JavaScript the element is a block holding the fallback text. */
+:where(uc-binary-search) { display: block; }
+
+:where(.uc-binary-search__widget) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-4);
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+
+:where(.uc-binary-search__cells) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:where(.uc-binary-search__cell) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.75rem;
+  margin: 0;
+  padding: var(--uc-space-1) var(--uc-space-2);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-sm);
+  font-family: var(--uc-font-mono);
+}
+:where(.uc-binary-search__index) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-xs); }
+:where(.uc-binary-search__value) { font-weight: 600; }
+
+/* States: outside the range (struck through, not only greyed), middle, found. */
+:where(.uc-binary-search__cell[data-state="out"]) {
+  background: var(--uc-color-surface-muted);
+  color: var(--uc-color-text-muted);
+  text-decoration: line-through;
+}
+:where(.uc-binary-search__cell[data-state="mid"]) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent-soft);
+  box-shadow: inset 0 0 0 1px var(--uc-color-accent);
+}
+:where(.uc-binary-search__cell[data-state="found"]) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent);
+  color: var(--uc-color-on-accent);
+}
+:where(.uc-binary-search__cell[data-state="found"] .uc-binary-search__index) { color: inherit; }
+
+/* Two lines reserved, so the buttons do not jump while stepping. */
+:where(.uc-binary-search__status) { min-height: calc(2 * var(--uc-line-height) * 1em); margin: 0; }
+
+:where(.uc-binary-search__actions) { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); }
+:where(.uc-binary-search__actions [aria-disabled="true"]) { opacity: 0.6; cursor: not-allowed; }</code></pre></uc-code>
+
+        <h2 id="estilos">Estilos do componente</h2>
+        <ul>
+          <li><strong>Só tokens.</strong> Cores, espaços, cantos e letra vêm de <code>--uc-*</code>; assim o componente segue <code>accentColor</code> e o <code>theme.css</code> do site.</li>
+          <li><strong>Seletores em <code>:where()</code></strong>, como os do kit: especificidade zero, e qualquer regra do professor no <code>theme.css</code> ganha.</li>
+          <li><strong><code>display: block</code> no próprio elemento.</strong> Um elemento desconhecido é <code>inline</code>; sem esta regra, a frase de alternativa ficaria colada ao texto à volta.</li>
+          <li><strong>Repor o que o kit dá a elementos simples.</strong> O kit põe margem entre itens de lista (<code>li + li</code>); na lista de células em linha, <code>margin: 0</code> desfaz isso.</li>
+        </ul>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o exemplo faz</h3>
+            <ul>
+              <li>Ações em <code>&lt;button type="button"&gt;</code> verdadeiros: teclado e leitores de ecrã sem código extra.</li>
+              <li>Uma frase com <code>aria-live="polite"</code> descreve cada passo; quem não vê as cores ouve o mesmo.</li>
+              <li><code>aria-disabled</code> no fim, em vez de <code>disabled</code>: o botão não perde o foco do teclado.</li>
+              <li>Estado não só pela cor: as posições fora do intervalo ficam riscadas.</li>
+              <li>Um nome para o grupo (<code>aria-label</code>), traduzido como o resto.</li>
+            </ul>
+          </div>
+          <div class="uc-card">
+            <h3>O que convém verificar</h3>
+            <ul>
+              <li>Tudo funciona só com o teclado (Tab, Enter, Espaço) e o foco é visível.</li>
+              <li>Contraste de pelo menos 4.5:1 em todos os estados, também com outra <code>accentColor</code>.</li>
+              <li>Animações respeitam <code>prefers-reduced-motion</code> (o kit já reduz as transições CSS).</li>
+              <li>Cabe num ecrã de 360px sem deslizar na horizontal.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>O que o professor escreve dentro do elemento é a alternativa: aparece quando o JavaScript está desligado ou o ficheiro não carrega. O componente não a apaga; guarda-a num bloco com <code>hidden</code> quando consegue construir a versão interativa, e mostra-a se faltarem atributos. Uma frase com o resultado (como no exemplo), uma imagem ou uma tabela chegam.</p>
+
+        <h2 id="caso-real">Um caso real</h2>
+        <p>O <a href="../../../examples/edados-2526/guioes/aula10.html">guião da aula 10 de Estruturas de Dados</a> usa <code>&lt;uc-bst-traversal&gt;</code>, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O <a href="../../../examples/edados-2526/extensions/uc-bst-traversal.js">código</a> segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="../estrutura.html#extensoes">Estrutura de um site: componentes próprios</a>.</li>
+          <li><a href="execucao.html">Execução de código</a>: a outra extensão possível, um runner.</li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a>.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +578,19 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#quando">Quando escrever um</a></li>
+          <li><a href="#ficheiros">Ficheiros e carregamento</a></li>
+          <li><a href="#nome">O nome</a></li>
+          <li><a href="#estrutura">A estrutura de um componente</a></li>
+          <li><a href="#ciclo">Ciclo de vida</a></li>
+          <li><a href="#textos">Textos e línguas</a></li>
+          <li><a href="#eventos">Eventos</a></li>
+          <li><a href="#exemplo">Exemplo completo: pesquisa binária</a></li>
+          <li><a href="#estilos">Estilos do componente</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#caso-real">Um caso real</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->

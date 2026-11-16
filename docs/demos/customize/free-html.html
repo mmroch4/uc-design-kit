@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nível 4: HTML livre · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script>
+    // Second language, so the paragraphs with lang="pt" and lang="en" switch.
+    UC_COURSE.languages = ["pt", "en"];
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page current="weeks">
+    <div class="uc-content">
+      <h1>Guião 10: árvores binárias de pesquisa</h1>
+      <img class="uc-content__float" src="img/bst.svg" width="240" height="160" alt="Árvore binária de pesquisa com raiz 8; filhos 3 e 10; 3 tem os filhos 1 e 6, 10 tem o filho 14.">
+      <p>Este texto veio do site antigo da cadeira e não usa classes do kit. Dentro de <code>uc-content</code> ganha os espaços, a letra e as cores do resto da página.</p>
+      <p lang="pt">Este parágrafo só aparece em português.</p>
+      <p lang="en">This paragraph only appears in English.</p>
+      <h2>Exemplo</h2>
+      <p>Inserir os valores pela ordem dada e escrever a altura da árvore.</p>
+      <pre data-copy="Input">8 3 10 1 6 14</pre>
+      <div class="uc-table">
+        <table>
+          <caption>Custo das operações numa árvore com n nós</caption>
+          <thead>
+            <tr><th scope="col">Operação</th><th scope="col">Árvore equilibrada</th><th scope="col">Pior caso</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Procurar</td><td>O(log n)</td><td>O(n)</td></tr>
+            <tr><td>Inserir</td><td>O(log n)</td><td>O(n)</td></tr>
+            <tr><td>Remover</td><td>O(log n)</td><td>O(n)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>

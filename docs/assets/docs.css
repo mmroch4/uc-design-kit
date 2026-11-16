@@ -629,3 +629,68 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
 .docs pre,
 .landing code,
 .landing pre { font-variant-ligatures: none; }
+
+/* ---------- customisation pages (Personalizar) ---------- */
+
+/* The five levels as a ladder: each step a little further in, from the
+   simplest (course.js) to the freest (own HTML). */
+.docs-levels { display: flex; flex-direction: column; gap: var(--uc-space-2); padding: 0; list-style: none; }
+.docs-article .docs-levels__item { margin: 0; }
+.docs-levels__item {
+  display: flex;
+  align-items: center;
+  gap: var(--uc-space-3);
+  padding: var(--uc-space-3) var(--uc-space-4);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+.docs-levels__item:nth-child(2) { margin-left: 4%; }
+.docs-levels__item:nth-child(3) { margin-left: 8%; }
+.docs-levels__item:nth-child(4) { margin-left: 12%; }
+.docs-levels__item:nth-child(5) { margin-left: 16%; }
+.docs-levels__number {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--uc-color-accent-soft);
+  color: var(--uc-color-accent);
+  font-family: var(--uc-font-mono);
+  font-weight: 600;
+}
+.docs-levels__text { display: flex; flex-direction: column; min-width: 0; }
+.docs-levels__text a { font-weight: 600; }
+.docs-levels__text > span { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+
+/* Numbered steps of a process (how a runner is chosen). */
+.docs-flow { counter-reset: docs-flow; padding: 0; list-style: none; }
+.docs-flow > li {
+  position: relative;
+  padding-left: 2.5rem;
+  counter-increment: docs-flow;
+}
+.docs-flow > li::before {
+  content: counter(docs-flow);
+  position: absolute;
+  top: 0.1em;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--uc-color-surface-muted);
+  color: var(--uc-color-text);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .docs-levels__item:nth-child(n) { margin-left: 0; }
+}
