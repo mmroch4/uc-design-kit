@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nível 2: classes próprias · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <!-- demo:start -->
+  <style>
+    /* theme.css: own classes, written only with the kit's tokens */
+    .lab-class { --uc-card-padding: var(--uc-space-4) var(--uc-space-5); gap: var(--uc-space-1); }
+    .lab-class__code { color: var(--uc-color-accent); font-family: var(--uc-font-mono); font-weight: 600; }
+    .lab-class__time { font-weight: 600; }
+    .lab-class__room { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+  </style>
+  <!-- demo:end -->
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <div class="uc-grid" style="--uc-grid-min: 180px">
+      <div class="uc-card lab-class">
+        <p class="lab-class__code">PL1</p>
+        <p class="lab-class__time">Segunda, 14:00–16:00</p>
+        <p class="lab-class__room">Laboratório 1 · Carla Nunes</p>
+      </div>
+      <div class="uc-card lab-class">
+        <p class="lab-class__code">PL2</p>
+        <p class="lab-class__time">Terça, 10:00–12:00</p>
+        <p class="lab-class__room">Laboratório 2 · Diogo Teixeira</p>
+      </div>
+      <div class="uc-card lab-class">
+        <p class="lab-class__code">PL3</p>
+        <p class="lab-class__time">Quinta, 16:00–18:00</p>
+        <p class="lab-class__room">Laboratório 1 · Carla Nunes</p>
+      </div>
+    </div>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

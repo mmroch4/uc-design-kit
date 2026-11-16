@@ -97,11 +97,240 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Personalizar</p>
           <h1>Execução de código</h1>
-          <p class="docs-lead">Trocar o serviço que executa o código dos blocos uc-code run, ou escrever um runner.</p>
+          <p class="docs-lead">O botão "Executar" de <code>&lt;uc-code run&gt;</code> não fala com nenhum serviço diretamente: pede ao kit, e o kit escolhe um <em>runner</em> a partir do campo <code>runner</code> do <code>course.js</code>. Trocar de serviço (Codapi público, um Codapi próprio, Judge0, um motor no browser) é uma mudança de configuração; nenhuma página tem de ser editada.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="como-funciona">Como o kit escolhe o runner</h2>
+        <ol class="docs-flow">
+          <li><strong>O bloco.</strong> O estudante carrega em "Executar" num <code>&lt;uc-code lang="python" run&gt;</code>.</li>
+          <li><strong>A linguagem.</strong> O kit procura <code>python</code> em <code>runner.languages</code>. Se lá estiver, usa esse runner; se não, usa <code>runner.provider</code>.</li>
+          <li><strong>O runner.</strong> Chama o método <code>run</code> do runner registado com esse nome, com os ficheiros a executar e a secção do <code>course.js</code> com o mesmo nome (<code>runner.codapi</code>, <code>runner.judge0</code>…).</li>
+          <li><strong>O resultado.</strong> O bloco mostra o que o programa escreveu, os erros ou o resultado dos testes.</li>
+        </ol>
+        <p>Sem o campo <code>runner</code>, JavaScript corre no browser e as outras linguagens no Codapi público. Os valores por omissão:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>runner: {
+  provider: "codapi",                                   // runner for languages not listed below
+  languages: { javascript: "browser", js: "browser" },  // language → runner
+  codapi: {
+    url: "https://api.codapi.org/v1",
+    sandboxes: { c: "gcc", "c++": "cpp", py: "python" }, // language → Codapi sandbox
+    timeout: 20000,                                     // ms
+  },
+  browser: { timeout: 5000 },                           // ms
+},</code></pre></uc-code>
+        <p>Só se escreve o que muda: <code>languages</code>, <code>codapi</code> e <code>browser</code> juntam-se aos valores por omissão, campo a campo. A linguagem é o valor de <code>lang</code> do bloco, em minúsculas, tal como foi escrito: <code>lang="py"</code> e <code>lang="python"</code> são chaves diferentes. Os pormenores do bloco (ficheiros escondidos, testes) estão em <a href="../componentes/uc-code.html#execucao"><code>&lt;uc-code&gt;</code>: Execução e testes</a> e os campos em <a href="../componentes/uc-code.html#configuracao">Configuração usada</a>.</p>
+
+        <h2 id="codapi-publico">Codapi público</h2>
+        <p>É o que vem configurado: o serviço gratuito em <code>api.codapi.org</code>, com Java, Python, C, C++, Haskell e outras linguagens. Não há nada a fazer. Tem limites de utilização: serve para experimentar e para turmas pequenas, mas numa aula com muitos estudantes a carregar em "Executar" ao mesmo tempo os pedidos podem ser recusados. O código dos estudantes é enviado para esse serviço externo.</p>
+
+        <h2 id="codapi-proprio">Codapi próprio</h2>
+        <p>O <a href="https://codapi.org">Codapi</a> é software livre e pode correr num servidor do departamento. Muda-se só o endereço, e os nomes dos ambientes se forem diferentes:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>runner: {
+  codapi: {
+    url: "https://codapi.dcc.example.org/v1",
+    sandboxes: { java: "java21" },   // added to the default sandboxes
+  },
+},</code></pre></uc-code>
+        <ul>
+          <li>O kit faz <code>POST &lt;url&gt;/exec</code> com <code>{ sandbox, command: "run", files }</code>; o servidor tem de ter um ambiente para cada linguagem usada.</li>
+          <li>O servidor tem de aceitar pedidos do endereço do site (CORS); sem isso, o browser bloqueia a resposta e aparece "Não foi possível executar o código".</li>
+          <li><code>timeout</code> é o tempo que o kit espera pela resposta. Os limites de cada execução (memória, tempo de CPU) configuram-se no próprio Codapi.</li>
+        </ul>
+
+        <h2 id="judge0">Judge0</h2>
+        <p>Para outro serviço escreve-se um runner: um ficheiro em <code>extensions/</code> que chama <code>UC.registerRunner</code>. O exemplo seguinte liga ao <a href="https://judge0.com">Judge0</a>.</p>
+        <div class="uc-callout uc-callout--warning">
+          <p><strong>Exemplo a adaptar.</strong> Este runner não faz parte do kit nem é testado com ele. Os identificadores das linguagens, a autenticação e os limites dependem do servidor Judge0 usado; confirmar com <code>GET /languages</code> e com a documentação desse servidor.</p>
+        </div>
+        <uc-code lang="js" filename="extensions/judge0-runner.js" collapsible no-download><pre><code>/*
+ * EXAMPLE TO ADAPT, not part of the kit: a Judge0 runner for &lt;uc-code run&gt;.
+ *
+ * Judge0 (https://judge0.com) runs one source file per submission. This
+ * runner joins the helper files and the entry file into one source, which
+ * works for Python, C and C++; for Java, keep the student's classes
+ * non-public (one file may only hold one public class) or use Judge0's
+ * multi-file programs, left out of this example.
+ */
+(function () {
+  "use strict";
+
+  if (!window.UC || !window.UC.registerRunner) {
+    console.error("[judge0-runner] Load uc-kit.js before this file.");
+    return;
+  }
+
+  // Judge0 CE language ids; GET /languages on the server lists its own.
+  const LANGUAGE_IDS = { c: 50, cpp: 54, "c++": 54, java: 62, python: 71, py: 71 };
+
+  // Judge0 status ids: 3 accepted, 4-12 wrong answer, time limit,
+  // compilation and runtime errors, 13 and above errors of Judge0 itself.
+  const ACCEPTED = 3;
+  const INTERNAL_ERROR = 13;
+
+  /** One source: helper files first, the entry file ("") last. */
+  function singleSource(files) {
+    return Object.keys(files)
+      .sort((a, b) =&gt; (a === "" ? 1 : b === "" ? -1 : 0))
+      .map((name) =&gt; files[name])
+      .join("\n\n");
+  }
+
+  window.UC.registerRunner("judge0", {
+    run(request, options) {
+      const ids = { ...LANGUAGE_IDS, ...(options.languageIds || {}) };
+      const languageId = ids[request.language];
+      if (!languageId) return Promise.reject(new Error(`no Judge0 language for "${request.language}"`));
+
+      const controller = new AbortController();
+      const timer = setTimeout(() =&gt; controller.abort(), options.timeout || 20000);
+      const url = `${String(options.url).replace(/\/$/, "")}/submissions?base64_encoded=false&amp;wait=true`;
+
+      return fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json", ...(options.headers || {}) },
+        body: JSON.stringify({ language_id: languageId, source_code: singleSource(request.files) }),
+        signal: controller.signal,
+      })
+        .then((response) =&gt; {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
+        .then((result) =&gt; {
+          const status = result.status || {};
+          // Judge0 could not run the code: reject, like a network failure.
+          if (status.id &gt;= INTERNAL_ERROR) throw new Error(status.description || "Judge0 error");
+          const accepted = status.id === ACCEPTED;
+          return {
+            ok: accepted,
+            stdout: result.stdout || "",
+            // Compilation errors, runtime errors and the status ("Time Limit Exceeded").
+            stderr: [result.compile_output, result.stderr, accepted ? "" : status.description].filter(Boolean).join("\n"),
+            duration: Math.round(Number(result.time || 0) * 1000),
+          };
+        })
+        .catch((error) =&gt; {
+          throw new Error(error.name === "AbortError" ? "timeout" : error.message);
+        })
+        .finally(() =&gt; clearTimeout(timer));
+    },
+  });
+})();</code></pre></uc-code>
+        <p>No <code>course.js</code>, o runner passa a ser o de omissão e recebe a sua secção:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>runner: {
+  provider: "judge0",            // JavaScript stays in the browser (default languages)
+  judge0: {
+    url: "https://judge0.dcc.example.org",
+    languageIds: { java: 91 },   // overrides the ids in the runner
+    timeout: 20000,
+  },
+},</code></pre></uc-code>
+        <p>E o ficheiro carrega-se depois do kit, em todas as páginas com <code>&lt;uc-code run&gt;</code>:</p>
+        <uc-code lang="html" no-download><pre><code>&lt;script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer&gt;&lt;/script&gt;
+&lt;script src="extensions/judge0-runner.js" defer&gt;&lt;/script&gt;</code></pre></uc-code>
+        <ul>
+          <li><strong>Pedido.</strong> O runner usa <code>wait=true</code>, que pede ao Judge0 a resposta no mesmo pedido. Um servidor com essa opção desligada obriga a perguntar pelo resultado várias vezes (<code>GET /submissions/&lt;token&gt;</code>).</li>
+          <li><strong>Chaves.</strong> Tudo o que está no <code>course.js</code> e em <code>extensions/</code> é público: qualquer estudante o lê. Uma chave de API paga (por exemplo de um serviço alojado) não deve estar lá; um servidor próprio limita o acesso por origem (CORS) e por número de pedidos.</li>
+          <li><strong>Java.</strong> O Judge0 recebe um só ficheiro com a classe <code>Main</code>. Com um <code>data-harness</code>, as classes do estudante não podem ser <code>public</code>, ou usa-se o modo de vários ficheiros do Judge0, que o exemplo não cobre.</li>
+        </ul>
+
+        <h2 id="browser">No browser</h2>
+        <p>O runner <code>browser</code>, incluído no kit, corre JavaScript num <em>Web Worker</em>: sem rede, sem acesso à página, com <code>console.log</code> como saída. Ao fim de <code>browser.timeout</code> (5 segundos) o programa é parado, por isso um ciclo infinito não bloqueia a página. Não envia código a nenhum serviço.</p>
+        <p>Outras linguagens podem correr no browser com um motor em WebAssembly (por exemplo Pyodide, para Python), num runner próprio com o mesmo contrato. Esses motores descarregam vários megabytes na primeira execução, o que convém pesar numa aula com muitos estudantes na mesma rede.</p>
+
+        <h2 id="contrato">O contrato de um runner</h2>
+        <p>Um runner é um objeto com um método <code>run(request, options)</code> que devolve uma <code>Promise</code>. Regista-se com <code>UC.registerRunner(name, runner)</code>; um nome já usado substitui o anterior (também <code>codapi</code> e <code>browser</code>).</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Contrato de um runner</caption>
+            <thead>
+              <tr><th scope="col">Parte</th><th scope="col">Forma</th><th scope="col">Notas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>request.language</code></td><td>texto</td><td>O <code>lang</code> do bloco, em minúsculas.</td></tr>
+              <tr><td><code>request.files</code></td><td><code>{ [nome]: código }</code></td><td>A chave <code>""</code> é o ficheiro de entrada. Sem harness, é o código do bloco; com harness, é o harness, e o código do estudante vem com o nome de <code>filename</code>. Os ficheiros de apoio vêm com os seus nomes.</td></tr>
+              <tr><td><code>options</code></td><td>objeto</td><td>A secção de <code>runner</code> com o nome do runner (<code>runner.judge0</code>), ou <code>{}</code>. Para <code>codapi</code> e <code>browser</code>, já junta os valores por omissão.</td></tr>
+              <tr><td>Resultado</td><td><code>{ ok, stdout, stderr, duration }</code></td><td><code>ok</code> verdadeiro quando o programa correu sem erro; <code>duration</code> em milissegundos. Campos em falta valem <code>false</code>, <code>""</code> e <code>0</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A diferença entre rejeitar e responder com <code>ok: false</code> decide o que o estudante vê:</p>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>Resolver com <code>ok: false</code></h3>
+            <p>O código foi executado e falhou: erro de compilação, exceção, tempo de execução esgotado no servidor. A mensagem vai em <code>stderr</code> e aparece com o título "Erro", a vermelho. Com testes, todos falham.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Rejeitar a <code>Promise</code></h3>
+            <p>O código não chegou a ser executado: sem rede, serviço em baixo, resposta que não chegou a tempo. Aparece "Não foi possível executar o código (<em>motivo</em>).", com a <code>message</code> do erro.</p>
+          </div>
+        </div>
+        <p>Um runner mínimo, que não executa nada e descreve o pedido que recebe, mostra estas partes num bloco com harness e um ficheiro de apoio:</p>
+        <!-- docs:demo src="../../demos/customize/runner.html" title="runner que mostra o pedido recebido" height="215" -->
+        <div class="docs-demo" id="demo-customize-runner">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/customize/runner.html" title="Demonstração: runner que mostra o pedido recebido" loading="lazy" style="height: 215px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;js&quot; filename=&quot;sum.js&quot; run&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    function sum(values) {
+      return values.reduce((total, value) =&gt; total + value, 0);
+    }
+  &lt;/script&gt;
+  &lt;script type=&quot;text/plain&quot; data-harness filename=&quot;data.js&quot;&gt;
+    const DATA = [1, 2, 3];
+  &lt;/script&gt;
+  &lt;script type=&quot;text/plain&quot; data-harness&gt;
+    console.log(sum(DATA));
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/customize/runner.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <uc-code lang="js" filename="extensions/inspect-runner.js" collapsible no-download><pre><code>/*
+ * A runner that executes nothing: it answers with the request it received,
+ * so the documentation can show what &lt;uc-code run&gt; sends to a runner.
+ */
+(function () {
+  "use strict";
+
+  if (!window.UC || !window.UC.registerRunner) {
+    console.error("[inspect-runner] Load uc-kit.js before this file.");
+    return;
+  }
+
+  window.UC.registerRunner("inspect", {
+    run(request, options) {
+      const files = Object.entries(request.files).map(([name, code]) =&gt; {
+        const lines = code.split("\n").length;
+        return `  ${JSON.stringify(name)}: ${lines} ${lines === 1 ? "line" : "lines"}`;
+      });
+      const stdout = [
+        `language: ${JSON.stringify(request.language)}`,
+        "files:",
+        ...files,
+        `options: ${JSON.stringify(options)}`,
+      ].join("\n");
+      return Promise.resolve({ ok: true, stdout, stderr: "", duration: 0 });
+    },
+  });
+})();</code></pre></uc-code>
+
+        <h2 id="cuidados">Cuidados</h2>
+        <ul>
+          <li><strong>Runner em falta.</strong> O botão "Executar" aparece mesmo que o runner configurado não esteja registado (o ficheiro não carregou, o nome está errado); ao carregar aparece "Não foi possível executar o código (unknown runner "…")."</li>
+          <li><strong>Sem entrada padrão.</strong> Nenhum runner recebe <code>stdin</code>: os dados vêm do harness ou de um ficheiro de apoio.</li>
+          <li><strong>Nada é secreto.</strong> O harness, os testes e a configuração estão no código-fonte da página.</li>
+          <li><strong>Experimentar antes da aula.</strong> Um bloco de cada linguagem, aberto a partir do endereço público do site (não do disco), confirma o serviço, o CORS e os nomes dos ambientes.</li>
+        </ul>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a>: realce, edição, execução e testes.</li>
+          <li><a href="../course-js.html#campos-avancado">O ficheiro course.js: Avançado</a>.</li>
+          <li><a href="componentes.html">Nível 3: componentes próprios</a>: como carregar um ficheiro de <code>extensions/</code>.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -120,7 +349,14 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#como-funciona">Como o kit escolhe o runner</a></li>
+          <li><a href="#codapi-publico">Codapi público</a></li>
+          <li><a href="#codapi-proprio">Codapi próprio</a></li>
+          <li><a href="#judge0">Judge0</a></li>
+          <li><a href="#browser">No browser</a></li>
+          <li><a href="#contrato">O contrato de um runner</a></li>
+          <li><a href="#cuidados">Cuidados</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->

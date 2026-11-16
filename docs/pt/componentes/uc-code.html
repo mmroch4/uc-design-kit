@@ -407,7 +407,7 @@ return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/p
           <li><code>codapi.url</code> aponta para o Codapi público ou para um próprio; <code>sandboxes</code> traduz o <code>lang</code> do bloco para o nome do ambiente no Codapi quando são diferentes (<code>lang="c"</code> usa o ambiente <code>gcc</code>).</li>
           <li><code>timeout</code> é o tempo máximo de cada execução, em milissegundos. No browser, um ciclo infinito é interrompido ao fim de 5 segundos.</li>
         </ul>
-        <p>Mudar de serviço (um Codapi próprio, o Judge0, outro runner escrito para a UC) é só mudar este campo: nenhuma página tem de ser editada. O guia completo será a página Execução de código, no grupo Personalizar (em preparação).</p>
+        <p>Mudar de serviço (um Codapi próprio, o Judge0, outro runner escrito para a UC) é só mudar este campo: nenhuma página tem de ser editada. O guia completo, com um runner para o Judge0 e o contrato de um runner, está em <a href="../personalizar/execucao.html">Execução de código</a>.</p>
 
         <h2 id="execucao">Execução e testes</h2>
         <p>Com <code>run</code> sem valor, além do código que o estudante vê, o bloco pode ter filhos que nunca aparecem na página:</p>
@@ -450,7 +450,7 @@ return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/p
         <p>O harness e os testes estão escondidos, não são secretos: qualquer estudante os vê no código-fonte da página. Não convém pôr neles a solução do exercício.</p>
 
         <h2 id="personalizar">Personalizar</h2>
-        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha.</p>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>; para mudar só cores, cantos ou letra em todo o site bastam os <a href="../estilos/tokens.html">tokens</a>.</p>
         <div class="uc-table">
           <table>
             <caption class="uc-visually-hidden">Classes CSS de uc-code</caption>

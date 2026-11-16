@@ -97,11 +97,142 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Personalizar</p>
           <h1>Nível 2: CSS livre</h1>
-          <p class="docs-lead">Regras CSS próprias sobre as classes estáveis do kit.</p>
+          <p class="docs-lead">Quando um token não chega, escreve-se CSS normal no <code>theme.css</code>: regras sobre as classes estáveis dos componentes, ou classes próprias para blocos da cadeira. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha sem <code>!important</code>.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="classes-estaveis">Classes estáveis</h2>
+        <p>Cada componente gera HTML com classes no formato <code>uc-&lt;componente&gt;__&lt;parte&gt;</code>, mais variantes de estado com <code>--</code>:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Formato das classes estáveis</caption>
+            <thead>
+              <tr><th scope="col">Forma</th><th scope="col">Exemplo</th><th scope="col">O que é</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-&lt;componente&gt;</code></td><td><code>.uc-week</code></td><td>O próprio componente.</td></tr>
+              <tr><td><code>.uc-&lt;componente&gt;__&lt;parte&gt;</code></td><td><code>.uc-week__title</code></td><td>Uma parte gerada pelo componente.</td></tr>
+              <tr><td><code>.uc-&lt;componente&gt;--&lt;estado&gt;</code></td><td><code>.uc-week--current</code></td><td>Um estado ou variante.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>As classes que se podem usar estão na tabela da secção "Personalizar" da página de cada componente: <a href="../componentes/uc-page.html#personalizar"><code>uc-page</code></a>, <a href="../componentes/uc-hero.html#personalizar"><code>uc-hero</code></a>, <a href="../componentes/uc-notices.html#personalizar"><code>uc-notices</code></a>, <a href="../componentes/uc-deadlines.html#personalizar"><code>uc-deadlines</code></a>, <a href="../componentes/uc-date.html#personalizar"><code>uc-date</code></a>, <a href="../componentes/uc-weeks.html#personalizar"><code>uc-weeks</code></a>, <a href="../componentes/uc-week.html#personalizar"><code>uc-week</code></a>, <a href="../componentes/uc-event.html#personalizar"><code>uc-event</code></a>, <a href="../componentes/uc-this-week.html#personalizar"><code>uc-this-week</code></a>, <a href="../componentes/uc-team.html#personalizar"><code>uc-team</code></a>, <a href="../componentes/uc-guide.html#personalizar"><code>uc-guide</code></a>, <a href="../componentes/uc-exercise.html#personalizar"><code>uc-exercise</code></a>, <a href="../componentes/uc-code.html#personalizar"><code>uc-code</code></a> e <a href="../componentes/uc-question.html#personalizar"><code>uc-question</code></a>. As classes de blocos (<code>uc-card</code>, <code>uc-table</code>, <code>uc-button</code>…) estão em <a href="../estilos/layout.html">Blocos: layout</a>, <a href="../estilos/superficies.html">superfícies e listas</a> e <a href="../estilos/elementos.html">elementos</a>.</p>
+        <p>Dois atributos documentados também servem de seletor: <code>data-kind</code> nos itens de <code>&lt;uc-deadlines&gt;</code> (o tipo do prazo) e <code>data-lang</code> em <code>&lt;uc-code&gt;</code> (a linguagem, por exemplo <code>uc-code[data-lang="java"]</code>).</p>
+
+        <h2 id="especificidade">Especificidade zero</h2>
+        <p>Todas as regras do kit estão dentro de <code>:where()</code>, que tem especificidade zero:</p>
+        <uc-code lang="css" filename="uc-kit.css (kit)" no-download><pre><code>:where(.uc-week__title) { font-size: 1.0625rem; font-weight: 600; }</code></pre></uc-code>
+        <p>Qualquer seletor do professor, mesmo só um nome de elemento, tem mais especificidade e ganha. Não é preciso repetir classes, juntar <code>body</code> ao seletor nem usar <code>!important</code>:</p>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>.uc-week__title { font-weight: 500; }   /* wins */
+h2 { letter-spacing: -0.01em; }        /* also wins over the kit's h2 */</code></pre></uc-code>
+        <p>As exceções são poucas e de propósito: <code>[hidden]</code>, o conteúdo noutra língua (escondido com <code>!important</code> para nunca aparecer por engano) e a redução de animações quando o sistema a pede.</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+        <h3 id="exemplo-semana">Retocar um componente</h3>
+        <p>A semana atual com uma barra à esquerda em vez da faixa colorida, e os números das semanas na letra do código:</p>
+        <!-- docs:demo src="../../demos/customize/css-week.html" title="semanas com uma barra na semana atual" height="389" -->
+        <div class="docs-demo" id="demo-customize-css-week">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/customize/css-week.html" title="Demonstração: semanas com uma barra na semana atual" loading="lazy" style="height: 389px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;style&gt;
+  /* theme.css */
+  /* Current week: a bar on the left instead of the tinted band. */
+  .uc-week--current {
+    background: none;
+    box-shadow: inset 3px 0 0 var(--uc-color-accent);
+    padding-left: var(--uc-space-4);
+  }
+
+  /* Week numbers in the monospaced font, like the dates. */
+  .uc-week__number { font-family: var(--uc-font-mono); }
+&lt;/style&gt;
+
+&lt;uc-week n=&quot;9&quot; title=&quot;Ordenação: mergesort e quicksort&quot;&gt;
+  &lt;p&gt;Guião 9: &lt;a href=&quot;#&quot;&gt;ordenar um milhão de números&lt;/a&gt;.&lt;/p&gt;
+&lt;/uc-week&gt;
+&lt;uc-week n=&quot;10&quot; title=&quot;Pesquisa binária e árvores&quot;&gt;
+  &lt;p&gt;Guião 10: &lt;a href=&quot;#&quot;&gt;inserir e procurar numa árvore&lt;/a&gt;.&lt;/p&gt;
+&lt;/uc-week&gt;
+&lt;uc-week n=&quot;11&quot; title=&quot;Grafos: pesquisa em largura e em profundidade&quot;&gt;
+  &lt;p&gt;Representação de grafos, BFS e DFS.&lt;/p&gt;
+&lt;/uc-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/customize/css-week.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>As regras usam tokens (<code>--uc-color-accent</code>, <code>--uc-space-4</code>, <code>--uc-font-mono</code>) em vez de valores fixos, por isso continuam certas se a cor do curso ou o tema mudarem.</p>
+
+        <h3 id="exemplo-classes-proprias">Classes próprias</h3>
+        <p>Para blocos que são só da cadeira (horários das turmas, componentes da nota), o mais estável é juntar uma classe própria a um bloco do kit e escrever as regras só com tokens. Estas classes não dependem de nada interno do kit:</p>
+        <!-- docs:demo src="../../demos/customize/css-own-class.html" title="cartões de turmas com uma classe própria" height="164" -->
+        <div class="docs-demo" id="demo-customize-css-own-class">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/customize/css-own-class.html" title="Demonstração: cartões de turmas com uma classe própria" loading="lazy" style="height: 164px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;style&gt;
+  /* theme.css: own classes, written only with the kit's tokens */
+  .lab-class { --uc-card-padding: var(--uc-space-4) var(--uc-space-5); gap: var(--uc-space-1); }
+  .lab-class__code { color: var(--uc-color-accent); font-family: var(--uc-font-mono); font-weight: 600; }
+  .lab-class__time { font-weight: 600; }
+  .lab-class__room { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+&lt;/style&gt;
+
+&lt;div class=&quot;uc-grid&quot; style=&quot;--uc-grid-min: 180px&quot;&gt;
+  &lt;div class=&quot;uc-card lab-class&quot;&gt;
+    &lt;p class=&quot;lab-class__code&quot;&gt;PL1&lt;/p&gt;
+    &lt;p class=&quot;lab-class__time&quot;&gt;Segunda, 14:00–16:00&lt;/p&gt;
+    &lt;p class=&quot;lab-class__room&quot;&gt;Laboratório 1 · Carla Nunes&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;uc-card lab-class&quot;&gt;
+    &lt;p class=&quot;lab-class__code&quot;&gt;PL2&lt;/p&gt;
+    &lt;p class=&quot;lab-class__time&quot;&gt;Terça, 10:00–12:00&lt;/p&gt;
+    &lt;p class=&quot;lab-class__room&quot;&gt;Laboratório 2 · Diogo Teixeira&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;uc-card lab-class&quot;&gt;
+    &lt;p class=&quot;lab-class__code&quot;&gt;PL3&lt;/p&gt;
+    &lt;p class=&quot;lab-class__time&quot;&gt;Quinta, 16:00–18:00&lt;/p&gt;
+    &lt;p class=&quot;lab-class__room&quot;&gt;Laboratório 1 · Carla Nunes&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/customize/css-own-class.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>É o padrão do <a href="../../../examples/edados-2526/theme.css"><code>theme.css</code> de Estruturas de Dados</a>: classes curtas (<code>.formula</code>, <code>.class-card</code>), sem o prefixo <code>uc-</code>, agrupadas por página. Um nome sem <code>uc-</code> nunca colide com uma classe do kit.</p>
+
+        <h3 id="exemplo-codigo">Por linguagem ou tipo</h3>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Python blocks with a bar on the left. */
+uc-code[data-lang="python"] { border-left: 3px solid var(--uc-color-accent); }
+
+/* Exam dates in bold in the deadlines list. */
+.uc-deadlines [data-kind="exam"] .uc-deadlines__title { font-weight: 700; }</code></pre></uc-code>
+
+        <h2 id="nao-estavel">O que não é estável</h2>
+        <p>Só o que está nas tabelas é contrato. Pode mudar numa versão 1 mais recente:</p>
+        <ul>
+          <li><strong>Classes que não estão nas tabelas.</strong> O HTML gerado tem outras classes, como <code>.uc-week__meta</code> ou <code>.uc-week__chevron</code>. Existem para o CSS do kit e podem mudar de nome ou desaparecer.</li>
+          <li><strong>A estrutura do HTML gerado.</strong> Que elemento contém que outro, a ordem dos filhos e as etiquetas usadas (<code>span</code>, <code>div</code>, <code>details</code>). Seletores como <code>.uc-week__summary &gt; span:nth-child(2)</code> ou <code>.uc-week details</code> partem-se com a mudança mais pequena.</li>
+          <li><strong>Variáveis <code>--uc-*</code> que não estão na <a href="../estilos/tokens.html">lista de tokens</a></strong>, as classes que o kit põe no <code>&lt;html&gt;</code> (<code>uc-ready</code>, <code>uc-visible</code>) e os atributos <code>data-uc-*</code>.</li>
+        </ul>
+        <p>Regra prática: cada seletor aponta para uma classe estável, no máximo com um descendente também estável ou um estado. Se não há classe para a parte a mudar, é sinal de que a mudança deve ser pedida ao kit, ou feita com um componente próprio.</p>
+
+        <h2 id="cascata">Ordem e cascata</h2>
+        <ul>
+          <li><strong><code>theme.css</code> depois do kit.</strong> Com especificidade zero a ordem quase não conta, mas carregar o <code>theme.css</code> depois do <code>uc-kit.css</code> evita surpresas e é o que o <a href="../estrutura.html#head"><code>&lt;head&gt;</code> das páginas</a> já faz. Os estilos de um componente próprio vêm a seguir.</li>
+          <li><strong>O kit também dá estilo a elementos simples.</strong> Títulos, parágrafos, listas (<code>li + li</code> tem margem), tabelas dentro de <code>.uc-table</code>, código. Num bloco próprio que precisa de outro aspeto, repõe-se o que for preciso (<code>margin: 0</code> nos itens de uma lista em linha, por exemplo).</li>
+          <li><strong>Uma regra só numa página.</strong> Junta-se uma classe ao <code>&lt;body&gt;</code> dessa página (<code>&lt;body class="page-assessment"&gt;</code>) e começa-se o seletor por ela. Uma regra para um só bloco fica mais clara com uma classe própria nesse bloco.</li>
+          <li><strong>Ecrãs estreitos.</strong> O kit muda de disposição abaixo de 960px (navegação) e de 760px (componentes). Uma regra que só faz sentido num ecrã largo vai num <code>@media (min-width: 960px)</code>; e convém ver a página com 360px de largura.</li>
+          <li><strong>Quando uma regra não pega.</strong> Quase sempre o seletor não encontra o elemento: inspecionar o elemento nas ferramentas do browser mostra as classes que tem e as regras que se aplicam.</li>
+        </ul>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="tokens.html">Nível 1: tokens</a>, para mudanças em todo o site.</li>
+          <li><a href="componentes.html">Nível 3: componentes próprios</a>, quando a mudança precisa de comportamento.</li>
+          <li><a href="../componentes/index.html">Componentes</a>: as classes estáveis de cada um.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +255,15 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#classes-estaveis">Classes estáveis</a></li>
+          <li><a href="#especificidade">Especificidade zero</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#exemplo-semana">Retocar um componente</a></li>
+          <li class="docs-toc__sub"><a href="#exemplo-classes-proprias">Classes próprias</a></li>
+          <li class="docs-toc__sub"><a href="#exemplo-codigo">Por linguagem ou tipo</a></li>
+          <li><a href="#nao-estavel">O que não é estável</a></li>
+          <li><a href="#cascata">Ordem e cascata</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->
