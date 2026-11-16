@@ -507,10 +507,10 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | Token | Default | Use |
 | --- | --- | --- |
 | `--uc-color-accent` | `#1D4ED8` | Links, active navigation, primary buttons. Set from `accentColor`. |
-| `--uc-color-accent-strong` | derived (darker) | Hover. |
+| `--uc-color-accent-strong` | derived (70% accent, 30% black) | Hover. |
 | `--uc-color-on-accent` | `#FFFFFF` | Text on accent backgrounds (primary buttons). |
-| `--uc-color-accent-soft` | derived (`#EFF4FF`) | Active nav background, accent tags. |
-| `--uc-color-highlight` | derived (`#F3F6FF`) | Current week band. |
+| `--uc-color-accent-soft` | derived (`#EDF1FC`: 8% accent on white) | Active nav background, accent tags. |
+| `--uc-color-highlight` | derived (`#F4F6FD`: 5% accent on white) | Current week band. |
 | `--uc-color-text` | `#18181B` | Body text. |
 | `--uc-color-text-secondary` | `#3F3F46` | Secondary paragraphs. |
 | `--uc-color-text-muted` | `#52525B` | Metadata, labels. |
