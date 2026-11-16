@@ -1,5 +1,7 @@
 /* <uc-question> — self-check question card. */
 :where(uc-question) { display: block; }
+/* The explanation gives the answer away: hidden until the kit has run. */
+:where(uc-question:not(.uc-question) > [data-explanation]) { display: none; }
 :where(.uc-question) {
   display: flex;
   flex-direction: column;
@@ -35,7 +37,7 @@
   min-height: 48px;
   padding: var(--uc-space-2) var(--uc-space-4);
   border: 1px solid var(--uc-color-border);
-  border-radius: 10px;
+  border-radius: min(var(--uc-radius-lg), calc(var(--uc-radius-md) + 2px));
   background: var(--uc-color-surface);
   color: var(--uc-color-text);
   font-size: var(--uc-font-size-body-sm);

@@ -58,6 +58,15 @@
       </h2>
       <uc-team role="nobody"></uc-team>
     </section>
+    <!-- A role filter that matches nobody hides the element, children included. -->
+    <uc-team role="nobody" id="team-nobody"><p>Horário de atendimento</p></uc-team>
   </uc-page>
+  <script>
+    document.addEventListener("uc:ready", () => {
+      requestAnimationFrame(() => {
+        if (!document.getElementById("team-nobody").hidden) console.error("uc-team: a role filter matching nobody should hide the element");
+      });
+    });
+  </script>
 </body>
 </html>

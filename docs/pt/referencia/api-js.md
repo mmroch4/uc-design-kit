@@ -31,9 +31,10 @@ Estes são os membros públicos. Os nomes e o comportamento descritos aqui não 
 | `UC.lang` | texto | Código da língua ativa (`"pt"`). Só de leitura: para mudar usa-se `UC.setLanguage`. |
 | `UC.setLanguage(code)` | nada | Muda a língua ativa e guarda a escolha. Ignora códigos que não estão em `languages`. Com um ficheiro por língua, navega para o outro ficheiro; senão atualiza a página e dispara `uc:languagechange`. |
 | `UC.t(key, params?)` | texto | Texto da interface na língua ativa. `params` preenche os `{nomes}` do texto. Ver [Traduções](#traducoes). |
-| `UC.text(localizedText)` | texto | Resolve um `LocalizedText` (texto simples ou `{ pt, en }`) na língua ativa; sem essa língua, usa a primeira de `languages` que exista. `null` dá `""`. |
+| `UC.text(localizedText, lang?)` | texto | Resolve um `LocalizedText` (texto simples ou `{ pt, en }`) na língua ativa, ou em `lang`; sem essa língua, usa a primeira de `languages` que exista. `null` dá `""`. |
 | `UC.today()` | `Date` | "Hoje" à meia-noite local. Respeita `?today=AAAA-MM-DD` no endereço e o campo `today` do `course.js`, nesta ordem. |
 | `UC.formatDate(isoOrDate, format?)` | texto | Formata como o `<uc-date>`. Ver [Datas e calendário](#datas). |
+| `UC.formatDateRange(start, end, format?)` | texto | Formata um intervalo, "24–30 nov" ou "30 set–3 out"; com `format` `"medium"` acrescenta o ano, "24–30 nov 2025". |
 | `UC.weekOf(date)` | objeto ou `null` | A semana letiva que contém `date` (por omissão, hoje): `{ n, start, end }`. `null` fora do semestre e nas interrupções. |
 | `UC.weekDates(n)` | objeto ou `null` | As datas da semana `n`: `{ n, start, end }`, ou `null` se não existe. |
 | `UC.Element` | classe | Classe base dos componentes. Ver [`UC.Element`](#uc-element). |

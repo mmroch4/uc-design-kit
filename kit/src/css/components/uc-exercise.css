@@ -106,7 +106,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid currentColor;
-  border-radius: 5px;
+  border-radius: calc(var(--uc-radius-sm) - 1px);
 }
 :where(.uc-exercise__checkbox svg) { width: 12px; height: 12px; opacity: 0; }
 :where(.uc-exercise__toggle[aria-pressed="true"] .uc-exercise__checkbox svg) { opacity: 1; }

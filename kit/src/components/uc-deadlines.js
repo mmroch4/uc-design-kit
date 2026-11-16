@@ -50,7 +50,7 @@
   function formatWhen(deadline, format) {
     const { precision, date } = deadline.parsed;
     if (precision === "day" && deadline.endDate && deadline.endDate > date) {
-      return UC.formatDateRange(date, deadline.endDate);
+      return UC.formatDateRange(date, deadline.endDate, format);
     }
     return UC.formatDate(date && precision === "day" ? date : deadline.date, format);
   }

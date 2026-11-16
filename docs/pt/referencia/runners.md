@@ -22,6 +22,8 @@ UC.registerRunner("judge0", {
 });
 ```
 
+Um runner pode ter também `supports(language)`, que devolve `false` para as linguagens que não sabe executar: nesses blocos o botão Executar não aparece. Os runners incluídos recusam `html`, `css`, `text`, `json` e outras linguagens que não são programas; o `browser` só aceita JavaScript. Sem `supports`, todas as linguagens contam como executáveis.
+
 Sem um runner registado com o nome escolhido, o bloco mostra "Não foi possível executar o código (unknown runner "…")".
 
 ## Pedido

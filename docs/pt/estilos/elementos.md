@@ -65,7 +65,7 @@ Exemplo (as cinco variantes de etiqueta), [demonstração ao vivo](https://uc-de
 | `uc-tag--accent` | `--uc-color-accent-soft`, texto `--uc-color-accent` | "Esta semana", destaque. |
 | `uc-tag--warning` | `--uc-color-warning-bg`, texto `--uc-color-warning-text` | Avaliação, "Novo", obrigatório. |
 | `uc-tag--success` | `--uc-color-success-bg`, texto `--uc-color-success-text` | Feito, entregue, certo. |
-| `uc-tag--muted` | As mesmas da neutra | Opcional, secundário. |
+| `uc-tag--muted` | Sem fundo, contorno `--uc-color-border`, texto `--uc-color-text-muted` | Opcional, secundário. |
 
 Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar. `--muted` tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.
 

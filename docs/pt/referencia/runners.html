@@ -132,6 +132,7 @@
       .then((body) =&gt; ({ ok: body.status.id === 3, stdout: body.stdout || "", stderr: body.stderr || "", duration: 0 }));
   },
 });</code></pre></uc-code>
+        <p>Um runner pode ter também <code>supports(language)</code>, que devolve <code>false</code> para as linguagens que não sabe executar: nesses blocos o botão Executar não aparece. Os runners incluídos recusam <code>html</code>, <code>css</code>, <code>text</code>, <code>json</code> e outras linguagens que não são programas; o <code>browser</code> só aceita JavaScript. Sem <code>supports</code>, todas as linguagens contam como executáveis.</p>
         <p>Sem um runner registado com o nome escolhido, o bloco mostra "Não foi possível executar o código (unknown runner "…")".</p>
 
         <h2 id="pedido">Pedido</h2>

@@ -84,6 +84,25 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   in a Web Worker.
 
 ### Changed
+- Every relative URL in `course.js` is now relative to `course.js`, like
+  `pages[].href`: `logo`, `institution.url`, `platforms[].url`, team and
+  deadline `url`, deadline `links`, and links and images inside `HTMLText`
+  (notices, notes, footer). Pages in subfolders no longer need absolute URLs.
+  Sites at the root of their folder are not affected.
+- `<uc-team role>`: when the filter matches nobody the element is hidden even
+  if it has children.
+- `<uc-deadlines view="table">`: date ranges show the year.
+- `<uc-week>` does not repeat a deadline written by hand as
+  `<uc-event deadline>` in another week of the same `<uc-weeks>`.
+- `<uc-code run>` shows no "Run" button when the runner cannot run the
+  language (`html`, `css`, `text`…); runners may declare `supports(language)`.
+- `uc-tag--muted` is now an outlined tag, distinct from `uc-tag`.
+- `<pre data-copy>` outside `uc-content` gets the same box as inside it.
+- Corner radii of shortcuts, options, events and progress bars follow
+  `--uc-radius-*` (same look with the default tokens).
+- `--uc-color-text-subtle` is `#6E6E77` (was `#71717A`): 4.5:1 on
+  `--uc-color-surface-muted`.
+- `stderr` of a code run uses `--uc-color-danger-bg`.
 - `uc-kit.js` and `uc-kit.css` are minified with esbuild (about 35 % and 23 %
   smaller after compression).
 - `_headers`: cache rules no longer overlap, so `X-Content-Type-Options` is no
@@ -104,6 +123,17 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   (new block `uc-tag--success`).
 
 ### Fixed
+- `<uc-weeks>`: two breaks in a row after the same week appear in date order
+  (they were reversed).
+- EDados example: the "migrado de …" notes link to the original pages on the
+  DCC site (they pointed to the page itself).
+- `<uc-question>`: the `data-explanation` (which gives the answer away) is
+  hidden when JavaScript is off.
+- `uc-links`, `uc-shortcuts` and `uc-checklist` get `role="list"`, so Safari
+  announces them as lists.
+- api.md: `UC.formatDateRange`, the `lang` argument of `UC.text`,
+  `data-uc-keep-lang`, when `uc:ready` fires, that attributes are read once,
+  and what `uc-section` and the deadlines table really do.
 - `<uc-code run>`: the hidden `<script data-harness>` files no longer appear
   under the code when JavaScript is off.
 - `<uc-code run="URL">`: the link reads "Testar em …" (was "Testar no …",

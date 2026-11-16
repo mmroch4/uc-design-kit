@@ -121,7 +121,7 @@ Campos do `course.js` que o componente lê. Sem `semester.start`, o cartão cham
 | `deadlines` | Os prazos desta semana e da seguinte, ou os próximos fora do semestre ([prazos](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos)). |
 | `today` | Fixar o dia de hoje; `?today=AAAA-MM-DD` no endereço tem prioridade ([avançado](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-avancado)). |
 
-Sem a página `weeks` em `pages`, o cartão não tem a ligação "Ver semana" (e, sem `source`, não lê nenhuma página). Os `url` e `links` dos prazos são relativos à página que mostra o cartão, não ao `course.js`.
+Sem a página `weeks` em `pages`, o cartão não tem a ligação "Ver semana" (e, sem `source`, não lê nenhuma página). Os `url` e `links` dos prazos são relativos ao `course.js`, como os `href` das páginas.
 
 ## A página de semanas: HTTP e `file://`
 

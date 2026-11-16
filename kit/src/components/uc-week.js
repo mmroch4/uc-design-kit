@@ -133,7 +133,8 @@
       this.generatedEvents.forEach((event) => event.remove());
       this.generatedEvents = [];
       if (!span || !this.showsDeadlines) return;
-      const written = UC.internal.writtenEventIds(this.body);
+      // A deadline written by hand in any week of the list is not repeated here.
+      const written = UC.internal.writtenEventIds(this.closest("uc-weeks") || this.body);
       UC.internal.deadlinesBetween(span.from, span.to, written).forEach((deadline) => {
         const event = UC.internal.createEvent(deadline.id);
         this.generatedEvents.push(event);

@@ -66,7 +66,10 @@
 
     render() {
       const members = this.members();
-      this.hidden = members.length === 0 && this.extra.length === 0;
+      // Hidden when nothing would show, and when a `role` filter matches nobody
+      // (the children belong to the filtered list, e.g. "office hours").
+      const filtered = Boolean((this.dataset.role || "").trim());
+      this.hidden = members.length === 0 && (filtered || this.extra.length === 0);
       if (this.hidden) {
         this.replaceChildren();
         return;

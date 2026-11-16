@@ -37,41 +37,27 @@ Everything in the handoffs of phases 1–4 still applies.
   `#internas` table of `classes.html`. Every component page needs its
   `docs:classes` region.
 
-## Open decisions (behaviour or contract, not changed by the docs)
+## Decisions (16 Nov, Miguel)
 
-The pages document the current behaviour. Each item needs a decision before
-it is changed; the recommendation is in brackets.
+The open items left by phases 2–5, and what was decided:
 
-1. **`accentColor` beats `theme.css`.** It is set inline on `<html>`, so
-   `--uc-color-accent` in `theme.css` has no effect when `course.js` sets it
-   (and the template sets it). [Apply it as a low-specificity rule instead, so
-   `theme.css` wins; additive, no site breaks.]
-2. **Links relative to the page.** Deadline `url`/`links`, links inside
-   notices and `logo` resolve against the page, unlike `pages[].href`, so they
-   break on pages in subfolders. [Resolve them against `course.js`, like
-   `pages`; absolute URLs unchanged. Changes behaviour only for sites that
-   worked around it.]
-3. **api.md vs code** (phase 3 list): `<uc-deadlines view="table">` without
-   year in ranges and without a links column, list without a kind badge;
-   `<uc-team role>` splits on spaces and stays visible when nobody matches;
-   attributes read once (no `attributeChangedCallback`); a week with any break
-   day becomes a break; "Executar" shown with no runner for the language;
-   `data-explanation` visible without JavaScript. [Fix the code where api.md
-   describes the better behaviour (role filter, hiding, `canRun`,
-   explanation), and update api.md where the code is the better choice
-   (table columns).]
-4. **Smaller contract gaps**: `UC.formatDateRange` and `UC.text(value, lang)`
-   exist but are not in api.md; `UC.weekDates` also returns `n`;
-   `data-uc-keep-lang` works but is not in api.md; `uc:ready` fires before
-   deferred extension scripts. [Add the first four to api.md as they are.]
-5. **Phase 4 style issues**: `uc-tag--muted` looks like `uc-tag`; `<pre
-   data-copy>` outside `uc-content` has no box; hard-coded radii ignore
-   `--uc-radius-*`; `--uc-color-danger-bg` unused; list semantics lost in
-   Safari for `uc-links`/`uc-shortcuts`/`uc-checklist`. [Fix in a kit PR; no
-   API change except possibly making the radii follow the tokens.]
-6. **Internal classes** (`uc-week__details`, `__meta`, `__chevron`,
-   `uc-footer__inner`, `uc-nav-toggle__*`…) are listed as internal. [Promote
-   the `uc-week` ones to stable if teachers ask; they are natural hooks.]
+1. **`accentColor` beats `theme.css`**: kept as it is. The pages document the
+   precedence (`accentColor` is applied inline on `<html>`).
+2. **Relative URLs in `course.js`**: done. Every relative URL, and the links
+   and images inside `HTMLText`, resolve against `course.js`
+   (`UC.internal.resolveCourseLinks`, called by `h()` for `html`).
+3. **api.md vs code**: done. Code changed: `<uc-team role>` hides with no
+   match, the table shows ranges with the year, `<uc-week>` checks the whole
+   `<uc-weeks>` for hand-written events, no "Run" button when the runner's
+   `supports(language)` is false, `data-explanation` hidden without JS.
+   api.md changed where the code stays: table columns, kind badge, attributes
+   read once, break weeks, month-only deadlines, `uc-section`.
+4. **Contract gaps**: added to api.md (`UC.formatDateRange`, `UC.text(value,
+   lang)`, `weekDates` returns `n`, `data-uc-keep-lang`, `uc:ready` timing).
+5. **Style issues**: fixed (`uc-tag--muted` outlined, `<pre data-copy>` box,
+   radii follow tokens, `danger-bg` on `stderr`, `text-subtle` contrast,
+   `role="list"` from `core/lists.js`).
+6. **Internal `uc-week` classes**: stay internal until teachers ask.
 
 ## Next
 

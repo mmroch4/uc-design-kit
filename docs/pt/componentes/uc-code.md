@@ -246,7 +246,7 @@ Exemplo (programa C com ligação Testar em Mooshak), [demonstração ao vivo](h
 | `no-download` | booleano | ausente | Esconde o botão Descarregar. |
 | `collapsible` | booleano | ausente | O nome no cabeçalho passa a ser um botão que mostra e esconde o código. |
 | `collapsed` | booleano | ausente | Com `collapsible`, o bloco começa fechado. Executar abre-o. |
-| `run` | booleano ou URL | ausente | Sem valor: botão Executar, que executa o código na página. Com um endereço: ligação "Testar em …" para essa plataforma. |
+| `run` | booleano ou URL | ausente | Sem valor: botão Executar, que executa o código na página. Não aparece em linguagens que não são programas (`html`, `css`, `text`, `json`…), com um aviso na consola. Com um endereço: ligação "Testar em …" para essa plataforma. |
 
 `lang="java"` não é um código de língua válido e faria os leitores de ecrã mudar de voz, por isso o componente passa o valor para `data-lang` logo que arranca. Num `theme.css`, seleciona-se `uc-code[data-lang="java"]`, não `[lang]`.
 
