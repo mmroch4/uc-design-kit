@@ -17,7 +17,7 @@
 :where(.uc-week__summary)::-webkit-details-marker { display: none; }
 :where(.uc-week__summary:hover .uc-week__title) { color: var(--uc-color-accent); }
 
-:where(.uc-week__number) { font-size: var(--uc-font-size-body-sm); font-weight: 600; }
+:where(.uc-week__number) { font-size: var(--uc-font-size-body-sm); font-weight: 400; }
 :where(.uc-week__title) { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; overflow-wrap: break-word; }
 :where(.uc-week__meta) {
   display: flex;
