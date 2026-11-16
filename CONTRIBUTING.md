@@ -33,3 +33,19 @@
 - Branch per milestone: `m<phase>.<n>-<short-name>`.
 - Run `npm test` before opening a pull request and attach the screenshots.
 - Update `CHANGELOG.md` under *Unreleased*.
+
+## Tests
+
+```sh
+npm ci                      # installs Playwright and axe-core (maintainers only)
+npx playwright install chromium
+npm test                    # checks every page; add a filter: npm test -- uc-week
+npm run test:update-screenshots   # also writes tests/screenshots/*.png
+```
+
+`scripts/check-pages.mjs` checks every HTML page in `tests/pages/`,
+`examples/`, `template/` and the root `index.html`: console errors over HTTP
+and `file://`, missing local files, horizontal scrolling at 360 px, axe-core
+WCAG 2.1 A/AA (serious and critical violations fail), and visible content with
+JavaScript disabled. Pages are loaded with `?today=2025-11-27` (override with
+`TEST_TODAY`) so date-dependent output is stable.
