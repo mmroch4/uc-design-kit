@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-code: testar noutra plataforma · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script>
+    // This demo adds a judge platform; its label names the "Testar no…" button.
+    window.UC_COURSE.platforms = [...window.UC_COURSE.platforms, { label: "Mooshak", url: "https://mooshak.example.org/" }];
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-code lang="c" filename="sum.c" run="https://mooshak.example.org/problem/A">
+      <script type="text/plain">
+        #include <stdio.h>
+
+        int main(void) {
+            int a, b;
+            scanf("%d %d", &a, &b);
+            printf("%d\n", a + b);
+            return 0;
+        }
+      </script>
+    </uc-code>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>
