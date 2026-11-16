@@ -1,0 +1,212 @@
+# O ficheiro course.js
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.html
+
+O `course.js` guarda o que muda de ano para ano ou aparece em mais de uma página. É JavaScript, mas só tem uma atribuição: um objeto em `window.UC_COURSE`. Só o título é obrigatório.
+
+## A forma do ficheiro
+
+`course.js`:
+
+```js
+window.UC_COURSE = {
+  code: "AP0001",
+  title: "Algoritmos e Programação",
+  edition: "2025/26",
+  semester: { start: "2025-09-15", weeks: 12 },
+  pages: ["home", { id: "weeks", href: "semanas.html" }],
+  deadlines: [
+    { id: "t2", title: "Entrega do trabalho 2", kind: "submission", date: "2025-11-28", time: "23:59" },
+  ],
+};
+```
+
+Cada página carrega-o antes do kit (ver [o `<head>` de cada página](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#head)). O kit lê-o uma vez, completa o que falta com os valores por omissão e avisa na consola do browser, com mensagens `[uc-kit] course.js: …`, quando um valor não é válido. Um erro num campo nunca impede a página de aparecer.
+
+Nas tabelas, a coluna **Necessário** diz quando preencher o campo:
+
+- Obrigatório sem ele o kit avisa e usa o `<title>` da página.
+- Recomendado sem ele há funcionalidades que não aparecem (por exemplo, sem `semester.start` não há datas nas semanas).
+- Opcional tem um valor por omissão razoável.
+
+## Tipos
+
+Além de texto, números e listas, os campos usam quatro tipos:
+
+| Tipo | Forma | Exemplo |
+| --- | --- | --- |
+| `LocalizedText` | Um texto igual em todas as línguas, ou um objeto com um texto por língua. Se faltar uma língua usa-se a primeira de `languages`. | `"Exame"` `{ pt: "Exame", en: "Exam" }` |
+| `ISODate` | `"AAAA-MM-DD"`, com zeros. Um prazo aceita ainda `"AAAA-MM"` (só o mês) e `null` (a marcar). | `"2025-09-15"` |
+| `Time` | `"HH:MM"`, 24 horas. | `"09:30"` |
+| `HTMLText` | Um `LocalizedText` que pode ter HTML simples (links, `<strong>`, `<em>`, `<code>`). É inserido como HTML: as aspas dentro do texto escrevem-se `\"`. | `"Ver <a href=\"avaliacao.html\">regras</a>"` |
+
+## Campos
+
+### Curso
+
+| Campo e tipo | Necessário | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `title``LocalizedText` | Obrigatório | — | Nome da cadeira: cabeçalho, [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md) e rodapé. |
+| `code`texto | Opcional | — | Código acima do título, por exemplo `"CC1007"`. |
+| `tagline``LocalizedText` | Opcional | — | Uma frase sobre a cadeira, mostrada por `<uc-hero>`. |
+| `edition`texto | Recomendado | — | Ano letivo ao lado do título, por exemplo `"2025/26"`. |
+| `institution``{ name, url? }` | Opcional | — | Departamento ou faculdade, no cabeçalho. |
+| `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
+| `logo`URL ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho, relativa à página; `null` esconde-a. |
+| `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
+| `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. |
+
+### Línguas
+
+| Campo e tipo | Necessário | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `languages`lista de códigos | Opcional | o `<html lang>` | Por exemplo `["pt", "en"]`. A primeira é a de omissão; com mais de uma aparece o seletor de língua. Ver [Línguas](https://uc-design-kit.miguelrocha.dev/docs/pt/linguas.md). |
+
+### Semestre
+
+| Campo e tipo | Necessário | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `semester.start``ISODate` | Recomendado | — | Primeiro dia de aulas. A semana 1 é a semana do calendário que o contém. Sem ele, as semanas não têm datas e "Esta semana" não aparece. |
+| `semester.weeks`número | Opcional | `14` | Número de semanas de aulas, sem contar as interrupções. |
+| `semester.teachingDays``[de, até]` | Opcional | `[1, 5]` | Dias com aulas (1 = segunda … 7 = domingo). As datas das semanas mostram-se com estes dias: `[2, 5]` dá "25–28 nov". |
+| `semester.breaks``{ start, end, label }[]` | Opcional | `[]` | Semanas sem aulas. Não são numeradas e aparecem entre as semanas em [`<uc-weeks>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md). |
+
+### Navegação
+
+| Campo e tipo | Necessário | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `pages`lista | Recomendado | `["home"]` | Páginas da navegação, por ordem. Ver [Páginas](#paginas). |
+| `platforms``{ label, url }[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação. A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
+
+### Equipa, prazos e avisos
+
+| Campo e tipo | Necessário | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `team`lista | Opcional | `[]` | Equipa docente, mostrada por [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md). Ver [Equipa](#equipa). |
+| `deadlines`lista | Opcional | `[]` | Prazos, testes e exames: aparecem na página inicial, na semana certa e na avaliação. Ver [Prazos](#prazos). |
+| `notices`lista | Opcional | `[]` | Avisos de [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md). Ver [Avisos](#avisos). |
+
+### Avançado
+
+| Campo e tipo | Necessário | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `today``ISODate` | Opcional | a data real | Fixa o dia de "hoje", para demonstrações e capturas. Não deixar num site publicado. `?today=AAAA-MM-DD` no endereço sobrepõe-se a ele. |
+| `runner`objeto | Opcional | Codapi e browser | Onde [`<uc-code run>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) executa o código: `{ provider, languages, codapi, browser }`. Trocar de serviço (Codapi próprio, Judge0) é só mudar este campo; os valores por omissão estão em [Configuração usada do `<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md#configuracao) e o guia completo é [Execução de código](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/execucao.md). |
+
+## Páginas
+
+Cada entrada de `pages` é um identificador ou um objeto com `id`, `href` e `label`:
+
+`course.js`:
+
+```js
+pages: [
+  "home",                                          // index.html, "Início"
+  { id: "weeks", href: "semanas.html" },           // identificador do kit, ficheiro próprio
+  { id: "projects", href: "projetos.html", label: { pt: "Projetos", en: "Projects" } },
+  { id: "about", href: { pt: "sobre.html", en: "about.html" } },   // um ficheiro por língua
+],
+```
+
+- **`id`** identifica a página; é o valor de [`<uc-page current>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md).
+- **`href`** é relativo ao `course.js`, por isso funciona igual em páginas de subpastas. Um `LocalizedText` indica um ficheiro por língua.
+- **`label`** é o nome na navegação; obrigatório para identificadores que não são do kit.
+
+Os identificadores do kit já têm ficheiro e nome:
+
+| Identificador | Ficheiro por omissão | Nome (pt / en) |
+| --- | --- | --- |
+| `home` | `index.html` | Início / Home |
+| `weeks` | `weeks.html` | Semanas / Weeks |
+| `assessment` | `assessment.html` | Avaliação / Assessment |
+| `materials` | `materials.html` | Materiais / Materials |
+| `schedule` | `schedule.html` | Horários e equipa / Schedule and team |
+| `about` | `about.html` | Sobre a UC / About the course |
+
+## Equipa
+
+`course.js`:
+
+```js
+team: [
+  { name: "Ana Silva", url: "https://example.org/~ana", role: "coordinator",
+    classes: ["T1", "T2"], office: "Gab. 1.25" },
+  { name: "Rui Costa", email: "rui@example.org", role: "assistant", classes: ["PL1", "PL3"] },
+  { name: "Inês Rocha", role: { pt: "Monitora", en: "Teaching assistant" } },
+],
+```
+
+| Campo | Tipo | Descrição |
+| --- | --- | --- |
+| `name` | texto | Obrigatório. |
+| `url` | URL | Página pessoal; o nome passa a link. |
+| `email` | texto | Mostrado como link `mailto:`. |
+| `role` | `"coordinator"`, `"lecturer"`, `"assistant"` ou `LocalizedText` | Os três papéis do kit são traduzidos (Regente, Docente, Práticas); qualquer outro texto aparece como está. |
+| `classes` | lista de textos | Turmas, por exemplo `["PL1", "PL5"]`. |
+| `office` | texto | Gabinete, por exemplo `"Gab. 1.25"`. |
+
+## Prazos
+
+Um prazo escreve-se uma vez e aparece onde fizer falta: na lista de próximas datas, dentro da semana em que cai, no cartão "Esta semana" e na tabela da avaliação.
+
+`course.js`:
+
+```js
+deadlines: [
+  { id: "t2", title: "Entrega do trabalho 2", date: "2025-11-28", time: "23:59", kind: "submission",
+    note: "Pela plataforma de entregas", url: "trabalhos/t2.html" },
+  { id: "quiz5", title: "Quiz 5", date: "2025-11-17", end: "2025-11-24", kind: "quiz" },
+  { id: "teste", title: "Teste prático", date: "2025-12-10", time: "14:00", kind: "assessment",
+    links: [{ label: "Turnos", url: "avaliacao/turnos.pdf" }] },
+  { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },   // dia por marcar
+  { id: "recurso", title: "Exame de recurso", date: null, kind: "exam" },        // a marcar
+],
+```
+
+| Campo | Tipo | Descrição |
+| --- | --- | --- |
+| `id` | texto | Obrigatório e único. Usado por [`<uc-date deadline>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-date.md) e [`<uc-event deadline>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md). |
+| `title` | `LocalizedText` | Obrigatório. |
+| `date` | `ISODate`, `"AAAA-MM"` ou `null` | Dia do prazo; só o mês quando o dia não se sabe; `null` quando está por marcar. |
+| `time` | `Time` | Hora de início ou limite. |
+| `end` | `ISODate` | Último dia, para prazos de vários dias (um quiz aberto uma semana). Conta como próximo até acabar. |
+| `kind` | `"assessment"`, `"exam"`, `"quiz"`, `"submission"`, `"other"` | Tipo: muda a etiqueta e permite filtrar (`kind="assessment exam"` nos componentes). Por omissão `"other"`. |
+| `note` | `HTMLText` | Linha secundária curta: turnos, salas, plataforma. |
+| `url` | URL | Página com mais informação; o título passa a link. |
+| `links` | `{ label, url }[]` | Links extra (resultados, turnos). |
+
+## Avisos
+
+`course.js`:
+
+```js
+notices: [
+  { date: "2025-11-27",
+    text: "Saíram as notas do teste 1. Ver <a href=\"avaliacao.html\">Avaliação</a>." },
+  { date: "2025-12-01", text: "Não há aula teórica na segunda-feira.",
+    details: "A matéria passa para quarta." },
+],
+```
+
+| Campo | Tipo | Descrição |
+| --- | --- | --- |
+| `date` | `ISODate` | Obrigatório. Os avisos mostram-se do mais recente para o mais antigo, e um aviso com data futura só aparece nesse dia: podem escrever-se com antecedência. |
+| `text` | `HTMLText` | Obrigatório. Uma linha. |
+| `details` | `HTMLText` | Segunda linha, opcional. |
+
+## Erros comuns
+
+O kit avisa na consola (F12) com mensagens começadas por `[uc-kit]`. Estes são os casos mais frequentes:
+
+| Sintoma | Causa e solução |
+| --- | --- |
+| O cabeçalho mostra o título do separador e a navegação só tem "Início"; na consola, `SyntaxError` | Erro de sintaxe no `course.js`: falta uma vírgula entre campos, sobra uma chaveta ou uma aspa ficou por fechar. A consola indica a linha. |
+| `window.UC_COURSE is missing` | O `course.js` não foi carregado, ou foi carregado depois do kit. Confirmar o caminho (`../course.js` numa subpasta) e que vem antes de `uc-kit.js`, sem `defer`. |
+| `has an invalid date "2025-9-1"` | As datas levam zeros: `"2025-09-01"`. |
+| `has unknown kind "teste"` | `kind` aceita só `assessment`, `exam`, `quiz`, `submission` e `other`; o nome que se mostra vai em `title`. |
+| `is not a built-in page and needs an href` | Uma página com identificador próprio precisa de `href` e `label`. |
+| As semanas não têm datas | Falta `semester.start`, ou a data não é válida. |
+| A semana 1 começa uma semana mais cedo ou mais tarde | A semana 1 é a semana do calendário (segunda a domingo) que contém `semester.start`. Confirmar o dia e as interrupções em `breaks`. |
+| Um aviso não aparece | Tem uma data futura: só aparece nesse dia. Para testar, abrir a página com `?today=`. |
+| Aspas partem o texto de um aviso | Dentro de um texto entre `"`, as aspas do HTML escrevem-se `\"`, ou usam-se plicas à volta do texto. |
+| Tudo aparece num dia errado | Ficou um `today` no `course.js`. Apagar a linha. |

@@ -34,6 +34,20 @@
 /
   Link: </kit/v1/fonts/inter-latin.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
 
+# Documentation for language models (llms.txt, llms-full.txt, docs/**/*.md):
+# plain UTF-8 text, so accents show correctly when opened in a browser.
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+
+/docs/pt/*.md
+  Content-Type: text/markdown; charset=utf-8
+
+/docs/pt/*/*.md
+  Content-Type: text/markdown; charset=utf-8
+
 /examples/*/course.js
   Cache-Control: public, max-age=60, stale-while-revalidate=86400
 
