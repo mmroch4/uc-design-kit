@@ -3631,6 +3631,10 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
           autocapitalize: "off",
           autocomplete: "off",
           wrap: "off",
+          // Writing-assistant extensions (Grammarly and similar) would draw over the code.
+          "data-gramm": "false",
+          "data-gramm_editor": "false",
+          "data-enable-grammarly": "false",
           "aria-describedby": this.hintId,
           onInput: () => this.onInput(),
           onKeydown: (event) => this.onKeydown(event),
