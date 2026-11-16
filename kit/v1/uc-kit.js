@@ -179,8 +179,10 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     reset: "Repor",
     editable: "Código editável",
     testOn: "Testar no {platform}",
+    tabHint: "Tab insere espaços. Para sair do editor, carrega em Esc e depois em Tab.",
   },
   question: {
+    label: "Verificação rápida",
     check: "Verificar",
     correct: "Certo!",
     incorrect: "Ainda não. Tenta outra vez.",
@@ -278,8 +280,10 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     reset: "Reset",
     editable: "Editable code",
     testOn: "Test on {platform}",
+    tabHint: "Tab inserts spaces. To leave the editor, press Esc and then Tab.",
   },
   question: {
+    label: "Quick check",
     check: "Check",
     correct: "Correct!",
     incorrect: "Not quite. Try again.",
@@ -1193,6 +1197,783 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   }
 
   UC.define("uc-hero", UCHero);
+})(window.UC);
+
+/* --- components/uc-team.js --- */
+/**
+ * <uc-team> — the teaching team from UC_COURSE.team, as cards or a table.
+ * See docs/api.md, section 3.4.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, uid } = UC.internal;
+  const BUILTIN_ROLES = ["coordinator", "lecturer", "assistant"];
+
+  /** Translated label of a member's role (built-in id or LocalizedText). */
+  function roleLabel(role) {
+    if (!role) return "";
+    if (typeof role === "string" && BUILTIN_ROLES.includes(role)) return UC.t(`team.roles.${role}`);
+    return UC.text(role);
+  }
+
+  /** All the strings a role can be matched by in the `role` filter, lowercased. */
+  function roleKeys(role) {
+    if (!role) return [];
+    const values = typeof role === "object" ? Object.values(role) : [role];
+    return values.filter((value) => typeof value === "string").map((value) => value.trim().toLowerCase());
+  }
+
+  const classList = (member) => (Array.isArray(member.classes) ? member.classes.join(", ") : "");
+
+  /** Name, linked to the personal page when there is one. */
+  function nameNode(member, className) {
+    return member.url
+      ? h("a", { class: className, href: member.url }, member.name)
+      : h("span", { class: className }, member.name);
+  }
+
+  /** Secondary line with office and e-mail, or null when neither is set. */
+  function contactNode(member, className) {
+    const parts = [];
+    if (member.office) parts.push(h("span", {}, member.office));
+    if (member.email) parts.push(h("a", { href: `mailto:${member.email}` }, member.email));
+    if (!parts.length) return null;
+    const separated = parts.flatMap((part, index) => (index ? [" · ", part] : [part]));
+    return h("span", { class: className }, separated);
+  }
+
+  class UCTeam extends UC.Element {
+    setup() {
+      this.classList.add("uc-team");
+      this.extra = Array.from(this.childNodes);
+      this.headingId = uid("uc-team-heading");
+      // The public `role` attribute (a team-role filter) collides with the
+      // ARIA role attribute, so it is moved to data-role once read.
+      if (this.hasAttribute("role")) {
+        this.dataset.role = this.getAttribute("role");
+        this.removeAttribute("role");
+      }
+    }
+
+    /** Team members after the `role` filter. */
+    members() {
+      const filter = (this.dataset.role || "").trim().toLowerCase();
+      const wanted = filter ? filter.split(/\s+/) : null;
+      const team = this.course.team.filter((member) => member && member.name);
+      if (!wanted) return team;
+      return team.filter((member) => roleKeys(member.role).some((key) => wanted.includes(key)));
+    }
+
+    render() {
+      const members = this.members();
+      this.hidden = members.length === 0 && this.extra.length === 0;
+      if (this.hidden) {
+        this.replaceChildren();
+        return;
+      }
+
+      const headingAttr = this.getAttribute("heading");
+      const headingText = headingAttr && headingAttr !== "none" ? headingAttr : this.t("team.heading");
+      const showHeading = headingAttr !== "none";
+      const view = this.getAttribute("view") === "table" ? this.renderTable(members) : this.renderCards(members);
+
+      this.replaceChildren(
+        h(
+          "section",
+          {
+            class: "uc-team__section",
+            "aria-labelledby": showHeading ? this.headingId : null,
+            "aria-label": showHeading ? null : headingText,
+          },
+          showHeading ? h("h2", { class: "uc-team__heading", id: this.headingId }, headingText) : null,
+          members.length ? view : null,
+          ...this.extra,
+        ),
+      );
+    }
+
+    renderCards(members) {
+      return h(
+        "ul",
+        { class: "uc-team__cards uc-grid" },
+        members.map((member) => {
+          const role = roleLabel(member.role);
+          const classes = classList(member);
+          const details = [role, classes].filter(Boolean).join(" · ");
+          return h(
+            "li",
+            { class: "uc-team__card uc-card" },
+            nameNode(member, "uc-team__name"),
+            details ? h("span", { class: "uc-team__role" }, details) : null,
+            contactNode(member, "uc-team__contact"),
+          );
+        }),
+      );
+    }
+
+    renderTable(members) {
+      const column = (key) => h("th", { scope: "col" }, this.t(`team.column.${key}`));
+      return h(
+        "div",
+        { class: "uc-team__table uc-table" },
+        h(
+          "table",
+          {},
+          h("thead", {}, h("tr", {}, column("name"), column("role"), column("classes"))),
+          h(
+            "tbody",
+            {},
+            members.map((member) =>
+              h(
+                "tr",
+                {},
+                h("td", { class: "uc-team__person" }, nameNode(member, "uc-team__name"), contactNode(member, "uc-team__contact")),
+                h("td", {}, roleLabel(member.role)),
+                h("td", { class: "uc-team__classes uc-mono" }, classList(member)),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+  }
+
+  UC.define("uc-team", UCTeam);
+})(window.UC);
+
+/* --- components/uc-code.js --- */
+/**
+ * <uc-code> — code block with syntax highlighting, copy, download, an
+ * optional editable mode and an optional "Test on…" link.
+ * See docs/api.md, section 3.5.
+ *
+ * Highlighting uses highlight.js from cdnjs, loaded on first use (once per
+ * page) with Subresource Integrity. When it cannot load (offline, blocked),
+ * the code stays readable as plain text.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, icon, uid, isExternal, flag } = UC.internal;
+
+  /* ----------------------------------------------------------------------
+   * highlight.js loader
+   * -------------------------------------------------------------------- */
+
+  const HLJS_VERSION = "11.9.0";
+  const HLJS_BASE = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${HLJS_VERSION}`;
+  const HLJS_CORE = {
+    file: "highlight.min.js",
+    integrity: "sha384-F/bZzf7p3Joyp5psL90p/p89AZJsndkSoGwRpXcZhleCWhd8SnRuoYo4d0yirjJp",
+  };
+  /**
+   * Extra grammars (not in the core "common" bundle) with their SRI hashes.
+   * The core already includes java, python, c, cpp, javascript, typescript,
+   * kotlin, go, rust, sql, bash, json, xml, yaml, markdown and others.
+   */
+  const HLJS_LANGUAGES = {
+    haskell: "sha384-EnLqy/LmA2yShypXJIP5cvUz0S3jJ5l3PnZcMRE6JQdpeNOttU97yyQAsdTusDbl",
+    ocaml: "sha384-WhlOQ8tkNAn2N+yTa7njealQ8ue+22g0Zw/iR6A9QtSz0XQZzBebXuAvINaGCpdY",
+    prolog: "sha384-UM9Lhdjkj0JpmTGkTvhc3JrFvbPmcGLGqzLsKAMP4hAKxussecmapCxDpWC5fHFu",
+    scheme: "sha384-wDAOgnGx0t7X9tTKddfqp7kcfAYVDaQDRdfDD+47IukNBVuVGFldV80H4qDTHPOR",
+    scala: "sha384-tbWlb460xfE9lNi4sNjNnZ4Btfos1He7bWO+9UmtNq4TwJ7F7nX8gaR0e6sVJsUk",
+    matlab: "sha384-KveG8st4Ls4iaD1XzpsBzVc7g2K6kxnbxlZOy9cH6Knla0ZH9jsloP8nOOs6WYMP",
+    x86asm: "sha384-eKsHYF6apOh4wN/zUOnYUx5s4086rCTH2ZG0R09R49HLu6/1Kn/6J7Zn6M8++8On",
+    latex: "sha384-0ZgcpgIDZoDPMdyG1FHnl/MByMKt+W52UltboQpuA52+f4pniKOMFXfIfe4K4Byc",
+    elixir: "sha384-qMYXRUi/Q9Ukntag3SOX3rOfkgLmmjlGA84X26QeOGixvWyfSGEiKwaw5ZKoSyBH",
+    erlang: "sha384-hsThqIkkHew8Pfgbao+v2vLaYUKOUiN8CiPSkJRrmxTe4LcgVjZLC3Rz4z2zMT+X",
+    lisp: "sha384-+LHHMbAXOUlvquvrQZ9LW4KeR2nwcsh/lpp7xrWu7KuaDSGgAYBIdm8qCw97I1tq",
+    fortran: "sha384-WvivEbuG+ynOu3BbbceJknlKXBqe8Va2Zo7+TgCqtErB61cfboeQHQOyMapYhkUW",
+    dockerfile: "sha384-H3wUmCndJNBOuIIzcLSr2zLLZYs8PYuw6qKyENk7THEnYQJvOMDBu42P9XsJSRKw",
+  };
+
+  /** Display names and download extensions for common languages and aliases. */
+  const LANGUAGES = {
+    java: { name: "Java", ext: "java" },
+    python: { name: "Python", ext: "py" },
+    py: { name: "Python", ext: "py" },
+    c: { name: "C", ext: "c" },
+    cpp: { name: "C++", ext: "cpp" },
+    "c++": { name: "C++", ext: "cpp" },
+    js: { name: "JavaScript", ext: "js" },
+    javascript: { name: "JavaScript", ext: "js" },
+    ts: { name: "TypeScript", ext: "ts" },
+    typescript: { name: "TypeScript", ext: "ts" },
+    kotlin: { name: "Kotlin", ext: "kt" },
+    go: { name: "Go", ext: "go" },
+    rust: { name: "Rust", ext: "rs" },
+    csharp: { name: "C#", ext: "cs" },
+    sql: { name: "SQL", ext: "sql" },
+    bash: { name: "Bash", ext: "sh" },
+    shell: { name: "Shell", ext: "sh" },
+    sh: { name: "Shell", ext: "sh" },
+    json: { name: "JSON", ext: "json" },
+    xml: { name: "XML", ext: "xml" },
+    html: { name: "HTML", ext: "html" },
+    css: { name: "CSS", ext: "css" },
+    yaml: { name: "YAML", ext: "yaml" },
+    markdown: { name: "Markdown", ext: "md" },
+    haskell: { name: "Haskell", ext: "hs" },
+    ocaml: { name: "OCaml", ext: "ml" },
+    prolog: { name: "Prolog", ext: "pl" },
+    scheme: { name: "Scheme", ext: "scm" },
+    scala: { name: "Scala", ext: "scala" },
+    matlab: { name: "MATLAB", ext: "m" },
+    latex: { name: "LaTeX", ext: "tex" },
+  };
+
+  let corePromise = null;
+  const languagePromises = Object.create(null);
+  const warned = new Set();
+
+  function warnOnce(message) {
+    if (warned.has(message)) return;
+    warned.add(message);
+    console.warn(`[uc-kit] uc-code: ${message}`);
+  }
+
+  function loadScript(file, integrity) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = `${HLJS_BASE}/${file}`;
+      script.integrity = integrity;
+      script.crossOrigin = "anonymous";
+      script.referrerPolicy = "no-referrer";
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`could not load ${script.src}`));
+      document.head.appendChild(script);
+    });
+  }
+
+  /** Loads the highlight.js core once per page. Resolves with `hljs`. */
+  function loadCore() {
+    if (!corePromise) {
+      corePromise = window.hljs
+        ? Promise.resolve(window.hljs)
+        : loadScript(HLJS_CORE.file, HLJS_CORE.integrity).then(() => {
+            if (!window.hljs) throw new Error("highlight.js did not define hljs");
+            return window.hljs;
+          });
+    }
+    return corePromise;
+  }
+
+  /**
+   * Resolves with `hljs` once `language` is available, or rejects when the
+   * language cannot be highlighted.
+   */
+  function loadHighlighter(language) {
+    return loadCore().then((hljs) => {
+      if (hljs.getLanguage(language)) return hljs;
+      const integrity = HLJS_LANGUAGES[language];
+      if (!integrity) throw new Error(`no highlighting available for "${language}"`);
+      if (!languagePromises[language]) {
+        languagePromises[language] = loadScript(`languages/${language}.min.js`, integrity);
+      }
+      return languagePromises[language].then(() => {
+        if (!hljs.getLanguage(language)) throw new Error(`highlight.js has no grammar "${language}"`);
+        return hljs;
+      });
+    });
+  }
+
+  /* ----------------------------------------------------------------------
+   * Source text helpers
+   * -------------------------------------------------------------------- */
+
+  /**
+   * Normalises authored code: drops one leading newline, a trailing
+   * whitespace-only line and the indentation common to every non-blank line.
+   */
+  function normalizeSource(raw) {
+    let lines = raw.replace(/\r\n?/g, "\n").replace(/^\n/, "").split("\n");
+    if (lines.length > 1 && lines[lines.length - 1].trim() === "") lines = lines.slice(0, -1);
+    const indents = lines.filter((line) => line.trim() !== "").map((line) => line.match(/^[ \t]*/)[0].length);
+    const common = indents.length ? Math.min(...indents) : 0;
+    return lines.map((line) => line.slice(common)).join("\n");
+  }
+
+  /** Finds the authored source element: <script type="text/plain"> or <pre>. */
+  function findSource(element) {
+    for (const child of element.children) {
+      if (child.matches('script[type="text/plain"]') || child.matches("pre")) return child;
+    }
+    return null;
+  }
+
+  function sourceLanguage(source) {
+    const code = source && source.querySelector && source.querySelector("code");
+    const match = code && /(?:^|\s)(?:language|lang)-(\S+)/.exec(code.className);
+    return match ? match[1] : "";
+  }
+
+  /** Copies text to the clipboard. Resolves on success. */
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
+    }
+    return legacyCopy(text);
+  }
+
+  function legacyCopy(text) {
+    return new Promise((resolve, reject) => {
+      const area = h("textarea", { class: "uc-visually-hidden", readonly: true, "aria-hidden": "true", tabindex: "-1" });
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (error) {
+        ok = false;
+      }
+      area.remove();
+      if (ok) resolve();
+      else reject(new Error("copy failed"));
+    });
+  }
+
+  function downloadText(text, name) {
+    const url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+    const link = h("a", { href: url, download: name, hidden: true });
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  /** Label of the platform that hosts `url` (from UC_COURSE.platforms), else its host. */
+  function platformName(url) {
+    let host = "";
+    try {
+      host = new URL(url, window.location.href).host;
+    } catch (error) {
+      return url;
+    }
+    const platform = UC.course.platforms.find((entry) => {
+      try {
+        return new URL(entry.url, window.location.href).host === host;
+      } catch (error) {
+        return false;
+      }
+    });
+    return platform ? UC.text(platform.label) : host;
+  }
+
+  const COPY_RESET_MS = 2000;
+  const HIGHLIGHT_DELAY_MS = 150;
+  const TAB = "    ";
+
+  /* ----------------------------------------------------------------------
+   * Component
+   * -------------------------------------------------------------------- */
+
+  class UCCode extends UC.Element {
+    setup() {
+      // `lang` holds a programming language, which is not a valid BCP 47 tag
+      // and would change how assistive technology reads the generated
+      // interface. It is moved to data-lang once read.
+      if (this.hasAttribute("lang")) {
+        this.dataset.lang = this.getAttribute("lang");
+        this.removeAttribute("lang");
+      }
+      this.source = findSource(this);
+      const raw = this.source ? (this.source.matches("script") ? this.source.textContent : (this.source.querySelector("code") || this.source).textContent) : "";
+      this.original = normalizeSource(raw);
+      this.code = this.original;
+      this.language = (this.dataset.lang || sourceLanguage(this.source) || "").trim().toLowerCase();
+      this.copied = false;
+      this.copyTimer = null;
+      this.highlightTimer = null;
+      this.escapePressed = false;
+      this.hintId = uid("uc-code-hint");
+      this.titleId = uid("uc-code-title");
+    }
+
+    get editable() {
+      return flag(this, "editable");
+    }
+
+    languageInfo() {
+      return LANGUAGES[this.language] || null;
+    }
+
+    title() {
+      const filename = this.getAttribute("filename");
+      if (filename) return filename;
+      const info = this.languageInfo();
+      return info ? info.name : this.language;
+    }
+
+    downloadName() {
+      const filename = this.getAttribute("filename");
+      if (filename) return filename;
+      const info = this.languageInfo();
+      return `code.${info ? info.ext : "txt"}`;
+    }
+
+    render() {
+      if (!this.source) {
+        warnOnce('no <script type="text/plain"> or <pre> child found');
+        return;
+      }
+      if (!this.body) this.build();
+
+      const focused = document.activeElement;
+      const focusedAction = focused && this.header && this.header.contains(focused) ? focused.dataset.action : null;
+
+      this.header.replaceChildren(...this.renderHeader());
+      this.header.hidden = this.header.childElementCount === 0;
+      const title = this.title();
+      if (this.editable) {
+        this.textarea.setAttribute("aria-label", title ? `${this.t("code.editable")}: ${title}` : this.t("code.editable"));
+        this.hint.textContent = this.t("code.tabHint");
+      } else if (title) {
+        this.scroller.setAttribute("aria-labelledby", this.titleId);
+      } else {
+        this.scroller.removeAttribute("aria-labelledby");
+      }
+
+      if (focusedAction) this.header.querySelector(`[data-action="${focusedAction}"]`)?.focus();
+    }
+
+    /** Builds the persistent parts once: body, live region, hidden source. */
+    build() {
+      this.classList.add("uc-code");
+      this.classList.toggle("uc-code--editable", this.editable);
+      this.header = h("div", { class: "uc-code__header" });
+      this.output = h("code", { class: "uc-code__code" });
+      this.pre = h("pre", { class: "uc-code__pre" }, this.output);
+      this.status = h("span", { class: "uc-visually-hidden", "aria-live": "polite" });
+
+      if (this.editable) {
+        this.pre.setAttribute("aria-hidden", "true");
+        this.textarea = h("textarea", {
+          class: "uc-code__input",
+          spellcheck: "false",
+          autocapitalize: "off",
+          autocomplete: "off",
+          wrap: "off",
+          "aria-describedby": this.hintId,
+          onInput: () => this.onInput(),
+          onKeydown: (event) => this.onKeydown(event),
+        });
+        this.textarea.value = this.code;
+        this.hint = h("p", { class: "uc-code__hint", id: this.hintId });
+        this.scroller = h("div", { class: "uc-code__scroll uc-code__editor" }, this.pre, this.textarea);
+        this.body = h("div", { class: "uc-code__body" }, this.scroller, this.hint);
+      } else {
+        this.scroller = h("div", { class: "uc-code__scroll", tabindex: "0", role: "group" }, this.pre);
+        this.body = h("div", { class: "uc-code__body" }, this.scroller);
+      }
+
+      this.showPlain();
+      this.prepend(this.header, this.body, this.status);
+      // The authored source is kept in the DOM, hidden, so nothing is lost.
+      if (this.source.matches("pre")) this.source.hidden = true;
+      this.highlight();
+    }
+
+    renderHeader() {
+      const parts = [];
+      const title = this.title();
+      if (title) parts.push(h("span", { class: "uc-code__title", id: this.titleId }, title));
+
+      const actions = [];
+      if (!flag(this, "no-copy")) {
+        actions.push(
+          this.button("copy", this.copied ? "check" : "copy", this.t(this.copied ? "code.copied" : "code.copy"), () => this.onCopy()),
+        );
+      }
+      if (!flag(this, "no-download")) {
+        actions.push(this.button("download", "download", this.t("code.download"), () => downloadText(this.code, this.downloadName())));
+      }
+      if (this.editable) actions.push(this.button("reset", "reset", this.t("code.reset"), () => this.onReset()));
+      const run = this.getAttribute("run");
+      if (run) {
+        const external = isExternal(run);
+        actions.push(
+          h(
+            "a",
+            { class: "uc-button uc-button--primary uc-code__run", href: run, "data-action": "run" },
+            this.t("code.testOn", { platform: platformName(run) }),
+            external ? icon("external") : null,
+            external ? h("span", { class: "uc-visually-hidden" }, ` ${this.t("a11y.external")}`) : null,
+          ),
+        );
+      }
+      if (actions.length) parts.push(h("div", { class: "uc-code__actions" }, actions));
+      return parts;
+    }
+
+    button(action, iconName, label, onClick) {
+      return h(
+        "button",
+        { type: "button", class: `uc-button uc-code__button uc-code__button--${action}`, "data-action": action, onClick },
+        icon(iconName),
+        h("span", {}, label),
+      );
+    }
+
+    /* --- Display ------------------------------------------------------ */
+
+    /** Shows the code as plain text (also keeps the editor overlay aligned). */
+    showPlain() {
+      // A trailing newline would not be rendered by <pre>; keep both layers the same height.
+      this.output.textContent = this.code.endsWith("\n") ? `${this.code} ` : this.code;
+      this.output.className = "uc-code__code";
+    }
+
+    highlight() {
+      if (!this.language) return;
+      const code = this.code;
+      loadHighlighter(this.language)
+        .then((hljs) => {
+          if (code !== this.code) return; // Outdated: a newer edit will highlight again.
+          const result = hljs.highlight(code, { language: this.language, ignoreIllegals: true });
+          this.output.innerHTML = result.value + (code.endsWith("\n") ? " " : "");
+          this.output.className = "uc-code__code hljs";
+        })
+        .catch((error) => warnOnce(`${error.message}; showing plain code`));
+    }
+
+    /* --- Editing ------------------------------------------------------ */
+
+    onInput() {
+      this.code = this.textarea.value;
+      this.showPlain();
+      clearTimeout(this.highlightTimer);
+      this.highlightTimer = setTimeout(() => this.highlight(), HIGHLIGHT_DELAY_MS);
+    }
+
+    onKeydown(event) {
+      if (event.key === "Escape") {
+        this.escapePressed = true;
+        return;
+      }
+      if (event.key === "Tab" && !event.shiftKey && !event.altKey && !event.ctrlKey && !event.metaKey && !this.escapePressed) {
+        event.preventDefault();
+        this.insertText(TAB);
+      }
+      this.escapePressed = false;
+    }
+
+    insertText(text) {
+      const area = this.textarea;
+      // execCommand keeps the browser's undo history; setRangeText is the fallback.
+      let inserted = false;
+      try {
+        inserted = document.execCommand("insertText", false, text);
+      } catch (error) {
+        inserted = false;
+      }
+      if (!inserted) {
+        area.setRangeText(text, area.selectionStart, area.selectionEnd, "end");
+        this.onInput();
+      }
+    }
+
+    onReset() {
+      this.code = this.original;
+      this.textarea.value = this.original;
+      this.showPlain();
+      this.highlight();
+      this.textarea.focus();
+      this.textarea.setSelectionRange(0, 0);
+    }
+
+    /* --- Copy --------------------------------------------------------- */
+
+    onCopy() {
+      copyText(this.code)
+        .then(() => {
+          this.setCopied(true);
+          this.announce(this.t("code.copied"));
+          clearTimeout(this.copyTimer);
+          this.copyTimer = setTimeout(() => this.setCopied(false), COPY_RESET_MS);
+        })
+        .catch(() => this.announce(this.t("code.copyFailed")));
+    }
+
+    setCopied(copied) {
+      this.copied = copied;
+      this.render();
+      if (!copied) this.status.textContent = "";
+    }
+
+    announce(message) {
+      this.status.textContent = "";
+      // A fresh text node after clearing makes screen readers repeat the message.
+      setTimeout(() => {
+        this.status.textContent = message;
+      }, 50);
+    }
+  }
+
+  UC.define("uc-code", UCCode);
+})(window.UC);
+
+/* --- components/uc-question.js --- */
+/**
+ * <uc-question> — multiple-choice self-check question with immediate feedback.
+ * See docs/api.md, section 3.5.
+ *
+ * Authored markup: question content, one <ul>/<ol> whose <li data-correct>
+ * items are the right answers, and an optional [data-explanation] element
+ * shown once the answer is correct. Which options are correct is never
+ * revealed before a correct answer.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, icon, uid, flag } = UC.internal;
+
+  /** Feedback states. */
+  const STATUS = { none: "none", empty: "empty", incorrect: "incorrect", correct: "correct" };
+
+  class UCQuestion extends UC.Element {
+    setup() {
+      const children = Array.from(this.childNodes);
+      const list = children.find((node) => node.nodeType === Node.ELEMENT_NODE && node.matches("ul, ol"));
+      this.explanation = children.find((node) => node.nodeType === Node.ELEMENT_NODE && node.matches("[data-explanation]")) || null;
+      this.prompt = children.filter((node) => node !== list && node !== this.explanation);
+      this.options = list
+        ? Array.from(list.children)
+            .filter((item) => item.matches("li"))
+            .map((item) => ({ nodes: Array.from(item.childNodes), correct: item.hasAttribute("data-correct") }))
+        : [];
+      this.list = list || null;
+      this.selected = new Set();
+      this.status = STATUS.none;
+      this.name = uid("uc-question");
+      this.promptId = `${this.name}-prompt`;
+      if (!this.options.length) console.warn("[uc-kit] uc-question: no <ul> with options found");
+    }
+
+    get multiple() {
+      return flag(this, "multiple");
+    }
+
+    render() {
+      if (!this.options.length) return;
+      this.classList.add("uc-question");
+
+      const focusedIndex = this.focusedOptionIndex();
+
+      const options = this.options.map((option, index) => {
+        const id = `${this.name}-${index}`;
+        const checked = this.selected.has(index);
+        const input = h("input", {
+          class: "uc-question__input",
+          type: this.multiple ? "checkbox" : "radio",
+          name: this.name,
+          id,
+          value: String(index),
+          checked,
+          dataset: { index: String(index) },
+          onChange: () => this.onChange(),
+        });
+        input.checked = checked;
+        // Moving the authored nodes (not cloning) keeps them unique across re-renders.
+        return h("label", { class: "uc-question__option", for: id }, input, h("span", { class: "uc-question__label" }, option.nodes));
+      });
+
+      const fieldset = h(
+        "fieldset",
+        { class: "uc-question__options", "aria-labelledby": this.promptId },
+        options,
+      );
+
+      this.feedback = this.feedback || h("div", { class: "uc-question__feedback", "aria-live": "polite" });
+
+      this.replaceChildren(
+        h("span", { class: "uc-question__tag uc-tag" }, this.t("question.label")),
+        h("div", { class: "uc-question__prompt", id: this.promptId }, this.prompt),
+        fieldset,
+        h(
+          "div",
+          { class: "uc-question__actions" },
+          h("button", { type: "button", class: "uc-button uc-button--primary uc-question__check", onClick: () => this.check() }, this.t("question.check")),
+        ),
+        this.feedback,
+        // The emptied authored list stays in the DOM (hidden) so no teacher node is dropped.
+        this.list ? Object.assign(this.list, { hidden: true }) : null,
+      );
+
+      this.updateFeedback();
+      if (focusedIndex !== null) this.querySelector(`[data-index="${focusedIndex}"]`)?.focus();
+    }
+
+    /** Updates the feedback region and the option states in place (keeps the live region stable). */
+    updateFeedback() {
+      const solved = this.status === STATUS.correct;
+      this.classList.toggle("uc-question--solved", solved);
+      this.querySelectorAll(".uc-question__option").forEach((label, index) => {
+        label.classList.toggle("uc-question__option--correct", solved && this.options[index].correct);
+      });
+      this.feedback.className = `uc-question__feedback uc-question__feedback--${this.status}`;
+      const message = this.renderFeedback();
+      this.feedback.replaceChildren(...(message ? [message] : []));
+      if (this.explanation) {
+        this.explanation.hidden = !solved;
+        this.explanation.classList.add("uc-question__explanation");
+        this.feedback.append(this.explanation);
+      }
+    }
+
+    renderFeedback() {
+      switch (this.status) {
+        case STATUS.correct:
+          return h("p", { class: "uc-question__message" }, icon("checkCircle"), h("strong", {}, this.t("question.correct")));
+        case STATUS.incorrect:
+          return h("p", { class: "uc-question__message" }, this.t("question.incorrect"));
+        case STATUS.empty:
+          return h("p", { class: "uc-question__message" }, this.t("question.chooseOne"));
+        default:
+          return null;
+      }
+    }
+
+    focusedOptionIndex() {
+      const active = document.activeElement;
+      return active && this.contains(active) && active.dataset && active.dataset.index !== undefined ? active.dataset.index : null;
+    }
+
+    readSelection() {
+      this.selected = new Set(
+        Array.from(this.querySelectorAll(".uc-question__input"))
+          .filter((input) => input.checked)
+          .map((input) => Number(input.dataset.index)),
+      );
+    }
+
+    onChange() {
+      this.readSelection();
+      if (this.status !== STATUS.correct && this.status !== STATUS.none) this.setStatus(STATUS.none);
+    }
+
+    check() {
+      this.readSelection();
+      if (this.selected.size === 0) {
+        this.setStatus(STATUS.empty);
+        return;
+      }
+      const correct = this.options.every((option, index) => option.correct === this.selected.has(index));
+      this.setStatus(correct ? STATUS.correct : STATUS.incorrect);
+    }
+
+    setStatus(status) {
+      this.status = status;
+      this.updateFeedback();
+    }
+  }
+
+  UC.define("uc-question", UCQuestion);
 })(window.UC);
 
 /* --- core/bootstrap.js --- */

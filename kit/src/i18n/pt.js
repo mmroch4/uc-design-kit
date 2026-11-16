@@ -73,8 +73,10 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     reset: "Repor",
     editable: "Código editável",
     testOn: "Testar no {platform}",
+    tabHint: "Tab insere espaços. Para sair do editor, carrega em Esc e depois em Tab.",
   },
   question: {
+    label: "Verificação rápida",
     check: "Verificar",
     correct: "Certo!",
     incorrect: "Ainda não. Tenta outra vez.",
