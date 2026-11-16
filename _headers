@@ -1,15 +1,31 @@
 # Cloudflare Pages response headers.
 # https://developers.cloudflare.com/pages/configuration/headers/
 #
-# Kit files keep stable URLs (kit/v1/...), so they are cached for a short time and then
-# served from the browser cache while being revalidated in the background
-# (stale-while-revalidate). Pages load without waiting for the server, and a new
-# deploy reaches the browser on the next visit after max-age.
+# Cloudflare joins the values when two rules set the same header, so each
+# Cache-Control rule below matches a different set of paths.
 
 /kit/*
   Access-Control-Allow-Origin: *
+
+# Major version alias (kit/v1/): always the latest 1.x, updated in place. Cached
+# for a short time and then served from the browser cache while it is
+# revalidated in the background (stale-while-revalidate), so pages never wait
+# for it and a new deploy arrives on the next visit after max-age.
+/kit/v1/*
   Cache-Control: public, max-age=300, stale-while-revalidate=604800
-  X-Content-Type-Options: nosniff
+
+# Frozen releases (kit/v1.0.0/, kit/v1.2.3/, …, made by scripts/snapshot.mjs):
+# their files never change, so browsers keep them for a year without asking.
+# For a new major version, add the same two rules for /kit/v2/* and /kit/v2.*.
+/kit/v1.*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Example pages: start downloading the body font together with the HTML
+# (Cloudflare also sends it as an Early Hint). Done here rather than with
+# <link rel="preload"> in the pages, which fails when a page is opened from
+# file:// with a relative path to the kit.
+/examples/*
+  Link: </kit/v1/fonts/inter-latin.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
 
 /examples/*/course.js
   Cache-Control: public, max-age=60, stale-while-revalidate=86400

@@ -18,6 +18,7 @@ Every page loads, in this order:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Semanas · Estruturas de Dados</title>
+  <link rel="preload" href="https://uc-design-kit.miguelrocha.dev/kit/v1/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.css">
   <link rel="stylesheet" href="theme.css">            <!-- optional, level 1-2 customisation -->
   <script src="course.js"></script>                    <!-- the course configuration -->
@@ -37,6 +38,13 @@ Rules:
 - `uc-kit.js` is a **classic script** (no ES modules), so pages work from
   `file://`. It must be loaded with `defer` (or at the end of `<body>`).
 - `course.js` is loaded **before** the kit and without `defer`.
+- The `preload` line is optional: it starts downloading the body font
+  together with the CSS instead of after it, so the page appears sooner on a
+  first visit. Keep `crossorigin` (fonts are always fetched in CORS mode) and
+  use the same folder as `uc-kit.css`. Use the absolute `https://` URL: with a
+  relative path the preload fails when the page is opened from `file://`.
+- `v1` can be replaced by an exact release such as `v1.0.0` (all three URLs),
+  see section 9.
 - `<html lang>` is the language the page is written in by default.
 - The kit never requires a build step, a server or a package manager.
 - External libraries (e.g. syntax highlighting) are loaded on demand from a CDN
@@ -526,7 +534,7 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | `--uc-target-min` | `44px` | Minimum touch target. |
 | `--uc-focus-ring` | `2px solid var(--uc-color-accent)` | Focus outline. |
 
-Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made.
+Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` avoids the
 external request if a course prefers.
 
@@ -653,6 +661,16 @@ teacher rule wins.
   changed incompatibly.
 - Breaking changes go to `kit/v2/`. Old course sites keep working because
   they reference `v1`.
+- Each release is also frozen as `kit/vX.Y.Z/` (e.g. `kit/v1.0.0/`). Its files
+  never change, so browsers cache them for a year without checking again
+  (`Cache-Control: immutable`). A course site that points to an exact
+  release gets the fastest repeat visits and keeps the same kit for the whole
+  semester; to update, change the version in the `<head>` of each page (one
+  search and replace). `kit/v1/` is cached for 5 minutes and then revalidated
+  in the background, so it picks up fixes automatically.
+- `uc-kit.js` and `uc-kit.css` are minified. Their source maps
+  (`uc-kit.js.map`, `uc-kit.css.map`) contain the original files, so the
+  browser's developer tools show readable code.
 - `UC.version` and `CHANGELOG.md` record the exact version.
 
 ## 10. Out of scope for v1

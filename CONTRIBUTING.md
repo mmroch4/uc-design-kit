@@ -17,7 +17,8 @@
 5. **Accessible by default.** WCAG 2.1 AA, keyboard operable, visible focus,
    44 px touch targets, no information conveyed by colour alone.
 6. **Never break a published major version.** Anything in `kit/v1/` stays
-   backwards compatible; breaking changes go to a new major folder.
+   backwards compatible; breaking changes go to a new major folder. Frozen
+   releases (`kit/vX.Y.Z/`) are never modified at all.
 
 ## Code style
 
