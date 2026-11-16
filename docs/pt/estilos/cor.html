@@ -12,6 +12,7 @@
   <script src="../../assets/kit-config.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/styles.js" defer></script>
 </head>
 <body class="docs">
   <!-- docs:header -->
@@ -97,11 +98,224 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Estilos</p>
           <h1>Cor</h1>
-          <p class="docs-lead">A paleta do kit, a cor de destaque e as variantes derivadas, as cores de estado e a regra de contraste.</p>
+          <p class="docs-lead">Cinzentos neutros, uma cor de destaque e três cores de estado. A cor de destaque é a única que uma cadeira costuma mudar; as outras derivam dela ou ficam como estão.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="paleta">A paleta</h2>
+        <p>Quase tudo numa página do kit é preto, cinzento ou branco. A cor aparece onde há uma ação ou um estado: um link, a semana atual, um prazo de avaliação, uma resposta certa. Com tão pouca cor, a que aparece chama a atenção.</p>
+        <p>Cada cor é um token. Os valores abaixo são lidos do <code>uc-kit.css</code> quando a página abre; sem JavaScript mostram-se os valores por omissão.</p>
+
+        <h2 id="neutras">Neutras</h2>
+        <p>Quatro tons de texto, do mais forte ao mais discreto, uma cor de borda e três superfícies.</p>
+        <ul class="docs-swatches">
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-text)"></span>
+            <span class="docs-swatch__name">Texto</span>
+            <code>--uc-color-text</code>
+            <span class="docs-swatch__value" data-token="--uc-color-text" data-kind="color">#18181B</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-text-secondary)"></span>
+            <span class="docs-swatch__name">Texto secundário</span>
+            <code>--uc-color-text-secondary</code>
+            <span class="docs-swatch__value" data-token="--uc-color-text-secondary" data-kind="color">#3F3F46</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-text-muted)"></span>
+            <span class="docs-swatch__name">Texto discreto</span>
+            <code>--uc-color-text-muted</code>
+            <span class="docs-swatch__value" data-token="--uc-color-text-muted" data-kind="color">#52525B</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-text-subtle)"></span>
+            <span class="docs-swatch__name">Texto subtil</span>
+            <code>--uc-color-text-subtle</code>
+            <span class="docs-swatch__value" data-token="--uc-color-text-subtle" data-kind="color">#71717A</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-border)"></span>
+            <span class="docs-swatch__name">Borda</span>
+            <code>--uc-color-border</code>
+            <span class="docs-swatch__value" data-token="--uc-color-border" data-kind="color">#E4E4E7</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-surface)"></span>
+            <span class="docs-swatch__name">Superfície</span>
+            <code>--uc-color-surface</code>
+            <span class="docs-swatch__value" data-token="--uc-color-surface" data-kind="color">#FFFFFF</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-surface-muted)"></span>
+            <span class="docs-swatch__name">Superfície cinzenta</span>
+            <code>--uc-color-surface-muted</code>
+            <span class="docs-swatch__value" data-token="--uc-color-surface-muted" data-kind="color">#F4F4F5</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-surface-sunken)"></span>
+            <span class="docs-swatch__name">Superfície rebaixada</span>
+            <code>--uc-color-surface-sunken</code>
+            <span class="docs-swatch__value" data-token="--uc-color-surface-sunken" data-kind="color">#FAFAFA</span>
+          </li>
+        </ul>
+        <p>O texto principal usa <code>text</code>; os parágrafos de introdução e o conteúdo das semanas usam <code>text-secondary</code>, um pouco mais leve; datas e metadados usam <code>text-muted</code>. O <code>text-subtle</code> fica para rótulos curtos sobre fundo branco.</p>
+
+        <h2 id="destaque">Cor de destaque</h2>
+        <ul class="docs-swatches">
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-accent)"></span>
+            <span class="docs-swatch__name">Destaque</span>
+            <code>--uc-color-accent</code>
+            <span class="docs-swatch__value" data-token="--uc-color-accent" data-kind="color">#1D4ED8</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-accent-strong)"></span>
+            <span class="docs-swatch__name">Destaque forte</span>
+            <code>--uc-color-accent-strong</code>
+            <span class="docs-swatch__value" data-token="--uc-color-accent-strong" data-kind="color">#143797</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-accent-soft)"></span>
+            <span class="docs-swatch__name">Destaque suave</span>
+            <code>--uc-color-accent-soft</code>
+            <span class="docs-swatch__value" data-token="--uc-color-accent-soft" data-kind="color">#EDF1FC</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-highlight)"></span>
+            <span class="docs-swatch__name">Realce</span>
+            <code>--uc-color-highlight</code>
+            <span class="docs-swatch__value" data-token="--uc-color-highlight" data-kind="color">#F4F6FD</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-on-accent)"></span>
+            <span class="docs-swatch__name">Texto sobre o destaque</span>
+            <code>--uc-color-on-accent</code>
+            <span class="docs-swatch__value" data-token="--uc-color-on-accent" data-kind="color">#FFFFFF</span>
+          </li>
+        </ul>
+        <p>A cor de destaque marca links, o item ativo da navegação, os botões principais, a borda de <code>uc-card--accent</code> e o anel de foco. Muda-se no <code>course.js</code>:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  accentColor: "#0F766E",
+  // …
+};</code></pre></uc-code>
+        <p>O kit põe o valor em <code>--uc-color-accent</code>. As variantes não se escrevem à mão: o <code>uc-kit.css</code> calcula-as com <code>color-mix()</code>, por isso acompanham qualquer cor de destaque.</p>
+        <uc-code lang="css" filename="uc-kit.css" no-download><pre><code>--uc-color-accent-strong: color-mix(in srgb, var(--uc-color-accent) 70%, #000);
+--uc-color-accent-soft: color-mix(in srgb, var(--uc-color-accent) 8%, #fff);
+--uc-color-highlight: color-mix(in srgb, var(--uc-color-accent) 5%, #fff);</code></pre></uc-code>
+        <p>Com <code>accentColor: "#0F766E"</code>:</p>
+        <!-- docs:demo src="../../demos/styles/accent.html" title="outra cor de destaque" height="277" -->
+        <div class="docs-demo" id="demo-styles-accent">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/accent.html" title="Demonstração: outra cor de destaque" loading="lazy" style="height: 277px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;p&gt;Os &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt;, os botões principais, as etiquetas de destaque e a borda do cartão seguem a cor de destaque.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a class=&quot;uc-button uc-button--primary&quot; href=&quot;#&quot;&gt;Enunciado&lt;/a&gt;
+  &lt;a class=&quot;uc-button&quot; href=&quot;#&quot;&gt;Testes&lt;/a&gt;
+  &lt;span class=&quot;uc-tag uc-tag--accent&quot;&gt;Novo&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class=&quot;uc-card uc-card--accent&quot;&gt;
+  &lt;strong&gt;Projeto 2&lt;/strong&gt;
+  &lt;span class=&quot;uc-muted&quot;&gt;Entrega a 9 de janeiro.&lt;/span&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/accent.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Uma variante também se pode fixar no <code>theme.css</code> (<code>--uc-color-accent-soft: #E6F4F1</code>), mas deixa de acompanhar o destaque. Para experimentar cores e ver o contraste, ver o <a href="../personalizar/tema.html">Personalizador de tema</a>.</p>
+
+        <h2 id="estado">Cores de estado</h2>
+        <ul class="docs-swatches">
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-warning-text)"></span>
+            <span class="docs-swatch__name">Aviso: texto</span>
+            <code>--uc-color-warning-text</code>
+            <span class="docs-swatch__value" data-token="--uc-color-warning-text" data-kind="color">#92400E</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-warning-bg)"></span>
+            <span class="docs-swatch__name">Aviso: fundo</span>
+            <code>--uc-color-warning-bg</code>
+            <span class="docs-swatch__value" data-token="--uc-color-warning-bg" data-kind="color">#FEF3C7</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-warning-surface)"></span>
+            <span class="docs-swatch__name">Aviso: painel</span>
+            <code>--uc-color-warning-surface</code>
+            <span class="docs-swatch__value" data-token="--uc-color-warning-surface" data-kind="color">#FFFBEB</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-warning-border)"></span>
+            <span class="docs-swatch__name">Aviso: borda</span>
+            <code>--uc-color-warning-border</code>
+            <span class="docs-swatch__value" data-token="--uc-color-warning-border" data-kind="color">#FDE68A</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-success-text)"></span>
+            <span class="docs-swatch__name">Sucesso: texto</span>
+            <code>--uc-color-success-text</code>
+            <span class="docs-swatch__value" data-token="--uc-color-success-text" data-kind="color">#166534</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-success-bg)"></span>
+            <span class="docs-swatch__name">Sucesso: fundo</span>
+            <code>--uc-color-success-bg</code>
+            <span class="docs-swatch__value" data-token="--uc-color-success-bg" data-kind="color">#DCFCE7</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-danger-text)"></span>
+            <span class="docs-swatch__name">Erro: texto</span>
+            <code>--uc-color-danger-text</code>
+            <span class="docs-swatch__value" data-token="--uc-color-danger-text" data-kind="color">#991B1B</span>
+          </li>
+          <li class="docs-swatch">
+            <span class="docs-swatch__color" style="background: var(--uc-color-danger-bg)"></span>
+            <span class="docs-swatch__name">Erro: fundo</span>
+            <code>--uc-color-danger-bg</code>
+            <span class="docs-swatch__value" data-token="--uc-color-danger-bg" data-kind="color">#FEE2E2</span>
+          </li>
+        </ul>
+        <ul>
+          <li><strong>Aviso</strong> (âmbar): avaliação e novidades. <span class="uc-tag uc-tag--warning">Avaliação</span> é <code>uc-tag--warning</code>; os painéis de <a href="../componentes/uc-event.html"><code>&lt;uc-event&gt;</code></a> e <code>uc-callout--warning</code> usam <code>warning-surface</code> e <code>warning-border</code>.</li>
+          <li><strong>Sucesso</strong> (verde): respostas certas em <a href="../componentes/uc-question.html"><code>&lt;uc-question&gt;</code></a>, exercícios marcados como feitos, testes que passam. <span class="uc-tag uc-tag--success">Feito</span> é <code>uc-tag--success</code>.</li>
+          <li><strong>Erro</strong> (vermelho): testes que falham e erros de execução em <a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a>.</li>
+        </ul>
+        <p>As cores de estado nunca são o único sinal: uma etiqueta tem texto, um teste que falha tem uma marca e uma mensagem. Quem não distingue verde de vermelho lê o mesmo.</p>
+
+        <h2 id="contraste">Contraste</h2>
+        <p>Texto normal precisa de um contraste de pelo menos <strong>4,5:1</strong> com o fundo (WCAG 2.1, nível AA). Todos os pares de texto do kit cumprem. A tabela calcula o contraste com as cores desta página:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Contraste dos pares de cores do kit</caption>
+            <thead>
+              <tr><th scope="col">Amostra</th><th scope="col">Texto sobre fundo</th><th scope="col">Onde</th><th scope="col">Contraste</th><th scope="col">4,5:1</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-text); background: var(--uc-color-surface)">Aa</span></td><td><code>text</code> sobre <code>surface</code></td><td>Texto principal</td><td><span class="uc-mono" data-contrast="--uc-color-text --uc-color-surface">17,72:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-text-secondary); background: var(--uc-color-surface)">Aa</span></td><td><code>text-secondary</code> sobre <code>surface</code></td><td>Parágrafos</td><td><span class="uc-mono" data-contrast="--uc-color-text-secondary --uc-color-surface">10,44:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-text-muted); background: var(--uc-color-surface)">Aa</span></td><td><code>text-muted</code> sobre <code>surface</code></td><td>Metadados</td><td><span class="uc-mono" data-contrast="--uc-color-text-muted --uc-color-surface">7,73:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-text-muted); background: var(--uc-color-surface-sunken)">Aa</span></td><td><code>text-muted</code> sobre <code>surface-sunken</code></td><td>Cabeçalhos de tabela</td><td><span class="uc-mono" data-contrast="--uc-color-text-muted --uc-color-surface-sunken">7,41:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-text-subtle); background: var(--uc-color-surface)">Aa</span></td><td><code>text-subtle</code> sobre <code>surface</code></td><td>Rótulos da navegação</td><td><span class="uc-mono" data-contrast="--uc-color-text-subtle --uc-color-surface">4,83:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-text-subtle); background: var(--uc-color-surface-muted)">Aa</span></td><td><code>text-subtle</code> sobre <code>surface-muted</code></td><td>Texto subtil sobre cinzento (evitar)</td><td><span class="uc-mono" data-contrast="--uc-color-text-subtle --uc-color-surface-muted">4,40:1</span></td><td><span class="uc-tag uc-tag--warning" data-verdict>Não cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-accent); background: var(--uc-color-surface)">Aa</span></td><td><code>accent</code> sobre <code>surface</code></td><td>Links</td><td><span class="uc-mono" data-contrast="--uc-color-accent --uc-color-surface">6,70:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-accent); background: var(--uc-color-accent-soft)">Aa</span></td><td><code>accent</code> sobre <code>accent-soft</code></td><td>Item ativo, <code>uc-tag--accent</code></td><td><span class="uc-mono" data-contrast="--uc-color-accent --uc-color-accent-soft">5,93:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-on-accent); background: var(--uc-color-accent)">Aa</span></td><td><code>on-accent</code> sobre <code>accent</code></td><td>Botão principal</td><td><span class="uc-mono" data-contrast="--uc-color-on-accent --uc-color-accent">6,70:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-on-accent); background: var(--uc-color-accent-strong)">Aa</span></td><td><code>on-accent</code> sobre <code>accent-strong</code></td><td>Botão principal ao passar o rato</td><td><span class="uc-mono" data-contrast="--uc-color-on-accent --uc-color-accent-strong">10,38:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-warning-text); background: var(--uc-color-warning-bg)">Aa</span></td><td><code>warning-text</code> sobre <code>warning-bg</code></td><td><code>uc-tag--warning</code></td><td><span class="uc-mono" data-contrast="--uc-color-warning-text --uc-color-warning-bg">6,37:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-success-text); background: var(--uc-color-success-bg)">Aa</span></td><td><code>success-text</code> sobre <code>success-bg</code></td><td><code>uc-tag--success</code></td><td><span class="uc-mono" data-contrast="--uc-color-success-text --uc-color-success-bg">6,49:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-danger-text); background: var(--uc-color-surface)">Aa</span></td><td><code>danger-text</code> sobre <code>surface</code></td><td>Erros em <code>&lt;uc-code&gt;</code></td><td><span class="uc-mono" data-contrast="--uc-color-danger-text --uc-color-surface">8,31:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+              <tr><td><span class="docs-pair" style="color: var(--uc-color-danger-text); background: var(--uc-color-danger-bg)">Aa</span></td><td><code>danger-text</code> sobre <code>danger-bg</code></td><td>Erro sobre o seu fundo</td><td><span class="uc-mono" data-contrast="--uc-color-danger-text --uc-color-danger-bg">6,80:1</span></td><td><span class="uc-tag uc-tag--success" data-verdict>Cumpre</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O que isto pede a quem muda cores:</p>
+        <ul>
+          <li>A cor de destaque tem de ter 4,5:1 sobre branco, porque é a cor dos links. Cores claras (amarelo, verde-lima, azul-céu) não servem; escurece-se a cor até cumprir.</li>
+          <li>O texto dos botões principais é <code>--uc-color-on-accent</code> (branco). Uma cor de destaque que cumpre sobre branco também cumpre com texto branco por cima.</li>
+          <li>O <code>text-subtle</code> não chega a 4,5:1 sobre <code>surface-muted</code>: sobre fundos cinzentos usa-se <code>text-muted</code>.</li>
+        </ul>
+        <p>Mais em <a href="acessibilidade.html">Acessibilidade</a>.</p>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +338,11 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#paleta">A paleta</a></li>
+          <li><a href="#neutras">Neutras</a></li>
+          <li><a href="#destaque">Cor de destaque</a></li>
+          <li><a href="#estado">Cores de estado</a></li>
+          <li><a href="#contraste">Contraste</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->

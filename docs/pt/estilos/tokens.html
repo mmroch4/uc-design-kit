@@ -12,6 +12,7 @@
   <script src="../../assets/kit-config.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/styles.js" defer></script>
 </head>
 <body class="docs">
   <!-- docs:header -->
@@ -97,11 +98,185 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Estilos</p>
           <h1>Tokens</h1>
-          <p class="docs-lead">Referência de todas as variáveis CSS do kit, com valor e onde são usadas.</p>
+          <p class="docs-lead">Todas as variáveis CSS do kit, com o valor por omissão e onde se usam. Os valores desta página são lidos do <code>uc-kit.css</code> pelo navegador quando a página abre.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="como-mudar">Como se mudam</h2>
+        <p>Os tokens estão definidos em <code>:root</code> no <code>uc-kit.css</code>. Muda-se um token redefinindo-o no <code>theme.css</code> da cadeira, carregado depois do kit:</p>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>:root {
+  --uc-color-accent: #0F766E;
+  --uc-radius-lg: 4px;
+}</code></pre></uc-code>
+        <p>Os componentes e os blocos leem só estes tokens, por isso uma linha muda o kit inteiro. É o nível 1 da personalização; ver <a href="../personalizar/tokens.html">Nível 1: tokens</a>. Para a cor de destaque basta o campo <a href="../course-js.html#campos-curso"><code>accentColor</code></a> do <code>course.js</code>.</p>
+        <p>Os valores com uma cor ao lado e as medidas em px são calculados nesta página. Os derivados (<code>color-mix()</code>) aparecem já resolvidos para a cor por omissão. Abaixo de 760 px de largura, os valores que mudam no telemóvel aparecem com o valor do telemóvel.</p>
+
+        <h2 id="cor">Cor</h2>
+        <p>Ver <a href="cor.html">Cor</a> para as amostras e o contraste.</p>
+        <h3 id="cor-destaque">Destaque</h3>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Tokens da cor de destaque</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-color-accent</code></td><td><span class="docs-dot" style="background: var(--uc-color-accent)"></span><code data-token="--uc-color-accent" data-kind="color">#1D4ED8</code></td><td>Links, navegação ativa, botões principais, borda de <code>uc-card--accent</code>, anel de foco. Muda com o <code>accentColor</code> do <code>course.js</code>. Todo o kit.</td></tr>
+              <tr><td><code>--uc-color-accent-strong</code></td><td><span class="docs-dot" style="background: var(--uc-color-accent-strong)"></span><code data-token="--uc-color-accent-strong" data-kind="color">#143797</code></td><td>Links e botão principal ao passar o rato. Derivado: 70% do destaque com preto.</td></tr>
+              <tr><td><code>--uc-color-accent-soft</code></td><td><span class="docs-dot" style="background: var(--uc-color-accent-soft)"></span><code data-token="--uc-color-accent-soft" data-kind="color">#EDF1FC</code></td><td>Fundo do item ativo da navegação, de <code>uc-tag--accent</code>, de <code>&lt;uc-this-week&gt;</code> e da opção escolhida em <code>&lt;uc-question&gt;</code>. Derivado: 8% do destaque com branco.</td></tr>
+              <tr><td><code>--uc-color-highlight</code></td><td><span class="docs-dot" style="background: var(--uc-color-highlight)"></span><code data-token="--uc-color-highlight" data-kind="color">#F4F6FD</code></td><td>Faixa da semana atual em <code>&lt;uc-week&gt;</code>. Derivado: 5% do destaque com branco.</td></tr>
+              <tr><td><code>--uc-color-on-accent</code></td><td><span class="docs-dot" style="background: var(--uc-color-on-accent)"></span><code data-token="--uc-color-on-accent" data-kind="color">#FFFFFF</code></td><td>Texto sobre o destaque (<code>uc-button--primary</code>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 id="cor-neutras">Neutras</h3>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Tokens de cores neutras</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-color-text</code></td><td><span class="docs-dot" style="background: var(--uc-color-text)"></span><code data-token="--uc-color-text" data-kind="color">#18181B</code></td><td>Texto principal e títulos.</td></tr>
+              <tr><td><code>--uc-color-text-secondary</code></td><td><span class="docs-dot" style="background: var(--uc-color-text-secondary)"></span><code data-token="--uc-color-text-secondary" data-kind="color">#3F3F46</code></td><td>Parágrafos: <code>uc-lead</code>, <code>uc-prose</code>, <code>uc-content</code>, texto das semanas.</td></tr>
+              <tr><td><code>--uc-color-text-muted</code></td><td><span class="docs-dot" style="background: var(--uc-color-text-muted)"></span><code data-token="--uc-color-text-muted" data-kind="color">#52525B</code></td><td>Metadados, datas, cabeçalhos de tabela, <code>uc-muted</code>.</td></tr>
+              <tr><td><code>--uc-color-text-subtle</code></td><td><span class="docs-dot" style="background: var(--uc-color-text-subtle)"></span><code data-token="--uc-color-text-subtle" data-kind="color">#71717A</code></td><td>Rótulos de grupo da navegação, semanas futuras, ícones discretos. Só sobre fundo branco.</td></tr>
+              <tr><td><code>--uc-color-border</code></td><td><span class="docs-dot" style="background: var(--uc-color-border)"></span><code data-token="--uc-color-border" data-kind="color">#E4E4E7</code></td><td>Bordas de cartões, tabelas, semanas e linhas.</td></tr>
+              <tr><td><code>--uc-color-surface</code></td><td><span class="docs-dot" style="background: var(--uc-color-surface)"></span><code data-token="--uc-color-surface" data-kind="color">#FFFFFF</code></td><td>Fundo da página e dos cartões.</td></tr>
+              <tr><td><code>--uc-color-surface-muted</code></td><td><span class="docs-dot" style="background: var(--uc-color-surface-muted)"></span><code data-token="--uc-color-surface-muted" data-kind="color">#F4F4F5</code></td><td>Etiquetas, <code>uc-callout</code>, <code>code</code> no texto, fundos ao passar o rato.</td></tr>
+              <tr><td><code>--uc-color-surface-sunken</code></td><td><span class="docs-dot" style="background: var(--uc-color-surface-sunken)"></span><code data-token="--uc-color-surface-sunken" data-kind="color">#FAFAFA</code></td><td>Cabeçalhos de <code>uc-table</code> e barras de <code>&lt;uc-code&gt;</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 id="cor-estado">Estado</h3>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Tokens de cores de estado</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-color-warning-text</code></td><td><span class="docs-dot" style="background: var(--uc-color-warning-text)"></span><code data-token="--uc-color-warning-text" data-kind="color">#92400E</code></td><td>Texto de <code>uc-tag--warning</code> (avaliação, "novo") e avisos de <code>&lt;uc-code&gt;</code>.</td></tr>
+              <tr><td><code>--uc-color-warning-bg</code></td><td><span class="docs-dot" style="background: var(--uc-color-warning-bg)"></span><code data-token="--uc-color-warning-bg" data-kind="color">#FEF3C7</code></td><td>Fundo de <code>uc-tag--warning</code>.</td></tr>
+              <tr><td><code>--uc-color-warning-surface</code></td><td><span class="docs-dot" style="background: var(--uc-color-warning-surface)"></span><code data-token="--uc-color-warning-surface" data-kind="color">#FFFBEB</code></td><td>Painel de <code>uc-callout--warning</code> e de <code>&lt;uc-event&gt;</code>.</td></tr>
+              <tr><td><code>--uc-color-warning-border</code></td><td><span class="docs-dot" style="background: var(--uc-color-warning-border)"></span><code data-token="--uc-color-warning-border" data-kind="color">#FDE68A</code></td><td>Borda dos mesmos painéis.</td></tr>
+              <tr><td><code>--uc-color-success-text</code></td><td><span class="docs-dot" style="background: var(--uc-color-success-text)"></span><code data-token="--uc-color-success-text" data-kind="color">#166534</code></td><td>Respostas certas, exercícios feitos, testes que passam, <code>uc-tag--success</code>.</td></tr>
+              <tr><td><code>--uc-color-success-bg</code></td><td><span class="docs-dot" style="background: var(--uc-color-success-bg)"></span><code data-token="--uc-color-success-bg" data-kind="color">#DCFCE7</code></td><td>Fundo dos mesmos.</td></tr>
+              <tr><td><code>--uc-color-danger-text</code></td><td><span class="docs-dot" style="background: var(--uc-color-danger-text)"></span><code data-token="--uc-color-danger-text" data-kind="color">#991B1B</code></td><td>Testes que falham e erros de execução em <code>&lt;uc-code&gt;</code>.</td></tr>
+              <tr><td><code>--uc-color-danger-bg</code></td><td><span class="docs-dot" style="background: var(--uc-color-danger-bg)"></span><code data-token="--uc-color-danger-bg" data-kind="color">#FEE2E2</code></td><td>Fundo para o mesmo texto. O kit ainda não o usa; fica para extensões.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="tipografia">Tipografia</h2>
+        <p>Ver <a href="tipografia.html">Tipografia</a> para a escala com exemplos.</p>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Tokens de tipografia</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-font-sans</code></td><td><code data-token="--uc-font-sans" data-kind="raw">Inter, system-ui, -apple-system, "Segoe UI", sans-serif</code></td><td>Texto. Todo o kit.</td></tr>
+              <tr><td><code>--uc-font-mono</code></td><td><code data-token="--uc-font-mono" data-kind="raw">"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace</code></td><td>Código, datas, números de semana, <code>uc-mono</code>.</td></tr>
+              <tr><td><code>--uc-font-size-base</code></td><td><code data-token="--uc-font-size-base" data-kind="length">16px</code></td><td>Tamanho de <code>&lt;html&gt;</code>; os outros tamanhos são relativos a ele.</td></tr>
+              <tr><td><code>--uc-font-size-xs</code></td><td><code data-token="--uc-font-size-xs" data-kind="length">0.75rem (12px)</code></td><td>Etiquetas (<code>uc-tag</code>), contadores.</td></tr>
+              <tr><td><code>--uc-font-size-sm</code></td><td><code data-token="--uc-font-size-sm" data-kind="length">0.8125rem (13px)</code></td><td>Cabeçalhos de tabela, metadados pequenos.</td></tr>
+              <tr><td><code>--uc-font-size-md</code></td><td><code data-token="--uc-font-size-md" data-kind="length">0.875rem (14px)</code></td><td>Texto secundário, botões, <code>uc-small</code>.</td></tr>
+              <tr><td><code>--uc-font-size-body-sm</code></td><td><code data-token="--uc-font-size-body-sm" data-kind="length">0.9375rem (15px)</code></td><td>Texto de tabelas, semanas, avisos e <code>&lt;pre&gt;</code> em <code>uc-content</code>.</td></tr>
+              <tr><td><code>--uc-font-size-lg</code></td><td><code data-token="--uc-font-size-lg" data-kind="length">1.125rem (18px)</code></td><td><code>uc-lead</code> e subtítulo de <code>&lt;uc-hero&gt;</code>.</td></tr>
+              <tr><td><code>--uc-font-size-h3</code></td><td><code data-token="--uc-font-size-h3" data-kind="length">1.25rem (20px)</code></td><td><code>&lt;h3&gt;</code></td></tr>
+              <tr><td><code>--uc-font-size-h2</code></td><td><code data-token="--uc-font-size-h2" data-kind="length">1.375rem (22px)</code></td><td><code>&lt;h2&gt;</code></td></tr>
+              <tr><td><code>--uc-font-size-h1</code></td><td><code data-token="--uc-font-size-h1" data-kind="length">2.25rem (36px)</code></td><td><code>&lt;h1&gt;</code>. Abaixo de 760 px passa a <code>1.875rem</code> (30px).</td></tr>
+              <tr><td><code>--uc-font-size-display</code></td><td><code data-token="--uc-font-size-display" data-kind="length">2.5rem (40px)</code></td><td>Título de <code>&lt;uc-hero&gt;</code>. Abaixo de 760 px passa a <code>2rem</code> (32px).</td></tr>
+              <tr><td><code>--uc-line-height</code></td><td><code data-token="--uc-line-height" data-kind="raw">1.6</code></td><td>Entrelinha do texto.</td></tr>
+              <tr><td><code>--uc-line-height-tight</code></td><td><code data-token="--uc-line-height-tight" data-kind="raw">1.25</code></td><td>Entrelinha dos títulos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="espaco-e-forma">Espaço e forma</h2>
+        <p>A escala de espaço anda de 4 em 4 px e não tem os passos 9 e 11. Ver <a href="espaco.html">Espaço e forma</a>.</p>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Tokens de espaço e forma</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-radius-sm</code></td><td><code data-token="--uc-radius-sm" data-kind="length">6px</code></td><td>Etiquetas e <code>code</code> no texto.</td></tr>
+              <tr><td><code>--uc-radius-md</code></td><td><code data-token="--uc-radius-md" data-kind="length">8px</code></td><td>Botões, <code>&lt;pre&gt;</code>, campos.</td></tr>
+              <tr><td><code>--uc-radius-lg</code></td><td><code data-token="--uc-radius-lg" data-kind="length">12px</code></td><td>Cartões, tabelas, <code>uc-callout</code>, <code>&lt;uc-code&gt;</code>, exercícios.</td></tr>
+              <tr><td><code>--uc-space-1</code></td><td><code data-token="--uc-space-1" data-kind="length">4px</code></td><td>Entre linhas de uma lista, ícone e texto.</td></tr>
+              <tr><td><code>--uc-space-2</code></td><td><code data-token="--uc-space-2" data-kind="length">8px</code></td><td>Dentro de cartões e caixas, entre etiquetas.</td></tr>
+              <tr><td><code>--uc-space-3</code></td><td><code data-token="--uc-space-3" data-kind="length">12px</code></td><td>Células de tabela, <code>uc-grid</code>.</td></tr>
+              <tr><td><code>--uc-space-4</code></td><td><code data-token="--uc-space-4" data-kind="length">16px</code></td><td>Entre blocos de uma secção, <code>uc-stack</code>, margem lateral em ecrãs estreitos.</td></tr>
+              <tr><td><code>--uc-space-5</code></td><td><code data-token="--uc-space-5" data-kind="length">20px</code></td><td>Margem interior de cartões e caixas (vertical).</td></tr>
+              <tr><td><code>--uc-space-6</code></td><td><code data-token="--uc-space-6" data-kind="length">24px</code></td><td>Margem interior de cartões e caixas (horizontal).</td></tr>
+              <tr><td><code>--uc-space-7</code></td><td><code data-token="--uc-space-7" data-kind="length">28px</code></td><td>Só em <code>&lt;uc-this-week&gt;</code>.</td></tr>
+              <tr><td><code>--uc-space-8</code></td><td><code data-token="--uc-space-8" data-kind="length">32px</code></td><td>Margem lateral da página (<code>--uc-gutter</code>), <code>&lt;hr&gt;</code>.</td></tr>
+              <tr><td><code>--uc-space-10</code></td><td><code data-token="--uc-space-10" data-kind="length">40px</code></td><td>Antes de um <code>&lt;h2&gt;</code> em <code>uc-content</code>, colunas de <code>uc-split</code>.</td></tr>
+              <tr><td><code>--uc-space-12</code></td><td><code data-token="--uc-space-12" data-kind="length">48px</code></td><td>Entre os blocos do conteúdo de <code>&lt;uc-page&gt;</code> e de <code>&lt;uc-guide&gt;</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="layout">Layout</h2>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Tokens de layout</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-content-max</code></td><td><code data-token="--uc-content-max" data-kind="length">1200px</code></td><td>Largura máxima da página em <code>&lt;uc-page&gt;</code>.</td></tr>
+              <tr><td><code>--uc-sidebar-width</code></td><td><code data-token="--uc-sidebar-width" data-kind="length">216px</code></td><td>Coluna da navegação de <code>&lt;uc-page&gt;</code> (a partir de 960 px).</td></tr>
+              <tr><td><code>--uc-header-height</code></td><td><code data-token="--uc-header-height" data-kind="length">64px</code></td><td>Barra de topo de <code>&lt;uc-page&gt;</code>; a navegação fixa começa por baixo dela.</td></tr>
+              <tr><td><code>--uc-gutter</code></td><td><code data-token="--uc-gutter" data-kind="length">32px</code></td><td>Margem lateral da página em <code>&lt;uc-page&gt;</code>. Abaixo de 760 px passa a 16px.</td></tr>
+              <tr><td><code>--uc-target-min</code></td><td><code data-token="--uc-target-min" data-kind="length">44px</code></td><td>Altura e largura mínimas de botões, links da navegação e outros alvos de toque.</td></tr>
+              <tr><td><code>--uc-focus-ring</code></td><td><code data-token="--uc-focus-ring" data-kind="raw">2px solid #1D4ED8</code></td><td>Contorno de foco do teclado (<code>outline</code>), com <code>outline-offset: 2px</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Os pontos de quebra (760 e 960 px) não são tokens: as variáveis CSS não podem ser usadas em <code>@media</code>.</p>
+
+        <h2 id="tokens-locais">Tokens locais</h2>
+        <p>Não estão definidos em <code>:root</code>: o kit lê-os com um valor de recurso. Definem-se em <code>:root</code> para o site inteiro ou num só elemento para mudar só esse bloco.</p>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Tokens locais</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor sem definição</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-grid-min</code></td><td><code>220px</code></td><td>Largura mínima de uma coluna de <code>uc-grid</code>.</td></tr>
+              <tr><td><code>--uc-grid-gap</code></td><td><code>12px</code></td><td>Espaço entre colunas de <code>uc-grid</code> (<code>--uc-space-3</code>).</td></tr>
+              <tr><td><code>--uc-stack-gap</code></td><td><code>16px</code></td><td>Espaço entre filhos de <code>uc-stack</code> (<code>--uc-space-4</code>).</td></tr>
+              <tr><td><code>--uc-table-min</code></td><td><code>560px</code></td><td>Largura mínima da tabela dentro de <code>uc-table</code>; abaixo dela a tabela desliza.</td></tr>
+              <tr><td><code>--uc-card-padding</code></td><td><code>20px 24px</code></td><td>Margem interior de <code>uc-card</code>. Os cartões de <code>&lt;uc-team&gt;</code> usam <code>16px 20px</code>.</td></tr>
+              <tr><td><code>--uc-main-gap</code></td><td><code>48px</code></td><td>Espaço entre os blocos de topo do conteúdo de <code>&lt;uc-page&gt;</code>.</td></tr>
+              <tr><td><code>--uc-guide-gap</code></td><td><code>48px</code></td><td>Espaço entre os blocos de <code>&lt;uc-guide&gt;</code>.</td></tr>
+              <tr><td><code>--uc-notices-date-width</code></td><td><code>64px</code></td><td>Coluna da data em <code>&lt;uc-notices&gt;</code>.</td></tr>
+              <tr><td><code>--uc-deadlines-date-width</code></td><td><code>5.25rem</code></td><td>Coluna da data de <code>&lt;uc-deadlines&gt;</code> em lista.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="html" no-download><pre><code>&lt;div class="uc-grid" style="--uc-grid-min: 160px"&gt;
+  …
+&lt;/div&gt;</code></pre></uc-code>
+
+        <h2 id="internas">Variáveis internas</h2>
+        <p>O kit usa ainda esta variável dentro de um componente. Não faz parte do contrato e pode mudar numa versão nova.</p>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Variáveis internas</caption>
+            <thead>
+              <tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-disclosure-icon</code></td><td><code>url(…)</code></td><td>Ícone das pistas e soluções de <code>&lt;uc-exercise&gt;</code>, definido em <code>.uc-hint</code> e <code>.uc-solution</code>. Para mudar o ícone, substitui-se a regra destas classes.</td></tr>
+            </tbody>
+          </table>
+        </div>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +299,16 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#como-mudar">Como se mudam</a></li>
+          <li><a href="#cor">Cor</a></li>
+          <li class="docs-toc__sub"><a href="#cor-destaque">Destaque</a></li>
+          <li class="docs-toc__sub"><a href="#cor-neutras">Neutras</a></li>
+          <li class="docs-toc__sub"><a href="#cor-estado">Estado</a></li>
+          <li><a href="#tipografia">Tipografia</a></li>
+          <li><a href="#espaco-e-forma">Espaço e forma</a></li>
+          <li><a href="#layout">Layout</a></li>
+          <li><a href="#tokens-locais">Tokens locais</a></li>
+          <li><a href="#internas">Variáveis internas</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->

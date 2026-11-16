@@ -12,6 +12,7 @@
   <script src="../../assets/kit-config.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/styles.js" defer></script>
 </head>
 <body class="docs">
   <!-- docs:header -->
@@ -97,11 +98,113 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Estilos</p>
           <h1>Princípios de design</h1>
-          <p class="docs-lead">Os princípios visuais do kit: minimalista, leve e acessível; hierarquia, densidade e quando usar cartão, chamada ou tabela.</p>
+          <p class="docs-lead">O kit faz páginas de cadeira simples, leves e acessíveis. Estes princípios explicam as escolhas do kit e servem de guia para o que o professor acrescenta.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="simples">Simples</h2>
+        <p>Um estudante abre o site da cadeira para saber o que há esta semana, quando é a próxima entrega e onde estão os slides. Tudo o que não ajuda a responder a isso pesa.</p>
+        <ul>
+          <li><strong>Pouca cor.</strong> Texto escuro sobre branco, uma cor de destaque para links e ações, âmbar para avaliação. Ver <a href="cor.html">Cor</a>.</li>
+          <li><strong>Sem decoração.</strong> Sem sombras, gradientes, ícones a enfeitar títulos ou imagens de fundo. Uma borda fina separa o que precisa de ser separado.</li>
+          <li><strong>Um só estilo.</strong> As cadeiras do mesmo departamento ficam parecidas, e um estudante que conhece um site sabe usar os outros.</li>
+        </ul>
+
+        <h2 id="leve">Leve</h2>
+        <p>O kit é um ficheiro CSS e um ficheiro JavaScript, com as letras servidas ao lado. Comprimidos, os dois têm cerca de 35 kB. Não há passo de compilação, dependências nem pedidos a outros servidores: uma página abre-se do disco, de um servidor da universidade ou do GitHub Pages da mesma forma.</p>
+        <p>O conteúdo está no HTML. Sem JavaScript, as semanas, os guiões e as tabelas continuam lá; só se perde o que o JavaScript acrescenta (datas calculadas, prazos, o estado das semanas).</p>
+
+        <h2 id="acessivel">Acessível</h2>
+        <p>Os componentes geram HTML semântico, cumprem o contraste de 4,5:1, funcionam com o teclado e mostram o foco. Os testes do kit correm o axe em todas as páginas. O que cabe a quem escreve as páginas (texto alternativo, títulos por ordem, links com nome) está em <a href="acessibilidade.html">Acessibilidade</a>.</p>
+
+        <h2 id="hierarquia">Hierarquia</h2>
+        <p>Numa página, o olhar deve encontrar primeiro o que importa agora. O kit marca a importância com tamanho, peso e espaço, pela ordem, e só depois com cor:</p>
+        <ul>
+          <li>Um <code>&lt;h1&gt;</code> por página, uma introdução curta (<code>uc-lead</code>), depois secções com <code>&lt;h2&gt;</code>. Ver <a href="tipografia.html">Tipografia</a>.</li>
+          <li>O que é de agora aparece destacado sem esforço do professor: a semana atual, o próximo prazo, os avisos novos.</li>
+          <li>Destaca-se uma coisa por secção. Um cartão com <code>uc-card--accent</code> entre cartões normais chama a atenção; três já não.</li>
+        </ul>
+
+        <h2 id="densidade">Densidade</h2>
+        <p>O kit é arejado no texto e compacto nas listas. Os parágrafos têm entrelinha de 1,6 e no máximo 720 px de largura; as listas de semanas, prazos e avisos mostram uma linha por item, com o detalhe escondido até se abrir. O espaço entre blocos sai de uma escala fixa (<a href="espaco.html">Espaço e forma</a>), e é o espaço, não as linhas, que agrupa o que está junto.</p>
+        <p>Uma página longa não é um problema se os títulos a dividirem bem. Um problema é uma página com tudo ao mesmo nível: aí vale a pena separar em secções, ou passar parte para outra página.</p>
+
+        <h2 id="escolher-o-bloco">Cartão, caixa ou tabela</h2>
+        <p>Os três blocos mais usados servem para coisas diferentes.</p>
+
+        <h3 id="cartao">Cartão</h3>
+        <p><code>uc-card</code> para itens do mesmo tipo, lado a lado, cada um com um título e pouco texto: projetos, materiais, pessoas. Dentro de <code>uc-grid</code> organizam-se em colunas que se ajustam à largura. Quando o cartão inteiro é um link, escreve-se como <code>&lt;a class="uc-card"&gt;</code>.</p>
+        <!-- docs:demo src="../../demos/styles/card.html" title="cartões numa grelha" height="175" -->
+        <div class="docs-demo" id="demo-styles-card">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/card.html" title="Demonstração: cartões numa grelha" loading="lazy" style="height: 175px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-grid&quot;&gt;
+  &lt;a class=&quot;uc-card&quot; href=&quot;#&quot;&gt;
+    &lt;strong&gt;Projeto 1&lt;/strong&gt;
+    &lt;span class=&quot;uc-muted&quot;&gt;Enunciado, ficheiros de partida e testes.&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;uc-card&quot; href=&quot;#&quot;&gt;
+    &lt;strong&gt;Projeto 2&lt;/strong&gt;
+    &lt;span class=&quot;uc-muted&quot;&gt;Publicado na semana 8.&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;div class=&quot;uc-card uc-card--accent&quot;&gt;
+    &lt;strong&gt;Teste 1&lt;/strong&gt;
+    &lt;span class=&quot;uc-muted&quot;&gt;10 de dezembro, 14h00, anfiteatro B.&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/card.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="caixa">Caixa de destaque</h3>
+        <p><code>uc-callout</code> para uma nota que interrompe o texto: um pré-requisito, uma regra, um aviso. Uma ou duas por página; se tudo está numa caixa, nada se destaca. <code>uc-callout--warning</code> fica para o que tem consequências (prazos, inscrições, avaliação).</p>
+        <!-- docs:demo src="../../demos/styles/callout.html" title="caixa normal e caixa de aviso" height="265" -->
+        <div class="docs-demo" id="demo-styles-callout">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/callout.html" title="Demonstração: caixa normal e caixa de aviso" loading="lazy" style="height: 265px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-callout&quot;&gt;
+  &lt;strong&gt;Antes da primeira aula prática&lt;/strong&gt;
+  &lt;p&gt;Instalar o JDK 21 e o editor indicado no guião 1. Os computadores do laboratório já os têm.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;uc-callout uc-callout--warning&quot;&gt;
+  &lt;strong&gt;Inscrição no teste&lt;/strong&gt;
+  &lt;p&gt;Só fazem o teste os estudantes inscritos até 5 de dezembro.&lt;/p&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/callout.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="tabela">Tabela</h3>
+        <p><code>uc-table</code> quando cada item tem os mesmos campos e faz sentido comparar por coluna: componentes da avaliação, horários, notas mínimas. Se só há duas colunas e a segunda é texto longo, uma lista lê-se melhor. Num ecrã estreito a tabela desliza na horizontal sem alargar a página.</p>
+        <!-- docs:demo src="../../demos/styles/table.html" title="tabela de avaliação" height="242" -->
+        <div class="docs-demo" id="demo-styles-table">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/table.html" title="Demonstração: tabela de avaliação" loading="lazy" style="height: 242px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-table&quot;&gt;
+  &lt;table&gt;
+    &lt;caption class=&quot;uc-visually-hidden&quot;&gt;Componentes da avaliação&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Componente&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Peso&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Nota mínima&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Data&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Projeto 1&lt;/td&gt;&lt;td&gt;20%&lt;/td&gt;&lt;td&gt;—&lt;/td&gt;&lt;td&gt;28 nov&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Projeto 2&lt;/td&gt;&lt;td&gt;20%&lt;/td&gt;&lt;td&gt;—&lt;/td&gt;&lt;td&gt;9 jan&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Teste ou exame&lt;/td&gt;&lt;td&gt;60%&lt;/td&gt;&lt;td&gt;8,0&lt;/td&gt;&lt;td&gt;10 dez ou jan&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/table.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Os outros blocos (listas de links, atalhos, listas de verificação) estão em <a href="superficies.html">Blocos: superfícies e listas</a>.</p>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +227,15 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#simples">Simples</a></li>
+          <li><a href="#leve">Leve</a></li>
+          <li><a href="#acessivel">Acessível</a></li>
+          <li><a href="#hierarquia">Hierarquia</a></li>
+          <li><a href="#densidade">Densidade</a></li>
+          <li><a href="#escolher-o-bloco">Cartão, caixa ou tabela</a></li>
+          <li class="docs-toc__sub"><a href="#cartao">Cartão</a></li>
+          <li class="docs-toc__sub"><a href="#caixa">Caixa de destaque</a></li>
+          <li class="docs-toc__sub"><a href="#tabela">Tabela</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->

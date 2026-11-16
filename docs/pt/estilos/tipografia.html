@@ -12,6 +12,7 @@
   <script src="../../assets/kit-config.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/styles.js" defer></script>
 </head>
 <body class="docs">
   <!-- docs:header -->
@@ -97,11 +98,117 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Estilos</p>
           <h1>Tipografia</h1>
-          <p class="docs-lead">Inter e JetBrains Mono, a escala de tamanhos e as classes de texto do kit.</p>
+          <p class="docs-lead">Duas famílias de letra servidas com o kit, uma escala de nove tamanhos e três classes para blocos de texto: <code>uc-lead</code>, <code>uc-prose</code> e <code>uc-content</code>.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <h2 id="familias">Famílias</h2>
+        <div class="docs-specimens">
+          <div class="uc-card docs-specimen">
+            <p class="docs-specimen__sample" style="font-family: var(--uc-font-sans)">Aa Inter</p>
+            <p>Texto, títulos e navegação. Pesos de 400 a 700.</p>
+            <code data-token="--uc-font-sans">Inter, system-ui, -apple-system, "Segoe UI", sans-serif</code>
+          </div>
+          <div class="uc-card docs-specimen">
+            <p class="docs-specimen__sample" style="font-family: var(--uc-font-mono)">Aa Mono</p>
+            <p>Código, datas e números de semana. Pesos de 400 a 500.</p>
+            <code data-token="--uc-font-mono">"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace</code>
+          </div>
+        </div>
+        <p>As duas são servidas com o kit, em <code>kit/v1/fonts/</code> (ficheiros <code>woff2</code> variáveis, licença SIL Open Font License). Nenhuma página faz pedidos a terceiros, e o navegador só descarrega os subconjuntos de que precisa (latino; latino estendido e grego quando a página os usa). O <code>&lt;head&gt;</code> das páginas pode pedir a letra do texto mais cedo com um <code>preload</code>; ver <a href="../estrutura.html#head">O &lt;head&gt; de cada página</a>.</p>
+        <p>Para usar a letra do sistema e não descarregar a Inter, muda-se o token no <code>theme.css</code>:</p>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>:root {
+  --uc-font-sans: system-ui, sans-serif;
+}</code></pre></uc-code>
+
+        <h3 id="sem-ligaduras">Código sem ligaduras</h3>
+        <p>A JetBrains Mono junta alguns pares de carateres num só símbolo (<code>-&gt;</code> numa seta, <code>&lt;=</code> num sinal de menor ou igual). Em código, cada caráter tem de aparecer como se escreve, por isso o kit desliga as ligaduras em <code>code</code>, <code>pre</code>, <code>kbd</code> e <code>samp</code>:</p>
+        <p class="docs-ligatures"><code>a -&gt; b</code> <code>x &lt;= y</code> <code>i != j</code> <code>p &gt;&gt;= 1</code></p>
+
+        <h2 id="escala">Escala</h2>
+        <p>Os tamanhos são relativos ao tamanho da raiz (<code>--uc-font-size-base</code>, 16 px). Cada linha está escrita no seu tamanho; o valor ao lado é calculado nesta página.</p>
+        <ul class="docs-type-scale">
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-display); font-weight: 700">Algoritmos</span><span class="docs-type-scale__meta"><code>--uc-font-size-display</code> <span data-token="--uc-font-size-display" data-kind="length">2.5rem (40px)</span><br>Título de <a href="../componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-h1); font-weight: 700">Avaliação</span><span class="docs-type-scale__meta"><code>--uc-font-size-h1</code> <span data-token="--uc-font-size-h1" data-kind="length">2.25rem (36px)</span><br><code>&lt;h1&gt;</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-h2); font-weight: 600">Componentes da avaliação</span><span class="docs-type-scale__meta"><code>--uc-font-size-h2</code> <span data-token="--uc-font-size-h2" data-kind="length">1.375rem (22px)</span><br><code>&lt;h2&gt;</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-h3); font-weight: 600">Projeto 1</span><span class="docs-type-scale__meta"><code>--uc-font-size-h3</code> <span data-token="--uc-font-size-h3" data-kind="length">1.25rem (20px)</span><br><code>&lt;h3&gt;</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-lg)">Dois projetos e um teste.</span><span class="docs-type-scale__meta"><code>--uc-font-size-lg</code> <span data-token="--uc-font-size-lg" data-kind="length">1.125rem (18px)</span><br><code>uc-lead</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-base)">Os projetos fazem-se em grupos de dois.</span><span class="docs-type-scale__meta"><code>--uc-font-size-base</code> <span data-token="--uc-font-size-base" data-kind="length">16px</span><br>Texto</span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-body-sm)">Teóricas: listas ligadas, slides 9.</span><span class="docs-type-scale__meta"><code>--uc-font-size-body-sm</code> <span data-token="--uc-font-size-body-sm" data-kind="length">0.9375rem (15px)</span><br>Tabelas, semanas, avisos</span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-md)">Atualizado a 24 de novembro.</span><span class="docs-type-scale__meta"><code>--uc-font-size-md</code> <span data-token="--uc-font-size-md" data-kind="length">0.875rem (14px)</span><br>Texto secundário, botões, <code>uc-small</code></span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-sm)">Componente · Peso · Data</span><span class="docs-type-scale__meta"><code>--uc-font-size-sm</code> <span data-token="--uc-font-size-sm" data-kind="length">0.8125rem (13px)</span><br>Cabeçalhos de tabela</span></li>
+          <li><span class="docs-type-scale__sample" style="font-size: var(--uc-font-size-xs); font-weight: 600">AVALIAÇÃO</span><span class="docs-type-scale__meta"><code>--uc-font-size-xs</code> <span data-token="--uc-font-size-xs" data-kind="length">0.75rem (12px)</span><br>Etiquetas (<code>uc-tag</code>)</span></li>
+        </ul>
+        <p>Abaixo de 760 px de largura, <code>-h1</code> passa a 30 px e <code>-display</code> a 32 px, para os títulos longos não ocuparem o ecrã do telemóvel. Os outros tamanhos não mudam: o texto de uma página lê-se igual no telemóvel.</p>
+
+        <h2 id="titulos">Títulos, pesos e entrelinha</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Estilo dos títulos e do texto</caption>
+            <thead>
+              <tr><th scope="col">Elemento</th><th scope="col">Tamanho</th><th scope="col">Peso</th><th scope="col">Entrelinha</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>&lt;h1&gt;</code></td><td><code>--uc-font-size-h1</code></td><td>700, espaçamento <code>-0.02em</code></td><td><code>--uc-line-height-tight</code> (<span data-token="--uc-line-height-tight">1.25</span>)</td></tr>
+              <tr><td><code>&lt;h2&gt;</code></td><td><code>--uc-font-size-h2</code></td><td>600</td><td><code>--uc-line-height-tight</code></td></tr>
+              <tr><td><code>&lt;h3&gt;</code></td><td><code>--uc-font-size-h3</code></td><td>600</td><td><code>--uc-line-height-tight</code></td></tr>
+              <tr><td><code>&lt;h4&gt;</code></td><td><code>1rem</code></td><td>600</td><td><code>--uc-line-height-tight</code></td></tr>
+              <tr><td>Texto</td><td><code>--uc-font-size-base</code></td><td>400; <code>&lt;strong&gt;</code> 600</td><td><code>--uc-line-height</code> (<span data-token="--uc-line-height">1.6</span>)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Usam-se só quatro pesos: 400 no texto, 500 em botões e links de listas, 600 em títulos, etiquetas e <code>&lt;strong&gt;</code>, 700 no <code>&lt;h1&gt;</code>. Uma página tem um só <code>&lt;h1&gt;</code>; os níveis seguintes não se saltam (<code>&lt;h2&gt;</code> antes de <code>&lt;h3&gt;</code>).</p>
+
+        <h2 id="introducao-e-texto">Introdução e texto corrido</h2>
+        <p><code>uc-lead</code> é o parágrafo de introdução por baixo do título: maior, cinzento e com no máximo 680 px. <code>uc-prose</code> limita um bloco de texto a 720 px, cerca de 80 carateres por linha, a largura que ainda se lê sem perder a linha.</p>
+        <!-- docs:demo src="../../demos/styles/text.html" title="título, introdução e texto" height="205" -->
+        <div class="docs-demo" id="demo-styles-text">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/text.html" title="Demonstração: título, introdução e texto" loading="lazy" style="height: 205px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;h1&gt;Avaliação&lt;/h1&gt;
+&lt;p class=&quot;uc-lead&quot;&gt;Dois projetos e um teste. O teste pode ser substituído pelo exame.&lt;/p&gt;
+&lt;div class=&quot;uc-prose&quot;&gt;
+  &lt;p&gt;Os projetos fazem-se em grupos de dois e entregam-se no Moodle até às 23h59 do dia indicado. Cada dia de atraso desconta um valor, até ao máximo de três dias.&lt;/p&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/text.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="uc-content">HTML sem classes</h2>
+        <p>Texto copiado de um site antigo ou exportado de um editor não tem classes do kit. Dentro de <code>uc-content</code> recebe o espaçamento certo: títulos com espaço antes, parágrafos e listas separados, tabelas a toda a largura, <code>&lt;pre&gt;</code> com fundo, imagens que não saem da coluna. O bloco tem no máximo 760 px.</p>
+        <!-- docs:demo src="../../demos/styles/content.html" title="HTML sem classes dentro de uc-content" height="529" -->
+        <div class="docs-demo" id="demo-styles-content">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/styles/content.html" title="Demonstração: HTML sem classes dentro de uc-content" loading="lazy" style="height: 529px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;div class=&quot;uc-content&quot;&gt;
+      &lt;h2&gt;Objetivos&lt;/h2&gt;
+      &lt;p&gt;No fim desta aula, o estudante sabe implementar uma &lt;strong&gt;pesquisa binária&lt;/strong&gt; e justificar o número de comparações.&lt;/p&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Pesquisa linear e pesquisa binária.&lt;/li&gt;
+        &lt;li&gt;Invariante de ciclo.&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;h3&gt;Exemplo&lt;/h3&gt;
+      &lt;p&gt;Para o vetor &lt;code&gt;[2, 5, 8, 13]&lt;/code&gt; e o valor &lt;code&gt;8&lt;/code&gt;:&lt;/p&gt;
+      &lt;pre&gt;lo = 0, hi = 3 -&amp;gt; mid = 1
+lo = 2, hi = 3 -&amp;gt; mid = 2, encontrado&lt;/pre&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;n&lt;/th&gt;&lt;th&gt;Comparações no pior caso&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;1 000&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;1 000 000&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/styles/content.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Uma imagem com <code>class="uc-content__float"</code> fica à direita do texto em ecrãs largos e ocupa a largura toda no telemóvel. Em páginas novas, os blocos do kit (<a href="superficies.html">superfícies e listas</a>) dão mais controlo; <code>uc-content</code> serve para não ter de reescrever o que já existe.</p>
+
+        <h2 id="utilitarios">Classes de texto</h2>
+        <p><code>uc-muted</code> (cor discreta), <code>uc-mono</code> (letra de código) e <code>uc-small</code> (14 px) mudam só um pedaço de texto. Estão descritas em <a href="elementos.html">Blocos: elementos</a>.</p>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +231,13 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#familias">Famílias</a></li>
+          <li class="docs-toc__sub"><a href="#sem-ligaduras">Código sem ligaduras</a></li>
+          <li><a href="#escala">Escala</a></li>
+          <li><a href="#titulos">Títulos, pesos e entrelinha</a></li>
+          <li><a href="#introducao-e-texto">Introdução e texto corrido</a></li>
+          <li><a href="#uc-content">HTML sem classes</a></li>
+          <li><a href="#utilitarios">Classes de texto</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->
