@@ -3,7 +3,8 @@
  *
  * A `.uc-table` wrapper scrolls sideways when its table is wider than the column.
  * Keyboard users can only scroll it if it can take focus, so while it overflows it
- * gets tabindex="0", role="region" and a label (from the table caption when there is one).
+ * gets tabindex="0", role="region" and a label (from the table caption when there is one);
+ * when it stops overflowing, the attributes the module added are removed again.
  */
 (function (UC) {
   "use strict";
@@ -16,17 +17,23 @@
   function update(wrapper) {
     const overflows = wrapper.scrollWidth > wrapper.clientWidth + 1;
     if (overflows && !wrapper.hasAttribute("tabindex")) {
+      // MANAGED lists the attributes this module added, so they can be undone.
+      const added = ["tabindex"];
       wrapper.setAttribute("tabindex", "0");
-      wrapper.setAttribute(MANAGED, "");
-      if (!wrapper.hasAttribute("role")) wrapper.setAttribute("role", "region");
+      if (!wrapper.hasAttribute("role")) {
+        wrapper.setAttribute("role", "region");
+        added.push("role");
+      }
       if (!wrapper.hasAttribute("aria-label") && !wrapper.hasAttribute("aria-labelledby")) {
         const caption = wrapper.querySelector("caption");
         const fallback = wrapper.localName === "pre" ? "a11y.scrollableText" : "a11y.scrollableTable";
         wrapper.setAttribute("aria-label", caption ? caption.textContent.trim() : UC.t(fallback));
+        added.push("aria-label");
       }
+      wrapper.setAttribute(MANAGED, added.join(" "));
     } else if (!overflows && wrapper.hasAttribute(MANAGED)) {
       // Only undo what this module added; teacher-written attributes stay.
-      wrapper.removeAttribute("tabindex");
+      for (const name of wrapper.getAttribute(MANAGED).split(" ")) if (name) wrapper.removeAttribute(name);
       wrapper.removeAttribute(MANAGED);
     }
   }
