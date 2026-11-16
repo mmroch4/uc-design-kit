@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED199] Tesouros de Kilmia · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED199 (Tesouros de Kilmia) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED199</li></ol>
+    </nav>
+    <h1>[ED199] Tesouros de Kilmia</h1>
+    <div class="uc-content">
+      <p>Para efeitos da nota atribuida à resolução de exercícios ao longo do semestre - <strong>Submeter até 23:59 de 3 de Dezembro</strong><br/>
+      <em>(o problema continuará depois disponível para submissão, mas sem contar para a nota)</em><br/>
+      <strong>[para perceber o contexto do problema deve <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/praticas/aula08.html">ler o guião da aula #08</a>]</strong></p>
+
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED199</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).
+      </p></div></p>
+
+      <p><img alt="" class="uc-content__float" height="387" loading="lazy" src="imagens/199.jpg" width="500"/> Depois de
+          muitos anos como concorrente de concursos de programação, muitas
+          edições de qualificações, finais e outras provas das ONI, o Daniel
+          decidiu finalmente reformar-se. Como próximo desafio, o Daniel
+          escolheu fazer algo que seja igualmente emocionante. Decidiu por isso
+          tornar-se caçador de tesouros!
+          </p>
+      <p>
+            O seu próximo alvo está em Kilmia, uma aldeia localizada numa
+            pequena ilha próxima da Península Arábica. Aqui se encontra a
+            grande linha de Algor, uma linha com <strong>N</strong> arcas enterradas
+            lado a lado. Algumas destas arcas contêm tesouros de enorme
+            valor, que naturalmente o Daniel quer recolher.
+          </p>
+      <p>
+            Para recolher o máximo de tesouros, inicialmente o Daniel
+            coloca-se em cima da <strong>B</strong>-ésima arca. Depois, ele segue um
+            conjunto de <strong>I</strong> instruções escritas num velho mapa da
+            região, de forma a percorrer as várias arcas. Cada instrução é
+            da forma "anda X passos para a direita" ou "anda X passos para a
+            esquerda". Um passo para a direita corresponde a avançar para a
+            próxima arca no sentido este, um passo para a esquerda
+            corresponde a avançar para a próxima arca no sentido
+            oeste. Adicionalmente, sempre que o Daniel passa por uma arca
+            (mesmo que esteja a meio de cumprir uma instrução), ele
+            desenterra-a e recolhe o tesouro no seu interior, caso haja.
+            Nota que o Daniel desenterra sempre a arca na posição onde começa,
+            <strong>B</strong>.
+          </p>
+      <p>
+            Por exemplo, vamos considerar que há <strong>N</strong> = 5 arcas, sendo
+            que todas as arcas tirando a segunda têm tesouro, e que o Daniel
+            inicialmente se encontra na posição <strong>B</strong> = 3. A seguinte
+            imagem representa esta situação:
+          </p>
+      <img alt="" height="276" loading="lazy" src="imagens/199ex.png" width="500"/>
+      <p>
+            No mapa do Daniel são dadas as seguintes <strong>I</strong> = 3 instruções:
+          </p>
+      <pre>Anda 1 passo para a direita
+Anda 2 passos para a esquerda
+Anda 3 passos para a direita</pre>
+      <p>
+            As setas na imagem representam estes movimentos. O Daniel passa
+            por várias arcas e no fim pode recolher exatamente 3 tesouros
+            (marcados na imagem com pás).
+          </p>
+      <p>
+            O Daniel terminou a sua aventura, mas ele precisa de saber
+            quantos tesouros conseguiu recolher... mas são tantos! Ajuda-o a contar
+            quantos tesouros recolheu, tendo em conta a sua posição inicial e
+            as instruções que ele seguiu.
+          </p>
+      <h2>O Problema</h2>
+      <p>
+            Dado um conjunto de <strong>N</strong> arcas da linha de Algor, a posição
+            inicial do Daniel <strong>B</strong> e um conjunto de instruções sobre o
+            movimento do Daniel, calcula quantos tesouros o Daniel recolhe.
+          </p>
+      <h2>Input</h2>
+      <p>
+            Na primeira linha vêm três inteiros, <strong>N</strong> que representa o
+            número de arcas, <strong>B</strong> que representa a posição inicial do
+            Daniel e <strong>I</strong> que representa o número de instruções.
+          </p>
+      <p>
+            Segue-se uma linha com <strong>N</strong> caracteres que podem ser 'T' ou
+            'V' ('T'esouro, 'V'azia), sendo que o i-ésimo carácter
+            representa o tipo da i-ésima arca, 'T' para uma arca com tesouro
+            e 'V' para uma arca sem tesouro.
+          </p>
+      <p>
+            Seguem-se <strong>I</strong> linhas, cada uma com o seguinte
+            formato: <strong>D</strong> <strong>P</strong>, onde <strong>D</strong> é um carácter que pode
+            ser 'D' ou 'E' ('D'ireita, 'E'squerda), representado o sentido
+            do movimento, e <strong>P</strong> é um inteiro que representa o número de
+            passos a dar.
+          </p>
+      <p>
+      <strong>Nota:</strong> é garantido que as instruções nunca obrigam o
+            Daniel a sair fora da linha de arcas, ou seja, a sua posição
+            será sempre entre 1 e <strong>N</strong>.
+          </p>
+      <h2>Output</h2>
+      <p>
+            O output contém um inteiro, o número de tesouros recolhidos pelo
+            Daniel.
+          </p>
+      <h2>Restrições</h2>
+      <p>São garantidos os seguintes limites em todos os casos de teste que
+            irão ser colocados ao programa:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td><strong>1 ≤ N ≤ 100 000</strong></td>
+      <td>     </td>
+      <td>Número de arcas</td>
+      </tr>
+      <tr>
+      <td><strong>1 ≤ B ≤ N</strong></td>
+      <td>     </td>
+      <td>Posição inicial</td>
+      </tr>
+      <td><strong>1 ≤ I ≤ 100 000</strong></td>
+      <td>     </td>
+      <td>Número de instruções</td>
+      </table></div>
+      <p>Os casos de teste deste problema estão organizados em 4 grupos
+          com restrições adicionais diferentes:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Grupo</th>
+      <th scope="col">Número de Pontos</th>
+      <th scope="col">Restrições adicionais</th>
+      </tr>
+      <tr>
+      <td>1</td>
+      <td>25</td>
+      <td>1 ≤ N ≤ 100, 1 ≤ I ≤ 100</td>
+      </tr>
+      <tr>
+      <td>2</td>
+      <td>20</td>
+      <td>1 ≤ I ≤ 3 000</td>
+      </tr>
+      <tr>
+      <td>3</td>
+      <td>20</td>
+      <td>1 ≤ N ≤ 3 000</td>
+      </tr>
+      <tr>
+      <td>4</td>
+      <td>35</td>
+      <td>-</td>
+      </tr>
+      </table></div>
+      <h2>Input do Exemplo 1</h2>
+      <pre>5 3 3
+TVTTT
+D 1
+E 2
+D 3</pre>
+      <h2>Output do Exemplo 1</h2>
+      <pre>3</pre>
+      <h2>Explicação do Exemplo 1</h2>
+      <p>Este exemplo corresponde ao mencionado no enunciado.</p>
+      <h2>Input do Exemplo 2</h2>
+      <pre>10 5 9
+TTTTVTTTTT
+D 1
+E 2
+D 1
+D 1
+D 1
+E 3
+E 1
+D 4
+D 1</pre>
+      <h2>Output do Exemplo 2</h2>
+      <pre>5</pre>
+
+      <em>(adaptação para a UC de Estruturas de Dados - CC1007 - DCC/FCUP)</em><br/><br/>
+      <strong>Qualificação para a final das ONI'2017</strong><br/><em>(30/03 a 01/04 de 2017)</em>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob199.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob199.html</a>.</p>
+  </uc-page>
+</body>
+</html>

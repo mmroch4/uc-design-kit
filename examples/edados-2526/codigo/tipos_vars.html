@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tipos e Variáveis · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Tipos e Variáveis.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Tipos e Variáveis</li></ol>
+    </nav>
+    <h1>Tipos e Variáveis</h1>
+    <section class="uc-section" aria-labelledby="testbasictypes">
+      <h2 id="testbasictypes">TestBasicTypes.java</h2>
+      <uc-code lang="java" filename="TestBasicTypes.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Atribuicao de varios tipo de variaveis
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+public class TestBasicTypes {
+   public static void main(String[] args) {
+      boolean flag = true;
+      char      ch = 'A';
+      byte       b = 12;
+      short      s = 24;
+      int        i = 257;
+      long       l = 2147483648L;  // sem a letra e interpretado como int
+      float      f = 3.1415f;      // sem a letra e interpretado como double  
+      double     d = 2.1828;
+      System.out.println("flag = " + flag); 
+      System.out.println("ch = "   + ch); 
+      System.out.println("b = "    + b); 
+      System.out.println("s = "    + s); 
+      System.out.println("i = "    + i); 
+      System.out.println("l = "    + l); 
+      System.out.println("f = "    + f); 
+      System.out.println("d = "    + d); 
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testconversion">
+      <h2 id="testconversion">TestConversion.java</h2>
+      <uc-code lang="java" filename="TestConversion.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Conversao entre varios tipos de variaveis
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+class TestConversion {
+   public static void main(String[] args) {
+      double d1 = 3.2;
+      double d2 = 3.999999;
+      
+      // Casting explicito      
+      int    i1 = (int)d1;    // i1 fica com o valor de 3
+      int    i2 = (int)d2;    // i2 fica com o valor de 3
+      double d3 = (double)i2; // d3 fica com o valor de 3.0
+      
+      // Casting implicito
+      int    i3 = 42;
+      double d4 = i3;         // d4 fica com o valor de 42.0
+      //     int    i4 = d4;         // erro de compilacao: "possible loss of precision
+
+      char  ch1 = 'A';
+      int    i5 = ch1;        // i5 fica com o valor de 65 (codigo ascii de 'A')
+      char  ch2 = 66;         // ch2 fica com o valor de 'B' (codigo ASCII 66)
+
+      //      boolean b1 = i1;        // erro de compilacao: "incompatible types"           
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testlimits">
+      <h2 id="testlimits">TestLimits.java</h2>
+      <uc-code lang="java" filename="TestLimits.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Limites dos varios tipos de variaveis
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+public class TestLimits {
+   public static void main(String args[]) {
+      // inteiros
+      byte largestByte = Byte.MAX_VALUE;
+      short largestShort = Short.MAX_VALUE;
+      int largestInteger = Integer.MAX_VALUE;
+      long largestLong = Long.MAX_VALUE;
+
+      // virgula flutuante
+      float largestFloat = Float.MAX_VALUE;
+      double largestDouble = Double.MAX_VALUE;
+
+      // mostrar limites
+      System.out.println("Largest byte value: " + largestByte);
+      System.out.println("Largest short value: " + largestShort);
+      System.out.println("Largest integer value: " + largestInteger);
+      System.out.println("Largest long value: " + largestLong);
+
+      System.out.println("Largest float value: " + largestFloat);
+      System.out.println("Largest double value: " + largestDouble);
+    }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="tipos_vars.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/tipos_vars.html</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -7,6 +7,11 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `.uc-content` block for plain HTML without kit classes (pasted or migrated
+  pages): spacing for headings, lists, tables, `<pre>` and floated images.
+- EDados 2025/26 example: problem statements (`problemas/`), lecture code
+  (`codigo/`), lab help pages, slides, images and data files migrated from the
+  original site.
 - Fonts are served with the kit from `kit/v1/fonts/` (no Google Fonts request),
   including the Greek subset of Inter.
 - Site favicon.

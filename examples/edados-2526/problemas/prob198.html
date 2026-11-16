@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED198] Um Jogo com Sequências · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED198 (Um Jogo com Sequências) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED198</li></ol>
+    </nav>
+    <h1>[ED198] Um Jogo com Sequências</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshak, deverá submeter uma
+      classe <strong>ED198</strong> contendo um programa completo para resolver o
+      problema (ou seja, com o método main).
+      </p></div></p>
+      <p><img alt="" class="uc-content__float" height="175" loading="lazy" src="imagens/198.jpg" width="238"/> O Pedro e a Luísa estão
+      a jogar um novo jogo. Um deles escreve uma sequência de
+      números inteiros (positivos ou negativos) e o outro tem de tentar
+      descobrir qual a sequência contígua (um ou mais números consecutivos) que dá origem à maior soma possível.
+
+      </p><p>Imagina por exemplo que a Luísa escolhe a seguinte sequência de números:
+
+      </p><pre> -1  4 -2  5 -5  2 -20  6</pre>
+      <p>Alguns exemplos de sequências contíguas seriam as seguintes:
+
+      </p><pre>|-1  4 -2  5 -5  2 -20  6| (soma=-11)
+ -1  4 -2  5 -5 |2 -20  6| (soma=-12)
+|-1  4 -2  5 -5  2|-20  6  (soma=3)
+ -1  4 -2 |5|-5  2 -20  6  (soma=5)
+ -1 |4 -2  5|-5  2 -20  6  (soma=7)</pre>
+      <p>A última destas sequências corresponde precisamente à melhor sequência contígua possivel que o Pedro poderia escolher, ou seja, a que tem maior soma.
+
+      </p><p>Podes ajudar os dois amigos a jogarem este jogo?
+
+      </p><h2>O Problema</h2>
+      <p>Dada uma sequência de <strong>N</strong> números inteiros, a tua tarefa é calcular a maior soma que uma sequência contígua de um ou mais números da sequência pode formar.
+
+      </p><h2>Input</h2>
+      <p>Na primeira linha do input vem um número <strong>N</strong> (<em>1
+      ≤ N ≤ 200 000</em>), a quantidade de números na sequência.
+
+      </p><p>Depois vem uma outra linha contendo
+      exactamente <strong>N</strong> números inteiros separados por um único
+      espaço, indicando a sequência. Os números da sequência estão entre -2000 e 2000 (inclusive).
+
+      </p><h2>Output</h2>
+      <p>O output é constituído por uma única linha contendo a soma máxima de uma subsequência contígua, como atrás descrito.
+
+      </p><h2>Exemplo de Input</h2>
+      <pre>8
+-1 4 -2 5 -5 2 -20 6</pre>
+      <h2>Exemplo de Output</h2>
+      <pre>7</pre>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob198.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob198.html</a>.</p>
+  </uc-page>
+</body>
+</html>

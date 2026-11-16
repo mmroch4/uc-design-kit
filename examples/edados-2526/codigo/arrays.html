@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arrays · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Arrays.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Arrays</li></ol>
+    </nav>
+    <h1>Arrays</h1>
+    <section class="uc-section" aria-labelledby="testarrays">
+      <h2 id="testarrays">TestArrays.java</h2>
+      <uc-code lang="java" filename="TestArrays.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao de Arrays
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+import java.util.Arrays; // Funcoes Utilitarias de Arrays
+
+public class TestArrays {
+   public static void main(String[] args) {
+
+      // Criacao e erro de sair fora dos limites
+      int[] v = new int[4];
+      v[0] = 2;
+      //v[4] = 5; // ArrayIndexOutOfBoundsException 
+
+      // Inicializacao e impressao
+      int[] primes = {2,3,5,7,11,13}; // Cria e inicializa array
+      System.out.println(primes);     // Apenas imprime a referência
+      System.out.println(Arrays.toString(primes)); // Converte para String
+
+      // Comparacao
+      int[] a = {1,2,3,4,5};
+      int[] b = {1,2,3,4,5};
+      if( Arrays.equals(a,b) )
+         System.out.println("same contents");
+
+      // Soma de dois arrays
+      int[] c = addArrays(a,b);
+      System.out.println(Arrays.toString(c));
+   }
+
+   // Metodo para somar dois arrays
+   public static int[] addArrays (int[] u, int[] v) {
+      int[] res = new int[u.length];
+      for ( int i = 0 ; i < u.length ; i++ ) 
+         res[i] = u[i] + v[i];
+      return res;
+   }
+   
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testmatrixvectorproduct">
+      <h2 id="testmatrixvectorproduct">TestMatrixVectorProduct.java</h2>
+      <uc-code lang="java" filename="TestMatrixVectorProduct.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Multiplicacao de matriz por array
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+import java.util.Arrays;
+
+class TestMatrixVectorProduct {
+   public static void main(String[] args) {
+      int[][]  a = {{1,2,3},{4,5,6}};
+      int[]    u = {7,8,9};
+      int[]    v = matrixVectorMult(a,u);
+         
+      System.out.println(Arrays.toString(v));
+   }
+   
+   static int[] matrixVectorMult(int[][] a, int[] u) {
+      int[] v = new int[a.length];
+      for( int i = 0 ; i < v.length ; i++ ) {
+         v[i] = 0;
+         for( int j = 0 ; j < u.length ; j++ ) 
+            v[i] += a[i][j] * u[j];
+      }
+      return v;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="arrays.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/arrays.html</a>.</p>
+  </uc-page>
+</body>
+</html>

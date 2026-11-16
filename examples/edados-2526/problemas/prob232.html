@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED232] O Senhor das Listas · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED232 (O Senhor das Listas) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED232</li></ol>
+    </nav>
+    <h1>[ED232] O Senhor das Listas</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>SinglyLinkedList&lt;T&gt;</strong> (e não um programa completo).
+      </p></div></p>
+
+      <h2>Código Base</h2>
+      <p><img alt="" class="uc-content__float" height="1125" loading="lazy" src="imagens/232.jpg" width="1640"/>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (<a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/codigo/lista_ligada_simples.html">ver código</a> | download de <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/codigo/Node.java">Node.Java</a> e <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/codigo/SinglyLinkedList.java">SinglyLinkedList.Java</a>), que representa uma lista ligada simples e tem disponíveis métodos para adicionar ou remover um elemento no início ou no final, devolver o tamanho, saber se a lista está vazia ou retornar representação em <em>string</em> para escrita (tal como dado nas aulas).
+
+      </p><h2>Problem</h2>
+      <p><em>
+      One linked list to rule them all,<br/>
+         one linked list to find them,<br/>
+      One linked list to bring them all<br/>
+      and in the darkness bind them. </em>
+      </p>
+      <p>A população da <em>Terra dos Dados</em> deposita toda a sua fé em ti! Depois de teres conseguido obter o código base da classe <em>SinglyLinkedList&lt;T&gt;</em>, arrancada das mãos dos docentes que a admiravam dizendo <em>"my precious"</em>, tens agora de provar que sabes dominar o seu poder, implementando três novos métodos da classe.
+
+      </p><h2>Métodos a Implementar</h2>
+      <p>Deve acrescentar à classe dada os seguintes métodos (<strong>não modificando nenhum dos métodos já existentes no código base</strong>):
+
+      </p><ul>
+      <li><strong>public SinglyLinkedList&lt;T&gt; reverse()</strong> <em>(30% da cotação)</em><br/>
+          Deve <strong>devolver uma nova lista que é igual à lista original, mas invertida</strong>. Por exemplo, se <em>list</em> for {2,4,6,8}, uma chamada a <em>list.reverse()</em> deve devolver uma nova lista com conteúdo {8,6,4,2}. A lista inicial não deve ser modificada.
+      </li></ul>
+      <ul>
+      <li><strong>public int[] occurrences(T elem)</strong> <em>(30% da cotação)</em><br/>
+        Deve <strong>devolver um array contendo as posições (por ordem crescente) de todas as ocorrências</strong> do elemento <em>elem</em> na lista. Se não existir nenhuma ocorrência deve devolver <em>null</em>. As posições da lista começam em 0. Por exemplo, se <em>list</em> for {2,5,1,1,2,1}, uma chamada a <em>list.occurrences(1)</em> deve devolver [2,3,5], uma chamada a <em>list.occurrences(2)</em> deve devolver [0,4] e uma chamada a <em>list.occurrences(3)</em> deve devolver <em>null</em>. A lista inicial não deve ser modificada. <strong>Dica: para comparar valores genéricos deve usar o .equals e não o ==</strong>
+      </li></ul>
+      <ul>
+      <li><strong>public void remove(SinglyLinkedList&lt;T&gt; toRemove)</strong> <em>(40% da cotação)</em><br/>
+          Deve <strong>remover da lista todos os elementos que estão na lista <em>toRemove</em></strong>. Por exemplo, se <em>list</em> for {'a','b','d','a','c'}, uma chamada a <em>list.remove({'c','a'})</em> deve fazer com que <em>list</em> fique a ser {'b','d'}, uma chamada a <em>list.remove({'a'})</em> deve fazer com que <em>list</em> fique a ser {'b','d','c'} e uma chamada a <em>list.remove({'a','b','c','d','e'})</em> deve fazer com que <em>list</em> fique a ser {} (lista vazia).
+      </li></ul>
+      <h2>Notas</h2>
+      <ul>
+      <li>Pode submeter código com apenas alguns dos métodos implementados (para obter pontuação parcial).
+        </li><li>Em todos os casos de teste as listas têm tamanho máximo de 100 elementos, com a excepção do último caso de teste do método <em>remove</em> (valendo 10% da cotação), onde a lista inicial pode ter 50 mil elementos (a lista dos elementos a remover continua limitada a tamanho 100), pelo que nesse caso a sua solução não poderá ser quadrática (ou pior) no número de elementos da lista original para passar no tempo limite.
+        </li><li>Não se esqueça de garantir que no final o atributo <em>size</em> também fica correto .
+        </li><li>Cuidado com os casos limites (ex: lidar com listas vazias, remover no início ou no final da lista; etc).
+        </li><li>Pode implementar métodos auxiliares, se quiser.
+        </li><li>Para testar na sua máquina deve criar uma lista (pode criar no código ou ler a partir de um input) e chamar o método correspondente.
+      </li></ul>
+      <h2>Exemplos de Input/Output para o método <em>reverse</em></h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Lista inicial</th>
+      <th scope="col">Chamada</th>
+      <th scope="col">O que deve ser devolvido</th>
+      </tr>
+      <tr>
+      <td>list = {2,4,6,8}</td>
+      <td>list.reverse()</td>
+      <td>new_list = {8,6,4,2}</td>
+      </tr>
+      <tr>
+      <td>list = {'a','b','c'}</td>
+      <td>list.reverse()</td>
+      <td>new_list = {'c','b','a'}</td>
+      </tr>
+      <tr>
+      <td>list = {"edados"}</td>
+      <td>list.reverse()</td>
+      <td>new_list = {"edados"}</td>
+      </tr>
+      <tr>
+      <td>list = {}</td>
+      <td>list.reverse()</td>
+      <td>new_list = {}</td>
+      </tr>
+      </table></div>
+      <h2>Exemplos de Input/Output para o método <em>occurrences</em></h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Lista inicial</th>
+      <th scope="col">  Chamada   </th>
+      <th scope="col">O que deve ser devolvido</th>
+      </tr>
+      <tr>
+      <td>list = {2,5,1,1,2,1}</td>
+      <td>list.occurrences(1)</td>
+      <td>[2,3,5]</td>
+      </tr>
+      <tr>
+      <td>list = {2,5,1,1,2,1}</td>
+      <td>list.occurrences(2)</td>
+      <td>[0,4]</td>
+      </tr>
+      <tr>
+      <td>list = {2,5,1,1,2,1}</td>
+      <td>list.occurrences(3)</td>
+      <td><em>null</em></td>
+      </tr>
+      <tr>
+      <td>list = {'a','a','a','a'}</td>
+      <td>list.occurrences('a')</td>
+      <td>[0,1,2,3]</td>
+      </tr>
+      <tr>
+      <td>list = {"estruturas","de","dados"}</td>
+      <td>list.occurrences("dados")</td>
+      <td>[2]</td>
+      </tr>
+      <r>
+      <td>list = {'a','n','a','n','a','s',}</td>
+      <td>list.occurrences('a')</td>
+      <td>[0,2,4]</td>
+      </r></table></div>
+      <h2>Exemplos de Input/Output para o método <em>remove</em></h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Lista inicial</th>
+      <th scope="col">  Chamada   </th>
+      <th scope="col">Estado da lista depois da chamada</th>
+      </tr>
+      <tr>
+      <td>list = {'a','b','d','a','c'}</td>
+      <td>list.remove({'c','a'})</td>
+      <td>list = {'b','d'}</td>
+      </tr>
+      <tr>
+      <td>list = {'a','b','d','a','c'}</td>
+      <td>list.remove({'a'})</td>
+      <td>list = {'b','d','c'}</td>
+      </tr>
+      <tr>
+      <td>list = {'a','b','d','a','c'}</td>
+      <td>list.remove({'a','b','c','d','e'})</td>
+      <td>list = {}</td>
+      </tr>
+      <tr>
+      <td>list = {42,22,42,42,22,42}</td>
+      <td>list.remove({42,1})</td>
+      <td>list = {22,22}</td>
+      </tr>
+      <tr>
+      <td>list = {"ola","ola","mundo","ola"}</td>
+      <td>list.remove("ola")</td>
+      <td>list = {"mundo"}</td>
+      </tr>
+      <tr>
+      <td>list = {1,2,3,3,2,1}</td>
+      <td>list.remove(3)</td>
+      <td>list = {1,2,2,1}</td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob232.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob232.html</a>.</p>
+  </uc-page>
+</body>
+</html>

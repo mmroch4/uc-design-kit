@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instruções Condicionais · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Instruções Condicionais.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Instruções Condicionais</li></ol>
+    </nav>
+    <h1>Instruções Condicionais</h1>
+    <section class="uc-section" aria-labelledby="testifelse">
+      <h2 id="testifelse">TestIfElse.java</h2>
+      <uc-code lang="java" filename="TestIfElse.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Instrucoes Condicionais: if else
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+public class TestIfElse {
+   public static void main(String[] args) {
+      int testscore = 76;
+      char grade;
+
+      if (testscore >= 90) {
+         grade = 'A';
+      } else if (testscore >= 80) {
+         grade = 'B';
+      } else if (testscore >= 70) {
+         grade = 'C';
+      } else if (testscore >= 60) {
+         grade = 'D';
+      } else {
+         grade = 'F';
+      }
+    
+      System.out.println("Grade = " + grade);
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testswitch">
+      <h2 id="testswitch">TestSwitch.java</h2>
+      <uc-code lang="java" filename="TestSwitch.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Instrucoes Condicionais: switch
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+public class TestSwitch {
+   public static void main(String[] args) {
+      int month = 2;
+      String monthString;
+      switch (month) {
+      case 1:  monthString = "January";
+         break;
+      case 2:  monthString = "February";
+         break;
+      case 3:  monthString = "March";
+         break;
+      case 4:  monthString = "April";
+         break;
+      case 5:  monthString = "May";
+         break;
+      case 6:  monthString = "June";
+         break;
+      case 7:  monthString = "July";
+         break;
+      case 8:  monthString = "August";
+         break;
+      case 9:  monthString = "September";
+         break;
+      case 10:  monthString = "October";
+         break;
+      case 11:  monthString = "November";
+         break;
+      case 12: monthString = "December";
+         break;
+      default: monthString = "Invalid month";
+         break;
+      }
+      System.out.println(monthString);
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="condicionais.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/condicionais.html</a>.</p>
+  </uc-page>
+</body>
+</html>

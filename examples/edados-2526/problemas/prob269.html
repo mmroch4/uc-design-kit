@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED269] Inserindo e removendo numa lista · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED269 (Inserindo e removendo numa lista) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED269</li></ol>
+    </nav>
+    <h1>[ED269] Inserindo e removendo numa lista</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>SinglyLinkedList&lt;T&gt;</strong> (e não um programa completo).
+      </p></div></p>
+
+      <h2>Código Base</h2>
+      <p><img alt="" class="uc-content__float" height="100" loading="lazy" src="imagens/linkedlist.png" width="699"/>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (<a href="../codigo/lista_ligada_simples.html">ver código</a> | download de <a href="../codigo/Node.java">Node.Java</a> e <a href="../codigo/SinglyLinkedList.java">SinglyLinkedList.Java</a>), que representa uma lista ligada simples e tem disponíveis métodos para adicionar ou remover um elemento no início ou no final, devolver o tamanho, saber se a lista está vazia ou retornar representação em <em>string</em> para escrita (tal como dado nas aulas).</p>
+      <h2>Métodos a Implementar</h2>
+      <p>Deve acrescentar à classe dada os seguintes métodos (<strong>não modificando nenhum dos métodos já existentes no código base</strong>):
+
+      </p><ul>
+      <li><strong>public void duplicate(int pos)</strong> <em>(40% da cotação)</em><br/>
+          Deve <strong>duplicar o nó da posição <em>pos</em></strong>, modificando a própria lista. Por outras palavras, deve criar um novo nó contendo o mesmo valor do nó da posição <em>pos</em> e inserí-lo imediatamente a seguir. Por exemplo, se <em>list</em> for {'a','b','c'}, uma chamada a <em>list.duplicate(0)</em> deve fazer com que <em>list</em> fique a ser {'a','a','b','c'}, uma chamada a <em>list.duplicate(1)</em> deve fazer com que <em>list</em> fique a ser {'a','b','b','c'} e uma chamada a <em>list.duplicate(2)</em> deve fazer com que <em>list</em> fique a ser {'a','b','c','c'}. Assuma que as posições começam em zero. É também garantido que nos testes feitos ao seu método a posição é válida, ou seja, <em>0 ≤ pos &lt; tamanho_da_lista</em>. 
+      </li></ul>
+      <ul>
+      <li><strong>public SinglyLinkedList&lt;T&gt; remove(int[] pos)</strong> <em>(60% da cotação)</em><br/>
+          Deve <strong>devolver uma lista que é uma cópia da original, mas com os elementos das posições correspondentes aos inteiros contidos no array <em>pos[]</em> removidos</strong>. Por exemplo, se <em>list</em> for {2,4,6,8,10}, uma chamada a <em>list.remove([0,1,3])</em> deve devolver uma nova lista com conteúdo {6,10} e uma chamada a <em>list.remove([2,3,4])</em> deve devolver uma nova lista com conteúdo {2,4}. A lista inicial não deve ser modificada. Assuma que as posições começam em zero. É também garantido que <strong>os números do array <em>pos[]</em> vêm por ordem estritamente crescente</strong> e todas as posições são válidas (existem na lista). Se o array de posições for vazio, a lista devolvida deve ser uma cópia da original.
+      </li></ul>
+      <h2>Notas</h2>
+      <ul>
+      <li>Pode submeter código com apenas um dos métodos implementados (para obter pontuação parcial).
+        </li><li>Não se esqueça de garantir que o atributo <em>size</em> fica correto.
+        </li><li>Em todos os casos de teste as listas e arrays têm tamanho máximo de 50 elementos, com a excepção do <strong>último caso de teste do método <em>remove</em> (valendo 10% da cotação), onde a lista e o array podem ter até 50 mil elementos</strong>, pelo que nesse caso a sua solução não poderá ser quadrática (ou pior) no número de elementos da lista original ou array para passar no tempo limite.
+        </li><li>Pode implementar métodos auxiliares, se quiser.
+        </li><li>Para testar na sua máquina deve criar uma lista (pode criar no código ou ler a partir de um input) e chamar o método correspondente.
+      </li></ul>
+      <h2>Exemplos de Input/Output para o método <em>duplicate</em></h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Lista inicial</th>
+      <th scope="col">Chamada</th>
+      <th scope="col">Estado da lista depois da chamada</th>
+      </tr>
+      <tr>
+      <td>list = {'a','b','c','d'}</td>
+      <td>list.duplicate(0)</td>
+      <td>list = {'a','a','b','c','d'}</td>
+      </tr>
+      <tr>
+      <td>list = {'a','b','c','d'}</td>
+      <td>list.duplicate(1)</td>
+      <td>list = {'a','b','b','c','d'}</td>
+      </tr>
+      <tr>
+      <td>list = {'a','b','c','d'}</td>
+      <td>list.duplicate(3)</td>
+      <td>list = {'a','b','c','d','d'}</td>
+      </tr>
+      <tr>
+      <td>list = {2,4,42,8,10}</td>
+      <td>list.duplicate(2)</td>
+      <td>list = {2,4,42,42,8,10}</td>
+      </tr>
+      </table></div>
+      <h2>Exemplos de Input/Output para o método <em>remove</em></h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Lista inicial</th>
+      <th scope="col">  Chamada   </th>
+      <th scope="col">O que deve ser devolvido</th>
+      </tr>
+      <tr>
+      <td>list = {2,4,8,6,10,12}</td>
+      <td>list.remove([])</td>
+      <td>new_list = {2,4,8,6,10,12}</td>
+      </tr>
+      <tr>
+      <td>list = {2,4,8,6,10,12}</td>
+      <td>list.remove([0,1,2,3,4,5])</td>
+      <td>new_list = {}</td>
+      </tr>
+      <tr>
+      <td>list = {2,4,8,6,10,12}</td>
+      <td>list.remove([0,2,4])</td>
+      <td>new_list = {4,6,12}</td>
+      </tr>
+      <tr>
+      <td>list = {2,4,8,6,10,12}</td>
+      <td>list.remove([1,3,4,5])</td>
+      <td>new_list = {2,8}</td>
+      </tr>
+      <tr>
+      <td>list = {'a','b','c','d'}</td>
+      <td>list.remove([1,2])</td>
+      <td>new_list = {'a','d'}</td>
+      </tr>
+      <tr>
+      <td>list = {"quarenta,"e","dois"}</td>
+      <td>list.remove([0,2])</td>
+      <td>new_list = {"e"}</td>
+      </tr>
+      </table></div>
+
+      <p><strong>Teste Prático de Estruturas de Dados (CC1007)</strong></p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob269.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob269.html</a>.</p>
+  </uc-page>
+</body>
+</html>

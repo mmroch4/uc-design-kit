@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED120] Desenhando um Losango · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED120 (Desenhando um Losango) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED120</li></ol>
+    </nav>
+    <h1>[ED120] Desenhando um Losango</h1>
+    <div class="uc-content">
+      <h2>O problema</h2>
+      <p>
+      <img alt="" class="uc-content__float" height="184" loading="lazy" src="imagens/prob120.png" width="162"/>
+      A tua tarefa é desenhar um losango, constituído
+      unicamente pelos caracteres '.' e '#'. O losango é determinado
+      por um número indicando o tamanho do seu centro. Por exemplo, um
+      losango de tamanho 5 corresponde à seguinte figura:
+
+      </p><pre>..#.. -&gt; menos dois cardinais que a linha a seguir
+.###. -&gt; menos dois cardinais que a linha central
+##### -&gt; 5 cardinais (losango de tamanho 5)
+.###. -&gt; menos dois cardinais que a linha central
+..#.. -&gt; menos dois cardinais que a linha anterior</pre>
+      <p>Se <strong>N</strong> for o tamanho do losango, Todas as linhas do losango
+      devem conter exactamente N caracteres. A linha central do losango deve
+      conter N cardinais, a linhas exactamente a seguir e a linha
+      imediatamente anterior deve conter menos dois cardinais que a central,
+      contendo mais dois pontos (que indicam "espaços") e assim
+      sucessivamente até chegarmos a uma linha contendo unicamente um
+      cardinal.
+
+      </p><p>Olha para a figura para perceberes como formar o losango e nota que
+      obviamente, o número N tem de ser ímpar.
+
+      </p><h2>Input</h2>
+      <p>O input é constituído por uma linha contendo um único número <strong>N</strong>
+      (<em>3 ≤ N ≤ 99</em>), que corresponde ao tamanho da linha central do
+      losango a desenhar. É garantido que o número dado é ímpar.
+
+      </p><h2>Output</h2>
+      <p>O output deve conter tantas linhas quantas as necessárias para
+      desenhar o losango no formato descrito atrás, ou seja, com cardinais e pontos.
+
+      </p><h2>Exemplo de input/output 1</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>3</td>
+      <td>
+      <pre>.#.
+###
+.#.</pre>
+      </td>
+      </tr>
+      </table></div>
+      <h2>Exemplo de input/output 2</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>7</td>
+      <td>
+      <pre>...#...
+..###..
+.#####.
+#######
+.#####.
+..###..
+...#...</pre></td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob120.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob120.html</a>.</p>
+  </uc-page>
+</body>
+</html>

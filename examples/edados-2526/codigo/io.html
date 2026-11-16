@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Input/Output · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Input/Output.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Input/Output</li></ol>
+    </nav>
+    <h1>Input/Output</h1>
+    <section class="uc-section" aria-labelledby="testscannerfromstring">
+      <h2 id="testscannerfromstring">TestScannerFromString.java</h2>
+      <uc-code lang="java" filename="TestScannerFromString.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao de Scanner a partir de uma String
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+import java.util.Scanner;
+
+public class TestScannerFromString {
+  public static void main (String[] args) {
+    Scanner strIn = new Scanner("1 - 2 - 3 - 4 - 5");
+    strIn.useDelimiter(" - ");
+    while ( strIn.hasNextInt() ) {
+      int n = strIn.nextInt();
+      System.out.println(n);
+    }
+  }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testscannerfromkeyboard">
+      <h2 id="testscannerfromkeyboard">TestScannerFromKeyboard.java</h2>
+      <uc-code lang="java" filename="TestScannerFromKeyboard.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao de Scanner a partir do teclado
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+import java.util.Scanner;
+
+public class TestScannerFromKeyboard {
+  public static void main (String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    System.out.println("Number of persons: ");
+
+    int n = stdIn.nextInt();
+    String[] names = new String[n];
+    int[]    ages  = new int[n];
+
+    for( int i = 0; i < n ; i++ ) {
+      System.out.println("input name[space]age: ");
+      names[i] = stdIn.next();
+      ages[i]  = stdIn.nextInt();
+    }
+
+    for( int i = 0; i < n ; i++ )
+      System.out.println("name: "+ names[i] + " age: " + ages[i]);
+  }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testscannerfromfile">
+      <h2 id="testscannerfromfile">TestScannerFromFile.java</h2>
+      <uc-code lang="java" filename="TestScannerFromFile.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao de Scanner a partir de um ficheiro
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+import java.io.File; 
+import java.io.IOException; 
+import java.util.Scanner;
+
+public class TestScannerFromFile {
+  public static void main (String args[]) {
+    try {
+      File file = new File("./example.txt");
+      Scanner fileIn = new Scanner(file);
+      while( fileIn.hasNextLine() )
+      	System.out.println(fileIn.nextLine());
+    }	 
+    catch (IOException e) { // Mais sobre a instrucao catch noutra aula
+      System.out.println("File not found");
+    }
+  }	
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testoutput">
+      <h2 id="testoutput">TestOutput.java</h2>
+      <uc-code lang="java" filename="TestOutput.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de escrita formatada
+// Ultima alteracao: 04/02/2019
+// -----------------------------------------------------------
+
+import java.util.Scanner;
+
+public class TestOutput {
+  public static void main (String[] args) {
+     long n = 461012;
+     System.out.printf("%d%n", n);      //  -->  "461012"
+     System.out.printf("%8d%n", n);     //  -->  "\_\_461012"
+     System.out.printf("%-8d%n", n);    //  -->  "461012\_\_" 
+     System.out.printf("%08d%n", n);    //  -->  "00461012"
+
+     double pi = Math.PI;
+     System.out.printf("%f%n", pi);       // -->  "3.141593"
+     System.out.printf("%.3f%n", pi);     // -->  "3.142"
+     System.out.printf("%10.3f%n", pi);   // -->  "\_\_\_\_\_3.142"
+     System.out.printf("%-10.3f%n", pi);  // -->  "3.142\_\_\_\_\_"
+  }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="io.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/io.html</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED201] Playlist · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED201 (Playlist) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED201</li></ol>
+    </nav>
+    <h1>[ED201] Playlist</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshask, deverá submeter uma classe <strong>ED201</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).
+      </p></div></p>
+      <p><img alt="" class="uc-content__float" height="246" loading="lazy" src="imagens/201.jpg" width="400"/>O Aniceto vai viajar de comboio e pretende ouvir música durante a sua viagem. Como é muito organizado, deseja ter uma <em>playlist</em> de músicas já escolhida. Sabendo a duração da viagem, ele deseja escolher <strong>um conjunto de músicas que não ultrapasse a duração (ele não gosta de ficar com uma música a meio) mas que ao mesmo tempo tenha uma duração total o mais próxima possível da duração (para não ficar muito tempo sem ouvir nada). Além disso, ele não quer que a mesma música apareça mais do que uma vez na <em>playlist</em></strong>.
+
+      </p><p>Imagina por exemplo que ele tem as seguintes 9 músicas disponíveis:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr><th scope="col">#</th><th scope="col">Intérprete</th><th scope="col">Música</th><th scope="col">Duração<br/>(segundos)</th></tr>
+      <tr>
+      <td>01</td>
+      <td>Yann Tiersen</td>
+      <td>Porz Goret</td>
+      <td>243</td>
+      </tr>
+      <tr>
+      <td>02</td>
+      <td>Ludovico Einaudi</td>
+      <td>Fly</td>
+      <td>202</td>
+      </tr>
+      <tr>
+      <td>03</td>
+      <td>God is an Astronaut</td>
+      <td>All Is Violent, All Is Bright</td>
+      <td>254</td>
+      </tr>
+      <tr>
+      <td>04</td>
+      <td>Explosions In The Sky</td>
+      <td>Your Hand In Mine </td>
+      <td>502</td>
+      </tr>
+      <tr>
+      <td>05</td>
+      <td>Opeth</td>
+      <td>Harvest</td>
+      <td>385</td>
+      </tr>
+      <tr>
+      <td>06</td>
+      <td>Green Carnation</td>
+      <td>9-25-045</td>
+      <td>942</td>
+      </tr>
+      <tr>
+      <td>07</td>
+      <td>Porcupine Tree</td>
+      <td>Lazarus</td>
+      <td>237</td>
+      </tr>
+      <tr>
+      <td>08</td>
+      <td>Metallica</td>
+      <td>Fade to Black</td>
+      <td>721</td>
+      </tr>
+      <tr>
+      <td>09</td>
+      <td>Tuna Javardemica</td>
+      <td>Ciencito Aluno</td>
+      <td>192</td>
+      </tr>
+      </table></div>
+      <p>Considere que o Aniceto sabe que <strong>a viagem demora 1300 segundos</strong>. Se experimentar ir adicionando as músicas enquanto não ultrapassarem a duração, ele chega à seguinte <em>playlist</em>:</p>
+      <ul>
+      <li><strong>Hipótese 1:</strong> #01, #02, #03, #04  |  Duração: 243+202+254+502 = <strong>1201 segundos</strong>
+      </li></ul>
+      <p>O Aniceto resolveu começar a adiconar as músicas começando pela mais pequena, e com isso chegou à seguinte <em>playlist</em>, que é pior que a anterior:
+
+        </p><ul>
+      <li><strong>Hipótese 2:</strong> #09, #02, #07, #01, #3  |  Duração: 192+202+237+243+254 = <strong>1128 segundos</strong>
+      </li></ul>
+      <p>O Aniceto tentou várias outras estratégias (como começar pela maior música) mas percebeu que nenhuma dava sempre a melhor solução possível. Em particular, para o seu caso, a melhor <em>playlist</em> era a seguinte, com apenas menos 2 segundos que a duração da viagem: 
+
+        </p><ul>
+      <li><strong>Hipótese 3:</strong> #05, #08, #09  |  Duração: 385+721+192 = <strong>1298 segundos</strong>
+      </li></ul>
+      <p>Será que podes ajudar o Aniceto a encontrar qual a melhor <em>playlist</em> para futuras viagens?
+
+      </p><h2>O Problema</h2>
+      <p>Dada a duração de uma viagem e um conjunto de músicas (especificadas pela sua duração), tens de calcular qual a duração da <em>playlist</em> ótima, ou seja qual o subconjunto de músicas tal que a soma das suas durações seja a maior possível e ao mesmo tempo essa soma seja menor ou igual à duração da viagem.
+
+      </p><h2>Input</h2>
+      <p>Na primeira linha do input vem dois números inteiros <strong>D</strong> (<em>1
+          ≤ D ≤ 10 000</em>) e <strong>N</strong> (<em>1
+          ≤ N ≤ 20</em>) indicando a duração da viagem e o número de músicas disponíveis.</p>
+      <p>Seguem-se exactamente <strong>N</strong> linhas, cada uma com um número <strong>M<sub>i</sub></strong> indicando a duração da <em>i</em>-ésima música (as durações das músicas são inteiros entre 1 e 10 000). É garantido que pelo menos uma música tem duração igual ou inferior a <strong>D</strong>.
+
+      </p><h2>Output</h2>
+      <p>O output é constituído por uma linha contendo um único número indicando a duração total da melhor <em>playlist</em> possível, ou seja, a escolha de um subconjunto de músicas que maximize ∑M<sub>i</sub> tal que ∑M<sub>i</sub>≤D
+
+      </p><h2>Exemplo de Input</h2>
+      <pre>1300 9
+243
+202
+254
+502
+385
+942
+237
+721
+192</pre>
+      <p><em>(Nota que o exemplo de input corresponde ao exemplo do enunciado</em>
+      </p><h2>Exemplo de Output</h2>
+      <pre>1298</pre>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob201.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob201.html</a>.</p>
+  </uc-page>
+</body>
+</html>

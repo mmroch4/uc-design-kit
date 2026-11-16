@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED196] Duas filas · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED196 (Duas filas) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED196</li></ol>
+    </nav>
+    <h1>[ED196] Duas filas</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter
+      uma classe <strong>ED196</strong> contendo um método estático <strong>process</strong>
+      como a seguir descrito (não é necessário um programa completo).</div>
+      </p><p>Pode assumir que terá acesso no Mooshak às "classes de filas" conforme descritas na respectiva aula prática.
+
+      </p>
+      <h2>Método a submeter</h2>
+      <p><strong><code>public static void process(MyQueue&lt;String&gt; q, MyQueue&lt;String&gt; a, MyQueue&lt;String&gt; b)</code></strong> da
+        classe <strong><code>ED196</code></strong>
+      <p>Este método deve processar os elementos que vêm na fila <code>q</code> na forma de um nome seguido de uma operação. Consoante a operação deve fazer o seguinte:
+        </p><ul>
+      <li><strong>Nome A</strong> - Adiciona nome à fila <code>a</code>
+      </li><li><strong>Nome B</strong> - Adiciona nome à fila <code>b</code>
+      </li><li><strong>Nome X</strong> - Adiciona nome à fila que tenha menos elementos (<code>a</code> ou <code>b</code>). Se ambas as filas tiverem o mesmo número de elementos, o nome é descartado e não é adicionada a nenhuma.
+        </li></ul>
+      <p>Por exemplo, se a fila <code>q</code> fosse {Luis,B,Pedro,A,Luisa,A,Joao,X,Jose,X,Miguel,B} acontecia o seguinte:
+        </p><ol>
+      <li><em>Luis B</em> - Luis é adicionado à fila <code>b</code>
+      </li><li><em>Pedro A</em> - Pedro é adicionado à fila <code>a</code>
+      </li><li><em>Luisa A</em> - Luisa é adicionada à fila <code>a</code>
+      </li><li><em>Joao X</em> - Joao é adicionado à fila <code>b</code>, que tem apenas 1 elemento (Luis) contra os dois da fila  <code>b</code> (Pedro e Luisa)
+          </li><li><em>Jose X</em> - José descartado (ambas as filas têm 2 elementos)
+          </li><li><em>Miguel B</em> - Miguel é adicionado à fila <code>b</code>
+      </li></ol>
+      <p>No final a fila <code>a</code> fica com {Pedro,Luisa} e a fila <code>b</code> fica com {Luis,Joao,Miguel}. A fila <code>q</code> deve ficar vazia.</p>
+
+      <h2>Exemplos de input/output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Fila <em>q</em>, <em>a</em> e <em>b</em> no início</th>
+      <th scope="col">Fila <em>q</em>, <em>a</em> e <em>b</em> no final da chamada</th>
+      </tr>
+      <tr>
+      <td>
+          q = {Luis,B,Pedro,A,Luisa,A,Joao,X,Jose,X,Miguel,B}<br/>
+          a = {}<br/>
+          b = {}
+        </td>
+      <td>
+          q = {}<br/>
+          a = {Pedro, Luisa}<br/>
+          b = {Luis, Joao, Miguel}
+        </td>
+      </tr>
+      <tr>
+      <td>
+          q = {Luis,B,Pedro,B,Luisa,X,Joao,X}<br/>
+          a = {}<br/>
+          b = {}
+        </td>
+      <td>
+          q = {}<br/>
+          a = {Luisa,Joao}<br/>
+          b = {Luis,Pedro}
+        </td>
+      </tr>
+      </table></div>
+
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob196.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob196.html</a>.</p>
+  </uc-page>
+</body>
+</html>

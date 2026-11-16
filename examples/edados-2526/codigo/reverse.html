@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invertendo um array · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Invertendo um array.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">TestReverse</li></ol>
+    </nav>
+    <h1>Invertendo um array</h1>
+    <section class="uc-section" aria-labelledby="testreverse">
+      <h2 id="testreverse">TestReverse.java</h2>
+      <uc-code lang="java" filename="TestReverse.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Invertendo um array (versao recursiva)
+// Ultima alteracao: 21/04/2018
+// -----------------------------------------------------------
+
+import java.util.Arrays;
+
+public class TestReverse {
+
+   // Inverter array v entre posicoes start e end
+   static void reverse(int v[], int start, int end) {
+      if (start>=end) return;     // Caso base: array de tamanho < 2
+      int tmp = v[start];         // Trocar primeiro com ultimo
+      v[start] = v[end];
+      v[end] = tmp;
+      reverse(v, start+1, end-1); // Chamada recursiva para o resto
+   }
+   
+   // -----------------------------------------------------------
+   
+   public static void main(String[] args) {
+      int v[] = {2,4,6,8,10}; // Inicializacao de array
+
+      System.out.println("Antes  do reverse: " + Arrays.toString(v));
+      reverse(v, 0, v.length-1);
+      System.out.println("Depois do reverse: " + Arrays.toString(v));
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="reverse.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/reverse.html</a>.</p>
+  </uc-page>
+</body>
+</html>

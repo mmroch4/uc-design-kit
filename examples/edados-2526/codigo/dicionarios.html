@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dicionários (com árvores binárias) · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Dicionários (com árvores binárias).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">BSTMap</li></ol>
+    </nav>
+    <h1>Dicionários (com árvores binárias)</h1>
+    <section class="uc-section" aria-labelledby="bstmapnode">
+      <h2 id="bstmapnode">Nó da árvore · BSTMapNode.java</h2>
+      <uc-code lang="java" filename="BSTMapNode.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// No de uma arvore binaria de pesquisa - versao dicionario
+// Ultima alteracao: 13/05/2018
+// -----------------------------------------------------------
+
+// K e o tipo da chave (key) e V o tipo do valor (value)
+// O tipo K tem de implementar o interface Comparable
+// (ou te-lo herdado de uma super classe).
+public class BSTMapNode<K extends Comparable<? super K>, V> {
+   private K key;                 // chave
+   private V value;               // valor
+   private BSTMapNode<K,V> left;  // Filho esquerdo
+   private BSTMapNode<K,V> right; // Filho direito
+
+   // Construtor
+   BSTMapNode(K k, V v, BSTMapNode<K,V> l, BSTMapNode<K,V> r) {
+      key = k;
+      value = v;
+      left = l;
+      right = r;
+   }
+
+   // Getters e Setters
+   public K getKey() {return key;}
+   public V getValue() {return value;}
+   public BSTMapNode<K,V> getLeft() {return left;}
+   public BSTMapNode<K,V> getRight() {return right;}
+   public void setKey(K k) {key = k;}
+   public void setValue(V v) {value = v;}
+   public void setLeft(BSTMapNode<K,V> l) {left = l;}
+   public void setRight(BSTMapNode<K,V> r) {right = r;}   
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="bstmap">
+      <h2 id="bstmap">Dicionário · BSTMap.java</h2>
+      <uc-code lang="java" filename="BSTMap.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Arvore binaria de pequisa - versao dicionario
+// Ultima alteracao: 13/05/2018
+// -----------------------------------------------------------
+
+import java.util.LinkedList;
+
+// K e o tipo da chave (key) e V o tipo do valor (value)
+// O tipo K tem de implementar o interface Comparable
+// (ou te-lo herdado de uma super classe).
+public class BSTMap<K extends Comparable<? super K>,V> {   
+   private BSTMapNode<K,V> root; // raiz da arvore
+
+   // Construtor
+   BSTMap() {
+      root = null;
+   }
+
+   // Getter e Setter para a raiz
+   public BSTMapNode<K,V> getRoot() {return root;}
+   public void setRoot(BSTMapNode<K,V> r) {root = r;}
+   
+   // Verificar se o dicionario esta vazio
+   public boolean isEmpty() {
+      return root == null;
+   }
+
+   // Limpa o dicionario (torna-o vazia)
+   public void clear() {
+      root = null;
+   }
+
+   // --------------------------------------------------------
+   // Tamanho do dicionario (numero de chaves guardadas)
+   public int size() {
+      return size(root);
+   }
+
+   private int size(BSTMapNode<K,V> n) {
+      if (n == null) return 0;
+      return 1 + size(n.getLeft()) + size(n.getRight());
+   }
+   
+   // --------------------------------------------------------
+   // Devolver o valor associado a uma chave (ou null caso nao exista)
+   public V get(K key) {
+      return get(root, key);
+   }
+
+   private V get(BSTMapNode<K,V> n, K key) {
+      if (n==null) return null;
+      if (key.compareTo(n.getKey()) < 0) return get(n.getLeft(), key);
+      if (key.compareTo(n.getKey()) > 0) return get(n.getRight(), key);
+      return n.getValue(); // se nao e menor ou maior, e porque e igual
+   }
+
+   // --------------------------------------------------------
+   // Adicionar par (chave,valor) ao dicionario
+   // Se chave ja existir, substitui o valor antigo pelo novo
+   public void put(K key, V value) {
+      root = put(root, key, value);
+   }
+
+   private BSTMapNode<K,V> put(BSTMapNode<K,V> n, K key, V value) {
+      if (n==null)
+         return new BSTMapNode<K,V>(key, value, null, null);
+      else if (key.compareTo(n.getKey()) < 0) 
+         n.setLeft(put(n.getLeft(), key, value));
+      else if (key.compareTo(n.getKey()) > 0)
+         n.setRight(put(n.getRight(), key, value));
+      else
+         n.setValue(value);
+      return n;
+   }
+   
+   // --------------------------------------------------------
+   // Remover uma chave do dicionario
+   // Devolve true se conseguiu remover, false caso contrario
+   public boolean remove(K key) {
+      if (get(key)==null) return false;
+      root = remove(root, key);
+      return true;
+   }
+
+   // Assume-se que elemento existe (foi verificado antes)
+   private BSTMapNode<K,V> remove(BSTMapNode<K,V> n, K key) {
+      if (key.compareTo(n.getKey()) < 0)
+         n.setLeft(remove(n.getLeft(), key));
+      else if (key.compareTo(n.getKey()) > 0)
+         n.setRight(remove(n.getRight(), key));
+      else if (n.getLeft() == null) // Nao tem filho esquerdo
+         n = n.getRight();
+      else if (n.getRight() == null) // Nao tem filho direito
+         n = n.getLeft();
+      else { // Dois fihos: ir buscar maximo do lado esquerdo
+         BSTMapNode<K,V> max = n.getLeft();
+         while (max.getRight() != null) max = max.getRight();
+         n.setKey(max.getKey());     // Substituir chave removida
+         n.setValue(max.getValue()); // Substituir valor removido
+         // Apagar valor que foi para lugar do removido
+         n.setLeft(remove(n.getLeft(), max.getKey()));
+      }
+      return n;
+   }
+
+   // --------------------------------------------------------
+   // Devolver lista ligada das chaves (usando listas do Java)
+   public LinkedList<K> keys() {
+      LinkedList<K> list = new LinkedList<K>();
+      keys(root, list);
+      return list;
+   }
+
+   private void keys(BSTMapNode<K,V> n, LinkedList<K> l) {
+      if (n==null) return;
+      keys(n.getLeft(), l);
+      l.addLast(n.getKey());
+      keys(n.getRight(), l);
+   }
+   
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testbstmap">
+      <h2 id="testbstmap">Exemplo de teste dos dicionários · TestBSTMap.java</h2>
+      <uc-code lang="java" filename="TestBSTMap.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao da um dicionario
+// Ultima alteracao: 13/05/2018
+// -----------------------------------------------------------
+
+import java.util.LinkedList;
+
+public class TestBSTMap {
+   
+   public static void main(String[] args) {
+      
+      // Criacao de um dicionario     
+      BSTMap<String,Integer> map = new BSTMap<String,Integer>();
+      
+      // Inserindo alguns pares (chave,valor)
+      map.put("Life", 42);
+      map.put("Zero", 0);
+      map.put("Infinity", 999);
+      
+      // Tamanho e conteudo
+      System.out.println("size = " + map.size());
+      System.out.println("Value of \"Life\" = " + map.get("Life"));
+      System.out.println("Value of \"Data\" = " + map.get("Data"));
+
+      // Imprimindo todas chaves      
+      LinkedList<String> keys = map.keys();
+      System.out.println("keys = " + keys);
+      
+      // Percorrendo todas as chaves para imprimir os pares (chave,valor)
+      System.out.println("All (key,value) pairs:");
+      for (String k : map.keys())
+         System.out.println("- (" + k + "," + map.get(k) + ")");
+      
+      // Modificando um valor
+      map.put("Life", 22);
+      System.out.println("Value of \"Life\" = " + map.get("Life"));
+      
+      // Apagando um valor
+      map.remove("Life");
+      System.out.println("Value of \"Life\" = " + map.get("Life"));
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="dicionarios.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/dicionários.html</a>.</p>
+  </uc-page>
+</body>
+</html>

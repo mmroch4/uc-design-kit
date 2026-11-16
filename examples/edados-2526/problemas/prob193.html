@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED193] Removendo todas as ocorrências de um elemento · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED193 (Removendo todas as ocorrências de um elemento) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED193</li></ol>
+    </nav>
+    <h1>[ED193] Removendo todas as ocorrências de um elemento</h1>
+    <div class="uc-content">
+      <p><img alt="" height="100" loading="lazy" src="imagens/linkedlist.png" width="699"/>
+      </p><h2>Código Base</h2>
+      <p>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (descrita
+      no exercício 1 da aula prática 06 - não esquecer da
+      classe <strong>Node</strong>) que implementa uma lista ligada simples e tem
+      disponíveis métodos para adicionar ou remover um elemento no início ou
+      no final, devolver o tamanho, saber se a lista está vazia ou retornar
+      representação em <em>string</em> para escrita (tal como dado nas aulas).
+
+      </p><h2>O problema</h2>
+      <p>Acrescente à classe dada um novo método <strong>public void removeAll(T
+      value)</strong> que <strong>remove da lista todas as ocorrências do
+      valor <em>value</em></strong>. Note que para comparar os elementos deverá
+      usar o método <strong>equals</strong> e não um simples <strong>==</strong> (pode assumir
+      que os objectos da lista têm implementada uma versão correcta
+      do <strong>equals</strong>).
+
+      </p><h2>Submissão no Mooshak</h2>
+      <p>Se submeter no Mooshak, deverá submeter apenas a
+      classe <strong>SinglyLinkedList&lt;T&gt;</strong>, acrescentando o
+      método <strong>removeAll</strong> como pedido <strong>(e sem apagar nenhum dos outros
+      métodos dados como base)</strong>. Pode assumir que terá acesso no Mooshak
+      à classe Node&lt;T&gt; (não a pode mudar) e se precisar pode criar
+      outros métodos auxiliares. O Mooshak irá criar várias instâncias da
+      sua classe e irá fazer uma série de testes ao método por si
+      implementado.
+
+      </p><h2>Exemplos de Input/Output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Lista inicial</th>
+      <th scope="col">  Chamada   </th>
+      <th scope="col">Estado da lista depois da chamada</th>
+      </tr>
+      <tr>
+      <td>list = {1,2,2,2,1,3,4,2,1}</td>
+      <td>list.removeAll(1)</td>
+      <td>list = {2,2,2,3,4,2}</td>
+      </tr>
+      <tr>
+      <td>list = {1,2,2,2,1,3,4,2,1}</td>
+      <td>list.removeAll(2)</td>
+      <td>list = {1,1,3,4,1}</td>
+      </tr>
+      <tr>
+      <td>list = {1,2,2,2,1,3,4,2,1}</td>
+      <td>list.removeAll(3)</td>
+      <td>list = {1,2,2,2,1,4,2,1}</td>
+      </tr>
+      <tr>
+      <td>list = {1,2,2,2,1,3,4,2,1}</td>
+      <td>list.removeAll(5)</td>
+      <td>list = {1,2,2,2,1,3,4,2,1}</td>
+      </tr>
+      <tr>
+      <td>list = {"cc","cc","cc","cc","cc"}</td>
+      <td>list.removeAll("cc")</td>
+      <td>list={}</td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob193.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob193.html</a>.</p>
+  </uc-page>
+</body>
+</html>

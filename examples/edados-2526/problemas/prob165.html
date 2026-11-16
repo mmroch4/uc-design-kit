@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED165] Somas · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED165 (Somas) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED165</li></ol>
+    </nav>
+    <h1>[ED165] Somas</h1>
+    <div class="uc-content">
+      <div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshak, deverá submeter uma classe <strong>ED165</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
+      Pode assumir que no Mooshak terá acesso às classes de árvores binárias de pesquisa (ou seja, não precisa de incluir a classe <strong>BSTree</strong> no código submetido).
+      </p></div>
+      <img alt="" class="uc-content__float" height="289" loading="lazy" src="imagens/prob165.png" width="300"/>
+      <h2>O problema</h2>
+      <p>Dada um conjunto de <strong>N</strong> números e um conjunto de <strong>P</strong> perguntas indicando cada uma um número <strong>X<sub>i</sub></strong>, a tua tarefa é descobrir, para cada pergunta, se o número <strong>X<sub>i</sub></strong> pode ser formado somando dois números (possivelmente iguais) do conjunto dado.
+
+      </p><p>Imagine por exemplo que o conjunto é {2,6,8,10}:
+        </p><ul>
+      <li>4 (2+2), 8 (2+6), 10 (2+8), 12 (2+10) e 16 (6+10) são exemplos de perguntas que teriam resposta afirmativa
+          </li><li>2, 3, 5, 15 ou 21 são exemplos de perguntas que teriam resposta negativa
+        </li></ul>
+      <h2>Input</h2>
+      <p>Na primeira linha do input vem um número <strong>N</strong> (<code>1
+          ≤ N ≤ 1,000</code>) que corresponde à quantidade de números do conjunto. Segue-se uma linha com <strong>N</strong> inteiros positivos (menores que um milhão), separados por um espaço, indicando os números do conjunto.
+
+      </p><p>Na terceira linha do input vem um número <strong>P</strong> (<code>1
+          ≤ N ≤ 5,000</code>) que corresponde à quantidade de perguntas. Segue-se uma linha com <strong>P</strong> inteiros positivos (menores que um milhão), separados por um espaço, indicando as perguntas <strong>X<sub>i</sub></strong>.
+
+      </p><h2>Output</h2>
+
+      O output deve ser constituído por <strong>P</strong> linhas, uma por cada pergunta, no formato <strong>X<sub>i</sub>: sim</strong> se o X<sub>i</sub> puder ser formado como soma de dois números do conjunto dado, ou <strong>X<sub>i</sub>: nao</strong> caso contrário.
+
+      <h2>Exemplo de Input</h2>
+      <pre>4
+10 6 2 8
+10
+4 8 2 5 21 10 16 3 12 15</pre>
+      <h2>Exemplo de Output</h2>
+      <pre>4: sim
+8: sim
+2: nao
+5: nao
+21: nao
+10: sim
+16: sim
+3: nao
+12: sim
+15: nao</pre>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob165.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob165.html</a>.</p>
+  </uc-page>
+</body>
+</html>

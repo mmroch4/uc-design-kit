@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TAD MyStack · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: TAD MyStack.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">TAD MyStack</li></ol>
+    </nav>
+    <h1>TAD MyStack</h1>
+    <section class="uc-section" aria-labelledby="mystack">
+      <h2 id="mystack">Interface · MyStack.java</h2>
+      <uc-code lang="java" filename="MyStack.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Interface para o TAD Pilha
+// Ultima alteracao: 06/04/2018
+// -----------------------------------------------------------
+
+public interface MyStack<T> {
+
+   // Metodos que modificam a pilha
+   public void push(T v); // Coloca um valor no topo da pilha
+   public T pop();        // Retira e retorna o valor no topo da pilha
+
+   // Metodos que acedem a informacao (sem modificar)
+   public T top();           // Retorna valor no topo da pilha
+   public int size();        // Retorna quantidade de elementos na pilha
+   public boolean isEmpty(); // Indica se a pilha esta vazia
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testmystack">
+      <h2 id="testmystack">Exemplo de utilização · TestMyStack.java</h2>
+      <uc-code lang="java" filename="TestMyStack.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao do TAD Pilha
+// Ultima alteracao: 06/04/2018
+// -----------------------------------------------------------
+
+public class TestMyStack {
+   public static void main(String[] args) {
+
+      // Criacao da pilha
+      MyStack<Integer> s = new LinkedListStack<Integer>();
+      //MyStack<Integer> s = new ArrayStack<Integer>();
+
+      // Exemplo de insercao de elementos na pilha
+      for (int i=1; i<=8; i++)
+         s.push(i); // insere i no topo da pilha
+      System.out.println(s);
+
+      // Exemplo de remocao de elementos na pilha
+      for (int i=0; i<4; i++) {
+         int aux = s.pop(); // retira o elemento no topo da pilha
+         System.out.println("s.pop() = " + aux);
+      }
+      System.out.println(s);
+
+      // Exemplo de utilizacao dos outros metodos
+      System.out.println("s.size() = " + s.size());
+      System.out.println("s.isEmpty() = " + s.isEmpty());
+      System.out.println("s.top() = " + s.top());
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="linkedliststack">
+      <h2 id="linkedliststack">Implementação com Listas Ligadas · LinkedListStack.java</h2>
+      <uc-code lang="java" filename="LinkedListStack.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Implementacao do TAD Pilha usando lista duplamente ligada
+// Ultima alteracao: 06/04/2018
+// -----------------------------------------------------------
+
+public class LinkedListStack<T> implements MyStack<T> {
+   private DoublyLinkedList<T> list;
+
+   LinkedListStack() { list = new DoublyLinkedList<T>();}
+   
+   public void push(T v) { list.addFirst(v); }   
+   public T pop() {
+      T ans = list.getFirst();
+      list.removeFirst();
+      return ans;
+   }
+   public T top() { return list.getFirst();}
+   public int size() {return list.size();}
+   public boolean isEmpty() {return list.isEmpty();}
+
+   public String toString() {return list.toString();}
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="arraystack">
+      <h2 id="arraystack">Implementação com Arrays · ArrayStack.java</h2>
+      <uc-code lang="java" filename="ArrayStack.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Implementacao de Pilha usando array 
+// Ultima alteracao: 06/04/2018
+//
+// Nota: o Java proibe a criacao de arrays genericos. Para efeitos
+// de demonstracao, usamos aqui um array de Objects e um cast
+// (que prova um aviso de compilacao que e "evitado" com a linha do
+// Supress Warning). De um modo geral, para genericos, o ideal seria
+// Nao usar um array "nativo", mas sim algo como um ArrayList, mas
+// aqui queriamos demonstrar como podia ser feito.
+// -----------------------------------------------------------
+
+import java.util.Arrays;
+
+public class ArrayStack<T> implements MyStack<T> {
+   public static final int CAPACITY = 1000; // Capacidade padrao   
+   private T[] data;  // Array para conter elementos
+   private int size;  // Quantidade de elementos
+
+   ArrayStack() {
+      this(CAPACITY);
+   }
+
+   @SuppressWarnings("unchecked")
+   ArrayStack(int capacity) {
+      data = (T[]) new Object[capacity];
+      size = 0;
+   }
+   
+   public void push(T v) {
+      if (size >= data.length) throw new RuntimeException("Stack is full");
+      data[size++] = v;
+   }
+   
+   public T pop() {
+      if (isEmpty()) return null;
+      return data[--size];
+   }
+   
+   public T top() { return data[size-1];}
+   public int size() {return size;}
+   public boolean isEmpty() {return (size==0);}
+
+   public String toString() {
+      String str = "[";
+      for (int i=size-1; i>=0; i--) {
+         str += data[i];
+         if (i>0) str += ",";
+      }
+      str += "]";
+      return str;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="pilhas.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/pilhas.html</a>.</p>
+  </uc-page>
+</body>
+</html>

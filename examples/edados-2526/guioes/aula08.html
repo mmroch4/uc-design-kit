@@ -27,9 +27,9 @@
         <h2 id="submissao">Exercícios para submissão</h2>
         <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
         <ul class="uc-bullets">
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob198.html">[ED198] Um Jogo com Sequências</a> (peso 100%, exercício do guião principal)</li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob222.html">[ED222] Salvando os Ruivacos</a> (peso 50%, exercício extra)</li>
-          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob199.html">[ED199] Tesouros de Kilmia</a> (peso 50%, exercício extra)</li>
+          <li><a href="../problemas/prob198.html">[ED198] Um Jogo com Sequências</a> (peso 100%, exercício do guião principal)</li>
+          <li><a href="../problemas/prob222.html">[ED222] Salvando os Ruivacos</a> (peso 50%, exercício extra)</li>
+          <li><a href="../problemas/prob199.html">[ED199] Tesouros de Kilmia</a> (peso 50%, exercício extra)</li>
         </ul>
         <p><strong>Prazo de submissão:</strong> 24 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
         <div class="uc-callout">
@@ -95,7 +95,7 @@
         <h2 id="conjunto">Exercício 2) Complexidade do TAD Conjunto</h2>
 
         <uc-exercise id="arraylist-intset" title="Complexidade do ArrayListIntSet">
-          <p>Para a implementação <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html">ArrayListIntSet</a> (que usava um array como lista dos números do conjunto), <strong>qual é a complexidade temporal</strong> de cada um dos seguintes métodos? (usa a notação Θ)</p>
+          <p>Para a implementação <a href="../problemas/prob247.html">ArrayListIntSet</a> (que usava um array como lista dos números do conjunto), <strong>qual é a complexidade temporal</strong> de cada um dos seguintes métodos? (usa a notação Θ)</p>
           <ol class="uc-bullets">
             <li><code>contains(int x)</code></li>
             <li><code>add(int x)</code></li>
@@ -168,7 +168,7 @@
 
       <section class="uc-section" aria-labelledby="subarray">
         <h2 id="subarray">Exercício 4) Problema do subarray contíguo de soma máxima</h2>
-        <p class="uc-prose">O objetivo deste exercício é ter algoritmos de diferentes complexidades para o mesmo problema e ir verificando a sua eficiência temporal. Começa por ler o enunciado do problema, disponível em <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob198.html">[ED198] Um Jogo com Sequências</a>.</p>
+        <p class="uc-prose">O objetivo deste exercício é ter algoritmos de diferentes complexidades para o mesmo problema e ir verificando a sua eficiência temporal. Começa por ler o enunciado do problema, disponível em <a href="../problemas/prob198.html">[ED198] Um Jogo com Sequências</a>.</p>
 
         <uc-exercise id="forca-bruta" title="Uma primeira solução de força bruta, em tempo Θ(n³)">
           <p>Quais são todas as subsequências contíguas possíveis? Seja <code>v[]</code> um array com a sequência, a começar na posição 0. As sequências possíveis são todos os subarrays <code>v[i…j]</code> tais que 0 ≤ <var>i</var> ≤ <var>j</var> &lt; <var>n</var>.</p>
@@ -239,7 +239,7 @@ System.out.println(maxSoFar);
         <p class="uc-prose">Tens mais dois pequenos problemas nesta aula em que a solução mais "bruta" em termos de complexidade temporal não passa no tempo e tens de fazer algo um pouco mais eficiente.</p>
 
         <uc-exercise id="ed222" title="[ED222] Salvando os Ruivacos">
-          <p>Problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob222.html">[ED222] Salvando os Ruivacos</a>, no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>. Uma solução "bruta" que tente todos os intervalos e, para cada um, percorra todos os seus elementos para ver quantos são maiores ou iguais a <var>T</var> pode demorar Θ(<var>N</var><sup>2</sup>) (basta imaginar o caso em que <var>K</var> = <var>N</var>/2: temos <var>N</var>/2 + 1 intervalos, cada um com tamanho <var>N</var>/2, para verificar). Isto não chega para passar no tempo e precisamos de uma solução melhor…</p>
+          <p>Problema <a href="../problemas/prob222.html">[ED222] Salvando os Ruivacos</a>, no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>. Uma solução "bruta" que tente todos os intervalos e, para cada um, percorra todos os seus elementos para ver quantos são maiores ou iguais a <var>T</var> pode demorar Θ(<var>N</var><sup>2</sup>) (basta imaginar o caso em que <var>K</var> = <var>N</var>/2: temos <var>N</var>/2 + 1 intervalos, cada um com tamanho <var>N</var>/2, para verificar). Isto não chega para passar no tempo e precisamos de uma solução melhor…</p>
           <details class="uc-hint">
             <summary>Dicas</summary>
             <ul class="uc-bullets">
@@ -252,7 +252,7 @@ System.out.println(maxSoFar);
         </uc-exercise>
 
         <uc-exercise id="ed199" title="[ED199] Tesouros de Kilmia">
-          <p>Problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob199.html">[ED199] Tesouros de Kilmia</a>, no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>. Uma solução "bruta" que simule todas as instruções pode demorar Θ(<var>I</var> × <var>N</var>), pois cada uma das <var>I</var> instruções pode obrigar a percorrer <var>N</var> posições no pior caso. Isto não chega para passar no tempo e precisamos de uma solução melhor…</p>
+          <p>Problema <a href="../problemas/prob199.html">[ED199] Tesouros de Kilmia</a>, no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>. Uma solução "bruta" que simule todas as instruções pode demorar Θ(<var>I</var> × <var>N</var>), pois cada uma das <var>I</var> instruções pode obrigar a percorrer <var>N</var> posições no pior caso. Isto não chega para passar no tempo e precisamos de uma solução melhor…</p>
           <details class="uc-hint">
             <summary>Dicas</summary>
             <p>É preciso pensar um pouco sobre o que acontece no problema e fazer uma observação importante: o Daniel cobre sempre um intervalo contíguo de posições. Se a posição mais à direita a que o Daniel chegou foi <var>p</var><sub>d</sub>, então ele passou por todas as posições de <var>B</var> a <var>p</var><sub>d</sub>, pois nunca "salta" posições. Do mesmo modo, se a posição mais à esquerda a que chegou foi <var>p</var><sub>e</sub>, então passou por todas as posições de <var>p</var><sub>e</sub> a <var>B</var>.</p>

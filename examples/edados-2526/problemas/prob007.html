@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED007] Entre Parênteses · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED007 (Entre Parênteses) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED007</li></ol>
+    </nav>
+    <h1>[ED007] Entre Parênteses</h1>
+    <div class="uc-content">
+      <p>Para efeitos da nota atribuida à resolução de exercícios ao longo do semestre - <strong>Submeter até 23:59 de 26 de Novembro</strong><br/>
+      <em>(o problema continuará depois disponível para submissão, mas sem contar para a nota)</em><br/>
+      <strong>[para perceber o contexto do problema deve <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/praticas/aula07.html">ler o guião da aula #07</a>]</strong></p>
+
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED007</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
+      Pode assumir que no Mooshak terá acesso às classes de listas, pilhas e filas como dadas nas aulas (ou seja, não precisa de as incluir no código submetido).
+      </p></div>
+      <h2>O problema</h2>
+      <p><img alt="" class="uc-content__float" height="300" loading="lazy" src="imagens/prob007.jpg" width="205"/>A
+      Joana estava a fazer um exercício de matemática quando se deparou com a seguinte expressão:
+      </p><pre>( 1 + ( 2 + 3 * [ 4 + 5 * ( 6 * ( 7 ) ) ] ) )</pre>
+      <p>"Tantos parênteses!", pensou ela. E antes de começar a fazer exercício pensou também: "E
+      se o professor pensou mal antes de começar a fazer o exercício e não colocou bem os
+      parênteses. Se assim for nem vale a pena fazer o exerício". É tão preguiçosa esta Joana.
+
+      </p><p>Como a Joana acredita em ti, tens de tentar fazer um programa que indique que a expressão
+      matemática está mesmo bem formada, para que ela tenha vontade de fazer o exercício.
+
+      </p><p>A tua tarefa é portanto fazer um analisador de expressões que ligue apenas aos parênteses.
+      Tens de conseguir dizer se os parênteses estão bem formados, e caso contrário, indicar
+      qual a posição onde foi encontrado o primeiro erro. E não é preciso explicar quando uma
+      expressão com parênteses está bem formada, pois não? 
+
+      </p><h2>Input</h2>
+      <p>A primeira linha contém um número <strong>N</strong>, indicando o número de expressões a analisar.
+      </p><p>As seguintes <strong>N</strong> linhas definem expressões matemáticas contendo:
+      </p><ul>
+      <li> Dígitos, representando números inteiros
+        </li><li> Caracteres, representando operações: <strong>+</strong>, <strong>-</strong>, <strong>*</strong> ou <strong>/</strong>
+      </li><li> Parênteses curvos ou rectos: <strong>(</strong>, <strong>)</strong>, <strong>[</strong> ou <strong>]</strong>
+      </li><li> Espaços separando as várias partes da expressão
+      </li></ul>
+      <p>Não podes assumir nenhum tamanho máximo para a expressão, mas é garantido que existem
+      espaços a separar todas as componentes da expressão.
+
+      </p><h2>Output</h2>
+      <p>Uma linha para cada expressão, indicando <strong><code>Expressao bem formada</code></strong> caso todos
+      os parenteses estejam bem emparelhados, <strong><code>Erro na posicao <em>POS</em></code></strong>,
+      caso seja descoberto um parênteses que não poderia aparecer naquele sítio (onde <strong>POS</strong> indica a posição na linha, começando a contar de zero,
+      desse mesmo parênteses que está incorrecto) ou <strong><code>Ficam parenteses por fechar</code></strong> caso chegando ao fim da expressão
+      fiquem ainda parênteses por fechar.
+
+      </p><p>Note-se que por posição entende-se o número de caracteres até chegar ao
+      sítio em causa. Por exemplo, na linha "<code>( 1 + 2 )</code>", o <code>(</code> está na posicao 0, o <code>+</code> na posição
+      4 e o <code>)</code> na posição 8.  
+
+      </p><p>Lembra-te que podes ignorar todo o conteúdo da expressão que não sejam parenteses, pois para este
+      problema em particular, é irrelevante.
+
+      </p><h2>Exemplo de input/output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>5
+( 1 )
+( 1 + 2 ) )
+[ ( ] )
+( 1 + ( 2 )
+( 1 + ( 2 + 3 * ( 4 + 5 * ( 6 * ( 7 ) ) ) ) )</pre>
+      </td>
+      <td>
+      <pre>Expressao bem formada
+Erro na posicao 10
+Erro na posicao 4
+Ficam parenteses por fechar
+Expressao bem formada</pre></td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob007.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob007.html</a>.</p>
+  </uc-page>
+</body>
+</html>

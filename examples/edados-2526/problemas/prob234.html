@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED234] Avaliações Cinematográficas · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED234 (Avaliações Cinematográficas) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED234</li></ol>
+    </nav>
+    <h1>[ED234] Avaliações Cinematográficas</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED234</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
+            Pode assumir que no Mooshak <strong>terá acesso a todas as classes base dadas nas aulas, incluindo as de árvores binárias BTree, BSTree e BSTMap</strong> (não precisa de as incluir na submissão).<br/>
+      Pode ver o código das <a href="../codigo/index.html">classes uma a uma</a>.
+      </p></div>
+      </p>
+
+      <p><img alt="" class="uc-content__float" height="469" loading="lazy" src="imagens/234.jpg" width="703"/>Suponha que tem disponível uma lista de avaliações de filmes. Uma avaliação é caracterizada por um par <em>(filme,nota)</em> onde o filme é uma palavra sem espaços e a nota é um inteiro entre 1 e 10.</p>
+      <p>A sua tarefa é fazer algumas estatísticas sobre estas avaliações. Nomeadamente, deve calcular:</p>
+      <ul>
+      <li><strong>[flag 1]</strong> a quantidade de filmes diferentes que tiveram pelo menos uma avaliação. <em>(34% da cotação deste problema)</em>
+      </li><li><strong>[flag 2]</strong> qual o filme que foi avaliado mais vezes (sendo garantido que existe um único filme que foi avaliado mais vezes que os outros). <em>(33% da cotação deste problema)</em>
+      </li><li><strong>[flag 3]</strong> quais os filmes com uma nota média positiva, ou seja, maior ou igual a 5, imprimidos por ordem alfabética. <em>(33% da cotação deste problema)</em>
+      </li></ul>
+      <p>Imagine por exemplo que tinha a seguinte lista de 10 avaliações:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Filme</th>
+      <th scope="col">Nota</th>
+      </tr>
+      <tr>
+      <td>StarWarsVIII</td>
+      <td>5</td>
+      </tr>
+      <tr>
+      <td>BladeRunner2049</td>
+      <td>8</td>
+      </tr>
+      <tr>
+      <td>ShapeOfWater</td>
+      <td>4</td>
+      </tr>
+      <tr>
+      <td>Solo</td>
+      <td>6</td>
+      </tr>
+      <tr>
+      <td>StarWarsVIII</td>
+      <td>2</td>
+      </tr>
+      <tr>
+      <td>Solo</td>
+      <td>4</td>
+      </tr>
+      <tr>
+      <td>BladeRunner2049</td>
+      <td>4</td>
+      </tr>
+      <tr>
+      <td>ShapeOfWater</td>
+      <td>1</td>
+      </tr>
+      <tr>
+      <td>GetOut</td>
+      <td>9</td>
+      </tr>
+      <tr>
+      <td>BladeRunner2049</td>
+      <td>6</td>
+      </tr>
+      </table></div>
+      <p>Para esta lista de avaliações as estatísticas eram as seguintes:
+        </p><ul>
+      <li><strong>[flag 1]</strong> o número de diferentes filmes com pelo menos uma avaliação é 5 (StarWarsVIII, BladeRunner2049, ShapeOfWater, Solo, GetOut).
+          </li><li><strong>[flag 2]</strong> o filme com mais avaliações é o BladeRunner2049 (3 avaliações)
+          </li><li><strong>[flag 3]</strong> os filmes com média positiva (≥5), por ordem alfabetica, são o BladeRunner2049, GetOut e Solo. As notas médias são as seguintes:
+            <ul>
+      <li>StarWarsVIII: média = (5+2)/2 = 3.5
+      </li><li>BladeRunner2049: média = (8+4+6)/3 = 6.0
+      </li><li>ShapeOfWater: média = (4+1)/2 = 2.5
+      </li><li>Solo: média = (6+4)/2 = 5.0
+      </li><li>GetOut: média = 9/1 = 9.0
+      </li></ul>
+      </li></ul>
+      <h2>Input</h2>
+      <p>A primeira linha de input contém um inteiro <strong>F</strong>, a <em>flag</em> (1, 2 ou 3) indicando qual estatística deve calcular, de acordo com o atrás descrito.
+
+      </p><p>A segunda linha contém um inteiro <strong>N</strong>, a quantidade de avaliações (<em>1≤N≤50</em>). Seguem-se <strong>N</strong> linhas descrevendo as avaliações em si, cada uma no formato <code>FILME NOTA</code>, onde <code>FILME</code> é uma palavra sem espaços e <code>NOTA</code> é um inteiro entre 1 e 10.
+
+      </p><h2>Output</h2>
+      <p>O output do seu programa depende da flag dada:
+        </p><ul>
+      <li><strong>Se a flag for 1</strong>, o output deve ser uma linha contendo um único inteiro, a quantidade de filmes diferentes que tiveram pelo menos uma avaliação.
+          </li><li><strong>Se a flag for 2</strong>, o output deve ser uma linha contendo uma palavra e um inteiro (separados por um espaço): o nome do filme que foi avaliado mais vezes, e o número de vezes que foi avaliado (é garantido que existe um único filme que foi avaliado mais vezes que todos os outros).
+          </li><li><strong>Se a flag for 3</strong>, o output deve conter os nomes dos filmes com nota média positiva, um por linha, por ordem alfabética. <em>Note que para estabelecer a ordem alfabética pode usar a ordem natural das Strings, não tendo de se preocupar com o facto das letras serem maiúsculas ou minúsculas</em>.
+        </li></ul>
+      <h2>Dicas</h2>
+      <p>É livre para fazer fazer como quiser, mas é sugerido fazer da seguinte maneira:
+        </p><ul>
+      <li><strong>[flag 1]</strong> use uma árvore binária de pesquisa (<em>BSTree</em>). Se inserir todos os filmes na árvore (de que tipo devem ser os nós da árvore?), saber quantos existem é saber quantos nós tem a árvore... (também pode usar um dicionário para o mesmo efeito).
+          </li><li><strong>[flag 2]</strong> use um TAD dicionário (<em>BSTMap</em>) para guardar o número de ocorrências de cada filme (de que tipos devem ser as chaves e os valores deste dicionário?). De dada vez que lê uma avaliação, é só ir ao dicionário e incrementar a frequência do respectivo filme. No final basta percorrer todos os filmes e encontrar o que teve mais ocorrências (ou pode optar por cada vez que incrementa, verificar se passou a ter um novo máximo).
+          </li><li><strong>[flag 3]</strong> use um outro TAD dicionário (<em>BSTMap</em>) para guardar a soma das notas de cada filme (de que tipos devem ser a chave e o valor?). No final percorra todas as chaves (os filmes) e imprima aqueles cuja média seja positiva (é só dividir pelo quantidade de avaliações... que está guardada no dicionário que criou para a flag anterior). Em relação à ordem alfabética, como o dicionário está numa árvore de pesquisa, e o método que as devolve percorre a árvore em <em>inorder</em>, logo estas já são obtidas precisamente por ordem alfabética!
+        </li></ul>
+      <h2>Exemplo de Input/Output para a Flag 1</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input 1</th>
+      <th scope="col">Output 1</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>1
+10
+StarWarsVIII 5
+BladeRunner2049 8
+ShapeOfWater 4
+Solo 6
+StarWarsVIII 2
+Solo 4
+BladeRunner2049 4
+ShapeOfWater 1
+GetOut 9
+BladeRunner2049 6</pre>
+      </td>
+      <td><pre>5</pre></td>
+      </tr>
+      </table></div>
+      <h2>Exemplo de Input/Output para a Flag 2</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input 2</th>
+      <th scope="col">Output 2</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>2
+10
+StarWarsVIII 5
+BladeRunner2049 8
+ShapeOfWater 4
+Solo 6
+StarWarsVIII 2
+Solo 4
+BladeRunner2049 4
+ShapeOfWater 1
+GetOut 9
+BladeRunner2049 6</pre>
+      </td>
+      <td><pre>BladeRunner2049 3</pre></td>
+      </tr>
+      </table></div>
+      <h2>Exemplo de Input/Output para a Flag 3</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input 3</th>
+      <th scope="col">Output 3</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>3
+10
+StarWarsVIII 5
+BladeRunner2049 8
+ShapeOfWater 4
+Solo 6
+StarWarsVIII 2
+Solo 4
+BladeRunner2049 4
+ShapeOfWater 1
+GetOut 9
+BladeRunner2049 6</pre>
+      </td>
+      <td><pre>BladeRunner2049
+GetOut
+Solo</pre></td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob234.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob234.html</a>.</p>
+  </uc-page>
+</body>
+</html>

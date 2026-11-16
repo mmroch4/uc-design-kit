@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TAD IntSet · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: TAD IntSet.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">TAD IntSet</li></ol>
+    </nav>
+    <h1>TAD IntSet</h1>
+    <section class="uc-section" aria-labelledby="intset">
+      <h2 id="intset">Interface · IntSet.java</h2>
+      <uc-code lang="java" filename="IntSet.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Interface que define o TAD conjunto de numeros inteiros
+// Ultima alteracao: 10/03/2018
+// -----------------------------------------------------------
+
+// Interface que define o TAD conjunto de numeros inteiros
+public interface IntSet {
+   public boolean contains(int x); // Retorna true se x esta no conjunto
+   public boolean add(int x);      // Adiciona x ao conjunto
+   public boolean remove(int x);   // Remove x do conjunto
+   public int     size();          // Retorna o numero de elementos do conjunto
+   public void    clear();         // Limpa o conjunto (torna-o vazio)
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="arraylistintset">
+      <h2 id="arraylistintset">Implementação · ArrayListIntSet.java</h2>
+      <uc-code lang="java" filename="ArrayListIntSet.java">
+        <script type="text/plain">
+// ------------------------------------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// ------------------------------------------------------------------------------------
+// Implementa o TAD conjunto usando um array como lista de elementos 
+// Ultima alteracao: 10/03/2018
+// ------------------------------------------------------------------------------------
+
+public class ArrayListIntSet implements IntSet {
+   private int size;   // Numero de elementos do conjunto
+   private int elem[]; // Array que contem os elementos em si 
+   
+   ArrayListIntSet(int maxSize) {
+      elem = new int[maxSize];
+      size = 0;
+   }
+
+   public boolean add(int x) {
+      if (!contains(x)) {
+         if (size == elem.length)
+            throw new RuntimeException("Maximum size of set reached");         
+         elem[size] =  x;
+         size++;
+         return true;
+      }
+      return false;
+   }
+
+   public boolean remove(int x) {
+      if (contains(x)) {
+         int pos = 0;
+         while (elem[pos] != x) pos++;
+         size--;
+         elem[pos] = elem[size]; // Trocar ultimo elemento 
+         return true;            // com o que se removeu
+      }
+      return false;
+   }
+   
+   
+   public boolean contains(int x) {
+      for (int i=0; i<size; i++)
+         if (elem[i] == x)
+            return true;
+      return false;
+   }
+   
+   public void clear() {
+      size = 0;
+   }
+   
+   public int size() {
+      return size;
+   }
+
+   @Override 
+   public String toString() {
+      String res = "{";
+      for (int i=0; i<size; i++) {
+         if (i>0) res += ",";
+         res += elem[i];
+      }
+      res += "}";
+      return res;
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testset">
+      <h2 id="testset">Exemplo de utilização · TestSet.java</h2>
+      <uc-code lang="java" filename="TestSet.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao do TAD Conjunto
+// Ultima alteracao: 10/03/2018
+// -----------------------------------------------------------
+
+public class TestSet {
+   public static void main(String[] args) {
+      IntSet s = new ArrayListIntSet(100); // Cria um conjunto com espaco para 100 inteiros
+
+      System.out.println(s);
+      System.out.println(s.add(1));
+      System.out.println(s.add(5));
+      System.out.println(s.add(7));
+      System.out.println(s);
+      System.out.println(s.contains(1));
+      System.out.println(s.contains(2));
+      System.out.println(s.add(1));
+      System.out.println(s.size());
+      System.out.println(s.remove(5));
+      System.out.println(s.remove(5));
+      System.out.println(s);
+      s.clear();
+      System.out.println(s);
+      System.out.println(s.size());
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="tad_intset.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/tad_intset.html</a>.</p>
+  </uc-page>
+</body>
+</html>

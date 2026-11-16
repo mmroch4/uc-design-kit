@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TAD MyDeque · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: TAD MyDeque.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">TAD MyDeque</li></ol>
+    </nav>
+    <h1>TAD MyDeque</h1>
+    <section class="uc-section" aria-labelledby="mydeque">
+      <h2 id="mydeque">Interface · MyDeque.java</h2>
+      <uc-code lang="java" filename="MyDeque.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Interface para o TAD Deque
+// Ultima alteracao: 06/04/2018
+// -----------------------------------------------------------
+
+public interface MyDeque<T> {
+
+   // Metodos que modificam o deque
+   public void addFirst(T v); // Coloca um valor no inicio da fila
+   public void addLast(T v);  // Coloca um valor no final da fila
+   public T removeFirst();    // Retira e retorna o valor no inicio da fila
+   public T removeLast();     // Retira e retorna o valor no final da fila
+
+   // Metodos que acedem a informacao (sem modificar)
+   public T first();          // Retorna valor no inicio da fila
+   public T last();           // Retorna valor no final da fila
+   public int size();         // Retorna quantidade de elementos na fila
+   public boolean isEmpty();  // Indica se a fila esta vazia
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testmydeque">
+      <h2 id="testmydeque">Exemplo de utilização · TestMyDeque.java</h2>
+      <uc-code lang="java" filename="TestMyDeque.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao do TAD Deque
+// Ultima alteracao: 06/04/2018
+// -----------------------------------------------------------
+
+public class TestMyDeque {
+   public static void main(String[] args) {
+
+      // Criacao do Deque
+      MyDeque<Integer> q = new LinkedListDeque<Integer>();
+
+      // Exemplo de insercao de elementos no inicio e no fim da fila
+      for (int i=1; i<=4; i++) q.addFirst(i);
+      for (int i=5; i<=8; i++) q.addLast(i); 
+      System.out.println(q);
+
+      // Exemplo de remocao de elementos no inicio e fim fila
+      System.out.println("q.removeFirst() = " + q.removeFirst());
+      System.out.println("q.removeLast() = " + q.removeLast());
+      System.out.println(q);
+
+      // Exemplo de utilizacao dos outros metodos
+      System.out.println("q.size() = " + q.size());
+      System.out.println("q.isEmpty() = " + q.isEmpty());
+      System.out.println("q.first() = " + q.first());
+      System.out.println("q.last() = " + q.last());
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="linkedlistdeque">
+      <h2 id="linkedlistdeque">Implementação com Listas Ligadas · LinkedListDeque.java</h2>
+      <uc-code lang="java" filename="LinkedListDeque.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Implementacao do TAD Deque usando lista duplamente ligada
+// Ultima alteracao: 06/04/2018
+// -----------------------------------------------------------
+
+public class LinkedListDeque<T> implements MyDeque<T> {
+   private DoublyLinkedList<T> list;
+
+   LinkedListDeque() { list = new DoublyLinkedList<T>();}
+   
+   public void addLast(T v)  { list.addLast(v); }
+   public void addFirst(T v) { list.addFirst(v); }
+   public T removeFirst() {
+      T ans = list.getFirst();
+      list.removeFirst();
+      return ans;
+   }
+   public T removeLast() {
+      T ans = list.getLast();
+      list.removeLast();
+      return ans;
+   }
+   public T first() { return list.getFirst();}
+   public T last() { return list.getLast();}
+   public int size() {return list.size();}
+   public boolean isEmpty() {return list.isEmpty();}
+
+   public String toString() {return list.toString();}
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="deques.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/deques.html</a>.</p>
+  </uc-page>
+</body>
+</html>

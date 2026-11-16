@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED121] Palíndromos · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED121 (Palíndromos) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED121</li></ol>
+    </nav>
+    <h1>[ED121] Palíndromos</h1>
+    <div class="uc-content">
+      <h2>O problema</h2>
+      <p>
+      <img alt="" class="uc-content__float" height="178" loading="lazy" src="imagens/prob121.jpg" width="600"/>
+      Um palíndromo é uma palavra ou frase número cuja leitura é a mesma,
+      quer se faça da esquerda para a direita. Num palíndromo consideramos
+      apenas as letras e desconsideramos quaisquer outros caracteres (como
+      por exemplo sinais de pontuação ou espaços). É também considerado que
+      uma letra minúscula é igual à sua equivalente maiúscula (por
+      exemplo <code>'a'</code> é igual a <code>'A'</code>.
+
+      </p><p>A título de exemplo as seguintes linhas são todas palíndromos:
+
+      </p><pre>Madam, I'm Adam
+reviver
+ato idiota
+O bolo do lobo
+Socorram Marrocos
+A base do teto desaba
+Anotaram a data da maratona</pre>
+      <p>A tua tarefa é descobrir quais as linhas do input que são palíndromos.
+
+      </p><h2>Input</h2>
+      <p>A primeira linha de input contém um número <strong>N</strong> (<em>1 ≤ N ≤ 100</em>), que corresponde ao número de linhas a processar.
+
+      </p><p>Seguem-se exactamente <em>N</em> linhas, contendo cada uma com um
+      máximo de 100 caracteres, sendo que nenhuma das letras do input tem acentos.
+
+      </p><h2>Output</h2>
+      <p>A primeira linha do output deve conter o número <strong>N</strong>. Devem seguir-se <strong>N</strong> linhas, contendo cada uma:
+
+      </p><ul>
+      <li><strong>sim</strong>, caso a linha correspondente no input seja um palíndromo
+      </li><li><strong>nao</strong>, caso contrário
+      </li></ul>
+      <h2>Exemplo de input/output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Input</th>
+      <th scope="col">Output</th>
+      </tr>
+      <tr>
+      <td>
+      <pre>10
+reviver
+ana
+abca
+abbc
+ato idiota
+palindromo
+Socorram Marrocos
+A base do teto desaba
+o bolo d lobo
+Madam, I'm Adam</pre>
+      </td>
+      <td>
+      <pre>10
+sim
+sim
+nao
+nao
+sim
+nao
+sim
+sim
+nao
+sim</pre>
+      </td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob121.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob121.html</a>.</p>
+  </uc-page>
+</body>
+</html>

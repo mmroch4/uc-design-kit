@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED233] Árvores na Terra dos Dados · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED233 (Árvores na Terra dos Dados) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED233</li></ol>
+    </nav>
+    <h1>[ED233] Árvores na Terra dos Dados</h1>
+    <div class="uc-content">
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).
+      </p></div></p>
+
+      <h2>Código Base</h2>
+      <p><img alt="" class="uc-content__float" height="512" loading="lazy" src="imagens/233.jpg" width="341"/>O código base são as <a href="../codigo/arvores_binarias.html">classes de árvores binárias</a> dadas nas aulas. Use como base a classe <strong>BTree&lt;T&gt;</strong>, que é a única que deverá submeter.
+
+      </p><h2>Problema</h2>
+      <p>As árvores são das mais antigas criaturas da <em>Terra dos Dados</em>, conhecidas por serem defensoras das florestas e do mundo livre, combatendo ferozmente o cruel <em>Senhor das Trevas e da Ineficiência</em>. A espécie mais conhecida destas criaturas é a árvore binária, que precisa da tua ajuda para aumentar o seu poder com novos métodos. 
+
+      </p><h2>Métodos a Implementar</h2>
+      <p>Deve acrescentar à classe <em>BTree</em> dada os seguintes métodos (<strong>não modificando nenhum dos métodos já existentes no código base</strong>):
+
+      </p><ul>
+      <li><strong>public int internal()</strong> <em>(30% da cotação)</em><br/>
+          Deve <strong>devolver a quantidade de nós internos da árvore.</strong> Um nó interno da árvore é um nó com pelo menos um nó filho. Por exemplo, as árvores da figura seguinte têm respetivamente 3, 2 e 1 nós internos (indicados a amarelo).<br/>
+      <img alt="" height="224" loading="lazy" src="imagens/233_1.png" width="500"/>
+      </li></ul>
+      <ul>
+      <li><strong>public void cut(int d)</strong> <em>(30% da cotação)</em><br/>
+          Deve <strong>remover da árvore todos os nós com profundidade ≥<em>d</em></strong>, mantendo os nós com profundidade &lt;<em>d</em>. Note que se <em>d</em>≤0, a árvore deve ficar vazia (com <em>root</em> a ser <em>null</em>). A figura seguinte ilustra uma árvore <em>t</em> e o que seria o resultado de diferentes chamadas ao método <em>cut</em>.<br/>
+      <img alt="" height="273" loading="lazy" src="imagens/233_2.png" width="1169"/>
+      </li></ul>
+      <ul>
+      <li><strong>public int[] maxLevel()</strong> <em>(40% da cotação)</em><br/>
+          Deve <strong>devolver um array <em>[a,b]</em> onde <em>a</em> é a quantidade máxima de nós num único nível de profundidade, e <em>b</em> é a quantidade de níveis com essa quantidade <em>a</em> de nós.</strong>. O array devolvido deve ter sempre tamanho 2 e é garantido que o seu método será sempre chamado com uma árvore não nula. A figura seguinte ilustra algumas árvores, a sua quantidade máxima de nós num único nível (nós a amarelo, quantidade a vermelho) e quantos níveis têm esse máximo.
+          <img alt="" height="304" loading="lazy" src="imagens/233_3.png" width="1152"/>
+      </li></ul>
+      <h2>Notas</h2>
+      <ul>
+      <li>Pode submeter código com apenas alguns dos métodos implementados (para obter pontuação parcial).
+        </li><li>Pode implementar métodos auxiliares, se quiser.
+        </li><li>Para testar na sua máquina deve criar uma árvore. Pode ler uma árvore com número inteiros usando o método <em>readIntTree</em> da classe <em>LibBTree</em> (um exemplo foi dado nas aulas e está disponível na classe <em>TestBTree</em>).
+        </li><li>Em todos os casos de teste as árvores têm tamanho máximo de 100 nós, com a excepção do <strong>último caso de teste do método <em>maxLevel</em> (valendo 10% da cotação), onde a árvore pode ter 50 mil nós e 20 mil de altura</strong>, pelo que é esperado que a sua solução seja linear no número de nós da árvore para passar no tempo limite. Caso a sua função seja recursiva, para testar uma árvore com tantos níveis no seu computador, pode ter que aumentar o tamanho da stack do Java na execução (ex: <em>java -Xss256M ED233</em> executaria o a classe ED233 com 256MB de stack). No Mooshak, a stack tem tamanho precisamente 256MB.
+      </li></ul>
+      <h2>Exemplos de Input/Output para o método <em>internal</em></h2>
+      <p>Os 3 primeiros exemplos correspondem às três árvores da figura.</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
+      <th scope="col">Valor devolvido por <em>t.internal()</em></th>
+      </tr>
+      <tr>
+      <td>6 3 2 N N 5 N N 10 N 25 N N</td>
+      <td>3</td>
+      </tr>
+      <tr>
+      <td>6 3 2 N N N 10 N N</td>
+      <td>2</td>
+      </tr>
+      <tr>
+      <td>6 3 N N 10 N N</td>
+      <td>1</td>
+      </tr>
+      <tr>
+      <td>6 N N</td>
+      <td>0</td>
+      </tr>
+      <tr>
+      <td>N</td>
+      <td>0</td>
+      </tr>
+      </table></div>
+      <h2>Exemplos de Input/Output para o método <em>cut</em></h2>
+      <p>A árvore em todos os exemplos corresponde à árvore da figura.</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
+      <th scope="col">  Chamada   </th>
+      <th scope="col">Estado da árvore depois da chamada, em <em>preorder</em> (com <em>nulls</em>)</th>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>t.cut(3)</td>
+      <td>6 3 2 N N 5 N N 10 8 N N 25 N N</td>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>t.cut(2)</td>
+      <td>6 3 N N 10 N N</td>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>t.cut(1)</td>
+      <td>6 N N</td>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>t.cut(0)</td>
+      <td>N</td>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>t.cut(-1)</td>
+      <td>N</td>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>t.cut(42)</td>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      </tr>
+      </table></div>
+      <h2>Exemplos de Input/Output para o método <em>maxLevel</em></h2>
+      <p>Os 4 primeiros exemplos correspondem às quatro árvores da figura.</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
+      <th scope="col">Array devolvido por <em>t.maxLevel()</em></th>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>[4,1]</td>
+      </tr>
+      <tr>
+      <td>6 3 2 N N 5 N N 10 N N</td>
+      <td>[2,2]</td>
+      </tr>
+      <tr>
+      <td>6 3 N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
+      <td>[3,1]</td>
+      </tr>
+      <tr>
+      <td>6 3 2 1 N N N N N</td>
+      <td>[1,4]</td>
+      </tr>
+      <tr>
+      <td>42 N N</td>
+      <td>[1,1]</td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob233.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob233.html</a>.</p>
+  </uc-page>
+</body>
+</html>

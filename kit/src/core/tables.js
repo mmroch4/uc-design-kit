@@ -1,5 +1,5 @@
 /**
- * Keyboard access for wide tables.
+ * Keyboard access for wide tables and preformatted text.
  *
  * A `.uc-table` wrapper scrolls sideways when its table is wider than the column.
  * Keyboard users can only scroll it if it can take focus, so while it overflows it
@@ -9,7 +9,8 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const SELECTOR = ".uc-table";
+  // Wide tables, and preformatted text in free-form content (.uc-content pre).
+  const SELECTOR = ".uc-table, .uc-content pre";
   const MANAGED = "data-uc-scroll-focus";
 
   function update(wrapper) {
@@ -20,7 +21,8 @@
       if (!wrapper.hasAttribute("role")) wrapper.setAttribute("role", "region");
       if (!wrapper.hasAttribute("aria-label") && !wrapper.hasAttribute("aria-labelledby")) {
         const caption = wrapper.querySelector("caption");
-        wrapper.setAttribute("aria-label", caption ? caption.textContent.trim() : UC.t("a11y.scrollableTable"));
+        const fallback = wrapper.localName === "pre" ? "a11y.scrollableText" : "a11y.scrollableTable";
+        wrapper.setAttribute("aria-label", caption ? caption.textContent.trim() : UC.t(fallback));
       }
     } else if (!overflows && wrapper.hasAttribute(MANAGED)) {
       // Only undo what this module added; teacher-written attributes stay.

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Breve manual de instalação do Java · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Estruturas de Dados (CC1007), aulas práticas: Breve manual de instalação do Java.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../semanas.html">Semanas</a></li><li aria-current="page">Breve manual de instalação do Java</li></ol>
+    </nav>
+    <h1>Breve manual de instalação do Java</h1>
+    <div class="uc-content">
+      <h2>Uso do Java</h2>
+      <p>Nesta unidade curricular iremos usar a linguagem Java, por isso é
+        imprescindível que tenha instale na sua máquina uma versão
+        da <a href="https://en.wikipedia.org/wiki/Java_Development_Kit">JDK</a>
+        que lhe permita ter essencialmente dois programas:</p>
+      <ul>
+      <li>um <strong>compilador</strong> de Java
+          (comando javac), que permite compilar
+          um ficheiro com código fonte (<code>.java</code>) para bytecode
+          (<code>.class</code>)
+          </li><li>um <strong>loader/interpretador</strong> de Java
+          (comando java), que permite executar
+          os ficheiros bytecode gerados pelo interpretador
+        </li></ul>
+
+      <h2>Uso da shell/linha de comandos e escolha de editores</h2>
+      <p>Não será formalmente impedido o uso
+        de <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a>
+        integrados (ex: VSCode, Eclipse, Netbeans, IntelliJ), mas <strong>é
+        suposto que saibam compilar manualmente via linha de comandos, que
+        compreendam esse processo</strong>, e isso pode ser objecto de
+        avaliação.</p>
+      <p>É por isso muito conveniente que saibam usar a linha de comandos
+        e as aulas (práticas e teóricas) incluirão o seu uso. Nos guiões das
+        práticas serão dadas dicas sobre o uso de uma shell de linux, e
+        quando for indicado um comando para correr na shell, verá algo como
+        o seguinte (onde <code>$</code> é apenas o símbolo da <em>prompt</em> e
+        não deverá ser introduzido):
+
+        </p><p>$ ls -l
+      </p><p>Para criar o código pode usar um qualquer editor à sua escolha,
+        sendo que não iremos obrigar a nenhuma escolha em
+        particular. Aconselhamos apenas que escolham um e o aprendam a usar,
+        aproveitando as suas capacidades. Uma lista de editores possíveis e
+        que estará em princípio disponível nos testes práticos é:
+
+          </p><ul>
+      <li>Emacs</li>
+      <li>Vi/ViM</li>
+      <li>Sublime</li>
+      <li>VSCode</li>
+      </ul>
+
+      <h2>Verificando se tem Java instalado</h2>
+      <p>Para verificar se tem o Java disponível na linha de comandos (e
+      saber que versão tem instalada) basta executar os seguinte comandos
+
+      </p><p>$ javac -version (para ver a versão do
+      compilador)
+
+      </p><p>$ java -version (para ver a versão do
+      interpretador)
+
+      </p><p>Nesta unidade curricular, para efeitos de avaliação, iremos
+      compilar o seu código com a versão 8
+      do <a href="https://en.wikipedia.org/wiki/OpenJDK">OpenJDK</a>, pelo
+      que é sugerido que instale uma versão &gt;= 8 (sendo que, de um modo
+      geral, apenas serão usadas coisas que já estavam disponíveis na versão
+      8).</p>
+      <p>Para confirmar que está tudo pronto deverá conseguir compilar e
+        executar um pequeno programa.</p>
+      <p><strong>1)</strong> Comece por colocar o seguinte texto num ficheiro com o
+        nome Hello.java (usando um qualquer
+        editor):
+
+      </p><pre>public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, Data Structures in Java!");
+    }
+}</pre>
+      <p><strong>2)</strong> Abra uma shell e verifique que está no diretório correcto, contendo o ficheiro que acabou de criar:
+
+        </p><p>$ pwd  (para ver o directório onde está)
+
+        </p><p>$ ls -l *.java  (para listar com detalhes todos os ficheiros que tenham extensão <code>.java</code>)
+
+        </p><p><strong>3)</strong> Compile o código:
+
+        </p><p>$ javac Hello.java  (compila o código para um bytecode, um ficheiro <code>.class</code>)
+
+        </p><p>Verifique que foi gerado um ficheiro Hello.class contendo o código compilado.
+
+        </p><p>$ ls -l *.class  (para listar com detalhes todos os ficheiros que tenham extensão <code>.class</code>)
+
+        </p><p><strong>4)</strong> Execute o código:
+
+        </p><p>$ java Hello  (executa a função main da classe Hello)
+
+        </p><p>Deverá aparecer na shell o resultado da execução contendo a frase pedida:
+
+        </p><p>Hello, Data Structures in Java!
+      </p>
+      <h2>Instalando o Java</h2>
+      <p>Se não tiver o JDK instalado deverá começar por seguir as
+        instruções relativas ao sistema operativo que estiver a usar:
+
+          </p><h2>Linux</h2>
+      <p>Qualquer distribuição atual tem pacotes já preparados com o
+        java. Por exemplo, usando <a href="https://snapcraft.io/">snap</a>
+        (<a href="https://en.wikipedia.org/wiki/Snap_(package_manager)">um
+        gestor de pacotes "universal"</a>):</p>
+      <ul>
+      <li><a href="https://snapcraft.io/openjdk">Instalação de Java usando o snap</a>
+      </li></ul>
+      <p>Ou se usar <strong>apt</strong>:
+
+          </p><ul>
+      <li><a href="https://linuxconfig.org/how-to-install-java-on-ubuntu-20-04-lts-focal-fossa-linux">Instalando Java no Ubuntu usando apt</a>
+      </li></ul>
+      <p>Ou se usar <strong>yum</strong>:
+
+          </p><ul>
+      <li><a href="https://developers.redhat.com/openjdk-install">Instalando Java no RedHat usando yum</a>
+      </li></ul>
+      <h2>Usando Linux numa máquina com outro sistema operativo</h2>
+      <p>Se não tiver Linux pode optar por usar uma imagem virtualizada
+          com o <a href="https://www.virtualbox.org/">Virtual Box</a>:
+
+          </p><ul>
+      <li><a href="https://drive.google.com/file/d/1zqHL9vVBNdkr0bcm6mv7kMVYJAQL3KE1/view?usp=sharing">Imagem Linux dos laboratórios do DCC</a> <br/>
+              Credenciais de acesso na máquina:
+          <ul>
+      <li><strong>login:</strong> studs</li>
+      <li><strong>password:</strong> csdP@ssW0rd</li>
+      </ul>
+      </li><li><a href="https://www.youtube.com/watch?v=93lM4OLyytE">Vídeo com instruções de utilização da imagem no Virtual Box</a>.
+        </li></ul>
+      <p>Caso esteja em Windows 10 ou 11 pode também ter acesso
+        ao <strong>WSL</strong>, um subsistema de Linux que lhe dará algumas das
+        ferramentas de uma distribuição de Linux, incluindo uma shell:
+
+          </p><ul>
+      <li><a href="https://docs.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux Installation Guide for Windows</a>
+      </li></ul>
+      <h2>Outras soluções e ajuda na instalação</h2>
+      <p>Em último recurso como solução temporária pode usar
+        um <a href="https://www.google.com/search?q=online+java+compiler">compilador
+        de java online</a>, usando apenas um browser.
+
+      </p>
+      <p>Baseado em material didático de <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro
+      (DCC-FCUP)</a><strong>
+      </strong></p>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="aula01-instalacao.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-instalacao.html</a>.</p>
+  </uc-page>
+</body>
+</html>

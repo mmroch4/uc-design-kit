@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED188] Devolver elemento numa dada posição · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED188 (Devolver elemento numa dada posição) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED188</li></ol>
+    </nav>
+    <h1>[ED188] Devolver elemento numa dada posição</h1>
+    <div class="uc-content">
+      <p><img alt="" height="100" loading="lazy" src="imagens/linkedlist.png" width="699"/><div class="uc-callout uc-callout--warning">.</div>
+      </p><h2>Código Base</h2>
+      <p>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (descrita
+      no exercício 1 da aula prática 06 - não esquecer da
+      classe <strong>Node</strong>) que implementa uma lista ligada simples e tem
+      disponíveis métodos para adicionar ou remover um elemento no início ou
+      no final, devolver o tamanho, saber se a lista está vazia ou retornar
+      representação em <em>string</em> para escrita (tal como dado nas aulas).
+
+      </p><h2>O problema</h2>
+      <p>Acrescente à classe dada um novo método <strong>public T get(int
+      pos)</strong> que <strong>devolve o valor do nó na posição <em>pos</em></strong>
+      (assuma que as posições começam em zero). Se a posição não existir, o
+      método deverá devolver <em>null</em>.
+
+      </p><h2>Submissão no Mooshak</h2>
+      <p>Se submeter no Mooskak, deverá submeter apenas a
+      classe <strong>SinglyLinkedList&lt;T&gt;</strong>, acrescentando o
+      método <strong>get</strong> como pedido <strong>(e sem apagar nenhum dos outros
+      métodos dados como base)</strong>. Pode assumir que terá acesso no Mooshak
+      à classe Node&lt;T&gt; (não a pode mudar) e se precisar pode criar
+      outros métodos auxiliares. O Mooshak irá criar várias instâncias da
+      sua classe e irá fazer uma série de testes ao método por si
+      implementado.
+
+      </p><h2>Exemplos de Input/Output</h2>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Lista inicial</th>
+      <th scope="col">  Chamada   </th>
+      <th scope="col">Valor de retorno</th>
+      </tr>
+      <tr>
+      <td>list = {2,4,6}</td>
+      <td>list.get(0)</td>
+      <td>2</td>
+      </tr>
+      <tr>
+      <td>list = {'a','b','c','d'}</td>
+      <td>list.get(3)</td>
+      <td>'d'</td>
+      </tr>
+      <tr>
+      <td>list = {"estruturas","de","dados"}</td>
+      <td>list.get(3)</td>
+      <td><em>null</em></td>
+      </tr>
+      <tr>
+      <td>list = {"estruturas","de","dados"}</td>
+      <td>list.get(-1)</td>
+      <td><em>null</em></td>
+      </tr>
+      </table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob188.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob188.html</a>.</p>
+  </uc-page>
+</body>
+</html>

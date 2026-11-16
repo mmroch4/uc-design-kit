@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[ED222] Salvando os Ruivacos · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Enunciado do problema ED222 (Salvando os Ruivacos) de Estruturas de Dados (CC1007), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED222</li></ol>
+    </nav>
+    <h1>[ED222] Salvando os Ruivacos</h1>
+    <div class="uc-content">
+      <p>Para efeitos da nota atribuida à resolução de exercícios ao longo do semestre - <strong>Submeter até 23:59 de 3 de Dezembro</strong><br/>
+      <em>(o problema continuará depois disponível para submissão, mas sem contar para a nota)</em><br/>
+      <strong>[para perceber o contexto do problema deve <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/praticas/aula08.html">ler o guião da aula #08</a>]</strong></p>
+
+      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED222</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).
+      </p></div></p>
+
+      <p>
+      <img alt="" class="uc-content__float" height="194" loading="lazy" src="imagens/222.jpg" width="259"/>
+            O Ruivaco-do-Oeste (Achondrostoma occidentale) é um peixe de
+            água doce que habita o nosso país, mas que se encontra em risco
+            de extinção.
+          </p>
+      <p>
+            Felizmente, existe no nosso país a Organização Naturalista de
+            Investigação (ONI), criada especificamente para
+            estudar e resolver questões como esta. De modo a tentar
+            compreender melhor a situação atual, a ONI vai estudar uma
+            secção do Rio do Sobral, uma das casas do Ruivaco-do-Oeste, onde
+            vai poder observar melhor o comportamento desta espécie.
+          </p>
+      <p>
+            Considera-se o rio como uma sequência de <strong>N</strong>
+            localizações. O estudo que pretendem fazer vai abranger uma
+            região contínua do rio que contém exatamente <strong>K localizações
+            consecutivas </strong>. Todavia, a escolha do local é uma tarefa
+            delicadíssima! A ONI sabe que este peixe prefere partes mais
+            profundas do rio, especificamente com uma profundidade mínima de
+            <strong>T</strong> unidades de comprimento.
+          </p>
+      <p>
+            Para ajudar nessa escolha terão acesso a um estudo prévio sobre
+            o rio. Esse estudo, tal como nós fizemos até agora,
+            considera o rio como uma sequência de <strong>N</strong> localizações,
+            referindo para cada uma delas a sua profundidade, em
+            unidades de comprimento.
+          </p>
+      <p>
+            Consideremos um exemplo em que o rio consiste em <strong>N</strong>=7
+            localizações e em que o estudo abrange <strong>K</strong>=3 delas, onde
+            142 155 147 165 150 112 73 é a sequência das profundidades. A
+            imagem seguinte representa esta situação.
+          </p>
+      <img alt="" height="307" loading="lazy" src="imagens/222_ex1.png" width="400"/>
+      <p>
+            Qualquer segmento de 3 localizações consecutivas é um potencial
+            local para o estudo. Os possíveis segmentos estão indicados na
+            imagem seguinte.
+          </p>
+      <img alt="" height="347" loading="lazy" src="imagens/222_ex2.png" width="400"/>
+      <p>
+            De modo ao estudo não ser demasiado dispendioso para a
+            informação que conseguirá obter, decidiu-se que uma região é
+            satisfatória se <strong>pelo menos metade</strong> das suas <strong>K</strong>
+            localizações tiver uma profundidade <strong>maior ou igual</strong>
+            a <strong>T</strong>.
+          </p>
+      <p>
+            Olhando para o estudo prévio, o presidente das ONI apercebeu-se
+            de que pode haver mais do que uma maneira de escolher
+            uma secção satisfatória com exatamente <strong>K</strong>
+            localizações. Para o exemplo anterior, se a profundidade mínima
+            for <strong>T</strong>=150 há 3 regiões de <strong>K</strong> elementos que seguem a
+            propriedade mencionada. É possível realizar o estudo em qualquer
+            uma das regiões descritas na imagem seguinte.
+          </p>
+      <img alt="" height="335" loading="lazy" src="imagens/222_ex3.png" width="400"/>
+      <p>
+            Mas o presidente antes de ser um ecologista era um cientista
+            perseguidor de novo conhecimento, e não vai conseguir dormir
+            descansado enquanto não souber exatamente de quantas maneiras
+            consegue escolher uma secção satisfatória para o estudo. Será
+            que podes ajudá-lo nesta tarefa para que ele possa voltar a
+            dedicar-se a ajudar espécies indefesas?
+          </p>
+      <h2>O Problema</h2>
+      <p>Dados inteiros <strong>N</strong>, <strong>K</strong>, <strong>T</strong> e uma sequência de
+          <strong>N</strong> inteiros, calcular o número de subsequências contíguas de
+          comprimento <strong>K</strong> em que pelo menos metade dos elementos são
+          maiores ou iguais a <strong>T</strong>.</p>
+      <h2>Input</h2>
+      <p>Na primeira linha vêm três inteiros: <strong>N</strong> que representa o
+          número de localizações do rio, <strong>K</strong> que representa o
+          comprimento do segmento e <strong>T</strong> que representa a profundidade
+          mínima, por esta ordem.</p>
+      <p>Segue-se uma linha com <strong>N</strong> inteiros separados por espaços,
+             onde o i-ésimo representa a profundidade <strong>T<sub>i</sub></strong> da
+             i-ésima localização.</p>
+      <h2>Output</h2>
+      <p>Uma única linha com um inteiro que representa o número de regiões contíguas de
+          comprimento <strong>K</strong> que é possível escolher onde pelo menos
+          metade das localizações têm profundidade mínima <strong>T</strong>.</p>
+      <h2>Restrições</h2>
+      <p>São garantidos os seguintes limites em todos os casos de teste
+          que irão ser colocados ao programa:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <td>1 ≤ <strong>K</strong> ≤ <strong>N</strong> ≤ 100 000</td>
+      <td> </td>
+      <td>Comprimento da região e Número de localizações</td>
+      </tr>
+      <tr>
+      <td>1 ≤ <strong>T</strong> ≤ 100 000</td>
+      <td> </td>
+      <td>Profundidade mínima</td>
+      </tr>
+      <tr>
+      <td>1 ≤ <strong>T<sub>i</sub></strong> ≤ 100 000</td>
+      <td> </td>
+      <td>Profundidade de cada localização</td>
+      </tr>
+      </table></div>
+      <p>Os casos de teste deste problema estão organizados em 2 grupos com restrições adicionais
+            diferentes:</p>
+      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <tr>
+      <th scope="col">Grupo</th>
+      <th scope="col">Número de Pontos</th>
+      <th scope="col">Restrições adicionais</th>
+      </tr>
+      <tr>
+      <td>1</td>
+      <td>40</td>
+      <td>1 ≤ <strong>N</strong> ≤ 100</td>
+      </tr>
+      <tr>
+      <td>2</td>
+      <td>60</td>
+      <td>-</td>
+      </tr>
+      </table></div>
+      <h2>Input do Exemplo 1</h2>
+      <pre>7 3 150
+142 155 147 165 150 112 73</pre>
+      <h2>Output do Exemplo 1</h2>
+      <pre>3</pre>
+      <h2>Explicação do Exemplo 1</h2>
+      <p>
+              Este exemplo corresponde ao mencionado no enunciado.
+            </p>
+      <h2>Input do Exemplo 2</h2>
+      <pre>12 4 10
+5 10 12 10 9 14 5 7 9 11 3 3</pre>
+      <h2>Output do Exemplo 2</h2>
+      <pre>4</pre>
+
+      <em>(adaptação para a UC de Estruturas de Dados - CC1007 - DCC/FCUP)</em><br/><br/>
+      <strong>Qualificação para a final das ONI'2019</strong><br/><em>(28/02 a 02/03 de 2019)</em>
+    </div>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="prob222.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob222.html</a>.</p>
+  </uc-page>
+</body>
+</html>

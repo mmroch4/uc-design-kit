@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Árvores Binárias · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Código Java de exemplo das teóricas de Estruturas de Dados: Árvores Binárias.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">BTree</li></ol>
+    </nav>
+    <h1>Árvores Binárias</h1>
+    <section class="uc-section" aria-labelledby="btnode">
+      <h2 id="btnode">Nó da árvore · BTNode.java</h2>
+      <uc-code lang="java" filename="BTNode.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// No de uma arvore binaria "normal"
+// Ultima alteracao: 26/04/2018
+// -----------------------------------------------------------
+
+public class BTNode<T> {
+   private T value;         // Valor guardado no no
+   private BTNode<T> left;  // Filho esquerdo
+   private BTNode<T> right; // Filho direito
+
+   // Construtor
+   BTNode(T v, BTNode<T> l, BTNode<T> r) {
+      value = v;
+      left = l;
+      right = r;
+   }
+
+   // Getters e Setters
+   public T getValue() {return value;}
+   public BTNode<T> getLeft() {return left;}
+   public BTNode<T> getRight() {return right;}
+   public void setValue(T v) {value = v;}
+   public void setLeft(BTNode<T> l) {left = l;}
+   public void setRight(BTNode<T> r) {right = r;}   
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="btree">
+      <h2 id="btree">Árvore binária · BTree.java</h2>
+      <uc-code lang="java" filename="BTree.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Arvore binaria "normal"
+// Ultima alteracao: 26/04/2018
+// -----------------------------------------------------------
+
+public class BTree<T> {   
+   private BTNode<T> root; // raiz da arvore
+
+   // Construtor
+   BTree() {
+      root = null;
+   }
+
+   // Getter e Setter para a raiz
+   public BTNode<T> getRoot() {return root;}
+   public void setRoot(BTNode<T> r) {root = r;}
+
+   // Verificar se arvore esta vazia
+   public boolean isEmpty() {
+      return root == null;
+   }
+
+   // --------------------------------------------------------
+
+   // Numero de nos da arvore   
+   public int numberNodes() {
+      return numberNodes(root);
+   }
+
+   private int numberNodes(BTNode<T> n) {
+      if (n == null) return 0;
+      return 1 + numberNodes(n.getLeft()) + numberNodes(n.getRight());
+   }
+
+   // --------------------------------------------------------
+
+   // Altura da arvore
+   public int depth() {
+      return depth(root);
+   }
+
+   private int depth(BTNode<T> n) {
+      if (n == null) return -1;
+      return 1 + Math.max(depth(n.getLeft()), depth(n.getRight()));
+   }
+
+   // --------------------------------------------------------
+   
+   // O elemento value esta contido na arvore?
+   public boolean contains(T value) {
+      return contains(root, value);
+   }
+
+   private boolean contains(BTNode<T> n, T value) {
+      if (n==null) return false;
+      if (n.getValue().equals(value)) return true;
+      return contains(n.getLeft(), value) || contains(n.getRight(), value);
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore em PreOrder
+   public void printPreOrder() {
+      System.out.print("PreOrder:");
+      printPreOrder(root);
+      System.out.println();
+   }
+
+   private void printPreOrder(BTNode<T> n) {
+      if (n==null) return;
+      System.out.print(" " + n.getValue() );
+      printPreOrder(n.getLeft());
+      printPreOrder(n.getRight());
+   }
+
+   // --------------------------------------------------------
+   
+   // Imprimir arvore em InOrder
+   public void printInOrder() {
+      System.out.print("InOrder:");
+      printInOrder(root);
+      System.out.println();
+   }
+
+   private void printInOrder(BTNode<T> n) {
+      if (n==null) return;
+      printInOrder(n.getLeft());
+      System.out.print(" " + n.getValue());
+      printInOrder(n.getRight());
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore em PostOrder
+   public void printPostOrder() {
+      System.out.print("PostOrder:");
+      printPostOrder(root);
+      System.out.println();
+   }
+
+   private void printPostOrder(BTNode<T> n) {
+      if (n==null) return;
+      printPostOrder(n.getLeft());
+      printPostOrder(n.getRight());
+      System.out.print(" " + n.getValue());
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore numa visita em largura (usando TAD Fila)
+   public void printBFS() {
+      System.out.print("BFS:");
+      
+      MyQueue<BTNode<T>> q = new LinkedListQueue<BTNode<T>>();
+      q.enqueue(root);
+      while (!q.isEmpty()) {
+         BTNode<T> cur = q.dequeue();
+         if (cur != null) {
+            System.out.print(" " + cur.getValue());
+            q.enqueue(cur.getLeft());
+            q.enqueue(cur.getRight());
+         }
+      }
+      System.out.println();
+   }
+
+   // --------------------------------------------------------
+   
+   // Imprimir arvore numa visita em profundidade (usando TAD Pilha)
+   public void printDFS() {
+      System.out.print("DFS:");
+      
+      MyStack<BTNode<T>> q = new LinkedListStack<BTNode<T>>();
+      q.push(root);
+      while (!q.isEmpty()) {
+         BTNode<T> cur = q.pop();
+         if (cur != null) {
+            System.out.print(" " + cur.getValue());
+            q.push(cur.getLeft());
+            q.push(cur.getRight());
+         }
+      }
+      System.out.println();
+   }
+
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="testbtree">
+      <h2 id="testbtree">Exemplo de teste das árvores binárias · TestBTree.java</h2>
+      <uc-code lang="java" filename="TestBTree.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao da uma arvore binaria
+// Ultima alteracao: 26/04/2018
+// -----------------------------------------------------------
+
+import java.util.Scanner;
+
+public class TestBTree {
+   public static void main(String[] args) {
+      // Ler arvore de inteiros em preorder
+      Scanner in = new Scanner(System.in);
+      BTree<Integer> t = LibBTree.readIntTree(in);
+
+      // Escrever resultado de chamada a alguns metodos
+      System.out.println("numberNodes = " + t.numberNodes());
+      System.out.println("depth = " + t.depth());
+      System.out.println("contains(2) = " + t.contains(2));
+      System.out.println("contains(3) = " + t.contains(3));
+
+      // Escrever nos da arvore seguindo varias ordens possiveis
+      t.printPreOrder();      
+      t.printInOrder();
+      t.printPostOrder();
+      t.printBFS();
+      t.printDFS();
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <section class="uc-section" aria-labelledby="libbtree">
+      <h2 id="libbtree">Classe utilitária · LibBTree.java</h2>
+      <uc-code lang="java" filename="LibBTree.java">
+        <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// http://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Classe utilitaria com metodo para ler uma arvore em preorder
+// Ex: 5 1 8 N N 6 N N 7 2 N N N
+// Ultima alteracao: 26/04/2018
+// -----------------------------------------------------------
+
+import java.util.Scanner;
+
+public class LibBTree {
+   public static BTree<Integer> readIntTree(Scanner in) {
+      BTree<Integer> t = new BTree<Integer>();
+      t.setRoot(readIntNode(in));
+      return t;
+   }
+   
+   private static BTNode<Integer> readIntNode(Scanner in) {
+      String s = in.next();
+      if (s.equals("N")) return null;
+      Integer value = Integer.parseInt(s);
+      BTNode<Integer> left = readIntNode(in);
+      BTNode<Integer> right = readIntNode(in);
+      return new BTNode<Integer>(value, left, right);
+   }
+}
+        </script>
+      </uc-code>
+    </section>
+    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="arvores_binarias.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/arvores_binarias.html</a>.</p>
+  </uc-page>
+</body>
+</html>
