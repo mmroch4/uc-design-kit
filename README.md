@@ -20,7 +20,10 @@ course ("unidade curricular", UC) websites.
 > ([JavaScript API](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/api-js.html),
 > [stable CSS classes](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/classes.html),
 > [versions](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/versoes.html)).
-> The public contract is [`docs/api.md`](docs/api.md).
+> The public contract is [`docs/api.md`](docs/api.md). For language models:
+> [`llms.txt`](https://uc-design-kit.miguelrocha.dev/llms.txt) and
+> [`llms-full.txt`](https://uc-design-kit.miguelrocha.dev/llms-full.txt)
+> (the whole documentation as Markdown).
 
 ## Repository layout
 

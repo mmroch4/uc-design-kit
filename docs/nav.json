@@ -22,7 +22,8 @@
         "search": "Pesquisar",
         "searchPlaceholder": "Pesquisar na documentação",
         "searchEmpty": "Sem resultados.",
-        "searchClose": "Fechar"
+        "searchClose": "Fechar",
+        "markdown": "Ver esta página em Markdown"
       },
       "groups": [
         {
@@ -34,7 +35,8 @@
             { "title": "O ficheiro course.js", "path": "pt/course-js.html" },
             { "title": "Línguas", "path": "pt/linguas.html" },
             { "title": "Novo ano letivo", "path": "pt/novo-ano.html" },
-            { "title": "Publicar", "path": "pt/publicar.html" }
+            { "title": "Publicar", "path": "pt/publicar.html" },
+            { "title": "Usar com uma LLM", "path": "pt/llm.html" }
           ]
         },
         {

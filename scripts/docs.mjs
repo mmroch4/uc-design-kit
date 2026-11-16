@@ -235,7 +235,7 @@ function pager(ctx) {
     previous ? indentBlock(link(previous, "previous"), "  ") : null,
     next ? indentBlock(link(next, "next"), "  ") : null,
     `  </nav>`,
-    `  <p class="docs-footer__edit"><a href="${editUrl}">${labels.edit}</a></p>`,
+    `  <p class="docs-footer__edit"><a href="${editUrl}">${labels.edit}</a> · <a href="${path.basename(file, ".html")}.md" type="text/markdown">${labels.markdown}</a></p>`,
     `</footer>`,
   ]
     .filter((line) => line !== null)
