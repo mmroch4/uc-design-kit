@@ -77,7 +77,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     download: "Descarregar",
     reset: "Repor",
     editable: "Código editável",
-    testOn: "Testar no {platform}",
+    testOn: "Testar em {platform}",
     tabHint: "Tab insere espaços. Para sair do editor, carrega em Esc e depois em Tab.",
     run: "Executar",
     runTests: "Executar testes",

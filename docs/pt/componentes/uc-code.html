@@ -301,11 +301,11 @@ return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/p
         <p>Em Java, o ficheiro executado tem de ter a classe <code>public class Main</code>, que é o ponto de entrada do Codapi. Numa UC com muitos estudantes, convém um Codapi próprio, configurado no <code>course.js</code> (<a href="#configuracao">Configuração usada</a>).</p>
 
         <h3 id="testar-noutra-plataforma">Testar noutra plataforma</h3>
-        <p>Com um endereço, <code>run="https://…"</code> não executa nada na página: mostra uma ligação "Testar no …" para a plataforma onde o exercício é submetido, como o Mooshak. O nome vem da entrada de <code>platforms</code> do <code>course.js</code> com o mesmo domínio; sem nenhuma, aparece o domínio do endereço. Esta demonstração acrescenta ao curso uma plataforma "Mooshak".</p>
-        <!-- docs:demo src="../../demos/uc-code/link.html" title="programa C com ligação Testar no Mooshak" height="334" -->
+        <p>Com um endereço, <code>run="https://…"</code> não executa nada na página: mostra uma ligação "Testar em …" para a plataforma onde o exercício é submetido, como o Mooshak. O nome vem da entrada de <code>platforms</code> do <code>course.js</code> com o mesmo domínio; sem nenhuma, aparece o domínio do endereço. Esta demonstração acrescenta ao curso uma plataforma "Mooshak".</p>
+        <!-- docs:demo src="../../demos/uc-code/link.html" title="programa C com ligação Testar em Mooshak" height="334" -->
         <div class="docs-demo" id="demo-uc-code-link">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-code/link.html" title="Demonstração: programa C com ligação Testar no Mooshak" loading="lazy" style="height: 334px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/link.html" title="Demonstração: programa C com ligação Testar em Mooshak" loading="lazy" style="height: 334px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;c&quot; filename=&quot;sum.c&quot; run=&quot;https://mooshak.example.org/problem/A&quot;&gt;
@@ -340,7 +340,7 @@ return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/p
               <tr><td><code>no-download</code></td><td>booleano</td><td>ausente</td><td>Esconde o botão Descarregar.</td></tr>
               <tr><td><code>collapsible</code></td><td>booleano</td><td>ausente</td><td>O nome no cabeçalho passa a ser um botão que mostra e esconde o código.</td></tr>
               <tr><td><code>collapsed</code></td><td>booleano</td><td>ausente</td><td>Com <code>collapsible</code>, o bloco começa fechado. Executar abre-o.</td></tr>
-              <tr><td><code>run</code></td><td>booleano ou URL</td><td>ausente</td><td>Sem valor: botão Executar, que executa o código na página. Com um endereço: ligação "Testar no …" para essa plataforma.</td></tr>
+              <tr><td><code>run</code></td><td>booleano ou URL</td><td>ausente</td><td>Sem valor: botão Executar, que executa o código na página. Com um endereço: ligação "Testar em …" para essa plataforma.</td></tr>
             </tbody>
           </table>
         </div>
@@ -357,7 +357,7 @@ return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/p
             </thead>
             <tbody>
               <tr><td><code>runner</code></td><td>Que serviço executa cada linguagem com <code>run</code> sem valor. Sem este campo, JavaScript corre no browser e as restantes linguagens no Codapi público. Ver <a href="../course-js.html#campos-avancado">Avançado</a>.</td></tr>
-              <tr><td><code>platforms</code></td><td>Nome da plataforma na ligação "Testar no …" de <code>run="URL"</code>. Ver <a href="../course-js.html#campos-navegacao">Navegação</a>.</td></tr>
+              <tr><td><code>platforms</code></td><td>Nome da plataforma na ligação "Testar em …" de <code>run="URL"</code>. Ver <a href="../course-js.html#campos-navegacao">Navegação</a>.</td></tr>
             </tbody>
           </table>
         </div>
@@ -438,7 +438,7 @@ return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/p
               <tr><td><code>.uc-code__toggle</code>, <code>__chevron</code></td><td>O botão que mostra e esconde o código e a sua seta.</td></tr>
               <tr><td><code>.uc-code__actions</code></td><td>O grupo de botões.</td></tr>
               <tr><td><code>.uc-code__button</code>, <code>--copy</code>, <code>--download</code>, <code>--reset</code></td><td>Copiar, Descarregar e Repor.</td></tr>
-              <tr><td><code>.uc-code__run</code></td><td>O botão Executar ou a ligação "Testar no …".</td></tr>
+              <tr><td><code>.uc-code__run</code></td><td>O botão Executar ou a ligação "Testar em …".</td></tr>
               <tr><td><code>.uc-code__body</code>, <code>__scroll</code></td><td>A área do código, que desliza na horizontal.</td></tr>
               <tr><td><code>.uc-code__pre</code>, <code>__code</code></td><td>O código mostrado (com as classes <code>hljs-*</code> do realce).</td></tr>
               <tr><td><code>.uc-code__editor</code>, <code>__input</code>, <code>__hint</code></td><td>No modo editável: a área de edição, o <code>&lt;textarea&gt;</code> e a indicação sobre Tab e Esc.</td></tr>
@@ -472,7 +472,7 @@ uc-code[data-lang="java"] {
         </div>
 
         <h2 id="sem-javascript">Sem JavaScript</h2>
-        <p>O CSS do kit mostra o texto do <code>&lt;script type="text/plain"&gt;</code> como um bloco de código simples, sem cabeçalho, botões nem cores; um <code>&lt;pre&gt;&lt;code&gt;</code> aparece sempre, mesmo sem o CSS do kit. Os testes ficam escondidos. Na versão atual, os <code>&lt;script data-harness&gt;</code> também aparecem por baixo do código quando o JavaScript está desligado, mais uma razão para não terem nada que o estudante não deva ver.</p>
+        <p>O CSS do kit mostra o texto do <code>&lt;script type="text/plain"&gt;</code> como um bloco de código simples, sem cabeçalho, botões nem cores; um <code>&lt;pre&gt;&lt;code&gt;</code> aparece sempre, mesmo sem o CSS do kit. Os testes ficam escondidos. Os <code>&lt;script data-harness&gt;</code> também ficam escondidos.</p>
 
         <h2 id="ver-tambem">Ver também</h2>
         <ul>

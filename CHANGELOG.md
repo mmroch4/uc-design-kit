@@ -19,6 +19,9 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `docs/downloads/uc-template.zip` (built by `npm run build`). The page checker
   serves the public kit URL from `kit/` on disk, and `check-docs` also checks
   the `course.js` page against `docs/api.md` section 2.
+- Documentation site (phase 3): the components overview and a page for every
+  component, with about 60 live demos. `npm test` now fails when a component
+  of `docs/api.md` has no page (`check-docs --strict`).
 - `<uc-code collapsible>`: a show/hide toggle in the header; add `collapsed`
   to start folded. The EDados lecture code pages use it.
 - `<pre data-copy>`: a copy button for preformatted text such as problem
@@ -83,6 +86,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   (new block `uc-tag--success`).
 
 ### Fixed
+- `<uc-code run>`: the hidden `<script data-harness>` files no longer appear
+  under the code when JavaScript is off.
+- `<uc-code run="URL">`: the link reads "Testar em …" (was "Testar no …",
+  wrong for platform names that are not masculine).
+- `<uc-question>`: code blocks inside the question keep their normal weight.
+- `<uc-guide week>` without a `weeks` page: the fallback `weeks.html` link is
+  resolved against `course.js`, like other page links, so guides in
+  subfolders link correctly.
 - `UC.addTranslations` called from a script loaded after the kit now re-renders
   the components on the page when the dictionary is for the active language.
 - Code font ligatures (JetBrains Mono joins `->`, `-<`) are off in `code`,

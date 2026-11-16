@@ -6,7 +6,7 @@
 }
 
 /* Without JavaScript: show the authored code (a <script type="text/plain"> is displayed as text). */
-:where(uc-code:not(.uc-code) > script[type="text/plain"], uc-code:not(.uc-code) > pre) {
+:where(uc-code:not(.uc-code) > script[type="text/plain"]:not([data-harness]), uc-code:not(.uc-code) > pre) {
   display: block;
   margin: 0;
   padding: var(--uc-space-4) var(--uc-space-5);

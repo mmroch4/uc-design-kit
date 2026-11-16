@@ -152,4 +152,6 @@
   applyAccentColor(UC.course.accentColor);
 
   UC.internal.builtinPages = BUILTIN_PAGES;
+  // Resolves an href written relative to course.js (as page hrefs are) for this page.
+  UC.internal.resolvePageHref = pageHrefResolver();
 })(window.UC);
