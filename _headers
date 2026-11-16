@@ -27,6 +27,13 @@
 /examples/*
   Link: </kit/v1/fonts/inter-latin.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
 
+# Documentation and landing page: same font preload.
+/docs/*
+  Link: </kit/v1/fonts/inter-latin.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
+
+/
+  Link: </kit/v1/fonts/inter-latin.woff2>; rel=preload; as=font; type="font/woff2"; crossorigin
+
 /examples/*/course.js
   Cache-Control: public, max-age=60, stale-while-revalidate=86400
 
