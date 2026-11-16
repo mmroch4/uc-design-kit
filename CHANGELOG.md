@@ -8,3 +8,4 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ### Added
 - Repository scaffold, licence and contribution guide.
+- Page checker (`npm test`) and GitHub Actions workflow.
