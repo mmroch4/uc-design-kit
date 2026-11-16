@@ -10,7 +10,7 @@
   margin: var(--uc-space-2) 0;
   padding: var(--uc-space-4) var(--uc-space-5);
   border: 1px solid var(--uc-color-warning-border);
-  border-radius: 10px;
+  border-radius: min(var(--uc-radius-lg), calc(var(--uc-radius-md) + 2px));
   background: var(--uc-color-warning-surface);
 }
 :where(.uc-week__body > .uc-event) { margin: var(--uc-space-1) 0; }

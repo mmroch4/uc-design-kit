@@ -124,7 +124,7 @@ Exemplo (semana com um prazo do course.js), [demonstração ao vivo](https://uc-
 </uc-week>
 ```
 
-Para escolher que prazos aparecem nas semanas, use `kind` ou `no-deadlines` no `<uc-weeks>`. Um prazo que já tenha um [`<uc-event deadline="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md) escrito na semana não é repetido.
+Para escolher que prazos aparecem nas semanas, use `kind` ou `no-deadlines` no `<uc-weeks>`. Um prazo que já tenha um [`<uc-event deadline="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md) escrito em qualquer semana da lista não é repetido.
 
 ## Atributos
 

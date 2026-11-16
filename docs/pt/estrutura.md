@@ -98,7 +98,7 @@ Uma página dentro de `guioes/` carrega o `course.js` com `../`. Os endereços d
 <script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer></script>
 ```
 
-Os `href` das páginas no `course.js` são relativos ao `course.js`, não à página. Por isso a navegação de `guioes/aula10.html` aponta sozinha para `../semanas.html`. Os outros links (os escritos no HTML, o `url` dos prazos e os links dentro dos avisos) são relativos à página que os mostra, como sempre. Os prazos e os avisos costumam aparecer em páginas da raiz da pasta, onde isso não faz diferença.
+Os `href` das páginas no `course.js` são relativos ao `course.js`, não à página. Por isso a navegação de `guioes/aula10.html` aponta sozinha para `../semanas.html`. O mesmo vale para todos os endereços escritos no `course.js`: o `logo`, o `url` e os `links` dos prazos, o `url` da equipa e das plataformas, e as ligações e imagens dentro dos avisos e do rodapé. Os links escritos no HTML de uma página são relativos a essa página, como sempre. Um endereço que começa por `https:`, `/` ou `#` fica como está.
 
 ## Links e ficheiros
 

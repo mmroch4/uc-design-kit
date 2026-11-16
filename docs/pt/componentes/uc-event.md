@@ -123,7 +123,7 @@ Campos do `course.js` que o componente lê. Um evento escrito à mão (sem `dead
 | `deadlines` | O prazo indicado em `deadline`: `title`, `date`, `time`, `end`, `kind`, `note`, `url` e `links` ([prazos](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos)). |
 | `today` | Decidir se o evento já passou (classes `--past` e `--future`); `?today=AAAA-MM-DD` no endereço tem prioridade ([avançado](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-avancado)). |
 
-Com `url`, o título passa a ser uma ligação. O `url` e os `links` de um prazo são relativos à página que mostra o evento, não ao `course.js`: numa página dentro de uma subpasta, convém um endereço absoluto ou começado por `/`. Ver [Subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas).
+Com `url`, o título passa a ser uma ligação. O `url` e os `links` de um prazo são relativos ao `course.js`, como os `href` das páginas, por isso funcionam também em páginas dentro de subpastas. Ver [Subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas).
 
 Um `deadline` que não existe no `course.js` deixa um aviso na consola do navegador e o evento mostra só o que foi escrito dentro dele.
 

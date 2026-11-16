@@ -26,6 +26,18 @@
       if (!nav || nav.getAttribute("href") !== "../uc-deadlines.html") {
         console.error("subfolder: nav link not resolved against course.js:", nav && nav.getAttribute("href"));
       }
+      // Every relative URL from course.js (HTMLText included) resolves the same way.
+      const html = UC.internal.h("span", { html: '<a href="uc-weeks.html#week-2">a</a> <a href="https://example.org/">b</a> <a href="#top">c</a>' });
+      // Images too, checked in an inert document so nothing is fetched.
+      const inert = document.implementation.createHTMLDocument("").createElement("span");
+      inert.innerHTML = '<img src="img/x.png" alt="">';
+      UC.internal.resolveCourseLinks(inert);
+      const got = [...html.querySelectorAll("[href]"), ...inert.querySelectorAll("[src]")].map((node) => node.getAttribute("href") || node.getAttribute("src"));
+      if (got.join(" ") !== "../uc-weeks.html#week-2 https://example.org/ #top ../img/x.png") {
+        console.error("subfolder: HTMLText links not resolved against course.js:", got.join(" "));
+      }
+      if (UC.course.deadlines.find((d) => d.id === "ap1").links[0].url !== "#") console.error("subfolder: '#' link was rewritten");
+      if (UC.course.institution.url !== "https://www.dcc.fc.up.pt") console.error("subfolder: absolute URL was rewritten");
       const crumb = document.querySelector('.uc-guide a[href$="#week-10"]');
       if (!crumb || crumb.getAttribute("href") !== "../uc-weeks.html#week-10") {
         console.error("subfolder: breadcrumb not resolved:", crumb && crumb.getAttribute("href"));

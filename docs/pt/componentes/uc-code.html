@@ -388,7 +388,7 @@ return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/p
               <tr><td><code>no-download</code></td><td>booleano</td><td>ausente</td><td>Esconde o botão Descarregar.</td></tr>
               <tr><td><code>collapsible</code></td><td>booleano</td><td>ausente</td><td>O nome no cabeçalho passa a ser um botão que mostra e esconde o código.</td></tr>
               <tr><td><code>collapsed</code></td><td>booleano</td><td>ausente</td><td>Com <code>collapsible</code>, o bloco começa fechado. Executar abre-o.</td></tr>
-              <tr><td><code>run</code></td><td>booleano ou URL</td><td>ausente</td><td>Sem valor: botão Executar, que executa o código na página. Com um endereço: ligação "Testar em …" para essa plataforma.</td></tr>
+              <tr><td><code>run</code></td><td>booleano ou URL</td><td>ausente</td><td>Sem valor: botão Executar, que executa o código na página. Não aparece em linguagens que não são programas (<code>html</code>, <code>css</code>, <code>text</code>, <code>json</code>…), com um aviso na consola. Com um endereço: ligação "Testar em …" para essa plataforma.</td></tr>
             </tbody>
           </table>
         </div>

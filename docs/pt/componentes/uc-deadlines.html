@@ -148,7 +148,7 @@
     { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },
   ],
 };</code></pre></uc-code>
-        <p>A ordem no ficheiro não importa: o kit ordena os prazos por data e põe no fim os que ainda não têm data. O <code>url</code> de um prazo transforma o título numa ligação e <code>links</code> acrescenta ligações por baixo. Tal como as ligações dentro dos avisos, estes endereços são relativos à página que mostra o prazo, não ao <code>course.js</code> (ver <a href="../estrutura.html#subpastas">Páginas em subpastas</a>).</p>
+        <p>A ordem no ficheiro não importa: o kit ordena os prazos por data e põe no fim os que ainda não têm data. O <code>url</code> de um prazo transforma o título numa ligação e <code>links</code> acrescenta ligações por baixo. Tal como os <code>href</code> das páginas, estes endereços são relativos ao <code>course.js</code> e funcionam em qualquer página do site (ver <a href="../estrutura.html#subpastas">Páginas em subpastas</a>).</p>
 
         <h2 id="exemplos">Exemplos</h2>
         <p>Os exemplos seguintes juntam ao curso de demonstração mais quatro prazos: o trabalho 1, já entregue, dois quizzes abertos durante uma semana e o exame de recurso, ainda sem data.</p>
@@ -278,7 +278,7 @@
         <p>Um prazo passa quando acaba o seu último dia:</p>
         <ul>
           <li><strong>Um dia</strong> (<code>"2025-12-10"</code>): conta como próximo até ao fim desse dia, seja qual for a hora.</li>
-          <li><strong>Vários dias</strong> (com <code>end</code>): conta como próximo até ao fim de <code>end</code> e mostra-se como intervalo, "24–30 nov".</li>
+          <li><strong>Vários dias</strong> (com <code>end</code>): conta como próximo até ao fim de <code>end</code> e mostra-se como intervalo: "24–30 nov" na lista, "24–30 nov 2025" na tabela.</li>
           <li><strong>Só o mês</strong> (<code>"2026-01"</code>): mostra-se "janeiro 2026" e conta como próximo até ao fim do mês.</li>
           <li><strong>Sem data</strong> (<code>null</code>): mostra-se "Por marcar", fica no fim e nunca passa.</li>
         </ul>

@@ -6,7 +6,8 @@
   /**
    * Creates an element. `attrs` keys map to attributes, except:
    *   class -> className, dataset -> data-*, on<Event> -> listener,
-   *   html -> innerHTML (trusted, teacher-authored strings only).
+   *   html -> innerHTML (trusted, teacher-authored HTMLText from course.js;
+   *           its relative links are resolved against course.js).
    * Children may be nodes, strings or arrays; null/false are skipped.
    */
   function h(tag, attrs, ...children) {
@@ -15,7 +16,10 @@
       if (value === null || value === undefined || value === false) continue;
       if (key === "class") element.className = value;
       else if (key === "dataset") Object.assign(element.dataset, value);
-      else if (key === "html") element.innerHTML = value;
+      else if (key === "html") {
+        element.innerHTML = value;
+        if (UC.internal.resolveCourseLinks) UC.internal.resolveCourseLinks(element);
+      }
       else if (key.startsWith("on") && typeof value === "function") element.addEventListener(key.slice(2).toLowerCase(), value);
       else element.setAttribute(key, value === true ? "" : String(value));
     }

@@ -114,7 +114,7 @@ O componente lê só [`team`](https://uc-design-kit.miguelrocha.dev/docs/pt/cour
 - No HTML, escreve-se `role`, como nos exemplos.
 - Num `theme.css`, seleciona-se `uc-team[data-role]` (por exemplo `uc-team[data-role="assistant"]`), porque `role` já não existe na página.
 
-Quando nenhuma pessoa corresponde ao filtro, ou `team` está vazio, o componente fica escondido (atributo `hidden`), sem título. Se tiver conteúdo escrito dentro, mostra o título e esse conteúdo.
+Quando nenhuma pessoa corresponde ao filtro `role`, o componente fica escondido (atributo `hidden`), mesmo com conteúdo escrito dentro, porque esse conteúdo pertence à lista filtrada. Sem filtro e com `team` vazio, fica escondido só se não tiver conteúdo escrito dentro; se tiver, mostra o título e esse conteúdo.
 
 ## Personalizar
 

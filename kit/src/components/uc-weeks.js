@@ -113,6 +113,8 @@
     }
 
     renderBreaks(weeks, breaks, written) {
+      // Last node placed after each week, so consecutive breaks keep their order.
+      const lastAfter = new Map();
       mergeBreaks(breaks).forEach((item) => {
         const label = item.label ? this.text(item.label) : "";
         const range = UC.formatDateRange(item.start, item.end);
@@ -125,7 +127,7 @@
             label ? `${label}, ${this.t("weeks.noClasses")}` : this.t("weeks.noClasses"),
           ),
         );
-        const previous = weeks.find((week) => Number(week.getAttribute("n")) === item.afterWeek);
+        const previous = lastAfter.get(item.afterWeek) || weeks.find((week) => Number(week.getAttribute("n")) === item.afterWeek);
         if (previous) previous.after(panel);
         else {
           const next = firstWeekAfter(weeks, item.afterWeek);
@@ -134,14 +136,15 @@
         }
 
         // Deadlines dated during the break follow its panel.
+        let anchor = panel;
         if (written) {
-          let anchor = panel;
           UC.internal.deadlinesBetween(item.from, item.to, written).forEach((deadline) => {
             const event = this.track(UC.internal.createEvent(deadline.id));
             anchor.after(event);
             anchor = event;
           });
         }
+        if (previous) lastAfter.set(item.afterWeek, anchor);
       });
     }
 

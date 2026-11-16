@@ -49,6 +49,9 @@
   test("formatDate null", () => equal(UC.formatDate(null), "Por marcar"));
   test("formatDateRange same month", () => equal(UC.formatDateRange("2025-11-25", "2025-11-28"), "25–28 nov"));
   test("formatDateRange across months", () => equal(UC.formatDateRange("2025-09-30", "2025-10-03"), "30 set–3 out"));
+  test("formatDateRange medium adds the year", () => equal(UC.formatDateRange("2025-11-24", "2025-11-30", "medium"), "24–30 nov 2025"));
+  test("formatDateRange medium across years", () => equal(UC.formatDateRange("2025-12-29", "2026-01-02", "medium"), "29 dez 2025–2 jan 2026"));
+  test("canRun: markup languages have no Run button", () => equal(["html", "css", "text", "java", "py", "js"].map(UC.internal.canRun), [false, false, false, true, true, true]));
 
   test("text resolves active language", () => equal(UC.text({ pt: "Olá", en: "Hello" }), UC.lang === "en" ? "Hello" : "Olá"));
   test("text falls back to first language", () => equal(UC.text({ pt: "Só PT" }, "en"), "Só PT"));

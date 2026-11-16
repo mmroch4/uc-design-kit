@@ -79,17 +79,28 @@
     }));
   };
 
-  /** Whether a runner is configured and registered for `language`. */
+  /**
+   * False only when the runner configured for `language` is registered and
+   * says, through its optional `supports(language)`, that it cannot run it.
+   * A runner that is not registered yet (an extension loaded after the kit)
+   * counts as able to run, so its button is not lost.
+   */
   UC.internal.canRun = function canRun(language) {
     const settings = config();
-    return registry.has(settings.languages[language] || settings.provider);
+    const runner = registry.get(settings.languages[language] || settings.provider);
+    if (!runner || typeof runner.supports !== "function") return true;
+    return Boolean(runner.supports(language));
   };
+
+  // Block languages that are markup or data, never programs.
+  const NOT_PROGRAMS = ["html", "css", "text", "plain", "json", "xml", "yaml", "markdown", "md", "csv"];
 
   /* ----------------------------------------------------------------------
    * Built-in runner: Codapi (https://codapi.org), public or self-hosted.
    * -------------------------------------------------------------------- */
 
   UC.registerRunner("codapi", {
+    supports: (language) => !NOT_PROGRAMS.includes(String(language).toLowerCase()),
     run(request, options) {
       const sandbox = (options.sandboxes && options.sandboxes[request.language]) || request.language;
       const controller = typeof AbortController === "function" ? new AbortController() : null;
@@ -133,6 +144,7 @@
   `;
 
   UC.registerRunner("browser", {
+    supports: (language) => ["javascript", "js"].includes(String(language).toLowerCase()),
     run(request, options) {
       const files = request.files || {};
       // The entry file runs last, after any helper files.
