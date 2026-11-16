@@ -89,6 +89,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     weekdays: ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"],
     format: {
       short: "{d} {m}",
+      medium: "{d} {m} {y}",
       long: "{d} de {M} de {y}",
       weekday: "{w}, {d} {m}",
       month: "{M} {y}",

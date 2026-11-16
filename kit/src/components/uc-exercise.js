@@ -160,7 +160,7 @@
       this.numberSlot.replaceChildren(this.done ? icon("check") : String(number || ""));
       this.labelSlot.textContent = number ? `${this.t("exercise.title", { n: number })}: ` : "";
       this.metaSlot.replaceChildren(...this.renderBadges());
-      this.actions.replaceChildren(this.renderPlatformLink(), this.renderToggle());
+      this.actions.replaceChildren(...[this.renderPlatformLink(), this.renderToggle()].filter(Boolean));
       this.generatedSummaries.forEach((summary) => {
         summary.textContent = this.t(summary.dataset.ucKey);
       });

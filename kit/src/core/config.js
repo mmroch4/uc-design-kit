@@ -23,7 +23,39 @@
 
   const asArray = (value) => (Array.isArray(value) ? value : []);
 
-  function normalizePage(entry, index) {
+  /**
+   * Page hrefs in course.js are relative to course.js itself, so that pages in
+   * subfolders (e.g. guioes/aula10.html loading ../course.js) link correctly.
+   * Returns a function mapping such an href to one relative to this page.
+   */
+  function pageHrefResolver() {
+    const script = Array.from(document.scripts).find((item) => /(^|\/)course\.js([?#]|$)/.test(item.getAttribute("src") || ""));
+    if (!script) return (href) => href;
+    const base = new URL(".", script.src);
+    const here = new URL(".", document.baseURI);
+    if (base.href === here.href || base.origin !== here.origin) return (href) => href;
+    return (href) => {
+      if (typeof href !== "string" || /^([a-z][a-z0-9+.-]*:|\/|#)/i.test(href)) return href;
+      const target = new URL(href, base);
+      const from = here.pathname.split("/").slice(0, -1);
+      const to = target.pathname.split("/");
+      let common = 0;
+      while (common < from.length && common < to.length - 1 && from[common] === to[common]) common += 1;
+      const path = "../".repeat(from.length - common) + to.slice(common).join("/");
+      return path + target.search + target.hash;
+    };
+  }
+
+  function resolveHref(href, resolve) {
+    if (href && typeof href === "object") {
+      const out = {};
+      Object.keys(href).forEach((key) => (out[key] = resolve(href[key])));
+      return out;
+    }
+    return resolve(href);
+  }
+
+  function normalizePage(entry, index, resolve) {
     const page = typeof entry === "string" ? { id: entry } : { ...entry };
     if (!page.id) {
       warn(`pages[${index}] has no id`);
@@ -33,6 +65,7 @@
       page.href = BUILTIN_PAGES[page.id];
       if (!page.href) warn(`pages[${index}] ("${page.id}") is not a built-in page and needs an href`);
     }
+    if (page.href) page.href = resolveHref(page.href, resolve);
     page.builtin = page.id in BUILTIN_PAGES;
     page.label = page.label || null;
     return page;
@@ -82,6 +115,7 @@
     const notices = asArray(raw.notices).map(normalizeNotice);
     notices.sort((a, b) => (b.parsedDate || 0) - (a.parsedDate || 0));
 
+    const resolve = pageHrefResolver();
     return Object.freeze({
       ...raw,
       languages,
@@ -92,7 +126,7 @@
         teachingDays,
         breaks: asArray(semester.breaks),
       },
-      pages: asArray(raw.pages).length ? raw.pages.map(normalizePage) : [normalizePage("home", 0)],
+      pages: (asArray(raw.pages).length ? raw.pages : ["home"]).map((entry, index) => normalizePage(entry, index, resolve)),
       platforms: asArray(raw.platforms),
       team: asArray(raw.team),
       deadlines,

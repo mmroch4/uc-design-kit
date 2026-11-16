@@ -16,12 +16,14 @@
 
     render() {
       const course = this.course;
-      this.replaceChildren(
+      // h() skips null children; the native replaceChildren() would print "null".
+      this.replaceChildren();
+      UC.internal.append(this, [
         course.code ? h("p", { class: "uc-hero__code" }, course.code) : null,
         h("h1", { class: "uc-hero__title" }, this.text(course.title)),
         course.tagline ? h("p", { class: "uc-hero__tagline" }, this.text(course.tagline)) : null,
         ...this.extra,
-      );
+      ]);
     }
   }
 

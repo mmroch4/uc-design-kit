@@ -120,10 +120,12 @@
       else this.summary.removeAttribute("aria-current");
 
       this.summary.replaceChildren(
-        h("span", { class: "uc-week__number" }, n !== null ? this.t("weeks.week", { n }) : ""),
-        h("span", { class: "uc-week__title" }, this.weekTitle),
-        meta,
-        h("span", { class: "uc-week__chevron" }, icon("chevronDown")),
+        ...[
+          h("span", { class: "uc-week__number" }, n !== null ? this.t("weeks.week", { n }) : ""),
+          h("span", { class: "uc-week__title" }, this.weekTitle),
+          meta,
+          h("span", { class: "uc-week__chevron" }, icon("chevronDown")),
+        ].filter(Boolean),
       );
     }
 

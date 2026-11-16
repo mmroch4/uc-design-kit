@@ -47,12 +47,12 @@
   }
 
   /** Date label: single day, range for multi-day items, month, or "To be scheduled". */
-  function formatWhen(deadline) {
+  function formatWhen(deadline, format) {
     const { precision, date } = deadline.parsed;
     if (precision === "day" && deadline.endDate && deadline.endDate > date) {
       return UC.formatDateRange(date, deadline.endDate);
     }
-    return UC.formatDate(date && precision === "day" ? date : deadline.date);
+    return UC.formatDate(date && precision === "day" ? date : deadline.date, format);
   }
 
   /** Status of each deadline for the table view, keyed by deadline object. */
@@ -75,7 +75,7 @@
 
   class UCDeadlines extends UC.Element {
     static get observedAttributes() {
-      return ["view", "filter", "kind", "limit", "heading"];
+      return ["view", "filter", "kind", "per-kind", "limit", "heading"];
     }
 
     setup() {
@@ -108,6 +108,15 @@
         if (filter === "all") return true;
         return isUpcoming(deadline, today) === (filter === "upcoming");
       });
+      const perKind = number(this, "per-kind", null);
+      if (perKind !== null) {
+        const counts = new Map();
+        deadlines = deadlines.filter((deadline) => {
+          const count = counts.get(deadline.kind) || 0;
+          counts.set(deadline.kind, count + 1);
+          return count < Math.max(0, Math.floor(perKind));
+        });
+      }
       const limit = number(this, "limit", null);
       if (limit !== null) deadlines = deadlines.slice(0, Math.max(0, Math.floor(limit)));
       return deadlines;
@@ -172,18 +181,26 @@
             !datetime ? "uc-deadlines__item--unscheduled" : null,
             !isUpcoming(deadline, today) ? "uc-deadlines__item--past" : null,
           ].filter(Boolean);
-          const label = UC.internal.withTime(formatWhen(deadline), datetime ? deadline.time : null);
+          // The list's narrow date column shows the day only; the time goes
+          // first on the note line ("21:00 · No Mooshak").
+          const time = datetime && deadline.time ? deadline.time : null;
+          const note = this.renderNote(deadline);
+          let meta = note;
+          if (time) {
+            meta = note || h("span", { class: "uc-deadlines__note" });
+            meta.prepend(h("span", { class: "uc-deadlines__time" }, time), note ? " · " : "");
+          }
           return h(
             "li",
             { class: ["uc-deadlines__item", ...modifiers].join(" "), dataset: { kind: deadline.kind } },
             datetime
-              ? h("time", { class: "uc-deadlines__date", datetime }, label)
-              : h("span", { class: "uc-deadlines__date" }, label),
+              ? h("time", { class: "uc-deadlines__date", datetime }, formatWhen(deadline))
+              : h("span", { class: "uc-deadlines__date" }, formatWhen(deadline)),
             h(
               "div",
               { class: "uc-deadlines__body" },
               h("span", { class: "uc-deadlines__title" }, this.renderTitle(deadline)),
-              this.renderNote(deadline),
+              meta,
               this.renderLinks(deadline),
             ),
           );
@@ -210,7 +227,7 @@
           h(
             "td",
             { class: "uc-deadlines__date" },
-            datetime ? h("time", { datetime }, formatWhen(deadline)) : formatWhen(deadline),
+            datetime ? h("time", { datetime }, formatWhen(deadline, "medium")) : formatWhen(deadline, "medium"),
           ),
           h(
             "td",

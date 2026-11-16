@@ -58,10 +58,21 @@
     });
   }
 
-  /** Ids of the deadlines referenced by teacher-written <uc-event> elements inside `root`. */
+  /**
+   * Ids of the deadlines the calendar must not generate inside `root`: those
+   * already written by the teacher as <uc-event deadline="…">, and those whose
+   * kind is not listed in the enclosing <uc-weeks kind="…">.
+   */
   function writtenEventIds(root) {
     const ids = new Set();
     root.querySelectorAll("uc-event[deadline]:not([data-uc-generated])").forEach((event) => ids.add(event.getAttribute("deadline")));
+    const container = root.closest("uc-weeks");
+    const kinds = ((container && container.getAttribute("kind")) || "").split(/\s+/).filter(Boolean);
+    if (kinds.length) {
+      UC.course.deadlines.forEach((deadline) => {
+        if (!kinds.includes(deadline.kind)) ids.add(deadline.id);
+      });
+    }
     return ids;
   }
 

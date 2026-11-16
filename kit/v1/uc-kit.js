@@ -195,6 +195,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     weekdays: ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"],
     format: {
       short: "{d} {m}",
+      medium: "{d} {m} {y}",
       long: "{d} de {M} de {y}",
       weekday: "{w}, {d} {m}",
       month: "{M} {y}",
@@ -297,6 +298,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     weekdays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     format: {
       short: "{d} {m}",
+      medium: "{d} {m} {y}",
       long: "{d} {M} {y}",
       weekday: "{w}, {d} {m}",
       month: "{M} {y}",
@@ -425,7 +427,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     const parsed = value instanceof Date ? { precision: "day", date: value } : parseDeadlineDate(value);
     if (parsed.precision === "none" || parsed.precision === "invalid") return UC.t("deadlines.toBeScheduled");
     if (parsed.precision === "month") return fill(UC.t("dates.format.month"), parts(parsed.date));
-    const key = format === "long" || format === "weekday" ? format : "short";
+    const key = ["medium", "long", "weekday"].includes(format) ? format : "short";
     return fill(UC.t(`dates.format.${key}`), parts(parsed.date));
   };
 
@@ -563,7 +565,39 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
 
   const asArray = (value) => (Array.isArray(value) ? value : []);
 
-  function normalizePage(entry, index) {
+  /**
+   * Page hrefs in course.js are relative to course.js itself, so that pages in
+   * subfolders (e.g. guioes/aula10.html loading ../course.js) link correctly.
+   * Returns a function mapping such an href to one relative to this page.
+   */
+  function pageHrefResolver() {
+    const script = Array.from(document.scripts).find((item) => /(^|\/)course\.js([?#]|$)/.test(item.getAttribute("src") || ""));
+    if (!script) return (href) => href;
+    const base = new URL(".", script.src);
+    const here = new URL(".", document.baseURI);
+    if (base.href === here.href || base.origin !== here.origin) return (href) => href;
+    return (href) => {
+      if (typeof href !== "string" || /^([a-z][a-z0-9+.-]*:|\/|#)/i.test(href)) return href;
+      const target = new URL(href, base);
+      const from = here.pathname.split("/").slice(0, -1);
+      const to = target.pathname.split("/");
+      let common = 0;
+      while (common < from.length && common < to.length - 1 && from[common] === to[common]) common += 1;
+      const path = "../".repeat(from.length - common) + to.slice(common).join("/");
+      return path + target.search + target.hash;
+    };
+  }
+
+  function resolveHref(href, resolve) {
+    if (href && typeof href === "object") {
+      const out = {};
+      Object.keys(href).forEach((key) => (out[key] = resolve(href[key])));
+      return out;
+    }
+    return resolve(href);
+  }
+
+  function normalizePage(entry, index, resolve) {
     const page = typeof entry === "string" ? { id: entry } : { ...entry };
     if (!page.id) {
       warn(`pages[${index}] has no id`);
@@ -573,6 +607,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       page.href = BUILTIN_PAGES[page.id];
       if (!page.href) warn(`pages[${index}] ("${page.id}") is not a built-in page and needs an href`);
     }
+    if (page.href) page.href = resolveHref(page.href, resolve);
     page.builtin = page.id in BUILTIN_PAGES;
     page.label = page.label || null;
     return page;
@@ -622,6 +657,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     const notices = asArray(raw.notices).map(normalizeNotice);
     notices.sort((a, b) => (b.parsedDate || 0) - (a.parsedDate || 0));
 
+    const resolve = pageHrefResolver();
     return Object.freeze({
       ...raw,
       languages,
@@ -632,7 +668,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
         teachingDays,
         breaks: asArray(semester.breaks),
       },
-      pages: asArray(raw.pages).length ? raw.pages.map(normalizePage) : [normalizePage("home", 0)],
+      pages: (asArray(raw.pages).length ? raw.pages : ["home"]).map((entry, index) => normalizePage(entry, index, resolve)),
       platforms: asArray(raw.platforms),
       team: asArray(raw.team),
       deadlines,
@@ -1152,7 +1188,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
             "span",
             { class: "uc-footer__updated" },
             UC.internal.tNodes("footer.updated", {
-              date: h("time", { datetime: course.updated }, UC.formatDate(course.updated, "long")),
+              date: h("time", { datetime: course.updated }, UC.formatDate(course.updated, "medium")),
             }),
           )
         : null;
@@ -1189,12 +1225,14 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
 
     render() {
       const course = this.course;
-      this.replaceChildren(
+      // h() skips null children; the native replaceChildren() would print "null".
+      this.replaceChildren();
+      UC.internal.append(this, [
         course.code ? h("p", { class: "uc-hero__code" }, course.code) : null,
         h("h1", { class: "uc-hero__title" }, this.text(course.title)),
         course.tagline ? h("p", { class: "uc-hero__tagline" }, this.text(course.tagline)) : null,
         ...this.extra,
-      );
+      ]);
     }
   }
 
@@ -1366,12 +1404,12 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   }
 
   /** Date label: single day, range for multi-day items, month, or "To be scheduled". */
-  function formatWhen(deadline) {
+  function formatWhen(deadline, format) {
     const { precision, date } = deadline.parsed;
     if (precision === "day" && deadline.endDate && deadline.endDate > date) {
       return UC.formatDateRange(date, deadline.endDate);
     }
-    return UC.formatDate(date && precision === "day" ? date : deadline.date);
+    return UC.formatDate(date && precision === "day" ? date : deadline.date, format);
   }
 
   /** Status of each deadline for the table view, keyed by deadline object. */
@@ -1394,7 +1432,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
 
   class UCDeadlines extends UC.Element {
     static get observedAttributes() {
-      return ["view", "filter", "kind", "limit", "heading"];
+      return ["view", "filter", "kind", "per-kind", "limit", "heading"];
     }
 
     setup() {
@@ -1427,6 +1465,15 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
         if (filter === "all") return true;
         return isUpcoming(deadline, today) === (filter === "upcoming");
       });
+      const perKind = number(this, "per-kind", null);
+      if (perKind !== null) {
+        const counts = new Map();
+        deadlines = deadlines.filter((deadline) => {
+          const count = counts.get(deadline.kind) || 0;
+          counts.set(deadline.kind, count + 1);
+          return count < Math.max(0, Math.floor(perKind));
+        });
+      }
       const limit = number(this, "limit", null);
       if (limit !== null) deadlines = deadlines.slice(0, Math.max(0, Math.floor(limit)));
       return deadlines;
@@ -1491,18 +1538,26 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
             !datetime ? "uc-deadlines__item--unscheduled" : null,
             !isUpcoming(deadline, today) ? "uc-deadlines__item--past" : null,
           ].filter(Boolean);
-          const label = UC.internal.withTime(formatWhen(deadline), datetime ? deadline.time : null);
+          // The list's narrow date column shows the day only; the time goes
+          // first on the note line ("21:00 · No Mooshak").
+          const time = datetime && deadline.time ? deadline.time : null;
+          const note = this.renderNote(deadline);
+          let meta = note;
+          if (time) {
+            meta = note || h("span", { class: "uc-deadlines__note" });
+            meta.prepend(h("span", { class: "uc-deadlines__time" }, time), note ? " · " : "");
+          }
           return h(
             "li",
             { class: ["uc-deadlines__item", ...modifiers].join(" "), dataset: { kind: deadline.kind } },
             datetime
-              ? h("time", { class: "uc-deadlines__date", datetime }, label)
-              : h("span", { class: "uc-deadlines__date" }, label),
+              ? h("time", { class: "uc-deadlines__date", datetime }, formatWhen(deadline))
+              : h("span", { class: "uc-deadlines__date" }, formatWhen(deadline)),
             h(
               "div",
               { class: "uc-deadlines__body" },
               h("span", { class: "uc-deadlines__title" }, this.renderTitle(deadline)),
-              this.renderNote(deadline),
+              meta,
               this.renderLinks(deadline),
             ),
           );
@@ -1529,7 +1584,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
           h(
             "td",
             { class: "uc-deadlines__date" },
-            datetime ? h("time", { datetime }, formatWhen(deadline)) : formatWhen(deadline),
+            datetime ? h("time", { datetime }, formatWhen(deadline, "medium")) : formatWhen(deadline, "medium"),
           ),
           h(
             "td",
@@ -1560,7 +1615,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   if (UC.__duplicate) return;
 
   const { h, flag, parseDeadlineDate, toISO } = UC.internal;
-  const FORMATS = ["short", "long", "weekday"];
+  const FORMATS = ["short", "medium", "long", "weekday"];
 
   class UCDate extends UC.Element {
     static get observedAttributes() {
@@ -1700,10 +1755,21 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     });
   }
 
-  /** Ids of the deadlines referenced by teacher-written <uc-event> elements inside `root`. */
+  /**
+   * Ids of the deadlines the calendar must not generate inside `root`: those
+   * already written by the teacher as <uc-event deadline="…">, and those whose
+   * kind is not listed in the enclosing <uc-weeks kind="…">.
+   */
   function writtenEventIds(root) {
     const ids = new Set();
     root.querySelectorAll("uc-event[deadline]:not([data-uc-generated])").forEach((event) => ids.add(event.getAttribute("deadline")));
+    const container = root.closest("uc-weeks");
+    const kinds = ((container && container.getAttribute("kind")) || "").split(/\s+/).filter(Boolean);
+    if (kinds.length) {
+      UC.course.deadlines.forEach((deadline) => {
+        if (!kinds.includes(deadline.kind)) ids.add(deadline.id);
+      });
+    }
     return ids;
   }
 
@@ -1910,10 +1976,12 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       else this.summary.removeAttribute("aria-current");
 
       this.summary.replaceChildren(
-        h("span", { class: "uc-week__number" }, n !== null ? this.t("weeks.week", { n }) : ""),
-        h("span", { class: "uc-week__title" }, this.weekTitle),
-        meta,
-        h("span", { class: "uc-week__chevron" }, icon("chevronDown")),
+        ...[
+          h("span", { class: "uc-week__number" }, n !== null ? this.t("weeks.week", { n }) : ""),
+          h("span", { class: "uc-week__title" }, this.weekTitle),
+          meta,
+          h("span", { class: "uc-week__chevron" }, icon("chevronDown")),
+        ].filter(Boolean),
       );
     }
 
@@ -2184,7 +2252,13 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
 
   class UCThisWeek extends UC.Element {
     static get observedAttributes() {
-      return ["source"];
+      return ["source", "kind"];
+    }
+
+    /** Keeps only the deadlines whose kind is listed in the `kind` attribute (all when absent). */
+    ofKinds(deadlines) {
+      const kinds = (this.getAttribute("kind") || "").split(/\s+/).filter(Boolean);
+      return kinds.length ? deadlines.filter((deadline) => kinds.includes(deadline.kind)) : deadlines;
     }
 
     attributeChangedCallback() {
@@ -2206,9 +2280,9 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       const last = calendar.weeks[calendar.weeks.length - 1];
 
       let content;
-      if (!first) content = this.renderOutside(null, upcomingDeadlines(today).slice(0, UPCOMING_LIMIT));
-      else if (today < first.monday) content = this.renderOutside("before", upcomingDeadlines(today).slice(0, 1), first);
-      else if (today >= addDays(last.monday, 7)) content = this.renderOutside("after", upcomingDeadlines(today).slice(0, UPCOMING_LIMIT));
+      if (!first) content = this.renderOutside(null, this.ofKinds(upcomingDeadlines(today)).slice(0, UPCOMING_LIMIT));
+      else if (today < first.monday) content = this.renderOutside("before", this.ofKinds(upcomingDeadlines(today)).slice(0, 1), first);
+      else if (today >= addDays(last.monday, 7)) content = this.renderOutside("after", this.ofKinds(upcomingDeadlines(today)).slice(0, UPCOMING_LIMIT));
       else content = this.renderInside(calendar, today);
 
       this.replaceChildren(
@@ -2242,7 +2316,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
 
       const items = [];
       if (week) items.push(...this.fetchedItems(week.n));
-      UC.internal.deadlinesBetween(monday, addDays(monday, 14)).forEach((deadline) => items.push(this.deadlineItem(deadline)));
+      this.ofKinds(UC.internal.deadlinesBetween(monday, addDays(monday, 14))).forEach((deadline) => items.push(this.deadlineItem(deadline)));
 
       return [
         this.heading("weeks.thisWeek", meta),
@@ -2556,7 +2630,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
       this.numberSlot.replaceChildren(this.done ? icon("check") : String(number || ""));
       this.labelSlot.textContent = number ? `${this.t("exercise.title", { n: number })}: ` : "";
       this.metaSlot.replaceChildren(...this.renderBadges());
-      this.actions.replaceChildren(this.renderPlatformLink(), this.renderToggle());
+      this.actions.replaceChildren(...[this.renderPlatformLink(), this.renderToggle()].filter(Boolean));
       this.generatedSummaries.forEach((summary) => {
         summary.textContent = this.t(summary.dataset.ucKey);
       });
