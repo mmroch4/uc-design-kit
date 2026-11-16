@@ -13,6 +13,12 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   Introduction and the `<uc-week>` page. `npm run build` fills the generated
   parts; `npm test` also runs `scripts/check-docs.mjs` (navigation, links and
   attribute coverage against `docs/api.md`) and checks the docs pages.
+- Documentation site (phase 2): the "Começar" pages (create a site, site
+  structure, every `course.js` field, languages, new academic year,
+  publishing) and a starter site in `template/`, downloadable as
+  `docs/downloads/uc-template.zip` (built by `npm run build`). The page checker
+  serves the public kit URL from `kit/` on disk, and `check-docs` also checks
+  the `course.js` page against `docs/api.md` section 2.
 - `<uc-code collapsible>`: a show/hide toggle in the header; add `collapsed`
   to start folded. The EDados lecture code pages use it.
 - `<pre data-copy>`: a copy button for preformatted text such as problem

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar o meu site · UC Design Kit</title>
+  <meta name="description" content="Criar o site de uma unidade curricular com o UC Design Kit em seis passos: descarregar o modelo, editar o course.js, escrever as semanas e publicar.">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../assets/kit-config.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="index.html" aria-current="true">Documentação</a>
+        <a href="../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="index.html">Introdução</a></li>
+          <li><a href="criar-site.html" aria-current="page">Criar o meu site</a></li>
+          <li><a href="estrutura.html">Estrutura de um site</a></li>
+          <li><a href="course-js.html">O ficheiro course.js</a></li>
+          <li><a href="linguas.html">Línguas</a></li>
+          <li><a href="novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Começar</p>
+          <h1>Criar o meu site</h1>
+          <p class="docs-lead">Do zero a um site publicado em seis passos, a partir do modelo. Cada passo mostra o que se escreve e o que se deve ver. Conta com 15 minutos para ter o esqueleto pronto; o resto é escrever o conteúdo da cadeira.</p>
+        </header>
+
+        <h2 id="antes-de-comecar">Antes de começar</h2>
+        <p>Basta um editor de texto (VS Code, Sublime, vim…) e um browser. Não se instala nada: as páginas carregam o kit de <code>https://uc-design-kit.miguelrocha.dev/kit/v1/</code>, por isso é preciso Internet também quando se abre o site do disco.</p>
+
+        <h2 id="descarregar">1. Descarregar o modelo</h2>
+        <p>O modelo é um site mínimo mas completo, com quatro páginas e comentários curtos a dizer o que mudar.</p>
+        <p><a class="uc-button uc-button--primary" href="../downloads/uc-template.zip" download>Descarregar uc-template.zip</a></p>
+        <p>Descompacta-se e dá-se à pasta o nome do ano letivo. O <a href="https://github.com/mmroch4/uc-design-kit/tree/main/template">mesmo modelo está no GitHub</a>, para quem preferir copiar os ficheiros.</p>
+        <uc-code lang="bash" no-download><pre><code>unzip uc-template.zip
+mv uc-template 2627</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Ficheiros do modelo</caption>
+            <thead>
+              <tr><th scope="col">Ficheiro</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>course.js</code></td><td>Configuração do curso: título, semestre, equipa, prazos, avisos. É o que muda todos os anos.</td></tr>
+              <tr><td><code>index.html</code></td><td>Página inicial com <code>&lt;uc-hero&gt;</code>, <code>&lt;uc-this-week&gt;</code>, <code>&lt;uc-notices&gt;</code>, <code>&lt;uc-deadlines&gt;</code> e <code>&lt;uc-team&gt;</code>.</td></tr>
+              <tr><td><code>semanas.html</code></td><td>Calendário com <code>&lt;uc-weeks&gt;</code> e três semanas de exemplo.</td></tr>
+              <tr><td><code>avaliacao.html</code></td><td>Cartões, chamada e a tabela de datas das provas.</td></tr>
+              <tr><td><code>sobre.html</code></td><td>Objetivos, programa, horário em tabela e equipa.</td></tr>
+              <tr><td><code>theme.css</code></td><td>Estilos próprios, vazio com um exemplo comentado.</td></tr>
+              <tr><td><code>README.txt</code></td><td>Estes passos, em resumo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="abrir">2. Abrir no browser</h2>
+        <p>Abre-se o <code>index.html</code> com duplo clique. O resultado deve ser este, com o nome de exemplo:</p>
+        <figure>
+          <img src="../assets/img/template-home.webp" width="1600" height="1000" loading="lazy" alt="Página inicial do modelo: cabeçalho com Nome da Unidade Curricular 2026/27, navegação à esquerda com Início, Semanas, Avaliação e Sobre a UC, cartão Esta semana com a semana 2, avisos e próximas datas.">
+        </figure>
+        <p>Aberto do disco (<code>file://</code>), o cartão "Esta semana" mostra as datas e os prazos mas não a matéria da semana: o browser não deixa uma página ler outra do disco. Para ver tudo como no servidor, serve-se a pasta localmente:</p>
+        <uc-code lang="bash" no-download><pre><code>cd 2627
+python3 -m http.server 8000
+# abrir http://localhost:8000/</code></pre></uc-code>
+        <p>Se a página aparecer sem estilos, o kit não carregou: confirmar a ligação à Internet e os três endereços do <code>&lt;head&gt;</code> (ver <a href="estrutura.html#head">Estrutura de um site</a>).</p>
+
+        <h2 id="configurar">3. Editar o course.js</h2>
+        <p>Primeiro os dados da cadeira. Estes são os campos a mudar logo; os outros têm valores razoáveis e explicam-se em <a href="course-js.html">O ficheiro course.js</a>.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  code: "AP0001",
+  title: "Algoritmos e Programação",
+  tagline: "Um curso fictício usado nas demonstrações da documentação do UC Design Kit.",
+  edition: "2025/26",
+  institution: { name: "Universidade Exemplo" },
+
+  semester: {
+    start: "2025-09-15",       // primeiro dia de aulas
+    weeks: 12,
+    breaks: [{ start: "2025-10-27", end: "2025-10-31", label: "Semana de estudo" }],
+  },
+
+  deadlines: [
+    { id: "t2", title: "Entrega do trabalho 2", kind: "submission",
+      date: "2025-11-28", time: "23:59", note: "Pela plataforma de entregas" },
+    { id: "teste", title: "Teste prático", kind: "assessment",
+      date: "2025-12-10", time: "14:00", note: "Laboratórios 1 e 2" },
+    { id: "exame", title: "Exame, época normal", kind: "exam", date: "2026-01" },
+  ],
+};</code></pre></uc-code>
+        <p>Guarda-se e recarrega-se a página. O título vem do <code>course.js</code> e os prazos aparecem por ordem, só os que ainda não passaram:</p>
+        <!-- docs:demo src="../demos/getting-started/course.html" title="título e próximos prazos a partir do course.js" height="528" -->
+        <div class="docs-demo" id="demo-getting-started-course">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../demos/getting-started/course.html" title="Demonstração: título e próximos prazos a partir do course.js" loading="lazy" style="height: 528px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-hero&gt;&lt;/uc-hero&gt;
+&lt;uc-deadlines&gt;
+  &lt;a href=&quot;#&quot;&gt;Regras de avaliação&lt;/a&gt;
+&lt;/uc-deadlines&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../demos/getting-started/course.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Se algo não aparecer, abrir a consola do browser (F12): o kit avisa, com mensagens começadas por <code>[uc-kit]</code>, quando falta um campo ou uma data não é válida. Os erros mais comuns estão em <a href="course-js.html#erros-comuns">Erros comuns</a>.</p>
+
+        <h2 id="primeira-semana">4. Escrever a primeira semana</h2>
+        <p>Em <code>semanas.html</code> cada semana é uma <code>&lt;uc-week&gt;</code> com o número e o título. As datas não se escrevem: calculam-se a partir de <code>semester.start</code>. Dentro, o HTML é livre; um <code>&lt;dl&gt;</code> aparece como linhas de etiqueta e valor.</p>
+        <!-- docs:demo src="../demos/getting-started/first-week.html?today=2025-09-17" title="primeira semana, vista durante essa semana" height="223" -->
+        <div class="docs-demo" id="demo-getting-started-first-week">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../demos/getting-started/first-week.html?today=2025-09-17" title="Demonstração: primeira semana, vista durante essa semana" loading="lazy" style="height: 223px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-week n=&quot;1&quot; title=&quot;Apresentação e primeiros programas&quot;&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;Teóricas&lt;/dt&gt;
+    &lt;dd&gt;Funcionamento da cadeira, avaliação · &lt;a href=&quot;#&quot;&gt;slides 1&lt;/a&gt;&lt;/dd&gt;
+    &lt;dt&gt;Prática&lt;/dt&gt;
+    &lt;dd&gt;&lt;a href=&quot;#&quot;&gt;Guião 1: instalar as ferramentas&lt;/a&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+  &lt;p&gt;Tragam o portátil para a primeira aula prática.&lt;/p&gt;
+&lt;/uc-week&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../demos/getting-started/first-week.html?today=2025-09-17">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração está fixada em 17 de setembro de 2025, por isso a semana 1 é a atual e aparece aberta. Para ver o site noutro dia sem esperar por ele, acrescenta-se <code>?today=AAAA-MM-DD</code> ao endereço, por exemplo <code>semanas.html?today=2025-11-27</code>. As outras páginas (avaliação, sobre) são HTML com os <a href="index.html#o-que-inclui">blocos do kit</a>; o modelo traz exemplos de cartões, chamadas e tabelas.</p>
+
+        <h2 id="ver-no-browser">5. Ver no browser</h2>
+        <p>Antes de publicar, vale a pena percorrer o site com três verificações rápidas:</p>
+        <ul class="uc-checklist">
+          <li><strong>Datas.</strong> Com <code>?today=</code> num dia de cada mês do semestre, a semana certa abre e "Esta semana" mostra os prazos certos.</li>
+          <li><strong>Telemóvel.</strong> No modo de dispositivo das ferramentas do browser (Ctrl+Shift+M), a navegação passa a um menu e as tabelas deslizam na horizontal.</li>
+          <li><strong>Consola.</strong> Sem avisos <code>[uc-kit]</code>.</li>
+        </ul>
+
+        <h2 id="publicar">6. Publicar</h2>
+        <p>O site é uma pasta de ficheiros estáticos: publica-se copiando-a para um servidor web. No servidor do departamento é uma cópia para o <code>~/public_html</code>:</p>
+        <uc-code lang="bash" no-download><pre><code>scp -r 2627 utilizador@servidor:public_html/aulas/minha-uc/</code></pre></uc-code>
+        <p>Os detalhes, o GitHub Pages e o Cloudflare Pages estão em <a href="publicar.html">Publicar</a>.</p>
+
+        <h2 id="proximos-passos">Próximos passos</h2>
+        <ul>
+          <li><a href="estrutura.html">Estrutura de um site</a>: páginas em subpastas, o <code>&lt;head&gt;</code> de cada página e os links.</li>
+          <li><a href="course-js.html">O ficheiro course.js</a>: todos os campos, com tipos e valores por omissão.</li>
+          <li><a href="linguas.html">Línguas</a>: um site em português e inglês.</li>
+          <li><a href="novo-ano.html">Novo ano letivo</a>: o que mudar quando se copia a pasta.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="index.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Introdução</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="estrutura.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Estrutura de um site</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/criar-site.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#antes-de-comecar">Antes de começar</a></li>
+          <li><a href="#descarregar">1. Descarregar o modelo</a></li>
+          <li><a href="#abrir">2. Abrir no browser</a></li>
+          <li><a href="#configurar">3. Editar o course.js</a></li>
+          <li><a href="#primeira-semana">4. Escrever a primeira semana</a></li>
+          <li><a href="#ver-no-browser">5. Ver no browser</a></li>
+          <li><a href="#publicar">6. Publicar</a></li>
+          <li><a href="#proximos-passos">Próximos passos</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

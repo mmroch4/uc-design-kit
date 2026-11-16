@@ -24,7 +24,13 @@
         {
           "title": "Começar",
           "pages": [
-            { "title": "Introdução", "path": "pt/index.html" }
+            { "title": "Introdução", "path": "pt/index.html" },
+            { "title": "Criar o meu site", "path": "pt/criar-site.html" },
+            { "title": "Estrutura de um site", "path": "pt/estrutura.html" },
+            { "title": "O ficheiro course.js", "path": "pt/course-js.html" },
+            { "title": "Línguas", "path": "pt/linguas.html" },
+            { "title": "Novo ano letivo", "path": "pt/novo-ano.html" },
+            { "title": "Publicar", "path": "pt/publicar.html" }
           ]
         },
         {

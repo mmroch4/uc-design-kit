@@ -1,0 +1,4 @@
+# The template is packed byte for byte into docs/downloads/uc-template.zip;
+# keep LF line endings on every platform so the build is reproducible.
+template/** text eol=lf
+*.zip binary

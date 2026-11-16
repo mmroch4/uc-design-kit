@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semanas · Nome da Unidade Curricular 2026/27</title>
+  <meta name="description" content="Calendário semana a semana: matéria das teóricas, aula prática e prazos.">
+  <!-- Kit: v1 é sempre a versão 1 mais recente. Para fixar uma versão, trocar v1 por v1.0.0 nas três linhas. -->
+  <link rel="preload" href="https://uc-design-kit.miguelrocha.dev/kit/v1/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Semanas</h1>
+      <p class="uc-prose">O que acontece em cada semana: matéria das teóricas, aula prática e prazos. A semana atual abre sozinha.</p>
+    </div>
+
+    <!--
+      Uma <uc-week> por semana. As datas são calculadas a partir de course.js
+      (semester.start e breaks). Os prazos de course.js (deadlines) aparecem
+      sozinhos na semana certa e a interrupção é inserida entre as semanas.
+      Dentro de cada semana o HTML é livre; um <dl> mostra linhas etiqueta/valor.
+    -->
+    <uc-weeks>
+      <uc-week n="1" title="Apresentação e primeiros programas">
+        <dl>
+          <dt>Teóricas</dt>
+          <dd>Funcionamento da cadeira, avaliação, primeiro programa</dd>
+          <dt>Prática</dt>
+          <dd>Instalar as ferramentas e escrever o primeiro programa</dd>
+        </dl>
+      </uc-week>
+
+      <uc-week n="2" title="Variáveis, expressões e condições">
+        <dl>
+          <dt>Teóricas</dt>
+          <dd>Tipos, operadores, instruções condicionais</dd>
+          <dt>Prática</dt>
+          <dd>Exercícios com condições</dd>
+        </dl>
+      </uc-week>
+
+      <uc-week n="3" title="Ciclos">
+        <dl>
+          <dt>Teóricas</dt>
+          <dd>Ciclos while e for, contadores e acumuladores</dd>
+          <dt>Prática</dt>
+          <dd>Exercícios com ciclos</dd>
+        </dl>
+      </uc-week>
+    </uc-weeks>
+  </uc-page>
+</body>
+</html>

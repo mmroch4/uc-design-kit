@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Novo ano letivo · UC Design Kit</title>
+  <meta name="description" content="Lista de verificação para criar o site do ano seguinte a partir da pasta do ano anterior.">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../assets/kit-config.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="index.html" aria-current="true">Documentação</a>
+        <a href="../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="index.html">Introdução</a></li>
+          <li><a href="criar-site.html">Criar o meu site</a></li>
+          <li><a href="estrutura.html">Estrutura de um site</a></li>
+          <li><a href="course-js.html">O ficheiro course.js</a></li>
+          <li><a href="linguas.html">Línguas</a></li>
+          <li><a href="novo-ano.html" aria-current="page">Novo ano letivo</a></li>
+          <li><a href="publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Começar</p>
+          <h1>Novo ano letivo</h1>
+          <p class="docs-lead">Cada ano é uma pasta. Para o ano seguinte copia-se a pasta, revê-se o <code>course.js</code> e procuram-se as datas escritas à mão. As semanas, a semana atual e o estado dos prazos recalculam-se sozinhos.</p>
+        </header>
+
+        <h2 id="copiar">1. Copiar a pasta</h2>
+        <uc-code lang="bash" no-download><pre><code>cp -r 2526 2627</code></pre></uc-code>
+        <p>A pasta do ano anterior fica como está, para os alunos que a consultam. Um link "Anos anteriores" na página <code>sobre.html</code> do ano novo ajuda a encontrá-la.</p>
+
+        <h2 id="course-js">2. Rever o course.js</h2>
+        <ul class="uc-checklist">
+          <li><strong><code>edition</code></strong>: <code>"2026/27"</code>.</li>
+          <li><strong><code>semester.start</code></strong>: o primeiro dia de aulas do novo calendário escolar. É a mudança que move todas as semanas.</li>
+          <li><strong><code>semester.weeks</code> e <code>semester.breaks</code></strong>: número de semanas e interrupções (semanas de estudo, feriados prolongados).</li>
+          <li><strong><code>deadlines</code></strong>: todas as datas. Os prazos ainda sem dia podem ficar com <code>"AAAA-MM"</code> ou <code>null</code> e serem completados durante o semestre.</li>
+          <li><strong><code>notices</code></strong>: apagar os avisos do ano anterior, deixando a lista vazia ou um aviso de boas-vindas.</li>
+          <li><strong><code>team</code></strong>: quem dá aulas e as turmas de cada um.</li>
+          <li><strong><code>footer</code> e <code>updated</code></strong>: o ano do rodapé e a data de atualização.</li>
+          <li><strong><code>today</code></strong>: não deve existir; se ficou de testes, apagar a linha.</li>
+        </ul>
+
+        <h2 id="paginas">3. Rever as páginas</h2>
+        <p>O HTML tem poucas datas, porque as do calendário vêm do <code>course.js</code>. As que existem (horários, "aulas a partir de…", sumários) encontram-se com uma pesquisa pelo ano anterior:</p>
+        <uc-code lang="bash" no-download><pre><code>cd 2627
+grep -rn "2025\|2026" --include="*.html" .</code></pre></uc-code>
+        <ul class="uc-checklist">
+          <li><strong>Semanas.</strong> Títulos e conteúdo de cada <code>&lt;uc-week&gt;</code>, se a ordem da matéria mudou. Sumários do ano anterior apagam-se.</li>
+          <li><strong>Guiões e enunciados.</strong> Links para ficheiros que mudaram de nome.</li>
+          <li><strong>Avaliação e horários.</strong> Regras, pesos, turmas e salas.</li>
+          <li><strong>Links absolutos.</strong> Um link para <code>…/2526/…</code> dentro da pasta nova aponta para o ano anterior; os links relativos não têm esse problema.</li>
+        </ul>
+
+        <h2 id="kit">4. Versão do kit</h2>
+        <p>Com <code>kit/v1/</code> nos endereços não há nada a fazer: o site usa sempre a versão 1 mais recente. Se o site fixou uma versão exata (<code>kit/v1.0.0/</code>), o início do ano é a altura certa para passar à mais recente, trocando o número nos três endereços do <code>&lt;head&gt;</code> de cada página:</p>
+        <uc-code lang="bash" no-download><pre><code>grep -rl "kit/v1.0.0/" --include="*.html" . | xargs sed -i "s#kit/v1.0.0/#kit/v1.2.0/#g"</code></pre></uc-code>
+        <p>Ver <a href="publicar.html#versao">Versão do kit</a>. Em macOS, <code>sed -i ""</code> em vez de <code>sed -i</code>.</p>
+
+        <h2 id="verificar">5. Verificar e publicar</h2>
+        <p>Abre-se o site com <code>?today=</code> num dia da primeira semana, por exemplo <code>index.html?today=2026-09-16</code>, e confirma-se que a semana 1 é a atual e que os prazos são os do ano novo. Depois publica-se a pasta como no ano anterior (ver <a href="publicar.html">Publicar</a>).</p>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="linguas.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Línguas</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="publicar.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Publicar</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/novo-ano.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#copiar">1. Copiar a pasta</a></li>
+          <li><a href="#course-js">2. Rever o course.js</a></li>
+          <li><a href="#paginas">3. Rever as páginas</a></li>
+          <li><a href="#kit">4. Versão do kit</a></li>
+          <li><a href="#verificar">5. Verificar e publicar</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

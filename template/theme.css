@@ -1,0 +1,17 @@
+/*
+ * Estilos próprios do site (opcional). Este ficheiro é carregado depois do kit,
+ * por isso qualquer regra aqui ganha às do kit.
+ *
+ * Nível 1: mudar tokens (cores, cantos, letra). Exemplo:
+ *
+ * :root {
+ *   --uc-radius-lg: 4px;
+ *   --uc-font-sans: system-ui, sans-serif;
+ * }
+ *
+ * Nível 2: CSS livre, com as classes estáveis dos componentes. Exemplo:
+ *
+ * .uc-week__title { font-weight: 600; }
+ *
+ * A cor de destaque muda-se em course.js (accentColor).
+ */

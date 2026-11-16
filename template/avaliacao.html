@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avaliação · Nome da Unidade Curricular 2026/27</title>
+  <meta name="description" content="Regras de avaliação, componentes da nota e datas das provas.">
+  <!-- Kit: v1 é sempre a versão 1 mais recente. Para fixar uma versão, trocar v1 por v1.0.0 nas três linhas. -->
+  <link rel="preload" href="https://uc-design-kit.miguelrocha.dev/kit/v1/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Avaliação</h1>
+      <p class="uc-prose">A nota final soma duas componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total.</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="componentes">
+      <h2 id="componentes">Componentes da nota</h2>
+      <!-- Cartões em grelha: uma coluna no telemóvel, várias no computador. -->
+      <div class="uc-grid">
+        <div class="uc-card">
+          <h3>Exame</h3>
+          <p><strong>60%</strong> · época normal ou recurso, sem consulta.</p>
+        </div>
+        <div class="uc-card">
+          <h3>Trabalho e teste prático</h3>
+          <p><strong>40%</strong> · 20% cada, ao longo do semestre.</p>
+        </div>
+      </div>
+      <div class="uc-callout">
+        <p><strong>Para aprovar:</strong> nota final de pelo menos 9,5 valores e pelo menos 40% no exame.</p>
+      </div>
+    </section>
+
+    <!-- Datas das provas: course.js (deadlines). O estado (feito, próximo…) é calculado. -->
+    <uc-deadlines view="table" heading="Datas"></uc-deadlines>
+
+    <section class="uc-section" aria-labelledby="regras">
+      <h2 id="regras">Regras</h2>
+      <ul class="uc-bullets">
+        <li>Os trabalhos são individuais e entregues pela plataforma indicada.</li>
+        <li>Entregas fora do prazo não são aceites.</li>
+        <li>A época de recurso substitui apenas a nota do exame.</li>
+      </ul>
+    </section>
+  </uc-page>
+</body>
+</html>

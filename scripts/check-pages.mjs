@@ -34,6 +34,10 @@ const VIEWPORTS = [
   { name: "phone", width: 390, height: 844 },
 ];
 const NARROW_WIDTH = 360;
+// Pages that load the kit from its public URL (the template, which must work
+// when opened from disk) are served the kit of this checkout instead, so the
+// check tests the code under review and needs no network.
+const PUBLIC_KIT = "https://uc-design-kit.miguelrocha.dev/kit/";
 const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
 const BLOCKING_IMPACTS = new Set(["serious", "critical"]);
 
@@ -51,6 +55,8 @@ const MIME_TYPES = {
   ".java": "text/plain; charset=utf-8",
   ".py": "text/plain; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
+  ".woff2": "font/woff2",
+  ".map": "application/json",
 };
 
 async function findPages() {
@@ -112,6 +118,24 @@ function startServer() {
   });
 }
 
+/** A browser context whose requests to the public kit URL are answered from kit/ on disk. */
+async function newContext(browser, options) {
+  const context = await browser.newContext(options);
+  await context.route(`${PUBLIC_KIT}**`, async (route) => {
+    const pathname = decodeURIComponent(new URL(route.request().url()).pathname);
+    const file = path.join(ROOT, pathname);
+    if (!file.startsWith(path.join(ROOT, "kit") + path.sep)) return route.fulfill({ status: 404 });
+    try {
+      const body = await readFile(file);
+      const type = MIME_TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
+      await route.fulfill({ status: 200, body, headers: { "Content-Type": type, "Access-Control-Allow-Origin": "*" } });
+    } catch {
+      await route.fulfill({ status: 404 });
+    }
+  });
+  return context;
+}
+
 function withToday(url) {
   const parsed = new URL(url);
   parsed.searchParams.set("today", TODAY);
@@ -154,7 +178,7 @@ async function checkPage(browser, file, origin, axeSource, options) {
   const warnings = [];
 
   for (const viewport of VIEWPORTS) {
-    const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
+    const context = await newContext(browser, { viewport: { width: viewport.width, height: viewport.height } });
     const result = await openPage(context, httpUrl, origin);
     problems.push(...result.problems.map((p) => `[http ${viewport.name}] ${p}`));
     warnings.push(...result.warnings.map((w) => `[http ${viewport.name}] ${w}`));
@@ -180,7 +204,7 @@ async function checkPage(browser, file, origin, axeSource, options) {
   }
 
   {
-    const context = await browser.newContext({ viewport: { width: NARROW_WIDTH, height: 800 } });
+    const context = await newContext(browser, { viewport: { width: NARROW_WIDTH, height: 800 } });
     const { page } = await openPage(context, httpUrl, origin);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (overflow > 1) problems.push(`[layout] horizontal scroll of ${overflow}px at ${NARROW_WIDTH}px wide`);
@@ -188,14 +212,14 @@ async function checkPage(browser, file, origin, axeSource, options) {
   }
 
   {
-    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const context = await newContext(browser, { viewport: { width: 1280, height: 900 } });
     const result = await openPage(context, fileUrl, null);
     problems.push(...result.problems.map((p) => `[file://] ${p}`));
     await context.close();
   }
 
   {
-    const context = await browser.newContext({ javaScriptEnabled: false });
+    const context = await newContext(browser, { javaScriptEnabled: false });
     const page = await context.newPage();
     await page.goto(httpUrl, { waitUntil: "load" });
     const length = await page.evaluate(() => document.body.innerText.trim().length);
