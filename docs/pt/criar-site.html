@@ -46,7 +46,21 @@
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/index.html">Visão geral</a></li>
+          <li><a href="componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
           <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="componentes/uc-question.html"><code>uc-question</code></a></li>
         </ul>
       </div>
     </nav>
@@ -76,8 +90,8 @@ mv uc-template 2627</code></pre></uc-code>
             </thead>
             <tbody>
               <tr><td><code>course.js</code></td><td>Configuração do curso: título, semestre, equipa, prazos, avisos. É o que muda todos os anos.</td></tr>
-              <tr><td><code>index.html</code></td><td>Página inicial com <code>&lt;uc-hero&gt;</code>, <code>&lt;uc-this-week&gt;</code>, <code>&lt;uc-notices&gt;</code>, <code>&lt;uc-deadlines&gt;</code> e <code>&lt;uc-team&gt;</code>.</td></tr>
-              <tr><td><code>semanas.html</code></td><td>Calendário com <code>&lt;uc-weeks&gt;</code> e três semanas de exemplo.</td></tr>
+              <tr><td><code>index.html</code></td><td>Página inicial com <a href="componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a>, <a href="componentes/uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>, <a href="componentes/uc-notices.html"><code>&lt;uc-notices&gt;</code></a>, <a href="componentes/uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a> e <a href="componentes/uc-team.html"><code>&lt;uc-team&gt;</code></a>.</td></tr>
+              <tr><td><code>semanas.html</code></td><td>Calendário com <a href="componentes/uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a> e três semanas de exemplo.</td></tr>
               <tr><td><code>avaliacao.html</code></td><td>Cartões, chamada e a tabela de datas das provas.</td></tr>
               <tr><td><code>sobre.html</code></td><td>Objetivos, programa, horário em tabela e equipa.</td></tr>
               <tr><td><code>theme.css</code></td><td>Estilos próprios, vazio com um exemplo comentado.</td></tr>
@@ -91,7 +105,7 @@ mv uc-template 2627</code></pre></uc-code>
         <figure>
           <img src="../assets/img/template-home.webp" width="1600" height="1000" loading="lazy" alt="Página inicial do modelo: cabeçalho com Nome da Unidade Curricular 2026/27, navegação à esquerda com Início, Semanas, Avaliação e Sobre a UC, cartão Esta semana com a semana 2, avisos e próximas datas.">
         </figure>
-        <p>Aberto do disco (<code>file://</code>), o cartão "Esta semana" mostra as datas e os prazos mas não a matéria da semana: o browser não deixa uma página ler outra do disco. Para ver tudo como no servidor, serve-se a pasta localmente:</p>
+        <p>Aberto do disco (<code>file://</code>), o cartão "Esta semana" mostra as datas e os prazos mas não a matéria da semana: o browser não deixa uma página ler outra do disco (ver <a href="componentes/uc-this-week.html#pagina-de-semanas">A página de semanas</a>). Para ver tudo como no servidor, serve-se a pasta localmente:</p>
         <uc-code lang="bash" no-download><pre><code>cd 2627
 python3 -m http.server 8000
 # abrir http://localhost:8000/</code></pre></uc-code>
@@ -138,7 +152,7 @@ python3 -m http.server 8000
         <p>Se algo não aparecer, abrir a consola do browser (F12): o kit avisa, com mensagens começadas por <code>[uc-kit]</code>, quando falta um campo ou uma data não é válida. Os erros mais comuns estão em <a href="course-js.html#erros-comuns">Erros comuns</a>.</p>
 
         <h2 id="primeira-semana">4. Escrever a primeira semana</h2>
-        <p>Em <code>semanas.html</code> cada semana é uma <code>&lt;uc-week&gt;</code> com o número e o título. As datas não se escrevem: calculam-se a partir de <code>semester.start</code>. Dentro, o HTML é livre; um <code>&lt;dl&gt;</code> aparece como linhas de etiqueta e valor.</p>
+        <p>Em <code>semanas.html</code> cada semana é uma <a href="componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a> com o número e o título. As datas não se escrevem: calculam-se a partir de <code>semester.start</code>. Dentro, o HTML é livre; um <code>&lt;dl&gt;</code> aparece como linhas de etiqueta e valor.</p>
         <!-- docs:demo src="../demos/getting-started/first-week.html?today=2025-09-17" title="primeira semana, vista durante essa semana" height="223" -->
         <div class="docs-demo" id="demo-getting-started-first-week">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">

@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-weeks · UC Design Kit</title>
+  <meta name="description" content="Documentação do componente uc-weeks do UC Design Kit: o contentor das semanas, com a ligação para a semana atual, as interrupções e os prazos do fim do semestre.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html" aria-current="page"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Componentes · Calendário</p>
+          <h1><code>&lt;uc-weeks&gt;</code></h1>
+          <p class="docs-lead">O contentor das semanas de uma página de semanas. Acrescenta a ligação "Ir para esta semana", mostra as interrupções do semestre entre as semanas certas e junta no fim os prazos que caem depois da última semana.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
+        </header>
+
+        <!-- docs:demo src="../../demos/uc-weeks/basic.html" title="semanas 6 a 12 com interrupção e exame" height="843" -->
+        <div class="docs-demo" id="demo-uc-weeks-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-weeks/basic.html" title="Demonstração: semanas 6 a 12 com interrupção e exame" loading="lazy" style="height: 843px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks&gt;
+  &lt;uc-week n=&quot;6&quot; title=&quot;Complexidade e notação O&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Contar operações, melhor e pior caso&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;7&quot; title=&quot;Recursão&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Caso base e chamada recursiva&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;8&quot; title=&quot;Ordenação simples: seleção e inserção&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Ordenação por seleção e por inserção&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;9&quot; title=&quot;Ordenação: mergesort e quicksort&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Dividir para conquistar · &lt;a href=&quot;#&quot;&gt;slides 9&lt;/a&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;10&quot; title=&quot;Pesquisa binária e árvores&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Pesquisa binária, árvores binárias de pesquisa · &lt;a href=&quot;#&quot;&gt;slides 10&lt;/a&gt;&lt;/dd&gt;
+      &lt;dt&gt;Prática&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;#&quot;&gt;Guião 10: inserir e procurar numa árvore&lt;/a&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;11&quot; title=&quot;Grafos: pesquisa em largura e em profundidade&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Representação de grafos, BFS e DFS&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;12&quot; title=&quot;Revisões e teste prático&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Revisões da matéria&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-weeks/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>No curso fictício, hoje é 27 de novembro de 2025: o botão no topo abre a semana 10 e leva até ela. A semana de estudo aparece entre as semanas 6 e 7 sem estar escrita na página, e o exame de janeiro, que cai depois da última semana, aparece no fim.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>Põem-se as <code>&lt;uc-week&gt;</code> dentro de um <code>&lt;uc-weeks&gt;</code>, por ordem. Só os filhos diretos <code>&lt;uc-week&gt;</code> contam como semanas; entre elas pode haver outros elementos, como um <code>&lt;uc-event&gt;</code> escrito à mão.</p>
+        <uc-code lang="html" filename="semanas.html" no-download><pre><code>&lt;uc-weeks&gt;
+  &lt;uc-week n="1" title="Apresentação e primeiros programas"&gt;…&lt;/uc-week&gt;
+  &lt;uc-week n="2" title="Variáveis, expressões e condições"&gt;…&lt;/uc-week&gt;
+  …
+  &lt;uc-week n="12" title="Revisões e teste prático"&gt;…&lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+        <p>As interrupções e os prazos vêm do <code>course.js</code>; na página não se escreve nada para eles.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  semester: {
+    start: "2025-09-15",
+    weeks: 12,                  // deadlines after week 12 go to the end of the list
+    breaks: [{ start: "2025-10-27", end: "2025-10-31", label: "Semana de estudo" }],
+  },
+  deadlines: [
+    { id: "t2", title: "Entrega do trabalho 2", date: "2025-11-28", kind: "submission" },
+    { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },
+  ],
+};</code></pre></uc-code>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="interrupcoes">Interrupções</h3>
+        <p>Cada interrupção de <code>semester.breaks</code> aparece logo a seguir à semana que a antecede, com as datas, o nome e "sem aulas". A numeração das semanas salta a interrupção: a semana 7 começa a 3 de novembro.</p>
+        <!-- docs:demo src="../../demos/uc-weeks/breaks.html" title="interrupção entre as semanas 6 e 7" height="436" -->
+        <div class="docs-demo" id="demo-uc-weeks-breaks">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-weeks/breaks.html" title="Demonstração: interrupção entre as semanas 6 e 7" loading="lazy" style="height: 436px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks&gt;
+  &lt;uc-week n=&quot;5&quot; title=&quot;Listas e cadeias de caracteres&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Listas, índices e fatias&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;6&quot; title=&quot;Complexidade e notação O&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Contar operações, melhor e pior caso&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;7&quot; title=&quot;Recursão&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Caso base e chamada recursiva&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;8&quot; title=&quot;Ordenação simples: seleção e inserção&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Ordenação por seleção e por inserção&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-weeks/breaks.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Uma interrupção ocupa sempre semanas inteiras: a semana cujos dias de aulas (<code>semester.teachingDays</code>) tocam numa interrupção deixa de contar. Para um feriado isolado, convém por isso um <a href="uc-event.html"><code>&lt;uc-event&gt;</code></a> dentro da semana, e não uma interrupção. Interrupções depois da última semana não aparecem.</p>
+
+        <h3 id="sem-interrupcoes">Sem interrupções</h3>
+        <p>Com <code>no-breaks</code>, as interrupções não são mostradas. É útil numa página que só mostra parte do semestre: sem ele, uma interrupção anterior à primeira semana escrita aparece antes dessa semana.</p>
+        <!-- docs:demo src="../../demos/uc-weeks/no-breaks.html" title="semanas 5 a 8 sem a interrupção" height="368" -->
+        <div class="docs-demo" id="demo-uc-weeks-no-breaks">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-weeks/no-breaks.html" title="Demonstração: semanas 5 a 8 sem a interrupção" loading="lazy" style="height: 368px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks no-breaks&gt;
+  &lt;uc-week n=&quot;5&quot; title=&quot;Listas e cadeias de caracteres&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Listas, índices e fatias&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;6&quot; title=&quot;Complexidade e notação O&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Contar operações, melhor e pior caso&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;7&quot; title=&quot;Recursão&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Caso base e chamada recursiva&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;8&quot; title=&quot;Ordenação simples: seleção e inserção&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Ordenação por seleção e por inserção&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-weeks/no-breaks.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="prazo-numa-interrupcao">Prazo durante uma interrupção</h3>
+        <p>Um prazo cuja data cai numa interrupção não pertence a nenhuma semana, por isso aparece logo depois do aviso da interrupção. Esta demonstração acrescenta ao <code>course.js</code> um quiz aberto durante a semana de estudo:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>deadlines: [
+  { id: "quiz3", title: "Quiz 3: complexidade", kind: "quiz",
+    date: "2025-10-29", end: "2025-10-31" },
+],</code></pre></uc-code>
+        <!-- docs:demo src="../../demos/uc-weeks/break-deadline.html" title="quiz durante a semana de estudo" height="382" -->
+        <div class="docs-demo" id="demo-uc-weeks-break-deadline">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-weeks/break-deadline.html" title="Demonstração: quiz durante a semana de estudo" loading="lazy" style="height: 382px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks&gt;
+  &lt;uc-week n=&quot;6&quot; title=&quot;Complexidade e notação O&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Contar operações, melhor e pior caso&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;7&quot; title=&quot;Recursão&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Caso base e chamada recursiva&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-weeks/break-deadline.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="filtrar-prazos">Filtrar prazos por tipo</h3>
+        <p><code>kind</code> recebe tipos de prazo separados por espaços e mostra só esses, nas semanas, depois das interrupções e no fim. Aqui, com <code>kind="assessment exam"</code>, a entrega do trabalho 2 deixa de aparecer na semana 10, enquanto o teste prático continua na semana 12 e o exame no fim. Convém quando as linhas de cada semana já mencionam as entregas ou os quizzes.</p>
+        <!-- docs:demo src="../../demos/uc-weeks/kind.html" title="só avaliações e exames" height="579" -->
+        <div class="docs-demo" id="demo-uc-weeks-kind">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-weeks/kind.html" title="Demonstração: só avaliações e exames" loading="lazy" style="height: 579px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks kind=&quot;assessment exam&quot; no-breaks&gt;
+  &lt;uc-week n=&quot;10&quot; title=&quot;Pesquisa binária e árvores&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Pesquisa binária, árvores binárias de pesquisa · &lt;a href=&quot;#&quot;&gt;slides 10&lt;/a&gt;&lt;/dd&gt;
+      &lt;dt&gt;Prática&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;#&quot;&gt;Guião 10: inserir e procurar numa árvore&lt;/a&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;11&quot; title=&quot;Grafos: pesquisa em largura e em profundidade&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Representação de grafos, BFS e DFS&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;12&quot; title=&quot;Revisões e teste prático&quot; open&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Revisões da matéria&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-weeks/kind.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Os tipos possíveis são <code>assessment</code>, <code>exam</code>, <code>quiz</code>, <code>submission</code> e <code>other</code>. Esta demonstração e a seguinte usam também <code>no-breaks</code>, porque só mostram as últimas semanas.</p>
+
+        <h3 id="sem-prazos">Sem prazos</h3>
+        <p>Com <code>no-deadlines</code>, nenhum prazo do <code>course.js</code> é acrescentado: nem nas semanas, nem depois das interrupções, nem no fim. Os <code>&lt;uc-event&gt;</code> escritos à mão continuam a aparecer.</p>
+        <!-- docs:demo src="../../demos/uc-weeks/no-deadlines.html" title="semanas sem prazos" height="425" -->
+        <div class="docs-demo" id="demo-uc-weeks-no-deadlines">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-weeks/no-deadlines.html" title="Demonstração: semanas sem prazos" loading="lazy" style="height: 425px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks no-deadlines no-breaks&gt;
+  &lt;uc-week n=&quot;10&quot; title=&quot;Pesquisa binária e árvores&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Pesquisa binária, árvores binárias de pesquisa · &lt;a href=&quot;#&quot;&gt;slides 10&lt;/a&gt;&lt;/dd&gt;
+      &lt;dt&gt;Prática&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;#&quot;&gt;Guião 10: inserir e procurar numa árvore&lt;/a&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;11&quot; title=&quot;Grafos: pesquisa em largura e em profundidade&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Representação de grafos, BFS e DFS&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+  &lt;uc-week n=&quot;12&quot; title=&quot;Revisões e teste prático&quot; open&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Revisões da matéria&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-weeks/no-deadlines.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-weeks</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>no-breaks</code></td><td>booleano</td><td>ausente</td><td>Não mostra as interrupções de <code>semester.breaks</code>.</td></tr>
+              <tr><td><code>no-deadlines</code></td><td>booleano</td><td>ausente</td><td>Não acrescenta prazos do <code>course.js</code>, nem dentro das semanas nem fora delas.</td></tr>
+              <tr><td><code>kind</code></td><td>tipos separados por espaços</td><td>todos</td><td>Só acrescenta prazos destes tipos, por exemplo <code>kind="assessment exam"</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>Campos do <code>course.js</code> que o componente lê. Sem <code>semester.start</code> não há semana atual nem interrupções, e o componente só agrupa as semanas.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-weeks</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>semester.start</code></td><td>Saber qual é a semana atual, para a ligação "Ir para esta semana" (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>semester.breaks</code></td><td>As interrupções mostradas entre as semanas, com o seu <code>label</code> (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>semester.teachingDays</code></td><td>Que semanas uma interrupção ocupa: as que têm dias de aulas dentro dela (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>semester.weeks</code></td><td>A última semana: os prazos depois dela vão para o fim da lista (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>deadlines</code></td><td>Os prazos acrescentados depois das interrupções e no fim (<a href="../course-js.html#prazos">prazos</a>).</td></tr>
+              <tr><td><code>today</code></td><td>Fixar o dia de hoje; <code>?today=AAAA-MM-DD</code> no endereço tem prioridade (<a href="../course-js.html#campos-avancado">avançado</a>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="elementos-gerados">O que é acrescentado e onde</h2>
+        <ul>
+          <li><strong>"Ir para esta semana"</strong>: um botão no topo, só quando hoje cai numa semana de aulas que está na página. Abre essa semana, leva o foco até ela e muda o endereço para <code>#week-&lt;n&gt;</code>. Ligações para <code>#week-&lt;n&gt;</code> seguidas dentro da página também abrem a semana.</li>
+          <li><strong>Interrupções</strong>: depois da semana que as antecede; se essa semana não estiver na página, antes da semana seguinte que esteja, ou no fim. Uma interrupção que ocupa várias semanas aparece uma só vez.</li>
+          <li><strong>Prazos de uma semana</strong>: dentro dela, entre segunda e domingo (é a <a href="uc-week.html#prazos-da-semana"><code>&lt;uc-week&gt;</code></a> que os acrescenta, com o filtro de <code>kind</code> e <code>no-deadlines</code> do contentor).</li>
+          <li><strong>Prazos durante uma interrupção</strong>: logo a seguir ao aviso da interrupção.</li>
+          <li><strong>Prazos depois da última semana</strong> (<code>semester.weeks</code>), com dia ou só mês (<code>"2026-01"</code>): no fim, pela ordem do <code>course.js</code>.</li>
+          <li><strong>Não aparecem</strong>: prazos sem data (<code>null</code>), prazos anteriores à semana 1 e prazos só com mês que caiam durante o semestre.</li>
+        </ul>
+        <p>Um prazo que o professor já escreveu como <code>&lt;uc-event deadline="…"&gt;</code> não é repetido. Para os prazos depois das interrupções e do fim, o <code>&lt;uc-event&gt;</code> pode estar em qualquer sítio dentro do <code>&lt;uc-weeks&gt;</code>; para os de uma semana, tem de estar dentro dessa semana. Ver <a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>.</p>
+        <p>Os elementos acrescentados têm o atributo <code>data-uc-generated</code> e são refeitos quando a língua muda.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. Os prazos acrescentados são <code>&lt;uc-event&gt;</code> normais, com as classes <code>.uc-event</code>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-weeks</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-weeks</code></td><td>O contentor (o próprio <code>&lt;uc-weeks&gt;</code>).</td></tr>
+              <tr><td><code>.uc-weeks__actions</code></td><td>O parágrafo do topo com o botão.</td></tr>
+              <tr><td><code>.uc-weeks__go</code></td><td>O botão "Ir para esta semana" (também <code>.uc-button</code> e <code>.uc-button--primary</code>).</td></tr>
+              <tr><td><code>.uc-weeks__break</code></td><td>O aviso de uma interrupção.</td></tr>
+              <tr><td><code>.uc-weeks__break-date</code></td><td>As datas da interrupção.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Interrupções com um contorno tracejado em vez do fundo cinzento. */
+.uc-weeks__break {
+  background: none;
+  border: 1px dashed var(--uc-color-border);
+}
+
+/* Botão "Ir para esta semana" à direita. */
+.uc-weeks__actions { justify-content: flex-end; }</code></pre></uc-code>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>"Ir para esta semana" é uma ligação real para <code>#week-&lt;n&gt;</code> com a aparência de botão: abre a semana e põe o foco na sua linha, por isso quem usa teclado ou leitor de ecrã continua a partir dela. As datas das interrupções estão num <code>&lt;time datetime&gt;</code> e os prazos dizem o tipo por extenso, não só pela cor.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Escrever as semanas por ordem e com o <code>n</code> certo, dar às interrupções um <code>label</code> que diga o que são ("Semana de estudo", "Natal") e não usar o mesmo <code>n</code> duas vezes, porque as ligações <code>#week-&lt;n&gt;</code> deixariam de ser únicas.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>O conteúdo de cada semana continua visível, por ordem. O botão, as interrupções e os prazos do <code>course.js</code> são gerados e não aparecem; um <code>&lt;uc-event&gt;</code> escrito à mão mostra só o texto que o professor lhe pôs dentro. Uma data que tenha de se ver sempre deve estar também escrita no conteúdo.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-week.html"><code>&lt;uc-week&gt;</code></a>: cada semana, com datas, estado e prazos.</li>
+          <li><a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>: um prazo ou avaliação escrito à mão, dentro de uma semana ou entre semanas.</li>
+          <li><a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>: o cartão da página inicial que lê a semana atual desta página.</li>
+          <li><a href="../course-js.html#prazos">Prazos no course.js</a>: os campos de cada prazo.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/semanas.html">as semanas de Estruturas de Dados 2025/26</a>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-date.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-date</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-week.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-week</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-weeks.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#interrupcoes">Interrupções</a></li>
+          <li class="docs-toc__sub"><a href="#sem-interrupcoes">Sem interrupções</a></li>
+          <li class="docs-toc__sub"><a href="#prazo-numa-interrupcao">Prazo durante uma interrupção</a></li>
+          <li class="docs-toc__sub"><a href="#filtrar-prazos">Filtrar prazos por tipo</a></li>
+          <li class="docs-toc__sub"><a href="#sem-prazos">Sem prazos</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#elementos-gerados">O que é acrescentado e onde</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

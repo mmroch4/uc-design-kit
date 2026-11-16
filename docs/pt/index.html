@@ -46,7 +46,21 @@
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/index.html">Visão geral</a></li>
+          <li><a href="componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
           <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="componentes/uc-question.html"><code>uc-question</code></a></li>
         </ul>
       </div>
     </nav>
@@ -74,7 +88,7 @@
         <h2 id="principios">Princípios</h2>
         <ul>
           <li><strong>Estático.</strong> Só HTML, CSS e JavaScript. Funciona no <code>~/public_html</code> do departamento, no GitHub Pages ou aberto do disco, sem passo de compilação.</li>
-          <li><strong>Conteúdo em HTML.</strong> O professor escreve HTML normal com alguns elementos próprios (<code>&lt;uc-week&gt;</code>, <code>&lt;uc-deadlines&gt;</code>…). Sem JavaScript, o conteúdo continua legível.</li>
+          <li><strong>Conteúdo em HTML.</strong> O professor escreve HTML normal com alguns elementos próprios (<a href="componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a>, <a href="componentes/uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a>…). Sem JavaScript, o conteúdo continua legível.</li>
           <li><strong>Um ficheiro de configuração.</strong> O <code>course.js</code> guarda o que muda de ano para ano ou aparece em mais de uma página: título, semestre, equipa, prazos, avisos.</li>
           <li><strong>Copiar a pasta.</strong> Cada ano letivo é uma pasta independente; o kit é carregado de um endereço fixo e não se copia.</li>
           <li><strong>Bilingue quando se quer.</strong> Uma ou mais línguas por site, na mesma página ou num ficheiro por língua.</li>
@@ -128,7 +142,7 @@
           <a class="docs-demo__open" href="../demos/uc-week/basic.html">Abrir demo</a>
         </div>
         <!-- /docs:demo -->
-        <p>Normalmente as páginas ficam dentro de um <code>&lt;uc-page&gt;</code>, que acrescenta o cabeçalho, a navegação entre páginas e o rodapé a partir do <code>course.js</code>. O <a href="../../examples/edados-2526/index.html">exemplo de Estruturas de Dados</a> mostra um site completo.</p>
+        <p>Normalmente as páginas ficam dentro de um <a href="componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a>, que acrescenta o cabeçalho, a navegação entre páginas e o rodapé a partir do <code>course.js</code>. O <a href="../../examples/edados-2526/index.html">exemplo de Estruturas de Dados</a> mostra um site completo.</p>
 
         <h2 id="o-que-inclui">O que inclui</h2>
         <div class="uc-table">
@@ -138,14 +152,15 @@
               <tr><th scope="col">Função</th><th scope="col">Componentes</th></tr>
             </thead>
             <tbody>
-              <tr><td>Estrutura</td><td><code>&lt;uc-page&gt;</code> (cabeçalho, navegação, rodapé) e <code>&lt;uc-hero&gt;</code> (título do curso)</td></tr>
-              <tr><td>Datas e avisos</td><td><code>&lt;uc-notices&gt;</code>, <code>&lt;uc-deadlines&gt;</code>, <code>&lt;uc-date&gt;</code></td></tr>
-              <tr><td>Calendário</td><td><code>&lt;uc-weeks&gt;</code>, <a href="componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a>, <code>&lt;uc-event&gt;</code>, <code>&lt;uc-this-week&gt;</code></td></tr>
-              <tr><td>Pessoas</td><td><code>&lt;uc-team&gt;</code></td></tr>
-              <tr><td>Guiões e código</td><td><code>&lt;uc-guide&gt;</code>, <code>&lt;uc-exercise&gt;</code>, <code>&lt;uc-code&gt;</code> (realce, edição e execução com testes), <code>&lt;uc-question&gt;</code></td></tr>
+              <tr><td>Estrutura</td><td><a href="componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a> (cabeçalho, navegação, rodapé) e <a href="componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a> (título do curso)</td></tr>
+              <tr><td>Datas e avisos</td><td><a href="componentes/uc-notices.html"><code>&lt;uc-notices&gt;</code></a>, <a href="componentes/uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a>, <a href="componentes/uc-date.html"><code>&lt;uc-date&gt;</code></a></td></tr>
+              <tr><td>Calendário</td><td><a href="componentes/uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a>, <a href="componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a>, <a href="componentes/uc-event.html"><code>&lt;uc-event&gt;</code></a>, <a href="componentes/uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a></td></tr>
+              <tr><td>Pessoas</td><td><a href="componentes/uc-team.html"><code>&lt;uc-team&gt;</code></a></td></tr>
+              <tr><td>Guiões e código</td><td><a href="componentes/uc-guide.html"><code>&lt;uc-guide&gt;</code></a>, <a href="componentes/uc-exercise.html"><code>&lt;uc-exercise&gt;</code></a>, <a href="componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a> (realce, edição e execução com testes), <a href="componentes/uc-question.html"><code>&lt;uc-question&gt;</code></a></td></tr>
             </tbody>
           </table>
         </div>
+        <p>A <a href="componentes/index.html">visão geral dos componentes</a> mostra-os todos com uma miniatura e uma linha sobre cada um.</p>
         <p>Além dos componentes há blocos só de CSS (cartões, tabelas, botões, chamadas, grelhas) e tokens de design (cores, letra, espaços) que se mudam num <code>theme.css</code>.</p>
 
         <h2 id="quando-nao-usar">Quando não usar</h2>

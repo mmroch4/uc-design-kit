@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-code: código em pre e code · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-code lang="python">
+      <pre><code>def is_sorted(values):
+    """True when every element is &lt;= the next one."""
+    return all(a &lt;= b for a, b in zip(values, values[1:]))</code></pre>
+    </uc-code>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

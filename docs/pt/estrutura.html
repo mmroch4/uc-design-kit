@@ -46,7 +46,21 @@
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/index.html">Visão geral</a></li>
+          <li><a href="componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
           <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="componentes/uc-question.html"><code>uc-question</code></a></li>
         </ul>
       </div>
     </nav>
@@ -117,7 +131,7 @@
         <p>O <code>v1</code> nos três endereços é sempre a versão 1 mais recente. Para fixar uma versão exata durante o semestre troca-se por, por exemplo, <code>v1.0.0</code>; ver <a href="publicar.html#versao">Versão do kit</a>.</p>
 
         <h2 id="pagina">O corpo de uma página</h2>
-        <p>O <code>&lt;uc-page&gt;</code> desenha o cabeçalho, a navegação, o rodapé e o <code>&lt;main&gt;</code> à volta do conteúdo. O atributo <code>current</code> diz que item da navegação fica ativo. Sem ele, o kit procura em <code>pages</code> a página com o mesmo nome de ficheiro; escrevê-lo torna a página explícita e permite marcar um item a partir de uma página que não está na navegação (um guião com <code>current="weeks"</code> deixa "Semanas" ativo).</p>
+        <p>O <a href="componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a> desenha o cabeçalho, a navegação, o rodapé e o <code>&lt;main&gt;</code> à volta do conteúdo. O atributo <code>current</code> diz que item da navegação fica ativo. Sem ele, o kit procura em <code>pages</code> a página com o mesmo nome de ficheiro; escrevê-lo torna a página explícita e permite marcar um item a partir de uma página que não está na navegação (um guião com <code>current="weeks"</code> deixa "Semanas" ativo).</p>
         <p>A navegação vem do campo <code>pages</code> do <code>course.js</code>, pela ordem em que está escrita. Os identificadores <code>home</code>, <code>weeks</code>, <code>assessment</code>, <code>materials</code>, <code>schedule</code> e <code>about</code> já têm nome em português e inglês; para outra página dá-se o <code>label</code>:</p>
         <uc-code lang="js" filename="course.js" no-download><pre><code>pages: [
   "home",                                        // index.html, "Início"

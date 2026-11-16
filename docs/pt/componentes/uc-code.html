@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-code · UC Design Kit</title>
+  <meta name="description" content="Documentação do componente uc-code do UC Design Kit: blocos de código com realce, cópia, edição e execução na página com testes.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html" aria-current="page"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Componentes · Guiões e código</p>
+          <h1><code>&lt;uc-code&gt;</code></h1>
+          <p class="docs-lead">Um bloco de código com realce de sintaxe, nome do ficheiro e botões para copiar e descarregar. Pode também ser editável, recolhível e executar o código na própria página, com testes automáticos simples.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--muted">Usa JavaScript externo</span></p>
+        </header>
+
+        <!-- docs:demo src="../../demos/uc-code/basic.html" title="bloco de JavaScript com nome de ficheiro" height="405" -->
+        <div class="docs-demo" id="demo-uc-code-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/basic.html" title="Demonstração: bloco de JavaScript com nome de ficheiro" loading="lazy" style="height: 405px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;js&quot; filename=&quot;binary-search.js&quot;&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    // Returns the index of target in the sorted array list, or -1.
+    function binarySearch(list, target) {
+      let low = 0, high = list.length - 1;
+      while (low &lt;= high) {
+        const mid = Math.floor((low + high) / 2);
+        if (list[mid] === target) return mid;
+        if (list[mid] &lt; target) low = mid + 1;
+        else high = mid - 1;
+      }
+      return -1;
+    }
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>O cabeçalho mostra o nome do ficheiro e os botões Copiar e Descarregar. As cores do realce vêm do highlight.js, carregado do cdnjs na primeira vez que a página precisa dele; sem rede, o código aparece igual, só que sem cores.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>O código escreve-se dentro de um <code>&lt;script type="text/plain"&gt;</code>, onde não é preciso escapar <code>&lt;</code> nem <code>&amp;</code>. O kit retira a indentação comum a todas as linhas, por isso o código pode acompanhar a indentação do HTML à volta.</p>
+        <uc-code lang="html" filename="guioes/aula03.html" no-download><pre><code>&lt;uc-code lang="java" filename="Point.java"&gt;
+  &lt;script type="text/plain"&gt;
+    public class Point {
+        int x, y;
+
+        Point(int x, int y) { this.x = x; this.y = y; }
+
+        boolean isOrigin() { return x == 0 &amp;&amp; y == 0; }
+    }
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+        <p>A alternativa é um <code>&lt;pre&gt;&lt;code&gt;</code> com o HTML escapado (<code>&amp;lt;</code>, <code>&amp;amp;</code>). Convém quando o código vem já escapado de outra página, ou quando contém o texto <code>&lt;/script&gt;</code>, que fecharia o <code>&lt;script&gt;</code> antes do tempo. Neste caso a linguagem também pode vir da classe do <code>&lt;code&gt;</code>, como <code>class="language-java"</code>.</p>
+        <uc-code lang="html" filename="guioes/aula03.html" no-download><pre><code>&lt;uc-code filename="Point.java"&gt;
+  &lt;pre&gt;&lt;code class="language-java"&gt;boolean isOrigin() { return x == 0 &amp;amp;&amp;amp; y == 0; }&lt;/code&gt;&lt;/pre&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+        <p>Um bloco de código não precisa de nada no <code>course.js</code>. Só o atributo <code>run</code> consulta a configuração, como se explica em <a href="#configuracao">Configuração usada</a>.</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="pre-e-code">Código em <code>&lt;pre&gt;&lt;code&gt;</code></h3>
+        <p>Sem <code>filename</code>, o cabeçalho mostra o nome da linguagem e o ficheiro descarregado chama-se <code>code.py</code> (com a extensão da linguagem, ou <code>code.txt</code> se não houver).</p>
+        <!-- docs:demo src="../../demos/uc-code/pre-code.html" title="bloco de Python escrito em pre e code" height="215" -->
+        <div class="docs-demo" id="demo-uc-code-pre-code">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/pre-code.html" title="Demonstração: bloco de Python escrito em pre e code" loading="lazy" style="height: 215px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;python&quot;&gt;
+  &lt;pre&gt;&lt;code&gt;def is_sorted(values):
+&quot;&quot;&quot;True when every element is &amp;lt;= the next one.&quot;&quot;&quot;
+return all(a &amp;lt;= b for a, b in zip(values, values[1:]))&lt;/code&gt;&lt;/pre&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/pre-code.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="sem-botoes">Sem botões</h3>
+        <p><code>no-copy</code> e <code>no-download</code> escondem os botões. Sem botões, sem <code>lang</code> e sem <code>filename</code>, o bloco fica sem cabeçalho: serve para uma sessão de terminal ou para mostrar o resultado esperado de um programa.</p>
+        <!-- docs:demo src="../../demos/uc-code/no-buttons.html" title="sessão de terminal sem cabeçalho" height="154" -->
+        <div class="docs-demo" id="demo-uc-code-no-buttons">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/no-buttons.html" title="Demonstração: sessão de terminal sem cabeçalho" loading="lazy" style="height: 154px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;uc-code no-copy no-download&gt;
+      &lt;pre&gt;&lt;code&gt;$ node binary-search.js
+3
+-1&lt;/code&gt;&lt;/pre&gt;
+    &lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/no-buttons.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="editavel">Código editável</h3>
+        <p>Com <code>editable</code>, o estudante pode alterar o código no próprio bloco, e o botão Repor volta ao código original. Copiar e Descarregar levam a versão alterada. As alterações não são guardadas: perdem-se ao recarregar a página.</p>
+        <!-- docs:demo src="../../demos/uc-code/editable.html" title="função editável com botão Repor" height="286" -->
+        <div class="docs-demo" id="demo-uc-code-editable">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/editable.html" title="Demonstração: função editável com botão Repor" loading="lazy" style="height: 286px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;js&quot; filename=&quot;swap.js&quot; editable&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    // Swaps the elements at positions i and j of list.
+    function swap(list, i, j) {
+      const tmp = list[i];
+      list[i] = list[j];
+      list[j] = tmp;
+    }
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/editable.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>No editor, a tecla Tab insere quatro espaços. Para sair do editor com o teclado, carrega-se em Esc e depois em Tab; esta indicação aparece por baixo do código enquanto o editor tem o foco.</p>
+
+        <h3 id="recolhivel">Bloco recolhível</h3>
+        <p><code>collapsible</code> transforma o nome do ficheiro num botão que mostra e esconde o código; com <code>collapsed</code>, o bloco começa fechado. Serve para ficheiros de apoio longos que o estudante só precisa de abrir se quiser. Sem <code>filename</code>, o botão mostra o nome da linguagem ou, sem linguagem, "Código".</p>
+        <!-- docs:demo src="../../demos/uc-code/collapsible.html" title="ficheiro recolhido, aberto ao carregar no nome" height="110" -->
+        <div class="docs-demo" id="demo-uc-code-collapsible">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/collapsible.html" title="Demonstração: ficheiro recolhido, aberto ao carregar no nome" loading="lazy" style="height: 110px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;js&quot; filename=&quot;stack.js&quot; collapsible collapsed&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    // A stack backed by an array: push and pop at the end.
+    class Stack {
+      constructor() { this.items = []; }
+      push(value) { this.items.push(value); }
+      pop() {
+        if (this.isEmpty()) throw new Error(&quot;empty stack&quot;);
+        return this.items.pop();
+      }
+      peek() { return this.items[this.items.length - 1]; }
+      isEmpty() { return this.items.length === 0; }
+      get size() { return this.items.length; }
+    }
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/collapsible.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="executar">Executar JavaScript</h3>
+        <p><code>run</code> sem valor acrescenta o botão Executar. O resultado aparece por baixo do código, com o que o programa escreveu em <code>console.log</code>. JavaScript corre no próprio browser, num Web Worker sem rede e sem acesso à página, por isso funciona mesmo sem ligação à internet.</p>
+        <!-- docs:demo src="../../demos/uc-code/run.html" title="programa JavaScript editável com botão Executar" height="286" -->
+        <div class="docs-demo" id="demo-uc-code-run">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/run.html" title="Demonstração: programa JavaScript editável com botão Executar" loading="lazy" style="height: 286px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;js&quot; filename=&quot;fibonacci.js&quot; editable run&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    // The first ten Fibonacci numbers.
+    const fib = [0, 1];
+    while (fib.length &lt; 10) {
+      fib.push(fib[fib.length - 1] + fib[fib.length - 2]);
+    }
+    console.log(fib.join(&quot; &quot;));
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/run.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Juntar <code>editable</code> e <code>run</code> dá um pequeno laboratório: o estudante muda o código e volta a executar. Num erro de sintaxe ou numa exceção, o resultado tem o título "Erro" e a mensagem aparece a vermelho.</p>
+
+        <h3 id="testes">Exercício com testes</h3>
+        <p>Um <code>&lt;script data-harness&gt;</code> escondido chama o código do estudante e escreve uma linha por teste; um <code>&lt;ol data-tests&gt;</code> diz o que cada linha deve ser. O botão passa a dizer "Executar testes" e o resultado é uma lista de testes com ✓ ou ✗. Aqui, o código inicial falha o terceiro teste: <code>best</code> começa em 0, que é maior do que qualquer elemento de uma lista só com números negativos.</p>
+        <!-- docs:demo src="../../demos/uc-code/tests.html" title="função max com três testes, um dos quais falha" height="334" -->
+        <div class="docs-demo" id="demo-uc-code-tests">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/tests.html" title="Demonstração: função max com três testes, um dos quais falha" loading="lazy" style="height: 334px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;js&quot; filename=&quot;max.js&quot; editable run&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    // Returns the largest element of a non-empty list.
+    function max(list) {
+      let best = 0;
+      for (const value of list) {
+        if (value &gt; best) best = value;
+      }
+      return best;
+    }
+  &lt;/script&gt;
+  &lt;script type=&quot;text/plain&quot; data-harness filename=&quot;data.js&quot;&gt;
+    const negatives = [-5, -2, -8];
+  &lt;/script&gt;
+  &lt;script type=&quot;text/plain&quot; data-harness&gt;
+    console.log(max([3, 9, 4]));
+    console.log(max([7]));
+    console.log(max(negatives));
+  &lt;/script&gt;
+  &lt;ol data-tests&gt;
+    &lt;li data-expected=&quot;9&quot;&gt;Lista com vários números&lt;/li&gt;
+    &lt;li data-expected=&quot;7&quot;&gt;Lista com um só elemento&lt;/li&gt;
+    &lt;li data-expected=&quot;-2&quot;&gt;Lista só com números negativos&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/tests.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>O <code>&lt;script data-harness filename="data.js"&gt;</code> é um ficheiro de apoio escondido, com os dados do terceiro teste. Os pormenores (ordem dos ficheiros, comparação das linhas) estão em <a href="#execucao">Execução e testes</a>.</p>
+
+        <h3 id="executar-java">Java e outras linguagens</h3>
+        <p>As linguagens que não são JavaScript (Java, Python, C, C++, Haskell…) são enviadas para o <a href="https://codapi.org">Codapi</a>, um serviço que compila e executa o código num servidor. O serviço público é gratuito mas tem limites de utilização, por isso esta demonstração só envia o código quando se carrega em Executar. Sem rede, aparece "Não foi possível executar o código".</p>
+        <!-- docs:demo src="../../demos/uc-code/java.html" title="programa Java executado no Codapi" height="334" -->
+        <div class="docs-demo" id="demo-uc-code-java">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/java.html" title="Demonstração: programa Java executado no Codapi" loading="lazy" style="height: 334px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;java&quot; filename=&quot;Main.java&quot; run&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    public class Main {
+        public static void main(String[] args) {
+            int[] values = {5, 3, 8, 1};
+            int sum = 0;
+            for (int v : values) sum += v;
+            System.out.println(&quot;Soma: &quot; + sum);
+        }
+    }
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/java.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Em Java, o ficheiro executado tem de ter a classe <code>public class Main</code>, que é o ponto de entrada do Codapi. Numa UC com muitos estudantes, convém um Codapi próprio, configurado no <code>course.js</code> (<a href="#configuracao">Configuração usada</a>).</p>
+
+        <h3 id="testar-noutra-plataforma">Testar noutra plataforma</h3>
+        <p>Com um endereço, <code>run="https://…"</code> não executa nada na página: mostra uma ligação "Testar no …" para a plataforma onde o exercício é submetido, como o Mooshak. O nome vem da entrada de <code>platforms</code> do <code>course.js</code> com o mesmo domínio; sem nenhuma, aparece o domínio do endereço. Esta demonstração acrescenta ao curso uma plataforma "Mooshak".</p>
+        <!-- docs:demo src="../../demos/uc-code/link.html" title="programa C com ligação Testar no Mooshak" height="334" -->
+        <div class="docs-demo" id="demo-uc-code-link">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-code/link.html" title="Demonstração: programa C com ligação Testar no Mooshak" loading="lazy" style="height: 334px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-code lang=&quot;c&quot; filename=&quot;sum.c&quot; run=&quot;https://mooshak.example.org/problem/A&quot;&gt;
+  &lt;script type=&quot;text/plain&quot;&gt;
+    #include &lt;stdio.h&gt;
+
+    int main(void) {
+        int a, b;
+        scanf(&quot;%d %d&quot;, &amp;a, &amp;b);
+        printf(&quot;%d\n&quot;, a + b);
+        return 0;
+    }
+  &lt;/script&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-code/link.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-code</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>lang</code></td><td>linguagem</td><td>—</td><td>Linguagem do código: <code>java</code>, <code>python</code>, <code>c</code>, <code>cpp</code>, <code>js</code>, <code>html</code>, <code>css</code>, <code>bash</code>… Escolhe o realce e, com <code>run</code>, quem executa o código. Passa para <code>data-lang</code> depois de lido (ver abaixo).</td></tr>
+              <tr><td><code>filename</code></td><td>texto</td><td>nome da linguagem</td><td>Nome mostrado no cabeçalho e dado ao ficheiro descarregado. Com um harness, é também o nome com que o código do estudante é enviado.</td></tr>
+              <tr><td><code>editable</code></td><td>booleano</td><td>ausente</td><td>O código pode ser alterado no bloco; acrescenta o botão Repor.</td></tr>
+              <tr><td><code>no-copy</code></td><td>booleano</td><td>ausente</td><td>Esconde o botão Copiar.</td></tr>
+              <tr><td><code>no-download</code></td><td>booleano</td><td>ausente</td><td>Esconde o botão Descarregar.</td></tr>
+              <tr><td><code>collapsible</code></td><td>booleano</td><td>ausente</td><td>O nome no cabeçalho passa a ser um botão que mostra e esconde o código.</td></tr>
+              <tr><td><code>collapsed</code></td><td>booleano</td><td>ausente</td><td>Com <code>collapsible</code>, o bloco começa fechado. Executar abre-o.</td></tr>
+              <tr><td><code>run</code></td><td>booleano ou URL</td><td>ausente</td><td>Sem valor: botão Executar, que executa o código na página. Com um endereço: ligação "Testar no …" para essa plataforma.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><code>lang="java"</code> não é um código de língua válido e faria os leitores de ecrã mudar de voz, por isso o componente passa o valor para <code>data-lang</code> logo que arranca. Num <code>theme.css</code>, seleciona-se <code>uc-code[data-lang="java"]</code>, não <code>[lang]</code>.</p>
+        <p>O realce cobre as linguagens mais comuns (Java, Python, C, C++, JavaScript, TypeScript, Kotlin, Go, Rust, SQL, Bash, JSON, XML e HTML, YAML, Markdown…) e carrega à parte, quando a página as usa, Haskell, OCaml, Prolog, Scheme, Scala, MATLAB, LaTeX e algumas outras. Uma linguagem desconhecida mostra o código sem cores.</p>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>O bloco em si não lê nada do <code>course.js</code>: realce, cópia, edição e recolha funcionam sem configuração. Só o atributo <code>run</code> consulta dois campos, ambos opcionais.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-code</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>runner</code></td><td>Que serviço executa cada linguagem com <code>run</code> sem valor. Sem este campo, JavaScript corre no browser e as restantes linguagens no Codapi público. Ver <a href="../course-js.html#campos-avancado">Avançado</a>.</td></tr>
+              <tr><td><code>platforms</code></td><td>Nome da plataforma na ligação "Testar no …" de <code>run="URL"</code>. Ver <a href="../course-js.html#campos-navegacao">Navegação</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Os valores por omissão de <code>runner</code> são estes; basta escrever as partes que mudam.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  // …
+  runner: {
+    provider: "codapi",                                   // runner for languages not listed below
+    languages: { javascript: "browser", js: "browser" },  // language → runner
+    codapi: {
+      url: "https://api.codapi.org/v1",                   // or a self-hosted Codapi
+      sandboxes: { c: "gcc", "c++": "cpp", py: "python" }, // language → Codapi sandbox
+      timeout: 20000,                                     // ms
+    },
+    browser: { timeout: 5000 },                           // ms, then the Worker is stopped
+  },
+};</code></pre></uc-code>
+        <ul>
+          <li><code>provider</code> é o runner das linguagens que não estão em <code>languages</code>; <code>languages</code> associa uma linguagem (o valor de <code>lang</code>) a um runner. Os runners incluídos são <code>codapi</code> e <code>browser</code>.</li>
+          <li><code>codapi.url</code> aponta para o Codapi público ou para um próprio; <code>sandboxes</code> traduz o <code>lang</code> do bloco para o nome do ambiente no Codapi quando são diferentes (<code>lang="c"</code> usa o ambiente <code>gcc</code>).</li>
+          <li><code>timeout</code> é o tempo máximo de cada execução, em milissegundos. No browser, um ciclo infinito é interrompido ao fim de 5 segundos.</li>
+        </ul>
+        <p>Mudar de serviço (um Codapi próprio, o Judge0, outro runner escrito para a UC) é só mudar este campo: nenhuma página tem de ser editada. O guia completo será a página Execução de código, no grupo Personalizar (em preparação).</p>
+
+        <h2 id="execucao">Execução e testes</h2>
+        <p>Com <code>run</code> sem valor, além do código que o estudante vê, o bloco pode ter filhos que nunca aparecem na página:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Filhos escondidos de uc-code</caption>
+            <thead>
+              <tr><th scope="col">Filho</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>script[data-harness]</code></td><td>O programa que é executado de facto (o ficheiro de entrada). Chama o código do estudante, que é enviado como segundo ficheiro com o nome de <code>filename</code>. Em Java, começa por <code>public class Main</code>.</td></tr>
+              <tr><td><code>script[data-harness][filename]</code></td><td>Um ficheiro de apoio escondido, por exemplo um <code>BTNode.java</code> que o código do estudante usa. Em Java, cada classe pública precisa do seu ficheiro. Pode haver vários.</td></tr>
+              <tr><td><code>ol[data-tests]</code></td><td>Um <code>&lt;li data-expected="…"&gt;</code> por teste, pela ordem das linhas que o programa escreve. O texto do item é o nome do teste.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Os dois <code>&lt;script&gt;</code> são <code>type="text/plain"</code>, como o do código. A estrutura de um exercício em Java fica assim:</p>
+        <uc-code lang="html" filename="guioes/aula10.html" no-download><pre><code>&lt;uc-code lang="java" filename="BTree.java" editable run&gt;
+  &lt;script type="text/plain"&gt;…código inicial do estudante…&lt;/script&gt;
+  &lt;script type="text/plain" data-harness filename="BTNode.java"&gt;…&lt;/script&gt;
+  &lt;script type="text/plain" data-harness&gt;
+    public class Main {
+        public static void main(String[] args) {
+            // one line per test
+        }
+    }
+  &lt;/script&gt;
+  &lt;ol data-tests&gt;
+    &lt;li data-expected="0"&gt;Árvore vazia&lt;/li&gt;
+    &lt;li data-expected="3"&gt;Árvore com três nós&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/uc-code&gt;</code></pre></uc-code>
+        <ul>
+          <li><strong>Ficheiros.</strong> Sem harness, o código do bloco é o programa. Com harness, o Codapi recebe o harness como ficheiro de entrada, o código do estudante e os ficheiros de apoio. No browser, os ficheiros de JavaScript juntam-se num só programa: primeiro os de apoio, depois o código do estudante e por fim o harness.</li>
+          <li><strong>Comparação.</strong> A linha <em>i</em> do que o programa escreve é comparada com o <code>data-expected</code> do teste <em>i</em>, como texto exato, ignorando espaços no fim da linha: <code>9.0</code> não passa num teste que espera <code>9</code>. Linhas a mais são ignoradas; um teste sem linha correspondente falha com "(sem resultado)".</li>
+          <li><strong>Resultado.</strong> Um resumo ("2 de 3 testes passaram", a verde quando passam todos) e a lista dos testes com ✓ ou ✗; os que falham mostram o valor esperado e o obtido. Com testes, o que o programa escreve não é mostrado à parte, mas as mensagens de erro são.</li>
+          <li><strong>Sem entrada.</strong> Os programas não podem ler da entrada padrão: os dados vêm do harness ou de um ficheiro de apoio (em Java, por exemplo, um <code>Scanner</code> sobre uma <code>String</code>).</li>
+          <li><strong>Erros.</strong> Um erro de compilação ou de execução aparece com o título "Erro" e a mensagem a vermelho. Se o serviço não responder ou o tempo acabar, aparece "Não foi possível executar o código (timeout)." ou o motivo equivalente.</li>
+        </ul>
+        <p>O harness e os testes estão escondidos, não são secretos: qualquer estudante os vê no código-fonte da página. Não convém pôr neles a solução do exercício.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-code</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-code</code></td><td>O bloco (o próprio <code>&lt;uc-code&gt;</code>), depois de o kit arrancar.</td></tr>
+              <tr><td><code>.uc-code--editable</code>, <code>--collapsed</code></td><td>Bloco editável; bloco recolhível fechado.</td></tr>
+              <tr><td><code>.uc-code__header</code></td><td>O cabeçalho com o nome e os botões.</td></tr>
+              <tr><td><code>.uc-code__title</code></td><td>O nome do ficheiro ou da linguagem.</td></tr>
+              <tr><td><code>.uc-code__toggle</code>, <code>__chevron</code></td><td>O botão que mostra e esconde o código e a sua seta.</td></tr>
+              <tr><td><code>.uc-code__actions</code></td><td>O grupo de botões.</td></tr>
+              <tr><td><code>.uc-code__button</code>, <code>--copy</code>, <code>--download</code>, <code>--reset</code></td><td>Copiar, Descarregar e Repor.</td></tr>
+              <tr><td><code>.uc-code__run</code></td><td>O botão Executar ou a ligação "Testar no …".</td></tr>
+              <tr><td><code>.uc-code__body</code>, <code>__scroll</code></td><td>A área do código, que desliza na horizontal.</td></tr>
+              <tr><td><code>.uc-code__pre</code>, <code>__code</code></td><td>O código mostrado (com as classes <code>hljs-*</code> do realce).</td></tr>
+              <tr><td><code>.uc-code__editor</code>, <code>__input</code>, <code>__hint</code></td><td>No modo editável: a área de edição, o <code>&lt;textarea&gt;</code> e a indicação sobre Tab e Esc.</td></tr>
+              <tr><td><code>.uc-code__results</code></td><td>A área do resultado, por baixo do código.</td></tr>
+              <tr><td><code>.uc-code__results-summary</code>, <code>--passed</code></td><td>"2 de 3 testes passaram"; a variante quando passam todos.</td></tr>
+              <tr><td><code>.uc-code__results-label</code>, <code>__results-output</code>, <code>--stderr</code>, <code>__results-error</code></td><td>"Resultado" ou "Erro", o texto escrito pelo programa, as mensagens de erro e a falha ao executar.</td></tr>
+              <tr><td><code>.uc-code__tests</code>, <code>__test</code>, <code>--passed</code>, <code>--failed</code></td><td>A lista de testes e cada teste.</td></tr>
+              <tr><td><code>.uc-code__test-mark</code>, <code>__test-name</code>, <code>__test-detail</code></td><td>O ✓ ou ✗, o nome do teste e "Esperado: … · Obtido: …".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Java blocks with a coloured bar on the left. */
+uc-code[data-lang="java"] {
+  border-left: 3px solid var(--uc-color-accent);
+}
+
+/* Keywords in the normal weight. */
+.uc-code .hljs-keyword { font-weight: 400; }</code></pre></uc-code>
+        <p>As cores do realce vêm dos tokens do kit: palavras reservadas em <code>--uc-color-accent</code>, texto entre aspas em <code>--uc-color-success-text</code>, números e tipos em <code>--uc-color-warning-text</code> e comentários em <code>--uc-color-text-muted</code>. Mudar a cor do curso com <code>accentColor</code> muda também a cor das palavras reservadas.</p>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>A área do código recebe o foco e desliza com as setas, e é identificada pelo nome do ficheiro. Os botões têm texto e o resultado de Copiar e de Executar é anunciado aos leitores de ecrã ("Copiado", "2 de 3 testes passaram"). Cada teste diz "Passou" ou "Falhou" além do ✓ ou ✗. O editor é um <code>&lt;textarea&gt;</code> com nome, e o botão de recolher indica se o código está visível. O <code>lang</code> passa para <code>data-lang</code> para não mudar a voz do leitor de ecrã.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Um <code>filename</code> em cada bloco que o estudante vá usar, nomes de testes que digam o que se verifica ("Lista só com números negativos", não "Teste 3") e linhas de código curtas, que se leem sem deslizar. O que importa para o exercício deve estar também no texto do guião, não só em comentários no código.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>O CSS do kit mostra o texto do <code>&lt;script type="text/plain"&gt;</code> como um bloco de código simples, sem cabeçalho, botões nem cores; um <code>&lt;pre&gt;&lt;code&gt;</code> aparece sempre, mesmo sem o CSS do kit. Os testes ficam escondidos. Na versão atual, os <code>&lt;script data-harness&gt;</code> também aparecem por baixo do código quando o JavaScript está desligado, mais uma razão para não terem nada que o estudante não deva ver.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-exercise.html"><code>&lt;uc-exercise&gt;</code></a>: o exercício numerado onde costuma ficar um bloco editável com testes.</li>
+          <li><a href="uc-guide.html"><code>&lt;uc-guide&gt;</code></a>: o guião de aula que agrupa os exercícios.</li>
+          <li><a href="../course-js.html#campos-avancado">O ficheiro course.js</a>: o campo <code>runner</code>.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/guioes/aula10.html">o guião 10 de Estruturas de Dados 2025/26</a>, com exercícios em Java testados no Codapi, e <a href="../../../examples/edados-2526/codigo/arvores_pesquisa.html">o código das árvores de pesquisa</a>, com ficheiros recolhíveis.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-exercise.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-exercise</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-question.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-question</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-code.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#pre-e-code">Código em &lt;pre&gt;&lt;code&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#sem-botoes">Sem botões</a></li>
+          <li class="docs-toc__sub"><a href="#editavel">Código editável</a></li>
+          <li class="docs-toc__sub"><a href="#recolhivel">Bloco recolhível</a></li>
+          <li class="docs-toc__sub"><a href="#executar">Executar JavaScript</a></li>
+          <li class="docs-toc__sub"><a href="#testes">Exercício com testes</a></li>
+          <li class="docs-toc__sub"><a href="#executar-java">Java e outras linguagens</a></li>
+          <li class="docs-toc__sub"><a href="#testar-noutra-plataforma">Testar noutra plataforma</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#execucao">Execução e testes</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

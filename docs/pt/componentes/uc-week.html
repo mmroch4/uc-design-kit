@@ -46,7 +46,21 @@
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
           <li><a href="uc-week.html" aria-current="page"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
         </ul>
       </div>
     </nav>
@@ -116,7 +130,7 @@
     breaks: [{ start: "2025-10-27", end: "2025-10-31", label: "Semana de estudo" }],
   },
 };</code></pre></uc-code>
-        <p>Pode usar-se uma <code>&lt;uc-week&gt;</code> sozinha, mas numa página de semanas convém pô-las dentro de <code>&lt;uc-weeks&gt;</code>, que acrescenta a ligação "Ir para esta semana", mostra as interrupções entre semanas e os prazos que caem depois da última.</p>
+        <p>Pode usar-se uma <code>&lt;uc-week&gt;</code> sozinha, mas numa página de semanas convém pô-las dentro de <a href="uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a>, que acrescenta a ligação "Ir para esta semana", mostra as interrupções entre semanas e os prazos que caem depois da última.</p>
 
         <h2 id="exemplos">Exemplos</h2>
 
@@ -187,7 +201,7 @@
           <a class="docs-demo__open" href="../../demos/uc-week/deadlines.html">Abrir demo</a>
         </div>
         <!-- /docs:demo -->
-        <p>Para escolher que prazos aparecem nas semanas, use <code>kind</code> ou <code>no-deadlines</code> no <code>&lt;uc-weeks&gt;</code>. Um prazo que já tenha um <code>&lt;uc-event deadline="…"&gt;</code> escrito na semana não é repetido.</p>
+        <p>Para escolher que prazos aparecem nas semanas, use <code>kind</code> ou <code>no-deadlines</code> no <code>&lt;uc-weeks&gt;</code>. Um prazo que já tenha um <a href="uc-event.html"><code>&lt;uc-event deadline="…"&gt;</code></a> escrito na semana não é repetido.</p>
 
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
@@ -232,7 +246,7 @@
           <li><strong>Atual</strong>: aberta, com fundo destacado na cor do curso e a etiqueta "Esta semana". A linha fica marcada com <code>aria-current="date"</code>.</li>
           <li><strong>Futura</strong>: fechada e a cinzento. As cores voltam ao normal ao passar o rato ou com o foco do teclado, e o texto mantém o contraste mínimo de 4,5:1.</li>
         </ul>
-        <p>Cada semana recebe <code>id="week-&lt;n&gt;"</code>. Uma ligação para <code>semanas.html#week-10</code> abre a página com a semana 10 aberta; é este endereço que o <code>&lt;uc-this-week&gt;</code> da página inicial usa.</p>
+        <p>Cada semana recebe <code>id="week-&lt;n&gt;"</code>. Uma ligação para <code>semanas.html#week-10</code> abre a página com a semana 10 aberta; é este endereço que o <a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a> da página inicial usa.</p>
 
         <h2 id="personalizar">Personalizar</h2>
         <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha.</p>
@@ -280,18 +294,22 @@
 
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
-          <li><code>&lt;uc-weeks&gt;</code>: o contentor das semanas, com interrupções e "Ir para esta semana".</li>
-          <li><code>&lt;uc-event&gt;</code>: um prazo ou avaliação escrito à mão dentro de uma semana.</li>
-          <li><code>&lt;uc-this-week&gt;</code>: o cartão "Esta semana" da página inicial, que lê a semana atual desta página.</li>
+          <li><a href="uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a>: o contentor das semanas, com interrupções e "Ir para esta semana".</li>
+          <li><a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>: um prazo ou avaliação escrito à mão dentro de uma semana.</li>
+          <li><a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>: o cartão "Esta semana" da página inicial, que lê a semana atual desta página.</li>
           <li>Uso real: <a href="../../../examples/edados-2526/semanas.html">as semanas de Estruturas de Dados 2025/26</a>.</li>
         </ul>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
         <nav class="docs-pager" aria-label="Anterior / Seguinte">
-          <a class="docs-pager__link docs-pager__link--previous" href="../publicar.html" rel="prev">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-weeks.html" rel="prev">
             <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
-            <span class="docs-pager__title">Publicar</span>
+            <span class="docs-pager__title"><code>uc-weeks</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-event.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-event</code></span>
           </a>
         </nav>
         <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-week.html">Editar esta página no GitHub</a></p>

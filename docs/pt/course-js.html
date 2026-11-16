@@ -46,7 +46,21 @@
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/index.html">Visão geral</a></li>
+          <li><a href="componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
           <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="componentes/uc-question.html"><code>uc-question</code></a></li>
         </ul>
       </div>
     </nav>
@@ -104,7 +118,7 @@
               <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>title</code><span class="docs-type"><code>LocalizedText</code></span></td><td><span class="uc-tag uc-tag--warning">Obrigatório</span></td><td>—</td><td>Nome da cadeira: cabeçalho, <code>&lt;uc-hero&gt;</code> e rodapé.</td></tr>
+              <tr><td><code>title</code><span class="docs-type"><code>LocalizedText</code></span></td><td><span class="uc-tag uc-tag--warning">Obrigatório</span></td><td>—</td><td>Nome da cadeira: cabeçalho, <a href="componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a> e rodapé.</td></tr>
               <tr><td><code>code</code><span class="docs-type">texto</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>Código acima do título, por exemplo <code>"CC1007"</code>.</td></tr>
               <tr><td><code>tagline</code><span class="docs-type"><code>LocalizedText</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>Uma frase sobre a cadeira, mostrada por <code>&lt;uc-hero&gt;</code>.</td></tr>
               <tr><td><code>edition</code><span class="docs-type">texto</span></td><td><span class="uc-tag uc-tag--accent">Recomendado</span></td><td>—</td><td>Ano letivo ao lado do título, por exemplo <code>"2025/26"</code>.</td></tr>
@@ -141,7 +155,7 @@
               <tr><td><code>semester.start</code><span class="docs-type"><code>ISODate</code></span></td><td><span class="uc-tag uc-tag--accent">Recomendado</span></td><td>—</td><td>Primeiro dia de aulas. A semana 1 é a semana do calendário que o contém. Sem ele, as semanas não têm datas e "Esta semana" não aparece.</td></tr>
               <tr><td><code>semester.weeks</code><span class="docs-type">número</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>14</code></td><td>Número de semanas de aulas, sem contar as interrupções.</td></tr>
               <tr><td><code>semester.teachingDays</code><span class="docs-type"><code>[de, até]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[1, 5]</code></td><td>Dias com aulas (1 = segunda … 7 = domingo). As datas das semanas mostram-se com estes dias: <code>[2, 5]</code> dá "25–28 nov".</td></tr>
-              <tr><td><code>semester.breaks</code><span class="docs-type"><code>{ start, end, label }[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Semanas sem aulas. Não são numeradas e aparecem entre as semanas em <code>&lt;uc-weeks&gt;</code>.</td></tr>
+              <tr><td><code>semester.breaks</code><span class="docs-type"><code>{ start, end, label }[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Semanas sem aulas. Não são numeradas e aparecem entre as semanas em <a href="componentes/uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a>.</td></tr>
             </tbody>
           </table>
         </div>
@@ -155,7 +169,7 @@
             </thead>
             <tbody>
               <tr><td><code>pages</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--accent">Recomendado</span></td><td><code>["home"]</code></td><td>Páginas da navegação, por ordem. Ver <a href="#paginas">Páginas</a>.</td></tr>
-              <tr><td><code>platforms</code><span class="docs-type"><code>{ label, url }[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação.</td></tr>
+              <tr><td><code>platforms</code><span class="docs-type"><code>{ label, url }[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação. A plataforma chamada "Mooshak" dá também o link dos exercícios (<a href="componentes/uc-exercise.html#problema-no-mooshak"><code>&lt;uc-exercise mooshak&gt;</code></a>).</td></tr>
             </tbody>
           </table>
         </div>
@@ -168,9 +182,9 @@
               <tr><th scope="col">Campo e tipo</th><th scope="col">Necessário</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>team</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Equipa docente, mostrada por <code>&lt;uc-team&gt;</code>. Ver <a href="#equipa">Equipa</a>.</td></tr>
+              <tr><td><code>team</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Equipa docente, mostrada por <a href="componentes/uc-team.html"><code>&lt;uc-team&gt;</code></a>. Ver <a href="#equipa">Equipa</a>.</td></tr>
               <tr><td><code>deadlines</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Prazos, testes e exames: aparecem na página inicial, na semana certa e na avaliação. Ver <a href="#prazos">Prazos</a>.</td></tr>
-              <tr><td><code>notices</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Avisos de <code>&lt;uc-notices&gt;</code>. Ver <a href="#avisos">Avisos</a>.</td></tr>
+              <tr><td><code>notices</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Avisos de <a href="componentes/uc-notices.html"><code>&lt;uc-notices&gt;</code></a>. Ver <a href="#avisos">Avisos</a>.</td></tr>
             </tbody>
           </table>
         </div>
@@ -184,7 +198,7 @@
             </thead>
             <tbody>
               <tr><td><code>today</code><span class="docs-type"><code>ISODate</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>a data real</td><td>Fixa o dia de "hoje", para demonstrações e capturas. Não deixar num site publicado. <code>?today=AAAA-MM-DD</code> no endereço sobrepõe-se a ele.</td></tr>
-              <tr><td><code>runner</code><span class="docs-type">objeto</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>Codapi e browser</td><td>Onde <code>&lt;uc-code run&gt;</code> executa o código: <code>{ provider, languages, codapi, browser }</code>. Trocar de serviço (Codapi próprio, Judge0) é só mudar este campo; explica-se no grupo Personalizar (em preparação).</td></tr>
+              <tr><td><code>runner</code><span class="docs-type">objeto</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>Codapi e browser</td><td>Onde <a href="componentes/uc-code.html"><code>&lt;uc-code run&gt;</code></a> executa o código: <code>{ provider, languages, codapi, browser }</code>. Trocar de serviço (Codapi próprio, Judge0) é só mudar este campo; os valores por omissão estão em <a href="componentes/uc-code.html#configuracao">Configuração usada do <code>&lt;uc-code&gt;</code></a> e o guia completo fica no grupo Personalizar (em preparação).</td></tr>
             </tbody>
           </table>
         </div>
@@ -198,7 +212,7 @@
   { id: "about", href: { pt: "sobre.html", en: "about.html" } },   // um ficheiro por língua
 ],</code></pre></uc-code>
         <ul>
-          <li><strong><code>id</code></strong> identifica a página; é o valor de <code>&lt;uc-page current&gt;</code>.</li>
+          <li><strong><code>id</code></strong> identifica a página; é o valor de <a href="componentes/uc-page.html"><code>&lt;uc-page current&gt;</code></a>.</li>
           <li><strong><code>href</code></strong> é relativo ao <code>course.js</code>, por isso funciona igual em páginas de subpastas. Um <code>LocalizedText</code> indica um ficheiro por língua.</li>
           <li><strong><code>label</code></strong> é o nome na navegação; obrigatório para identificadores que não são do kit.</li>
         </ul>
@@ -262,7 +276,7 @@
               <tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">Descrição</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>id</code></td><td>texto</td><td>Obrigatório e único. Usado por <code>&lt;uc-date deadline&gt;</code> e <code>&lt;uc-event deadline&gt;</code>.</td></tr>
+              <tr><td><code>id</code></td><td>texto</td><td>Obrigatório e único. Usado por <a href="componentes/uc-date.html"><code>&lt;uc-date deadline&gt;</code></a> e <a href="componentes/uc-event.html"><code>&lt;uc-event deadline&gt;</code></a>.</td></tr>
               <tr><td><code>title</code></td><td><code>LocalizedText</code></td><td>Obrigatório.</td></tr>
               <tr><td><code>date</code></td><td><code>ISODate</code>, <code>"AAAA-MM"</code> ou <code>null</code></td><td>Dia do prazo; só o mês quando o dia não se sabe; <code>null</code> quando está por marcar.</td></tr>
               <tr><td><code>time</code></td><td><code>Time</code></td><td>Hora de início ou limite.</td></tr>
