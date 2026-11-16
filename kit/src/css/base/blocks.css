@@ -105,7 +105,8 @@
   font-weight: 500;
   text-decoration: none;
 }
-:where(.uc-shortcuts a)::after { content: "→"; color: var(--uc-color-text-muted); }
+/* Decorative arrow: the empty alternative text keeps screen readers from reading it. */
+:where(.uc-shortcuts a)::after { content: "→"; content: "→" / ""; color: var(--uc-color-text-muted); }
 :where(.uc-shortcuts a:hover) { border-color: var(--uc-color-accent); color: var(--uc-color-accent); }
 
 :where(.uc-callout) {
@@ -232,6 +233,7 @@
 :where(.uc-content > * + *) { margin-top: var(--uc-space-4); }
 :where(.uc-content > h2) { margin-top: var(--uc-space-10); }
 :where(.uc-content > h3) { margin-top: var(--uc-space-8); }
+:where(.uc-content > :is(h2, h3):first-child) { margin-top: 0; }
 :where(.uc-content > :is(h2, h3) + *) { margin-top: var(--uc-space-3); }
 :where(.uc-content :is(h2, h3, h4)) { color: var(--uc-color-text); }
 :where(.uc-content :is(ul, ol)) { padding-left: 1.5em; }
