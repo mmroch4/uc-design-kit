@@ -29,7 +29,7 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   in a Web Worker.
 
 ### Fixed
-- `<uc-code editable>`: the caret stays visible on long lines (the editor
+- `<uc-code editable>`: space after the longest line; the caret stays visible on long lines (the editor
   scrolls with it), and the code no longer flickers on every key.
 - The kit is now revalidated on every load (`_headers`), so pages and kit
   stay in step after a deploy.

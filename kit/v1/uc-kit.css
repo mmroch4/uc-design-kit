@@ -1456,6 +1456,12 @@
   background: var(--uc-color-surface);
 }
 :where(.uc-code__editor > .uc-code__pre) { overflow: hidden; }
+/* Space after the longest line. Browsers leave a textarea's right padding out of its
+   scroll width, so both layers use a transparent border instead, which they agree on. */
+:where(.uc-code__editor > .uc-code__pre, .uc-code__editor > .uc-code__input) {
+  padding-right: 0;
+  border-right: var(--uc-space-5) solid transparent;
+}
 :where(.uc-code__editor > .uc-code__pre, .uc-code__editor > .uc-code__input) { grid-area: 1 / 1; }
 :where(.uc-code__input) {
   display: block;
@@ -1492,6 +1498,10 @@
 @media (max-width: 760px) {
   :where(.uc-code__header) { padding-left: var(--uc-space-4); }
   :where(.uc-code__pre, .uc-code__input) { padding: var(--uc-space-3) var(--uc-space-4); }
+  :where(.uc-code__editor > .uc-code__pre, .uc-code__editor > .uc-code__input) {
+    padding-right: 0;
+    border-right-width: var(--uc-space-4);
+  }
 }
 
 /* Syntax colours (highlight.js classes), from kit tokens; all reach 4.5:1 on the code background. */
