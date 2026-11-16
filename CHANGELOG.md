@@ -9,3 +9,9 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ### Added
 - Repository scaffold, licence and contribution guide.
 - Page checker (`npm test`) and GitHub Actions workflow.
+- Core runtime: configuration loading and validation, i18n (pt, en), language
+  switching with in-place bilingual content, dates and teaching calendar with
+  breaks, `UC.Element` base class and `UC.define`.
+- Base styles: design tokens, reset, typography and layout building blocks.
+- `<uc-page>` (header, responsive navigation, footer) and `<uc-hero>`.
+- `scripts/build.mjs` bundles `kit/src` into `kit/v1/uc-kit.{js,css}`.

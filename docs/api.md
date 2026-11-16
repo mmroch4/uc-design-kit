@@ -60,8 +60,9 @@ window.UC_COURSE = {
   logo: "logo.svg",
 
   semester: {
-    start: "2025-09-15",
-    weeks: 13,
+    start: "2025-09-16",
+    weeks: 12,
+    teachingDays: [2, 5],
     breaks: [
       { start: "2025-10-27", end: "2025-10-31", label: { pt: "Atividades FCUP II", en: "FCUP Activities Week" } }
     ]
@@ -115,8 +116,9 @@ window.UC_COURSE = {
 | `institution` | `{ name, url? }` | no | — | Shown in the header. |
 | `accentColor` | CSS colour | no | `#1D4ED8` | Sets `--uc-color-accent`; soft and strong variants are derived. Must reach 4.5:1 contrast on white. |
 | `logo` | URL \| `null` | no | built-in tree icon | Header mark. `null` hides it. |
-| `semester.start` | `ISODate` | for week features | — | Monday of week 1. |
+| `semester.start` | `ISODate` | for week features | — | First day of classes; week 1 is the calendar week containing it. |
 | `semester.weeks` | number | no | `14` | Number of teaching weeks (breaks not counted). |
+| `semester.teachingDays` | `[from, to]` | no | `[1, 5]` | ISO weekdays with classes (1 = Monday … 7 = Sunday). Week ranges are shown with these days, e.g. `[2, 5]` → "25–28 nov". |
 | `semester.breaks` | `{ start, end, label }[]` | no | `[]` | Weeks without classes. Weeks are numbered skipping them. |
 | `pages` | `(PageId \| Page)[]` | no | `["home"]` | Navigation, in order. See 2.3. |
 | `platforms` | `{ label, url }[]` | no | `[]` | External links listed under "Platforms" in the navigation. |

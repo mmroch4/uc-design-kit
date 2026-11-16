@@ -1,0 +1,56 @@
+/* Shared course configuration for the component test pages (bilingual). */
+window.UC_COURSE = {
+  code: "CC1007",
+  title: { pt: "Estruturas de Dados", en: "Data Structures" },
+  tagline: {
+    pt: "Programação orientada a objetos em Java, estruturas de dados fundamentais e análise da complexidade de algoritmos.",
+    en: "Object-oriented programming in Java, fundamental data structures and algorithm complexity analysis.",
+  },
+  edition: "2025/26",
+  languages: ["pt", "en"],
+  institution: { name: "DCC · FCUP", url: "https://www.dcc.fc.up.pt" },
+  semester: {
+    start: "2025-09-16",
+    weeks: 12,
+    teachingDays: [2, 5],
+    breaks: [{ start: "2025-10-27", end: "2025-10-31", label: { pt: "Atividades FCUP II", en: "FCUP Activities Week" } }],
+  },
+  pages: [
+    { id: "home", href: "uc-page.html" },
+    { id: "weeks", href: "uc-weeks.html" },
+    { id: "assessment", href: "uc-deadlines.html" },
+    { id: "materials", href: "blocks.html" },
+    { id: "schedule", href: "uc-team.html" },
+    { id: "about", href: "uc-guide.html" },
+  ],
+  platforms: [
+    { label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~edados/" },
+    { label: "SIGARRA", url: "https://sigarra.up.pt/fcup/" },
+  ],
+  team: [
+    { name: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds", role: "coordinator", classes: ["T1", "T2"], office: "Gab. 1.25" },
+    { name: "Eduardo R. B. Marques", url: "https://www.dcc.fc.up.pt/~edrdo/", role: "assistant", classes: ["PL1", "PL5", "PL7"] },
+    { name: "Joana Leite", role: "assistant", classes: ["PL2", "PL3"] },
+  ],
+  deadlines: [
+    { id: "ap1", title: { pt: "Avaliação Prática 1", en: "Practical Assessment 1" }, date: "2025-11-12", time: "16:00", kind: "assessment",
+      note: { pt: "Turnos das 16h e 18h", en: "Shifts at 4 pm and 6 pm" }, links: [{ label: { pt: "Resultados", en: "Results" }, url: "#" }] },
+    { id: "quiz9", title: { pt: "Fecha o quiz #09", en: "Quiz #09 closes" }, date: "2025-12-02", time: "21:00", kind: "quiz", note: "Mooshak" },
+    { id: "ap2", title: { pt: "Avaliação Prática 2", en: "Practical Assessment 2" }, date: "2025-12-16", time: "14:00", kind: "assessment",
+      note: { pt: "Turnos das 14h e 16h", en: "Shifts at 2 pm and 4 pm" } },
+    { id: "exam", title: { pt: "Exame, época normal", en: "Exam, regular season" }, date: "2026-01", kind: "exam",
+      note: { pt: "Salas no SIGARRA", en: "Rooms on SIGARRA" } },
+    { id: "resit", title: { pt: "Exame, época de recurso", en: "Exam, resit" }, date: null, kind: "exam" },
+  ],
+  notices: [
+    { date: "2025-11-27", text: { pt: "<a href=\"#\">Número de respostas aos quizzes</a>", en: "<a href=\"#\">Number of quiz answers</a>" },
+      details: { pt: "Confirma se já tens os 6 quizzes necessários para a frequência.", en: "Check you have the 6 quizzes required." } },
+    { date: "2025-11-15", text: { pt: "<a href=\"#\">Resultados da Avaliação Prática 1</a>", en: "<a href=\"#\">Practical Assessment 1 results</a>" } },
+    { date: "2025-11-10", text: { pt: "Avaliação Prática 1: <a href=\"#\">turnos e laboratórios</a>", en: "Practical Assessment 1: <a href=\"#\">shifts and labs</a>" } },
+    { date: "2025-10-31", text: { pt: "Exercícios de treino no Mooshak (Treino 1)", en: "Training exercises on Mooshak" } },
+    { date: "2025-10-29", text: { pt: "Disponível a aula prática 7", en: "Lab class 7 available" } },
+    { date: "2025-09-16", text: { pt: "As aulas começam a 16 de setembro.", en: "Classes start on 16 September." } },
+  ],
+  footer: { pt: "© 2025 Fernando Silva · DCC, Faculdade de Ciências da Universidade do Porto", en: "© 2025 Fernando Silva · DCC, Faculty of Sciences, University of Porto" },
+  updated: "2025-11-27",
+};

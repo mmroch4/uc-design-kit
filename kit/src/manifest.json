@@ -1,0 +1,27 @@
+{
+  "$comment": "Concatenation order for kit/v1/uc-kit.js and kit/v1/uc-kit.css. Built by scripts/build.mjs.",
+  "js": [
+    "core/namespace.js",
+    "core/i18n.js",
+    "i18n/pt.js",
+    "i18n/en.js",
+    "core/text.js",
+    "core/dates.js",
+    "core/config.js",
+    "core/language.js",
+    "core/dom.js",
+    "core/element.js",
+    "components/uc-page.js",
+    "components/uc-hero.js",
+    "core/bootstrap.js"
+  ],
+  "css": [
+    "css/base/fonts.css",
+    "css/base/tokens.css",
+    "css/base/reset.css",
+    "css/base/typography.css",
+    "css/base/blocks.css",
+    "css/components/uc-page.css",
+    "css/components/uc-hero.css"
+  ]
+}
