@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avaliação · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Avaliação de Estruturas de Dados 2025/26: como é calculada a nota, datas das provas, regras das avaliações práticas e frequência.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Avaliação</h1>
+      <p class="uc-prose">A nota final soma três componentes. Para aprovar precisas de pelo menos 4,9 valores no exame e de 9,5 valores no total.</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="formula">
+      <h2 id="formula">Como é calculada a nota</h2>
+      <p class="formula">Nota final = E + P + R <span>(0 a 20 valores)</span></p>
+      <div class="uc-grid">
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter">E</span> <span class="component__weight">70%</span></p>
+          <p class="component__name">Exame escrito</p>
+          <p class="uc-muted desc">14 valores. Teórico-prático, sem consulta nem computador. Época normal ou recurso.</p>
+        </div>
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter">P</span> <span class="component__weight">25%</span></p>
+          <p class="component__name">Duas avaliações práticas</p>
+          <p class="uc-muted desc">5 valores, 2,5 cada. Problemas no Mooshak, semelhantes aos de treino.</p>
+        </div>
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter">R</span> <span class="component__weight">5%</span></p>
+          <p class="component__name">Exercícios das aulas</p>
+          <p class="uc-muted desc">Até 1 valor. Exercícios das aulas práticas 2 a 12 resolvidos durante o semestre.</p>
+        </div>
+      </div>
+      <div class="uc-callout">
+        <p><strong>Para aprovar</strong></p>
+        <ul class="uc-bullets">
+          <li>Exame (E) com pelo menos 4,9 valores, ou seja 35% de 14.</li>
+          <li>Nota final com pelo menos 9,5 valores.</li>
+          <li>Na época de recurso só se repete o exame. P e R ficam como estavam.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Datas das provas: editar em course.js (deadlines). O estado é calculado. -->
+    <uc-deadlines view="table" kind="assessment exam" heading="Datas"></uc-deadlines>
+
+    <section class="uc-section" aria-labelledby="praticas">
+      <h2 id="praticas">Regras das avaliações práticas</h2>
+      <ul class="uc-bullets">
+        <li>São fora do horário das aulas, em turnos de 1h45.</li>
+        <li>Vais ao turno que te for indicado. Trocas só com pedido feito pelo menos 48 horas antes.</li>
+        <li>Faltar conta como 0 valores.</li>
+        <li>O Mooshak dá pontuação parcial: a nota é a soma dos casos de teste certos.</li>
+      </ul>
+    </section>
+
+    <section class="uc-section" aria-labelledby="frequencia">
+      <h2 id="frequencia">Frequência</h2>
+      <p class="uc-prose">Sem frequência não podes ir a exame. Para a obter precisas de:</p>
+      <ul class="uc-checklist">
+        <li><strong>Responder a pelo menos 6 dos 11 quizzes</strong> no Mooshak, na semana em que estão abertos. A nota dos quizzes não conta. <a href="semanas.html">Calendário dos quizzes</a></li>
+        <li><strong>Ir a mais de metade das aulas práticas.</strong> Quem já frequentou a cadeira noutros anos só precisa dos quizzes.</li>
+      </ul>
+    </section>
+
+    <section class="uc-section" aria-labelledby="progresso">
+      <h2 id="progresso">O teu progresso</h2>
+      <p class="uc-muted desc">Documentos com autenticação estão assinalados com um cadeado.</p>
+      <div class="uc-grid" style="--uc-grid-min: 240px">
+        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/quizzes_2526_27nov2025.pdf">
+          <span class="progress__title">Respostas aos quizzes</span>
+          <span class="uc-muted uc-small">Atualizado a 27 nov 2025</span>
+        </a>
+        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/presencas_praticas_aulas1a10.pdf">
+          <span class="progress__title">Presenças nas práticas
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+          </span>
+          <span class="uc-muted uc-small">Até 30 nov 2025</span>
+        </a>
+        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/index.html">
+          <span class="progress__title">Exercícios no Mooshak
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+          </span>
+          <span class="uc-muted uc-small">Atualizado a 31 out 2025</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="uc-section" aria-labelledby="especiais">
+      <h2 id="especiais">Situações especiais</h2>
+      <ul class="uc-bullets">
+        <li>Salvo casos de força maior, não há dispensa da componente prática. A presença nas aulas é muito aconselhada, sobretudo para quem frequenta pela primeira vez.</li>
+        <li>Melhoria de nota: quem já foi aprovado noutro ano pode fazer só o exame, que passa a valer 100%.</li>
+      </ul>
+    </section>
+  </uc-page>
+</body>
+</html>

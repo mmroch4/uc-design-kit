@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horários e equipa · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Horários das aulas teóricas e práticas de Estruturas de Dados 2025/26, salas, atendimento a estudantes e equipa docente.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="schedule">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Horários e equipa</h1>
+      <p class="uc-prose">Aulas a partir de 16 de setembro de 2025. As práticas são todas no edifício FC6 (DCC).</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="teoricas">
+      <h2 id="teoricas">Aulas teóricas</h2>
+      <p class="uc-muted desc">Com Fernando Silva. Duas turmas, cada uma com aula à terça e à quinta.</p>
+      <div class="uc-grid" style="--uc-grid-min: 240px">
+        <div class="uc-card class-card">
+          <span class="class-card__code">T1</span>
+          <span class="class-card__time">3.ª e 5.ª, 14:00–15:00</span>
+          <span class="uc-muted desc">Sala FC4 0.41</span>
+        </div>
+        <div class="uc-card class-card">
+          <span class="class-card__code">T2</span>
+          <span class="class-card__time">3.ª e 5.ª, 15:00–16:00</span>
+          <span class="uc-muted desc">Sala FC6 0.29</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc-section" aria-labelledby="praticas">
+      <h2 id="praticas">Aulas práticas</h2>
+      <!-- Uma linha por turma prática, ordenadas por dia da semana. -->
+      <div class="uc-table" id="praticas-table">
+        <table>
+          <thead>
+            <tr><th scope="col">Turma</th><th scope="col">Dia</th><th scope="col">Hora</th><th scope="col">Sala (FC6)</th><th scope="col">Docente</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="uc-mono">PL2</td><td>3.ª feira</td><td class="uc-mono">16:00–18:00</td><td class="uc-mono">1.65</td><td>Joana Leite</td></tr>
+            <tr><td class="uc-mono">PL7</td><td>3.ª feira</td><td class="uc-mono">16:00–18:00</td><td class="uc-mono">0.08</td><td>Eduardo Marques</td></tr>
+            <tr><td class="uc-mono">PL8</td><td>4.ª feira</td><td class="uc-mono">11:00–13:00</td><td class="uc-mono">1.57</td><td>Duarte Nóbrega</td></tr>
+            <tr><td class="uc-mono">PL6</td><td>4.ª feira</td><td class="uc-mono">14:00–16:00</td><td class="uc-mono">1.84</td><td>Maria Pedroto</td></tr>
+            <tr><td class="uc-mono">PL4</td><td>5.ª feira</td><td class="uc-mono">16:00–18:00</td><td class="uc-mono">1.63</td><td>Duarte Nóbrega</td></tr>
+            <tr><td class="uc-mono">PL5</td><td>5.ª feira</td><td class="uc-mono">16:00–18:00</td><td class="uc-mono">1.57</td><td>Eduardo Marques</td></tr>
+            <tr><td class="uc-mono">PL1</td><td>6.ª feira</td><td class="uc-mono">16:00–18:00</td><td class="uc-mono">1.57</td><td>Eduardo Marques</td></tr>
+            <tr><td class="uc-mono">PL3</td><td>6.ª feira</td><td class="uc-mono">16:00–18:00</td><td class="uc-mono">1.55</td><td>Joana Leite</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="uc-section" aria-labelledby="atendimento">
+      <h2 id="atendimento">Atendimento a estudantes</h2>
+      <div class="uc-card office">
+        <div>
+          <a href="https://www.dcc.fc.up.pt/~fds"><strong>Fernando Silva</strong></a>
+          <span class="uc-muted desc">Gabinete 1.25</span>
+        </div>
+        <div>
+          <span><span class="uc-mono">3.ª feira</span> · 16:00–18:00</span>
+          <!-- No site original aparece "61:30"; confirmar a hora com o docente. -->
+          <span class="office__line"><span><span class="uc-mono">5.ª feira</span> · 16:30–18:00</span><span class="uc-tag uc-tag--warning">Hora a confirmar</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipa docente: editar em course.js (team). -->
+    <uc-team view="table" heading="Equipa docente"></uc-team>
+  </uc-page>
+</body>
+</html>
