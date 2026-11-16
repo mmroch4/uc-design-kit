@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-page · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-page do UC Design Kit.">
+  <meta name="description" content="Documentação do componente uc-page do UC Design Kit: o corpo de cada página, com cabeçalho, navegação, conteúdo principal e rodapé gerados a partir do course.js.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -15,24 +15,318 @@
 </head>
 <body class="docs">
   <!-- docs:header -->
-<!-- /docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
   <div class="docs-layout">
     <!-- docs:sidebar -->
-<!-- /docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html" aria-current="page"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
     <main class="docs-main" id="content">
       <article class="docs-article">
         <header class="docs-page-header">
-          <p class="docs-eyebrow">Componentes</p>
+          <p class="docs-eyebrow">Componentes · Estrutura</p>
           <h1><code>&lt;uc-page&gt;</code></h1>
-          <p class="docs-lead">Página em preparação.</p>
+          <p class="docs-lead">O corpo de cada página do site. À volta do conteúdo escrito pelo professor, desenha o cabeçalho com o nome do curso, a navegação entre páginas, as plataformas externas e o rodapé, tudo a partir do <code>course.js</code>.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
+
+        <!-- docs:demo src="../../demos/uc-page/basic.html" title="página completa do curso de demonstração" height="545" -->
+        <div class="docs-demo" id="demo-uc-page-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/basic.html" title="Demonstração: página completa do curso de demonstração" loading="lazy" style="height: 545px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page&gt;
+  &lt;uc-hero&gt;&lt;/uc-hero&gt;
+  &lt;p&gt;O conteúdo da página fica aqui, dentro do &lt;code&gt;&amp;lt;main&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração é uma página inteira do curso fictício: cabeçalho com título, edição e instituição, navegação com as quatro páginas e as duas plataformas, o conteúdo e o rodapé com a data de atualização. Nenhum item da navegação está ativo porque o ficheiro da demonstração não está em <code>pages</code>.</p>
+        <p>A moldura da demonstração é mais estreita do que 960 px, por isso a navegação aparece como no telemóvel: um botão "Menu" que abre a lista. Num ecrã largo, a navegação fica numa coluna à esquerda do conteúdo (aqui com "Início" ativo, como na página inicial):</p>
+        <figure>
+          <img src="../../assets/img/uc-page-desktop.webp" width="1600" height="700" loading="lazy" alt="A mesma página num ecrã de computador: cabeçalho com Algoritmos e Programação 2025/26 e Universidade Exemplo, coluna à esquerda com Início (ativo), Semanas, Avaliação, Sobre a UC e o grupo Plataformas, conteúdo à direita e rodapé com a data de atualização.">
+        </figure>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>Cada página do site tem um único <code>&lt;uc-page&gt;</code>, logo dentro do <code>&lt;body&gt;</code>, com todo o conteúdo lá dentro. Não se escreve <code>&lt;main&gt;</code>, cabeçalho nem rodapé: o componente gera-os.</p>
+        <uc-code lang="html" filename="semanas.html" no-download><pre><code>&lt;body&gt;
+  &lt;uc-page&gt;
+    &lt;h1&gt;Semanas&lt;/h1&gt;
+    &lt;uc-weeks&gt;…&lt;/uc-weeks&gt;
+  &lt;/uc-page&gt;
+&lt;/body&gt;</code></pre></uc-code>
+        <p>O que aparece à volta vem do <code>course.js</code>. Só <code>title</code> é obrigatório; os outros campos acrescentam partes ao cabeçalho, à navegação e ao rodapé.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  edition: "2025/26",
+  institution: { name: "Universidade Exemplo", url: "https://example.org" },
+  pages: [
+    "home",                                   // index.html, "Início"
+    { id: "weeks", href: "semanas.html" },
+    { id: "assessment", href: "avaliacao.html" },
+    { id: "about", href: "sobre.html" },
+  ],
+  platforms: [
+    { label: "Plataforma de entregas", url: "https://example.org/entregas" },
+  ],
+  footer: "© 2025 Universidade Exemplo",
+  updated: "2025-11-27",
+};</code></pre></uc-code>
+        <p>A navegação segue a ordem de <code>pages</code>. O item ativo é a página com o mesmo nome de ficheiro que a página aberta (em <code>semanas.html</code>, "Semanas"). A estrutura completa de uma página, com o <code>&lt;head&gt;</code>, está em <a href="../estrutura.html#pagina">Estrutura de um site</a>.</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="item-ativo">Item ativo escolhido</h3>
+        <p>Com <code>current</code>, o item ativo deixa de depender do nome do ficheiro. Serve para páginas que não estão na navegação, como um guião dentro de <code>guioes/</code>: com <code>current="weeks"</code>, "Semanas" fica ativo. Abra o menu da demonstração para ver o item marcado; o botão mostra também o nome da página ativa.</p>
+        <!-- docs:demo src="../../demos/uc-page/current.html" title="guião com Semanas ativo na navegação" height="455" -->
+        <div class="docs-demo" id="demo-uc-page-current">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/current.html" title="Demonstração: guião com Semanas ativo na navegação" loading="lazy" style="height: 455px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page current=&quot;weeks&quot;&gt;
+  &lt;h1&gt;Guião 10: inserir e procurar numa árvore&lt;/h1&gt;
+  &lt;p&gt;Este guião não está na navegação, mas &quot;Semanas&quot; fica ativo porque a página tem &lt;code&gt;current=&quot;weeks&quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/current.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="sem-navegacao">Sem navegação</h3>
+        <p><code>layout="full"</code> tira a navegação e deixa o conteúdo ocupar toda a largura, mantendo o cabeçalho e o rodapé. É útil para um site de uma só página, para um enunciado ou para um guião que vai ser projetado na aula.</p>
+        <!-- docs:demo src="../../demos/uc-page/full.html" title="página sem navegação" height="351" -->
+        <div class="docs-demo" id="demo-uc-page-full">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/full.html" title="Demonstração: página sem navegação" loading="lazy" style="height: 351px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page layout=&quot;full&quot;&gt;
+  &lt;h1&gt;Enunciado do trabalho 2&lt;/h1&gt;
+  &lt;p&gt;Sem navegação: o conteúdo ocupa toda a largura, entre o cabeçalho e o rodapé.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/full.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="mudar-de-lingua">Mudar de língua</h3>
+        <p>Quando <code>languages</code> tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com <code>?lang=en</code>). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com <code>lang</code> mostra só a língua ativa.</p>
+        <!-- docs:demo src="../../demos/uc-page/languages.html?lang=en" title="página em inglês com o botão para português" height="516" -->
+        <div class="docs-demo" id="demo-uc-page-languages">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/languages.html?lang=en" title="Demonstração: página em inglês com o botão para português" loading="lazy" style="height: 516px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page&gt;
+  &lt;uc-hero&gt;&lt;/uc-hero&gt;
+  &lt;p lang=&quot;pt&quot;&gt;Este parágrafo só aparece em português.&lt;/p&gt;
+  &lt;p lang=&quot;en&quot;&gt;This paragraph only appears in English.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/languages.html?lang=en">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração acrescenta ao curso a língua inglesa e o título e a descrição nas duas línguas; o rodapé do curso de demonstração já tinha as duas:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>languages: ["pt", "en"],
+title: { pt: "Algoritmos e Programação", en: "Algorithms and Programming" },
+tagline: { pt: "Um curso fictício…", en: "A fictional course…" },
+footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional course" },</code></pre></uc-code>
+        <p>A escolha fica guardada no browser e vale para as outras páginas do site. Quando uma página tem um ficheiro por língua (<code>href</code> com um endereço por língua), o botão abre o outro ficheiro em vez de trocar o texto na mesma página. As duas formas estão em <a href="../linguas.html#mesma-pagina">Línguas</a>.</p>
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-page</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
+              <tr><td><code>layout</code></td><td><code>sidebar</code> ou <code>full</code></td><td><code>sidebar</code></td><td>Com <code>full</code>, a página não tem navegação e o conteúdo ocupa toda a largura.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>Campos do <code>course.js</code> que o componente lê. Só <code>title</code> é obrigatório; sem <code>pages</code>, a navegação tem apenas "Início".</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-page</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="../course-js.html#campos-curso"><code>title</code></a></td><td>Nome do curso no cabeçalho, com link para a página <code>home</code>.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>edition</code></a></td><td>Ano letivo ao lado do nome, por exemplo "2025/26".</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>institution</code></a></td><td>Departamento ou faculdade à direita do cabeçalho, com link se tiver <code>url</code>.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>logo</code></a></td><td>Imagem antes do nome; sem ele aparece o ícone do kit e com <code>null</code> não aparece nenhuma.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>accentColor</code></a></td><td>Cor do item ativo, dos links e do ícone.</td></tr>
+              <tr><td><a href="../course-js.html#campos-linguas"><code>languages</code></a></td><td>Com mais de uma língua, mostra o botão para mudar de língua.</td></tr>
+              <tr><td><a href="../course-js.html#paginas"><code>pages</code></a></td><td>Itens da navegação, pela ordem escrita, e página de destino do nome do curso.</td></tr>
+              <tr><td><a href="../course-js.html#campos-navegacao"><code>platforms</code></a></td><td>Links externos no grupo "Plataformas", por baixo das páginas.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>footer</code></a></td><td>Texto à esquerda do rodapé. Sem ele, o nome do curso e da instituição.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>updated</code></a></td><td>"Atualizado a …" à direita do rodapé.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A referência completa dos campos está em <a href="../course-js.html#campos-navegacao">O ficheiro course.js</a>.</p>
+
+        <h2 id="comportamento">Aparecer já pronta</h2>
+        <p>Até o kit construir a página, o <code>&lt;uc-page&gt;</code> fica escondido. Assim a página aparece uma só vez, já com cabeçalho e navegação e na letra final, em vez de mostrar primeiro o conteúdo sem estilo e depois saltar.</p>
+        <ul>
+          <li>Quando o kit termina, espera pelas fontes Inter e JetBrains Mono no máximo 300 ms e acrescenta a classe <code>uc-visible</code> ao <code>&lt;html&gt;</code>, que mostra a página. Numa segunda visita as fontes já estão em cache e a espera é praticamente nula.</li>
+          <li>Se o <code>uc-kit.js</code> não carregar (endereço errado, sem rede), o conteúdo aparece ao fim de 2 segundos, sem cabeçalho nem navegação.</li>
+          <li>Com o JavaScript desligado no browser, o conteúdo aparece logo.</li>
+        </ul>
+        <p>Uma página que fique em branco durante 2 segundos e depois apareça sem estilo de kit indica que o <code>uc-kit.js</code> não carregou: confirmar os endereços do <code>&lt;head&gt;</code> em <a href="../estrutura.html#head">Estrutura de um site</a>.</p>
+
+        <h2 id="subpastas">Páginas em subpastas</h2>
+        <p>Os <code>href</code> de <code>pages</code> são relativos ao <code>course.js</code>, não à página. Uma página em <code>guioes/aula10.html</code>, que carrega <code>../course.js</code>, recebe por isso uma navegação que aponta para <code>../semanas.html</code> sem escrever nada. O <code>logo</code>, os links escritos no HTML e os do rodapé continuam relativos à página que os mostra. O exemplo completo está em <a href="../estrutura.html#subpastas">Estrutura de um site</a>.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-page</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-page</code>, <code>.uc-page--full</code></td><td>A página (o próprio <code>&lt;uc-page&gt;</code>) e a variante sem navegação.</td></tr>
+              <tr><td><code>.uc-page--nav-open</code></td><td>A página com o menu aberto, em ecrãs estreitos.</td></tr>
+              <tr><td><code>.uc-header</code>, <code>.uc-header__inner</code></td><td>O cabeçalho e a sua faixa centrada.</td></tr>
+              <tr><td><code>.uc-brand</code>, <code>__logo</code>, <code>__title</code>, <code>__edition</code></td><td>O link com o logótipo, o nome do curso e o ano letivo.</td></tr>
+              <tr><td><code>.uc-header__meta</code>, <code>.uc-header__institution</code></td><td>O lado direito do cabeçalho e a instituição.</td></tr>
+              <tr><td><code>.uc-lang-switch</code>, <code>__button</code></td><td>Os botões para mudar de língua.</td></tr>
+              <tr><td><code>.uc-shell</code></td><td>A grelha com a navegação e o conteúdo.</td></tr>
+              <tr><td><code>.uc-sidebar</code>, <code>.uc-nav</code></td><td>A coluna da navegação e o <code>&lt;nav&gt;</code> dentro dela.</td></tr>
+              <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
+              <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
+              <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
+              <tr><td><code>.uc-footer</code>, <code>__text</code>, <code>__updated</code></td><td>O rodapé, o texto à esquerda e a data de atualização.</td></tr>
+              <tr><td><code>.uc-skip-link</code></td><td>O link "Saltar para o conteúdo", visível só com o foco do teclado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Navegação mais larga e conteúdo um pouco mais estreito. */
+:root {
+  --uc-sidebar-width: 240px;
+  --uc-content-max: 1100px;
+}
+
+/* Cabeçalho com fundo na cor do curso. */
+.uc-header { background: var(--uc-color-accent-soft); }</code></pre></uc-code>
+        <p>A largura da navegação é <code>--uc-sidebar-width</code> (216 px), a da página é <code>--uc-content-max</code> (1200 px) e o espaço entre os blocos do conteúdo é <code>--uc-main-gap</code> (48 px). Abaixo de 960 px de largura, a navegação passa para o botão "Menu".</p>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>Gera os pontos de referência <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code> e <code>&lt;footer&gt;</code> e um link "Saltar para o conteúdo" como primeiro elemento focável. O item ativo tem <code>aria-current="page"</code>; o botão "Menu" indica com <code>aria-expanded</code> se está aberto e fecha com Escape. As plataformas externas são anunciadas como "(site externo)" e o botão de língua diz para que língua muda.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Um <code>&lt;h1&gt;</code> por página (o <code>&lt;uc-hero&gt;</code> já o tem), títulos seguintes por ordem e um <code>&lt;title&gt;</code> que distinga as páginas. Com <code>logo</code>, uma imagem com contraste suficiente; o texto alternativo fica vazio porque o nome do curso está ao lado.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Com o JavaScript desligado, o conteúdo aparece logo, numa coluna centrada, sem cabeçalho, navegação nem rodapé. Se o JavaScript estiver ligado mas o kit não carregar, o mesmo conteúdo aparece ao fim de 2 segundos. Convém por isso que a página se perceba sem a navegação: um título no início e links para as outras páginas onde fizerem falta.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-hero.html"><code>&lt;uc-hero&gt;</code></a>: o título do curso no início da página inicial.</li>
+          <li><a href="uc-guide.html"><code>&lt;uc-guide&gt;</code></a>: um guião de aula, que costuma usar <code>current="weeks"</code>.</li>
+          <li><a href="../estrutura.html#pagina">Estrutura de um site</a>: o <code>&lt;head&gt;</code>, a lista de páginas e as subpastas.</li>
+          <li><a href="../linguas.html">Línguas</a>: conteúdo bilingue e um ficheiro por língua.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/index.html">a página inicial de Estruturas de Dados 2025/26</a> e <a href="../../../examples/edados-2526/guioes/aula01.html">um guião numa subpasta</a>.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
-<!-- /docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="index.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Visão geral</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-hero.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-hero</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-page.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
     </main>
     <aside class="docs-aside">
       <!-- docs:toc -->
-<!-- /docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#item-ativo">Item ativo escolhido</a></li>
+          <li class="docs-toc__sub"><a href="#sem-navegacao">Sem navegação</a></li>
+          <li class="docs-toc__sub"><a href="#mudar-de-lingua">Mudar de língua</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#comportamento">Aparecer já pronta</a></li>
+          <li><a href="#subpastas">Páginas em subpastas</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
     </aside>
   </div>
 </body>

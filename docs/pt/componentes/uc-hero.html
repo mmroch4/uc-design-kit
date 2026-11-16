@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-hero · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-hero do UC Design Kit.">
+  <meta name="description" content="Documentação do componente uc-hero do UC Design Kit: o título da página inicial, com código, nome e descrição do curso tirados do course.js.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -15,24 +15,235 @@
 </head>
 <body class="docs">
   <!-- docs:header -->
-<!-- /docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
   <div class="docs-layout">
     <!-- docs:sidebar -->
-<!-- /docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html" aria-current="page"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
     <main class="docs-main" id="content">
       <article class="docs-article">
         <header class="docs-page-header">
-          <p class="docs-eyebrow">Componentes</p>
+          <p class="docs-eyebrow">Componentes · Estrutura</p>
           <h1><code>&lt;uc-hero&gt;</code></h1>
-          <p class="docs-lead">Página em preparação.</p>
+          <p class="docs-lead">O título da página inicial: código, nome e descrição do curso, escritos uma vez no <code>course.js</code> e mostrados com o nome como <code>&lt;h1&gt;</code>.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
+
+        <!-- docs:demo src="../../demos/uc-hero/basic.html" title="código, nome e descrição do curso" height="209" -->
+        <div class="docs-demo" id="demo-uc-hero-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-hero/basic.html" title="Demonstração: código, nome e descrição do curso" loading="lazy" style="height: 209px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-hero&gt;&lt;/uc-hero&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-hero/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração mostra o código <code>AP0001</code>, o nome "Algoritmos e Programação" e a descrição do curso fictício. Nada disto está escrito no HTML: vem dos campos <code>code</code>, <code>title</code> e <code>tagline</code>.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>O <code>&lt;uc-hero&gt;</code> vai no início da página inicial, dentro do <code>&lt;uc-page&gt;</code>. Como gera o <code>&lt;h1&gt;</code>, a página não precisa de outro.</p>
+        <uc-code lang="html" filename="index.html" no-download><pre><code>&lt;uc-page&gt;
+  &lt;uc-hero&gt;&lt;/uc-hero&gt;
+  &lt;uc-this-week&gt;&lt;/uc-this-week&gt;
+  …
+&lt;/uc-page&gt;</code></pre></uc-code>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  code: "AP0001",                       // por cima do nome, em letra mono
+  title: "Algoritmos e Programação",    // o &lt;h1&gt;
+  tagline: "Um curso fictício usado nas demonstrações da documentação do UC Design Kit.",
+};</code></pre></uc-code>
+        <p>Sem <code>code</code> ou sem <code>tagline</code>, a linha correspondente não aparece. O nome é o mesmo do cabeçalho do <code>&lt;uc-page&gt;</code>, por isso muda nos dois sítios ao mesmo tempo.</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="com-conteudo">Com conteúdo por baixo</h3>
+        <p>O que estiver escrito dentro do <code>&lt;uc-hero&gt;</code> aparece por baixo da descrição, no mesmo bloco. Aqui, três atalhos com a classe <code>uc-shortcuts</code>; podia ser também um parágrafo com o horário ou um botão para a plataforma de entregas.</p>
+        <!-- docs:demo src="../../demos/uc-hero/children.html" title="título do curso com três atalhos por baixo" height="273" -->
+        <div class="docs-demo" id="demo-uc-hero-children">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-hero/children.html" title="Demonstração: título do curso com três atalhos por baixo" loading="lazy" style="height: 273px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-hero&gt;
+  &lt;ul class=&quot;uc-shortcuts&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Semanas e guiões&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Avaliação&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Programa&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/uc-hero&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-hero/children.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="noutra-lingua">Noutra língua</h3>
+        <p>Num site bilingue, <code>title</code> e <code>tagline</code> escrevem-se com um texto por língua e o <code>&lt;uc-hero&gt;</code> mostra o da língua ativa. Esta demonstração abre em inglês com <code>?lang=en</code>.</p>
+        <!-- docs:demo src="../../demos/uc-hero/languages.html?lang=en" title="título e descrição em inglês" height="180" -->
+        <div class="docs-demo" id="demo-uc-hero-languages">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-hero/languages.html?lang=en" title="Demonstração: título e descrição em inglês" loading="lazy" style="height: 180px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-hero&gt;&lt;/uc-hero&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-hero/languages.html?lang=en">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <uc-code lang="js" filename="course.js" no-download><pre><code>languages: ["pt", "en"],
+title: { pt: "Algoritmos e Programação", en: "Algorithms and Programming" },
+tagline: {
+  pt: "Um curso fictício usado nas demonstrações da documentação do UC Design Kit.",
+  en: "A fictional course used in the demos of the UC Design Kit documentation.",
+},</code></pre></uc-code>
+        <p>O código do curso é um texto simples e não muda com a língua. O conteúdo escrito dentro do componente segue as regras habituais: marcado com <code>lang</code>, aparece só na sua língua (ver <a href="../linguas.html#mesma-pagina">Línguas</a>).</p>
+
+        <h2 id="atributos">Atributos</h2>
+        <p>Não tem atributos.</p>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>Campos do <code>course.js</code> que o componente lê. Só <code>title</code> é obrigatório no <code>course.js</code>; os outros dois são opcionais.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-hero</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="../course-js.html#campos-curso"><code>code</code></a></td><td>Código do curso, por cima do nome.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>title</code></a></td><td>Nome do curso, no <code>&lt;h1&gt;</code>.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>tagline</code></a></td><td>Descrição numa frase, por baixo do nome.</td></tr>
+              <tr><td><a href="../course-js.html#campos-linguas"><code>languages</code></a></td><td>Escolher o texto de <code>title</code> e <code>tagline</code> na língua ativa.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A referência completa dos campos está em <a href="../course-js.html#campos-curso">O ficheiro course.js</a>.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-hero</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-hero</code></td><td>O bloco (o próprio <code>&lt;uc-hero&gt;</code>), uma coluna com espaço entre as linhas.</td></tr>
+              <tr><td><code>.uc-hero__code</code></td><td>O código do curso.</td></tr>
+              <tr><td><code>.uc-hero__title</code></td><td>O <code>&lt;h1&gt;</code> com o nome.</td></tr>
+              <tr><td><code>.uc-hero__tagline</code></td><td>A descrição, com no máximo 640 px de largura.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Código do curso na cor do curso. */
+.uc-hero__code { color: var(--uc-color-accent); font-weight: 600; }
+
+/* Descrição em toda a largura. */
+.uc-hero__tagline { max-width: none; }</code></pre></uc-code>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>Gera o <code>&lt;h1&gt;</code> da página com o nome do curso na língua ativa, e o código e a descrição como parágrafos antes e depois dele. O conteúdo acrescentado fica a seguir, pela mesma ordem em que foi escrito.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Não escrever outro <code>&lt;h1&gt;</code> na mesma página e começar as secções seguintes em <code>&lt;h2&gt;</code>. Uma descrição curta, de uma frase, e links acrescentados com texto que diga para onde vão.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Se o kit não carregar, o código, o nome e a descrição não aparecem, porque vêm do <code>course.js</code>; a página fica sem <code>&lt;h1&gt;</code>. O conteúdo escrito dentro do componente continua visível.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-page.html"><code>&lt;uc-page&gt;</code></a>: o corpo da página, cujo cabeçalho mostra o mesmo nome.</li>
+          <li><a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>: o cartão "Esta semana", que costuma vir logo a seguir na página inicial.</li>
+          <li><a href="../criar-site.html#configurar">Criar o meu site</a>: o passo em que se mudam o nome e a descrição no <code>course.js</code>.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/index.html">a página inicial de Estruturas de Dados 2025/26</a>.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
-<!-- /docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-page.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-page</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-notices.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-notices</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-hero.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
     </main>
     <aside class="docs-aside">
       <!-- docs:toc -->
-<!-- /docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#com-conteudo">Com conteúdo por baixo</a></li>
+          <li class="docs-toc__sub"><a href="#noutra-lingua">Noutra língua</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
     </aside>
   </div>
 </body>
