@@ -142,6 +142,32 @@
       return;
     }
     document.documentElement.style.setProperty("--uc-color-accent", color);
+    warnLowContrast(color);
+  }
+
+  /**
+   * The accent is the colour of links on white and the background of white text
+   * on primary buttons: below 4.5:1 against white it fails WCAG 1.4.3. The colour
+   * is still applied; the console says so, with the ratio.
+   */
+  function warnLowContrast(color) {
+    const probe = document.createElement("span");
+    probe.style.color = color;
+    probe.hidden = true;
+    (document.body || document.documentElement).appendChild(probe);
+    const match = /rgba?\(([^)]+)\)/.exec(getComputedStyle(probe).color);
+    probe.remove();
+    if (!match) return;
+    const [r, g, b] = match[1].split(/[\s,/]+/).map(Number);
+    const channel = (value) => {
+      const v = value / 255;
+      return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    };
+    const luminance = 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
+    const ratio = 1.05 / (luminance + 0.05);
+    if (ratio < 4.5) {
+      warn(`accentColor "${color}" has a contrast of ${ratio.toFixed(1)}:1 with white; links and primary buttons need at least 4.5:1 (WCAG 1.4.3). Choose a darker colour.`);
+    }
   }
 
   const raw = window.UC_COURSE;

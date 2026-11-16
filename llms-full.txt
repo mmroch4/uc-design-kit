@@ -1578,6 +1578,7 @@ Exemplo (título próprio e ligações por baixo da lista), [demonstração ao v
 | `limit` | número | `5` | Quantos avisos aparecem na lista. Os mais antigos ficam em "Avisos anteriores (n)", fechado. |
 | `new-days` | número | `7` | Um aviso com menos de este número de dias leva a etiqueta "Novo". Um aviso de hoje conta como 0 dias. |
 | `heading` | texto ou `none` | "Avisos" | Título da secção, num `<h2>`. Com `none`, a secção fica sem título. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
 
 ## Configuração usada
 
@@ -1774,6 +1775,7 @@ Exemplo (dois prazos e uma ligação por baixo), [demonstração ao vivo](https:
 | `per-kind` | número | sem limite | No máximo este número de prazos de cada tipo. `per-kind="1"` mostra só o próximo quiz, a próxima entrega… |
 | `limit` | número | sem limite | No máximo este número de prazos no total, depois dos outros filtros. |
 | `heading` | texto ou `none` | "Próximas datas" | Título da secção, num `<h2>`. Com `none`, a secção fica sem título. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
 
 ## Configuração usada
 
@@ -2877,6 +2879,7 @@ Exemplo (cartão depois do fim do semestre), [demonstração ao vivo](https://uc
 | --- | --- | --- | --- |
 | `source` | URL | a página `weeks` de `pages` | Página de onde ler o título e as linhas da semana atual. Relativa à página onde está o cartão. |
 | `kind` | tipos separados por espaços | todos | Só mostra prazos destes tipos, por exemplo `kind="assessment exam"`. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
 
 ## Configuração usada
 
@@ -3063,6 +3066,7 @@ Exemplo (tabela da equipa com uma nota sobre o atendimento), [demonstração ao 
 | `view` | `cards` ou `table` | `cards` | Cartões numa grelha ou uma tabela com uma linha por pessoa. |
 | `role` | funções separadas por espaços | todas | Mostra só as pessoas com uma destas funções, por exemplo `role="assistant"`. Depois de o kit carregar passa para `data-role` (ver [abaixo](#atributo-role)). |
 | `heading` | texto ou `none` | "Equipa docente" | Título da secção, num `<h2>`. Com `none`, não há título visível. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
 
 ## Configuração usada
 
@@ -3891,7 +3895,7 @@ As cores do realce vêm dos tokens do kit: palavras reservadas em `--uc-color-ac
 
 ### O que o componente faz
 
-A área do código recebe o foco e desliza com as setas, e é identificada pelo nome do ficheiro. Os botões têm texto e o resultado de Copiar e de Executar é anunciado aos leitores de ecrã ("Copiado", "2 de 3 testes passaram"). Cada teste diz "Passou" ou "Falhou" além do ✓ ou ✗. O editor é um `<textarea>` com nome, e o botão de recolher indica se o código está visível. O `lang` passa para `data-lang` para não mudar a voz do leitor de ecrã.
+Quando o código é mais largo do que a caixa, a área do código recebe o foco com Tab e desliza com as setas; quando cabe, o Tab passa-a à frente. É identificada pelo nome do ficheiro. Os botões têm texto e o resultado de Copiar e de Executar é anunciado aos leitores de ecrã ("Copiado", "2 de 3 testes passaram", "Execução terminada. O resultado está abaixo do código."). Cada teste diz "Passou" ou "Falhou" além do ✓ ou ✗. O editor é um `<textarea>` com nome, e o botão de recolher indica se o código está visível. O `lang` passa para `data-lang` para não mudar a voz do leitor de ecrã.
 
 ### O que cabe a quem escreve
 
@@ -4030,6 +4034,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-question__prompt` | O enunciado. |
 | `.uc-question__options` | O grupo de opções (um `<fieldset>`). |
 | `.uc-question__option`, `__option--correct` | Cada opção e uma opção certa depois de resolvida. |
+| `.uc-question__mark` | O visto que aparece nas opções certas depois de resolvida, para que não se distingam só pela cor. |
 | `.uc-question__input`, `__label` | O botão de opção ou a caixa, e o texto da opção. |
 | `.uc-question__actions`, `__check` | A linha do botão e o botão "Verificar". |
 | `.uc-question__feedback`, `--none`, `--empty`, `--incorrect`, `--correct` | A zona da mensagem e o seu estado. |
@@ -4049,7 +4054,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 
 ### O que o componente faz
 
-As opções são `<input type="radio">` ou `type="checkbox"` nativos, cada um com o seu `<label>`, num `<fieldset>` cujo nome é o enunciado. A mensagem fica numa região `aria-live="polite"`. O estado certo não depende só da cor: há a mensagem "Certo!" com um ícone.
+As opções são `<input type="radio">` ou `type="checkbox"` nativos, cada um com o seu `<label>`, num `<fieldset>` cujo nome é o enunciado. A mensagem fica numa região `aria-live="polite"`. O estado certo não depende só da cor: há a mensagem "Certo!" com um ícone, e as opções certas ganham um visto.
 
 ### O que cabe a quem escreve
 
@@ -5317,7 +5322,7 @@ O kit não toca nos ficheiros ligados. Slides e enunciados em PDF devem ter text
 
 ### A cor do curso
 
-O kit não verifica o `accentColor`. Como é a cor das ligações sobre branco e o fundo do texto branco dos botões principais, precisa de pelo menos 4,5:1 de contraste com branco. O azul por omissão tem 6,7:1. Ver [Cor](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/cor.md).
+O kit aplica qualquer `accentColor`, mas avisa na consola do navegador quando tem menos de 4,5:1 de contraste com branco (`[uc-kit] course.js: accentColor "#…" has a contrast of 3.2:1 with white…`). Como é a cor das ligações sobre branco e o fundo do texto branco dos botões principais, precisa de pelo menos 4,5:1 de contraste com branco. O azul por omissão tem 6,7:1. Ver [Cor](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/cor.md).
 
 ### Cor e posição
 
@@ -7644,6 +7649,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-question__prompt` | O enunciado. |
 | `.uc-question__options` | O grupo de opções (um `<fieldset>`). |
 | `.uc-question__option`, `__option--correct` | Cada opção e uma opção certa depois de resolvida. |
+| `.uc-question__mark` | O visto que aparece nas opções certas depois de resolvida, para que não se distingam só pela cor. |
 | `.uc-question__input`, `__label` | O botão de opção ou a caixa, e o texto da opção. |
 | `.uc-question__actions`, `__check` | A linha do botão e o botão "Verificar". |
 | `.uc-question__feedback`, `--none`, `--empty`, `--incorrect`, `--correct` | A zona da mensagem e o seu estado. |
@@ -8144,6 +8150,7 @@ hidden until that day, so notices can be written in advance.
 | `limit` | number | `5` | Older notices go into a collapsed "Earlier notices (n)" section. |
 | `new-days` | number | `7` | Notices newer than this get a "New" badge. |
 | `heading` | text \| `none` | localised "Notices" | Section heading (`<h2>`). |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading, e.g. `3` inside a section that already has an `<h2>`. It looks the same at any level. |
 
 Children written inside the element (e.g. a link to the assessment rules) are
 kept below the list.
@@ -8160,6 +8167,7 @@ Lists `UC_COURSE.deadlines`.
 | `per-kind` | number | none | At most this many items of each kind, e.g. `per-kind="1"` shows only the next quiz. |
 | `limit` | number | none | |
 | `heading` | text \| `none` | localised "Upcoming dates" | |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading. |
 
 Status shown in the table view: *Done* (date passed), *Next* (the first
 upcoming), *Scheduled* (later), *To be scheduled* (`date: null` or month only).
@@ -8245,6 +8253,7 @@ returns. Outside the semester it shows the next relevant date.
 | --- | --- | --- |
 | `source` | URL | the `weeks` page from `pages` |
 | `kind` | space-separated kinds | all kinds; use it to avoid repeating a deadline the week's rows already mention |
+| `heading-level` | `2`–`6` | `2` |
 
 ### 3.4 People
 
@@ -8257,6 +8266,7 @@ Renders `UC_COURSE.team`.
 | `view` | `cards` \| `table` | `cards` |
 | `role` | space-separated roles | all |
 | `heading` | text \| `none` | localised "Teaching team" |
+| `heading-level` | `2`–`6` | `2` |
 
 `role` is not a valid ARIA role, so after upgrade the element moves it to
 `data-role` (accessibility checkers would flag it otherwise). Write `role` in

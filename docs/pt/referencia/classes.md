@@ -208,6 +208,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-question__prompt` | O enunciado. |
 | `.uc-question__options` | O grupo de opções (um `<fieldset>`). |
 | `.uc-question__option`, `__option--correct` | Cada opção e uma opção certa depois de resolvida. |
+| `.uc-question__mark` | O visto que aparece nas opções certas depois de resolvida, para que não se distingam só pela cor. |
 | `.uc-question__input`, `__label` | O botão de opção ou a caixa, e o texto da opção. |
 | `.uc-question__actions`, `__check` | A linha do botão e o botão "Verificar". |
 | `.uc-question__feedback`, `--none`, `--empty`, `--incorrect`, `--correct` | A zona da mensagem e o seu estado. |

@@ -92,6 +92,7 @@ Exemplo (título próprio e ligações por baixo da lista), [demonstração ao v
 | `limit` | número | `5` | Quantos avisos aparecem na lista. Os mais antigos ficam em "Avisos anteriores (n)", fechado. |
 | `new-days` | número | `7` | Um aviso com menos de este número de dias leva a etiqueta "Novo". Um aviso de hoje conta como 0 dias. |
 | `heading` | texto ou `none` | "Avisos" | Título da secção, num `<h2>`. Com `none`, a secção fica sem título. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
 
 ## Configuração usada
 

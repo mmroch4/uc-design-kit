@@ -32,6 +32,13 @@
   <div class="docs-layout">
     <!-- docs:sidebar -->
     <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
@@ -246,6 +253,7 @@
               <tr><td><code>per-kind</code></td><td>número</td><td>sem limite</td><td>No máximo este número de prazos de cada tipo. <code>per-kind="1"</code> mostra só o próximo quiz, a próxima entrega…</td></tr>
               <tr><td><code>limit</code></td><td>número</td><td>sem limite</td><td>No máximo este número de prazos no total, depois dos outros filtros.</td></tr>
               <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td>"Próximas datas"</td><td>Título da secção, num <code>&lt;h2&gt;</code>. Com <code>none</code>, a secção fica sem título.</td></tr>
+              <tr><td><code>heading-level</code></td><td><code>2</code> a <code>6</code></td><td><code>2</code></td><td>Nível do título gerado: <code>3</code> dá um <code>&lt;h3&gt;</code>, para quando o componente está dentro de uma secção que já tem um <code>&lt;h2&gt;</code>. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar.</td></tr>
             </tbody>
           </table>
         </div>

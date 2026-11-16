@@ -32,6 +32,13 @@
   <div class="docs-layout">
     <!-- docs:sidebar -->
     <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
@@ -227,6 +234,7 @@
               <tr><td><code>view</code></td><td><code>cards</code> ou <code>table</code></td><td><code>cards</code></td><td>Cartões numa grelha ou uma tabela com uma linha por pessoa.</td></tr>
               <tr><td><code>role</code></td><td>funções separadas por espaços</td><td>todas</td><td>Mostra só as pessoas com uma destas funções, por exemplo <code>role="assistant"</code>. Depois de o kit carregar passa para <code>data-role</code> (ver <a href="#atributo-role">abaixo</a>).</td></tr>
               <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td>"Equipa docente"</td><td>Título da secção, num <code>&lt;h2&gt;</code>. Com <code>none</code>, não há título visível.</td></tr>
+              <tr><td><code>heading-level</code></td><td><code>2</code> a <code>6</code></td><td><code>2</code></td><td>Nível do título gerado: <code>3</code> dá um <code>&lt;h3&gt;</code>, para quando o componente está dentro de uma secção que já tem um <code>&lt;h2&gt;</code>. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar.</td></tr>
             </tbody>
           </table>
         </div>

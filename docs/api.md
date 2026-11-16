@@ -251,6 +251,7 @@ hidden until that day, so notices can be written in advance.
 | `limit` | number | `5` | Older notices go into a collapsed "Earlier notices (n)" section. |
 | `new-days` | number | `7` | Notices newer than this get a "New" badge. |
 | `heading` | text \| `none` | localised "Notices" | Section heading (`<h2>`). |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading, e.g. `3` inside a section that already has an `<h2>`. It looks the same at any level. |
 
 Children written inside the element (e.g. a link to the assessment rules) are
 kept below the list.
@@ -267,6 +268,7 @@ Lists `UC_COURSE.deadlines`.
 | `per-kind` | number | none | At most this many items of each kind, e.g. `per-kind="1"` shows only the next quiz. |
 | `limit` | number | none | |
 | `heading` | text \| `none` | localised "Upcoming dates" | |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading. |
 
 Status shown in the table view: *Done* (date passed), *Next* (the first
 upcoming), *Scheduled* (later), *To be scheduled* (`date: null` or month only).
@@ -352,6 +354,7 @@ returns. Outside the semester it shows the next relevant date.
 | --- | --- | --- |
 | `source` | URL | the `weeks` page from `pages` |
 | `kind` | space-separated kinds | all kinds; use it to avoid repeating a deadline the week's rows already mention |
+| `heading-level` | `2`–`6` | `2` |
 
 ### 3.4 People
 
@@ -364,6 +367,7 @@ Renders `UC_COURSE.team`.
 | `view` | `cards` \| `table` | `cards` |
 | `role` | space-separated roles | all |
 | `heading` | text \| `none` | localised "Teaching team" |
+| `heading-level` | `2`–`6` | `2` |
 
 `role` is not a valid ARIA role, so after upgrade the element moves it to
 `data-role` (accessibility checkers would flag it otherwise). Write `role` in

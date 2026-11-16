@@ -32,6 +32,13 @@
   <div class="docs-layout">
     <!-- docs:sidebar -->
     <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
@@ -247,6 +254,7 @@ print(len(x))&lt;/code&gt;&lt;/pre&gt;&lt;/uc-code&gt;
               <tr><td><code>.uc-question__prompt</code></td><td>O enunciado.</td></tr>
               <tr><td><code>.uc-question__options</code></td><td>O grupo de opções (um <code>&lt;fieldset&gt;</code>).</td></tr>
               <tr><td><code>.uc-question__option</code>, <code>__option--correct</code></td><td>Cada opção e uma opção certa depois de resolvida.</td></tr>
+              <tr><td><code>.uc-question__mark</code></td><td>O visto que aparece nas opções certas depois de resolvida, para que não se distingam só pela cor.</td></tr>
               <tr><td><code>.uc-question__input</code>, <code>__label</code></td><td>O botão de opção ou a caixa, e o texto da opção.</td></tr>
               <tr><td><code>.uc-question__actions</code>, <code>__check</code></td><td>A linha do botão e o botão "Verificar".</td></tr>
               <tr><td><code>.uc-question__feedback</code>, <code>--none</code>, <code>--empty</code>, <code>--incorrect</code>, <code>--correct</code></td><td>A zona da mensagem e o seu estado.</td></tr>
@@ -264,7 +272,7 @@ print(len(x))&lt;/code&gt;&lt;/pre&gt;&lt;/uc-code&gt;
         <div class="docs-grid-2">
           <div class="uc-card">
             <h3>O que o componente faz</h3>
-            <p>As opções são <code>&lt;input type="radio"&gt;</code> ou <code>type="checkbox"</code> nativos, cada um com o seu <code>&lt;label&gt;</code>, num <code>&lt;fieldset&gt;</code> cujo nome é o enunciado. A mensagem fica numa região <code>aria-live="polite"</code>. O estado certo não depende só da cor: há a mensagem "Certo!" com um ícone.</p>
+            <p>As opções são <code>&lt;input type="radio"&gt;</code> ou <code>type="checkbox"</code> nativos, cada um com o seu <code>&lt;label&gt;</code>, num <code>&lt;fieldset&gt;</code> cujo nome é o enunciado. A mensagem fica numa região <code>aria-live="polite"</code>. O estado certo não depende só da cor: há a mensagem "Certo!" com um ícone, e as opções certas ganham um visto.</p>
           </div>
           <div class="uc-card">
             <h3>O que cabe a quem escreve</h3>

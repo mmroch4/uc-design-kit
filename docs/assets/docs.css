@@ -417,6 +417,18 @@ html:not(.docs-js) .docs-demo__open { padding: 0 var(--uc-space-4); }
   html:not(.docs-js) .docs-sidebar { order: 2; }
 }
 
+/* Copy of the header links, shown in the menu only where the header hides them. */
+.docs-sidebar__group--site { display: none; }
+.docs-sidebar__group--site + .docs-sidebar__group { margin-top: 0; }
+
+@media (max-width: 30em) {
+  /* No room in the header at 320 px: the menu (or, on the landing page, the page
+     itself) has the same links. */
+  .docs-header__nav { display: none; }
+  .docs-sidebar__group--site { display: block; }
+  .docs-sidebar__group--site + .docs-sidebar__group { margin-top: var(--uc-space-6); }
+}
+
 @media (max-width: 480px) {
   /* Hidden but still the link's accessible name. */
   .docs-brand span {

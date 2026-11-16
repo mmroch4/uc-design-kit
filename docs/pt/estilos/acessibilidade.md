@@ -86,7 +86,7 @@ O kit não toca nos ficheiros ligados. Slides e enunciados em PDF devem ter text
 
 ### A cor do curso
 
-O kit não verifica o `accentColor`. Como é a cor das ligações sobre branco e o fundo do texto branco dos botões principais, precisa de pelo menos 4,5:1 de contraste com branco. O azul por omissão tem 6,7:1. Ver [Cor](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/cor.md).
+O kit aplica qualquer `accentColor`, mas avisa na consola do navegador quando tem menos de 4,5:1 de contraste com branco (`[uc-kit] course.js: accentColor "#…" has a contrast of 3.2:1 with white…`). Como é a cor das ligações sobre branco e o fundo do texto branco dos botões principais, precisa de pelo menos 4,5:1 de contraste com branco. O azul por omissão tem 6,7:1. Ver [Cor](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/cor.md).
 
 ### Cor e posição
 

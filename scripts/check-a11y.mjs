@@ -290,6 +290,17 @@ async function checkBehaviour(browser, origin, relative) {
     if (feedback.live !== "polite" || !feedback.text) problems.push("question: feedback is not announced in a polite live region");
   }
 
+  // In-page JavaScript runs in a Web Worker, with no network: its end must be announced.
+  const run = await firstVisible(page, 'uc-code[data-lang="js"] button.uc-code__run');
+  if (run) {
+    await run.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForFunction(() => !document.querySelector(".uc-code__run[aria-disabled='true']"), null, { timeout: 10000 }).catch(() => {});
+    await page.waitForTimeout(150);
+    if (!/Execução terminada|testes passaram|Run finished|tests passed/.test(await liveText(page))) problems.push("run: the end of the run is not announced");
+    if (!(await focusedMatches(page, ".uc-code__run"))) problems.push("run: the run button lost focus");
+  }
+
   const done = await page.$(".uc-exercise__toggle");
   if (done) {
     await page.evaluate(() => document.querySelectorAll("uc-exercise details").forEach((details) => (details.open = true)));

@@ -104,7 +104,7 @@
 
   class UCThisWeek extends UC.Element {
     static get observedAttributes() {
-      return ["source", "kind"];
+      return ["source", "kind", "heading-level"];
     }
 
     /** Keeps only the deadlines whose kind is listed in the `kind` attribute (all when absent). */
@@ -146,7 +146,7 @@
       return h(
         "div",
         { class: "uc-this-week__header" },
-        h("h2", { class: "uc-this-week__heading", id: this.headingId }, this.t(key)),
+        h(UC.internal.headingTag(this), { class: "uc-this-week__heading", id: this.headingId }, this.t(key)),
         meta ? h("span", { class: "uc-this-week__meta" }, meta) : null,
       );
     }

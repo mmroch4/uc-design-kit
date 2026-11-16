@@ -75,7 +75,7 @@
 
   class UCDeadlines extends UC.Element {
     static get observedAttributes() {
-      return ["view", "filter", "kind", "per-kind", "limit", "heading"];
+      return ["view", "filter", "kind", "per-kind", "limit", "heading", "heading-level"];
     }
 
     setup() {
@@ -149,7 +149,7 @@
       const value = this.getAttribute("heading");
       if (value !== null && value.trim().toLowerCase() === "none") return null;
       const label = value !== null && value.trim() ? value : this.t("deadlines.heading");
-      return h("h2", { class: "uc-deadlines__heading", id: this.headingId }, label);
+      return h(UC.internal.headingTag(this), { class: "uc-deadlines__heading", id: this.headingId }, label);
     }
 
     renderTitle(deadline) {
