@@ -7,6 +7,12 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Documentation site (phase 1): a landing page at the site root, the
+  documentation frame in `docs/pt/` (sidebar, "Nesta página", previous/next,
+  live demos in iframes with their code generated from the demo files), the
+  Introduction and the `<uc-week>` page. `npm run build` fills the generated
+  parts; `npm test` also runs `scripts/check-docs.mjs` (navigation, links and
+  attribute coverage against `docs/api.md`) and checks the docs pages.
 - `<uc-code collapsible>`: a show/hide toggle in the header; add `collapsed`
   to start folded. The EDados lecture code pages use it.
 - `<pre data-copy>`: a copy button for preformatted text such as problem

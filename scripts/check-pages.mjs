@@ -2,8 +2,8 @@
 /**
  * Page checker for the UC Design Kit.
  *
- * For every HTML page in tests/pages, examples, template and the repository
- * root, it verifies:
+ * For every HTML page in tests/pages, examples, template, docs (documentation
+ * and its demos) and the repository root, it verifies:
  *   - no console errors or uncaught exceptions (served over HTTP and from file://)
  *   - no missing local resources (HTTP 404)
  *   - no horizontal scrolling at a 360 px wide viewport
@@ -26,7 +26,7 @@ import { chromium } from "playwright";
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SCREENSHOT_DIR = path.join(ROOT, "tests", "screenshots");
-const PAGE_DIRS = ["tests/pages", "examples", "template"];
+const PAGE_DIRS = ["tests/pages", "examples", "template", "docs"];
 const IGNORED_DIRS = new Set(["node_modules", ".git", "screenshots"]);
 const TODAY = process.env.TEST_TODAY || "2025-11-27";
 const VIEWPORTS = [
@@ -61,7 +61,12 @@ async function findPages() {
     const absolute = path.join(ROOT, dir);
     if (await exists(absolute)) pages.push(...(await walk(absolute)));
   }
-  return pages.filter((file) => file.endsWith(".html")).sort();
+  const html = pages.filter((file) => file.endsWith(".html")).sort();
+  // Redirect stubs (<meta http-equiv="refresh">, e.g. docs/index.html) navigate
+  // away while being checked; their target is checked on its own.
+  const isRedirect = async (file) => /http-equiv="refresh"/i.test(await readFile(file, "utf8"));
+  const flags = await Promise.all(html.map(isRedirect));
+  return html.filter((_, index) => !flags[index]);
 }
 
 async function walk(dir) {

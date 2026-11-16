@@ -1,0 +1,8 @@
+/* Frame of a documentation demo: white page, comfortable padding, no page chrome. */
+html.demo-framed { overflow: hidden; }
+body { padding: var(--uc-space-6); }
+.demo-stack { display: flex; flex-direction: column; gap: var(--uc-space-4); }
+
+@media (max-width: 480px) {
+  body { padding: var(--uc-space-4); }
+}

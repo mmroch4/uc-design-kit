@@ -6,19 +6,22 @@
  * (uc-kit.js.map, uc-kit.css.map) that embeds the original sources, so the
  * browser's developer tools show the readable files from kit/src.
  *
+ * It then fills the generated parts of the documentation pages (scripts/docs.mjs).
+ *
  * It also verifies the frozen releases (kit/vX.Y.Z/, made by
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
  * they were created, because browsers cache them for a year.
  *
  * Usage: node scripts/build.mjs [--check]
- *   --check  exits with an error when kit/v1 is out of date or a release was
- *            modified (used in CI).
+ *   --check  exits with an error when kit/v1 or a documentation page is out
+ *            of date, or a release was modified (used in CI).
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { transform } from "esbuild";
 import { KIT, listReleases, verifyRelease } from "./releases.mjs";
+import { buildDocs } from "./docs.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(KIT, "src");
@@ -124,6 +127,7 @@ async function main() {
       console.log(`wrote kit/v1/${name} (${(content.length / 1024).toFixed(1)} KB)`);
     }
   }
+  if ((await buildDocs({ check })) > 0) failed = true;
   for (const release of await listReleases()) {
     const problems = await verifyRelease(release);
     for (const problem of problems) console.error(`kit/${release}: ${problem}`);

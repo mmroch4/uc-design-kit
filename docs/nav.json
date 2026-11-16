@@ -1,0 +1,39 @@
+{
+  "$comment": "Documentation navigation, in sidebar order. scripts/docs.mjs builds the header, sidebar, 'Nesta página' and previous/next links of every page from it; scripts/check-docs.mjs fails when a page under docs/<lang>/ is missing here. Paths are relative to docs/.",
+  "repository": "https://github.com/mmroch4/uc-design-kit",
+  "languages": {
+    "pt": {
+      "home": "pt/index.html",
+      "labels": {
+        "docs": "Documentação",
+        "example": "Exemplo",
+        "menu": "Menu",
+        "closeMenu": "Fechar menu",
+        "sections": "Secções da documentação",
+        "onThisPage": "Nesta página",
+        "previous": "Anterior",
+        "next": "Seguinte",
+        "edit": "Editar esta página no GitHub",
+        "preview": "Pré-visualização",
+        "code": "Código",
+        "openDemo": "Abrir demo",
+        "demo": "Demonstração",
+        "skip": "Saltar para o conteúdo"
+      },
+      "groups": [
+        {
+          "title": "Começar",
+          "pages": [
+            { "title": "Introdução", "path": "pt/index.html" }
+          ]
+        },
+        {
+          "title": "Componentes",
+          "pages": [
+            { "title": "uc-week", "path": "pt/componentes/uc-week.html", "code": true, "component": "uc-week" }
+          ]
+        }
+      ]
+    }
+  }
+}

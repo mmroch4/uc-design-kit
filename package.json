@@ -9,7 +9,8 @@
     "build:check": "node scripts/build.mjs --check",
     "snapshot": "node scripts/snapshot.mjs",
     "pretest": "node scripts/build.mjs",
-    "test": "node scripts/check-pages.mjs",
+    "test": "node scripts/check-docs.mjs && node scripts/check-pages.mjs",
+    "test:docs": "node scripts/check-docs.mjs",
     "test:update-screenshots": "node scripts/build.mjs && node scripts/check-pages.mjs --screenshots"
   },
   "devDependencies": {

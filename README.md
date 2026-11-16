@@ -14,8 +14,9 @@ course ("unidade curricular", UC) websites.
 - **Customisable in layers.** From a colour in `course.js` up to your own
   components, without forking the kit.
 
-> Status: under construction. See the implementation plan and
-> [`docs/api.md`](docs/api.md) for the public contract.
+> Status: under construction. Documentation (Portuguese):
+> <https://uc-design-kit.miguelrocha.dev/docs/pt/>. The public contract is
+> [`docs/api.md`](docs/api.md).
 
 ## Repository layout
 
@@ -26,7 +27,7 @@ course ("unidade curricular", UC) websites.
 | `kit/vX.Y.Z/` | Frozen releases, never modified (created by `npm run snapshot`) |
 | `examples/` | Real course sites built with the kit |
 | `template/` | Starter folder a teacher copies to create a new course site |
-| `docs/` | API contract, teacher guide and component reference |
+| `docs/` | API contract, and the documentation site: `docs/pt/` pages, `docs/demos/` live demos, `docs/nav.json` |
 | `tests/` | Test pages per component and the Playwright test bench |
 | `scripts/` | Maintainer scripts (bundling, checks) — never needed by teachers |
 

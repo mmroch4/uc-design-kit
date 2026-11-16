@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects. https://developers.cloudflare.com/pages/configuration/redirects/
+# The documentation has one folder per language; /docs/ opens the default one.
+/docs     /docs/pt/  302
+/docs/    /docs/pt/  302

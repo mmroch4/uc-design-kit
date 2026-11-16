@@ -50,3 +50,12 @@ and `file://`, missing local files, horizontal scrolling at 360 px, axe-core
 WCAG 2.1 A/AA (serious and critical violations fail), and visible content with
 JavaScript disabled. Pages are loaded with `?today=2025-11-27` (override with
 `TEST_TODAY`) so date-dependent output is stable.
+
+## Documentation
+
+The documentation pages in `docs/pt/` are hand-written HTML. Header, sidebar,
+"Nesta página", previous/next links and the code of each demo are generated
+by `npm run build` between `<!-- docs:… -->` markers (see `scripts/docs.mjs`);
+never edit inside them. When you add an attribute to `docs/api.md`, add it to
+the component's "Atributos" table: `npm test` fails until the two match.
+Conventions for new pages: `docs/plan/phase-1-handoff.md`.
