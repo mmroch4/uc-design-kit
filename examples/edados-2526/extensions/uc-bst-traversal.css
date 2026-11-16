@@ -1,0 +1,215 @@
+/*
+ * Styles for <uc-bst-traversal> (see uc-bst-traversal.js).
+ *
+ * Only --uc-* tokens are used, so the widget follows the course's accent
+ * colour and any theme.css. Selectors are wrapped in :where() like the kit's,
+ * so they have zero specificity and any rule a teacher adds wins.
+ */
+
+/* Fallback text (no JavaScript): the element is just a block of text. */
+:where(uc-bst-traversal) { display: block; }
+
+/* ---------- Card, header and traversal choice ---------- */
+
+:where(.uc-bst-traversal__widget) {
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+  overflow: hidden;
+}
+
+:where(.uc-bst-traversal__head) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uc-space-3);
+  padding: 14px var(--uc-space-5);
+  border-bottom: 1px solid var(--uc-color-border);
+  background: var(--uc-color-surface-sunken);
+}
+
+:where(.uc-bst-traversal__kind) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uc-space-2);
+  font-size: var(--uc-font-size-sm);
+  font-weight: 600;
+  color: var(--uc-color-text-secondary);
+}
+
+:where(.uc-bst-traversal__icon) { display: inline-flex; flex: none; }
+
+/* Segmented control: toggle buttons with aria-pressed. */
+:where(.uc-bst-traversal__orders) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-1);
+  padding: var(--uc-space-1);
+  border-radius: 10px;
+  background: var(--uc-color-surface-muted);
+}
+
+:where(.uc-bst-traversal__order) {
+  min-height: 40px;
+  padding: 0 var(--uc-space-3);
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--uc-color-text-secondary);
+  font: 500 var(--uc-font-size-sm) var(--uc-font-sans);
+  cursor: pointer;
+}
+:where(.uc-bst-traversal__order:hover) { color: var(--uc-color-text); }
+:where(.uc-bst-traversal__order[aria-pressed="true"]) {
+  background: var(--uc-color-surface);
+  color: var(--uc-color-accent);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--uc-color-border);
+}
+
+:where(.uc-bst-traversal button:focus-visible, .uc-bst-traversal__pseudo:focus-visible) {
+  outline: var(--uc-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Body: drawing on the left, panel on the right (stacked on phones) ---------- */
+
+:where(.uc-bst-traversal__body) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+:where(.uc-bst-traversal__stage, .uc-bst-traversal__panel) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-4);
+  min-width: 0;
+  padding: var(--uc-space-6) var(--uc-space-5);
+}
+
+/* A thin rule between the two columns (and between the rows when stacked). */
+:where(.uc-bst-traversal__panel) { box-shadow: -1px -1px 0 0 var(--uc-color-border); }
+
+:where(.uc-bst-traversal__drawing) {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Edges: an SVG stretched over the drawing. */
+:where(.uc-bst-traversal__edges) { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+:where(.uc-bst-traversal__edges line) { stroke: var(--uc-color-border); stroke-width: 2; }
+
+/* Nodes: fixed-size circles centred on their position (set inline by the script). */
+:where(.uc-bst-traversal__node) {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 2px solid var(--uc-color-text-subtle);
+  border-radius: 50%;
+  background: var(--uc-color-surface);
+  color: var(--uc-color-text);
+  font: 600 16px var(--uc-font-mono);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+/* Visited: tinted. Current: filled with the accent and slightly larger. */
+:where(.uc-bst-traversal__node.is-visited) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent-soft);
+  color: var(--uc-color-accent);
+}
+:where(.uc-bst-traversal__node.is-current) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent);
+  color: var(--uc-color-on-accent);
+  transform: scale(1.12);
+}
+
+:where(.uc-bst-traversal__controls) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--uc-space-2);
+}
+:where(.uc-bst-traversal__play) { min-width: 132px; }
+
+/* ---------- Panel ---------- */
+
+:where(.uc-bst-traversal__row) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-2);
+  font-size: var(--uc-font-size-md);
+}
+
+:where(.uc-bst-traversal__label) {
+  font-size: var(--uc-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--uc-color-text-subtle);
+}
+
+:where(.uc-bst-traversal__count) { font-weight: 500; }
+
+:where(.uc-bst-traversal__chips) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where(.uc-bst-traversal__chips li) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0 6px;
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-accent-soft);
+  color: var(--uc-color-accent);
+  font: 500 var(--uc-font-size-sm) var(--uc-font-mono);
+}
+:where(.uc-bst-traversal__chips--aux li) {
+  background: transparent;
+  color: var(--uc-color-text-secondary);
+  border: 1px dashed var(--uc-color-text-subtle);
+}
+/* Empty list: show the "Nothing yet." text kept in data-empty. */
+:where(.uc-bst-traversal__chips.is-empty)::before {
+  content: attr(data-empty);
+  align-self: center;
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-sm);
+}
+
+:where(.uc-bst-traversal__pseudo) {
+  margin: 0;
+  padding: var(--uc-space-3) var(--uc-space-4);
+  overflow-x: auto;
+  border: 1px solid var(--uc-color-border);
+  border-radius: 10px;
+  background: var(--uc-color-surface-sunken);
+  color: var(--uc-color-text);
+  font: 13px/1.7 var(--uc-font-mono);
+  white-space: pre;
+}
+
+/* ---------- Reduced motion: no fades, no "pop" ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.uc-bst-traversal__node) { transition: none; }
+  :where(.uc-bst-traversal__node.is-current) { transform: none; }
+}
