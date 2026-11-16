@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-question: uma resposta certa · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-question>
+      <p>Quanto vale <code>len([1, [2, 3], 4])</code> em Python?</p>
+      <ul>
+        <li><code>2</code></li>
+        <li data-correct><code>3</code></li>
+        <li><code>4</code></li>
+      </ul>
+      <p data-explanation>A lista tem três elementos: <code>1</code>, a lista <code>[2, 3]</code> e <code>4</code>. A lista interior conta como um só elemento.</p>
+    </uc-question>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

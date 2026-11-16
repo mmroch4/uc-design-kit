@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-guide · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-guide do UC Design Kit.">
+  <meta name="description" content="Documentação do componente uc-guide do UC Design Kit: um guião de aula com caminho de navegação, índice das secções e progresso dos exercícios.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -15,24 +15,276 @@
 </head>
 <body class="docs">
   <!-- docs:header -->
-<!-- /docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
   <div class="docs-layout">
     <!-- docs:sidebar -->
-<!-- /docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-guide.html" aria-current="page"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
     <main class="docs-main" id="content">
       <article class="docs-article">
         <header class="docs-page-header">
-          <p class="docs-eyebrow">Componentes</p>
+          <p class="docs-eyebrow">Componentes · Guiões e código</p>
           <h1><code>&lt;uc-guide&gt;</code></h1>
-          <p class="docs-lead">Página em preparação.</p>
+          <p class="docs-lead">O invólucro de um guião de aula. Acrescenta o caminho de volta à semana, um índice feito a partir dos títulos <code>&lt;h2&gt;</code> e a contagem dos exercícios marcados como feitos.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
+
+        <!-- docs:demo src="../../demos/uc-guide/basic.html" title="guião com três secções e dois exercícios" height="774" -->
+        <div class="docs-demo" id="demo-uc-guide-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-guide/basic.html" title="Demonstração: guião com três secções e dois exercícios" loading="lazy" style="height: 774px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-guide week=&quot;10&quot;&gt;
+  &lt;h1&gt;Guião 10 · Pesquisa binária&lt;/h1&gt;
+
+  &lt;section class=&quot;uc-section&quot;&gt;
+    &lt;h2&gt;1. Preparar&lt;/h2&gt;
+    &lt;p&gt;Cria um ficheiro &lt;code&gt;pesquisa.py&lt;/code&gt;. Todas as funções recebem uma lista de inteiros ordenada por ordem crescente.&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;uc-section&quot;&gt;
+    &lt;h2&gt;2. A ideia&lt;/h2&gt;
+    &lt;p&gt;Compara-se o valor procurado com o elemento do meio: se for menor, continua-se na metade esquerda; se for maior, na direita. Cada passo descarta metade da lista.&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;uc-section&quot;&gt;
+    &lt;h2&gt;3. Exercícios&lt;/h2&gt;
+    &lt;uc-exercise id=&quot;procurar&quot; title=&quot;Pesquisa binária iterativa&quot; level=&quot;easy&quot;&gt;
+      &lt;p&gt;Escreve &lt;code&gt;procurar(lista, x)&lt;/code&gt;, que devolve a posição de &lt;code&gt;x&lt;/code&gt; ou &lt;code&gt;-1&lt;/code&gt; se não existir.&lt;/p&gt;
+    &lt;/uc-exercise&gt;
+    &lt;uc-exercise id=&quot;contar-passos&quot; title=&quot;Contar comparações&quot; level=&quot;medium&quot;&gt;
+      &lt;p&gt;Altera a função para devolver também o número de comparações feitas.&lt;/p&gt;
+    &lt;/uc-exercise&gt;
+  &lt;/section&gt;
+&lt;/uc-guide&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-guide/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração é um guião curto da semana 10 com três secções e dois exercícios. Ao marcar um exercício como feito, o contador "0 de 2 exercícios feitos" sobe. Dentro desta página o guião tem menos de 840 px de largura, por isso o índice não aparece e o progresso fica por cima do conteúdo; em "Abrir demo", numa janela larga, vê-se a coluna da direita com o progresso e o índice, que fica fixa ao descer a página.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>Cada guião é uma página própria, normalmente numa subpasta como <code>guioes/</code>. O <code>&lt;uc-guide&gt;</code> fica dentro do <code>&lt;uc-page&gt;</code> e envolve todo o conteúdo: o <code>&lt;h1&gt;</code> com o título, as secções com <code>&lt;h2&gt;</code> e os exercícios.</p>
+        <uc-code lang="html" filename="guioes/aula10.html" no-download><pre><code>&lt;uc-page current="weeks"&gt;
+  &lt;uc-guide week="10"&gt;
+    &lt;h1&gt;Guião 10 · Pesquisa binária&lt;/h1&gt;
+
+    &lt;section class="uc-section"&gt;
+      &lt;h2&gt;1. Preparar&lt;/h2&gt;
+      &lt;p&gt;…&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section class="uc-section"&gt;
+      &lt;h2&gt;2. Exercícios&lt;/h2&gt;
+      &lt;uc-exercise id="procurar" title="Pesquisa binária iterativa"&gt;…&lt;/uc-exercise&gt;
+      &lt;uc-exercise id="contar-passos" title="Contar comparações"&gt;…&lt;/uc-exercise&gt;
+    &lt;/section&gt;
+  &lt;/uc-guide&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+        <p>O caminho de navegação usa a página <code>weeks</code> do <code>course.js</code>. Como os endereços de <code>pages</code> são relativos ao <code>course.js</code>, um guião em <code>guioes/</code> que carrega <code>../course.js</code> liga para <code>../semanas.html#week-10</code> sem mais nada.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  title: "Algoritmos e Programação",
+  pages: ["home", { id: "weeks", href: "semanas.html" }, "assessment"],
+};</code></pre></uc-code>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="ligacao-a-semana">Ligação à semana</h3>
+        <p>Com <code>week</code>, o caminho mostra "Semanas / Semana 9 / título do guião": a segunda ligação abre a página de semanas já com essa semana aberta. O último elemento é o texto do primeiro <code>&lt;h1&gt;</code> do guião. Um guião sem <code>&lt;h2&gt;</code> nem exercícios fica só com o caminho, como neste caso.</p>
+        <!-- docs:demo src="../../demos/uc-guide/crumbs.html" title="caminho de navegação de um guião da semana 9" height="239" -->
+        <div class="docs-demo" id="demo-uc-guide-crumbs">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-guide/crumbs.html" title="Demonstração: caminho de navegação de um guião da semana 9" loading="lazy" style="height: 239px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-guide week=&quot;9&quot;&gt;
+  &lt;h1&gt;Guião 9 · Ordenar um milhão de números&lt;/h1&gt;
+  &lt;p&gt;Este guião não tem secções nem exercícios: só o caminho de navegação é gerado.&lt;/p&gt;
+&lt;/uc-guide&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-guide/crumbs.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Sem <code>week</code>, o caminho fica "Semanas / título do guião". Se o <code>course.js</code> não tiver a página <code>weeks</code> nem o guião tiver <code>week</code>, não há caminho de navegação.</p>
+
+        <h3 id="sem-indice">Sem índice</h3>
+        <p>Com <code>no-toc</code>, o índice das secções não é gerado e a coluna da direita fica só com o progresso. Convém num guião curto, com uma ou duas secções, em que o índice não ajuda. Se também não houver exercícios, o guião ocupa toda a largura.</p>
+        <uc-code lang="html" no-download><pre><code>&lt;uc-guide week="3" no-toc&gt;
+  &lt;h1&gt;Guião 3 · Instalar o Python&lt;/h1&gt;
+  …
+&lt;/uc-guide&gt;</code></pre></uc-code>
+        <p>A diferença só se vê com o guião largo (ver <a href="#indice-e-progresso">Índice e progresso</a>), por isso este exemplo não tem demonstração.</p>
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-guide</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>week</code></td><td>número</td><td>—</td><td>Semana a que o guião pertence. Acrescenta ao caminho de navegação uma ligação para <code>semanas.html#week-&lt;n&gt;</code> (o ficheiro é o da página <code>weeks</code>).</td></tr>
+              <tr><td><code>no-toc</code></td><td>booleano</td><td>ausente</td><td>Não gera o índice das secções. O progresso continua a aparecer se houver exercícios.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <p>Só a lista de páginas, para o caminho de navegação. O índice e o progresso não dependem do <code>course.js</code>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-guide</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>pages</code></td><td>A entrada com <code>id: "weeks"</code> dá o ficheiro e a etiqueta ("Semanas", ou a <code>label</code> escrita) do início do caminho. Ver <a href="../course-js.html#paginas">Páginas</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Sem a página <code>weeks</code>, a ligação de <code>week</code> aponta para <code>weeks.html#week-&lt;n&gt;</code>, o nome por omissão, relativo à página do guião e não ao <code>course.js</code>. Num guião numa subpasta convém, por isso, ter a página <code>weeks</code> no <code>course.js</code>.</p>
+
+        <h2 id="indice-e-progresso">Índice e progresso</h2>
+        <ul>
+          <li><strong>Índice</strong>: uma entrada por cada <code>&lt;h2&gt;</code> do guião, pela ordem da página. Um <code>&lt;h2&gt;</code> sem <code>id</code> recebe um gerado a partir do texto, sem acentos (<code>2. A ideia</code> passa a <code>2-a-ideia</code>), para que as ligações diretas funcionem. Ao clicar, a página desliza até à secção e o foco passa para o título; a secção que está à vista fica destacada no índice.</li>
+          <li><strong>Progresso</strong>: "<em>n</em> de <em>total</em> exercícios feitos", com uma barra. Conta todos os <code>&lt;uc-exercise&gt;</code> dentro do guião e atualiza-se sempre que um é marcado ou desmarcado (evento <code>uc:exercisechange</code>). Um guião sem exercícios não mostra o progresso.</li>
+          <li><strong>Largura</strong>: quando o próprio guião tem pelo menos 840 px de largura, o progresso e o índice formam uma coluna de 220 px à direita que fica fixa ao descer a página. Abaixo disso, o índice esconde-se e só o progresso fica, por cima do conteúdo. A medida é a do guião e não a da janela, por isso num <code>&lt;uc-page&gt;</code> com a barra lateral é preciso uma janela com cerca de 1170 px.</li>
+        </ul>
+        <p>Num site bilingue, títulos e exercícios marcados com outra língua (<code>lang</code>) não entram no índice nem na contagem.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-guide</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-guide</code></td><td>O guião (o próprio <code>&lt;uc-guide&gt;</code>).</td></tr>
+              <tr><td><code>.uc-guide--no-aside</code></td><td>Guião sem índice nem exercícios: a coluna da direita não existe.</td></tr>
+              <tr><td><code>.uc-guide__crumbs</code>, <code>__crumbs-list</code>, <code>__crumb</code></td><td>O caminho de navegação, a sua lista e cada elemento.</td></tr>
+              <tr><td><code>.uc-guide__layout</code></td><td>A grelha com o conteúdo e a coluna da direita.</td></tr>
+              <tr><td><code>.uc-guide__content</code></td><td>O conteúdo escrito pelo professor.</td></tr>
+              <tr><td><code>.uc-guide__aside</code></td><td>A coluna com o progresso e o índice.</td></tr>
+              <tr><td><code>.uc-guide__progress</code>, <code>__progress-text</code>, <code>__progress-count</code>, <code>__progress-bar</code></td><td>O cartão do progresso, a frase, o número de feitos e a barra.</td></tr>
+              <tr><td><code>.uc-guide__toc</code>, <code>__toc-label</code>, <code>__toc-list</code>, <code>__toc-item</code>, <code>__toc-link</code></td><td>O índice, o rótulo "Nesta página", a lista, cada entrada e a sua ligação (a da secção à vista tem <code>aria-current</code>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Menos espaço entre as secções do guião (por omissão, 48 px). */
+uc-guide { --uc-guide-gap: var(--uc-space-8); }
+
+/* Índice sem a linha à esquerda. */
+.uc-guide__toc-list { border-left: 0; }</code></pre></uc-code>
+        <p>A variável <code>--uc-guide-gap</code> controla o espaço entre os blocos de topo do conteúdo do guião.</p>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>O caminho é um <code>&lt;nav&gt;</code> com o nome "Navegação estrutural" e uma lista ordenada; o último elemento tem <code>aria-current="page"</code>. O índice é outro <code>&lt;nav&gt;</code>, com o nome "Nesta página", e a secção à vista é marcada com <code>aria-current="location"</code>. A barra de progresso é um <code>&lt;progress&gt;</code> com a frase como nome. O deslizar respeita a preferência de movimento reduzido.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Um único <code>&lt;h1&gt;</code> com o título do guião e secções com <code>&lt;h2&gt;</code> curtos, que façam sentido fora do contexto, porque são o texto do índice. Os níveis abaixo (<code>&lt;h3&gt;</code>…) não aparecem no índice mas devem seguir a ordem.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Se o kit não carregar, o guião aparece como HTML normal, com todas as secções e exercícios pela ordem em que foram escritos. Perdem-se o caminho de navegação, o índice e o progresso, que são gerados.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-exercise.html"><code>&lt;uc-exercise&gt;</code></a>: os exercícios que o progresso conta.</li>
+          <li><a href="uc-question.html"><code>&lt;uc-question&gt;</code></a>: perguntas de verificação rápida dentro do guião.</li>
+          <li><a href="uc-code.html"><code>&lt;uc-code&gt;</code></a>: blocos de código com cópia, descarga e execução.</li>
+          <li><a href="uc-week.html"><code>&lt;uc-week&gt;</code></a>: a semana para onde o caminho de navegação aponta.</li>
+          <li><a href="../estrutura.html#subpastas">Estrutura de um site: subpastas</a>, para os guiões em <code>guioes/</code>.</li>
+          <li>Uso real: <a href="../../../examples/edados-2526/guioes/aula10.html">o guião da aula 10 de Estruturas de Dados 2025/26</a>.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
-<!-- /docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-team.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-team</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-exercise.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-exercise</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-guide.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
     </main>
     <aside class="docs-aside">
       <!-- docs:toc -->
-<!-- /docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#ligacao-a-semana">Ligação à semana</a></li>
+          <li class="docs-toc__sub"><a href="#sem-indice">Sem índice</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#indice-e-progresso">Índice e progresso</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
     </aside>
   </div>
 </body>
