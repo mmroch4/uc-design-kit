@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 11 · Árvores binárias de pesquisa · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 11 de Estruturas de Dados (CC1007): árvores binárias de pesquisa, conjuntos e dicionários (BSTree, BSTMap), ciclos for-each e problemas ED208, ED164, ED172, ED209, ED210 e ED165.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="11">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 11</span>
+          <span class="uc-mono uc-muted">2–5 dez</span>
+        </p>
+        <h1>Aula 11 · Árvores binárias de pesquisa</h1>
+      </div>
+
+      <!-- Exercícios para submissão -->
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob208.html">[ED208] Mínimo e Máximo</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob164.html">[ED164] Quantas Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob172.html">[ED172] Contagem de Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob209.html">[ED209] Intervalo de valores</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob210.html">[ED210] Será uma árvore de pesquisa?</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob165.html">[ED165] Somas</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
+        </ul>
+        <p class="uc-prose"><strong>Prazo de submissão:</strong> 15 de dezembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
+        <div class="uc-callout">
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <ul class="uc-bullets">
+            <li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.</li>
+            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+            <li>Para ter 100% bastará sempre resolver os exercícios do guião principal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Exercício 1 -->
+      <section class="uc-section" aria-labelledby="compreender-bst">
+        <h2 id="compreender-bst">Exercício 1) Compreender Árvores Binárias de Pesquisa</h2>
+        <h3>1. Código de árvores binárias de pesquisa</h3>
+        <p class="uc-prose">Verifique o código seguinte que implementa uma Árvore Binária de Pesquisa. Note que o valor do tipo T guardado pelo <code>BSTNode</code> tem de ser comparável, ou seja, implementa o interface <code>Comparable</code>.</p>
+        <div class="uc-callout">
+          <p>Neste exercício, para compilar o código de árvores binárias de pesquisa irá necessitar das classes (e interfaces) <code>DNode</code>, <code>DoublyLinkedList</code>, <code>LinkedListQueue</code>, <code>LinkedListStack</code>, <code>MyQueue</code>, <code>MyStack</code> abordadas na <a href="aula07.html">aula prática 7</a>.</p>
+        </div>
+
+        <p class="aula-label">Nó da árvore binária de pesquisa</p>
+        <uc-code lang="java" filename="BSTNode.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// No de uma arvore binaria de pesquisa
+// -----------------------------------------------------------
+
+// O tipo T tem de implementar o interface Comparable
+// (ou te-lo herdado de uma super classe).
+public class BSTNode<T extends Comparable<? super T>> {
+   private T value;           // Valor guardado no no
+   private BSTNode<T> left;   // Filho esquerdo
+   private BSTNode<T> right;  // Filho direito
+
+   // Construtor
+   BSTNode(T v, BSTNode<T> l, BSTNode<T> r) {
+      value = v;
+      left = l;
+      right = r;
+   }
+
+   // Getters e Setters
+   public T getValue() {return value;}
+   public BSTNode<T> getLeft() {return left;}
+   public BSTNode<T> getRight() {return right;}
+   public void setValue(T v) {value = v;}
+   public void setLeft(BSTNode<T> l) {left = l;}
+   public void setRight(BSTNode<T> r) {right = r;}
+}
+          </script>
+        </uc-code>
+
+        <p class="aula-label">Árvore binária de pesquisa</p>
+        <uc-code lang="java" filename="BSTree.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Arvore binaria de pequisa
+// -----------------------------------------------------------
+
+// O tipo T tem de implementar o interface Comparable
+// (ou te-lo herdado de uma super classe).
+public class BSTree<T extends Comparable<? super T>> {
+   private BSTNode<T> root; // raiz da arvore
+
+   // Construtor
+   BSTree() {
+      root = null;
+   }
+
+
+   // Getter e Setter para a raiz
+   public BSTNode<T> getRoot() {return root;}
+   public void setRoot(BSTNode<T> r) {root = r;}
+
+   // Verificar se arvore esta vazia
+   public boolean isEmpty() {
+      return root == null;
+   }
+
+   // Limpa a arvore (torna-a vazia)
+   public void clear() {
+      root = null;
+   }
+
+   // --------------------------------------------------------
+   // Numero de nos da arvore
+   public int numberNodes() {
+      return numberNodes(root);
+   }
+
+   private int numberNodes(BSTNode<T> n) {
+      if (n == null) return 0;
+      return 1 + numberNodes(n.getLeft()) + numberNodes(n.getRight());
+   }
+
+   // --------------------------------------------------------
+   // O elemento value esta contido na arvore?
+   public boolean contains(T value) {
+      return contains(root, value);
+   }
+
+   private boolean contains(BSTNode<T> n, T value) {
+      if (n==null) return false;
+      if (value.compareTo(n.getValue()) < 0) // menor? sub-arvore esquerda
+         return contains(n.getLeft(), value);
+      if (value.compareTo(n.getValue()) > 0) // maior? sub-arvore direita
+         return contains(n.getRight(), value);
+      return true; // se nao e menor ou maior, e porque e igual
+   }
+
+   // --------------------------------------------------------
+   // Adicionar elemento a uma arvore de pesquisa
+   // Devolve true se conseguiu inserir, false caso contrario
+   public boolean insert(T value) {
+      if (contains(value)) return false;
+      root = insert(root, value);
+      return true;
+   }
+
+   private BSTNode<T> insert(BSTNode<T> n, T value) {
+      if (n==null)
+         return new BSTNode<T>(value, null, null);
+      else if (value.compareTo(n.getValue()) < 0)
+         n.setLeft(insert(n.getLeft(), value));
+      else if (value.compareTo(n.getValue()) > 0)
+         n.setRight(insert(n.getRight(), value));
+      return n;
+   }
+
+   // --------------------------------------------------------
+   // Remover elemento de uma arvore de pesquisa
+   // Devolve true se conseguiu remover, false caso contrario
+   public boolean remove(T value) {
+      if (!contains(value)) return false;
+      root = remove(root, value);
+      return true;
+   }
+
+   // Assume-se que elemento existe (foi verificado antes)
+   private BSTNode<T> remove(BSTNode<T> n, T value) {
+      if (value.compareTo(n.getValue()) < 0)
+         n.setLeft(remove(n.getLeft(), value));
+      else if (value.compareTo(n.getValue()) > 0)
+         n.setRight(remove(n.getRight(), value));
+      else if (n.getLeft() == null) // Nao tem filho esquerdo
+         n = n.getRight();
+      else if (n.getRight() == null) // Nao tem filho direito
+         n = n.getLeft();
+      else { // Dois fihos: ir buscar maximo do lado esquerdo
+         BSTNode<T> max = n.getLeft();
+         while (max.getRight() != null) max = max.getRight();
+         n.setValue(max.getValue()); // Substituir valor removido
+         // Apagar valor que foi para lugar do removido
+         n.setLeft(remove(n.getLeft(), max.getValue()));
+      }
+      return n;
+   }
+
+   // --------------------------------------------------------
+   // Altura da arvore
+   public int depth() {
+      return depth(root);
+   }
+
+   private int depth(BSTNode<T> n) {
+      if (n == null) return -1;
+      return 1 + Math.max(depth(n.getLeft()), depth(n.getRight()));
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore em PreOrder
+   public void printPreOrder() {
+      System.out.print("PreOrder:");
+      printPreOrder(root);
+      System.out.println();
+   }
+
+   private void printPreOrder(BSTNode<T> n) {
+      if (n==null) return;
+      System.out.print(" " + n.getValue() );
+      printPreOrder(n.getLeft());
+      printPreOrder(n.getRight());
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore em InOrder
+   public void printInOrder() {
+      System.out.print("InOrder:");
+      printInOrder(root);
+      System.out.println();
+   }
+
+   private void printInOrder(BSTNode<T> n) {
+      if (n==null) return;
+      printInOrder(n.getLeft());
+      System.out.print(" " + n.getValue());
+      printInOrder(n.getRight());
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore em PostOrder
+   public void printPostOrder() {
+      System.out.print("PostOrder:");
+      printPostOrder(root);
+      System.out.println();
+   }
+
+   private void printPostOrder(BSTNode<T> n) {
+      if (n==null) return;
+      printPostOrder(n.getLeft());
+      printPostOrder(n.getRight());
+      System.out.print(" " + n.getValue());
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore numa visita em largura (usando TAD Fila)
+   public void printBFS() {
+      System.out.print("BFS:");
+
+      MyQueue<BSTNode<T>> q = new LinkedListQueue<BSTNode<T>>();
+      q.enqueue(root);
+      while (!q.isEmpty()) {
+         BSTNode<T> cur = q.dequeue();
+         if (cur != null) {
+            System.out.print(" " + cur.getValue());
+            q.enqueue(cur.getLeft());
+            q.enqueue(cur.getRight());
+         }
+      }
+      System.out.println();
+   }
+
+   // --------------------------------------------------------
+
+   // Imprimir arvore numa visita em largura (usando TAD Pilha)
+   public void printDFS() {
+      System.out.print("DFS:");
+
+      MyStack<BSTNode<T>> q = new LinkedListStack<BSTNode<T>>();
+      q.push(root);
+      while (!q.isEmpty()) {
+         BSTNode<T> cur = q.pop();
+         if (cur != null) {
+            System.out.print(" " + cur.getValue());
+            q.push(cur.getLeft());
+            q.push(cur.getRight());
+         }
+      }
+      System.out.println();
+   }
+
+}
+          </script>
+        </uc-code>
+
+        <p class="aula-label">Exemplo de teste das árvores binárias de pesquisa</p>
+        <uc-code lang="java" filename="TestBSTree.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao da uma arvore binaria de pesquisa
+// -----------------------------------------------------------
+
+class TestBSTree {
+   public static void main(String[] args) {
+
+      // Criacao da Arvore
+      BSTree<Integer> t = new BSTree<Integer>();
+
+      // Inserindo 11 elementos na arvore binaria de pesquisa
+      int[] data = {14, 4, 18, 3, 9, 16, 20, 7, 15, 17, 5};
+      for (int i=0; i<data.length; i++) t.insert(data[i]);
+
+      // Escrever resultado de chamada a alguns metodos
+      System.out.println("numberNodes = " + t.numberNodes());
+      System.out.println("depth = " + t.depth());
+      System.out.println("contains(2) = " + t.contains(2));
+      System.out.println("contains(3) = " + t.contains(3));
+
+      // Escrever nos da arvore seguindo varias ordens possiveis
+      t.printPreOrder();
+      t.printInOrder();
+      t.printPostOrder();
+
+      // Experimentando remocao
+      t.remove(14);
+      t.printPreOrder();
+      t.printInOrder();
+      t.printPostOrder();
+   }
+}
+          </script>
+        </uc-code>
+
+        <uc-exercise id="primeiro-teste-bst" title="Um primeiro teste">
+          <p>Execute a classe de teste das árvores binárias de pesquisa:</p>
+          <uc-code lang="bash" no-download>
+            <script type="text/plain">
+$ java TestBSTree
+            </script>
+          </uc-code>
+          <p>Espreite e acompanhe a implementação do método <code>insert</code> da classe <code>BSTree</code>. Relembre que numa árvore binária de pesquisa, para um qualquer nó, todos os elementos da subárvore esquerda são menores e todos os elementos da subárvore direita são maiores. Para o ajudar a compreender, a imagem seguinte mostra o conteúdo da árvore após cada inserção (em cada passo o elemento inserido está indicado a amarelo):</p>
+          <p><img src="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/images/bst_insert.png" width="1342" height="681" style="max-width:100%;height:auto" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
+          <ul class="uc-bullets">
+            <li>Depois da remoção de 14, que número ficou na raiz? Acompanhe a implementação do método <code>remove</code> da classe <code>BSTree</code> para verificar como isto é feito.</li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="visualizar-insercoes" title="Visualizando inserções e remoções">
+          <p>Procure desenhar no seu caderno como ficaria uma árvore binária de pesquisa depois de <strong>inserir</strong> os seguintes elementos (por esta ordem): <code>4 8 1 3 9 2 7 6</code>.</p>
+          <p>Depois de desenhar, use a seguinte página para verificar se acertou no desenho da árvore:</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.cs.usfca.edu/~galles/visualization/BST.html">Visualização de árvores binárias de pesquisa</a></li>
+          </ul>
+          <p>Experimente <strong>retirar</strong> e <strong>inserir</strong> mais alguns elementos, procurando primeiro confirmar como ficaria a árvore, e depois usando a página para confirmar o que previu.</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 2 -->
+      <section class="uc-section" aria-labelledby="exercicio-bst">
+        <h2 id="exercicio-bst">Exercício 2) Um exercício envolvendo árvores binárias de pesquisa</h2>
+        <p class="uc-prose">Neste exercício vai poder garantir que percebe como internamente a árvore binária de pesquisa está organizada.</p>
+        <uc-exercise id="minimo-maximo" title="Descobrindo o mínimo e o máximo">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob208.html">[ED208] Mínimo e máximo</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Procure aproveitar as características duma árvore binária de pesquisa.</li>
+              <li>O menor elemento está sempre na folha mais à esquerda.</li>
+              <li>O maior elemento está sempre na folha mais à direita.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 3 -->
+      <section class="uc-section" aria-labelledby="conjuntos">
+        <h2 id="conjuntos">Exercício 3) Usando árvores binárias de pesquisa para representar conjuntos</h2>
+        <p class="uc-prose">Uma árvore binária de pesquisa mapeia muito bem num TAD <strong>conjunto</strong>. Este exercício pede-lhe precisamente para resolver de forma simples um pequeno problema que na sua essência pode ser resolvido pensando em conjuntos.</p>
+        <uc-exercise id="quantas-palavras" title="[ED164] Quantas palavras?">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob164.html">[ED164] Quantas palavras?</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Crie uma árvore binária de pesquisa para guardar strings.</li>
+              <li>Insira as palavras na árvore de pesquisa (método <code>insert()</code>). Os elementos iguais são descartados. Para ler palavras pode usar o método <code>next()</code> da classe Scanner.</li>
+              <li>No final imprima o número de nós da árvore (método <code>numberNodes()</code>).</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 4 -->
+      <section class="uc-section" aria-labelledby="dicionarios">
+        <h2 id="dicionarios">Exercício 4) Dicionários e <em lang="en">for-each</em></h2>
+        <p class="uc-prose">Um TAD <strong>dicionário</strong> (também conhecido como <strong>mapa</strong> ou <strong>array associativo</strong>) é uma estrutura de dados que guarda pares (chave,valor), associando a cada chave um determinado valor. Uma implementação possível é precisamente usar uma árvore binária de pesquisa que usa a chave para decidir a posição na árvore (garantindo que só existe uma cópia de cada chave).</p>
+
+        <h3>1. Código de dicionários (usando árvores binárias de pesquisa)</h3>
+        <p class="uc-prose">Verifique o código seguinte que implementa um dicionário de pares (chave,valor) usando árvores binárias de pesquisa (ex. métodos: <code>put</code>, <code>get</code> e <code>keys</code>).</p>
+        <p class="uc-prose">Espreite a classe <code>BSTMapNode</code> para ver como o nó está implementado; note que o tipo <em>K</em> (a chave) é <em>comparável</em>, mas o tipo <em>V</em> (o valor) não.</p>
+
+        <p class="aula-label">Nó da árvore</p>
+        <uc-code lang="java" filename="BSTMapNode.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// No de uma arvore binaria de pesquisa - versao dicionario
+// -----------------------------------------------------------
+
+// K e o tipo da chave (key) e V o tipo do valor (value)
+// O tipo K tem de implementar o interface Comparable
+// (ou te-lo herdado de uma super classe).
+public class BSTMapNode<K extends Comparable<? super K>, V> {
+   private K key;                 // chave
+   private V value;               // valor
+   private BSTMapNode<K,V> left;  // Filho esquerdo
+   private BSTMapNode<K,V> right; // Filho direito
+
+   // Construtor
+   BSTMapNode(K k, V v, BSTMapNode<K,V> l, BSTMapNode<K,V> r) {
+      key = k;
+      value = v;
+      left = l;
+      right = r;
+   }
+
+   // Getters e Setters
+   public K getKey() {return key;}
+   public V getValue() {return value;}
+   public BSTMapNode<K,V> getLeft() {return left;}
+   public BSTMapNode<K,V> getRight() {return right;}
+   public void setKey(K k) {key = k;}
+   public void setValue(V v) {value = v;}
+   public void setLeft(BSTMapNode<K,V> l) {left = l;}
+   public void setRight(BSTMapNode<K,V> r) {right = r;}
+}
+          </script>
+        </uc-code>
+
+        <p class="aula-label">Dicionário</p>
+        <uc-code lang="java" filename="BSTMap.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Arvore binaria de pequisa - versao dicionario
+// -----------------------------------------------------------
+
+import java.util.LinkedList;
+
+// K e o tipo da chave (key) e V o tipo do valor (value)
+// O tipo K tem de implementar o interface Comparable
+// (ou te-lo herdado de uma super classe).
+public class BSTMap<K extends Comparable<? super K>,V> {
+   private BSTMapNode<K,V> root; // raiz da arvore
+
+   // Construtor
+   BSTMap() {
+      root = null;
+   }
+
+   // Getter e Setter para a raiz
+   public BSTMapNode<K,V> getRoot() {return root;}
+   public void setRoot(BSTMapNode<K,V> r) {root = r;}
+
+   // Verificar se o dicionario esta vazio
+   public boolean isEmpty() {
+      return root == null;
+   }
+
+   // Limpa o dicionario (torna-o vazia)
+   public void clear() {
+      root = null;
+   }
+
+   // --------------------------------------------------------
+   // Tamanho do dicionario (numero de chaves guardadas)
+   public int size() {
+      return size(root);
+   }
+
+   private int size(BSTMapNode<K,V> n) {
+      if (n == null) return 0;
+      return 1 + size(n.getLeft()) + size(n.getRight());
+   }
+
+   // --------------------------------------------------------
+   // Devolver o valor associado a uma chave (ou null caso nao exista)
+   public V get(K key) {
+      return get(root, key);
+   }
+
+   private V get(BSTMapNode<K,V> n, K key) {
+      if (n==null) return null;
+      if (key.compareTo(n.getKey()) < 0) return get(n.getLeft(), key);
+      if (key.compareTo(n.getKey()) > 0) return get(n.getRight(), key);
+      return n.getValue(); // se nao e menor ou maior, e porque e igual
+   }
+
+   // --------------------------------------------------------
+   // Adicionar par (chave,valor) ao dicionario
+   // Se chave ja existir, substitui o valor antigo pelo novo
+   public void put(K key, V value) {
+      root = put(root, key, value);
+   }
+
+   private BSTMapNode<K,V> put(BSTMapNode<K,V> n, K key, V value) {
+      if (n==null)
+         return new BSTMapNode<K,V>(key, value, null, null);
+      else if (key.compareTo(n.getKey()) < 0)
+         n.setLeft(put(n.getLeft(), key, value));
+      else if (key.compareTo(n.getKey()) > 0)
+         n.setRight(put(n.getRight(), key, value));
+      else
+         n.setValue(value);
+      return n;
+   }
+
+   // --------------------------------------------------------
+   // Remover uma chave do dicionario
+   // Devolve true se conseguiu remover, false caso contrario
+   public boolean remove(K key) {
+      if (get(key)==null) return false;
+      root = remove(root, key);
+      return true;
+   }
+
+   // Assume-se que elemento existe (foi verificado antes)
+   private BSTMapNode<K,V> remove(BSTMapNode<K,V> n, K key) {
+      if (key.compareTo(n.getKey()) < 0)
+         n.setLeft(remove(n.getLeft(), key));
+      else if (key.compareTo(n.getKey()) > 0)
+         n.setRight(remove(n.getRight(), key));
+      else if (n.getLeft() == null) // Nao tem filho esquerdo
+         n = n.getRight();
+      else if (n.getRight() == null) // Nao tem filho direito
+         n = n.getLeft();
+      else { // Dois fihos: ir buscar maximo do lado esquerdo
+         BSTMapNode<K,V> max = n.getLeft();
+         while (max.getRight() != null) max = max.getRight();
+         n.setKey(max.getKey());     // Substituir chave removida
+         n.setValue(max.getValue()); // Substituir valor removido
+         // Apagar valor que foi para lugar do removido
+         n.setLeft(remove(n.getLeft(), max.getKey()));
+      }
+      return n;
+   }
+
+   // --------------------------------------------------------
+   // Devolver lista ligada das chaves (usando listas do Java)
+   public LinkedList<K> keys() {
+      LinkedList<K> list = new LinkedList<K>();
+      keys(root, list);
+      return list;
+   }
+
+   private void keys(BSTMapNode<K,V> n, LinkedList<K> l) {
+      if (n==null) return;
+      keys(n.getLeft(), l);
+      l.addLast(n.getKey());
+      keys(n.getRight(), l);
+   }
+
+}
+          </script>
+        </uc-code>
+
+        <p class="aula-label">Exemplo de teste dos dicionários</p>
+        <uc-code lang="java" filename="TestBSTMap.java">
+          <script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/
+// -----------------------------------------------------------
+// Exemplo de utilizacao da um dicionario
+// -----------------------------------------------------------
+
+import java.util.LinkedList;
+
+public class TestBSTMap {
+
+   public static void main(String[] args) {
+
+      // Criacao de um dicionario
+      BSTMap<String,Integer> map = new BSTMap<String,Integer>();
+
+      // Inserindo alguns pares (chave,valor)
+      map.put("Life", 42);
+      map.put("Zero", 0);
+      map.put("Infinity", 999);
+
+      // Tamanho e conteudo
+      System.out.println("size = " + map.size());
+      System.out.println("Value of \"Life\" = " + map.get("Life"));
+      System.out.println("Value of \"Data\" = " + map.get("Data"));
+
+      // Imprimindo todas chaves
+      LinkedList<String> keys = map.keys();
+      System.out.println("keys = " + keys);
+
+      // Percorrendo todas as chaves para imprimir os pares (chave,valor)
+      System.out.println("All (key,value) pairs:");
+      for (String k : map.keys())
+         System.out.println("- (" + k + "," + map.get(k) + ")");
+
+      // Modificando um valor
+      map.put("Life", 22);
+      System.out.println("Value of \"Life\" = " + map.get("Life"));
+
+      // Apagando um valor
+      map.remove("Life");
+      System.out.println("Value of \"Life\" = " + map.get("Life"));
+   }
+}
+          </script>
+        </uc-code>
+
+        <h3>2. Um primeiro teste</h3>
+        <p class="uc-prose">Execute a classe de teste dos dicionários:</p>
+        <uc-code lang="bash" no-download>
+          <script type="text/plain">
+$ java TestBSTMap
+          </script>
+        </uc-code>
+        <p class="uc-prose">Espreite e acompanhe a implementação do método <code>put</code> da classe <code>BSTMap</code>, muito semelhante ao <code>insert</code> de uma árvore binária de pesquisa normal. Note também a assinatura dos principais métodos e o que fazem (<code>get</code>, <code>put</code>, <code>remove</code> e <code>keys</code>). Veja também como são percorridas as chaves do mapa (que são devolvidas numa lista ligada de Java <code>java.util.LinkedList</code>). De um modo geral, quando temos algo <em>iterável</em> no Java, podemos usar a sintaxe <em lang="en">for-each</em>:</p>
+        <uc-code lang="java" no-download>
+          <script type="text/plain">
+for (TipoElemento variavel : Sequencia) {
+     InstrucoesCiclo
+}
+          </script>
+        </uc-code>
+        <p class="uc-prose">Um exemplo seria algo como:</p>
+        <uc-code lang="java" filename="TestForEach.java">
+          <script type="text/plain">
+import java.util.LinkedList;
+import java.util.TreeSet;
+import java.util.Set;
+
+public class TestForEach {
+   public static void main(String[] args) {
+
+      // Criação de Lista Ligada usando a estrutura de dados do próprio Java
+
+      // Exemplo de inicialização usando sintaxe "diamond" (<>). Se não
+      // colocarmos o tipo no construtor, o Java consegue inferir qual é
+      // olhando para a variável que estamos a inicializar
+      LinkedList<String> list = new LinkedList<>();
+
+      // Adicionando algumas strings à lista ligada
+      list.addLast("testing");
+      list.addLast("just");
+      list.addLast("for");
+      list.addLast("fun");
+
+      // Para percorrer a lista podemos usar um for-each
+      for (String s : list)
+         System.out.println(s);
+
+      // Qualquer TAD iterável pode ser usado com um for each
+      // Aqui fica um exemplo com... conjuntos (interface Set)
+      // TreeSet implementa um conjunto usando árvores binárias de pesquisa
+      Set<Integer> set = new TreeSet<>();
+      set.add(42);
+      set.add(24);
+      set.add(0);
+
+      // Podemos usar int por causa do autounboxing
+      for (int i : set)
+         System.out.println(i);
+   }
+}
+          </script>
+        </uc-code>
+
+        <uc-exercise id="contagem-palavras" title="Um pequeno exercício para usar dicionários: [ED172] Contagem de palavras">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob172.html">[ED172] Contagem de palavras</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Crie um dicionário do tipo <code>&lt;String,Integer&gt;</code>.</li>
+              <li>Para ler as palavras use os métodos <code>hasNext()</code> (para saber se ainda existem palavras para ler) e <code>next()</code> (para ler a próxima palavra).</li>
+              <li>Para cada palavra lida:
+                <ul>
+                  <li>Se a palavra ainda não existe no dicionário (usar método <code>get()</code>), então colocá-la no dicionário com valor igual a 1 (usar método <code>put()</code>).</li>
+                  <li>Se a palavra já existe, incrementar o seu valor (usar método <code>get()</code> para ler o valor e depois método <code>put()</code> para atualizar o valor).</li>
+                </ul>
+              </li>
+              <li>No final é só percorrer a lista de chaves (método <code>keys()</code>) usando um for-each e imprimir os valores. Como é uma árvore binária de pesquisa e o <code>keys</code> é feito <em lang="en">inorder</em>, as chaves já vêm por ordem alfabética.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercícios extra -->
+      <section class="uc-section" aria-labelledby="extra">
+        <h2 id="extra">Exercícios extra para consolidação de conhecimentos</h2>
+
+        <uc-exercise id="intervalo-valores" title="[ED209] Intervalo de valores">
+          <p>Para consolidar os seus conhecimentos sobre como <strong>percorrer internamente</strong> uma árvore de pesquisa, resolva o seguinte problema (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>):</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob209.html">[ED209] Intervalo de valores</a></li>
+          </ul>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Para que um nó <em>x</em> esteja entre <em>a</em> e <em>b</em>, quais devem ser os resultados de <code>x.compareTo(a)</code> e <code>x.compareTo(b)</code>?</li>
+              <li>Use recursividade para procurar os elementos por toda a árvore.</li>
+              <li>Procure aproveitar as características duma árvore binária de pesquisa: por vezes sabemos que todo um ramo não está contido no intervalo (ex: se <em>x</em> é menor que <em>a</em>, então toda a subárvore esquerda não pertence ao intervalo, pois são elementos menores que <em>x</em>).</li>
+            </ul>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="sera-arvore-pesquisa" title="[ED210] Será uma árvore de pesquisa?">
+          <p>Para garantir que percebe as condições necessárias para uma árvore binária ser de <strong>pesquisa</strong>, resolva o seguinte problema (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>):</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob210.html">[ED210] Será uma árvore de pesquisa?</a></li>
+          </ul>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Uma árvore é de pesquisa se ambas as suas subárvores também o são.</li>
+              <li>Em cada nó, deve verificar se este é válido, ou seja:
+                <ul>
+                  <li>Se todos os nós da subárvore esquerda são menores que o nó atual</li>
+                  <li>Se todos os nós da subárvore direita são maiores que o nó atual</li>
+                </ul>
+              </li>
+              <li>Cuidado! Não pode usar diretamente os métodos anteriores de máximo e mínimo, pois se a árvore não for binária de pesquisa não é garantido que o mínimo e máximo estejam nessas posições.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="somas" title="[ED165] Somas">
+          <p>Para consolidar os seus conhecimentos sobre o uso de árvores binárias de pesquisa como TAD <strong>conjunto</strong>, resolva o seguinte problema (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>):</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob165.html">[ED165] Somas</a></li>
+          </ul>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <ul>
+              <li>Crie uma árvore binária de pesquisa para guardar inteiros.</li>
+              <li>Depois de ler os números, passe por todas as somas possíveis (combinações dois a dois – basta fazer dois ciclos) e guarde-as na árvore (método <code>insert()</code>). Note que as somas iguais a anteriores são descartadas (a árvore guarda apenas uma cópia de cada número).</li>
+              <li>Para responder a cada pergunta basta verificar se o número em causa está ou não contido na árvore (método <code>contains()</code>).</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <p class="uc-muted">DCC/FCUP · Última atualização do original: 27/11/2025</p>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula10.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 10 · Árvores binárias</strong>
+        </a>
+        <a class="uc-card" href="aula12.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 12 · Filas de prioridade (e revisões)</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

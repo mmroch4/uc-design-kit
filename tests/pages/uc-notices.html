@@ -12,6 +12,8 @@
       date: "2025-09-10",
       text: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/very-long-file-name-without-spaces.pdf",
     });
+    /* A notice dated after "today" stays hidden until that day. */
+    window.UC_COURSE.notices.push({ date: "2099-01-01", text: "FUTURE-NOTICE" });
   </script>
   <script src="../../kit/v1/uc-kit.js" defer></script>
   <style>
@@ -43,5 +45,12 @@
       </uc-notices>
     </section>
   </uc-page>
+  <script>
+    document.addEventListener("uc:ready", () => {
+      setTimeout(() => {
+        if ([...document.querySelectorAll("uc-notices")].some((el) => el.textContent.includes("FUTURE-NOTICE"))) console.error("uc-notices: a future notice is shown");
+      }, 100);
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 12 · Filas de prioridade · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 12 de Estruturas de Dados (CC1007): filas de prioridade implementadas com uma min-heap em Java e o problema ED215 Leilões.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="12">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 12</span>
+          <span class="uc-mono uc-muted">9–12 dez</span>
+        </p>
+        <h1>Aula 12 · Filas de prioridade</h1>
+      </div>
+
+      <!-- Exercícios para submissão -->
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob215.html">[ED215] Leilões</a> (peso 100%) <span class="uc-muted">(exercício do guião principal)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob300.html">[ED300] Hierarquias de Nós</a> (peso 50%) <span class="uc-muted">(exercício extra sobre árvores)</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob301.html">[ED301] Triagem de Manchester</a> (peso 50%) <span class="uc-muted">(exercício extra)</span></li>
+        </ul>
+        <p class="uc-prose"><strong>Prazo de submissão:</strong> 30 de dezembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
+        <div class="uc-callout">
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <ul class="uc-bullets">
+            <li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.</li>
+            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+            <li>Para ter 100% bastará sempre resolver os exercícios do guião principal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Conteúdos das teóricas -->
+      <section class="uc-section" aria-labelledby="teoricas">
+        <h2 id="teoricas">Conteúdos das teóricas</h2>
+        <p class="uc-prose">Nesta aula iremos abordar conceitos de <strong>Filas de Prioridade</strong>. Veja os:</p>
+        <p class="aula-actions">
+          <a class="uc-button" href="../materiais.html#slides">Slides sobre Filas de Prioridade</a>
+        </p>
+      </section>
+
+      <!-- Exercício 1 -->
+      <section class="uc-section" aria-labelledby="heaps">
+        <h2 id="heaps">Exercício 1) Compreendendo filas de prioridade e heaps</h2>
+        <p class="uc-prose">Um TAD <strong>fila de prioridade</strong> mantém uma coleção de elementos mantendo uma maneira eficiente de inserir elementos e de retirar o elemento mais <strong>prioritário</strong> (vamos assumir que o mais prioritário é o <strong>menor</strong>).</p>
+        <p class="uc-prose">Uma maneira de implementar filas de prioridade com operações eficientes em <strong>tempo logarítmico</strong> é usar um tipo especial de árvores chamadas de <strong>heaps</strong>. Numa (min)heap, qualquer nó deve sempre ser menor que os seus filhos (o que significa que o menor de todos está na raiz). Além disso, uma heap é uma árvore completa (todos os níveis cheios, exceto potencialmente o último, com os nós colocados o mais à esquerda possível - o que implica que é equilibrada e tem altura <em>O(log n)</em>) e é tipicamente implementada usando um array (onde o nó na posição <em>i</em> tem como filhos os nós nas posições <em>i*2</em> e <em>i*2+1</em>) [pode espreitar os <a href="../materiais.html#slides">slides</a> para relembrar].</p>
+
+        <uc-exercise id="compreender-heaps" title="Compreendendo heaps">
+          <p>Use a seguinte página para visualizar e interagir um pouco com uma (min)heap, tentando depois prever o que vai acontecer ao inserir e remover:</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.cs.usfca.edu/~galles/visualization/Heap.html">Visualização de heaps</a></li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="codigo-heaps" title="Código de heaps">
+          <p>Verifique o código seguinte que implementa uma Fila de prioridade com MinHeap (ex. métodos: <code>insert</code>, <code>min</code>, <code>removeMin</code>).</p>
+
+          <p class="aula-label">Fila de prioridade</p>
+          <uc-code lang="java" filename="MinHeap.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2024/2025 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2425/
+// -----------------------------------------------------------
+// Fila de Prioridade (com uma minHeap)
+// Em caso de empate no minimo, devolve um qualquer (dos minimos)
+// (Pedro Ribeiro @ DCC-FCUP)
+// -----------------------------------------------------------
+
+import java.util.Comparator;
+
+public class MinHeap<T> {
+   private T[] data;                 // Guardar elementos entre posicoes 1 e size
+   private int size;                 // Quantidade de elementos
+   private Comparator<T> comparator; // Comparador (opcional)
+
+   // Construtor (heap com uma dada capacidade)
+   @SuppressWarnings("unchecked") // Por causa da criação de um array de genericos
+   MinHeap(int capacity) {
+      data = (T[]) new Object[capacity+1]; // Java proibe directamente array de genericos, dai o cast
+      size = 0;
+      comparator = null;
+   }
+
+   // Construtor (heap com uma dada capacidade e comparador customizado)
+   MinHeap(int capacity, Comparator<T> comp) {
+      this(capacity);
+      comparator = comp;
+   }
+
+   // Numero de elementos guardados na heap
+   public int size() {
+      return size;
+   }
+
+   // Heap vazia?
+   public boolean isEmpty() {
+      return size==0;
+   }
+
+   // ---------------------------------------------------------------------
+
+   // Inserir um elemento na heap
+   public void insert(T value) {
+      if (size + 1 >= data.length) throw new RuntimeException("Heap is full");
+      size++;
+      data[size] = value;
+      upHeap(size);
+   }
+
+   // Devolver (sem retirar) elemento minimo
+   public T min() {
+      if (isEmpty()) return null;
+      return data[1];
+   }
+
+   // Remover e devolver elemento minimo
+   public T removeMin() {
+      if (isEmpty()) return null;
+      T min = data[1];
+      data[1] = data[size];
+      data[size] = null; // Para ajudar no garbage collection
+      size--;
+      downHeap(1);
+      return min;
+   }
+
+   // ---------------------------------------------------------------------
+
+   // Fazer um elemento subir na heap ate a sua posição
+   private void upHeap(int i) {
+      while (i>1 && smaller(i, i/2)) { // Enquanto o elemento for menor que o pai e não estiver na raiz
+         swap(i, i/2);                 // Trocar com o pai
+         i = i/2;
+      }
+   }
+
+   // Fazer um elemento descer na heap ate a sua posição
+   private void downHeap(int i) {
+      while (2*i <= size) {        // Enquanto estiver dentro dos limites da heap
+         int j = i*2;
+         if (j<size && smaller(j+1, j)) j++; // Escolher filho mais pequeno (posicao i*2 ou i*2+1)
+         if (smaller(i, j)) break;           // Se no ja e menor que filho mais pequeno, terminamos
+         swap(i, j);                         // Caso contrario, trocar com filho mais pequeno
+         i = j;
+      }
+   }
+
+   // Saber o elemento na posição i e menor que o elemento na posição j
+   @SuppressWarnings("unchecked") // Para que o java não se queixe do cast que diz que elementos são comparaveis
+   private boolean smaller(int i, int j) {
+      if (comparator == null) // Se não existe comparador usar comparação natural
+         return ((Comparable<? super T>) data[i]).compareTo(data[j]) < 0;
+      else                    // Se existe comparador... usa-lo
+         return comparator.compare(data[i], data[j]) < 0;
+   }
+
+   // Trocar elementos entre as posições i e j
+   private void swap(int i, int j) {
+      T tmp = data[i];
+      data[i] = data[j];
+      data[j] = tmp;
+   }
+
+}
+</script>
+          </uc-code>
+
+          <p class="aula-label">Exemplo de teste da MinHeap</p>
+          <uc-code lang="java" filename="TestMinHeap.java">
+<script type="text/plain">
+// -----------------------------------------------------------
+// Estruturas de Dados 2024/2025 (CC1007) - DCC/FCUP
+// https://www.dcc.fc.up.pt/~fds/aulas/EDados/2425/
+// -----------------------------------------------------------
+// Teste da MinHeap
+// (Pedro Ribeiro @ DCC-FCUP)
+// -----------------------------------------------------------
+
+import java.util.Comparator;
+
+public class TestMinHeap {
+   public static void main(String[] args) {
+
+      // Criar uma heap h (para inteiros) com capacidade para 100 elementos
+      MinHeap<Integer> h1 = new MinHeap<>(100);
+
+      // Criar um array com 10 inteiros
+      int[] v1 = {10,4,3,12,9,1,7,11,5,4};
+
+      // Inserir na heap h todos os elementos do array v1[]
+      for (int i=0; i<v1.length; i++)
+         h1.insert(v1[i]);
+
+      // Retirar um a um os elementos e imprimir (empates são resolvidos "aleatoriamente")
+      for (int i=0; i<v1.length; i++)
+         System.out.print(h1.removeMin() + " ");
+      System.out.println();
+
+      // ----------------------------------------------
+
+      // Criar uma heap h (para strings) com capacidade para 100 elementos
+      MinHeap<String> h2 = new MinHeap<>(100);
+
+      // Criar um array com 5 strings
+      String[] v2 = {"bbb", "aaaaa", "ee", "cccc", "d"};
+
+      // Inserir na heap h todos os elementos do array v2[]
+      for (int i=0; i<v2.length; i++)
+         h2.insert(v2[i]);
+
+      // Retirar um a um os elementos e imprimir (ordem natural e alfabetica)
+      for (int i=0; i<v2.length; i++)
+         System.out.print(h2.removeMin() + " ");
+      System.out.println();
+
+      // ----------------------------------------------
+
+      // Criar uma heap h (para strings) com comparador customizado (definido em baixo)
+      MinHeap<String> h = new MinHeap<>(100, new LengthComparator());
+
+      // Inserir na heap h todos os elementos do array v2[] criado anteriormente
+      for (int i=0; i<v2.length; i++)
+         h.insert(v2[i]);
+
+      // Retirar um a um os elementos e imprimir (por ordem crescente de tamanho)
+      for (int i=0; i<v2.length; i++)
+         System.out.print(h.removeMin() + " ");
+      System.out.println();
+   }
+}
+
+// ----------------------------------------------------------------------------------
+
+// Comparador customizado para strings (comparar tamanho)
+class LengthComparator implements Comparator<String> {
+   // Assumindo que não são nulas
+   public int compare(String a, String b) {
+      // Conseguem perceber porque podemos subtrair?
+      // Quando e que a subtração da um numero negativo? E positivo? E zero?
+      return a.length() - b.length();
+   }
+}
+</script>
+          </uc-code>
+
+          <p>Execute a classe de teste das filas de prioridade, acompanhando a execução dos métodos, e espreitando também o código que está em <code>MinHeap.java</code> para ver como é implementada uma heap de mínimo:</p>
+          <uc-code lang="bash" no-download>
+<script type="text/plain">
+$ java TestMinHeap
+</script>
+          </uc-code>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 2 -->
+      <section class="uc-section" aria-labelledby="resolver-problema">
+        <h2 id="resolver-problema">Exercício 2) Resolvendo um problema</h2>
+
+        <uc-exercise id="leiloes" title="Leilões">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob215.html">[ED215] Leilões</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
+          <details class="uc-hint">
+            <summary>Dicas</summary>
+            <ul class="uc-bullets">
+              <li>Crie uma classe <em>Person</em> para conter um comprador com nome e preço, e implemente nela o interface <code>Comparable</code>, que compara tendo em conta o preço.</li>
+              <li>Depois de ler o inteiro <em>N</em>, crie uma MinHeap de... compradores, com capacidade para <em>N</em> elementos do tipo <em>Person</em>.</li>
+              <li>Leia as linhas e:
+                <ul class="uc-bullets">
+                  <li>Se for uma oferta, insira a pessoa na heap.</li>
+                  <li>Se for uma venda, remova a melhor oferta da heap (como temos uma heapMin, basta que o <em>compareTo</em> dos comparadores reflita isso) e imprima o nome da pessoa que "saiu" da heap.</li>
+                </ul>
+              </li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula11.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 11 · Árvores binárias de pesquisa</strong>
+        </a>
+        <a class="uc-card" href="teste-pratico-2.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Avaliação Prática 2</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 1 · Introdução ao Java · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 1 de Estruturas de Dados (CC1007): instalação do Java, primeiro programa, procedimentos, funções e instruções condicionais, e Strings.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="1">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 1</span>
+          <span class="uc-mono uc-muted">16–19 set</span>
+        </p>
+        <h1>Aula 1 · Introdução ao Java</h1>
+      </div>
+
+      <!-- Exercício 1 do original -->
+      <section class="uc-section" aria-labelledby="instalacao">
+        <h2 id="instalacao">1. Instalação do Java</h2>
+        <p class="uc-prose">A primeira coisa que deverá fazer é garantir que tem um compilador e um interpretador de Java instalado na sua máquina. Tente seguir as seguintes ligações:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-instalacao.html">Breve manual de instalação do Java</a></li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html">Breve introdução à Linguagem Java</a></li>
+          <li><a href="https://docs.oracle.com/javase/8/docs/api/">Documentação oficial da linguagem Java</a></li>
+        </ul>
+      </section>
+
+      <!-- Exercício 2 do original -->
+      <section class="uc-section" aria-labelledby="primeiro-programa">
+        <h2 id="primeiro-programa">2. Primeiro programa em Java</h2>
+        <uc-code lang="java" filename="Numbers.java">
+          <script type="text/plain">
+            // Uma classe muito simples que usa um ciclo para imprimir numeros entre 1 e n
+            // O ficheiro tem de ter o mesmo nome da classe + a extensão '.java'
+
+            public class Numbers {
+                public static void main(String[] args) {
+                    int n = 10; // limite dos numeros
+
+                    System.out.println("Numeros de 1 a " + n + ":"); // + é o operador de concatenação de strings
+                    for (int i=1; i<=n; i++)
+                        System.out.println(i);
+                }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="primeira-execucao" title="A minha primeira execução de código Java">
+          <p>Copie este pedaço de código para um ficheiro, compile-o e execute o programa (ver <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html#compile">secção de compilação e execução</a> da introdução).</p>
+          <ol>
+            <li>Como se deve chamar o ficheiro? O que diz o compilador se o ficheiro tiver outro nome?</li>
+            <li>Com que nome fica o ficheiro resultante da compilação?</li>
+            <li>Qual o resultado da sua execução? Experimente mesmo executar o programa.</li>
+          </ol>
+        </uc-exercise>
+
+        <uc-exercise id="case-sensitive" title="Case Sensitive?">
+          <p>Experimente mudar logo na primeira linha a palavra <code>class</code>, alterando-a para <code>Class</code>. O que acontece se voltar a compilar? Porquê?</p>
+        </uc-exercise>
+
+        <uc-exercise id="erros-compilacao" title="Erros de compilação">
+          <p>Experimente retirar o <code>;</code> na declaração da variável <var>n</var> e compile. O que acontece?</p>
+        </uc-exercise>
+
+        <uc-exercise id="escrevendo-codigo" title="Escrevendo código">
+          <p>Modifique o programa para que passe a escrever os números todos na mesma linha, separados por vírgulas (sem nenhuma vírgula a mais no final, mas com mudança de linha).</p>
+          <ul class="uc-bullets">
+            <li>A função <code>System.out.println()</code> coloca sempre no final uma mudança de linha. O que fará a função <code>System.out.print()</code>?</li>
+          </ul>
+          <p class="aula-label">Exemplo de execução pretendida</p>
+          <uc-code lang="bash" no-download>
+            <script type="text/plain">
+              $ java Numbers
+              Numeros de 1 a 10: 1,2,3,4,5,6,7,8,9,10
+              $
+            </script>
+          </uc-code>
+        </uc-exercise>
+
+        <uc-exercise id="somando-numeros" title="Somando números">
+          <p>Acrescente ao programa código para somar todos os números entre 1 e <var>n</var> e no final imprimir a soma.</p>
+          <ul class="uc-bullets">
+            <li>Vamos precisar de uma variável para ir contendo a soma. De que tipo deve ser? (ver <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html#types">secção de tipos</a> da introdução).</li>
+            <li>Embora seja possível saber a soma usando uma <a href="https://pt.wikipedia.org/wiki/Progress%C3%A3o_aritm%C3%A9tica#Soma_dos_termos_de_uma_progress%C3%A3o_aritm%C3%A9tica">fórmula fechada</a>, neste exercício queremos mesmo ir somando os valores à medida que o ciclo vai avançando.</li>
+            <li>O resultado da execução deverá acrescentar ao output uma linha com <code>Soma = 55</code> (com <var>n</var>=10). Experimente colocar <var>n</var>=500 para verificar se a soma dá 125250.</li>
+          </ul>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 3 do original -->
+      <section class="uc-section" aria-labelledby="procedimentos">
+        <h2 id="procedimentos">3. Procedimentos</h2>
+        <uc-code lang="java" filename="Square.java">
+          <script type="text/plain">
+            public class Square {
+                // Desenha uma linha de n caracteres onde:
+                // - o primeiro e o último caracteres são o caracter da variável 'a'
+                // - todos os outros caracteres são o caracter da variável 'b'
+                static void line(char a, char b, int n) {
+                    System.out.print(a);
+                    for (int i=1; i<=n-2; i++)
+                        System.out.print(b);
+                    System.out.println(a);
+                }
+
+                // O procedimento executado inicialmente é sempre o main
+                public static void main(String[] args) {
+                    line('*','-',5);
+                }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="procedimento-simples" title="Um procedimento simples">
+          <p>Copie este pedaço de código para um ficheiro, compile-o e execute o programa.</p>
+          <ul class="uc-bullets">
+            <li>Qual o resultado da execução?</li>
+            <li>Consegue perceber a chamada ao procedimento <code>line</code>?</li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="novo-procedimento" title="Criando um novo procedimento">
+          <p>O objectivo deste exercício é criar um novo procedimento <code>square(int n)</code> que quando chamado desenha um quadrado de tamanho <var>n</var>. Por exemplo, uma chamada a <code>square(6)</code> deve resultar na escrita de:</p>
+          <uc-code lang="plaintext" no-download>
+            <script type="text/plain">
+              +----+
+              |....|
+              |....|
+              |....|
+              |....|
+              +----+
+            </script>
+          </uc-code>
+          <ul class="uc-bullets">
+            <li>Tal como <code>line</code>, o procedimento a criar deve ser <code>static</code> (estático: vamos falar disto depois nas aulas) e <code>void</code> (pois não devolve nada).</li>
+            <li>Tal como <code>line</code>, o procedimento a criar só deve conter 4 linhas de código:
+              <ul>
+                <li>Como desenhar a primeira linha (ou a última linha) usando uma única chamada a <code>line</code>?</li>
+                <li>Como desenhar a segunda linha (ou a terceira, ou quarta, ...) usando uma única chamada a <code>line</code>?</li>
+                <li>Um quadrado não é mais do que uma ocorrência da primeira linha, seguida por uma série de ocorrências das linhas do meio, seguidas pela linha final...</li>
+              </ul>
+            </li>
+          </ul>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 4 do original -->
+      <section class="uc-section" aria-labelledby="funcoes">
+        <h2 id="funcoes">4. Funções e instruções condicionais</h2>
+        <uc-code lang="java" filename="Primes.java" editable>
+          <script type="text/plain">
+            public class Primes {
+                // Verifica se o número n é primo (apenas divisível por 1 e por si próprio)
+                // [função ainda por completar]
+                static boolean isPrime(int n) {
+                    return true;
+                }
+
+                public static void main(String[] args) {
+                    int n=1000; // Limite dos números
+                    for (int i=2; i<=n; i++)
+                        if (isPrime(i))
+                            System.out.println(i);
+                }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="testando-codigo-base" title="Testando o código base">
+          <p>Compile e execute este código. Qual o resultado?</p>
+          <ul class="uc-bullets">
+            <li>Se quisesse saber o número de linhas escrito poderia por exemplo usar o comando <a href="https://linux.die.net/man/1/wc">wc</a> de Linux. Por exemplo, a seguinte linha de comandos envia o output do seu programa (usando um <a href="https://en.wikipedia.org/wiki/Pipeline_%28Unix%29">pipe</a>) para o <code>wc</code> no modo <code>-l</code> (contagem de linhas).</li>
+          </ul>
+          <uc-code lang="bash" no-download>
+            <script type="text/plain">
+              $ java Primes | wc -l
+              999
+              $
+            </script>
+          </uc-code>
+        </uc-exercise>
+
+        <uc-exercise id="funcao-isprime" title="Função isPrime">
+          <p>Preencha agora o conteúdo da função <code>isPrime</code> para o código ficar correcto.</p>
+          <ul class="uc-bullets">
+            <li>Um número é primo se apenas for divisível por 1 e por si próprio.</li>
+            <li>A função deve retornar <code>true</code> se o número for primo e <code>false</code> caso contrário.</li>
+            <li>Faça um ciclo entre 2 e <var>n</var> e se algum outro número dividir <var>n</var>, então indique que ele não é primo, <strong>saindo logo da função</strong>.<br>
+              (sim, é possível fazer melhor que testar todos os números, e nos próximos exercícios vamos fazer evoluir o código para algo mais eficiente).</li>
+            <li>Como saber se um número divide outro? Que tipo de operador é necessário? (ver <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html#operators">secção de operadores</a> da introdução)</li>
+            <li>Se o programa estiver correcto, para <var>n</var>=1000 deverá encontrar 168 números primos (use o comando <code>wc</code> como atrás descrito para verificar).</li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="medindo-tempo" title="Medindo o tempo">
+          <p>Neste exercício vamos querer ver quanto tempo o seu programa demora. Para isso vamos usar o comando <a href="https://linux.die.net/man/1/time">time</a> de Linux.</p>
+          <ol>
+            <li>Comece por usar <code>time</code> com o seu programa para verificar quanto tempo demora. Deverá ver algo como:
+              <uc-code lang="bash" no-download>
+                <script type="text/plain">
+                  $ time java Primes | wc -l
+                  168
+
+                  real	0m0.079s
+                  user	0m0.076s
+                  sys	0m0.008s
+                  $
+                </script>
+              </uc-code>
+            </li>
+            <li>Experimente agora mudar <var>n</var> para cem mil e veja quanto tempo demora (não se esqueça de recompilar antes de voltar a executar).</li>
+            <li>Se <var>n</var> for um milhão quanto tempo demora?<br>
+              (se ficar cansado de esperar pode parar a execução fazendo <kbd>Control+C</kbd>)</li>
+          </ol>
+        </uc-exercise>
+
+        <uc-exercise id="melhorando-eficiencia" title="Melhorando a eficiência">
+          <p>Vamos agora melhorar a eficiência da função <code>isPrime</code> para melhorar o tempo de execução.</p>
+          <p>Em vez de testar com os divisores todos números entre 2 e <var>n</var>, basta testar entre 2 e √<var>n</var>. (Porquê?) Modifique o seu programa para fazer isso (não precisa de saber como calcular raízes quadradas em Java, pois não?) e meça o tempo de execução para verificar se melhorou.</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 5 do original -->
+      <section class="uc-section" aria-labelledby="strings">
+        <h2 id="strings">5. Strings, e alguns erros de execução e compilação</h2>
+        <uc-code lang="java" filename="Strings.java">
+          <script type="text/plain">
+            // Exemplos de uso de Strings
+
+            public class Strings {
+                public static void main(String[] args) {
+                    String a = 1007;     // A tentar atribuir um número inteiro a uma String
+
+                    String b = "1007";   // Colocar "1007" na variável b
+                    String c = "CC";     // Colocar "CC" na variável c
+                    String d = c + b;    // Concatenar "CC" com "1007" e colocar resultado na variável d
+                    String e = c + 1007; // Concatenar "CC" com número 1007 e colocar resultado na variável e
+
+                    // Escrever conteúdo das duas strings criadas
+                    System.out.println("d = " + d);
+                    System.out.println("e = " + e);
+
+                    // Como comparar duas strings
+                    System.out.println("d==e? " + (d==e));             // Não está correcto (compara referências)
+                    System.out.println("d.equals(e)? " + d.equals(e)); // Maneira correcta de comparar o conteúdo de duas strings
+
+                    // Como calcular o tamanho de uma string
+                    int size = d.length();
+                    System.out.println("tamanho de d = " + size);
+
+                    // Como ir buscar o caracter numa dada posição da string
+                    System.out.println("d.charAt(0) = " + d.charAt(0));
+                    System.out.println("d.charAt(2) = " + d.charAt(2));
+                    //System.out.println("d.charAt(10) = " + d.charAt(10));
+
+                    // Como ir buscar parte de uma string entre duas dadas posições
+                    String sub = d.substring(1,4);
+                    System.out.println("d.substring(1,4) = " + sub);
+
+                    // Procurando a primeira ocorrência de um dado caracter
+                    char ch = '7';
+                    int pos = d.indexOf(ch);
+                    System.out.println("d.indexOf(" + ch +") = " + pos);
+                }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="erro-compilacao" title="Um erro de compilação">
+          <p>Compile o programa. Que tipo de erro dá? Consegue "ler" e interpretar o que o compilador de Java escreve?</p>
+        </uc-exercise>
+
+        <uc-exercise id="verificando-programa" title="Verificando o programa">
+          <p>Comente a linha que deu erro, compile e execute, procurando perceber todas as suas linhas e o <em>output</em> obtido.</p>
+          <ul class="uc-bullets">
+            <li>Ao contrário do C, em Java uma <code>String</code> é um tipo específico (uma classe) e não um mero <em>array</em> de caracteres.</li>
+            <li>Note como o operador concatenação funciona conforme os operandos: se tiver dois números, soma, se tiver pelo menos uma string, interpreta ambos como strings e concatena;</li>
+            <li>Uma simples comparação com <code>==</code> compara as referências e não o conteúdo dos objectos <em>string</em> e por isso devolve que são diferentes (vamos falar sobre objectos e referências noutras aulas).</li>
+            <li>Para podermos operar sobre objectos do tipo <code>String</code>, o Java disponibiliza toda uma biblioteca. Espreite a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">documentação oficial da classe String</a> para ver quais os métodos existentes (as funções que operam sobre objectos do tipo <code>String</code>). Na ligação poderá encontrar uma explicação detalhada do funcionamento dos vários métodos aqui usados.</li>
+          </ul>
+        </uc-exercise>
+
+        <uc-exercise id="erro-execucao" title="Erro durante a execução">
+          <p>Descomente a linha que tenta escrever <code>d.charAt(10)</code>. Que erro é dado? O Java comunica os erros de execução através de excepções com nomes que indicam o tipo de erro.</p>
+        </uc-exercise>
+
+        <uc-exercise id="procurando-metodo" title="Procurando um método">
+          <p>Use a documentação para descobrir um método para converter uma <code>String</code> em minúsculas. Teste o método no código, compilando e executando para ver o resultado obtido.</p>
+        </uc-exercise>
+
+        <uc-exercise id="palindromo" title="Criando uma função">
+          <p>Crie um método que recebe uma <code>String</code> e devolve se esta é ou não um palíndromo (ou seja, se a string é igual à sua versão invertida). Por exemplo:</p>
+          <ul class="uc-bullets">
+            <li><code>isPalindrome("hello")</code> deve devolver <code>false</code> porque <code>"hello"</code> não é igual a <code>"olleh"</code></li>
+            <li><code>isPalindrome("bob")</code> deve devolver <code>true</code></li>
+          </ul>
+          <p>Qual deve ser o tipo do argumento da função? E do seu valor de retorno?</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercícios adicionais do original -->
+      <section class="uc-section" aria-labelledby="adicionais">
+        <h2 id="adicionais">6. Exercícios adicionais para consolidação de conhecimentos</h2>
+
+        <uc-exercise id="losango" title="Mais sobre ciclos e procedimentos">
+          <p>Crie um procedimento que, dado um <var>n</var> ímpar, escreva um losango de tamanho <var>n</var> no ecrã. Por exemplo, se <var>n</var>=5, o <em>output</em> deve ser:</p>
+          <uc-code lang="plaintext" no-download>
+            <pre><code>  #
+ ###
+#####
+ ###
+  #</code></pre>
+          </uc-code>
+        </uc-exercise>
+
+        <uc-exercise id="factores-primos" title="Mais sobre números primos">
+          <p>Crie um procedimento que, dado um inteiro <var>n</var>, escreva a sua decomposição em factores primos. Por exemplo, se <var>n</var>=20, o <em>output</em> deve ser:</p>
+          <uc-code lang="plaintext" no-download>
+            <script type="text/plain">
+              20 = 2 * 2 * 5
+            </script>
+          </uc-code>
+        </uc-exercise>
+
+        <uc-exercise id="strings-count" title="Mais sobre strings I">
+          <p>Crie um procedimento <code>count</code> que receba uma string <var>s</var> e um caracter <var>c</var> e devolva o número de ocorrências da letra <var>c</var> na string <var>s</var> (por exemplo, <code>count("algoritmo", 'o')</code> deve devolver 2, o número de vezes que a letra <code>'o'</code> aparece).</p>
+        </uc-exercise>
+
+        <uc-exercise id="l-system" title="Mais sobre strings II">
+          <p>Crie um procedimento que receba um inteiro <var>n</var> e escreva as primeiras <var>n</var> linhas do <a href="https://en.wikipedia.org/wiki/L-system#Examples_of_L-systems">L-system original de Lindenmayer</a>, que usa as seguintes regras:</p>
+          <ul class="uc-bullets">
+            <li>A primeira linha é <code>"A"</code></li>
+            <li>Para se obter uma nova linha pega-se na linha anterior e substitui-se todos os <code>"A"</code> por <code>"AB"</code> e todos os <code>"B"</code> por <code>"A"</code>.</li>
+          </ul>
+          <p>Por exemplo, se o procedimento for chamado com <var>n</var>=7 o output deverá ser:</p>
+          <uc-code lang="plaintext" no-download>
+            <script type="text/plain">
+              A
+              AB
+              ABA
+              ABAAB
+              ABAABABA
+              ABAABABAABAAB
+              ABAABABAABAABABAABABA
+            </script>
+          </uc-code>
+        </uc-exercise>
+      </section>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <div></div>
+        <a class="uc-card" href="aula02.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 2 · Input/Output e Mooshak</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

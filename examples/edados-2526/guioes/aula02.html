@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 2 · Input/Output e Mooshak · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Guião da aula prática 2 de Estruturas de Dados (CC1007): leitura com a classe Scanner, leitura de strings, arrays e primeiros problemas no Mooshak (ED183, ED120, ED121, ED243, ED244).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="2">
+
+      <!-- Cabeçalho do guião -->
+      <div class="uc-stack">
+        <p class="aula-meta">
+          <span class="uc-tag uc-tag--accent">Semana 2</span>
+          <span class="uc-mono uc-muted">23–26 set</span>
+        </p>
+        <h1>Aula 2 · Input/Output e Mooshak</h1>
+      </div>
+
+      <!-- Exercícios para submissão -->
+      <section class="uc-section" aria-labelledby="submissao">
+        <h2 id="submissao">Exercícios para submissão</h2>
+        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
+        <ul class="uc-bullets">
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob183.html">[ED183] Estatísticas</a> (peso 40%) (exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob120.html">[ED120] Desenhando um Losango</a> (peso 40%) (exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob121.html">[ED121] Palíndromos</a> (peso 40%) (exercício do guião principal)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob243.html">[ED243] Pizza</a> (peso 20%) (exercício extra)</li>
+          <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/problemas/prob244.html">[ED244] Primos</a> (peso 20%) (exercício extra)</li>
+        </ul>
+        <div class="uc-callout">
+          <p><strong>Prazo de submissão:</strong> 7 de outubro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
+          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
+          <p>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br>
+            Cada aula vale 10% da nota desta componente. Como existirão 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.<br>
+            Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br>
+            Para ter 100% bastará sempre resolver os exercícios do guião principal.</p>
+        </div>
+      </section>
+
+      <!-- Exercício 1 do original -->
+      <section class="uc-section" aria-labelledby="scanner">
+        <h2 id="scanner">1. Introdução à classe Scanner</h2>
+        <p class="uc-prose">Use a <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Scanner.html">documentação da classe Scanner</a> como referência quando precisar.</p>
+        <uc-code lang="java" filename="Sum.java">
+          <script type="text/plain">
+            // Importa a classe Scanner, que será usada para leitura de dados
+            import java.util.Scanner;
+
+            public class Sum {
+               public static void main(String[] args) {
+                  // Cria um objecto Scanner para ler da entrada padrão ("standard input")
+                  Scanner stdin = new Scanner(System.in);
+
+                  // Chama o método nextInt() para ir buscar o próximo inteiro
+                  int a = stdin.nextInt();
+                  int b = stdin.nextInt();
+
+                  // Imprime a soma dos dois números
+                  System.out.println(a+b);
+               }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="primeiro-scanner" title="O meu primeiro programa com Scanner">
+          <p>Copie este pedaço de código para um ficheiro, compile-o e execute o programa. A execução deverá ficar "parada" à espera que introduza dois números. Escreva <code>2 3</code>, carregue no <kbd>enter</kbd> e verifique que o programa escreve <code>5</code> como resultado.</p>
+        </uc-exercise>
+
+        <uc-exercise id="importacao" title="Importação de classes">
+          <p>Experimente comentar a segunda linha do programa (a instrução <code>import</code>) e compile de novo o código. O que acontece?</p>
+          <p>A classe <code>Scanner</code> faz parte do pacote <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/package-summary.html">java.util</a>, que contém toda uma série de classes muito úteis que iremos aos poucos começar a usar.</p>
+        </uc-exercise>
+
+        <uc-exercise id="espacamento" title="Espaçamento">
+          <p>Experimente executar o programa novamente, mas desta vez escrever <code>2</code>, carregar no <kbd>enter</kbd>, depois escrever <code>3</code> e carregar novamente no <kbd>enter</kbd>, verificando que o programa continua a funcionar. Isto acontece porque o método <code>nextInt()</code> aceita qualquer tipo de espaçamento entre inteiros (sejam apenas um ou vários espaços, tabs e mudanças de linha).</p>
+        </uc-exercise>
+
+        <uc-exercise id="input-mismatch" title="Erro no tipo de dados (Input Mismatch)">
+          <p>Execute novamente o programa mas desta vez dê como input <code>2.5 3.6</code>. O que acontece? Porquê?</p>
+        </uc-exercise>
+
+        <uc-exercise id="outro-tipo" title="Lendo outro tipo de dados">
+          <p>Modifique o programa para que passe a conseguir ler números com casas decimais ao invés de inteiros. Queremos usar <em>doubles</em> em vez de <em>ints</em>. Que método deverá ser chamado no lugar do <code>nextInt()</code>? (espreite novamente a <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Scanner.html">documentação da classe Scanner</a>). Teste o seu programa para garantir que com <code>2.5 3.6</code> como entrada o resultado é <code>6.1</code>.</p>
+          <p class="uc-muted"><em>(Nota: se usar um computador configurado para português, pode acontecer que ao tentar ler um número decimal com um ponto receba um "Input Mismatch"; nesse caso é esperado que use uma vírgula no lugar do ponto; não há problema pois quando submeter o seu programa ele irá aceitar na mesma pontos. Em todo o caso, se desejar usar pontos também no seu computador pode <a href="https://stackoverflow.com/questions/8809098/how-do-i-set-the-default-locale-for-my-jvm">modificar o Locale de todo o programa</a> ou <a href="https://www.geeksforgeeks.org/scanner-uselocale-method-in-java-with-examples/">apenas no Scanner</a>.)</em></p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 2 do original -->
+      <section class="uc-section" aria-labelledby="leitura-strings">
+        <h2 id="leitura-strings">2. Leitura de strings</h2>
+        <uc-code lang="java" filename="Count.java">
+          <script type="text/plain">
+            import java.util.Scanner;
+
+            public class Count {
+               public static void main(String[] args) {
+                  Scanner stdin = new Scanner(System.in);
+
+                  // Ciclo para iterar sobre todas as linhas do input
+                  int counter = 0;
+                  while (stdin.hasNextLine()) {
+                     counter++;
+                     String s = stdin.nextLine();
+                     System.out.println(counter + ": " + s);
+                  }
+               }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="input-ficheiro" title="Executar o programa com o input num ficheiro">
+          <p>Faça download do ficheiro <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/hamlet.txt"><code>hamlet.txt</code></a> contendo alguns versos de <em>Hamlet</em>, uma peça de William Shakespeare. Compile o código de cima e execute-o fornecendo como input o ficheiro <code>hamlet.txt</code> usando redirecionamento de input na shell:</p>
+          <uc-code lang="bash" no-download>
+            <script type="text/plain">
+              $ java Count < hamlet.txt
+              1: To be or not to be that is the question
+              2: Whether tis nobler in the mind to suffer
+              3: The slings and arrows of outrageous fortune
+              4: Or to take arms against a sea of troubles
+            </script>
+          </uc-code>
+          <p>Note que redirecionar o input (a parte <code>&lt; hamlet.txt</code> na instrução acima) é "equivalente" a introduzir manualmente o conteúdo do ficheiro via teclado. Esta técnica poderá ser útil para facilitar o teste de inputs muito grandes ou de vários casos de input.</p>
+        </uc-exercise>
+
+        <uc-exercise id="lendo-tokens" title="Lendo tokens">
+          <p>Altere o programa, substituindo a chamada a <code>hasNextLine()</code> por <code>hasNext()</code>, e a chamada a <code>nextLine()</code> por <code>next()</code>. Recompile e execute novamente o código com o mesmo input. O que acontece agora? O que está a ser contado?</p>
+          <p>Em Java não existe nenhum "nextString" e o método <code>next</code> deve ser usado para ler pedaços de input (<em>tokens</em>) separados por algum tipo de espaçamento (sejam espaços ou mudanças de linha).</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 3 do original -->
+      <section class="uc-section" aria-labelledby="arrays">
+        <h2 id="arrays">3. Utilização de arrays</h2>
+        <uc-code lang="java" filename="ReadNumbers.java">
+          <script type="text/plain">
+            import java.util.Scanner;
+
+            public class ReadNumbers {
+               // Escrever os numeros guardados num array no stdout
+               static void writeArray(int v[]) {
+                  for (int i=0; i<v.length; i++)
+                     System.out.println("v[" + i + "] = " + v[i]);
+               }
+
+               public static void main(String[] args) {
+                  Scanner stdin = new Scanner(System.in);
+
+                  int v[] = new int[10];       // Cria um novo array com espaço para 10 inteiros
+                  int n = stdin.nextInt();     // Ler a quantidade de numeros que se seguem
+                  for (int i=0; i<n; i++)      // Ler os numeros a partir do stdin
+                     v[i] = stdin.nextInt();
+
+                  writeArray(v);               // Chamar procedimento que escreve
+               }
+            }
+          </script>
+        </uc-code>
+
+        <uc-exercise id="executar-arrays" title="Executar o código">
+          <p>Compile e execute este código, redirecionando o input a partir do ficheiro <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/downloads/numbers.txt"><code>numbers.txt</code></a></p>
+          <uc-code lang="bash" no-download>
+            <script type="text/plain">
+              $ java ReadNumbers < numbers.txt
+            </script>
+          </uc-code>
+        </uc-exercise>
+
+        <uc-exercise id="posicoes-por-preencher" title="Posições do array por preencher">
+          <p>Substitua o 10 no início do input por um 5 e execute novamente o programa. O que acontece? Porquê? Note como o atributo <code>length</code> de um array indica o tamanho que foi alocado, e não o número de posições "preenchidas". Note também qual o valor por omissão de um inteiro.</p>
+        </uc-exercise>
+
+        <uc-exercise id="fora-dos-limites" title="Saindo fora dos limites do array (ArrayIndexOutOfBoundsException)">
+          <p>Mude o ficheiro de input para passar a conter 11 números (mude a primeira linha para 11 e acrescente um número no final da segunda linha) e execute novamente o programa. O que acontece? Porquê? Note que ao contrário do C, o Java indica explicitamente quando saímos fora dos limites de um array.</p>
+          <p>Modifique o programa para passar a aceitar uma qualquer quantidade de números inteiros (a que for indicada na primeira linha de input) e teste a sua alteração.</p>
+        </uc-exercise>
+
+        <uc-exercise id="amplitude" title="Calculando a amplitude">
+          <p>Acrescente uma função que recebe um array e devolve um inteiro indicando a amplitude (diferença entre máximo e mínimo) dos valores guardados no array. Teste o seu funcionamento e certifique-se que funciona independentemente da magnitude dos números (podem ser tão pequenos, incluindo números negativos, ou grandes como quiserem, assumindo que cabem num <code>int</code>).</p>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 4 do original -->
+      <section class="uc-section" aria-labelledby="ed183">
+        <h2 id="ed183">4. Resolução do problema [ED183] Estatísticas</h2>
+        <p>
+          <a href="https://mooshak.dcc.fc.up.pt/~edados/"><img src="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/images/mooshak.gif" alt="Mooshak de EDados"></a>
+        </p>
+
+        <uc-exercise id="estatisticas" title="[ED183] Estatísticas">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob183.html">[ED183] Estatísticas</a> e poderá usar o <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a> para ajudar a testar a sua solução (<a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/misc/ajuda.html">ver ajuda do Mooshak</a>).</p>
+          <p>Note que:</p>
+          <ul class="uc-bullets">
+            <li>Este problema é uma continuação do exercício anterior (falta acrescentar uma nova função para calcular a média).</li>
+            <li>Para imprimir um <code>double</code> com duas casas decimais pode usar a instrução <code>printf</code> (como no C). Por exemplo, imprimir uma variável <var>x</var> com duas casas decimais seria <code>System.out.printf("%.2f\n", x);</code></li>
+            <li>Note que não tem de verificar se o input obedece aos limites dados no enunciado. Pelo contrário, essas restrições estão lá para lhe garantir que os dados respeitam esses limites (ex: assim sabe que nunca irão existir mais que 1000 números inteiros nos inputs que são dados ao seu programa no Mooshak).</li>
+            <li>Todas as linhas do input e do output devem terminar com o caracter de mudança de linha (mesmo a última).</li>
+          </ul>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercício 5 do original -->
+      <section class="uc-section" aria-labelledby="ed120-ed121">
+        <h2 id="ed120-ed121">5. Resolução dos problemas [ED120] Desenhando um Losango e [ED121] Palíndromos</h2>
+
+        <uc-exercise id="losango" title="[ED120] Desenhando um Losango">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob120.html">[ED120] Desenhando um Losango</a> e poderá usar o <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a> para ajudar a testar a sua solução.</p>
+          <details class="uc-hint">
+            <summary>Algumas dicas</summary>
+            <ul>
+              <li>Este problema é essencialmente igual a algo sugerido na aula anterior;</li>
+              <li>Para o resolver apenas necessita de saber como usar ciclos. Quantos pontos existem na primeira linha? E na segunda? E na terceira? E cardinais?</li>
+            </ul>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="palindromos" title="[ED121] Palíndromos">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob121.html">[ED121] Palíndromos</a> e poderá usar o <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a> para ajudar a testar a sua solução.</p>
+          <details class="uc-hint">
+            <summary>Algumas dicas</summary>
+            <ul>
+              <li>Para a leitura do input pode usar o que aprendeu no exercício 2 desta aula;</li>
+              <li>Se quiser aceder ao <var>i</var>-ésimo caracter de uma <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a> pode usar o método <code>char charAt(int i)</code>, como viu na aula anterior.</li>
+              <li>Primeiro converta a linha lida numa string só com letras minúsculas (sem espaços e pontuações). Faça para isso uma função que receba uma string e devolva a mesma string com os espaços retirados e todas as maiúsculas convertidas em minúsculas. Para isso é útil conhecer a classe <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/class-use/Character.html">Character</a>, que contém várias funções para lidar com caracteres. Em particular:
+                <ul>
+                  <li>A função <code>boolean Character.isLetter(char c)</code> indica se o caracter <code>c</code> é uma letra;</li>
+                  <li>A função <code>char Character.toLowerCase(char c)</code> converte o caracter para a sua versão minúscula.</li>
+                </ul>
+              </li>
+              <li>Faça agora uma outra função que recebe uma string e devolve um valor booleano indicando se a string é ou não um palíndromo, sendo que pode aplicar esta função à linha já sem espaços e maiúsculas.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Exercícios adicionais do original (as dicas estavam escondidas atrás de um botão) -->
+      <section class="uc-section" aria-labelledby="adicionais">
+        <h2 id="adicionais">6. Resolução de exercícios adicionais</h2>
+        <p class="uc-prose">Estes exercícios são um pouco mais avançados, mas permitem que exercite conhecimentos de leitura/escrita, uso de instruções condicionais e uso de instruções de ciclo. As dicas estão acessíveis se as abrir, mas estão "escondidas" para o caso de preferir primeiro tentar fazer sem <em lang="en">spoilers</em>.</p>
+
+        <uc-exercise id="pizza" title="[ED243] Pizza">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob243.html">[ED243] Pizza</a> e também poderá testar a sua solução no Mooshak.</p>
+          <details class="uc-hint">
+            <summary>Mostrar dicas</summary>
+            <ul>
+              <li>Guarde os ingredientes que o Mario não gosta num array <code>a[]</code> de tamanho <strong>N</strong></li>
+              <li>Inicialize um contador a zero</li>
+              <li>Faça um ciclo com <strong>P</strong> iterações e em cada uma delas:
+                <ul>
+                  <li>Leia os ingredientes da pizza <var>i</var> para um array <code>b[]</code> de tamanho <strong>K<sub>i</sub></strong></li>
+                  <li>Crie uma função que receba <code>a[]</code> e <code>b[]</code> e verifique se a pizza está ok, ou seja, se não há ingredientes em comum (basta fazer dois ciclos no tamanho dos arrays e comparar elemento a elemento e ver se algum par é igual)</li>
+                  <li>Chame a função para cada pizza e se estiver ok, incremente um contador</li>
+                </ul>
+              </li>
+              <li>Imprima o conteúdo do contador.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+
+        <uc-exercise id="primos" title="[ED244] Primos">
+          <p>Resolva o problema <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob244.html">[ED244] Primos</a> e também poderá testar a sua solução no Mooshak.</p>
+          <details class="uc-hint">
+            <summary>Mostrar dicas</summary>
+            <ul>
+              <li>Este exercício vem na sequência da aula anterior, onde implementou uma forma um pouco <em lang="en">naive</em> de verificar se um dado número é primo. Executar esse procedimento neste problema para todos os números no intervalo vai exceder o limite de tempo (pode experimentar para verificar o que acontece).</li>
+              <li>Aqui é suposto que pesquise um pouco seguindo a sugestão do enunciado: veja por exemplo a entrada da Wikipedia sobre o <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Crivo de Eratóstenes</a> (existem muitos recursos possíveis online).</li>
+              <li>A ideia é precisamente implementar o crivo, criando um array de booleanos <code>prime[i]</code> (de tamanho 10 milhões) que tenha uma posição <var>i</var> a <code>true</code> se o número <var>i</var> for primo, e <code>false</code> caso contrário.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+      </section>
+
+      <!-- Aula anterior e seguinte -->
+      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
+        <a class="uc-card" href="aula01.html">
+          <span class="uc-muted">← Anterior</span>
+          <strong>Aula 1 · Introdução ao Java</strong>
+        </a>
+        <a class="uc-card" href="aula03.html">
+          <span class="uc-muted">Seguinte →</span>
+          <strong>Aula 3 · Introdução a classes</strong>
+        </a>
+      </nav>
+
+    </uc-guide>
+  </uc-page>
+
+</body>
+</html>

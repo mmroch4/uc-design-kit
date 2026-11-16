@@ -7,6 +7,8 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `.uc-table` wrappers that scroll sideways become keyboard-focusable regions
+  (labelled by the table caption) while they overflow.
 - Repository scaffold, licence and contribution guide.
 - Page checker (`npm test`) and GitHub Actions workflow.
 - Core runtime: configuration loading and validation, i18n (pt, en), language
@@ -29,6 +31,7 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   in a Web Worker.
 
 ### Changed
+- `<uc-notices>` hides notices dated in the future until their day.
 - `<uc-this-week>`: the current week is highlighted with a soft accent
   background instead of an accent border.
 - `<uc-deadlines view="table">` status badges: done is green, next is amber

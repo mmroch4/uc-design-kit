@@ -33,10 +33,11 @@
       const previousEarlier = this.querySelector(":scope > .uc-notices__section > .uc-notices__earlier");
       if (previousEarlier) this.earlierOpen = previousEarlier.open;
 
-      const notices = this.course.notices;
+      const today = UC.today();
+      // A notice dated in the future stays hidden until that day, so it can be written in advance.
+      const notices = this.course.notices.filter((notice) => !notice.parsedDate || notice.parsedDate <= today);
       const limit = Math.max(0, Math.floor(number(this, "limit", DEFAULT_LIMIT)));
       const newDays = number(this, "new-days", DEFAULT_NEW_DAYS);
-      const today = UC.today();
       const renderItem = (notice) => this.renderNotice(notice, today, newDays);
 
       const heading = this.renderHeading();
