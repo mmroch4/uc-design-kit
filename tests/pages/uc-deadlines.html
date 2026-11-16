@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-deadlines · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    /* Extra cases: a multi-day quiz in progress, a September month-only date and a long title. */
+    window.UC_COURSE.deadlines.push(
+      { id: "quiz10", title: { pt: "Quiz #10 aberto", en: "Quiz #10 open" }, date: "2025-11-24", end: "2025-11-30", kind: "quiz",
+        url: "#", note: "Mooshak" },
+      { id: "project", title: { pt: "Entrega do projeto", en: "Project submission" }, date: "2026-09", kind: "submission",
+        links: [{ label: "Enunciado", url: "#" }, { label: "Mooshak", url: "#" }] },
+      { id: "long", title: "Avaliação_de_recuperação_com_um_título_extremamente_comprido_sem_espaços", date: "2025-10-08", kind: "other" }
+    );
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <h1>uc-deadlines</h1>
+
+    <uc-deadlines view="table" heading="view=table (filter=all by default)"></uc-deadlines>
+
+    <uc-deadlines heading="view=list (filter=upcoming by default)">
+      <a href="#rules"><span lang="pt">Ver regras de avaliação</span><span lang="en">See the assessment rules</span></a>
+    </uc-deadlines>
+
+    <uc-deadlines filter="past" heading="filter=past"></uc-deadlines>
+
+    <uc-deadlines filter="all" kind="assessment exam" heading="filter=all kind=&quot;assessment exam&quot;"></uc-deadlines>
+
+    <uc-deadlines view="table" kind="exam" heading="view=table kind=exam"></uc-deadlines>
+
+    <uc-deadlines view="table" filter="upcoming" limit="2" heading="view=table filter=upcoming limit=2"></uc-deadlines>
+
+    <section class="uc-section" aria-labelledby="no-heading">
+      <h2 id="no-heading">heading=none limit=1</h2>
+      <uc-deadlines heading="none" limit="1"></uc-deadlines>
+    </section>
+
+    <uc-deadlines kind="other" filter="upcoming" heading="Empty (kind=other, upcoming)"></uc-deadlines>
+  </uc-page>
+</body>
+</html>

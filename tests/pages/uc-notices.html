@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-notices · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    /* Edge case: a notice with a long unbreakable URL must not cause horizontal scroll. */
+    window.UC_COURSE.notices.push({
+      date: "2025-09-10",
+      text: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/apontamentos/very-long-file-name-without-spaces.pdf",
+    });
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <style>
+    .test-row { display: flex; flex-wrap: wrap; gap: 40px; }
+    .test-row > :first-child { flex: 3 1 380px; min-width: 0; }
+    .test-row > :last-child { flex: 2 1 260px; min-width: 0; }
+  </style>
+</head>
+<body>
+  <uc-page current="home">
+    <h1>uc-notices</h1>
+
+    <!-- Home page layout, as in the design: notices next to upcoming dates. -->
+    <div class="test-row">
+      <uc-notices></uc-notices>
+      <uc-deadlines>
+        <a href="uc-deadlines.html"><span lang="pt">Ver regras de avaliação</span><span lang="en">See the assessment rules</span></a>
+      </uc-deadlines>
+    </div>
+
+    <uc-notices limit="2" new-days="30" heading="limit=2, new-days=30"></uc-notices>
+
+    <uc-notices limit="0" heading="limit=0 (all notices collapsed)"></uc-notices>
+
+    <section class="uc-section" aria-labelledby="no-heading">
+      <h2 id="no-heading">heading="none", with teacher content</h2>
+      <uc-notices heading="none" limit="3">
+        <p class="uc-muted">Teacher-written paragraph kept below the list.</p>
+      </uc-notices>
+    </section>
+  </uc-page>
+</body>
+</html>

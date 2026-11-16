@@ -1195,6 +1195,444 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   UC.define("uc-hero", UCHero);
 })(window.UC);
 
+/* --- components/uc-notices.js --- */
+/**
+ * <uc-notices> — the course notices (UC_COURSE.notices), newest first.
+ * Notices beyond `limit` go into a collapsed "Earlier notices (n)" disclosure;
+ * notices newer than `new-days` get a "New" badge.
+ * Teacher-written children are kept below the list.
+ * See docs/api.md, section 3.2.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, uid, number, diffDays, toISO } = UC.internal;
+  const DEFAULT_LIMIT = 5;
+  const DEFAULT_NEW_DAYS = 7;
+
+  class UCNotices extends UC.Element {
+    static get observedAttributes() {
+      return ["limit", "new-days", "heading"];
+    }
+
+    setup() {
+      this.classList.add("uc-notices");
+      this.extra = Array.from(this.childNodes);
+      this.headingId = uid("uc-notices-heading");
+      this.earlierOpen = false;
+    }
+
+    attributeChangedCallback() {
+      if (this.__ucSetupDone && this.isConnected) this.render();
+    }
+
+    render() {
+      const previousEarlier = this.querySelector(":scope > .uc-notices__section > .uc-notices__earlier");
+      if (previousEarlier) this.earlierOpen = previousEarlier.open;
+
+      const notices = this.course.notices;
+      const limit = Math.max(0, Math.floor(number(this, "limit", DEFAULT_LIMIT)));
+      const newDays = number(this, "new-days", DEFAULT_NEW_DAYS);
+      const today = UC.today();
+      const renderItem = (notice) => this.renderNotice(notice, today, newDays);
+
+      const heading = this.renderHeading();
+      let body;
+      if (!notices.length) {
+        body = h("p", { class: "uc-notices__empty" }, this.t("notices.empty"));
+      } else {
+        const recent = notices.slice(0, limit);
+        const earlier = notices.slice(limit);
+        body = [
+          recent.length ? h("ul", { class: "uc-notices__list" }, recent.map(renderItem)) : null,
+          earlier.length ? this.renderEarlier(earlier.map(renderItem), Boolean(recent.length)) : null,
+        ];
+      }
+
+      const section = h(
+        "section",
+        { class: "uc-notices__section", "aria-labelledby": heading ? this.headingId : null },
+        heading,
+        body,
+        this.extra.length ? h("div", { class: "uc-notices__more" }, this.extra) : null,
+      );
+      this.replaceChildren(section);
+    }
+
+    renderHeading() {
+      const value = this.getAttribute("heading");
+      if (value !== null && value.trim().toLowerCase() === "none") return null;
+      const label = value !== null && value.trim() ? value : this.t("notices.heading");
+      return h("h2", { class: "uc-notices__heading", id: this.headingId }, label);
+    }
+
+    renderNotice(notice, today, newDays) {
+      const date = notice.parsedDate;
+      const isNew = Boolean(date) && diffDays(today, date) < newDays;
+      return h(
+        "li",
+        { class: `uc-notices__item${isNew ? " uc-notices__item--new" : ""}` },
+        date
+          ? h("time", { class: "uc-notices__date", datetime: toISO(date) }, UC.formatDate(date))
+          : h("span", { class: "uc-notices__date" }),
+        h(
+          "div",
+          { class: "uc-notices__body" },
+          h(
+            "p",
+            { class: "uc-notices__text" },
+            h("span", { html: this.text(notice.text) }),
+            isNew ? [" ", h("span", { class: "uc-tag uc-tag--warning uc-notices__badge" }, this.t("notices.new"))] : null,
+          ),
+          notice.details ? h("p", { class: "uc-notices__details", html: this.text(notice.details) }) : null,
+        ),
+      );
+    }
+
+    renderEarlier(items, hasRecent) {
+      const details = h(
+        "details",
+        { class: `uc-notices__earlier${hasRecent ? "" : " uc-notices__earlier--only"}` },
+        h(
+          "summary",
+          { class: "uc-notices__summary" },
+          h("span", {}, this.t("notices.earlier", { count: items.length })),
+          UC.internal.icon("chevronDown"),
+        ),
+        h("ul", { class: "uc-notices__list" }, items),
+      );
+      details.open = this.earlierOpen;
+      return details;
+    }
+  }
+
+  UC.define("uc-notices", UCNotices);
+})(window.UC);
+
+/* --- components/uc-deadlines.js --- */
+/**
+ * <uc-deadlines> — the course dates (UC_COURSE.deadlines) as a list or a table.
+ * Teacher-written children (e.g. a "See the assessment rules" link) are kept
+ * below the list.
+ * See docs/api.md, section 3.2.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, uid, number, toISO } = UC.internal;
+  const VIEWS = ["list", "table"];
+  const FILTERS = ["upcoming", "past", "all"];
+  const TABLE_COLUMNS = ["item", "date", "time", "details", "status"];
+  const STATUS_TAG = {
+    done: "uc-tag uc-tag--muted",
+    next: "uc-tag uc-tag--accent",
+    scheduled: "uc-tag",
+    toBeScheduled: "uc-tag",
+  };
+
+  /**
+   * The last day a deadline is still relevant, or null when it has no date.
+   * Month-precision dates last until the end of the month; multi-day items
+   * until their `end`.
+   */
+  function lastDay(deadline) {
+    const { precision, date } = deadline.parsed;
+    if (!date) return null;
+    if (precision === "month") return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    return deadline.endDate && deadline.endDate > date ? deadline.endDate : date;
+  }
+
+  /** True while a deadline has not passed. Undated deadlines are always upcoming. */
+  function isUpcoming(deadline, today) {
+    const last = lastDay(deadline);
+    return !last || last >= today;
+  }
+
+  /** "2025-12-02", "2025-12-02T21:00" or "2026-01"; null when there is no date. */
+  function datetimeOf(deadline, withTime) {
+    const { precision, date } = deadline.parsed;
+    if (!date) return null;
+    if (precision === "month") return toISO(date).slice(0, 7);
+    const day = toISO(date);
+    return withTime && deadline.time ? `${day}T${deadline.time}` : day;
+  }
+
+  /** Date label: single day, range for multi-day items, month, or "To be scheduled". */
+  function formatWhen(deadline) {
+    const { precision, date } = deadline.parsed;
+    if (precision === "day" && deadline.endDate && deadline.endDate > date) {
+      return UC.formatDateRange(date, deadline.endDate);
+    }
+    return UC.formatDate(date && precision === "day" ? date : deadline.date);
+  }
+
+  /** Status of each deadline for the table view, keyed by deadline object. */
+  function statuses(deadlines, today) {
+    const result = new Map();
+    let nextAssigned = false;
+    for (const deadline of deadlines) {
+      const { precision } = deadline.parsed;
+      let status;
+      if (!isUpcoming(deadline, today)) status = "done";
+      else if (precision !== "day") status = "toBeScheduled";
+      else if (!nextAssigned) {
+        status = "next";
+        nextAssigned = true;
+      } else status = "scheduled";
+      result.set(deadline, status);
+    }
+    return result;
+  }
+
+  class UCDeadlines extends UC.Element {
+    static get observedAttributes() {
+      return ["view", "filter", "kind", "limit", "heading"];
+    }
+
+    setup() {
+      this.classList.add("uc-deadlines");
+      this.extra = Array.from(this.childNodes);
+      this.headingId = uid("uc-deadlines-heading");
+    }
+
+    attributeChangedCallback() {
+      if (this.__ucSetupDone && this.isConnected) this.render();
+    }
+
+    get view() {
+      const value = (this.getAttribute("view") || "").trim();
+      return VIEWS.includes(value) ? value : "list";
+    }
+
+    get filter() {
+      const value = (this.getAttribute("filter") || "").trim();
+      if (FILTERS.includes(value)) return value;
+      return this.view === "table" ? "all" : "upcoming";
+    }
+
+    /** The deadlines to show, in configuration order (chronological, undated last). */
+    selectDeadlines(today) {
+      const kinds = (this.getAttribute("kind") || "").split(/\s+/).filter(Boolean);
+      const filter = this.filter;
+      let deadlines = this.course.deadlines.filter((deadline) => {
+        if (kinds.length && !kinds.includes(deadline.kind)) return false;
+        if (filter === "all") return true;
+        return isUpcoming(deadline, today) === (filter === "upcoming");
+      });
+      const limit = number(this, "limit", null);
+      if (limit !== null) deadlines = deadlines.slice(0, Math.max(0, Math.floor(limit)));
+      return deadlines;
+    }
+
+    render() {
+      const today = UC.today();
+      const deadlines = this.selectDeadlines(today);
+      const view = this.view;
+      this.classList.toggle("uc-deadlines--table", view === "table");
+
+      const heading = this.renderHeading();
+      let body;
+      if (!deadlines.length) body = h("p", { class: "uc-deadlines__empty" }, this.t("deadlines.empty"));
+      else if (view === "table") body = this.renderTable(deadlines, statuses(deadlines, today));
+      else body = this.renderList(deadlines, today);
+
+      this.replaceChildren(
+        h(
+          "section",
+          { class: "uc-deadlines__section", "aria-labelledby": heading ? this.headingId : null },
+          heading,
+          body,
+          this.extra.length ? h("div", { class: "uc-deadlines__more" }, this.extra) : null,
+        ),
+      );
+    }
+
+    renderHeading() {
+      const value = this.getAttribute("heading");
+      if (value !== null && value.trim().toLowerCase() === "none") return null;
+      const label = value !== null && value.trim() ? value : this.t("deadlines.heading");
+      return h("h2", { class: "uc-deadlines__heading", id: this.headingId }, label);
+    }
+
+    renderTitle(deadline) {
+      const title = this.text(deadline.title);
+      return deadline.url ? h("a", { href: deadline.url }, title) : title;
+    }
+
+    renderLinks(deadline) {
+      if (!deadline.links.length) return null;
+      const items = [];
+      deadline.links.forEach((link, index) => {
+        if (index > 0) items.push(" · ");
+        items.push(h("a", { href: link.url }, this.text(link.label)));
+      });
+      return h("span", { class: "uc-deadlines__links" }, items);
+    }
+
+    renderNote(deadline) {
+      return deadline.note ? h("span", { class: "uc-deadlines__note", html: this.text(deadline.note) }) : null;
+    }
+
+    renderList(deadlines, today) {
+      return h(
+        "ul",
+        { class: "uc-deadlines__list" },
+        deadlines.map((deadline) => {
+          const datetime = datetimeOf(deadline, true);
+          const modifiers = [
+            !datetime ? "uc-deadlines__item--unscheduled" : null,
+            !isUpcoming(deadline, today) ? "uc-deadlines__item--past" : null,
+          ].filter(Boolean);
+          const label = UC.internal.withTime(formatWhen(deadline), datetime ? deadline.time : null);
+          return h(
+            "li",
+            { class: ["uc-deadlines__item", ...modifiers].join(" "), dataset: { kind: deadline.kind } },
+            datetime
+              ? h("time", { class: "uc-deadlines__date", datetime }, label)
+              : h("span", { class: "uc-deadlines__date" }, label),
+            h(
+              "div",
+              { class: "uc-deadlines__body" },
+              h("span", { class: "uc-deadlines__title" }, this.renderTitle(deadline)),
+              this.renderNote(deadline),
+              this.renderLinks(deadline),
+            ),
+          );
+        }),
+      );
+    }
+
+    renderTable(deadlines, statusMap) {
+      const header = h(
+        "tr",
+        {},
+        TABLE_COLUMNS.map((column) => h("th", { scope: "col" }, this.t(`deadlines.column.${column}`))),
+      );
+      const rows = deadlines.map((deadline) => {
+        const datetime = datetimeOf(deadline, false);
+        const status = statusMap.get(deadline);
+        const note = this.renderNote(deadline);
+        const links = this.renderLinks(deadline);
+        const empty = () => h("span", { class: "uc-deadlines__none", "aria-hidden": "true" }, "—");
+        return h(
+          "tr",
+          { class: `uc-deadlines__row uc-deadlines__row--${status}`, dataset: { kind: deadline.kind } },
+          h("th", { scope: "row", class: "uc-deadlines__title" }, this.renderTitle(deadline)),
+          h(
+            "td",
+            { class: "uc-deadlines__date" },
+            datetime ? h("time", { datetime }, formatWhen(deadline)) : formatWhen(deadline),
+          ),
+          h(
+            "td",
+            { class: "uc-deadlines__time" },
+            deadline.time && datetime && deadline.parsed.precision === "day" ? deadline.time : empty(),
+          ),
+          h("td", { class: "uc-deadlines__details" }, note || links ? [note, links] : empty()),
+          h("td", { class: "uc-deadlines__status" }, h("span", { class: STATUS_TAG[status] }, this.t(`deadlines.status.${status}`))),
+        );
+      });
+      return h("div", { class: "uc-table" }, h("table", {}, h("thead", {}, header), h("tbody", {}, rows)));
+    }
+  }
+
+  UC.define("uc-deadlines", UCDeadlines);
+})(window.UC);
+
+/* --- components/uc-date.js --- */
+/**
+ * <uc-date> — a date printed inline in the active language, from a deadline
+ * (`deadline="ap1"`) or a literal ISO date (`value="2025-11-12"`).
+ * The teacher-written text inside the element is the fallback: it stays
+ * visible without JavaScript and whenever the date cannot be resolved.
+ * See docs/api.md, section 3.2.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, flag, parseDeadlineDate, toISO } = UC.internal;
+  const FORMATS = ["short", "long", "weekday"];
+
+  class UCDate extends UC.Element {
+    static get observedAttributes() {
+      return ["deadline", "value", "format", "with-time"];
+    }
+
+    setup() {
+      this.classList.add("uc-date");
+      this.fallback = Array.from(this.childNodes);
+      this.warned = new Set();
+    }
+
+    attributeChangedCallback() {
+      if (this.__ucSetupDone && this.isConnected) this.render();
+    }
+
+    warn(message) {
+      if (this.warned.has(message)) return;
+      this.warned.add(message);
+      console.warn(`[uc-kit] <uc-date>: ${message}`);
+    }
+
+    /** { date, precision, time } for the element's attributes, or null. */
+    resolve() {
+      const id = this.getAttribute("deadline");
+      if (id !== null) {
+        const deadline = this.course.deadlines.find((item) => item.id === id);
+        if (!deadline) {
+          this.warn(`unknown deadline "${id}"`);
+          return null;
+        }
+        return { ...deadline.parsed, time: deadline.time || null, source: deadline.date };
+      }
+      const value = this.getAttribute("value");
+      if (value === null) {
+        this.warn("needs a deadline or value attribute");
+        return null;
+      }
+      const parsed = parseDeadlineDate(value);
+      if (parsed.precision !== "day" && parsed.precision !== "month") {
+        this.warn(`invalid value "${value}"`);
+        return null;
+      }
+      return { ...parsed, time: null, source: value };
+    }
+
+    render() {
+      const resolved = this.resolve();
+      if (!resolved) {
+        this.replaceChildren(...this.fallback);
+        return;
+      }
+      const { precision, date, time, source } = resolved;
+      if (precision === "none" || precision === "invalid") {
+        // The deadline exists but has no date yet: "To be scheduled".
+        this.replaceChildren(UC.formatDate(null));
+        return;
+      }
+
+      const requested = (this.getAttribute("format") || "").trim();
+      const format = FORMATS.includes(requested) ? requested : "short";
+      const showTime = flag(this, "with-time") && precision === "day" && Boolean(time);
+      const day = precision === "month" ? toISO(date).slice(0, 7) : toISO(date);
+      const label = UC.formatDate(precision === "day" ? date : source, format);
+
+      this.replaceChildren(
+        h(
+          "time",
+          { datetime: showTime ? `${day}T${time}` : day },
+          showTime ? UC.internal.withTime(label, time) : label,
+        ),
+      );
+    }
+  }
+
+  UC.define("uc-date", UCDate);
+})(window.UC);
+
 /* --- core/bootstrap.js --- */
 /** Announces that the kit is ready. Loaded last. */
 (function (UC) {
