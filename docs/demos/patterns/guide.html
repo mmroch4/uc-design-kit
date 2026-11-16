@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padrão: guião com exercícios · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page current="weeks">
+    <uc-guide week="9">
+      <h1>Guião 9 · Pesquisa binária</h1>
+
+      <section class="uc-section">
+        <h2>1. A ideia</h2>
+        <p>Compara-se o valor procurado com o elemento do meio de uma lista ordenada: se for menor, continua-se na metade esquerda; se for maior, na direita.</p>
+        <uc-question>
+          <p>Quantas comparações faz, no máximo, a pesquisa binária numa lista com 1000 elementos?</p>
+          <ul>
+            <li><code>500</code></li>
+            <li data-correct><code>10</code></li>
+            <li><code>1000</code></li>
+          </ul>
+          <p data-explanation>Cada comparação descarta metade da lista, e 2<sup>10</sup> = 1024.</p>
+        </uc-question>
+      </section>
+
+      <section class="uc-section">
+        <h2>2. Exercícios</h2>
+        <uc-exercise id="procurar" title="Pesquisa binária iterativa" level="easy">
+          <p>Completa <code>search(list, x)</code>, que devolve a posição de <code>x</code> ou <code>-1</code>.</p>
+          <uc-code lang="js" filename="search.js" editable run>
+            <script type="text/plain">
+              function search(list, x) {
+                let low = 0, high = list.length - 1;
+                while (low <= high) {
+                  const mid = Math.floor((low + high) / 2);
+                  if (list[mid] === x) return mid;
+                  // TODO: move low or high
+                  return -1;
+                }
+                return -1;
+              }
+            </script>
+            <script type="text/plain" data-harness>
+              console.log(search([1, 3, 5, 7, 9], 5));
+              console.log(search([1, 3, 5, 7, 9], 9));
+              console.log(search([1, 3, 5, 7, 9], 4));
+            </script>
+            <ol data-tests>
+              <li data-expected="2">Elemento do meio</li>
+              <li data-expected="4">Último elemento</li>
+              <li data-expected="-1">Elemento que não existe</li>
+            </ol>
+          </uc-code>
+          <details class="uc-hint">
+            <summary>Dica</summary>
+            <p>Se <code>list[mid] &lt; x</code>, o valor só pode estar depois de <code>mid</code>.</p>
+          </details>
+        </uc-exercise>
+        <uc-exercise id="contar" title="Contar comparações" level="medium">
+          <p>Altera a função para devolver também o número de comparações feitas.</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>

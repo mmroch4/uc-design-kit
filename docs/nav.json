@@ -18,7 +18,11 @@
         "code": "Código",
         "openDemo": "Abrir demo",
         "demo": "Demonstração",
-        "skip": "Saltar para o conteúdo"
+        "skip": "Saltar para o conteúdo",
+        "search": "Pesquisar",
+        "searchPlaceholder": "Pesquisar na documentação",
+        "searchEmpty": "Sem resultados.",
+        "searchClose": "Fechar"
       },
       "groups": [
         {
@@ -78,6 +82,24 @@
             { "title": "Nível 4: HTML livre", "path": "pt/personalizar/html.html" },
             { "title": "Personalizador de tema", "path": "pt/personalizar/tema.html" },
             { "title": "Execução de código", "path": "pt/personalizar/execucao.html" }
+          ]
+        },
+        {
+          "title": "Exemplos",
+          "pages": [
+            { "title": "EDados 2025/26", "path": "pt/exemplos/edados.html" },
+            { "title": "Padrões de página", "path": "pt/exemplos/padroes.html" }
+          ]
+        },
+        {
+          "title": "Referência",
+          "pages": [
+            { "title": "API JavaScript", "path": "pt/referencia/api-js.html" },
+            { "title": "Runners", "path": "pt/referencia/runners.html" },
+            { "title": "Classes CSS estáveis", "path": "pt/referencia/classes.html" },
+            { "title": "Versões", "path": "pt/referencia/versoes.html" },
+            { "title": "Browsers e limites", "path": "pt/referencia/browsers.html" },
+            { "title": "Contribuir", "path": "pt/referencia/contribuir.html" }
           ]
         }
       ]

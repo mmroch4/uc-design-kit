@@ -6,6 +6,10 @@ version 1; changing it requires its own pull request.
 
 - Status: **draft for review** (milestone M0.2)
 - Kit version: 1.0.0 (unreleased)
+- Documentation for teachers (Portuguese), which explains every item of this
+  contract with live demos: <https://uc-design-kit.miguelrocha.dev/docs/pt/>.
+  `npm test` checks that both cover the same components, attributes,
+  `course.js` fields, building blocks, tokens, JavaScript API and runners.
 
 ## 1. Loading the kit
 

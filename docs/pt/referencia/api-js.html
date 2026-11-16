@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API JavaScript · UC Design Kit</title>
+  <meta name="description" content="O objeto global UC: configuração, línguas, datas, calendário, UC.Element, UC.define e os eventos do kit.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="api-js.html" aria-current="page">API JavaScript</a></li>
+          <li><a href="runners.html">Runners</a></li>
+          <li><a href="classes.html">Classes CSS estáveis</a></li>
+          <li><a href="versoes.html">Versões</a></li>
+          <li><a href="browsers.html">Browsers e limites</a></li>
+          <li><a href="contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Referência</p>
+          <h1>API JavaScript</h1>
+          <p class="docs-lead">O <code>uc-kit.js</code> define um único objeto global, <code>window.UC</code>. É o que um componente próprio (nível 3), um runner ou um script da página usa para ler a configuração, traduzir textos, trabalhar com datas e o calendário, e registar componentes. O contrato é a secção 7 do <a href="https://github.com/mmroch4/uc-design-kit/blob/main/docs/api.md#7-javascript-api-for-extensions">api.md</a>; esta página descreve-o com os detalhes de comportamento.</p>
+        </header>
+
+        <h2 id="carregamento">Quando o <code>UC</code> existe</h2>
+        <p>O kit carrega com <code>defer</code>, por isso corre depois de o HTML ser lido e antes do evento <code>DOMContentLoaded</code>. Os scripts com <code>defer</code> correm pela ordem em que aparecem no <code>&lt;head&gt;</code>:</p>
+        <uc-code lang="html" filename="semanas.html" no-download><pre><code>&lt;script src="course.js"&gt;&lt;/script&gt;                                  &lt;!-- 1. UC_COURSE --&gt;
+&lt;script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer&gt;&lt;/script&gt;  &lt;!-- 2. window.UC --&gt;
+&lt;script src="extensions/uc-binary-search.js" defer&gt;&lt;/script&gt;     &lt;!-- 3. UC já existe --&gt;</code></pre></uc-code>
+        <ul>
+          <li>Um script carregado <strong>depois</strong> do kit com <code>defer</code> (o caso normal de uma extensão) encontra <code>window.UC</code> pronto e usa-o diretamente.</li>
+          <li>O evento <code>uc:ready</code> é disparado enquanto o kit corre, antes desses scripts. Só serve a código que já estava à escuta: um script inline ou sem <code>defer</code> colocado antes do kit.</li>
+          <li><code>UC.define</code> espera pelo fim da leitura do HTML quando é chamado cedo demais, por isso um componente vê sempre os seus filhos, qualquer que seja a ordem dos scripts.</li>
+        </ul>
+
+        <h2 id="membros">Membros de <code>UC</code></h2>
+        <p>Estes são os membros públicos. Os nomes e o comportamento descritos aqui não mudam dentro da versão 1.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Membros do objeto UC</caption>
+            <thead>
+              <tr><th scope="col">Membro</th><th scope="col">Devolve</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>UC.version</code></td><td>texto</td><td>Versão do kit, por exemplo <code>"1.0.0"</code>. Também vem em <code>event.detail.version</code> do <code>uc:ready</code>.</td></tr>
+              <tr><td><code>UC.course</code></td><td>objeto</td><td>A configuração do <code>course.js</code> já normalizada: campos em falta com o valor por omissão, datas validadas. Lê-se, não se altera: o objeto de topo está congelado (<code>Object.freeze</code>).</td></tr>
+              <tr><td><code>UC.lang</code></td><td>texto</td><td>Código da língua ativa (<code>"pt"</code>). Só de leitura: para mudar usa-se <code>UC.setLanguage</code>.</td></tr>
+              <tr><td><code>UC.setLanguage(code)</code></td><td>nada</td><td>Muda a língua ativa e guarda a escolha. Ignora códigos que não estão em <code>languages</code>. Com um ficheiro por língua, navega para o outro ficheiro; senão atualiza a página e dispara <code>uc:languagechange</code>.</td></tr>
+              <tr><td><code>UC.t(key, params?)</code></td><td>texto</td><td>Texto da interface na língua ativa. <code>params</code> preenche os <code>{nomes}</code> do texto. Ver <a href="#traducoes">Traduções</a>.</td></tr>
+              <tr><td><code>UC.text(localizedText)</code></td><td>texto</td><td>Resolve um <code>LocalizedText</code> (texto simples ou <code>{ pt, en }</code>) na língua ativa; sem essa língua, usa a primeira de <code>languages</code> que exista. <code>null</code> dá <code>""</code>.</td></tr>
+              <tr><td><code>UC.today()</code></td><td><code>Date</code></td><td>"Hoje" à meia-noite local. Respeita <code>?today=AAAA-MM-DD</code> no endereço e o campo <code>today</code> do <code>course.js</code>, nesta ordem.</td></tr>
+              <tr><td><code>UC.formatDate(isoOrDate, format?)</code></td><td>texto</td><td>Formata como o <code>&lt;uc-date&gt;</code>. Ver <a href="#datas">Datas e calendário</a>.</td></tr>
+              <tr><td><code>UC.weekOf(date)</code></td><td>objeto ou <code>null</code></td><td>A semana letiva que contém <code>date</code> (por omissão, hoje): <code>{ n, start, end }</code>. <code>null</code> fora do semestre e nas interrupções.</td></tr>
+              <tr><td><code>UC.weekDates(n)</code></td><td>objeto ou <code>null</code></td><td>As datas da semana <code>n</code>: <code>{ n, start, end }</code>, ou <code>null</code> se não existe.</td></tr>
+              <tr><td><code>UC.Element</code></td><td>classe</td><td>Classe base dos componentes. Ver <a href="#uc-element"><code>UC.Element</code></a>.</td></tr>
+              <tr><td><code>UC.define(name, class)</code></td><td>nada</td><td>Regista um componente uma só vez: uma segunda chamada com o mesmo nome é ignorada, sem erro.</td></tr>
+              <tr><td><code>UC.addTranslations(lang, dict)</code></td><td>nada</td><td>Acrescenta ou substitui textos da interface de uma língua. Se for a língua ativa, os componentes já desenhados voltam a ser desenhados.</td></tr>
+              <tr><td><code>UC.registerRunner(name, runner)</code></td><td>nada</td><td>Acrescenta ou substitui um runner de código. Ver <a href="runners.html">Runners</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O objeto também tem <code>UC.internal</code>, partilhado entre os ficheiros do kit, e outros membros que não estão nesta tabela. Não fazem parte do contrato e podem mudar numa versão de correção.</p>
+
+        <h2 id="uc-element"><code>UC.Element</code></h2>
+        <p>Estende <code>HTMLElement</code>. Os componentes do kit e os componentes próprios desenham no <em>light DOM</em> (sem shadow DOM), para o CSS da página se aplicar ao que geram.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Métodos e propriedades de UC.Element</caption>
+            <thead>
+              <tr><th scope="col">Membro</th><th scope="col">Quando corre</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>setup()</code></td><td>Uma vez, na primeira ligação à página.</td><td>Guardar os filhos escritos pelo professor e criar a estrutura que <code>render()</code> vai atualizar.</td></tr>
+              <tr><td><code>render()</code></td><td>Logo a seguir a <code>setup()</code>, em cada nova ligação, quando a língua muda e quando chegam traduções da língua ativa.</td><td>Atualizar textos, atributos e classes. Tem de ser idempotente: chamado duas vezes, o resultado é o mesmo.</td></tr>
+              <tr><td><code>this.course</code></td><td>Sempre.</td><td>O mesmo que <code>UC.course</code>.</td></tr>
+              <tr><td><code>this.t(key, params?)</code></td><td>Sempre.</td><td>O mesmo que <code>UC.t</code>.</td></tr>
+              <tr><td><code>this.text(value)</code></td><td>Sempre.</td><td>O mesmo que <code>UC.text</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="js" filename="extensions/uc-binary-search.js" no-download><pre><code>UC.define("uc-binary-search", class extends UC.Element {
+  setup() {
+    // Once: read the teacher's markup and build the parts render() updates.
+    this.values = this.getAttribute("values").split(",").map(Number);
+    this.status = document.createElement("p");
+    this.append(this.status);
+  }
+
+  render() {
+    // Every time: only change text, attributes and classes.
+    this.status.textContent = this.t("binarySearch.ready", { n: this.values.length });
+  }
+});</code></pre></uc-code>
+        <p>Um componente não precisa de ouvir <code>uc:languagechange</code>: o kit chama <code>render()</code>. Se precisar de <code>connectedCallback</code> ou <code>disconnectedCallback</code> próprios, chama <code>super</code> primeiro. O tutorial completo, com eventos, acessibilidade e o que se vê sem JavaScript, está em <a href="../personalizar/componentes.html">Nível 3: componentes próprios</a>.</p>
+
+        <h2 id="traducoes">Traduções</h2>
+        <p>Os textos da interface vivem em dicionários por língua. <code>UC.addTranslations</code> aceita objetos encaixados e guarda-os com chaves separadas por pontos:</p>
+        <uc-code lang="js" no-download><pre><code>UC.addTranslations("pt", { binarySearch: { ready: "{n} valores, pronto a procurar." } });
+UC.t("binarySearch.ready", { n: 8 });   // "8 valores, pronto a procurar."
+UC.t("nav.menu");                       // "Menu" (a kit string)</code></pre></uc-code>
+        <ul>
+          <li>Procura na língua ativa (<code>pt-BR</code>), depois na língua base (<code>pt</code>), depois em inglês.</li>
+          <li>Uma chave que não existe devolve a própria chave e escreve <code>[uc-kit] missing translation: …</code> na consola.</li>
+          <li>Valores que não são texto (as listas de meses e dias da semana do kit) são devolvidos como estão, sem preencher <code>params</code>.</li>
+          <li>Um <code>{nome}</code> sem valor em <code>params</code> fica no texto tal como está.</li>
+        </ul>
+        <p>As chaves do kit estão em <a href="https://github.com/mmroch4/uc-design-kit/blob/main/kit/src/i18n/pt.js"><code>kit/src/i18n/pt.js</code></a>. Usar a mesma chave substitui o texto do kit; para não colidir, os componentes próprios usam um grupo com o seu nome.</p>
+
+        <h2 id="datas">Datas e calendário</h2>
+        <p>As datas são dias do calendário local, sem fusos horários. As funções aceitam um texto ISO (<code>"2025-11-27"</code>) ou um <code>Date</code>.</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Formatos de UC.formatDate em português</caption>
+            <thead>
+              <tr><th scope="col">Chamada</th><th scope="col">Resultado</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>UC.formatDate("2025-11-27")</code></td><td>27 nov</td></tr>
+              <tr><td><code>UC.formatDate("2025-11-27", "medium")</code></td><td>27 nov 2025</td></tr>
+              <tr><td><code>UC.formatDate("2025-11-27", "long")</code></td><td>27 de novembro de 2025</td></tr>
+              <tr><td><code>UC.formatDate("2025-11-27", "weekday")</code></td><td>quinta-feira, 27 nov</td></tr>
+              <tr><td><code>UC.formatDate("2026-01")</code></td><td>janeiro 2026</td></tr>
+              <tr><td><code>UC.formatDate(null)</code></td><td>Por marcar</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Um formato desconhecido usa <code>short</code>. Um mês sem dia (<code>"2026-01"</code>) mostra sempre o mês e o ano. O texto de cada formato vem das traduções (<code>dates.format.*</code>), por isso muda com a língua.</p>
+        <uc-code lang="js" no-download><pre><code>// Demo course: semester from 15 Sep 2025, today 27 Nov 2025.
+UC.weekOf();                 // { n: 10, start: Date(24 Nov), end: Date(28 Nov) }
+UC.weekDates(1);             // { n: 1, start: Date(15 Sep), end: Date(19 Sep) }
+UC.weekOf("2025-10-29");     // null: study week (a break)
+UC.weekOf("2025-12-25");     // null: after week 12</code></pre></uc-code>
+        <p><code>start</code> e <code>end</code> são o primeiro e o último dia de aulas da semana (<code>teachingDays</code>); na semana 1, <code>start</code> é a data de início do semestre se cair a meio da semana. As semanas são as do <code>&lt;uc-weeks&gt;</code>: ver <a href="../componentes/uc-weeks.html#elementos-gerados">como o kit conta as semanas</a>.</p>
+
+        <h2 id="eventos">Eventos</h2>
+        <p>Todos são <code>CustomEvent</code> e chegam ao <code>document</code>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Eventos do kit</caption>
+            <thead>
+              <tr><th scope="col">Evento</th><th scope="col">Quando</th><th scope="col"><code>event.detail</code></th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc:ready</code></td><td>A configuração foi lida e os componentes do kit estão definidos. Uma vez por página; o <code>&lt;html&gt;</code> recebe a classe <code>uc-ready</code> ao mesmo tempo.</td><td><code>{ version }</code></td></tr>
+              <tr><td><code>uc:languagechange</code></td><td>Depois de a língua ativa mudar na mesma página (não quando a mudança navega para outro ficheiro).</td><td><code>{ lang }</code></td></tr>
+              <tr><td><code>uc:exercisechange</code></td><td>Um <code>&lt;uc-exercise&gt;</code> foi marcado como feito ou por fazer. Dispara no exercício e sobe até ao <code>document</code>.</td><td><code>{ id, done }</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="js" no-download><pre><code>document.addEventListener("uc:exercisechange", (event) =&gt; {
+  console.log(event.detail.id, event.detail.done);   // "ex-3" true
+});</code></pre></uc-code>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a>: o tutorial de um componente do início ao fim.</li>
+          <li><a href="runners.html">Runners</a>: o contrato de <code>UC.registerRunner</code>.</li>
+          <li><a href="../course-js.html">O ficheiro course.js</a>: os campos que aparecem em <code>UC.course</code>.</li>
+          <li><a href="../linguas.html#outra-lingua">Acrescentar uma língua</a> com <code>UC.addTranslations</code>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="../exemplos/padroes.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Padrões de página</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="runners.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Runners</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/referencia/api-js.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#carregamento">Quando o UC existe</a></li>
+          <li><a href="#membros">Membros de UC</a></li>
+          <li><a href="#uc-element">UC.Element</a></li>
+          <li><a href="#traducoes">Traduções</a></li>
+          <li><a href="#datas">Datas e calendário</a></li>
+          <li><a href="#eventos">Eventos</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

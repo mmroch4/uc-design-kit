@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padrão: página inicial · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page current="home">
+    <uc-hero></uc-hero>
+    <uc-this-week></uc-this-week>
+    <div class="uc-split">
+      <uc-notices></uc-notices>
+      <uc-deadlines>
+        <a href="../avaliacao.html">Regras de avaliação</a>
+      </uc-deadlines>
+    </div>
+    <section class="uc-section" aria-labelledby="atalhos">
+      <h2 id="atalhos">Acesso rápido</h2>
+      <ul class="uc-shortcuts">
+        <li><a href="../semanas.html">Semanas e guiões</a></li>
+        <li><a href="../avaliacao.html">Avaliação</a></li>
+        <li><a href="../sobre.html">Sobre a cadeira</a></li>
+      </ul>
+    </section>
+    <uc-team></uc-team>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>

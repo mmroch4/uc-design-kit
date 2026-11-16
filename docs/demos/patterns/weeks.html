@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padrão: semanas · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page current="weeks">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Semanas</h1>
+      <p class="uc-prose">Matéria das teóricas, aula prática e prazos de cada semana. A semana atual abre sozinha.</p>
+    </div>
+    <uc-weeks>
+      <uc-week n="9" title="Pesquisa e ordenação">
+        <dl>
+          <dt>Teóricas</dt>
+          <dd>Pesquisa linear e binária; ordenação por seleção e por inserção</dd>
+          <dt>Prática</dt>
+          <dd><a href="guide.html">Guião 9: pesquisa binária</a></dd>
+        </dl>
+      </uc-week>
+      <uc-week n="10" title="Recursividade">
+        <dl>
+          <dt>Teóricas</dt>
+          <dd>Caso base e passo recursivo; a pilha de chamadas</dd>
+          <dt>Prática</dt>
+          <dd>Guião 10: funções recursivas sobre listas</dd>
+        </dl>
+      </uc-week>
+      <uc-week n="11" title="Ordenação eficiente">
+        <dl>
+          <dt>Teóricas</dt>
+          <dd>Merge sort e quicksort; complexidade</dd>
+          <dt>Prática</dt>
+          <dd>Guião 11: comparar algoritmos de ordenação</dd>
+        </dl>
+      </uc-week>
+    </uc-weeks>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>
