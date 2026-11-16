@@ -7,6 +7,8 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `<uc-code collapsible>`: a show/hide toggle in the header; add `collapsed`
+  to start folded. The EDados lecture code pages use it.
 - `<pre data-copy>`: a copy button for preformatted text such as problem
   input/output examples. The EDados problem pages use it on every example.
 - Frozen releases: `npm run snapshot` copies the build to `kit/vX.Y.Z/`, served

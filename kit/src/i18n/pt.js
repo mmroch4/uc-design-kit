@@ -69,6 +69,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     submitOn: "Submeter no {platform}",
   },
   code: {
+    code: "Código",
     copy: "Copiar",
     copied: "Copiado",
     copyNamed: "Copiar {name}",

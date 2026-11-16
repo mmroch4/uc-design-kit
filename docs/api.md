@@ -410,6 +410,8 @@ optional in-page execution with tests.
 | `filename` | text | Shown in the header and used for downloads. |
 | `editable` | boolean | Makes the code editable with a "Reset" button. |
 | `no-copy`, `no-download` | boolean | Hide buttons. |
+| `collapsible` | boolean | Adds a show/hide toggle (chevron and file name) to the header, so long code can be folded away. |
+| `collapsed` | boolean | With `collapsible`: starts folded. Pressing "Run" opens the block. |
 | `run` | boolean \| URL | Without a value: a "Run" button that executes the code in the page (see below). With a URL: a "Test on…" link to an external platform. |
 
 Code is given as a `<script type="text/plain">` child (no HTML escaping
