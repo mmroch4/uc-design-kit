@@ -629,3 +629,197 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
 .docs pre,
 .landing code,
 .landing pre { font-variant-ligatures: none; }
+
+/* ---------- theme customiser ---------- */
+
+/* personalizar/tema.html: the tool spans the main column ("Nesta página" is
+   left out at every width) and the prose keeps its usual measure. */
+.docs-theme-page .docs-aside { display: none; }
+@media (min-width: 961px) {
+  .docs-theme-page .docs-layout { grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr); }
+}
+.docs-theme-page .docs-article { max-width: none; }
+.docs-theme-page .docs-article > :not(.docs-theme) { max-width: var(--docs-content-max); }
+.docs-js .docs-theme-nojs { display: none; }
+
+.docs-theme { display: flex; flex-direction: column; gap: var(--uc-space-6); margin-top: var(--uc-space-6); }
+.docs-theme[hidden] { display: none; }
+
+.docs-theme-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--uc-space-5) var(--uc-space-8);
+  padding: var(--uc-space-5) var(--uc-space-6);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+}
+.docs-theme-field { min-width: 0; margin: 0; padding: 0; border: 0; }
+.docs-theme-field > legend {
+  margin-bottom: var(--uc-space-2);
+  padding: 0;
+  color: var(--uc-color-text);
+  font-size: var(--uc-font-size-md);
+  font-weight: 600;
+}
+.docs-theme-field--accent {
+  flex-basis: 100%;
+  padding-bottom: var(--uc-space-5);
+  border-bottom: 1px solid var(--uc-color-border);
+}
+.docs-theme-reset { margin-left: auto; }
+.docs-theme-reset .uc-button { min-width: 96px; }
+
+/* Accent: picker + hex field, then the swatches, then the contrast readout. */
+.docs-theme-accent { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3) var(--uc-space-5); }
+.docs-theme-color { display: flex; align-items: center; gap: var(--uc-space-2); }
+.docs-theme-picker {
+  width: var(--uc-target-min);
+  height: var(--uc-target-min);
+  padding: 3px;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface);
+  cursor: pointer;
+}
+.docs-theme-picker::-webkit-color-swatch-wrapper { padding: 0; }
+.docs-theme-picker::-webkit-color-swatch { border: 0; border-radius: var(--uc-radius-sm); }
+.docs-theme-picker::-moz-color-swatch { border: 0; border-radius: var(--uc-radius-sm); }
+.docs-theme-hex {
+  width: 7.5em;
+  min-height: var(--uc-target-min);
+  padding: 0 var(--uc-space-3);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface);
+  color: var(--uc-color-text);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+  text-transform: uppercase;
+}
+.docs-theme-hex:focus-visible,
+.docs-theme-picker:focus-visible { outline: var(--uc-focus-ring); outline-offset: 2px; }
+
+.docs-theme-swatches { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); margin: 0; padding: 0; border: 0; }
+.docs-theme-swatch {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--docs-theme-swatch);
+  cursor: pointer;
+}
+.docs-theme-swatch input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.docs-theme-swatch:has(input:checked) { box-shadow: 0 0 0 2px var(--uc-color-surface), 0 0 0 4px var(--docs-theme-swatch); }
+.docs-theme-swatch:has(input:checked)::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 13px;
+  width: 8px;
+  height: 13px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.docs-theme-swatch:has(input:focus-visible) { outline: var(--uc-focus-ring); outline-offset: 5px; }
+
+.docs-theme-help { margin-top: var(--uc-space-2); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
+.docs-theme-contrast {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--uc-space-2) var(--uc-space-6);
+  margin: var(--uc-space-4) 0 0;
+}
+.docs-theme-contrast > div { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--uc-space-1) var(--uc-space-3); }
+.docs-theme-contrast dt { color: var(--uc-color-text-secondary); font-size: var(--uc-font-size-md); }
+.docs-theme-contrast dd { display: flex; align-items: center; gap: var(--uc-space-2); margin: 0; }
+.docs-theme-contrast__detail { display: block; color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
+.docs-theme-ratio { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-md); font-weight: 600; }
+.docs-theme-status { margin-top: var(--uc-space-3); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
+.docs-theme-status:empty { display: none; }
+.docs-theme-status--warning {
+  padding: var(--uc-space-2) var(--uc-space-3);
+  border: 1px solid var(--uc-color-warning-border);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-warning-surface);
+  color: var(--uc-color-warning-text);
+}
+
+/* Presets: a row of radio buttons drawn as a segmented control. */
+.docs-theme-options {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 3px;
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface-muted);
+}
+.docs-theme-option { position: relative; display: inline-flex; }
+.docs-theme-option input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.docs-theme-option span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0 var(--uc-space-3);
+  border-radius: calc(var(--uc-radius-md) - 2px);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.docs-theme-option:hover span { color: var(--uc-color-text); }
+.docs-theme-option input:checked + span {
+  background: var(--uc-color-surface);
+  box-shadow: 0 1px 2px rgb(24 24 27 / 0.12), 0 0 0 1px var(--uc-color-border);
+  color: var(--uc-color-text);
+}
+.docs-theme-option input:focus-visible + span { outline: var(--uc-focus-ring); outline-offset: 1px; }
+
+/* Preview: the iframe has the device's width and is scaled down to the column. */
+.docs-theme-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--uc-space-3) var(--uc-space-6); }
+.docs-theme-field--inline { display: flex; align-items: center; gap: var(--uc-space-3); }
+.docs-theme-field--inline > legend { float: left; margin: 0 var(--uc-space-3) 0 0; }
+.docs-theme-viewport {
+  position: relative;
+  margin-top: var(--uc-space-3);
+  overflow: hidden;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface-sunken);
+}
+.docs-theme-frame {
+  display: block;
+  border: 0;
+  background: var(--uc-color-surface);
+  transform-origin: 0 0;
+}
+.docs-theme-viewport--centred .docs-theme-frame {
+  margin: 0 auto;
+  box-shadow: 1px 0 0 var(--uc-color-border), -1px 0 0 var(--uc-color-border);
+}
+.docs-theme-caption { margin-top: var(--uc-space-2); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
+
+/* Result: "course.js / theme.css" tabs (docs.js), each with its copy buttons. */
+.docs-theme-result > h2 { margin-top: var(--uc-space-4); }
+.docs-theme-output { margin-top: var(--uc-space-4); }
+.docs-theme-output__note { margin: 0; padding: var(--uc-space-3) var(--uc-space-4) 0; color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+.docs-theme-code {
+  margin: var(--uc-space-3) var(--uc-space-4) 0;
+  padding: var(--uc-space-3) var(--uc-space-4);
+  overflow-x: auto;
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface-sunken);
+  font-size: var(--uc-font-size-md);
+  line-height: 1.6;
+}
+.docs-theme-code code { padding: 0; background: none; font-size: inherit; }
+.docs-theme-actions { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); padding: var(--uc-space-3) var(--uc-space-4) var(--uc-space-4); }
+
+@media (max-width: 600px) {
+  .docs-theme-controls { padding: var(--uc-space-4); }
+  .docs-theme-toolbar { flex-direction: column; align-items: flex-start; }
+}

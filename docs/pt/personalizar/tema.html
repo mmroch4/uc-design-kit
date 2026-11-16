@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Personalizador de tema · UC Design Kit</title>
-  <meta name="description" content="Escolher cor, cantos e letra com pré-visualização ao vivo e copiar o resultado.">
+  <meta name="description" content="Escolher cor, cantos, letra e largura com pré-visualização no curso de demonstração e copiar o course.js e o theme.css.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -12,8 +12,9 @@
   <script src="../../assets/kit-config.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/theme-editor.js" defer></script>
 </head>
-<body class="docs">
+<body class="docs docs-theme-page">
   <!-- docs:header -->
   <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
   <header class="docs-header">
@@ -97,11 +98,206 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Personalizar</p>
           <h1>Personalizador de tema</h1>
-          <p class="docs-lead">Escolher cor, cantos e letra com pré-visualização ao vivo e copiar o resultado.</p>
+          <p class="docs-lead">Escolher a cor de destaque, os cantos, o tamanho e o tipo de letra e a largura do conteúdo, ver o resultado no curso de demonstração e copiar o que se cola no <code>course.js</code> e no <code>theme.css</code>.</p>
         </header>
 
-        <h2 id="em-preparacao">Em preparação</h2>
-        <p>Esta página está a ser escrita.</p>
+        <p>Cada controlo muda um ou mais <a href="tokens.html">tokens</a> do kit; a pré-visualização é o curso fictício da documentação com esses tokens aplicados. A cor de destaque vai para o <a href="course-js.html"><code>course.js</code></a> (nível 0); o resto vai para o <code>theme.css</code> (nível 1), que só leva os valores diferentes dos do kit.</p>
+
+        <p class="uc-callout docs-theme-nojs">O personalizador precisa de JavaScript. Sem ele, o <code>theme.css</code> escreve-se à mão: há um exemplo em <a href="#sem-javascript">Sem JavaScript</a>.</p>
+
+        <div class="docs-theme" id="docs-theme" hidden>
+          <form class="docs-theme-controls" id="docs-theme-form" aria-label="Opções do tema">
+            <fieldset class="docs-theme-field docs-theme-field--accent">
+              <legend>Cor de destaque</legend>
+              <div class="docs-theme-accent">
+                <div class="docs-theme-color">
+                  <label class="uc-visually-hidden" for="docs-theme-picker">Escolher a cor num seletor</label>
+                  <input class="docs-theme-picker" type="color" id="docs-theme-picker" value="#1d4ed8">
+                  <label class="uc-visually-hidden" for="docs-theme-hex">Código hexadecimal da cor</label>
+                  <input class="docs-theme-hex" type="text" id="docs-theme-hex" value="#1D4ED8" maxlength="7" autocomplete="off" spellcheck="false" aria-describedby="docs-theme-hex-help">
+                </div>
+                <fieldset class="docs-theme-swatches">
+                  <legend class="uc-visually-hidden">Cores sugeridas</legend>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #1D4ED8"><input type="radio" name="swatch" value="1D4ED8"><span class="uc-visually-hidden">Azul, #1D4ED8 (por omissão)</span></label>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #4338CA"><input type="radio" name="swatch" value="4338CA"><span class="uc-visually-hidden">Índigo, #4338CA</span></label>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #7E22CE"><input type="radio" name="swatch" value="7E22CE"><span class="uc-visually-hidden">Roxo, #7E22CE</span></label>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #BE185D"><input type="radio" name="swatch" value="BE185D"><span class="uc-visually-hidden">Rosa, #BE185D</span></label>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #B91C1C"><input type="radio" name="swatch" value="B91C1C"><span class="uc-visually-hidden">Vermelho, #B91C1C</span></label>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #C2410C"><input type="radio" name="swatch" value="C2410C"><span class="uc-visually-hidden">Laranja, #C2410C</span></label>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #15803D"><input type="radio" name="swatch" value="15803D"><span class="uc-visually-hidden">Verde, #15803D</span></label>
+                  <label class="docs-theme-swatch" style="--docs-theme-swatch: #0F766E"><input type="radio" name="swatch" value="0F766E"><span class="uc-visually-hidden">Verde-azulado, #0F766E</span></label>
+                </fieldset>
+              </div>
+              <p class="docs-theme-help" id="docs-theme-hex-help">Seis dígitos hexadecimais, por exemplo <code>#0F766E</code>. As oito cores sugeridas têm contraste suficiente com o branco.</p>
+              <dl class="docs-theme-contrast">
+                <div>
+                  <dt>Ligações e botões <span class="docs-theme-contrast__detail">(destaque sobre branco, branco sobre destaque)</span></dt>
+                  <dd><span class="docs-theme-ratio" id="docs-theme-ratio-white">7.2:1</span> <span class="uc-tag" id="docs-theme-badge-white">AA</span></dd>
+                </div>
+                <div>
+                  <dt>Item ativo da navegação <span class="docs-theme-contrast__detail">(destaque sobre o fundo suave)</span></dt>
+                  <dd><span class="docs-theme-ratio" id="docs-theme-ratio-soft">6.5:1</span> <span class="uc-tag" id="docs-theme-badge-soft">AA</span></dd>
+                </div>
+              </dl>
+              <p class="docs-theme-status" id="docs-theme-status" role="status"></p>
+            </fieldset>
+
+            <fieldset class="docs-theme-field">
+              <legend>Cantos (px)</legend>
+              <div class="docs-theme-options">
+                <label class="docs-theme-option"><input type="radio" name="radius" value="0"><span>0</span></label>
+                <label class="docs-theme-option"><input type="radio" name="radius" value="4"><span>4</span></label>
+                <label class="docs-theme-option"><input type="radio" name="radius" value="6"><span>6</span></label>
+                <label class="docs-theme-option"><input type="radio" name="radius" value="8"><span>8</span></label>
+                <label class="docs-theme-option"><input type="radio" name="radius" value="12" checked><span>12</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="docs-theme-field">
+              <legend>Tamanho da letra (px)</legend>
+              <div class="docs-theme-options">
+                <label class="docs-theme-option"><input type="radio" name="size" value="15"><span>15</span></label>
+                <label class="docs-theme-option"><input type="radio" name="size" value="16" checked><span>16</span></label>
+                <label class="docs-theme-option"><input type="radio" name="size" value="17"><span>17</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="docs-theme-field">
+              <legend>Tipo de letra</legend>
+              <div class="docs-theme-options">
+                <label class="docs-theme-option"><input type="radio" name="font" value="inter" checked><span>Inter</span></label>
+                <label class="docs-theme-option"><input type="radio" name="font" value="system"><span>Do sistema</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="docs-theme-field">
+              <legend>Largura do conteúdo (px)</legend>
+              <div class="docs-theme-options">
+                <label class="docs-theme-option"><input type="radio" name="width" value="960"><span>960</span></label>
+                <label class="docs-theme-option"><input type="radio" name="width" value="1080"><span>1080</span></label>
+                <label class="docs-theme-option"><input type="radio" name="width" value="1200" checked><span>1200</span></label>
+                <label class="docs-theme-option"><input type="radio" name="width" value="1320"><span>1320</span></label>
+              </div>
+            </fieldset>
+
+            <div class="docs-theme-reset">
+              <button class="uc-button" type="reset">Repor</button>
+            </div>
+          </form>
+
+          <section class="docs-theme-preview" aria-label="Pré-visualização">
+            <div class="docs-theme-toolbar">
+              <fieldset class="docs-theme-field docs-theme-field--inline">
+                <legend>Página</legend>
+                <div class="docs-theme-options">
+                  <label class="docs-theme-option"><input type="radio" name="page" value="index.html" checked><span>Início</span></label>
+                  <label class="docs-theme-option"><input type="radio" name="page" value="semanas.html"><span>Semanas</span></label>
+                  <label class="docs-theme-option"><input type="radio" name="page" value="avaliacao.html"><span>Avaliação</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="docs-theme-field docs-theme-field--inline">
+                <legend>Ecrã</legend>
+                <div class="docs-theme-options">
+                  <label class="docs-theme-option"><input type="radio" name="device" value="wide" checked><span>Computador</span></label>
+                  <label class="docs-theme-option"><input type="radio" name="device" value="narrow"><span>Telemóvel</span></label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="docs-theme-viewport" id="docs-theme-viewport">
+              <iframe class="docs-theme-frame" id="docs-theme-frame" title="Pré-visualização do curso de demonstração com o tema escolhido" src="../../demos/theme/index.html"></iframe>
+            </div>
+            <p class="docs-theme-caption" id="docs-theme-caption">Curso fictício num ecrã de 1280 px, reduzido para caber na página.</p>
+          </section>
+
+          <section class="docs-theme-result" aria-labelledby="resultado">
+            <h2 id="resultado">Resultado</h2>
+            <div class="docs-demo docs-theme-output">
+              <div class="docs-demo__panel" data-label="course.js">
+                <p class="docs-theme-output__note">Nível 0: substitui a linha <code>accentColor</code> do <code>course.js</code>.</p>
+                <pre class="docs-theme-code"><code id="docs-theme-course"></code></pre>
+                <div class="docs-theme-actions">
+                  <button class="uc-button uc-button--sm" type="button" data-copy="docs-theme-course">Copiar</button>
+                </div>
+              </div>
+              <div class="docs-demo__panel" data-label="theme.css">
+                <p class="docs-theme-output__note">Nível 1: só os tokens diferentes dos do kit. Fica ao lado do <code>course.js</code> e carrega-se depois do kit.</p>
+                <pre class="docs-theme-code"><code id="docs-theme-css"></code></pre>
+                <div class="docs-theme-actions">
+                  <button class="uc-button uc-button--sm" type="button" data-copy="docs-theme-css">Copiar</button>
+                  <button class="uc-button uc-button--sm" type="button" id="docs-theme-download">Descarregar theme.css</button>
+                </div>
+              </div>
+            </div>
+            <p class="uc-visually-hidden" id="docs-theme-copied" role="status"></p>
+          </section>
+        </div>
+
+        <h2 id="controlos">O que cada controlo muda</h2>
+        <div class="uc-table">
+          <table>
+            <thead>
+              <tr><th scope="col">Controlo</th><th scope="col">Tokens</th><th scope="col">Onde se nota</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Cor de destaque</td><td><code>--uc-color-accent</code> (por omissão <code>#1D4ED8</code>)</td><td>Ligações, item ativo da navegação, botões principais, semana atual, anel de foco. As variantes <code>-strong</code>, <code>-soft</code> e <code>--uc-color-highlight</code> são calculadas a partir dela.</td></tr>
+              <tr><td>Cantos</td><td><code>--uc-radius-sm</code>, <code>-md</code>, <code>-lg</code></td><td>Cartões, blocos de código e painéis (<code>-lg</code>); botões e navegação (<code>-md</code>); etiquetas e código em linha (<code>-sm</code>).</td></tr>
+              <tr><td>Tamanho da letra</td><td><code>--uc-font-size-base</code> (16 px)</td><td>Toda a escala tipográfica, que está em <code>rem</code>.</td></tr>
+              <tr><td>Tipo de letra</td><td><code>--uc-font-sans</code> (Inter)</td><td>Todo o texto exceto código, datas e códigos, que usam <code>--uc-font-mono</code>. A letra do sistema dispensa o download da Inter.</td></tr>
+              <tr><td>Largura do conteúdo</td><td><code>--uc-content-max</code> (1200 px)</td><td>Largura máxima do cabeçalho, da navegação e do conteúdo de <code>&lt;uc-page&gt;</code>. Só se nota em ecrãs mais largos do que o valor escolhido.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O controlo dos cantos escolhe o raio maior; os outros dois guardam a proporção do kit (6, 8 e 12 px): <code>-md</code> é dois terços e <code>-sm</code> metade, arredondados.</p>
+        <div class="uc-table">
+          <table>
+            <thead>
+              <tr><th scope="col">Cantos</th><th scope="col"><code>--uc-radius-sm</code></th><th scope="col"><code>--uc-radius-md</code></th><th scope="col"><code>--uc-radius-lg</code></th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              <tr><td>4</td><td>2px</td><td>3px</td><td>4px</td></tr>
+              <tr><td>6</td><td>3px</td><td>4px</td><td>6px</td></tr>
+              <tr><td>8</td><td>4px</td><td>5px</td><td>8px</td></tr>
+              <tr><td>12 (por omissão)</td><td>6px</td><td>8px</td><td>12px</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Os restantes tokens (neutros, cores de aviso, espaçamento) estão na página <a href="../estilos/tokens.html">Tokens</a> de Estilos; mudam-se no mesmo <code>theme.css</code>, à mão.</p>
+
+        <h2 id="contraste">Contraste</h2>
+        <p>A cor de destaque é cor de texto (ligações, item ativo) e fundo de texto branco (botões principais), por isso precisa de um contraste de pelo menos 4.5:1 com o branco, o mínimo do WCAG para texto normal (nível AA). O personalizador calcula a razão com a luminância relativa do WCAG e mostra duas:</p>
+        <ul>
+          <li><strong>Ligações e botões</strong>: destaque sobre branco, que é a mesma razão que branco sobre destaque.</li>
+          <li><strong>Item ativo da navegação</strong>: destaque sobre <code>--uc-color-accent-soft</code> (8% da cor misturada com branco), um pouco abaixo da primeira.</li>
+        </ul>
+        <p>Abaixo de 4.5:1 aparece um aviso, também anunciado por leitores de ecrã. A página <a href="../estilos/cor.html">Cor</a> explica a paleta e as variantes calculadas.</p>
+
+        <h2 id="aplicar">Aplicar o resultado</h2>
+        <p>O separador <strong>course.js</strong> dá a linha <code>accentColor</code>, que substitui a do <code>course.js</code> (ver <a href="course-js.html">Nível 0: course.js</a>). O separador <strong>theme.css</strong> dá o ficheiro com os tokens que mudaram (ver <a href="tokens.html">Nível 1: tokens</a>); "Descarregar theme.css" guarda-o pronto a pôr na pasta do site, no lugar do <code>theme.css</code> do modelo.</p>
+        <p>O <code>theme.css</code> também inclui <code>--uc-color-accent</code> quando a cor muda, mas o <code>accentColor</code> do <code>course.js</code> prevalece sobre ele: o kit aplica-o diretamente no elemento <code>&lt;html&gt;</code>. Basta escolher um dos dois sítios; o modelo traz <code>accentColor</code> no <code>course.js</code>.</p>
+
+        <h2 id="partilhar">Partilhar uma combinação</h2>
+        <p>O endereço da página guarda as escolhas depois de <code>#</code>, por isso pode ser copiado e enviado. Por exemplo, verde-azulado, cantos de 4 px, letra do sistema e conteúdo de 1080 px:</p>
+        <uc-code lang="text" no-download><pre><code>tema.html#accent=0F766E&amp;radius=4&amp;size=16&amp;font=system&amp;width=1080</code></pre></uc-code>
+        <p>Valores fora das opções são ignorados. "Repor" volta aos valores do kit e limpa o endereço.</p>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Os controlos, a pré-visualização e o resultado precisam de JavaScript. Sem ele, o mesmo resultado escreve-se à mão: este <code>theme.css</code> corresponde ao exemplo acima, com o <code>accentColor: "#0F766E"</code> no <code>course.js</code>.</p>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>:root {
+  --uc-radius-sm: 2px;
+  --uc-radius-md: 3px;
+  --uc-radius-lg: 4px;
+  --uc-font-sans: system-ui, sans-serif;
+  --uc-content-max: 1080px;
+}</code></pre></uc-code>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="tokens.html">Nível 1: tokens</a>: o <code>theme.css</code> e a ordem de carregamento.</li>
+          <li><a href="course-js.html">Nível 0: course.js</a>: o que se muda sem CSS.</li>
+          <li><a href="../estilos/tokens.html">Tokens</a>: a lista completa, com valores por omissão.</li>
+          <li><a href="../estilos/cor.html">Cor</a>: a paleta e as regras de contraste.</li>
+        </ul>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -124,7 +320,13 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#em-preparacao">Em preparação</a></li>
+          <li><a href="#resultado">Resultado</a></li>
+          <li><a href="#controlos">O que cada controlo muda</a></li>
+          <li><a href="#contraste">Contraste</a></li>
+          <li><a href="#aplicar">Aplicar o resultado</a></li>
+          <li><a href="#partilhar">Partilhar uma combinação</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->
