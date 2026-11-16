@@ -83,7 +83,7 @@ Exemplo:
 | --- | --- | --- |
 | Cor de destaque | `--uc-color-accent` (por omissão `#1D4ED8`) | Ligações, item ativo da navegação, botões principais, semana atual, anel de foco. As variantes `-strong`, `-soft` e `--uc-color-highlight` são calculadas a partir dela. |
 | Cantos | `--uc-radius-sm`, `-md`, `-lg` | Cartões, blocos de código e painéis (`-lg`); botões e navegação (`-md`); etiquetas e código em linha (`-sm`). |
-| Tamanho da letra | `--uc-font-size-base` (16 px) | Toda a escala tipográfica, que está em `rem`. |
+| Tamanho da letra | `--uc-font-size-base` (100%, 16 px por omissão) | Toda a escala tipográfica, que está em `rem`. O personalizador escreve o valor em percentagem (17 px dá `106.25%`), para que quem aumentou a letra no navegador continue a vê-la maior. |
 | Tipo de letra | `--uc-font-sans` (Inter) | Todo o texto exceto código, datas e códigos, que usam `--uc-font-mono`. A letra do sistema dispensa o download da Inter. |
 | Largura do conteúdo | `--uc-content-max` (1200 px) | Largura máxima do cabeçalho, da navegação e do conteúdo de `<uc-page>`. Só se nota em ecrãs mais largos do que o valor escolhido. |
 

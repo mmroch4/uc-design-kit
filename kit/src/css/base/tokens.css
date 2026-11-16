@@ -32,7 +32,8 @@
   /* Typography */
   --uc-font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --uc-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --uc-font-size-base: 16px;
+  /* A share of the reader's browser setting (16 px unless they changed it), never a fixed size. */
+  --uc-font-size-base: 100%;
   --uc-font-size-xs: 0.75rem;   /* 12px */
   --uc-font-size-sm: 0.8125rem; /* 13px */
   --uc-font-size-md: 0.875rem;  /* 14px */

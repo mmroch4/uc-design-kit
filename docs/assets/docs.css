@@ -418,7 +418,15 @@ html:not(.docs-js) .docs-demo__open { padding: 0 var(--uc-space-4); }
 }
 
 @media (max-width: 480px) {
-  .docs-brand span { display: none; }
+  /* Hidden but still the link's accessible name. */
+  .docs-brand span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
   .docs-pager { grid-template-columns: 1fr; }
   .docs-pager__link--next { grid-column: 1; }
 }

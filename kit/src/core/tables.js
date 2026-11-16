@@ -14,6 +14,17 @@
   const SELECTOR = ".uc-table, .uc-content pre";
   const MANAGED = "data-uc-scroll-focus";
 
+  /** Text of the closest heading before `element` (in document order), or "". */
+  function nearestHeading(element) {
+    const headings = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"));
+    let found = "";
+    for (const heading of headings) {
+      if (heading.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING) found = heading;
+      else break;
+    }
+    return found ? found.textContent.replace(/\s+/g, " ").trim() : "";
+  }
+
   function update(wrapper) {
     const overflows = wrapper.scrollWidth > wrapper.clientWidth + 1;
     if (overflows && !wrapper.hasAttribute("tabindex")) {
@@ -26,8 +37,11 @@
       }
       if (!wrapper.hasAttribute("aria-label") && !wrapper.hasAttribute("aria-labelledby")) {
         const caption = wrapper.querySelector("caption");
-        const fallback = wrapper.localName === "pre" ? "a11y.scrollableText" : "a11y.scrollableTable";
-        wrapper.setAttribute("aria-label", caption ? caption.textContent.trim() : UC.t(fallback));
+        const fallback = UC.t(wrapper.localName === "pre" ? "a11y.scrollableText" : "a11y.scrollableTable");
+        // Without a caption, the nearest heading tells this region apart from
+        // the other scrollable tables of the page (each landmark needs its own name).
+        const heading = nearestHeading(wrapper);
+        wrapper.setAttribute("aria-label", caption ? caption.textContent.trim() : heading ? `${heading}: ${fallback}` : fallback);
         added.push("aria-label");
       }
       wrapper.setAttribute(MANAGED, added.join(" "));

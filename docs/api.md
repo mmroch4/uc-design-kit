@@ -533,7 +533,7 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | `--uc-color-danger-bg` | `#FEE2E2` | Background paired with `--uc-color-danger-text`. |
 | `--uc-font-sans` | `Inter, system-ui, sans-serif` | Body. |
 | `--uc-font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Code, dates, codes. |
-| `--uc-font-size-base` | `16px` | Root size; the type scale is relative to it. |
+| `--uc-font-size-base` | `100%` | Root size, as a share of the reader's browser setting (16 px by default); the type scale is relative to it. |
 | `--uc-font-size-xs` … `--uc-font-size-display` | `0.75rem` … `2.5rem` | Type scale: `-xs` 12px, `-sm` 13px, `-md` 14px, `-body-sm` 15px, `-lg` 18px, `-h3` 20px, `-h2` 22px, `-h1` 36px, `-display` 40px (at the 16px base). Below 760px `-h1` is `1.875rem` and `-display` `2rem`. |
 | `--uc-line-height` / `--uc-line-height-tight` | `1.6` / `1.25` | Body text / headings. |
 | `--uc-radius-sm` / `-md` / `-lg` | `6px` / `8px` / `12px` | Corners. |

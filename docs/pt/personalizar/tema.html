@@ -262,7 +262,7 @@
             <tbody>
               <tr><td>Cor de destaque</td><td><code>--uc-color-accent</code> (por omissão <code>#1D4ED8</code>)</td><td>Ligações, item ativo da navegação, botões principais, semana atual, anel de foco. As variantes <code>-strong</code>, <code>-soft</code> e <code>--uc-color-highlight</code> são calculadas a partir dela.</td></tr>
               <tr><td>Cantos</td><td><code>--uc-radius-sm</code>, <code>-md</code>, <code>-lg</code></td><td>Cartões, blocos de código e painéis (<code>-lg</code>); botões e navegação (<code>-md</code>); etiquetas e código em linha (<code>-sm</code>).</td></tr>
-              <tr><td>Tamanho da letra</td><td><code>--uc-font-size-base</code> (16 px)</td><td>Toda a escala tipográfica, que está em <code>rem</code>.</td></tr>
+              <tr><td>Tamanho da letra</td><td><code>--uc-font-size-base</code> (100%, 16 px por omissão)</td><td>Toda a escala tipográfica, que está em <code>rem</code>. O personalizador escreve o valor em percentagem (17 px dá <code>106.25%</code>), para que quem aumentou a letra no navegador continue a vê-la maior.</td></tr>
               <tr><td>Tipo de letra</td><td><code>--uc-font-sans</code> (Inter)</td><td>Todo o texto exceto código, datas e códigos, que usam <code>--uc-font-mono</code>. A letra do sistema dispensa o download da Inter.</td></tr>
               <tr><td>Largura do conteúdo</td><td><code>--uc-content-max</code> (1200 px)</td><td>Largura máxima do cabeçalho, da navegação e do conteúdo de <code>&lt;uc-page&gt;</code>. Só se nota em ecrãs mais largos do que o valor escolhido.</td></tr>
             </tbody>

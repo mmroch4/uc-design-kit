@@ -4345,7 +4345,7 @@ A JetBrains Mono junta alguns pares de carateres num só símbolo (`->` numa set
 
 ## Escala
 
-Os tamanhos são relativos ao tamanho da raiz (`--uc-font-size-base`, 16 px). Cada linha está escrita no seu tamanho; o valor ao lado é calculado nesta página.
+Os tamanhos são relativos ao tamanho da raiz (`--uc-font-size-base`, 100% do tamanho escolhido no navegador, 16 px por omissão). Cada linha está escrita no seu tamanho; o valor ao lado é calculado nesta página.
 
 - Algoritmos`--uc-font-size-display` 2.5rem (40px)
   Título de [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md)
@@ -4357,7 +4357,7 @@ Os tamanhos são relativos ao tamanho da raiz (`--uc-font-size-base`, 16 px). Ca
   `<h3>`
 - Dois projetos e um teste.`--uc-font-size-lg` 1.125rem (18px)
   `uc-lead`
-- Os projetos fazem-se em grupos de dois.`--uc-font-size-base` 16px
+- Os projetos fazem-se em grupos de dois.`--uc-font-size-base` 100%
   Texto
 - Teóricas: listas ligadas, slides 9.`--uc-font-size-body-sm` 0.9375rem (15px)
   Tabelas, semanas, avisos
@@ -4577,7 +4577,7 @@ Ver [Tipografia](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tipografi
 | --- | --- | --- |
 | `--uc-font-sans` | `Inter, system-ui, -apple-system, "Segoe UI", sans-serif` | Texto. Todo o kit. |
 | `--uc-font-mono` | `"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace` | Código, datas, números de semana, `uc-mono`. |
-| `--uc-font-size-base` | `16px` | Tamanho de `<html>`; os outros tamanhos são relativos a ele. |
+| `--uc-font-size-base` | `100%` | Tamanho de `<html>`, em percentagem do tamanho de letra escolhido no navegador (16 px se ninguém o mudou); os outros tamanhos são relativos a ele. |
 | `--uc-font-size-xs` | `0.75rem (12px)` | Etiquetas (`uc-tag`), contadores. |
 | `--uc-font-size-sm` | `0.8125rem (13px)` | Cabeçalhos de tabela, metadados pequenos. |
 | `--uc-font-size-md` | `0.875rem (14px)` | Texto secundário, botões, `uc-small`. |
@@ -5244,6 +5244,15 @@ O alvo são as [WCAG 2.1](https://www.w3.org/TR/WCAG21/), nível AA, a norma de 
 - que o conteúdo continua lá com o JavaScript desligado;
 - que não há erros na consola nem ficheiros em falta.
 
+Um segundo teste percorre as demonstrações de cada componente, o exemplo e o modelo como uma pessoa que usa o teclado:
+
+- o axe-core volta a correr com todas as secções abertas, e conta também as violações moderadas e ligeiras;
+- a tecla Tab chega a todos os controlos, cada um mostra o contorno de foco e nenhum prende o foco;
+- o nome acessível de cada botão contém o texto que se vê nele;
+- não há deslocamento horizontal a 320 px de largura nem com o texto a 200%;
+- com "reduzir movimento" não há transições;
+- copiar mantém o foco no botão e anuncia "Copiado"; abrir e fechar, marcar como feito, responder a uma pergunta, o menu do telemóvel e a troca de língua atualizam o estado e não perdem o foco.
+
 Um teste automático encontra só parte dos problemas. O resto (se o texto alternativo descreve a imagem, se os títulos fazem sentido) depende do conteúdo e verifica-se à mão.
 
 ## O que o kit garante
@@ -5610,7 +5619,7 @@ O texto usa `--uc-font-sans` (Inter, servida com o kit) e o código, as datas e 
 
 - **Letra do sistema.** Com `system-ui`, o browser não descarrega a Inter e a página aparece um pouco mais cedo na primeira visita. A linha `preload` do `<head>` deixa de ser útil e pode sair.
 - **Outra letra.** Os ficheiros `.woff2` ficam na pasta do site e declaram-se com `@font-face` no `theme.css`, antes de `:root`. Não é preciso nenhum serviço externo.
-- **Tamanho.** `--uc-font-size-base` (16px) é a base de toda a escala; mudar só os tamanhos de um título é trabalho do [nível 2](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md).
+- **Tamanho.** `--uc-font-size-base` (100%, ou seja, o tamanho escolhido no navegador, 16 px por omissão) é a base de toda a escala; mudar só os tamanhos de um título é trabalho do [nível 2](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md).
 
 ## Antes e depois
 
@@ -6523,7 +6532,7 @@ Exemplo:
 | --- | --- | --- |
 | Cor de destaque | `--uc-color-accent` (por omissão `#1D4ED8`) | Ligações, item ativo da navegação, botões principais, semana atual, anel de foco. As variantes `-strong`, `-soft` e `--uc-color-highlight` são calculadas a partir dela. |
 | Cantos | `--uc-radius-sm`, `-md`, `-lg` | Cartões, blocos de código e painéis (`-lg`); botões e navegação (`-md`); etiquetas e código em linha (`-sm`). |
-| Tamanho da letra | `--uc-font-size-base` (16 px) | Toda a escala tipográfica, que está em `rem`. |
+| Tamanho da letra | `--uc-font-size-base` (100%, 16 px por omissão) | Toda a escala tipográfica, que está em `rem`. O personalizador escreve o valor em percentagem (17 px dá `106.25%`), para que quem aumentou a letra no navegador continue a vê-la maior. |
 | Tipo de letra | `--uc-font-sans` (Inter) | Todo o texto exceto código, datas e códigos, que usam `--uc-font-mono`. A letra do sistema dispensa o download da Inter. |
 | Largura do conteúdo | `--uc-content-max` (1200 px) | Largura máxima do cabeçalho, da navegação e do conteúdo de `<uc-page>`. Só se nota em ecrãs mais largos do que o valor escolhido. |
 
@@ -8417,7 +8426,7 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | `--uc-color-danger-bg` | `#FEE2E2` | Background paired with `--uc-color-danger-text`. |
 | `--uc-font-sans` | `Inter, system-ui, sans-serif` | Body. |
 | `--uc-font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Code, dates, codes. |
-| `--uc-font-size-base` | `16px` | Root size; the type scale is relative to it. |
+| `--uc-font-size-base` | `100%` | Root size, as a share of the reader's browser setting (16 px by default); the type scale is relative to it. |
 | `--uc-font-size-xs` … `--uc-font-size-display` | `0.75rem` … `2.5rem` | Type scale: `-xs` 12px, `-sm` 13px, `-md` 14px, `-body-sm` 15px, `-lg` 18px, `-h3` 20px, `-h2` 22px, `-h1` 36px, `-display` 40px (at the 16px base). Below 760px `-h1` is `1.875rem` and `-display` `2rem`. |
 | `--uc-line-height` / `--uc-line-height-tight` | `1.6` / `1.25` | Body text / headings. |
 | `--uc-radius-sm` / `-md` / `-lg` | `6px` / `8px` / `12px` | Corners. |

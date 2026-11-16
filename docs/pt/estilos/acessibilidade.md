@@ -13,6 +13,15 @@ O alvo são as [WCAG 2.1](https://www.w3.org/TR/WCAG21/), nível AA, a norma de 
 - que o conteúdo continua lá com o JavaScript desligado;
 - que não há erros na consola nem ficheiros em falta.
 
+Um segundo teste percorre as demonstrações de cada componente, o exemplo e o modelo como uma pessoa que usa o teclado:
+
+- o axe-core volta a correr com todas as secções abertas, e conta também as violações moderadas e ligeiras;
+- a tecla Tab chega a todos os controlos, cada um mostra o contorno de foco e nenhum prende o foco;
+- o nome acessível de cada botão contém o texto que se vê nele;
+- não há deslocamento horizontal a 320 px de largura nem com o texto a 200%;
+- com "reduzir movimento" não há transições;
+- copiar mantém o foco no botão e anuncia "Copiado"; abrir e fechar, marcar como feito, responder a uma pergunta, o menu do telemóvel e a troca de língua atualizam o estado e não perdem o foco.
+
 Um teste automático encontra só parte dos problemas. O resto (se o texto alternativo descreve a imagem, se os títulos fazem sentido) depende do conteúdo e verifica-se à mão.
 
 ## O que o kit garante

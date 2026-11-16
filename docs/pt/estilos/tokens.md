@@ -69,7 +69,7 @@ Ver [Tipografia](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tipografi
 | --- | --- | --- |
 | `--uc-font-sans` | `Inter, system-ui, -apple-system, "Segoe UI", sans-serif` | Texto. Todo o kit. |
 | `--uc-font-mono` | `"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace` | Código, datas, números de semana, `uc-mono`. |
-| `--uc-font-size-base` | `16px` | Tamanho de `<html>`; os outros tamanhos são relativos a ele. |
+| `--uc-font-size-base` | `100%` | Tamanho de `<html>`, em percentagem do tamanho de letra escolhido no navegador (16 px se ninguém o mudou); os outros tamanhos são relativos a ele. |
 | `--uc-font-size-xs` | `0.75rem (12px)` | Etiquetas (`uc-tag`), contadores. |
 | `--uc-font-size-sm` | `0.8125rem (13px)` | Cabeçalhos de tabela, metadados pequenos. |
 | `--uc-font-size-md` | `0.875rem (14px)` | Texto secundário, botões, `uc-small`. |
