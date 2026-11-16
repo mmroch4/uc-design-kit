@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classes CSS estáveis · UC Design Kit</title>
+  <meta name="description" content="As classes uc-* que um theme.css pode usar sem que mudem dentro da versão 1, por componente e por bloco.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="api-js.html">API JavaScript</a></li>
+          <li><a href="runners.html">Runners</a></li>
+          <li><a href="classes.html" aria-current="page">Classes CSS estáveis</a></li>
+          <li><a href="versoes.html">Versões</a></li>
+          <li><a href="browsers.html">Browsers e limites</a></li>
+          <li><a href="contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Referência</p>
+          <h1>Classes CSS estáveis</h1>
+          <p class="docs-lead">As classes que um <code>theme.css</code> pode usar (nível 2 de personalização) sem medo de que mudem dentro da versão 1. Reúne numa página as tabelas "Personalizar" de cada componente e as classes dos blocos.</p>
+        </header>
+
+        <h2 id="regras">O que é estável</h2>
+        <ul>
+          <li><strong>Estáveis</strong> são as classes desta página: o nome e o elemento a que se aplicam. Mudar uma delas é uma alteração incompatível e só acontece numa nova versão principal (<code>kit/v2/</code>).</li>
+          <li>Os nomes seguem o padrão <code>bloco__elemento--variante</code>: <code>uc-week</code> é o componente, <code>uc-week__title</code> uma parte dele, <code>uc-week--current</code> um estado.</li>
+          <li>Os seletores do kit têm especificidade zero (<code>:where()</code>), por isso qualquer regra do <code>theme.css</code> ganha, mesmo só com uma classe. Ver <a href="../personalizar/css.html#especificidade">Nível 2: CSS livre</a>.</li>
+          <li><strong>Não</strong> são estáveis: as classes da lista <a href="#internas">Internas</a>, a ordem exata dos elementos gerados, as classes <code>hljs-*</code> do realce de código e os valores das propriedades (espaços, tamanhos), que podem ser afinados numa versão de correção. Para mudar valores, os <a href="../estilos/tokens.html">tokens</a> são o caminho mais seguro.</li>
+        </ul>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Stable classes only: survives every v1 update. */
+.uc-week__title { text-transform: uppercase; }
+.uc-week--current .uc-week__number { color: var(--uc-color-accent); }
+.uc-deadlines__item--past { opacity: 0.6; }</code></pre></uc-code>
+
+        <h2 id="componentes">Componentes</h2>
+        <p>Uma tabela por componente, igual à da secção "Personalizar" da sua página (o <code>npm run build</code> copia-as daí). Nas células, <code>__x</code> e <code>--x</code> continuam o nome anterior: <code>.uc-code__button, --copy</code> são <code>uc-code__button</code> e <code>uc-code__button--copy</code>.</p>
+
+        <h3 id="uc-page"><a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-page.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-page&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-page</code>, <code>.uc-page--full</code></td><td>A página (o próprio <code>&lt;uc-page&gt;</code>) e a variante sem navegação.</td></tr>
+              <tr><td><code>.uc-page--nav-open</code></td><td>A página com o menu aberto, em ecrãs estreitos.</td></tr>
+              <tr><td><code>.uc-header</code>, <code>.uc-header__inner</code></td><td>O cabeçalho e a sua faixa centrada.</td></tr>
+              <tr><td><code>.uc-brand</code>, <code>__logo</code>, <code>__title</code>, <code>__edition</code></td><td>O link com o logótipo, o nome do curso e o ano letivo.</td></tr>
+              <tr><td><code>.uc-header__meta</code>, <code>.uc-header__institution</code></td><td>O lado direito do cabeçalho e a instituição.</td></tr>
+              <tr><td><code>.uc-lang-switch</code>, <code>__button</code></td><td>Os botões para mudar de língua.</td></tr>
+              <tr><td><code>.uc-shell</code></td><td>A grelha com a navegação e o conteúdo.</td></tr>
+              <tr><td><code>.uc-sidebar</code>, <code>.uc-nav</code></td><td>A coluna da navegação e o <code>&lt;nav&gt;</code> dentro dela.</td></tr>
+              <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
+              <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
+              <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
+              <tr><td><code>.uc-footer</code>, <code>__text</code>, <code>__updated</code></td><td>O rodapé, o texto à esquerda e a data de atualização.</td></tr>
+              <tr><td><code>.uc-skip-link</code></td><td>O link "Saltar para o conteúdo", visível só com o foco do teclado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-hero"><a href="../componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-hero.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-hero&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-hero</code></td><td>O bloco (o próprio <code>&lt;uc-hero&gt;</code>), uma coluna com espaço entre as linhas.</td></tr>
+              <tr><td><code>.uc-hero__code</code></td><td>O código do curso.</td></tr>
+              <tr><td><code>.uc-hero__title</code></td><td>O <code>&lt;h1&gt;</code> com o nome.</td></tr>
+              <tr><td><code>.uc-hero__tagline</code></td><td>A descrição, com no máximo 640 px de largura.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-notices"><a href="../componentes/uc-notices.html"><code>&lt;uc-notices&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-notices.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-notices&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-notices</code></td><td>O próprio <code>&lt;uc-notices&gt;</code>.</td></tr>
+              <tr><td><code>.uc-notices__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-notices__list</code>, <code>__item</code></td><td>A lista e cada aviso.</td></tr>
+              <tr><td><code>.uc-notices__item--new</code></td><td>Um aviso com a etiqueta "Novo".</td></tr>
+              <tr><td><code>.uc-notices__date</code></td><td>A data, à esquerda.</td></tr>
+              <tr><td><code>.uc-notices__body</code>, <code>__text</code>, <code>__details</code></td><td>O texto do aviso e a segunda linha.</td></tr>
+              <tr><td><code>.uc-notices__badge</code></td><td>A etiqueta "Novo".</td></tr>
+              <tr><td><code>.uc-notices__earlier</code>, <code>__summary</code></td><td>O bloco "Avisos anteriores (n)" e a linha que o abre.</td></tr>
+              <tr><td><code>.uc-notices__more</code></td><td>O conteúdo escrito dentro do elemento.</td></tr>
+              <tr><td><code>.uc-notices__empty</code></td><td>A frase "Ainda não há avisos.".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-deadlines"><a href="../componentes/uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-deadlines.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-deadlines&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-deadlines</code>, <code>.uc-deadlines--table</code></td><td>O próprio <code>&lt;uc-deadlines&gt;</code>; o modificador na vista de tabela.</td></tr>
+              <tr><td><code>.uc-deadlines__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-deadlines__list</code>, <code>__item</code></td><td>A lista e cada prazo.</td></tr>
+              <tr><td><code>.uc-deadlines__item--past</code>, <code>--unscheduled</code></td><td>Prazo que já passou; prazo sem data.</td></tr>
+              <tr><td><code>.uc-deadlines__row</code></td><td>Cada linha da tabela.</td></tr>
+              <tr><td><code>.uc-deadlines__row--done</code>, <code>--next</code>, <code>--scheduled</code>, <code>--toBeScheduled</code></td><td>Estado da linha.</td></tr>
+              <tr><td><code>.uc-deadlines__date</code>, <code>__time</code></td><td>A data e a hora.</td></tr>
+              <tr><td><code>.uc-deadlines__body</code>, <code>__title</code></td><td>O texto do prazo (lista) e o título (lista e tabela).</td></tr>
+              <tr><td><code>.uc-deadlines__note</code>, <code>__links</code></td><td>A nota e as ligações extra.</td></tr>
+              <tr><td><code>.uc-deadlines__details</code>, <code>__status</code></td><td>As colunas "Informação" e "Estado" da tabela.</td></tr>
+              <tr><td><code>.uc-deadlines__none</code></td><td>O travessão de uma célula vazia.</td></tr>
+              <tr><td><code>.uc-deadlines__more</code></td><td>O conteúdo escrito dentro do elemento.</td></tr>
+              <tr><td><code>.uc-deadlines__empty</code></td><td>A frase "Não há datas marcadas.".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-date"><a href="../componentes/uc-date.html"><code>&lt;uc-date&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-date.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-date&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-date</code></td><td>O próprio <code>&lt;uc-date&gt;</code>; a data fica num <code>&lt;time&gt;</code> lá dentro.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-weeks"><a href="../componentes/uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-weeks.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-weeks&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-weeks</code></td><td>O contentor (o próprio <code>&lt;uc-weeks&gt;</code>).</td></tr>
+              <tr><td><code>.uc-weeks__actions</code></td><td>O parágrafo do topo com o botão.</td></tr>
+              <tr><td><code>.uc-weeks__go</code></td><td>O botão "Ir para esta semana" (também <code>.uc-button</code> e <code>.uc-button--primary</code>).</td></tr>
+              <tr><td><code>.uc-weeks__break</code></td><td>O aviso de uma interrupção.</td></tr>
+              <tr><td><code>.uc-weeks__break-date</code></td><td>As datas da interrupção.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-week"><a href="../componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-week.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-week&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-week</code></td><td>A semana (o próprio <code>&lt;uc-week&gt;</code>).</td></tr>
+              <tr><td><code>.uc-week--past</code>, <code>--current</code>, <code>--future</code></td><td>Estado em relação a hoje.</td></tr>
+              <tr><td><code>.uc-week__summary</code></td><td>A linha que abre e fecha.</td></tr>
+              <tr><td><code>.uc-week__number</code>, <code>__title</code>, <code>__date</code></td><td>"Semana 10", o título e o intervalo de datas.</td></tr>
+              <tr><td><code>.uc-week__now</code></td><td>A etiqueta "Esta semana".</td></tr>
+              <tr><td><code>.uc-week__body</code></td><td>O conteúdo escrito pelo professor e os prazos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-event"><a href="../componentes/uc-event.html"><code>&lt;uc-event&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-event.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-event&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-event</code></td><td>O evento (o próprio <code>&lt;uc-event&gt;</code>).</td></tr>
+              <tr><td><code>.uc-event--past</code>, <code>--future</code></td><td>O último dia do evento já passou, ou ainda não (hoje conta como futuro).</td></tr>
+              <tr><td><code>.uc-event__kind</code></td><td>A etiqueta do tipo (também <code>.uc-tag</code>).</td></tr>
+              <tr><td><code>.uc-event__title</code></td><td>O título do prazo (<code>&lt;strong&gt;</code>, ou <code>&lt;a&gt;</code> com <code>url</code>).</td></tr>
+              <tr><td><code>.uc-event__date</code></td><td>A data, a hora ou o intervalo.</td></tr>
+              <tr><td><code>.uc-event__note</code></td><td>A nota do prazo.</td></tr>
+              <tr><td><code>.uc-event__link</code></td><td>Cada ligação de <code>links</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-this-week"><a href="../componentes/uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-this-week.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-this-week&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-this-week</code></td><td>O próprio <code>&lt;uc-this-week&gt;</code>.</td></tr>
+              <tr><td><code>.uc-this-week__card</code></td><td>O cartão (também <code>.uc-card</code> e <code>.uc-card--accent</code>).</td></tr>
+              <tr><td><code>.uc-this-week__header</code>, <code>__heading</code>, <code>__meta</code></td><td>A linha de cima, o título "Esta semana" ou "A seguir" e "Semana 10 · 24–28 nov".</td></tr>
+              <tr><td><code>.uc-this-week__week-title</code></td><td>O título da semana, lido da página de semanas.</td></tr>
+              <tr><td><code>.uc-this-week__message</code></td><td>"O semestre começa a…" ou "O semestre terminou."</td></tr>
+              <tr><td><code>.uc-this-week__items</code>, <code>__item</code></td><td>A grelha de linhas e prazos, e cada um deles.</td></tr>
+              <tr><td><code>.uc-this-week__label</code>, <code>__title</code>, <code>__detail</code>, <code>__date</code></td><td>Partes de um item: etiqueta ("Teóricas", "Entrega"), título do prazo, valor ou nota, e data.</td></tr>
+              <tr><td><code>.uc-this-week__more</code>, <code>__link</code></td><td>O parágrafo e a ligação "Ver semana 10".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-team"><a href="../componentes/uc-team.html"><code>&lt;uc-team&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-team.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-team&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-team</code></td><td>O componente (o próprio <code>&lt;uc-team&gt;</code>).</td></tr>
+              <tr><td><code>.uc-team__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-team__cards</code>, <code>__card</code></td><td>A grelha de cartões (também <code>uc-grid</code>) e cada cartão (também <code>uc-card</code>).</td></tr>
+              <tr><td><code>.uc-team__name</code></td><td>O nome, link ou texto.</td></tr>
+              <tr><td><code>.uc-team__role</code></td><td>A função e as turmas, num cartão.</td></tr>
+              <tr><td><code>.uc-team__contact</code></td><td>O gabinete e o e-mail.</td></tr>
+              <tr><td><code>.uc-team__table</code></td><td>O contentor da tabela (também <code>uc-table</code>).</td></tr>
+              <tr><td><code>.uc-team__person</code>, <code>__classes</code></td><td>As células do nome e das turmas, na tabela.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-guide"><a href="../componentes/uc-guide.html"><code>&lt;uc-guide&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-guide.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-guide&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-guide</code></td><td>O guião (o próprio <code>&lt;uc-guide&gt;</code>).</td></tr>
+              <tr><td><code>.uc-guide--no-aside</code></td><td>Guião sem índice nem exercícios: a coluna da direita não existe.</td></tr>
+              <tr><td><code>.uc-guide__crumbs</code>, <code>__crumbs-list</code>, <code>__crumb</code></td><td>O caminho de navegação, a sua lista e cada elemento.</td></tr>
+              <tr><td><code>.uc-guide__layout</code></td><td>A grelha com o conteúdo e a coluna da direita.</td></tr>
+              <tr><td><code>.uc-guide__content</code></td><td>O conteúdo escrito pelo professor.</td></tr>
+              <tr><td><code>.uc-guide__aside</code></td><td>A coluna com o progresso e o índice.</td></tr>
+              <tr><td><code>.uc-guide__progress</code>, <code>__progress-text</code>, <code>__progress-count</code>, <code>__progress-bar</code></td><td>O cartão do progresso, a frase, o número de feitos e a barra.</td></tr>
+              <tr><td><code>.uc-guide__toc</code>, <code>__toc-label</code>, <code>__toc-list</code>, <code>__toc-item</code>, <code>__toc-link</code></td><td>O índice, o rótulo "Nesta página", a lista, cada entrada e a sua ligação (a da secção à vista tem <code>aria-current</code>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-exercise"><a href="../componentes/uc-exercise.html"><code>&lt;uc-exercise&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-exercise.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-exercise&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-exercise</code></td><td>O exercício (o próprio <code>&lt;uc-exercise&gt;</code>).</td></tr>
+              <tr><td><code>.uc-exercise--done</code></td><td>Exercício marcado como feito.</td></tr>
+              <tr><td><code>.uc-exercise__details</code>, <code>__summary</code>, <code>__body</code></td><td>O cartão (<code>&lt;details&gt;</code>), a linha que abre e fecha e o conteúdo.</td></tr>
+              <tr><td><code>.uc-exercise__number</code>, <code>__title</code>, <code>__chevron</code></td><td>O círculo com o número (ou o visto), o título e a seta.</td></tr>
+              <tr><td><code>.uc-exercise__meta</code></td><td>As etiquetas à direita do título.</td></tr>
+              <tr><td><code>.uc-exercise__level</code>, <code>__problem</code>, <code>__done-tag</code></td><td>As etiquetas de nível, de problema no Mooshak e "Feito".</td></tr>
+              <tr><td><code>.uc-exercise__actions</code></td><td>A linha do fim, com os botões.</td></tr>
+              <tr><td><code>.uc-exercise__submit</code></td><td>O botão "Submeter no Mooshak".</td></tr>
+              <tr><td><code>.uc-exercise__toggle</code>, <code>__checkbox</code></td><td>O botão "Marcar como feito" e a sua caixa.</td></tr>
+              <tr><td><code>.uc-hint</code>, <code>.uc-solution</code></td><td>Os blocos de dica e de solução (classes escritas pelo professor).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-code"><a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-code.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-code&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-code</code></td><td>O bloco (o próprio <code>&lt;uc-code&gt;</code>), depois de o kit arrancar.</td></tr>
+              <tr><td><code>.uc-code--editable</code>, <code>--collapsed</code></td><td>Bloco editável; bloco recolhível fechado.</td></tr>
+              <tr><td><code>.uc-code__header</code></td><td>O cabeçalho com o nome e os botões.</td></tr>
+              <tr><td><code>.uc-code__title</code></td><td>O nome do ficheiro ou da linguagem.</td></tr>
+              <tr><td><code>.uc-code__toggle</code>, <code>__chevron</code></td><td>O botão que mostra e esconde o código e a sua seta.</td></tr>
+              <tr><td><code>.uc-code__actions</code></td><td>O grupo de botões.</td></tr>
+              <tr><td><code>.uc-code__button</code>, <code>--copy</code>, <code>--download</code>, <code>--reset</code></td><td>Copiar, Descarregar e Repor.</td></tr>
+              <tr><td><code>.uc-code__run</code></td><td>O botão Executar ou a ligação "Testar em …".</td></tr>
+              <tr><td><code>.uc-code__body</code>, <code>__scroll</code></td><td>A área do código, que desliza na horizontal.</td></tr>
+              <tr><td><code>.uc-code__pre</code>, <code>__code</code></td><td>O código mostrado (com as classes <code>hljs-*</code> do realce).</td></tr>
+              <tr><td><code>.uc-code__editor</code>, <code>__input</code>, <code>__hint</code></td><td>No modo editável: a área de edição, o <code>&lt;textarea&gt;</code> e a indicação sobre Tab e Esc.</td></tr>
+              <tr><td><code>.uc-code__results</code></td><td>A área do resultado, por baixo do código.</td></tr>
+              <tr><td><code>.uc-code__results-summary</code>, <code>--passed</code></td><td>"2 de 3 testes passaram"; a variante quando passam todos.</td></tr>
+              <tr><td><code>.uc-code__results-label</code>, <code>__results-output</code>, <code>--stderr</code>, <code>__results-error</code></td><td>"Resultado" ou "Erro", o texto escrito pelo programa, as mensagens de erro e a falha ao executar.</td></tr>
+              <tr><td><code>.uc-code__tests</code>, <code>__test</code>, <code>--passed</code>, <code>--failed</code></td><td>A lista de testes e cada teste.</td></tr>
+              <tr><td><code>.uc-code__test-mark</code>, <code>__test-name</code>, <code>__test-detail</code></td><td>O ✓ ou ✗, o nome do teste e "Esperado: … · Obtido: …".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-question"><a href="../componentes/uc-question.html"><code>&lt;uc-question&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-question.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-question&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-question</code></td><td>A pergunta (o próprio <code>&lt;uc-question&gt;</code>).</td></tr>
+              <tr><td><code>.uc-question--solved</code></td><td>Pergunta respondida corretamente.</td></tr>
+              <tr><td><code>.uc-question__tag</code></td><td>A etiqueta "Verificação rápida".</td></tr>
+              <tr><td><code>.uc-question__prompt</code></td><td>O enunciado.</td></tr>
+              <tr><td><code>.uc-question__options</code></td><td>O grupo de opções (um <code>&lt;fieldset&gt;</code>).</td></tr>
+              <tr><td><code>.uc-question__option</code>, <code>__option--correct</code></td><td>Cada opção e uma opção certa depois de resolvida.</td></tr>
+              <tr><td><code>.uc-question__input</code>, <code>__label</code></td><td>O botão de opção ou a caixa, e o texto da opção.</td></tr>
+              <tr><td><code>.uc-question__actions</code>, <code>__check</code></td><td>A linha do botão e o botão "Verificar".</td></tr>
+              <tr><td><code>.uc-question__feedback</code>, <code>--none</code>, <code>--empty</code>, <code>--incorrect</code>, <code>--correct</code></td><td>A zona da mensagem e o seu estado.</td></tr>
+              <tr><td><code>.uc-question__message</code>, <code>__explanation</code></td><td>A mensagem e a explicação.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+        <h2 id="blocos">Blocos</h2>
+        <p>As classes que se escrevem no HTML para dar forma ao conteúdo. Cada página de blocos explica as variantes e os tokens locais.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes dos blocos e onde estão documentadas</caption>
+            <thead>
+              <tr><th scope="col">Classes</th><th scope="col">Página</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>uc-section</code>, <code>uc-stack</code>, <code>uc-grid</code>, <code>uc-split</code></td><td><a href="../estilos/layout.html">Blocos: layout</a></td></tr>
+              <tr><td><code>uc-card</code>, <code>uc-card--accent</code>, <code>uc-callout</code>, <code>uc-callout--warning</code>, <code>uc-links</code>, <code>uc-shortcuts</code>, <code>uc-checklist</code>, <code>uc-bullets</code></td><td><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></td></tr>
+              <tr><td><code>uc-button</code>, <code>uc-button--primary</code>, <code>uc-button--sm</code>, <code>uc-tag</code> e as suas variantes, <code>uc-table</code>, <code>uc-copy-block</code>, <code>uc-copy-block__button</code>, <code>uc-mono</code>, <code>uc-muted</code>, <code>uc-small</code>, <code>uc-visually-hidden</code></td><td><a href="../estilos/elementos.html">Blocos: elementos</a></td></tr>
+              <tr><td><code>uc-lead</code>, <code>uc-prose</code>, <code>uc-content</code>, <code>uc-content__float</code></td><td><a href="../estilos/tipografia.html">Tipografia</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="internas">Internas</h2>
+        <p>O kit também gera estas classes, mas não promete mantê-las: podem mudar de nome ou desaparecer numa versão de correção. Servem para ler o HTML gerado nas ferramentas do browser; num <code>theme.css</code>, prefira uma classe estável do mesmo componente.</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes internas do kit</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-visible</code></td><td><code>&lt;html&gt;</code>, quando as letras estão prontas; o <code>&lt;uc-page&gt;</code> fica escondido até lá.</td></tr>
+              <tr><td><code>.uc-nav-toggle__label</code></td><td><code>&lt;uc-page&gt;</code>: o texto do botão "Menu" em ecrãs estreitos.</td></tr>
+              <tr><td><code>.uc-nav-toggle__current</code></td><td><code>&lt;uc-page&gt;</code>: o nome da página atual no botão "Menu".</td></tr>
+              <tr><td><code>.uc-nav-toggle__chevron</code></td><td><code>&lt;uc-page&gt;</code>: a seta do botão "Menu".</td></tr>
+              <tr><td><code>.uc-footer__inner</code></td><td><code>&lt;uc-page&gt;</code>: a faixa centrada do rodapé.</td></tr>
+              <tr><td><code>.uc-notices__earlier--only</code></td><td><code>&lt;uc-notices&gt;</code>: "Avisos anteriores" quando não há avisos recentes.</td></tr>
+              <tr><td><code>.uc-week__details</code></td><td><code>&lt;uc-week&gt;</code>: o <code>&lt;details&gt;</code> que abre e fecha a semana.</td></tr>
+              <tr><td><code>.uc-week__meta</code></td><td><code>&lt;uc-week&gt;</code>: a etiqueta "Esta semana" e as datas.</td></tr>
+              <tr><td><code>.uc-week__chevron</code></td><td><code>&lt;uc-week&gt;</code>: a seta.</td></tr>
+              <tr><td><code>.uc-exercise__heading</code></td><td><code>&lt;uc-exercise&gt;</code>: o grupo com o rótulo e o título.</td></tr>
+              <tr><td><code>.uc-exercise__generated-summary</code></td><td><code>&lt;uc-exercise&gt;</code>: o <code>o <code>&lt;summary&gt;</code> criado quando o professor não escreve um.lt;summaryo <code>&lt;summary&gt;</code> criado quando o professor não escreve um.gt;</code> que o kit cria numa dica ou solução escrita sem um.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a>: especificidade, exemplos e o que evitar.</li>
+          <li><a href="../estilos/tokens.html">Tokens</a>: mudar cores, espaços e cantos sem tocar nas classes.</li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="runners.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Runners</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="versoes.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Versões</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/referencia/classes.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#regras">O que é estável</a></li>
+          <li><a href="#componentes">Componentes</a></li>
+          <li class="docs-toc__sub"><a href="#uc-page">&lt;uc-page&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-hero">&lt;uc-hero&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-notices">&lt;uc-notices&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-deadlines">&lt;uc-deadlines&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-date">&lt;uc-date&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-weeks">&lt;uc-weeks&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-week">&lt;uc-week&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-event">&lt;uc-event&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-this-week">&lt;uc-this-week&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-team">&lt;uc-team&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-guide">&lt;uc-guide&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-exercise">&lt;uc-exercise&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-code">&lt;uc-code&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-question">&lt;uc-question&gt;</a></li>
+          <li><a href="#blocos">Blocos</a></li>
+          <li><a href="#internas">Internas</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

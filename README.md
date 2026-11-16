@@ -15,8 +15,12 @@ course ("unidade curricular", UC) websites.
   components, without forking the kit.
 
 > Status: under construction. Documentation (Portuguese):
-> <https://uc-design-kit.miguelrocha.dev/docs/pt/>. The public contract is
-> [`docs/api.md`](docs/api.md).
+> <https://uc-design-kit.miguelrocha.dev/docs/pt/> — getting started, every
+> component with live demos, styles, customisation, examples and a reference
+> ([JavaScript API](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/api-js.html),
+> [stable CSS classes](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/classes.html),
+> [versions](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/versoes.html)).
+> The public contract is [`docs/api.md`](docs/api.md).
 
 ## Repository layout
 

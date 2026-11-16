@@ -12,7 +12,11 @@
  *     every CSS building block of section 4 is named in a heading of the
  *     Estilos "Blocos" pages or the Typography page;
  *     the Tokens page has a row for every token of section 5 (ranges expanded
- *     from kit/src/css) and no token unknown to api.md and the kit's CSS
+ *     from kit/src/css) and no token unknown to api.md and the kit's CSS;
+ *     the JavaScript API and Runners pages list the members, events and
+ *     built-in runners of section 7; every class the kit styles or writes is
+ *     documented (component tables, Blocos pages, or the internal list of the
+ *     Classes page), and the Classes page copies every component's table
  *
  * Components of api.md without a page are listed as pending. With --strict
  * (used once every component has a page) they fail the check.
@@ -21,7 +25,7 @@
  */
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
-import { ROOT, DOCS, loadNav, navPages, listDocPages, headingsOf, stripTags, walk } from "./docs.mjs";
+import { ROOT, DOCS, loadNav, navPages, listDocPages, headingsOf, stripTags, walk, stableClassRows } from "./docs.mjs";
 
 const strict = process.argv.includes("--strict");
 const problems = [];
@@ -290,6 +294,139 @@ async function checkTokensPage() {
   }
 }
 
+/* ---------- stable CSS classes (Referência) ---------- */
+
+// The Classes page copies every component's "Personalizar" table (docs:classes
+// regions) and lists the classes the kit generates without promising them
+// (h2#internas). Every class the kit's CSS styles, and every BEM class
+// (block__element, block--modifier) its JavaScript writes, must be documented
+// somewhere: a component table, a Blocos page table, api.md section 4, or the
+// internal list. A new class in the kit fails the check until it is described.
+const CLASSES_PAGE = "pt/referencia/classes.html";
+
+/**
+ * Class names of a table cell such as ".uc-code__button, --copy, --download":
+ * "__x" continues the block of the previous name, "--x" its element.
+ */
+export function expandClassCell(cell) {
+  const names = [];
+  let last = "";
+  for (const raw of stripTags(cell).split(",")) {
+    const token = raw.trim().split(/\s/)[0].replace(/^[a-z]*\./, "");
+    if (!token) continue;
+    let name = token;
+    if (token.startsWith("__")) name = last.split(/__|--/)[0] + token;
+    else if (token.startsWith("--")) name = last.split("--")[0] + token;
+    names.push(name);
+    last = name;
+  }
+  return names.filter((name) => name.startsWith("uc-"));
+}
+
+/** Every uc-… class the kit's CSS selects, plus complete BEM classes written by its JavaScript. */
+async function kitClasses() {
+  const names = new Set();
+  for (const file of await walk(path.join(ROOT, "kit/src"))) {
+    const content = await readFile(file, "utf8");
+    if (file.endsWith(".css")) {
+      for (const match of content.matchAll(/\.(uc-[a-z0-9_-]*[a-z0-9])/g)) names.add(match[1]);
+    } else if (file.endsWith(".js")) {
+      for (const match of content.matchAll(/(?<![\w-])(uc-[a-z0-9]+(?:-[a-z0-9]+)*(?:__[a-z0-9]+(?:-[a-z0-9]+)*|--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)+)(?![\w$-])/g)) {
+        names.add(match[1]);
+      }
+    }
+  }
+  return names;
+}
+
+async function checkClassesPage(nav) {
+  const file = path.join(DOCS, CLASSES_PAGE);
+  if (!(await exists(file))) {
+    problems.push(`docs/${CLASSES_PAGE}: missing (stable CSS classes)`);
+    return;
+  }
+  const content = await readFile(file, "utf8");
+  const documented = new Set();
+  // Component tables: every component page must be copied onto the Classes page.
+  for (const entry of navPages(nav, "pt").filter((item) => item.component)) {
+    const page = path.join(DOCS, entry.path);
+    if (!(await exists(page))) continue;
+    const rows = stableClassRows(await readFile(page, "utf8"));
+    if (!rows.length) problems.push(`${rel(page)}: no class table in #personalizar`);
+    for (const row of rows) for (const name of expandClassCell(row.name)) documented.add(name);
+    const source = path.relative(path.dirname(file), page).split(path.sep).join("/");
+    if (!content.includes(`<!-- docs:classes src="${source}" -->`)) problems.push(`${rel(file)}: no docs:classes region for ${source}`);
+  }
+  // Building blocks: api.md section 4 and the class tables of the Blocos pages.
+  const { known } = await apiBlocks();
+  for (const name of known) documented.add(name);
+  for (const page of BLOCK_PAGES) {
+    const blockFile = path.join(DOCS, page);
+    if (!(await exists(blockFile))) continue;
+    for (const row of (await readFile(blockFile, "utf8")).matchAll(/<tr>\s*<td>([\s\S]*?)<\/td>/g)) {
+      for (const name of expandClassCell(row[1])) documented.add(name);
+    }
+  }
+  // Every class named in the Classes page's own "Blocos" table.
+  const blocks = content.match(/<h2 id="blocos">[\s\S]*?(?=<h2\b)/);
+  for (const code of blocks ? blocks[0].matchAll(/<code>([\s\S]*?)<\/code>/g) : []) for (const name of expandClassCell(code[1])) documented.add(name);
+  // Internal classes, listed on the Classes page without a stability promise.
+  for (const name of sectionRowNames(content, "internas") || []) for (const item of expandClassCell(`<code>${name}</code>`)) documented.add(item);
+  for (const name of await kitClasses()) {
+    if (!documented.has(name)) problems.push(`kit/src: class "${name}" is not documented (a component's #personalizar table, a Blocos page, or #internas of ${rel(file)})`);
+  }
+}
+
+/* ---------- api.md section 7: JavaScript API ---------- */
+
+// The JavaScript API page lists every member of api.md section 7's first
+// table (h2#membros), every event (h2#eventos), and the Runners page every
+// built-in runner of section 7.1 (h2#incluidos). Names are compared without
+// their arguments: `UC.t(key, params?)` → `UC.t`.
+const JS_TABLES = [
+  { page: "pt/referencia/api-js.html", section: "7. JavaScript API", header: "Member", id: "membros" },
+  { page: "pt/referencia/api-js.html", section: "7. JavaScript API", header: "Event", id: "eventos" },
+  { page: "pt/referencia/runners.html", section: "7. JavaScript API", header: "Name", id: "incluidos" },
+];
+
+/** First column of the api.md table, in the given section, whose header starts with `header`. */
+async function apiTable(sectionTitle, header) {
+  const api = await readFile(path.join(ROOT, "docs/api.md"), "utf8");
+  const section = api.split(/^## /m).find((part) => part.startsWith(sectionTitle)) || "";
+  const names = new Set();
+  let inTable = false;
+  for (const line of section.split("\n")) {
+    if (!line.startsWith("|")) {
+      inTable = false;
+      continue;
+    }
+    const cell = line.split("|")[1].trim();
+    if (!inTable) {
+      inTable = cell === header;
+      continue;
+    }
+    if (/^-+$/.test(cell)) continue;
+    const code = cell.match(/`([^`]+)`/);
+    if (code) names.add(code[1].replace(/\(.*$/, ""));
+  }
+  return names;
+}
+
+async function checkJsPages() {
+  for (const { page, section, header, id } of JS_TABLES) {
+    const file = path.join(DOCS, page);
+    if (!(await exists(file))) {
+      problems.push(`docs/${page}: missing (docs/api.md section 7)`);
+      continue;
+    }
+    const expected = await apiTable(section, header);
+    if (!expected.size) problems.push(`docs/api.md: no "${header}" table in section 7`);
+    const listed = new Set(Array.from(sectionRowNames(await readFile(file, "utf8"), id) || [], (name) => name.replace(/\(.*$/, "")));
+    for (const name of expected) if (!listed.has(name)) problems.push(`${rel(file)}: "${name}" from docs/api.md section 7 is not in #${id}`);
+    for (const name of listed) if (!expected.has(name)) problems.push(`${rel(file)}: "${name}" in #${id} is not in docs/api.md section 7`);
+  }
+}
+
 /* ---------- links ---------- */
 
 function idsOf(content) {
@@ -357,6 +494,8 @@ async function main() {
   await checkCoursePage();
   await checkBlockPages();
   await checkTokensPage();
+  await checkClassesPage(nav);
+  await checkJsPages();
 
   const files = [...pages.map((page) => page.file), path.join(ROOT, "index.html")];
   for (const file of files) {

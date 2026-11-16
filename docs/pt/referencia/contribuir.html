@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contribuir · UC Design Kit</title>
+  <meta name="description" content="Para quem mantém o kit: princípios, repositório, construir e testar, documentar uma alteração e lançar uma versão.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="api-js.html">API JavaScript</a></li>
+          <li><a href="runners.html">Runners</a></li>
+          <li><a href="classes.html">Classes CSS estáveis</a></li>
+          <li><a href="versoes.html">Versões</a></li>
+          <li><a href="browsers.html">Browsers e limites</a></li>
+          <li><a href="contribuir.html" aria-current="page">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Referência</p>
+          <h1>Contribuir</h1>
+          <p class="docs-lead">Para quem mantém o kit ou quer propor uma alteração: como o repositório está organizado, como construir e testar, como documentar e como lançar uma versão. O texto de referência é o <a href="https://github.com/mmroch4/uc-design-kit/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>, em inglês.</p>
+        </header>
+
+        <h2 id="principios">Princípios</h2>
+        <ol>
+          <li><strong>Nada a instalar para quem usa.</strong> Um professor usa o kit com duas linhas no <code>&lt;head&gt;</code>. As ferramentas (testes, minificação) são só para quem mantém.</li>
+          <li><strong>O contrato primeiro.</strong> O <code>docs/api.md</code> define componentes, atributos, campos, tokens, classes e a API JavaScript. Muda-se num pull request próprio, antes do código que depende dele.</li>
+          <li><strong>Um componente, um ficheiro.</strong> <code>kit/src/components/uc-&lt;nome&gt;.js</code>, <code>kit/src/css/components/uc-&lt;nome&gt;.css</code> e uma página de teste em <code>tests/pages/</code> com todos os estados.</li>
+          <li><strong>Light DOM e scripts clássicos</strong>, para o CSS da página se aplicar e tudo funcionar a partir de <code>file://</code>.</li>
+          <li><strong>Acessível por omissão:</strong> WCAG 2.1 AA, teclado, foco visível, alvos de 44 px, nada transmitido só pela cor.</li>
+          <li><strong>Nunca partir uma versão publicada.</strong> Ver <a href="versoes.html">Versões</a>.</li>
+        </ol>
+
+        <h2 id="repositorio">O repositório</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Pastas do repositório</caption>
+            <thead>
+              <tr><th scope="col">Pasta</th><th scope="col">Conteúdo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>kit/src/</code></td><td>O código do kit: <code>core/</code>, <code>components/</code>, <code>css/</code>, <code>i18n/</code>. A ordem de junção está em <code>manifest.json</code>.</td></tr>
+              <tr><td><code>kit/v1/</code></td><td>O kit construído (minificado, com <em>source maps</em>). Gerado, mas guardado no repositório: o site não tem passo de compilação.</td></tr>
+              <tr><td><code>docs/</code></td><td>O contrato (<code>api.md</code>) e esta documentação: <code>pt/</code>, <code>demos/</code>, <code>assets/</code>, <code>nav.json</code>.</td></tr>
+              <tr><td><code>examples/</code>, <code>template/</code></td><td>O site real de Estruturas de Dados e o modelo inicial.</td></tr>
+              <tr><td><code>tests/pages/</code></td><td>Uma página por componente com todos os estados.</td></tr>
+              <tr><td><code>scripts/</code></td><td>Construção, verificações e lançamentos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="construir-e-testar">Construir e testar</h2>
+        <uc-code lang="sh" no-download><pre><code>npm ci                          # Playwright, axe-core and esbuild (maintainers only)
+npm run build                   # kit/v1, generated docs parts, search index, template zip
+npm test                        # check-docs --strict, then check-pages
+npm test -- uc-week             # only the pages whose path contains "uc-week"
+npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Verificações automáticas</caption>
+            <thead>
+              <tr><th scope="col">Verificação</th><th scope="col">O que confirma</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>build:check</code></td><td>O kit, as partes geradas da documentação, o índice de pesquisa e o zip do modelo correspondem às fontes; nenhuma versão congelada foi alterada.</td></tr>
+              <tr><td><code>check-docs</code></td><td>Navegação, títulos, links e âncoras; e cobertura: cada componente, atributo, campo do <code>course.js</code>, bloco, token, membro e evento da API, runner incluído e classe que o kit gera está na página certa.</td></tr>
+              <tr><td><code>check-pages</code></td><td>Em cada página (testes, exemplos, modelo, documentação e demonstrações): sem erros na consola por HTTP e em <code>file://</code>, sem ficheiros em falta, sem deslocamento horizontal a 360 px, sem violações graves do axe (WCAG 2.1 AA), conteúdo visível sem JavaScript.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>As páginas são verificadas com a data fixa de 27 de novembro de 2025 (<code>TEST_TODAY</code> muda-a). O GitHub Actions corre <code>build:check</code> e <code>npm test</code> em cada pull request; o Cloudflare Pages publica uma pré-visualização.</p>
+
+        <h2 id="documentar">Documentar uma alteração</h2>
+        <p>A documentação é HTML escrito à mão, com partes geradas entre marcadores <code>&lt;!-- docs:… --&gt;</code> (cabeçalho, barra lateral, "Nesta página", anterior/seguinte, demonstrações e tabelas de classes) que o <code>npm run build</code> preenche. Nunca se edita dentro desses marcadores.</p>
+        <h3 id="componente-novo">Um componente novo</h3>
+        <ol>
+          <li>Acrescentar o componente e os atributos ao <code>docs/api.md</code>, secção 3.</li>
+          <li>Copiar <code>docs/pt/componentes/uc-week.html</code> para <code>uc-&lt;nome&gt;.html</code> e seguir o mesmo modelo: demonstração, utilização, exemplos, atributos, configuração, personalizar, acessibilidade, sem JavaScript, ver também.</li>
+          <li>Criar as demonstrações em <code>docs/demos/uc-&lt;nome&gt;/</code>, com o código marcado entre <code>&lt;!-- demo:start --&gt;</code> e <code>&lt;!-- demo:end --&gt;</code>, e usá-las com <code>&lt;!-- docs:demo src=&quot;…&quot; title=&quot;…&quot; height=&quot;…&quot; --&gt;</code>.</li>
+          <li>Acrescentar a página ao <code>docs/nav.json</code> (com <code>"component"</code>), à visão geral dos componentes, e um bloco <code>docs:classes</code> em <a href="classes.html">Classes CSS estáveis</a>.</li>
+          <li><code>npm run build</code> e <code>npm test</code>. O <code>check-docs</code> falha enquanto faltar a página, um atributo ou uma classe.</li>
+        </ol>
+        <h3 id="outras-alteracoes">Outras alterações</h3>
+        <ul>
+          <li>Um atributo, campo do <code>course.js</code>, token ou membro da API novo: primeiro no <code>api.md</code>, depois na tabela da página correspondente. O teste diz qual.</li>
+          <li>Uma classe nova gerada pelo kit: na tabela "Personalizar" do componente se for estável, senão na lista <a href="classes.html#internas">Internas</a>.</li>
+          <li>Uma página nova: copiar uma página do mesmo grupo e acrescentá-la ao <code>nav.json</code>. Entra sozinha na pesquisa.</li>
+          <li>As convenções de escrita (português europeu, ids sem acentos, links com <code>index.html</code> explícito) estão em <code>docs/plan/phase-1-handoff.md</code>.</li>
+        </ul>
+
+        <h2 id="pull-requests">Pull requests</h2>
+        <ul>
+          <li>Código, identificadores, comentários e mensagens de commit em inglês.</li>
+          <li>Uma linha no <code>CHANGELOG.md</code>, em <em>Unreleased</em>.</li>
+          <li><code>npm test</code> verde antes de abrir o pull request; capturas do antes e depois quando o aspeto muda.</li>
+        </ul>
+
+        <h2 id="lancar">Lançar uma versão</h2>
+        <ol>
+          <li>Mudar a versão em <code>package.json</code> e em <code>kit/src/core/namespace.js</code> (<code>UC.version</code>), e passar as notas de <em>Unreleased</em> para a nova versão no <code>CHANGELOG.md</code>.</li>
+          <li><code>npm run build</code> e depois <code>npm run snapshot</code>, que copia <code>kit/v1/</code> para <code>kit/vX.Y.Z/</code> e escreve o seu <code>SHA256SUMS</code>.</li>
+          <li>Fundir em <code>main</code> (publicado automaticamente) e criar a etiqueta <code>vX.Y.Z</code>.</li>
+          <li>Voltar a pôr a versão seguinte com <code>-dev</code>.</li>
+        </ol>
+        <p>Os pormenores de publicação (cabeçalhos de cache, domínio, espelho no jsDelivr) estão em <a href="https://github.com/mmroch4/uc-design-kit/blob/main/docs/deployment.md">docs/deployment.md</a>.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="versoes.html">Versões</a>.</li>
+          <li><a href="classes.html">Classes CSS estáveis</a>.</li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit/issues">Questões no GitHub</a>, para reportar um problema ou propor uma ideia.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="browsers.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Browsers e limites</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/referencia/contribuir.html">Editar esta página no GitHub</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#principios">Princípios</a></li>
+          <li><a href="#repositorio">O repositório</a></li>
+          <li><a href="#construir-e-testar">Construir e testar</a></li>
+          <li><a href="#documentar">Documentar uma alteração</a></li>
+          <li class="docs-toc__sub"><a href="#componente-novo">Um componente novo</a></li>
+          <li class="docs-toc__sub"><a href="#outras-alteracoes">Outras alterações</a></li>
+          <li><a href="#pull-requests">Pull requests</a></li>
+          <li><a href="#lancar">Lançar uma versão</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

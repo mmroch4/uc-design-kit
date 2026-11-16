@@ -7,6 +7,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Documentation site (phase 5): the Exemplos group (Estruturas de Dados
+  2025/26, five page patterns with live demos) and the Referência group
+  (JavaScript API, runners, stable CSS classes, versions, browsers and
+  limits, contributing). Ctrl K / ⌘K / `/` opens a search over every page,
+  from a static index that `npm run build` writes to
+  `docs/assets/search-index.js`. `check-docs` now also checks the JavaScript
+  API and runners against `docs/api.md` section 7, and that every class the
+  kit styles or generates is documented.
 - Documentation site (phase 1): a landing page at the site root, the
   documentation frame in `docs/pt/` (sidebar, "Nesta página", previous/next,
   live demos in iframes with their code generated from the demo files), the

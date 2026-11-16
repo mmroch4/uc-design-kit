@@ -6,8 +6,9 @@
  * (uc-kit.js.map, uc-kit.css.map) that embeds the original sources, so the
  * browser's developer tools show the readable files from kit/src.
  *
- * It then fills the generated parts of the documentation pages (scripts/docs.mjs)
- * and packs template/ into docs/downloads/uc-template.zip (scripts/template-zip.mjs).
+ * It then fills the generated parts of the documentation pages and writes the
+ * search index (scripts/docs.mjs), and packs template/ into
+ * docs/downloads/uc-template.zip (scripts/template-zip.mjs).
  *
  * It also verifies the frozen releases (kit/vX.Y.Z/, made by
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
@@ -22,7 +23,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { transform } from "esbuild";
 import { KIT, listReleases, verifyRelease } from "./releases.mjs";
-import { buildDocs } from "./docs.mjs";
+import { buildDocs, buildSearchIndex } from "./docs.mjs";
 import { buildTemplateZip } from "./template-zip.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -130,6 +131,7 @@ async function main() {
     }
   }
   if ((await buildDocs({ check })) > 0) failed = true;
+  if ((await buildSearchIndex({ check })) > 0) failed = true;
   if ((await buildTemplateZip({ check })) > 0) failed = true;
   for (const release of await listReleases()) {
     const problems = await verifyRelease(release);
