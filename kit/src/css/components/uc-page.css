@@ -6,11 +6,24 @@
   min-height: 100vh;
 }
 
-/* Before the kit runs, keep teacher content readable with a sensible width. */
+/*
+ * Before the kit runs, the page is kept hidden: the kit builds the header, the
+ * navigation and the components in one go, so showing the raw content first would
+ * make everything jump (layout shift). The kit normally runs before the first paint
+ * or a few milliseconds after it. If it never runs (script blocked or missing), the
+ * content is revealed after 2 s with a readable width; without JavaScript at all it
+ * is shown straight away.
+ */
 :where(uc-page:not(.uc-page)) {
   max-width: var(--uc-content-max);
   margin: 0 auto;
   padding: var(--uc-space-8) var(--uc-gutter);
+  visibility: hidden;
+  animation: uc-page-reveal 0s 2s forwards;
+}
+@keyframes uc-page-reveal { to { visibility: visible; } }
+@media (scripting: none) {
+  :where(uc-page:not(.uc-page)) { visibility: visible; animation: none; }
 }
 
 :where(.uc-skip-link) {

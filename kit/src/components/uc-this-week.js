@@ -81,6 +81,27 @@
     });
   }
 
+  function parseHtml(html) {
+    return new DOMParser().parseFromString(html, "text/html");
+  }
+
+  /* Storage can be unavailable (private mode, blocked site data): the card then just waits for the fetch. */
+  function readCache(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeCache(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (error) {
+      /* Quota exceeded or storage blocked: nothing to do. */
+    }
+  }
+
   class UCThisWeek extends UC.Element {
     static get observedAttributes() {
       return ["source", "kind"];
@@ -239,13 +260,18 @@
     }
 
     startFetch(url) {
-      const state = { url: url.href, doc: null };
+      // The last copy of the weeks page is kept in localStorage, so the card is complete
+      // on the first render and does not grow (layout shift) when the fetch returns.
+      const cacheKey = `uc:weeks-page:${url.href}`;
+      const cached = readCache(cacheKey);
+      const state = { url: url.href, doc: cached ? parseHtml(cached) : null };
       this.fetched = state;
       fetch(url.href, { credentials: "same-origin" })
         .then((response) => (response.ok ? response.text() : Promise.reject(new Error(String(response.status)))))
         .then((html) => {
-          if (this.fetched !== state) return;
-          state.doc = new DOMParser().parseFromString(html, "text/html");
+          if (this.fetched !== state || html === cached) return;
+          writeCache(cacheKey, html);
+          state.doc = parseHtml(html);
           if (this.isConnected) this.render();
         })
         .catch(() => {

@@ -211,7 +211,10 @@ Common behaviour:
 
 Renders the skip link, header (logo, title, edition, institution, language
 switch), navigation (sidebar on desktop, collapsible menu on phones), the
-`<main>` landmark around its children, and the footer.
+`<main>` landmark around its children, and the footer. Until the kit has run,
+`<uc-page>` is hidden, so the page appears once, already laid out, with no
+layout shift. If the kit script fails to load, the content is shown after 2 s;
+with JavaScript disabled it is shown at once.
 
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
@@ -328,7 +331,9 @@ Children (free HTML) are appended after the generated content.
 week and next, and a link to `weeks.html#week-<n>`. When the page is served
 over HTTP(S), it also fetches the weeks page and shows the current week's
 title and `<dl>` rows (progressive enhancement; on `file://` that part is
-skipped). Outside the semester it shows the next relevant date.
+skipped). The last copy of the weeks page is kept in `localStorage`, so on
+later visits the card is complete at once and does not grow when the fetch
+returns. Outside the semester it shows the next relevant date.
 
 | Attribute | Values | Default |
 | --- | --- | --- |
