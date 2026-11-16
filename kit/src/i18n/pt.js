@@ -64,6 +64,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     levels: { easy: "Fácil", medium: "Médio", hard: "Difícil" },
     hint: "Dica",
     solution: "Solução",
+    submitOn: "Submeter no {platform}",
   },
   code: {
     copy: "Copiar",

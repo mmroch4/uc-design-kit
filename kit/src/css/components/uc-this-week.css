@@ -1,0 +1,48 @@
+/* <uc-this-week>: "This week" card for the home page (docs/api.md, section 3.3). */
+
+:where(uc-this-week) { display: block; }
+
+:where(.uc-this-week__card) {
+  gap: var(--uc-space-5);
+  padding: var(--uc-space-7);
+}
+
+:where(.uc-this-week__header) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--uc-space-3);
+}
+:where(.uc-this-week__meta) {
+  color: var(--uc-color-text-muted);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-md);
+}
+
+:where(.uc-this-week__week-title) { font-size: var(--uc-font-size-lg); font-weight: 600; line-height: var(--uc-line-height-tight); }
+:where(.uc-this-week__message) { color: var(--uc-color-text-secondary); }
+
+:where(.uc-this-week__items) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: var(--uc-space-6);
+}
+:where(.uc-this-week__item) { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+:where(.uc-this-week__label) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); font-weight: 600; }
+:where(.uc-this-week__title) { font-weight: 600; }
+:where(a.uc-this-week__title) { color: var(--uc-color-text); }
+:where(a.uc-this-week__title:hover) { color: var(--uc-color-accent); }
+:where(.uc-this-week__detail) { color: var(--uc-color-text-secondary); font-size: var(--uc-font-size-body-sm); overflow-wrap: break-word; }
+:where(.uc-this-week__date) { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-md); }
+
+:where(.uc-this-week__more) { font-size: var(--uc-font-size-body-sm); font-weight: 500; }
+:where(.uc-this-week__link) {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--uc-target-min);
+}
+
+@media (max-width: 760px) {
+  :where(.uc-this-week__card) { padding: var(--uc-space-5); }
+}

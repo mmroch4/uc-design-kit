@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-notices (empty) · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    /* Empty states: a course with no notices and no deadlines yet. */
+    window.UC_COURSE.notices = [];
+    window.UC_COURSE.deadlines = [];
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <h1>Empty states</h1>
+    <uc-notices></uc-notices>
+    <uc-deadlines></uc-deadlines>
+    <uc-deadlines view="table" heading="Table view"></uc-deadlines>
+    <p>Unknown deadline keeps its fallback: <uc-date deadline="ap1">12 de novembro</uc-date>.</p>
+  </uc-page>
+</body>
+</html>
