@@ -132,6 +132,11 @@ async function openPage(context, url, origin) {
     warnings.push(`request failed: ${request.url()} (${request.failure()?.errorText})`);
   });
   await page.goto(url, { waitUntil: "load" });
+  // Pages with <uc-page> stay hidden until the kit reveals them (.uc-visible on <html>).
+  const revealed = await page
+    .waitForFunction(() => !document.querySelector("uc-page") || document.documentElement.classList.contains("uc-visible"), null, { timeout: 3000 })
+    .then(() => true, () => false);
+  if (!revealed) problems.push("page was not revealed: <html> never got .uc-visible");
   await page.waitForTimeout(300);
   return { page, problems, warnings };
 }
