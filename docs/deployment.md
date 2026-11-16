@@ -1,6 +1,7 @@
 # Deployment (Cloudflare Pages)
 
-The repository is published as-is: there is no build step. The kit is served
+The repository is published as-is: there is no build step on Cloudflare (the
+built kit is committed, see *Building*). The kit is served
 from `https://uc-design-kit.miguelrocha.dev/kit/v1/` and the examples from
 `https://uc-design-kit.miguelrocha.dev/examples/…`.
 
@@ -23,17 +24,32 @@ from `https://uc-design-kit.miguelrocha.dev/kit/v1/` and the examples from
 ## Headers
 
 `_headers` (repository root) sets CORS for `/kit/*` so course sites on any
-domain can load the kit, and basic security headers. The kit is served with
-`Cache-Control: public, max-age=300, stale-while-revalidate=604800`: for five
-minutes browsers use their copy without asking, and after that they still use
-it straight away while checking for a new version in the background. Pages
-therefore never wait for the kit on a repeat visit. The price is that the
-first visit after a deploy may still use the previous kit once, which is fine
-because `kit/v1/` stays backwards compatible. Each example's `course.js` and
-`theme.css` use the same rule with `max-age=60`.
+domain can load the kit (and its fonts), basic security headers, and the
+cache rules below. Cloudflare joins the values when two rules set the same
+header, so the `Cache-Control` rules match disjoint paths.
 
-The fonts (Inter and JetBrains Mono) are served from `kit/v1/fonts/`, so a
-page makes no requests to third-party servers to render.
+| Path | `Cache-Control` | Why |
+| --- | --- | --- |
+| `/kit/v1/*` | `public, max-age=300, stale-while-revalidate=604800` | Major version alias, updated in place |
+| `/kit/v1.*` (e.g. `/kit/v1.0.0/`) | `public, max-age=31536000, immutable` | Frozen release, never changes |
+| `/examples/*/course.js`, `theme.css` | `public, max-age=60, stale-while-revalidate=86400` | Edited often |
+
+With `kit/v1/`, browsers use their copy for five minutes without asking and
+after that still use it straight away while checking for a new version in the
+background, so pages never wait for the kit on a repeat visit; the first visit
+after a deploy may still use the previous kit once, which is fine because
+`kit/v1/` stays backwards compatible. A frozen release is never checked again
+for a year, not even on reload.
+
+When adding a major version, add the same two rules for `/kit/v2/*` and
+`/kit/v2.*`. `npm run snapshot` refuses to create a release without its rule.
+
+The fonts (Inter and JetBrains Mono) are served from the kit folder, so a page
+makes no requests to third-party servers to render. `_headers` adds a
+`Link: …; rel=preload` header for `fonts/inter-latin.woff2` to the example
+pages, which Cloudflare also sends as an Early Hint (103) before the page
+itself. Course sites hosted elsewhere use `<link rel="preload">` instead (see
+`docs/api.md`, section 1).
 
 Cloudflare Pages redirects `page.html` to `page` (a 308 redirect, about
 100 ms). Links keep the `.html` extension so that sites also work from any
@@ -45,8 +61,40 @@ domain's dashboard, set **Caching → Configuration → Browser Cache TTL** to
 **Respect Existing Headers**, and after changing it use **Purge Everything**
 once.
 
+## Building
+
+There is still no build step on Cloudflare: the built files are committed.
+After changing anything in `kit/src/`, run `npm run build`. It concatenates
+the files listed in `kit/src/manifest.json`, minifies them with esbuild and
+writes `kit/v1/uc-kit.{js,css}` with their source maps. CI runs
+`npm run build:check`, which fails when the committed build is out of date or
+a frozen release was modified.
+
 ## Releasing
 
-- Commits to `main` are deployed automatically.
-- `kit/v1/` must stay backwards compatible (see `docs/api.md`, section 9).
-- Tag releases `vX.Y.Z` and update `CHANGELOG.md`.
+1. Set the version in `package.json` and in `kit/src/core/namespace.js`
+   (`UC.version`), and move the *Unreleased* notes in `CHANGELOG.md` under it.
+2. `npm run build`, then `npm run snapshot`: copies `kit/v1/` to
+   `kit/vX.Y.Z/` and writes its `SHA256SUMS`.
+3. Commit, merge to `main` (deployed automatically) and tag `vX.Y.Z`.
+4. Set the version back to the next `-dev` version.
+
+Never edit a frozen release: publish a new version instead. `kit/v1/` must stay
+backwards compatible (see `docs/api.md`, section 9).
+
+## Mirror on jsDelivr (fallback)
+
+jsDelivr serves any tagged version of a public GitHub repository, with no
+setup. Every release is therefore also available at:
+
+```
+https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.0.0/kit/v1.0.0/uc-kit.css
+https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.0.0/kit/v1.0.0/uc-kit.js
+```
+
+It is not faster than Cloudflare Pages (both are global CDNs, and browsers no
+longer share caches between sites), so the kit's own domain stays the
+default. Use the mirror only if that domain is unavailable: replace
+`https://uc-design-kit.miguelrocha.dev/kit/v1.0.0/` with the URL above in the
+page `<head>`. The fonts load from the same place because `uc-kit.css` refers
+to them by relative path.

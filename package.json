@@ -7,12 +7,14 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:check": "node scripts/build.mjs --check",
+    "snapshot": "node scripts/snapshot.mjs",
     "pretest": "node scripts/build.mjs",
     "test": "node scripts/check-pages.mjs",
     "test:update-screenshots": "node scripts/build.mjs && node scripts/check-pages.mjs --screenshots"
   },
   "devDependencies": {
     "axe-core": "4.10.3",
+    "esbuild": "0.24.2",
     "playwright": "1.63.0"
   },
   "engines": {

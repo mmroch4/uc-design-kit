@@ -22,7 +22,8 @@ course ("unidade curricular", UC) websites.
 | Path | What it holds |
 | --- | --- |
 | `kit/src/` | Source of the kit: `core/`, `components/`, `css/`, `i18n/` |
-| `kit/v1/` | Published, frozen build of major version 1 (`uc-kit.js`, `uc-kit.css`) |
+| `kit/v1/` | Latest build of major version 1 (`uc-kit.js`, `uc-kit.css`, fonts), minified, with source maps |
+| `kit/vX.Y.Z/` | Frozen releases, never modified (created by `npm run snapshot`) |
 | `examples/` | Real course sites built with the kit |
 | `template/` | Starter folder a teacher copies to create a new course site |
 | `docs/` | API contract, teacher guide and component reference |
@@ -32,6 +33,7 @@ course ("unidade curricular", UC) websites.
 ## Using the kit (preview)
 
 ```html
+<link rel="preload" href="https://uc-design-kit.miguelrocha.dev/kit/v1/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.css">
 <script src="course.js"></script>
 <script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer></script>

@@ -9,6 +9,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ### Added
 - `<pre data-copy>`: a copy button for preformatted text such as problem
   input/output examples. The EDados problem pages use it on every example.
+- Frozen releases: `npm run snapshot` copies the build to `kit/vX.Y.Z/`, served
+  with `Cache-Control: immutable` for a year; `npm run build:check` fails if a
+  release is modified. `kit/v1/` stays the auto-updating alias.
+- Source maps (`uc-kit.js.map`, `uc-kit.css.map`) with the original sources.
+- The body font (`fonts/inter-latin.woff2`) is preloaded: on the example pages
+  through a `Link` header in `_headers` (also sent as an Early Hint), and
+  documented as an optional `<link rel="preload">` for course sites.
+- Deployment guide: release steps and jsDelivr as a fallback mirror.
 - `.uc-content` block for plain HTML without kit classes (pasted or migrated
   pages): spacing for headings, lists, tables, `<pre>` and floated images.
 - EDados 2025/26 example: problem statements (`problemas/`), lecture code
@@ -41,6 +49,10 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   in a Web Worker.
 
 ### Changed
+- `uc-kit.js` and `uc-kit.css` are minified with esbuild (about 35 % and 23 %
+  smaller after compression).
+- `_headers`: cache rules no longer overlap, so `X-Content-Type-Options` is no
+  longer sent twice on kit files.
 - `<uc-page>` stays hidden until the kit has built the page and the web fonts
   are ready (at most 300 ms of waiting for fonts; revealed after 2 s if the kit
   never runs, at once without JavaScript), so the header, navigation and
