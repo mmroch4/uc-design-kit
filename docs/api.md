@@ -230,6 +230,9 @@ Lists `UC_COURSE.notices`, newest first.
 | `new-days` | number | `7` | Notices newer than this get a "New" badge. |
 | `heading` | text \| `none` | localised "Notices" | Section heading (`<h2>`). |
 
+Children written inside the element (e.g. a link to the assessment rules) are
+kept below the list.
+
 #### `<uc-deadlines>`
 
 Lists `UC_COURSE.deadlines`.
@@ -244,6 +247,8 @@ Lists `UC_COURSE.deadlines`.
 
 Status shown in the table view: *Done* (date passed), *Next* (the first
 upcoming), *Scheduled* (later), *To be scheduled* (`date: null` or month only).
+A deadline with an `end` date counts as upcoming until it ends and is shown as
+a range. Children written inside the element are kept below the list.
 
 #### `<uc-date>`
 
@@ -278,14 +283,22 @@ future weeks are dimmed. Deadlines dated inside the week appear as events.
 | Attribute | Values | Notes |
 | --- | --- | --- |
 | `n` | number | Required. Week number. |
-| `title` | text | Required. Shown in the summary row. May be wrapped in `lang` spans via the `title-<lang>` attribute, e.g. `title-en="Binary search trees"`. |
+| `title` | text | Required. Shown in the summary row. |
+| `title-<lang>` | text | Title in another language, used when that language is active, e.g. `title-en="Binary search trees"`. |
 | `start`, `end` | `ISODate` | Override the computed dates. |
 | `open` | boolean | Force open. |
 
 Children are free HTML. A `<dl>` directly inside is styled as label/value rows
 ("Lectures", "Lab", "Quiz"…).
 
-The element gets `id="week-<n>"` for deep links.
+The element gets `id="week-<n>"` for deep links; opening the page with
+`#week-<n>` opens that week. The `title` attribute is removed after it is read
+(so browsers do not show it as a tooltip); the title is therefore only visible
+with JavaScript, while the children stay readable without it.
+
+`<uc-weeks>` does not repeat a deadline that already has a hand-written
+`<uc-event deadline="…">`, and places deadlines that fall in a break right
+after the break.
 
 #### `<uc-event>`
 
@@ -323,6 +336,11 @@ Renders `UC_COURSE.team`.
 | `role` | space-separated roles | all |
 | `heading` | text \| `none` | localised "Teaching team" |
 
+`role` is not a valid ARIA role, so after upgrade the element moves it to
+`data-role` (accessibility checkers would flag it otherwise). Write `role` in
+the HTML as documented; in custom CSS select `uc-team[data-role]`. When no
+member matches, the element is hidden.
+
 ### 3.5 Lab guides
 
 #### `<uc-guide>`
@@ -346,11 +364,15 @@ badges and a "Mark as done" toggle persisted in `localStorage`.
 | `id` | string | Required for persistence. |
 | `title` | text | Required. |
 | `level` | `easy` \| `medium` \| `hard` | Optional badge. |
-| `mooshak` | problem code | Optional badge linking to the platform. |
+| `mooshak` | problem code | Optional badge in the summary, plus a "Submit on Mooshak" link to the platform's URL next to the toggle (links are not allowed inside `<summary>`). |
 | `open` | boolean | Start expanded. |
 
 Inside, `<details class="uc-hint">` blocks are styled as hints and
-`<details class="uc-solution">` as a hidden solution.
+`<details class="uc-solution">` as a hidden solution; a translated
+`<summary>` ("Hint" / "Solution") is added when missing. Exercises are numbered
+in document order. Done states are stored per page path. Toggling fires a
+bubbling `uc:exercisechange` event, which `<uc-guide>` uses for its progress.
+Like `<uc-week>`, the `title` attribute is removed after it is read.
 
 #### `<uc-code>`
 
@@ -365,7 +387,14 @@ A code block with syntax highlighting, copy and download buttons.
 | `run` | URL | Optional "Test on…" link (e.g. Mooshak problem). |
 
 Code is given as a `<script type="text/plain">` child (no HTML escaping
-needed) or as `<pre><code>` with escaped HTML.
+needed) or as `<pre><code>` with escaped HTML. The kit CSS shows the script's
+text when JavaScript is off.
+
+highlight.js 11.9.0 is loaded from cdnjs on first use; less common grammars
+(haskell, ocaml, prolog, scala…) are loaded with SRI hashes. Without network,
+or for an unknown language, the code stays readable as plain text. `lang="java"`
+is not a valid language tag, so after upgrade the element moves it to
+`data-lang`; in custom CSS select `uc-code[data-lang="java"]`.
 
 #### `<uc-question>`
 
@@ -496,6 +525,7 @@ Events on `document`:
 | --- | --- |
 | `uc:ready` | Configuration loaded and built-in components defined. |
 | `uc:languagechange` | After the active language changes. `event.detail.lang`. |
+| `uc:exercisechange` | Bubbles from a `<uc-exercise>` when it is marked done or not done. |
 
 ## 8. Customisation levels
 

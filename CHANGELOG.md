@@ -15,3 +15,9 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 - Base styles: design tokens, reset, typography and layout building blocks.
 - `<uc-page>` (header, responsive navigation, footer) and `<uc-hero>`.
 - `scripts/build.mjs` bundles `kit/src` into `kit/v1/uc-kit.{js,css}`.
+- `<uc-notices>`, `<uc-deadlines>` (list and table views) and `<uc-date>`.
+- Weekly calendar: `<uc-weeks>`, `<uc-week>`, `<uc-event>` and `<uc-this-week>`.
+- Lab guides: `<uc-guide>` (breadcrumbs, table of contents, progress) and
+  `<uc-exercise>` (hints, solutions, "mark as done").
+- `<uc-team>`, `<uc-code>` (highlight.js from cdnjs, copy, download, editor)
+  and `<uc-question>`.
