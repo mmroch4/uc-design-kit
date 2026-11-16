@@ -5,3 +5,4 @@ tests/screenshots/
 .DS_Store
 *.log
 scripts/.*
+.claude/worktrees/
