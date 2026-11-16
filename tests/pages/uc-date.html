@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-date · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <h1>uc-date</h1>
+    <section class="uc-section" aria-labelledby="deadline">
+      <h2 id="deadline">From a deadline</h2>
+      <ul class="uc-bullets">
+        <li>short (default): <uc-date deadline="ap1">12 nov</uc-date></li>
+        <li>long: <uc-date deadline="ap1" format="long">12 de novembro de 2025</uc-date></li>
+        <li>weekday: <uc-date deadline="ap1" format="weekday">quarta-feira, 12 nov</uc-date></li>
+        <li>with-time: <uc-date deadline="ap1" with-time>12 nov, 16:00</uc-date></li>
+        <li>weekday + with-time: <uc-date deadline="quiz9" format="weekday" with-time>terça-feira, 2 dez, 21:00</uc-date></li>
+        <li>month only: <uc-date deadline="exam">janeiro 2026</uc-date></li>
+        <li>to be scheduled (date: null): <uc-date deadline="resit">a anunciar</uc-date></li>
+        <li>unknown id keeps the fallback text: <uc-date deadline="nope">fallback text</uc-date></li>
+      </ul>
+    </section>
+    <section class="uc-section" aria-labelledby="value">
+      <h2 id="value">From a value</h2>
+      <ul class="uc-bullets">
+        <li>short: <uc-date value="2025-09-16">16 set</uc-date></li>
+        <li>long: <uc-date value="2025-09-16" format="long">16 de setembro de 2025</uc-date></li>
+        <li>weekday: <uc-date value="2025-09-16" format="weekday">terça-feira, 16 set</uc-date></li>
+        <li>with-time is ignored without a time: <uc-date value="2025-09-16" with-time>16 set</uc-date></li>
+        <li>invalid value keeps the fallback text: <uc-date value="2025-13-45">fallback text</uc-date></li>
+        <li>no attributes keeps the fallback text: <uc-date>fallback text</uc-date></li>
+      </ul>
+      <p class="uc-prose">
+        <span lang="pt">A Avaliação Prática 2 é na <uc-date deadline="ap2" format="weekday" with-time>terça-feira, 16 dez, 14:00</uc-date> e o exame em <uc-date deadline="exam">janeiro</uc-date>.</span>
+        <span lang="en">Practical Assessment 2 is on <uc-date deadline="ap2" format="weekday" with-time>Tuesday, 16 Dec, 14:00</uc-date> and the exam in <uc-date deadline="exam">January</uc-date>.</span>
+      </p>
+    </section>
+  </uc-page>
+</body>
+</html>

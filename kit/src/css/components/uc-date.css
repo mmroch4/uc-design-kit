@@ -1,0 +1,2 @@
+/* <uc-date> — inline; the generated <time> inherits the surrounding text style. */
+:where(uc-date) { display: inline; }
