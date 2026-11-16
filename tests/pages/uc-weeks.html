@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-weeks · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <div class="uc-stack">
+      <h1><span lang="pt">Semanas</span><span lang="en">Weeks</span></h1>
+      <p class="uc-lead" lang="pt">Tudo o que acontece em cada semana num só sítio: matéria das teóricas, guião da prática, quiz e slides. Clica numa semana para ver os detalhes.</p>
+      <p class="uc-lead" lang="en">Everything that happens each week in one place: lecture topics, lab guide, quiz and slides. Click a week to see the details.</p>
+    </div>
+
+    <uc-weeks>
+    <uc-week n="1" title="Apresentação e introdução ao Java" title-en="Introduction to Java">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 1 e 2 · <a href="#">slides 0 e 1</a></span><span lang="en">Lectures 1 and 2 · <a href="#">slides 0 and 1</a></span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 1: Introdução ao Java</a></span><span lang="en"><a href="#">Lab 1: Introduction to Java</a></span></dd>
+      </dl>
+      <details><summary><span lang="pt">Sumários</span><span lang="en">Lecture summaries</span></summary><ol start="1"><li>Programa, bibliografia, funcionamento e avaliação. História e modelo de programação do Java. Tipos básicos.</li><li>Conversão entre tipos, operadores e precedência, ciclos e execução condicional.</li></ol></details>
+    </uc-week>
+    <uc-week n="2" title="Classes, objetos, arrays e Scanner" title-en="Classes, objects, arrays and Scanner">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 3 e 4 · slides 1</span><span lang="en">Lectures 3 and 4 · slides 1</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 2: I/O com a classe Scanner</a></span><span lang="en"><a href="#">Lab 2: I/O with Scanner</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#01 Introdução ao Java I · 23 a 30 set</dd>
+      </dl>
+      <details><summary><span lang="pt">Sumários</span><span lang="en">Lecture summaries</span></summary><ol start="3"><li>Controlo de fluxo e ciclos. Classe, objeto, atributo, métodos e construtor.</li><li>Métodos estáticos, Strings, arrays e matrizes. Input/Output com Scanner.</li></ol></details>
+    </uc-week>
+    <uc-week n="3" title="Programação estruturada e tipos abstratos de dados" title-en="Structured programming and abstract data types">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 5 e 6 · slides 2 e 3</span><span lang="en">Lectures 5 and 6 · slides 2 and 3</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 3: Introdução a classes</a></span><span lang="en"><a href="#">Lab 3: Introduction to classes</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#02 Introdução ao Java II · 30 set a 7 out</dd>
+      </dl>
+    </uc-week>
+    <uc-week n="4" title="Genéricos, herança e listas ligadas" title-en="Generics, inheritance and linked lists">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 7 e 8 · slides 3</span><span lang="en">Lectures 7 and 8 · slides 3</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 4: Programação estruturada</a></span><span lang="en"><a href="#">Lab 4: Structured programming</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#03 Introdução ao Java III · 7 a 14 out</dd>
+      </dl>
+    </uc-week>
+    <uc-week n="5" title="Listas ligadas, circulares e duplamente ligadas" title-en="Linked, circular and doubly linked lists">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 9 e 10 · slides 4</span><span lang="en">Lectures 9 and 10 · slides 4</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 5: Tipos abstratos de dados</a></span><span lang="en"><a href="#">Lab 5: Abstract data types</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#04 TADs I · 14 a 21 out</dd>
+      </dl>
+    </uc-week>
+    <uc-week n="6" title="Pilhas, filas e deques" title-en="Stacks, queues and deques">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 11 e 12 · slides 4</span><span lang="en">Lectures 11 and 12 · slides 4</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 6: Listas ligadas simples</a></span><span lang="en"><a href="#">Lab 6: Singly linked lists</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#05 TADs II e listas I · 21 a 28 out</dd>
+      </dl>
+    </uc-week>
+    <uc-week n="7" title="Complexidade algorítmica" title-en="Algorithmic complexity">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 13 e 14 · slides 5</span><span lang="en">Lectures 13 and 14 · slides 5</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 7: Listas, pilhas e filas</a> · <a href="#">treino para a AP1</a></span><span lang="en"><a href="#">Lab 7: Lists, stacks and queues</a> · <a href="#">PA1 practice</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#06 Listas II · 4 a 11 nov</dd>
+      </dl>
+    </uc-week>
+    <uc-week n="8" title="Recorrências e recursividade" title-en="Recurrences and recursion">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 15 e 16 · slides 5 e 6</span><span lang="en">Lectures 15 and 16 · slides 5 and 6</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 8: Complexidade algorítmica</a></span><span lang="en"><a href="#">Lab 8: Algorithmic complexity</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#07 Complexidade I · 11 a 18 nov</dd>
+      </dl>
+      <uc-event deadline="ap1"><a href="#"><span lang="pt">Enunciado</span><span lang="en">Statement</span></a></uc-event>
+    </uc-week>
+    <uc-week n="9" title="Árvores binárias" title-en="Binary trees">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 17 e 18 · slides 7 e 8</span><span lang="en">Lectures 17 and 18 · slides 7 and 8</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="#">Aula 9: Recursividade</a></span><span lang="en"><a href="#">Lab 9: Recursion</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#08 Complexidade II e recursividade · 18 a 25 nov</dd>
+      </dl>
+    </uc-week>
+    <uc-week n="10" title="Árvores binárias de pesquisa e dicionários" title-en="Binary search trees and dictionaries">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 19 e 20 · <a href="slides/08.pdf">slides 8</a></span><span lang="en">Lectures 19 and 20 · <a href="slides/08.pdf">slides 8</a></span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt"><a href="guides/lab10.html">Aula 10: Árvores binárias</a></span><span lang="en"><a href="guides/lab10.html">Lab 10: Binary trees</a></span></dd>
+        <dt>Quiz</dt>
+        <dd>#09 Árvores binárias · fecha 2 dez às 21h</dd>
+      </dl>
+      <details open><summary><span lang="pt">Sumários</span><span lang="en">Lecture summaries</span></summary><ol start="19"><li>Leitura de uma árvore em preorder e complexidade temporal. Árvores binárias de pesquisa: conceito, propriedades, inserir, remover e pesquisar.</li><li>Complexidade numa BST, altura e equilíbrio. Interface Comparable. Dicionários: conceito, API e implementação com BST.</li></ol></details>
+    </uc-week>
+    <uc-week n="11" title="Filas de prioridade e heaps" title-en="Priority queues and heaps">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 21 e 22 · slides 9</span><span lang="en">Lectures 21 and 22 · slides 9</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt">Aula 11: Árvores binárias de pesquisa</span><span lang="en">Lab 11: Binary search trees</span></dd>
+        <dt>Quiz</dt>
+        <dd>#10 Árvores binárias de pesquisa · 2 a 9 dez</dd>
+      </dl>
+    </uc-week>
+    <uc-week n="12" title="Comparadores e revisões" title-en="Comparators and revision">
+      <dl>
+        <dt><span lang="pt">Teóricas</span><span lang="en">Lectures</span></dt>
+        <dd><span lang="pt">Aulas 23 e 24 · slides 9</span><span lang="en">Lectures 23 and 24 · slides 9</span></dd>
+        <dt><span lang="pt">Prática</span><span lang="en">Lab</span></dt>
+        <dd><span lang="pt">Aula 12: Filas de prioridade e revisões</span><span lang="en">Lab 12: Priority queues and revision</span></dd>
+        <dt>Quiz</dt>
+        <dd>#11 Dicionários e filas de prioridade · 9 a 16 dez</dd>
+      </dl>
+    </uc-week>
+    </uc-weeks>
+
+    <section class="uc-section" aria-labelledby="edge">
+      <h2 id="edge"><span lang="pt">Casos limite</span><span lang="en">Edge cases</span></h2>
+      <p lang="pt"><code>no-breaks no-deadlines</code>, datas definidas à mão (<code>start</code>/<code>end</code>), semana aberta à força (<code>open</code>) e eventos escritos à mão.</p>
+      <p lang="en"><code>no-breaks no-deadlines</code>, hand-set dates (<code>start</code>/<code>end</code>), a forced-open week (<code>open</code>) and hand-written events.</p>
+      <uc-weeks no-breaks no-deadlines>
+        <uc-week n="13" title="Semana de revisões" title-en="Revision week" start="2025-12-15" end="2025-12-19" open>
+          <p lang="pt">Sem aulas novas. O prazo da AP2 (16 dez) não aparece aqui por causa de <code>no-deadlines</code>.</p>
+          <p lang="en">No new classes. The PA2 deadline (16 Dec) is hidden here because of <code>no-deadlines</code>.</p>
+          <uc-event kind="submission" date="2025-12-19"><strong><span lang="pt">Entrega do projeto</span><span lang="en">Project submission</span></strong> <a href="#"><span lang="pt">Instruções</span><span lang="en">Instructions</span></a></uc-event>
+        </uc-week>
+        <uc-week n="14" title="Semana sem conteúdo" title-en="Empty week" start="2026-01-05" end="2026-01-09"></uc-week>
+      </uc-weeks>
+      <uc-event kind="exam" date="2026-01-20"><strong><span lang="pt">Exame (evento isolado)</span><span lang="en">Exam (stand-alone event)</span></strong></uc-event>
+    </section>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,19 @@
+/* <uc-weeks>: weekly calendar container (docs/api.md, section 3.3). */
+
+:where(uc-weeks) { display: block; }
+
+:where(.uc-weeks__actions) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-2);
+  margin: 0 0 var(--uc-space-6);
+}
+
+:where(.uc-weeks__break) {
+  margin: var(--uc-space-2) 0;
+  padding: 14px var(--uc-space-5);
+  border-radius: 10px;
+  background: var(--uc-color-surface-muted);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-body-sm);
+}
