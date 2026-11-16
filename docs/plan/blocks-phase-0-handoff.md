@@ -23,7 +23,7 @@ documentation page, so `npm test` behaves exactly as before.
 | PR | What | State when phase 0 ended |
 | --- | --- | --- |
 | #35 | Accessibility audit: fixes + `scripts/check-a11y.mjs` in `npm test` | open |
-| #36 | Kit fixes: links relative to `course.js` (`UC.internal.resolveCourseLinks`), `UC.formatDateRange`, runner `supports()`, `core/lists.js`, api.md aligned with the code | open |
+| #36 | Kit fixes: links relative to `course.js` (`UC.internal.resolveCourseLinks`), `UC.formatDateRange`, runner `supports()`, `core/lists.js`, api.md aligned with the code | **merged** (16 Nov, 23:57) |
 | PI, IP, PC migrations | `examples/pi*`, `ip*`, `pc*` | running in other threads; do not edit those folders |
 
 Check both PRs with `git fetch origin && git log origin/main` before starting.
@@ -32,9 +32,8 @@ Check both PRs with `git fetch origin && git log origin/main` before starting.
 
 Scope (section 12 of `blocks-api.md`):
 
-1. **Wait for PR #36** to be merged (it touches `docs/api.md`, `uc-deadlines`
-   and `uc-team`, which phase 1 also edits). If it is still open, ask the
-   coordinator rather than building on its branch.
+1. PR #36 is merged, so phase 1 can start at once: rebase on `main` and
+   read its changes to `docs/api.md`, `uc-deadlines` and `uc-team` first.
 2. **Shared pieces** in `kit/src/core/`: `announce` (and switch
    `copy-blocks.js` and `uc-code` to it), `filterBar`, `storage` +
    `courseKey`, `firstTime`, `localiseTime`, `normalise`, `enhance` (called by

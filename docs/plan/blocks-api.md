@@ -746,7 +746,7 @@ New **local** tokens (read with a fallback, not defined on `:root`):
 | `enhance(root)` | Runs page-wide enhancements (auth links, sortable tables, scrollable tables) on newly rendered content. |
 | `deadlineStatus(deadline)` | Existing status logic of `<uc-deadlines>` exposed for `<uc-assessment-info>` and `<uc-problems>`. |
 
-PR #36 (kit fixes) adds `UC.internal.resolveCourseLinks`, `UC.formatDateRange`
+PR #36 (kit fixes, merged) added `UC.internal.resolveCourseLinks`, `UC.formatDateRange`
 and the runner `supports()`; the new blocks use them instead of new code.
 
 ---
@@ -952,7 +952,7 @@ Every block PR is green on `npm run build:check` and `npm test` (which runs
 | 5 | `uc-links--grid`, `check-links.mjs` + weekly workflow, `<uc-page updated>`, `editions.js`, `table[data-sortable]`; pages Padrões, Introdução, Publicar, Novo ano letivo; final review of `AGENTS.md` and `llms-full.txt`; CHANGELOG → 1.1.0 | `core/sortable-tables.js`, `uc-page.js`, `scripts/check-links.mjs`, `.github/workflows/links.yml` |
 | 6 | Tell the PI/IP/PC migrations, apply the blocks to `examples/edados-2526`, then to the other examples, final report | `examples/**` |
 
-Order constraints: phase 1 starts after PR #36 (kit fixes, touches
+Order constraints: phase 1 starts after PR #36 (kit fixes, merged 16 Nov; touches
 `api.md`, `uc-deadlines`, `uc-team`) is merged; it reuses the check of PR #35
 (accessibility audit). Phase 3 waits for any audit fix to `uc-week`/`uc-weeks`.
 Every phase fetches and rebases at the start and before merging, and works on
