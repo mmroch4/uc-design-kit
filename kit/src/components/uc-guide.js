@@ -97,7 +97,7 @@
       const items = [];
       const week = number(this, "week", null);
       const page = weeksPage();
-      const weeksHref = page ? UC.text(page.href) : UC.internal.builtinPages.weeks;
+      const weeksHref = page ? UC.text(page.href) : UC.internal.resolvePageHref(UC.internal.builtinPages.weeks);
 
       if (page) {
         const label = page.label ? UC.text(page.label) : this.t("pages.weeks");

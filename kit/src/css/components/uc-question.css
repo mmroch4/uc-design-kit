@@ -17,6 +17,8 @@
   gap: var(--uc-space-2);
   font-weight: 600;
 }
+/* Code shown as part of the question keeps its normal weight. */
+:where(.uc-question__prompt pre, .uc-question__prompt uc-code) { font-weight: 400; }
 :where(.uc-question__options) {
   display: flex;
   flex-direction: column;
