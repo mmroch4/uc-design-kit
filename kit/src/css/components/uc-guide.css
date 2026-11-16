@@ -1,0 +1,157 @@
+/* <uc-guide> — breadcrumbs, content column and a sticky "On this page" column. */
+
+:where(uc-guide) {
+  display: block;
+  min-width: 0;
+  container-type: inline-size;
+  container-name: uc-guide;
+}
+
+/* Breadcrumbs */
+:where(.uc-guide__crumbs) { margin-bottom: var(--uc-space-4); }
+:where(.uc-guide__crumbs-list) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+}
+:where(.uc-guide__crumb) { display: inline-flex; align-items: center; gap: 6px; margin: 0; }
+:where(.uc-guide__crumb + .uc-guide__crumb)::before {
+  content: "/";
+  content: "/" / "";
+  color: var(--uc-color-text-subtle);
+}
+:where(.uc-guide__crumb a) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--uc-color-text-muted);
+  text-decoration: none;
+}
+:where(.uc-guide__crumb a:hover) { color: var(--uc-color-accent); text-decoration: underline; }
+:where(.uc-guide__crumb a:focus-visible) { outline: var(--uc-focus-ring); outline-offset: 2px; }
+:where(.uc-guide__crumb [aria-current="page"]) { color: var(--uc-color-text); }
+
+/* Layout: one column by default; the aside joins as a right-hand column on wide containers. */
+:where(.uc-guide__layout) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: var(--uc-space-6);
+}
+:where(.uc-guide__content) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-guide-gap, var(--uc-space-12));
+  min-width: 0;
+}
+:where(.uc-guide__content h2) { scroll-margin-top: var(--uc-space-6); }
+:where(.uc-guide__content h2:focus) { outline: none; }
+:where(.uc-guide--no-aside .uc-guide__aside) { display: none; }
+
+:where(.uc-guide__aside) { display: flex; flex-direction: column; gap: var(--uc-space-6); min-width: 0; }
+
+/* Progress */
+:where(.uc-guide__progress) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-2);
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+:where(.uc-guide__progress[hidden]) { display: none; }
+:where(.uc-guide__progress-text) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+:where(.uc-guide__progress-count) {
+  margin-right: 2px;
+  color: var(--uc-color-text);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+:where(.uc-guide__progress-bar) {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 8px;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--uc-color-surface-muted);
+  color: var(--uc-color-accent);
+}
+:where(.uc-guide__progress-bar)::-webkit-progress-bar { background: var(--uc-color-surface-muted); border-radius: 4px; }
+:where(.uc-guide__progress-bar)::-webkit-progress-value { background: var(--uc-color-accent); border-radius: 4px; transition: width 0.3s; }
+:where(.uc-guide__progress-bar)::-moz-progress-bar { background: var(--uc-color-accent); border-radius: 4px; }
+
+/* Table of contents */
+:where(.uc-guide__toc) { display: none; }
+:where(.uc-guide__toc-label) {
+  margin-bottom: var(--uc-space-1);
+  color: var(--uc-color-text-subtle);
+  font-size: var(--uc-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+:where(.uc-guide__toc-list) {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--uc-color-border);
+  list-style: none;
+}
+:where(.uc-guide__toc-item) { margin: 0; }
+:where(.uc-guide__toc-link) {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  margin-left: -1px;
+  padding: var(--uc-space-1) var(--uc-space-3);
+  border-left: 2px solid transparent;
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+  line-height: 1.4;
+  text-decoration: none;
+}
+:where(.uc-guide__toc-link:hover) { color: var(--uc-color-accent); }
+:where(.uc-guide__toc-link:focus-visible) { outline: var(--uc-focus-ring); outline-offset: -2px; }
+:where(.uc-guide__toc-link[aria-current]) {
+  border-left-color: var(--uc-color-accent);
+  color: var(--uc-color-accent);
+  font-weight: 600;
+}
+
+@container uc-guide (min-width: 840px) {
+  :where(.uc-guide__layout) {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: var(--uc-space-12);
+  }
+  :where(.uc-guide--no-aside .uc-guide__layout) { grid-template-columns: minmax(0, 1fr); }
+  :where(.uc-guide__aside) {
+    position: sticky;
+    top: var(--uc-space-6);
+    grid-column: 2;
+    grid-row: 1;
+    max-height: calc(100vh - var(--uc-space-12));
+    overflow-y: auto;
+  }
+  :where(.uc-guide__content) { grid-column: 1; grid-row: 1; }
+  :where(.uc-guide__toc) { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.uc-guide__progress-bar)::-webkit-progress-value { transition: none; }
+}
+
+@media print {
+  :where(.uc-guide__aside) { display: none; }
+}

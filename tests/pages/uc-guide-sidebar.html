@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-guide (sidebar layout) · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="9">
+      <h1><span lang="pt">Aula 9 · Recursividade</span><span lang="en">Lab 9 · Recursion</span></h1>
+
+      <section class="uc-section">
+        <h2><span lang="pt">Antes de começar</span><span lang="en">Before you start</span></h2>
+        <p lang="pt">Os títulos desta página estão nas duas línguas: o índice e o caminho de navegação mudam com a língua.</p>
+        <p lang="en">Headings on this page exist in both languages: the table of contents and the breadcrumbs follow the language.</p>
+        <pre class="uc-card" tabindex="0" aria-label="Exemplo">static int factorial(int n) { return n &lt;= 1 ? 1 : n * factorial(n - 1); } // a long line that must scroll inside the block, never the page</pre>
+      </section>
+
+      <section class="uc-section">
+        <h2><span lang="pt">Exercícios</span><span lang="en">Exercises</span></h2>
+        <uc-exercise id="fatorial" title="Fatorial" level="easy" mooshak="REC01">
+          <p>Escreve <code>factorial(int n)</code> de forma recursiva.</p>
+          <details class="uc-hint"><p>O caso base é <code>n &lt;= 1</code>.</p></details>
+          <details class="uc-solution"><pre>return n &lt;= 1 ? 1 : n * factorial(n - 1);</pre></details>
+        </uc-exercise>
+        <uc-exercise id="fibonacci" title="Fibonacci" level="medium">
+          <p>Escreve <code>fib(int n)</code> e mede quanto tempo demora para <code>n = 40</code>.</p>
+        </uc-exercise>
+        <uc-exercise id="only-en" lang="en" title="Extra (English only)" level="hard">
+          <p>This exercise only exists in the English version, so it is numbered and counted only in English.</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+  </uc-page>
+</body>
+</html>

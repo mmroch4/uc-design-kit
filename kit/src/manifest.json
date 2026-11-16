@@ -13,6 +13,8 @@
     "core/element.js",
     "components/uc-page.js",
     "components/uc-hero.js",
+    "components/uc-exercise.js",
+    "components/uc-guide.js",
     "core/bootstrap.js"
   ],
   "css": [
@@ -22,6 +24,8 @@
     "css/base/typography.css",
     "css/base/blocks.css",
     "css/components/uc-page.css",
-    "css/components/uc-hero.css"
+    "css/components/uc-hero.css",
+    "css/components/uc-exercise.css",
+    "css/components/uc-guide.css"
   ]
 }

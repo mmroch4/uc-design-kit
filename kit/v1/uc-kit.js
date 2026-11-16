@@ -170,6 +170,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     levels: { easy: "Fácil", medium: "Médio", hard: "Difícil" },
     hint: "Dica",
     solution: "Solução",
+    submitOn: "Submeter no {platform}",
   },
   code: {
     copy: "Copiar",
@@ -269,6 +270,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     levels: { easy: "Easy", medium: "Medium", hard: "Hard" },
     hint: "Hint",
     solution: "Solution",
+    submitOn: "Submit on {platform}",
   },
   code: {
     copy: "Copy",
@@ -1193,6 +1195,474 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   }
 
   UC.define("uc-hero", UCHero);
+})(window.UC);
+
+/* --- components/uc-exercise.js --- */
+/**
+ * <uc-exercise> — one exercise of a lab guide: a numbered disclosure with
+ * title, optional badges (level, Mooshak problem) and a "Mark as done" toggle
+ * persisted in localStorage. See docs/api.md, section 3.5.
+ *
+ * Structure (built once in setup(), texts refreshed by render()):
+ *
+ *   <uc-exercise id="…" class="uc-exercise">
+ *     <details class="uc-exercise__details">
+ *       <summary class="uc-exercise__summary">number · title · badges · chevron</summary>
+ *       <div class="uc-exercise__body">
+ *         …teacher content…
+ *         <div class="uc-exercise__actions">[platform link] [mark as done]</div>
+ *       </div>
+ *     </details>
+ *   </uc-exercise>
+ *
+ * The toggle is a real <button aria-pressed> at the end of the body, never
+ * inside <summary> (interactive content is not allowed there). A "Done" badge
+ * in the summary shows the state while the exercise is collapsed.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, icon, isExternal } = UC.internal;
+  const STORAGE_PREFIX = "uc:done:";
+  const LEVELS = ["easy", "medium", "hard"];
+  const LEVEL_TAGS = { easy: "uc-tag--muted", medium: "uc-tag--accent", hard: "uc-tag--warning" };
+  const MOOSHAK_LABEL = "mooshak";
+
+  /* ---------- Helpers shared with <uc-guide> ---------- */
+
+  /**
+   * True when `element` is hidden by in-place bilingual content (it or an
+   * ancestor carries a lang attribute of another configured language).
+   */
+  function isHiddenByLanguage(element) {
+    const languages = UC.course.languages;
+    if (languages.length < 2) return false;
+    for (let node = element; node && node !== document.documentElement; node = node.parentElement) {
+      const lang = node.getAttribute("lang");
+      if (!lang || node.hasAttribute("data-uc-keep-lang")) continue;
+      const base = lang.split("-")[0];
+      if (base !== UC.lang && languages.includes(base)) return true;
+    }
+    return false;
+  }
+
+  /** Visible text of an element in the active language (other-language parts removed). */
+  function visibleText(element) {
+    const clone = element.cloneNode(true);
+    clone.querySelectorAll("[lang]").forEach((node) => {
+      const base = node.getAttribute("lang").split("-")[0];
+      if (base !== UC.lang && UC.course.languages.includes(base)) node.remove();
+    });
+    return clone.textContent.replace(/\s+/g, " ").trim();
+  }
+
+  function storageKey(id) {
+    return `${STORAGE_PREFIX}${window.location.pathname}#${id}`;
+  }
+
+  /** Reads the persisted "done" state of an exercise id. */
+  function readDone(id) {
+    if (!id) return false;
+    try {
+      return window.localStorage.getItem(storageKey(id)) === "1";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function writeDone(id, done) {
+    if (!id) return;
+    try {
+      if (done) window.localStorage.setItem(storageKey(id), "1");
+      else window.localStorage.removeItem(storageKey(id));
+    } catch (error) {
+      /* Storage unavailable (private mode): the state lasts for this page only. */
+    }
+  }
+
+  /** The exercises that count in `scope`, in document order (hidden-language ones excluded). */
+  function exercisesIn(scope) {
+    return Array.from(scope.querySelectorAll("uc-exercise")).filter((exercise) => !isHiddenByLanguage(exercise));
+  }
+
+  /** "Done" state of any exercise element, upgraded or not. */
+  function isExerciseDone(exercise) {
+    return typeof exercise.done === "boolean" ? exercise.done : readDone(exercise.id);
+  }
+
+  Object.assign(UC.internal, { isHiddenByLanguage, visibleText, exercisesIn, isExerciseDone });
+
+  /* ---------- Component ---------- */
+
+  function mooshakPlatform() {
+    return UC.course.platforms.find((platform) => UC.text(platform.label).trim().toLowerCase() === MOOSHAK_LABEL) || null;
+  }
+
+  class UCExercise extends UC.Element {
+    setup() {
+      this.classList.add("uc-exercise");
+      if (!this.id) console.warn("[uc-kit] <uc-exercise> needs an id to remember its done state.");
+
+      // The title attribute would show as a tooltip over the whole card: keep its value, drop the attribute.
+      this.exerciseTitle = this.getAttribute("title") || "";
+      if (!this.exerciseTitle) console.warn(`[uc-kit] <uc-exercise id="${this.id}"> has no title.`);
+      this.removeAttribute("title");
+
+      this.done = readDone(this.id);
+      this.titleId = `${this.id || "uc-exercise"}-title`;
+
+      this.numberSlot = h("span", { class: "uc-exercise__number", "aria-hidden": "true" });
+      this.labelSlot = h("span", { class: "uc-visually-hidden" });
+      this.titleSlot = h("span", { class: "uc-exercise__title", id: this.titleId }, this.exerciseTitle);
+      this.metaSlot = h("span", { class: "uc-exercise__meta" });
+      this.summary = h(
+        "summary",
+        { class: "uc-exercise__summary" },
+        this.numberSlot,
+        h("span", { class: "uc-exercise__heading" }, this.labelSlot, this.titleSlot),
+        this.metaSlot,
+        h("span", { class: "uc-exercise__chevron" }, icon("chevronDown")),
+      );
+
+      this.actions = h("div", { class: "uc-exercise__actions" });
+      this.body = h("div", { class: "uc-exercise__body" }, ...Array.from(this.childNodes), this.actions);
+      this.details = h(
+        "details",
+        { class: "uc-exercise__details", open: this.hasAttribute("open") },
+        this.summary,
+        this.body,
+      );
+
+      this.generatedSummaries = this.addMissingSummaries();
+      this.append(this.details);
+    }
+
+    /** Hints and solutions written without a <summary> get a translated one. */
+    addMissingSummaries() {
+      const generated = [];
+      this.body.querySelectorAll("details.uc-hint, details.uc-solution").forEach((block) => {
+        const first = block.firstElementChild;
+        if (first && first.tagName === "SUMMARY") return;
+        const summary = h("summary", { class: "uc-exercise__generated-summary" });
+        summary.dataset.ucKey = block.classList.contains("uc-solution") ? "exercise.solution" : "exercise.hint";
+        block.prepend(summary);
+        generated.push(summary);
+      });
+      return generated;
+    }
+
+    render() {
+      const scope = this.closest("uc-guide") || document;
+      const number = exercisesIn(scope).indexOf(this) + 1;
+
+      this.classList.toggle("uc-exercise--done", this.done);
+      this.numberSlot.replaceChildren(this.done ? icon("check") : String(number || ""));
+      this.labelSlot.textContent = number ? `${this.t("exercise.title", { n: number })}: ` : "";
+      this.metaSlot.replaceChildren(...this.renderBadges());
+      this.actions.replaceChildren(this.renderPlatformLink(), this.renderToggle());
+      this.generatedSummaries.forEach((summary) => {
+        summary.textContent = this.t(summary.dataset.ucKey);
+      });
+    }
+
+    renderBadges() {
+      const badges = [];
+      const level = this.getAttribute("level");
+      if (LEVELS.includes(level)) {
+        badges.push(h("span", { class: `uc-tag ${LEVEL_TAGS[level]} uc-exercise__level` }, this.t(`exercise.levels.${level}`)));
+      }
+      const code = this.getAttribute("mooshak");
+      if (code) {
+        const platform = mooshakPlatform();
+        badges.push(
+          h(
+            "span",
+            { class: "uc-tag uc-tag--muted uc-exercise__problem" },
+            platform ? h("span", {}, UC.text(platform.label)) : null,
+            platform ? h("span", {}, "·") : null,
+            h("span", { class: "uc-mono" }, code),
+          ),
+        );
+      }
+      if (this.done) {
+        badges.push(h("span", { class: "uc-tag uc-exercise__done-tag" }, icon("check"), this.t("exercise.done")));
+      }
+      return badges;
+    }
+
+    /** "Submit on Mooshak" link when a problem code is given and the platform is configured. */
+    renderPlatformLink() {
+      const code = this.getAttribute("mooshak");
+      const platform = code ? mooshakPlatform() : null;
+      if (!platform) return null;
+      const external = isExternal(platform.url);
+      return h(
+        "a",
+        { class: "uc-button uc-exercise__submit", href: platform.url },
+        this.t("exercise.submitOn", { platform: UC.text(platform.label) }),
+        h("span", { class: "uc-tag uc-tag--muted uc-mono" }, code),
+        external ? icon("external") : null,
+        external ? h("span", { class: "uc-visually-hidden" }, ` ${this.t("a11y.external")}`) : null,
+      );
+    }
+
+    renderToggle() {
+      return h(
+        "button",
+        {
+          type: "button",
+          class: "uc-exercise__toggle",
+          "aria-pressed": String(this.done),
+          "aria-describedby": this.titleId,
+          onClick: () => this.setDone(!this.done, true),
+        },
+        h("span", { class: "uc-exercise__checkbox" }, icon("check")),
+        this.t("exercise.markDone"),
+      );
+    }
+
+    /** Changes the done state, persists it and notifies the guide. */
+    setDone(done, restoreFocus) {
+      this.done = Boolean(done);
+      writeDone(this.id, this.done);
+      this.render();
+      if (restoreFocus) this.actions.querySelector(".uc-exercise__toggle")?.focus();
+      this.dispatchEvent(new CustomEvent("uc:exercisechange", { bubbles: true, detail: { id: this.id, done: this.done } }));
+    }
+  }
+
+  UC.define("uc-exercise", UCExercise);
+})(window.UC);
+
+/* --- components/uc-guide.js --- */
+/**
+ * <uc-guide> — lab guide wrapper: breadcrumbs, an "On this page" table of
+ * contents built from the guide's <h2> elements and a progress indicator
+ * counting completed <uc-exercise> elements. See docs/api.md, section 3.5.
+ *
+ * Structure:
+ *
+ *   <uc-guide class="uc-guide">
+ *     <nav class="uc-guide__crumbs">…</nav>
+ *     <div class="uc-guide__layout">
+ *       <aside class="uc-guide__aside">progress · table of contents</aside>
+ *       <div class="uc-guide__content">…teacher content…</div>
+ *     </div>
+ *   </uc-guide>
+ *
+ * The aside comes first in reading order (a summary of the page before the
+ * page); on wide containers CSS places it in a sticky right-hand column, on
+ * narrow ones only the progress stays visible above the content.
+ */
+(function (UC) {
+  "use strict";
+  if (UC.__duplicate) return;
+
+  const { h, uid, number } = UC.internal;
+  const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+  /** A heading is "current" once its top passes this fraction of the viewport height. */
+  const ACTIVE_LINE = 0.3;
+
+  function slugify(text) {
+    return (
+      text
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "") || "section"
+    );
+  }
+
+  function uniqueId(base) {
+    let candidate = base;
+    for (let suffix = 2; document.getElementById(candidate); suffix += 1) candidate = `${base}-${suffix}`;
+    return candidate;
+  }
+
+  function prefersReducedMotion() {
+    return Boolean(window.matchMedia && window.matchMedia(REDUCED_MOTION_QUERY).matches);
+  }
+
+  function weeksPage() {
+    return UC.course.pages.find((page) => page.id === "weeks") || null;
+  }
+
+  class UCGuide extends UC.Element {
+    setup() {
+      this.classList.add("uc-guide");
+      this.content = h("div", { class: "uc-guide__content" }, ...Array.from(this.childNodes));
+      this.aside = h("aside", { class: "uc-guide__aside" });
+      this.layout = h("div", { class: "uc-guide__layout" }, this.aside, this.content);
+      this.tocLabelId = uid("uc-guide-toc");
+      this.progressLabelId = uid("uc-guide-progress");
+      this.activeId = null;
+
+      this.addEventListener("uc:exercisechange", () => this.updateProgress());
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      if (this.observer) this.observer.disconnect();
+      this.observer = null;
+    }
+
+    render() {
+      this.headings = Array.from(this.content.querySelectorAll("h2")).filter((heading) => !UC.internal.isHiddenByLanguage(heading));
+      this.headings.forEach((heading) => {
+        if (!heading.id) heading.id = uniqueId(slugify(UC.internal.visibleText(heading)));
+      });
+
+      this.progress = this.renderProgress();
+      this.toc = this.hasAttribute("no-toc") ? null : this.renderToc();
+      this.aside.replaceChildren(...[this.progress, this.toc].filter(Boolean));
+
+      // Only the breadcrumbs are replaced: the layout (and the teacher content) never leaves the DOM.
+      const crumbs = this.renderCrumbs();
+      if (this.layout.parentNode !== this) this.replaceChildren(this.layout);
+      if (this.crumbs) this.crumbs.remove();
+      this.crumbs = crumbs;
+      if (crumbs) this.prepend(crumbs);
+      this.updateProgress();
+      this.updateActive();
+      if (this.isConnected) this.observeHeadings();
+    }
+
+    /* ---------- Breadcrumbs ---------- */
+
+    renderCrumbs() {
+      const items = [];
+      const week = number(this, "week", null);
+      const page = weeksPage();
+      const weeksHref = page ? UC.text(page.href) : UC.internal.builtinPages.weeks;
+
+      if (page) {
+        const label = page.label ? UC.text(page.label) : this.t("pages.weeks");
+        items.push(h("a", { href: weeksHref }, label));
+      }
+      if (week !== null) {
+        items.push(h("a", { href: `${weeksHref}#week-${week}` }, this.t("weeks.week", { n: week })));
+      }
+      if (!items.length) return null;
+
+      const title = this.pageTitle();
+      if (title) items.push(h("span", { "aria-current": "page" }, title));
+
+      return h(
+        "nav",
+        { class: "uc-guide__crumbs", "aria-label": this.t("guide.breadcrumb") },
+        h("ol", { class: "uc-guide__crumbs-list" }, items.map((item) => h("li", { class: "uc-guide__crumb" }, item))),
+      );
+    }
+
+    /** Text of the guide's first <h1> visible in the active language. */
+    pageTitle() {
+      const heading = Array.from(this.content.querySelectorAll("h1")).find((h1) => !UC.internal.isHiddenByLanguage(h1));
+      return heading ? UC.internal.visibleText(heading) : "";
+    }
+
+    /* ---------- Progress ---------- */
+
+    renderProgress() {
+      return h(
+        "div",
+        { class: "uc-guide__progress" },
+        h("p", { class: "uc-guide__progress-text", id: this.progressLabelId }),
+        h("progress", { class: "uc-guide__progress-bar", max: 1, value: 0, "aria-labelledby": this.progressLabelId }),
+      );
+    }
+
+    updateProgress() {
+      if (!this.progress) return;
+      const exercises = UC.internal.exercisesIn(this);
+      const total = exercises.length;
+      const done = exercises.filter(UC.internal.isExerciseDone).length;
+      this.progress.hidden = total === 0;
+      this.classList.toggle("uc-guide--no-aside", total === 0 && !this.toc);
+      if (!total) return;
+      const text = this.progress.querySelector(".uc-guide__progress-text");
+      text.replaceChildren(
+        ...UC.internal.tNodes("guide.progress", {
+          done: h("strong", { class: "uc-guide__progress-count" }, String(done)),
+          total: String(total),
+        }),
+      );
+      const bar = this.progress.querySelector(".uc-guide__progress-bar");
+      bar.max = total;
+      bar.value = done;
+    }
+
+    /* ---------- Table of contents ---------- */
+
+    renderToc() {
+      if (!this.headings.length) return null;
+      return h(
+        "nav",
+        { class: "uc-guide__toc", "aria-labelledby": this.tocLabelId },
+        h("p", { class: "uc-guide__toc-label", id: this.tocLabelId }, this.t("guide.onThisPage")),
+        h(
+          "ol",
+          { class: "uc-guide__toc-list" },
+          this.headings.map((heading) =>
+            h(
+              "li",
+              { class: "uc-guide__toc-item" },
+              h(
+                "a",
+                { class: "uc-guide__toc-link", href: `#${heading.id}`, onClick: (event) => this.goTo(event, heading) },
+                UC.internal.visibleText(heading),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    /** Scrolls to a section (smoothly unless reduced motion is preferred) and moves focus to it. */
+    goTo(event, heading) {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      heading.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "start" });
+      if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+      try {
+        window.history.pushState(null, "", `#${heading.id}`);
+      } catch (error) {
+        /* Some browsers refuse history changes on file:// URLs. */
+      }
+    }
+
+    /** Highlights the section in view. Uses IntersectionObserver only (no scroll listeners). */
+    observeHeadings() {
+      if (this.observer) this.observer.disconnect();
+      this.observer = null;
+      if (!this.toc || !("IntersectionObserver" in window)) return;
+      const bottomMargin = `-${Math.round((1 - ACTIVE_LINE) * 100)}%`;
+      this.observer = new IntersectionObserver(() => this.updateActive(), {
+        rootMargin: `0px 0px ${bottomMargin} 0px`,
+        threshold: [0, 1],
+      });
+      this.headings.forEach((heading) => this.observer.observe(heading));
+    }
+
+    updateActive() {
+      if (!this.toc) return;
+      const line = window.innerHeight * ACTIVE_LINE;
+      let active = null;
+      for (const heading of this.headings) {
+        if (heading.getBoundingClientRect().top <= line) active = heading;
+        else break;
+      }
+      this.activeId = active ? active.id : null;
+      this.toc.querySelectorAll(".uc-guide__toc-link").forEach((link) => {
+        if (link.getAttribute("href") === `#${this.activeId}`) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }
+  }
+
+  UC.define("uc-guide", UCGuide);
 })(window.UC);
 
 /* --- core/bootstrap.js --- */
