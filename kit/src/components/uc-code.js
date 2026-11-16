@@ -239,6 +239,9 @@
       this.escapePressed = false;
       this.hintId = uid("uc-code-hint");
       this.titleId = uid("uc-code-title");
+      this.bodyId = uid("uc-code-body");
+      // `collapsible` adds a show/hide toggle to the header; `collapsed` starts it closed.
+      this.collapsed = this.collapsible && flag(this, "collapsed");
       // In-page execution: optional hidden files and tests. A harness script
       // without `filename` is the entry file; with one, it is a support file.
       this.harness = null;
@@ -264,6 +267,10 @@
 
     get editable() {
       return flag(this, "editable");
+    }
+
+    get collapsible() {
+      return flag(this, "collapsible");
     }
 
     languageInfo() {
@@ -307,6 +314,9 @@
       }
 
       this.renderResult();
+      this.classList.toggle("uc-code--collapsed", this.collapsed);
+      this.body.hidden = this.collapsed;
+      if (this.collapsed) this.results.hidden = true;
       if (focusedAction) this.header.querySelector(`[data-action="${focusedAction}"]`)?.focus();
     }
 
@@ -340,10 +350,10 @@
         this.textarea.value = this.code;
         this.hint = h("p", { class: "uc-code__hint", id: this.hintId });
         this.scroller = h("div", { class: "uc-code__scroll uc-code__editor" }, this.pre, this.textarea);
-        this.body = h("div", { class: "uc-code__body" }, this.scroller, this.hint);
+        this.body = h("div", { class: "uc-code__body", id: this.bodyId }, this.scroller, this.hint);
       } else {
         this.scroller = h("div", { class: "uc-code__scroll", tabindex: "0", role: "group" }, this.pre);
-        this.body = h("div", { class: "uc-code__body" }, this.scroller);
+        this.body = h("div", { class: "uc-code__body", id: this.bodyId }, this.scroller);
       }
 
       this.showPlain();
@@ -357,7 +367,25 @@
     renderHeader() {
       const parts = [];
       const title = this.title();
-      if (title) parts.push(h("span", { class: "uc-code__title", id: this.titleId }, title));
+      if (this.collapsible) {
+        parts.push(
+          h(
+            "button",
+            {
+              type: "button",
+              class: "uc-code__toggle",
+              "data-action": "toggle",
+              "aria-expanded": String(!this.collapsed),
+              "aria-controls": this.bodyId,
+              onClick: () => this.setCollapsed(!this.collapsed),
+            },
+            h("span", { class: "uc-code__chevron" }, icon("chevronDown")),
+            h("span", { class: "uc-code__title", id: this.titleId }, title || this.t("code.code")),
+          ),
+        );
+      } else if (title) {
+        parts.push(h("span", { class: "uc-code__title", id: this.titleId }, title));
+      }
 
       const actions = [];
       if (!flag(this, "no-copy")) {
@@ -506,8 +534,17 @@
       return { ...this.supportFiles, "": this.harness.code, [name]: this.code };
     }
 
+    /* --- Collapse ----------------------------------------------------- */
+
+    setCollapsed(collapsed) {
+      this.collapsed = collapsed;
+      this.render();
+    }
+
     onRun() {
       if (this.running) return;
+      // Results appear under the code, so a collapsed block opens first.
+      this.collapsed = false;
       this.running = true;
       this.result = null;
       this.render();

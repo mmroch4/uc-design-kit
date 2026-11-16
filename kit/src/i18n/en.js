@@ -69,6 +69,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     submitOn: "Submit on {platform}",
   },
   code: {
+    code: "Code",
     copy: "Copy",
     copied: "Copied",
     copyNamed: "Copy {name}",
