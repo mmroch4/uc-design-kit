@@ -41,18 +41,21 @@ Uma cor que o browser não reconhece é ignorada, com um aviso `[uc-kit] course.
 
 ## Logótipo
 
-O cabeçalho mostra, antes do nome do curso, um ícone de árvore do kit. O campo `logo` troca-o por uma imagem ou esconde-o:
+O cabeçalho mostra, antes do nome do curso, um ícone de árvore do kit. O campo `logo` troca-o por uma imagem (PNG, JPG, SVG…), por um SVG escrito no próprio `course.js`, ou esconde-o:
 
 `course.js`:
 
 ```js
-logo: "logo.svg",   // an image next to course.js
+logo: "logo.svg",   // an image file next to course.js (png, jpg, svg, webp…)
+logo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg>',
+logo: { src: "dcc.png", alt: "DCC" },   // an image with its own text alternative
 logo: null,         // no image, only the course name
 ```
 
-- **Tamanho.** A imagem é mostrada com 28 × 28 px. Uma imagem quadrada em SVG fica nítida em qualquer ecrã; em PNG, convém ter pelo menos 56 × 56 px.
+- **Tamanho.** O logótipo é mostrado com 28 × 28 px, como o ícone do kit. Uma imagem quadrada em SVG fica nítida em qualquer ecrã; em PNG ou JPG, convém ter pelo menos 56 × 56 px.
 - **Caminho.** Como os `href` das páginas, o caminho do logótipo é relativo ao `course.js`: `"logo.svg"` ao lado do `course.js` aparece também nas páginas em subpastas (`guioes/aula10.html`).
-- **Texto alternativo.** Fica vazio, porque o nome do curso está mesmo ao lado. A imagem deve ter contraste suficiente com o fundo branco.
+- **SVG no `course.js`.** Um texto que começa por `<` é desenhado como SVG, sem ficheiro à parte. Precisa de um `viewBox` para ocupar os 28 px. Com `currentColor` em `stroke` ou `fill`, fica na cor do curso (`accentColor`), como o ícone do kit. Fica entre plicas (`'…'`) para as aspas do SVG não terminarem o texto. A forma `{ svg: '<svg …>', alt: "…" }` também serve.
+- **Texto alternativo.** Fica vazio, porque o nome do curso está mesmo ao lado e o leitor de ecrã não precisa de o ouvir duas vezes. Só quando o logótipo diz algo que o nome não diz (o símbolo de um departamento, por exemplo) se escreve `alt`, que pode ter uma versão por língua: `alt: { pt: "DCC", en: "DCC" }`. A imagem deve ter contraste suficiente com o fundo branco.
 
 Ver [Curso](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) e, para o cabeçalho completo, [`<uc-page>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md).
 

@@ -86,7 +86,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `edition`texto | Recomendado | — | Ano letivo ao lado do título, por exemplo `"2025/26"`. |
 | `institution``{ name, url? }` | Opcional | — | Departamento ou faculdade, no cabeçalho. |
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
-| `logo`URL ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho, relativa ao `course.js`; `null` esconde-a. |
+| `logo`URL, SVG, objeto ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho: um caminho relativo ao `course.js`, um `"<svg …>"` escrito no próprio campo ou `{ src, alt }`; `null` esconde-a. Ver [Logótipo](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#logotipo). |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
 | `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. Uma página pode mostrar a sua própria data com [`<uc-page updated>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#data-da-pagina). |
 | `editions`URL | Opcional | — | Ficheiro com as edições da cadeira, relativo ao `course.js`, normalmente `"../editions.js"`. Ver [Edições](#edicoes). |

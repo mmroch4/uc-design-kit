@@ -137,9 +137,13 @@
     renderHeader() {
       const course = this.course;
       const home = course.pages.find((page) => page.id === "home") || course.pages[0];
+      const { logo: mark } = course;
+      // Decorative by default (alt=""): the course name is right next to it.
+      const alt = mark && mark.alt ? this.text(mark.alt) : "";
       let logo = null;
-      if (course.logo === "default") logo = icon("tree");
-      else if (course.logo) logo = h("img", { src: course.logo, alt: "", class: "uc-brand__logo", width: 28, height: 28 });
+      if (mark === "default") logo = icon("tree");
+      else if (mark && mark.svg) logo = h("span", { class: "uc-brand__logo", html: mark.svg, role: alt ? "img" : null, "aria-label": alt || null, "aria-hidden": alt ? null : "true" });
+      else if (mark) logo = h("img", { src: mark.src, alt, class: "uc-brand__logo", width: 28, height: 28 });
 
       const brand = h(
         "a",

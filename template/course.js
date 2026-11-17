@@ -24,6 +24,10 @@ window.UC_COURSE = {
   // Cor de destaque (links, semana atual, botões). Contraste mínimo 4.5:1 com branco.
   accentColor: "#1D4ED8",
 
+  // Ícone antes do nome no cabeçalho: um ficheiro ("logo.svg", "logo.png"),
+  // um '<svg …>' ou null para nenhum. Sem este campo aparece o ícone do kit.
+  // logo: "logo.svg",
+
   // Pesquisa no site: o botão «Pesquisar» aparece quando existe o search-index.js,
   // que o uc-site.py reescreve. Correr python3 uc-site.py depois de cada alteração.
   search: true,
