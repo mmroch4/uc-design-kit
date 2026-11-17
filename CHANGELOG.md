@@ -16,7 +16,18 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   (`--fix-permissions`) and pages nothing links to. Messages in Portuguese and
   English, exit status 1 on errors, `--quiet` for `cron`. Teacher guide page
   "Manter o site"; tests in `tests/site-script/` run on Python 3.8 and the
-  current Python in CI. The search index it will write comes in phase S3.
+  current Python in CI.
+- The search index (search phase S3): with `search: true` (or
+  `search: { index, exclude }`) in `course.js`, `python3 uc-site.py` and
+  `python3 uc-site.py index` write `search-index.js` (a script setting
+  `window.UC_SEARCH_INDEX`, so it also loads from `file://`): every page split
+  into sections at `<h2>`/`<h3>`, weeks, exercises, questions and `<li id>`/
+  `<article id>`, with automatic ids for headings without one, one entry per
+  language on bilingual pages, `data-search-ignore`, `data-search-title` and
+  `<uc-page search="noindex">`. Written atomically with mode 644;
+  `index --stdout` prints it. Shared test cases for the kit in
+  `tests/search/` (`slugs.json`, `words.json`). `npm run build` regenerates
+  the index of every example whose `course.js` has `search`.
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type

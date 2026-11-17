@@ -1,0 +1,16 @@
+[
+  { "about": "Accents are removed and spaces become hyphens", "html": "<h2>Exercício 2</h2>", "ids": ["exercicio-2"] },
+  { "about": "A repeated slug gets -2, -3, …", "html": "<h2>A</h2><h2>A</h2><h3>A</h3>", "ids": ["a", "a-2", "a-3"] },
+  { "about": "An id written in the HTML is taken, wherever it is", "html": "<h2>A</h2><h2 id=\"a\">x</h2>", "ids": ["a-2", "a"] },
+  { "about": "An id written in the HTML never changes", "html": "<h2 id=\"a\">x</h2><h2>A</h2>", "ids": ["a", "a-2"] },
+  { "about": "The text of the site's first language", "html": "<h2><span lang=\"pt\">Árvores</span><span lang=\"en\">Trees</span></h2>", "languages": ["pt", "en"], "ids": ["arvores"] },
+  { "about": "A region language like en-GB counts as en", "html": "<h2><span lang=\"en-GB\">Colour</span> 1</h2>", "languages": ["pt", "en"], "ids": ["1"] },
+  { "about": "A lang the site does not have is plain text", "html": "<h2><span lang=\"fr\">Arbre</span></h2>", "languages": ["pt", "en"], "ids": ["arbre"] },
+  { "about": "Nothing left: section", "html": "<h2>!!</h2>", "ids": ["section"] },
+  { "about": "Every run of other characters is one hyphen, none at the ends", "html": "<h3>  C++ & Java: \"tipos\"  </h3>", "ids": ["c-java-tipos"] },
+  { "about": "Only h2 and h3", "html": "<h4>Quatro</h4><h2>Dois</h2>", "ids": ["dois"] },
+  { "about": "A week takes week-<n>", "html": "<uc-week n=\"1\"></uc-week><h2>Week 1</h2>", "ids": ["week-1-2"] },
+  { "about": "Headings in ignored regions still take their id", "html": "<div data-search-ignore><h2>A</h2></div><h2>A</h2>", "ids": ["a", "a-2"] },
+  { "about": "Headings in templates do not exist yet", "html": "<template><h2>A</h2></template><h2>A</h2>", "ids": ["a"] },
+  { "about": "Ids inside templates are not taken", "html": "<template><p id=\"a\"></p></template><h2>A</h2>", "ids": ["a"] }
+]

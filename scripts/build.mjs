@@ -10,6 +10,8 @@
  * search index (scripts/docs.mjs), writes the documentation for language
  * models (llms.txt, llms-full.txt and a .md per page, scripts/llms.mjs), and
  * packs template/ into docs/downloads/uc-template.zip (scripts/template-zip.mjs).
+ * The examples whose course.js has `search` get their search-index.js from
+ * template/uc-site.py (scripts/example-indexes.mjs).
  *
  * It also verifies the frozen releases (kit/vX.Y.Z/, made by
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
@@ -31,6 +33,7 @@ import { KIT, listReleases, verifyRelease } from "./releases.mjs";
 import { buildDocs, buildSearchIndex } from "./docs.mjs";
 import { buildTemplateZip } from "./template-zip.mjs";
 import { buildLlms } from "./llms.mjs";
+import { buildExampleIndexes } from "./example-indexes.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(KIT, "src");
@@ -148,6 +151,7 @@ async function main() {
   }
   if ((await buildDocs({ check })) > 0) failed = true;
   if ((await buildSearchIndex({ check })) > 0) failed = true;
+  if ((await buildExampleIndexes({ check })) > 0) failed = true;
   if ((await buildLlms({ check })) > 0) failed = true;
   if ((await buildTemplateZip({ check })) > 0) failed = true;
   for (const release of await listReleases()) {

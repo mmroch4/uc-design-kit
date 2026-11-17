@@ -20,11 +20,13 @@ Licence: MIT (the UC Design Kit).
 """
 
 import argparse
+import json
 import os
 import re
 import stat
 import sys
-from datetime import date
+import unicodedata
+from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from urllib.parse import unquote
 
@@ -61,7 +63,12 @@ MESSAGES = {
         "summary.warning": ("{n} aviso", "{n} avisos"),
         "summary.info": ("{n} informação", "{n} informações"),
         "header": "UC Design Kit · uc-site.py {version} · {title}",
-        "index.pending": "Índice: a geração do índice de pesquisa ainda não está disponível nesta versão do script.",
+        "index.written": "Índice: {index} ({pages}, {sections}, {size} KB)",
+        "index.pages": ("{n} página", "{n} páginas"),
+        "index.sections": ("{n} secção", "{n} secções"),
+        "index.large": "Aviso: o índice tem {size} KB. Considere deixar pastas de fora com search.exclude no course.js.",
+        "index.failed": "Índice: não foi possível escrever {index}: {error}",
+        "index.outside": "Índice: search.index (\"{index}\") tem de ficar dentro da pasta do site",
         "index.off": "A pesquisa está desligada no course.js (falta search: true): não há índice para escrever.",
         "index.unreadable": "Índice: não foi escrito, porque o course.js não se consegue ler.",
         "permissions.fixed": "permissões de leitura corrigidas em {n} ficheiros e pastas",
@@ -128,6 +135,7 @@ MESSAGES = {
         "help.site": "pasta do site (por omissão, a pasta onde está este script)",
         "help.fix": "dar permissão de leitura a todos (o+r, e o+x nas pastas) aos ficheiros e pastas que não a têm",
         "help.quiet": "mostrar só os erros (nada quando não há erros)",
+        "help.stdout": "com index: escrever o índice na saída em vez do ficheiro (para ferramentas de build)",
         "help.lang": "língua das mensagens (por omissão, a primeira língua do course.js, se for pt ou en)",
         "help.version": "mostrar a versão do script",
         "help.help": "mostrar esta ajuda",
@@ -142,7 +150,12 @@ MESSAGES = {
         "summary.warning": ("{n} warning", "{n} warnings"),
         "summary.info": ("{n} info", "{n} info"),
         "header": "UC Design Kit · uc-site.py {version} · {title}",
-        "index.pending": "Index: generating the search index is not available yet in this version of the script.",
+        "index.written": "Index: {index} ({pages}, {sections}, {size} KB)",
+        "index.pages": ("{n} page", "{n} pages"),
+        "index.sections": ("{n} section", "{n} sections"),
+        "index.large": "Warning: the index is {size} KB. Consider leaving folders out with search.exclude in course.js.",
+        "index.failed": "Index: could not write {index}: {error}",
+        "index.outside": "Index: search.index (\"{index}\") must be inside the site folder",
         "index.off": "Search is off in course.js (no search: true): there is no index to write.",
         "index.unreadable": "Index: not written, because course.js cannot be read.",
         "permissions.fixed": "read permissions fixed on {n} files and folders",
@@ -205,6 +218,7 @@ MESSAGES = {
         "help.site": "site folder (default: the folder that holds this script)",
         "help.fix": "give read permission to everyone (o+r, and o+x on folders) to the files and folders that lack it",
         "help.quiet": "print errors only (nothing when there are none)",
+        "help.stdout": "with index: print the index instead of writing the file (for build tools)",
         "help.lang": "language of the messages (default: the first language of course.js, if it is pt or en)",
         "help.version": "print the script version",
         "help.help": "show this help",
@@ -1218,14 +1232,485 @@ def check_site(site, report, command, fix_permissions=False):
 
 
 # ---------------------------------------------------------------------------
-# Search index (written from kit 1.2.0; see docs/plan/search-api.md)
+# Search index (kit 1.2.0; docs/plan/search-api.md sections 4 to 6)
 # ---------------------------------------------------------------------------
 
+INDEX_FORMAT = 1
+EXCERPT_LENGTH = 140
+LARGE_INDEX = 500 * 1024
 
-def write_index(site, course, search, messages, out):
-    """Placeholder until the extractor lands (search phase S3): writes nothing."""
-    out.write(messages("index.pending") + "\n")
-    return None
+# Frequent words that never narrow a search (the docs index list, plus
+# English). The same list is in tests/search/words.json, which the kit's
+# search engine also reads in its tests.
+STOP_WORDS = frozenset(
+    (
+        "que para com uma umas uns por pela pelo pelas pelos mais como nao sem sao ser foi sua seu suas seus "
+        "das dos nas nos num numa este esta estes estas isto esse essa isso ela ele elas eles tem ter cada "
+        "ainda tambem quando onde entre sobre depois antes so ja bem mas the and for are with this that from "
+        "you your can will not have has into its was were all any"
+    ).split()
+)
+
+# Accents removed the way the kit does it in JavaScript: NFD, then the
+# combining marks U+0300 to U+036F dropped.
+COMBINING = re.compile("[̀-ͯ]")
+WORD = re.compile(r"[a-z0-9][a-z0-9_-]*")
+DIGIT = re.compile(r"\d")
+SPACES = re.compile(r"\s+")
+NOT_SLUG = re.compile(r"[^a-z0-9]+")
+
+
+def fold(text):
+    """Lowercase, without accents: "Secção" → "seccao"."""
+    return COMBINING.sub("", unicodedata.normalize("NFD", text)).lower()
+
+
+def slugify(text):
+    """The heading id rule of the kit (contract section 6)."""
+    return NOT_SLUG.sub("-", fold(text)).strip("-") or "section"
+
+
+def search_words(text):
+    """Distinct folded words of a text (3 letters or more, or with a digit), in order, without stop words."""
+    seen = {}
+    for word in WORD.findall(fold(text)):
+        if (len(word) >= 3 or DIGIT.search(word)) and word not in STOP_WORDS:
+            seen.setdefault(word, None)
+    return " ".join(seen)
+
+
+def squash(text):
+    return SPACES.sub(" ", text).strip()
+
+
+def excerpt(text):
+    """The first 140 characters, cut at a space, with an ellipsis."""
+    if len(text) <= EXCERPT_LENGTH:
+        return text
+    cut = text[:EXCERPT_LENGTH]
+    space = cut.rfind(" ")
+    if space > 0:
+        cut = cut[:space]
+    return re.sub(r"[,.;:]$", "", cut) + "…"
+
+
+# Elements whose text never goes into the index (4.2). <uc-code> is handled apart.
+SKIPPED = {"script", "style", "noscript", "template", "svg", "nav"}
+# Elements whose end separates words ("<td>a</td><td>b</td>" is "a b").
+BLOCKS = {
+    "address", "article", "aside", "blockquote", "br", "caption", "dd", "details", "div", "dl", "dt",
+    "figcaption", "figure", "footer", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hr", "li", "main",
+    "ol", "p", "pre", "section", "summary", "table", "td", "th", "tr", "ul",
+}
+ITEM_SECTIONS = {"uc-week", "uc-exercise", "uc-question", "li", "article"}
+ITEM_TITLES = {"h2", "h3", "h4", "h5", "h6", "a"}
+
+
+class Section:
+    """One section of a page: the intro, a heading, a week, an exercise, an item."""
+
+    def __init__(self, ident, kind):
+        self.id = ident
+        self.kind = kind
+        self.title = []  # [(lang, text)]; lang "" = every language
+        self.text = []
+        self.fixed_title = None  # data-search-title
+        self.titles = None  # title / title-<lang> attributes: {lang or "": text}
+        self.id_text = []  # heading text for the automatic id
+        self.needs_id = False
+        self.indexed = True  # False inside data-search-ignore (the id still counts)
+
+    def has_language_text(self):
+        return any(lang for lang, _ in self.title + self.text) or any(self.titles or ())
+
+
+class PageIndexer(HTMLParser):
+    """Reads one page and splits its text into sections (contract 4.2 and 4.3)."""
+
+    def __init__(self, languages):
+        super().__init__(convert_charrefs=True)
+        self.languages = languages if len(languages) > 1 else []
+        self.stack = []  # [tag, lang, skipped, section]
+        self.skip_depth = 0  # inside elements whose text stays out
+        self.hidden_depth = 0  # inside <template>/<noscript>: not even ids
+        self.page_depth = 0  # inside <uc-page>
+        self.in_body = False
+        self.in_title = False
+        self.title_tag = []
+        self.h1 = []
+        self.h1_depth = None
+        self.noindex = False
+        self.group = None
+        self.ids = set()  # ids written in the HTML, plus week-<n>
+        self.intro = Section("", "intro")
+        self.sections = [self.intro]
+        self.current = self.intro
+        self.heading = None  # (section, depth) while inside an <h2>/<h3>
+        self.item_title = None  # (section, depth) while reading the title of an <li id>/<article id>
+
+    # The language an element belongs to: one of the site's languages, or "".
+    def site_language(self, value):
+        value = (value or "").strip()
+        for code in self.languages:
+            if value == code or value.startswith(code + "-"):
+                return code
+        return None
+
+    def lang(self):
+        for entry in reversed(self.stack):
+            if entry[1]:
+                return entry[1]
+        return ""
+
+    def handle_starttag(self, tag, attrs):
+        a = {}
+        for name, value in attrs:
+            a.setdefault(name, value if value is not None else "")
+        if tag == "title":
+            self.in_title = True
+        elif tag == "body":
+            self.in_body = True
+        elif tag == "uc-page" and not self.hidden_depth:
+            self.page_depth += 1
+            self.group = self.group or a.get("current") or None
+            if a.get("search", "").strip() == "noindex":
+                self.noindex = True
+
+        if not self.hidden_depth:
+            if a.get("id"):
+                self.ids.add(a["id"])
+            if tag == "uc-week" and a.get("n", "").strip():
+                self.ids.add("week-" + a["n"].strip())
+
+        if tag == "img" or tag in VOID:
+            if tag == "img" and a.get("alt", "").strip() and self.readable():
+                self.add_text(" " + a["alt"] + " ")
+            elif tag in ("br", "hr"):
+                self.add_text(" ")
+            return
+
+        if tag in BLOCKS:
+            self.add_text(" ")
+        skipped = tag in SKIPPED or tag == "uc-code" or "data-search-ignore" in a
+        if tag == "uc-code" and a.get("filename") and self.readable():
+            self.add_text(" " + a["filename"] + " ")
+        # As in the kit (core/language.js): only elements inside <body>, and not data-uc-keep-lang.
+        lang = self.site_language(a.get("lang")) if self.in_body and "data-uc-keep-lang" not in a else None
+        entry = [tag, lang, skipped, None]
+        self.stack.append(entry)
+        if tag in ("template", "noscript"):
+            self.hidden_depth += 1
+        ignored = self.skip_depth > 0 or skipped
+        if skipped:
+            self.skip_depth += 1
+
+        if self.hidden_depth or not self.in_body:
+            return
+        if tag in ("h2", "h3"):
+            self.start_heading(tag, a, ignored)
+        elif ignored:
+            return
+        elif tag == "h1" and self.h1_depth is None and not self.h1:
+            self.h1_depth = len(self.stack)
+        elif tag in ITEM_SECTIONS:
+            self.start_item(tag, a, entry)
+        elif tag in ITEM_TITLES and self.current.kind in ("li", "article") and self.item_title is None \
+                and not self.current.title and self.current.fixed_title is None:
+            self.item_title = (self.current, len(self.stack))
+
+    def start_heading(self, tag, a, ignored):
+        section = Section(a.get("id") or "", tag)
+        section.needs_id = not a.get("id") and self.page_depth > 0
+        section.fixed_title = a.get("data-search-title")
+        section.indexed = not ignored
+        if ignored:
+            # Only its id matters (the numbering of automatic ids).
+            if section.needs_id:
+                self.sections.append(section)
+            self.heading = (section, len(self.stack))
+            return
+        self.sections.append(section)
+        self.current = section
+        self.heading = (section, len(self.stack))
+
+    def start_item(self, tag, a, entry):
+        ident = (a.get("id") or "").strip()
+        if tag == "uc-week":
+            ident = "week-" + a["n"].strip() if a.get("n", "").strip() else ident
+        if not ident:
+            return
+        section = Section(ident, tag)
+        section.fixed_title = a.get("data-search-title")
+        if tag != "li" and tag != "article":
+            titles = {}
+            if a.get("title"):
+                titles[""] = a["title"]
+            for code in self.languages:
+                if a.get("title-" + code):
+                    titles[code] = a["title-" + code]
+            section.titles = titles or None
+        entry[3] = self.current  # where the text goes after the item
+        self.sections.append(section)
+        self.current = section
+
+    def handle_endtag(self, tag):
+        if tag == "title":
+            self.in_title = False
+        if tag in VOID:
+            return
+        # Close up to the matching tag (HTML forgives missing end tags).
+        for depth in range(len(self.stack) - 1, -1, -1):
+            if self.stack[depth][0] != tag:
+                continue
+            while len(self.stack) > depth:
+                level = len(self.stack)
+                self.close_element(self.stack.pop(), level)
+            break
+        if tag in BLOCKS:
+            self.add_text(" ")
+
+    def close_element(self, entry, level):
+        tag, _, skipped, after = entry
+        if skipped:
+            self.skip_depth -= 1
+        if tag in ("template", "noscript"):
+            self.hidden_depth -= 1
+        elif tag == "uc-page" and self.page_depth and not self.hidden_depth:
+            self.page_depth -= 1
+        if self.heading and self.heading[1] >= level:
+            self.heading = None
+        if self.item_title and self.item_title[1] >= level:
+            self.item_title = None
+        if self.h1_depth is not None and self.h1_depth >= level:
+            self.h1_depth = None
+        if after is not None:
+            self.current = after
+
+    def readable(self):
+        return self.in_body and not self.skip_depth and not self.hidden_depth
+
+    def add_text(self, text):
+        if self.readable() and self.h1_depth is None and self.heading is None:
+            self.current.text.append((self.lang(), text))
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title_tag.append(data)
+            return
+        if not self.in_body or self.hidden_depth:
+            return
+        if self.heading is not None:
+            section = self.heading[0]
+            section.id_text.append((self.lang(), data))
+            if section.indexed and not self.skip_depth:
+                section.title.append((self.lang(), data))
+            return
+        if self.skip_depth:
+            return
+        if self.h1_depth is not None:
+            self.h1.append((self.lang(), data))
+        elif self.item_title is not None:
+            self.item_title[0].title.append((self.lang(), data))
+        else:
+            self.current.text.append((self.lang(), data))
+
+
+def text_in(pieces, lang):
+    """The text of `pieces` for one language: the common text plus that language's ("" = everything)."""
+    return squash("".join(text for code, text in pieces if not code or lang is None or code == lang))
+
+
+def assign_ids(indexer, id_lang):
+    """Automatic ids for headings without one (contract section 6)."""
+    taken = indexer.ids
+    for section in indexer.sections:
+        if not section.needs_id:
+            continue
+        base = slugify(text_in(section.id_text, id_lang))
+        candidate, n = base, 2
+        while candidate in taken:
+            candidate, n = "{}-{}".format(base, n), n + 1
+        taken.add(candidate)
+        section.id = candidate
+
+
+def page_entries(indexer, rel, languages, file_lang):
+    """The index entries of a page: one, or one per language (contract 4.4)."""
+    if indexer.noindex:
+        return []
+    first = languages[0] if len(languages) > 1 else None
+    assign_ids(indexer, file_lang or first)
+    sections = [s for s in indexer.sections if s.indexed]
+    if file_lang:
+        langs = [file_lang]
+    elif first and (any(code for code, _ in indexer.h1) or any(s.has_language_text() for s in sections)):
+        langs = list(languages)
+    else:
+        langs = [None]
+    entries = []
+    for lang in langs:
+        # Without "l", text in any language counts (a single-language site has no lang pieces).
+        title = text_in(indexer.h1, lang) or squash("".join(indexer.title_tag)).split(" · ")[0].strip()
+        items = []
+        for section in sections:
+            heading = section_title(section, lang, first)
+            text = text_in(section.text, lang)
+            if section.kind == "intro" and not text:
+                continue
+            if not heading and not text:
+                continue
+            items.append({"i": section.id, "h": heading, "x": excerpt(text), "w": search_words(heading + " " + text)})
+        entry = {"t": title, "p": rel}
+        if indexer.group:
+            entry["g"] = indexer.group
+        if lang:
+            entry["l"] = lang
+        entry["s"] = items
+        entries.append(entry)
+    return entries
+
+
+def section_title(section, lang, first):
+    if section.fixed_title is not None and section.fixed_title.strip():
+        return squash(section.fixed_title)
+    if section.titles:
+        wanted = lang or first
+        return squash(section.titles.get(wanted) or section.titles.get("") or next(iter(section.titles.values())))
+    return text_in(section.title, lang)
+
+
+def file_languages(course):
+    """Files that belong to one language: pages whose href is { pt: "…", en: "…" }."""
+    out = {}
+    for page in as_list(course.get("pages")):
+        href = as_dict(page).get("href")
+        if isinstance(href, dict):
+            for lang, value in href.items():
+                if isinstance(value, str):
+                    out[to_posix(os.path.normpath(value.strip()))] = lang
+    return out
+
+
+def is_excluded(rel, exclude):
+    parts = rel.split("/")
+    if any(part.startswith("_") for part in parts[:-1]):
+        return True
+    for entry in exclude:
+        entry = entry.strip()
+        if entry.startswith("./"):
+            entry = entry[2:]
+        folder = entry.rstrip("/")
+        if not folder:
+            continue
+        if rel == folder or rel.startswith(folder + "/"):
+            return True
+    return False
+
+
+def build_index(site, course, search, generated=None):
+    """The index as a dict (contract section 5). `generated` defaults to now (or SOURCE_DATE_EPOCH)."""
+    languages = [l for l in as_list(course.get("languages")) if isinstance(l, str)]
+    per_file = file_languages(course)
+    pages = []
+    for rel in sorted(site.html):
+        if is_excluded(rel, search.exclude):
+            continue
+        try:
+            text, _ = read_text(site.abspath(rel))
+        except OSError:
+            continue  # check_page already reported it
+        indexer = PageIndexer(languages)
+        indexer.feed(text)
+        indexer.close()
+        pages.extend(page_entries(indexer, rel, languages, per_file.get(rel)))
+    if generated is None:
+        epoch = os.environ.get("SOURCE_DATE_EPOCH", "").strip()
+        moment = datetime.fromtimestamp(int(epoch), timezone.utc) if epoch.isdigit() else datetime.now(timezone.utc)
+        generated = moment.strftime("%Y-%m-%dT%H:%M:%SZ")
+    code = course.get("code")
+    return {
+        "v": INDEX_FORMAT,
+        "generator": "{} {}".format(SCRIPT_NAME, VERSION),
+        "generated": generated,
+        "course": code if isinstance(code, str) else "",
+        "languages": languages,
+        "pages": pages,
+    }
+
+
+def index_source(index):
+    """The text of search-index.js: a script, so that it also loads from file://; one page per line."""
+    head = {key: value for key, value in index.items() if key != "pages"}
+    dump = lambda value: json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    lines = ",\n".join(dump(page) for page in index["pages"])
+    return (
+        "/* Generated by {}. Do not edit: run python3 uc-site.py again. */\n".format(index["generator"])
+        + "window.UC_SEARCH_INDEX = "
+        + dump(head)[:-1]
+        + ',"pages":[\n'
+        + lines
+        + ("\n" if lines else "")
+        + "]};\n"
+    )
+
+
+def index_path(site, search):
+    """Where the index goes, or None when search.index points outside the site folder."""
+    rel = os.path.normpath(search.index.strip().lstrip("/"))
+    if rel == ".." or rel.startswith(".." + os.sep) or os.path.isabs(rel):
+        return None
+    return os.path.join(site.root, rel)
+
+
+def write_index(site, course, search, messages, out, quiet=False, stdout=None):
+    """
+    Writes the index (or prints it to `stdout`) and its summary line (not with
+    `quiet`; a failure is always printed). Returns False when it could not be written.
+    """
+    index = build_index(site, course, search)
+    source = index_source(index)
+    if stdout is not None:
+        stdout.write(source)
+        return True
+    target = index_path(site, search)
+    if target is None:
+        out.write(messages("index.outside", index=search.index) + "\n")
+        return False
+    data = source.encode("utf-8")
+    temporary = target + ".tmp"
+    try:
+        folder = os.path.dirname(target)
+        if not os.path.isdir(folder):
+            os.makedirs(folder)
+        # A temporary file, then a rename: a visitor never gets half an index.
+        with open(temporary, "wb") as f:
+            f.write(data)
+        os.chmod(temporary, 0o644)
+        os.replace(temporary, target)
+    except OSError as error:
+        try:
+            os.remove(temporary)
+        except OSError:
+            pass
+        out.write(messages("index.failed", index=search.index, error=error.strerror or str(error)) + "\n")
+        return False
+    if quiet:
+        return True
+    files = len({page["p"] for page in index["pages"]})
+    sections = sum(len(page["s"]) for page in index["pages"])
+    out.write(
+        messages(
+            "index.written",
+            index=search.index,
+            pages=messages.count("index.pages", files),
+            sections=messages.count("index.sections", sections),
+            size=max(1, round(len(data) / 1024)),
+        )
+        + "\n"
+    )
+    if len(data) > LARGE_INDEX:
+        out.write(messages("index.large", size=round(len(data) / 1024)) + "\n")
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -1305,6 +1790,7 @@ def build_parser(messages):
     parser.add_argument("--site", metavar="DIR", help=messages("help.site"))
     parser.add_argument("--fix-permissions", action="store_true", help=messages("help.fix"))
     parser.add_argument("--quiet", action="store_true", help=messages("help.quiet"))
+    parser.add_argument("--stdout", action="store_true", help=messages("help.stdout"))
     parser.add_argument("--lang", choices=sorted(MESSAGES), help=messages("help.lang"))
     parser.add_argument("--version", action="version", version="uc-site.py " + VERSION, help=messages("help.version"))
     parser.add_argument("-h", "--help", action="help", help=messages("help.help"))
@@ -1325,6 +1811,12 @@ def main(argv=None, out=None, default_site=None):
     site = Site(site_dir)
     report = Report()
     command = args.command or "all"
+    if args.stdout and command != "index":
+        sys.stderr.write("uc-site.py: --stdout only works with the index command\n")
+        return 2
+    # With --stdout the index is the only thing on the standard output.
+    log = sys.stderr if args.stdout else out
+    quiet = args.quiet or args.stdout
     if command == "index":
         # Only course.js matters for the index.
         course, search = None, None
@@ -1340,29 +1832,27 @@ def main(argv=None, out=None, default_site=None):
     else:
         course, search = check_site(site, report, command, fix_permissions=args.fix_permissions)
 
-    if not args.quiet:
-        out.write(messages("header", version=VERSION, title=course_title(course) or site_dir) + "\n")
-    for line in format_report(report, messages, quiet=args.quiet):
-        out.write(line + "\n")
-    if not args.quiet and command != "index":
-        out.write(summary(report, len(site.html), messages) + "\n")
+    if not quiet:
+        log.write(messages("header", version=VERSION, title=course_title(course) or site_dir) + "\n")
+    for line in format_report(report, messages, quiet=quiet):
+        log.write(line + "\n")
+    if not quiet and command != "index":
+        log.write(summary(report, len(site.html), messages) + "\n")
 
+    written = True
     if command in ("all", "index"):
         if course is None:
-            if not args.quiet:
-                out.write(messages("index.unreadable") + "\n")
+            if not quiet:
+                log.write(messages("index.unreadable") + "\n")
         elif search is None:
-            if command == "index" and not args.quiet:
-                out.write(messages("index.off") + "\n")
+            if command == "index" and not quiet:
+                log.write(messages("index.off") + "\n")
+        elif args.stdout:
+            write_index(site, course, search, messages, log, stdout=out)
         else:
-            write_index(site, course, search, messages, out if not args.quiet else _Null())
+            written = write_index(site, course, search, messages, log, quiet=args.quiet)
 
-    return 1 if report.count(ERROR) else 0
-
-
-class _Null:
-    def write(self, text):
-        pass
+    return 1 if report.count(ERROR) or not written else 0
 
 
 if __name__ == "__main__":

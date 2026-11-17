@@ -1,7 +1,8 @@
 """
 Tests of template/uc-site.py (the site maintenance script), phase S2: the
 course.js reader, every check of docs/plan/search-api.md section 3.3, the
-commands, options and output.
+commands, options and output. The search index (phase S3) is tested in
+test_index.py.
 
 Standard library only, Python 3.8 or newer:
 
@@ -555,8 +556,10 @@ class CommandLineTest(SiteTestCase):
         self.write("course.js", COURSE.replace("updated:", "search: true,\n  updated:"))
         before = sorted(os.listdir(self.dir))
         self.run_script("check")
-        self.run_script()
         self.assertEqual(sorted(os.listdir(self.dir)), before)
+        # The default command writes the index, and nothing else.
+        self.run_script()
+        self.assertEqual(sorted(os.listdir(self.dir)), sorted(before + ["search-index.js"]))
 
     def test_usage_errors(self):
         stderr = sys.stderr

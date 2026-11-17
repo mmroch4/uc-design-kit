@@ -120,7 +120,7 @@ method calls, spread, computed keys and other assignments are errors that
 
 **`uc-site.py`** (Python 3.8+, standard library only, in the site folder):
 `python3 uc-site.py [check|index] [--site DIR] [--fix-permissions] [--quiet]
-[--lang pt|en] [--version]`. It checks `course.js` (readable, `title`, every
+[--stdout] [--lang pt|en] [--version]`. It checks `course.js` (readable, `title`, every
 `pages` file exists, valid dates, unique deadline ids, local `url` and links in
 HTML texts), local `href`/`src`/`srcset` targets (exact case; a folder needs
 its `index.html`; external, fragment-only and outside-the-folder references are
@@ -130,7 +130,27 @@ skipped), that every page with `<uc-page>` loads `uc-kit.css`, `course.js` and
 levels, read permissions for the web server and pages nothing links to. One
 line per problem (`ERROR`/`WARNING`/`INFO`, file and line); exit status `0` no
 errors, `1` errors, `2` wrong usage. It never changes `course.js` or the
-pages; from v1.2.0 it also writes the site search index.
+pages.
+
+**Search index.** With `search: true` (or `search: { index, exclude }`) in
+`course.js`, the default command and `index` also write `search-index.js`
+(mode `644`, written to a temporary file and renamed), even when the checks
+found errors; `index --stdout` prints it instead. It holds every `.html` page
+of the folder, minus `search.exclude` entries (paths relative to the site; a
+trailing `/` is a folder), folders starting with `_` or `.`, and pages with
+`<uc-page search="noindex">`. Each page is split into sections at `<h2>`,
+`<h3>`, `<uc-week n>` (`week-<n>`), `<uc-exercise id>`, `<uc-question id>`,
+`<li id>` and `<article id>`; `data-search-title` replaces a section title and
+`data-search-ignore` leaves an element out. `<script>`, `<style>`, `<nav>`,
+`<svg>`, `<template>`, `<noscript>` and the body of `<uc-code>` (only its
+`filename`) are left out. Headings without an `id` inside `<uc-page>` get the
+automatic id the kit gives them (slug of the text in the first language,
+`-2`, `-3`… when taken). On sites with 2+ languages a page with `lang` text
+gives one entry per language. The file is a script that sets
+`window.UC_SEARCH_INDEX` (format version `1`, one page per line), so it also
+loads from `file://`; `SOURCE_DATE_EPOCH` fixes its `generated` time. Full
+rules: `docs/plan/search-api.md` sections 4 to 6. The kit reads it from
+v1.2.0.
 
 ### 2.1 Types
 
