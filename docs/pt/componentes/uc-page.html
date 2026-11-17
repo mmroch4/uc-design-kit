@@ -301,6 +301,27 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
         <h3 id="data-da-pagina">Data de atualização de uma página</h3>
         <p>O rodapé mostra "Atualizado a …" com a data de <code>updated</code> do <code>course.js</code>, igual em todas as páginas. Uma página que muda mais vezes (sumários, problemas) pode mostrar a sua: <code>&lt;uc-page updated="2025-11-20"&gt;</code>. Com <code>updated="auto"</code>, a data é a da última alteração do ficheiro, que o servidor indica no cabeçalho <code>Last-Modified</code>; se o servidor não a indicar, o rodapé fica sem data, em vez de mostrar a data de hoje. Aberta a partir do disco (<code>file://</code>), a página mostra a data do ficheiro.</p>
 
+        <h3 id="nota-de-origem">Nota de origem</h3>
+        <p>Um site copiado de outro (o site antigo da cadeira, o de outro docente) diz de onde vem o conteúdo numa linha do rodapé, em vez de um parágrafo no fim de cada página. A linha vem de <code>source</code> no <code>course.js</code>: "Conteúdo de Fernando Silva, a partir do site original." A ligação "site original" vai para <code>source.url</code>, ou para o endereço da própria página no site antigo, se o <code>&lt;uc-page&gt;</code> tiver <code>source="…"</code>.</p>
+        <!-- docs:demo src="../../demos/uc-page/source.html" title="rodapé com a nota de origem" height="420" -->
+        <div class="docs-demo" id="demo-uc-page-source">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/source.html" title="Demonstração: rodapé com a nota de origem" loading="lazy" style="height: 420px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page source=&quot;https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/horarios.html&quot;&gt;
+  &lt;h1&gt;Horários&lt;/h1&gt;
+  &lt;p&gt;Conteúdo copiado de outro site: o rodapé diz de quem é e liga à página original.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/source.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <uc-code lang="js" filename="course.js" no-download><pre><code>source: {
+  author: "Fernando Silva e Vanessa Silva",
+  url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/",
+},</code></pre></uc-code>
+
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
           <table>
@@ -312,6 +333,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
               <tr><td><code>layout</code></td><td><code>sidebar</code> ou <code>full</code></td><td><code>sidebar</code></td><td>Com <code>full</code>, a página não tem navegação e o conteúdo ocupa toda a largura.</td></tr>
               <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa. <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
+              <tr><td><code>source</code></td><td>endereço</td><td><code>source.url</code> do <code>course.js</code></td><td>Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com <code>source</code> no <code>course.js</code>. Ver <a href="#nota-de-origem">Nota de origem</a>.</td></tr>
               <tr><td><code>updated</code></td><td>data <code>AAAA-MM-DD</code> ou <code>auto</code></td><td><code>updated</code> do <code>course.js</code></td><td>Data do rodapé só nesta página. <code>auto</code> usa a data do ficheiro que o servidor envia (<code>Last-Modified</code>); sem ela, não mostra data. Ver <a href="#data-da-pagina">Data de atualização de uma página</a>.</td></tr>
             </tbody>
           </table>
@@ -335,6 +357,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><a href="../course-js.html#paginas"><code>pages</code></a></td><td>Itens da navegação, pela ordem escrita, e página de destino do nome do curso.</td></tr>
               <tr><td><a href="../course-js.html#campos-navegacao"><code>platforms</code></a></td><td>Links externos no grupo "Plataformas", por baixo das páginas.</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>footer</code></a></td><td>Texto à esquerda do rodapé. Sem ele, o nome do curso e da instituição.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>source</code></a></td><td>Linha "Conteúdo de …, a partir do site original" no rodapé.</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>updated</code></a></td><td>"Atualizado a …" à direita do rodapé, quando a página não tem o seu <code>updated</code>.</td></tr>
               <tr><td><a href="../course-js.html#edicoes"><code>editions</code></a></td><td>Ficheiro com as edições da cadeira: botão "Outros anos" e aviso nas edições antigas.</td></tr>
             </tbody>
@@ -404,7 +427,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
               <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
               <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
-              <tr><td><code>.uc-footer</code>, <code>__text</code>, <code>__updated</code></td><td>O rodapé, o texto à esquerda e a data de atualização.</td></tr>
+              <tr><td><code>.uc-footer</code>, <code>__text</code>, <code>__updated</code>, <code>__source</code></td><td>O rodapé, o texto à esquerda, a data de atualização e a nota de origem (numa linha própria).</td></tr>
               <tr><td><code>.uc-skip-link</code></td><td>O link "Saltar para o conteúdo", visível só com o foco do teclado.</td></tr>
             </tbody>
           </table>
@@ -471,6 +494,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           <li class="docs-toc__sub"><a href="#mudar-de-lingua">Mudar de língua</a></li>
           <li class="docs-toc__sub"><a href="#outros-anos">Outros anos</a></li>
           <li class="docs-toc__sub"><a href="#data-da-pagina">Data de atualização de uma página</a></li>
+          <li class="docs-toc__sub"><a href="#nota-de-origem">Nota de origem</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#comportamento">Aparecer já pronta</a></li>

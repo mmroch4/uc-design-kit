@@ -23,41 +23,36 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip033.html">[IP033] The first and the last</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip034.html">[IP034] Palindromic task</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip035.html">[IP035] Odd vs even</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip036.html">[IP036] Double the trouble</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip037.html">[IP037] Word clean up</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip038.html">[IP038] The extremes</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip039.html">[IP039] Important letters</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip040.html">[IP040] Searching for the treasure</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip041.html">[IP041] A needle in a haystack</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip042.html">[IP042] Swapping everything</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip043.html">[IP043] Word evolution</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="../problems/ip044.html">[IP044] Which one?</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p04" format="long"></uc-date> (November 1st; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p04">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip033.html">The first and the last</a> <code>IP033</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip034.html">Palindromic task</a> <code>IP034</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip035.html">Odd vs even</a> <code>IP035</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip036.html">Double the trouble</a> <code>IP036</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip037.html">Word clean up</a> <code>IP037</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip038.html">The extremes</a> <code>IP038</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip039.html">Important letters</a> <code>IP039</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip040.html">Searching for the treasure</a> <code>IP040</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip041.html">A needle in a haystack</a> <code>IP041</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip042.html">Swapping everything</a> <code>IP042</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip043.html">Word evolution</a> <code>IP043</code> <data value="30">30%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip044.html">Which one?</a> <code>IP044</code> <data value="30">30%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore function definition and function calling</li>
           <li>Explore the notion of iterables and sequences, and in particular of tuples and strings</li>
           <li>Practice the usage of the index operator and of slicing</li>
           <li>Explore the flexibility and general power of "for in" cycles</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lectures <a href="../materials.html#lectures">T02: The basics | T03: Conditionals | T04: Program Flow | | T05: Functions | T06: More Functions | T07: Tuples and Lists</a>.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lectures <a href="../materials.html#lectures">T02: The basics | T03: Conditionals | T04: Program Flow | | T05: Functions | T06: More Functions | T07: Tuples and Lists</a>.</p></div>
       </section>
       <div class="uc-prose">
 <p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland">Alice in Wonderland</a>.</p>

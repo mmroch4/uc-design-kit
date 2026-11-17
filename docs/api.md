@@ -190,6 +190,7 @@ pages, which the first run of the script replaces.
 | `deadlines` | `Deadline[]` | no | `[]` | See 2.5. |
 | `notices` | `Notice[]` | no | `[]` | See 2.6. |
 | `footer` | `HTMLText` | no | course title + institution | Footer left side. |
+| `source` | `{ author: HTMLText, url?: URL }` | no | — | Where the content comes from, for sites copied from an older one: a line in the footer, "Conteúdo de {author}, a partir do site original.", with "site original" linking to `url`, or to the page's own `<uc-page source>` (3.1). Without `url` and without `source=`, the line has no link. |
 | `updated` | `ISODate` | no | — | "Last updated" in the footer. One page can show its own date with `<uc-page updated>` (3.1). |
 | `editions` | URL | no | — | Address of the shared editions file, relative to `course.js`, usually `"../editions.js"`. See 2.9. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
@@ -208,6 +209,12 @@ pages: [
   { id: "about", href: { pt: "sobre.html", en: "about.html" } }   // one file per language
 ]
 ```
+
+A page that is not in `pages` (a lab guide, a problem statement) and has one
+file per language names its translations in its `<head>`, with
+`<link rel="alternate" hreflang="en" href="aula05.html">`. The language switch
+then goes to that file, as it does for `pages` with one `href` per language.
+A `<link rel="alternate">` wins over `pages` when both exist.
 
 | Built-in id | Default `href` | Default label (pt / en) |
 | --- | --- | --- |
@@ -405,6 +412,7 @@ with JavaScript disabled it is shown at once.
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
 | `layout` | `sidebar` \| `full` | `sidebar` | `full` hides the navigation (single-page sites, guides). |
 | `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
+| `source` | URL | `source.url` of `course.js` | Address of this page on the original site: the link of the footer line "Conteúdo de …, a partir do site original" (2.1, `source`). Ignored when `course.js` has no `source`. |
 | `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
 
 With `editions` in `course.js` (2.9), the header also has "Outros anos" and
@@ -1183,7 +1191,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-card` | Bordered surface. `uc-card--accent` for the highlighted variant. |
 | `uc-grid` | Responsive auto-fit grid. `--uc-grid-min` sets the minimum column width (default 220px). |
 | `uc-stack` | Vertical rhythm container (`gap` from `--uc-stack-gap`). |
-| `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--muted`. |
+| `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--danger`, `uc-tag--muted`. |
 | `uc-table` | Put on a wrapper `<div>` around a `<table>`: horizontal scroll, borders, header style. While the table overflows, the kit makes the wrapper focusable (`tabindex="0"`, `role="region"`, labelled by the `<caption>`) so it can be scrolled with the keyboard. Set `--uc-table-min` (default `560px`) to change the minimum table width. |
 | `uc-links` | A `<ul>` of links with a secondary description in a `<span>`. |
 | `uc-links--grid` | Variant of `uc-links` in columns, for long lists (judges, other courses). Column width from `--uc-links-min` (default `260px`); one column on phones. Group several lists with `<h3>` headings as usual. |
@@ -1193,6 +1201,17 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-split` | Two columns (main + narrower side) that stack below 960px. |
 | `uc-section` | A page section: spaces its own children (heading, text, blocks) evenly. |
 | `uc-bullets` | A `<ul>` with simple bullets and comfortable spacing. |
+| `uc-page-header` | A page's header: optional breadcrumbs (`uc-crumbs`) and `uc-eyebrow`, the `<h1>` and an intro, 12px apart (the page spaces its sections 48px apart). Replaces `uc-stack` with an inline `--uc-stack-gap`. |
+| `uc-eyebrow` | Small uppercase muted label above a title. |
+| `uc-crumbs` | Breadcrumbs for pages outside the navigation: `<nav class="uc-crumbs" aria-label="…"><ol><li><a>…</a></li>…<li aria-current="page">…</li></ol></nav>`, with the look of `<uc-guide>`'s breadcrumbs. Put it first in `uc-page-header`. |
+| `uc-samples` | Sample input/output of a problem: a grid of columns (each a `<div>` with a `uc-samples__label` and a `<pre data-copy>`), at least `--uc-samples-min` wide (default 220px); one column on phones. |
+| `uc-steps` | An `<ol>` numbered 01, 02, … (decorative numbers; the list gives the position), each item a title and a text, separated by lines (a syllabus). |
+| `uc-tags` | A `<ul>` whose items look like `uc-tag`, wrapped on several lines. |
+| `uc-links--inline` | Variant of `uc-links`: the links on one line, separated by a decorative dot. |
+| `uc-facts` | A `<dl>` of label/value rows (label muted on the left; stacked on phones). A `<div>` may wrap each pair. |
+| `uc-table--fit` | Variant of `uc-table`: the table is only as wide as its content (`--uc-table-min: 0`). |
+| `uc-num` | A numeric cell: right-aligned, tabular figures. |
+| `uc-details` | A `<details>` anywhere in a page, styled as the hints of `<uc-problems>`: a small accent summary that opens a soft panel. (`details.uc-hint` and `details.uc-solution` of 3.x also work outside an exercise.) |
 | `uc-button` | Link or button styled as a button; `uc-button--primary` filled, `uc-button--sm` compact (tables, toolbars). |
 | `uc-lead` | Larger intro paragraph. |
 | `uc-prose` | Readable text column (max 720px, secondary colour). |

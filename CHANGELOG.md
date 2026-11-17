@@ -6,7 +6,26 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- `<uc-materials>`: an item with many links no longer squeezes its title to
+  one letter per line; the title keeps at least 12rem and the buttons wrap.
+
 ### Added
+- Blocks for the patterns that the four example sites wrote by hand
+  (curation of the examples): `uc-page-header` and `uc-eyebrow` for the top of
+  a page without inline `style`, `uc-crumbs` (breadcrumbs outside
+  `<uc-guide>`, same look), `uc-samples` (input/output of a problem, stacked
+  on phones), `uc-steps` (numbered syllabus 01, 02…), `uc-tags`,
+  `uc-tag--danger`, `uc-links--inline`, `uc-facts` (label/value `<dl>`),
+  `uc-table--fit` and `uc-num`, and `details.uc-details` (the look of the
+  hints of `<uc-problems>`, anywhere in a page).
+- `<link rel="alternate" hreflang="…">` in a page's `<head>`: the language
+  switch opens that file. Lab guides and problem statements with one file per
+  language no longer need an "English version" link.
+- `source` in `course.js` (`{ author, url }`) and `<uc-page source="…">`: a
+  footer line "Conteúdo de …, a partir do site original" for sites copied
+  from an older one, instead of a note at the end of every page. New class
+  `.uc-footer__source`.
 - `<uc-grading>` reads the assessment method as text formulas, as on the
   course slide: an `<ol data-formulas>` with `max`/`min` and named formulas
   (`CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)`), and the pass

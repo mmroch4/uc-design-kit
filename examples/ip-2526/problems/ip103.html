@@ -18,12 +18,12 @@
     </nav>
     <h1>[IP103] A Glitch in the Matrix</h1>
     <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of January 3rd</span></strong><br/>
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p11" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
 <strong>[to understand the context of this problem, you should read the <a href="../practical/class11.html">class #11 exercise sheet</a>]</strong></p>
     </div>
     <div class="uc-content">
-<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<div class="uc-callout uc-callout--warning"><p>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</p></div>
 
 <p><img alt="" class="uc-content__float" loading="lazy" src="ip103.png"/>
 Neo has just passed his first trial. Morpheus nods approvingly.
@@ -45,21 +45,17 @@ Imagine encountering not one error, but an entire sequence of them. Are you read
 <div class="uc-table"><table>
 <tr>
 <td>0 ≤ <em>|sublst|</em>, <em>|lst|</em> ≤ 100</td>
-<td>     </td>
 <td>Size of the input list and sublists</td>
 </tr>
 <tr>
 <td>-1000 ≤ <em>sublst<sub>i</sub></em> ≤ 1000</td>
-<td>     </td>
 <td>Elements of the sublist (integers)</td>
 </tr>
 <tr>
 <td><em>sublst<sub>i</sub></em> can be a string</td>
-<td>     </td>
 <td>This scenario will also raise an exception, <strong>only if <em>sublst<sub>i</sub></em> is not convertible to an integer</strong></td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <th scope="col">Example Function Calls</th>

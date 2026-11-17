@@ -12,60 +12,70 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #01</li></ol>
-    </nav>
-    <h1>Week #01</h1>
-    <p class="uc-lead">Introduction to the course &amp; first problems · Problems: <a href="../problem-sets/ps01.html">Weekly Problems #01</a></p>
-    <div class="uc-content">
-<h2>Main learning outcomes for this week</h2>
-<ol>
-<li><strong>Course Overview:</strong>
-<ul>
-<li>I know how <a href="../evaluation.html">evaluation</a> is going to be made
-      </li><li>I understand how a <strong>typical week</strong> will going to be (theoretical exposition + pratical time + discord)        
-      </li><li>I know that it is expected that I work <strong>outside of the class scheduled time</strong> and that there will be a <strong>heavy implementantion component</strong> 
-</li><li>I understand that I have many resources available at the webpage at that I can get request individual tutoring from the professor
-      <details class="meme" name="meme">
-<summary>😁 free time!</summary>
-<p><img alt="Meme: free time!" loading="lazy" src="../images/memes/meme_freetime.jpg"/></p>
-</details>
+    <uc-guide week="1">
+      <h1>Class #01 · Introduction to the course &amp; first problems</h1>
+      <!-- Deadline of this class's problem set: from course.js (deadlines, id "ps01"). -->
+      <uc-event deadline="ps01"></uc-event>
 
-</li></ul>
-</li><li><strong>Online Judges:</strong>
-<ul>
-<li>I know what an <strong>online judge</strong> is and what is it for
-      </li><li>I have checked my student email to get my Mooshak credentials
-      </li><li>I have created my <strong>CodeForces</strong> account and sent my username to the professor
-      </li><li>I made at least one <strong>submission</strong> on Mooshak and one on Codeforces to understand how it works
+      <section class="uc-section" aria-labelledby="outcomes">
+        <h2 id="outcomes">Main learning outcomes for this week</h2>
+        <h3>Course overview</h3>
+        <ul class="uc-checklist">
+          <li>I know how <a href="../evaluation.html">evaluation</a> is going to be made</li>
+          <li>I understand how a <strong>typical week</strong> is going to be (theoretical exposition + practical time + Discord)</li>
+          <li>I know that it is expected that I work <strong>outside of the class scheduled time</strong> and that there will be a <strong>heavy implementation component</strong></li>
+          <li>I understand that I have many resources available on the webpage and that I can request individual tutoring from the professor</li>
+        </ul>
+        <h3>Online judges</h3>
+        <ul class="uc-checklist">
+          <li>I know what an <strong>online judge</strong> is and what it is for</li>
+          <li>I have checked my student email to get my Mooshak credentials</li>
+          <li>I have created my <strong>CodeForces</strong> account and sent my username to the professor</li>
+          <li>I made at least one <strong>submission</strong> on Mooshak and one on Codeforces to understand how it works</li>
+        </ul>
+      </section>
 
-      <details class="meme" name="meme">
-<summary>😁 submit...</summary>
-<p><img alt="Meme: submit..." loading="lazy" src="../images/memes/meme_submit.jpg"/></p>
-</details>
+      <section class="uc-section" aria-labelledby="challenge">
+        <h2 id="challenge">A first challenge</h2>
+        <p class="uc-prose">Here is a challenging and different problem for you to think about, a problem from IOI 2022. Submit it on Codeforces (only in C++).</p>
+        <!-- data-type="challenge": the same problem is in the list of problems (problems/index.html), so "Solved" is shared. -->
+        <uc-problems cards track>
+          <section>
+            <h3 class="uc-visually-hidden">Challenge problem</h3>
+            <ul>
+              <li data-judge="codeforces" data-type="challenge" data-languages="C++"><a href="https://ioi.contest.codeforces.com/group/32KGsXgiKA/contest/103877/problem/B">Prisoner Challenge</a> <code>IOI 2022</code></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout">
+          <ul class="uc-bullets">
+            <li>The <a href="https://ioi2022.id/data/day1/prison-en_ISC.pdf">statement</a> is on the IOI 2022 website. The challenge is "up for grabs" until the end of October.</li>
+            <li>You can and you should keep me in the loop as you try this problem and improve your score.</li>
+            <li>The first student to solve it for 100 points (or the one with the best score at the end of October) will receive a <strong>secret prize</strong> (<i>a real contest item</i>).</li>
+            <li>You are supposed to try to solve it by yourself (and not look directly "elsewhere" for solutions); I might want to verify and chat with you about how you reached the solution before awarding the prize.</li>
+            <li>Have fun trying to solve it and gain good honest <i>"competitive programming prestige points"</i>.</li>
+          </ul>
+        </div>
+      </section>
 
-</li></ul>
-</li><li><strong>A first challenge:</strong>
-<ul>
-<li>Here is a challenging and different problem for you to think about: <a href="https://ioi2022.id/data/day1/prison-en_ISC.pdf">Prisoner Challenge</a> (a problem from IOI 2022)
-      </li><li>The challenge is "up for grabs" until the end of October
-      </li><li>You can <a href="https://ioi.contest.codeforces.com/group/32KGsXgiKA/contest/103877/problem/B">submit this problem on Codeforces</a> (only in C++)
-      </li><li>You can and you should keep me in the loop as you trying this problem and improving your score
-      </li><li>The first student to solve it for 100 points (or the one
-      with the best score on the end of October) will receive a <strong>secret
-          prize</strong> (<i>a real contest item</i>)
-      </li><li>You are supposed to try to solve by yourself (and not look directly "elsewhere" for solutions); I might want to verify and chat with you about how you reached the solutions before awarding the prize
-      </li><li>Have fun trying to solve it and gain good honest <i>"competitive programming prestige points"</i> 🏅
+      <section class="uc-section" aria-labelledby="memes">
+        <h2 id="memes">I want my memes!</h2>
+        <details class="meme" name="meme">
+          <summary>😁 free time!</summary>
+          <p><img alt="Meme: free time!" loading="lazy" src="../images/memes/meme_freetime.jpg"></p>
+        </details>
+        <details class="meme" name="meme">
+          <summary>😁 submit...</summary>
+          <p><img alt="Meme: submit..." loading="lazy" src="../images/memes/meme_submit.jpg"></p>
+        </details>
+        <details class="meme" name="meme">
+          <summary>😁 respect...</summary>
+          <p><img alt="Meme: respect..." loading="lazy" src="../images/memes/meme_respect.jpg"></p>
+        </details>
+      </section>
 
-          <details class="meme" name="meme">
-<summary>😁 respect...</summary>
-<p><img alt="Meme: respect..." loading="lazy" src="../images/memes/meme_respect.jpg"/></p>
-</details>
-
-</li></ul>
-</li></ol>
-    </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week01.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week01.html</a> to demonstrate the UC Design Kit.</p>
+      <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week01.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week01.html</a> to demonstrate the UC Design Kit.</p>
+    </uc-guide>
   </uc-page>
 </body>
 </html>

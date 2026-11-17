@@ -214,6 +214,14 @@
   { id: "about", href: { pt: "sobre.html", en: "about.html" } },
 ],</code></pre></uc-code>
         <p>Cada ficheiro declara a sua língua com <code>&lt;html lang="pt"&gt;</code> ou <code>&lt;html lang="en"&gt;</code> e o mesmo <code>&lt;uc-page current="about"&gt;</code>. As duas formas misturam-se: páginas curtas com <code>lang</code> e páginas longas em ficheiros separados.</p>
+        <h3 id="ficheiros-fora-do-menu">Páginas que não estão no menu</h3>
+        <p>Os guiões, os enunciados e as outras páginas fora de <code>pages</code> dizem qual é a sua tradução no <code>&lt;head&gt;</code>, com um <code>&lt;link rel="alternate"&gt;</code> por língua. O botão de língua do cabeçalho passa a abrir esse ficheiro, e já não é preciso uma ligação "English version" no texto:</p>
+        <uc-code lang="html" filename="praticas/aula05_pt.html" no-download><pre><code>&lt;html lang="pt"&gt;
+&lt;head&gt;
+  …
+  &lt;link rel="alternate" hreflang="en" href="aula05.html"&gt;
+&lt;/head&gt;</code></pre></uc-code>
+        <p>O ficheiro em inglês faz o mesmo ao contrário (<code>hreflang=&quot;pt&quot; href=&quot;aula05_pt.html&quot;</code>). Os motores de pesquisa também leem estas ligações.</p>
 
         <h2 id="outra-lingua">Acrescentar uma língua</h2>
         <p>O kit traz os textos da interface em português (<code>pt</code>) e inglês (<code>en</code>). Para outra língua, dá-se ao kit o dicionário dessa língua num script local, carregado depois do kit:</p>
@@ -253,6 +261,7 @@
           <li><a href="#ativar">Ativar mais línguas</a></li>
           <li><a href="#mesma-pagina">Conteúdo na mesma página</a></li>
           <li><a href="#ficheiros">Um ficheiro por língua</a></li>
+          <li class="docs-toc__sub"><a href="#ficheiros-fora-do-menu">Páginas que não estão no menu</a></li>
           <li><a href="#outra-lingua">Acrescentar uma língua</a></li>
         </ul>
       </nav>

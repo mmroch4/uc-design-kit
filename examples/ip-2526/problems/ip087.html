@@ -17,12 +17,12 @@
     </nav>
     <h1>[IP087] Three-Eyed Raven</h1>
     <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 6th</span></strong><br/>
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p08" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
 <strong>[to understand the context of this problem, you should read the <a href="../practical/class08.html">class #08 exercise sheet</a>]</strong></p>
     </div>
     <div class="uc-content">
-<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<div class="uc-callout uc-callout--warning"><p>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</p></div>
 
 <p><img alt="" class="uc-content__float" loading="lazy" src="ip087.png"/>
   Bran Stark, with his newfound abilities as the Three-Eyed Raven, needs to send a secure message to allies across the realm. To keep the message hidden from enemies, Bran decides to use the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher">Vigenère cipher</a>, a method of encrypting alphabetic text by using a keyword to shift letters in a repeating pattern. The Vigenère cipher is more secure than the simple Caesar cipher because it uses a series of shifts determined by the keyword.</p>
@@ -48,16 +48,13 @@
 <div class="uc-table"><table>
 <tr>
 <td>1 ≤ <em>|text|</em>  ≤ 200</td>
-<td>     </td>
 <td>length of the text</td>
 </tr>
 <tr>
 <td>1 ≤ <em>|keyword|</em>  ≤ 20</td>
-<td>     </td>
 <td>length of the keyword</td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <td>Example vigenere_encrypt() Function Calls</td>
@@ -80,7 +77,6 @@ Obnkoj ij Uhmzxy!
 </td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <td>Example vigenere_decrypt() Function Calls</td>
@@ -103,7 +99,6 @@ TheQuickBrownFoxJumpsOverTheLazyDog
 </td>
 </tr>
 </table></div>
-<br/>
     </div>
 
     <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip087.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip087.html</a>.</p>

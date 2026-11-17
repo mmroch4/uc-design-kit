@@ -4,14 +4,6 @@
  * Each block says which page uses it.
  */
 
-/* materials.html: judge and book cards, inline link lists */
-.book { --uc-card-padding: var(--uc-space-5); gap: 6px; }
-.book__kind { font-size: var(--uc-font-size-xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--uc-color-text-muted); }
-.book__kind--main { color: var(--uc-color-accent); }
-.book__title { font-weight: 600; }
-.inline-links { display: flex; flex-wrap: wrap; gap: var(--uc-space-2) var(--uc-space-4); margin: 0; padding: 0; list-style: none; }
-.inline-links > li { margin: 0; }
-
 /* Migrated pages (problems/, classes/, problem sets, contest) */
 .crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: var(--uc-font-size-md); color: var(--uc-color-text-muted); }
 .crumbs li { margin: 0; }

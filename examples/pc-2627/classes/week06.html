@@ -14,81 +14,98 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #06</li></ol>
-    </nav>
-    <h1>Week #06</h1>
-    <p class="uc-lead">Dynamic Programming I (classic) · Problems: <a href="../problem-sets/ps06.html">Weekly Problems #06</a></p>
-    <div class="uc-content">
-<h2>Main learning outcomes for this class</h2>
-<ol>
-<li><strong>Dynamic Programming (DP) Concepts:</strong>
-<ul>
-<li>I know the <strong>Dynamic Programming</strong> algorithmic technique and the type of problems where it is usually applied
-      </li><li>I know the characteristics of a problem where DP is applicable: <strong>optimal substructure</strong> and <strong>overlapping substructure</strong>
-</li><li>I know that DP can be applied <strong>bottom-up</strong> (finding the right order of the subproblems) or in <strong>top-down</strong> fashion (using more directly the recursive formula and <strong>memoization</strong> to store the already calculated values)
-    </li></ul>
-</li><li><strong>Classical Dynamic Programming Problems:</strong>
-<ul>
-<li>I know the <strong>longest increasing subsequence (LIS)</strong> problem, its DP formulation, how it can be solved more naively in \(\mathcal{O}(n^2)\) or in \(\mathcal{O}(n \log n)\) using binary search.
-      </li><li>I know the <strong>longest common subsequence (LCS)</strong> problem, its DP formulation, and how it can be seen as a specific case of <strong>edit distance</strong>
-</li><li>I know the <strong>0-1 knapsack</strong> problem and its DP formulation
-      </li><li>I know the <strong>coin change</strong> problem and its DP formulation
-      </li><li>I know the <strong>matrix chain multiplication (MCM)</strong> and its DP formulation	
-    </li></ul>
-</li></ol>
+    <!-- Class #06 was given in week 7 (week 6 was the 1st contest). -->
+    <uc-guide week="7">
+      <h1>Class #06 · Dynamic Programming I (classic)</h1>
+      <!-- Deadline of this class's problem set: from course.js (deadlines, id "ps06"). -->
+      <uc-event deadline="ps06"></uc-event>
 
-<h2>Study Material</h2>
-<h2>Main references</h2>
-<ul>
-<li><strong>DP concepts</strong><ul>
-<li><strong>My own slides:</strong> <a href="../material/dp.pdf">Dynamic Programming</a>
-</li><li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/dynamic-programming-from-novice-to-advanced/">Dynamic Programming: From Novice to Advanced</a> (TopCoder)
-    </li><li><a href="http://wcipeg.com/wiki/Dynamic_programming">Dynamic programming
-      </a> (PEG Wiki)
-    </li><li><a href="https://cp-algorithms.com/dynamic_programming/intro-to-dp.html">Introduction to Dynamic Programming</a> (cp-algorithms)
-    </li><li>Chapter 7 of <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
-    </li><li>Section 3.5 of the <a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">Competitive Programming</a> book
-  </li></ul></li>
+      <section class="uc-section" aria-labelledby="outcomes">
+        <h2 id="outcomes">Main learning outcomes for this class</h2>
+        <h3>Dynamic Programming (DP) concepts</h3>
+        <ul class="uc-checklist">
+          <li>I know the <strong>Dynamic Programming</strong> algorithmic technique and the type of problems where it is usually applied</li>
+          <li>I know the characteristics of a problem where DP is applicable: <strong>optimal substructure</strong> and <strong>overlapping substructure</strong></li>
+          <li>I know that DP can be applied <strong>bottom-up</strong> (finding the right order of the subproblems) or in <strong>top-down</strong> fashion (using more directly the recursive formula and <strong>memoization</strong> to store the already calculated values)</li>
+        </ul>
+        <h3>Classical Dynamic Programming problems</h3>
+        <ul class="uc-checklist">
+          <li>I know the <strong>longest increasing subsequence (LIS)</strong> problem, its DP formulation, how it can be solved more naively in O(n²) or in O(n log n) using binary search.</li>
+          <li>I know the <strong>longest common subsequence (LCS)</strong> problem, its DP formulation, and how it can be seen as a specific case of <strong>edit distance</strong></li>
+          <li>I know the <strong>0-1 knapsack</strong> problem and its DP formulation</li>
+          <li>I know the <strong>coin change</strong> problem and its DP formulation</li>
+          <li>I know the <strong>matrix chain multiplication (MCM)</strong> and its DP formulation</li>
+        </ul>
+      </section>
 
-<li><strong>Classical DP Problems</strong><ul>
-<li>LIS - Longest Increasing Subsequence: <a href="https://en.wikipedia.org/wiki/Longest_increasing_subsequence">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/">GeeksforGeeks</a> | <a href="https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html">cp-algorithms</a></li>
-<li>LCS - Longest Common Subsequence <a href="https://en.wikipedia.org/wiki/Longest_common_subsequence_problem">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/">GeeksforGeeks</a> </li>
-<li>ED - Edit Distance: <a href="https://en.wikipedia.org/wiki/Edit_distance">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/edit-distance-dp-5/">GeeksforGeeks</a> </li>
-<li>0-1 Knapsack: <a href="https://en.wikipedia.org/wiki/Knapsack_problem">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/">GeeksforGeeks</a> | <a href="https://cp-algorithms.com/dynamic_programming/knapsack.html">cp-algorithms</a> </li>
-<li>Coin Change: <a href="https://en.wikipedia.org/wiki/Change-making_problem">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/coin-change-dp-7/">GeeksforGeeks</a> </li>
-<li>MCM - Matrix Chain Multiplication: <a href="https://en.wikipedia.org/wiki/Matrix_chain_multiplication">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/">GeeksforGeeks</a> </li>
-</ul></li>
+      <section class="uc-section" aria-labelledby="material">
+        <h2 id="material">Study material</h2>
+        <uc-materials heading="none">
+          <ul>
+            <li>My own slides <a href="../material/dp.pdf">Dynamic Programming</a></li>
+          </ul>
+        </uc-materials>
+        <h3>DP concepts</h3>
+        <ul class="uc-links">
+          <li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/dynamic-programming-from-novice-to-advanced/">Dynamic Programming: From Novice to Advanced</a><span>TopCoder</span></li>
+          <li><a href="http://wcipeg.com/wiki/Dynamic_programming">Dynamic programming</a><span>PEG Wiki</span></li>
+          <li><a href="https://cp-algorithms.com/dynamic_programming/intro-to-dp.html">Introduction to Dynamic Programming</a><span>cp-algorithms</span></li>
+          <li><a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a><span>Chapter 7</span></li>
+          <li><a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">Competitive Programming</a><span>Section 3.5</span></li>
+        </ul>
+        <h3>Classical DP problems</h3>
+        <ul class="uc-links">
+          <li><a href="https://en.wikipedia.org/wiki/Longest_increasing_subsequence">LIS: Longest Increasing Subsequence</a><span>Wikipedia · also <a href="https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/">GeeksforGeeks</a> and <a href="https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html">cp-algorithms</a></span></li>
+          <li><a href="https://en.wikipedia.org/wiki/Longest_common_subsequence_problem">LCS: Longest Common Subsequence</a><span>Wikipedia · also <a href="https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/">GeeksforGeeks</a></span></li>
+          <li><a href="https://en.wikipedia.org/wiki/Edit_distance">ED: Edit Distance</a><span>Wikipedia · also <a href="https://www.geeksforgeeks.org/edit-distance-dp-5/">GeeksforGeeks</a></span></li>
+          <li><a href="https://en.wikipedia.org/wiki/Knapsack_problem">0-1 Knapsack</a><span>Wikipedia · also <a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/">GeeksforGeeks</a> and <a href="https://cp-algorithms.com/dynamic_programming/knapsack.html">cp-algorithms</a></span></li>
+          <li><a href="https://en.wikipedia.org/wiki/Change-making_problem">Coin Change</a><span>Wikipedia · also <a href="https://www.geeksforgeeks.org/coin-change-dp-7/">GeeksforGeeks</a></span></li>
+          <li><a href="https://en.wikipedia.org/wiki/Matrix_chain_multiplication">MCM: Matrix Chain Multiplication</a><span>Wikipedia · also <a href="https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/">GeeksforGeeks</a></span></li>
+        </ul>
+      </section>
 
-</ul>
+      <section class="uc-section" aria-labelledby="step-by-step">
+        <h2 id="step-by-step">See it step by step</h2>
+        <p class="uc-prose">Two classic bottom-up DPs: the table is filled one cell at a time from smaller subproblems, then the answer is rebuilt by walking the table back.</p>
+        <!-- Widget <uc-widget-dp>: 0/1 knapsack and longest common subsequence -->
+        <uc-widget-dp problem="knapsack" weights="1 3 4 5" values="1 4 5 7" capacity="7" predict editable>
+          <p>0/1 knapsack with capacity 7: the best value is 9, taking items 2 and 3 (weights 3 and 4, values 4 and 5).</p>
+        </uc-widget-dp>
+        <uc-widget-dp problem="lcs" a="ABCBDAB" b="BDCABA" predict>
+          <p>The longest common subsequence of ABCBDAB and BDCABA has length 4, for example BCBA.</p>
+        </uc-widget-dp>
+      </section>
 
-<h2 id="step-by-step">See it step by step</h2>
-<p>Two classic bottom-up DPs: the table is filled one cell at a time from smaller subproblems, then the answer is rebuilt by walking the table back.</p>
-<!-- Widget <uc-widget-dp>: 0/1 knapsack and longest common subsequence -->
-<uc-widget-dp problem="knapsack" weights="1 3 4 5" values="1 4 5 7" capacity="7" predict editable>
-  <p>0/1 knapsack with capacity 7: the best value is 9, taking items 2 and 3 (weights 3 and 4, values 4 and 5).</p>
-</uc-widget-dp>
-<uc-widget-dp problem="lcs" a="ABCBDAB" b="BDCABA" predict>
-  <p>The longest common subsequence of ABCBDAB and BDCABA has length 4, for example BCBA.</p>
-</uc-widget-dp>
+      <section class="uc-section" aria-labelledby="training">
+        <h2 id="training">Initiation/reinforcement problems</h2>
+        <p class="uc-prose">Easy problems to test your knowledge on the topics of this class, one per classic DP.</p>
+        <uc-problems cards track>
+          <section>
+            <h3 class="uc-visually-hidden">Initiation problems</h3>
+            <ul>
+              <li data-judge="uva" data-type="extra"><a href="https://uva.onlinejudge.org/external/4/497.pdf">Strategic Defense Initiative</a> <code>497</code>
+                <details name="hint"><summary>What it tests</summary><p>Simple LIS with quadratic time.</p></details></li>
+              <li data-judge="cses" data-type="extra"><a href="https://cses.fi/problemset/task/1145">Increasing Subsequence</a> <code>1145</code>
+                <details name="hint"><summary>What it tests</summary><p>n log n LIS.</p></details></li>
+              <li data-judge="cses" data-type="extra"><a href="https://cses.fi/problemset/task/3403">Longest Common Subsequence</a> <code>3403</code>
+                <details name="hint"><summary>What it tests</summary><p>Simple and direct LCS.</p></details></li>
+              <li data-judge="cses" data-type="extra"><a href="https://cses.fi/problemset/task/1639">Edit Distance</a> <code>1639</code>
+                <details name="hint"><summary>What it tests</summary><p>Simple and direct edit distance.</p></details></li>
+              <li data-judge="cses" data-type="extra"><a href="https://cses.fi/problemset/task/1158">Book Shop</a> <code>1158</code>
+                <details name="hint"><summary>What it tests</summary><p>Simple and direct 0-1 knapsack.</p></details></li>
+              <li data-judge="uva" data-type="extra"><a href="https://uva.onlinejudge.org/external/111/11137.pdf">Ingenuous Cubrency</a> <code>11137</code>
+                <details name="hint"><summary>What it tests</summary><p>Coin change, counting the number of ways to make change.</p></details></li>
+              <li data-judge="uva" data-type="extra"><a href="https://uva.onlinejudge.org/external/3/348.pdf">Optimal Array Multiplication Sequence</a> <code>348</code>
+                <details name="hint"><summary>What it tests</summary><p>Simple and direct MCM.</p></details></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/pc030.html">Making Change</a> <code>PC030</code>
+                <details name="hint"><summary>What it tests</summary><p>Directly tests your implementation of a bounded coin change.</p></details></li>
+            </ul>
+          </section>
+        </uc-problems>
+      </section>
 
-<h2>Initiation/Reinforcement Problems</h2>
-<ul>
-<li><a href="https://uva.onlinejudge.org/external/4/497.pdf">[UVA 497] Strategic Defense Initiative</a> (testing simple LIS with quadratic time)
-  </li><li><a href="https://cses.fi/problemset/task/1145">[CSES] Increasing Subsequence</a> (testing n log n LIS)
-  </li><li><a href="https://cses.fi/problemset/task/3403">[CSES] Longest Common Subsequence</a> (testing simple and direct LCS)
-  </li><li><a href="https://cses.fi/problemset/task/1639">[CSES] Edit Distance</a> (testing simple and direct edit distance)
-  </li><li><a href="https://cses.fi/problemset/task/1158">[CSES] Book Shop</a> (testing simple and direct 0-1 knapsack)
-  </li><li><a href="https://uva.onlinejudge.org/external/111/11137.pdf">[UVA 11137] Ingenuous Cubrency</a> (testing coin change, counting the number of ways to make change)
-  </li><li><a href="https://uva.onlinejudge.org/external/3/348.pdf">[UVA 348] Optimal Array Multiplication Sequence</a> (testing simple and direct MCM)
-</li></ul>
-<p>Here is also a problem to directly test your implementation of a bounded coin change:
-
-  </p><ul>
-<li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC030]</a> - <a href="../problems/pc030.html">Making Change</a>
-</li></ul>
-    </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week06.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week06.html</a> to demonstrate the UC Design Kit.</p>
+      <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week06.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week06.html</a> to demonstrate the UC Design Kit.</p>
+    </uc-guide>
   </uc-page>
 </body>
 </html>

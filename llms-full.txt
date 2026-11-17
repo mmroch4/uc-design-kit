@@ -18,7 +18,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 5. **Só o que está documentado.** Nenhum elemento, atributo, campo do `course.js` ou classe `uc-…` inventado. Para um comportamento que o kit não tem, um componente próprio em `extensions/` com `UC.define` e `UC.Element` (Nível 3).
 6. **Light DOM.** Os componentes do kit e os próprios não usam shadow DOM; o conteúdo escrito pelo professor fica no HTML, legível sem JavaScript.
 7. **Personalizar por níveis**: `accentColor` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
-8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
+8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; o topo de uma página vai num `uc-page-header` (com `uc-crumbs` nas páginas fora do menu), os exemplos de um enunciado num `uc-samples`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
 9. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
 10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
 11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
@@ -514,6 +514,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
 | `logo`URL, SVG, objeto ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho: um caminho relativo ao `course.js`, um `"<svg …>"` escrito no próprio campo ou `{ src, alt }`; `null` esconde-a. Ver [Logótipo](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#logotipo). |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
+| `source``{ author, url? }` | Opcional | — | De onde vem o conteúdo, num site copiado de outro: "Conteúdo de `author` (`HTMLText`), a partir do site original" no rodapé, com ligação a `url` ou ao [`source` da página](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#nota-de-origem). |
 | `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. Uma página pode mostrar a sua própria data com [`<uc-page updated>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#data-da-pagina). |
 | `editions`URL | Opcional | — | Ficheiro com as edições da cadeira, relativo ao `course.js`, normalmente `"../editions.js"`. Ver [Edições](#edicoes). |
 
@@ -833,6 +834,22 @@ pages: [
 ```
 
 Cada ficheiro declara a sua língua com `<html lang="pt">` ou `<html lang="en">` e o mesmo `<uc-page current="about">`. As duas formas misturam-se: páginas curtas com `lang` e páginas longas em ficheiros separados.
+
+### Páginas que não estão no menu
+
+Os guiões, os enunciados e as outras páginas fora de `pages` dizem qual é a sua tradução no `<head>`, com um `<link rel="alternate">` por língua. O botão de língua do cabeçalho passa a abrir esse ficheiro, e já não é preciso uma ligação "English version" no texto:
+
+`praticas/aula05_pt.html`:
+
+```html
+<html lang="pt">
+<head>
+  …
+  <link rel="alternate" hreflang="en" href="aula05.html">
+</head>
+```
+
+O ficheiro em inglês faz o mesmo ao contrário (`hreflang="pt" href="aula05_pt.html"`). Os motores de pesquisa também leem estas ligações.
 
 ## Acrescentar uma língua
 
@@ -1275,7 +1292,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 5. **Só o que está documentado.** Nenhum elemento, atributo, campo do `course.js` ou classe `uc-…` inventado. Para um comportamento que o kit não tem, um componente próprio em `extensions/` com `UC.define` e `UC.Element` (Nível 3).
 6. **Light DOM.** Os componentes do kit e os próprios não usam shadow DOM; o conteúdo escrito pelo professor fica no HTML, legível sem JavaScript.
 7. **Personalizar por níveis**: `accentColor` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
-8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
+8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; o topo de uma página vai num `uc-page-header` (com `uc-crumbs` nas páginas fora do menu), os exemplos de um enunciado num `uc-samples`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
 9. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
 10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
 11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
@@ -1639,6 +1656,28 @@ Como se organiza a pasta e o que muda em cada ano novo está em [Novo ano letivo
 
 O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igual em todas as páginas. Uma página que muda mais vezes (sumários, problemas) pode mostrar a sua: `<uc-page updated="2025-11-20">`. Com `updated="auto"`, a data é a da última alteração do ficheiro, que o servidor indica no cabeçalho `Last-Modified`; se o servidor não a indicar, o rodapé fica sem data, em vez de mostrar a data de hoje. Aberta a partir do disco (`file://`), a página mostra a data do ficheiro.
 
+### Nota de origem
+
+Um site copiado de outro (o site antigo da cadeira, o de outro docente) diz de onde vem o conteúdo numa linha do rodapé, em vez de um parágrafo no fim de cada página. A linha vem de `source` no `course.js`: "Conteúdo de Fernando Silva, a partir do site original." A ligação "site original" vai para `source.url`, ou para o endereço da própria página no site antigo, se o `<uc-page>` tiver `source="…"`.
+
+Exemplo (rodapé com a nota de origem), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/source.html):
+
+```html
+<uc-page source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/horarios.html">
+  <h1>Horários</h1>
+  <p>Conteúdo copiado de outro site: o rodapé diz de quem é e liga à página original.</p>
+</uc-page>
+```
+
+`course.js`:
+
+```js
+source: {
+  author: "Fernando Silva e Vanessa Silva",
+  url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/",
+},
+```
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
@@ -1646,6 +1685,7 @@ O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igua
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
 | `layout` | `sidebar` ou `full` | `sidebar` | Com `full`, a página não tem navegação e o conteúdo ocupa toda a largura. |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
+| `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
 
 ## Configuração usada
@@ -1663,6 +1703,7 @@ Campos do `course.js` que o componente lê. Só `title` é obrigatório; sem `pa
 | [`pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas) | Itens da navegação, pela ordem escrita, e página de destino do nome do curso. |
 | [`platforms`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao) | Links externos no grupo "Plataformas", por baixo das páginas. |
 | [`footer`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Texto à esquerda do rodapé. Sem ele, o nome do curso e da instituição. |
+| [`source`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Linha "Conteúdo de …, a partir do site original" no rodapé. |
 | [`updated`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | "Atualizado a …" à direita do rodapé, quando a página não tem o seu `updated`. |
 | [`editions`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes) | Ficheiro com as edições da cadeira: botão "Outros anos" e aviso nas edições antigas. |
 
@@ -1732,7 +1773,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
-| `.uc-footer`, `__text`, `__updated` | O rodapé, o texto à esquerda e a data de atualização. |
+| `.uc-footer`, `__text`, `__updated`, `__source` | O rodapé, o texto à esquerda, a data de atualização e a nota de origem (numa linha própria). |
 | `.uc-skip-link` | O link "Saltar para o conteúdo", visível só com o foco do teclado. |
 
 `theme.css`:
@@ -8847,6 +8888,54 @@ A pré-visualização é mais estreita do que 960 px, por isso mostra as colunas
 
 Foi pensado para dois filhos. Quando empilha, a segunda coluna fica por baixo, por isso o que importa mais vai primeiro no HTML. O ponto de quebra é o da janela, não o do contentor, e não se muda com um token.
 
+## `uc-page-header`
+
+O cabeçalho de uma página: o caminho de navegação, uma etiqueta pequena, o `<h1>` e a introdução, com pouco espaço entre eles. As secções da página ficam a 48 px umas das outras, por isso o título e a introdução precisam de um contentor próprio; este substitui um `uc-stack` com `style="--uc-stack-gap: …"`. Vai num `<header>` ou num `<div>`, como primeiro filho do `<uc-page>`.
+
+Exemplo (caminho, etiqueta, título e introdução), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/page-header.html):
+
+```html
+<header class="uc-page-header">
+  <nav class="uc-crumbs" aria-label="Localização">
+    <ol>
+      <li><a href="../../pt/estilos/layout.html">Materiais</a></li>
+      <li aria-current="page">Problemas</li>
+    </ol>
+  </nav>
+  <p class="uc-eyebrow">Aula 5 · Mooshak</p>
+  <h1>Problemas da semana</h1>
+  <p class="uc-prose">Os problemas para submeter no Mooshak, com o prazo e o peso de cada um.</p>
+</header>
+```
+
+| Elemento | Efeito |
+| --- | --- |
+| `.uc-page-header` | Coluna com 12 px entre os filhos. |
+| `nav.uc-crumbs` | Opcional, primeiro. Ver [uc-crumbs](#crumbs). |
+| `.uc-eyebrow` | Opcional, por cima do título. |
+| `h1` | O único título de nível 1 da página. |
+| `p.uc-prose` ou `p.uc-lead` | A introdução; com `lang`, uma por língua. |
+
+### `uc-eyebrow`
+
+Etiqueta pequena, em maiúsculas e cinzenta, por cima de um título: "Ficha da unidade curricular · CC1003", "Aula prática 5". Também serve por cima de um `<h2>` ou dentro de um cartão. É texto decorativo do título: o que for importante tem de estar também no título ou na introdução.
+
+### `uc-crumbs`
+
+O caminho de navegação das páginas que não estão no menu (enunciados, páginas de código, ajudas, testes), com o aspeto do caminho que o [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md) gera nos guiões. É um `<nav>` com `aria-label` e uma lista ordenada; o último elemento é a página atual, sem ligação e com `aria-current="page"`. As barras entre os elementos são decorativas.
+
+```html
+<nav class="uc-crumbs" aria-label="Localização">
+  <ol>
+    <li><a href="../materiais.html">Materiais</a></li>
+    <li><a href="index.html">Problemas</a></li>
+    <li aria-current="page">[PI013] Jogo da Vida</li>
+  </ol>
+</nav>
+```
+
+Num site bilingue, o texto de cada elemento leva as duas línguas (`<span lang="pt">…</span><span lang="en">…</span>`). Dentro de um `uc-page-header` o caminho fica junto ao título; sozinho, ficaria a 48 px dele.
+
 ## Ver também
 
 - [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md): cartões, caixas e listas para pôr dentro destes blocos.
@@ -8997,6 +9086,21 @@ Exemplo (seis ligações em três colunas), [demonstração ao vivo](https://uc-
 </ul>
 ```
 
+### `uc-links--inline`
+
+Ligações curtas na mesma linha, separadas por um ponto: juízes online, comunidades, as versões de um documento. Sem descrição (um `<span>` fica a seguir à ligação, na mesma linha). Para mais de seis ou sete ligações, `uc-links--grid` lê-se melhor.
+
+Exemplo (quatro ligações numa linha), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/links-inline.html):
+
+```html
+<ul class="uc-links uc-links--inline">
+  <li><a href="https://codeforces.com/">Codeforces</a></li>
+  <li><a href="https://atcoder.jp/">AtCoder</a></li>
+  <li><a href="https://open.kattis.com/">Kattis</a></li>
+  <li><a href="https://cses.fi/">CSES</a></li>
+</ul>
+```
+
 ## `uc-shortcuts`
 
 Atalhos grandes, em grelha, para as páginas mais visitadas. Cada um tem pelo menos 48 px de altura e uma seta no fim.
@@ -9070,6 +9174,81 @@ Exemplo (lista de regras), [demonstração ao vivo](https://uc-design-kit.miguel
 
 Uma `<ul>` sem classe já tem marcadores e recuo; `uc-bullets` acrescenta o espaçamento e a cor do texto corrido, para regras e programas.
 
+## `uc-steps`
+
+Uma lista numerada 01, 02, 03… com um título e um texto por item: o programa da cadeira, os passos de uma instalação. Vai num `<ol>`, que já diz a posição a quem usa leitor de ecrã; os números desenhados são decorativos.
+
+Exemplo (três pontos do programa), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/steps.html):
+
+```html
+<ol class="uc-steps">
+  <li>
+    <h3>Introdução à linguagem C</h3>
+    <p>História, características, compilação e execução.</p>
+  </li>
+  <li>
+    <h3>Tipos básicos e controlo de fluxo</h3>
+    <p>Inteiros, vírgula flutuante, carateres, ciclos e funções.</p>
+  </li>
+  <li>
+    <h3>Apontadores</h3>
+    <p>Modelo de memória, vetores e cadeias de carateres.</p>
+  </li>
+</ol>
+```
+
+Cada `<li>` pode ter só um parágrafo, ou um título (`<h3>`, 16 px) e um parágrafo. Os itens ficam separados por uma linha.
+
+## `uc-tags`
+
+Uma lista de etiquetas: cada `<li>` tem o aspeto de um [`uc-tag`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md#tag), sem precisar de classe. Para os cursos a que a cadeira pertence, as linguagens de um teste, os temas de uma aula.
+
+Exemplo (três cursos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/tags.html):
+
+```html
+<ul class="uc-tags">
+  <li>Licenciatura em Ciência de Computadores</li>
+  <li>Licenciatura em Inteligência Artificial e Ciência de Dados</li>
+  <li>Minor em Informática</li>
+</ul>
+```
+
+Se cada item for um destino, com uma frase a explicar, `uc-links` é melhor escolha.
+
+## `uc-facts`
+
+Pares de etiqueta e valor num `<dl>`: as regras de um teste, os dados de um trabalho. Tem o aspeto do `<dl>` de uma [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md): a etiqueta à esquerda, a cinzento, e o valor à direita; no telemóvel a etiqueta fica por cima.
+
+Exemplo (três regras de um teste), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/facts.html):
+
+```html
+<dl class="uc-facts">
+  <dt>Método</dt>
+  <dd>Presencial, nos laboratórios do DCC, sem acesso à internet.</dd>
+  <dt>Linguagem</dt>
+  <dd>C (gcc 13)</dd>
+  <dt>Pontuação</dt>
+  <dd>2,5 valores; cada caso de teste conta.</dd>
+</dl>
+```
+
+Cada par pode ir num `<div>` (`<div><dt>…</dt><dd>…</dd></div>`), por exemplo para lhe pôr um `lang`. Para a data, a hora e o local de uma prova, o [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md) lê-os do `course.js`.
+
+## `uc-details`
+
+Um `<details>` com o estilo do kit, em qualquer parte da página: um botão pequeno, da cor de destaque, que abre um painel suave. É o mesmo aspeto das dicas de [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md). Para dicas e soluções de exercícios há `details.uc-hint` e `details.uc-solution` (ver [`<uc-exercise>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md)), que também funcionam fora de um exercício.
+
+Exemplo (um bloco fechado), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/details.html):
+
+```html
+<details class="uc-details">
+  <summary>Ver a figura</summary>
+  <p>O conteúdo só aparece quando se abre: uma figura, um exemplo longo, uma curiosidade.</p>
+</details>
+```
+
+O texto do `<summary>` diz o que se abre ("Ver a figura", "Exemplo completo"). As imagens dentro do painel ajustam-se à largura.
+
 ## Ver também
 
 - [Blocos: layout](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md): secções, pilhas e grelhas onde estes blocos se arrumam.
@@ -9129,7 +9308,7 @@ Uma ligação leva a outra página ou ficheiro; um `<button type="button">` faz 
 
 Uma etiqueta pequena, em linha com o texto, para classificar: tipo de aula, estado, novidade.
 
-Exemplo (as cinco variantes de etiqueta), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/tag.html):
+Exemplo (as seis variantes de etiqueta), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/tag.html):
 
 ```html
 <span class="uc-tag">Teórica</span>
@@ -9137,6 +9316,7 @@ Exemplo (as cinco variantes de etiqueta), [demonstração ao vivo](https://uc-de
 <span class="uc-tag uc-tag--warning">Avaliação</span>
 <span class="uc-tag uc-tag--success">Entregue</span>
 <span class="uc-tag uc-tag--muted">Opcional</span>
+<span class="uc-tag uc-tag--danger">Wrong Answer</span>
 ```
 
 ### Variantes
@@ -9148,8 +9328,9 @@ Exemplo (as cinco variantes de etiqueta), [demonstração ao vivo](https://uc-de
 | `uc-tag--warning` | `--uc-color-warning-bg`, texto `--uc-color-warning-text` | Avaliação, "Novo", obrigatório. |
 | `uc-tag--success` | `--uc-color-success-bg`, texto `--uc-color-success-text` | Feito, entregue, certo. |
 | `uc-tag--muted` | Sem fundo, contorno `--uc-color-border`, texto `--uc-color-text-muted` | Opcional, secundário. |
+| `uc-tag--danger` | `--uc-color-danger-bg`, texto `--uc-color-danger-text` | Erro, falhou ("Wrong Answer", "Fora de prazo"). |
 
-Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar. `--muted` tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.
+Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar, e "Wrong Answer" igual a quem não distingue o vermelho. `--muted` tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.
 
 ## `uc-table`
 
@@ -9208,6 +9389,27 @@ Cada tabela deve ter um `<caption>` como primeiro filho: é o nome que os leitor
 | `uc-mono` | Numa célula, para códigos de turma, horas e salas que se comparam em coluna. |
 
 O mesmo comportamento de teclado aplica-se às tabelas que os componentes geram ([`<uc-deadlines view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md), [`<uc-team view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md)) e aos `<pre>` largos dentro de `uc-content`.
+
+### `uc-table--fit` e `uc-num`
+
+Uma tabela curta de números (pontos por exercício, pesos) fica estranha esticada a toda a largura. Com `uc-table--fit` no contentor, a tabela fica só com a largura do conteúdo (e continua a deslizar se não couber). `uc-num` numa célula (`<th>` ou `<td>`) alinha-a à direita, com algarismos da mesma largura, para as colunas de números se lerem de cima a baixo.
+
+Exemplo (tabela estreita com uma coluna de números), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/table-fit.html):
+
+```html
+<div class="uc-table uc-table--fit">
+  <table>
+    <thead>
+      <tr><th scope="col">Exercício</th><th scope="col" class="uc-num">Pontos</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ciclos e vetores</td><td class="uc-num">20</td></tr>
+      <tr><td>Cadeias de carateres</td><td class="uc-num">15</td></tr>
+      <tr><td>Recursão</td><td class="uc-num">5</td></tr>
+    </tbody>
+  </table>
+</div>
+```
 
 ### `table[data-sortable]`
 
@@ -9272,6 +9474,34 @@ O valor do atributo nomeia o que se copia no nome acessível do botão: `data-co
 | `.uc-copy-block__button` | O botão (um `uc-button` de 32 px); `.is-copied` enquanto mostra o visto. |
 
 O `<pre>` não tem fundo próprio fora de `uc-content`; a demonstração usa `uc-content` para lhe dar caixa. Dentro de um [`<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) o atributo é ignorado, porque esse componente já tem o seu botão. Sem JavaScript, o bloco mostra-se sem botão.
+
+## `uc-samples`
+
+Os exemplos de entrada e saída de um problema, lado a lado, que passam a ficar um por cima do outro no telemóvel. Cada coluna é um `<div>` com uma etiqueta (`uc-samples__label`) e um [`<pre data-copy>`](#pre-data-copy). Substitui a tabela de duas colunas dos enunciados antigos, que no telemóvel fica apertada.
+
+Exemplo (entrada e saída de um exemplo), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/samples.html):
+
+```html
+    <div class="uc-samples">
+      <div>
+        <p class="uc-samples__label">Input</p>
+        <pre data-copy="Input">3
+1 2 3</pre>
+      </div>
+      <div>
+        <p class="uc-samples__label">Output</p>
+        <pre data-copy="Output">6</pre>
+      </div>
+    </div>
+```
+
+| Elemento | Efeito |
+| --- | --- |
+| `.uc-samples` | Grelha de colunas com pelo menos `--uc-samples-min` (220 px); uma só no telemóvel. |
+| `.uc-samples > div` | Uma coluna: a etiqueta e o bloco, que estica até à altura da coluna vizinha. |
+| `.uc-samples__label` | "Input", "Output", "Explicação": pequena, em maiúsculas. |
+
+Vários exemplos fazem-se com um `uc-samples` por exemplo, cada um com o seu título (`<h3>Exemplo 2</h3>`) se precisar. Com três colunas (entrada, saída e explicação), a grelha põe as que couberem lado a lado.
 
 ## `a[data-auth]`
 
@@ -11996,7 +12226,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
-| `.uc-footer`, `__text`, `__updated` | O rodapé, o texto à esquerda e a data de atualização. |
+| `.uc-footer`, `__text`, `__updated`, `__source` | O rodapé, o texto à esquerda, a data de atualização e a nota de origem (numa linha própria). |
 | `.uc-skip-link` | O link "Saltar para o conteúdo", visível só com o foco do teclado. |
 
 ### [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md)
@@ -12291,9 +12521,9 @@ As classes que se escrevem no HTML para dar forma ao conteúdo. Cada página de 
 
 | Classes | Página |
 | --- | --- |
-| `uc-section`, `uc-stack`, `uc-grid`, `uc-split` | [Blocos: layout](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md) |
-| `uc-card`, `uc-card--accent`, `uc-callout`, `uc-callout--warning`, `uc-links`, `uc-shortcuts`, `uc-checklist`, `uc-bullets` | [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md) |
-| `uc-button`, `uc-button--primary`, `uc-button--sm`, `uc-tag` e as suas variantes, `uc-table`, `uc-copy-block`, `uc-copy-block__button`, `uc-mono`, `uc-muted`, `uc-small`, `uc-visually-hidden` | [Blocos: elementos](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md) |
+| `uc-section`, `uc-stack`, `uc-grid`, `uc-split`, `uc-page-header`, `uc-eyebrow`, `uc-crumbs` | [Blocos: layout](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md) |
+| `uc-card`, `uc-card--accent`, `uc-callout`, `uc-callout--warning`, `uc-links`, `uc-links--grid`, `uc-links--inline`, `uc-shortcuts`, `uc-checklist`, `uc-bullets`, `uc-steps`, `uc-tags`, `uc-facts`, `uc-details` | [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md) |
+| `uc-button`, `uc-button--primary`, `uc-button--sm`, `uc-tag` e as suas variantes, `uc-table`, `uc-table--fit`, `uc-num`, `uc-samples`, `uc-samples__label`, `uc-copy-block`, `uc-copy-block__button`, `uc-mono`, `uc-muted`, `uc-small`, `uc-visually-hidden` | [Blocos: elementos](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md) |
 | `uc-lead`, `uc-prose`, `uc-content`, `uc-content__float` | [Tipografia](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tipografia.md) |
 
 ## Internas
@@ -12734,6 +12964,7 @@ pages, which the first run of the script replaces.
 | `deadlines` | `Deadline[]` | no | `[]` | See 2.5. |
 | `notices` | `Notice[]` | no | `[]` | See 2.6. |
 | `footer` | `HTMLText` | no | course title + institution | Footer left side. |
+| `source` | `{ author: HTMLText, url?: URL }` | no | — | Where the content comes from, for sites copied from an older one: a line in the footer, "Conteúdo de {author}, a partir do site original.", with "site original" linking to `url`, or to the page's own `<uc-page source>` (3.1). Without `url` and without `source=`, the line has no link. |
 | `updated` | `ISODate` | no | — | "Last updated" in the footer. One page can show its own date with `<uc-page updated>` (3.1). |
 | `editions` | URL | no | — | Address of the shared editions file, relative to `course.js`, usually `"../editions.js"`. See 2.9. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
@@ -12752,6 +12983,12 @@ pages: [
   { id: "about", href: { pt: "sobre.html", en: "about.html" } }   // one file per language
 ]
 ```
+
+A page that is not in `pages` (a lab guide, a problem statement) and has one
+file per language names its translations in its `<head>`, with
+`<link rel="alternate" hreflang="en" href="aula05.html">`. The language switch
+then goes to that file, as it does for `pages` with one `href` per language.
+A `<link rel="alternate">` wins over `pages` when both exist.
 
 | Built-in id | Default `href` | Default label (pt / en) |
 | --- | --- | --- |
@@ -12949,6 +13186,7 @@ with JavaScript disabled it is shown at once.
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
 | `layout` | `sidebar` \| `full` | `sidebar` | `full` hides the navigation (single-page sites, guides). |
 | `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
+| `source` | URL | `source.url` of `course.js` | Address of this page on the original site: the link of the footer line "Conteúdo de …, a partir do site original" (2.1, `source`). Ignored when `course.js` has no `source`. |
 | `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
 
 With `editions` in `course.js` (2.9), the header also has "Outros anos" and
@@ -13727,7 +13965,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-card` | Bordered surface. `uc-card--accent` for the highlighted variant. |
 | `uc-grid` | Responsive auto-fit grid. `--uc-grid-min` sets the minimum column width (default 220px). |
 | `uc-stack` | Vertical rhythm container (`gap` from `--uc-stack-gap`). |
-| `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--muted`. |
+| `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--danger`, `uc-tag--muted`. |
 | `uc-table` | Put on a wrapper `<div>` around a `<table>`: horizontal scroll, borders, header style. While the table overflows, the kit makes the wrapper focusable (`tabindex="0"`, `role="region"`, labelled by the `<caption>`) so it can be scrolled with the keyboard. Set `--uc-table-min` (default `560px`) to change the minimum table width. |
 | `uc-links` | A `<ul>` of links with a secondary description in a `<span>`. |
 | `uc-links--grid` | Variant of `uc-links` in columns, for long lists (judges, other courses). Column width from `--uc-links-min` (default `260px`); one column on phones. Group several lists with `<h3>` headings as usual. |
@@ -13737,6 +13975,17 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-split` | Two columns (main + narrower side) that stack below 960px. |
 | `uc-section` | A page section: spaces its own children (heading, text, blocks) evenly. |
 | `uc-bullets` | A `<ul>` with simple bullets and comfortable spacing. |
+| `uc-page-header` | A page's header: optional breadcrumbs (`uc-crumbs`) and `uc-eyebrow`, the `<h1>` and an intro, 12px apart (the page spaces its sections 48px apart). Replaces `uc-stack` with an inline `--uc-stack-gap`. |
+| `uc-eyebrow` | Small uppercase muted label above a title. |
+| `uc-crumbs` | Breadcrumbs for pages outside the navigation: `<nav class="uc-crumbs" aria-label="…"><ol><li><a>…</a></li>…<li aria-current="page">…</li></ol></nav>`, with the look of `<uc-guide>`'s breadcrumbs. Put it first in `uc-page-header`. |
+| `uc-samples` | Sample input/output of a problem: a grid of columns (each a `<div>` with a `uc-samples__label` and a `<pre data-copy>`), at least `--uc-samples-min` wide (default 220px); one column on phones. |
+| `uc-steps` | An `<ol>` numbered 01, 02, … (decorative numbers; the list gives the position), each item a title and a text, separated by lines (a syllabus). |
+| `uc-tags` | A `<ul>` whose items look like `uc-tag`, wrapped on several lines. |
+| `uc-links--inline` | Variant of `uc-links`: the links on one line, separated by a decorative dot. |
+| `uc-facts` | A `<dl>` of label/value rows (label muted on the left; stacked on phones). A `<div>` may wrap each pair. |
+| `uc-table--fit` | Variant of `uc-table`: the table is only as wide as its content (`--uc-table-min: 0`). |
+| `uc-num` | A numeric cell: right-aligned, tabular figures. |
+| `uc-details` | A `<details>` anywhere in a page, styled as the hints of `<uc-problems>`: a small accent summary that opens a soft panel. (`details.uc-hint` and `details.uc-solution` of 3.x also work outside an exercise.) |
 | `uc-button` | Link or button styled as a button; `uc-button--primary` filled, `uc-button--sm` compact (tables, toolbars). |
 | `uc-lead` | Larger intro paragraph. |
 | `uc-prose` | Readable text column (max 720px, secondary colour). |

@@ -25,7 +25,7 @@ As páginas que só existiam no original passaram a caminhos relativos.
 | `practical/test1.html`, `test2.html` | iguais | Reescritas (`uc-assessment-info` e um cartão por exercício) | Feita |
 | `practical/class01.html` … `class11.html` | iguais | `uc-guide` com `uc-exercise`; 01 e 05 escritas à mão, as outras convertidas por script a partir do HTML original | Feita |
 | `practical/mooshak_help.html` | igual | Copiada dentro de `uc-content` | Feita |
-| `practical/ip097_skeleton.html` | igual | Código num `uc-code` (a partir do `.py`) | Feita |
+| `practical/ip097_skeleton.html` | `practical/class10.html` | Código num `uc-code` recolhido dentro da aula 10 | Feita |
 | `practical/*.png`, `*.jpg`, `*.py`, `*.txt` | iguais | Copiados tal como estão (memes, capturas do Mooshak, código e inputs de exemplo) | Feita |
 | `problems/index.html` | igual | Reescrita com `uc-problems` (filtros, "Resolvido", prazo de cada aula) | Feita |
 | `problems/ipNNN.html` (107) e `xmas.html` | iguais | Copiados dentro de `uc-content`, com as imagens; MathJax do cdnjs nos que usam fórmulas | Feita |
@@ -87,3 +87,23 @@ Conteúdo novo, escrito para o exemplo, não do site original.
 
 - O calendário reconstruído em `weeks.html` e as datas das aulas T09–T23 em `lectures.html`.
 - Os papéis da equipa em `course.js`.
+
+## Curadoria com o kit (17 nov 2026)
+
+Revisão: <https://claude.ai/artifact/Bdn6q8AE1LZAs2f4nTDZC6>. Primeira parte, só com peças que o kit já tem:
+
+- Aulas: a lista "Exercises for submission" é um `<uc-problems track>` com o prazo da aula
+  (`data-deadline`), o tipo e o peso (`<data>`); o "Resolvido" é partilhado com
+  `problems/index.html`, que passou a ter também os pesos. A política de submissão ficou só em
+  `assessment.html#exercises`; nas aulas há um `uc-callout` curto. "Skills" em `uc-checklist`.
+- Enunciados: o prazo vem do `course.js` (`<uc-date>`), os avisos fixos são `uc-callout--warning`,
+  sem células vazias nem `<br/>` entre tabelas. Corrigido o link em falta do IP054 (aula 5).
+- Testes: os pesos dos exercícios num `<uc-grading scale="100">`; cartões simples `uc-card`.
+- Exame: objetivos em `uc-checklist`. Avaliação: elegibilidade em `uc-callout`, ligações em `uc-links--grid`.
+- Início: sem o xkcd nem os cartões de "Quick links" (Mooshak e Discord já estão na barra lateral);
+  os links do Python passaram para `materials.html`.
+- `practical/ip097_skeleton.html` saiu: o código está na aula 10, num `uc-code` recolhido.
+
+Fica para quando o kit tiver as peças (thread do PI): caminho de navegação (`.crumbs`), cabeçalho
+de página, exemplos de entrada e saída, nota de origem, lista numerada (`.program`), etiqueta de
+erro para os veredictos do Mooshak, datas da semana no `uc-guide` (`.class-meta`).

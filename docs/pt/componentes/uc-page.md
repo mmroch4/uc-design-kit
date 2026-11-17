@@ -145,6 +145,28 @@ Como se organiza a pasta e o que muda em cada ano novo está em [Novo ano letivo
 
 O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igual em todas as páginas. Uma página que muda mais vezes (sumários, problemas) pode mostrar a sua: `<uc-page updated="2025-11-20">`. Com `updated="auto"`, a data é a da última alteração do ficheiro, que o servidor indica no cabeçalho `Last-Modified`; se o servidor não a indicar, o rodapé fica sem data, em vez de mostrar a data de hoje. Aberta a partir do disco (`file://`), a página mostra a data do ficheiro.
 
+### Nota de origem
+
+Um site copiado de outro (o site antigo da cadeira, o de outro docente) diz de onde vem o conteúdo numa linha do rodapé, em vez de um parágrafo no fim de cada página. A linha vem de `source` no `course.js`: "Conteúdo de Fernando Silva, a partir do site original." A ligação "site original" vai para `source.url`, ou para o endereço da própria página no site antigo, se o `<uc-page>` tiver `source="…"`.
+
+Exemplo (rodapé com a nota de origem), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/source.html):
+
+```html
+<uc-page source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/horarios.html">
+  <h1>Horários</h1>
+  <p>Conteúdo copiado de outro site: o rodapé diz de quem é e liga à página original.</p>
+</uc-page>
+```
+
+`course.js`:
+
+```js
+source: {
+  author: "Fernando Silva e Vanessa Silva",
+  url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/",
+},
+```
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
@@ -152,6 +174,7 @@ O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igua
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
 | `layout` | `sidebar` ou `full` | `sidebar` | Com `full`, a página não tem navegação e o conteúdo ocupa toda a largura. |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
+| `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
 
 ## Configuração usada
@@ -169,6 +192,7 @@ Campos do `course.js` que o componente lê. Só `title` é obrigatório; sem `pa
 | [`pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas) | Itens da navegação, pela ordem escrita, e página de destino do nome do curso. |
 | [`platforms`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao) | Links externos no grupo "Plataformas", por baixo das páginas. |
 | [`footer`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Texto à esquerda do rodapé. Sem ele, o nome do curso e da instituição. |
+| [`source`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Linha "Conteúdo de …, a partir do site original" no rodapé. |
 | [`updated`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | "Atualizado a …" à direita do rodapé, quando a página não tem o seu `updated`. |
 | [`editions`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes) | Ficheiro com as edições da cadeira: botão "Outros anos" e aviso nas edições antigas. |
 
@@ -238,7 +262,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
-| `.uc-footer`, `__text`, `__updated` | O rodapé, o texto à esquerda e a data de atualização. |
+| `.uc-footer`, `__text`, `__updated`, `__source` | O rodapé, o texto à esquerda, a data de atualização e a nota de origem (numa linha própria). |
 | `.uc-skip-link` | O link "Saltar para o conteúdo", visível só com o foco do teclado. |
 
 `theme.css`:

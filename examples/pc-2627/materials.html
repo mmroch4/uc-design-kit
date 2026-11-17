@@ -20,19 +20,20 @@
     <section class="uc-section" aria-labelledby="judges">
       <h2 id="judges">Online judges</h2>
       <div class="uc-grid">
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main">Main judge</span>
-          <a class="book__title" href="https://mooshak.dcc.fc.up.pt/~pc/">Mooshak</a>
-          <span class="uc-muted uc-small">Our local judge hosted at DCC. Problems PC001, PC002…</span>
+        <div class="uc-card uc-card--accent">
+          <p><span class="uc-tag uc-tag--accent">Main judge</span></p>
+          <h3><a href="https://mooshak.dcc.fc.up.pt/~pc/">Mooshak</a></h3>
+          <p class="uc-small uc-muted">Our local judge hosted at DCC. Problems PC001, PC002…</p>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main">Main judge</span>
-          <a class="book__title" href="https://codeforces.com/">CodeForces</a>
-          <span class="uc-muted uc-small">Problems from the archive and live rounds.</span>
+        <div class="uc-card uc-card--accent">
+          <p><span class="uc-tag uc-tag--accent">Main judge</span></p>
+          <h3><a href="https://codeforces.com/">CodeForces</a></h3>
+          <p class="uc-small uc-muted">Problems from the archive and live rounds.</p>
         </div>
       </div>
       <h3>Other online judges</h3>
-      <ul class="inline-links">
+      <!-- uc-links--grid: short links in columns; --uc-links-min sets the column width. -->
+      <ul class="uc-links uc-links--grid" style="--uc-links-min: 160px">
         <li><a href="https://qoj.ac/">QOJ</a></li>
         <li><a href="https://atcoder.jp/">AtCoder</a></li>
         <li><a href="https://cses.fi/problemset/">CSES</a></li>
@@ -41,10 +42,10 @@
         <li><a href="https://wcipeg.com/problems">PEG</a></li>
         <li><a href="http://acm.timus.ru/">Timus</a></li>
         <li><a href="https://dmoj.ca/">DM:OJ</a></li>
-        <li><a href="https://onlinejudge.org/">UVA</a> (<a href="https://uhunt.onlinejudge.org/">uHunt</a>, <a href="https://udebug.com/">uDebug</a>)</li>
+        <li><a href="https://onlinejudge.org/">UVA</a><span>With <a href="https://uhunt.onlinejudge.org/">uHunt</a> and <a href="https://udebug.com/">uDebug</a></span></li>
       </ul>
       <h3>Other online contests and communities</h3>
-      <ul class="inline-links">
+      <ul class="uc-links uc-links--grid" style="--uc-links-min: 160px">
         <li><a href="https://www.codechef.com/">CodeChef</a></li>
         <li><a href="https://www.hackerrank.com/">HackerRank</a></li>
         <li><a href="http://community.topcoder.com/tc">Topcoder</a></li>
@@ -55,40 +56,40 @@
     <section class="uc-section" aria-labelledby="material">
       <h2 id="material">Study material</h2>
       <ul class="uc-links">
-        <li><a href="https://github.com/lnishan/awesome-competitive-programming">Awesome Competitive Programming</a> <span class="uc-muted">· a curated list of awesome Competitive Programming, Algorithm and Data Structure resources</span></li>
-        <li><a href="https://usaco.guide/">USACO Guide</a> (<a href="https://usaco.guide/general/resources-cp">resources</a>) <span class="uc-muted">· a free collection of curated, high-quality resources to take you from Bronze to Platinum and beyond</span></li>
+        <li><a href="https://github.com/lnishan/awesome-competitive-programming">Awesome Competitive Programming</a><span>A curated list of awesome Competitive Programming, Algorithm and Data Structure resources</span></li>
+        <li><a href="https://usaco.guide/">USACO Guide</a><span>A free collection of curated, high-quality resources to take you from Bronze to Platinum and beyond · <a href="https://usaco.guide/general/resources-cp">resources</a></span></li>
       </ul>
 
       <h3>Books</h3>
       <div class="uc-grid">
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main">Main · free</span>
-          <a class="book__title" href="https://cpbook.net">Competitive Programming</a>
-          <span class="uc-small"><a href="http://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">PDF of the 2nd edition (free)</a></span>
+        <div class="uc-card uc-card--accent">
+          <p><span class="uc-tag uc-tag--accent">Main</span> <span class="uc-tag uc-tag--success">Free</span></p>
+          <h4><a href="https://cpbook.net">Competitive Programming</a></h4>
+          <p class="uc-small"><a href="http://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">PDF of the 2nd edition</a></p>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main">Main · free</span>
-          <a class="book__title" href="https://cses.fi/book/">Competitive Programmer's Handbook</a>
-          <span class="uc-small"><a href="https://cses.fi/book.pdf">PDF (free)</a></span>
+        <div class="uc-card uc-card--accent">
+          <p><span class="uc-tag uc-tag--accent">Main</span> <span class="uc-tag uc-tag--success">Free</span></p>
+          <h4><a href="https://cses.fi/book/">Competitive Programmer's Handbook</a></h4>
+          <p class="uc-small"><a href="https://cses.fi/book.pdf">PDF</a></p>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind">Other</span>
-          <a class="book__title" href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/">Introduction to Algorithms</a>
+        <div class="uc-card">
+          <p><span class="uc-tag uc-tag--muted">Other</span></p>
+          <h4><a href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/">Introduction to Algorithms</a></h4>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind">Other</span>
-          <a class="book__title" href="https://www.amazon.com/Algorithm-Design-Manual-Steven-Skiena/dp/1849967202">The Algorithm Design Manual</a>
+        <div class="uc-card">
+          <p><span class="uc-tag uc-tag--muted">Other</span></p>
+          <h4><a href="https://www.amazon.com/Algorithm-Design-Manual-Steven-Skiena/dp/1849967202">The Algorithm Design Manual</a></h4>
         </div>
       </div>
 
       <h3>Algorithmic tutorials</h3>
       <ul class="uc-links">
-        <li>TopCoder: <a href="https://www.topcoder.com/thrive/tracks?track=Competitive%20Programming">Competitive Programming Tutorials</a></li>
-        <li>MAXimal: <a href="https://cp-algorithms.com/">E-Maxx Algorithms in English</a></li>
-        <li>PEG: <a href="http://wcipeg.com/wiki/Special:AllPages">PEG Wiki</a></li>
-        <li>GeeksforGeeks: <a href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/">Fundamentals of Algorithms</a> · <a href="https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/">How to prepare for ACM-ICPC?</a></li>
-        <li>CodeForces: <a href="http://codeforces.com/blog/entry/13529">Good Blog Post Resources about Algorithm and Data Structures</a></li>
-        <li>CodeChef: <a href="https://discuss.codechef.com/questions/48877/data-structures-and-algorithms">Data Structures and Algorithms</a></li>
+        <li><a href="https://www.topcoder.com/thrive/tracks?track=Competitive%20Programming">Competitive Programming Tutorials</a><span>TopCoder</span></li>
+        <li><a href="https://cp-algorithms.com/">E-Maxx Algorithms in English</a><span>MAXimal</span></li>
+        <li><a href="http://wcipeg.com/wiki/Special:AllPages">PEG Wiki</a><span>PEG</span></li>
+        <li><a href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/">Fundamentals of Algorithms</a><span>GeeksforGeeks · also <a href="https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/">How to prepare for ACM-ICPC?</a></span></li>
+        <li><a href="http://codeforces.com/blog/entry/13529">Good Blog Post Resources about Algorithm and Data Structures</a><span>CodeForces</span></li>
+        <li><a href="https://discuss.codechef.com/questions/48877/data-structures-and-algorithms">Data Structures and Algorithms</a><span>CodeChef</span></li>
       </ul>
 
       <h3>Implementations and notebooks</h3>
@@ -96,21 +97,21 @@
         <p>You are strongly advised to implement by yourselves before seeing how others did.</p>
       </div>
       <ul class="uc-links">
-        <li>CodeLibrary (Java and C++) · <a href="https://github.com/indy256/codelibrary">CodeLibrary on GitHub</a></li>
-        <li><a href="https://github.com/jaehyunp/stanfordacm/raw/master/notebook.pdf">Stanford Notebook</a> (C++) · <a href="https://github.com/jaehyunp/stanfordacm">Stanford Notebook on GitHub</a></li>
-        <li><a href="https://github.com/kth-competitive-programming/kactl/raw/main/kactl.pdf">KTH Notebook</a> (C++) · <a href="https://github.com/kth-competitive-programming/kactl">KTH Notebook on GitHub</a></li>
-        <li><a href="https://github.com/spaghetti-source/algorithm">spaghetti-source</a> (C++)</li>
+        <li><a href="https://github.com/indy256/codelibrary">CodeLibrary</a><span>Java and C++ · on GitHub</span></li>
+        <li><a href="https://github.com/jaehyunp/stanfordacm/raw/master/notebook.pdf">Stanford Notebook</a><span>C++ · <a href="https://github.com/jaehyunp/stanfordacm">on GitHub</a></span></li>
+        <li><a href="https://github.com/kth-competitive-programming/kactl/raw/main/kactl.pdf">KTH Notebook</a><span>C++ · <a href="https://github.com/kth-competitive-programming/kactl">on GitHub</a></span></li>
+        <li><a href="https://github.com/spaghetti-source/algorithm">spaghetti-source</a><span>C++ · on GitHub</span></li>
       </ul>
     </section>
 
     <section class="uc-section" aria-labelledby="others">
       <h2 id="others">Other similar courses</h2>
       <ul class="uc-links uc-links--grid">
-        <li><a href="https://contest.cs.cmu.edu/295/">15-295: Competition Programming and Problem Solving</a> <span class="uc-muted">· CMU, USA</span></li>
-        <li><a href="https://www.cs.utexas.edu/users/downing/cs104c/">CS104c: Competitive Programming</a> <span class="uc-muted">· UT Austin, USA</span></li>
-        <li><a href="https://www.comp.nus.edu.sg/~stevenha/cs3233.html">CS3233: Competitive Programming</a> <span class="uc-muted">· NUS, Singapore</span></li>
-        <li><a href="http://web.stanford.edu/class/cs97si/">CS 97SI: Introduction to Programming Contests</a> <span class="uc-muted">· Stanford, USA</span></li>
-        <li><a href="https://algo.is/t-414-aflv-competitive-programming-course-2016">T-414-ÁFLV: A Competitive Programming Course</a> <span class="uc-muted">· Reykjavik University, Iceland</span></li>
+        <li><a href="https://contest.cs.cmu.edu/295/">15-295: Competition Programming and Problem Solving</a><span>CMU, USA</span></li>
+        <li><a href="https://www.cs.utexas.edu/users/downing/cs104c/">CS104c: Competitive Programming</a><span>UT Austin, USA</span></li>
+        <li><a href="https://www.comp.nus.edu.sg/~stevenha/cs3233.html">CS3233: Competitive Programming</a><span>NUS, Singapore</span></li>
+        <li><a href="http://web.stanford.edu/class/cs97si/">CS 97SI: Introduction to Programming Contests</a><span>Stanford, USA</span></li>
+        <li><a href="https://algo.is/t-414-aflv-competitive-programming-course-2016">T-414-ÁFLV: A Competitive Programming Course</a><span>Reykjavik University, Iceland</span></li>
       </ul>
     </section>
 
