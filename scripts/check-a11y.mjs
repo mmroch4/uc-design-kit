@@ -41,6 +41,11 @@
  *     flips aria-sort, keeps focus and announces the order
  *   - "Outros anos" of <uc-page>: Enter opens the list (aria-expanded),
  *     Escape closes it and gives focus back to the button
+ *   - widgets (uc-widget-*): from the stage, the keyboard walks from the first
+ *     to the last step (answering predict questions with Enter), each move is
+ *     announced; axe passes at step 0, at the last step, with the text view
+ *     open and with a predict question open; the language switch keeps the
+ *     step; with JavaScript off the teacher's fallback is visible
  *
  * Accessibility-tree snapshots (Playwright ariaSnapshot) of the blocks' test
  * pages, stored next to them (tests/pages/*.aria.yml), fail the check when a
@@ -115,6 +120,8 @@ async function findPages() {
     }
   }
   pages.push("examples/edados-2526/guioes/aula10.html");
+  // The widget test page (several widgets, predict, editable, bilingual).
+  pages.push("tests/pages/uc-widget-sort.html");
   // The one CSS-block demo with behaviour (sortable headers).
   pages.push("docs/demos/blocks/table-sortable.html");
   return pages.sort();
@@ -614,7 +621,96 @@ async function checkPage(browser, origin, relative, axeSource) {
   problems.push(...(await checkReflowAndZoom(browser, origin, relative)));
   problems.push(...(await checkMotion(browser, origin, relative)));
   problems.push(...(await checkBehaviour(browser, origin, relative)));
+  problems.push(...(await checkWidgets(browser, origin, relative, axeSource)));
   return [...new Set(problems)];
+}
+
+/** Widgets (docs/plan/widgets-api.md 18.3 item 4), on pages that have one. */
+async function checkWidgets(browser, origin, relative, axeSource) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  const found = await page.evaluate(() => {
+    const widgets = Array.from(document.querySelectorAll("*")).filter((node) => node.localName.startsWith("uc-widget-"));
+    widgets.forEach((widget) => widget.go && widget.go(0)); // builds the ones still off screen
+    return widgets.filter((widget) => widget.total > 0).length;
+  });
+  if (!found) {
+    await context.close();
+    return problems;
+  }
+  const at = () => page.evaluate(() => {
+    const widget = document.querySelector(".uc-widget[predict]") || document.querySelector(".uc-widget");
+    return { step: widget.step, total: widget.total, live: widget.querySelector("[aria-live]").textContent };
+  });
+  const axeAt = async (label) => (await runAxe(page, axeSource)).forEach((line) => problems.push(`[widget, ${label}] [axe] ${line}`));
+  await axeAt("step 0");
+
+  // Keyboard: from the stage to the last step.
+  await page.evaluate(() => (document.querySelector(".uc-widget[predict]") || document.querySelector(".uc-widget")).querySelector(".uc-widget__stage").focus());
+  let state = await at();
+  let asked = false;
+  for (let i = 0; i < 2 * state.total + 4 && state.step < state.total - 1; i += 1) {
+    const before = state.step;
+    await page.keyboard.press("ArrowRight");
+    const question = await page.$(".uc-widget__predict:not([hidden]) .uc-widget__option");
+    if (question) {
+      if (!asked) {
+        asked = true;
+        const focused = await page.evaluate(() => document.activeElement.classList.contains("uc-widget__option"));
+        if (!focused) problems.push("[widget] predict: focus did not move to the first option");
+        await axeAt("predict question open");
+      }
+      await page.keyboard.press("Enter");
+      const back = await page.evaluate(() => document.activeElement.closest(".uc-widget__player") !== null);
+      if (!back) problems.push("[widget] predict: after the answer, focus is not back on the player");
+      await page.evaluate(() => (document.querySelector(".uc-widget[predict]") || document.querySelector(".uc-widget")).querySelector(".uc-widget__stage").focus());
+    }
+    state = await at();
+    if (state.step === before) {
+      problems.push(`[widget] keyboard: ArrowRight did not move from step ${before + 1}`);
+      break;
+    }
+    if (!state.live.trim()) problems.push(`[widget] keyboard: step ${state.step + 1} was not announced`);
+  }
+  if (state.step !== state.total - 1) problems.push(`[widget] keyboard: stopped at step ${state.step + 1} of ${state.total}`);
+  await axeAt("last step");
+  await page.keyboard.press("Home");
+  if ((await at()).step !== 0) problems.push("[widget] keyboard: Home did not go to step 1");
+  await page.keyboard.press("End");
+
+  // Text view.
+  const toggle = await page.$(".uc-widget__text-toggle");
+  await toggle.focus();
+  await page.keyboard.press("Enter");
+  if ((await toggle.getAttribute("aria-expanded")) !== "true") problems.push("[widget] text view: aria-expanded did not change");
+  await axeAt("text view open");
+
+  // Language switch keeps the step.
+  const switched = await page.evaluate(() => {
+    if (!window.UC || !UC.setLanguage || !(UC.course?.languages || []).includes("en")) return null;
+    const widget = document.querySelector(".uc-widget");
+    widget.go(2);
+    UC.setLanguage("en");
+    return widget.step;
+  });
+  if (switched !== null) {
+    await page.waitForTimeout(100);
+    const after = await page.evaluate(() => ({ step: document.querySelector(".uc-widget").step, say: document.querySelector(".uc-widget__say").textContent }));
+    if (after.step !== switched) problems.push(`[widget] language switch moved from step ${switched + 1} to ${after.step + 1}`);
+    await page.evaluate(() => UC.setLanguage("pt"));
+  }
+  await context.close();
+
+  // Without JavaScript the teacher's fallback is there.
+  {
+    const { context: noJs, page: plain } = await open(browser, origin, relative, { javaScriptEnabled: false });
+    const empty = await plain.evaluate(() =>
+      Array.from(document.querySelectorAll("*")).filter((node) => node.localName.startsWith("uc-widget-") && !node.innerText.trim()).length,
+    );
+    if (empty) problems.push(`[widget] no-js: ${empty} widget(s) without fallback text`);
+    await noJs.close();
+  }
+  return problems;
 }
 
 /** Compares (or, with --update-snapshots, writes) the accessibility-tree snapshots. */

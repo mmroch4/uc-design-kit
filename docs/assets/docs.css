@@ -1175,3 +1175,10 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
 }
 .docs-figure a { display: block; border-radius: var(--uc-radius-md); }
 .docs-figure figcaption { margin-top: var(--uc-space-2); font-size: var(--uc-font-size-sm); color: var(--uc-color-text-muted); }
+
+/* Widget catalogue cards (docs/pt/widgets/index.html, filled by scripts/build-widgets.mjs). */
+.docs-widget-cards { display: grid; gap: var(--uc-space-4); margin: var(--uc-space-5) 0; padding: 0; list-style: none; }
+.docs-widget-cards > li { margin: 0; }
+.docs-widget-cards h3 { margin: 0 0 var(--uc-space-2); font-size: 1rem; }
+.docs-widget-cards p { margin: var(--uc-space-2) 0 0; }
+.docs-widget-card__meta { font-size: var(--uc-font-size-sm); color: var(--uc-color-text-secondary); }

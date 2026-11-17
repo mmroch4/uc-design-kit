@@ -20,6 +20,18 @@
 /kit/v1.*
   Cache-Control: public, max-age=31536000, immutable
 
+# Widget library (widgets/v1/, docs/plan/widgets-api.md 2.2): the same rules
+# as the kit. The files load each other from their own folder, so a page
+# may use them from this site, from file:// or from a copied folder.
+/widgets/*
+  Access-Control-Allow-Origin: *
+
+/widgets/v1/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=604800
+
+/widgets/v1.*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Example pages: start downloading the body font together with the HTML
 # (Cloudflare also sends it as an Early Hint). Done here rather than with
 # <link rel="preload"> in the pages, which fails when a page is opened from

@@ -11,6 +11,8 @@
  * models (llms.txt, llms-full.txt and a .md per page, scripts/llms.mjs), and
  * packs template/ into docs/downloads/uc-template.zip (scripts/template-zip.mjs).
  *
+ * It builds the widget library into widgets/v1/ (scripts/build-widgets.mjs).
+ *
  * It also verifies the frozen releases (kit/vX.Y.Z/, made by
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
  * they were created, because browsers cache them for a year.
@@ -31,6 +33,7 @@ import { KIT, listReleases, verifyRelease } from "./releases.mjs";
 import { buildDocs, buildSearchIndex } from "./docs.mjs";
 import { buildTemplateZip } from "./template-zip.mjs";
 import { buildLlms } from "./llms.mjs";
+import { buildWidgets } from "./build-widgets.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(KIT, "src");
@@ -146,6 +149,8 @@ async function main() {
   } else {
     console.log(budget);
   }
+  // Widgets first: they fill the catalogue page that the docs and llms steps read.
+  if ((await buildWidgets({ check })) > 0) failed = true;
   if ((await buildDocs({ check })) > 0) failed = true;
   if ((await buildSearchIndex({ check })) > 0) failed = true;
   if ((await buildLlms({ check })) > 0) failed = true;

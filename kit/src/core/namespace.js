@@ -12,7 +12,7 @@
   }
 
   global.UC = {
-    version: "1.0.0-dev",
+    version: "1.1.0-dev",
     /** Internal modules shared between kit files. Not part of the public API. */
     internal: {},
   };
