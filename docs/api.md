@@ -1315,6 +1315,9 @@ folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
 | `<uc-widget-list>` | `values` (≤ 10), `ops` = `add-first v; add-last v; insert k v; remove-first; remove-last; remove v; search v; reverse` | `singly` |
 | `<uc-widget-stack-queue>` | `values`, `ops` = `push v; pop; peek` / `enqueue v; dequeue; peek`, `impl` = `array` `list`, `capacity` (1–16, default 8) | `stack` `queue` |
 | `<uc-widget-recursion>` | `n` (factorial ≤ 8, fibonacci ≤ 6, hanoi 1–4) | `factorial` `fibonacci` `hanoi` |
+| `<uc-widget-heap>` | `values` (≤ 15), `ops` = `insert v; extract; peek`, `kind` = `max` `min` | `operations` `heapify` `heapsort` |
+| `<uc-widget-avl>` | `values` (≤ 15), `ops` = `insert v; remove v; search v` | `operations` |
+| `<uc-widget-hash>` | `values` (integers or words, ≤ 16), `ops` = `insert k; remove k; search k`, `size` (1–16, default 7), `max-load` (default `0.75`, or `none`) | `chaining` `linear` `quadratic` |
 
 With `ops`, `values` builds the structure without steps and the operations
 are the demo; without `ops`, inserting / adding each value is the demo.

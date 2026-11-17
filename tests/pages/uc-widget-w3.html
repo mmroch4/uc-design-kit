@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Widgets da vaga 2 (W3) · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-heap.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-avl.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-hash.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Widgets da fase W3 (teste)</span>
+      <span lang="en">Phase W3 widgets (test)</span>
+    </h1>
+
+    <h2><span lang="pt">Heap: operações com previsões</span><span lang="en">Heap: operations with predictions</span></h2>
+    <uc-widget-heap id="heap" values="9 7 8 3 5 6" ops="insert 10; peek; extract; extract" predict editable>
+      <p>No fim o heap é 8 7 6 3 5.</p>
+    </uc-widget-heap>
+
+    <h2><span lang="pt">Heapsort de mínimo</span><span lang="en">Min heapsort</span></h2>
+    <uc-widget-heap id="heapsort" values="5 2 8 1 9" kind="min" algorithm="heapsort" algorithms="heapify heapsort" predict>
+      <p>Ordenado por ordem decrescente: 9 8 5 2 1.</p>
+    </uc-widget-heap>
+
+    <h2><span lang="pt">AVL</span><span lang="en">AVL</span></h2>
+    <uc-widget-avl id="avl" values="10 20 30 25 28 5 4" predict>
+      <p>Raiz 20; em ordem: 4 5 10 20 25 28 30.</p>
+    </uc-widget-avl>
+    <uc-widget-avl values="50 30 70 20 40 60 80 10" ops="remove 60; remove 80; remove 30; search 40" controls="compact" start="end"><p>Em ordem: 10 20 40 50 70.</p></uc-widget-avl>
+
+    <h2><span lang="pt">Tabela de dispersão</span><span lang="en">Hash table</span></h2>
+    <uc-widget-hash id="hash" values="15 8 22 4 29 11" algorithm="linear" algorithms="chaining linear quadratic">
+      <p>Com sondagem linear e 7 posições, a tabela cresce para 14 ao inserir 11.</p>
+    </uc-widget-hash>
+    <uc-widget-hash values="ana rui eva ivo" size="5" algorithm="chaining" ops="search eva; remove rui; insert rita" editable><p>Encadeamento com palavras.</p></uc-widget-hash>
+    <uc-widget-hash values="10 17 3" size="7" max-load="none" algorithm="quadratic" ops="insert 24; remove 17; search 24; insert 31"><p>Sondagem quadrática com uma posição apagada.</p></uc-widget-hash>
+    <uc-widget-hash values="1 2" size="40"><p>Entrada inválida: o tamanho vai de 1 a 16.</p></uc-widget-hash>
+  </uc-page>
+</body>
+</html>

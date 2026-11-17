@@ -1,0 +1,218 @@
+## algorithm=chaining · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
+  1. Empty table with 7 slots.
+  2. Insert 15.
+  3. h(15) = 15 mod 7 = 1: go to the list at slot 1.
+  4. End of the list: 15 is not in the table yet.
+  5. 15 goes to the end of the list at slot 1.
+  6. Insert 8.
+  7. h(8) = 8 mod 7 = 1: go to the list at slot 1.
+  8. 15 ≠ 8: go on to the next in the list.
+  9. End of the list: 8 is not in the table yet.
+ 10. 8 goes to the end of the list at slot 1.
+ 11. Insert 22.
+ 12. h(22) = 22 mod 7 = 1: go to the list at slot 1.
+ 13. 15 ≠ 22: go on to the next in the list.
+ 14. 8 ≠ 22: go on to the next in the list.
+ 15. End of the list: 22 is not in the table yet.
+ 16. 22 goes to the end of the list at slot 1.
+ 17. Insert 4.
+ 18. h(4) = 4 mod 7 = 4: go to the list at slot 4.
+ 19. End of the list: 4 is not in the table yet.
+ 20. 4 goes to the end of the list at slot 4.
+ 21. Insert 29.
+ 22. h(29) = 29 mod 7 = 1: go to the list at slot 1.
+ 23. 15 ≠ 29: go on to the next in the list.
+ 24. 8 ≠ 29: go on to the next in the list.
+ 25. 22 ≠ 29: go on to the next in the list.
+ 26. End of the list: 29 is not in the table yet.
+ 27. 29 goes to the end of the list at slot 1.
+ 28. Insert 11.
+ 29. h(11) = 11 mod 7 = 4: go to the list at slot 4.
+ 30. 4 ≠ 11: go on to the next in the list.
+ 31. End of the list: 11 is not in the table yet.
+ 32. 11 goes to the end of the list at slot 4.
+ 33. Load factor 0.86 > 0.75: the table grows from 7 to 14 slots and the keys go in again.
+ 34. h(15) = 15 mod 14 = 1: 15 goes to slot 1.
+ 35. h(8) = 8 mod 14 = 8: 8 goes to slot 8.
+ 36. h(22) = 22 mod 14 = 8: 22 goes to slot 8.
+ 37. h(29) = 29 mod 14 = 1: 29 goes to slot 1.
+ 38. h(4) = 4 mod 14 = 4: 4 goes to slot 4.
+ 39. h(11) = 11 mod 14 = 11: 11 goes to slot 11.
+ 40. Done: 6 keys in 14 slots, load factor 0.43.
+
+## algorithm=linear · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
+  1. Empty table with 7 slots.
+  2. Insert 15.
+  3. h(15) = 15 mod 7 = 1: start at slot 1.
+  4. Probe 0: slot 1 is empty: 15 is not in the table and can go here.
+  5. 15 goes to slot 1.
+  6. Insert 8.
+  7. h(8) = 8 mod 7 = 1: start at slot 1.
+  8. Probe 0: slot 1 holds 15; try the next one, 2.
+  9. Probe 1: slot 2 is empty: 8 is not in the table and can go here.
+ 10. 8 goes to slot 2.
+ 11. Insert 22.
+ 12. h(22) = 22 mod 7 = 1: start at slot 1.
+ 13. Probe 0: slot 1 holds 15; try the next one, 2.
+ 14. Probe 1: slot 2 holds 8; try the next one, 3.
+ 15. Probe 2: slot 3 is empty: 22 is not in the table and can go here.
+ 16. 22 goes to slot 3.
+ 17. Insert 4.
+ 18. h(4) = 4 mod 7 = 4: start at slot 4.
+ 19. Probe 0: slot 4 is empty: 4 is not in the table and can go here.
+ 20. 4 goes to slot 4.
+ 21. Insert 29.
+ 22. h(29) = 29 mod 7 = 1: start at slot 1.
+ 23. Probe 0: slot 1 holds 15; try the next one, 2.
+ 24. Probe 1: slot 2 holds 8; try the next one, 3.
+ 25. Probe 2: slot 3 holds 22; try the next one, 4.
+ 26. Probe 3: slot 4 holds 4; try the next one, 5.
+ 27. Probe 4: slot 5 is empty: 29 is not in the table and can go here.
+ 28. 29 goes to slot 5.
+ 29. Insert 11.
+ 30. h(11) = 11 mod 7 = 4: start at slot 4.
+ 31. Probe 0: slot 4 holds 4; try the next one, 5.
+ 32. Probe 1: slot 5 holds 29; try the next one, 6.
+ 33. Probe 2: slot 6 is empty: 11 is not in the table and can go here.
+ 34. 11 goes to slot 6.
+ 35. Load factor 0.86 > 0.75: the table grows from 7 to 14 slots and the keys go in again.
+ 36. h(15) = 15 mod 14 = 1: 15 goes to slot 1.
+ 37. h(8) = 8 mod 14 = 8: 8 goes to slot 8.
+ 38. h(22) = 22 mod 14 = 8: 22 goes to slot 9.
+ 39. h(4) = 4 mod 14 = 4: 4 goes to slot 4.
+ 40. h(29) = 29 mod 14 = 1: 29 goes to slot 2.
+ 41. h(11) = 11 mod 14 = 11: 11 goes to slot 11.
+ 42. Done: 6 keys in 14 slots, load factor 0.43.
+
+## algorithm=quadratic · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
+  1. Empty table with 7 slots.
+  2. Insert 15.
+  3. h(15) = 15 mod 7 = 1: start at slot 1.
+  4. Probe 0: slot 1 is empty: 15 is not in the table and can go here.
+  5. 15 goes to slot 1.
+  6. Insert 8.
+  7. h(8) = 8 mod 7 = 1: start at slot 1.
+  8. Probe 0: slot 1 holds 15; the next probe is slot 2.
+  9. Probe 1: slot 2 is empty: 8 is not in the table and can go here.
+ 10. 8 goes to slot 2.
+ 11. Insert 22.
+ 12. h(22) = 22 mod 7 = 1: start at slot 1.
+ 13. Probe 0: slot 1 holds 15; the next probe is slot 2.
+ 14. Probe 1: slot 2 holds 8; the next probe is slot 5.
+ 15. Probe 2: slot 5 is empty: 22 is not in the table and can go here.
+ 16. 22 goes to slot 5.
+ 17. Insert 4.
+ 18. h(4) = 4 mod 7 = 4: start at slot 4.
+ 19. Probe 0: slot 4 is empty: 4 is not in the table and can go here.
+ 20. 4 goes to slot 4.
+ 21. Insert 29.
+ 22. h(29) = 29 mod 7 = 1: start at slot 1.
+ 23. Probe 0: slot 1 holds 15; the next probe is slot 2.
+ 24. Probe 1: slot 2 holds 8; the next probe is slot 5.
+ 25. Probe 2: slot 5 holds 22; the next probe is slot 3.
+ 26. Probe 3: slot 3 is empty: 29 is not in the table and can go here.
+ 27. 29 goes to slot 3.
+ 28. Insert 11.
+ 29. h(11) = 11 mod 7 = 4: start at slot 4.
+ 30. Probe 0: slot 4 holds 4; the next probe is slot 5.
+ 31. Probe 1: slot 5 holds 22; the next probe is slot 1.
+ 32. Probe 2: slot 1 holds 15; the next probe is slot 6.
+ 33. Probe 3: slot 6 is empty: 11 is not in the table and can go here.
+ 34. 11 goes to slot 6.
+ 35. Load factor 0.86 > 0.75: the table grows from 7 to 14 slots and the keys go in again.
+ 36. h(15) = 15 mod 14 = 1: 15 goes to slot 1.
+ 37. h(8) = 8 mod 14 = 8: 8 goes to slot 8.
+ 38. h(29) = 29 mod 14 = 1: 29 goes to slot 2.
+ 39. h(4) = 4 mod 14 = 4: 4 goes to slot 4.
+ 40. h(22) = 22 mod 14 = 8: 22 goes to slot 9.
+ 41. h(11) = 11 mod 14 = 11: 11 goes to slot 11.
+ 42. Done: 6 keys in 14 slots, load factor 0.43.
+
+## algorithm=linear · input {"values":[10,17,3],"ops":[{"verb":"insert","args":["24"]},{"verb":"remove","args":["17"]},{"verb":"search","args":["24"]},{"verb":"insert","args":["31"]},{"verb":"remove","args":["5"]},{"verb":"insert","args":["10"]}],"size":7,"maxLoad":null}
+  1. Table with 7 slots and 3 keys.
+  2. Insert 24.
+  3. h(24) = 24 mod 7 = 3: start at slot 3.
+  4. Probe 0: slot 3 holds 10; try the next one, 4.
+  5. Probe 1: slot 4 holds 17; try the next one, 5.
+  6. Probe 2: slot 5 holds 3; try the next one, 6.
+  7. Probe 3: slot 6 is empty: 24 is not in the table and can go here.
+  8. 24 goes to slot 6.
+  9. Remove 17.
+ 10. h(17) = 17 mod 7 = 3: start at slot 3.
+ 11. Probe 0: slot 3 holds 10; try the next one, 4.
+ 12. Probe 1: slot 4 holds 17: found.
+ 13. 17 leaves slot 4, which is marked deleted (✕) so that probe sequences do not break.
+ 14. Search for 24.
+ 15. h(24) = 24 mod 7 = 3: start at slot 3.
+ 16. Probe 0: slot 3 holds 10; try the next one, 4.
+ 17. Probe 1: slot 4 was deleted; go on (an insertion may use it).
+ 18. Probe 2: slot 5 holds 3; try the next one, 6.
+ 19. Probe 3: slot 6 holds 24: found.
+ 20. Insert 31.
+ 21. h(31) = 31 mod 7 = 3: start at slot 3.
+ 22. Probe 0: slot 3 holds 10; try the next one, 4.
+ 23. Probe 1: slot 4 was deleted; go on (an insertion may use it).
+ 24. Probe 2: slot 5 holds 3; try the next one, 6.
+ 25. Probe 3: slot 6 holds 24; try the next one, 0.
+ 26. Probe 4: slot 0 is empty: 31 is not in the table.
+ 27. 31 goes to slot 4, which had been deleted.
+ 28. Remove 5.
+ 29. h(5) = 5 mod 7 = 5: start at slot 5.
+ 30. Probe 0: slot 5 holds 3; try the next one, 6.
+ 31. Probe 1: slot 6 holds 24; try the next one, 0.
+ 32. Probe 2: slot 0 is empty: 5 is not in the table.
+ 33. Insert 10.
+ 34. h(10) = 10 mod 7 = 3: start at slot 3.
+ 35. Probe 0: slot 3 holds 10: found.
+ 36. 10 is already in the table: it is not inserted again.
+ 37. Done: 4 keys in 7 slots, load factor 0.57.
+
+## algorithm=chaining · input {"values":["ana","rui","eva"],"ops":[{"verb":"insert","args":["ivo"]},{"verb":"search","args":["eva"]},{"verb":"remove","args":["rui"]},{"verb":"search","args":["rui"]}],"size":5,"maxLoad":null}
+  1. Table with 5 slots and 3 keys.
+  2. Insert ivo.
+  3. h(ivo) = 334 mod 5 = 4: go to the list at slot 4.
+  4. ana ≠ ivo: go on to the next in the list.
+  5. End of the list: ivo is not in the table yet.
+  6. ivo goes to the end of the list at slot 4.
+  7. Search for eva.
+  8. h(eva) = 316 mod 5 = 1: go to the list at slot 1.
+  9. rui ≠ eva: go on to the next in the list.
+ 10. eva = eva: found in the list at slot 1.
+ 11. Remove rui.
+ 12. h(rui) = 336 mod 5 = 1: go to the list at slot 1.
+ 13. rui = rui: found in the list at slot 1.
+ 14. rui leaves the list at slot 1.
+ 15. Search for rui.
+ 16. h(rui) = 336 mod 5 = 1: go to the list at slot 1.
+ 17. eva ≠ rui: go on to the next in the list.
+ 18. rui is not in the table.
+ 19. Done: 3 keys in 5 slots, load factor 0.6.
+
+## algorithm=quadratic · input {"values":[],"ops":[{"verb":"insert","args":["1"]},{"verb":"insert","args":["5"]},{"verb":"insert","args":["9"]},{"verb":"insert","args":["13"]}],"size":4,"maxLoad":1}
+  1. Empty table with 4 slots.
+  2. Insert 1.
+  3. h(1) = 1 mod 4 = 1: start at slot 1.
+  4. Probe 0: slot 1 is empty: 1 is not in the table and can go here.
+  5. 1 goes to slot 1.
+  6. Insert 5.
+  7. h(5) = 5 mod 4 = 1: start at slot 1.
+  8. Probe 0: slot 1 holds 1; the next probe is slot 2.
+  9. Probe 1: slot 2 is empty: 5 is not in the table and can go here.
+ 10. 5 goes to slot 2.
+ 11. Insert 9.
+ 12. h(9) = 9 mod 4 = 1: start at slot 1.
+ 13. Probe 0: slot 1 holds 1; the next probe is slot 2.
+ 14. Probe 1: slot 2 holds 5; the next probe is slot 1.
+ 15. Probe 2: slot 1 holds 1; the next probe is slot 2.
+ 16. Probe 3: slot 2 holds 5; the next probe is slot 1.
+ 17. 4 slots tried without finding 9 or an empty slot.
+ 18. There is no room for 9.
+ 19. Insert 13.
+ 20. h(13) = 13 mod 4 = 1: start at slot 1.
+ 21. Probe 0: slot 1 holds 1; the next probe is slot 2.
+ 22. Probe 1: slot 2 holds 5; the next probe is slot 1.
+ 23. Probe 2: slot 1 holds 1; the next probe is slot 2.
+ 24. Probe 3: slot 2 holds 5; the next probe is slot 1.
+ 25. 4 slots tried without finding 13 or an empty slot.
+ 26. There is no room for 13.
+ 27. Done: 2 keys in 4 slots, load factor 0.5.

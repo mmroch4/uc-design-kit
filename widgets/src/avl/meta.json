@@ -1,0 +1,22 @@
+{
+  "name": "uc-widget-avl",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 2,
+  "title": { "pt": "Árvore AVL", "en": "AVL tree" },
+  "summary": {
+    "pt": "Inserir, remover e procurar numa árvore AVL, com a altura e o fator de equilíbrio de cada nó e as quatro rotações.",
+    "en": "Insert, remove and search in an AVL tree, with each node's height and balance factor and the four rotations."
+  },
+  "page": "docs/pt/widgets/uc-widget-avl.html",
+  "algorithms": ["operations"],
+  "courses": ["EDados"],
+  "attributes": ["values", "ops"],
+  "predict": true,
+  "test": {
+    "input": { "values": [10, 20, 30, 25, 28, 5, 4], "ops": null },
+    "options": [
+      { "algorithm": "operations", "input": { "values": [50, 30, 70, 20, 40, 60, 80, 10], "ops": [{ "verb": "remove", "args": ["60"] }, { "verb": "remove", "args": ["80"] }, { "verb": "search", "args": ["40"] }, { "verb": "remove", "args": ["30"] }, { "verb": "insert", "args": ["45"] }, { "verb": "remove", "args": ["99"] }] } }
+    ]
+  }
+}

@@ -3,6 +3,34 @@
   "kit": ">=1.1",
   "widgets": [
     {
+      "name": "uc-widget-avl",
+      "file": "uc-widget-avl.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 2,
+      "title": {
+        "pt": "Árvore AVL",
+        "en": "AVL tree"
+      },
+      "summary": {
+        "pt": "Inserir, remover e procurar numa árvore AVL, com a altura e o fator de equilíbrio de cada nó e as quatro rotações.",
+        "en": "Insert, remove and search in an AVL tree, with each node's height and balance factor and the four rotations."
+      },
+      "page": "docs/pt/widgets/uc-widget-avl.html",
+      "algorithms": [
+        "operations"
+      ],
+      "courses": [
+        "EDados"
+      ],
+      "attributes": [
+        "values",
+        "ops"
+      ],
+      "predict": true,
+      "gzip": 6512
+    },
+    {
       "name": "uc-widget-bst",
       "file": "uc-widget-bst.js",
       "status": "experimental",
@@ -35,6 +63,73 @@
       ],
       "predict": true,
       "gzip": 5637
+    },
+    {
+      "name": "uc-widget-hash",
+      "file": "uc-widget-hash.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 2,
+      "title": {
+        "pt": "Tabela de dispersão",
+        "en": "Hash table"
+      },
+      "summary": {
+        "pt": "Tabela de dispersão com encadeamento, sondagem linear ou quadrática: inserir, procurar, remover, fator de carga e crescimento da tabela.",
+        "en": "Hash table with separate chaining, linear or quadratic probing: insert, search, remove, load factor and the table growing."
+      },
+      "page": "docs/pt/widgets/uc-widget-hash.html",
+      "algorithms": [
+        "chaining",
+        "linear",
+        "quadratic"
+      ],
+      "courses": [
+        "EDados"
+      ],
+      "attributes": [
+        "values",
+        "ops",
+        "size",
+        "max-load",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": false,
+      "gzip": 6639
+    },
+    {
+      "name": "uc-widget-heap",
+      "file": "uc-widget-heap.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 2,
+      "title": {
+        "pt": "Heap binário",
+        "en": "Binary heap"
+      },
+      "summary": {
+        "pt": "Heap de máximo ou de mínimo, em vetor e em árvore lado a lado: inserir, extrair, topo, construção (heapify) e heapsort.",
+        "en": "Max or min heap, as an array and as a tree together: insert, extract, peek, the bottom-up build (heapify) and heapsort."
+      },
+      "page": "docs/pt/widgets/uc-widget-heap.html",
+      "algorithms": [
+        "operations",
+        "heapify",
+        "heapsort"
+      ],
+      "courses": [
+        "EDados"
+      ],
+      "attributes": [
+        "values",
+        "ops",
+        "kind",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 4795
     },
     {
       "name": "uc-widget-list",

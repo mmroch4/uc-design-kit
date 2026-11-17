@@ -1206,3 +1206,50 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
     queue is circular. Recursion: `n` caps of 5.5, Hanoi node labels
     `h(n,from,to)`, pegs in `aux.pegs`, moves in `aux.output`.
 11. **New core keys**: `algorithm`, `edit.ops`, `tree.empty`.
+
+## 23. Refinements made in phase W3
+
+1. **No core change**: the core stays at 10.9 KB gzip. Heap, AVL and hash
+   use `svg.array` and `svg.tree` from the core; nothing new went into it.
+2. **Two primitives in one drawing** (heap): the widget's `draw` puts two
+   nested `<svg>` elements in the stage svg, lets `svg.array` draw into the
+   first and `svg.tree` into the second, then reads their `viewBox`es and
+   stacks them (array above, tree below, centred). The primitives need no
+   change: each keeps its own `__ucKind` and element map on its nested svg.
+   W4–W5 widgets that combine views (Dijkstra with its queue, DP with its
+   input) can do the same.
+3. **Moves in a heap**: values carry a stable id (`state.ids`, parallel to
+   `state.a`), so the tree is keyed by id and a swapped node slides; marks
+   stay array indexes and the widget maps them to ids for the tree.
+4. **`svg.grid(svg, rows, { rowHeads, colHeads, marks, chain })`** replaces
+   the `(svg, rows, cols, cells, opts)` signature of 16.3. Cells are
+   `"r,c"`, row headers `"r"`; `null` is an empty cell (not drawn with
+   `chain`, which joins a row's cells with arrows from its header). It lives
+   in `widgets/src/core/svg/grid.js` and is **bundled into
+   `uc-widget-hash`** (one user so far, rule 16.3). DP and backtracking (W5)
+   import it as well; the third user moves it to the core if the budget
+   allows (it is about 0.6 KB gzip), otherwise it stays bundled.
+5. **Placeholders in default pseudocode**: a widget may rewrite its own
+   lines in `pseudocode(block)` (heap: `{op}` → `>` or `<`, `{best}` →
+   larger / smaller; hash: `{probe}`), so one block serves several variants.
+6. **Shared strings between widgets**: `avl/i18n.js` imports the BST's
+   sentences it needs (`SHARED` list) under its own `widget.avl.*` keys, so
+   a page can load either widget alone and the step validator sees every key.
+7. **Widget choices**: heap `kind` = `max` (default) / `min`; algorithms
+   `operations` (insert, extract, peek), `heapify`, `heapsort` (the sorted
+   tail stays in the array, marked done, and leaves the tree). AVL factor =
+   height(left) − height(right), drawn as the node's `note`; the walk back up
+   stops at the first node whose height did not change; a removal of a node
+   with two children uses the successor, like the BST. Hash: `size` 1–16
+   (default 7), `max-load` (default 0.75, `none`), the table doubles after an
+   insertion while 2m ≤ 16; keys are integers or words (code = sum of the
+   character codes, at most 6 characters; longer labels are squeezed with
+   `textLength` in the array cells, and grid cells widen); open addressing removes with a tombstone (drawn ✕) that
+   insertions reuse; quadratic probing tries at most m cells and may refuse
+   a key, which the widget shows. Chains hold at most 6 keys.
+8. **Captions**: the hash captions are the strategy alone ("Sondagem
+   linear"), so the `algorithms` buttons stay short; the widget prefixes
+   the title ("Tabela de dispersão · Sondagem linear").
+9. **New per-widget keys only** (no core keys): `widget.heap.*`,
+   `widget.avl.*`, `widget.hash.*`. Aux keys `size` (heap) and `load` (hash);
+   the hash uses the core `stat.probes`.

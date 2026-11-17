@@ -84,7 +84,7 @@ Cada algoritmo traz pseudocódigo em português e inglês, com a linha atual des
 </uc-widget-sort>
 ```
 
-Nos widgets de operações (`<uc-widget-bst>`, `<uc-widget-list>`, `<uc-widget-stack-queue>`) o pseudocódigo muda com a operação em curso; `data-algorithm` recebe então o nome do bloco que a página do widget indica (`data-algorithm="insert"`, `data-algorithm="queue-array"`). Uma linha pode ter vários identificadores (`data-line="left right"`).
+Nos widgets de operações (`<uc-widget-bst>`, `<uc-widget-list>`, `<uc-widget-stack-queue>`, `<uc-widget-heap>`, `<uc-widget-avl>`, `<uc-widget-hash>`) o pseudocódigo muda com a operação em curso; `data-algorithm` recebe então o nome do bloco que a página do widget indica (`data-algorithm="insert"`, `data-algorithm="queue-array"`). Uma linha pode ter vários identificadores (`data-line="left right"`).
 
 Em páginas bilingues, um `<pre>` com `lang="pt"` e outro com `lang="en"`; a legenda bilingue escreve-se num `<template data-caption>` com um `<span lang>` por língua.
 
