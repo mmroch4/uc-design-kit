@@ -21,27 +21,10 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, number } = UC.internal;
+  const { h, uid, number, anchors } = UC.internal;
   const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
   /** A heading is "current" once its top passes this fraction of the viewport height. */
   const ACTIVE_LINE = 0.3;
-
-  function slugify(text) {
-    return (
-      text
-        .normalize("NFD")
-        .replace(/[̀-ͯ]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "") || "section"
-    );
-  }
-
-  function uniqueId(base) {
-    let candidate = base;
-    for (let suffix = 2; document.getElementById(candidate); suffix += 1) candidate = `${base}-${suffix}`;
-    return candidate;
-  }
 
   function prefersReducedMotion() {
     return Boolean(window.matchMedia && window.matchMedia(REDUCED_MOTION_QUERY).matches);
@@ -73,7 +56,9 @@
     render() {
       this.headings = Array.from(this.content.querySelectorAll("h2")).filter((heading) => !UC.internal.isHiddenByLanguage(heading));
       this.headings.forEach((heading) => {
-        if (!heading.id) heading.id = uniqueId(slugify(UC.internal.visibleText(heading)));
+        // Inside <uc-page> core/anchors.js already gave every <h2> an id; this
+        // covers a guide used without <uc-page>.
+        if (!heading.id) heading.id = anchors.uniqueId(anchors.slugify(UC.internal.visibleText(heading)));
       });
 
       this.progress = this.renderProgress();

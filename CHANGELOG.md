@@ -49,6 +49,20 @@ released yet; contract `docs/plan/widgets-api.md`).
   `index --stdout` prints it. Shared test cases for the kit in
   `tests/search/` (`slugs.json`, `words.json`). `npm run build` regenerates
   the index of every example whose `course.js` has `search`.
+- Automatic heading ids (search phase S1): every `<h2>`/`<h3>` inside
+  `<uc-page>` without an `id` gets one from its text (`Exercício 2` →
+  `exercicio-2`, repeats `-2`, `-3`; first-language text on bilingual sites),
+  the same rule as `uc-site.py`, so any section can be linked. After start-up
+  the kit scrolls again to the `#hash` target and highlights it for 2 s
+  (`.uc-target-flash`). `<uc-guide>` uses the same ids.
+- Search foundations in the kit (search phase S1, v1.2.0 in progress): the
+  `search` field of `course.js` (`UC.course.search`), one `HEAD` per visit at
+  idle for the index (`sessionStorage`, 5 s timeout; the index script over
+  `file://`), the header button "Pesquisar" with `Ctrl K`, `⌘K` and `/`,
+  `<uc-page search="off">`, `UC.search.available()`, `UC.search.open()`, the
+  `uc:searchready` event and the new `uc-search.js` (loaded on open, 6 KB
+  budget; the dialog comes in phase S4). Sites without `search` make no new
+  request. Browser checks in `scripts/check-search.mjs`.
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type

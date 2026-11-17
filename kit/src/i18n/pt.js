@@ -63,6 +63,9 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     calendar: "Adicionar ao calendário",
     calendarFile: "ficheiro .ics",
   },
+  search: {
+    button: "Pesquisar",
+  },
   nav: {
     label: "Secções da cadeira",
     menu: "Menu",

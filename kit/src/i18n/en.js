@@ -63,6 +63,9 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     calendar: "Add to calendar",
     calendarFile: ".ics file",
   },
+  search: {
+    button: "Search",
+  },
   nav: {
     label: "Course sections",
     menu: "Menu",

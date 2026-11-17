@@ -1,5 +1,5 @@
 {
-  "$comment": "Concatenation order for kit/v1/uc-kit.js and kit/v1/uc-kit.css. Built by scripts/build.mjs.",
+  "$comment": "Concatenation order for kit/v1/uc-kit.js, kit/v1/uc-search.js (loaded when the site search opens) and kit/v1/uc-kit.css. Built by scripts/build.mjs.",
   "js": [
     "core/namespace.js",
     "core/i18n.js",
@@ -13,6 +13,8 @@
     "core/clipboard.js",
     "core/announce.js",
     "core/storage.js",
+    "core/anchors.js",
+    "core/search-loader.js",
     "core/time.js",
     "core/filters.js",
     "core/ics.js",
@@ -44,6 +46,9 @@
     "core/copy-blocks.js",
     "core/auth-links.js",
     "core/bootstrap.js"
+  ],
+  "search": [
+    "search/ui.js"
   ],
   "css": [
     "css/base/fonts.css",

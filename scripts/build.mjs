@@ -19,8 +19,8 @@
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
  * they were created, because browsers cache them for a year.
  *
- * It fails when uc-kit.js is over its size budget (37 KB gzipped) and
- * prints the size on every run.
+ * It fails when uc-kit.js (48 KB gzipped) or uc-search.js (6 KB) is over
+ * its size budget and prints the sizes on every run.
  *
  * Usage: node scripts/build.mjs [--check]
  *   --check  exits with an error when kit/v1, a documentation page or the
@@ -43,6 +43,8 @@ const SRC = path.join(KIT, "src");
 const OUT = path.join(KIT, "v1");
 /** Size budget of uc-kit.js, gzipped (docs/plan/blocks-api.md 1.5). */
 const JS_BUDGET_GZIP = 48 * 1024;
+/** Size budget of uc-search.js, gzipped (docs/plan/search-api.md 11.1). */
+const SEARCH_BUDGET_GZIP = 6 * 1024;
 
 /* ---------- source maps for the concatenation ---------- */
 
@@ -128,6 +130,7 @@ async function main() {
   const manifest = JSON.parse(await readFile(path.join(SRC, "manifest.json"), "utf8"));
   const outputs = {
     ...(await bundle(manifest.js, "js", "uc-kit.js")),
+    ...(await bundle(manifest.search, "js", "uc-search.js")),
     ...(await bundle(manifest.css, "css", "uc-kit.css")),
   };
   await mkdir(OUT, { recursive: true });
@@ -144,13 +147,18 @@ async function main() {
       console.log(`wrote kit/v1/${name} (${(content.length / 1024).toFixed(1)} KB)`);
     }
   }
-  const gzipped = gzipSync(outputs["uc-kit.js"], { level: 9 }).length;
-  const budget = `uc-kit.js: ${(gzipped / 1024).toFixed(1)} KB gzipped (budget ${JS_BUDGET_GZIP / 1024} KB)`;
-  if (gzipped > JS_BUDGET_GZIP) {
-    console.error(`${budget}: over budget. Make the new code smaller or raise the budget in docs/plan/blocks-api.md 1.5 first.`);
-    failed = true;
-  } else {
-    console.log(budget);
+  for (const [name, limit, where] of [
+    ["uc-kit.js", JS_BUDGET_GZIP, "docs/plan/blocks-api.md 1.5"],
+    ["uc-search.js", SEARCH_BUDGET_GZIP, "docs/plan/search-api.md 11.1"],
+  ]) {
+    const gzipped = gzipSync(outputs[name], { level: 9 }).length;
+    const budget = `${name}: ${(gzipped / 1024).toFixed(1)} KB gzipped (budget ${limit / 1024} KB)`;
+    if (gzipped > limit) {
+      console.error(`${budget}: over budget. Make the new code smaller or raise the budget in ${where} first.`);
+      failed = true;
+    } else {
+      console.log(budget);
+    }
   }
   // Widgets first: they fill the catalogue page that the docs and llms steps read.
   if ((await buildWidgets({ check })) > 0) failed = true;

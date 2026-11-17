@@ -288,6 +288,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
             <tbody>
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
               <tr><td><code>layout</code></td><td><code>sidebar</code> ou <code>full</code></td><td><code>sidebar</code></td><td>Com <code>full</code>, a página não tem navegação e o conteúdo ocupa toda a largura.</td></tr>
+              <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa (versão 1.2.0, em preparação). <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
               <tr><td><code>updated</code></td><td>data <code>AAAA-MM-DD</code> ou <code>auto</code></td><td><code>updated</code> do <code>course.js</code></td><td>Data do rodapé só nesta página. <code>auto</code> usa a data do ficheiro que o servidor envia (<code>Last-Modified</code>); sem ela, não mostra data. Ver <a href="#data-da-pagina">Data de atualização de uma página</a>.</td></tr>
             </tbody>
           </table>
@@ -330,6 +331,25 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
         <h2 id="subpastas">Páginas em subpastas</h2>
         <p>Os <code>href</code> de <code>pages</code> são relativos ao <code>course.js</code>, não à página. Uma página em <code>guioes/aula10.html</code>, que carrega <code>../course.js</code>, recebe por isso uma navegação que aponta para <code>../semanas.html</code> sem escrever nada. O <code>logo</code>, os links escritos no HTML e os do rodapé continuam relativos à página que os mostra. O exemplo completo está em <a href="../estrutura.html#subpastas">Estrutura de um site</a>.</p>
 
+        <h2 id="ligacoes-seccoes">Ligações para secções</h2>
+        <p>Qualquer título <code>&lt;h2&gt;</code> ou <code>&lt;h3&gt;</code> dentro do <code>&lt;uc-page&gt;</code> pode receber uma ligação, mesmo sem <code>id</code> escrito no HTML: o kit dá-lhe um a partir do texto, antes de desenhar os componentes.</p>
+        <ul>
+          <li>O <code>id</code> é o texto do título sem acentos, em minúsculas, com espaços e sinais trocados por <code>-</code>: «Exercício 2» dá <code>exercicio-2</code>, e a ligação é <code>semanas.html#exercicio-2</code>. Um título só com sinais dá <code>section</code>.</li>
+          <li>Dois títulos iguais dão <code>exercicio-2</code> e <code>exercicio-2-2</code>, pela ordem da página.</li>
+          <li>Um <code>id</code> escrito no HTML nunca muda e nunca é repetido. Os <code>week-1</code>, <code>week-2</code>… das semanas também contam como ocupados. Para uma ligação que não pode mudar quando o texto do título muda, escreve-se o <code>id</code> à mão.</li>
+          <li>Num site com duas línguas usa-se o texto da <strong>primeira</strong> língua de <code>languages</code>, por isso a ligação é a mesma em português e em inglês.</li>
+        </ul>
+        <p>Como a página só aparece depois de pronta, o kit volta a deslocar-se até ao título da ligação quando a página aparece e destaca-o durante 2 segundos (classe <code>uc-target-flash</code>: fundo e contorno na cor de destaque, sem transição para quem pede menos movimento).</p>
+        <p>O script <a href="../manter.html"><code>uc-site.py</code></a> segue a mesma regra, por isso os resultados da pesquisa apontam para a secção certa.</p>
+
+        <h2 id="pesquisa">Pesquisa no site</h2>
+        <p>Em preparação para a versão 1.2.0: ainda não se deve ligar num site real, porque a janela de resultados chega na fase seguinte. Com <code>search: true</code> no <code>course.js</code> e o ficheiro <code>search-index.js</code> criado pelo <code>uc-site.py</code>, o cabeçalho mostra o botão <strong>Pesquisar</strong> antes do botão de língua, com os atalhos <kbd>Ctrl</kbd> <kbd>K</kbd>, <kbd>⌘</kbd> <kbd>K</kbd> e <kbd>/</kbd>.</p>
+        <ul>
+          <li>O kit pergunta ao servidor se o índice existe uma vez por visita, quando o browser está desocupado. Enquanto espera, guarda o lugar do botão para nada saltar; se o índice não existir, o botão não aparece.</li>
+          <li>Sem <code>search</code> no <code>course.js</code> nada disto acontece e não há nenhum pedido a mais.</li>
+          <li>Nos ecrãs estreitos só aparece a lupa, com o mesmo nome acessível.</li>
+        </ul>
+
         <h2 id="personalizar">Personalizar</h2>
         <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>; para mudar só cores, cantos ou letra em todo o site bastam os <a href="../estilos/tokens.html">tokens</a>.</p>
         <div class="uc-table">
@@ -345,6 +365,8 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>.uc-brand</code>, <code>__logo</code>, <code>__title</code>, <code>__edition</code></td><td>O link com o logótipo, o nome do curso e o ano letivo.</td></tr>
               <tr><td><code>.uc-header__meta</code>, <code>.uc-header__institution</code></td><td>O lado direito do cabeçalho e a instituição.</td></tr>
               <tr><td><code>.uc-lang-switch</code>, <code>__button</code></td><td>Os botões para mudar de língua.</td></tr>
+              <tr><td><code>.uc-search-button</code>, <code>--pending</code>, <code>__label</code>, <code>__hint</code></td><td>O botão «Pesquisar» (sites com pesquisa), o lugar guardado enquanto o kit pergunta se o índice existe, o texto e o atalho <kbd>Ctrl K</kbd>.</td></tr>
+              <tr><td><code>.uc-target-flash</code></td><td>O destaque de 2 segundos no destino de uma ligação <code>#…</code> ao abrir a página.</td></tr>
               <tr><td><code>.uc-page__editions</code>, <code>.uc-page__editions-button</code>, <code>.uc-page__editions-menu</code></td><td>"Outros anos": o contentor, o botão e a lista de edições.</td></tr>
               <tr><td><code>.uc-page__edition-notice</code></td><td>O aviso no topo de uma edição antiga (um <code>uc-callout</code>).</td></tr>
               <tr><td><code>.uc-shell</code></td><td>A grelha com a navegação e o conteúdo.</td></tr>
@@ -423,6 +445,8 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#comportamento">Aparecer já pronta</a></li>
           <li><a href="#subpastas">Páginas em subpastas</a></li>
+          <li><a href="#ligacoes-seccoes">Ligações para secções</a></li>
+          <li><a href="#pesquisa">Pesquisa no site</a></li>
           <li><a href="#personalizar">Personalizar</a></li>
           <li><a href="#acessibilidade">Acessibilidade</a></li>
           <li><a href="#sem-javascript">Sem JavaScript</a></li>

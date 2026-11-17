@@ -34,6 +34,7 @@ Contents:
 13. [Decisions taken in phase S0](#13-decisions-taken-in-phase-s0)
 14. [Decisions taken in phase S2](#14-decisions-taken-in-phase-s2)
 15. [Decisions taken in phase S3](#15-decisions-taken-in-phase-s3)
+16. [Decisions taken in phase S1](#16-decisions-taken-in-phase-s1)
 
 ---
 
@@ -634,3 +635,68 @@ Measurements on `main` after S3 (the same machine as section 12):
 | `ip-2526` | 9 | 9 | 75 | 33.2 KB |
 | `pc-2627` | 58 | 58 | 250 | 106.4 KB (problem statements added in PR 48) |
 | `pi-2526` (pt + en) | 7 | 12 | 84 | 38.3 KB |
+
+## 16. Decisions taken in phase S1
+
+Phase S1 wrote `kit/src/core/anchors.js`, `kit/src/core/search-loader.js`,
+the `search` field in `config.js`, the header button in `uc-page.js`, the
+`uc-search.js` bundle (a placeholder) and `scripts/check-search.mjs`, and
+refined sections 6 to 8 as follows.
+
+1. **When ids are given.** `anchors.js` runs on `DOMContentLoaded` before
+   `element.js` defines the components (or at once when the kit is loaded
+   after parsing). It is placed before `element.js` in `manifest.json` for
+   that reason. The file's own language (6) is found by matching the page's
+   file name against `pages[].href` objects, without `<uc-page current>`.
+2. **`#hash` after start-up** happens once, in the first animation frame
+   after `.uc-visible`; not on `hashchange` (in-page links already scroll, and
+   the skip link to `#uc-main` must not flash). `.uc-target-flash` is a soft
+   accent background with an outline; with `prefers-reduced-motion` it has no
+   transition.
+3. **Detection starts on `uc:ready`**, in `requestIdleCallback` (fallback
+   1.5 s), whenever `search` is on (also on a page without `<uc-page>`, so
+   `<uc-search>` and `UC.search` work there). A known answer from
+   `sessionStorage` sets the state before the header renders: `"1"` shows the
+   button at once (no placeholder), `"0"` renders nothing, and
+   `uc:searchready` is still dispatched on `uc:ready`. A timeout or network
+   error is remembered as `"0"` for the visit, like a 404.
+4. **Unknown index format** (`v` ≠ 1, or no `pages` array) over HTTP is only
+   seen when the index is loaded (on open): the button is removed and a
+   warning written; it is not stored in `sessionStorage`.
+5. **Console messages** use the kit's usual prefix: `[uc-kit] search-index.js
+   is older than course.js (updated …). Run python3 uc-site.py.` and a second
+   one when `course` differs: `[uc-kit] search-index.js was made for "…", not
+   for this course.js. …`.
+6. **`<uc-page search="off">`** also turns the shortcuts off on that page
+   (there is no opener to return focus to).
+7. **Button.** Label `search.button` ("Pesquisar"/"Search"), icon `search`,
+   hint `Ctrl K` (`⌘ K` when `navigator.platform` is Apple) shown above
+   960 px, icon only at 480 px and below (the label stays as visually hidden
+   text, so the accessible name is unchanged), hidden when printing. The
+   pending placeholder is the same button with `visibility: hidden` (out of
+   the accessibility tree and the tab order).
+8. **Loader ↔ `uc-search.js` interface.** `UC.search.open(query)` checks
+   availability, then loads `uc-search.js` (next to `uc-kit.js`, from
+   `document.currentScript`) and the index in parallel, once each (a failed
+   load can be retried), and calls
+   `UC.internal.searchUI.open({ index, query, opener })`, where `opener` is
+   the element focused before opening. `uc-search.js` must set
+   `UC.internal.searchUI` (the S1 placeholder only warns). The "A carregar…"
+   state and the retry button of 7.3 belong to the dialog (S4): today a
+   failed load only writes a console warning. `UC.internal.searchIndex()`
+   returns the loaded index (rejects with search off).
+9. **Size.** `uc-kit.js` went from 44.6 to 46.5 KB gzipped (+1.9 KB, not the
+   estimated 1 KB): about 1.5 KB of the 48 KB budget is left. `uc-search.js`
+   is a separate bundle (`manifest.json` key `search`) with its own 6 KB
+   budget in `build.mjs`.
+10. **Tests.** `scripts/check-search.mjs` (in `npm test`, CI job 2) runs
+    every `slugs.json` case with the kit in `<head>` and with `defer`, plus
+    detection, button, shortcuts, file:// and warnings, on made-up pages
+    served by Playwright. `tests/pages/search/` is a real page with search on
+    and a hand-written index (checked by `check-pages` and `check-a11y`).
+11. **Note for S5.** A site with `search` but no index answers the `HEAD`
+    with 404, which Chromium logs as a console error and `check-pages.mjs`
+    counts as a failure (any local response ≥ 400). The template ships
+    `search: true` (decision 4), so S5 must either generate its
+    `search-index.js` or let `check-pages` accept a 404 for the index `HEAD`.
+

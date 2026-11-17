@@ -104,7 +104,7 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/editions/2425/index.html", selector: "uc-page", file: "tests/pages/editions.aria.yml" },
 ];
 
-/** Component demos, the sortable table demo, the EDados example (top level and one lab guide) and the template. */
+/** Component demos, the sortable table demo, the EDados example (top level and one lab guide), the template and the search test page. */
 async function findPages() {
   const pages = [];
   const demos = path.join(ROOT, "docs", "demos");
@@ -122,6 +122,8 @@ async function findPages() {
   pages.push("examples/edados-2526/guioes/aula10.html");
   // The widget test page (several widgets, predict, editable, bilingual).
   pages.push("tests/pages/uc-widget-sort.html");
+  // The header search button (a site with search on and an index).
+  pages.push("tests/pages/search/index.html");
   // The one CSS-block demo with behaviour (sortable headers).
   pages.push("docs/demos/blocks/table-sortable.html");
   return pages.sort();
@@ -161,6 +163,8 @@ async function open(browser, origin, relative, options = {}) {
   await page
     .waitForFunction(() => !document.querySelector("uc-page") || document.documentElement.classList.contains("uc-visible"), null, { timeout: 4000 })
     .catch(() => {});
+  // A site with `search` asks whether its index exists when idle: wait for the answer.
+  await page.waitForFunction(() => !document.querySelector(".uc-search-button--pending"), null, { timeout: 7000 }).catch(() => {});
   await page.waitForTimeout(200);
   return { context, page };
 }

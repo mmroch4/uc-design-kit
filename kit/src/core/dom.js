@@ -64,6 +64,7 @@
     code: small('<path d="m8 8-4 4 4 4M16 8l4 4-4 4"/>'),
     slides: small('<path d="M3 4h18v12H3zM12 16v4M8 20h8"/>'),
     sort: small('<path class="uc-sort-up" d="m8 10 4-4 4 4"/><path class="uc-sort-down" d="m8 14 4 4 4-4"/>'),
+    search: small('<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>'),
     link: small('<path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1 1M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1-1"/>'),
     tree: `<svg ${SVG_ATTRS} width="28" height="28" viewBox="0 0 28 28" stroke-width="2"><circle cx="14" cy="5" r="3"/><circle cx="6" cy="22" r="3"/><circle cx="22" cy="22" r="3"/><path d="M12.5 7.5 7.5 19.5M15.5 7.5l5 12"/></svg>`,
   };

@@ -29,7 +29,11 @@
     document.documentElement.classList.add("uc-ready");
     document.dispatchEvent(new CustomEvent("uc:ready", { detail: { version: UC.version } }));
     // uc-page stays hidden until this class is set (see uc-page.css).
-    fontsReady().then(() => document.documentElement.classList.add("uc-visible"));
+    fontsReady().then(() => {
+      document.documentElement.classList.add("uc-visible");
+      // The browser jumped to #hash while the page was hidden: jump again (core/anchors.js).
+      requestAnimationFrame(UC.internal.anchors.revisitHash);
+    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready);

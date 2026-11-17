@@ -53,6 +53,9 @@ jobs:
       - name: Install Chromium system dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
+      - name: Search checks (kit side of the site search)
+        if: matrix.shard == 2
+        run: node scripts/check-search.mjs
       - name: Accessibility checks
         run: node scripts/check-a11y.mjs
       - name: Page checks
