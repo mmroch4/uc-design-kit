@@ -74,6 +74,11 @@
   }
 
   const px = (value) => (value === 0 ? "0" : `${value}px`);
+  /**
+   * Root font size as a share of the reader's browser setting (16 px by default),
+   * so a reader who asks for larger text still gets it: 17 -> "106.25%".
+   */
+  const rootSize = (value) => `${+((value / 16) * 100).toFixed(4)}%`;
 
   /** Every token the customiser controls, as [name, value] pairs. */
   function tokens(values) {
@@ -83,7 +88,7 @@
       ["--uc-radius-sm", px(radius.sm)],
       ["--uc-radius-md", px(radius.md)],
       ["--uc-radius-lg", px(radius.lg)],
-      ["--uc-font-size-base", px(values.size)],
+      ["--uc-font-size-base", rootSize(values.size)],
       ["--uc-font-sans", values.font === "system" ? SYSTEM_FONT : null],
       ["--uc-content-max", px(values.width)],
     ];

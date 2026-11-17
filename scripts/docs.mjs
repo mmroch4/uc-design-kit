@@ -168,6 +168,16 @@ function header(ctx) {
 function sidebar(ctx) {
   const { file, nav, lang, labels } = ctx;
   const lines = [`<nav class="docs-sidebar" id="docs-sidebar" aria-label="${labels.sections}">`];
+  // On narrow screens the header has no room for its links (WCAG 1.4.10 at 320 px):
+  // docs.css hides them there and shows this copy at the top of the menu instead.
+  const docsHome = path.join(DOCS, nav.languages[lang].home);
+  lines.push(`  <div class="docs-sidebar__group docs-sidebar__group--site">`);
+  lines.push(`    <ul class="docs-sidebar__list" aria-label="Site">`);
+  lines.push(`      <li><a href="${href(file, docsHome)}">${labels.docs}</a></li>`);
+  lines.push(`      <li><a href="${href(file, path.join(ROOT, "examples/edados-2526/index.html"))}">${labels.example}</a></li>`);
+  lines.push(`      <li><a href="${nav.repository}">GitHub</a></li>`);
+  lines.push(`    </ul>`);
+  lines.push(`  </div>`);
   nav.languages[lang].groups.forEach((group, index) => {
     const id = `docs-nav-${index + 1}`;
     lines.push(`  <div class="docs-sidebar__group">`);

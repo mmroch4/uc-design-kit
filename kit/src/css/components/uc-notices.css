@@ -71,3 +71,6 @@
 @media (prefers-reduced-motion: reduce) {
   :where(.uc-notices__summary svg) { transition: none; }
 }
+
+/* The heading looks the same whatever its level (heading-level only changes the outline). */
+:where(.uc-notices__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }

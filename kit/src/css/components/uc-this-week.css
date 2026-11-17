@@ -49,3 +49,6 @@
 @media (max-width: 760px) {
   :where(.uc-this-week__card) { padding: var(--uc-space-5); }
 }
+
+/* The heading looks the same whatever its level (heading-level only changes the outline). */
+:where(.uc-this-week__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }

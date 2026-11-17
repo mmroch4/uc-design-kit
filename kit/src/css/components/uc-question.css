@@ -61,6 +61,8 @@
   border-color: var(--uc-color-success-text);
   background: var(--uc-color-success-bg);
 }
+:where(.uc-question__mark) { display: none; margin-left: auto; color: var(--uc-color-success-text); }
+:where(.uc-question__option--correct .uc-question__mark) { display: flex; }
 :where(.uc-question__input) {
   flex: none;
   width: 18px;

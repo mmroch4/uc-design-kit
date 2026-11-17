@@ -77,6 +77,10 @@
     }
     if (kind === "length") {
       if (/^-?[\d.]+px$/.test(raw)) return raw;
+      // The root size is a percentage of the browser setting: show what it gives on <html>.
+      if (/%$/.test(raw) && token === "--uc-font-size-base") {
+        return `${raw} (${formatNumber(parseFloat(getComputedStyle(document.documentElement).fontSize))}px)`;
+      }
       const px = toPx(raw);
       return px === null ? raw : `${raw} (${formatNumber(px)}px)`;
     }

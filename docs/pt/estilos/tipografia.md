@@ -38,7 +38,7 @@ A JetBrains Mono junta alguns pares de carateres num só símbolo (`->` numa set
 
 ## Escala
 
-Os tamanhos são relativos ao tamanho da raiz (`--uc-font-size-base`, 16 px). Cada linha está escrita no seu tamanho; o valor ao lado é calculado nesta página.
+Os tamanhos são relativos ao tamanho da raiz (`--uc-font-size-base`, 100% do tamanho escolhido no navegador, 16 px por omissão). Cada linha está escrita no seu tamanho; o valor ao lado é calculado nesta página.
 
 - Algoritmos`--uc-font-size-display` 2.5rem (40px)
   Título de [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md)
@@ -50,7 +50,7 @@ Os tamanhos são relativos ao tamanho da raiz (`--uc-font-size-base`, 16 px). Ca
   `<h3>`
 - Dois projetos e um teste.`--uc-font-size-lg` 1.125rem (18px)
   `uc-lead`
-- Os projetos fazem-se em grupos de dois.`--uc-font-size-base` 16px
+- Os projetos fazem-se em grupos de dois.`--uc-font-size-base` 100%
   Texto
 - Teóricas: listas ligadas, slides 9.`--uc-font-size-body-sm` 0.9375rem (15px)
   Tabelas, semanas, avisos

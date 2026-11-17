@@ -88,5 +88,17 @@
     return element.hasAttribute(name) && Number.isFinite(value) ? value : fallback;
   }
 
-  Object.assign(UC.internal, { h, append, fragment, icon, uid, isExternal, flag, number });
+  /**
+   * The tag for a component's generated heading: `heading-level="3"` gives "h3".
+   * Levels 2 to 6 are accepted; anything else falls back to "h2".
+   */
+  function headingTag(element) {
+    if (!element.hasAttribute("heading-level")) return "h2";
+    const level = Number(element.getAttribute("heading-level"));
+    if (Number.isInteger(level) && level >= 2 && level <= 6) return `h${level}`;
+    console.warn(`[uc-kit] <${element.localName}> heading-level must be 2 to 6; using 2.`);
+    return "h2";
+  }
+
+  Object.assign(UC.internal, { h, append, fragment, icon, uid, isExternal, flag, number, headingTag });
 })(window.UC);

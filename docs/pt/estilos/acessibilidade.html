@@ -32,6 +32,13 @@
   <div class="docs-layout">
     <!-- docs:sidebar -->
     <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
@@ -129,6 +136,15 @@
           <li>que o conteúdo continua lá com o JavaScript desligado;</li>
           <li>que não há erros na consola nem ficheiros em falta.</li>
         </ul>
+        <p>Um segundo teste percorre as demonstrações de cada componente, o exemplo e o modelo como uma pessoa que usa o teclado:</p>
+        <ul>
+          <li>o axe-core volta a correr com todas as secções abertas, e conta também as violações moderadas e ligeiras;</li>
+          <li>a tecla Tab chega a todos os controlos, cada um mostra o contorno de foco e nenhum prende o foco;</li>
+          <li>o nome acessível de cada botão contém o texto que se vê nele;</li>
+          <li>não há deslocamento horizontal a 320 px de largura nem com o texto a 200%;</li>
+          <li>com "reduzir movimento" não há transições;</li>
+          <li>copiar mantém o foco no botão e anuncia "Copiado"; abrir e fechar, marcar como feito, responder a uma pergunta, o menu do telemóvel e a troca de língua atualizam o estado e não perdem o foco.</li>
+        </ul>
         <p>Um teste automático encontra só parte dos problemas. O resto (se o texto alternativo descreve a imagem, se os títulos fazem sentido) depende do conteúdo e verifica-se à mão.</p>
 
         <h2 id="o-que-o-kit-garante">O que o kit garante</h2>
@@ -195,7 +211,7 @@
           </div>
           <div class="uc-card">
             <h3>A cor do curso</h3>
-            <p>O kit não verifica o <code>accentColor</code>. Como é a cor das ligações sobre branco e o fundo do texto branco dos botões principais, precisa de pelo menos 4,5:1 de contraste com branco. O azul por omissão tem 6,7:1. Ver <a href="cor.html">Cor</a>.</p>
+            <p>O kit aplica qualquer <code>accentColor</code>, mas avisa na consola do navegador quando tem menos de 4,5:1 de contraste com branco (<code>[uc-kit] course.js: accentColor "#…" has a contrast of 3.2:1 with white…</code>). Como é a cor das ligações sobre branco e o fundo do texto branco dos botões principais, precisa de pelo menos 4,5:1 de contraste com branco. O azul por omissão tem 6,7:1. Ver <a href="cor.html">Cor</a>.</p>
           </div>
           <div class="uc-card">
             <h3>Cor e posição</h3>

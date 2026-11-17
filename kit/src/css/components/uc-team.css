@@ -26,3 +26,6 @@
 :where(.uc-team__table td) { vertical-align: middle; }
 :where(.uc-team__person .uc-team__name) { font-weight: 500; }
 :where(.uc-team__classes) { font-size: var(--uc-font-size-md); }
+
+/* The heading looks the same whatever its level (heading-level only changes the outline). */
+:where(.uc-team__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }

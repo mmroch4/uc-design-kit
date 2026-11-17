@@ -107,6 +107,7 @@ Exemplo (cartão depois do fim do semestre), [demonstração ao vivo](https://uc
 | --- | --- | --- | --- |
 | `source` | URL | a página `weeks` de `pages` | Página de onde ler o título e as linhas da semana atual. Relativa à página onde está o cartão. |
 | `kind` | tipos separados por espaços | todos | Só mostra prazos destes tipos, por exemplo `kind="assessment exam"`. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
 
 ## Configuração usada
 

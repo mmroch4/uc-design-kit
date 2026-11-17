@@ -71,3 +71,6 @@
   font-size: var(--uc-font-size-body-sm);
   font-weight: 500;
 }
+
+/* The heading looks the same whatever its level (heading-level only changes the outline). */
+:where(.uc-deadlines__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }

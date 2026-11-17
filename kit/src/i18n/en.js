@@ -86,6 +86,8 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     error: "Error",
     runFailed: "Could not run the code ({reason}).",
     testsPassed: "{passed} of {total} tests passed",
+    runFinished: "Run finished. The output is below the code.",
+    runFinishedError: "Run finished with errors. The errors are below the code.",
     passed: "Passed",
     failed: "Failed",
     expected: "Expected",

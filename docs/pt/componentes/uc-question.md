@@ -116,6 +116,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-question__prompt` | O enunciado. |
 | `.uc-question__options` | O grupo de opções (um `<fieldset>`). |
 | `.uc-question__option`, `__option--correct` | Cada opção e uma opção certa depois de resolvida. |
+| `.uc-question__mark` | O visto que aparece nas opções certas depois de resolvida, para que não se distingam só pela cor. |
 | `.uc-question__input`, `__label` | O botão de opção ou a caixa, e o texto da opção. |
 | `.uc-question__actions`, `__check` | A linha do botão e o botão "Verificar". |
 | `.uc-question__feedback`, `--none`, `--empty`, `--incorrect`, `--correct` | A zona da mensagem e o seu estado. |
@@ -135,7 +136,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 
 ### O que o componente faz
 
-As opções são `<input type="radio">` ou `type="checkbox"` nativos, cada um com o seu `<label>`, num `<fieldset>` cujo nome é o enunciado. A mensagem fica numa região `aria-live="polite"`. O estado certo não depende só da cor: há a mensagem "Certo!" com um ícone.
+As opções são `<input type="radio">` ou `type="checkbox"` nativos, cada um com o seu `<label>`, num `<fieldset>` cujo nome é o enunciado. A mensagem fica numa região `aria-live="polite"`. O estado certo não depende só da cor: há a mensagem "Certo!" com um ícone, e as opções certas ganham um visto.
 
 ### O que cabe a quem escreve
 

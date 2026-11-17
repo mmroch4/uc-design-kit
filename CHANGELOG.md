@@ -7,6 +7,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Accessibility (WCAG 2.1 AA audit): `heading-level` on `<uc-notices>`,
+  `<uc-deadlines>`, `<uc-team>` and `<uc-this-week>` (2–6, default 2; the
+  heading looks the same at any level); a check mark on the right answers of a
+  solved `<uc-question>` (`.uc-question__mark`); a console warning when
+  `accentColor` has less than 4.5:1 contrast with white; `scripts/check-a11y.mjs`
+  in `npm test` (keyboard walk, focus indicators, label in name, reflow at
+  320 px, text at 200 %, reduced motion, focus and announcements of the
+  components).
 - Migration with a coding agent: the page "Migrar um site existente" with a
   ready-to-paste prompt for Claude Code, Codex and similar agents, and
   `template/AGENTS.md` (kit rules and the migration procedure), now part of
@@ -84,6 +92,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   in a Web Worker.
 
 ### Changed
+- Accessibility: `--uc-font-size-base` is `100%` (the reader's browser setting)
+  instead of `16px`; the theme customiser writes percentages. `.uc-tag` wraps
+  when wider than its column. A finished run of `<uc-code run>` announces
+  "Execução terminada…" instead of "Resultado". A read-only code block is a Tab
+  stop only while it scrolls sideways. The language switch is named
+  "EN: Switch to English". Scrollable tables without a caption are named after
+  the nearest heading. On screens narrower than 30em the documentation header
+  links move into the menu.
 - Every relative URL in `course.js` is now relative to `course.js`, like
   `pages[].href`: `logo`, `institution.url`, `platforms[].url`, team and
   deadline `url`, deadline `links`, and links and images inside `HTMLText`
@@ -123,6 +139,7 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   (new block `uc-tag--success`).
 
 ### Fixed
+- Copy buttons keep focus when the clipboard fallback is used (`file://`).
 - `<uc-weeks>`: two breaks in a row after the same week appear in date order
   (they were reversed).
 - EDados example: the "migrado de …" notes link to the original pages on the

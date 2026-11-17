@@ -117,6 +117,7 @@ Exemplo (dois prazos e uma ligação por baixo), [demonstração ao vivo](https:
 | `per-kind` | número | sem limite | No máximo este número de prazos de cada tipo. `per-kind="1"` mostra só o próximo quiz, a próxima entrega… |
 | `limit` | número | sem limite | No máximo este número de prazos no total, depois dos outros filtros. |
 | `heading` | texto ou `none` | "Próximas datas" | Título da secção, num `<h2>`. Com `none`, a secção fica sem título. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
 
 ## Configuração usada
 

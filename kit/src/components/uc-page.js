@@ -120,7 +120,11 @@
         languages
           .filter((code) => code !== UC.lang)
           .map((code) => {
-            const short = tIn(code, "language.short");
+            const shortLabel = tIn(code, "language.short");
+            const short = shortLabel === "language.short" ? code.toUpperCase() : shortLabel;
+            // The accessible name starts with the visible text ("EN"), so speech
+            // input users can say what they see (WCAG 2.5.3 Label in Name).
+            const action = tIn(code, "a11y.switchLanguage", { language: tIn(code, "language.name") });
             return h(
               "button",
               {
@@ -128,10 +132,10 @@
                 class: "uc-lang-switch__button",
                 lang: code,
                 "data-uc-keep-lang": true,
-                "aria-label": tIn(code, "a11y.switchLanguage", { language: tIn(code, "language.name") }),
+                "aria-label": `${short}: ${action}`,
                 onClick: () => UC.setLanguage(code),
               },
-              short === "language.short" ? code.toUpperCase() : short,
+              short,
             );
           }),
       );

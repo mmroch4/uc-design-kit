@@ -82,7 +82,7 @@ O texto usa `--uc-font-sans` (Inter, servida com o kit) e o código, as datas e 
 
 - **Letra do sistema.** Com `system-ui`, o browser não descarrega a Inter e a página aparece um pouco mais cedo na primeira visita. A linha `preload` do `<head>` deixa de ser útil e pode sair.
 - **Outra letra.** Os ficheiros `.woff2` ficam na pasta do site e declaram-se com `@font-face` no `theme.css`, antes de `:root`. Não é preciso nenhum serviço externo.
-- **Tamanho.** `--uc-font-size-base` (16px) é a base de toda a escala; mudar só os tamanhos de um título é trabalho do [nível 2](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md).
+- **Tamanho.** `--uc-font-size-base` (100%, ou seja, o tamanho escolhido no navegador, 16 px por omissão) é a base de toda a escala; mudar só os tamanhos de um título é trabalho do [nível 2](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md).
 
 ## Antes e depois
 

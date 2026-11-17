@@ -60,7 +60,14 @@
         });
         input.checked = checked;
         // Moving the authored nodes (not cloning) keeps them unique across re-renders.
-        return h("label", { class: "uc-question__option", for: id }, input, h("span", { class: "uc-question__label" }, option.nodes));
+        return h(
+          "label",
+          { class: "uc-question__option", for: id },
+          input,
+          h("span", { class: "uc-question__label" }, option.nodes),
+          // Shown on the right answers once solved, so they are not told apart by colour alone (1.4.1).
+          h("span", { class: "uc-question__mark", "aria-hidden": "true" }, icon("check")),
+        );
       });
 
       const fieldset = h(

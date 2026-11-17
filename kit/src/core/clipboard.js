@@ -16,6 +16,9 @@
   // Pages opened from file:// or plain http have no async clipboard API.
   function legacyCopy(text) {
     return new Promise((resolve, reject) => {
+      // Selecting the hidden textarea moves focus to it; give focus back afterwards,
+      // or keyboard users would be left on <body> after pressing a copy button.
+      const previous = document.activeElement;
       const area = h("textarea", { class: "uc-visually-hidden", readonly: true, "aria-hidden": "true", tabindex: "-1" });
       area.value = text;
       document.body.appendChild(area);
@@ -27,6 +30,7 @@
         ok = false;
       }
       area.remove();
+      if (previous && previous !== document.body && typeof previous.focus === "function") previous.focus({ preventScroll: true });
       if (ok) resolve();
       else reject(new Error("copy failed"));
     });

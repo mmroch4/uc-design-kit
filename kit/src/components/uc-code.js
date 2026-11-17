@@ -352,8 +352,9 @@
         this.scroller = h("div", { class: "uc-code__scroll uc-code__editor" }, this.pre, this.textarea);
         this.body = h("div", { class: "uc-code__body", id: this.bodyId }, this.scroller, this.hint);
       } else {
-        this.scroller = h("div", { class: "uc-code__scroll", tabindex: "0", role: "group" }, this.pre);
+        this.scroller = h("div", { class: "uc-code__scroll", role: "group" }, this.pre);
         this.body = h("div", { class: "uc-code__body", id: this.bodyId }, this.scroller);
+        this.watchOverflow();
       }
 
       this.showPlain();
@@ -362,6 +363,27 @@
       // The authored source is kept in the DOM, hidden, so nothing is lost.
       if (this.source.matches("pre")) this.source.hidden = true;
       this.highlight();
+    }
+
+    /**
+     * A read-only block is a Tab stop only while its code is wider than the box,
+     * so keyboard users can scroll it; a block that fits is skipped, like wide
+     * tables (core/tables.js).
+     */
+    watchOverflow() {
+      const update = () => {
+        const overflows = this.scroller.scrollWidth > this.scroller.clientWidth + 1;
+        if (overflows) this.scroller.setAttribute("tabindex", "0");
+        else this.scroller.removeAttribute("tabindex");
+      };
+      if ("ResizeObserver" in window) {
+        const observer = new ResizeObserver(update);
+        observer.observe(this.scroller);
+        observer.observe(this.pre);
+      } else {
+        this.scroller.setAttribute("tabindex", "0");
+      }
+      update();
     }
 
     renderHeader() {
@@ -584,7 +606,7 @@
         const passed = result.tests.filter((test) => test.passed).length;
         return this.t("code.testsPassed", { passed, total: result.tests.length });
       }
-      return result.ok ? this.t("code.output") : this.t("code.error");
+      return this.t(result.ok ? "code.runFinished" : "code.runFinishedError");
     }
 
     renderResult() {

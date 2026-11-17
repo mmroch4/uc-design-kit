@@ -70,6 +70,21 @@
     }
   });
 
+  test("headingTag reads heading-level (2 to 6, else h2)", () => {
+    const tag = (value) => {
+      const element = document.createElement("uc-notices");
+      if (value !== null) element.setAttribute("heading-level", value);
+      return UC.internal.headingTag(element);
+    };
+    const warn = console.warn;
+    console.warn = () => {};
+    try {
+      equal([tag(null), tag("3"), tag("6"), tag("1"), tag("x")], ["h2", "h3", "h6", "h2", "h2"]);
+    } finally {
+      console.warn = warn;
+    }
+  });
+
   const summary = document.createElement("p");
   summary.textContent = failures ? `${failures} failing` : "All tests passed.";
   results.after(summary);

@@ -368,7 +368,7 @@ As cores do realce vêm dos tokens do kit: palavras reservadas em `--uc-color-ac
 
 ### O que o componente faz
 
-A área do código recebe o foco e desliza com as setas, e é identificada pelo nome do ficheiro. Os botões têm texto e o resultado de Copiar e de Executar é anunciado aos leitores de ecrã ("Copiado", "2 de 3 testes passaram"). Cada teste diz "Passou" ou "Falhou" além do ✓ ou ✗. O editor é um `<textarea>` com nome, e o botão de recolher indica se o código está visível. O `lang` passa para `data-lang` para não mudar a voz do leitor de ecrã.
+Quando o código é mais largo do que a caixa, a área do código recebe o foco com Tab e desliza com as setas; quando cabe, o Tab passa-a à frente. É identificada pelo nome do ficheiro. Os botões têm texto e o resultado de Copiar e de Executar é anunciado aos leitores de ecrã ("Copiado", "2 de 3 testes passaram", "Execução terminada. O resultado está abaixo do código."). Cada teste diz "Passou" ou "Falhou" além do ✓ ou ✗. O editor é um `<textarea>` com nome, e o botão de recolher indica se o código está visível. O `lang` passa para `data-lang` para não mudar a voz do leitor de ecrã.
 
 ### O que cabe a quem escreve
 

@@ -32,6 +32,13 @@
   <div class="docs-layout">
     <!-- docs:sidebar -->
     <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
@@ -511,7 +518,7 @@ uc-code[data-lang="java"] {
         <div class="docs-grid-2">
           <div class="uc-card">
             <h3>O que o componente faz</h3>
-            <p>A área do código recebe o foco e desliza com as setas, e é identificada pelo nome do ficheiro. Os botões têm texto e o resultado de Copiar e de Executar é anunciado aos leitores de ecrã ("Copiado", "2 de 3 testes passaram"). Cada teste diz "Passou" ou "Falhou" além do ✓ ou ✗. O editor é um <code>&lt;textarea&gt;</code> com nome, e o botão de recolher indica se o código está visível. O <code>lang</code> passa para <code>data-lang</code> para não mudar a voz do leitor de ecrã.</p>
+            <p>Quando o código é mais largo do que a caixa, a área do código recebe o foco com Tab e desliza com as setas; quando cabe, o Tab passa-a à frente. É identificada pelo nome do ficheiro. Os botões têm texto e o resultado de Copiar e de Executar é anunciado aos leitores de ecrã ("Copiado", "2 de 3 testes passaram", "Execução terminada. O resultado está abaixo do código."). Cada teste diz "Passou" ou "Falhou" além do ✓ ou ✗. O editor é um <code>&lt;textarea&gt;</code> com nome, e o botão de recolher indica se o código está visível. O <code>lang</code> passa para <code>data-lang</code> para não mudar a voz do leitor de ecrã.</p>
           </div>
           <div class="uc-card">
             <h3>O que cabe a quem escreve</h3>

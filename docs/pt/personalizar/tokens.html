@@ -32,6 +32,13 @@
   <div class="docs-layout">
     <!-- docs:sidebar -->
     <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
       <div class="docs-sidebar__group">
         <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
@@ -170,7 +177,7 @@
         <ul>
           <li><strong>Letra do sistema.</strong> Com <code>system-ui</code>, o browser não descarrega a Inter e a página aparece um pouco mais cedo na primeira visita. A linha <code>preload</code> do <code>&lt;head&gt;</code> deixa de ser útil e pode sair.</li>
           <li><strong>Outra letra.</strong> Os ficheiros <code>.woff2</code> ficam na pasta do site e declaram-se com <code>@font-face</code> no <code>theme.css</code>, antes de <code>:root</code>. Não é preciso nenhum serviço externo.</li>
-          <li><strong>Tamanho.</strong> <code>--uc-font-size-base</code> (16px) é a base de toda a escala; mudar só os tamanhos de um título é trabalho do <a href="css.html">nível 2</a>.</li>
+          <li><strong>Tamanho.</strong> <code>--uc-font-size-base</code> (100%, ou seja, o tamanho escolhido no navegador, 16 px por omissão) é a base de toda a escala; mudar só os tamanhos de um título é trabalho do <a href="css.html">nível 2</a>.</li>
         </ul>
 
         <h2 id="antes-e-depois">Antes e depois</h2>

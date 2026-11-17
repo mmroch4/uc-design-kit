@@ -88,7 +88,7 @@
             "aria-labelledby": showHeading ? this.headingId : null,
             "aria-label": showHeading ? null : headingText,
           },
-          showHeading ? h("h2", { class: "uc-team__heading", id: this.headingId }, headingText) : null,
+          showHeading ? h(UC.internal.headingTag(this), { class: "uc-team__heading", id: this.headingId }, headingText) : null,
           members.length ? view : null,
           ...this.extra,
         ),
