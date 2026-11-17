@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC037] This is the way · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC037 (This is the way) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC037</li></ol>
+    </nav>
+    <h1>[PC037] This is the way</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is from <a href="https://dei.uc.pt/miup/2023">MIUP'2023</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc037.png"/>
+You have just arrived at planet Numberlore. While ordering 2 space beers from the Fibonacci bar, the bartender was quick to tell you should instead ask for 10 beers. "Always use binary numbers. This is the way!".</p>
+<p>Later, when entering the hotel 10101, you found out numberlorians are very superstitious. In fact, this hotel had only 14 rooms, all corresponding to numbers that in binary have more ones (digit 1) than zeros (digit 0). In parenthesis is the corresponding number in decimal:</p>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>1 (1)</td>
+
+<td>11 (3)</td>
+
+<td>101 (5)</td>
+
+<td>110 (6)</td>
+
+<td>111 (7)</td>
+
+<td>1011 (11)</td>
+
+<td>1101 (13)</td>
+</tr>
+<tr>
+<td>1110 (14)</td>
+
+<td>1111 (15)</td>
+
+<td>10011 (19)</td>
+
+<td>10101 (21)</td>
+
+<td>10110 (22)</td>
+
+<td>10111 (23)</td>
+
+<td>11001 (25)</td>
+</tr>
+</table></div>
+<p>These ten numbers are all the binary numbers smaller or equal than 25 in which the quantity of ones is strictly larger than the quantity of zeros. However, there are many other such numbers bigger than 25, such as 11010 (26) or 101101 (45).</p>
+<p>You could not stop thinking about this in your decimal mind, wandering how many such numbers were there for any given range.</p>
+<h2>Task</h2>
+<p>Given two integers \(a\) and \(b\) (in decimal base), your task is to compute the amount of numbers in the range \([a,b]\) (inclusive) that have more ones than zeros in their binary representation.</p>
+<h2>Input</h2>
+<p>The first line contains an integer \(N\), indicating the amount of test cases that follow.</p>
+<p>Each of the following \(N\) lines contains two integers \(a\) \(b\) defining a range for which you need to compute the desired quantity.</p>
+<h2>Output</h2>
+<p>The output should contain \(N\) lines, each one indicating the amount of numbers in the respective range that have more ones than zeroes in their binary representation.</p>
+<h2>Constraints</h2>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>\( 1 \leq N \leq 100 \)</td><td>Number of test cases (ranges)</td>
+</tr>
+<tr>
+<td>\( 1 \leq a \leq b \leq 10^{18} \)</td><td>Range limits</td>
+</tr>
+</table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">5
+1 25
+10 100
+41 42
+999 999
+1234 5678</pre></td><td><pre data-copy="Output">14
+48
+0
+1
+2258</pre></td></tr></table></div>
+<p><strong>Explanation of example</strong>
+</p><ul>
+<li> There are 14 numbers in the range [1,25] that have more ones than zeroes in their binary representation <i>(the numbers given in the problem statement for the 10101 hotel)</i>
+</li><li> There are 48 such numbers in the range [10,100]
+    </li><li> There are no such numbers in the range [41,42]
+    </li><li> There is 1 such number in the range [999,999]
+    </li><li> There are 2258 such numbers in the range [1234,5678]
+  </li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc037.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc037.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

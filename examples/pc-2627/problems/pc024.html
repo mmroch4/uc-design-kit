@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC024] Matrix Summation · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC024 (Matrix Summation) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC024</li></ol>
+    </nav>
+    <h1>[PC024] Matrix Summation</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/MATSUM/">SPOJ Problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc024.png"/>
+A \(N \times N\) matrix is filled with numbers.  BuggyD is analyzing the matrix, and he wants the sum of certain submatrices every now and then, so he wants a system where he can get his results from a query.  Also, the matrix is dynamic, and the value of any cell can be changed with a command in such a system.</p>
+<p>Assume that initially, all the cells of the matrix are filled with 0.  Design such a system for BuggyD.  Read the input format for further details.</p>
+<h2>Input</h2>
+<p>The first line contains a single integer \(N\), denoting the size of the matrix.</p>
+<p>A list of commands follows, which will be in one of the following three formats:</p>
+<ul>
+<li><strong>SET x y num</strong> - Set the value at cell \((x, y)\) to \(num \).</li>
+<li><strong>SUM x1 y1 x2 y2</strong> - Find and print the sum of the values in the rectangle from \((x1, y1)\) to \((x2, y2)\), inclusive.  You may assume that the result will fit in a signed 32-bit integer.</li>
+<li><strong>END</strong> - Indicates the end of the test case.</li>
+</ul>
+<h2>Output</h2>
+<p>Output one line for the answer to each <strong>SUM</strong> command.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq N \leq 1024 \)
+  </li><li>\( 0 \leq x,y \lt N \)
+  </li><li>\( 0 \leq x1 \leq x2 \lt N \)
+  </li><li>\( 0 \leq y1 \leq y2 \lt N \)
+</li></ul>
+<p>There will be at most \(100\,000\) commands.</p>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4
+SET 0 0 1
+SUM 0 0 3 3
+SET 2 2 12
+SUM 2 2 2 2
+SUM 2 2 3 3
+SUM 0 0 2 2
+END</pre></td><td><pre data-copy="Output">1
+12
+12
+13</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc024.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc024.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

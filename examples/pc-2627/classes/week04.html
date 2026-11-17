@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week #04 · Competitive Programming 2026/27</title>
+  <meta name="description" content="Class #04 of Competitive Programming (CC3032): Sqrt decomposition, segment trees and variants.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #04</li></ol>
+    </nav>
+    <h1>Week #04</h1>
+    <p class="uc-lead">Sqrt decomposition, segment trees and variants · Problems: <a href="../problem-sets/ps04.html">Weekly Problems #04</a></p>
+    <div class="uc-content">
+<h2>Main learning outcomes for this class</h2>
+<ol>
+<li><strong>Range Minimum Query (RMQ):</strong>
+<ul>
+<li>I know the <strong>RMQ</strong> problems and what is asks for
+      </li><li>I know variants, such as asking for the maximum or the sum (<strong>RSQ</strong>)
+    </li></ul>
+</li><li><strong>Square-root (srt) decomposition</strong>
+<ul>
+<li>I know the meaning of <strong>decomposing</strong> an array of size <i>n</i> into buckets of size <i>sqrt(n)</i>
+</li><li>I know how to answer an RMQ <strong><i>query</i></strong> using <i>sqrt decomposition</i>
+</li><li>I know how to do a <strong><i>single update</i></strong> in RMQ using <i>sqrt decomposition</i>
+</li><li>I understand how to <strong>adapt</strong> it to variations such as RSQ.
+    </li></ul>
+</li><li><strong>Segments trees:</strong>
+<ul>
+<li>I understand the concept of <strong>segment trees</strong>
+</li><li>I know how how to <strong>implement</strong> segment trees using simple arrays
+      </li><li>I know how to answer an RMQ <strong><i>query</i></strong> using <i>segment trees</i>
+</li><li>I know how to do a <strong><i>single update</i></strong> in RMQ using <i>segment trees</i>
+</li><li>I understand how to <strong>adapt</strong> the <strong>merge</strong> function of a segment tree to more complex variations (including storing several values in a node, like for instance in a <strong>merge sort tree</strong>)
+      </li><li>I know and understand the concept of <strong>lazy propagation</strong> to make <strong>range updates</strong>
+</li><li>I know and understand the concept of <strong>offline processing</strong> and how I can (re)sort queries to make a good usage of segment trees
+      </li><li>I know and understand the concept of <strong>2D Segment Trees</strong> for generalizing to a 2D case
+    </li></ul>
+</li></ol>
+
+<h2>Study Material</h2>
+<ul>
+<li><strong>Videos:</strong>
+<ul>
+<li><a href="https://youtu.be/t2_NALOXQcs">Segment Trees and Lazy Propagation</a> [42m14s] (my own video from the Topics in Advanced Algorithms course)</li>
+<li><a href="https://youtu.be/vHg5K08lPKY">LCA and RMQ (buckets, sparse tables, cartesian trees)</a> [1h34m12s] (my own video from the Topics in Advanced Algorithms course)</li>
+<li><a href="https://www.youtube.com/watch?v=s3bnguhHttM">A&amp;DS S02E01. Segment Tree </a> (Pavel Mavrin, ITMO University)
+      </li><li><a href="https://www.youtube.com/watch?v=7JmBP-RqzlI">A&amp;DS S02E02. Segment Trees, Lazy Propagation </a> (Pavel Mavrin, ITMO University)
+    </li></ul>
+</li><li><strong>General References in websites:</strong>
+<ul>
+<li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/range-minimum-query-and-lowest-common-ancestor/">Range Minimum Query and Lowest Common Ancestor</a> (TopCoder Tutorial)
+      </li><li><a href="http://codeforces.com/blog/entry/15890">Algorithm Gym :: Everything About Segment Trees</a> (CodeForces Blog Post)
+      </li><li><a href="https://cp-algorithms.com/data_structures/sqrt_decomposition.html">Sqrt Decomposition</a> (E-Maxx Algorithms)
+      </li><li><a href="https://cp-algorithms.com/data_structures/segment_tree.html">Segment Trees</a> (E-Maxx Algorithms)
+    </li></ul>
+</li><li><strong>Example Implementations:</strong>
+<ul>
+<li>Example implementation of segment tree: <a href="../material/segtree_array.cpp">segtree_array.cpp</a> [<a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/material/segtree_array.html">colorized</a>] | <a href="../material/segtree_ptr.cpp">segtree_ptr.cpp</a> [<a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/material/segtree_ptr.html">colorized</a>]<br/>
+	[solves <a href="https://cses.fi/problemset/task/1648">https://cses.fi/problemset/task/1648</a>]
+    </li></ul>
+</li><li><strong>Book References:</strong>
+<ul>
+<li>Section 9.3 and Chapters 27 and 28 of the <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
+      </li><li>Section 2.3.3 of the <a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">Competitive Programming</a> book
+    </li></ul>
+</li></ul>
+
+<h2>(more) Problems to Submit</h2>
+<p>Besides the evaluation problems, here are some more suggestions:</p>
+<ul>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC020]</a> - <a href="../problems/pc020.html">Census</a> <i>(if you want to test 2D segment trees)</i>
+</li><li><a href="https://cses.fi/problemset/task/1648">[CSES 1648] - Dynamic Range Sum Queries</a> <i>(to test the given implementation of segment trees)</i>
+</li><li><a href="https://codeforces.com/blog/entry/71925">A list of segment tree problems</a>
+</li></ul>
+
+<h2>I want my memes!</h2>
+<details class="meme" name="meme">
+<summary>😁 When you learn about segment trees</summary>
+<p><img alt="Meme: When you learn about segment trees" loading="lazy" src="../images/memes/meme_segtrees.jpg" width="500"/></p>
+</details>
+
+<details class="meme" name="meme">
+<summary>😁 2D segment trees</summary>
+<p><img alt="Meme: 2D segment trees" loading="lazy" src="../images/memes/meme_recursion.jpg" width="500"/></p>
+</details>
+
+<details class="meme" name="meme">
+<summary>😁 Lazy propagation</summary>
+<p><img alt="Meme: Lazy propagation" loading="lazy" src="../images/memes/meme_lazy.jpg" width="500"/></p>
+</details>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week04.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week04.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

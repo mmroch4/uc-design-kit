@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC004] Cool Sequences · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC004 (Cool Sequences) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC004</li></ol>
+    </nav>
+    <h1>[PC004] Cool Sequences</h1>
+    <div class="uc-content">
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc004.jpg" width="350"/>You are given a sequence of positive integers of length <strong>N</strong>, <strong>S</strong>=(s<sub>1</sub>​,s<sub>2</sub>​,...,s<sub>N</sub>) and your goal is to remove some elements so that it becomes a <strong>cool sequence</strong>.</p>
+<p>In this problem, a sequence <i>S</i> is a <strong>cool sequence</strong> if for all elements <i>x</i> in <i>S</i>, the value <i>x</i> appears exactly <i>x</i> times in <i>S</i></p>
+<p>For example, (3,3,3), (4,2,4,1,4,2,4) and () (an empty sequence) are cool sequences, while (3,3,3,3) and (2,4,1,4,2) are not.</p>
+<h2>The Problem</h2>
+<p>Given a sequence <strong>S</strong> with <strong>N</strong> elements, find the minimum number of elements that needs to be removed so that it
+will be a cool sequence.</p>
+<h2>Input</h2>
+<p>The first line contains <strong>N</strong>, the length of the sequence. The second line contains s<sub>1</sub>​ s<sub>2</sub>​ ... s<sub>N</sub>, that is the elements of the sequence separated by single spaces.</p>
+<h2>Output</h2>
+<p>The output should be a single line containing the minimum number of elements that needs to be removed so that <strong>S</strong> will be a cool sequence.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>1 ≤ N ≤ 10<sup>5</sup></td>
+
+<td>Number of elements in the sequence</td>
+</tr>
+<tr>
+<td>1 ≤ s<sub>i</sub> ≤ 10<sup>9</sup></td>
+
+<td>Elements of the sequence</td>
+</tr>
+</table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 1</th><th scope="col">Example Output 1</th></tr><tr><td><pre data-copy="Input">4
+3 3 3 3</pre></td><td><pre data-copy="Output">1</pre></td></tr></table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 2</th><th scope="col">Example Output 2</th></tr><tr><td><pre data-copy="Input">5
+2 4 1 4 2</pre></td><td><pre data-copy="Output">2</pre></td></tr></table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 3</th><th scope="col">Example Output 3</th></tr><tr><td><pre data-copy="Input">6
+1 2 2 3 3 3</pre></td><td><pre data-copy="Output">0</pre></td></tr></table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 4</th><th scope="col">Example Output 4</th></tr><tr><td><pre data-copy="Input">1
+1000000000</pre></td><td><pre data-copy="Output">1</pre></td></tr></table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 5</th><th scope="col">Example Output 5</th></tr><tr><td><pre data-copy="Input">8
+2 7 1 8 2 8 1 8</pre></td><td><pre data-copy="Output">5</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc004.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc004.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

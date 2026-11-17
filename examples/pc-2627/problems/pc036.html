@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC036] Rock-Me-Not · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC036 (Rock-Me-Not) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC036</li></ol>
+    </nav>
+    <h1>[PC036] Rock-Me-Not</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is from <a href="https://www.di.fct.unl.pt/miup2016">MIUP'2016</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc036.jpg"/>
+  After a life of hard work, Joan managed to save just enough to retire and buy the house of her dreams. She loves flowers, so of course it has a large garden and she plans to fill it with <i>Forget-Me-Nots</i> – her favourite flowers in the world.</p>
+<p>When she bought the house, the garden was packed with big rocks. She planned on removing them as soon as possible but when she tried to, she found out they were buried too deep and could not move them. She decided to embrace them and just create a zen garden by planting the flowers around them in a checkered pattern.</p>
+<p><i>Forget-Me-Nots</i> need lots of water, so she wants to have <strong>two</strong> sprinklers next to each flower. What is the maximum amount of flowers she can plant?</p>
+<h2>Task</h2>
+<p>Given a rectangular garden divided into equal squares, where some squares are occupied by unmovable rocks, calculate the maximum amount of flowers that can be planted knowing that each flower must have at least two sprinklers next to it (i.e. in an adjacent square – horizontally or vertically). Sprinklers and flowers need to be placed in their own square and cannot be placed in squares occupied by a rock. However, one sprinkler can be shared by several flowers.</p>
+<p>The following figure depicts a valid configuration of flowers and sprinklers for the garden of sample 2. Flowers are drawn in orange, sprinklers in blue and rocks in dark grey.</p>
+<p><img alt="Illustration of the example" loading="lazy" src="images/pc036_example.jpg"/></p>
+<h2>Input</h2>
+<p>The first line of the input will contain two numbers, \(L\) and \(C\), that represent the number of lines and columns of the garden in squared cells. The next \(L\) lines will each contain \(C\) characters. If the character is a ’.’ it represents an empty garden cell. If it is a ’#’ it represents a rock occupied cell.</p>
+<h2>Output</h2>
+<p>A line with a single number representing the maximum amount of flowers that can be planted.</p>
+<h2>Constraints</h2>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>\( 1 \leq L \leq 9 \)</td><td>Length of garden</td>
+</tr>
+<tr>
+<td>\( 1 \leq C \leq 9 \)</td><td>Width of garden</td>
+</tr>
+</table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 1</th><th scope="col">Example Output 1</th></tr><tr><td><pre data-copy="Input">3 3
+...
+...
+...</pre></td><td><pre data-copy="Output">5</pre></td></tr></table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 2</th><th scope="col">Example Output 2</th></tr><tr><td><pre data-copy="Input">8 8
+........
+....#...
+..#.....
+..##....
+...#.#..
+...#....
+...##.#.
+........</pre></td><td><pre data-copy="Output">28</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc036.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc036.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC013] Pie · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC013 (Pie) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC013</li></ol>
+    </nav>
+    <h1>[PC013] Pie</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/PIE/">SPOJ problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc013.jpg" width="300"/>
+My birthday is coming up and traditionally I'm serving pie. Not just one pie, no, I have a number \(N\) of them, of various tastes and of various sizes. \(F\) of my friends are coming to my party and each of them gets a piece of pie. This should be one piece of one pie, not several small pieces since that looks messy. This piece can be one whole pie though.</p>
+<p>My friends are very annoying and if one of them gets a bigger piece than the others,
+they start complaining. Therefore all of them should get equally sized (but not necessarily equally shaped) pieces, even if this leads to some pie getting spoiled (which is better than spoiling the party). Of course, I want a piece of pie for myself too, and that piece should also be of the same size.</p>
+<p>What is the largest possible piece size all of us can get? All the pies are cylindrical in shape and they all have the same height \(1\), but the radii of the pies can be different.</p>
+<h2>Input</h2>
+<p>The first input line has one integer \(T\): the number of test cases. Then for each test case:</p>
+<ul>
+<li>One line with two integers \(N\) and \(F\): the number of pies and the number of friends.
+  </li><li>One line with \(N\) integers \(R_1, R_2, \ldots, R_n\): the radii of the pies.
+</li></ul>
+<h2>Output</h2>
+<p>For each test case, output one line with the largest possible volume \(V\) such that me and my friends can all get a pie piece of size \(V\). The answer should be given as a ﬂoating point number with an absolute error of at most \(10^{−3}\).</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq N \leq 10\,000 \)
+  </li><li>\( 1 \leq F \leq 10\,000 \)
+  </li><li>\( 1 \leq R_i \leq 10\,000 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">3
+3 3
+4 3 3
+1 24
+5
+10 5
+1 4 2 3 4 5 6 5 4 2</pre></td><td><pre data-copy="Output">25.1327
+3.1416
+50.2655</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc013.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc013.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

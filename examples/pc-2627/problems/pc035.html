@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC035] Chomp · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC035 (Chomp) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC035</li></ol>
+    </nav>
+    <h1>[PC035] Chomp</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is from <strong>CPUP'2006</strong>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc035.jpg"/>
+As you know, the Cookie Monster from Sesame Street
+is always interested in eating a lot of cookies. Recently, he even
+invented a game which, of course, was about... cookies. He wanted to
+have fun with Elmo, the furry red creature, while still being able to
+eat his favorite food. The game is for 2 players and he called it
+"Chomp". It starts with an <tt>MxN</tt> grid table of cookies. For example, it can be a 3x4 grid:<br/> 
+
+</p><div class="uc-table"><table role="presentation">
+<tbody><tr>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+</tr>
+<tr>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+</tr>
+<tr>
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+</tr>
+</tbody></table></div>
+<p>All the cookies are good, except the one in lower left position,
+which is a poisonous one, and nobody wants to eat it. The players take
+turns to choose one cookie from the table, eating it (that is, also
+removing it from the table), together with the cookies that are above
+it and to its right. For example, given the initial table above, these
+are 3 possible moves for the first player (eating and removing the
+selected cookies). Note there are also other possible moves.<br/> 
+
+</p><div class="uc-table"><table role="presentation">
+<tbody><tr>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+</tr>
+<tr>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td>  or  </td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td>  or  </td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+</tr>
+<tr>
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+</tr>
+</tbody></table></div>
+<p>The game continues like that until one player is forced to eat the poisonous
+cookie. That player looses the game (nobody wants that cookie!)
+
+</p><p>For example, this would be a valid game in a <tt>3x3</tt> table, with player
+2 losing because it can only eat the poisonous cookie:<br/> 
+
+</p><div class="uc-table"><table role="presentation">
+<tbody><tr>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+</tr>
+<tr>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+</tr>
+<tr>
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+<td><img alt="Cookie" loading="lazy" src="images/pc035_cookie.gif"/></td>
+
+<td><img alt="Poisoned cookie" loading="lazy" src="images/pc035_poisoncookie.gif"/></td>
+
+</tr>
+<tr>
+<td colspan="3">Player 1</td>
+<td>  -&gt;  </td>
+<td colspan="3">Player 2</td>
+<td>  -&gt;  </td>
+<td colspan="3">Player 1</td>
+<td>  -&gt;  </td>
+<td colspan="3">Player 2</td>
+</tr>
+</tbody></table></div>
+<p>You have to help Cookie Monster, because we wants to win all games
+against Elmo (and then challenge Oscar The Grouch, Kermit the Frog,
+Bert and Ernie).
+</p>
+<h2>The Problem</h2>
+<p>For a given table position of the Chomp game, if you have to tell if it is a winning position or not. That is, given that all players play the best moves, is it a guaranteed win for the player playing on that position. Or, in other words, no matter the other player responses, there is always a winning strategy that ensures the win for the player who is going to play first on that position.</p>
+<h2>Input</h2>
+<p>In the first line of input comes an integer number \(N\), indicating the number of Chomp positions (tables) to evaluate.</p>
+<p>Then follow \(T\) tables, each one starting by a line with two space separated integers \(R\) and \(C\), indicating respectively the number of rows and columns of the table. After that come exactly \(R\) lines, each one with \(C\) characters, indicating the content of a valid table (where '.' means an empty position and \('C'\) means a cookie - the poisonous cookie is always on the lowest left position and is indicated by 'P').</p>
+<h2>Output</h2>
+<p>For each table in the input you should output a line with the following format (where NUM is the table number in the input):</p>
+<pre>Case #NUM: winning position
+</pre>
+
+or
+
+<pre>Case #NUM: losing position
+</pre>
+<p>Of course the output should reflect the fact that the position is a winning one (guaranteeing a win) or not.</p>
+<h2>Constraints</h2>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>\( 1 \leq N \leq 10 \)</td><td>Number of rows cases to consider</td>
+</tr>
+<tr>
+<td>\( 1 \leq R,C \leq 10 \)</td><td>Number of of rows and columns</td>
+</tr>
+</table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4
+3 3
+...
+...
+P..
+3 3
+CCC
+CCC
+PCC
+3 4
+....
+C...
+PCCC
+2 4
+CCC.
+PCCC</pre></td><td><pre data-copy="Output">Case #1: losing position
+Case #2: winning position
+Case #3: winning position
+Case #4: losing position</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc035.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc035.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>
