@@ -7,6 +7,8 @@
 }
 :where(.uc-grading__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }
 :where(.uc-grading__formula) { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-md); font-weight: 500; }
+/* Description of a formula, under it (data-formulas). */
+:where(.uc-grading__note) { margin-top: calc(-1 * var(--uc-space-3)); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
 
 /* Proportions bar: one segment per top-level component, width = its share. Decorative (the table says it). */
 :where(.uc-grading__bar) {
@@ -29,6 +31,12 @@
   white-space: nowrap;
 }
 :where(.uc-grading__segment:nth-child(even)) { background: var(--uc-color-accent-strong); }
+/* Several formulas: one labelled bar each. */
+:where(.uc-grading__bars) { display: grid; grid-template-columns: auto 1fr; gap: var(--uc-space-2) var(--uc-space-3); align-items: center; }
+:where(.uc-grading__bar-label) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-xs); font-weight: 600; }
+
+/* Pass rules (data-rules). */
+:where(.uc-grading__rules) { margin: calc(-1 * var(--uc-space-3)) 0 0; padding-left: var(--uc-space-5); }
 
 :where(.uc-grading__table) { --uc-table-min: 480px; }
 :where(.uc-grading__table tbody th) {

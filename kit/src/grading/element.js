@@ -1,8 +1,10 @@
 /**
  * <uc-grading> — decorates the teacher's list of grade components: generated
  * formula, proportions bar, table of weights and minimums and, with
- * `calculator`, a grade simulation. Weights are read from each item's <data>.
- * See docs/api.md, section 3.6.
+ * `calculator`, a grade simulation. Weights are read from each item's <data>
+ * or, with an <ol data-formulas>, from the formulas (formula.js); an
+ * <ul data-rules> lists the pass rules. See docs/api.md, section 3.6, and
+ * docs/plan/grading-api.md 3 and 7.
  *
  * Part of uc-grading.js, which uc-kit.js loads when the page has a
  * <uc-grading> (core/modules.js, docs/plan/grading-api.md 2.2).
@@ -12,13 +14,22 @@
   // No UC.__duplicate check: that flag stays set after a second copy of uc-kit.js, and UC.define ignores a tag that is already defined.
   if (!UC) return;
 
-  const { h, uid, flag, number, announce } = UC.internal;
+  const { h, uid, flag, number, announce, grading } = UC.internal;
 
   /** "14", "0,1", "25%" → number; NaN otherwise. */
   const parseNumber = (value) => (/^\s*-?\d+([.,]\d+)?\s*%?\s*$/.test(value || "") ? Number(value.replace(",", ".").replace("%", "")) : NaN);
   const fmt = (value, digits = 2) => new Intl.NumberFormat(UC.lang, { maximumFractionDigits: digits }).format(value);
   const pct = (share) => new Intl.NumberFormat(UC.lang, { style: "percent", maximumFractionDigits: 1 }).format(share);
-  const listOf = (element) => element.querySelector(":scope > ul, :scope > ol");
+  const listOf = (element) => element.querySelector(":scope > :is(ul, ol):not([data-formulas], [data-rules])");
+  const itemsOf = (list) => (list ? Array.from(list.children).filter((item) => item.localName === "li") : []);
+  /** The <code> of a formula or rule item, and the rest of the item (its description). */
+  const codeOf = (item) => item.querySelector(":scope > code");
+  const described = (item) => {
+    const copy = item.cloneNode(true);
+    codeOf(copy).remove();
+    return copy.textContent.trim() ? Array.from(copy.childNodes) : null;
+  };
+  const warn = (message) => console.warn(`[uc-kit] uc-grading: ${message}`);
 
   /**
    * Reads a list into components:
@@ -50,6 +61,13 @@
     weighted.forEach((component) => (component.share = sum > 0 && component.weight > 0 ? component.weight / sum : 0));
     return components;
   }
+
+  /**
+   * Share of the final grade that a component carries: from its <data> weights (column null)
+   * or from a formula column (its coefficient × its scale ÷ the scale); parts multiply by their parent's.
+   */
+  const shareIn = (component, column, scale) =>
+    component.parent ? component.share * shareIn(component.parent, column, scale) : column ? ((column.coefficients[component.code] || 0) * component.scale) / scale : component.share;
 
   /** Coefficient of a top-level component in the final grade, on its own scale. */
   const coefficient = (component, scale) => (component.share * scale) / component.scale;
@@ -85,6 +103,8 @@
       this.classList.add("uc-grading");
       this.extra = Array.from(this.childNodes);
       this.list = listOf(this);
+      this.formulasList = this.querySelector(":scope > [data-formulas]");
+      this.rulesList = this.querySelector(":scope > [data-rules]");
       this.headingId = uid("uc-grading-heading");
       this.values = new Map();
     }
@@ -100,37 +120,130 @@
           ? null
           : h(UC.internal.headingTag(this), { class: "uc-grading__heading", id: this.headingId }, label && label.trim() ? label : this.t("grading.heading"));
       const weighted = components.filter((component) => component.bonus === null);
+      // Every component and part, in reading order.
+      const all = [];
+      const walk = (list) => list.forEach((component) => all.push(component) && walk(component.parts));
+      walk(components);
+      const noFormula = flag(this, "no-formula");
+      const formulaItems = itemsOf(this.formulasList);
+      const ruleItems = itemsOf(this.rulesList);
+      let model = null;
+      if (this.formulasList || this.rulesList) {
+        try {
+          formulaItems.forEach((item, index) => codeOf(item) || grading.fail(`formula ${index + 1} has no <code>.`));
+          model = grading.model({
+            components: components.map((component) => ({ code: component.code, bonus: component.bonus !== null })),
+            parts: all.filter((component) => component.parent).map((component) => component.code),
+            formulas: formulaItems.map((item) => codeOf(item).textContent),
+            rules: ruleItems.map((item) => (codeOf(item) ? codeOf(item).textContent : null)),
+            result: this.getAttribute("result"),
+          });
+          model.ruleErrors.forEach((message) => message && warn(message));
+        } catch (error) {
+          warn(error.message);
+        }
+      }
+      // With formulas that do not parse, the teacher's lists stay as written (7.5).
+      const fallback = Boolean(this.formulasList && !model);
+      const formulas = model && model.result ? model.formulas : null;
+      [this.formulasList, this.rulesList].forEach((list) => list && (list.hidden = !fallback));
+
+      const fn = (type) => {
+        const label = this.t(`grading.${type}`);
+        return label === type ? type : h("abbr", { title: this.t(`grading.${type}Title`) }, label);
+      };
+      const alias = { RESULT: (formulas && model.result.name) || this.t("grading.formula") };
+      const ids = new Map();
+      const formulaBlock = formulas
+        ? formulas.map((item, index) => [
+            noFormula ? null : h("p", { class: "uc-grading__formula", id: item.name && ids.set(item.name, uid("uc-grading-formula")).get(item.name) }, `${item.name || this.t("grading.formula")} = `, grading.print(item.tree, fn)),
+            described(formulaItems[index]) && h("p", { class: "uc-grading__note" }, described(formulaItems[index])),
+          ])
+        : fallback || noFormula
+          ? null
+          : h("p", { class: "uc-grading__formula" }, formula(components, scale));
+
+      // Rules (7.4): shortcuts (data-min, then pass) first, then the written ones, without repeats.
+      const rules = [];
+      const seen = new Set();
+      const add = (rule, item) => {
+        const key = rule && grading.printRule(rule).join("");
+        if (!seen.has(key) || !rule) rules.push({ rule, item }), seen.add(key);
+      };
+      const atLeast = (name, value) => ({ op: ">=", left: { type: "name", name }, right: { type: "number", value } });
+      if (model && !fallback) {
+        all.forEach((component) => Number.isFinite(component.min) && add(atLeast(component.code, component.min)));
+        const pass = number(this, "pass", null);
+        if (pass !== null) add(atLeast("RESULT", pass));
+        ruleItems.forEach((item, index) => add(model.rules[index], item));
+      }
+      // The Minimum column also shows "CODE >= n" rules on a component (7.3).
+      if (formulas)
+        rules.forEach(({ rule }) => {
+          const component = rule && /^>=?$/.test(rule.op) && rule.left.type === "name" && rule.right.type === "number" && all.find((one) => one.code === rule.left.name);
+          if (component && !Number.isFinite(component.min)) component.min = rule.right.value;
+        });
+
+      const columns = formulas ? model.columns || [] : fallback ? [] : null;
+      const labelOf = (column, index) => column.name || (columns.length > 1 ? this.t("grading.formulaN", { n: index + 1 }) : this.t("grading.column.weight"));
+      const bar = (column) =>
+        h(
+          "div",
+          { class: "uc-grading__bar", "aria-hidden": "true" },
+          weighted.map((component) => {
+            const share = shareIn(component, column, scale);
+            return share > 0 && h("span", { class: "uc-grading__segment", style: `flex-grow: ${share}` }, component.code);
+          }),
+        );
+      const bars = !columns ? bar(null) : columns.length === 1 ? bar(columns[0]) : columns.length ? h("div", { class: "uc-grading__bars", "aria-hidden": "true" }, columns.map((column, index) => [h("span", { class: "uc-grading__bar-label" }, labelOf(column, index)), bar(column)])) : null;
 
       this.replaceChildren(
         h(
           "section",
           { class: "uc-grading__section", "aria-labelledby": heading ? this.headingId : null },
           heading,
-          flag(this, "no-formula") ? null : h("p", { class: "uc-grading__formula" }, formula(components, scale)),
-          h(
-            "div",
-            { class: "uc-grading__bar", "aria-hidden": "true" },
-            weighted.map((component) => h("span", { class: "uc-grading__segment", style: `flex-grow: ${component.share}` }, component.code)),
-          ),
-          this.renderTable(components, scale),
-          flag(this, "calculator") ? this.renderCalculator(components, scale) : null,
+          formulaBlock,
+          bars,
+          this.renderTable(components, scale, columns && columns.map((column, index) => ({ column, label: labelOf(column, index), describedby: ids.get(column.name) }))),
+          rules.length
+            ? [
+                h("p", {}, h("strong", {}, this.t("grading.rules"))),
+                h(
+                  "ul",
+                  { class: "uc-grading__rules" },
+                  rules.map(({ rule, item }) =>
+                    h("li", {}, rule ? [h("span", { class: "uc-mono" }, grading.printRule(rule, fn, alias)), item && described(item) ? [" ", described(item)] : null] : Array.from(item.cloneNode(true).childNodes)),
+                  ),
+                ),
+              ]
+            : null,
+          // The calculator with formulas and rules comes in phase G3 (grading-api.md 9).
+          flag(this, "calculator") && !columns ? this.renderCalculator(components, scale) : null,
           this.extra,
         ),
       );
       if (this.result) this.update(components, scale, false);
     }
 
-    renderTable(components, scale) {
+    /** `columns`: null for the legacy Weight column, else [{ column, label, describedby }] (7.3). */
+    renderTable(components, scale, columns) {
       const points = (n) => this.t(n === 1 ? "grading.point" : "grading.points", { n: fmt(n) });
       const rows = [];
       const walk = (list, depth) =>
         list.forEach((component) => {
           let weight;
+          const parent = component.parent;
           if (component.bonus !== null) {
             const bonus = component.item.getAttribute("data-bonus");
             weight = this.t("grading.bonus", { max: /%/.test(bonus) ? pct(parseNumber(bonus) / 100) : points(component.bonus) });
+          } else if (columns) {
+            weight = columns.map(({ column }) => {
+              const share = shareIn(component, column, scale);
+              if (!share) return "—";
+              const amount = Math.round(share * scale * 1000) / 1000;
+              return parent ? [pct(share), ` (${this.t("grading.shareOf", { share: pct(component.share), parent: parent.code })})`] : [points(amount), " · ", pct(share)];
+            });
           } else {
-            const parent = component.parent;
             let absolute = component.share;
             for (let node = parent; node; node = node.parent) absolute *= node.share;
             // "14 valores · 70 %"; a weight already written as a percentage is not repeated.
@@ -143,7 +256,7 @@
               "tr",
               { class: depth ? "uc-grading__sub" : null },
               h("th", { scope: "row" }, component.code ? [h("span", { class: "uc-mono" }, component.code), " "] : null, contentOf(component)),
-              h("td", {}, weight),
+              columns ? (Array.isArray(weight) ? weight : columns.map(() => weight)).map((cell) => h("td", {}, cell)) : h("td", {}, weight),
               h("td", {}, Number.isFinite(component.min) ? this.t("grading.minimumOf", { min: fmt(component.min), scale: fmt(component.scale) }) : "—"),
             ),
           );
@@ -157,7 +270,15 @@
           "table",
           { class: "uc-grading__table" },
           h("caption", { class: "uc-visually-hidden" }, this.t("grading.caption")),
-          h("thead", {}, h("tr", {}, ["component", "weight", "minimum"].map((column) => h("th", { scope: "col" }, this.t(`grading.column.${column}`))))),
+          h(
+            "thead",
+            {},
+            h("tr", {}, ["component", "weight", "minimum"].map((column) =>
+              column === "weight" && columns
+                ? columns.map(({ label, describedby }) => h("th", { scope: "col", "aria-describedby": describedby }, label))
+                : h("th", { scope: "col" }, this.t(`grading.column.${column}`)),
+            )),
+          ),
           h("tbody", {}, rows),
         ),
       );

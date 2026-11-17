@@ -1,0 +1,33 @@
+- region "Como é calculada a nota":
+  - heading "Como é calculada a nota" [level=2]
+  - paragraph: CF = máx(0,75 × E + 0,2 × P + 0,05 × R; 0,65 × E + 0,3 × P + 0,05 × R)
+  - paragraph: Conta a fórmula mais favorável.
+  - table "Componentes da nota":
+    - caption: Componentes da nota
+    - rowgroup:
+      - row "Componente Fórmula 1 Fórmula 2 Mínimo":
+        - columnheader "Componente"
+        - columnheader "Fórmula 1"
+        - columnheader "Fórmula 2"
+        - columnheader "Mínimo"
+    - rowgroup:
+      - row "P Avaliação prática (laboratório) 4 valores · 20% 6 valores · 30% —":
+        - rowheader "P Avaliação prática (laboratório)"
+        - cell "4 valores · 20%"
+        - cell "6 valores · 30%"
+        - cell "—"
+      - row "R Resolução de problemas ao longo do semestre 1 valor · 5% 1 valor · 5% —":
+        - rowheader "R Resolução de problemas ao longo do semestre"
+        - cell "1 valor · 5%"
+        - cell "1 valor · 5%"
+        - cell "—"
+      - row "E Exame final 15 valores · 75% 13 valores · 65% 4,9 em 20":
+        - rowheader "E Exame final"
+        - cell "15 valores · 75%"
+        - cell "13 valores · 65%"
+        - cell "4,9 em 20"
+  - paragraph:
+    - strong: Para aprovar
+  - list:
+    - listitem: E ≥ 4,9 Exame com pelo menos 4,9 valores.
+    - listitem: CF ≥ 9,5
