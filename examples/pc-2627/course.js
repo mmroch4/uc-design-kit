@@ -38,8 +38,12 @@ window.UC_COURSE = {
   ],
 
   platforms: [
-    { label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~pc/" },
-    { label: "CodeForces", url: "https://codeforces.com/" },
+    { id: "mooshak", label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~pc/" },
+    { id: "codeforces", label: "CodeForces", url: "https://codeforces.com/" },
+    // Judges of some problems: known to <uc-problems> (data-judge), kept out of the navigation.
+    { id: "cses", label: "CSES", url: "https://cses.fi/problemset/", hidden: true },
+    { id: "uva", label: "UVA", url: "https://onlinejudge.org/", hidden: true },
+    { id: "spoj", label: "SPOJ", url: "https://www.spoj.com/", hidden: true },
     { label: "Discord", url: "https://discord.com/app" },
     { label: "SIGARRA", url: "https://sigarra.up.pt/fcup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=589591" },
   ],
@@ -117,7 +121,10 @@ window.UC_COURSE = {
       id: "contest1",
       title: "1st Contest",
       date: "2026-10-20",
+      time: "15:30",
+      duration: 210,
       kind: "assessment",
+      location: 'Probably <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69101">FC6 008</a> (to be confirmed on Tuesday morning)',
       note: "In class, individual, ICPC style · 30% of CE",
       url: "contest1.html",
     },
