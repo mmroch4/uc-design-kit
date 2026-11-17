@@ -1,0 +1,45 @@
+- region "Problemas em cartões":
+  - heading "Problemas em cartões" [level=2]
+  - heading "Série 3 · Programação dinâmica" [level=3]
+  - paragraph: "Prazo: 5 dez, 23:59 Daqui a 8 dias"
+  - paragraph: Testado em C++ Java Python
+  - paragraph: 0 de 2 resolvidos
+  - list:
+    - listitem:
+      - 'checkbox "Resolvido: Football Teams"'
+      - text: Resolvido
+      - link "Football Teams":
+        - /url: "#p7"
+      - link "Mooshak PC033":
+        - /url: https://mooshak.dcc.fc.up.pt/~edados/
+        - text: Mooshak
+        - code: PC033
+      - group: Dicas
+    - listitem:
+      - 'checkbox "Resolvido: Chomp"'
+      - text: Resolvido
+      - link "Chomp":
+        - /url: "#p8"
+      - link "Mooshak PC035":
+        - /url: https://mooshak.dcc.fc.up.pt/~edados/
+        - text: Mooshak
+        - code: PC035
+  - heading "Série 4 · Linguagens diferentes" [level=3]
+  - paragraph: 0 de 2 resolvidos
+  - list:
+    - listitem:
+      - 'checkbox "Resolvido: Searching Rectangles"'
+      - text: Resolvido
+      - link "Searching Rectangles":
+        - /url: "#p9"
+      - link "Codeforces 713B":
+        - /url: https://codeforces.com
+        - text: Codeforces
+        - code: 713B
+      - text: Testado em C++ Java
+    - listitem:
+      - 'checkbox "Resolvido: Sem juiz"'
+      - text: Resolvido
+      - link "Sem juiz":
+        - /url: "#p10"
+      - text: Testado em Python

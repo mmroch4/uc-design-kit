@@ -2,7 +2,9 @@
  * <uc-problems> — decorates problem lists grouped in series (<section>s with
  * a heading and a list): judge and type tags, the series deadline, filters by
  * type and judge (`filters`) and a "Resolvido" checkbox per problem saved in
- * the browser (`track`). See docs/api.md, section 3.7.
+ * the browser (`track`), the languages a problem is tested in
+ * (`data-languages`), hints in a <details> and a card layout (`cards`).
+ * See docs/api.md, section 3.7.
  */
 (function (UC) {
   "use strict";
@@ -83,6 +85,9 @@
       series.items = Array.from(list.children)
         .filter((element) => element.localName === "li")
         .map((element) => this.prepareItem(element, series));
+      // The same languages on every problem: said once, under the series heading.
+      const keys = series.items.map((item) => item.languages.join());
+      if (series.meta && keys.length > 1 && keys[0] && keys.every((key) => key === keys[0])) series.languages = series.items[0].languages;
       return series;
     }
 
@@ -99,10 +104,20 @@
         weight.classList.add("uc-tag", "uc-problems__weight");
         if (!weight.textContent.trim()) weight.textContent = `${weight.value} %`;
       }
+      const code = element.querySelector("code");
+      const hints = Array.from(element.children).find((child) => child.localName === "details");
+      if (hints) {
+        hints.classList.add("uc-problems__hints");
+        const summary = hints.querySelector("summary");
+        hints.hidden = !summary || hints.textContent.trim() === summary.textContent.trim();
+        hints.remove();
+      }
+      const languages = (element.dataset.languages || "").split(",").map((language) => language.trim()).filter(Boolean);
+      const langs = h("span", { class: "uc-problems__languages" });
       const body = h("span", { class: "uc-problems__body" }, Array.from(element.childNodes));
       const tags = h("span", { class: "uc-problems__tags" });
-      element.append(body, tags);
-      const item = { element, series, value, platform, judge, type, name, tags, id: problemId(element, judge), solved: false };
+      element.append(body, tags, langs, hints || "");
+      const item = { element, series, value, platform, judge, type, name, tags, code, languages, langs, id: problemId(element, judge), solved: false };
       if (flag(this, "track")) {
         item.checkbox = h("input", { type: "checkbox", onChange: () => this.toggle(item) });
         item.solvedText = h("span", {});
@@ -137,7 +152,16 @@
     render() {
       this.items.forEach((item) => {
         const tags = [];
-        if (item.value) tags.push(h("span", { class: "uc-tag uc-tag--muted uc-problems__judge" }, item.platform ? this.text(item.platform.label) : item.value));
+        const cards = flag(this, "cards");
+        // With `cards`, the judge tag carries the problem code and links to the judge: "Mooshak PC033".
+        const url = cards && item.platform && item.platform.url;
+        if (item.value) {
+          tags.push(
+            h(url ? "a" : "span", { class: "uc-tag uc-tag--muted uc-problems__judge", href: url || null }, item.platform ? this.text(item.platform.label) : item.value, cards && item.code ? [" ", item.code] : null),
+          );
+        }
+        item.langs.replaceChildren(...(item.series.languages ? [] : this.languages(item.languages)));
+        item.langs.hidden = !item.langs.firstChild;
         if (item.type !== "main") tags.push(h("span", { class: `uc-tag ${TYPE_TONE[item.type]} uc-problems__type` }, this.t(`problems.types.${item.type}`)));
         item.tags.replaceChildren(...tags);
         if (item.checkbox) {
@@ -149,6 +173,7 @@
         if (!series.meta) return;
         series.meta.replaceChildren();
         if (series.deadline) series.meta.append(this.deadlineLine(series.deadline));
+        if (series.languages) series.meta.append(h("p", { class: "uc-problems__languages" }, this.languages(series.languages)));
         if (flag(this, "track") && series.items.length) {
           series.progressNode = h("p", { class: "uc-problems__progress" });
           series.meta.append(series.progressNode);
@@ -168,6 +193,11 @@
         h(heading ? "section" : "div", { class: "uc-problems__section", "aria-labelledby": heading ? this.headingId : null }, heading, bar, this.content, this.empty),
       );
       this.filter(false);
+    }
+
+    /** "Testado em" and one tag per language. */
+    languages(list) {
+      return list.length ? [this.t("problems.languages"), " ", list.map((language) => h("span", { class: "uc-tag uc-tag--muted" }, language))].flat() : [];
     }
 
     /** "Prazo: 12 out, 23:59 · Encerrado", from the series' deadline in course.js. */
