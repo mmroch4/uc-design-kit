@@ -11,22 +11,22 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
+  <uc-page current="materials">
     <nav class="crumbs" aria-label="Localização">
       <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED233</li></ol>
     </nav>
     <h1>[ED233] Árvores na Terra dos Dados</h1>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).
-      </p></div></p>
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).
+      </p></div>
 
-      <h2>Código Base</h2>
+      <h2>Código base</h2>
       <p><img alt="" class="uc-content__float" height="512" loading="lazy" src="imagens/233.jpg" width="341"/>O código base são as <a href="../codigo/arvores_binarias.html">classes de árvores binárias</a> dadas nas aulas. Use como base a classe <strong>BTree&lt;T&gt;</strong>, que é a única que deverá submeter.
 
-      </p><h2>Problema</h2>
+      </p><h2>O problema</h2>
       <p>As árvores são das mais antigas criaturas da <em>Terra dos Dados</em>, conhecidas por serem defensoras das florestas e do mundo livre, combatendo ferozmente o cruel <em>Senhor das Trevas e da Ineficiência</em>. A espécie mais conhecida destas criaturas é a árvore binária, que precisa da tua ajuda para aumentar o seu poder com novos métodos. 
 
-      </p><h2>Métodos a Implementar</h2>
+      </p><h2>Métodos a implementar</h2>
       <p>Deve acrescentar à classe <em>BTree</em> dada os seguintes métodos (<strong>não modificando nenhum dos métodos já existentes no código base</strong>):
 
       </p><ul>
@@ -51,7 +51,7 @@
         </li><li>Para testar na sua máquina deve criar uma árvore. Pode ler uma árvore com número inteiros usando o método <em>readIntTree</em> da classe <em>LibBTree</em> (um exemplo foi dado nas aulas e está disponível na classe <em>TestBTree</em>).
         </li><li>Em todos os casos de teste as árvores têm tamanho máximo de 100 nós, com a excepção do <strong>último caso de teste do método <em>maxLevel</em> (valendo 10% da cotação), onde a árvore pode ter 50 mil nós e 20 mil de altura</strong>, pelo que é esperado que a sua solução seja linear no número de nós da árvore para passar no tempo limite. Caso a sua função seja recursiva, para testar uma árvore com tantos níveis no seu computador, pode ter que aumentar o tamanho da stack do Java na execução (ex: <em>java -Xss256M ED233</em> executaria o a classe ED233 com 256MB de stack). No Mooshak, a stack tem tamanho precisamente 256MB.
       </li></ul>
-      <h2>Exemplos de Input/Output para o método <em>internal</em></h2>
+      <h2>Exemplos de input e output para o método <em>internal</em></h2>
       <p>Os 3 primeiros exemplos correspondem às três árvores da figura.</p>
       <div class="uc-table" style="--uc-table-min: 0"><table>
       <tr>
@@ -79,7 +79,7 @@
       <td>0</td>
       </tr>
       </table></div>
-      <h2>Exemplos de Input/Output para o método <em>cut</em></h2>
+      <h2>Exemplos de input e output para o método <em>cut</em></h2>
       <p>A árvore em todos os exemplos corresponde à árvore da figura.</p>
       <div class="uc-table" style="--uc-table-min: 0"><table>
       <tr>
@@ -118,7 +118,7 @@
       <td>6 3 2 1 N N N 5 N 7 N N 10 8 N 9 N N 25 N N</td>
       </tr>
       </table></div>
-      <h2>Exemplos de Input/Output para o método <em>maxLevel</em></h2>
+      <h2>Exemplos de input e output para o método <em>maxLevel</em></h2>
       <p>Os 4 primeiros exemplos correspondem às quatro árvores da figura.</p>
       <div class="uc-table" style="--uc-table-min: 0"><table>
       <tr>

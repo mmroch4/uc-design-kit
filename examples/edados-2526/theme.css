@@ -4,14 +4,8 @@
  * Cada bloco indica a página onde é usado.
  */
 
-/* avaliacao.html */
+/* sobre.html */
 .desc { font-size: var(--uc-font-size-body-sm); }
-.progress__title { font-weight: 600; }
-.progress { --uc-card-padding: var(--uc-space-5); gap: var(--uc-space-1); }
-.progress__title { display: flex; align-items: center; gap: var(--uc-space-2); color: var(--uc-color-accent); }
-/* Cadeado de a[data-auth] no canto do cartão, ao lado do título. */
-.progress[data-auth] { position: relative; padding-right: calc(var(--uc-space-5) + 24px); }
-.progress .uc-auth-icon { position: absolute; top: var(--uc-space-5); right: var(--uc-space-5); color: var(--uc-color-accent); }
 
 /* materiais.html */
 /* Cartões da bibliografia. */
@@ -56,7 +50,4 @@
 .crumbs li + li::before { content: "/"; margin-right: 6px; color: var(--uc-color-text-subtle); }
 .crumbs a { color: var(--uc-color-text-muted); text-decoration: none; }
 .crumbs a:hover { color: var(--uc-color-accent); text-decoration: underline; }
-.code-list { display: flex; flex-direction: column; gap: var(--uc-space-4); max-width: 760px; margin: 0; padding: 0; list-style: none; }
-.code-list > li { margin: 0; }
-.code-list .uc-small a { margin-right: var(--uc-space-2); }
 .source-note { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }

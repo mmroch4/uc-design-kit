@@ -11,17 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
+  <uc-page current="materials">
     <nav class="crumbs" aria-label="Localização">
       <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED241</li></ol>
     </nav>
     <h1>[ED241] Submissões</h1>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED241</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED241</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
             Pode assumir que no Mooshak <strong>terá acesso a todas as classes base dadas nas aulas, incluindo as de árvores binárias BTree, BSTree e BSTMap</strong> (não precisa de as incluir na submissão).<br/>
       Pode ver o código das <a href="../codigo/index.html">classes, uma a uma</a>.
       </p></div>
-      </p>
 
       <p><img alt="" class="uc-content__float" height="270" loading="lazy" src="imagens/241.png" width="400"/>Suponha que tem disponível uma lista de submissões de programas. Uma submissão é caracterizada por um triplo (Aluno,Problema,Resultado), onde um <em>Aluno</em> é o nome do aluno, <em>Problema</em> é o nome de um problema de programação que o aluno estava a tentar resolver e <em>resultado</em> é o resultado da submissão (se foi aceite ou não).
 
@@ -126,7 +125,7 @@
           </li><li><strong>[flag 3]</strong> use um outro TAD dicionário (<em>BSTMap</em>) para guardar o número de submissões aceites de cada problema (aquelas cujo resultado é igual a "Accepted": como comparar Strings?). No final percorra todos os problemas e imprima-os no caso do rácio ser &gt;= 0.5, dividindo o valor correspondendo ao total de submissões (que está guardada no mapa da flag anterior) pela quantidade de accepted's. Em relação à ordem alfabética, como o dicionário está numa árvore de pesquisa, o método que as devolve percorrer a árvore <em>inorder</em>, logo estas já são obtidas precisamente por ordem alfabética!
           </li><li><strong>[flag 4]</strong> precisa de uma maneira de guardar os problemas que cada aluno fez. Uma hipótese é usar um mapa onde as chaves são os alunos e os valores são... conjuntos (representados por árvores binárias). Assim, cada vez que vir uma submissão aceite, é só ir ao aluno e inserir o problema no conjunto correspondente (sendo que os conjuntos já tratam da parte de não contar repetidos). No final basta percorrer todos os alunos e verificar se o conjunto de problemas que ele fez tem tamanho igual à quantidade de problemas disponíveis (que pode saber vendo o mapa... das flags anteriores!)
         </li></ul>
-      <h2>Exemplos de Input/Output</h2>
+      <h2>Exemplos de input e output</h2>
       <p>Os quatro exemplos de input correspondem precisamente às quatro flags para o caso dado.</p>
       <div class="uc-table" style="--uc-table-min: 0"><table>
       <tr>

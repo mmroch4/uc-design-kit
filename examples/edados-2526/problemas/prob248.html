@@ -11,14 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
+  <uc-page current="materials">
     <nav class="crumbs" aria-label="Localização">
       <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED248</li></ol>
     </nav>
     <h1>[ED248] TAD Conjunto (BooleanArrayIntSet)</h1>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning">Neste problema deverá apenas submeter uma classe <strong>BooleanArrayIntSet</strong> (e não um programa completo).</div>
-      </p><h2><img alt="" class="uc-content__float" height="193" loading="lazy" src="imagens/prob248.jpg" width="300"/>O problema</h2>
+      <div class="uc-callout uc-callout--warning">Neste problema deverá apenas submeter uma classe <strong>BooleanArrayIntSet</strong> (e não um programa completo).</div><h2><img alt="" class="uc-content__float" height="193" loading="lazy" src="imagens/prob248.jpg" width="300"/>O problema</h2>
       <p>A sua tarefa é criar uma classe <strong>BooleanArrayIntSet</strong>, que representa um conjunto de números inteiros, implementando o seguinte interface:
 
       </p><pre>// Interface que define o TAD conjunto de numeros inteiros
@@ -67,7 +66,7 @@ interface IntSet {
 Adicionando novamente todos os numeros entre 1 e 1000000...
 Verificando se todos os numeros entre 1 e 1000000 existem...
 Removendo todos os numeros entre 1 e 1000000...</pre>
-      <h2>Input e Output</h2>
+      <h2>Input e output</h2>
       <p>Deverá apenas submeter a classe <strong>BooleanArrayIntSet</strong>. O Mooshak irá criar várias instâncias da sua classe usando um construtor como mostrado no exemplo de utilização <strong>(construtor com um argumento inteiro <em>n</em> indicando que deve suportar números no intervalo [1,n])</strong> e irá fazer uma série de testes aos métodos por si implementados.</p>
       <p>É garantido que o conjunto nunca terá mais do que 100 números diferentes, e que todos os números serão inteiros positivos entre 1 e 1000 (inclusive) para todos os testes excepto o último. No último teste, destinado a verificar a eficiênca, poderão ser usados números até 1 milhão e feitas milhões de adições, inserções ou verificações <strong>(neste teste terá "Time Limit Exceeded" se a sua classe não for eficiente nestas operações)</strong>.</p>
       <p>É garantido que os métodos são chamados de forma correcta (os argumentos fazem sentido e não geram excepções).</p>

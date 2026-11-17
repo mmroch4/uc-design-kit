@@ -18,7 +18,7 @@
     <h1>Arrays</h1>
     <section class="uc-section" aria-labelledby="testarrays">
       <h2 id="testarrays">TestArrays.java</h2>
-      <uc-code lang="java" filename="TestArrays.java" collapsible>
+      <uc-code lang="java" filename="TestArrays.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -63,6 +63,12 @@ public class TestArrays {
    }
    
 }
+        </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestArrays.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestArrays.main(args); }
+          }
         </script>
       </uc-code>
     </section>

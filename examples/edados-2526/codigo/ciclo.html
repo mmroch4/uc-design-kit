@@ -18,7 +18,7 @@
     <h1>Instruções de Ciclo</h1>
     <section class="uc-section" aria-labelledby="testfor">
       <h2 id="testfor">TestFor.java</h2>
-      <uc-code lang="java" filename="TestFor.java" collapsible>
+      <uc-code lang="java" filename="TestFor.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -40,6 +40,12 @@ class TestFor {
     return true;
   }
 }
+        </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestFor.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestFor.main(args); }
+          }
         </script>
       </uc-code>
     </section>

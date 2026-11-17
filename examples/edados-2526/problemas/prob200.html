@@ -11,14 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
+  <uc-page current="materials">
     <nav class="crumbs" aria-label="Localização">
       <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED200</li></ol>
     </nav>
     <h1>[ED200] Contagem de Células</h1>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshask, deverá submeter uma classe <strong>ED200</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).
-      </p></div></p>
+      <div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshask, deverá submeter uma classe <strong>ED200</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).
+      </p></div>
       <p>O Aniceto tem um trabalho laboratorial de Biologia e precisa da tua ajuda. Ele está a cultivar pequenos micróbios numa caixa de Petri e necessita de os observar ao microscópio para perceber qual é a maior micróbio visível.
 
       </p><p>A caixa de Petri pode ser considerada como uma grelha 2D, ou seja uma matriz, onde em cada posição pode ou não existir uma célula. Duas células estão ligadas se forem adjacentes vertical, horizontal ou diagonalmente. Um micróbio é um conjunto de células ligadas. Por exemplo, a caixa de Petri seguinte tem exactamente três micróbios ('.' é uma posição vazia, '#' é uma posição com uma célula):</p>
@@ -70,7 +70,7 @@
       </tr>
       </table></div>
       <p>O tamanho de um micróbio é igual ao número de células que o constitui. Na figura de cima, os 3 micróbios têm tamanho 6 (o amarelo), 3 (o azul) e 4 (o verde). O maior micróbio é o de maior tamanho. Neste caso o maior micróbio é o amarelo.</p>
-      <h2>O Problema</h2>
+      <h2>O problema</h2>
       <p>Dado o estado de várias culturas de micróbios (indicados por uma matriz de células) a tua tarefa é descobrir qual o tamanho do maior micróbio em cada uma delas, ou seja, qual o tamanho do maior conjunto conexo de células em cada caso.
 
       </p><h2>Input</h2>
@@ -79,7 +79,7 @@
       </p><h2>Output</h2>
       <p>O <em>output</em> deve ser constituido por <strong>N</strong> linhas, cada uma com o tamanho do maior micróbio do caso correspondente.
       </p>
-      <h2>Exemplo de Input</h2>
+      <h2>Exemplo de input</h2>
       <pre data-copy="Input">2
 5 7
 ##.#...
@@ -92,7 +92,7 @@
 ...#
 #...
 ..#.</pre>
-      <h2>Exemplo de Output</h2>
+      <h2>Exemplo de output</h2>
       <pre data-copy="Output">6
 2</pre>
       <p>Nota: O primeiro caso de input é o da figura de cima. O segundo caso tem 4 micróbios: dois de tamanho 2 (verde e amarelo) e dois de tamanho 1 (azul e laranja). Desse modo, o maior micróbio tem tamanho 2:</p>

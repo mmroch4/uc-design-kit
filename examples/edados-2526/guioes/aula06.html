@@ -27,25 +27,22 @@
 
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob188.html">[ED188] Devolver elemento numa dada posição</a> (peso 20%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob189.html">[ED189] Remover elemento numa dada posição</a> (peso 20%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob190.html">[ED190] Cópia de uma lista</a> (peso 20%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob191.html">[ED191] Duplicando elementos</a> (peso 20%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob192.html">[ED192] Contando elementos</a> (peso 20%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob193.html">[ED193] Removendo todas as ocorrências de um elemento</a> (peso 20%, exercício extra)</li>
-        </ul>
-        <p><strong>Prazo de submissão:</strong> 11 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
-        <div class="uc-callout">
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <ul class="uc-bullets">
-            <li>Depois do prazo os problemas continuam disponíveis no Mooshak, mas as submissões não contam para a nota.</li>
-            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, podes ter pontuação máxima mesmo sem ter feito tudo.</li>
-            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolvas todos os problemas, o máximo numa aula é de 100%.</li>
-            <li>Para ter 100% basta sempre resolver os exercícios do guião principal.</li>
-          </ul>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub06"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub06">
+            <h3>Problemas da aula 6</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob188.html">Devolver elemento numa dada posição</a> <code>ED188</code> <data value="20">20 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob189.html">Remover elemento numa dada posição</a> <code>ED189</code> <data value="20">20 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob190.html">Cópia de uma lista</a> <code>ED190</code> <data value="20">20 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob191.html">Duplicando elementos</a> <code>ED191</code> <data value="20">20 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob192.html">Contando elementos</a> <code>ED192</code> <data value="20">20 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob193.html">Removendo todas as ocorrências de um elemento</a> <code>ED193</code> <data value="20">20 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <section class="uc-section" aria-labelledby="listas">

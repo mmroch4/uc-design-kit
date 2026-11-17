@@ -28,22 +28,19 @@
       <!-- Exercícios para submissão -->
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob200.html">[ED200] Contagem de Células</a> (peso 50%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob201.html">[ED201] Playlist</a> (peso 50%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob202.html">[ED202] Procurando Pokemons</a> (peso 50%) <span class="uc-muted">(exercício do guião principal)</span></li>
-        </ul>
-        <p class="uc-prose"><strong>Prazo de submissão:</strong> 30 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
-        <div class="uc-callout">
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <ul class="uc-bullets">
-            <li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
-            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.</li>
-            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
-            <li>Para ter 100% bastará sempre resolver os exercícios do guião principal.</li>
-          </ul>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub09"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub09">
+            <h3>Problemas da aula 9</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob200.html">Contagem de Células</a> <code>ED200</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob201.html">Playlist</a> <code>ED201</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob202.html">Procurando Pokemons</a> <code>ED202</code> <data value="50">50 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <!-- Exercício 1 -->

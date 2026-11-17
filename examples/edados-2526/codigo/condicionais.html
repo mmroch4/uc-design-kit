@@ -18,7 +18,7 @@
     <h1>Instruções Condicionais</h1>
     <section class="uc-section" aria-labelledby="testifelse">
       <h2 id="testifelse">TestIfElse.java</h2>
-      <uc-code lang="java" filename="TestIfElse.java" collapsible>
+      <uc-code lang="java" filename="TestIfElse.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -49,11 +49,17 @@ public class TestIfElse {
    }
 }
         </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestIfElse.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestIfElse.main(args); }
+          }
+        </script>
       </uc-code>
     </section>
     <section class="uc-section" aria-labelledby="testswitch">
       <h2 id="testswitch">TestSwitch.java</h2>
-      <uc-code lang="java" filename="TestSwitch.java" collapsible>
+      <uc-code lang="java" filename="TestSwitch.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -98,6 +104,12 @@ public class TestSwitch {
       System.out.println(monthString);
    }
 }
+        </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestSwitch.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestSwitch.main(args); }
+          }
         </script>
       </uc-code>
     </section>

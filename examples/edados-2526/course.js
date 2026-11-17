@@ -67,15 +67,16 @@ window.UC_COURSE = {
     { type: "lab", class: "PL3", day: 5, start: "16:00", end: "18:00", room: "FC6 1.55" },
   ],
 
+  // Quizzes: date = dia em que abre (19:00), end = dia em que fecha.
   deadlines: [
-    { id: "quiz1", title: "Fecha o quiz #01", date: "2025-09-30", time: "21:00", kind: "quiz", note: "Introdução ao Java I · no Mooshak" },
-    { id: "quiz2", title: "Fecha o quiz #02", date: "2025-10-07", time: "21:00", kind: "quiz", note: "Introdução ao Java II · no Mooshak" },
-    { id: "quiz3", title: "Fecha o quiz #03", date: "2025-10-14", time: "21:00", kind: "quiz", note: "Introdução ao Java III · no Mooshak" },
-    { id: "quiz4", title: "Fecha o quiz #04", date: "2025-10-21", time: "21:00", kind: "quiz", note: "TADs I · no Mooshak" },
-    { id: "quiz5", title: "Fecha o quiz #05", date: "2025-10-28", time: "21:00", kind: "quiz", note: "TADs II e listas I · no Mooshak" },
-    { id: "quiz6", title: "Fecha o quiz #06", date: "2025-11-11", time: "21:00", kind: "quiz", note: "Listas II · no Mooshak" },
-    { id: "quiz7", title: "Fecha o quiz #07", date: "2025-11-18", time: "21:00", kind: "quiz", note: "Complexidade I · no Mooshak" },
-    { id: "quiz8", title: "Fecha o quiz #08", date: "2025-11-25", time: "21:00", kind: "quiz", note: "Complexidade II e recursividade · no Mooshak" },
+    { id: "quiz1", title: "Quiz #01", date: "2025-09-23", end: "2025-09-30", kind: "quiz", note: "Introdução ao Java I · fecha às 21:00, no Mooshak" },
+    { id: "quiz2", title: "Quiz #02", date: "2025-09-30", end: "2025-10-07", kind: "quiz", note: "Introdução ao Java II · fecha às 21:00, no Mooshak" },
+    { id: "quiz3", title: "Quiz #03", date: "2025-10-07", end: "2025-10-14", kind: "quiz", note: "Introdução ao Java III · fecha às 21:00, no Mooshak" },
+    { id: "quiz4", title: "Quiz #04", date: "2025-10-14", end: "2025-10-21", kind: "quiz", note: "TADs I · fecha às 21:00, no Mooshak" },
+    { id: "quiz5", title: "Quiz #05", date: "2025-10-21", end: "2025-10-28", kind: "quiz", note: "TADs II e listas I · fecha às 21:00, no Mooshak" },
+    { id: "quiz6", title: "Quiz #06", date: "2025-11-04", end: "2025-11-11", kind: "quiz", note: "Listas II · fecha às 21:00, no Mooshak" },
+    { id: "quiz7", title: "Quiz #07", date: "2025-11-11", end: "2025-11-18", kind: "quiz", note: "Complexidade I · fecha às 21:00, no Mooshak" },
+    { id: "quiz8", title: "Quiz #08", date: "2025-11-18", end: "2025-11-25", kind: "quiz", note: "Complexidade II e recursividade · fecha às 21:00, no Mooshak" },
     {
       id: "ap1",
       title: "Avaliação Prática 1",
@@ -91,9 +92,9 @@ window.UC_COURSE = {
         { label: "Resultados", url: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/avalpratica1_2526.pdf" },
       ],
     },
-    { id: "quiz9", title: "Fecha o quiz #09", date: "2025-12-02", time: "21:00", kind: "quiz", note: "Árvores binárias · no Mooshak" },
-    { id: "quiz10", title: "Fecha o quiz #10", date: "2025-12-09", time: "21:00", kind: "quiz", note: "Árvores binárias de pesquisa · no Mooshak" },
-    { id: "quiz11", title: "Fecha o quiz #11", date: "2025-12-16", time: "21:00", kind: "quiz", note: "Dicionários e filas de prioridade · no Mooshak" },
+    { id: "quiz9", title: "Quiz #09", date: "2025-11-25", end: "2025-12-02", kind: "quiz", note: "Árvores binárias · fecha às 21:00, no Mooshak" },
+    { id: "quiz10", title: "Quiz #10", date: "2025-12-02", end: "2025-12-09", kind: "quiz", note: "Árvores binárias de pesquisa · fecha às 21:00, no Mooshak" },
+    { id: "quiz11", title: "Quiz #11", date: "2025-12-09", end: "2025-12-16", kind: "quiz", note: "Dicionários e filas de prioridade · fecha às 21:00, no Mooshak" },
     {
       id: "ap2",
       title: "Avaliação Prática 2",
@@ -118,6 +119,18 @@ window.UC_COURSE = {
       links: [{ label: "Exame modelo", url: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/exame_modelo.pdf" }],
     },
     { id: "resit", title: "Exame, época de recurso", date: null, kind: "exam", note: "Salas no SIGARRA" },
+    // Exercícios das aulas práticas: prazo de submissão no Mooshak de cada aula (aparece no guião, no Início e em Semanas).
+    { id: "sub02", title: "Exercícios da aula 2", date: "2025-10-07", kind: "submission", url: "guioes/aula02.html#submissao", note: "No Mooshak" },
+    { id: "sub03", title: "Exercícios da aula 3", date: "2025-10-14", kind: "submission", url: "guioes/aula03.html#submissao", note: "No Mooshak" },
+    { id: "sub04", title: "Exercícios da aula 4", date: "2025-10-28", kind: "submission", url: "guioes/aula04.html#submissao", note: "No Mooshak" },
+    { id: "sub05", title: "Exercícios da aula 5", date: "2025-11-04", kind: "submission", url: "guioes/aula05.html#submissao", note: "No Mooshak" },
+    { id: "sub06", title: "Exercícios da aula 6", date: "2025-11-11", kind: "submission", url: "guioes/aula06.html#submissao", note: "No Mooshak" },
+    { id: "sub07", title: "Exercícios da aula 7", date: "2025-11-20", kind: "submission", url: "guioes/aula07.html#submissao", note: "No Mooshak" },
+    { id: "sub08", title: "Exercícios da aula 8", date: "2025-11-24", kind: "submission", url: "guioes/aula08.html#submissao", note: "No Mooshak" },
+    { id: "sub09", title: "Exercícios da aula 9", date: "2025-11-30", kind: "submission", url: "guioes/aula09.html#submissao", note: "No Mooshak" },
+    { id: "sub10", title: "Exercícios da aula 10", date: "2025-12-08", kind: "submission", url: "guioes/aula10.html#submissao", note: "No Mooshak" },
+    { id: "sub11", title: "Exercícios da aula 11", date: "2025-12-15", kind: "submission", url: "guioes/aula11.html#submissao", note: "No Mooshak" },
+    { id: "sub12", title: "Exercícios da aula 12", date: "2025-12-30", kind: "submission", url: "guioes/aula12.html#submissao", note: "No Mooshak" },
   ],
 
   // Avisos: um aviso com data futura só aparece a partir desse dia.

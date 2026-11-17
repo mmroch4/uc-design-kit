@@ -11,17 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
+  <uc-page current="materials">
     <nav class="crumbs" aria-label="Localização">
       <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED234</li></ol>
     </nav>
     <h1>[ED234] Avaliações Cinematográficas</h1>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED234</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED234</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
             Pode assumir que no Mooshak <strong>terá acesso a todas as classes base dadas nas aulas, incluindo as de árvores binárias BTree, BSTree e BSTMap</strong> (não precisa de as incluir na submissão).<br/>
       Pode ver o código das <a href="../codigo/index.html">classes uma a uma</a>.
       </p></div>
-      </p>
 
       <p><img alt="" class="uc-content__float" height="469" loading="lazy" src="imagens/234.jpg" width="703"/>Suponha que tem disponível uma lista de avaliações de filmes. Uma avaliação é caracterizada por um par <em>(filme,nota)</em> onde o filme é uma palavra sem espaços e a nota é um inteiro entre 1 e 10.</p>
       <p>A sua tarefa é fazer algumas estatísticas sobre estas avaliações. Nomeadamente, deve calcular:</p>
@@ -109,7 +108,7 @@
           </li><li><strong>[flag 2]</strong> use um TAD dicionário (<em>BSTMap</em>) para guardar o número de ocorrências de cada filme (de que tipos devem ser as chaves e os valores deste dicionário?). De dada vez que lê uma avaliação, é só ir ao dicionário e incrementar a frequência do respectivo filme. No final basta percorrer todos os filmes e encontrar o que teve mais ocorrências (ou pode optar por cada vez que incrementa, verificar se passou a ter um novo máximo).
           </li><li><strong>[flag 3]</strong> use um outro TAD dicionário (<em>BSTMap</em>) para guardar a soma das notas de cada filme (de que tipos devem ser a chave e o valor?). No final percorra todas as chaves (os filmes) e imprima aqueles cuja média seja positiva (é só dividir pelo quantidade de avaliações... que está guardada no dicionário que criou para a flag anterior). Em relação à ordem alfabética, como o dicionário está numa árvore de pesquisa, e o método que as devolve percorre a árvore em <em>inorder</em>, logo estas já são obtidas precisamente por ordem alfabética!
         </li></ul>
-      <h2>Exemplo de Input/Output para a Flag 1</h2>
+      <h2>Exemplo de input e output para a Flag 1</h2>
       <div class="uc-table" style="--uc-table-min: 0"><table>
       <tr>
       <th scope="col">Input 1</th>
@@ -133,7 +132,7 @@ BladeRunner2049 6</pre>
       <td><pre data-copy="Output">5</pre></td>
       </tr>
       </table></div>
-      <h2>Exemplo de Input/Output para a Flag 2</h2>
+      <h2>Exemplo de input e output para a Flag 2</h2>
       <div class="uc-table" style="--uc-table-min: 0"><table>
       <tr>
       <th scope="col">Input 2</th>
@@ -157,7 +156,7 @@ BladeRunner2049 6</pre>
       <td><pre data-copy="Output">BladeRunner2049 3</pre></td>
       </tr>
       </table></div>
-      <h2>Exemplo de Input/Output para a Flag 3</h2>
+      <h2>Exemplo de input e output para a Flag 3</h2>
       <div class="uc-table" style="--uc-table-min: 0"><table>
       <tr>
       <th scope="col">Input 3</th>

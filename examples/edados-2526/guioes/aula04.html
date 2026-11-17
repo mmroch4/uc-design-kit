@@ -26,23 +26,20 @@
       <!-- Exercícios que contam para a componente R da avaliação -->
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob004.html">[ED004] Jogo do Galo</a> (peso 10%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob088.html">[ED088] Jogo da Vida</a> (peso 50%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob015.html">[ED015] Sopa de Letras</a> (peso 50%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob101.html">[ED101] O Mundo da Tartaruga</a> (peso 25%, exercício extra)</li>
-        </ul>
-        <p><strong>Prazo de submissão:</strong> 28 de outubro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
-        <div class="uc-callout">
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <ul class="uc-bullets">
-            <li>Depois do prazo os problemas continuam disponíveis no Mooshak, mas as submissões não contam para a nota.</li>
-            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, podes ter pontuação máxima mesmo sem ter feito tudo.</li>
-            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolvas todos os problemas, o máximo numa aula é de 100%.</li>
-            <li>Para ter 100% basta sempre resolver os exercícios do guião principal.</li>
-          </ul>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub04"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub04">
+            <h3>Problemas da aula 4</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob004.html">Jogo do Galo</a> <code>ED004</code> <data value="10">10 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob088.html">Jogo da Vida</a> <code>ED088</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob015.html">Sopa de Letras</a> <code>ED015</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob101.html">O Mundo da Tartaruga</a> <code>ED101</code> <data value="25">25 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <section class="uc-section" aria-labelledby="exercicios">

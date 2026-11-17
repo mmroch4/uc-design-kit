@@ -18,7 +18,7 @@
     <h1>Strings</h1>
     <section class="uc-section" aria-labelledby="teststring">
       <h2 id="teststring">TestString.java</h2>
-      <uc-code lang="java" filename="TestString.java" collapsible>
+      <uc-code lang="java" filename="TestString.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -74,6 +74,12 @@ public class TestString {
       
    }
 }
+        </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestString.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestString.main(args); }
+          }
         </script>
       </uc-code>
     </section>
