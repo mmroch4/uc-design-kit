@@ -1,5 +1,5 @@
 /**
- * <uc-widget-trace> (docs/plan/widgets-api.md 18.3): the schema check
+ * <uc-widget-trace> (docs/architecture/widgets-api.md 18.3): the schema check
  * accepts every example of the docs (the JSON inside the demo pages) and
  * rejects broken inputs with the right error key; accepted steps keep the
  * teacher's states, marks and sentences, and a plain first step is added

@@ -1,5 +1,5 @@
 /**
- * Formulas and rules of <uc-grading> (docs/plan/grading-api.md 4, 5, 6 and
+ * Formulas and rules of <uc-grading> (docs/architecture/grading-api.md 4, 5, 6 and
  * 10): tokenizer, recursive descent parser, evaluator, weight extraction and
  * printer. No DOM, no eval: page text only ever becomes a tree.
  *

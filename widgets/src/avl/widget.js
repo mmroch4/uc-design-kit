@@ -1,7 +1,7 @@
 /**
  * <uc-widget-avl>: an AVL tree, its insertions and removals with heights,
  * balance factors and the four rotations, step by step
- * (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-avl.html).
+ * (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-avl.html).
  */
 import { ALGORITHMS, VERBS, MAX_NODES, factor, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

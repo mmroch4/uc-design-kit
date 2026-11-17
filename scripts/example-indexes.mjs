@@ -6,7 +6,7 @@
  * `search` on, runs the
  * maintenance script teachers use, template/uc-site.py, and keeps the index
  * it prints next to course.js. The script is the only implementation of the
- * extraction rules (docs/plan/search-api.md sections 4 to 6): nothing here
+ * extraction rules (docs/architecture/search-api.md sections 4 to 6): nothing here
  * reads HTML.
  *
  * The index holds the time it was generated, so two runs never give the same

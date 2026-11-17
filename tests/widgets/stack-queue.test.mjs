@@ -1,5 +1,5 @@
 /**
- * <uc-widget-stack-queue> against an array model (docs/plan/widgets-api.md
+ * <uc-widget-stack-queue> against an array model (docs/architecture/widgets-api.md
  * 18.3): for the stack and the queue, in an array and in a list, on 200
  * random scripts and the edge cases the final contents and the answers equal
  * the model's (overflow on a full array changes nothing; underflow answers

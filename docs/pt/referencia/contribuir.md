@@ -63,7 +63,7 @@ Os widgets de algoritmos (`widgets/src/<nome>/`) têm a sua própria lista: algo
 - Um atributo, campo do `course.js`, token ou membro da API novo: primeiro no `api.md`, depois na tabela da página correspondente. O teste diz qual.
 - Uma classe nova gerada pelo kit: na tabela "Personalizar" do componente se for estável, senão na lista [Internas](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/classes.md#internas).
 - Uma página nova: copiar uma página do mesmo grupo e acrescentá-la ao `nav.json`. Entra sozinha na pesquisa.
-- As convenções de escrita (português europeu, ids sem acentos, links com `index.html` explícito) estão em `docs/plan/phase-1-handoff.md`.
+- As convenções de escrita (português europeu, ids sem acentos, links com `index.html` explícito) estão no `CONTRIBUTING.md`, em *Writing conventions*, com os passos para acrescentar um exemplo real.
 
 ## Pull requests
 

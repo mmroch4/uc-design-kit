@@ -1,7 +1,7 @@
 /**
  * <uc-widget-bst>: a binary search tree, its operations (insert, remove,
  * search, min, max) and its four traversals, step by step
- * (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-bst.html).
+ * (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-bst.html).
  */
 import { ALGORITHMS, VERBS, MAX_NODES, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

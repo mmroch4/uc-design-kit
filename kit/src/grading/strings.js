@@ -1,5 +1,5 @@
 /**
- * Interface strings of <uc-grading> (docs/plan/grading-api.md 2.1 and 11),
+ * Interface strings of <uc-grading> (docs/architecture/grading-api.md 2.1 and 11),
  * part of uc-grading.js. Added with UC.internal.addDefaults, so strings a
  * site already set with UC.addTranslations win.
  */

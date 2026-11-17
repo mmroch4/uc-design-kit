@@ -28,10 +28,23 @@
 - No user-facing strings in code: use the i18n dictionaries.
 - CSS: custom properties prefixed `--uc-`, classes prefixed `uc-`,
   low specificity (`:where()`), so teachers can override easily.
+- Choices saved in the browser go through `UC.internal.storage`
+  (`core/storage.js`): keys are scoped to the course and every call is safe
+  when storage is blocked. Never call `localStorage` directly.
+- The kit and the widgets are built differently on purpose. The kit is classic
+  scripts concatenated in the order of `kit/src/manifest.json` (no modules),
+  so a copied folder works from `file://`. The widgets
+  (`widgets/src/`) are ES modules bundled by esbuild, because their pure
+  algorithms are tested in Node (`tests/widgets/`); they need the kit at run
+  time and use only its public API, so `widgets/src/core/dom.js` keeps its own
+  small `el()`.
+- Design contracts of the bigger parts (blocks, search, widgets, grading) are
+  in `docs/architecture/`; code comments cite them by section.
 
 ## Workflow
 
-- Branch per milestone: `m<phase>.<n>-<short-name>`.
+- One branch per pull request; branches are deleted when the pull request is
+  merged.
 - Run `npm test` before opening a pull request.
 - Update `CHANGELOG.md` under *Unreleased*.
 
@@ -100,6 +113,50 @@ in a component's "Personalizar" table, a Blocos page, or the internal list of
    `docs/pt/referencia/classes.html`.
 5. `npm run build && npm test`.
 
-Writing conventions (European Portuguese, ASCII ids, explicit `index.html`
-links): `docs/plan/phase-1-handoff.md`. The same steps in Portuguese:
-`docs/pt/referencia/contribuir.html`.
+### Writing conventions
+
+- European Portuguese, impersonal or third person for the teacher ("o
+  professor", "copia-se a pasta"); code, file names and code comments in
+  English.
+- Section ids: lowercase ASCII, no accents (`titulo-noutra-lingua`).
+- Code blocks: `<uc-code lang="…" filename="…" no-download><pre><code>escaped</code></pre></uc-code>`.
+- Internal links use an explicit `index.html` (pages must work from
+  `file://`). Link `course.js` fields to `../course-js.html#…`, not to
+  `docs/api.md` on GitHub.
+- Demos use only the fictional course (`docs/demos/course.js`); EDados and
+  the other real courses appear only as links or screenshots (their content is
+  not MIT). A demo with another date uses `?today=YYYY-MM-DD` in its `src`;
+  another language, `?lang=en` and a page-level `UC_COURSE.languages`.
+  Demo-specific configuration goes in an inline `<script>` after
+  `../course.js` with a one-line comment.
+- A demo with no text when JavaScript is off gets a
+  `<noscript><p>…</p></noscript>` after `<!-- demo:end -->`. `<uc-page>`
+  demos set `body { padding: 0 } uc-page { min-height: 0 }` inline, or the
+  iframe grows in a loop.
+- Generated-region markers must have the same indentation on the opening and
+  the closing line; otherwise `scripts/docs.mjs` skips the region silently.
+- Field tables use `<div class="uc-table docs-fields">`; short class tables
+  `.docs-compact`. Requirement tags: `uc-tag--warning` Obrigatório,
+  `uc-tag--accent` Recomendado, `uc-tag--muted` Opcional.
+- `docs.css` has one section per group at the end; keep new rules in the
+  section of their page.
+
+### Adding a real example
+
+Once the example in `examples/<code>-<year>/` is merged and complete:
+
+1. Screenshots, 1280×800 at deviceScaleFactor 1.25, served over HTTP, saved
+   as WebP (quality 80) in `docs/assets/img/`: `<code>-home.webp` and three
+   more pages.
+2. `docs/pt/exemplos/<code>.html`: copy `ip.html` and rewrite the article
+   (lead, authors and `NOTICE.md`, screenshots, pages, `course.js`,
+   personalisation, migration with a link to `MIGRACAO.md`).
+3. `docs/nav.json`: the page in the "Exemplos" group; a card and a column of
+   the comparison table in `docs/pt/exemplos/index.html`; a figure in the
+   landing (`index.html`, "Mais cadeiras feitas com o kit").
+4. `docs/pt/index.html` ("Próximos passos"), `docs/pt/migrar.html` ("Ver
+   também"), `scripts/llms.mjs` (intro line and "Optional" list) and the
+   licence paragraph of `README.md`.
+5. `npm run build && npm test`.
+
+The same steps in Portuguese: `docs/pt/referencia/contribuir.html`.

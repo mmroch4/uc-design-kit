@@ -1,7 +1,7 @@
 /**
  * <uc-widget-toposort>: topological sort of a directed graph by Kahn's
  * algorithm (in-degrees and a queue) and by DFS (finishing order), with
- * cycle detection (docs/plan/widgets-api.md 17; page
+ * cycle detection (docs/architecture/widgets-api.md 17; page
  * docs/pt/widgets/uc-widget-toposort.html). Same input as the graph widget
  * (../graph/element.js), but the graph is always directed: the `directed`
  * attribute is not needed, and there is no source.

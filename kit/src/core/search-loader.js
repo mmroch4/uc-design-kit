@@ -1,5 +1,5 @@
 /**
- * Site search, the part that lives in uc-kit.js (docs/plan/search-api.md 7–8):
+ * Site search, the part that lives in uc-kit.js (docs/architecture/search-api.md 7–8):
  * whether search-index.js exists, the header button, the shortcuts and
  * UC.search. The engine and the dialog are in uc-search.js, loaded only when
  * the search is opened. Without `search` in course.js nothing here runs and

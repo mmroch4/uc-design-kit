@@ -1,6 +1,6 @@
 /**
  * The binary search tree of <uc-widget-bst>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { values, ops }. State: { root }, nodes { v, l, r }. Element ids are
  * the values (a BST holds each value once).

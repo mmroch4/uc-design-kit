@@ -1,6 +1,6 @@
 # New blocks — API contract (phase 0)
 
-This is the contract of the blocks that the kit adds in **v1.1.0**. It was
+This is the contract of the blocks that the kit added in **v1.0.0**. It was
 written before any code, so that the phases that implement the blocks
 (1 to 5) share one design. It does not change `docs/api.md` or the kit: each
 implementation phase copies its sections from here into `docs/api.md`, in the
@@ -8,9 +8,8 @@ same format, in the same PR as the code.
 
 - Plan (Portuguese, approved by Miguel on 16 Nov 2026):
   <https://claude.ai/artifact/4pF22gSc8XMQw3pHT7ioB9>
-- Status: **approved design, not implemented**. A phase may refine a detail
-  that turns out wrong while coding; it records the change in this file and in
-  its handoff note, so later phases see it.
+- Status: **implemented** (phases 0 to 6), released in v1.0.0. Sections 12
+  to 18 are the history of the phases; the phase handoff notes were removed in the repository cleanup of 17 Nov 2026; read them in the git history at commit `846b283`.
 - Everything here is **additive** to v1: no existing attribute, field, class
   or token changes meaning. Sites written for v1.0 keep working unchanged.
 
@@ -84,8 +83,11 @@ the path of the folder that holds `course.js` (e.g. `/~fds/aulas/EDados/2526/`).
 | `uc:<course>:class:<type>` | class code, e.g. `PL2` | `<uc-timetable class-filter>` ("My class", one per schedule type) |
 | `uc:<course>:solved:<problem-id>` | `"1"` | `<uc-problems track>` |
 
-Existing keys (`uc:lang`, `uc:done:<path>:<id>`, `uc:weeks-page:<url>`) do not
-change. Every read and write is wrapped in `try`/`catch` (private windows,
+The keys that existed before (`uc:lang`, `uc:done:<path>#<id>`,
+`uc:weeks-page:<url>`) moved to this scheme in the cleanup after v1.0.0
+(`uc:<course>:lang`, `uc:<course>:done:<path>#<id>`,
+`uc:<course>:weeks-page:<url>`); `storage.get(…, { legacy })` adopts an old
+value on first read. Every read and write is wrapped in `try`/`catch` (private windows,
 blocked storage), and the block works without storage, only forgetting the
 choice. The helper is `UC.internal.storage` (section 7.2).
 
@@ -945,7 +947,7 @@ Every block PR is green on `npm run build:check` and `npm test` (which runs
 
 | Phase | Builds | Main files |
 | --- | --- | --- |
-| 0 | This contract and the handoff | `docs/plan/blocks-api.md`, `docs/plan/blocks-phase-0-handoff.md` |
+| 0 | This contract and the handoff | `docs/architecture/blocks-api.md`, `blocks-phase-0-handoff.md` (removed, see the status above) |
 | 1 | Shared pieces (`announce`, `filterBar`, `storage`, `enhance`, `formatTime`, `formatDuration`, `weekdayName`), `a[data-auth]`, size budget check, a11y snapshot helper, `<uc-timetable>`, `officeHours` in `<uc-team>` | `kit/src/core/{announce,filters,storage,auth-links}.js`, `kit/src/components/uc-timetable.js`, `kit/src/css/components/uc-timetable.css`, `scripts/build.mjs` |
 | 2 | `<uc-grading>` with calculator, `<uc-assessment-info>`, `duration`/`location`/`shifts` in `<uc-event>`, `<uc-deadlines>`, `<uc-this-week>` | `uc-grading.*`, `uc-assessment-info.*`, `core/ics.js` |
 | 3 | `<uc-summaries>`, `<uc-weeks view="compact">`, `<uc-week href>` | `uc-summaries.*`, `uc-weeks.js`, `uc-week.js` |

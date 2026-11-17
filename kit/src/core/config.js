@@ -102,7 +102,7 @@
     return { ...entry, parsedDate: date };
   }
 
-  /** `search` (docs/plan/search-api.md 2.1): true or { index, exclude } → { index, exclude }, else null. */
+  /** `search` (docs/architecture/search-api.md 2.1): true or { index, exclude } → { index, exclude }, else null. */
   function normalizeSearch(value) {
     if (value !== true && !(value && typeof value === "object" && !Array.isArray(value))) return null;
     const options = value === true ? {} : value;

@@ -1,6 +1,6 @@
 /**
  * The step engine: pure helpers, no DOM and no `UC`, so the algorithms and
- * the Node tests can import them (docs/plan/widgets-api.md 6).
+ * the Node tests can import them (docs/architecture/widgets-api.md 6).
  */
 
 /** Most steps one run may emit (6.3). */

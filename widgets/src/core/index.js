@@ -1,6 +1,6 @@
 /**
  * uc-widget-core.js: the shared core of the widget library
- * (docs/plan/widgets-api.md 2.3). Added to the page by the first widget file
+ * (docs/architecture/widgets-api.md 2.3). Added to the page by the first widget file
  * (bootstrap.js) or preloaded by the page. It installs UC.widgets, loads
  * uc-widget.css from its own folder and runs the queued widget definitions.
  */

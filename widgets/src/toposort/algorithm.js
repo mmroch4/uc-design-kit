@@ -1,6 +1,6 @@
 /**
  * Topological sort of <uc-widget-toposort>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { graph } as in the graph widget (../graph/model.js), always
  * directed (the widget builds the model with directed = true). Marks:

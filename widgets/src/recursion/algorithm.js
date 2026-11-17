@@ -1,6 +1,6 @@
 /**
  * The recursive calls of <uc-widget-recursion>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { n }. State: { root } — the recursion tree so far, nodes
  * { id, call, value, kids }: `call` is the call as written ("fib(4)"),

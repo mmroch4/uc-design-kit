@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Narration snapshots (docs/plan/widgets-api.md 18.3 item 3): the sentences
+ * Narration snapshots (docs/architecture/widgets-api.md 18.3 item 3): the sentences
  * of every widget's test input, per algorithm, in tests/widgets/narration/
  * <widget>.<lang>.txt. narration.test.mjs compares them on every PR;
  * `node tests/widgets/narration.mjs --update` rewrites them (review the diff

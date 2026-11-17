@@ -1,5 +1,5 @@
 /**
- * <uc-widget-graph> against references (docs/plan/widgets-api.md 18.3): on
+ * <uc-widget-graph> against references (docs/architecture/widgets-api.md 18.3): on
  * 200 random graphs (directed and not) and the edge cases, BFS distances
  * equal a reference BFS, DFS visits each reachable vertex once in the order
  * of a reference recursive DFS along tree edges, and the components equal a

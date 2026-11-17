@@ -1,6 +1,6 @@
 /**
  * The searches of <uc-widget-search>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { a: [values], target }. State: { a }. Cells already ruled out are
  * marked "visited" (•); the cell being compared is "compared"; the answer is

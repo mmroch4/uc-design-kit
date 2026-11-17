@@ -1,6 +1,6 @@
 /**
  * The stack and the queue of <uc-widget-stack-queue>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { values, ops, impl: "array" | "list", capacity }. `values` fills
  * the structure without steps when `ops` is given; otherwise every value is

@@ -1,5 +1,5 @@
 /**
- * The AVL tree of <uc-widget-avl>, as step lists (docs/plan/widgets-api.md
+ * The AVL tree of <uc-widget-avl>, as step lists (docs/architecture/widgets-api.md
  * 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { values, ops }. State: { root }, nodes { v, l, r, h } (h: height,

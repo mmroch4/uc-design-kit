@@ -10,9 +10,9 @@ from here into the documentation, in the same PR as the code.
 
 - Plan (Portuguese, the 9 decisions approved by Miguel on 17 Nov 2026, 11:29):
   <https://claude.ai/artifact/VRLDLknHBitpt6LRWYkmLy>
-- Status: **approved design, not implemented**. A phase may refine a detail
-  that turns out wrong while coding; it records the change in section 20 and
-  in its handoff note, so later phases see it.
+- Status: **implemented** (W0 to W6), released as widgets 1.0.0. Sections 19
+  to 26 are the history of the phases; the phase handoff notes were removed in the repository cleanup of 17 Nov 2026; read them in the git history at commit `846b283`. Known
+  limitations are GitHub issues.
 - Everything is **additive** to the kit: a page without a widget script loads
   nothing new, and the kit's 48 KB budget does not count widget files.
 - Starting point: `examples/edados-2526/extensions/uc-bst-traversal.js`, the
@@ -976,7 +976,7 @@ built unless someone asks.
 
 | File | Budget (gzip) | On failure |
 | --- | --- | --- |
-| `uc-widget-core.js` | 12 KB | build fails: "Make the core smaller or raise the budget in docs/plan/widgets-api.md 18.2 first." |
+| `uc-widget-core.js` | 12 KB | build fails: "Make the core smaller or raise the budget in docs/architecture/widgets-api.md 18.2 first." |
 | `uc-widget-<name>.js` | 8 KB each | build fails, naming the widget |
 | `uc-widget.css` | 4 KB | build fails |
 
@@ -1059,7 +1059,7 @@ the style of the site:
 ## 19. Phases
 
 Each phase: its own thread and branch, one PR merged with green CI, a
-`docs/plan/widgets-phase-N-handoff.md`, the docs of what it ships.
+phase handoff note (removed, see the status above), the docs of what it ships.
 
 | Phase | Ships | Notes |
 | --- | --- | --- |

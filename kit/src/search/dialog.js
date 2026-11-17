@@ -1,5 +1,5 @@
 /**
- * The search dialog (docs/plan/search-api.md 7.3, 7.4, 9, 10): a modal
+ * The search dialog (docs/architecture/search-api.md 7.3, 7.4, 9, 10): a modal
  * <dialog> with the field, the results grouped by page, a status line
  * (loading, failed with a retry button, no results, the count for screen
  * readers) and the index date. Registered as UC.internal.searchUI, which

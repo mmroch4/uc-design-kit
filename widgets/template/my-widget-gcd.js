@@ -14,7 +14,7 @@
  *   <script src="my-widget-gcd.js" defer></script>
  *
  * Guide: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/criar.html
- * Contract: docs/plan/widgets-api.md (sections 6 and 16).
+ * Contract: docs/architecture/widgets-api.md (sections 6 and 16).
  */
 (function () {
   "use strict";

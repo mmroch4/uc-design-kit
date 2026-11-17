@@ -92,7 +92,7 @@ Uma frase com os valores em cada passo, `describe()` com a estrutura em palavras
 
 ## Propor um widget ao catálogo
 
-Um widget do catálogo vive em `widgets/src/<nome>/`, em módulos ES, e é compilado por `npm run build` para `widgets/v1/uc-widget-<nome>.js`. O contrato completo é [`docs/plan/widgets-api.md`](https://github.com/mmroch4/uc-design-kit/blob/main/docs/plan/widgets-api.md). Lista para o pedido de integração (pull request):
+Um widget do catálogo vive em `widgets/src/<nome>/`, em módulos ES, e é compilado por `npm run build` para `widgets/v1/uc-widget-<nome>.js`. O contrato completo é [`docs/architecture/widgets-api.md`](https://github.com/mmroch4/uc-design-kit/blob/main/docs/architecture/widgets-api.md). Lista para o pedido de integração (pull request):
 
 1. `algorithm.js` puro, com `ALGORITHMS` e `run(input, options, emit)`; o primeiro passo sem destaques, o último com o resultado.
 2. `i18n.js` com todas as frases e o pseudocódigo em português e em inglês, as mesmas chaves e os mesmos ids de linha.

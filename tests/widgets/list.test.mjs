@@ -1,5 +1,5 @@
 /**
- * <uc-widget-list> against an array model (docs/plan/widgets-api.md 18.3):
+ * <uc-widget-list> against an array model (docs/architecture/widgets-api.md 18.3):
  * on 200 random operation scripts and the edge cases the final list and the
  * answers equal the model's; in every step the list from head has no cycle
  * and no node outside the drawing.

@@ -316,7 +316,7 @@ return s[::-1]&lt;/code&gt;&lt;/pre&gt;
 
         <h2 id="feito">Marcar como feito</h2>
         <ul>
-          <li><strong>Onde fica guardado</strong>: no <code>localStorage</code> do navegador do aluno, com a chave <code>uc:done:</code> seguida do caminho da página e do <code>id</code> (por exemplo <code>uc:done:/guioes/aula10.html#procurar</code>). Cada página tem as suas marcas; dois guiões podem usar o mesmo <code>id</code>. Nada é enviado para um servidor, e noutro navegador ou computador as marcas não aparecem.</li>
+          <li><strong>Onde fica guardado</strong>: no <code>localStorage</code> do navegador do aluno, com uma chave da cadeira (o <code>code</code> do <code>course.js</code>) seguida do caminho da página e do <code>id</code> (por exemplo <code>uc:CC1007:done:/guioes/aula10.html#procurar</code>). As marcas guardadas antes da versão 1.1 (<code>uc:done:…</code>) passam para a chave nova na primeira visita. Cada página tem as suas marcas; dois guiões podem usar o mesmo <code>id</code>. Nada é enviado para um servidor, e noutro navegador ou computador as marcas não aparecem.</li>
           <li><strong>O que muda</strong>: o número dá lugar a um visto, o título fica mais claro, aparece a etiqueta "Feito" e o botão fica verde e premido. O exercício não fecha.</li>
           <li><strong>Sem <code>id</code></strong>: o botão funciona, mas a marca perde-se ao recarregar, e a consola mostra um aviso.</li>
           <li><strong>Evento</strong>: cada clique dispara <code>uc:exercisechange</code>, que sobe pela página com <code>detail.id</code> e <code>detail.done</code>. É o que o <code>&lt;uc-guide&gt;</code> usa para o progresso, e pode ser usado numa extensão.</li>

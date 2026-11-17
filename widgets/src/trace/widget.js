@@ -1,7 +1,7 @@
 /**
  * <uc-widget-trace>: plays the teacher's own steps (JSON) with the array,
  * tree, graph or grid drawing, with the same player, narration, text view
- * and predict mode as every widget (docs/plan/widgets-api.md 5.4; page
+ * and predict mode as every widget (docs/architecture/widgets-api.md 5.4; page
  * docs/pt/widgets/uc-widget-trace.html).
  */
 import { ALGORITHMS, run } from "./algorithm.js";

@@ -1,5 +1,5 @@
 /**
- * Builds the widget library (docs/plan/widgets-api.md 18.1) into widgets/v1/:
+ * Builds the widget library (docs/architecture/widgets-api.md 18.1) into widgets/v1/:
  *
  *   uc-widget-core.js     widgets/src/core/index.js, bundled (ES modules → one IIFE)
  *   uc-widget-<name>.js   widgets/src/bootstrap.js + widgets/src/<name>/widget.js
@@ -23,7 +23,7 @@ const SRC = path.join(ROOT, "widgets", "src");
 const OUT = path.join(ROOT, "widgets", "v1");
 const CATALOG_PAGE = path.join(ROOT, "docs", "pt", "widgets", "index.html");
 const KB = 1024;
-/** Gzip budgets (docs/plan/widgets-api.md 18.2). */
+/** Gzip budgets (docs/architecture/widgets-api.md 18.2). */
 export const BUDGETS = { core: 12 * KB, widget: 8 * KB, css: 4 * KB };
 
 const gzip = (text) => gzipSync(text, { level: 9 }).length;
@@ -142,9 +142,9 @@ export async function buildWidgets({ check = false } = {}) {
   }
 
   const sizes = [
-    ["uc-widget-core.js", BUDGETS.core, "Make the core smaller or raise the budget in docs/plan/widgets-api.md 18.2 first."],
-    ...metas.map((meta) => [`${meta.name}.js`, BUDGETS.widget, `Make ${meta.name} smaller (docs/plan/widgets-api.md 18.2).`]),
-    ["uc-widget.css", BUDGETS.css, "Make the widget styles smaller (docs/plan/widgets-api.md 18.2)."],
+    ["uc-widget-core.js", BUDGETS.core, "Make the core smaller or raise the budget in docs/architecture/widgets-api.md 18.2 first."],
+    ...metas.map((meta) => [`${meta.name}.js`, BUDGETS.widget, `Make ${meta.name} smaller (docs/architecture/widgets-api.md 18.2).`]),
+    ["uc-widget.css", BUDGETS.css, "Make the widget styles smaller (docs/architecture/widgets-api.md 18.2)."],
   ];
   for (const [name, budget, advice] of sizes) {
     const size = gzip(outputs[name]);

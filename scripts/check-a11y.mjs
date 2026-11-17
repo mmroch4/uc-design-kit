@@ -62,38 +62,21 @@
  * runs the parts in parallel jobs); --concurrency=n checks n pages at the same
  * time (default: CPU count, max 4).
  */
-import { createServer } from "node:http";
-import { readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
+import { ROOT, routePublicKit, startServer } from "./static-server.mjs";
 
 const require = createRequire(import.meta.url);
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const TODAY = process.env.TEST_TODAY || "2025-11-27";
-const PUBLIC_KIT = "https://uc-design-kit.miguelrocha.dev/kit/";
 const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
 const AXE_EXTRA_RULES = ["landmark-unique"];
 const MAX_TABS = 400;
-const MIME_TYPES = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".json": "application/json",
-  ".svg": "image/svg+xml",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".woff2": "font/woff2",
-  ".map": "application/json",
-  ".java": "text/plain; charset=utf-8",
-  ".txt": "text/plain; charset=utf-8",
-};
-
 /**
  * Accessibility-tree snapshots: one block of one test page, at TODAY.
- * Add a line per new block (docs/plan/blocks-api.md 11.4).
+ * Add a line per new block (docs/architecture/blocks-api.md 11.4).
  */
 const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-timetable.html", selector: "#all", file: "tests/pages/uc-timetable.aria.yml" },
@@ -158,33 +141,9 @@ async function findPages() {
   return pages.sort();
 }
 
-function startServer() {
-  const server = createServer(async (request, response) => {
-    const url = new URL(request.url, "http://localhost");
-    let file = path.join(ROOT, decodeURIComponent(url.pathname));
-    if (!file.startsWith(ROOT)) return response.writeHead(403).end();
-    try {
-      if ((await stat(file)).isDirectory()) file = path.join(file, "index.html");
-      const type = MIME_TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
-      response.writeHead(200, { "Content-Type": type }).end(await readFile(file));
-    } catch {
-      response.writeHead(404).end("Not found");
-    }
-  });
-  return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve(server)));
-}
-
 async function open(browser, origin, relative, options = {}) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, ...options });
-  await context.route(`${PUBLIC_KIT}**`, async (route) => {
-    const file = path.join(ROOT, decodeURIComponent(new URL(route.request().url()).pathname));
-    try {
-      const type = MIME_TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
-      await route.fulfill({ status: 200, body: await readFile(file), headers: { "Content-Type": type } });
-    } catch {
-      await route.fulfill({ status: 404 });
-    }
-  });
+  await routePublicKit(context);
   // Code highlighting comes from a CDN: not needed here, and it may be offline.
   await context.route("https://cdnjs.cloudflare.com/**", (route) => route.abort());
   const page = await context.newPage();
@@ -491,7 +450,7 @@ async function checkClassFilter(browser, origin, relative) {
 
 /**
  * The grade simulation of <uc-grading calculator>, on pages that have one: the first legacy
- * calculator and the first one with formulas and rules (docs/plan/grading-api.md 9 and 12).
+ * calculator and the first one with formulas and rules (docs/architecture/grading-api.md 9 and 12).
  */
 async function checkGradingCalculator(browser, origin, relative, axeSource) {
   const problems = [];
@@ -694,7 +653,7 @@ async function openSearchDialog(page, query) {
 }
 
 /**
- * The site search (docs/plan/search-api.md 10), on pages whose site has an
+ * The site search (docs/architecture/search-api.md 10), on pages whose site has an
  * index: the dialog (modal, combobox and listbox, arrows, Esc and focus
  * back, the count in a status region, 44 px options, axe while open, no
  * horizontal scroll at 320 px) and <uc-search> (label, 44 px field, the count
@@ -773,7 +732,7 @@ async function checkSearch(browser, origin, relative, axeSource) {
   return problems;
 }
 
-/** Widgets (docs/plan/widgets-api.md 18.3 item 4), on pages that have one. */
+/** Widgets (docs/architecture/widgets-api.md 18.3 item 4), on pages that have one. */
 async function checkWidgets(browser, origin, relative, axeSource) {
   const problems = [];
   const { context, page } = await open(browser, origin, relative);

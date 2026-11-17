@@ -1,5 +1,5 @@
 /**
- * svg.tree (docs/plan/widgets-api.md 16.3): a binary or n-ary tree, drawn
+ * svg.tree (docs/architecture/widgets-api.md 16.3): a binary or n-ary tree, drawn
  * top-down. Binary trees use the in-order layout (one column per node, so
  * keys stay sorted left to right and leaves never overlap); n-ary trees
  * (recursion) put each leaf in its own column and a parent above the middle

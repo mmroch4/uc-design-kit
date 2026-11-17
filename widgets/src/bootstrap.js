@@ -1,5 +1,5 @@
 /**
- * The first lines of every uc-widget-<name>.js (docs/plan/widgets-api.md
+ * The first lines of every uc-widget-<name>.js (docs/architecture/widgets-api.md
  * 2.3): queue the widget's definition and add uc-widget-core.js from the
  * same folder, once per page. No global other than UC.widgets is written.
  */

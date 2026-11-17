@@ -1,6 +1,6 @@
 /**
  * <uc-widget-shortest-path>: Dijkstra (with its priority queue) and
- * Bellman-Ford from a source vertex (docs/plan/widgets-api.md 17; page
+ * Bellman-Ford from a source vertex (docs/architecture/widgets-api.md 17; page
  * docs/pt/widgets/uc-widget-shortest-path.html). Same input as the graph
  * widget (../graph/element.js).
  */

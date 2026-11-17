@@ -1,7 +1,7 @@
 /**
  * <uc-widget-hash>: a hash table with separate chaining, linear probing or
  * quadratic probing; insert, search and remove, the load factor and the
- * table growing (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-hash.html).
+ * table growing (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-hash.html).
  */
 import { ALGORITHMS, VERBS, MAX_SIZE, MAX_KEYS, MAX_WORD, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

@@ -1,6 +1,6 @@
 /**
  * The dynamic programming tables of <uc-widget-dp>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input (the fields of the chosen problem; the others are ignored):
  *   lcs, edit-distance  { a, b }                     strings, 1–8 characters

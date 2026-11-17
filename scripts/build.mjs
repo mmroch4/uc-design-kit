@@ -41,11 +41,11 @@ import { buildExampleIndexes } from "./example-indexes.mjs";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(KIT, "src");
 const OUT = path.join(KIT, "v1");
-/** Size budget of uc-kit.js, gzipped (docs/plan/blocks-api.md 1.5). */
+/** Size budget of uc-kit.js, gzipped (docs/architecture/blocks-api.md 1.5). */
 const JS_BUDGET_GZIP = 48 * 1024;
-/** Size budget of uc-search.js, gzipped (docs/plan/search-api.md 11.1). */
+/** Size budget of uc-search.js, gzipped (docs/architecture/search-api.md 11.1). */
 const SEARCH_BUDGET_GZIP = 6 * 1024;
-/** Size budget of uc-grading.js, gzipped (docs/plan/grading-api.md 2.3). */
+/** Size budget of uc-grading.js, gzipped (docs/architecture/grading-api.md 2.3). */
 const GRADING_BUDGET_GZIP = 8 * 1024;
 
 /* ---------- source maps for the concatenation ---------- */
@@ -151,9 +151,9 @@ async function main() {
     }
   }
   for (const [name, limit, where] of [
-    ["uc-kit.js", JS_BUDGET_GZIP, "docs/plan/blocks-api.md 1.5"],
-    ["uc-grading.js", GRADING_BUDGET_GZIP, "docs/plan/grading-api.md 2.3"],
-    ["uc-search.js", SEARCH_BUDGET_GZIP, "docs/plan/search-api.md 11.1"],
+    ["uc-kit.js", JS_BUDGET_GZIP, "docs/architecture/blocks-api.md 1.5"],
+    ["uc-grading.js", GRADING_BUDGET_GZIP, "docs/architecture/grading-api.md 2.3"],
+    ["uc-search.js", SEARCH_BUDGET_GZIP, "docs/architecture/search-api.md 11.1"],
   ]) {
     const gzipped = gzipSync(outputs[name], { level: 9 }).length;
     const budget = `${name}: ${(gzipped / 1024).toFixed(1)} KB gzipped (budget ${limit / 1024} KB)`;

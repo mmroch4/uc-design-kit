@@ -1,5 +1,5 @@
 /**
- * Lazily loaded modules (docs/plan/grading-api.md 2.2). Heavy blocks that few
+ * Lazily loaded modules (docs/architecture/grading-api.md 2.2). Heavy blocks that few
  * pages use live in their own file next to uc-kit.js and are loaded only when
  * the page has one of their elements: at start, or later when a script adds
  * one. Also the shared script loader that the search uses for uc-search.js.

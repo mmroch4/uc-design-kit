@@ -115,6 +115,29 @@
     UC.internal.storage.remove("test", "x");
     equal([value, UC.internal.storage.get("test", "x")], ["1", null]);
   });
+  test("storage adopts and removes a legacy key", () => {
+    localStorage.setItem("uc:test-legacy", "old");
+    const value = UC.internal.storage.get("test", "legacy", { legacy: "uc:test-legacy" });
+    const result = [value, localStorage.getItem("uc:CC1007:test:legacy"), localStorage.getItem("uc:test-legacy")];
+    UC.internal.storage.remove("test", "legacy");
+    equal(result, ["old", "old", null]);
+  });
+  test("storage keeps a shared legacy key with keepLegacy", () => {
+    localStorage.setItem("uc:test-shared", "en");
+    const value = UC.internal.storage.get("test", "shared", { legacy: "uc:test-shared", keepLegacy: true });
+    const kept = localStorage.getItem("uc:test-shared");
+    UC.internal.storage.remove("test", "shared");
+    localStorage.removeItem("uc:test-shared");
+    equal([value, kept], ["en", "en"]);
+  });
+  test("storage prefers the course key over the legacy one", () => {
+    UC.internal.storage.set("test", "both", "new");
+    localStorage.setItem("uc:test-both", "old");
+    const value = UC.internal.storage.get("test", "both", { legacy: "uc:test-both" });
+    UC.internal.storage.remove("test", "both");
+    localStorage.removeItem("uc:test-both");
+    equal(value, "new");
+  });
   test("normalise ignores case and accents", () => equal(UC.internal.normalise("  Árvores Binárias "), "arvores binarias"));
   test("firstTime skips nested lists and times without datetime", () => {
     const list = document.createElement("ul");
@@ -402,7 +425,7 @@
     equal(edados.weights[0].replace(/\s/g, " "), "14 valores · 70%");
   });
 
-  /* Formulas and rules (docs/plan/grading-api.md 13): the parser has no DOM. */
+  /* Formulas and rules (docs/architecture/grading-api.md 13): the parser has no DOM. */
   const formulaTests = () => {
     const G = UC.internal.grading;
     const PRE = [{ code: "P" }, { code: "R" }, { code: "E" }];

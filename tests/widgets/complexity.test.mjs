@@ -1,5 +1,5 @@
 /**
- * <uc-widget-complexity> (docs/plan/widgets-api.md 18.3): one step per n
+ * <uc-widget-complexity> (docs/architecture/widgets-api.md 18.3): one step per n
  * with every function's value, the overtakes it announces are real order
  * changes, the final ranking is sorted, and the input parser; the size of
  * another widget's input (for the measured points).

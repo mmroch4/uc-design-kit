@@ -1,5 +1,5 @@
 /*
- * Styles of the widget library (docs/plan/widgets-api.md 7, 13). Only --uc-*
+ * Styles of the widget library (docs/architecture/widgets-api.md 7, 13). Only --uc-*
  * tokens and the local --uc-widget-* tokens, read with a fallback and never
  * set on :root, so a course's theme.css wins whatever the load order.
  * Selectors are wrapped in :where() like the kit's: zero specificity.

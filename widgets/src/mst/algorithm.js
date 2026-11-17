@@ -1,6 +1,6 @@
 /**
  * Minimum spanning trees of <uc-widget-mst>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { graph, source } as in the graph widget (../graph/model.js); the
  * graph must be undirected (a directed one is an input error); an

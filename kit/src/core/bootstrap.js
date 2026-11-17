@@ -26,7 +26,7 @@
   /**
    * Fonts and the modules the page needs (core/modules.js, e.g. uc-grading.js),
    * under one FONT_WAIT_MS cap, so a lazily loaded block is drawn before the
-   * page shows on a fast or cached load (docs/plan/grading-api.md 2.2).
+   * page shows on a fast or cached load (docs/architecture/grading-api.md 2.2).
    */
   function pageReady() {
     const timeout = new Promise((resolve) => setTimeout(resolve, FONT_WAIT_MS));

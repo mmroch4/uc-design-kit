@@ -1,5 +1,5 @@
 /**
- * <uc-widget-toposort> against references (docs/plan/widgets-api.md 18.3):
+ * <uc-widget-toposort> against references (docs/architecture/widgets-api.md 18.3):
  * for Kahn and DFS, on 200 random DAGs (arcs that follow a random order) and
  * 200 random digraphs, a cycle is reported iff one exists (reference:
  * reachability by Floyd-Warshall); the reported cycle is a real cycle; with

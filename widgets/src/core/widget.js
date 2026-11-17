@@ -1,5 +1,5 @@
 /**
- * UC.widgets.Widget (docs/plan/widgets-api.md 16.2): the base class of every
+ * UC.widgets.Widget (docs/architecture/widgets-api.md 16.2): the base class of every
  * widget. A widget declares parse(), steps(), draw() and, optionally,
  * describe(), table(), panel(), pseudocode() and serialize(); this class
  * provides the rest: lazy build, fallback, player, keyboard, narration,

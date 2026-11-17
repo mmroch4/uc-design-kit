@@ -8,13 +8,12 @@ code, so that phases G1 to G4 share one design. It does not change the kit,
 `docs/api.md` or the teacher guide: each phase copies its sections from here
 into the documentation, in the same PR as the code.
 
-- Plan (Portuguese): [`grading-formulas.md`](grading-formulas.md), merged in
-  PR 70. Miguel approved it on 17 Nov 2026, 15:25 ("aprovo o plano"), with
+- Plan (Portuguese): `docs/plan/grading-formulas.md`, merged in PR 70 and
+  removed in the cleanup (git history, commit `846b283`). Miguel approved it on 17 Nov 2026, 15:25 ("aprovo o plano"), with
   the recommended option of every decision (section 16).
-- Status: **implemented** (G0–G4, PRs 71, 73, 74, 75 and the G4 PR); D6
-  still open for the professor. A phase may refine a detail
-  that turns out wrong while coding; it records the change in section 17 and
-  in its handoff note, so later phases see it.
+- Status: **implemented** (G0–G4, PRs 71, 73, 74, 75 and 76), after v1.0.0
+  (CHANGELOG, Unreleased); D6 still open for the professor. Sections 15 and
+  17 are the history of the phases; the phase handoff notes were removed in the repository cleanup of 17 Nov 2026; read them in the git history at commit `846b283`.
 - Everything is **backward compatible**: a page without `data-formulas` and
   `data-rules` renders exactly as today (section 3.5). The four example pages
   (`examples/{edados-2526,ip-2526,pc-2627,pi-2526}`) keep working unchanged
@@ -642,7 +641,7 @@ Division by zero: `CF = E / P` with P = 0 → undefined, message 5.1.
 ## 15. Phases
 
 Each in a new thread, one PR merged with green CI (4 shards + `check`), a
-`docs/plan/grading-phase-N-handoff.md`, fetch and rebase on `main` right
+phase handoff note (removed, see the status above), fetch and rebase on `main` right
 before merging.
 
 | Phase | Scope | Done when |

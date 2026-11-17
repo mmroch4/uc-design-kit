@@ -1,4 +1,4 @@
-/* A site with search on (docs/plan/search-api.md): the kit finds search-index.js
+/* A site with search on (docs/architecture/search-api.md): the kit finds search-index.js
    next to this file and shows the "Pesquisar" button in the header. */
 window.UC_COURSE = {
   title: "Pesquisa no site",

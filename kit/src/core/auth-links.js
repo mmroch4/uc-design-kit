@@ -7,7 +7,7 @@
  * HTMLText from course.js and inside components (UC.Element runs the page
  * enhancements after each render). The hidden text follows the active
  * language and is replaced, never duplicated. Without JavaScript the link is
- * an ordinary link. See docs/plan/blocks-api.md 5.2.
+ * an ordinary link. See docs/architecture/blocks-api.md 5.2.
  */
 (function (UC) {
   "use strict";

@@ -1,5 +1,5 @@
 /**
- * svg.grid (docs/plan/widgets-api.md 16.3): rows of cells, with an optional
+ * svg.grid (docs/architecture/widgets-api.md 16.3): rows of cells, with an optional
  * header cell at the start of each row and optional column headers. With
  * `chain`, rows are lists: only the cells that exist are drawn, joined by
  * arrows from the header (a hash table with chaining). Bundled into

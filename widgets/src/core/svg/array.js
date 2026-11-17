@@ -1,5 +1,5 @@
 /**
- * svg.array (docs/plan/widgets-api.md 16.3): a row of cells, or bars, with
+ * svg.array (docs/architecture/widgets-api.md 16.3): a row of cells, or bars, with
  * indexes, pointer labels and the state markers of section 13. The groups of
  * the cells are kept between steps, so colour changes are CSS transitions.
  * `null` is an empty cell (a value taken out of the array).

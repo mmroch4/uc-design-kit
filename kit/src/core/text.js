@@ -19,7 +19,4 @@
     return first || "";
   };
 
-  /** True when the LocalizedText has a value written specifically for `lang`. */
-  UC.internal.hasText = (value, lang) =>
-    value !== null && typeof value === "object" && typeof value[lang] === "string";
 })(window.UC);

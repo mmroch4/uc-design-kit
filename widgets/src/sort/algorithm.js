@@ -1,6 +1,6 @@
 /**
  * The sorting algorithms of <uc-widget-sort>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Each step's state is { a }: the array, where `null` is an empty cell (a
  * value held outside the array: x in insertion sort, the two halves in merge

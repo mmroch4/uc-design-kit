@@ -84,7 +84,7 @@ backwards compatible (see `docs/api.md`, section 9).
 
 ### Widget library releases
 
-The widgets (`widgets/v1/`) have their own versions (`docs/plan/widgets-api.md`
+The widgets (`widgets/v1/`) have their own versions (`docs/architecture/widgets-api.md`
 2.2). A widgets release needs a kit release that satisfies `KIT_MIN` first
 (widgets 1.0.0 needs kit 1.0.0). Kit 1.0.0 and widgets 1.0.0 were released
 together under the tag `v1.0.0`.

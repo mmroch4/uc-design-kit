@@ -1,5 +1,5 @@
 /**
- * <uc-widget-search> against a reference (docs/plan/widgets-api.md 18.3):
+ * <uc-widget-search> against a reference (docs/architecture/widgets-api.md 18.3):
  * indexOf for the linear search, a value check for the binary search and a
  * naive lower bound, on 200 random inputs and the edge cases; lo ≤ mid ≤ hi
  * on every step that has a mid; binary searches refuse unsorted arrays.

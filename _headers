@@ -20,7 +20,7 @@
 /kit/v1.*
   Cache-Control: public, max-age=31536000, immutable
 
-# Widget library (widgets/v1/, docs/plan/widgets-api.md 2.2): the same rules
+# Widget library (widgets/v1/, docs/architecture/widgets-api.md 2.2): the same rules
 # as the kit. The files load each other from their own folder, so a page
 # may use them from this site, from file:// or from a copied folder.
 /widgets/*

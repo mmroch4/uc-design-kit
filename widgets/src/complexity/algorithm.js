@@ -1,6 +1,6 @@
 /**
  * Growth functions of <uc-widget-complexity>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { functions: ["1", "log", …], max }. One step per n from 1 to max:
  * state { n, values } (every function at n, numbers). Marks are function

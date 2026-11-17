@@ -1,5 +1,5 @@
 /**
- * svg.list (docs/plan/widgets-api.md 16.3): linked nodes, each a value cell
+ * svg.list (docs/architecture/widgets-api.md 16.3): linked nodes, each a value cell
  * and a "next" cell, with pointer arrows. Used by uc-widget-list and
  * uc-widget-stack-queue (two widgets, so it is bundled into them, not the
  * core: 16.3).

@@ -1,7 +1,7 @@
 /**
  * One polite live region per page, shared by every component that needs to
  * tell screen-reader users about a change they did not cause by moving focus
- * (copied, filtered, a run finished). See docs/plan/blocks-api.md 7.2.
+ * (copied, filtered, a run finished). See docs/architecture/blocks-api.md 7.2.
  */
 (function (UC) {
   "use strict";

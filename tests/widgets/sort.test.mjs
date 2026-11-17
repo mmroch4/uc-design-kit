@@ -1,5 +1,5 @@
 /**
- * <uc-widget-sort> against a reference (docs/plan/widgets-api.md 18.3): for
+ * <uc-widget-sort> against a reference (docs/architecture/widgets-api.md 18.3): for
  * every algorithm, 200 random inputs from a fixed seed and the classic edge
  * cases. The result and the last step equal a sorted copy; in every step the
  * array plus the values held aside are the input's values; counters never
