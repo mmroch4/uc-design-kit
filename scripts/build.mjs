@@ -19,7 +19,7 @@
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
  * they were created, because browsers cache them for a year.
  *
- * It fails when uc-kit.js (48 KB gzipped), uc-grading.js (6 KB) or
+ * It fails when uc-kit.js (48 KB gzipped), uc-grading.js (8 KB) or
  * uc-search.js (6 KB) is over its size budget and prints the sizes on every run.
  *
  * Usage: node scripts/build.mjs [--check]
@@ -46,7 +46,7 @@ const JS_BUDGET_GZIP = 48 * 1024;
 /** Size budget of uc-search.js, gzipped (docs/plan/search-api.md 11.1). */
 const SEARCH_BUDGET_GZIP = 6 * 1024;
 /** Size budget of uc-grading.js, gzipped (docs/plan/grading-api.md 2.3). */
-const GRADING_BUDGET_GZIP = 6 * 1024;
+const GRADING_BUDGET_GZIP = 8 * 1024;
 
 /* ---------- source maps for the concatenation ---------- */
 

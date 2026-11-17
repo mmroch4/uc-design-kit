@@ -936,6 +936,70 @@ Item attributes, on the `<li>` of the first `<ul>`/`<ol>` child:
   the one published on SIGARRA. Nothing is saved.
 - Without JavaScript: the teacher's list with the weights as written.
 
+##### Formulas and rules
+
+Since grading phase G2 the method can be written as text formulas, as on the
+course slide, in an `<ol data-formulas>`, with the pass rules in a
+`<ul data-rules>` (contract: `docs/plan/grading-api.md` 3 to 8). The three
+lists can be in any order; without a formulas list the element works as
+above.
+
+```html
+<uc-grading scale="20">
+  <ul>
+    <li data-code="P">Avaliação prática</li>
+    <li data-code="R">Resolução de problemas</li>
+    <li data-code="E">Exame final</li>
+  </ul>
+  <ol data-formulas>
+    <li><code>CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)</code> Conta a fórmula mais favorável.</li>
+  </ol>
+  <ul data-rules>
+    <li><code>E >= 4.9</code> Exame com pelo menos 4,9 valores.</li>
+    <li><code>CF >= 9.5</code></li>
+  </ul>
+</uc-grading>
+```
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `result` | formula name | the last formula | Which formula is the final grade. |
+
+- **Formulas.** One per `<li>`, in its first `<code>`; the rest of the item
+  is a description shown under the formula (`.uc-grading__note`).
+  `NAME = expression` names a formula; later formulas and rules may use the
+  name. Expressions use numbers (`0.75` or `0,75`), component and part codes,
+  earlier formula names, `+ - * /` (also `×`, `·`, `−`), parentheses and
+  `max`/`min` (any case) with arguments separated by `;` (or a comma that is
+  not between two digits: `max(1,5)` is one argument, 1.5). Never evaluated
+  as code: a small parser turns the text into a tree.
+- **Components.** Every top-level, non-bonus item needs a unique `data-code`
+  (`[A-Za-z_][A-Za-z0-9_]*`, not `max`/`min`). The formula decides the
+  weights, so a top-level `<data>` is not needed; on parts it still sets
+  their weights inside the parent. Bonus items are not written in formulas:
+  they are added to the result.
+- **Weight columns and bars.** When the result is `max(…)`/`min(…)` each
+  argument is a branch, and each branch is one weight column and one bar
+  ("Fórmula 1", "Fórmula 2", or the formula's name when the branch is a
+  named formula, linked to its paragraph with `aria-describedby`). One
+  branch gives the usual "Peso" column. Weights are shown only when every
+  branch is linear (sums of constant × code); otherwise the table has
+  Component and Minimum only.
+- **Rules.** `<code>expression comparison expression</code>` (`>=`, `>`,
+  `<=`, `<`, `=`, `≥`, `≤`), then an optional description. `RESULT` is the
+  final grade. An item without `<code>` is a text rule, shown as written.
+  `data-min` and `pass` are shortcuts for `CODE >= n` and `RESULT >= n`, listed
+  first; a written rule equal to one is not repeated. The list is headed
+  "Para aprovar" (`.uc-grading__rules`); a rule `CODE >= n` on a component
+  also fills its Minimum cell.
+- **Errors.** A formula that cannot be read leaves the teacher's lists as
+  written (no bars, no weight columns, no calculator) and writes one console
+  warning with the formula number and column, e.g.
+  `[uc-kit] uc-grading: formula 1, column 18: unknown name "X". Known: P, E.`
+  A rule that cannot be read becomes a text rule, with a warning.
+- **Calculator.** With formulas, `calculator` is ignored until grading phase
+  G3, which simulates every branch and checks the rules.
+
 #### `<uc-assessment-info>`
 
 A summary card of one configured deadline, at the top of an exam or test page.

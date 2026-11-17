@@ -49,6 +49,7 @@
   ],
   "grading": [
     "grading/strings.js",
+    "grading/formula.js",
     "grading/element.js"
   ],
   "search": [

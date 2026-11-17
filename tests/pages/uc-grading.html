@@ -51,6 +51,50 @@
       </ul>
     </uc-grading>
 
+    <!-- EDados 2026/27 (docs/plan/grading-api.md 14): two weightings, the more favourable counts, and pass rules. -->
+    <uc-grading id="edados-2627" scale="20">
+      <ul>
+        <li data-code="P">Avaliação prática (laboratório)</li>
+        <li data-code="R">Resolução de problemas ao longo do semestre</li>
+        <li data-code="E">Exame final</li>
+      </ul>
+      <ol data-formulas>
+        <li><code>CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)</code> Conta a fórmula mais favorável.</li>
+      </ol>
+      <ul data-rules>
+        <!-- Mínimo do exame: 4,9 como no diapositivo. A confirmar com o professor (35 % de 20 seriam 7). -->
+        <li><code>E >= 4.9</code> Exame com pelo menos 4,9 valores.</li>
+        <li><code>CF >= 9.5</code></li>
+      </ul>
+    </uc-grading>
+
+    <!-- Named formulas, a written rule and a text rule. -->
+    <uc-grading id="named" heading="Fórmulas com nome" heading-level="3" pass="9.5">
+      <ul>
+        <li data-code="P">Projeto</li>
+        <li data-code="E" data-min="8">Exame</li>
+      </ul>
+      <ol data-formulas>
+        <li><code>A = 0.4*P + 0.6*E</code></li>
+        <li><code>B = 0.2*P + 0.8*E</code></li>
+        <li><code>NF = max(A; B)</code></li>
+      </ol>
+      <ul data-rules>
+        <li>Comparecer a pelo menos 2 dos 3 concursos.</li>
+      </ul>
+    </uc-grading>
+
+    <!-- A formula that does not parse: the teacher's lists stay as written, with one console warning. -->
+    <uc-grading id="broken" heading="Fórmula com erro" heading-level="3">
+      <ul>
+        <li data-code="P">Projeto</li>
+        <li data-code="E">Exame</li>
+      </ul>
+      <ol data-formulas>
+        <li><code>CF = 0.5*P + 0.5*X</code></li>
+      </ol>
+    </uc-grading>
+
     <!-- No heading, no formula. -->
     <uc-grading id="plain" heading="none" no-formula>
       <ul>

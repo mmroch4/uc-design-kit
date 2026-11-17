@@ -121,7 +121,7 @@ UC.internal.modulesReady()     // → Promise for every module the page needed a
 | File | Budget | Now | After |
 | --- | --- | --- | --- |
 | `uc-kit.js` | 48 KB (unchanged) | 47.0 KB (17 Nov, `main` at PR 70) | G1 must reach **≤ 45 KB** (about 44.3 expected) |
-| `uc-grading.js` | **6 KB** (new) | — | G1 about 3 KB; G2 + G3 about 5.5 KB |
+| `uc-grading.js` | **8 KB** (6 KB until G2, see 17.2) | — | G1 3.1 KB; G2 6.9 KB; G3 about 8 KB at most |
 | `uc-search.js` | 6 KB (unchanged) | 5.0 KB | — |
 
 `build.mjs` prints and checks the new budget, citing this section, like the
@@ -710,3 +710,53 @@ Each phase adds a subsection here when it changes a detail above.
    `tests/pages/uc-grading.html` with `uc-grading.js` answering 404 and checks
    that the page is revealed, the lists stay visible and exactly one console
    warning is written.
+
+### 17.2 G2
+
+1. **Budget of `uc-grading.js` raised from 6 KB to 8 KB** (2.3), the same as
+   each widget file. The parser with its error messages (contract 10) is
+   about 2.4 KB gzipped and the rendering about 1.2 KB, so G2 ends at 6.9 KB;
+   the calculator of G3 needs about 1 KB more. The file is only loaded by
+   pages with a `<uc-grading>`, and `uc-kit.js` does not change (44.9 KB).
+2. **The model API** (`kit/src/grading/formula.js`, `UC.internal.grading`):
+   `parse(text, where, rule)` gives `{ name, tree }` (or `{ op, left, right }`
+   for a rule) and throws an `Error` whose message is the contract's text
+   after the `[uc-kit] uc-grading: ` prefix; `model({ components: [{ code,
+   bonus }], parts, formulas, rules, result })` checks names and gives
+   `{ formulas, result, columns, rules, ruleErrors }`, where `columns` is
+   `[{ name, coefficients: { code: c } }]` or `null` (6) and a rule that
+   fails is `null` with its message in `ruleErrors`; `evaluate(tree,
+   value)` (NaN after a division by 0); `check(rule, value)` (true, false or
+   null, tolerance 1e-9); `print(tree, fn, alias)` and `printRule(rule, fn,
+   alias)` return arrays of strings plus whatever `fn("max"|"min")` returns
+   (the element passes an `<abbr>`), with `alias.RESULT` for the final grade.
+   `fail(message)` throws. G3 uses `evaluate` and `check`.
+3. **Extra messages** (10): `formula 2: "A" is already a formula name.`,
+   `formula 1: "RESULT" cannot be a formula name.` (also `max`/`min`),
+   `component 3: "E" is already a component code.` and `expected "("` after
+   `max`/`min` without parentheses. The unknown-name list includes part codes
+   and earlier formula names; in rules it also has bonus codes and `RESULT`.
+   Codes are checked only when there is a formulas list (a rules list with
+   legacy weights needs none).
+4. **Fallback** (7.5): the teacher's formulas and rules lists stay visible
+   as written (after the table, where the other children go), the table has
+   Component and Minimum (from `data-min`), and there are no bars, formula
+   paragraphs or calculator. `check-pages` checks it on `#broken` in
+   `tests/pages/uc-grading.html` (one warning, the list visible).
+5. **Not built, to save bytes**: the console note for a top-level `<data>`
+   in formula mode (3.2) and the warning for a second formulas or rules list
+   (3.1). Both are ignored silently.
+6. **A checked rule without a description shows only its condition**
+   ("CF ≥ 9,5"), not the condition in words (3.4).
+7. **Separator in printed formulas** follows the language's decimal mark:
+   `; ` when it is a comma (pt), `, ` otherwise (en). No new string.
+8. **One branch whose formula has a name** (`CF = A`) still gets the column
+   "Peso" (6). The weight column header gets `aria-describedby` only when
+   the formula paragraphs are shown (not with `no-formula`).
+9. **Calculator.** With formulas, `calculator` renders nothing until G3. With
+   only a rules list, the legacy calculator stays as it is (it does not check
+   the written rules yet; G3 decides).
+10. **Tests.** `core-tests.js`: "grading 13.1", "13.2", "13.4", "13.5" and
+    "uc-grading with data-formulas and data-rules". New snapshot
+    `tests/pages/uc-grading-formulas.aria.yml` (`#edados-2627`). Demo
+    `docs/demos/uc-grading/formulas.html` (axe in `check-a11y`).

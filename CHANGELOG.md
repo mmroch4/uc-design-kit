@@ -6,6 +6,16 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `<uc-grading>` reads the assessment method as text formulas, as on the
+  course slide: an `<ol data-formulas>` with `max`/`min` and named formulas
+  (`CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)`), and the pass
+  rules in a `<ul data-rules>` (`E >= 4.9`, `CF >= 9.5`, or plain text). The
+  table and bars get one weight column per formula, and a new `result`
+  attribute names the final formula. Pages without these lists are unchanged
+  (grading phase G2, `docs/plan/grading-api.md` 3 to 8). The simulation for
+  formulas comes in G3.
+
 ### Changed
 - `<uc-grading>` now lives in its own file, `kit/v1/uc-grading.js`, which
   `uc-kit.js` loads from its own folder only on pages that have a

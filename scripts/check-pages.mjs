@@ -263,6 +263,24 @@ async function checkPage(browser, item, origin, axeSource, options) {
     if (!listShown) problems.push("[no uc-grading.js] the teacher's list is not shown");
     if (warned !== 1) problems.push(`[no uc-grading.js] expected one console warning, got ${warned}`);
     await context.close();
+
+    // A formula that does not parse (#broken): one warning naming it, the teacher's formulas list stays visible (grading-api.md 7.5, 10).
+    const second = await newContext(browser, { viewport: { width: 1280, height: 900 } });
+    const formulas = await second.newPage();
+    const notes = [];
+    formulas.on("console", (message) => message.type() === "warning" && notes.push(message.text()));
+    await formulas.goto(httpUrl, { waitUntil: "load" });
+    await formulas.waitForFunction(() => customElements.get("uc-grading"), null, { timeout: 4000 }).catch(() => {});
+    await formulas.waitForTimeout(200);
+    const fallback = await formulas.evaluate(() => {
+      const broken = document.querySelector("#broken");
+      return Boolean(broken && broken.querySelector("[data-formulas]").offsetHeight > 0 && !broken.querySelector(".uc-grading__bar") && !document.querySelector("#edados-2627 [data-formulas]").offsetHeight);
+    });
+    const expected = '[uc-kit] uc-grading: formula 1, column 18: unknown name "X". Known: P, E.';
+    const gradingNotes = notes.filter((text) => text.includes("uc-grading:"));
+    if (gradingNotes.length !== 1 || gradingNotes[0] !== expected) problems.push(`[formulas] expected one warning ${expected}, got ${JSON.stringify(gradingNotes)}`);
+    if (!fallback) problems.push("[formulas] #broken does not show the teacher's formulas list, or #edados-2627 does");
+    await second.close();
   }
 
   {

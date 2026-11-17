@@ -266,6 +266,37 @@
         </div>
         <!-- /docs:demo -->
 
+        <h3 id="formulas">Várias fórmulas e regras para aprovar</h3>
+        <p>Quando o método de avaliação é uma fórmula, como no diapositivo da cadeira, escreve-se essa fórmula numa lista <code>&lt;ol data-formulas&gt;</code>, dentro de um <code>&lt;code&gt;</code>, e as condições para aprovar numa lista <code>&lt;ul data-rules&gt;</code>. Os pesos saem da fórmula, por isso as componentes já não precisam de <code>&lt;data&gt;</code>, mas todas precisam de um <code>data-code</code>. Com <code>max</code>, cada fórmula dentro dos parênteses tem a sua coluna na tabela e a sua barra.</p>
+        <!-- docs:demo src="../../demos/uc-grading/formulas.html" title="duas fórmulas, conta a mais favorável, e regras para aprovar" height="560" -->
+        <div class="docs-demo" id="demo-uc-grading-formulas">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-grading/formulas.html" title="Demonstração: duas fórmulas, conta a mais favorável, e regras para aprovar" loading="lazy" style="height: 560px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-grading scale=&quot;20&quot;&gt;
+  &lt;ul&gt;
+    &lt;li data-code=&quot;P&quot;&gt;Avaliação prática&lt;/li&gt;
+    &lt;li data-code=&quot;R&quot;&gt;Resolução de problemas&lt;/li&gt;
+    &lt;li data-code=&quot;E&quot;&gt;Exame final&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ol data-formulas&gt;
+    &lt;li&gt;&lt;code&gt;CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)&lt;/code&gt; Conta a fórmula mais favorável.&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;ul data-rules&gt;
+    &lt;li&gt;&lt;code&gt;E &gt;= 4.9&lt;/code&gt; Exame com pelo menos 4,9 valores.&lt;/li&gt;
+    &lt;li&gt;&lt;code&gt;CF &gt;= 9.5&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Comparecer a pelo menos metade das aulas práticas.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/uc-grading&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-grading/formulas.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A fórmula pode usar números (<code>0.75</code> ou <code>0,75</code>), os códigos das componentes, <code>+ - * /</code> (também <code>×</code> e <code>−</code>), parênteses e <code>max</code> ou <code>min</code>, com os argumentos separados por <code>;</code>. Cuidado com a vírgula: <code>max(1,5)</code> lê-se como um só número, 1,5; escreve-se <code>max(1; 5)</code>. Com <code>NOME = …</code> a fórmula tem nome e as seguintes podem usá-lo (<code>A = …</code>, <code>B = …</code>, <code>CF = max(A; B)</code>). O texto depois do <code>&lt;code&gt;</code> aparece por baixo da fórmula.</p>
+        <p>Cada regra é uma comparação (<code>&gt;=</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&lt;</code>, <code>=</code>) entre expressões; <code>RESULT</code> é a nota final. Um item sem <code>&lt;code&gt;</code> é uma regra escrita só em texto. O <code>data-min</code> e o <code>pass</code> também aparecem na lista "Para aprovar". Uma regra como <code>E &gt;= 4.9</code> também preenche a coluna Mínimo.</p>
+        <p>Se uma fórmula tiver um erro, a página mostra as listas tal como estão escritas e a consola do navegador diz qual é a fórmula e a coluna do erro, por exemplo <code>formula 1, column 18: unknown name "X"</code>. O simulador com fórmulas chega na próxima versão; por agora, com <code>data-formulas</code>, o atributo <code>calculator</code> é ignorado.</p>
+
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
           <table>
@@ -277,6 +308,7 @@
               <tr><td><code>scale</code></td><td>número</td><td><code>20</code></td><td>Escala da nota final.</td></tr>
               <tr><td><code>pass</code></td><td>número</td><td>ausente</td><td>Nota para aprovar, na escala final. Usada pelo simulador.</td></tr>
               <tr><td><code>calculator</code></td><td>booleano</td><td>ausente</td><td>Acrescenta o simulador da nota.</td></tr>
+              <tr><td><code>result</code></td><td>nome de fórmula</td><td>a última</td><td>Com <code>data-formulas</code>: qual das fórmulas é a nota final.</td></tr>
               <tr><td><code>no-formula</code></td><td>booleano</td><td>ausente</td><td>Esconde a fórmula gerada.</td></tr>
               <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td>"Como é calculada a nota"</td><td>Título da secção. Com <code>none</code>, não há título visível.</td></tr>
               <tr><td><code>heading-level</code></td><td><code>2</code> a <code>6</code></td><td><code>2</code></td><td>Nível do título gerado.</td></tr>
@@ -300,6 +332,9 @@
               <tr><td><code>.uc-grading__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
               <tr><td><code>.uc-grading__formula</code></td><td>A fórmula ("Nota = E + AP + P").</td></tr>
               <tr><td><code>.uc-grading__bar</code>, <code>__segment</code></td><td>A barra das proporções e cada segmento (largura = peso).</td></tr>
+              <tr><td><code>.uc-grading__note</code></td><td>O texto escrito depois de uma fórmula de <code>data-formulas</code>.</td></tr>
+              <tr><td><code>.uc-grading__bars</code>, <code>__bar-label</code></td><td>Com várias fórmulas: as barras, uma por fórmula, e o rótulo de cada uma ("Fórmula 1").</td></tr>
+              <tr><td><code>.uc-grading__rules</code></td><td>A lista "Para aprovar".</td></tr>
               <tr><td><code>.uc-grading__table</code></td><td>A tabela das componentes.</td></tr>
               <tr><td><code>.uc-grading__sub</code></td><td>As linhas das partes de uma componente, recolhidas.</td></tr>
               <tr><td><code>.uc-grading__calculator</code>, <code>__fields</code>, <code>__field</code>, <code>__error</code></td><td>O simulador, os campos, cada campo e a sua mensagem de erro.</td></tr>
@@ -324,7 +359,7 @@ uc-grading { --uc-grading-bar-height: 20px; }
         </div>
 
         <h2 id="sem-javascript">Sem JavaScript</h2>
-        <p>Aparece a lista tal como foi escrita, com os pesos dentro de cada item. Não há fórmula, tabela nem simulador. O mesmo acontece se o <code>uc-grading.js</code> não puder ser descarregado.</p>
+        <p>Aparece a lista tal como foi escrita, com os pesos dentro de cada item, e as listas de fórmulas e de regras com o texto de cada <code>&lt;code&gt;</code>. Não há tabela, barras nem simulador. O mesmo acontece se o <code>uc-grading.js</code> não puder ser descarregado.</p>
 
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
@@ -358,6 +393,7 @@ uc-grading { --uc-grading-bar-height: 20px; }
           <li class="docs-toc__sub"><a href="#simular">Simular a nota</a></li>
           <li class="docs-toc__sub"><a href="#partes">Componentes com partes</a></li>
           <li class="docs-toc__sub"><a href="#pesos-decimais">Pesos decimais, sem fórmula</a></li>
+          <li class="docs-toc__sub"><a href="#formulas">Várias fórmulas e regras para aprovar</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#personalizar">Personalizar</a></li>

@@ -99,6 +99,7 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-timetable.html", selector: "#all", file: "tests/pages/uc-timetable.aria.yml" },
   { page: "tests/pages/uc-timetable.html", selector: "#days", file: "tests/pages/uc-timetable-days.aria.yml" },
   { page: "tests/pages/uc-grading.html", selector: "#pc", file: "tests/pages/uc-grading.aria.yml" },
+  { page: "tests/pages/uc-grading.html", selector: "#edados-2627", file: "tests/pages/uc-grading-formulas.aria.yml" },
   { page: "tests/pages/uc-assessment-info.html", selector: "#full", file: "tests/pages/uc-assessment-info.aria.yml" },
   { page: "tests/pages/uc-summaries.html", selector: "#main", file: "tests/pages/uc-summaries.aria.yml" },
   { page: "tests/pages/uc-materials.html", selector: "#main", file: "tests/pages/uc-materials.aria.yml" },

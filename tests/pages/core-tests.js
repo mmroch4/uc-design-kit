@@ -402,11 +402,159 @@
     equal(edados.weights[0].replace(/\s/g, " "), "14 valores · 70%");
   });
 
+  /* Formulas and rules (docs/plan/grading-api.md 13): the parser has no DOM. */
+  const formulaTests = () => {
+    const G = UC.internal.grading;
+    const PRE = [{ code: "P" }, { code: "R" }, { code: "E" }];
+    const F1 = "CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)";
+    const text = (tree) => inLang("pt", () => G.print(tree).join(""));
+    const errorOf = (options) => {
+      try {
+        G.model({ components: PRE, ...options });
+      } catch (error) {
+        return error.message;
+      }
+      return "no error";
+    };
+    const columns = (formulas, components = PRE, result = null) =>
+      G.model({ components, formulas, result }).columns?.map((column) => [column.name, Object.entries(column.coefficients).map(([code, c]) => `${code} ${Math.round(c * 1000) / 1000}`).sort().join(", ")]) ?? null;
+
+    test("grading 13.1: formulas parse, F1–F3 are one tree, pretty printing (pt)", () => {
+      const strip = (tree) => JSON.stringify(tree, (key, value) => (key === "start" ? undefined : value));
+      const [f1, f2, f3] = [F1, "CF = Max(0,75*E + 0,2*P + 0,05*R ; 0,65*E + 0,3*P + 0,05*R)", "CF = max(0.75*E+0.2*P+0.05*R, 0.65*E+0.3*P+0.05*R)"].map((t) => G.parse(t, "formula 1"));
+      equal([strip(f2), strip(f3)], [strip(f1), strip(f1)]);
+      equal([f1.name, text(f1.tree)], ["CF", "max(0,75 × E + 0,2 × P + 0,05 × R; 0,65 × E + 0,3 × P + 0,05 × R)"]);
+      const printed = ["CF = (0.7*EX + 0.25*PA + 0.05*WP) / 5", "0.1*A + 0.2*T1 + 0.2*T2 + 0.5*E", "CF = 0,75 × E + 0,2 · P + 0,05*R", "CF = min(E; max(P; R))", "CF = -1 + E − 0.5*(P - R)", "CF = E * P / 20", "CF = max(E;P;R)", "CF = (E - P) - (R - E) / (P / R)"].map((t) => {
+        const { name, tree } = G.parse(t, "formula 1");
+        return `${name || "Nota"} = ${text(tree)}`;
+      });
+      equal(printed, [
+        "CF = (0,7 × EX + 0,25 × PA + 0,05 × WP) / 5",
+        "Nota = 0,1 × A + 0,2 × T1 + 0,2 × T2 + 0,5 × E",
+        "CF = 0,75 × E + 0,2 × P + 0,05 × R",
+        "CF = min(E; max(P; R))",
+        "CF = −1 + E − 0,5 × (P − R)",
+        "CF = E × P / 20",
+        "CF = max(E; P; R)",
+        "CF = E − P − (R − E) / (P / R)",
+      ]);
+      equal(inLang("en", () => G.print(f1.tree).join("")), "max(0.75 × E + 0.2 × P + 0.05 × R, 0.65 × E + 0.3 × P + 0.05 × R)");
+      const f5 = G.model({ components: PRE, formulas: ["A = 0.75*E + 0.2*P + 0.05*R", "B = 0.65*E + 0.3*P + 0.05*R", "CF = max(A; B)"] });
+      equal([f5.formulas.map((f) => f.name), f5.result.name, text(f5.result.tree)], [["A", "B", "CF"], "CF", "max(A; B)"]);
+      equal(G.model({ components: PRE, formulas: ["A = E", "CF = P"], result: "A" }).result.name, "A");
+    });
+
+    test("grading 13.2: formulas that do not parse", () => {
+      const nested = `CF = ${"(".repeat(33)}E${")".repeat(33)}`;
+      equal(
+        [
+          errorOf({ formulas: ["CF = 0.75*E + 0.2*X"] }),
+          errorOf({ formulas: ["CF = max(0.75*E + 0.2*P"] }),
+          errorOf({ formulas: ["CF = E + P)"] }),
+          errorOf({ formulas: ["CF = max(1,5)"] }),
+          errorOf({ formulas: ["CF = round(E)"] }),
+          errorOf({ formulas: ["CF = E +"] }),
+          errorOf({ formulas: ["CF = E & P"] }),
+          errorOf({ formulas: ["CF = E >= 4.9"] }),
+          errorOf({ formulas: ["E = 0.5*P"] }),
+          errorOf({ formulas: ["CF = max(A; B)", "A = E", "B = P"] }),
+          errorOf({ formulas: ["CF = E / 0"] }),
+          errorOf({ formulas: ["CF = .5*E"] }),
+          errorOf({ components: [...PRE, { code: "B", bonus: true }], formulas: ["CF = 0.9*E + B"] }),
+          errorOf({ formulas: ["CF = max(E)"] }),
+          errorOf({ formulas: [nested] }),
+          errorOf({ formulas: ["CF = E + P"], result: "NF" }),
+          errorOf({ formulas: [`CF = E${" + E".repeat(200)}`] }),
+          errorOf({ components: [{ code: "P" }, { code: "" }], formulas: ["CF = P"] }),
+          errorOf({ formulas: ["A = E", "A = P"] }),
+        ],
+        [
+          'formula 1, column 19: unknown name "X". Known: P, R, E.',
+          'formula 1, column 24: expected ")".',
+          'formula 1, column 11: unexpected ")".',
+          'formula 1, column 6: max needs at least two arguments (did you mean ";" instead of ","?).',
+          'formula 1, column 6: unknown function "round". Only max and min.',
+          "formula 1, column 9: the formula ends too early.",
+          'formula 1, column 8: unexpected "&".',
+          "formula 1, column 8: comparisons belong in data-rules.",
+          'formula 1: "E" is already a component code.',
+          'formula 1, column 10: "A" is defined later; a formula can only use earlier ones.',
+          "formula 1, column 10: division by 0.",
+          'formula 1, column 6: unexpected ".".',
+          'formula 1, column 14: "B" is a bonus; it is added to the result automatically.',
+          'formula 1, column 6: max needs at least two arguments (did you mean ";" instead of ","?).',
+          "formula 1: nested too deeply.",
+          'result="NF" names no formula.',
+          "formula 1: longer than 500 characters.",
+          "component 2 has no data-code; formulas need one on every component.",
+          'formula 2: "A" is already a formula name.',
+        ],
+      );
+      equal(errorOf({ formulas: [`CF = ${"(".repeat(32)}E${")".repeat(32)}`] }), "no error");
+    });
+
+    test("grading 13.4: weight columns per formula", () => {
+      const all = (rows) => rows.map(([name, list]) => `${name}: ${list}`);
+      equal(all(columns([F1])), ["null: E 0.75, P 0.2, R 0.05", "null: E 0.65, P 0.3, R 0.05"]);
+      equal(all(columns(["A = 0.75*E + 0.2*P + 0.05*R", "B = 0.65*E + 0.3*P + 0.05*R", "CF = max(A; B)"])), ["A: E 0.75, P 0.2, R 0.05", "B: E 0.65, P 0.3, R 0.05"]);
+      equal(all(columns(["CF = (0.7*EX + 0.25*PA + 0.05*WP) / 5"], [{ code: "EX" }, { code: "PA" }, { code: "WP" }])), ["null: EX 0.14, PA 0.05, WP 0.01"]);
+      equal(all(columns(["0.1*A + 0.2*T1 + 0.2*T2 + 0.5*E"], [{ code: "A" }, { code: "T1" }, { code: "T2" }, { code: "E" }])), ["null: A 0.1, E 0.5, T1 0.2, T2 0.2"]);
+      equal([columns(["CF = min(E; max(P; R))"]), columns(["CF = E * P / 20"]), columns(["CF = max(E; P) + R"]), columns(["CF = E / P"])], [null, null, null, null]);
+      equal(all(columns(["CF = max(0.5*E + 0.5*P; E)"])), ["null: E 0.5, P 0.5", "null: E 1"]);
+      equal(all(columns(["CF = max(E; max(P; R))"])), ["null: E 1", "null: P 1", "null: R 1"]);
+    });
+
+    test("grading 13.5: rules parse, print and degrade to text rules", () => {
+      const model = G.model({ components: PRE, formulas: [F1], rules: ["E >= 4.9", "E ≥ 4,9", "CF >= 9.5", "RESULT >= 9.5", null, "E >= 4.9 >= 2", "E", "X > 1"] });
+      const printed = model.rules.map((rule) => rule && inLang("pt", () => G.printRule(rule, undefined, { RESULT: "Nota" }).join("")));
+      equal(printed, ["E ≥ 4,9", "E ≥ 4,9", "CF ≥ 9,5", "Nota ≥ 9,5", null, null, null, null]);
+      equal(model.ruleErrors.filter(Boolean), [
+        "rule 6: a rule needs exactly one comparison (>=, >, <=, <, =).",
+        "rule 7: a rule needs exactly one comparison (>=, >, <=, <, =).",
+        'rule 8, column 1: unknown name "X". Known: P, R, E, CF, RESULT.',
+      ]);
+      const pi = G.model({ components: [{ code: "EX" }], formulas: ["CF = EX / 5"], rules: ["0.7*EX/5 >= 4.9"] }).rules[0];
+      const value = (values) => (name) => values[name];
+      equal([35, 34].map((EX) => G.check(pi, value({ EX }))), [true, false]);
+      equal([G.evaluate(G.parse("CF = E / P", "formula 1").tree, value({ E: 10, P: 0 })), G.evaluate(G.parse(F1, "formula 1").tree, value({ P: 14, R: 20, E: 12 }))].map((n) => Math.round(n * 100) / 100), [null, 13]);
+    });
+  };
+
+  /* The element with formulas and rules (grading-api.md 7). */
+  const gradingFormulaTests = () =>
+    test("uc-grading with data-formulas and data-rules", () => {
+      const host = document.createElement("div");
+      host.hidden = true;
+      host.innerHTML = `<uc-grading pass="9.5"><ul><li data-code="P">P</li><li data-code="R">R</li><li data-code="E" data-min="4.9">E</li><li data-code="B" data-bonus="1">B</li></ul>
+        <ol data-formulas><li><code>A = 0.75*E + 0.2*P + 0.05*R</code></li><li><code>B2 = 0.65*E + 0.3*P + 0.05*R</code></li><li><code>CF = max(A; B2)</code> Conta a mais favorável.</li></ol>
+        <ul data-rules><li><code>E>=4,9</code></li><li><code>CF >= 9.5</code> Nota final.</li><li>Comparecer.</li><li><code>E >=</code> partida</li></ul></uc-grading>`;
+      document.body.append(host);
+      const element = host.firstElementChild;
+      const texts = (selector) => Array.from(element.querySelectorAll(selector), (node) => node.textContent.replace(/\s+/g, " ").trim());
+      const result = inLang("pt", () => {
+        element.render();
+        return [texts(".uc-grading__formula"), texts(".uc-grading__note"), texts("thead th"), Array.from(element.querySelectorAll("tbody tr"), (row) => Array.from(row.children, (cell) => cell.textContent.replace(/\s+/g, " ").trim()).join(" | ")), texts(".uc-grading__bar-label"), texts(".uc-grading__rules li"), element.querySelector("[data-formulas]").hidden];
+      });
+      const described = element.querySelector("thead th[aria-describedby]");
+      equal(Boolean(described && element.querySelector(`#${described.getAttribute("aria-describedby")}`)), true);
+      equal(element.querySelector(".uc-grading__formula abbr").title, "máximo");
+      host.remove();
+      equal(result, [
+        ["A = 0,75 × E + 0,2 × P + 0,05 × R", "B2 = 0,65 × E + 0,3 × P + 0,05 × R", "CF = máx(A; B2)"],
+        ["Conta a mais favorável."],
+        ["Componente", "A", "B2", "Mínimo"],
+        ["P P | 4 valores · 20% | 6 valores · 30% | —", "R R | 1 valor · 5% | 1 valor · 5% | —", "E E | 15 valores · 75% | 13 valores · 65% | 4,9 em 20", "B B | Bónus · até 1 valor | Bónus · até 1 valor | —"],
+        ["A", "B2"],
+        ["E ≥ 4,9", "CF ≥ 9,5", "CF ≥ 9,5 Nota final.", "Comparecer.", "E >= partida"],
+        true,
+      ]);
+    });
+
   test("modules: kit files resolve next to uc-kit.js", () => equal(new URL(UC.internal.kitUrl("uc-grading.js")).pathname.endsWith("/kit/v1/uc-grading.js"), true));
 
   UC.internal
     .loadModule("grading")
-    .then(gradingTests, (error) => test("uc-grading.js loads next to uc-kit.js", () => { throw error; }))
+    .then(() => [gradingTests, formulaTests, gradingFormulaTests].forEach((run) => run()), (error) => test("uc-grading.js loads next to uc-kit.js", () => { throw error; }))
     .then(() => {
       const summary = document.createElement("p");
       summary.textContent = failures ? `${failures} failing` : "All tests passed.";

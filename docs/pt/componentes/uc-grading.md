@@ -96,6 +96,36 @@ Exemplo (pesos decimais sem fórmula e com uma nota), [demonstração ao vivo](h
 </uc-grading>
 ```
 
+### Várias fórmulas e regras para aprovar
+
+Quando o método de avaliação é uma fórmula, como no diapositivo da cadeira, escreve-se essa fórmula numa lista `<ol data-formulas>`, dentro de um `<code>`, e as condições para aprovar numa lista `<ul data-rules>`. Os pesos saem da fórmula, por isso as componentes já não precisam de `<data>`, mas todas precisam de um `data-code`. Com `max`, cada fórmula dentro dos parênteses tem a sua coluna na tabela e a sua barra.
+
+Exemplo (duas fórmulas, conta a mais favorável, e regras para aprovar), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-grading/formulas.html):
+
+```html
+<uc-grading scale="20">
+  <ul>
+    <li data-code="P">Avaliação prática</li>
+    <li data-code="R">Resolução de problemas</li>
+    <li data-code="E">Exame final</li>
+  </ul>
+  <ol data-formulas>
+    <li><code>CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)</code> Conta a fórmula mais favorável.</li>
+  </ol>
+  <ul data-rules>
+    <li><code>E >= 4.9</code> Exame com pelo menos 4,9 valores.</li>
+    <li><code>CF >= 9.5</code></li>
+    <li>Comparecer a pelo menos metade das aulas práticas.</li>
+  </ul>
+</uc-grading>
+```
+
+A fórmula pode usar números (`0.75` ou `0,75`), os códigos das componentes, `+ - * /` (também `×` e `−`), parênteses e `max` ou `min`, com os argumentos separados por `;`. Cuidado com a vírgula: `max(1,5)` lê-se como um só número, 1,5; escreve-se `max(1; 5)`. Com `NOME = …` a fórmula tem nome e as seguintes podem usá-lo (`A = …`, `B = …`, `CF = max(A; B)`). O texto depois do `<code>` aparece por baixo da fórmula.
+
+Cada regra é uma comparação (`>=`, `>`, `<=`, `<`, `=`) entre expressões; `RESULT` é a nota final. Um item sem `<code>` é uma regra escrita só em texto. O `data-min` e o `pass` também aparecem na lista "Para aprovar". Uma regra como `E >= 4.9` também preenche a coluna Mínimo.
+
+Se uma fórmula tiver um erro, a página mostra as listas tal como estão escritas e a consola do navegador diz qual é a fórmula e a coluna do erro, por exemplo `formula 1, column 18: unknown name "X"`. O simulador com fórmulas chega na próxima versão; por agora, com `data-formulas`, o atributo `calculator` é ignorado.
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
@@ -103,6 +133,7 @@ Exemplo (pesos decimais sem fórmula e com uma nota), [demonstração ao vivo](h
 | `scale` | número | `20` | Escala da nota final. |
 | `pass` | número | ausente | Nota para aprovar, na escala final. Usada pelo simulador. |
 | `calculator` | booleano | ausente | Acrescenta o simulador da nota. |
+| `result` | nome de fórmula | a última | Com `data-formulas`: qual das fórmulas é a nota final. |
 | `no-formula` | booleano | ausente | Esconde a fórmula gerada. |
 | `heading` | texto ou `none` | "Como é calculada a nota" | Título da secção. Com `none`, não há título visível. |
 | `heading-level` | `2` a `6` | `2` | Nível do título gerado. |
@@ -121,6 +152,9 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-grading__section`, `__heading` | A secção e o seu título. |
 | `.uc-grading__formula` | A fórmula ("Nota = E + AP + P"). |
 | `.uc-grading__bar`, `__segment` | A barra das proporções e cada segmento (largura = peso). |
+| `.uc-grading__note` | O texto escrito depois de uma fórmula de `data-formulas`. |
+| `.uc-grading__bars`, `__bar-label` | Com várias fórmulas: as barras, uma por fórmula, e o rótulo de cada uma ("Fórmula 1"). |
+| `.uc-grading__rules` | A lista "Para aprovar". |
 | `.uc-grading__table` | A tabela das componentes. |
 | `.uc-grading__sub` | As linhas das partes de uma componente, recolhidas. |
 | `.uc-grading__calculator`, `__fields`, `__field`, `__error` | O simulador, os campos, cada campo e a sua mensagem de erro. |
@@ -146,7 +180,7 @@ Dar a cada componente um `data-code` curto e um nome claro. Escrever o peso no `
 
 ## Sem JavaScript
 
-Aparece a lista tal como foi escrita, com os pesos dentro de cada item. Não há fórmula, tabela nem simulador. O mesmo acontece se o `uc-grading.js` não puder ser descarregado.
+Aparece a lista tal como foi escrita, com os pesos dentro de cada item, e as listas de fórmulas e de regras com o texto de cada `<code>`. Não há tabela, barras nem simulador. O mesmo acontece se o `uc-grading.js` não puder ser descarregado.
 
 ## Ver também
 

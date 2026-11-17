@@ -279,6 +279,9 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-grading__section`, `__heading` | A secção e o seu título. |
 | `.uc-grading__formula` | A fórmula ("Nota = E + AP + P"). |
 | `.uc-grading__bar`, `__segment` | A barra das proporções e cada segmento (largura = peso). |
+| `.uc-grading__note` | O texto escrito depois de uma fórmula de `data-formulas`. |
+| `.uc-grading__bars`, `__bar-label` | Com várias fórmulas: as barras, uma por fórmula, e o rótulo de cada uma ("Fórmula 1"). |
+| `.uc-grading__rules` | A lista "Para aprovar". |
 | `.uc-grading__table` | A tabela das componentes. |
 | `.uc-grading__sub` | As linhas das partes de uma componente, recolhidas. |
 | `.uc-grading__calculator`, `__fields`, `__field`, `__error` | O simulador, os campos, cada campo e a sua mensagem de erro. |
