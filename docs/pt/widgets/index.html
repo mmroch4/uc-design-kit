@@ -92,6 +92,9 @@
           <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
           <li><a href="uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
           <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+          <li><a href="uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
+          <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
+          <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -158,10 +161,28 @@
         <!-- widgets:catalog -->
         <ul class="docs-widget-cards" role="list">
           <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-avl.html">Árvore AVL</a> <code>&lt;uc-widget-avl&gt;</code></h3>
+            <p>Inserir, remover e procurar numa árvore AVL, com a altura e o fator de equilíbrio de cada nó e as quatro rotações.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 2</span> <span class="uc-tag uc-tag--accent">EDados</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>operations</code> · 6.4 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
             <h3><a href="uc-widget-bst.html">Árvore binária de pesquisa</a> <code>&lt;uc-widget-bst&gt;</code></h3>
             <p>Inserir, remover, procurar, mínimo e máximo numa árvore binária de pesquisa, e os percursos pré-ordem, em-ordem, pós-ordem e em largura.</p>
             <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 1</span> <span class="uc-tag uc-tag--accent">EDados</span></p>
             <p class="docs-widget-card__meta">Algoritmos: <code>operations</code>, <code>preorder</code>, <code>inorder</code>, <code>postorder</code>, <code>levelorder</code> · 5.5 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-hash.html">Tabela de dispersão</a> <code>&lt;uc-widget-hash&gt;</code></h3>
+            <p>Tabela de dispersão com encadeamento, sondagem linear ou quadrática: inserir, procurar, remover, fator de carga e crescimento da tabela.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 2</span> <span class="uc-tag uc-tag--accent">EDados</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>chaining</code>, <code>linear</code>, <code>quadratic</code> · 6.5 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-heap.html">Heap binário</a> <code>&lt;uc-widget-heap&gt;</code></h3>
+            <p>Heap de máximo ou de mínimo, em vetor e em árvore lado a lado: inserir, extrair, topo, construção (heapify) e heapsort.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 2</span> <span class="uc-tag uc-tag--accent">EDados</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>operations</code>, <code>heapify</code>, <code>heapsort</code> · 4.7 KB gzip</p>
           </li>
           <li class="uc-card docs-widget-card">
             <h3><a href="uc-widget-list.html">Lista ligada</a> <code>&lt;uc-widget-list&gt;</code></h3>
@@ -198,8 +219,7 @@
         <h2 id="planeados">Planeados</h2>
         <p>Os restantes chegam por vagas, todos com o mesmo leitor, as mesmas teclas e a mesma vista em texto:</p>
         <ul>
-          <li><strong>Vaga 1:</strong> pesquisa linear e binária, árvores binárias de pesquisa e percursos, listas ligadas, pilhas e filas, recursão.</li>
-          <li><strong>Vaga 2:</strong> heaps e heapsort, árvores AVL, tabelas de dispersão, BFS e DFS, caminhos mais curtos (Dijkstra, Bellman-Ford), complexidade.</li>
+          <li><strong>Vaga 2:</strong> BFS e DFS, caminhos mais curtos (Dijkstra, Bellman-Ford), complexidade.</li>
           <li><strong>Vaga 3:</strong> árvores de cobertura mínima, union-find, ordenação topológica, programação dinâmica, backtracking e um widget de traço com os passos do professor.</li>
         </ul>
         <h2 id="ver-tambem">Ver também</h2>

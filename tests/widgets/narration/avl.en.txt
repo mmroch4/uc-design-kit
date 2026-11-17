@@ -1,0 +1,89 @@
+## algorithm=operations · input {"values":[10,20,30,25,28,5,4],"ops":null}
+  1. Empty tree.
+  2. Insert 10.
+  3. The tree is empty: 10 becomes the root.
+  4. Insert 20.
+  5. 20 > 10: go down to the right of 10.
+  6. Empty place: 20 goes right of 10.
+  7. 10: height 2, balance factor -1.
+  8. Insert 30.
+  9. 30 > 10: go down to the right of 10.
+ 10. 30 > 20: go down to the right of 20.
+ 11. Empty place: 30 goes right of 20.
+ 12. 20: height 2, balance factor -1.
+ 13. 10 has factor -2 and its right child 20 leans right: right-right case.
+ 14. Left rotation at 10: 20 moves up to its place.
+ 15. 20: height 2, factor 0; the height did not change, so nothing above changes.
+ 16. Insert 25.
+ 17. 25 > 20: go down to the right of 20.
+ 18. 25 < 30: go down to the left of 30.
+ 19. Empty place: 25 goes left of 30.
+ 20. 30: height 2, balance factor +1.
+ 21. 20: height 3, balance factor -1.
+ 22. Insert 28.
+ 23. 28 > 20: go down to the right of 20.
+ 24. 28 < 30: go down to the left of 30.
+ 25. 28 > 25: go down to the right of 25.
+ 26. Empty place: 28 goes right of 25.
+ 27. 25: height 2, balance factor -1.
+ 28. 30 has factor +2 and its left child 25 leans right: left-right case.
+ 29. Left rotation at 25: 28 moves up to its place.
+ 30. Right rotation at 30: 28 moves up to its place.
+ 31. 28: height 2, factor 0; the height did not change, so nothing above changes.
+ 32. Insert 5.
+ 33. 5 < 20: go down to the left of 20.
+ 34. 5 < 10: go down to the left of 10.
+ 35. Empty place: 5 goes left of 10.
+ 36. 10: height 2, balance factor +1.
+ 37. 20: height 3, factor 0; the height did not change, so nothing above changes.
+ 38. Insert 4.
+ 39. 4 < 20: go down to the left of 20.
+ 40. 4 < 10: go down to the left of 10.
+ 41. 4 < 5: go down to the left of 5.
+ 42. Empty place: 4 goes left of 5.
+ 43. 5: height 2, balance factor +1.
+ 44. 10 has factor +2 and its left child 5 leans left: left-left case.
+ 45. Right rotation at 10: 5 moves up to its place.
+ 46. 5: height 2, factor 0; the height did not change, so nothing above changes.
+ 47. Done: 7 nodes; in order: 4 5 10 20 25 28 30.
+
+## algorithm=operations · input {"values":[50,30,70,20,40,60,80,10],"ops":[{"verb":"remove","args":["60"]},{"verb":"remove","args":["80"]},{"verb":"search","args":["40"]},{"verb":"remove","args":["30"]},{"verb":"insert","args":["45"]},{"verb":"remove","args":["99"]}]}
+  1. Tree with 8 nodes and root 50.
+  2. Remove 60.
+  3. 60 > 50: go down to the right of 50.
+  4. 60 < 70: go down to the left of 70.
+  5. 60 = 60: found.
+  6. 60 is a leaf: it leaves the tree.
+  7. 60 removed.
+  8. 70: height 2, factor -1; the height did not change, so nothing above changes.
+  9. Remove 80.
+ 10. 80 > 50: go down to the right of 50.
+ 11. 80 > 70: go down to the right of 70.
+ 12. 80 = 80: found.
+ 13. 80 is a leaf: it leaves the tree.
+ 14. 80 removed.
+ 15. 70: height 1, balance factor 0.
+ 16. 50 has factor +2 and its left child 30 leans left: left-left case.
+ 17. Right rotation at 50: 30 moves up to its place.
+ 18. Search for 40.
+ 19. 40 > 30: go down to the right of 30.
+ 20. 40 < 50: go down to the left of 50.
+ 21. 40 = 40: found.
+ 22. Remove 30.
+ 23. 30 = 30: found.
+ 24. 30 has two children: find the successor, the minimum of the right subtree.
+ 25. 50 has a left child: go left.
+ 26. The successor of 30 is 40.
+ 27. 40 moves to the place of 30, and the old node of 40 leaves.
+ 28. 50: height 2, factor -1; the height did not change, so nothing above changes.
+ 29. Insert 45.
+ 30. 45 > 40: go down to the right of 40.
+ 31. 45 < 50: go down to the left of 50.
+ 32. Empty place: 45 goes left of 50.
+ 33. 50: height 2, factor 0; the height did not change, so nothing above changes.
+ 34. Remove 99.
+ 35. 99 > 40: go down to the right of 40.
+ 36. 99 > 50: go down to the right of 50.
+ 37. 99 > 70: go down to the right of 70.
+ 38. Reached an empty place: 99 is not in the tree.
+ 39. Done: 6 nodes; in order: 10 20 40 45 50 70.

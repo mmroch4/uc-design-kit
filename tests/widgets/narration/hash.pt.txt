@@ -1,0 +1,218 @@
+## algorithm=chaining · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
+  1. Tabela vazia com 7 posições.
+  2. Inserir 15.
+  3. h(15) = 15 mod 7 = 1: vai à lista da posição 1.
+  4. Fim da lista: 15 ainda não está na tabela.
+  5. 15 entra no fim da lista da posição 1.
+  6. Inserir 8.
+  7. h(8) = 8 mod 7 = 1: vai à lista da posição 1.
+  8. 15 ≠ 8: segue para o próximo da lista.
+  9. Fim da lista: 8 ainda não está na tabela.
+ 10. 8 entra no fim da lista da posição 1.
+ 11. Inserir 22.
+ 12. h(22) = 22 mod 7 = 1: vai à lista da posição 1.
+ 13. 15 ≠ 22: segue para o próximo da lista.
+ 14. 8 ≠ 22: segue para o próximo da lista.
+ 15. Fim da lista: 22 ainda não está na tabela.
+ 16. 22 entra no fim da lista da posição 1.
+ 17. Inserir 4.
+ 18. h(4) = 4 mod 7 = 4: vai à lista da posição 4.
+ 19. Fim da lista: 4 ainda não está na tabela.
+ 20. 4 entra no fim da lista da posição 4.
+ 21. Inserir 29.
+ 22. h(29) = 29 mod 7 = 1: vai à lista da posição 1.
+ 23. 15 ≠ 29: segue para o próximo da lista.
+ 24. 8 ≠ 29: segue para o próximo da lista.
+ 25. 22 ≠ 29: segue para o próximo da lista.
+ 26. Fim da lista: 29 ainda não está na tabela.
+ 27. 29 entra no fim da lista da posição 1.
+ 28. Inserir 11.
+ 29. h(11) = 11 mod 7 = 4: vai à lista da posição 4.
+ 30. 4 ≠ 11: segue para o próximo da lista.
+ 31. Fim da lista: 11 ainda não está na tabela.
+ 32. 11 entra no fim da lista da posição 4.
+ 33. Fator de carga 0.86 > 0.75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
+ 34. h(15) = 15 mod 14 = 1: 15 fica na posição 1.
+ 35. h(8) = 8 mod 14 = 8: 8 fica na posição 8.
+ 36. h(22) = 22 mod 14 = 8: 22 fica na posição 8.
+ 37. h(29) = 29 mod 14 = 1: 29 fica na posição 1.
+ 38. h(4) = 4 mod 14 = 4: 4 fica na posição 4.
+ 39. h(11) = 11 mod 14 = 11: 11 fica na posição 11.
+ 40. Fim: 6 chaves em 14 posições, fator de carga 0.43.
+
+## algorithm=linear · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
+  1. Tabela vazia com 7 posições.
+  2. Inserir 15.
+  3. h(15) = 15 mod 7 = 1: começa na posição 1.
+  4. Tentativa 0: a posição 1 está vazia: 15 não está na tabela e pode ficar aqui.
+  5. 15 fica na posição 1.
+  6. Inserir 8.
+  7. h(8) = 8 mod 7 = 1: começa na posição 1.
+  8. Tentativa 0: a posição 1 tem 15; tenta a seguinte, 2.
+  9. Tentativa 1: a posição 2 está vazia: 8 não está na tabela e pode ficar aqui.
+ 10. 8 fica na posição 2.
+ 11. Inserir 22.
+ 12. h(22) = 22 mod 7 = 1: começa na posição 1.
+ 13. Tentativa 0: a posição 1 tem 15; tenta a seguinte, 2.
+ 14. Tentativa 1: a posição 2 tem 8; tenta a seguinte, 3.
+ 15. Tentativa 2: a posição 3 está vazia: 22 não está na tabela e pode ficar aqui.
+ 16. 22 fica na posição 3.
+ 17. Inserir 4.
+ 18. h(4) = 4 mod 7 = 4: começa na posição 4.
+ 19. Tentativa 0: a posição 4 está vazia: 4 não está na tabela e pode ficar aqui.
+ 20. 4 fica na posição 4.
+ 21. Inserir 29.
+ 22. h(29) = 29 mod 7 = 1: começa na posição 1.
+ 23. Tentativa 0: a posição 1 tem 15; tenta a seguinte, 2.
+ 24. Tentativa 1: a posição 2 tem 8; tenta a seguinte, 3.
+ 25. Tentativa 2: a posição 3 tem 22; tenta a seguinte, 4.
+ 26. Tentativa 3: a posição 4 tem 4; tenta a seguinte, 5.
+ 27. Tentativa 4: a posição 5 está vazia: 29 não está na tabela e pode ficar aqui.
+ 28. 29 fica na posição 5.
+ 29. Inserir 11.
+ 30. h(11) = 11 mod 7 = 4: começa na posição 4.
+ 31. Tentativa 0: a posição 4 tem 4; tenta a seguinte, 5.
+ 32. Tentativa 1: a posição 5 tem 29; tenta a seguinte, 6.
+ 33. Tentativa 2: a posição 6 está vazia: 11 não está na tabela e pode ficar aqui.
+ 34. 11 fica na posição 6.
+ 35. Fator de carga 0.86 > 0.75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
+ 36. h(15) = 15 mod 14 = 1: 15 fica na posição 1.
+ 37. h(8) = 8 mod 14 = 8: 8 fica na posição 8.
+ 38. h(22) = 22 mod 14 = 8: 22 fica na posição 9.
+ 39. h(4) = 4 mod 14 = 4: 4 fica na posição 4.
+ 40. h(29) = 29 mod 14 = 1: 29 fica na posição 2.
+ 41. h(11) = 11 mod 14 = 11: 11 fica na posição 11.
+ 42. Fim: 6 chaves em 14 posições, fator de carga 0.43.
+
+## algorithm=quadratic · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
+  1. Tabela vazia com 7 posições.
+  2. Inserir 15.
+  3. h(15) = 15 mod 7 = 1: começa na posição 1.
+  4. Tentativa 0: a posição 1 está vazia: 15 não está na tabela e pode ficar aqui.
+  5. 15 fica na posição 1.
+  6. Inserir 8.
+  7. h(8) = 8 mod 7 = 1: começa na posição 1.
+  8. Tentativa 0: a posição 1 tem 15; a próxima tentativa é a posição 2.
+  9. Tentativa 1: a posição 2 está vazia: 8 não está na tabela e pode ficar aqui.
+ 10. 8 fica na posição 2.
+ 11. Inserir 22.
+ 12. h(22) = 22 mod 7 = 1: começa na posição 1.
+ 13. Tentativa 0: a posição 1 tem 15; a próxima tentativa é a posição 2.
+ 14. Tentativa 1: a posição 2 tem 8; a próxima tentativa é a posição 5.
+ 15. Tentativa 2: a posição 5 está vazia: 22 não está na tabela e pode ficar aqui.
+ 16. 22 fica na posição 5.
+ 17. Inserir 4.
+ 18. h(4) = 4 mod 7 = 4: começa na posição 4.
+ 19. Tentativa 0: a posição 4 está vazia: 4 não está na tabela e pode ficar aqui.
+ 20. 4 fica na posição 4.
+ 21. Inserir 29.
+ 22. h(29) = 29 mod 7 = 1: começa na posição 1.
+ 23. Tentativa 0: a posição 1 tem 15; a próxima tentativa é a posição 2.
+ 24. Tentativa 1: a posição 2 tem 8; a próxima tentativa é a posição 5.
+ 25. Tentativa 2: a posição 5 tem 22; a próxima tentativa é a posição 3.
+ 26. Tentativa 3: a posição 3 está vazia: 29 não está na tabela e pode ficar aqui.
+ 27. 29 fica na posição 3.
+ 28. Inserir 11.
+ 29. h(11) = 11 mod 7 = 4: começa na posição 4.
+ 30. Tentativa 0: a posição 4 tem 4; a próxima tentativa é a posição 5.
+ 31. Tentativa 1: a posição 5 tem 22; a próxima tentativa é a posição 1.
+ 32. Tentativa 2: a posição 1 tem 15; a próxima tentativa é a posição 6.
+ 33. Tentativa 3: a posição 6 está vazia: 11 não está na tabela e pode ficar aqui.
+ 34. 11 fica na posição 6.
+ 35. Fator de carga 0.86 > 0.75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
+ 36. h(15) = 15 mod 14 = 1: 15 fica na posição 1.
+ 37. h(8) = 8 mod 14 = 8: 8 fica na posição 8.
+ 38. h(29) = 29 mod 14 = 1: 29 fica na posição 2.
+ 39. h(4) = 4 mod 14 = 4: 4 fica na posição 4.
+ 40. h(22) = 22 mod 14 = 8: 22 fica na posição 9.
+ 41. h(11) = 11 mod 14 = 11: 11 fica na posição 11.
+ 42. Fim: 6 chaves em 14 posições, fator de carga 0.43.
+
+## algorithm=linear · input {"values":[10,17,3],"ops":[{"verb":"insert","args":["24"]},{"verb":"remove","args":["17"]},{"verb":"search","args":["24"]},{"verb":"insert","args":["31"]},{"verb":"remove","args":["5"]},{"verb":"insert","args":["10"]}],"size":7,"maxLoad":null}
+  1. Tabela com 7 posições e 3 chaves.
+  2. Inserir 24.
+  3. h(24) = 24 mod 7 = 3: começa na posição 3.
+  4. Tentativa 0: a posição 3 tem 10; tenta a seguinte, 4.
+  5. Tentativa 1: a posição 4 tem 17; tenta a seguinte, 5.
+  6. Tentativa 2: a posição 5 tem 3; tenta a seguinte, 6.
+  7. Tentativa 3: a posição 6 está vazia: 24 não está na tabela e pode ficar aqui.
+  8. 24 fica na posição 6.
+  9. Remover 17.
+ 10. h(17) = 17 mod 7 = 3: começa na posição 3.
+ 11. Tentativa 0: a posição 3 tem 10; tenta a seguinte, 4.
+ 12. Tentativa 1: a posição 4 tem 17: encontrado.
+ 13. 17 sai da posição 4, que fica marcada como apagada (✕) para não quebrar as sequências de tentativas.
+ 14. Procurar 24.
+ 15. h(24) = 24 mod 7 = 3: começa na posição 3.
+ 16. Tentativa 0: a posição 3 tem 10; tenta a seguinte, 4.
+ 17. Tentativa 1: a posição 4 foi apagada; segue (uma inserção pode usá-la).
+ 18. Tentativa 2: a posição 5 tem 3; tenta a seguinte, 6.
+ 19. Tentativa 3: a posição 6 tem 24: encontrado.
+ 20. Inserir 31.
+ 21. h(31) = 31 mod 7 = 3: começa na posição 3.
+ 22. Tentativa 0: a posição 3 tem 10; tenta a seguinte, 4.
+ 23. Tentativa 1: a posição 4 foi apagada; segue (uma inserção pode usá-la).
+ 24. Tentativa 2: a posição 5 tem 3; tenta a seguinte, 6.
+ 25. Tentativa 3: a posição 6 tem 24; tenta a seguinte, 0.
+ 26. Tentativa 4: a posição 0 está vazia: 31 não está na tabela.
+ 27. 31 fica na posição 4, que tinha sido apagada.
+ 28. Remover 5.
+ 29. h(5) = 5 mod 7 = 5: começa na posição 5.
+ 30. Tentativa 0: a posição 5 tem 3; tenta a seguinte, 6.
+ 31. Tentativa 1: a posição 6 tem 24; tenta a seguinte, 0.
+ 32. Tentativa 2: a posição 0 está vazia: 5 não está na tabela.
+ 33. Inserir 10.
+ 34. h(10) = 10 mod 7 = 3: começa na posição 3.
+ 35. Tentativa 0: a posição 3 tem 10: encontrado.
+ 36. 10 já está na tabela: não se insere outra vez.
+ 37. Fim: 4 chaves em 7 posições, fator de carga 0.57.
+
+## algorithm=chaining · input {"values":["ana","rui","eva"],"ops":[{"verb":"insert","args":["ivo"]},{"verb":"search","args":["eva"]},{"verb":"remove","args":["rui"]},{"verb":"search","args":["rui"]}],"size":5,"maxLoad":null}
+  1. Tabela com 5 posições e 3 chaves.
+  2. Inserir ivo.
+  3. h(ivo) = 334 mod 5 = 4: vai à lista da posição 4.
+  4. ana ≠ ivo: segue para o próximo da lista.
+  5. Fim da lista: ivo ainda não está na tabela.
+  6. ivo entra no fim da lista da posição 4.
+  7. Procurar eva.
+  8. h(eva) = 316 mod 5 = 1: vai à lista da posição 1.
+  9. rui ≠ eva: segue para o próximo da lista.
+ 10. eva = eva: encontrado na lista da posição 1.
+ 11. Remover rui.
+ 12. h(rui) = 336 mod 5 = 1: vai à lista da posição 1.
+ 13. rui = rui: encontrado na lista da posição 1.
+ 14. rui sai da lista da posição 1.
+ 15. Procurar rui.
+ 16. h(rui) = 336 mod 5 = 1: vai à lista da posição 1.
+ 17. eva ≠ rui: segue para o próximo da lista.
+ 18. rui não está na tabela.
+ 19. Fim: 3 chaves em 5 posições, fator de carga 0.6.
+
+## algorithm=quadratic · input {"values":[],"ops":[{"verb":"insert","args":["1"]},{"verb":"insert","args":["5"]},{"verb":"insert","args":["9"]},{"verb":"insert","args":["13"]}],"size":4,"maxLoad":1}
+  1. Tabela vazia com 4 posições.
+  2. Inserir 1.
+  3. h(1) = 1 mod 4 = 1: começa na posição 1.
+  4. Tentativa 0: a posição 1 está vazia: 1 não está na tabela e pode ficar aqui.
+  5. 1 fica na posição 1.
+  6. Inserir 5.
+  7. h(5) = 5 mod 4 = 1: começa na posição 1.
+  8. Tentativa 0: a posição 1 tem 1; a próxima tentativa é a posição 2.
+  9. Tentativa 1: a posição 2 está vazia: 5 não está na tabela e pode ficar aqui.
+ 10. 5 fica na posição 2.
+ 11. Inserir 9.
+ 12. h(9) = 9 mod 4 = 1: começa na posição 1.
+ 13. Tentativa 0: a posição 1 tem 1; a próxima tentativa é a posição 2.
+ 14. Tentativa 1: a posição 2 tem 5; a próxima tentativa é a posição 1.
+ 15. Tentativa 2: a posição 1 tem 1; a próxima tentativa é a posição 2.
+ 16. Tentativa 3: a posição 2 tem 5; a próxima tentativa é a posição 1.
+ 17. Já se tentaram 4 posições sem encontrar 9 nem um lugar vazio.
+ 18. Não há lugar para 9.
+ 19. Inserir 13.
+ 20. h(13) = 13 mod 4 = 1: começa na posição 1.
+ 21. Tentativa 0: a posição 1 tem 1; a próxima tentativa é a posição 2.
+ 22. Tentativa 1: a posição 2 tem 5; a próxima tentativa é a posição 1.
+ 23. Tentativa 2: a posição 1 tem 1; a próxima tentativa é a posição 2.
+ 24. Tentativa 3: a posição 2 tem 5; a próxima tentativa é a posição 1.
+ 25. Já se tentaram 4 posições sem encontrar 13 nem um lugar vazio.
+ 26. Não há lugar para 13.
+ 27. Fim: 2 chaves em 4 posições, fator de carga 0.5.

@@ -1,0 +1,89 @@
+## algorithm=operations · input {"values":[10,20,30,25,28,5,4],"ops":null}
+  1. Árvore vazia.
+  2. Inserir 10.
+  3. A árvore está vazia: 10 passa a ser a raiz.
+  4. Inserir 20.
+  5. 20 > 10: desce para a direita de 10.
+  6. Lugar vazio: 20 fica à direita de 10.
+  7. 10: altura 2, fator de equilíbrio -1.
+  8. Inserir 30.
+  9. 30 > 10: desce para a direita de 10.
+ 10. 30 > 20: desce para a direita de 20.
+ 11. Lugar vazio: 30 fica à direita de 20.
+ 12. 20: altura 2, fator de equilíbrio -1.
+ 13. 10 tem fator -2 e o filho direito 20 pende para a direita: caso direita-direita.
+ 14. Rotação à esquerda em 10: 20 sobe para o seu lugar.
+ 15. 20: altura 2, fator 0; a altura não mudou, por isso acima nada muda.
+ 16. Inserir 25.
+ 17. 25 > 20: desce para a direita de 20.
+ 18. 25 < 30: desce para a esquerda de 30.
+ 19. Lugar vazio: 25 fica à esquerda de 30.
+ 20. 30: altura 2, fator de equilíbrio +1.
+ 21. 20: altura 3, fator de equilíbrio -1.
+ 22. Inserir 28.
+ 23. 28 > 20: desce para a direita de 20.
+ 24. 28 < 30: desce para a esquerda de 30.
+ 25. 28 > 25: desce para a direita de 25.
+ 26. Lugar vazio: 28 fica à direita de 25.
+ 27. 25: altura 2, fator de equilíbrio -1.
+ 28. 30 tem fator +2 e o filho esquerdo 25 pende para a direita: caso esquerda-direita.
+ 29. Rotação à esquerda em 25: 28 sobe para o seu lugar.
+ 30. Rotação à direita em 30: 28 sobe para o seu lugar.
+ 31. 28: altura 2, fator 0; a altura não mudou, por isso acima nada muda.
+ 32. Inserir 5.
+ 33. 5 < 20: desce para a esquerda de 20.
+ 34. 5 < 10: desce para a esquerda de 10.
+ 35. Lugar vazio: 5 fica à esquerda de 10.
+ 36. 10: altura 2, fator de equilíbrio +1.
+ 37. 20: altura 3, fator 0; a altura não mudou, por isso acima nada muda.
+ 38. Inserir 4.
+ 39. 4 < 20: desce para a esquerda de 20.
+ 40. 4 < 10: desce para a esquerda de 10.
+ 41. 4 < 5: desce para a esquerda de 5.
+ 42. Lugar vazio: 4 fica à esquerda de 5.
+ 43. 5: altura 2, fator de equilíbrio +1.
+ 44. 10 tem fator +2 e o filho esquerdo 5 pende para a esquerda: caso esquerda-esquerda.
+ 45. Rotação à direita em 10: 5 sobe para o seu lugar.
+ 46. 5: altura 2, fator 0; a altura não mudou, por isso acima nada muda.
+ 47. Fim: 7 nós; em ordem: 4 5 10 20 25 28 30.
+
+## algorithm=operations · input {"values":[50,30,70,20,40,60,80,10],"ops":[{"verb":"remove","args":["60"]},{"verb":"remove","args":["80"]},{"verb":"search","args":["40"]},{"verb":"remove","args":["30"]},{"verb":"insert","args":["45"]},{"verb":"remove","args":["99"]}]}
+  1. Árvore com 8 nós e raiz 50.
+  2. Remover 60.
+  3. 60 > 50: desce para a direita de 50.
+  4. 60 < 70: desce para a esquerda de 70.
+  5. 60 = 60: encontrado.
+  6. 60 é uma folha: sai da árvore.
+  7. 60 removido.
+  8. 70: altura 2, fator -1; a altura não mudou, por isso acima nada muda.
+  9. Remover 80.
+ 10. 80 > 50: desce para a direita de 50.
+ 11. 80 > 70: desce para a direita de 70.
+ 12. 80 = 80: encontrado.
+ 13. 80 é uma folha: sai da árvore.
+ 14. 80 removido.
+ 15. 70: altura 1, fator de equilíbrio 0.
+ 16. 50 tem fator +2 e o filho esquerdo 30 pende para a esquerda: caso esquerda-esquerda.
+ 17. Rotação à direita em 50: 30 sobe para o seu lugar.
+ 18. Procurar 40.
+ 19. 40 > 30: desce para a direita de 30.
+ 20. 40 < 50: desce para a esquerda de 50.
+ 21. 40 = 40: encontrado.
+ 22. Remover 30.
+ 23. 30 = 30: encontrado.
+ 24. 30 tem dois filhos: procura o sucessor, o mínimo da subárvore direita.
+ 25. 50 tem filho esquerdo: desce para a esquerda.
+ 26. O sucessor de 30 é 40.
+ 27. 40 passa para o lugar de 30, e o nó antigo de 40 sai.
+ 28. 50: altura 2, fator -1; a altura não mudou, por isso acima nada muda.
+ 29. Inserir 45.
+ 30. 45 > 40: desce para a direita de 40.
+ 31. 45 < 50: desce para a esquerda de 50.
+ 32. Lugar vazio: 45 fica à esquerda de 50.
+ 33. 50: altura 2, fator 0; a altura não mudou, por isso acima nada muda.
+ 34. Remover 99.
+ 35. 99 > 40: desce para a direita de 40.
+ 36. 99 > 50: desce para a direita de 50.
+ 37. 99 > 70: desce para a direita de 70.
+ 38. Chegou a um lugar vazio: 99 não está na árvore.
+ 39. Fim: 6 nós; em ordem: 10 20 40 45 50 70.
