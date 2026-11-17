@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evaluation · Competitive Programming 2026/27</title>
+  <meta name="description" content="Evaluation formula of Competitive Programming (CC3032) 2026/27: submitted implementations, competitive events, presentations and problem creation, and bonus points.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Evaluation formula</h1>
+      <p class="uc-prose">The final grade has three components. Each component has a grade from 0% to 100%. There is no final exam.</p>
+    </div>
+
+    <!-- Formula, weights and a grade simulator: <uc-grading> builds them from this list. -->
+    <uc-grading scale="100" calculator heading="Evaluation criteria">
+      <ul>
+        <li data-code="SI"><data value="25">25%</data> Submitted Implementations. <span>Weekly problem sets.</span></li>
+        <li data-code="CE"><data value="50">50%</data> Participation in Competitive Events. <span>Three on-site contests.</span>
+          <ul>
+            <li data-code="C1"><data value="30">30%</data> 1st Contest</li>
+            <li data-code="C2"><data value="30">30%</data> 2nd Contest</li>
+            <li data-code="C3"><data value="40">40%</data> 3rd Contest</li>
+          </ul>
+        </li>
+        <li data-code="PDC"><data value="25">25%</data> Presentations, Discussion of Solutions and Problem Creation
+          <ul>
+            <li data-code="PC"><data value="50">50%</data> Problem Creation</li>
+            <li data-code="CQ"><data value="50">50%</data> Code Presentation</li>
+          </ul>
+        </li>
+        <li data-code="B" data-bonus="10%">Bonus points</li>
+      </ul>
+    </uc-grading>
+
+    <!-- Dates: edit in course.js (deadlines). The state is computed. -->
+    <uc-deadlines view="table" heading="Dates"></uc-deadlines>
+
+    <section class="uc-section" aria-labelledby="si">
+      <h2 id="si">(SI) Submitted Implementations <span class="uc-muted">[25% of your grade]</span></h2>
+      <!-- TODO: the original says "We will 10 evaluation problemsets"; confirm the number of problem sets. -->
+      <ul class="uc-bullets">
+        <li>We will have 10 evaluation problem sets, each one amounting to 10% of the total grade.</li>
+        <li>Each problem set will have a deadline associated with it. The typical deadline will be two weeks after the problems are made public.</li>
+        <li>Each problem set has 5 problems. The first problem solved is worth 40%, the second one 40% and the third one 20%. This means that:
+          <ul>
+            <li>Solving one problem is worth 40%</li>
+            <li>Solving two problems is worth 80%</li>
+            <li>Solving at least three problems is worth 100%</li>
+          </ul>
+        </li>
+        <li>For each day after the delivery date you will have a 4% penalty on the respective problem. For example:
+          <ul>
+            <li>1 problem before the deadline and 1 problem three days after the deadline will give you 68% (40% for the first problem and 28% = 40% − 3×4% for the second problem)</li>
+            <li>2 problems before the deadline and 1 problem ten days after the deadline will give you 80% (80% for the first two problems and 0% for the last, since the penalty of 10×4% is more than the 20% that the last problem would give you).</li>
+          </ul>
+        </li>
+      </ul>
+      <p><a href="problems/index.html">List of problems</a> · <a href="classes.html">Problem sets by week</a></p>
+    </section>
+
+    <section class="uc-section" aria-labelledby="ce">
+      <h2 id="ce">(CE) Competitive Events <span class="uc-muted">[50% of your grade]</span></h2>
+      <p class="uc-prose">There will be three competitive events where it is expected that the students appear and try to submit during the designated time. The predicted dates for these events are:</p>
+      <div class="uc-table">
+        <table>
+          <thead>
+            <tr><th scope="col">Weight</th><th scope="col">Event</th><th scope="col">Date</th><th scope="col">Format</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="uc-mono">30%</td><td><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/contest1.html">#01: 1st Contest</a></td><td><uc-date deadline="contest1">20 Oct</uc-date></td><td>In class, individual, ICPC style</td></tr>
+            <tr><td class="uc-mono">30%</td><td>#02: 2nd Contest</td><td><uc-date deadline="contest2">15 Dec</uc-date></td><td>In class, individual, partial scoring</td></tr>
+            <tr><td class="uc-mono">40%</td><td>#03: 3rd Contest</td><td>January (day to be defined)</td><td>To be defined</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="uc-callout uc-callout--warning">
+        <p>Failure to participate in at least two of these events will result in a <strong>RFC</strong> evaluation (lack of an evaluation component).</p>
+      </div>
+      <p class="uc-prose">You can participate in extra contests (e.g. Codeforces or AtCoder Rounds) to compensate for any contest that did not go well for you (extra participations will be evaluated on a case by case basis).</p>
+    </section>
+
+    <section class="uc-section" aria-labelledby="pdc">
+      <h2 id="pdc">(PDC) Presentations, Discussion of Solutions and Problem Creation <span class="uc-muted">[25% of your grade]</span></h2>
+      <div class="uc-grid">
+        <div class="uc-card">
+          <h3>(PC) Problem Creation <span class="uc-muted">50%</span></h3>
+          <p>Each student should create a new problem in the style of a competitive programming event, together with all associated material (problem statement, solution and written editorial, inputs/outputs and generator).</p>
+          <p class="uc-small uc-muted">Deadline: January (day to be defined).</p>
+        </div>
+        <div class="uc-card">
+          <h3>(CQ) Code Presentation <span class="uc-muted">50%</span></h3>
+          <p>Quality of submitted code (including comments) and presentation (you will discuss with the professor the code you submitted).</p>
+          <p class="uc-small uc-muted">Deadline: January (day to be defined).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc-section" aria-labelledby="bonus">
+      <h2 id="bonus">Bonus points</h2>
+      <p class="uc-prose">You can obtain a bonus of up to +10% on your grade (e.g. to compensate some of the less strong evaluation items you had) with aspects such as:</p>
+      <ul class="uc-bullets">
+        <li>Extra problems made (above the minimum for having 100% of the SI component)</li>
+        <li>Extra contests where the students participated</li>
+        <li>Participation in classes and on Discord</li>
+        <li>Any other relevant activities (e.g. writing articles about algorithms and data structures)</li>
+      </ul>
+    </section>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/evaluation.html">dcc.fc.up.pt/~pribeiro/aulas/pc2627/evaluation.html</a>.</p>
+  </uc-page>
+</body>
+</html>

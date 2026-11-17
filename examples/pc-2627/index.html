@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home · Competitive Programming 2026/27</title>
+  <meta name="description" content="Competitive Programming (CC3032), DCC/FCUP, 2026/27: this week, notices, upcoming contests and deadlines.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <!-- Code, title and tagline: from course.js. -->
+    <uc-hero></uc-hero>
+
+    <!-- "This week": dates computed; the class and problem set are read from classes.html. -->
+    <uc-this-week></uc-this-week>
+
+    <div class="uc-split">
+      <!-- Notices: edit in course.js (notices). -->
+      <uc-notices></uc-notices>
+
+      <!-- Upcoming dates: edit in course.js (deadlines). -->
+      <uc-deadlines limit="4">
+        <a href="evaluation.html">Evaluation formula</a>
+      </uc-deadlines>
+    </div>
+
+    <section class="uc-section" aria-labelledby="shortcuts">
+      <h2 id="shortcuts">Quick links</h2>
+      <ul class="uc-shortcuts">
+        <li><a href="problems/index.html">List of problems</a></li>
+        <li><a href="classes.html">Classes and problem sets</a></li>
+        <li><a href="rankings.html">Lists and rankings</a></li>
+        <li><a href="materials.html#judges">Online judges</a></li>
+      </ul>
+    </section>
+
+    <!-- Team: edit in course.js (team). -->
+    <uc-team heading="Professor"></uc-team>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/index.html">dcc.fc.up.pt/~pribeiro/aulas/pc2627/</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>
