@@ -91,6 +91,18 @@ released yet; contract `docs/plan/widgets-api.md`).
   `check-a11y` and two new accessibility-tree snapshots. Fix:
   `uc-site.py check` no longer reports the `lang` of `<uc-code>` (the
   programming language, `lang="c"`) as a language the site does not have.
+- Search on in the template and the examples (search phase S5): `search:
+  true` in `template/course.js` and in the four examples, each with its
+  `search-index.js` (the template's is rewritten by the first run of
+  `uc-site.py`); `<uc-search scope="problems/">` on the PC problems page; the
+  PI problem statements are back in its index. `uc-site.py` is `1.2.0` and
+  warns above 1 MB instead of 500 KB. Teacher guide: index date and console
+  warnings (`manter`), search on Cloudflare and optional Apache compression
+  (`publicar`), run the script after copying a year (`novo-ano`) or
+  migrating (`migrar`), `template/AGENTS.md` rule 14.
+- The search dialog's result area is a keyboard stop (`tabindex="0"`), so a
+  long list that scrolls can be reached without a mouse (WCAG 2.1.1; found
+  by axe once the EDados example had a real index).
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type

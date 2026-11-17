@@ -803,3 +803,8 @@ sections 7 to 10 as follows.
    `novo-ano.html` and `migrar.html` (run `uc-site.py` after copying),
    `criar-site.html` (the template's `search-index.js`), `llm.html` and
    `template/AGENTS.md` rule 14 (`<uc-search>`, `data-search-ignore`).
+6. **Accessibility.** With real indexes, axe found that a long result list
+   makes `.uc-search-dialog__body` a scrollable region with no tab stop (the
+   options are `tabindex="-1"`): it now has `tabindex="0"`. `check-a11y`
+   searches for the longest word of each page's `<h1>` instead of `arvores`,
+   so English sites and the template get results too.

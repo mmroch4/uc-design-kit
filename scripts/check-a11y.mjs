@@ -672,7 +672,13 @@ async function checkSearch(browser, origin, relative, axeSource) {
     await context.close();
     return problems;
   }
-  await openSearchDialog(page, "arvores");
+  // A word of the page's own <h1>: it is in the index whatever the site's
+  // language, so the dialog always has results.
+  const query = await page.evaluate(() => {
+    const words = (document.querySelector("h1")?.textContent || "").match(/[\p{L}\p{N}]{4,}/gu) || [];
+    return words.sort((a, b) => b.length - a.length)[0] || "arvores";
+  });
+  await openSearchDialog(page, query);
   const dialog = await page.evaluate(() => {
     const box = document.querySelector(".uc-search-dialog");
     const input = document.activeElement;
@@ -690,7 +696,7 @@ async function checkSearch(browser, origin, relative, axeSource) {
   if (!dialog.modal) problems.push("search: the dialog is not modal");
   if (!dialog.named) problems.push("search: the dialog has no accessible name");
   if (!dialog.combobox) problems.push("search: the field is not an expanded combobox controlling a listbox");
-  if (!dialog.options.length) problems.push("search: no results for 'arvores'");
+  if (!dialog.options.length) problems.push(`search: no results for '${query}'`);
   if (dialog.active !== dialog.options[0]) problems.push("search: the first result is not the active descendant");
   if (dialog.short) problems.push(`search: ${dialog.short} result(s) shorter than 44px`);
   if (!/\d+ (resultados?|results?)/.test(dialog.status)) problems.push(`search: the count is not in the status region ("${dialog.status}")`);
@@ -711,7 +717,7 @@ async function checkSearch(browser, origin, relative, axeSource) {
     if (box && box.height < 44) problems.push(`uc-search: the field is ${Math.round(box.height)}px tall (44px minimum)`);
     if (!(await field.evaluate((node) => (node.labels[0] ? node.labels[0].textContent.trim() : "")))) problems.push("uc-search: the field has no visible <label>");
     await field.focus();
-    await page.keyboard.type("arvore");
+    await page.keyboard.type(query);
     await page.waitForTimeout(1000);
     if (!/\d+ (resultados?|results?)/.test(await liveText(page))) problems.push("uc-search: the number of results is not announced");
     if (!(await focusedMatches(page, "uc-search input"))) problems.push("uc-search: focus left the field");
@@ -722,7 +728,7 @@ async function checkSearch(browser, origin, relative, axeSource) {
   await context.close();
 
   const narrow = await open(browser, origin, relative, { viewport: { width: 320, height: 640 } });
-  await openSearchDialog(narrow.page, "arvores");
+  await openSearchDialog(narrow.page, query);
   const overflow = await narrow.page.evaluate(() => {
     const box = document.querySelector(".uc-search-dialog");
     return Math.max(box.scrollWidth - box.clientWidth, box.getBoundingClientRect().right - window.innerWidth);
