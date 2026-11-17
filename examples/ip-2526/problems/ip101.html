@@ -34,7 +34,7 @@ Steve, Robin, and Nancy discover that Vecna has been constructing a series of st
 of the rightmost tower. Observe that the distance between any two towers, in meters, is the absolute
   value of the difference of their respective indices in the array \(H\). Let \(p\) denote the index of the tallest tower in \(H\) and define, for every \(i\neq p\),
 
-</p><p>\(d(i) = min\{|i − j|: \text{for every } j \text{ such that } H_j &gt; H_i\}\)</p><p>Note that \(d(p)\) is not defined. The "total dark resonance" is then given by
+</p><p>\(d(i) = \min |i − j|\), taken over every \(j\) such that \(H_j &gt; H_i\)</p><p>Note that \(d(p)\) is not defined. The "total dark resonance" is then given by
   \(\displaystyle\sum^{N-1}_{i=0, i \neq p} d(i)\)
         
 </p><h2>The Problem</h2>

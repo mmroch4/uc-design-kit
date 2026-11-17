@@ -66,3 +66,5 @@
 .meme-img { max-height: 400px; width: auto; }
 .problem-context p { margin: 0; }
 code.function { background: var(--uc-color-accent-soft); }
+/* problems/: long MathJax formulas scroll instead of widening the page on a phone */
+.uc-content mjx-container[display="true"] { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
