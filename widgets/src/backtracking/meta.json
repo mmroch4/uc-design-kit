@@ -1,0 +1,26 @@
+{
+  "name": "uc-widget-backtracking",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 3,
+  "title": { "pt": "Backtracking", "en": "Backtracking" },
+  "summary": {
+    "pt": "N rainhas, subconjuntos, permutações, com a árvore de pesquisa e os cortes.",
+    "en": "N queens, subsets, permutations, with the search tree and the cuts."
+  },
+  "page": "docs/pt/widgets/uc-widget-backtracking.html",
+  "algorithms": ["queens", "subsets", "permutations"],
+  "courses": ["PC", "PI"],
+  "attributes": ["n", "all", "values", "target", "algorithm", "algorithms"],
+  "predict": true,
+  "test": {
+    "input": { "n": 4, "all": false, "values": [1, 2, 3], "target": null },
+    "options": [
+      { "algorithm": "queens", "input": { "n": 4, "all": true } },
+      { "algorithm": "queens", "input": { "n": 3, "all": false } },
+      { "algorithm": "subsets", "input": { "values": [3, 1, 4, 2], "target": 5 } },
+      { "algorithm": "subsets", "input": { "values": [1, 2], "target": 9 } },
+      { "algorithm": "permutations", "input": { "values": ["A", "B", "C"] } }
+    ]
+  }
+}

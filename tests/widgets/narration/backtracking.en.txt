@@ -1,0 +1,229 @@
+## algorithm=queens · input {"n":4,"all":false,"values":[1,2,3],"target":null}
+  1. 4 queens on a 4 × 4 board, one per row, no two in the same column or diagonal. Stops at the first solution.
+  2. (0, 0) is free: place a queen.
+  3. (1, 0) is attacked by the queen at (0, 0), in the same column: cut.
+  4. (1, 1) is attacked by the queen at (0, 0), on the same diagonal: cut.
+  5. (1, 2) is free: place a queen.
+  6. (2, 0) is attacked by the queen at (0, 0), in the same column: cut.
+  7. (2, 1) is attacked by the queen at (1, 2), on the same diagonal: cut.
+  8. (2, 2) is attacked by the queen at (0, 0), on the same diagonal: cut.
+  9. (2, 3) is attacked by the queen at (1, 2), on the same diagonal: cut.
+ 10. Back to row 1: take the queen off (1, 2).
+ 11. (1, 3) is free: place a queen.
+ 12. (2, 0) is attacked by the queen at (0, 0), in the same column: cut.
+ 13. (2, 1) is free: place a queen.
+ 14. (3, 0) is attacked by the queen at (0, 0), in the same column: cut.
+ 15. (3, 1) is attacked by the queen at (1, 3), on the same diagonal: cut.
+ 16. (3, 2) is attacked by the queen at (2, 1), on the same diagonal: cut.
+ 17. (3, 3) is attacked by the queen at (0, 0), on the same diagonal: cut.
+ 18. Back to row 2: take the queen off (2, 1).
+ 19. (2, 2) is attacked by the queen at (0, 0), on the same diagonal: cut.
+ 20. (2, 3) is attacked by the queen at (1, 3), in the same column: cut.
+ 21. Back to row 1: take the queen off (1, 3).
+ 22. Back to row 0: take the queen off (0, 0).
+ 23. (0, 1) is free: place a queen.
+ 24. (1, 0) is attacked by the queen at (0, 1), on the same diagonal: cut.
+ 25. (1, 1) is attacked by the queen at (0, 1), in the same column: cut.
+ 26. (1, 2) is attacked by the queen at (0, 1), on the same diagonal: cut.
+ 27. (1, 3) is free: place a queen.
+ 28. (2, 0) is free: place a queen.
+ 29. (3, 0) is attacked by the queen at (2, 0), in the same column: cut.
+ 30. (3, 1) is attacked by the queen at (0, 1), in the same column: cut.
+ 31. (3, 2) is free: place a queen.
+ 32. First solution: columns 1 3 0 2, row by row. Cuts: 18.
+
+## algorithm=subsets · input {"n":4,"all":false,"values":[1,2,3],"target":null}
+  1. Subsets of 1 2 3: at each level, take (+) or leave (−) one value.
+  2. Take 1: { 1 }, sum 1.
+  3. Take 2: { 1, 2 }, sum 3.
+  4. Take 3: subset { 1, 2, 3 }, sum 6.
+  5. Leave 3: subset { 1, 2 }, sum 3.
+  6. Leave 2: { 1 }, sum 1.
+  7. Take 3: subset { 1, 3 }, sum 4.
+  8. Leave 3: subset { 1 }, sum 1.
+  9. Leave 1: { }, sum 0.
+ 10. Take 2: { 2 }, sum 2.
+ 11. Take 3: subset { 2, 3 }, sum 5.
+ 12. Leave 3: subset { 2 }, sum 2.
+ 13. Leave 2: { }, sum 0.
+ 14. Take 3: subset { 3 }, sum 3.
+ 15. Leave 3: subset { }, sum 0.
+ 16. Subsets (8): { 1, 2, 3 }; { 1, 2 }; { 1, 3 }; { 1 }; { 2, 3 }; { 2 }; { 3 }; { }.
+
+## algorithm=permutations · input {"n":4,"all":false,"values":[1,2,3],"target":null}
+  1. Permutations of 1 2 3: at each level place an element not used yet. Only those are tried, so nothing is cut.
+  2. Place 1: 1.
+  3. Place 2: 1 2.
+  4. Place 3: permutation 1 2 3.
+  5. Place 3: 1 3.
+  6. Place 2: permutation 1 3 2.
+  7. Place 2: 2.
+  8. Place 1: 2 1.
+  9. Place 3: permutation 2 1 3.
+ 10. Place 3: 2 3.
+ 11. Place 1: permutation 2 3 1.
+ 12. Place 3: 3.
+ 13. Place 1: 3 1.
+ 14. Place 2: permutation 3 1 2.
+ 15. Place 2: 3 2.
+ 16. Place 1: permutation 3 2 1.
+ 17. Permutations (6): 1 2 3; 1 3 2; 2 1 3; 2 3 1; 3 1 2; 3 2 1.
+
+## algorithm=queens · input {"n":4,"all":true}
+  1. 4 queens on a 4 × 4 board, one per row, no two in the same column or diagonal. Finds every solution.
+  2. (0, 0) is free: place a queen.
+  3. (1, 0) is attacked by the queen at (0, 0), in the same column: cut.
+  4. (1, 1) is attacked by the queen at (0, 0), on the same diagonal: cut.
+  5. (1, 2) is free: place a queen.
+  6. (2, 0) is attacked by the queen at (0, 0), in the same column: cut.
+  7. (2, 1) is attacked by the queen at (1, 2), on the same diagonal: cut.
+  8. (2, 2) is attacked by the queen at (0, 0), on the same diagonal: cut.
+  9. (2, 3) is attacked by the queen at (1, 2), on the same diagonal: cut.
+ 10. Back to row 1: take the queen off (1, 2).
+ 11. (1, 3) is free: place a queen.
+ 12. (2, 0) is attacked by the queen at (0, 0), in the same column: cut.
+ 13. (2, 1) is free: place a queen.
+ 14. (3, 0) is attacked by the queen at (0, 0), in the same column: cut.
+ 15. (3, 1) is attacked by the queen at (1, 3), on the same diagonal: cut.
+ 16. (3, 2) is attacked by the queen at (2, 1), on the same diagonal: cut.
+ 17. (3, 3) is attacked by the queen at (0, 0), on the same diagonal: cut.
+ 18. Back to row 2: take the queen off (2, 1).
+ 19. (2, 2) is attacked by the queen at (0, 0), on the same diagonal: cut.
+ 20. (2, 3) is attacked by the queen at (1, 3), in the same column: cut.
+ 21. Back to row 1: take the queen off (1, 3).
+ 22. Back to row 0: take the queen off (0, 0).
+ 23. (0, 1) is free: place a queen.
+ 24. (1, 0) is attacked by the queen at (0, 1), on the same diagonal: cut.
+ 25. (1, 1) is attacked by the queen at (0, 1), in the same column: cut.
+ 26. (1, 2) is attacked by the queen at (0, 1), on the same diagonal: cut.
+ 27. (1, 3) is free: place a queen.
+ 28. (2, 0) is free: place a queen.
+ 29. (3, 0) is attacked by the queen at (2, 0), in the same column: cut.
+ 30. (3, 1) is attacked by the queen at (0, 1), in the same column: cut.
+ 31. (3, 2) is free: place a queen.
+ 32. Solution 1: columns 1 3 0 2, row by row.
+ 33. Back to row 3: take the queen off (3, 2).
+ 34. (3, 3) is attacked by the queen at (1, 3), in the same column: cut.
+ 35. Back to row 2: take the queen off (2, 0).
+ 36. (2, 1) is attacked by the queen at (0, 1), in the same column: cut.
+ 37. (2, 2) is attacked by the queen at (1, 3), on the same diagonal: cut.
+ 38. (2, 3) is attacked by the queen at (0, 1), on the same diagonal: cut.
+ 39. Back to row 1: take the queen off (1, 3).
+ 40. Back to row 0: take the queen off (0, 1).
+ 41. (0, 2) is free: place a queen.
+ 42. (1, 0) is free: place a queen.
+ 43. (2, 0) is attacked by the queen at (0, 2), on the same diagonal: cut.
+ 44. (2, 1) is attacked by the queen at (1, 0), on the same diagonal: cut.
+ 45. (2, 2) is attacked by the queen at (0, 2), in the same column: cut.
+ 46. (2, 3) is free: place a queen.
+ 47. (3, 0) is attacked by the queen at (1, 0), in the same column: cut.
+ 48. (3, 1) is free: place a queen.
+ 49. Solution 2: columns 2 0 3 1, row by row.
+ 50. Back to row 3: take the queen off (3, 1).
+ 51. (3, 2) is attacked by the queen at (0, 2), in the same column: cut.
+ 52. (3, 3) is attacked by the queen at (2, 3), in the same column: cut.
+ 53. Back to row 2: take the queen off (2, 3).
+ 54. Back to row 1: take the queen off (1, 0).
+ 55. (1, 1) is attacked by the queen at (0, 2), on the same diagonal: cut.
+ 56. (1, 2) is attacked by the queen at (0, 2), in the same column: cut.
+ 57. (1, 3) is attacked by the queen at (0, 2), on the same diagonal: cut.
+ 58. Back to row 0: take the queen off (0, 2).
+ 59. (0, 3) is free: place a queen.
+ 60. (1, 0) is free: place a queen.
+ 61. (2, 0) is attacked by the queen at (1, 0), in the same column: cut.
+ 62. (2, 1) is attacked by the queen at (0, 3), on the same diagonal: cut.
+ 63. (2, 2) is free: place a queen.
+ 64. (3, 0) is attacked by the queen at (0, 3), on the same diagonal: cut.
+ 65. (3, 1) is attacked by the queen at (2, 2), on the same diagonal: cut.
+ 66. (3, 2) is attacked by the queen at (1, 0), on the same diagonal: cut.
+ 67. (3, 3) is attacked by the queen at (0, 3), in the same column: cut.
+ 68. Back to row 2: take the queen off (2, 2).
+ 69. (2, 3) is attacked by the queen at (0, 3), in the same column: cut.
+ 70. Back to row 1: take the queen off (1, 0).
+ 71. (1, 1) is free: place a queen.
+ 72. (2, 0) is attacked by the queen at (1, 1), on the same diagonal: cut.
+ 73. (2, 1) is attacked by the queen at (0, 3), on the same diagonal: cut.
+ 74. (2, 2) is attacked by the queen at (1, 1), on the same diagonal: cut.
+ 75. (2, 3) is attacked by the queen at (0, 3), in the same column: cut.
+ 76. Back to row 1: take the queen off (1, 1).
+ 77. (1, 2) is attacked by the queen at (0, 3), on the same diagonal: cut.
+ 78. (1, 3) is attacked by the queen at (0, 3), in the same column: cut.
+ 79. Back to row 0: take the queen off (0, 3).
+ 80. Solutions with 4 queens: 2. Cuts: 44.
+
+## algorithm=queens · input {"n":3,"all":false}
+  1. 3 queens on a 3 × 3 board, one per row, no two in the same column or diagonal. Stops at the first solution.
+  2. (0, 0) is free: place a queen.
+  3. (1, 0) is attacked by the queen at (0, 0), in the same column: cut.
+  4. (1, 1) is attacked by the queen at (0, 0), on the same diagonal: cut.
+  5. (1, 2) is free: place a queen.
+  6. (2, 0) is attacked by the queen at (0, 0), in the same column: cut.
+  7. (2, 1) is attacked by the queen at (1, 2), on the same diagonal: cut.
+  8. (2, 2) is attacked by the queen at (0, 0), on the same diagonal: cut.
+  9. Back to row 1: take the queen off (1, 2).
+ 10. Back to row 0: take the queen off (0, 0).
+ 11. (0, 1) is free: place a queen.
+ 12. (1, 0) is attacked by the queen at (0, 1), on the same diagonal: cut.
+ 13. (1, 1) is attacked by the queen at (0, 1), in the same column: cut.
+ 14. (1, 2) is attacked by the queen at (0, 1), on the same diagonal: cut.
+ 15. Back to row 0: take the queen off (0, 1).
+ 16. (0, 2) is free: place a queen.
+ 17. (1, 0) is free: place a queen.
+ 18. (2, 0) is attacked by the queen at (0, 2), on the same diagonal: cut.
+ 19. (2, 1) is attacked by the queen at (1, 0), on the same diagonal: cut.
+ 20. (2, 2) is attacked by the queen at (0, 2), in the same column: cut.
+ 21. Back to row 1: take the queen off (1, 0).
+ 22. (1, 1) is attacked by the queen at (0, 2), on the same diagonal: cut.
+ 23. (1, 2) is attacked by the queen at (0, 2), in the same column: cut.
+ 24. Back to row 0: take the queen off (0, 2).
+ 25. There is no solution with 3 queens. Cuts: 13.
+
+## algorithm=subsets · input {"values":[3,1,4,2],"target":5}
+  1. Subsets of 3 1 4 2 adding up to 5: take (+) or leave (−) each value and cut the dead-end branches.
+  2. Take 3: { 3 }, sum 3.
+  3. Take 1: { 3, 1 }, sum 4.
+  4. Take 4: the sum 8 goes past 5, cut.
+  5. Leave 4: { 3, 1 }, sum 4.
+  6. Take 2: the sum 6 goes past 5, cut.
+  7. Leave 2: sum 4 with 0 left cannot reach 5: cut.
+  8. Leave 1: { 3 }, sum 3.
+  9. Take 4: the sum 7 goes past 5, cut.
+ 10. Leave 4: { 3 }, sum 3.
+ 11. Take 2: subset { 3, 2 }, sum 5.
+ 12. Leave 2: sum 3 with 0 left cannot reach 5: cut.
+ 13. Leave 3: { }, sum 0.
+ 14. Take 1: { 1 }, sum 1.
+ 15. Take 4: { 1, 4 }, sum 5.
+ 16. Take 2: the sum 7 goes past 5, cut.
+ 17. Leave 2: subset { 1, 4 }, sum 5.
+ 18. Leave 4: sum 1 with 2 left cannot reach 5: cut.
+ 19. Leave 1: { }, sum 0.
+ 20. Take 4: { 4 }, sum 4.
+ 21. Take 2: the sum 6 goes past 5, cut.
+ 22. Leave 2: sum 4 with 0 left cannot reach 5: cut.
+ 23. Leave 4: sum 0 with 2 left cannot reach 5: cut.
+ 24. Subsets adding up to 5: { 3, 2 }; { 1, 4 }. Cuts: 10.
+
+## algorithm=subsets · input {"values":[1,2],"target":9}
+  1. Subsets of 1 2 adding up to 9: take (+) or leave (−) each value and cut the dead-end branches.
+  2. All the values add up to 3, less than 9: there is no solution.
+  3. No subset adds up to 9. Cuts: 1.
+
+## algorithm=permutations · input {"values":["A","B","C"]}
+  1. Permutations of A B C: at each level place an element not used yet. Only those are tried, so nothing is cut.
+  2. Place A: A.
+  3. Place B: A B.
+  4. Place C: permutation A B C.
+  5. Place C: A C.
+  6. Place B: permutation A C B.
+  7. Place B: B.
+  8. Place A: B A.
+  9. Place C: permutation B A C.
+ 10. Place C: B C.
+ 11. Place A: permutation B C A.
+ 12. Place C: C.
+ 13. Place A: C A.
+ 14. Place B: permutation C A B.
+ 15. Place B: C B.
+ 16. Place A: permutation C B A.
+ 17. Permutations (6): A B C; A C B; B A C; B C A; C A B; C B A.
