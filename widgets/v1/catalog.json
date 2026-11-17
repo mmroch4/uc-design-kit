@@ -62,7 +62,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 5637
+      "gzip": 5636
     },
     {
       "name": "uc-widget-complexity",
@@ -198,7 +198,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 4795
+      "gzip": 4794
     },
     {
       "name": "uc-widget-list",
@@ -227,7 +227,7 @@
         "ops"
       ],
       "predict": true,
-      "gzip": 6111
+      "gzip": 6112
     },
     {
       "name": "uc-widget-recursion",
@@ -293,7 +293,7 @@
         "algorithm"
       ],
       "predict": true,
-      "gzip": 3244
+      "gzip": 3243
     },
     {
       "name": "uc-widget-shortest-path",
@@ -326,7 +326,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7050
+      "gzip": 7053
     },
     {
       "name": "uc-widget-sort",
@@ -363,7 +363,7 @@
         "bars"
       ],
       "predict": true,
-      "gzip": 5355
+      "gzip": 5354
     },
     {
       "name": "uc-widget-stack-queue",

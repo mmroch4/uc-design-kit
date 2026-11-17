@@ -7,6 +7,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { strings as coreStrings } from "../../widgets/src/core/i18n.js";
+import { decimals } from "../../widgets/src/core/engine.js";
 import { widgetNames } from "../../scripts/build-widgets.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -51,12 +52,13 @@ export function splitInput(meta, { input, ...options }) {
   return { input: input ?? meta.test.input, options };
 }
 
-/** UC.t for a [key, params] pair in one dictionary. */
-export function format(dictionary, pair) {
+/** UC.t for a [key, params] pair in one dictionary; with `lang`, decimals as the core shows them. */
+export function format(dictionary, pair, lang = null) {
   const [key, params = {}] = pair;
   const value = dictionary[key];
   if (typeof value !== "string") throw new Error(`missing string ${key}`);
-  return value.replace(/\{(\w+)\}/g, (match, name) => (name in params ? String(params[name]) : match));
+  const text = value.replace(/\{(\w+)\}/g, (match, name) => (name in params ? String(params[name]) : match));
+  return lang ? decimals(text, lang) : text;
 }
 
 export const describeOptions = (options) => Object.entries(options).filter(([k]) => k !== "input").map(([k, v]) => `${k}=${v}`).join(" ");
