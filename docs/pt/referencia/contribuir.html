@@ -250,7 +250,7 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pr
           <li>Voltar a pôr a versão seguinte com <code>-dev</code>.</li>
         </ol>
         <h3 id="lancar-widgets">Lançar uma versão dos widgets</h3>
-        <p>Os widgets (<code>widgets/v1/</code>) têm versões próprias e só se lançam depois de uma versão do kit que satisfaça <code>KIT_MIN</code> (a 1.0.0 dos widgets precisa do kit 1.1.0).</p>
+        <p>Os widgets (<code>widgets/v1/</code>) têm versões próprias e só se lançam depois de uma versão do kit que satisfaça <code>KIT_MIN</code> (a 1.0.0 dos widgets precisa do kit 1.0.0). A versão 1.0.0 do kit e a dos widgets saíram juntas, com a etiqueta <code>v1.0.0</code>.</p>
         <ol>
           <li>Todos os <code>meta.json</code> com <code>"status": "stable"</code> (o snapshot recusa-se sem isso). Mudar <code>VERSION</code> em <code>widgets/src/core/version.js</code> e passar as notas de <em>Widgets</em> para <code>## Widgets [X.Y.Z]</code> no <code>CHANGELOG.md</code>.</li>
           <li><code>npm run build</code> e depois <code>npm run snapshot:widgets</code>, que copia <code>widgets/v1/</code> para <code>widgets/vX.Y.Z/</code> e escreve o seu <code>SHA256SUMS</code>.</li>

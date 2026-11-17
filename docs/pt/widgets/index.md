@@ -4,7 +4,7 @@ Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.html
 
 Demonstrações interativas, passo a passo, dos algoritmos e das estruturas de dados que se ensinam em IP, PI, EDados e PC. Cada widget entra numa página com uma linha `<script>` e um elemento, e todos se usam da mesma maneira.
 
-Os widgets são uma biblioteca à parte do kit, em `widgets/v1/`: uma página que não usa nenhum não carrega nada a mais, e o orçamento de 48 KB do kit não os conta. Precisam do kit 1.1 ou mais recente. Como os usar está em [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md).
+Os widgets são uma biblioteca à parte do kit, em `widgets/v1/`: uma página que não usa nenhum não carrega nada a mais, e o orçamento de 48 KB do kit não os conta. Precisam do kit 1.0 ou mais recente. Como os usar está em [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md).
 
 ## Disponíveis
 
@@ -86,7 +86,7 @@ Gerado a partir de `widgets/v1/catalog.json`. "Estável" quer dizer que os atrib
 
   Estável Vaga 1 IP PI EDados
 
-  Algoritmos: `factorial`, `fibonacci`, `hanoi` · 3.2 KB gzip
+  Algoritmos: `factorial`, `fibonacci`, `hanoi` · 3.1 KB gzip
 - [Pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-search.md) `<uc-widget-search>`
 
   Pesquisa linear, pesquisa binária e primeira posição ≥ alvo (lower bound), passo a passo.

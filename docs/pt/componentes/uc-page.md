@@ -151,7 +151,7 @@ O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igua
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
 | `layout` | `sidebar` ou `full` | `sidebar` | Com `full`, a página não tem navegação e o conteúdo ocupa toda a largura. |
-| `search` | `off` ou `noindex` | — | Para sites com pesquisa (versão 1.2.0). `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
+| `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
 
 ## Configuração usada
@@ -203,7 +203,7 @@ O script [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md)
 
 ## Pesquisa no site
 
-A partir da versão 1.2.0. Com `search: true` no `course.js` e o ficheiro `search-index.js` criado pelo `uc-site.py`, o cabeçalho mostra o botão **Pesquisar** antes do botão de língua, com os atalhos `Ctrl` `K`, `⌘` `K` e `/`.
+Com `search: true` no `course.js` e o ficheiro `search-index.js` criado pelo `uc-site.py`, o cabeçalho mostra o botão **Pesquisar** antes do botão de língua, com os atalhos `Ctrl` `K`, `⌘` `K` e `/`.
 
 - O kit pergunta ao servidor se o índice existe uma vez por visita, quando o browser está desocupado. Enquanto espera, guarda o lugar do botão para nada saltar; se o índice não existir, o botão não aparece.
 - Sem `search` no `course.js` nada disto acontece e não há nenhum pedido a mais.

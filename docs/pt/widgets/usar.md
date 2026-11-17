@@ -96,7 +96,7 @@ Com `editable`, por baixo do leitor aparece um campo com os dados (nos widgets d
 
 ## Versões e uso offline
 
-A biblioteca tem versões próprias, independentes do kit. `widgets/v1/` recebe só mudanças compatíveis (widgets, atributos e textos novos); cada versão lançada (a primeira será a 1.0.0, depois do kit 1.1.0) fica congelada em `widgets/vX.Y.Z/` para quem quiser fixar a versão durante o semestre:
+A biblioteca tem versões próprias, independentes do kit. `widgets/v1/` recebe só mudanças compatíveis (widgets, atributos e textos novos); cada versão lançada (a primeira é a 1.0.0, lançada com o kit 1.0.0) fica congelada em `widgets/vX.Y.Z/` para quem quiser fixar a versão durante o semestre:
 
 ```html
 <script src="https://uc-design-kit.miguelrocha.dev/widgets/v1.0.0/uc-widget-sort.js" defer></script>

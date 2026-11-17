@@ -5,7 +5,7 @@ documentation follow it. Anything listed here is stable within major
 version 1; changing it requires its own pull request.
 
 - Status: **draft for review** (milestone M0.2)
-- Kit version: 1.0.0 (unreleased)
+- Kit version: 1.0.0
 - Documentation for teachers (Portuguese), which explains every item of this
   contract with live demos: <https://uc-design-kit.miguelrocha.dev/docs/pt/>.
   `npm test` checks that both cover the same components, attributes,
@@ -149,8 +149,8 @@ automatic id the kit gives them (slug of the text in the first language,
 gives one entry per language. The file is a script that sets
 `window.UC_SEARCH_INDEX` (format version `1`, one page per line), so it also
 loads from `file://`; `SOURCE_DATE_EPOCH` fixes its `generated` time. Full
-rules: `docs/plan/search-api.md` sections 4 to 6. The kit reads it from
-v1.2.0. Above 1 MB the script prints a warning after the summary (the first
+rules: `docs/plan/search-api.md` sections 4 to 6. The kit reads it.
+Above 1 MB the script prints a warning after the summary (the first
 search of a visit gets slower; leave folders out with `search.exclude`). The
 template ships with `search: true` and a `search-index.js` for its sample
 pages, which the first run of the script replaces.
@@ -194,7 +194,7 @@ pages, which the first run of the script replaces.
 | `editions` | URL | no | — | Address of the shared editions file, relative to `course.js`, usually `"../editions.js"`. See 2.9. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
 | `runner` | object | no | Codapi + browser | Where `<uc-code run>` executes code. See 7.1. |
-| `search` | `true` \| `{ index?, exclude? }` | no | off | Site search (v1.2.0; on in the template). `true` = `{ index: "search-index.js", exclude: [] }`. `index` is the index file, relative to `course.js`, written by `uc-site.py`; `exclude` is read by the script only. Normalised to `UC.course.search = { index, exclude }` or `null`. See 3.1 and 7. |
+| `search` | `true` \| `{ index?, exclude? }` | no | off | Site search (on in the template). `true` = `{ index: "search-index.js", exclude: [] }`. `index` is the index file, relative to `course.js`, written by `uc-site.py`; `exclude` is read by the script only. Normalised to `UC.course.search = { index, exclude }` or `null`. See 3.1 and 7. |
 
 ### 2.3 Pages
 
@@ -430,7 +430,7 @@ so the kit scrolls to the `#hash` target again once the page is visible and
 marks it for 2 s with the class `uc-target-flash` (a soft accent background
 and outline; no transition with `prefers-reduced-motion`).
 
-**Search button** (v1.2.0). With `search` in `course.js`, the kit
+**Search button**. With `search` in `course.js`, the kit
 asks once per visit, when the browser is idle, whether the index file exists
 (`HEAD`, no cache, 5 s timeout; the answer is kept in `sessionStorage` under
 `uc:<course>:search`; over `file://` the index is loaded instead). While it
@@ -445,7 +445,7 @@ index, once. Without `search` nothing of this runs and no request is made.
 Stable classes: `uc-search-button`, `uc-search-button--pending`,
 `uc-search-button__label`, `uc-search-button__hint`.
 
-**Search dialog** (v1.2.0). The button opens a modal
+**Search dialog**. The button opens a modal
 `<dialog class="uc-search-dialog">`. While `uc-search.js` (about 5 KB
 gzipped) loads, the button has `aria-busy="true"`; if it cannot load,
 "Não foi possível carregar a pesquisa." is announced and the next press tries
@@ -473,7 +473,7 @@ configuration. Children, if any, are appended below the tagline.
 
 #### `<uc-search>`
 
-A search field with its results below it, inside a page (v1.2.0). It is defined in `uc-search.js`, which `uc-kit.js` loads when the
+A search field with its results below it, inside a page. It is defined in `uc-search.js`, which `uc-kit.js` loads when the
 site's index is known to exist (`uc:searchready`) and the page has a
 `<uc-search>`: without `search` in `course.js` or without the index file the
 element stays empty and nothing is downloaded. The index itself downloads
@@ -1222,8 +1222,8 @@ system font and skips downloading Inter, if a course prefers.
 | `UC.define(name, class)` | Registers a component once (safe to call twice). |
 | `UC.addTranslations(lang, dict)` | Adds or overrides interface strings. |
 | `UC.registerRunner(name, runner)` | Adds or replaces a code runner (7.1). |
-| `UC.search.available()` | `Promise<boolean>`: whether the site has a search index (asks the server if this visit has not yet; `false` without `search`). v1.2.0. |
-| `UC.search.open(query?)` | Opens the site search, optionally with a query. Does nothing without an index. v1.2.0. |
+| `UC.search.available()` | `Promise<boolean>`: whether the site has a search index (asks the server if this visit has not yet; `false` without `search`). |
+| `UC.search.open(query?)` | Opens the site search, optionally with a query. Does nothing without an index. |
 
 `UC.Element` extends `HTMLElement` and provides `render()` (called on
 connect and on language change), `this.t()`, `this.text()`, and
@@ -1244,7 +1244,7 @@ Events on `document`:
 | `uc:exercisechange` | Bubbles from a `<uc-exercise>` when it is marked done or not done. |
 | `uc:classchange` | On `document`, when "My class" of a `<uc-timetable>` changes. `event.detail = { type, class }` (`class` is `""` for all). |
 | `uc:problemchange` | Bubbles from a `<uc-problems track>` when a problem is marked solved or not. `event.detail = { id, solved }`. |
-| `uc:searchready` | On `document`, when the search index is known to exist (v1.2.0). |
+| `uc:searchready` | On `document`, when the search index is known to exist. |
 
 ### 7.1 Code runners
 
@@ -1297,7 +1297,7 @@ message in `stderr`.
 ### 7.2 Widgets (`UC.widgets`)
 
 The algorithm widget library is separate from the kit: files in
-`widgets/v1/`, its own semver (widgets 1.0.0 needs kit 1.1+), outside the
+`widgets/v1/`, its own semver (widgets 1.0.0 needs kit 1.0+), outside the
 kit's size budget. Full contract: `docs/plan/widgets-api.md`. A page loads
 one file per widget type after the kit:
 
@@ -1311,8 +1311,8 @@ folder. The catalogue is `widgets/v1/catalog.json`. Every widget is
 `stable`: its attributes, `ops` verbs, members and events below keep working
 in all of 1.x (`tests/widgets/compat.html` checks `widgets/v1/` and every
 frozen release on each change). Releases are frozen as `widgets/vX.Y.Z/`
-(`npm run snapshot:widgets`; widgets 1.0.0 is prepared and waits for kit
-1.1.0). Widgets:
+(`npm run snapshot:widgets`; the first is `widgets/v1.0.0/`, released with
+kit 1.0.0). Widgets:
 
 | Element | Own attributes | `algorithm` |
 | --- | --- | --- |

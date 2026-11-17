@@ -48,7 +48,7 @@ Quando o `course.js` tem `search: true`, o mesmo comando escreve também o índi
 Uma linha por problema, agrupadas por ficheiro, com o número da linha quando se sabe, e um resumo no fim:
 
 ```text
-UC Design Kit · uc-site.py 1.2.0 · Estruturas de Dados 2025/26 (CC1007)
+UC Design Kit · uc-site.py 1.0.0 · Estruturas de Dados 2025/26 (CC1007)
 ERRO   semanas.html:142     ligação para guioes/aula13.html: o ficheiro não existe
 AVISO  guioes/aula04.html:31  imagem sem alt: imagens/heap.png (se for decorativa, use alt="")
 INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
