@@ -9,7 +9,7 @@
 import { el, icon } from "./dom.js";
 import { collect, random, MAX_STEPS } from "./engine.js";
 
-const COMMON = ["algorithm", "speed", "controls", "editable", "predict", "start", "seed", "caption"];
+const COMMON = ["algorithm", "algorithms", "speed", "controls", "editable", "predict", "start", "seed", "caption"];
 const SPEED = { min: 200, max: 5000, fallback: 900 };
 let counter = 0;
 
@@ -64,6 +64,9 @@ export function createWidget(UC) {
     static algorithms = [];
     static inputAttributes = [];
     static limits = {};
+    /** The attribute the editable field changes (12) and the key of its label. */
+    static editAttribute = null;
+    static editLabel = "widget.core.edit.label";
 
     static get observedAttributes() {
       return COMMON.concat(this.inputAttributes);
@@ -90,7 +93,11 @@ export function createWidget(UC) {
     }
 
     serialize() {
-      return this.attr(this.constructor.inputAttributes[0]) || "";
+      return this.attr(this.editName) || "";
+    }
+
+    get editName() {
+      return this.constructor.editAttribute || this.constructor.inputAttributes[0];
     }
 
     /* ---------- options ---------- */
@@ -108,7 +115,7 @@ export function createWidget(UC) {
 
     get algorithm() {
       const list = this.constructor.algorithms;
-      const value = this.getAttribute("algorithm");
+      const value = this.chosen || this.getAttribute("algorithm");
       if (!list.length) return null;
       if (value && list.includes(value)) return value;
       if (value) this.warn("algorithm");
@@ -140,6 +147,22 @@ export function createWidget(UC) {
         return 1;
       }
       return Number(value);
+    }
+
+    /** The algorithms offered as toggle buttons (attribute `algorithms`), if more than one. */
+    get offered() {
+      const list = this.constructor.algorithms;
+      const names = (this.getAttribute("algorithms") || "").split(/[\s,]+/).filter(Boolean);
+      const valid = names.filter((name) => list.includes(name));
+      if (valid.length < names.length) this.warn("algorithms");
+      return valid.length > 1 ? valid : [];
+    }
+
+    choose(name) {
+      if (name === this.algorithm) return;
+      this.chosen = name;
+      this.pause();
+      this.compute();
     }
 
     startIndex() {
@@ -246,6 +269,7 @@ export function createWidget(UC) {
     attributeChangedCallback(name, previous, value) {
       if (this.built && previous !== value) {
         this.warned.delete(name);
+        if (name === "algorithm") this.chosen = null;
         this.pause();
         this.compute();
       }
@@ -337,6 +361,10 @@ export function createWidget(UC) {
         el("button", { type: "button", class: `${className} uc-widget__${name}`, onClick: action });
 
       this.caption = el("figcaption", { class: "uc-widget__caption", id: id("caption") });
+      this.choices = this.offered.map((name) =>
+        el("button", { type: "button", class: "uc-button uc-button--sm", "aria-pressed": "false", "data-algorithm": name, onClick: () => this.choose(name) }),
+      );
+      this.choiceBox = el("div", { class: "uc-widget__choices", role: "group", hidden: !this.choices.length }, this.choices);
       this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       this.svg.setAttribute("class", "uc-widget__svg");
       this.svg.setAttribute("role", "img");
@@ -388,6 +416,7 @@ export function createWidget(UC) {
         "figure",
         { class: "uc-widget__figure", "aria-labelledby": id("caption") },
         this.caption,
+        this.choiceBox,
         el("div", { class: "uc-widget__body" }, this.stage, side),
         this.sayLine,
         this.predictBox,
@@ -454,12 +483,18 @@ export function createWidget(UC) {
       if (this.resetButton) this.label(this.resetButton, "reset", t("reset"));
       if (this.scrubber) this.scrubber.setAttribute("aria-label", t("scrubber"));
       this.textButton.textContent = t("textView");
+      this.choiceBox.setAttribute("aria-label", t("algorithm"));
+      const id = this.constructor.id;
+      for (const button of this.choices) {
+        button.textContent = UC.t(`widget.${id}.caption.${button.dataset.algorithm}`);
+        button.setAttribute("aria-pressed", String(button.dataset.algorithm === this.algorithm));
+      }
       if (this.field) {
-        this.fieldLabel.textContent = t("edit.label");
+        this.fieldLabel.textContent = UC.t(this.constructor.editLabel);
         this.runButton.textContent = t("edit.run");
         this.restoreButton.textContent = t("edit.restore");
       }
-      this.renderCode();
+      this.renderCode(this.currentBlock());
       this.textList = null;
       if (this.pending !== undefined && this.pending !== null) this.ask(this.pending, false);
       if (this.stepList.length) this.paint();
@@ -471,12 +506,14 @@ export function createWidget(UC) {
 
     /* ---------- pseudocode (9) ---------- */
 
-    renderCode() {
-      const algorithm = this.algorithm;
+    /** Renders the pseudocode of `block`: an algorithm, or the operation a step names in `step.code`. */
+    renderCode(block = this.codeBlock || this.algorithm) {
+      this.codeBlock = block;
+      const algorithm = block;
       const fitting = this.codes.filter((pre) => !pre.dataset.algorithm || pre.dataset.algorithm.split(/\s+/).includes(algorithm));
       const own = byLanguage(fitting, UC.lang);
       const defaults = this.pseudocode(algorithm);
-      const known = new Set(defaults.map((line) => line.split("|")[0]).filter(Boolean));
+      const known = new Set(defaults.flatMap((line) => line.split("|")[0].split(" ")).filter(Boolean));
       this.codeBox.querySelector(":scope > .uc-widget__pre")?.remove();
       this.codeHolder.append(...this.codes);
       let pre;
@@ -526,9 +563,15 @@ export function createWidget(UC) {
       }
     }
 
+    currentBlock() {
+      const step = this.stepList[this.index];
+      return (step && step.code) || this.algorithm;
+    }
+
     paint() {
       const step = this.stepList[this.index];
       if (!step) return;
+      if (this.currentBlock() !== this.codeBlock) this.renderCode(this.currentBlock());
       this.draw(step, this.svg);
       this.svg.setAttribute("aria-label", this.describe(step));
       this.sayLine.textContent = say(step.say);
@@ -704,7 +747,7 @@ export function createWidget(UC) {
     /* ---------- editable (12) ---------- */
 
     edit(text) {
-      const name = this.constructor.inputAttributes[0];
+      const name = this.editName;
       const before = this.overrides;
       this.overrides = text === null ? {} : { ...before, [name]: text };
       let run;

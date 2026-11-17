@@ -10,6 +10,34 @@ Os widgets são uma biblioteca à parte do kit, em `widgets/v1/`: uma página qu
 
 Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o widget ainda pode mudar de forma compatível até à versão 1.0.0 da biblioteca.
 
+- [Árvore binária de pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) `<uc-widget-bst>`
+
+  Inserir, remover, procurar, mínimo e máximo numa árvore binária de pesquisa, e os percursos pré-ordem, em-ordem, pós-ordem e em largura.
+
+  Experimental Vaga 1 EDados
+
+  Algoritmos: `operations`, `preorder`, `inorder`, `postorder`, `levelorder` · 5.5 KB gzip
+- [Lista ligada](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-list.md) `<uc-widget-list>`
+
+  Lista ligada simples: adicionar no início e no fim, inserir, remover, procurar e inverter, ponteiro a ponteiro.
+
+  Experimental Vaga 1 EDados PI
+
+  Algoritmos: `singly` · 6.0 KB gzip
+- [Recursão](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-recursion.md) `<uc-widget-recursion>`
+
+  Árvore de chamadas e pilha de chamadas do fatorial, de Fibonacci e das Torres de Hanói.
+
+  Experimental Vaga 1 IP PI EDados
+
+  Algoritmos: `factorial`, `fibonacci`, `hanoi` · 3.2 KB gzip
+- [Pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-search.md) `<uc-widget-search>`
+
+  Pesquisa linear, pesquisa binária e primeira posição ≥ alvo (lower bound), passo a passo.
+
+  Experimental Vaga 1 IP EDados PI PC
+
+  Algoritmos: `linear`, `binary`, `lower` · 3.2 KB gzip
 - [Ordenação](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-sort.md) `<uc-widget-sort>`
 
   Bolha, seleção, inserção, merge sort, quicksort e counting sort, passo a passo.
@@ -17,6 +45,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 IP EDados PI
 
   Algoritmos: `bubble`, `selection`, `insertion`, `merge`, `quick`, `counting` · 5.2 KB gzip
+- [Pilha e fila](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-stack-queue.md) `<uc-widget-stack-queue>`
+
+  Pilha (push, pop, peek) e fila (enqueue, dequeue, peek), em vetor (a fila como vetor circular) ou em lista ligada.
+
+  Experimental Vaga 1 EDados PI
+
+  Algoritmos: `stack`, `queue` · 5.7 KB gzip
 
 ## Planeados
 

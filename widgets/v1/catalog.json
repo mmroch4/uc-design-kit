@@ -3,6 +3,135 @@
   "kit": ">=1.1",
   "widgets": [
     {
+      "name": "uc-widget-bst",
+      "file": "uc-widget-bst.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 1,
+      "title": {
+        "pt": "Árvore binária de pesquisa",
+        "en": "Binary search tree"
+      },
+      "summary": {
+        "pt": "Inserir, remover, procurar, mínimo e máximo numa árvore binária de pesquisa, e os percursos pré-ordem, em-ordem, pós-ordem e em largura.",
+        "en": "Insert, remove, search, minimum and maximum in a binary search tree, and the pre-order, in-order, post-order and level-order traversals."
+      },
+      "page": "docs/pt/widgets/uc-widget-bst.html",
+      "algorithms": [
+        "operations",
+        "preorder",
+        "inorder",
+        "postorder",
+        "levelorder"
+      ],
+      "courses": [
+        "EDados"
+      ],
+      "attributes": [
+        "values",
+        "ops",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 5637
+    },
+    {
+      "name": "uc-widget-list",
+      "file": "uc-widget-list.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 1,
+      "title": {
+        "pt": "Lista ligada",
+        "en": "Linked list"
+      },
+      "summary": {
+        "pt": "Lista ligada simples: adicionar no início e no fim, inserir, remover, procurar e inverter, ponteiro a ponteiro.",
+        "en": "Singly linked list: add at the front and the end, insert, remove, search and reverse, pointer by pointer."
+      },
+      "page": "docs/pt/widgets/uc-widget-list.html",
+      "algorithms": [
+        "singly"
+      ],
+      "courses": [
+        "EDados",
+        "PI"
+      ],
+      "attributes": [
+        "values",
+        "ops"
+      ],
+      "predict": true,
+      "gzip": 6111
+    },
+    {
+      "name": "uc-widget-recursion",
+      "file": "uc-widget-recursion.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 1,
+      "title": {
+        "pt": "Recursão",
+        "en": "Recursion"
+      },
+      "summary": {
+        "pt": "Árvore de chamadas e pilha de chamadas do fatorial, de Fibonacci e das Torres de Hanói.",
+        "en": "Call tree and call stack of factorial, Fibonacci and the Towers of Hanoi."
+      },
+      "page": "docs/pt/widgets/uc-widget-recursion.html",
+      "algorithms": [
+        "factorial",
+        "fibonacci",
+        "hanoi"
+      ],
+      "courses": [
+        "IP",
+        "PI",
+        "EDados"
+      ],
+      "attributes": [
+        "n",
+        "algorithm"
+      ],
+      "predict": true,
+      "gzip": 3226
+    },
+    {
+      "name": "uc-widget-search",
+      "file": "uc-widget-search.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 1,
+      "title": {
+        "pt": "Pesquisa",
+        "en": "Searching"
+      },
+      "summary": {
+        "pt": "Pesquisa linear, pesquisa binária e primeira posição ≥ alvo (lower bound), passo a passo.",
+        "en": "Linear search, binary search and the first position ≥ target (lower bound), step by step."
+      },
+      "page": "docs/pt/widgets/uc-widget-search.html",
+      "algorithms": [
+        "linear",
+        "binary",
+        "lower"
+      ],
+      "courses": [
+        "IP",
+        "EDados",
+        "PI",
+        "PC"
+      ],
+      "attributes": [
+        "values",
+        "target",
+        "algorithm"
+      ],
+      "predict": true,
+      "gzip": 3244
+    },
+    {
       "name": "uc-widget-sort",
       "file": "uc-widget-sort.js",
       "status": "experimental",
@@ -38,6 +167,39 @@
       ],
       "predict": true,
       "gzip": 5355
+    },
+    {
+      "name": "uc-widget-stack-queue",
+      "file": "uc-widget-stack-queue.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 1,
+      "title": {
+        "pt": "Pilha e fila",
+        "en": "Stack and queue"
+      },
+      "summary": {
+        "pt": "Pilha (push, pop, peek) e fila (enqueue, dequeue, peek), em vetor (a fila como vetor circular) ou em lista ligada.",
+        "en": "Stack (push, pop, peek) and queue (enqueue, dequeue, peek), in an array (the queue as a circular buffer) or in a linked list."
+      },
+      "page": "docs/pt/widgets/uc-widget-stack-queue.html",
+      "algorithms": [
+        "stack",
+        "queue"
+      ],
+      "courses": [
+        "EDados",
+        "PI"
+      ],
+      "attributes": [
+        "values",
+        "ops",
+        "algorithm",
+        "impl",
+        "capacity"
+      ],
+      "predict": false,
+      "gzip": 5810
     }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "name": "uc-widget-bst",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 1,
+  "title": { "pt": "Árvore binária de pesquisa", "en": "Binary search tree" },
+  "summary": {
+    "pt": "Inserir, remover, procurar, mínimo e máximo numa árvore binária de pesquisa, e os percursos pré-ordem, em-ordem, pós-ordem e em largura.",
+    "en": "Insert, remove, search, minimum and maximum in a binary search tree, and the pre-order, in-order, post-order and level-order traversals."
+  },
+  "page": "docs/pt/widgets/uc-widget-bst.html",
+  "algorithms": ["operations", "preorder", "inorder", "postorder", "levelorder"],
+  "courses": ["EDados"],
+  "attributes": ["values", "ops", "algorithm", "algorithms"],
+  "predict": true,
+  "test": {
+    "input": { "values": [5, 3, 8, 1, 4, 7, 9], "ops": null },
+    "options": [
+      { "algorithm": "operations", "input": { "values": [50, 30, 70, 20, 40, 60, 80], "ops": [{ "verb": "insert", "args": ["45"] }, { "verb": "search", "args": ["60"] }, { "verb": "remove", "args": ["30"] }, { "verb": "remove", "args": ["20"] }, { "verb": "remove", "args": ["70"] }, { "verb": "min", "args": [] }, { "verb": "max", "args": [] }, { "verb": "search", "args": ["10"] }, { "verb": "insert", "args": ["45"] }] } }
+    ]
+  }
+}

@@ -122,7 +122,7 @@ async function findPages() {
   }
   pages.push("examples/edados-2526/guioes/aula10.html");
   // The widget test page (several widgets, predict, editable, bilingual).
-  pages.push("tests/pages/uc-widget-sort.html");
+  pages.push("tests/pages/uc-widget-sort.html", "tests/pages/uc-widget-w2.html");
   // The header search button (a site with search on and an index).
   pages.push("tests/pages/search/index.html");
   // The one CSS-block demo with behaviour (sortable headers).

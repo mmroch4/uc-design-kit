@@ -1,0 +1,81 @@
+## algorithm=stack · input {"values":[4,7,1],"ops":null,"impl":"array","capacity":4}
+  1. Pilha vazia, num vetor de capacidade 4.
+  2. push(4): pôr 4 no topo.
+  3. Escreve 4 na posição 0; top = 0.
+  4. push(7): pôr 7 no topo.
+  5. Escreve 7 na posição 1; top = 1.
+  6. push(1): pôr 1 no topo.
+  7. Escreve 1 na posição 2; top = 2.
+  8. Fim: a pilha tem 3 elemento(s), do fundo para o topo: 4 7 1.
+
+## algorithm=queue · input {"values":[4,7,1],"ops":null,"impl":"array","capacity":4}
+  1. Fila vazia, num vetor de capacidade 4.
+  2. enqueue(4): pôr 4 no fim da fila.
+  3. Escreve 4 na posição 0; back = 0.
+  4. enqueue(7): pôr 7 no fim da fila.
+  5. Escreve 7 na posição 1; back = 1.
+  6. enqueue(1): pôr 1 no fim da fila.
+  7. Escreve 1 na posição 2; back = 2.
+  8. Fim: a fila tem 3 elemento(s), da frente para o fim: 4 7 1.
+
+## algorithm=stack · input {"values":[3,8],"ops":[{"verb":"push","args":["5"]},{"verb":"peek","args":[]},{"verb":"pop","args":[]},{"verb":"pop","args":[]},{"verb":"pop","args":[]},{"verb":"pop","args":[]}],"impl":"array","capacity":4}
+  1. Pilha com 2 elemento(s) num vetor de capacidade 4.
+  2. push(5): pôr 5 no topo.
+  3. Escreve 5 na posição 2; top = 2.
+  4. peek(): ver o topo sem o tirar.
+  5. O topo é 5.
+  6. pop(): tirar o elemento do topo.
+  7. O topo é 5.
+  8. 5 sai da posição 2; o topo desce uma posição.
+  9. pop(): tirar o elemento do topo.
+ 10. O topo é 8.
+ 11. 8 sai da posição 1; o topo desce uma posição.
+ 12. pop(): tirar o elemento do topo.
+ 13. O topo é 3.
+ 14. 3 sai da posição 0; o topo desce uma posição.
+ 15. pop(): tirar o elemento do topo.
+ 16. A pilha está vazia: não há topo. Underflow.
+ 17. Fim: ficou vazia.
+
+## algorithm=queue · input {"values":[3,8,5],"ops":[{"verb":"dequeue","args":[]},{"verb":"enqueue","args":["1"]},{"verb":"enqueue","args":["9"]},{"verb":"enqueue","args":["7"]},{"verb":"dequeue","args":[]}],"impl":"array","capacity":4}
+  1. Fila com 3 elemento(s) num vetor de capacidade 4.
+  2. dequeue(): tirar o elemento da frente.
+  3. A frente é 3.
+  4. 3 sai da posição 0; front avança uma posição.
+  5. enqueue(1): pôr 1 no fim da fila.
+  6. Escreve 1 na posição 3; back = 3.
+  7. enqueue(9): pôr 9 no fim da fila.
+  8. Escreve 9 na posição 0: o fim deu a volta ao vetor; back = 0.
+  9. enqueue(7): pôr 7 no fim da fila.
+ 10. O vetor está cheio (capacidade 4): 7 não cabe. Overflow.
+ 11. dequeue(): tirar o elemento da frente.
+ 12. A frente é 8.
+ 13. 8 sai da posição 1; front avança uma posição.
+ 14. Fim: a fila tem 3 elemento(s), da frente para o fim: 5 1 9.
+
+## algorithm=stack · input {"values":[3,8],"ops":[{"verb":"push","args":["5"]},{"verb":"pop","args":[]},{"verb":"peek","args":[]}],"impl":"list","capacity":8}
+  1. Pilha com 2 elemento(s) numa lista ligada.
+  2. push(5): pôr 5 no topo.
+  3. Cria um nó novo com 5.
+  4. node.next = top; top = node: 5 fica por cima de 8.
+  5. pop(): tirar o elemento do topo.
+  6. O topo é 5.
+  7. top = top.next: 5 sai da pilha.
+  8. peek(): ver o topo sem o tirar.
+  9. O topo é 8.
+ 10. Fim: a pilha tem 2 elemento(s), do fundo para o topo: 3 8.
+
+## algorithm=queue · input {"values":[3],"ops":[{"verb":"enqueue","args":["1"]},{"verb":"dequeue","args":[]},{"verb":"dequeue","args":[]},{"verb":"dequeue","args":[]}],"impl":"list","capacity":8}
+  1. Fila com 1 elemento(s) numa lista ligada.
+  2. enqueue(1): pôr 1 no fim da fila.
+  3. Cria um nó novo com 1.
+  4. back.next = node; back = node: 1 fica depois de 3.
+  5. dequeue(): tirar o elemento da frente.
+  6. A frente é 3.
+  7. front = front.next: 3 sai da fila.
+  8. dequeue(): tirar o elemento da frente.
+  9. A frente é 1.
+ 10. front = front.next: 1 sai da fila.
+ 11. dequeue(): tirar o elemento da frente.
+ 12. A fila está vazia: não há frente. Underflow.
+ 13. Fim: ficou vazia.
