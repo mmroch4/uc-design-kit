@@ -64,6 +64,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
 11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
 12. **Sem dados de estudantes**: notas, números ou listas de turnos ficam fora do site público.
+13. **Pesquisa**: o `search-index.js` é gerado pelo `uc-site.py` e nunca se edita. Para tirar texto dos resultados, `data-search-ignore` no elemento; para pesquisar só numa pasta, [`<uc-search scope="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md).
 
 ## Verificar o resultado
 
@@ -71,6 +72,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - Abrir a consola do browser (F12): os avisos `[uc-kit]` apontam campos do `course.js` em falta ou inválidos.
 - Acrescentar `?today=2026-10-15` ao endereço para ver o site como num dia do semestre: a semana atual, os prazos e os avisos mudam.
 - Comparar os atributos usados com as tabelas "Atributos" das páginas dos componentes. Um atributo que não está lá não faz nada.
+- Correr `python3 uc-site.py` na pasta do site: verifica links, imagens e o `course.js` e reescreve o índice da pesquisa.
 - Publicar só depois: ver [Publicar](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md).
 
 ## Ver também

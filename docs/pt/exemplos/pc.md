@@ -52,6 +52,7 @@ O [`course.js`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/pc-2
 - Seis páginas na navegação e quatro plataformas (Mooshak, CodeForces, Discord e SIGARRA); CSES, UVA e SPOJ estão lá com `hidden: true`, só para o `<uc-problems>` os reconhecer como juízes.
 - Os prazos dos problem sets (`kind: "submission"`) e os concursos; os que ainda não têm dia ficam só com o mês (`2027-01`).
 - `today` fixo em 17 de novembro de 2026, para a demonstração mostrar sempre a semana 9.
+- `search: true`: o botão «Pesquisar» do cabeçalho procura nas 58 páginas, e a [lista de problemas](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/problems/index.html) tem uma caixa [`<uc-search scope="problems/">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md) que procura só nos enunciados. O índice (cerca de 105 KB) é gerado pelo [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md).
 
 ## Personalização
 

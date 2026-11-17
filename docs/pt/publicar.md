@@ -69,7 +69,19 @@ Gratuito, rápido em qualquer país e com um endereço de pré-visualização pa
 - **Sem Git.** Em **Workers & Pages → Create → Pages → Upload assets**, arrasta-se a pasta do site. Para atualizar, cria-se um novo deployment com a pasta nova.
 - **Com Git.** **Connect to Git**, escolhe-se o repositório e deixa-se o comando de build vazio e a pasta de saída `/`. Cada `git push` publica.
 
-O site fica em `https://projeto.pages.dev/` e pode ter um domínio próprio. O Cloudflare Pages redireciona `pagina.html` para `pagina`; os links com `.html` continuam a funcionar (o redirecionamento custa uma fração de segundo) e mantêm o site portável para outros servidores.
+O site fica em `https://projeto.pages.dev/` e pode ter um domínio próprio. O Cloudflare Pages redireciona `pagina.html` para `pagina`; os links com `.html` continuam a funcionar (o redirecionamento custa uma fração de segundo) e mantêm o site portável para outros servidores. A pesquisa também funciona: o Cloudflare responde ao pedido `HEAD` com que o kit confirma que o `search-index.js` existe.
+
+## Pesquisa no site
+
+Com `search: true` no `course.js`, o `search-index.js` publica-se com o resto da pasta. Gera-se antes de copiar, com `python3 uc-site.py`, ou no próprio servidor, depois de copiar (ver [O índice da pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md#indice)). Se não estiver no servidor, o botão «Pesquisar» simplesmente não aparece.
+
+O índice só é descarregado quando um aluno abre a pesquisa. Os servidores costumam enviá-lo comprimido, o que o reduz a cerca de um quarto. Se o servidor do departamento não o fizer (nas ferramentas do browser, separador Rede, a resposta do `search-index.js` não tem `Content-Encoding: gzip`), um ficheiro `.htaccess` na pasta do site, com esta linha, liga a compressão num servidor Apache. É opcional: sem ela, a primeira pesquisa só demora um pouco mais.
+
+`.htaccess`:
+
+```text
+AddOutputFilterByType DEFLATE text/javascript application/javascript
+```
 
 ## Versão do kit
 

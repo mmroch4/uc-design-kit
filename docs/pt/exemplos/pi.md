@@ -53,6 +53,7 @@ O [`course.js`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/pi-2
 - Sete páginas na navegação, uma delas com um endereço por língua, e duas plataformas (Mooshak e SIGARRA).
 - Uma equipa de seis pessoas, com gabinete e horário de atendimento das regentes, e o `schedule` com duas turmas teóricas e oito práticas.
 - Os dois testes práticos com duração, turnos e local, o exame, o recurso e dez prazos de submissão de problemas (`kind: "submission"`).
+- `search: true`: a pesquisa inclui os 112 enunciados, uma vez por língua, e cada aluno só vê os resultados da língua que escolheu. O índice tem cerca de 370 KB (100 KB comprimido) e só é descarregado quando se abre a pesquisa.
 
 ## Personalização
 

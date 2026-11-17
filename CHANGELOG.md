@@ -71,7 +71,7 @@ released yet; contract `docs/plan/widgets-api.md`).
   the same rule as `uc-site.py`, so any section can be linked. After start-up
   the kit scrolls again to the `#hash` target and highlights it for 2 s
   (`.uc-target-flash`). `<uc-guide>` uses the same ids.
-- Search foundations in the kit (search phase S1, v1.2.0 in progress): the
+- Search foundations in the kit (search phase S1, v1.2.0): the
   `search` field of `course.js` (`UC.course.search`), one `HEAD` per visit at
   idle for the index (`sessionStorage`, 5 s timeout; the index script over
   `file://`), the header button "Pesquisar" with `Ctrl K`, `⌘K` and `/`,
@@ -79,7 +79,7 @@ released yet; contract `docs/plan/widgets-api.md`).
   `uc:searchready` event and the new `uc-search.js` (loaded on open, 6 KB
   budget; the dialog comes in phase S4). Sites without `search` make no new
   request. Browser checks in `scripts/check-search.mjs`.
-- The search dialog and `<uc-search>` (search phase S4, v1.2.0 in progress):
+- The search dialog and `<uc-search>` (search phase S4, v1.2.0):
   `uc-search.js` (5 KB gzipped) now holds the engine (folded prefix
   matching, one typo from 5 letters, section title > page title > text,
   grouped by page, language filter), the modal dialog of the header button

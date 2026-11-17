@@ -196,7 +196,12 @@ git add . && git commit -m "Site 2026/27" && git push</code></pre></uc-code>
           <li><strong>Sem Git.</strong> Em <strong>Workers &amp; Pages → Create → Pages → Upload assets</strong>, arrasta-se a pasta do site. Para atualizar, cria-se um novo deployment com a pasta nova.</li>
           <li><strong>Com Git.</strong> <strong>Connect to Git</strong>, escolhe-se o repositório e deixa-se o comando de build vazio e a pasta de saída <code>/</code>. Cada <code>git push</code> publica.</li>
         </ul>
-        <p>O site fica em <code>https://projeto.pages.dev/</code> e pode ter um domínio próprio. O Cloudflare Pages redireciona <code>pagina.html</code> para <code>pagina</code>; os links com <code>.html</code> continuam a funcionar (o redirecionamento custa uma fração de segundo) e mantêm o site portável para outros servidores.</p>
+        <p>O site fica em <code>https://projeto.pages.dev/</code> e pode ter um domínio próprio. O Cloudflare Pages redireciona <code>pagina.html</code> para <code>pagina</code>; os links com <code>.html</code> continuam a funcionar (o redirecionamento custa uma fração de segundo) e mantêm o site portável para outros servidores. A pesquisa também funciona: o Cloudflare responde ao pedido <code>HEAD</code> com que o kit confirma que o <code>search-index.js</code> existe.</p>
+
+        <h2 id="pesquisa">Pesquisa no site</h2>
+        <p>Com <code>search: true</code> no <code>course.js</code>, o <code>search-index.js</code> publica-se com o resto da pasta. Gera-se antes de copiar, com <code>python3 uc-site.py</code>, ou no próprio servidor, depois de copiar (ver <a href="manter.html#indice">O índice da pesquisa</a>). Se não estiver no servidor, o botão «Pesquisar» simplesmente não aparece.</p>
+        <p>O índice só é descarregado quando um aluno abre a pesquisa. Os servidores costumam enviá-lo comprimido, o que o reduz a cerca de um quarto. Se o servidor do departamento não o fizer (nas ferramentas do browser, separador Rede, a resposta do <code>search-index.js</code> não tem <code>Content-Encoding: gzip</code>), um ficheiro <code>.htaccess</code> na pasta do site, com esta linha, liga a compressão num servidor Apache. É opcional: sem ela, a primeira pesquisa só demora um pouco mais.</p>
+        <uc-code lang="text" filename=".htaccess" no-download><pre><code>AddOutputFilterByType DEFLATE text/javascript application/javascript</code></pre></uc-code>
 
         <h2 id="versao">Versão do kit</h2>
         <p>As páginas carregam o kit de <code>https://uc-design-kit.miguelrocha.dev/kit/v1/</code>. Há duas formas de escolher a versão:</p>
@@ -255,6 +260,7 @@ git add . && git commit -m "Site 2026/27" && git push</code></pre></uc-code>
           <li class="docs-toc__sub"><a href="#dcc-permissoes">Permissões</a></li>
           <li><a href="#github-pages">GitHub Pages</a></li>
           <li><a href="#cloudflare">Cloudflare Pages</a></li>
+          <li><a href="#pesquisa">Pesquisa no site</a></li>
           <li><a href="#versao">Versão do kit</a></li>
           <li><a href="#links-partidos">Links partidos</a></li>
           <li><a href="#data-das-paginas">Data de atualização</a></li>

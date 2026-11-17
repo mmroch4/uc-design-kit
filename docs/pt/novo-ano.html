@@ -195,6 +195,9 @@ grep -rn "2025\|2026" --include="*.html" .</code></pre></uc-code>
         <p>Ver <a href="publicar.html#versao">Versão do kit</a>. Em macOS, <code>sed -i ""</code> em vez de <code>sed -i</code>.</p>
 
         <h2 id="verificar">6. Verificar e publicar</h2>
+        <p>Corre-se o <code>uc-site.py</code> na pasta nova. Além de encontrar links para o ano anterior que já não existem, reescreve o índice da pesquisa, que veio copiado com a pasta e ainda tem o título e as datas do ano anterior:</p>
+        <uc-code lang="bash" no-download><pre><code>cd 2728
+python3 uc-site.py</code></pre></uc-code>
         <p>Abre-se o site com <code>?today=</code> num dia da primeira semana, por exemplo <code>index.html?today=2026-09-16</code>, e confirma-se que a semana 1 é a atual e que os prazos são os do ano novo. Depois publica-se a pasta como no ano anterior (ver <a href="publicar.html">Publicar</a>).</p>
       </article>
       <!-- docs:pager -->

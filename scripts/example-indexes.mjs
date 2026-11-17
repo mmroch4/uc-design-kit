@@ -1,7 +1,9 @@
 /**
- * Search indexes of the examples (search plan, phase S3).
+ * Search indexes of the examples and of the template (search plan, phases S3
+ * and S5).
  *
- * For each folder of examples/ whose course.js turns `search` on, runs the
+ * For each folder of examples/, and for template/, whose course.js turns
+ * `search` on, runs the
  * maintenance script teachers use, template/uc-site.py, and keeps the index
  * it prints next to course.js. The script is the only implementation of the
  * extraction rules (docs/plan/search-api.md sections 4 to 6): nothing here
@@ -35,14 +37,18 @@ const withoutDate = (source) => source.replace(/"generated":"[^"]*"/, '"generate
 /** Writes (or, with check, verifies) the examples' indexes. Returns the number of problems. */
 export async function buildExampleIndexes({ check = false } = {}) {
   let problems = 0;
-  for (const name of (await readdir(EXAMPLES)).sort()) {
-    const folder = path.join(EXAMPLES, name);
+  const sites = (await readdir(EXAMPLES)).sort().map((name) => `examples/${name}`);
+  // The template ships its index so a new site shows the search button from
+  // the start; uc-site.py rewrites it after the teacher's first change.
+  sites.push("template");
+  for (const name of sites) {
+    const folder = path.join(ROOT, name);
     const course = await readFile(path.join(folder, "course.js"), "utf8").catch(() => null);
     const index = course && indexName(course);
     if (!index) continue;
     const run = spawnSync("python3", [SCRIPT, "index", "--stdout", "--site", folder], { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 });
     if (run.error || run.status !== 0) {
-      console.error(`examples/${name}: python3 template/uc-site.py index failed: ${run.error ? run.error.message : run.stderr.trim()}`);
+      console.error(`${name}: python3 template/uc-site.py index failed: ${run.error ? run.error.message : run.stderr.trim()}`);
       problems++;
       continue;
     }
@@ -50,11 +56,11 @@ export async function buildExampleIndexes({ check = false } = {}) {
     const previous = await readFile(target, "utf8").catch(() => "");
     if (withoutDate(previous) === withoutDate(run.stdout)) continue;
     if (check) {
-      console.error(`examples/${name}/${index} is out of date. Run: npm run build`);
+      console.error(`${name}/${index} is out of date. Run: npm run build`);
       problems++;
     } else {
       await writeFile(target, run.stdout);
-      console.log(`wrote examples/${name}/${index} (${(Buffer.byteLength(run.stdout) / 1024).toFixed(1)} KB)`);
+      console.log(`wrote ${name}/${index} (${(Buffer.byteLength(run.stdout) / 1024).toFixed(1)} KB)`);
     }
   }
   return problems;

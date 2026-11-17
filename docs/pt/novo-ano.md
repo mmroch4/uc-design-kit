@@ -65,4 +65,11 @@ Ver [Versão do kit](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md#v
 
 ## 6. Verificar e publicar
 
+Corre-se o `uc-site.py` na pasta nova. Além de encontrar links para o ano anterior que já não existem, reescreve o índice da pesquisa, que veio copiado com a pasta e ainda tem o título e as datas do ano anterior:
+
+```sh
+cd 2728
+python3 uc-site.py
+```
+
 Abre-se o site com `?today=` num dia da primeira semana, por exemplo `index.html?today=2026-09-16`, e confirma-se que a semana 1 é a atual e que os prazos são os do ano novo. Depois publica-se a pasta como no ano anterior (ver [Publicar](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md)).

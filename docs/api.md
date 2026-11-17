@@ -150,7 +150,10 @@ gives one entry per language. The file is a script that sets
 `window.UC_SEARCH_INDEX` (format version `1`, one page per line), so it also
 loads from `file://`; `SOURCE_DATE_EPOCH` fixes its `generated` time. Full
 rules: `docs/plan/search-api.md` sections 4 to 6. The kit reads it from
-v1.2.0.
+v1.2.0. Above 1 MB the script prints a warning after the summary (the first
+search of a visit gets slower; leave folders out with `search.exclude`). The
+template ships with `search: true` and a `search-index.js` for its sample
+pages, which the first run of the script replaces.
 
 ### 2.1 Types
 
@@ -191,7 +194,7 @@ v1.2.0.
 | `editions` | URL | no | — | Address of the shared editions file, relative to `course.js`, usually `"../editions.js"`. See 2.9. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
 | `runner` | object | no | Codapi + browser | Where `<uc-code run>` executes code. See 7.1. |
-| `search` | `true` \| `{ index?, exclude? }` | no | off | Site search (v1.2.0, **in progress**: the results dialog arrives with the next phase, so do not turn it on in a real site yet). `true` = `{ index: "search-index.js", exclude: [] }`. `index` is the index file, relative to `course.js`, written by `uc-site.py`; `exclude` is read by the script only. Normalised to `UC.course.search = { index, exclude }` or `null`. See 3.1 and 7. |
+| `search` | `true` \| `{ index?, exclude? }` | no | off | Site search (v1.2.0; on in the template). `true` = `{ index: "search-index.js", exclude: [] }`. `index` is the index file, relative to `course.js`, written by `uc-site.py`; `exclude` is read by the script only. Normalised to `UC.course.search = { index, exclude }` or `null`. See 3.1 and 7. |
 
 ### 2.3 Pages
 
@@ -427,7 +430,7 @@ so the kit scrolls to the `#hash` target again once the page is visible and
 marks it for 2 s with the class `uc-target-flash` (a soft accent background
 and outline; no transition with `prefers-reduced-motion`).
 
-**Search button** (v1.2.0, in progress). With `search` in `course.js`, the kit
+**Search button** (v1.2.0). With `search` in `course.js`, the kit
 asks once per visit, when the browser is idle, whether the index file exists
 (`HEAD`, no cache, 5 s timeout; the answer is kept in `sessionStorage` under
 `uc:<course>:search`; over `file://` the index is loaded instead). While it
@@ -442,7 +445,7 @@ index, once. Without `search` nothing of this runs and no request is made.
 Stable classes: `uc-search-button`, `uc-search-button--pending`,
 `uc-search-button__label`, `uc-search-button__hint`.
 
-**Search dialog** (v1.2.0, in progress). The button opens a modal
+**Search dialog** (v1.2.0). The button opens a modal
 `<dialog class="uc-search-dialog">`. While `uc-search.js` (about 5 KB
 gzipped) loads, the button has `aria-busy="true"`; if it cannot load,
 "Não foi possível carregar a pesquisa." is announced and the next press tries
@@ -470,8 +473,7 @@ configuration. Children, if any, are appended below the tagline.
 
 #### `<uc-search>`
 
-A search field with its results below it, inside a page (v1.2.0, in
-progress). It is defined in `uc-search.js`, which `uc-kit.js` loads when the
+A search field with its results below it, inside a page (v1.2.0). It is defined in `uc-search.js`, which `uc-kit.js` loads when the
 site's index is known to exist (`uc:searchready`) and the page has a
 `<uc-search>`: without `search` in `course.js` or without the index file the
 element stays empty and nothing is downloaded. The index itself downloads

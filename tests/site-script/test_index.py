@@ -368,8 +368,9 @@ class ExamplesTest(unittest.TestCase):
                 index = uc_site.build_index(site, course, uc_site.SearchConfig(True), generated="2026-01-01T00:00:00Z")
                 source = uc_site.index_source(index)
                 self.assertEqual(parse_index(source), index)
-                # Under the size that stops the plan (decision 8).
-                self.assertLess(len(source.encode("utf-8")), 300 * 1024)
+                # Under the size from which the script warns (the first
+                # search of a visit gets slower above it).
+                self.assertLess(len(source.encode("utf-8")), uc_site.LARGE_INDEX)
                 for entry in index["pages"]:
                     self.assertTrue(entry["t"], entry["p"])
                     ids = [s["i"] for s in entry["s"] if s["i"]]

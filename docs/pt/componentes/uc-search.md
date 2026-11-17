@@ -119,3 +119,4 @@ Não aparece nada: a pesquisa precisa do kit. O resto da página fica igual.
 - [Pesquisa no site](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#pesquisa): o botão «Pesquisar» do cabeçalho e os atalhos `Ctrl` `K` e `/`.
 - [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md): verificar o site e criar o índice.
 - [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md): a lista de problemas, com filtros.
+- Uso real: [a lista de problemas de Programação Competitiva 2026/27](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/problems/index.html), com `<uc-search scope="problems/">` por cima da lista.

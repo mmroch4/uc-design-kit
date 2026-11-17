@@ -15,6 +15,7 @@ window.UC_COURSE = {
   institution: { name: "DCC · FCUP", url: "https://www.dcc.fc.up.pt" },
   // Navy, close to the bars of the original site.
   accentColor: "#1E3A6E",
+  search: true,
 
   semester: {
     start: "2026-09-15",

@@ -164,7 +164,7 @@ python3 uc-site.py</code></pre></uc-code>
           <li>No Windows, o comando é <code>py uc-site.py</code>.</li>
           <li>Se o servidor não tiver Python 3, corre-se na cópia local antes de publicar: o resultado é o mesmo, exceto as permissões, que dependem do servidor.</li>
         </ul>
-        <p>Quando o <code>course.js</code> tem <code>search: true</code>, o mesmo comando escreve também o índice da pesquisa no site (ver <a href="#indice">O índice da pesquisa</a>). O botão "Pesquisar" que o usa chega na versão 1.2.0 do kit.</p>
+        <p>Quando o <code>course.js</code> tem <code>search: true</code>, o mesmo comando escreve também o índice da pesquisa no site (ver <a href="#indice">O índice da pesquisa</a>). O kit mostra então o botão «Pesquisar» no cabeçalho de todas as páginas (ver <a href="componentes/uc-page.html#pesquisa">Pesquisa no site</a>).</p>
 
         <h2 id="comandos">Comandos e opções</h2>
         <div class="uc-table">
@@ -267,7 +267,24 @@ search: {
           </table>
         </div>
         <p>Um título comprido pode ter outro título nos resultados, com <code>data-search-title="…"</code> no título ou no elemento da secção.</p>
-        <p>O índice de Estruturas de Dados, com 116 páginas, tem cerca de 290 KB (73 KB comprimido pelo servidor) e só é descarregado quando um aluno abre a pesquisa. O script avisa acima de 500 KB: nesse caso, convém deixar de fora pastas que ninguém pesquisa.</p>
+        <p>O índice de Estruturas de Dados, com 116 páginas, tem cerca de 290 KB (75 KB comprimido pelo servidor); o de Programação Imperativa, com os 112 enunciados em duas línguas, cerca de 370 KB (100 KB comprimido). Só é descarregado quando um aluno abre a pesquisa, e uma vez por visita. Um índice maior não estraga nada: só torna mais lenta a primeira pesquisa. O script avisa acima de 1 MB; nesse caso, convém deixar de fora pastas que ninguém pesquisa (arquivos de anos anteriores, código gerado).</p>
+
+        <h3 id="indice-atualizado">Confirmar que o índice está atualizado</h3>
+        <p>A janela da pesquisa mostra no rodapé a data em que o índice foi gerado («Índice de 20 nov 2025»). Se for mais antiga que a última alteração, falta correr o <code>python3 uc-site.py</code>.</p>
+        <p>Quem mantém o site também vê avisos na consola do browser (<kbd>F12</kbd>, separador Consola), começados por <code>[uc-kit]</code>. Os alunos não os veem.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Avisos da pesquisa na consola</caption>
+            <thead>
+              <tr><th scope="col">Aviso</th><th scope="col">O que fazer</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>search-index.js is older than course.js</code></td><td>O <code>updated</code> do <code>course.js</code> é mais recente que o índice. Correr <code>python3 uc-site.py</code>.</td></tr>
+              <tr><td><code>search-index.js was made for "…", not for this course.js</code></td><td>O índice veio de outra cadeira ou de outro ano (por exemplo, copiado com a pasta). Correr <code>python3 uc-site.py</code>.</td></tr>
+              <tr><td><code>… is not a search index this kit can read</code></td><td>O ficheiro foi editado à mão ou foi gerado por um <code>uc-site.py</code> mais recente que o kit. Correr o <code>uc-site.py</code> do <a href="../downloads/uc-template.zip">modelo</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="permissoes">Permissões</h2>
         <p>O servidor web do departamento lê os ficheiros como outro utilizador, por isso cada ficheiro precisa de permissão de leitura para todos (<code>o+r</code>) e cada pasta de permissão de leitura e passagem (<code>o+rx</code>). Um ficheiro sem ela dá "Forbidden" (erro 403). O script avisa; com <code>--fix-permissions</code> corrige, sem tirar nenhuma permissão:</p>
@@ -308,6 +325,7 @@ search: {
           <li><a href="#resultado">Ler o resultado</a></li>
           <li><a href="#verificacoes">O que é verificado</a></li>
           <li><a href="#indice">O índice da pesquisa</a></li>
+          <li class="docs-toc__sub"><a href="#indice-atualizado">Confirmar que o índice está atualizado</a></li>
           <li><a href="#permissoes">Permissões</a></li>
           <li><a href="#automatizar">Automatizar</a></li>
           <li><a href="#atualizar">Atualizar o script</a></li>

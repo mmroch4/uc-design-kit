@@ -507,7 +507,7 @@ Prototype (`search-prototype.py`, Python 3.13, the rules of sections 4–6),
   by the browser: ~73 KB once per cache lifetime is acceptable.
 - Room if a future site is much bigger (S3 may apply them, recording it here):
   drop from `w` the words already in `h`; shorten `x` to 100 characters
-  (−~25 KB on EDados); the script warns above 500 KB.
+  (−~25 KB on EDados); the script warns above 1 MB (500 KB until S5).
 - `course.js` of all four examples reads with the reader of 2.2 (PI needs the
   constants support).
 - Python on the DCC server: **not confirmed from here** (the sandbox cannot
@@ -776,3 +776,30 @@ sections 7 to 10 as follows.
 13. **`uc-site.py`:** `lang` on `<uc-code>` is the programming language and
     is no longer checked against the site's languages (found by the PI
     migration, which used `data-lang` as a work-around).
+
+## 18. Decisions taken in phase S5
+
+1. **Index size.** `LARGE_INDEX` in `uc-site.py` is now 1 MB (about
+   250 KB gzipped): the 300 KB of decision 8 was only the stop threshold of
+   S0. A bigger index only makes the first search of a visit slower. The
+   warning says so. Sharding stays out unless a site passes about 2 MB; the
+   compaction of section 5 (`w` without the words of `h`, 100-character
+   `x`) was not applied: the gain (−12 %) did not justify a format change
+   shared with the engine tests.
+2. **PI.** Its 112 problem statements are back in the index (no more
+   `search="noindex"`): 368 KB, 99 KB gzipped. `tests/site-script` now checks
+   every example against `LARGE_INDEX` instead of 300 KB.
+3. **Examples and template.** All four examples and the template have
+   `search: true`. `scripts/example-indexes.mjs` also writes
+   `template/search-index.js`, so the zip ships an index and `check-pages`
+   gets no `HEAD` 404 (note 16.11). The PC problems page has
+   `<uc-search scope="problems/">`.
+4. **Version.** `uc-site.py --version` says `1.2.0`. The docs no longer say
+   "em preparação"; the CHANGELOG keeps the entries under Unreleased until
+   the release is tagged (the release itself is the maintainer's call).
+5. **Docs.** `manter.html#indice-atualizado` (index date in the dialog
+   footer, the three `[uc-kit]` console warnings), `publicar.html#pesquisa`
+   (`HEAD` on Cloudflare, optional Apache `.htaccess` compression),
+   `novo-ano.html` and `migrar.html` (run `uc-site.py` after copying),
+   `criar-site.html` (the template's `search-index.js`), `llm.html` and
+   `template/AGENTS.md` rule 14 (`<uc-search>`, `data-search-ignore`).
