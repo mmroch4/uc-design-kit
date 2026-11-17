@@ -614,6 +614,17 @@
         ["Nota final: 12 valores", ["✓ Nota ≥ 9,5 (cumprido)", "não verificado: Comparecer a 2 dos 3 concursos."], "Aprovado nesta simulação, se cumprires os requisitos não verificados."],
         ["Nota final: 10 valores", ["✓ Nota ≥ 9,5 (cumprido)", "não verificado: Comparecer a 2 dos 3 concursos."], "Aprovado nesta simulação, se cumprires os requisitos não verificados."],
       ]);
+      // Bilingual names: the label keeps the active language and drops the description (17.4).
+      const host = document.createElement("div");
+      host.hidden = true;
+      host.innerHTML = '<uc-grading calculator><ul><li data-code="EF" data-scale="100"><span lang="pt">Exame</span><span lang="en">Exam</span> <span>Escrito.</span></li><li data-code="P">Prática <span>Duas provas.</span></li></ul></uc-grading>';
+      document.body.append(host);
+      const labels = ["pt", "en"].map((lang) => inLang(lang, () => {
+        host.firstElementChild.render();
+        return Array.from(host.querySelectorAll(".uc-grading__calculator label"), (label) => label.textContent.replace(/\s+/g, " ").trim());
+      }));
+      host.remove();
+      equal(labels, [["EF: Exame (0 a 100)", "P: Prática (0 a 20)"], ["EF: Exam (0 to 100)", "P: Prática (0 to 20)"]]);
       const ratio = '<ul><li data-code="E">E</li><li data-code="P">P</li></ul><ol data-formulas><li><code>CF = E / P</code></li></ol>';
       equal(simulate("", ratio, [[10, 0], [10, 5], [10]]).map(([, result, , state]) => [result, state]), [
         ["", "Não é possível calcular a nota com estes valores."],

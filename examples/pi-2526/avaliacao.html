@@ -20,35 +20,31 @@
 
     <section class="uc-section" aria-labelledby="formula">
       <h2 id="formula"><span lang="pt">Como é calculada a nota</span><span lang="en">How the grade is calculated</span></h2>
-      <!-- Componentes da nota: o peso de cada uma está no <data>; data-min é o mínimo na escala da componente (0 a 20).
-           O kit gera a fórmula, a tabela e a simulação da nota (calculator). -->
-      <uc-grading scale="20" pass="9.5" calculator heading="none">
+      <!-- A fórmula é a do programa da UC, tal como está escrita (EF, AP e RE de 0 a 100).
+           Os pesos, a tabela e o simulador (calculator) saem dela. As regras com <code> são verificadas
+           pelo simulador; o texto a seguir a cada <code> é o que se lê. -->
+      <uc-grading scale="20" calculator heading="none">
         <ul>
-          <li data-code="E" data-min="7"><data value="70%">70 %</data> <span lang="pt">Exame final escrito</span><span lang="en">Written exam</span>
-            <span><span lang="pt">Questões sobre o programa da UC, na época normal ou de recurso. Mínimo de 4,9 valores na nota final, ou seja 7 em 20 no exame.</span><span lang="en">Questions on the syllabus, in the regular or resit period. Minimum 4.9 in the final grade, that is 7 out of 20 in the exam.</span></span></li>
-          <li data-code="AP"><data value="25%">25 %</data> <span lang="pt">Avaliações práticas</span><span lang="en">Practical assessments</span>
+          <li data-code="EF" data-scale="100"><span lang="pt">Exame final escrito</span><span lang="en">Written exam</span>
+            <span><span lang="pt">Questões sobre o programa da UC, na época normal ou de recurso.</span><span lang="en">Questions on the syllabus, in the regular or resit period.</span></span></li>
+          <li data-code="AP" data-scale="100"><span lang="pt">Avaliações práticas</span><span lang="en">Practical assessments</span>
             <span><span lang="pt">Presenciais, em computador, no Mooshak.</span><span lang="en">In person, on the computer, on Mooshak.</span></span>
             <ul>
               <li data-code="AP1"><data value="50%">50 %</data> <span lang="pt">Avaliação Prática 1</span><span lang="en">Practical evaluation 1</span></li>
               <li data-code="AP2"><data value="50%">50 %</data> <span lang="pt">Avaliação Prática 2</span><span lang="en">Practical evaluation 2</span></li>
             </ul></li>
-          <li data-code="RE"><data value="5%">5 %</data> <span lang="pt">Resolução de exercícios</span><span lang="en">Weekly problems</span>
+          <li data-code="RE" data-scale="100"><span lang="pt">Resolução de exercícios</span><span lang="en">Weekly problems</span>
             <span><span lang="pt">Problemas semanais de treino no Mooshak, das aulas 3 a 12.</span><span lang="en">Weekly practice problems on Mooshak, from class 3 to 12.</span></span></li>
         </ul>
+        <ol data-formulas>
+          <li><code>CF = (0.7*EF + 0.25*AP + 0.05*RE) / 5</code></li>
+        </ol>
+        <ul data-rules>
+          <li><code>0.7*EF/5 >= 4.9</code> <span lang="pt">Exame com pelo menos 4,9 valores na nota final (35 % de 14), ou seja 35 em 100 no exame.</span><span lang="en">Exam of at least 4.9 in the final grade (35% of 14), that is 35 out of 100 in the exam.</span></li>
+          <li><code>CF >= 9.5</code> <span lang="pt">Classificação final com pelo menos 9,5 valores.</span><span lang="en">Final grade of at least 9.5 out of 20.</span></li>
+        </ul>
+        <p class="uc-muted"><span lang="pt">A componente contínua (AP e RE) conta em todas as épocas do ano letivo e não se pode repetir na época de recurso ou especial.</span><span lang="en">The continuous components (AP and RE) count in every exam period of the academic year and cannot be repeated in the resit or special period.</span></p>
       </uc-grading>
-      <div class="uc-callout">
-        <p><strong lang="pt">Para aprovar</strong><strong lang="en">To pass</strong></p>
-        <ul class="uc-bullets" lang="pt">
-          <li>Exame (E) com pelo menos 4,9 valores na nota final, ou seja 7 em 20 no exame.</li>
-          <li>Classificação final (CF) com pelo menos 9,5 valores.</li>
-          <li>A componente contínua (AP e RE) conta em todas as épocas do ano letivo e não se pode repetir na época de recurso ou especial.</li>
-        </ul>
-        <ul class="uc-bullets" lang="en">
-          <li>Exam (E) of at least 4.9 in the final grade, that is 7 out of 20 in the exam.</li>
-          <li>Final grade (CF) of at least 9.5 out of 20.</li>
-          <li>The continuous components (PA and WP) count in every exam period of the academic year and cannot be repeated in the resit or special period.</li>
-        </ul>
-      </div>
     </section>
 
     <!-- Datas das provas: editar em course.js (deadlines). O estado é calculado. -->

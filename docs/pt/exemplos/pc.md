@@ -32,7 +32,7 @@ O site de Competitive Programming (CC3032, DCC/FCUP), refeito com o kit a partir
 | --- | --- | --- |
 | [`index.html`](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/index.html) | `<uc-hero>`, `<uc-this-week>`, `<uc-notices>`, `<uc-deadlines>`, `<uc-team>` | `uc-split` para avisos e datas, `uc-shortcuts` para os atalhos. |
 | [`classes.html`](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/classes.html) | `<uc-weeks>`, `<uc-week>` | Uma `<uc-week>` por aula, com a página da aula e o problem set; os concursos e os prazos vêm do `course.js`. |
-| [`evaluation.html`](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/evaluation.html) | `<uc-grading calculator>`, `<uc-deadlines view="table">`, `<uc-date>` | Componentes SI, CE e PDC com subcomponentes, `uc-grid`, `uc-card`, `uc-callout`. |
+| [`evaluation.html`](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/evaluation.html) | `<uc-grading calculator>`, `<uc-deadlines view="table">`, `<uc-date>` | Componentes SI, CE e PDC com subcomponentes, a regra dos concursos em `data-rules` (só texto), `uc-grid`, `uc-card`, `uc-callout`. |
 | [`materials.html`](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/materials.html) | — | Cartões dos juízes online e dos livros, `uc-links`. |
 | [`rankings.html`](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/rankings.html) | — | Só links para o site original, porque as listas têm dados de estudantes. |
 | [`problems/index.html`](https://uc-design-kit.miguelrocha.dev/examples/pc-2627/problems/index.html) | `<uc-problems>` | 52 problemas (Mooshak, CodeForces, CSES, UVA, SPOJ) agrupados por problem set, com filtros e "Resolvido". |
