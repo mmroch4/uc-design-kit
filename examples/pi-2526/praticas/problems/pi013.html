@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI013] Game of Life · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI013 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI013] Game of Life</li></ol>
+    </nav>
+    <h1>[PI013] Game of Life</h1>
+    <div class="uc-content">
+<p>
+The Game of Life (also called Life) is a cellular automaton proposed in 1970 by the British mathematician John Horton Conway. In reality, it is a simulation rather than a game with players. It takes place on an infinite grid, where each cell may be occupied by an organism or not. 
+Occupied cells are called  <strong>alive</strong> and unoccupied cells are called <strong>dead</strong>. 
+In each generation, the cells that are alive may change their state based on the number of neighboring cells that are alive according to the following rules:
+</p>
+<ul>
+<li> The neighbors of a cell are the 8 cells that touch it horizontally, vertically, or diagonally.</li>
+<li> If a cell is alive and has 0 or 1 alive neighbors, then in the next generation the cell dies of loneliness.</li>
+<li> If a cell is alive and has 4 or more alive neighbors, then in the next generation the cell dies of overpopulation.</li>
+<li> A live cell with 2 or 3 alive neighbors remains alive in the next generation.</li>
+<li> If a dead cell has exactly 3 alive neighbors, it becomes alive in the next generation.</li>
+<li> All births and deaths of cells occur simultaneously; that is, changes are based on the current state and never on the future state.</li>
+</ul>
+<p>The following figures illustrate two consecutive states of a Game of Life configuration. </p>
+<p><img alt="" loading="lazy" src="pi013.jpg"/></p>
+
+In this problem, we will consider the grid to be finite and that the cells surrounding it are always dead.
+
+<h2>Input</h2>
+<p>The first line contains three positive integers: the number of rows <strong>L</strong> and columns <strong>C</strong> that define the grid size of the game, and the number of iterations <strong>I</strong> to perform. (<code>1 &lt;= <strong>L</strong>, <strong>C</strong>, <strong>I</strong> &lt;= 30</code>)</p>
+<p>This is followed by <strong>L</strong> lines of characters representing the current state of the game. Dead cells are represented by '.' and alive cells by 'O'.</p>
+<h2>Output</h2>
+<p>You should print the state of the game after <strong>I</strong> iterations, that is, print the matrix representing the game grid with dead cells marked as '.' and alive cells as 'O'.
+</p>
+<h2>Example input/output</h2>
+<div class="uc-table"><table>
+<tr><th scope="col">Input</th><th scope="col">Output</th></tr>
+<tr><td>
+<pre>
+5 5 5
+.....
+.....
+.OOO.
+.....
+.....
+</pre>
+</td>
+<td>
+<pre>
+.....
+..O..
+..O..
+..O..
+.....
+</pre></td></tr>
+</table></div>
+
+ <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi013.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

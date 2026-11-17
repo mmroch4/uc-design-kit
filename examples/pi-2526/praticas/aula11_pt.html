@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 11 · Pilhas e Filas, Complexidade e Ficheiros I/O · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 11: Pilhas e Filas, Complexidade e Ficheiros I/O">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="11">
+    <h1>Aula Prática 11 · Pilhas e Filas, Complexidade e Ficheiros I/O</h1>
+    <p class="uc-small"><a href="aula11.html" hreflang="en" lang="en">English version</a></p>
+    <div class="uc-content">
+<p><a href="aula11.html">Version in English</a><br/>
+</p>
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi055.html">[PI055] Lake Reflection</a> (peso 30%) (main exercise)</li>
+<li><a href="problems/pi056.html">[PI056] Well Balanced Expression</a> (peso 30%) (main exercise)</li>
+<li><a href="problems/pi057.html">[PI057] Two Queues</a> (peso 40%) (main exercise)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>15 de Junho</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3>Exercício 1) Pilhas e Filas com <code>LinkedList</code></h3>
+<p>Nesta aula espera-se que utilize a mesma estrutura <code><strong>LinkedList</strong></code> do Exercício 1 da aula anterior (<a href="aula10_pt.html">Aula Prática #10</a>), recordando que uma pilha segue uma política  <strong>LIFO</strong> (<em>Last In, First Out</em>) e uma fila segue uma política <strong>FIFO</strong> (<em>First In, First Out</em>).<br/>
+</p><p>Este exercício introduz também a utilização de <em>header files</em> (<code><strong>.h</strong></code>) para separar a interface de uma estrutura de dados da sua implementação. Considera a seguinte organização:
+
+</p><ul>
+<li><code><strong>linkedlist.h</strong></code> : declara as estruturas e os protótipos das funções</li>
+<li><code><strong>main.c</strong></code> : inclui <code><strong>linkedlist.h</strong></code> e utiliza as funções</li>
+</ul>
+
+Agora, considera o <em>header file</em> dado <code><strong>linkedlist.h</strong></code>:<br/><br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
+#define NodeInfo int
+
+typedef struct Node {
+    NodeInfo val;
+    struct Node *next;
+} Node;
+
+typedef struct {
+    Node *first;
+    Node *last;
+} LinkedList;
+
+void init(LinkedList *list);
+void push(LinkedList *stack, int val);      // stack: insert at front
+int  pop(LinkedList *stack);                // stack: remove from front
+void enqueue(LinkedList *queue, int val);   // queue: insert at back
+int  dequeue(LinkedList *queue);            // queue: remove from front
+int  isEmpty(LinkedList *list);
+void printList(LinkedList *list);
+
+#endif
+</script></uc-code>
+<br/>
+<ol>
+<li>Implementa as funções declaradas em <code><strong>linkedlist.h</strong></code> num ficheiro <code><strong>linkedlist.c</strong></code>.  
+Para cada função, indica a sua <em>complexidade temporal</em> utilizando a notação <em><strong>Big-O</strong></em> num comentário acima da função.</li>
+
+<li>Uma <em>stack</em> é normalmente utilizada para verificar se uma expressão tem parênteses e chavetas equilibrados.  
+Escreve um programa (em <code><strong>main_brackets.c</strong></code>) que leia uma cadeia de caracteres da entrada padrão e utilize a tua implementação de <em>stack</em> para verificar se os parênteses estão equilibrados. O teu programa deve tratar <code>(</code>, <code>)</code>, <code>[</code>, <code>]</code>, <code>{</code> e <code>}</code>. <br/>
+O programa deverá imprimir <code><strong>"Balanced"</strong></code> ou <code><strong>"Not balanced"</strong></code>, conforme apropriado.
+<br/>Exemplo:
+<uc-code collapsible="" lang="c"><script type="text/plain">
+Input:  Expression: {[()]}
+Output: Balanced
+</script></uc-code>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+Input:  Expression: {[(])}
+Output: Not balanced
+</script></uc-code>
+
+</li><li><ul><li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a><br/><a href="problems/pi056.html">[PI056] Well-Balanced Expressions</a><br/> 
+      Agora pode ler o enunciado do problema PI056 com atenção e tente enviar uma solução Accepted. Apenas precisa de adaptar a sua solução.      
+  </li>
+</ul><br/>
+</li>
+<li>Uma <em>queue</em> pode ser utilizada para simular uma fila de atendimento.  
+Escreve um programa (em <code><strong>main_hospital_triage.c</strong></code>) que simule uma fila de triagem hospitalar. Os pacientes chegam com um nome e um nível de prioridade (<code>1</code> = urgente, <code>2</code> = normal). <br/>
+O programa deverá ler comandos da entrada padrão:
+<ul>
+<li><code><strong>ADD [nome] [prioridade]</strong></code> — adiciona um paciente à fila</li>
+<li><code><strong>NEXT</strong></code> — remove e imprime o próximo paciente da fila (os pacientes urgentes têm sempre prioridade)</li>
+<li><code><strong>LIST</strong></code> — imprime todos os pacientes atualmente na fila</li>
+<li><code><strong>EXIT</strong></code> — termina o programa</li>
+</ul>
+
+<details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- utiliza duas filas separadas, uma para cada nível de prioridade.</p>
+</details>
+<br/>Exemplo:
+<pre>
+
+   ADD Alice 2
+   ADD Bob 1
+   ADD Carol 2
+   NEXT
+   Next patient: Bob (priority 1)
+   LIST
+   Alice (priority 2)
+   Carol (priority 2)
+
+</pre>
+
+</li><li><ul><li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a><br/><a href="problems/pi057.html">[PI057] Two Queues</a><br/> 
+      Agora pode ler o enunciado do problema PI057 com atenção e tente enviar uma solução Accepted. 
+  </li>
+</ul>
+</li>
+</ol>
+
+<h3>Exercício 2) Análise de Complexidade</h3>
+
+As questões seguintes baseiam-se na breve introdução à complexidade e eficiência abordada nas aulas teóricas. <br/>
+<ol>
+<li>Considera a seguinte função em C:<br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+int mystery(int n) {
+    int s = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = i; j < n; j++)
+            s++;
+    return s;
+}
+</script></uc-code>
+
+<ul>
+<li>Quantas vezes é executada a instrução <code><strong>s++</strong></code>, em função de <code><strong>n</strong></code>?</li>
+<li>Qual é a complexidade temporal de <code><strong>mystery()</strong></code> em notação <em><strong>Big-O</strong></em>? Justifique.</li>
+<li>Que valor devolve <code><strong>mystery(n)</strong></code>? Existe uma fórmula fechada?</li>
+</ul>
+</li>
+
+<li>Para cada uma das seguintes funções, indica a sua complexidade temporal em notação <em><strong>Big-O</strong></em> e justifique brevemente:
+<ul>
+<li><code><strong>size()</strong></code> do Exercício 1 da <strong>Aula Prática #10</strong></li>
+<li><code><strong>removeEquals()</strong></code> do Exercício 1 da <strong>Aula Prática #10</strong></li>
+<li><code><strong>insertOrd()</strong></code> do Exercício 1 da <strong>Aula Prática #10</strong></li>
+<li><code><strong>push()</strong></code> e <code><strong>pop()</strong></code> do Exercício 2 desta aula</li>
+<li><code><strong>enqueue()</strong></code> e <code><strong>dequeue()</strong></code> do Exercício 2 desta aula</li>
+</ul>
+</li>
+</ol>
+
+<h3>Exercício 3) Leitura e Escrita de Ficheiros</h3>
+<ol>
+<li>Escreva um programa simples que lê um dado número de linhas da <strong>entrada padrão</strong> e escreve tais linhas num <strong>ficheiro de texto</strong>. Exemplo:
+<pre>
+
+Número de linhas: 4
+Linha 1
+Linha 2
+Linha 3
+Linha 4
+
+</pre>
+</li>
+<li>Escreva um programa que lê o ficheiro de texto criado no exercício anterior e guarda as linhas do ficheiro num vetor.
+	</li>
+<li>Escreva uma função <code><strong>int numero_linhas(char *nome_ficheiro);</strong></code> que retorna o número de linhas dum ficheiro.
+	</li>
+<li>Escreva um programa para contar palavras contidas num ficheiro. Considere que as palavras são sequências de <em>“caracteres normais”</em> (e.g., letras, algarismo ou sinais de pontuação) separados por <em>“caracteres brancos”</em> (espaços, tabulações ou mudança de linha, ou seja, <code>' '</code>, <code>'\t'</code>, ou <code>'\n'</code>).
+	</li>
+<li>Escreva um programa que lê o conteúdo de dois ficheiros de texto, <strong>"ficheiro1.txt"</strong> e <strong>"ficheiro2.txt"</strong>, e escreve um <strong>novo ficheiro</strong> (com o nome <strong>"uniao.txt"</strong>) obtido unindo os conteúdos dos dois ficheiros originais.
+	</li>
+<li>Escreva uma função que permite a leitura de uma lista de contactos que está guardada em um ficheiro <strong>"contactos.txt"</strong> sem usar <code><strong>fscanf</strong></code>. Cada contacto é definido pelo nome da pessoa e pelo seu número de telemóvel e o ficheiro deve ter o seguinte formato:
+<pre>
+
+joaquina, 016002222
+ana pinto, 0671445566
+joao costa, 8442222
+
+</pre>
+Ou seja, cada nome é terminado por uma vírgula (<code>','</code>) e cada número de telemóvel por uma quebra de linha (<code>'\n'</code>).
+Os nomes e os números de telemóvel podem ser precedidos por espaços, como no exemplo acima.<br/>
+A função implementada deve apresentar no <strong>ecrã</strong> (saída padrão) os nomes e contactos lidos do ficheiro.
+      </li>
+<li>Altere o programa anterior para incluir uma função de consulta por um contacto telefónico de forma eficiente.<br/>
+Para isso, crie um novo ficheiro <strong>"contactos_ordenados.txt"</strong> com todos os contactos telefónicos originais ordenados por ordem alfabética do nome da pessoas. <br/>
+Crie também uma função que permite a consulta pelo nome da pessoa utilizando a pesquisa binária (vantajosa em termos de eficiência).<br/> A função deve retornar o contacto de telemóvel caso exista, e <code>-1</code> caso contrário.
+      </li>
+<li>Para gerir a informação sobre os alunos inscritos a uma dada disciplina, é necessário guardar os seguintes dados:
+      <ul>
+<li>Nome do aluno (string com no máximo 60 caracteres)</li>
+<li>Número mecanográgico do aluno</li>
+<li>Nota obtida na disciplina</li>
+</ul>
+
+<ol type="a">
+<li>Defina os tipos <code><strong>Aluno</strong></code> e <code><strong>Turma</strong></code>. Para o efeito considere que a informação referente aos alunos de uma turma é armazenada numa <strong>lista ligada</strong> de alunos.</li>
+<li>Defina uma função <code><strong>int acrescentaAluno(Turma *t, Aluno a, FILE *f);</strong></code> que acrescenta a informação de um dado aluno <code><strong>a</strong></code> a uma turma <code><strong>t</strong></code> que está contida em um ficheiro <code><strong>f</strong></code> nomeado como <strong>"info_novos_alunos.txt"</strong>. O ficheiro tem o seguinte formato:
+<pre>
+Ana Filipa Silva, 202105440, 19
+Pedro Tomás, 202005823, 10
+José Filipe Fernandes, 202105635, 15
+</pre>
+A função implementada dever a retornar <code><strong>0</strong></code> se a operação for feita com sucesso e <code><strong>1</strong></code> caso contrário.</li>
+<li>Defina uma função <code><strong>Aluno *procura(Turma t, int numero);</strong></code> que procura o aluno com um dado número <code><strong>numero</strong></code> na turma <code><strong>t</strong></code>.<br/> 
+A função deve retornar <code><strong>NULL</strong></code> se a informação desse aluno não existir; caso exista deve retornar o endereço onde essa informação se encontra.</li>
+<li>Defina uma função que determine quantos alunos obtiveram aproveitamento à disciplina (isto é, que obtiveram uma nota fina maior ou igual a 10). Escreva essa informação em um ficheiro <strong>"aprovados.txt"</strong>.</li>
+</ol>
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

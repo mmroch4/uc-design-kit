@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI016] Signal in the Silence · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI016 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI016] Signal in the Silence</li></ol>
+    </nav>
+    <h1>[PI016] Signal in the Silence</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi016.png"/>
+</p>
+<p>The year is 2125. Earth has long established communication relays on distant planets and moons. One of those outposts — Station Zeta on Europa — has just sent a distress transmission back to Earth.
+
+</p><p>But the signal is encoded in binary Morse code — the old-fashioned method of communication from the early 20th century — a failsafe system used only in extreme emergencies when all modern channels are offline.
+
+</p><h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>It's your job as part of the Earth Command decoding team to write a program that will decode this cryptic stream of binary characters into readable text.
+</p>
+<p>The message comes in as a long string of 0s and 1s.<br/>
+
+    1s indicate that a pulse was sent.<br/>
+    0s indicate silence (no pulse being sent).<br/>
+</p><p>
+All messages are composed of uppercase alphabetical letters (A to Z) and numerical characters (0 to 9). 
+All words are separated by just one space.
+The message starts and ends with a non-whitespace character.
+</p>
+<p>
+The image illustrates the encoding. For example, the letter 'A' is encoded as "dot space dash" and it corresponds to 5 (1+1+3) units which in bynary is "10111".
+</p>
+<h2>
+Input
+</h2>
+
+Input consists of one line with characters '0' and '1'.
+
+<h2>
+Ouput
+</h2>
+
+You have to print the encoded message. The encoded message will have at least 1 and at most 50 characters.
+
+<h2><a id="SECTION00022000000000000000">
+Example 1</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+
+<pre>
+101110001110101010001110101110100011101010001000101011101000111011101000101010100010100010111011101110001110101110001011101010001110111000111010001110111011100010111011101000111011101011100010111010001010100011100010101110001010101110001011101110001110101011100011101011101110001110111010100011101110111011101110001011101110111011100010101110111011100010101011101110001010101011100010101010100011101010101000111011101010100011101110111010100011101110111011101
+</pre>
+
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+</pre>
+<p><strong>Note:</strong> This output example includes of all the characters that are used.
+
+</p><h2><a id="SECTION00023000000000000000">
+Example 2</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+101010100010001011101010001011101010001110111011100000001011101110001110111011100010111010001011101010001110101
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+HELLO WORLD
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi016.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

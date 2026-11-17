@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI013] Jogo da Vida · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Enunciado do problema PI013 de Programação Imperativa (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">[PI013] Jogo da Vida</li></ol>
+    </nav>
+    <h1>[PI013] Jogo da Vida</h1>
+    <div class="uc-content">
+<p>
+O Jogo da Vida (Game of Life ou Life) é um autómato celular proposto em 1970 pelo matemático britânico John Horton Connway. Na realidade, trata-se de uma simulação e não de um jogo com jogadores. Desenvolve-se numa grelha infinita, na qual cada célula pode estar ocupada por um organismo ou não. Células ocupadas dizem-se que estão <strong>vivas</strong> e as não ocupadas dizem-se <strong>mortas</strong>. Em cada geração as células que estão vivas mudam o seu estado em função do número de células vizinhas que estão vivas de acordo com as seguintes regras:
+</p>
+<ul>
+<li> Os vizinhos de uma célula são as 8 células que a tocam na horizontal, vertical ou diagonal.</li>
+<li> Se uma célula estiver viva e o número de células vizinhas vivas for 0 ou 1, então na geração seguinte a célula morre de solidão.</li>
+<li> Se uma célula está viva e tem 4 ou mais células vizinhas também vivas, então na geração seguinte a célula morre de sobre-povoamento.</li>
+<li> Uma célula viva com 2 ou 3 células vizinhas vivas, continua viva na geração seguinte.</li>
+<li> Se uma célula morta tiver exactamente 3 células vizinhas vivas, muda para o estado de célula viva na geração seguinte.</li>
+<li> Todos os nascimentos e mortes de células têm lugar em simultâneo, isto é as alterações têm por base o estado actual e nunca o estado futuro.</li>
+</ul>
+<p>As figuras seguintes ilustram dois estados consecutivos de uma configuração do jogo da vida. </p>
+<p><img alt="" loading="lazy" src="pi013.jpg"/></p>
+
+Neste problema vamos considerar que a grelha é finita e que as células que a envolvem estão sempre mortas.
+
+<h2>Input</h2>
+<p>A primeira linha contém três inteiros positivos: o número de linhas <strong>L</strong> e de colunas <strong>C</strong> que determinam a dimensão da grelha do jogo e o número de iterações <strong>I</strong> que deverá realizar. (<code>1 &lt;= <strong>L</strong>, <strong>C</strong>, <strong>I</strong> &lt;= 30</code>)</p>
+<p>Seguem-se <strong>L</strong> linhas de caracteres a representar o estado actual do jogo. As células mortas estão representadas por '.' e as vivas por 'O'.</p>
+<h2>Output</h2>
+<p>Deve imprimir o estado do jogo ao fim de <strong>I</strong> iterações, isto é, imprimir a matriz que representa a grelha do jogo com as células mortas marcadas com '.' e as células vivas com 'O'.
+</p>
+<h2>Exemplo de input/output</h2>
+<div class="uc-table"><table>
+<tr><th scope="col">Input</th><th scope="col">Output</th></tr>
+<tr><td>
+<pre>
+5 5 5
+.....
+.....
+.OOO.
+.....
+.....
+</pre>
+</td>
+<td>
+<pre>
+.....
+..O..
+..O..
+..O..
+.....
+</pre></td></tr>
+</table></div>
+
+ <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
+    </div>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi013_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

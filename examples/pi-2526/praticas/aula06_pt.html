@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 06 · Strings, Recursão e Pesquisa · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 6: Strings, Recursão e Pesquisa">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="6">
+    <h1>Aula Prática 06 · Strings, Recursão e Pesquisa</h1>
+    <p class="uc-small"><a href="aula06.html" hreflang="en" lang="en">English version</a></p>
+    <div class="uc-content">
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi016.html">[PI016] Signal in the Silence</a> (peso 25%) (exercício principal)</li>
+<li><a href="problems/pi017.html">[PI017] Sed</a> (peso 25%) (exercício extra)</li>
+<li><a href="problems/pi018.html">[PI018] Palindrome Fix</a> (peso 25%) (exercício principal)</li>
+<li><a href="problems/pi019.html">[PI019] Gift of Matrix</a> (peso 25%) (exercício extra)</li>
+<li><a href="problems/pi020.html">[PI020] License Plate</a> (peso 25%) (exercício extra)</li>
+<li><a href="problems/pi021.html">[PI021] Binary Search Tutorial</a> (peso 25%) (exercício principal)</li>
+<li><a href="problems/pi023.html">[PI023] Racing</a> (peso 25%) (exercício principal)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>14 de Abril</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3> Exercício 1) Strings no Mooshak</h3>
+<ol>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi016.html">[PI016] Signal in the Silence</a><br/> 
+      O objetivo deste exercício é descodificar uma mensagem transmitida em Morse binário. <br/>
+      Nota importante sobre a <strong>codificação</strong> (informação que está na imagem do enunciado): 
+      <ul>
+<li><code><strong>1</strong></code>: representa um ponto (dot)</li>
+<li><code><strong>111</strong></code>:representa um traço (dash)</li>
+<li><code><strong>0</strong></code>: separa símbolos dentro de uma letra</li>
+<li><code><strong>000</strong></code>: separa letras dentro de uma palavra</li>
+<li><code><strong>0000000</strong></code>: separa palavras</li>
+</ul>
+      Por exemplo, a letra <code><strong>A</strong></code> em Morse é <code><strong>.-</strong></code>, que em binário fica <code><strong>10111</strong></code> (<em>ponto</em>&gt; + <em>separador</em> + <em>traço</em>).
+<br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
+<br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- O problema é essencialmente de <em>parsing</em>: tens de percorrer a string binária e identificar o que cada grupo de <code><strong>0</strong></code>s e <code><strong>1</strong></code>s representa. Pensa no problema em camadas:
+  </p><ul>
+<li>Divida a string em palavras (separadas por 7 zeros).</li>
+<li>Dentro de cada palavra, divida em letras (separadas por 3 zeros).</li>
+<li>Dentro de cada letra, divida em símbolos (separados por 1 zero): um <code><strong>1</strong></code> é ponto, um <code><strong>111</strong></code> é traço.</li>
+<li>Consulte a tabela Morse para converter cada sequência de pontos e traços no carácter correspondente.</li>
+</ul>
+</details>
+<br/><br/><details name="hint">
+<summary><em>Sugestão #2</em></summary>
+<p>- Em vez de analisar a string caracter a caracter e tentar perceber onde está, é mais simples percorrê-la contando grupos de caracteres iguais consecutivos. 
+</p><p>- Pode usar uma função auxiliar que avança o índice enquanto o caracter for o mesmo e devolve quantos encontrou:
+  </p><uc-code collapsible="" lang="c"><script type="text/plain">
+int get() {
+    if (input[iter] == '\0') return 0;
+
+    char target = input[iter];
+    int counter = 0;
+    while (input[iter] == target) {
+        iter++;
+        counter++;
+    }
+    return counter;
+}
+</script></uc-code>
+<p>- <strong><em>Cuidado com o fim da string!</em></strong></p>
+</details>
+<br/><br/><details name="hint">
+<summary><em>Sugestão #3</em></summary>
+<p>- Uma tabela Morse hardcoded pode dar jeito!
+</p><p>- Uma forma prática em C é usar um array de strings indexado pelo código ASCII do carácter.
+</p><p>- Para descodificar, basta percorrer os 36 caracteres possíveis e comparar a sequência de pontos e traços que construíu com <code><strong>data[c]</strong></code>, usando a função <code><strong>strcmp</strong></code>.
+      </p></details>
+</li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi018.html">[PI018] Palindrome Fix</a><br/> 
+      Neste exercício pretende-se que verifique se uma string é um palíndromo e, se não for, calcular o número mínimo de alterações necessárias para a tornar um.<br/>
+      Recorda que um palíndromo é uma string que se lê igual da esquerda para a direita e da direita para a esquerda. Por exemplo, <em><strong>"madam"</strong></em> <strong>é um palíndromo</strong>, mas <em><strong>"xoxo"</strong></em> <strong>não é</strong>.
+      <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Um palíndromo tem de verificar <code><strong>s[i] == s[n-1-i]</strong></code> para todas as posições <code><strong>i</strong></code>.
+</p><ul><li>Só precisas de verificar metade da string (i.e., a outra metade é simétrica).</li></ul>
+<p>- Como pode calcular o mínimo de alterações para que se torne um palindrome? 
+  </p><ul>
+<li>Pense no que precisa de fazer sempre que encontra um par <code><strong>(s[i], s[n-1-i])</strong></code> em que os caracteres são diferentes. </li>
+<li>Precisas de mudar pelo menos um deles para tornar esse par simétrico, certo? </li>
+<li>Tendo isto em mente o que pode concluir sobre o número mínimo de alterações?</li>
+</ul>
+</details>
+</li>
+</ol>
+
+<h3>Exercício 2) Recursão e Pesquisa</h3>
+<h4>Recursões Simples</h4>
+<ol>
+<li><strong>A Profecia de Fibonacci.</strong> De acordo com uma antiga profecia, uma sequência de números contém a chave para desvendar tesouros escondidos. <br/>A sequência segue o padrão seguinte:
+<ul>
+<li>Os primeiros dois números são 0 e 1.</li>
+<li>Cada número seguinte é a soma dos dois anteriores.</li>
+</ul>
+    Esta é conhecida como a Sequência de Fibonacci!<br/><br/>
+    Escreva uma função recursiva para encontrar o <code><strong>n</strong></code>-ésimo número de Fibonacci:<br/>
+<pre>int fibonacci(int n);
+</pre><br/>
+
+      Exemplos:
+<pre>
+<em>Input:</em>  Qual é o valor de n? 6
+<em>Output:</em> O 6º número de Fibonacci number é: 5
+
+<em>Input:</em>  Qual é o valor de n? 13
+<em>Output:</em> O 13º número de Fibonacci é: 144
+</pre>
+</li><li><strong>Palíndromos.</strong> Recorde que um <em>palíndromo</em> é uma palavra que se lê de igual forma para a frente e para trás. <br/>
+	Escreva uma função recursiva que verifique se uma data palavra é um palíndromo:<br/>
+<pre>int isPalindrome(char str[], int start, int end);
+</pre><br/>
+
+	A função deve retornar <code><strong>1</strong></code> se a palavra for um palíndromo e <code><strong>0</strong></code> caso contrário.
+    <br/>
+      Exemplos:<br/><pre>
+<em>Input:</em>  Escreva um palavra: level
+<em>Output:</em> A palavra é um palíndromo!
+
+<em>Input:</em>  Escreva um palavra: magic
+<em>Output:</em> A palavra NÃO é um palíndromo.
+</pre></li>
+
+</ol>
+<br/>
+<h4>Pesquisa Sequencial e Pesquisa Binária</h4>
+<ol>
+<li>Um grupo de académicos encontrou um pergaminho ordenado que contém uma lista de números mágicos. Eles precisam de encontrar um número específico na lista o mais rapidamente possível. <br/>
+  Escreva um programa <em><strong>busca.c</strong></em> que leia da entrada padrão o tamanho
+    <code><strong>n</strong></code> de uma sequência de valores inteiros e 
+    um vetor de tamanho <code><strong>n</strong></code> a sequência <strong>ordenada</strong> desses
+    inteiros. Por fim, ainda da entrada padrão, leia um valor
+    <code><strong>key</strong></code> que se pretende procurar se existe na sequência.<br/>
+    O programa deve conter uma função auxiliar responsável pela 
+    <strong>pesquisa sequencial</strong> do valor <code><strong>key</strong></code> no vetor:<br/>
+<pre>void linearSearch(int arr[], int n, int key);
+</pre><br/> 
+    A função imprimir o índice de <code><strong>key</strong></code> no vetor, caso seja
+    encontrada, ou a mensagem <em><strong>"Not Found"</strong></em>.
+<p>Para testar o seu programa, crie um ficheiro <em><strong>test1.in</strong></em> 
+      com as seguintes 3 linhas:
+</p><pre>
+10
+1 2 3 5 7 8 9 12 14 15
+8
+</pre>
+<p>Em seguida, compile seu programa e teste da seguinte forma:<br/>
+$ gcc -o busca busca.c <br/>
+$ ./busca &lt; test1.in<br/>
+6
+
+</p><p>A resposta <code><strong>6</strong></code> é o
+    índice da posição onde está o valor <code><strong>8</strong></code> que aparece na
+    sequência fornecida em <code><strong>test1.in</strong></code>. Agora, modifique esse
+    arquivo e troque a chave de 8 para 13 e execute novamente o
+    programa compilado:<br/>
+$ ./busca &lt; test1.in<br/>
+Not Found
+
+</p><p>A resposta <code><strong>"Not Found"</strong></code> deve ser retornada, pois o valor 13 não
+    existe na sequência. Se quiser testar seu programa com mais casos,
+    basta modificar o ficheiro de teste ou criar novos casos de teste
+    e redirecionar a entrada padrão para ler a partir dos ficheiros de
+    teste.<br/>
+</p><p><mark>
+      O objetivo deste exercício é motivar o planeamento de
+    casos de teste e múltiplas versões do programa para confirmar se
+    este faz o que se esperava e se atende ao que foi
+    solicitado. </mark><br/>
+</p><ol type="a">
+<li>Modifique o programa anterior e adicione uma
+    função de uma <strong>pesquisa binária <em>não recursiva</em></strong> para
+    localizar a <code><strong>key</strong></code> fornecida:<br/>
+<pre>void binarySearch(int arr[], int low, int high, int key);
+</pre> <br/>
+ A função deve imprimir a
+    posição da chave na sequência, ou a mensagem <strong><em>"Not Found"</em></strong>, se não
+    estiver presente.
+</li>
+<li>Modifique o programa e inclua uma nova função de pesquisa
+    binária, mas agora usando <strong>recursão</strong>.
+</li>
+
+<li>Modifica o programa dos exercícios acima para gerar um array de <code><strong>n</strong></code> (por exemplo, 1000, 10000 e 100000) números inteiros aleatórios em vez de os ler do utilizador. <br/>
+  Implementa um dos algoritmos de ordenação apresentados nas aulas teóricas e executa tanto a pesquisa <em>sequencial</em> como a pesquisa <em>binária</em> para encontrar um determinado número <code>key</code>. 
+  <br/>Mede e compara o tempo de execução de cada estratégia de pesquisa utilizando a função <code><strong>clock()</strong></code> da biblioteca <code><strong>time.h</strong></code>. Observa qual algoritmo é o mais rápido.
+<br/>Um exemplo da estrutura do código é o seguinte:
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int linearSearch(int arr[], int n, int key);
+
+int binarySearch(int arr[], int left, int right, int key);
+
+int main() {
+  int n = 1000;
+  int arr[1000];
+  int key = rand() % 1000;  // Random key to search
+  srand(time(NULL));
+
+  // Generate random array
+  ...
+
+  // Measure time for Sequential Search
+  clock_t start_seq = clock();
+  int seq_result = linearSearch(arr, n, key);
+  clock_t end_seq = clock();
+  double seq_time = (double)(end_seq - start_seq) / CLOCKS_PER_SEC;
+
+  // Sort the array
+  ...
+
+  // Measure time for Binary Search
+  clock_t start_bin = clock();
+  int bin_result = binarySearch(arr, 0, n - 1, key);
+  clock_t end_bin = clock();
+  double bin_time = (double)(end_bin - start_bin) / CLOCKS_PER_SEC;
+
+  // Output results
+  printf("Key: %d\n", key);
+  printf("Sequential Search: %s (Time: %f sec)\n", (seq_result != -1) ? "Found" : "Not Found", seq_time);
+  printf("Binary Search: %s (Time: %f sec)\n", (bin_result != -1) ? "Found" : "Not Found", bin_time);
+
+  return 0;
+}
+</script></uc-code>
+</li>
+</ol></li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi021.html">[PI021] Binary Search Tutorial</a><br/> 
+      Aproveita a solução do exercício anterior para resolver o problema <strong>[PI021]</strong> do Mooshak e produzir uma solução Accepted.<br/>
+      Note que a abordagem <em>naive</em> não chega para este problema! A solução mais simples seria, para cada valor a pesquisar, percorrer o array inteiro à procura dele. Mas com <code><strong>n</strong></code> e <code><strong>m</strong></code> até 200.000, isso implica até 40.000.000.000 de operações, <strong>o que é demasiado lento</strong>. <br/>
+      O facto de o array estar ordenado permite fazer muito melhor! Aplique a pesquisa binária.
+</li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi023.html">[PI023] Racing</a><br/> 
+      Tens uma colecção de carros de corrida, cada um com um nível mínimo de skill necessário para o conduzir (lista ordenada). Para cada condutor, determina qual o carro mais difícil que ele consegue conduzir. Se não conseguir conduzir nenhum, a resposta é 0.
+<br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- O problema reduz-se a encontrar, para cada condutor com skill <code><strong>s</strong></code>, o <strong>maior valor no array de carros que seja menor ou igual a</strong> <code><strong>s</strong></code>. 
+</p><p>- Como o array está ordenado, não precisas de o percorrer todo: podes usar pesquisa binária!
+</p><p>- Mas <em>note que</em> quer encontrar a última posição onde o valor do carro é <strong>menor ou igual ao</strong> skill do condutor (<code><strong>s</strong></code>).
+  </p><ul><li>Isto chama-se <em><strong>upper bound</strong></em>: encontrar o primeiro elemento que é maior que o valor, e depois recuar uma posição.</li></ul>
+<p>- Ajuste a pesquisa binária para encontrar este valor.
+      </p></details>
+</li>
+
+</ol>
+
+<h3>Exercício 3) Conversão de Base Manual</h3>
+<h4>Sistema Numérico e Conversão de Bases</h4>
+<p>Um sistema numérico é uma forma de representar e expressar números utilizando uma base específica. Cada sistema é caracterizado por uma base, que determina a quantidade de diferentes dígitos usados nesse sistema.</p>
+<p>Em computação e matemática, os sistemas numéricos mais comuns são:</p>
+<ul>
+<li><strong>Decimal (Base 10):</strong> Utilizado no dia a dia, é composto por dígitos de 0 a 9.</li>
+<li><strong>Binário (Base 2):</strong> Utilizado em eletrónica digital e computação, é composto apenas pelos dígitos 0 e 1.</li>
+<li><strong>Octal (Base 8):</strong> Por vezes utilizado em computação, é composto por dígitos de 0 a 7.</li>
+<li><strong>Hexadecimal (Base 16):</strong> Comum em programação e endereçamento de memória, inclui os dígitos de 0 a 9 e as letras A-F (representando os valores de 10 a 15).</li>
+</ul>
+<p>É frequentemente útil (ou necessário) converter um número <code><strong>n</strong></code> numa base <code><strong>b1</strong></code> para outra base <code><strong>b2</strong></code>. Os métodos de conversão de bases podem ser definidos da seguinte forma:</p>
+<ul>
+<li><strong>Decimal para Binário:</strong> Dividir repetidamente por 2, registando os restos em ordem inversa.</li>
+<li><strong>Binário para Decimal:</strong> Multiplicar cada bit por 2 elevado ao seu índice de posição e somar os resultados.</li>
+<li><strong>Decimal para Hexadecimal:</strong> Dividir repetidamente por 16, registando os restos em ordem inversa.</li>
+<li><strong>Hexadecimal para Decimal:</strong> Multiplicar cada dígito por 16 elevado ao seu índice de posição e somar os resultados.</li>
+<li><strong>Binário para Hexadecimal:</strong> Agrupar os bits em conjuntos de quatro e converter cada grupo para o seu equivalente hexadecimal.</li>
+</ul>
+<br/>
+<ol>
+<li>Converta os seguintes números decimais em binários:<ul>
+<li>13</li>
+<li>45</li>
+<li>100</li>
+</ul></li>
+
+<li>Converta os seguintes números binários em decimais:<ul>
+<li>1010</li>
+<li>11011</li>
+<li>100001</li>
+</ul></li>
+
+<li>Converta os seguintes números decimais em hexadecimais:<ul>
+<li>255</li>
+<li>64</li>
+<li>123</li>
+</ul></li>
+
+<li>Converta os seguintes números hexadecimais em decimais:<ul>
+<li>1F</li>
+<li>A3</li>
+<li>B7</li>
+</ul></li>
+
+<li>Converta os seguintes números binários em hexadecimais:<ul>
+<li>11010101</li>
+<li>10001111</li>
+<li>11110000</li>
+</ul></li>
+
+</ol>
+
+<h3> Exercise 4) Programando Conversão de Base</h3>
+<ol>
+<li><strong>Conversor de Decimal para Binário.</strong> Escreva um programa que receba como entrada um número decimal e imprima a sua representação binária.
+     </li>
+<li><strong>Conversor de Binário para Decimal.</strong> Escreva um programa que receba como entrada um número binário e o converta para decimal.
+     </li>
+<li><strong>Conversor de Decimal para Hexadecimal.</strong> Escreva um programa que converta um número decimal fornecido no seu equivalente hexadecimal.
+     </li>
+<li><strong>Conversor de Base Geral.</strong> Escreva um programa que obtenha um número e o converta de uma <strong>base qualquer</strong> (i.e., 2, 8, 10, 16) para outra base.
+     </li>
+<li>O <strong>algoritmo para adição</strong> de dois inteiros positivos <math><mi>x</mi></math> e <math><mi>y</mi></math>, que se aprende no ensino básico, pode ser
+usado para somar <math><mi>x</mi></math> e <math><mi>y</mi></math>, representados em qualquer base <math><mi>b</mi></math>.
+<p><img alt="" loading="lazy" src="images/bases_add.png"/><br/>
+<em>Recorde que:</em> começamos pelos dígitos menos significativos, adicionamo-los, e se o valor da soma exceder
+<math><mi>b</mi><mo>-</mo><mo>1</mo></math>, existirá um <em>carry</em>, de uma unidade ("e vai 1") , que será acrescentado ao próximo par.<br/>
+Ou seja, se 
+<math>
+<msub>
+<mi>x</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<msub>
+<mi>y</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<mi>carry</mi>
+<mo> &gt; </mo>
+<mi>b</mi>
+<mo>-</mo>
+<mo>1</mo>
+</math>, fica com 
+<math>
+<msub>
+<mi>x</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<msub>
+<mi>y</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<mi>carry</mi>
+<mo>-</mo>
+<mi>b</mi>
+</math>
+ na posição <math><mi>i</mi></math> do resultado e continua com 
+<math>
+<mi>carry</mi>
+<mo>=</mo>
+<mo>1</mo>
+</math>; se 
+<math>
+<msub>
+<mi>x</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<msub>
+<mi>y</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<mi>carry</mi>
+<mo>&lt;</mo>
+<mo>=</mo>
+<mi>b</mi>
+<mo>-</mo>
+<mo>1</mo>
+</math>, fica com 
+<math>
+<msub>
+<mi>x</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<msub>
+<mi>y</mi>
+<mn>i</mn>
+</msub>
+<mo>+</mo>
+<mi>carry</mi>
+</math> na posição 
+<math><mi>i</mi></math> e passa a ter 
+<math>
+<mi>carry</mi>
+<mo>=</mo>
+<mo>0</mo>
+</math>. O
+valor inicial de 
+<math><mi>carry</mi></math> é zero.
+
+	</p><ol>
+<li>Implementar uma função <br/>
+<pre>void soma(char x[], char y[], int b, char res[]);
+</pre><br/>
+       para determinar a soma de dois inteiros não negativos <code><strong>x</strong></code> e <code><strong>y</strong></code> representados na base <code><strong>b</strong></code>, com <code><strong>b</strong></code> ∈ [2, 10] ∪ {16}. <br/>
+O resultado será colocado no array dado por <code><strong>res</strong></code>. Admita que reservou espaço suficiente. <br/>
+Recorde que se <code><strong>c</strong></code> tem o código de um algarismo, então o valor do algarismo é dado por <code><strong>c - '0'</strong></code>. Para a <strong>base 16</strong>, temos ainda <code><strong>'A', 'B', ..., 'F'</strong></code>, com valores 10, 11, . . . , 15, dados por <code><strong>c - 'A' + 10</strong></code>. 
+	</li>
+<li>Completar e testar o programa, onde valida se a cadeia de caracteres dada por <code><strong>x</strong></code> constitui uma representação válida para um inteiro na base indicada. <br/>
+Essa função retorna <code><strong>1</strong></code> se a representação for válida. Caso contrario, retorna <code><strong>0</strong></code>. <br/><uc-code collapsible="" lang="c"><script type="text/plain">
+#include
+
+#define MAXCHARS 100
+
+void sum(char x[], char y[], int base, char res[]);
+int validates(char x[], int base);
+
+int main() {
+  char res[MAXCHARS];
+
+  sum("18425", "298", 10, res);
+  printf("Base 10:\n 18425 + 298 = %s\n", res);    // the result should be 18723
+  sum("18425", "298", 16, res);
+  printf("Base 16:\n 18425 + 298 = %s\n", res);    // the result should be 186BD
+  sum("3121", "311", 4, res);
+  printf("Base 4:\n 3121 + 311 = %s\n", res);      // the result should be 10032
+
+  char x[MAXCHARS], y[MAXCHARS];
+  int base;
+  printf("Indicate the base (2..10 or 16): ");
+  scanf("%s", x);
+  scanf("%s", y);
+
+  if (validates(x, base) && validates(y, base)) {
+    sum(x, y, base, res);
+    printf("Base %d:\n %s + %s = %s\n", base, x, y, res);
+  } else {
+    printf("at least one of the values ​​is invalid\n");
+  }
+
+  return 0;
+}
+</script></uc-code></li>
+
+</ol>
+</li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi020.html">[PI020] License Plate</a><br/> 
+      As matrículas são emitidas por ordem alfabética: <code><strong>a, b, ..., z, aa, ab, ..., az, ba, ..., zz, aaa, ...</strong></code>. <br/>Dada uma matrícula, determine quantas matrículas foram emitidas até essa (<strong>inclusive</strong>).
+<br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Divide o problema em duas partes, tendo em conta que o total de matrículas emitidas até à matrícula <code><strong>s</strong></code> de comprimento <code><strong>n</strong></code> é:
+  </p><ol>
+<li>Todas as matrículas com comprimento menor que <code><strong>n</strong></code>, ou seja, todas as de 1 letra, todas as de 2 letras, etc.</li>
+<li>As matrículas de comprimento exactamente <code><strong>n</strong></code> que vêm antes ou são iguais a <code>s</code>.</li>
+</ol>
+<p>- Quantas matrículas existem com exactamente <code><strong>k</strong></code> letras? São todas as combinações de <code><strong>k</strong></code> letras minúsculas: <strong>26<sup>k</sup></strong>.
+  </p><ul>
+<li> Para uma matrícula de comprimento <code><strong>n</strong></code>, a soma das matrículas mais curtas é 26 + 26<sup>2</sup> + ... + 26<sup>(n-1)</sup>.</li>
+</ul>
+<p>- As matrículas de comprimento n estão ordenadas como se fossem números em base 26. Para saber a posição de <code><strong>s</strong></code> dentro das matrículas de comprimento <code><strong>n</strong></code>, basta converter a string para esse número, e como queres contar inclusive, somas 1 no final.
+</p><p>- <em>Lembre que</em> pode usar <code><strong>s[i] - 'a'</strong></code> para obter o valor numérico de cada letra. A conversão da string para base 26 é análoga à conversão de uma string de dígitos para um número inteiro, que já deves conhecer.
+      </p></details>
+</li>
+
+</ol>
+<br/>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula06_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

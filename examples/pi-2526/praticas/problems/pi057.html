@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI057] Two Queues · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI057 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI057] Two Queues</li></ol>
+    </nav>
+    <h1>[PI057] Two Queues</h1>
+    <div class="uc-content">
+<section lang="en">
+
+</section><section lang="pt">
+
+<p>In this problem, you should only submit a file
+<strong>pi057.c</strong> containing a line with <code>#include "queue.h"</code> and
+a function <strong>process()</strong> as described below (a complete program is
+not required). See the code to test at the end.
+</p><p>You may assume that on Mooshak you will have access to the "queue
+implementation code" as provided in class. Check <a href="../../codigo/queue.c">queue.c</a> and <a href="../../codigo/queue.h">queue.h</a>
+</p>
+<h3>Method to Submit</h3>
+<p><strong><code>void process(Queue *q, Queue *a, Queue *b)</code></strong>
+<p>This function should process the elements in the queue <code>q</code>, where each pair consists of a name followed by an operation. Depending on the operation, the method should:
+</p><ul>
+<li><strong>Name A</strong> - Add the name to queue <code>a</code>
+</li><li><strong>Name B</strong> - Add the name to queue <code>b</code>
+</li><li><strong>Name X</strong> - Add the name to the queue with fewer elements (<code>a</code> or <code>b</code>). If both queues have the same number of elements, the name is discarded and not added to either.
+</li></ul>
+<p>For example, if the queue <code>q</code> is {Luis,B,Pedro,A,Luisa,A,Joao,X,Jose,X,Miguel,B}, the following happens:
+</p><ol>
+<li><em>Luis B</em> - Luis is added to queue <code>b</code>
+</li><li><em>Pedro A</em> - Pedro is added to queue <code>a</code>
+</li><li><em>Luisa A</em> - Luisa is added to queue <code>a</code>
+</li><li><em>Joao X</em> - Joao is added to queue <code>b</code>, which has only 1 element (Luis) compared to queue <code>a</code> (Pedro and Luisa)
+  </li><li><em>Jose X</em> - Jose is discarded (both queues have 2 elements)
+  </li><li><em>Miguel B</em> - Miguel is added to queue <code>b</code>
+</li></ol>
+<p>At the end, queue <code>a</code> contains {Pedro, Luisa} and queue
+<code>b</code> contains {Luis, Joao, Miguel}. Queue <code>q</code> should be
+empty.</p>
+
+<h3>Examples of input/output</h3>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Queue <em>q</em>, <em>a</em> eand <em>b</em> at start</th>
+<th scope="col">Queue <em>q</em>, <em>a</em> and <em>b</em> after the call</th>
+</tr>
+<tr>
+<td>
+    q = {Luis,B,Pedro,A,Luisa,A,Joao,X,Jose,X,Miguel,B}<br/>
+    a = {}<br/>
+    b = {}
+  </td>
+<td>
+    q = {}<br/>
+    a = {Pedro, Luisa}<br/>
+    b = {Luis, Joao, Miguel}
+  </td>
+</tr>
+<tr>
+<td>
+    q = {Luis,B,Pedro,B,Luisa,X,Joao,X}<br/>
+    a = {}<br/>
+    b = {}
+  </td>
+<td>
+    q = {}<br/>
+    a = {Luisa,Joao}<br/>
+    b = {Luis,Pedro}
+  </td>
+</tr>
+</table></div>
+<h2>[PI057] Duas filas</h2>
+<p>Neste problema deverá apenas submeter um ficheiro
+<strong>pi057.c</strong> contendo uma linha com <code>#include "queue.h"</code> e
+uma função <strong>process()</strong> como a seguir se descreve (não é
+necessário um programa completo). Ver o código para fazer testes no final.
+</p><p>Pode assumir que terá acesso no Mooshak ao 
+  "código que implementa uma fila" 
+  como dadas nas aulas. Consulte os ficheiros <a href="../../codigo/queue.c">queue.c</a> e <a href="../../codigo/queue.h">queue.h</a>
+</p>
+<h3>Método a submeter</h3>
+</p><p><strong><code>void process(Queue *q, Queue *a, Queue *b)</code></strong>
+<p>Esta função deve processar os elementos que vêm na fila <code>q</code> na forma de um nome seguido de uma operação. Consoante a operação deve fazer o seguinte:
+  </p><ul>
+<li><strong>Nome A</strong> - Adiciona nome à fila <code>a</code>
+</li><li><strong>Nome B</strong> - Adiciona nome à fila <code>b</code>
+</li><li><strong>Nome X</strong> - Adiciona nome à fila que tenha menos elementos (<code>a</code> ou <code>b</code>). Se ambas as filas tiverem o mesmo número de elementos, o nome é descartado e não é adicionada a nenhuma.
+  </li></ul>
+<p>Por exemplo, se a fila <code>q</code> fosse {Luis,B,Pedro,A,Luisa,A,Joao,X,Jose,X,Miguel,B} acontecia o seguinte:
+  </p><ol>
+<li><em>Luis B</em> - Luis é adicionado à fila <code>b</code>
+</li><li><em>Pedro A</em> - Pedro é adicionado à fila <code>a</code>
+</li><li><em>Luisa A</em> - Luisa é adicionada à fila <code>a</code>
+</li><li><em>Joao X</em> - Joao é adicionado à fila <code>b</code>, que tem apenas 1 elemento (Luis) contra os dois da fila  <code>b</code> (Pedro e Luisa)
+    </li><li><em>Jose X</em> - José descartado (ambas as filas têm 2 elementos)
+    </li><li><em>Miguel B</em> - Miguel é adicionado à fila <code>b</code>
+</li></ol>
+<p>No final a fila <code>a</code> fica com {Pedro,Luisa} e a fila <code>b</code> fica com {Luis,Joao,Miguel}. A fila <code>q</code> deve ficar vazia.</p>
+
+<h3>Exemplos de input/output</h3>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Fila <em>q</em>, <em>a</em> e <em>b</em> no início</th>
+<th scope="col">Fila <em>q</em>, <em>a</em> e <em>b</em> no final da chamada</th>
+</tr>
+<tr>
+<td>
+    q = {Luis,B,Pedro,A,Luisa,A,Joao,X,Jose,X,Miguel,B}<br/>
+    a = {}<br/>
+    b = {}
+  </td>
+<td>
+    q = {}<br/>
+    a = {Pedro, Luisa}<br/>
+    b = {Luis, Joao, Miguel}
+  </td>
+</tr>
+<tr>
+<td>
+    q = {Luis,B,Pedro,B,Luisa,X,Joao,X}<br/>
+    a = {}<br/>
+    b = {}
+  </td>
+<td>
+    q = {}<br/>
+    a = {Luisa,Joao}<br/>
+    b = {Luis,Pedro}
+  </td>
+</tr>
+</table></div>
+<h>
+<h3>Como compilar localmente</h3>
+<p>Para compilar localmente vai precisar de ter os ficheiros seguintes:
+</p><ul>
+<li> queue.h e queue.c -- implementação de uma fila. Verificar se o
+  NodeInfo está configurado para o tipo de dados a guardar na fila.
+  </li><li> pi057.c -- o seu código com a função pedida
+  </li><li> tests057.c -- ficheiro com a função main() e onde se trata da
+  leitura e escrita.
+</li></ul>
+<p>Para compilar execute na pasta onde estão os ficheiros: <code>gcc
+tests057.c queue.c pi057.c</code> que vai gerar um executável <code>a.out</code>
+</p><p><strong>Código para testes</strong>, ficheiro: <code>tests057.c</code></p>
+<pre>// PI057 Testing Two Queues Problem
+// 
+
+#include "queue.h"
+
+void process(Queue *, Queue *, Queue *);
+
+int main() {
+
+  Queue q, a, b;
+  initQueue(&amp;q);   // queue with input
+  initQueue(&amp;a);   // result queue for A
+  initQueue(&amp;b);   // result queue for B
+
+  int n;
+
+  scanf("%d", &amp;n);                  // number of pairs
+  for (int i=0; i&lt;n; i++) {
+    char *s= (char *)malloc(sizeof(MAXCHARS));
+    char *op= (char *)malloc(sizeof(2));
+    scanf("%s %s", s, op);
+    addLast(&amp;q,s);
+    addLast(&amp;q,op);
+  }
+
+  printf("Inicio: ");
+  printf("q: "); printQueue(&amp;q); printf("\n");
+  printf("a: "); printQueue(&amp;a); printf("\n");
+  printf("b: "); printQueue(&amp;b); printf("\n");
+  process(&amp;q, &amp;a, &amp;b);
+  printf("-------------------------------\n");
+  printf("Final: ");
+  printf("q: "); printQueue(&amp;q); printf("\n");
+  printf("a: "); printQueue(&amp;a); printf("\n");
+  printf("b: "); printQueue(&amp;b); printf("\n");
+}
+</pre>
+
+</h></p></section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi057.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

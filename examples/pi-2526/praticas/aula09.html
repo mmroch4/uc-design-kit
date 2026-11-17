@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Class 09 · Recursion, Sorting and Arrays · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), lab class 9: Recursion, Sorting and Arrays">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="9">
+    <h1>Practical Class 09 · Recursion, Sorting and Arrays</h1>
+    <p class="uc-small"><a href="aula09_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <div class="uc-content">
+<h2><strong>Mooshak:</strong> Exercises for Submission</h2>
+<p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
+</p><ul>
+<li><a href="problems/pi043.html">[PI043] Eval</a> (weight 30%) (main exercise)</li>
+<li><a href="problems/pi044.html">[PI044] Beyblade Arena</a> (weight 20%) (extra exercise)</li>
+<li><a href="problems/pi045.html">[PI045] Connect Four in Two</a> (weight 40%) (main exercise)</li>
+<li><a href="problems/pi046.html">[PI046] Largest Microbe Colony</a> (weight 40%) (main exercise)</li>
+<li><a href="problems/pi047.html">[PI047] Pim, Pam, Pum!</a> (weight 20%) (extra exercise)</li>
+<li><a href="problems/pi048.html">[PI048] Between Brackets</a> (weight 20%) (extra exercise)</li>
+</ul>
+<p><mark><strong>Submission deadline:</strong> <strong>May 23</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
+<p><strong>You are encouraged to talk with the instructors and other
+  colleagues to ask for ideas on how to solve a problem, but you also
+  need to make an effort to code your solution. That is the way to become competent at programming and problem
+  solving, and also to become prepared for the pratical evaluations. The same is
+  valid for ChatGPT or other LLMs. <mark>You may
+  ask for suggestions on how you could solve a given problem, but also
+    ask it to avoid giving you the code solution.</mark></strong><br/>
+</p><p>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.<br/>
+Each class accounts for 10% of the grade for this component.<br/>  
+For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
+To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+
+<h3>Exercise 1) Recursion and Sorting</h3>
+<ol>
+<li>Consider the following recursive function:<br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+void func_rec(int n) {
+  if (n != 0) {
+    func_rec(n / 2);
+    putchar('0' + n % 2);
+  }
+}
+</script></uc-code>
+<br/>
+Start by manually tracing the execution of the function for the following values of <code><strong>n</strong></code>: 1, 4, 10, and 15. Then, write a program that calls the <code><strong>func_rec</strong></code> function, passing it an integer entered by the user. <br/>What does the function do?
+    </li>
+<li>Write a recursive function that reverses a string.
+<br/>Example:
+<pre>
+<em>Input:</em>  str = "OLA"
+<em>Output:</em> "ALO"
+</pre>
+<pre>
+<em>Input:</em>  str = "ProGraMacao"
+<em>Output:</em> "oacaMarGorP"
+</pre>
+</li>
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi045.html">[PI045] Connect Four in Two</a><br/> 
+
+  Given a <em>Connect Four</em> board, determine whether the first player can win immediately or force a win on their second move — that is, reach a position where, regardless of what the second player does, the first player wins on the next turn.
+
+  <br/>
+  Read the problem statement carefully and try to submit an Accepted solution.
+
+  <br/>
+<details name="hint">
+<summary><em>Hint - Think recursively with backtracking</em></summary>
+<p>- The problem has a natural game-tree structure: the first player chooses a column, the second responds, and then the first plays again. You can explore this tree recursively, trying all possible moves and checking whether there exists a sequence in which the first player wins.</p>
+<p>- The maximum depth is 3 (<em>move A, move B, move A</em>), so the tree is small.</p>
+<p>- To explore the game tree without copying the entire board at each move, use backtracking. This allows you to try all possibilities and revert the board to its original state after each attempt.</p>
+<p>- Don't forget to check after each move whether any player has 4 consecutive pieces (horizontal, vertical, or diagonal). It is enough to scan all cells and check the 4 possible directions from each one.</p>
+</details>
+
+</li>
+<li>Write a function <br/>
+<pre>int isGrowing(int v[], int i, int j);
+</pre>
+<br/>
+that checks whether the elements of the array <code><strong>v</strong></code> between positions <code><strong>i</strong></code> and <code><strong>j</strong></code> (<strong>inclusive</strong>) are in ascending order. <br/>The function should return <code><strong>1</strong></code> if the array is ordered, or <code><strong>0</strong></code> otherwise. 
+    </li>
+<li>Write a function <br/>
+<pre>int isPartitioned(int v[], int n, int p);
+</pre>
+<br/>
+that checks whether the array <code><strong>v</strong></code> of <code><strong>n</strong></code> elements has been correctly partitioned around a given <em>pivot</em>, with the <em>pivot</em> located at position <code><strong>p</strong></code> in the array.
+    </li>
+<li>The <em>Quicksort</em> algorithm presented in the theoretical lecture always selects the <strong>first</strong> value of the sub-sequence as the  <em>pivot</em>. This results in quadratic complexity when the sequence is already sorted.<br/>
+In this exercise, the goal is to improve the <em>pivot</em> selection by using the <strong>median</strong> of three elements as the <em>pivot</em>, i.e. the first, the last, and the middle element of the sub-sequence. To achieve this, simply swap the median value with the value at the beginning of the partition.<br/> 
+Re-write the function <br/>
+<pre>int partition(int left, int right);
+</pre>
+<br/>
+from the theoretical lecture to implement this modification in the <em>Quicksort</em> program.
+    </li>
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi046.html">[PI046] Largest Microbe Colony</a><br/> 
+
+  Given a 2D grid representing a Petri dish, where <code><strong>#</strong></code> is a microbe and <code><strong>.</strong></code> is an empty cell, determine the size of the largest microbe colony. <br/>
+  A colony is a group of <code><strong>#</strong></code> cells connected horizontally, vertically, or diagonally.
+
+  <br/>
+  Read the problem statement carefully and try to submit an Accepted solution.
+
+  <br/><br/>
+  This problem was covered in the theoretical lecture. Try to solve it on your own — you have all the tools needed to do so!
+  <br/>
+</li>
+<li>Define a function <br/>
+<pre>int common(int a[], int b[], int na, int nb);
+</pre>
+<br/>
+      that calculates how many elements the arrays <code><strong>a</strong></code> (with <code><strong>na</strong></code> elements) and <code><strong>b</strong></code> (with <code><strong>nb</strong></code> elements) have in common. Assume that the arrays <code><strong>a</strong></code> and <code><strong>b</strong></code> are not sorted
+    </li>
+<li>Define a function <br/>
+<pre>int isPermutation(int a[], int b[], na, nb);
+</pre>
+<br/>
+      that, given two unsorted arrays <code><strong>a</strong></code> (with <code><strong>na</strong></code> elements) and <code><strong>b</strong></code> (with <code><strong>nb</strong></code> elements), checks if the two arrays are permutations of each other.
+<br/>Examples:
+<uc-code collapsible="" lang="c"><script type="text/plain">
+Input:  a[] = {22, 10, 3, 15, 4, 3, 22}
+        b[] = {3, 22, 22, 4, 15, 3, 10}
+Output: Yes
+</script></uc-code>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+Input:  a[] = {20, 15, 3, 6}
+        b[] = {3, 22, 21, 4}
+Output: No
+</script></uc-code>
+</li>
+<li>Ana went to the supermarket and placed <code><strong>n</strong></code> products in her shopping cart that she intended to buy. Since she's in a hurry, Ana decides to use one of the express checkout counters available to pay for her shopping. 
+However, the express checkout counters at this supermarket limit the number of products that can be bought to <em><strong>k</strong></em> items, so Ana has to choose only <em>k</em> products from those she initially placed in her shopping cart. <br/>
+As Ana is greedy, she will choose the cheapest products, and if two products have the same price, she will choose the lighter one. 
+Write a program that helps Ana select her products based on her preferences.<br/> 
+You can assume that there will never be two products with the same price and weight, and that the products are properly defined by a <em>structure</em>: <code><strong>struct Product;</strong></code>, which defines the <em>name</em>, <em>price</em>, and <em>weight</em> of the product.<br/>
+Write a function <br/>
+<pre>void express_checkout(Product products[], int n, int k);
+</pre>
+<br/>
+that removes from the array <code><strong>products</strong></code> the products Ana decides not to buy, keeping only the products Ana selected in the array.
+<br/>Example:
+<uc-code collapsible="" lang="c"><script type="text/plain">
+Input:  products = {{pasta, 3.2, 500}, {peanuts, 5.4, 700}, {cookies, 4.2, 600}, {milka, 5.4, 600}]
+        k = 3
+Output: res = {{pasta, 3.2, 500}, {cookies, 4.2, 600}, {milka, 5.4, 600}}
+</script></uc-code>
+</li></ol>
+
+<h3>Exercise 2) Manipulation of Arrays</h3>
+<ol>
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi043.html">[PI043] Eval</a><br/> 
+
+  Given an arithmetic expression with integers, additions (<code><strong>+</strong></code>) and multiplications (<code><strong>*</strong></code>), compute its result respecting operator precedence: multiplications are evaluated before additions.
+
+  <br/>
+  Read the problem statement carefully and try to submit an Accepted solution. <strong>Don't forget to test it first on your computer!</strong>
+<br/>
+<details name="hint">
+<summary><em>Hint - Do not evaluate from left to right</em></summary>
+<p>- If you simply evaluate from left to right, <code>5 + 2 * 3</code> would give <code>(5 + 2) * 3 = 21</code> instead of <code>5 + (2 * 3) = 11</code>. You must ensure that all multiplications are performed before additions!</p>
+<p>- A natural strategy is to do it in two steps: first multiply, then add. That is:</p>
+<ol>
+<li>First step: scan the expression and resolve all multiplications, grouping the products into "<em>terms</em>".</li>
+<li>Second step: sum all the terms.</li>
+<li>For example, <code>5 + 2 * 3 * 4 + 1</code> has three terms: <code>5</code>, <code>2*3*4 = 24</code>, and <code>1</code>. The sum is <code>5 + 24 + 1 = 30</code>.</li>
+</ol>
+<p>- <em><strong>Note:</strong></em> Don't forget any remaining elements or special cases (empty arrays)!</p>
+</details>
+
+<details name="hint">
+<summary><em>Hint #2</em></summary>
+<p>- With <code>n</code> numbers, the expression has <code>2n - 1</code> tokens in total (numbers and operators alternating). You can read everything into an array, storing the numbers as they are and the operators as values indicating <code>+</code> or <code>*</code> (for example, <code>0</code> for addition and <code>1</code> for multiplication).</p>
+<p>- To build the terms, you can traverse the token array. Keep an accumulator for the current term (start with the first number). Each time you encounter an operator:</p>
+<ol>
+<li>If it is <code>*</code>: multiply the accumulator by the next number.</li>
+<li>If it is <code>+</code>: store the accumulator as a complete term and start a new accumulator with the next number.</li>
+</ol>
+<p>- At the end, sum all the stored terms.</p>
+</details>
+
+</li>
+<li><strong>Circular Rotation.</strong> Implement a program that simulates the circular rotation (to the right) of an array <code><strong>v</strong></code> of integers.<br/> 
+The program should receive <code><strong>n</strong></code> integer values from the user and store them in <code><strong>v</strong></code>, and it should also receive a valid number of rotations <code><strong>r</strong></code>. The program should print the resulting array after performing the <code><strong>r</strong></code> rotations.
+<strong>Notes:</strong> rotating an array to the right circularly means that the first element moves to the second, and the last element moves to the first; you should only use simple data structures, i.e., <em>arrays</em>, and avoid using additional libraries.<br/>
+<ol>
+<li>Start by developing an iterative algorithm, i.e., move the elements of the array one by one until performing the <code><strong>r</strong></code> rotations.</li>
+<li>The previous algorithm involves moving all the elements <code><strong>r</strong></code> times! Can you design a more efficient algorithm? Develop an algorithm that optimizes this process.</li>
+</ol>
+<br/>Example:
+<pre>
+<em>Input:</em>  n = 5
+        v[] = [1, 2, 3, 4, 5]
+        r = 2
+<em>Output:</em> Vetor após 2 rotações: [4, 5, 1, 2, 3]
+</pre>
+</li>
+<li><strong>Service.</strong> <strong>FIFO</strong> (<em>First In, First Out</em>) is a strategy for organizing and processing data where the first item inserted is the first one to be removed/processed. A <strong>queue</strong> is typically associated with the FIFO concept, where data enters from one side (front) and exits from the other side (back). Keeping this concept in mind, implement an interactive program to manage a client queue for a public service.<br/> 
+Your program should allow the following operations:
+        <ul>
+<li>Add a client to the end of the queue.</li>
+<li>Serve the next client, which means removing the client at the front of the queue. (<em>Note:</em>We will ignore priority service.)</li>
+<li>List all clients currently in the queue at any time.</li>
+<li>Exit the program.</li>
+</ul>
+<strong>Notes:</strong> Use only simple data structures to simulate the queue, such as <em>arrays</em>, and do not use any additional libraries. The queue structure must be circular, so you should manage the start and end positions of the queue, as well as the number of clients waiting.<br/><br/> 
+As a starting point, you may use the code skeleton provided below and complete the missing parts, namely the functions corresponding to the interaction options listed above. Alternatively, you can create your own code from scratch.<br/>
+<strong>Example of interaction:</strong>
+<pre>
+
+----------------------
+Available Options: 
+1. Add client
+2. Serve client
+3. List client queue
+4. Exit
+----------------------
+
+Choose an option: 1
+Insert client name: Ana Silva
+
+Choose an option: 1
+Insert client name: Pedro Moreira
+
+Choose an option: 1
+Insert client name: Teresa Santos
+
+Choose an option: 1
+Insert client name: Isabel Ribeiro
+
+Choose an option: 1
+Insert client name: Rui Torres
+
+Choose an option: 3
+Queued clients:
+1. Ana Silva
+2. Pedro Moreira
+3. Teresa Santos
+4. Isabel Ribeiro
+5. Rui Torres
+
+Choose an option: 2
+Client served: Ana Silva
+
+Choose an option: 2
+Client served: Pedro Moreira
+
+Choose an option: 3
+Queued clients:
+1. Teresa Santos
+2. Isabel Ribeiro
+3. Rui Torres
+
+Choose an option: 4
+</pre>
+<br/><strong>Given code:</strong><br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#include <stdio.h>
+#include <string.h>
+
+#define CAP 10        // max capacity of clients
+
+char queue[CAP][50];  // queue of clients
+int n = 0;            // number of clients waiting
+
+/* Functions to be implemented */
+
+void add_client(char queue[][50], int *n, int *end) {
+  // TODO
+}
+
+void rm_client(char queue[][50], int *n, int *start) {
+  // TODO
+}
+
+void list_clients(char queue[][50], int *n, int *start) {
+  // TODO
+}
+
+int main() {
+    int start = 0, end = 0;
+    int option;
+
+    printf("----------------------\nAvailable Options:\n1. Add client\n2. Serve client\n3. List client queue\n. Exit\n----------------------\n\n");
+
+    do {
+        printf("\nChoose an option: ");
+        scanf("%d", &option);
+        getchar();  // clear buffer
+
+        if (option == 1) {
+            add_client(queue, &n, &end);
+        } else if (option == 2) {
+            rm_client(queue, &n, &start);
+        } else if (option == 3) {
+            list_clients(queue, &n, &start);
+        }
+    } while (option != 4);
+
+    return 0;
+}
+</script></uc-code>
+</li>
+<li><strong><em>Undo</em> instruction.</strong>
+<strong>LIFO</strong> (<em>Last In, First Out</em>) is a data organization and processing strategy that is the opposite of FIFO. A <strong>stack</strong> is typically associated with the LIFO concept, where data is added one after another and always placed at the end, and can only be removed from the same side it was added (i.e., from the end). With this concept in mind, implement an interactive program to simulate the <em>undo</em> instruction.<br/>
+In a simple text editor, whenever a user types a word, it is stored in an <strong>action stack</strong>. If the user wants to <strong>undo the last action</strong>, the word at the top of the stack is removed (simulating the <em>Undo</em> instruction).<br/>
+Your program should allow the following operations:
+        <ul>
+<li>Insert a word, to simulate typing in a text editor.</li>
+<li>Undo the last word, which means removing the word at the top of the stack.</li>
+<li>Display the word at the top of the stack (i.e., the last word typed).</li>
+<li>Exit the program.</li>
+</ul>
+<strong>Notes:</strong> Use only simple data structures to simulate the stack, such as <em>arrays</em>, and do not use any additional libraries. The stack structure must be such that only the last inserted element can be accessed. To achieve this, manage the top position of the stack and the number of words typed.<br/><br/> 
+As a starting point, you may begin by using the code skeleton provided below and complete the missing parts, that is, the functions corresponding to the instruction options listed above. Alternatively, you may create your own code from scratch.<br/>
+<strong>Example of interaction:</strong>
+<pre>
+
+----------------------
+Available Options:
+1. Write word
+2. Undo
+3. List last word
+. Exit
+----------------------
+
+Choose an option: 1
+Write a word: Everybody
+
+Choose an option: 1
+Write a word: should
+
+Choose an option: 1
+Write a word: learn
+
+Choose an option: 1
+Write a word: to
+
+Choose an option: 1
+Write a word: program
+
+Choose an option: 3
+Last word: program
+
+Choose an option: 3
+Last word: program
+
+Choose an option: 1
+Write a word: a
+
+Choose an option: 1
+Write a word: computer
+
+Choose an option: 1
+Write a word: because
+
+Choose an option: 1
+Write a word: it
+
+Choose an option: 1
+Write a word: teaches
+
+Choose an option: 3
+Last word: teaches
+
+Choose an option: 1
+Write a word: you
+
+Choose an option: 1
+Write a word: how
+
+Choose an option: 1
+Write a word: to
+
+Choose an option: 1
+Write a word: think
+
+Choose an option: 3
+Last word: think
+
+Choose an option: 2
+Undo: think
+
+Choose an option: 3       
+Last word: to
+
+Choose an option: 2
+Undo: to
+
+Choose an option: 3
+Last word: how
+
+Choose an option: 2
+Undo: how
+
+Choose an option: 3
+Last word: you
+
+Choose an option: 2
+Undo: you
+
+Choose an option: 2
+Undo: teaches
+
+Choose an option: 3
+Last word: it
+
+Choose an option: 4
+</pre>
+<br/><strong>Given code:</strong><br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 20
+
+void push(char stack[][50], int *n) {
+    // TODO
+}
+
+void pop(char stack[][50], int *n) {
+    // TODO
+}
+
+void top(char stack[][50], int n) {
+    // TODO
+}
+
+int main() {
+    char stack[MAX][50];
+    int n = 0;
+    int option;
+
+    printf("----------------------\nAvailable Options:\n1. Write word\n2. Undo\n3. List last word\n. Exit\n----------------------\n\n");
+
+    do {
+        printf("\nChoose an option: ");
+        scanf("%d", &option);
+        getchar();   // clear buffer
+
+        switch (option) {
+            case 1:
+                push(stack, &n);
+                break;
+            case 2:
+                pop(stack, &n);
+                break;
+            case 3:
+                top(stack, n);
+                break;
+            default:
+                printf("Invalid option.\n");
+        }
+    } while (option != 4);
+
+    return 0;
+}
+</script></uc-code>
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

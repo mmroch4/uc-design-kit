@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Class 07 · Recursion, Sorting and Structures · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), lab class 7: Recursion, Sorting and Structures">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="7">
+    <h1>Practical Class 07 · Recursion, Sorting and Structures</h1>
+    <p class="uc-small"><a href="aula07_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <div class="uc-content">
+<h2><strong>Mooshak:</strong> Exercises for Submission</h2>
+<p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
+</p><ul>
+<li><a href="problems/pi022.html">[PI022] Quadratic Sorting</a> (weight 30%) (extra exercise)</li>
+<li><a href="problems/pi024.html">[PI024] Odd Numbers Sorting</a> (weight 30%) (main exercise)</li>
+<li><a href="problems/pi026.html">[PI026] Hanoi</a> (weight 20%) (main exercise)</li>
+<li><a href="problems/pi027.html">[PI027] Bits</a> (weight 30%) (extra exercise)</li>
+<li><a href="problems/pi028.html">[PI028] Permutations</a> (weight 30%) (main exercise)</li>
+<li><a href="problems/pi029.html">[PI029] The Tax Collector</a> (weight 30%) (main exercise)</li>
+<li><a href="problems/pi030.html">[PI030] University Access Statistics</a> (weight 30%)(main exercise)</li>
+<li><a href="problems/pi032.html">[PI032] Triathlon</a> (weight 30%)(extra exercise)</li>
+</ul>
+<p><mark><strong>Submission deadline:</strong> <strong>April 25</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
+<p><strong>You are encouraged to talk with the instructors and other
+  colleagues to ask for ideas on how to solve a problem, but you also
+  need to make an effort to code your solution. That is the way to become competent at programming and problem
+  solving, and also to become prepared for the pratical evaluations. The same is
+  valid for ChatGPT or other LLMs. <mark>You may
+  ask for suggestions on how you could solve a given problem, but also
+    ask it to avoid giving you the code solution.</mark></strong><br/>
+</p><p>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.<br/>
+Each class accounts for 10% of the grade for this component.<br/>  
+For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
+To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+
+<h3>Exercise 1) Sorting</h3>
+<ol>
+<li>Write a function <br/>
+<pre>int disorder(int arr[], int n);
+</pre><br/>
+      that counts how many pairs of values in an array <code><strong>arr</strong></code> are not in <em>ascending</em> order, that is <code><strong>arr[i] &gt; arr[i + 1]</strong></code>.<br/><br/>
+      Example:
+<uc-code collapsible="" lang="c"><script type="text/plain">
+Input:  arr = {3,1,2,2,4,0}; n = 6
+Output: There are 2 pairs of values out of order!  // because 3 > 1 and 4 > 0
+</script></uc-code>
+<mark><strong>Challenge:</strong></mark> 
+      How many "out of order" corrections would be necessary so that the given sequence is all sorted in ascending order? 
+</li>
+<li>Write a program that reads a sequence of positive integers
+	from standard input, ending with zero, sorts them, and prints
+	them in ascending order. <br/>
+    The maximum size of the sequence is	lower than 1000. Choose any of the three sorting algorithms presented in the theoretical lecture.
+<br/><details name="hint">
+<summary><em>Hints</em></summary>
+<p>- The <code><strong>main</strong></code> function in your program should:
+  </p><ol type="a">
+<li>declare an indexed variable with a maximum size (e.g., 1000),</li>
+<li>read values from standard input until it finds the number <strong><code>0</code></strong>,</li>
+<li>invoke a sorting function of your choice, and</li>
+<li>print the final sorted sequence.</li>
+</ol>
+</details> 
+</li>
+<li>Implement a program that asks the user to input <code><strong>n</strong></code> numbers and store even numbers in one array and odd numbers in another in ascending order. <br/>Print the sorted even and odd numbers separately. 
+<br/>Example:
+<pre>
+<em>Input:</em>  Insert the size: 14
+        Insert the sequence: 2 10 4 3 70 4 55 1 0 3 5 8 9 2
+
+<em>Output:</em> Odd numbers: 1 3 3 5 9 55
+        Even numbers: 0 2 2 4 4 8 10 70
+</pre>
+</li>
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi024.html">[PI024] Odd Numbers Sorting</a><br/>  
+  Read the problem statement and try to submit an Accepted solution. <strong>Don't forget to test it first on your computer!</strong>
+<br/>
+<details name="hint">
+<summary><em>Hints</em></summary>
+<p>- The problem is essentially about sorting an array, but with a different notion of "less than". Instead of directly comparing values, you must apply the rules:</p>
+<ol>
+<li>If both numbers are odd or both are even, the smaller value comes first.</li>
+<li>If they have different parity, the odd number always comes first.</li>
+</ol>
+<p>- Define a helper function <code><strong>comparable(x, y)</strong></code> that returns 1 if <code><strong>x</strong></code> should come before <code><strong>y</strong></code>, and 0 otherwise.</p>
+<p>- Use this function in your sorting algorithm.</p>
+</details>
+</li>
+
+<li>Write a program that given <code><strong>n</strong></code> distinct integers, sorts them in descending order according to the number of 1's in their binary representation. If two numbers have the same number of 1's, you have to sort them in ascending order of their value. <br/>The output should consist of the numbers sorted in the indicated order (one number per line). 
+<br/>Example:
+<pre>
+<em>Input:</em>  Insert the size: 8
+        Insert the sequence: 5 2 15 3 9 4 6 7
+
+<em>Output:</em> Sorted numbers: 
+        15   // 1111 (four 1's)
+        7    // 0111 (three 1's)
+        3    // 0011 (two 1's)
+        5    // 0101 (two 1's)
+        6    // 0110 (two 1's)
+        9    // 1001 (two 1's)
+        2    // 0010 (one 1)
+        4    // 0100 (one 1)
+</pre>
+</li>
+<li>Write the following function that sorts characters in a string by their codes. <br/>
+<pre>void sort(char str[]);
+</pre><br/>
+  Example:
+<pre>
+<em>Input:</em>  Insert the string: ALGORITHM
+
+<em>Output:</em> Sorted string: AGILMOORT
+</pre>
+</li>
+</ol>
+
+<h3>Exercise 2) Still about Recursion</h3>
+<ol>
+<li><strong>The Enchanted Mirror.</strong> A wizard’s enchanted mirror can only reflect correctly if a word or a sentence is reversed using magic recursion.<br/>
+  	Write a recursive function to reverse a given word/sentence:<br/>
+<pre>void reverseString(char str[], int start, int end);
+</pre>
+<br/><details name="hint">
+<summary><em>Hints</em></summary>
+<p>- You can swap characters between <code><strong>start</strong></code> and <code><strong>end</strong></code> recursively. 
+      </p></details>
+<br/>
+      Example:<br/><pre>
+<em>Input:</em>  Entre a word or a sentence: magic
+<em>Output:</em> Reversed: cigam
+</pre></li>
+
+<li><strong>The Mysterious Staircase.</strong> A traveler is climbing a staircase with <code><strong>n</strong></code> steps. They can climb either 1 step or 2 steps at a time. How many different ways can they reach the top?<br/>
+	Write a recursive function that computes the number of ways to reach the top of a staircase with <code><strong>n</strong></code> steps:<br/>
+<pre>int countWays(int n);
+</pre>
+<ul>
+<li><strong>Base cases:</strong><ul>
+<li>If <code><strong>n = 0</strong></code>, return <code><strong>1</strong></code> (1 way to stay at the ground).</li>
+<li>If <code><strong>n &lt; 0</strong></code>, return <code><strong>0</strong></code> (no way to reach negative steps).</li>
+</ul></li>
+
+<li><strong>Recursive case:</strong><ul>
+<li><code>countWays(n) = countWays(n-1) + countWays(n-2)</code></li>
+</ul></li>
+
+</ul>
+
+      Example:<br/><pre>
+<em>Input:</em>  Enter number of steps: 4
+<em>Output:</em> Ways to climb: 5
+</pre></li>
+
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi026.html">[PI026] Hanoi</a><br/> 
+  The Tower of Hanoi is a classic puzzle. This problem was covered in the lecture.<br/>
+  You now have the opportunity to implement it and submit an Accepted solution. 
+
+  <br/>
+<details name="hint">
+<summary><em>Hints</em></summary>
+<p>- Refer to the slides from the <a href="../apontamentos/5_recursion.pdf">recursion lecture</a>.</p>
+</details>
+</li>
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi028.html">[PI028] Permutations</a><br/> 
+  Given an integer <code><strong>n</strong></code>, print all permutations of the numbers from <code><strong>1</strong></code> to <code><strong>n</strong></code>, each on its own line, in increasing lexicographic order.<br/>
+  Read the problem statement carefully and try to submit an Accepted solution.
+
+  <br/>
+<details name="hint">
+<summary><em>Hints</em></summary>
+<p>- A permutation of <code><strong>n</strong></code> elements is built by choosing an element for the first position, and then filling the remaining <code><strong>n-1</strong></code> positions with the remaining elements. This suggests a recursive approach.</p>
+<p>- You can implement a function <code><strong>solve(x)</strong></code> that decides which element to place at position <code><strong>x</strong></code>, and then calls <code><strong>solve(x+1)</strong></code> for the next positions.</p>
+<p>- The base case is <code><strong>x == n</strong></code>: the permutation is complete, so you can print it.</p>
+<p>- <em>Note:</em> Lexicographic order is automatically ensured if, at each position, you try elements in increasing order (from <code><strong>1</strong></code> to <code><strong>n</strong></code>). Since you always iterate from smallest to largest, the generated permutations are naturally sorted.</p>
+<p>- <em>Attention:</em> You need to keep track of which elements have already been used in previous positions, to avoid repeating them.</p>
+<ul>
+<li>A simple way is to maintain an array <code><strong>visited[n]</strong></code>, where <code><strong>visited[i] = 1</strong></code> means that element <code><strong>i</strong></code> has already been used in the current permutation.</li>
+<li>The step of unmarking (<code><strong>visited[i] = 0</strong></code>) is essential; this is called <em><strong>backtracking</strong></em> and allows reuse of the element in other permutations.</li>
+</ul>
+</details>
+</li>
+<li><strong>The Magical Mirror of Subsets.</strong> A magical mirror reveals all possible subsets of a given set of elements. However, the only way to activate the mirror is by using recursion!<br/>
+	Write a recursive function to generate all subsets of a given set and print all subsets (including the empty set):<br/>
+<pre>void generateSubsets(int arr[], int index, int subset[], int subsetSize);
+</pre>
+
+      Example:<br/><uc-code collapsible="" lang="c"><script type="text/plain">
+Input:  Enter set: {1, 2, 3}
+Output: Possible subsets:
+        {}
+        {1}
+        {2}
+        {3}
+        {1, 2}
+        {1, 3}
+        {2, 3}
+        {1, 2, 3}
+</script></uc-code></li>
+
+</ol>
+
+<h3>Exercise 3) Structures</h3>
+<ol>
+<li><h4>Struct <code>Point</code></h4>
+<p>Consider the following structure presented in the theoretical classes, which represents the points in <math>
+<msup>
+<mi>ℝ</mi>
+<mn>2</mn>
+</msup>
+</math> 
+ (in the plane): </p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+typedef struct point {
+  double x, y;
+} Point;
+</script></uc-code>
+<p>Write a program that follows the instructions below.</p>
+<ol type="a">
+<li>Write a function that calculates the Euclidean distance between two points.<br/>
+<pre>double distance(Point a, Point b);
+</pre>
+</li>
+<li>Write a function that returns <strong><code>1</code></strong> if two points are equal, and returns <strong><code>0</code></strong> otherwise. <br/>
+<pre>int same_point(Point a, Point b);
+</pre>
+<em>Note:</em> Since the points are defined using floating-point numbers with finite precision, two points are considered equal if the Euclidean distance between them is less than 0.000001.
+</li>
+<li>Write a program that reads a list of 10 points from standard input (given by the values <code><strong>x</strong></code> and <code><strong>y</strong></code>) and prints to standard output the pair of points with the greatest distance between them.</li>
+<li>Define a new structure called <strong><code>Rect</code></strong> to represent <em>rectangles</em> with sides parallel to the axes in a Cartesian coordinate system.<br/>
+Represent the rectangles using the <strong>bottom-left</strong> and <strong>top-right</strong> points, using the <strong><code>Point</code></strong> structure.</li>
+<li>Write a function that calculates the area of a rectangle.<br/>
+<pre>double rect_area(Rect r);
+</pre>
+</li>
+<li>Write a function that returns <strong><code>1</code></strong> if the point <code><strong>p</strong></code> is inside the rectangle <code><strong>r</strong></code>, and returns <strong><code>0</code></strong> otherwise.<br/>
+<pre>int point_inside(Rect r, Point p);
+</pre>
+</li>
+<li>Write a function that returns <strong><code>1</code></strong> if rectangle <code><strong>r2</strong></code> is <strong>completely</strong> contained within rectangle <code><strong>r1</strong></code>, and <strong><code>0</code></strong> otherwise.<br/>
+<pre>int rect_inside(Rect r1, Rect r2);
+</pre>
+</li>
+</ol>
+</li>
+<li><h4>Arrays of Structures</h4>
+<p>Given a database containing information about students and courses in a university, we want to query it to obtain information. The data structures that will be used by the program follow the specification below.</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#define MAX 11
+#define MAXNOME 100
+
+typedef struct aluno {
+  char nome[MAXNOME], codigo[MAX];
+  int disc[MAX], nd;
+} ALUNO;
+
+typedef struct disciplina {
+  char nome[MAXNOME];
+  int ano;
+} DISCIPLINA;
+
+// Variáveis globais
+int NDisc = 9;
+DISCIPLINA Disc[MAXDISC] = {{"Programacao Imperativa",1},
+                             {"Calculo Infinitesimal I",1},
+                             {"Programacao Estruturada",1},
+                             {"Topologia",4},
+                             {"Geometria Computacional",4},
+                             {"Probabilidades e Estatistica",2},
+                             {"Teoria de Numeros",3},
+                             {"Analise Infinitesimal",3},
+                             {"Logica",3}
+                           };
+
+int NAlunos = 6;
+ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
+                           {"Anabela Moreira", "2000020004",{6,2,3,7,8,9}, 6},
+                           {"Sonia Silva", "2000020005",{5,6,1,8,9},5},
+                           {"Joao Maria Peixoto", "2000018001",{3,4,1,5}, 4},
+                           {"Joao Mario Pereira","2004010005",{8,1,2,3,4,5,6},7},
+                           {"Maria Reis", "2000020050",{5,6,1,7,3,9},6}
+                          };
+</script></uc-code>
+<p>In the example, Imperative Programming is course <code><strong>0</strong></code> and Structured Programming is course <code><strong>2</strong></code>. The courses a student is enrolled in are identified by their index in the <code><strong>Disc</strong></code> array. A student's code is a sequence of 10 digits: the first four identify the year of enrollment, the next three the course code, and the last three identify the student.</p>
+<ol type="a">
+<li>Write a function <br/>
+<pre>void procura(char *palavranome);
+</pre><br/>
+      to print the code and name of the students whose name contains a word given by <code><strong>wordname</strong></code>. For example, if the word were <code><strong>"Maria"</strong></code>, it should print:<br/>
+<pre>Alunos cujo nome inclui Maria
+
+2001018003	Mariana Matias
+2000018001	Joao Maria Peixoto
+2000020050	Maria Reis
+</pre>
+<p>No sorting of the data should be performed. Unless sorting is explicitly requested, the output should preserve the order in which the data appears in the data structures.</p>
+</li>
+<li>Write a function that writes into the string <code><strong>nome</strong></code> the name of a student given their code (the function returns 0 if the student does not exist, and 1 otherwise).<br/>
+<pre>int codigo2Aluno(char *codigo, char *nome);
+</pre>
+</li>
+<li>Write a function that prints to standard output the list of courses a student is enrolled in, given the student’s name (and returns the number of courses they are enrolled in).<br/>
+<pre>int disciplinas_de_Aluno(char *nome);
+</pre>
+</li>
+<li>Write a function that stores in the array <code><strong>indices</strong></code> the indices (positions in <code><strong>Alunos</strong></code>) of the students enrolled in a course, given the course name (returns the number of students in this condition).<br/>
+<pre>int alunos_de_disciplina(char *disciplina, int *indices);
+</pre>
+</li>
+<li>Write a function that returns the average number of courses that students of a given program are enrolled in.<br/>
+<pre>int numero_medio(char *curso);
+</pre>
+</li>
+<li>Write a function that stores in the array <code><strong>indices</strong></code> the positions (in <code><strong>Alunos</strong></code>) of students in a given program who are enrolled in more courses than the average number of courses for students of that program, and returns the number of students in this condition.<br/>
+<pre>int muitas_disciplinas(char *curso, int *indices);
+</pre>
+</li>
+<li>Write a function that returns the maximum number of courses that students who entered a given program in a given year are enrolled in. The string <code><strong>cursoano</strong></code> is obtained by concatenating the year of entry with the program code; for example, if the year is “2006” and the code is “018”, <code><strong>cursoano</strong></code> would point to “2006018”.<br/>
+<pre>int numero_maximo(char *cursoano);
+</pre>
+</li>
+<li>Write a function that returns the number of courses in a given year that a student is enrolled in. Assume <code><strong>posaluno</strong></code> contains the index of the student in <code><strong>Alunos</strong></code>, and that it is a valid position.<br/>
+<pre>int numero_disc(int posaluno, int ano);
+</pre>
+</li>
+<li>Write a function that checks whether a given student is enrolled in courses from multiple years. The function returns any non-zero value if true, and 0 otherwise. Assume <code><strong>posaluno</strong></code> contains the index of the student in <code><strong>Alunos</strong></code>, and that it is a valid position.<br/>
+<pre>int varios_anos(int  posaluno);
+</pre>
+</li>
+</ol>
+
+</li><li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi029.html">[PI029] The Tax Collector</a><br/> 
+  Now that you have practiced with structures, read the statement of problem PI029 and try to submit an Accepted solution.
+
+  <br/>
+<details name="hint">
+<summary><em>Hint</em></summary>
+<p>- Each company has 5 fields, each on a separate line. Note that the company name and the activity area are strings that may contain spaces — therefore, you cannot use <code><strong>scanf("%s", ...)</strong></code> to read them. Use <code><strong>fgets</strong></code> or read character by character until the end of the line.</p>
+<p>- The activity code is an integer between 1 and 100. This allows using an array <code>act[101]</code> initialized to zero, where <code><em>act[i]</em></code> accumulates the total revenue of all companies with code <code><strong>i</strong></code>.</p>
+<p>- For <code><strong>flag == 0</strong></code>, simply count how many positions in the array are non-zero.</p>
+<p>- For <code><strong>flag == 1</strong></code>, the statement asks for results in ascending order of code. Since the array <code><strong>act</strong></code> is indexed by the code itself, just iterate from 1 to 100 and print the non-zero entries; the order is already ascending automatically.</p>
+<p>- Use a <code><strong>struct</strong></code> to organize the information of each company!</p>
+</details>
+
+</li>
+
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi030.html">[PI030] University Access Statistics</a><br/> 
+  Read the problem statement and try to submit an Accepted solution.
+
+  <br/>
+<details name="hint">
+<summary><em>Hint</em></summary>
+<p>- You need two arrays:</p>
+<ul>
+<li>One with all the applicants (needed for <code><strong>flag == 1</strong></code>, where you must print them in the order they were read).</li>
+<li>One with the schools, indexed by code (1 to 300), where you accumulate the number of applicants and the sum of scores.</li>
+</ul>
+<p>- Each applicant has 5 lines: an integer, a string, a string, an integer, and an integer. The problem is that after reading an integer with <code><strong>scanf</strong></code>, the <code><strong>\n</strong></code> remains in the buffer, and the next string read catches an empty line. You must consume that <code><strong>\n</strong></code> before reading the string.</p>
+<p>- Since the school code is an integer between 1 and 300, you can use that value directly as the index of the schools array.</p>
+</details>
+
+</li>
+<li><h4>Struct <code>Date</code></h4>
+<p>Consider the following structure presented in the theoretical lectures, which represents dates:</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+typedef struct date {
+  int day, month, year;
+} Date;
+</script></uc-code>
+<p>Write a program that follows the instructions below.</p>
+<ol type="a">
+<li>Write a program that reads a set of dates from standard input. The input ends when the value <strong><code>-1</code></strong> is entered for the day, and at most 10 dates will be entered. The dates must be stored in an array.</li>
+<li>Write a function that compares two dates.<br/>
+<pre>int compare(Date d1, Date d2);
+</pre><br/>
+The function should return <strong><code>0</code></strong> if the dates are equal, <strong><code>-1</code></strong> if date <code><strong>d1</strong></code> is earlier than date <code><strong>d2</strong></code>, and <strong><code>1</code></strong> if date <code><strong>d1</strong></code> is later than date <code><strong>d2</strong></code>.</li>
+<li>Write a function that calculates the difference between two dates (in days, months, and years).<br/>
+<pre>Date diff(Date d1, Date d2);
+</pre><br/>
+The result of the function should be represented by a variable of type <strong><code>Date</code></strong>.</li>
+<li>Write a function that sorts the set of dates read (in descending order).<br/>
+<pre>void sort_dates(Date dates[], int size);
+</pre>
+</li>
+<li>Write a function that returns the earliest date in the set of dates.<br/>
+<pre>Date smallest_date(Data dates[], int size);
+</pre>
+</li>
+<li>Write a function that prints to standard output all the dates in the set of dates that correspond to the year <code>year</code> passed as a parameter to the function.<br/>
+<pre>void dates_of_year(Date dates[], int size, int year);
+</pre>
+</li>
+</ol>
+</li>
+<li><h4>Struct <code>Robo</code></h4>
+<p>Consider the following structure that represents the positions and movements of a robot:</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+typedef enum movement {North, West, South, East} Movement;
+
+typedef struct position {
+  int x, y;
+} Position;
+</script></uc-code>
+<p>Write a program that follows the instructions below.</p>
+<ol type="a">
+<li>Define a function that, given an initial position (<code><strong>start</strong></code>) and an array with <code><strong>n</strong></code> movements (<code><strong>mov</strong></code>), calculates the final position of the robot after performing that sequence of movements.<br/>
+<pre>Position finalPos(Position start, Movement mov[], int n);
+</pre>
+</li>
+<li>Define a function that, given the initial (<code><strong>start</strong></code>) and final (<code><strong>end</strong></code>) positions of the robot, fills the array <code><strong>mov</strong></code> with the necessary movements for the robot to go from one position to the other. 
+<pre>int path(Position start, Position end, Movement mov[], int n);
+</pre><br/>
+The function should fill at most <code><strong>n</strong></code> elements of the array <code><strong>mov</strong></code> and return the number of elements filled. If it is not possible to reach the final position with <code><strong>n</strong></code> movements, the function should return <strong><code>-1</code></strong>. </li>
+<li>Define a function that, given an array with <code><strong>n</strong></code> positions, determines the index of the position that is closest to the origin. 
+<pre>int mostCentral(Position pos[], int n);
+</pre>
+<em>Note:</em> The coordinates of each point are integers.</li>
+<li>Define the function that, given a position and an array with <code><strong>n</strong></code> positions, calculates how many of those positions are adjacent to the given position.<br/>
+<pre>int neighbors(Position p, Position pos[], int n);
+</pre>
+</li>
+</ol>
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

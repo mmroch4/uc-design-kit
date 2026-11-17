@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI033] Desenhando uma Ampulheta · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI033 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI033] Desenhando uma Ampulheta</li></ol>
+    </nav>
+    <h1>[PI033] Desenhando uma Ampulheta</h1>
+    <div class="uc-content">
+<h2>Tarefa</h2>
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi033.png"/>A sua tarefa é desenhar uma ampulheta (dois triângulos), constituída unicamente pelos caracteres '.' e '#'. O desenho é determinado por um número ímpar <strong>T</strong> indicando o seu tamanho (altura e largura em número de caracteres). Por exemplo, uma ampulheta com <strong>T=7</strong> corresponde à seguinte figura:</p>
+<pre>
+####### -&gt; '#' em toda a linha
+.#...#. -&gt; '#' na segunda e na penúltima posição
+..#.#.. -&gt; '#' na terceira e na antepenúltima posição
+...#... -&gt; '#' na posição do meio
+..#.#.. -&gt; '#' na terceira e na antepenúltima posição
+.#...#. -&gt; na segunda e na penúltima posição
+####### -&gt; '#' em toda a linha
+</pre>
+<h2>Input</h2>
+<p>Na primeira linha do <em>input</em> vem um número <strong>N</strong> a indicar a quantidade de ampulhetas a desenhar (<em>1 ≤ N ≤ 10</em>).
+
+</p><p>Cada uma das <strong>N</strong> linhas seguintes contém um número ímpar <strong>T<sub>i</sub></strong> (<em>5 ≤ T<sub>i</sub> ≤ 99</em>) indicando o tamanho da ampulheta a desenhar.</p>
+<h2>Output</h2>
+<p>O output deve conter <strong>N</strong> ampulhetas (e pela mesma ordem em que os tamanhos aparecem no input). Cada ampulheta deve ser representada um quadrado de T<sub>i</sub> por T<sub>i</sub> caracteres, onde a ampulheta é desenhada como atrás explicado. Veja o exemplo de input para garantir que percebe o pedido.</p>
+<h2>Exemplo de Input/Output </h2>
+<div class="uc-table"><table>
+<tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
+<tr>
+<td>
+<pre>
+3
+7
+5
+9
+</pre>
+</td><td>
+<pre>
+#######
+.#...#.
+..#.#..
+...#...
+..#.#..
+.#...#.
+#######
+#####
+.#.#.
+..#..
+.#.#.
+#####
+#########
+.#.....#.
+..#...#..
+...#.#...
+....#....
+...#.#...
+..#...#..
+.#.....#.
+#########
+</pre>
+</td>
+<td>
+  As primeiras 7 linhas são uma ampulheta de tamanho 7.<br/>
+  As 5 linhas seguintes são uma ampulheta de tamanho 5.<br/>
+  As 9 linhas seguintes são uma ampulheta de tamanho 9.<br/>
+</td>
+</tr></table></div>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi033.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI052] Reverse Polish Notation · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI052 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI052] Reverse Polish Notation</li></ol>
+    </nav>
+    <h1>[PI052] Reverse Polish Notation</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<h2>The Problem</h2>
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi052.png"/>
+Back in elementary school, you learned that different arithmetic operators have different precedences.
+This is true in every country. For example, in English, there's a mnemonic to remember the order:
+<em><strong>"Please Excuse My Dear Aunt Sally"</strong></em> – representing the order:
+<strong>P</strong>arentheses, <strong>E</strong>xponents, <strong>M</strong>ultiplication, <strong>D</strong>ivision, <strong>A</strong>ddition, and <strong>S</strong>ubtraction.</p>
+<p>For instance, the expression:</p>
+<pre>1 + 2 * 3 = ?</pre>
+<p>results in <code>7</code> because multiplication takes precedence over addition.</p>
+<p>If we wanted to perform the addition first, we would need parentheses:</p>
+<pre>(1 + 2) * 3 = ?</pre>
+<p>However, in the early days of electronic calculators, parsing expressions with precedence and parentheses proved complicated.</p>
+<p>To address this, the Polish mathematician <strong>Jan Łukasiewicz</strong> introduced a notation in the 1920s that made parentheses unnecessary,
+ensuring operations would be evaluated in the desired order. In his system, operators are written <strong>before</strong> their operands.</p>
+<p>Later, in the 1950s, computer scientist <strong>Charles L. Hamblin</strong> proposed placing operators <strong>after</strong> the operands instead. This variant,
+which became very popular due to its ease of implementation using stacks, is known as
+<strong>Reverse Polish Notation (RPN)</strong>, or <em>postfix notation</em>. In RPN, even complex expressions can be written without parentheses.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Infix Notation</th>
+<th scope="col">Reverse Polish Notation (RPN)</th>
+</tr>
+<tr>
+<td>1 + 1</td>
+<td>1 1 +</td>
+</tr>
+<tr>
+<td>3 * (4 + 5)</td>
+<td>3 4 5 + *</td>
+</tr>
+<tr>
+<td>3 + 4 * 5</td>
+<td>3 4 5 * +</td>
+</tr>
+</table></div>
+<p>Your task is to write a program that evaluates expressions written in RPN. A standard evaluation algorithm works as follows:</p>
+<ul>
+<li>Create an empty stack.</li>
+<li>Process the expression from left to right:<ul>
+<li>If the element is a number, push it onto the stack.</li>
+<li>If it is an operator, pop the top two numbers from the stack, apply the operator, and push the result back onto the stack.</li>
+</ul></li>
+
+<li>At the end, there should be exactly one value on the stack — the result of the expression.</li>
+<li>If at any point this rule is violated (e.g., trying to pop from an empty stack), the expression is considered invalid.</li>
+</ul>
+<h2>Input</h2>
+<p>The first line contains an integer <strong>N</strong>, the number of expressions to evaluate.</p>
+<p>The following <strong>N</strong> lines each contain a single RPN expression, consisting of:</p>
+<ul>
+<li>Integers (positive or negative, always valid as stand-alone tokens)</li>
+<li>Operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></li>
+</ul>
+<p>You may assume that:
+</p><ul>
+<li>All numbers are integers.</li>
+<li>Intermediate results are always integers.</li>
+<li>Only the four basic operations are used.</li>
+<li>The length of an expression, in characters, is less than 10,000.</li>
+</ul>
+<h2>Output</h2>
+<p>For each expression, print a single line:</p>
+<ul>
+<li>The result of the expression, if it is valid.</li>
+<li><code><strong>Expressao Incorreta</strong> (<em>Incorrect Expression</em></code>, if the expression is malformed (e.g., stack underflow, leftover items, or division by zero).</li>
+</ul>
+<h2>Exemplo de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>6
+1 1 +
+3 4 5 + *
+3 4 5 * +
+1 +
+1 1 1 +
+2 3 8 2 / - 1 + *</pre>
+</td>
+<td>
+<pre>2
+27
+23
+Expressao Incorreta
+Expressao Incorreta
+0<pre>
+	   </pre></pre></td>
+</tr>
+</table></div>
+
+</section><section lang="pt">
+
+<h2>O problema</h2>
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi052.png"/>
+Quando andaste na escola primária, aprendeste que os diferentes operadores aritméticos têm diferentes precedências.
+Isso acontece em todos os países, e por exemplo os ingleses usam a mnemónica: <em>"<strong>P</strong>lease <strong>E</strong>xcuse <strong>M</strong>y <strong>D</strong>ear <strong>A</strong>unt <strong>S</strong>ally"</em>, que
+indica a ordem dos operadores (<strong>P</strong>arênteses, <strong>E</strong>xponenciação, <strong>M</strong>ultiplicação, <strong>D</strong>ivisão, <strong>A</strong>dição, <strong>S</strong>ubtração).
+
+</p><p>Por exemplo, a expressão:
+</p><pre>1 + 2 x 3 = ?</pre>
+dá como resultado <code>7</code>, pois o operador multiplicação tem precedência.
+
+<p>Se quisermos avaliar primeiro a soma a expressão tem de ser:
+</p><pre>(1 + 2) x 3 = ?</pre>
+No entanto, nos tempos iniciais das calculadoras electrónicas, revelou-se complicado analisar
+este tipo de expressões.
+
+<p>Por isso mesmo, em 1920, o matemático polaco <strong>Jan Lukasiewicz</strong> criou uma notação que
+tornava desnecessário o uso de parênteses, garantindo sempre que as operações eram efectuadas como
+desejado. A notação consistia basicamente em escrever os operadores antes dos números e não no meio deles.
+
+</p><p>Já em 1950, o <em>computer scientist</em> <strong>Charles L. Hamblin</strong> propôs um esquema onde os operadores
+apareciam a seguir aos números, em vez de ser antes. Esta notação acabou por ser muito usada, devido entre
+outras coisas à sua fácil implementação num sistema automático usando uma pilha, e ficou conhecida como
+<strong>Notação Polaca Invertida (RPN)</strong> (ou <em>postfix</em>). Em RPN, uma expressão arbitrariamente
+complexa pode ser escrita sem o uso de parênteses.<br/> 
+
+</p><div class="uc-table"><table>
+<tr>
+<th scope="col">Notação Normal</th>
+<th scope="col">Notação Polaca Invertida (RPN)</th>
+</tr>
+<tr>
+<td>1 + 1</td>
+<td>1 1 +</td>
+</tr>
+<tr>
+<td>3 * (4 + 5)</td>
+<td>3 4 5 + *</td>
+</tr>
+<tr>
+<td>3 + 4 * 5</td>
+<td>3 4 5 * +</td>
+</tr>
+</table></div>
+<p>A tua tarefa é criar um programa capaz de calcular o valor final de expressões dadas em RPN, sabendo que
+um algoritmo para as analisar é:
+
+</p><ul>
+<li>Criar uma pilha 
+  </li><li>Ir da esquerda para a direita lendo elemento a elemento e:
+  <ul>
+<li>Se o elemento for um número, inseri-lo na pilha
+	</li><li>Se for um operador, retirar dois valores da pilha, aplicar esse operador, e inserir o resultado na pilha
+  </li></ul>
+</li><li>No final, fica apenas um valor na pilha, que é o resultado da expressão
+  </li><li>Se a pilha não corresponder a alguma das coisas que foi dita atrás (por exemplo, ficar vazia), então a expressão é incorrecta.
+</li></ul>
+<h2>Input</h2>
+<p>A primeira linha contém um número <strong>N</strong>, indicando o número de expressões a analisar.
+</p><p>As seguintes <strong>N</strong> linhas contêm expressões RPN, contendo
+</p><ul>
+<li> Dígitos, representando números inteiro
+  </li><li> Caracteres, representando operações (+, -, * , /)
+</li></ul>
+<p>Podes assumir que os números são sempre inteiros, que os cálculos intermédios vão dar sempre números
+inteiros, e que só aparecem os quatro tipos básicos de operações atrás citados. O comprimento de uma expressão não excede os 10,000 caracteres.
+
+</p><h2>Output</h2>
+<p>Uma linha para cada expressão, indicando o resultado final caso a expressão seja correcta,
+ou <code><strong>Expressao Incorreta</strong></code>, caso contrário.
+
+</p><h2>Exemplo de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>6
+1 1 +
+3 4 5 + *
+3 4 5 * +
+1 +
+1 1 1 +
+2 3 8 2 / - 1 + *</pre>
+</td>
+<td>
+<pre>2
+27
+23
+Expressao Incorreta
+Expressao Incorreta
+0<pre>
+	   </pre></pre></td>
+</tr>
+</table></div>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi052.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

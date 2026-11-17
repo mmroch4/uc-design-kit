@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 12 · Árvores Binárias · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 12: Árvores Binárias">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="12">
+    <h1>Aula Prática 12 · Árvores Binárias</h1>
+    <p class="uc-small"><a href="aula12.html" hreflang="en" lang="en">English version</a></p>
+    <div class="uc-content">
+<p><a href="aula12.html">Version in English</a><br/>
+</p>
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi070.html">[PI070] Counting Leafs</a> (peso 50%) (main exercise)</li>
+<li><a href="problems/pi071.html">[PI071] Sum of All Levels</a> (peso 50%) (main exercise)</li>
+<li><a href="problems/pi072.html">[PI072] Node Balance</a> (peso 50%) (extra exercise)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>15 de Junho</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3>Exercício 1) Árvores Binárias</h3>
+<p>Para os exercícios seguintes, considere as estruturas de dados utilizadas nas aulas teóricas para representar árvores binárias de valores inteiros:<br/>
+</p><uc-code collapsible="" lang="c"><script type="text/plain">
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NodeInfo int
+
+typedef struct BTNode {
+  NodeInfo val;
+  struct BTNode *left;
+  struct BTNode *right;
+} BTNode;
+
+typedef struct {
+  BTNode *root;
+} BTree;
+</script></uc-code>
+<br/>
+<p>Pode assumir que as seguintes funções auxiliares já estão disponíveis (consulte a aula teórica <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/apontamentos/16_trees.pdf">aqui</a>):<br/></p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+// Creates a new node with the given value and NULL children
+BTNode *newNode(NodeInfo val);
+
+// Initialises an empty tree
+void initTree(BTree *t);
+
+// Inserts val into the BST t (for exercises that use BSTs)
+void insertBST(BTree *t, NodeInfo val);
+
+// Prints nodes in in-order (left–node–right)
+void printInorder(BTree *t);
+
+// Returns the total number of nodes in the tree
+int numberTNodes(BTree *t);
+
+// Frees all memory allocated by the tree (post-order)
+void freeTree(BTNode *node);
+</script></uc-code>
+<br/>
+<ol>
+<li>Escreva uma função<br/>
+<pre>int height(BTree *t);
+</pre>
+<br/>
+    que devolve a <strong>altura</strong> da árvore. A altura de uma árvore é o comprimento do caminho mais longo entre a raiz e uma folha. A altura de uma árvore vazia é <code><strong>-1</strong></code>; a altura de uma árvore com um único nó é <code><strong>0</strong></code>.
+</li>
+<li>Escreva uma função<br/>
+<pre>int countLeaves(BTree *t);
+</pre>
+<br/>
+    que conta o <strong>número de folhas</strong> (isto é, o número de nós <strong>sem</strong> filhos).
+</li>
+<li>Escreva uma função<br/>
+<pre>int isSymmetric(BTree *t);
+</pre>
+<br/>
+    que devolve <code><strong>1</strong></code> se a árvore for <strong>simétrica</strong>, ou <code><strong>0</strong></code> caso contrário. 
+Uma árvore é considerada simétrica se as suas subárvores esquerda e direita forem imagens espelhadas uma da outra. Por exemplo, uma árvore cuja raiz tem valor 1, filho esquerdo 2 e filho direito 2, em que o filho esquerdo tem um filho direito 3 e o filho direito tem um filho esquerdo 3, é simétrica.<br/>
+<details name="hint">
+<summary><em>Dica</em></summary>
+<p>- Escreva uma função auxiliar <code><strong>isMirror(BTNode *a, BTNode *b)</strong></code> que verifica se duas subárvores são imagens espelhadas uma da outra: são espelhadas se ambas estiverem vazias, ou se ambas tiverem o mesmo valor e <code><strong>a-&gt;left</strong></code> for o espelho de <code><strong>b-&gt;right</strong></code> e <code><strong>a-&gt;right</strong></code> for o espelho de <code><strong>b-&gt;left</strong></code>.</p>
+</details>
+
+</li>
+<li>Escreva uma função<br/>
+<pre>int maxValue(BTree *t);
+</pre>
+<br/>
+    que devolve o <strong>valor máximo</strong> armazenado numa árvore binária não vazia (não necessariamente uma árvore binária de pesquisa). Pode utilizar <code><strong>INT_MIN</strong></code> de <code><strong>limits.h</strong></code> como valor inicial para a comparação.
+
+</li>
+<li>Escreva uma função<br/>
+<pre>int isBalanced(BTree *t);
+</pre>
+<br/>
+que devolve <code><strong>1</strong></code> se a árvore for <strong>equilibrada</strong>, significando que, para cada nó, as alturas das suas subárvores esquerda e direita diferem em <strong>no máximo 1</strong>, ou <code><strong>0</strong></code> caso contrário.
+
+<details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Uma solução ingénua chama <code><strong>height</strong></code> e <code><strong>isBalanced</strong></code> separadamente em cada nó, visitando os nós várias vezes.</p>
+<p>- Para uma solução mais eficiente, escreva uma função auxiliar que devolva a altura de uma subárvore se esta estiver equilibrada, ou <code><strong>-2</strong></code> como valor sentinela caso seja detetado algum desequilíbrio, permitindo interromper a recursão antecipadamente.</p>
+</details>
+
+</li>
+<li>Um caminho da raiz até uma folha é uma sequência de nós que começa na raiz e termina numa folha, seguindo arestas entre pai e filho.<br/>
+Escreva uma função<br/>
+
+<pre>int pathSum(BTree *t, int target);
+</pre>
+
+<br/>
+que devolve <code><strong>1</strong></code> se existir um caminho da raiz até uma folha cuja soma dos valores dos nós seja igual a <code><strong>target</strong></code>, ou <code><strong>0</strong></code> caso contrário.
+
+<details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Em cada chamada recursiva, subtraia o valor do nó atual ao <code><strong>target</strong></code>. Quando chegar a uma folha, verifique se o valor restante de <code><strong>target</strong></code> é zero.</p>
+</details>
+
+</li>
+<li>Escreva uma função<br/>
+
+<pre>int depth(BTree *t, NodeInfo val);
+</pre>
+
+<br/>
+que devolve a <strong>profundidade</strong> do nó com valor <code><strong>val</strong></code> (o comprimento do caminho entre a raiz e esse nó), ou <code><strong>-1</strong></code> caso o valor não esteja presente na árvore.
+<br/><p>Para os exercícios seguintes, assuma que as árvores são BSTs válidas, ordenadas segundo a regra apresentada nas aulas: cada nó é maior do que todos os valores da sua subárvore esquerda e menor do que todos os valores da sua subárvore direita.</p></li>
+
+<li>Escreva uma função<br/>
+
+<pre>int isBST(BTree *t);
+</pre>
+
+<br/>
+que devolve <code><strong>1</strong></code> se a árvore respeitar a propriedade de BST em todos os nós, ou <code><strong>0</strong></code> caso contrário.<br/>
+<details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Verificar apenas os filhos imediatos de cada nó <strong>não</strong> é suficiente. Utilize uma função auxiliar que propague limites mínimos e máximos permitidos ao longo da recursão. Pode usar <code><strong>INT_MIN</strong></code> e <code><strong>INT_MAX</strong></code> de <code><strong>limits.h</strong></code> como limites iniciais.</p>
+</details>
+
+</li>
+<li>Escreva uma função<br/>
+
+<pre>NodeInfo minBST(BTree *t);
+</pre>
+
+<br/>
+que devolve o <strong>valor mínimo</strong> armazenado numa BST não vazia sem percorrer a árvore inteira.<br/>
+<details name="hint">
+<summary><em>Dica</em></summary>
+<p>- Numa BST, o valor mínimo encontra-se sempre no nó mais à esquerda. Continue a seguir o filho esquerdo até chegar a um nó sem filho esquerdo.</p>
+</details>
+
+</li>
+<li>Escreva uma função<br/>
+
+<pre>BTNode *deleteBST(BTNode *r, int val);
+</pre>
+
+<br/>
+que remove o nó com valor <code><strong>val</strong></code> da BST com raiz em <code><strong>r</strong></code> e devolve a nova raiz da subárvore. A propriedade da BST deve ser mantida após a remoção. Considere os três casos habituais: (a) o nó a remover é uma folha; (b) tem um filho; (c) tem dois filhos.<br/>
+<details name="hint">
+<summary><em>Dica</em></summary>
+<p>- Para o caso (c), substitua o valor do nó pelo do seu <strong>sucessor em ordem</strong> (o valor mínimo da subárvore direita) e, em seguida, remova esse sucessor em ordem da subárvore direita. Pode reutilizar <code><strong>minBST</strong></code>.</p>
+</details>
+
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula12_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

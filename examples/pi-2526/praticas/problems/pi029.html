@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI029] O Cobrador de Impostos O problema · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI029 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI029] O Cobrador de Impostos O problema</li></ol>
+    </nav>
+    <h1>[PI029] O Cobrador de Impostos O problema</h1>
+    <div class="uc-content">
+<p><img alt="" loading="lazy" src="pi029.jpg"/></p>
+<p>Foi-lhe fornecida uma série de dados sobre um conjunto de empresas. Nomeadamente, para cada empresa, foi-lhe dada informação sobre:
+
+</p><ul>
+<li>O seu número de indentificação fiscal (NIF)
+</li><li>O nome da empresa
+</li><li>A sua área de actividade económica
+</li><li>O código da área de actividade económica
+</li><li>Os rendimentos declarados no último ano fiscal
+</li></ul>
+<p>A sua tarefa consiste em ler os dados e apresentar o total de rendimentos por cada área de actividade económica. A  informação deve aparecer ordenada por ordem crescente do código de área económica.</p>
+<h2>Input</h2>
+<p>Os dados sobre as empresas são apresentados da seguinte forma. A primeira linha contém o <strong>número de empresas</strong> e o valor de uma <strong>flag</strong> que pode tomar os valores 0 ou 1. Cada empresa aparece em seguida e é representada por 5 linhas, uma para cada informação da lista apresentada acima. O código de actividade económica é um inteiro entre 1 e 100. O valor dos rendimentos declarados é um inteiro positivo.</p>
+<h2>Output</h2>
+<p>
+No caso de a flag ter o valor 0, deverá escrever para o output o número de actividades económicas diferentes que aparecem no input.</p>
+<p>
+Se a flag tiver o valor 1, deverá apresentar como resultado uma lista ordenada do total de rendimentos por cada área de actividade económica. A ordem deve ser crescente nos códigos da área de actividade económica. Cada linha de output deverá incluir o código da área de actividade económica seguido de um espaço e do total de rendimentos respectivo.</p>
+<h2>Exemplos de input/output</h2>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+5 1
+234523455
+Restaurante Abocanhado
+Restauracao
+10
+21332
+343554566
+Rodoviaria Andando
+Transportes
+15
+324003
+122324456
+Restaurante do Ze
+Restauracao
+10
+120334
+123345565
+Metro do Porto
+Transportes
+15
+123343
+733345566
+ZXY Informatica
+Servicos
+20
+200430
+</pre>
+</td>
+<td> <pre>
+10 141666
+15 447346
+20 200430
+</pre> </td>
+</tr>
+</table></div>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+5 0
+234523455
+Restaurante Abocanhado
+Restauracao
+10
+21332
+343554566
+Rodoviaria Andando
+Transportes
+15
+324003
+122324456
+Restaurante do Ze
+Restauracao
+10
+120334
+123345565
+Metro do Porto
+Transportes
+15
+123343
+733345566
+ZXY Informatica
+Servicos
+20
+200430
+</pre>
+</td>
+<td> <pre>
+3
+</pre> </td>
+</tr>
+</table></div>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi029.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

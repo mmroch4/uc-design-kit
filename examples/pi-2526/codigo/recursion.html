@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recursive function examples · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), example code from the lectures: Recursive function examples.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Código</a></li><li aria-current="page">Recursive function examples</li></ol>
+    </nav>
+    <h1>Recursive function examples</h1>
+    <div class="uc-content">
+<p>Iterative version and two recursive versions to determine the largest value of an unordered sequence, plus a function to recursively reverse the values of a sequence.</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+/********************************************************
+ Example of functions to determine the maximum of an
+ unorder sequence and also
+ a function to reverse a sequence
+
+ Author: Fernando Silva
+ Date:   March/2025
+*******************************************************/
+
+#include <stdio.h>
+
+#define MAX(A,B) ((A >= B) ? A : B)
+
+// swap two values
+void swap(int *a, int *b) {
+  int tmp= *a;
+  *a = *b;
+  *b = tmp;
+}
+
+// Iterative version to determine largest value of v[]
+int maxIt(int v[], int start, int end) {
+  int maxSoFar = v[start];
+  for (int i= start+1; i <= end; i++)
+    if (v[i] > maxSoFar)
+      maxSoFar = v[i];
+  return maxSoFar;
+}
+
+// recursive version 1 to determine largest value of v[]
+// maximum = MAX(1st element; maxRec1(remaining elements))
+int maxRec1(int v[],int start,int end) {
+  int max;
+  if (start == end)
+    return v[start];             // base case
+  max= maxRec1(v, start+1, end); // recursive
+  return MAX(v[start], max);     // combine
+}
+
+// recursive version 2 to determine largest value of v[]
+// maximum = MAX(maxRec2(leftPart); maxRec2(rightPart))
+int maxRec2(int v[], int start, int end) {
+  if (start == end)
+    return v[start];                   // base case
+  int middle = (start + end) / 2;
+  int max1 = maxRec2(v, start, middle);// recursive
+  int max2 = maxRec2(v, middle+1, end);// recursive
+  return MAX(max1, max2);              // combine
+}
+
+// recursively reversing the elements of an array v[]
+void reverseArray(int v[], int start, int end) {
+  if (start >= end)
+    return;                             // base case
+  // still more than one element
+  swap(&v[start], &v[end]);
+  return reverseArray(v,start+1,end-1); // recurse on the remaining
+}
+
+// print array of size n
+void printArray(int v[], int n) {
+  printf("%d",v[0]);
+  for (int i=1; i<n; i++)
+    printf(" %d", v[i]);
+  printf("\n");
+}
+// main function to experiment with the above functions
+
+int main() {
+  int n;
+  scanf("%d", &n);
+  int a[n];
+
+  for (int i= 0; i < n; i++) // largest will be the last value
+    a[i]= i+1;               // you can read the array from standard-input
+                             // to test other sequences
+  printf("Original array:\n");
+  printArray(a,n);
+  printf("Largest: %d -- iterative.\n",maxIt(a, 0, n-1));
+  printf("Largest: %d -- recursive 1.\n",maxRec1(a, 0, n-1));
+  printf("Largest: %d -- recursive 2.\n",maxRec2(a, 0, n-1));
+  reverseArray(a,0,n-1);
+  printf("Reversed array:\n");
+  printArray(a,n);
+}
+</script></uc-code>
+<h2>Tower of Hanoi</h2>
+<p>Problem of moving N discs from tower A to tower C using B as intermediate.</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+/******************************************
+ * Problem: Towers of Hanoi
+   (Move N discs from tower A to B using C
+ * Author: Fernando Silva
+ * Date: March/2025
+ *****************************************/
+
+#include <stdio.h>
+
+// Global vars
+int nmoves;    // counter of number of moves
+
+// function prototypes
+void moveDiscs ( int n, char a, char b, char c);
+
+int main() {
+  int nt;          // number of towers
+  scanf("%d", &nt);// read nt from input
+  nmoves= 0;
+  moveDiscs(nt, 'A', 'B', 'C'); // move nt discs from A to C using B
+  printf("Total of movements = %d\n", nmoves);
+}
+
+// moving discs between towers a to c using b
+void moveDiscs ( int n, char a, char b, char c) {
+  if (n==1) {                // one disc remains, it goes direct to c
+    printf("Move disc from %c to %c\n", a, c);
+    nmoves ++;
+  }
+  else {
+    moveDiscs (n-1, a, c, b);// move n-1 discs from a to b, using c
+    moveDiscs (1, a, b, c);  // remaining disc goes direct (a to c)
+    moveDiscs (n-1, b, a, c);// move n-1 discs from b to c, using a
+  }
+}
+</script></uc-code>
+<h2>Generating Permutations
+
+</h2><p>Given a sequence of integers, generate all permutations of those values</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+/********************************************************
+ Problem: generating all permutations of a given sequence
+
+ Author: Fernando Silva
+ Date:   March/2025
+*******************************************************/
+#include <stdio.h>
+
+// Global var
+int nperm=0;   // count number of permutations (should be n!)
+
+void swap(int *a, int *b) {
+   int temp = *a;
+   *a = *b;
+   *b = temp;
+}
+
+// print array of size n
+void printArray(int v[], int n) {
+  printf("%d",v[0]);
+  for (int i=1; i<n; i++)
+    printf(" %d", v[i]);
+  printf("\n");
+}
+
+// generate all permutations using recursion and backtracking
+void genPermutations(int curr, int n, int v[]) {
+  if (curr == n) {    // Base case: all elements are in place
+    printArray(v,n+1); // print solution (n+1)
+    nperm++;
+    return;
+  }
+  for (int i = curr; i <= n; i++) {
+    swap(&v[curr], &v[i]); // Swap to fix one element
+    genPermutations(curr + 1, n, v); // generate remaining elems
+    swap(&v[curr], &v[i]); // Swap back (backtracking)
+  }
+}
+
+// example of use
+int main() {
+  int n;
+  scanf("%d",&n); // define sequence size
+
+  // initialize sequence
+  int v[n];
+  for(int i=0; i < n; i++)
+    v[i]= i+1;
+
+  printf("All permutations:\n");
+  genPermutations(0, n - 1, v);
+  printf("%d\n",nperm);
+  return 0;
+}
+</script></uc-code>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/recursion.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

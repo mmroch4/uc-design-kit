@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI030] Estatísticas de Acesso à Universidade · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI030 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI030] Estatísticas de Acesso à Universidade</li></ol>
+    </nav>
+    <h1>[PI030] Estatísticas de Acesso à Universidade</h1>
+    <div class="uc-content">
+<h2>O problema</h2>
+<p>
+O Presidente do Conselho Pedagógico recebeu dados relativos às candidaturas para ingresso no Ensino Superior e vai precisar da sua ajuda para obter algumas estatísticas que permitam uma análise comparativa do posicionamento das Universidades Portuguesas no ranking nacional. Os dados incluem para cada candidato, informação do seu:</p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi030.jpg"/>
+<ul>
+<li> BI
+</li><li> Nome do candidato
+</li><li> Nome do estabelecimento de Ensino Superior a que se candidata em primeira opção
+</li><li> Código do estabelecimento de ensino 
+</li><li> Nota de candidatura (0-200)
+</li></ul>
+<p>
+A sua tarefa consiste em ler os dados e apresentar algumas
+estatísticas. Por exemplo, determinar cada
+estabelecimento de ensino superior, o número total de alunos que se
+candidataram em primeiro lugar para esse estabelecimento e a média das
+notas de candidatura, considerando todos os candidatos. Os resultados deverão ser apresentados ordenados por ordem decrescente das médias de candidatura.</p>
+<h2>Input</h2>
+<p>
+Os dados das candidaturas são apresentados da seguinte forma. A
+primeira linha contém um inteiro, o número de alunos, <strong>NA</strong> e o
+valor de uma <strong>flag</strong> (0, 1 ou 2). Cada um dos alunos aparece de
+seguida representado por 5 linhas, uma para cada um dos elementos de
+informação da lista acima indicada. Os nomes dos candidatos e dos
+estabelecimentos não excede os 80 caracteres. Os códigos dos estabelecimentos variam entre 1 e 300.</p>
+<h2>Output</h2>
+<p>
+No caso de a flag dada ser <code>0</code>, deverá apresentar o número de estabelecimentos de ensino diferentes que aparecem no input.</p>
+<p>
+No caso de a flag dada ser <code>1</code>, deverá apresentar numa linha o valor da melhor nota de candidatura entre todos os candidatos, seguida nas linhas seguintes do nome, ou nomes, dos candidatos que têm a melhor nota de candidatura apresentados pela mesma ordem de leitura.</p>
+<p>
+Caso a flag seja <code>2</code>, deverá apresentar como resultado uma listagem com as estatísticas de cada estabelecimento de ensino superior. Cada linha do output deverá incluir o nome da escola seguido de um espaço, seguido do número de alunos que se candidatam a essa escola,  seguido de um espaço, seguido da média das
+notas de candidatura nesse estabelecimento, arredondadas para o número
+inteiro mais próximo  (usar a função <code>round()</code> da biblioteca do
+C, <code>math.h</code>). A listagem deverá estar ordenada por ordem decrescente das médias de candidatura.</p>
+<p>
+<strong>Algumas observações a ter em conta:</strong>
+</p><ul>
+<li>Na leitura do input, quando lê numa linha um inteiro com a
+  função <code>scanf()</code> e na linha seguinte quer ler uma string de
+  caracteres (uma linha) do standard input (<code>stdin</code>) com
+  <code>fgets()</code> tem de assegurar que o carater mudança de linha
+  após o inteiro foi lido. Caso contrário a string estará vazia.
+  </li><li>Vai precisar de 2 vectores de estruturas, uma com os candidatos
+  e outra com as escolas. Uma escola aparece pela primeira vez quando
+  nos aparece um candidato pela primeira vez para essa escola. Pense
+  numa forma de distinguir se é a primeira vez que a escola tem
+  um candidato.
+</li></ul>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+5 2
+10082693
+Manuel Joaquim Alves
+Faculdade de Ciencias da Universidade do Porto
+125
+144
+11087693
+Maria Manuela Freitas
+Faculdade de Medicina da Universidade do Porto
+126
+190
+12093687
+Mario Antunes Figueiredo
+Faculdade de Ciencias da Universidade do Porto
+125
+155
+9082684
+Jorge Rocha Brito
+Faculdade de Medicina da Universidade do Porto
+126
+190
+12083655
+Maria Balboa das Dores
+Faculdade de Arquitectura da Universidade do Porto
+129
+170
+</pre>
+</td>
+<td> <pre>
+Faculdade de Medicina da Universidade do Porto 2 190
+Faculdade de Arquitectura da Universidade do Porto 1 170
+Faculdade de Ciências da Universidade do Porto 2 150
+</pre> </td>
+</tr>
+</table></div>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+5 1
+10082693
+Manuel Joaquim Alves
+Faculdade de Ciencias da Universidade do Porto
+125
+144
+11087693
+Maria Manuela Freitas
+Faculdade de Medicina da Universidade do Porto
+126
+190
+12093687
+Mario Antunes Figueiredo
+Faculdade de Ciencias da Universidade do Porto
+125
+155
+9082684
+Jorge Rocha Brito
+Faculdade de Medicina da Universidade do Porto
+126
+190
+12083655
+Maria Balboa das Dores
+Faculdade de Arquitectura da Universidade do Porto
+129
+170
+</pre>
+</td>
+<td> <pre>
+190
+Maria Manuela Freitas
+Jorge Rocha Brito
+</pre> </td>
+</tr>
+</table></div>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+5 0
+10082693
+Manuel Joaquim alves
+Faculdade de Ciencias da Universidade do Porto
+125
+144
+11087693
+Maria Manuela Freitas
+Faculdade de Medicina da Universidade do Porto
+126
+190
+12093687
+Mario Antunes Figueiredo
+Faculdade de Ciencias da Universidade do Porto
+125
+155
+9082684
+Jorge Rocha Brito
+Faculdade de Medicina da Universidade do Porto
+126
+190
+12083655
+Maria Balboa das Dores
+Faculdade de Arquitectura da Universidade do Porto
+129
+170
+</pre>
+</td>
+<td> <pre>
+3
+</pre> </td>
+</tr>
+</table></div>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi030.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

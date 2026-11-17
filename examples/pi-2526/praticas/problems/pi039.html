@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI039] Shifting Numbers · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI039 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI039] Shifting Numbers</li></ol>
+    </nav>
+    <h1>[PI039] Shifting Numbers</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi039.jpg"/>
+    Joyce is convinced that shifting numbers in an array left or right
+    can be a strategy to decode hidden messages. Thus, she needs your
+    help to devise an efficient procedure to shift an array of integers <strong>k</strong> places in either direction.</p>
+<p>Shifting an array means rotating it to the left or to the right. The shift should be circular, meaning elements pushed off one end should reappear on the other.</p>
+<p>For example, imagine that the array is [1,2,3,4,5]. Shifting it one place to the right would result in [5,1,2,3,4], while shifting it one place to the left would result in [2,3,4,5,1]. Shifting it two places to the right would result in [4,5,1,2,3].</p>
+<h3>The Problem</h3>
+<p>Write a function void shift(int a[], int n, int k) that receives an array <strong>a[]</strong> of size <strong>n</strong> and an integer <strong>k</strong>. If <strong>k</strong> is positive, it should shift the array <strong>k</strong> positions to the right. If <strong>k</strong> is negative, it should shift it <strong>k</strong> positions to the left.</p>
+<h3>Constraints</h3>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <strong>a[i]</strong> ≤ 100</td>
+<td>     </td>
+<td>Numbers in the array</td>
+</tr>
+<tr>
+<td>1 ≤ <strong>n</strong> ≤ 100</td>
+<td>     </td>
+<td>Size of the array</td>
+</tr>
+<tr>
+<td><strong>-n</strong> &lt; <strong>k</strong> &lt; <strong>n</strong></td>
+<td>     </td>
+<td>Number of places to shift</td>
+</tr>
+</table></div>
+<h3>Submission</h3>
+<p>You should submit a complete program (a <code>.c</code> file)
+containing the requested function and the code being provided to
+handle the input, to call your functiona and print the result. You can create additional methods, if you need them.</p>
+<pre>#include &lt;stdio.h&gt;
+
+// Forward declaration of function to implement
+void shift(int [], int, int);
+
+// print an array of size n (assume size &gt;= 1)
+void print_array(int a[], int n) {
+  printf("[%d", a[0]);
+  for (int i=1; i&lt;n; i++)
+    printf(",%d", a[i]);
+  printf("]\n");
+}
+
+int main(void) {
+
+  // Read array of n integers
+  int n;
+  scanf("%d", &amp;n);
+  int a[n];
+  for (int i=0; i&lt;n; i++)
+    scanf("%d", &amp;a[i]);
+
+  // Read integer, shift the array and print before and after
+  int k;
+  scanf("%d", &amp;k);
+  print_array(a, n);
+  shift(a, n, k);
+  printf("After shift(a,%d,%d):\n", n, k);
+  print_array(a, n);
+
+  return 0;
+}
+</pre>
+<br/>
+<h2>Exemplo 1</h2>
+<h3>Input</h3>
+<pre>
+6
+1 2 3 4 5 6
+1
+</pre>
+<h3>Output</h3>
+<pre>
+[1,2,3,4,5,6]
+After shift(a,6,1):
+[6,1,2,3,4,5]
+</pre>
+<h2>Exemplo 2</h2>
+<h3>Input</h3>
+<pre>
+8
+2 4 6 8 10 12 14 16
+-3
+</pre>
+<h3>Output</h3>
+<pre>
+[2,4,6,8,10,12,14,16]
+After shift(a,8,-3):
+[8,10,12,14,16,2,4,6]
+</pre>
+
+</section><section lang="pt">
+
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi039.jpg"/>
+  A Joyce está convencida de que rodar números num array para a esquerda ou para a direita pode ser uma estratégia para descodificar mensagens escondidas. Por isso, precisa da sua ajuda para criar um procedimento eficiente que rode um array de inteiros <strong>k</strong> posições em qualquer direção.
+</p>
+<p>Rodar um array significa deslocá-lo para a esquerda ou para a direita. A rotação deve ser circular, ou seja, os elementos que saem de um dos extremos devem reaparecer no outro extremo.</p>
+<p>Por exemplo, imagine que o array é [1,2,3,4,5]. Rodá-lo uma posição para a direita resultaria em [5,1,2,3,4], enquanto rodá-lo uma posição para a esquerda resultaria em [2,3,4,5,1]. Rodá-lo duas posições para a direita resultaria em [4,5,1,2,3].</p>
+<h3>O Problema</h3>
+<p>Escreva uma função void shift(int a[], int n, int k) que recebe um array <strong>a[]</strong> de tamanho <strong>n</strong> e um inteiro <strong>k</strong>. Se <strong>k</strong> for positivo, deve rodar o array <strong>k</strong> posições para a direita. Se <strong>k</strong> for negativo, deve rodá-lo <strong>k</strong> posições para a esquerda.</p>
+<h3>Restrições</h3>
+<p>Os seguintes limites são garantidos em todos os casos de teste fornecidos ao seu programa:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <strong>a[i]</strong> ≤ 100</td>
+<td>     </td>
+<td>Números no array</td>
+</tr>
+<tr>
+<td>1 ≤ <strong>n</strong> ≤ 100</td>
+<td>     </td>
+<td>Tamanho do array</td>
+</tr>
+<tr>
+<td><strong>-n</strong> &lt; <strong>k</strong> &lt; <strong>n</strong></td>
+<td>     </td>
+<td>Número de posições a rodar</td>
+</tr>
+</table></div>
+<h3>Submissão</h3>
+<p>Deve submeter um programa completo (um ficheiro <code>.c</code>) que contenha a função solicitada e o código fornecido para tratar a entrada de dados, chamar a sua função e imprimir o resultado. Pode criar métodos adicionais, se necessário.</p>
+<pre>#include &lt;stdio.h&gt;
+
+// Forward declaration of function to implement
+void shift(int [], int, int);
+
+// print an array of size n (assume size &gt;= 1)
+void print_array(int a[], int n) {
+  printf("[%d", a[0]);
+  for (int i=1; i&lt;n; i++)
+    printf(",%d", a[i]);
+  printf("]\n");
+}
+
+int main(void) {
+
+  // Read array of n integers
+  int n;
+  scanf("%d", &amp;n);
+  int a[n];
+  for (int i=0; i&lt;n; i++)
+    scanf("%d", &amp;a[i]);
+
+  // Read integer, shift the array and print before and after
+  int k;
+  scanf("%d", &amp;k);
+  print_array(a, n);
+  shift(a, n, k);
+  printf("After shift(a,%d,%d):\n", n, k);
+  print_array(a, n);
+
+  return 0;
+}
+</pre>
+<br/>
+<h2>Exemplo 1</h2>
+<h3>Input</h3>
+<pre>
+6
+1 2 3 4 5 6
+1
+</pre>
+<h3>Output</h3>
+<pre>
+[1,2,3,4,5,6]
+After shift(a,6,1):
+[6,1,2,3,4,5]
+</pre>
+<h2>Exemplo 2</h2>
+<h3>Input</h3>
+<pre>
+8
+2 4 6 8 10 12 14 16
+-3
+</pre>
+<h3>Output</h3>
+<pre>
+[2,4,6,8,10,12,14,16]
+After shift(a,8,-3):
+[8,10,12,14,16,2,4,6]
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi039.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

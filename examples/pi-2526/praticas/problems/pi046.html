@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI046] Largest Microbe Colony · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI046 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI046] Largest Microbe Colony</li></ol>
+    </nav>
+    <h1>[PI046] Largest Microbe Colony</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p>Dr. Ross Geller is back in the lab (because paleontology was just <em>too mainstream</em>), and he's currently studying microbial growth in Petri dishes. His objective? Identify the largest microbe colony before it spreads uncontrollably — or worse, before someone (<em>cough, Joey</em>) mistakes it for a snack.</p>
+<p>The Petri dish is represented as a 2D grid (a matrix), where each cell contains either a living microbe ('#') or is empty ('.'). A microbe colony is a group of connected '#' cells. Cells are considered connected if they are adjacent horizontally, vertically, or diagonally.</p>
+<p>For example, the following Petri dish contains exactly three microbe colonies:</p>
+<div class="uc-table"><table>
+<tr>
+<td>#</td>
+<td>#</td>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>.</td>
+<td>#</td>
+<td>#</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+<td>#</td>
+</tr>
+<tr>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+<td>#</td>
+</tr>
+<tr>
+<td>#</td>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+</table></div>
+<p>The size of a colony is the number of connected '#' cells it contains. In the example above, the colonies have sizes 6 (yellow), 3 (cyan), and 4 (green). The largest colony is the yellow one with 6 microbes.</p>
+<h2>The Problem</h2>
+<p>You are given several Petri dish configurations (grids of cells). For each configuration, your task is to compute the size of the largest colony of microbes.</p>
+<h2>Input</h2>
+<p>The first line contains an integer <strong>N</strong>, the number of test cases.</p>
+<p>Each test case begins with two integers <strong>R</strong> and <strong>C</strong>, representing the number of rows and columns in the Petri dish, respectively. The next <strong>R</strong> lines contain <strong>C</strong> characters each, representing the grid cells: <code>'.'</code> for an empty cell and <code>'#'</code> for a living microbe.</p>
+<h2>Output</h2>
+<p>For each test case, output a single line with an integer: the size of the largest microbe colony found in that Petri dish.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases given
+  as input</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <strong>N</strong> ≤ 20</td>
+<td>Number of test cases</td>
+</tr>
+<tr>
+<td>1 ≤ <strong>R, C</strong> ≤ 100</td>
+<td>Dimensions of the matrix</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<td>Example Input</td>
+<td>Example Output</td>
+</tr>
+<tr>
+<td>
+<pre>
+2
+5 7
+##.#...
+.###...
+.....##
+.#...##
+#.#....
+4 4
+##.#
+...#
+#...
+..#.
+</pre>
+</td>
+<td>
+<pre>
+6
+2
+</pre>
+</td>
+</tr>
+</table></div>
+<p>Note: the first case is the one above in the figure. The second case has three colonies: two of size 2 (green and yellow) and two of size 1 (blue and orange). Therefore, the largest colony has size 2:</p>
+<div class="uc-table"><table>
+<tr>
+<td>#</td>
+<td>#</td>
+<td>.</td>
+<td>#</td>
+</tr>
+<tr>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+</tr>
+<tr>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+</tr>
+</table></div>
+</section><section lang="pt">
+
+<p>O Dr. Ross Geller está de volta ao laboratório (porque a paleontologia era <em>demasiado mainstream</em>) e agora dedica-se ao estudo do crescimento microbiano em placas de Petri. O seu objetivo? Identificar a maior colónia de micróbios antes que ela se espalhe por todo o laboratório — ou pior, que alguém (<em>cof, Joey</em>) a confunda com comida.</p>
+<p>A placa de Petri é representada por uma grelha 2D (ou matriz), onde cada célula pode conter um micróbio vivo ('#') ou estar vazia ('.'). Uma colónia de micróbios é um conjunto de células com '#' que estão ligadas entre si horizontalmente, verticalmente ou diagonalmente.</p>
+<p>Por exemplo, a seguinte placa de Petri contém exatamente três colónias de micróbios:</p>
+<div class="uc-table"><table>
+<tr>
+<td>#</td>
+<td>#</td>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>.</td>
+<td>#</td>
+<td>#</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+<td>#</td>
+</tr>
+<tr>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+<td>#</td>
+</tr>
+<tr>
+<td>#</td>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+</table></div>
+<p>O tamanho de uma colónia é igual ao número de micróbios vivos que a compõem. No exemplo acima, as colónias têm tamanhos 6 (amarela), 3 (azul) e 4 (verde). A maior colónia é a amarela, com 6 micróbios.</p>
+<h2>O Problema</h2>
+<p>São-lhe dadas várias configurações de placas de Petri (matrizes de células). Para cada uma, o seu objetivo é determinar o tamanho da maior colónia de micróbios.</p>
+<h2>Input</h2>
+<p>A primeira linha da entrada contém um número inteiro <strong>N</strong>, correspondente ao número de casos de teste.</p>
+<p>Cada caso de teste começa com dois inteiros <strong>R</strong> e <strong>C</strong>, representando respetivamente o número de linhas e colunas da matriz. Seguem-se <strong>R</strong> linhas, cada uma com <strong>C</strong> caracteres, onde <code>'.'</code> representa uma célula vazia e <code>'#'</code> representa um micróbio vivo.</p>
+<h2>Output</h2>
+<p>Para cada caso de teste, imprima uma única linha com um número inteiro: o tamanho da maior colónia de micróbios na respetiva placa.</p>
+<h2>Restrições</h2>
+<p>Os limites seguintes estão garantidos em todos os casos de teste fornecidos como input.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <strong>N</strong> ≤ 20</td>
+<td>Número de casos de teste</td>
+</tr>
+<tr>
+<td>1 ≤ <strong>R, C</strong> ≤ 100</td>
+<td>Dimensões da matriz</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<td>Example Input</td>
+<td>Example Output</td>
+</tr>
+<tr>
+<td>
+<pre>
+2
+5 7
+##.#...
+.###...
+.....##
+.#...##
+#.#....
+4 4
+##.#
+...#
+#...
+..#.
+</pre>
+</td>
+<td>
+<pre>
+6
+2
+</pre>
+</td>
+</tr>
+</table></div>
+<p>Nota: o primeiro caso é o apresentado acima na figura. O segundo caso tem três colónias: duas com tamanho 2 (verde e amarelo) e duas com tamanho 1 (azul e laranja). Assim, a maior colónia tem tamanho 2:</p>
+<div class="uc-table"><table>
+<tr>
+<td>#</td>
+<td>#</td>
+<td>.</td>
+<td>#</td>
+</tr>
+<tr>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+</tr>
+<tr>
+<td>#</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>.</td>
+<td>.</td>
+<td>#</td>
+<td>.</td>
+</tr>
+</table></div>
+
+<strong>Programming II (CCINF1002)</strong><br/>
+  DCC/FCUP - University of Porto
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi046.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

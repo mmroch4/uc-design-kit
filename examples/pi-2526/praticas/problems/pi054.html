@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI054] Removing All Occurrences of an Element · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI054 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI054] Removing All Occurrences of an Element</li></ol>
+    </nav>
+    <h1>[PI054] Removing All Occurrences of an Element</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p><img alt="" loading="lazy" src="pi054.png"/>
+</p><h2>Base Code</h2>
+<p>Use the provided code as your base: <strong>linkedList.h</strong> (<a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList_h.html">view code</a> | <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList.h">download code</a>) and <strong>linkedList.c</strong> (<a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList_c.html">view code</a> | <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList.c">download code</a>), which contain
+the data structure definitions (including <code>Node</code> and
+<code>LinkedList</code>), prototype declarations, and their implementations as discussed in class. The code implements a singly linked list where the node values are of type <code>NodeInfo</code>, which in this problem corresponds to <code>int</code>. It includes the usual methods for adding and removing elements at the beginning or end, retrieving the size of the list, etc.
+
+</p><h2>The Problem</h2>
+<p>Extend the linked list definition with a new function:  
+<strong>void removeAll(NodeInfo value, LinkedList *list)</strong>, which <strong>removes all occurrences of the value <em>value</em> from the list <em>list</em></strong>.  
+In this problem, <code>NodeInfo</code> is of type <code>int</code>.
+
+</p><h2>Mooshak Submission</h2>
+<p>To submit in Mooshak, you must submit a program called <strong>submit.c</strong>, in which you <code>#include</code> the file
+<code>linkedList.h</code> and include your implementation of the <strong>removeAll</strong> function as required.
+
+</p><p>Mooshak will compile the files <code>linkedList.c</code>, <code>submit.c</code>, and <code>test.c</code> (provided below, containing the <code>main()</code> function).
+
+</p><pre>#include "linkedList.h"
+
+// Forward declaration of function to implement
+void removeAll(NodeInfo x, LinkedList *l);
+
+void printList2(LinkedList *list) {
+  Node *curr= list-&gt;first;
+
+  printf("{");
+  while (curr != NULL) {
+    printf("%d",curr-&gt;val);
+    curr= curr-&gt;next;
+    printf("%c",",}"[curr==NULL]);
+  }
+}
+void testInt(LinkedList *list) {
+  printf("list = ");
+  printList2(list);
+  printf("[size=%d]\n", list-&gt;size);
+  int value;
+  scanf("%d", &amp;value);
+  printf("removeAll(%d)",value);
+  removeAll(value, list);
+  printf("\nlist = ");
+  printList2(list);
+  printf("[size=%d]\n", list-&gt;size);
+  printf("--------------------------------------\n");
+}
+
+int main() {
+  int ncases;
+  int n;
+  int value;
+  LinkedList l1;
+
+  scanf("%d",&amp;ncases);            // number of cases
+  for (int i=0; i&lt;ncases; i++) {
+    initList(&amp;l1);
+    scanf("%d",&amp;n);               // number of values in the list
+    for (int i=0; i&lt;n; i++) {
+      scanf("%d",&amp;value);         // the values
+      addLast(&amp;l1, value);
+    }
+    // test
+    testInt(&amp;l1);                 // test this case
+  }
+}
+</pre>
+<h2>Exemplos de Input/Output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Lista inicial</th>
+<th scope="col">  Chamada   </th>
+<th scope="col">Estado da lista depois da chamada</th>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(1)</td>
+<td>list = {2,2,2,3,4,2}</td>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(2)</td>
+<td>list = {1,1,3,4,1}</td>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(3)</td>
+<td>list = {1,2,2,2,1,4,2,1}</td>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(5)</td>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+</tr>
+</table></div>
+
+</section><section lang="pt">
+
+<p><img alt="" loading="lazy" src="pi054.png"/>
+</p><h2>Código Base</h2>
+<p>Use como base o código <strong>linkedList.h</strong> (<a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList_h.html">ver
+código</a> | (<a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList.h">download
+código</a>) e <strong>linkedList.c</strong> (<a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList_c.html">ver
+código</a> | (<a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2425/codigo/linkedList.c">download
+código</a>) que contém as
+declarações das estruturas de dados (incluindo <code>Node</code> e
+<code>LinkedList</code>, funções protótipo e a sua implementação conforme
+dado nas aulas. O código implementa uma lista ligada simples em que os
+valores são do tipo <code>NodeInfo</code> que neste problema corresponde
+ao tipo <code>int</code>. Inclui os métodos habituais de adicionar
+e remover um elemento início ou
+no final, devolver o tamanho, etc.
+
+</p><h2>O problema</h2>
+<p>Acrescente à definição de listas ligadas uma nova função <strong>void removeAll(NodeInfo
+value, LinkedList *list)</strong> que <strong>remove da lista <em>list</em> todas as ocorrências do
+valor <em>value</em></strong>. Neste problema, o <code>NodeInfo</code> é um inteiro.
+
+</p><h2>Submissão no Mooshak</h2>
+<p>Para submeter no Mooshak, deverá submeter um programa
+<strong>submit.c</strong>, no qual faça o "include" do ficheiro
+<code>linkedList.h</code> e inclua a sua implementação da função
+<strong>removeAll</strong> como pedido.
+
+</p><p>O Mooshak compilará os ficheiros <code>linkedList.c</code>,
+<code>submit.c</code> e o <code>test.c</code> que se segue com a
+função <code>main()</code>.
+
+</p><pre>#include "linkedList.h"
+
+// Forward declaration of function to implement
+void removeAll(NodeInfo x, LinkedList *l);
+
+void printList2(LinkedList *list) {
+  Node *curr= list-&gt;first;
+
+  printf("{");
+  while (curr != NULL) {
+    printf("%d",curr-&gt;val);
+    curr= curr-&gt;next;
+    printf("%c",",}"[curr==NULL]);
+  }
+}
+void testInt(LinkedList *list) {
+  printf("list = ");
+  printList2(list);
+  printf("[size=%d]\n", list-&gt;size);
+  int value;
+  scanf("%d", &amp;value);
+  printf("removeAll(%d)",value);
+  removeAll(value, list);
+  printf("\nlist = ");
+  printList2(list);
+  printf("[size=%d]\n", list-&gt;size);
+  printf("--------------------------------------\n");
+}
+
+int main() {
+  int ncases;
+  int n;
+  int value;
+  LinkedList l1;
+
+  scanf("%d",&amp;ncases);            // number of cases
+  for (int i=0; i&lt;ncases; i++) {
+    initList(&amp;l1);
+    scanf("%d",&amp;n);               // number of values in the list
+    for (int i=0; i&lt;n; i++) {
+      scanf("%d",&amp;value);         // the values
+      addLast(&amp;l1, value);
+    }
+    // test
+    testInt(&amp;l1);                 // test this case
+  }
+}
+</pre>
+<h2>Exemplos de Input/Output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Lista inicial</th>
+<th scope="col">  Chamada   </th>
+<th scope="col">Estado da lista depois da chamada</th>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(1)</td>
+<td>list = {2,2,2,3,4,2}</td>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(2)</td>
+<td>list = {1,1,3,4,1}</td>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(3)</td>
+<td>list = {1,2,2,2,1,4,2,1}</td>
+</tr>
+<tr>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+<td>list.removeAll(5)</td>
+<td>list = {1,2,2,2,1,3,4,2,1}</td>
+</tr>
+</table></div>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi054.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

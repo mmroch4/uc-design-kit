@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI049] Lakes and Bulldozers · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI049 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI049] Lakes and Bulldozers</li></ol>
+    </nav>
+    <h1>[PI049] Lakes and Bulldozers</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<h3>The Problem</h3>
+<p>
+You are given a rectangular map with <code>n</code> rows and <code>m</code> columns that shows land and water.
+Each cell in the map contains either:
+</p>
+<ul>
+<li><code>'#'</code> – land</li>
+<li><code>'.'</code> – water</li>
+</ul>
+<p>
+A <strong>lake</strong> is a connected region of water cells (<code>'.'</code>) that are adjacent **horizontally or vertically** (not diagonally).
+Your task is to count how many distinct lakes exist in the initial map.
+</p>
+<p>
+Then, bulldozers start destroying land. When land is destroyed, it becomes water:
+</p>
+<ul>
+<li><strong><code>R x</code></strong>: bulldoze all land cells in <strong>row x</strong> (i.e., convert all <code>'#'</code> to <code>'.'</code> in that row).</li>
+<li><strong><code>C x</code></strong>: bulldoze all land cells in <strong>column x</strong> (convert all <code>'#'</code> to <code>'.'</code> in that column).</li>
+</ul>
+<p>
+After each bulldozing operation, new lakes might form or merge. You must print the number of lakes at each step:
+</p>
+<ul>
+<li>Before any bulldozing</li>
+<li>After each bulldozer operation</li>
+</ul>
+<p><strong>Note:</strong> Each row or column is bulldozed at most once.</p>
+
+---
+
+<h3>Example</h3>
+<pre>
+Initial map (3 rows × 4 columns):
+
+. . . #
+. . # .
+. # . #
+</pre>
+<p>
+Here, <code>'.'</code> means water and <code>'#'</code> means land.  
+There are <strong>3 lakes</strong>: water areas that are not connected to each other.
+</p>
+
+---
+
+<p><strong>After bulldozing row 1 (<code>R 1</code>) — all land in that row becomes water:</strong></p>
+<pre>
+. . . .
+. . # .
+. # . #
+</pre>
+<p>Now two lakes are connected, and there are <strong>2 lakes</strong>.</p>
+
+---
+
+<p><strong>After bulldozing column 4 (<code>C 4</code>):</strong></p>
+<pre>
+. . . .
+. . # .
+. # . .
+</pre>
+<p>Now all water regions are connected, so there is <strong>1 lake</strong>.</p>
+
+---
+
+<h3>Input</h3>
+<ul>
+<li>First line: integers <code>n</code> and <code>m</code> — number of rows and columns.</li>
+<li>Next <code>n</code> lines: the map of <code>m</code> characters (each either <code>'.'</code> or <code>'#'</code>).</li>
+<li>Next line: integer <code>q</code> — number of bulldozing operations.</li>
+<li>Next <code>q</code> lines: each line is either <code>R x</code> (bulldoze row) or <code>C x</code> (bulldoze column).</li>
+</ul>
+
+---
+
+<h3>Output</h3>
+<p>Print <code>q + 1</code> lines:</p>
+<ul>
+<li>First, the number of lakes before any bulldozing.</li>
+<li>Then, one line for each bulldozing operation with the updated number of lakes.</li>
+</ul>
+
+---
+
+<h3>Example Input 1</h3>
+<pre>
+3 4
+...#
+..#.
+.#.#
+2
+R 1
+C 4
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+3
+2
+1
+</pre>
+<h2>Example Input 2</h2>
+<pre>
+3 3
+###
+###
+###
+3
+R 1
+R 3
+C 1
+</pre>
+<h3>Example Output2</h3>
+<pre>
+0
+1
+2
+1
+</pre>
+
+</section><section lang="pt">
+
+<h3>O Problema</h3>
+<p>
+É-lhe dado um mapa retangular com <code>n</code> linhas e <code>m</code> colunas que representa uma paisagem composta por terra e água.
+Cada célula do mapa contém:
+</p>
+<ul>
+<li><code>'#'</code> – terra</li>
+<li><code>'.'</code> – água</li>
+</ul>
+<p>
+Um <strong>lago</strong> é uma região conectada de células de água (<code>'.'</code>) adjacentes **horizontal ou verticalmente** (não diagonalmente).
+O seu objetivo é contar quantos lagos distintos existem no mapa inicial.
+</p>
+<p>
+Depois, bulldozers começam a destruir zonas de terra. Quando a terra é destruída, transforma-se em água:
+</p>
+<ul>
+<li><strong><code>R x</code></strong>: destrói todas as células de terra na <strong>linha x</strong> (ou seja, converte todos os <code>'#'</code> dessa linha em <code>'.'</code>).</li>
+<li><strong><code>C x</code></strong>: destrói todas as células de terra na <strong>coluna x</strong> (converte todos os <code>'#'</code> dessa coluna em <code>'.'</code>).</li>
+</ul>
+<p>
+Após cada operação de bulldozer, novos lagos podem surgir ou lagos existentes podem unir-se. Deve imprimir o número de lagos em cada etapa:
+</p>
+<ul>
+<li>Antes de qualquer operação de bulldozer</li>
+<li>Após cada operação de bulldozer</li>
+</ul>
+<p><strong>Nota:</strong> Cada linha ou coluna é destruída no máximo uma vez.</p>
+
+---
+
+<h3>Exemplo</h3>
+<pre>
+Mapa inicial (3 linhas × 4 colunas):
+
+. . . #
+. . # .
+. # . #
+</pre>
+<p>
+Aqui, <code>'.'</code> representa água e <code>'#'</code> representa terra.  
+Existem <strong>3 lagos</strong>: zonas de água que não estão conectadas entre si.
+</p>
+
+---
+
+<p><strong>Após destruir a linha 1 (<code>R 1</code>) — toda a terra dessa linha vira água:</strong></p>
+<pre>
+. . . .
+. . # .
+. # . #
+</pre>
+<p>Agora dois lagos ficaram conectados, e há <strong>2 lagos</strong>.</p>
+<h3>Example Input 1</h3>
+<pre>
+3 4
+...#
+..#.
+.#.#
+2
+R 1
+C 4
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+3
+2
+1
+</pre>
+<h2>Example Input 2</h2>
+<pre>
+3 3
+###
+###
+###
+3
+R 1
+R 3
+C 1
+</pre>
+<h3>Example Output2</h3>
+<pre>
+0
+1
+2
+1
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi049.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

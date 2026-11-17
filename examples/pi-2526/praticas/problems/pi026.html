@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI026] Hanoi · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI026 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI026] Hanoi</li></ol>
+    </nav>
+    <h1>[PI026] Hanoi</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi026.png"/>
+</p>
+<p>The Tower of Hanoi is a classic puzzle involving three pegs and a set of disks of different sizes. Initially, all the disks are stacked in ascending order (largest at the bottom) on peg 1.</p>
+<p>Your task is to move the entire stack to peg 3, following these rules:</p>
+<ul>
+<li> You may only move one disk at a time.
+
+</li><li> You may only move the top disk from any peg.
+
+</li><li>You may never place a larger disk on top of a smaller disk.
+</li></ul>
+<p>The challenge is to solve this problem optimally, using the minimum
+number of moves.</p>
+<h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>Given the number of disks on peg 1, print the optimal sequence of moves required to transfer all disks to peg 3.</p>
+<h2>
+Input
+</h2>
+<p>A single line containing an integer <code>n</code> (<code>1 &lt;= n &lt;=
+15</code>), corresponding to the number of disks on the peg 1.</p>
+<h2>
+Output
+</h2>
+<p>Print the list of optimal moves, each move in one line</p>
+<p>Each line should be of the form <code>x -&gt; y</code>, where <code>x</code>
+is the source peg number and <code>y</code> is the destination peg number.</p>
+<h2>
+Example 1
+</h2>
+<h3>
+Input
+</h3>
+<pre>
+3
+</pre>
+<h3>
+Output
+</h3>
+<pre>
+1 -&gt; 3
+1 -&gt; 2
+3 -&gt; 2
+1 -&gt; 3
+2 -&gt; 1
+2 -&gt; 3
+1 -&gt; 3
+</pre>
+<h3>
+Explanation
+</h3>
+
+The optimal sequence of moves corresponds to the following disk movements:
+
+<pre>
+1
+2
+3
+---
+
+1 -&gt; 3
+
+2
+3 1
+---
+
+1 -&gt; 2
+
+321
+---
+
+3 -&gt; 2
+
+ 1
+32
+---
+
+1 -&gt; 3
+
+ 1
+ 23
+---
+
+2 -&gt; 1
+
+123
+---
+
+2 -&gt; 3
+
+  2
+1 3
+---
+
+1 -&gt; 3
+
+  1
+  2
+  3
+---
+</pre>
+<h2><a id="SECTION00022000000000000000">
+Example 2</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+1
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+1 -&gt; 3
+</pre>
+<h2><a id="SECTION00023000000000000000">
+Example 3</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+2
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+1 -&gt; 2
+1 -&gt; 3
+2 -&gt; 3
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi026.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

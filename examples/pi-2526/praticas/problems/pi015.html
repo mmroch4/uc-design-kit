@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI015] Anagrams · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI015 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI015] Anagrams</li></ol>
+    </nav>
+    <h1>[PI015] Anagrams</h1>
+    <div class="uc-content">
+<p><strong>Anagram:</strong>
+<em>do Gr. aná, para cima, para trás + grámma, letra<br/>
+s. m., transposição de letras;<br/>
+inversão das letras de um nome para formar outro.</em>
+</p><p><img alt="" class="uc-content__float" loading="lazy" src="pi015.jpg"/>
+Most puzzle enthusiasts are familiar with <strong>anagrams</strong>, that is, groups of words that use the same set of letters but in a different order (for example, <code>sacar</code>, <code>casar</code> and <code>caras</code> are anagrams). 
+
+</p><p>Given a list of words, your task is to discover which words are anagrams of each other and determine the size of each anagram class. An anagram class is the group of words that use the same letters.
+
+</p><p>For example, consider the following words:
+</p><pre>
+maca
+lima
+cama
+mila
+texto
+</pre>
+<p><code>maca</code> and  <code>cama</code> are anagrams, <code>lima</code> and 
+<code>mila</code> are also anagrams, and <code>texto</code> is not an anagram of any other word.
+In this case, there are three anagram classes. Each anagram class is represented by the alphabetically smallest word in that class. Here, the classes would be represented by <code>cama</code> (class with 2 words), <code>lima</code> (2 words), and <code>texto</code> (1 word).
+
+</p><h2>Input</h2>
+<p>An input consists of multiple test cases.</p>
+<p>Each case begins with a number <strong>N</strong> indicating the number of words to process. This is followed by <strong>N</strong> lines, each containing a word with a maximum of 50 letters, all in lowercase.</p>
+<p>The input ends with a case where <strong>N</strong> is zero.</p>
+<h2>Output</h2>
+<p>For each case, you should first print a line of output, <code>"#NUM"</code>, where
+<code>NUM</code> represents the case number.</p>
+<p>Then, print all the anagram classes in the format <strong><code>"classRepresentative classSize"</code></strong>. The classes should be ordered by their size (in descending order), and in case of a tie, alphabetically by the representative word.</p>
+<p>The output between two cases should always be separated by a blank line.</p>
+<p>See the example to clarify how the output should be formatted.<br/>
+</p><h2>Examples input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>5
+maca
+lima
+cama
+mila
+texto
+3
+caras
+casar
+sacar
+1
+teste
+0
+
+</pre>
+</td>
+<td>
+<pre>#1
+cama: 2
+lima: 2
+texto: 1
+
+#2
+caras: 3
+
+#3
+teste: 1
+</pre></td>
+</tr>
+</table></div>
+
+ <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi015.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 10 · Listas Ligadas · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 10: Listas Ligadas">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="10">
+    <h1>Aula Prática 10 · Listas Ligadas</h1>
+    <p class="uc-small"><a href="aula10.html" hreflang="en" lang="en">English version</a></p>
+    <div class="uc-content">
+<p><a href="aula10.html">Version in English</a><br/>
+</p>
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi049.html">[PI049] Lake Buldozing</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi050.html">[PI050] Survival of the Fittest</a> (peso 20%) (exercício extra)</li>
+<li><a href="problems/pi051.html">[PI051] Clinic Chaos</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi052.html">[PI052] Reversed Polish Notation</a> (peso 40%) (exercício principal)</li>
+<li><a href="problems/pi053.html">[PI053] Duplicate Elements</a> (peso 30%) (exercício extra)</li>
+<li><a href="problems/pi054.html">[PI054] Remove All</a> (peso 30%) (exercício extra)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>11 de Junho</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3>Exercício 1) Métodos para Listas Ligadas</h3>
+
+Para os seguintes exercícios considere a seguinte estrutura de dados para representar listas ligadas de values inteiros baseada da estrutura apresentada nas aulas teóricas:<br/><br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#define NodeInfo int
+
+typedef struct Node {
+  NodeInfo val;
+  struct Node *next;
+} Node;
+
+typedef struct {
+  Node *first;
+  Node *last;
+} LinkedList;
+</script></uc-code>
+<ol>
+<li>Escreva uma função <br/>
+<pre>int size(LinkedList *list);
+</pre><br/>
+       que calcula o comprimento de uma lista ligada. 
+	</li>
+<li>Escreva uma função <br/>
+<pre>int removeEquals(LinkedList *list, int value);
+</pre><br/>
+      que remove todas as ocorrências de um dado valor inteiro <code><strong>value</strong></code> da lista <code><strong>list</strong></code>.<br/>
+A função deve retornar o número de elementos removidos da lista (ie., o número de ocorrências de <code><strong>value</strong></code>).
+       </li>
+<li>Escreva uma uma função <br/>
+<pre>void free(LinkedList *list);
+</pre><br/>
+      que liberta o espaço ocupado por uma lista.
+	</li>
+<li>Escreva uma função <br/>
+<pre>void concatList(LinkedList *listA, LinkedList *listB);
+</pre><br/>
+      que <strong>acrescenta</strong> à lista <code><strong>listA</strong></code> o conteúdo da lista <code><strong>listB</strong></code>.
+       </li>
+<li>Escreva uma função <br/>
+<pre>Node *invertList(LinkedList *list);
+</pre><br/>
+      que inverte a lista <code><strong>list</strong></code> (<strong>sem criar uma nova lista</strong>). <br/>
+A função deve retornar o <strong>novo</strong> primeiro elemento da lista.
+	</li>
+<li>Escreva uma função <br/>
+<pre>void insertOrd(LinkedList *list, int value);
+</pre><br/>
+      que insere (de forma ordenada) um novo elemento <code><strong>value</strong></code> na lista <code><strong>list</strong></code>. Considere que a lista <code><strong>list</strong></code> está ordenada.
+	</li>
+<li>Escreva uma função <br/>
+<pre>void printSort(Node *first);
+</pre><br/>
+      que recebe como argumento o primeiro elemento de uma lista ligada <strong>não ordenada</strong> e imprime no terminal os valores contidos na lista <strong>por ordem crescente</strong> de valor. 
+<br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- pode usar um <em>array</em> de apontadores para guardar apontadores para os nós (elementos) da lista ligada e depois aplicar um algoritmo de ordenação (por exemplo: <code><strong>qsort()</strong></code>) ao <em>array</em>. 
+  </p><p>- Mas tome atenção que neste caso os valores para comparar na ordenação são os campos de informação dos nós apontados pelos apontadores do <em>array</em>.
+      </p></details>
+</li>
+</ol>
+
+<h3>Exercício 2) Gestão de Livros</h3>
+
+Tendo por base a estrutura de dados <code><strong>LinkedList</strong></code> e as funções desenvolvidas no Exercício 1 escreva um programa para gerir os registos de livros de uma biblioteca. Para cada livro a biblioteca tem registo da seguinte informação: identificador único (um valor inteiro), título (uma string), nome do autor (uma string), ano de publicação (um valor inteiro) e data de aquisição (uma estrutura com a informação relativa aos dia, mês e ano). <br/><br/>
+
+A tua tarefa é utilizar uma lista ligada para armazenar os dados relativos aos livros que existem na biblioteca, bem como para gerir o fluxo de livros que entram e saem da biblioteca. <br/>
+Para isso deverá responder às seguintes questões de forma a adicionar novos métodos ou modificar os métodos desenvolvidos no Exercício 1 para adicionar novos livros, (possivelmente) remover outros livros, procurar por determinado indicador ou menos listar conjuntos de livros. <br/><br/>
+<strong>Nota:</strong> Faça as alterações necessárias às estruturas definidas no Exercício anterior de forma a cada nó (elemento) da lista ligada contenha a informação do livro correspondente. Pode usar a seguinte estrutura de dados para definir essa informação.<br/><br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+typedef struct {
+  int day;
+  int month;
+  int year;
+} Date;
+
+typedef struct {
+  int id;
+  char title[100];
+  char author[100];
+  int publication_year;
+  Data acquisition_date;
+} Book;
+</script></uc-code>
+<br/>Como ponto de partida, pode ainda começar por usar o esqueleto de código apresentado mais abaixo e completar as partes em falta. Em alternativa, pode criar o seu próprio código de raiz.
+
+  <ol>
+<li>Desenvolva uma função que adiciona novo livro <code><strong>new_book</strong></code> à lista de livros <code><strong>list</strong></code>. A função deve adicionar o livro ao final da lista. As informações do livro deve ser fornecidas na entrada padrão com os seguintes campos em cada linha: <strong>ID</strong>, <strong>Título</strong>, <strong>Autor</strong>, <strong>Ano de Publicação</strong>, e <strong>Data de Aquisição</strong>. 
+<br/>
+<pre>void add_new_book(LinkedList *list, Book new_book);
+</pre>
+</li>
+<li>Desenvolva uma função que imprime na saída padrão os dados de um dado livro, dado o seu <em>ID</em> (<code><strong>id</strong></code>). Se o livro não existir, a função deve imprimir uma mensagem apropriada.
+<br/>
+<pre>void print_by_id(LinkedList *list, int id);
+</pre>
+</li>
+<li>Desenvolva uma função que imprime todos os livros de um dado autor cujo nome contenha o <em>nome</em> fornecido pelo utilizador (<code><strong>name</strong></code>).
+
+<pre>void print_by_author(LinkedList *list, char *name);
+</pre>
+<br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- utilize a função <code><strong>strstr()</strong></code> na biblioteca <code><strong>string.h</strong></code> para procurar uma substring dentro de uma string maior.
+      </p></details>
+</li>
+<li>Desenvolva uma função que imprime todos os livros da biblioteca <strong>ordenados por título (ordem alfabética)</strong>.
+
+<pre>void printSortByTitle(Node *first);
+</pre>
+<br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- use um <em>array</em> de apontadores e a função <code><strong>qsort()</strong></code> com a função <code><strong>strcmp()</strong></code>.
+      </p></details>
+</li>
+<li>Desenvolva uma função para apagar todos os livro cuja data de aquisição é anterior ao ano dado como input da função. A função deve retornar o número de livros apagados ou uma mensagem apropriada se não existe nenhum livro nessas condições. 
+<br/>
+<pre>int remove_by_year(LinkedList *list, int year);
+</pre>
+</li>
+</ol>
+<strong>Código fornecido:</strong><br/><br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// TODO
+// define the structures accordingly here
+
+// init empty linked list
+void init_list(LinkedList *list) {
+    list->first = NULL;
+    list->last = NULL;
+}
+
+void add_new_book(LinkedList *list, Book new_book) {
+  // TODO
+}
+
+void print_by_id(LinkedList *list, int id) {
+  // TODO
+}
+
+void print_by_author(LinkedList *list, char *name) {
+  // TODO
+}
+
+void printSortByTitle(Node *first) {
+  // TODO
+}
+
+int remove_by_year(LinkedList *list, int year) {
+  // TODO
+}
+
+// TODO
+// define auxiliary methods here
+
+int main() {
+    LinkedList library;
+    init_list(&library);
+
+    Date d1 = {15, 3, 2020};
+    Book book1 = {101, "O Senhor dos Anéis", "J.R.R. Tolkien", 1954, d1};
+    add_new_book(&library, book1);
+
+    Data d2 = {21, 6, 2021};
+    Book book2 = {102, "Dom Quixote", "Miguel de Cervantes", 1605, d2}
+    add_new_book(&library, book2);
+
+    Data d3 = {10, 2, 2019};
+    Book book3 = {103, "1984", "George Orwell", 1949, d3}
+    add_new_book(&library, book3);
+
+    Data d4 = {5, 11, 2022};
+    Book book4 = {104, "O Hobbit", "J.R.R. Tolkien", 1937, d4}
+    add_new_book(&library, book4);
+
+    printf("\n=== Find book by ID ===\n");
+    print_by_id(&library, 102);
+
+    printf("\n=== Find books by author 'Tolkien' ===\n");
+    print_by_author(&library, "Tolkien");
+
+    printf("\n=== Books sorted by title ===\n");
+    printSortByTitle(library.first);
+
+    printf("\n=== Remove book with acquisition date prior to 2020  ===\n");
+    int total_removed = remove_by_year(library, 2020);
+
+    return 0;
+}
+</script></uc-code>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula10_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

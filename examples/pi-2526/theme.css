@@ -81,3 +81,7 @@
 .code-list > li { margin: 0; }
 .code-list .uc-small a { margin-right: var(--uc-space-2); }
 .source-note { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
+
+/* Guiões e enunciados: o texto pré-formatado parte as linhas longas em vez de criar
+   uma área com deslocamento horizontal (que precisaria de foco pelo teclado). */
+.uc-content pre { white-space: pre-wrap; overflow-wrap: anywhere; }

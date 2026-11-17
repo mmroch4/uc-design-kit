@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sorting using C Library: qsort() · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), example code from the lectures: Sorting using C Library: qsort().">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Código</a></li><li aria-current="page">Sorting using C Library: qsort()</li></ol>
+    </nav>
+    <h1>Sorting using C Library: qsort()</h1>
+    <div class="uc-content">
+<p>This is an an example of sorting using the C library function <code>qsort()</code>.</p>
+<h2>qsortLib.c</h2>
+<uc-code collapsible="" filename="qsortLib.c" lang="c"><script type="text/plain">
+// -------------------------------------------------
+// Programação Imperativa (CC1003)
+// Sorting using C library
+// Fernando Silva, DCC/FCUP
+// -------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+// a compare function is needed to invoke the C function qsort
+// the example is to compare integers, but this can be adjusted for other data types.
+//
+int compareInts(const void *a, const void *b) {
+  return (*(int *)a - *(int *)b);
+}
+
+void printArray(int a[], int n) {
+  printf("[");
+  for (int i=0; i<n; i++)
+    printf("%d%c",a[i],",]"[i == n-1]);
+    printf("\n");
+}
+
+int main() {
+  int n;
+  scanf("%d",&n);
+  int v[n];  // array to be sorted
+
+  // read array elements
+  for (int i=0; i<n; i++)
+    scanf("%d",&v[i]);
+
+  printf("Initial array: ");
+  printArray(v,n);
+
+  // call C library sort
+  qsort(v, n, sizeof(int), compareInts);
+
+  printf("After quick sort: ");
+  printArray(v,n);
+}
+</script></uc-code>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/qsortlib.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

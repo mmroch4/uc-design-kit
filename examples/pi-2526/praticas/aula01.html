@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Class 01 · Introduction to C · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), lab class 1: Introduction to C">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="1">
+    <h1>Practical Class 01 · Introduction to C</h1>
+    <p class="uc-small"><a href="aula01_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <div class="uc-content">
+<h2>Installing C
+
+    </h2><p>If you are using the laboratory computers at DCC, keep in mind that they run a GNU/Linux operating system with a graphical environment. In the menus, you can find some applications that will be useful for this and future classes:
+      </p><ul>
+<li><strong>Google Chrome/Firefox:</strong> web browsers;
+      </li><li><strong>Terminal:</strong> a command-line interpreter (<em>shell</em>);
+      </li><li><strong>GNU Emacs:</strong> a text editor.
+      </li><li><strong>IDEs:</strong> Integrated Development Environment, e.g. Visual
+      Studio Code (vscode).
+      </li></ul>
+<p>In this course, we will use the C programming language and the <a href="https://pt.wikipedia.org/wiki/GNU_Compiler_Collection">GCC</a> (<em>GNU Compiler Collection</em>) as the compiler for programs written in C.</p>
+<p>The first thing you should do is to ensure that you have a C compiler installed on your machine. (<em>Note:</em> if you are using the laboratory computers, GCC is already installed.) 
+    </p><p>If you are using your own computer and prefer the Microsoft Windows operating system, we recommend using WSL (<em>Windows Subsystem for Linux</em>). 
+
+      Try following these links:
+
+      </p><ul>
+<li><a href="aula01-instalacao.html">Brief guide for installing GCC</a>
+</li><li><a href="aula01-configuracao_wsl.html">Setting up WSL and installing GCC on Windows</a>
+</li><li><a href="1_intro_c.pdf">Brief introduction to C language.</a>
+</li></ul>
+<ul>
+</ul>
+
+<h3>Exercise 1) A First Program in C</h3>
+<p>Consider the following program. It prints all even numbers between 2 and <em>n</em> (where, <em>n=20</em>).</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+#include <stdio.h>
+
+int main() {
+    int n = 20;  // number limit
+
+    printf("Even numbers from 2 to %d:\n", n);
+
+    for (int i=2; i < n; i+=2) {
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+</script></uc-code>
+<ol>
+<li><strong>Your first execution of C code.</strong><br/>
+	  Copy this piece of code into a file, compile it, and run the program.<ul>
+<li>The file must have the <code>.c</code> extension. Name the file: <code><strong>numbers.c</strong></code>
+</li><li>To compile the program, execute this command:
+        <p>$ gcc -Wall -o numbers numbers.c
+</p></li><li>Then, to run the program
+        <p>$ ./numbers
+</p></li></ul><ol type="a">
+<li>What is the name of the resulting compiled file?
+	  </li><li>What is the output of its execution? Try running the program.
+	</li></ol></li>
+
+<li><strong>Compilation Errors</strong><br/> Try removing the ';' in the variable declaration for <em>n</em> and compile. What happens?
+	</li><li><strong>Writing Code.</strong><br/>  Modify the program to print odd numbers instead of even ones and display the numbers on the same line, separated by commas (without an extra comma at the end, but with a newline).
+      Expected execution output:
+<pre>
+$ ./numbers
+Odd numbers from 1 to 20: 1,3,5,7,9,11,13,15,17,19
+$
+</pre>
+</li><li><strong>Summing Odd Numbers.</strong><br/>
+    Add code to sum all odd numbers from 1 to <em>n</em> and print the sum at the end.
+    <ul>
+<li>We will need a variable to store the sum. What type should it be? 
+</li><li>The expected output should include an additional line: Sum = 100 (for <em>n=20</em>). 
+</li></ul>
+</li></ol>
+
+<h3>Exercise 2) Drawing Shapes on the Screen</h3>
+<ol>
+<li><strong>Squares on the Screen.</strong><br/>
+      Write a program that prints on the screen (using <em><strong>#</strong></em> character) a square of size  <strong>4</strong>. The result of running your program should be as shown below.
+    <uc-code collapsible="" lang="c"><script type="text/plain">
+####
+####
+####
+####
+</script></uc-code>
+<ul>
+<li>Modify the program to accept any value <em>n</em> as the square size.
+      </li><li>Can you modify the program to draw a chessboard of size
+      <em>n</em> (using <em><strong>#</strong></em> and <em><strong>_</strong></em>
+      characters). The result of running your program for a
+      5-dimensional board should be as shown below.
+    <uc-code collapsible="" lang="c"><script type="text/plain">
+#_#_#
+_#_#_
+#_#_#
+_#_#_
+#_#_#
+</script></uc-code>
+</li></ul>
+</li></ol>
+
+<h3>Exercise 3) Counting in sequences of values</h3>
+<p>Write small programs that solve the following challenges:</p>
+<ol>
+<li>Assign a number to the variable <code>n</code> and output the number of digits that
+  make up the number. For example, given <code>n=12345</code>, the answer
+  should be Num. of digits = 5 <em>Hint:</em> think about
+    successive integer divisions by 10.</li>
+<li>Modify the previous program so that instead of counting the
+    number of digits of a given number, it calculates and displays the
+    sum of those digits. For example, given <code>n=12345</code>, the answer
+    should be Sum of digits = 15 <em>Hint:</em> besides integer
+    divisions, also use successive remainders of division by 10.</li>
+<li>Write a program that reads the number of elements, <code>n</code>, of a
+    sequence of size greater or equal to 2, then reads the n values of the sequence and determines
+    and displays the two largest values in the given sequence.</li>
+<li>Modify the previous program to determine the length of the longest sequence of positive numbers that appears in the sequence of <code>n</code> elements read.</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula01.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

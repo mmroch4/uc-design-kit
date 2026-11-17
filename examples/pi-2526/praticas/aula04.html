@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Class 04 · Arrays and Strings · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), lab class 4: Arrays and Strings">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="4">
+    <h1>Practical Class 04 · Arrays and Strings</h1>
+    <p class="uc-small"><a href="aula04_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <div class="uc-content">
+<h2><strong>Mooshak:</strong> Exercises for Submission</h2>
+<p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
+</p><ul>
+<li><a href="problems/pi006.html">[PI006] Satellite Distance</a> (weight 20%) (main exercise)</li>
+<li><a href="problems/pi007.html">[PI007] Special Shuffle</a> (weight 30%) (extra exercise)</li>
+<li><a href="problems/pi008.html">[PI008] Hiking Day</a> (weight 40%) (main exercise)</li>
+<li><a href="problems/pi009.html">[PI009] Pascal Line</a> (weight 40%) (main exercise)</li>
+<li><a href="problems/pi010.html">[PI010] Collection Sorting</a> (weight 20%) (extra exercise)</li>
+</ul>
+<p><mark><strong>Submission deadline:</strong> <strong>March 24</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
+<p><strong>You are encouraged to talk with the instructors and other
+  colleagues to ask for ideas on how to solve a problem, but you also
+  need to make an effort to code your solution. That is the way to become competent at programming and problem
+  solving, and also to become prepared for the pratical evaluations. The same is
+  valid for ChatGPT or other LLMs. <mark>You may
+  ask for suggestions on how you could solve a given problem, but also
+    ask it to avoid giving you the code solution.</mark></strong><br/>
+</p><p>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.<br/>
+Each class accounts for 10% of the grade for this component.<br/>  
+For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
+To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+
+<h3> Exercise 1) Manipulating Arrays</h3>
+<p>Before starting the exercises, test the following code examples from the theoretical lesson on arrays. Make sure you <strong>compile</strong>, <strong>run</strong> and <strong>understand</strong> what is happening.</p>
+<ul>
+<li><code><a href="../codigo/write_binary.c">write_binary.c</a></code> - simple usage of an array to write binary digits
+      </li><li><code><a href="../codigo/check_rep_digits.c">check_rep_digits.c</a></code> - simple usage of an array to check repeated digits
+    </li></ul>
+<p>Now let’s solve some problems that involve manipulating arrays. <br/> Solve both the <strong>Mooshak problems</strong> and the <strong>extra problems</strong> from this exercise sheet.</p>
+<ol>
+<li>The goal os this exercise is to count, in a sequence of read
+        integer values (all of them between <math><mo>0</mo></math> and <math><mo>150</mo></math>), the number of values in the ranges <math><mo>0</mo></math> and <math><mo>5</mo></math>, the number of values in the ranges <math><mo>5</mo></math> and <math><mo>10</mo></math>, ..., the number of values in the ranges <math><mo>145</mo></math> and <math><mo>150</mo></math> (<strong>where the lower bound is excluded and the upper bound is included</strong>). Write a program that prints these counts. 
+<br/><details name="hint">
+<summary><em>Hints</em></summary>
+<p>- use an array of counters <code>c[0], c[1], ..., c[29]</code>, where <code>c[i]</code> counts the values of <code>x</code> such that
+<code>5*i &lt; x &lt;= 5*(i+1)</code>.
+      </p></details>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi006.html">[PI006] Satellite Distance</a><br/>  
+      Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
+<br/><br/><details name="hint">
+<summary><em>Hints</em></summary>
+<p>- read the two arrays.
+</p><p>- iterate through both at the same time (same index <code>i</code>).
+</p><p>- compute the absolute difference between <code>a[i]</code> and <code>b[i]</code>.
+</p><p>- store the smallest value you find.
+</p><p> <em>Note:</em> For the absolute difference in C, you can use the function <code>abs()</code> from the <code>stdlib.h</code> library.
+      </p></details>
+</li>
+<li>Write a function that, given a set of integer values, returns how many of these values are strictly greater than a value provided by the user. The function should have the following prototype:
+	<br/>
+<pre>int count_biggers(int arr[], int size, int val);
+</pre>
+<br/>
+    The function's arguments are an indexed variable <code><strong>arr</strong></code> with size <code><strong>size</strong></code> and a value <code><strong>val</strong></code>. The return value should be the count of elements in <code><strong>arr</strong></code> that are strictly greater than <code><strong>val</strong></code>.<br/>
+	Example:<br/>
+<pre>int a[10] = {2, -3, 5, 10, 9, 88, -5, 8, 5, 2};
+count = count_biggers(a, 10, 2);    // the function should return 6
+</pre>
+</li>
+<li>Define a function with the following prototype:
+      <br/>
+<pre>void range(int arr[], unsigned size, int start, int incr);
+</pre>
+<br/>
+     The function should initialize the first <code><strong>size</strong></code> elements of an array <code><strong>arr</strong></code> with the values <code>start, start + incr, start + 2*incr, ...</code>, following an arithmetic progression with an initial term <code><strong>start</strong></code> and a common difference <code><strong>incr</strong></code>.<br/>
+	Example:<br/>
+<pre>int a[5];
+range(a, 5, 3, 2);    // a[] will contain {3, 5, 7, 9, 11}
+</pre>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi008.html">[PI008] Hiking Day</a><br/>  
+      Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
+<br/><br/><details name="hint">
+<summary><em>Hints</em></summary>
+<p>- read the array.
+</p><p>- calculate <code>|a[i] - a[i-1]|</code> for all <code>i</code> (including the link <code>a[n-1]</code> -&gt; <code>a[0]</code>).
+</p><p>- find the index where this difference is maximum.
+</p><p>- print the array starting from the element after that index, going around circularly. To do this, you can start from index <code>k</code>, and use <code>i % n</code> to "wrap around".
+      </p></details>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi009.html">[PI009] Pascal Line</a><br/>  
+      Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
+<br/><br/><details name="hint">
+<summary><em>Hints</em></summary>
+<p>- Pascal's triangle has a simple property: each element is the sum of the two elements directly above it. 
+</p><p>- Row 1 is just 1. 
+</p><p>- Each subsequent row is built from the previous one.
+      </p></details>
+</li>
+<li>Write a program that generates and prints an inverted identity matrix of order <math><mi>n</mi></math>. The inverted identity matrix is obtained by mirroring the traditional identity matrix along its central row. The program should prompt the user for a positive integer  <math><mi>n</mi></math> (the matrix dimension) and then print the resulting matrix.<br/>
+	Example:
+<pre><em>Input:</em> What is the dimension of the matrix?
+       5
+
+<em>Output:</em> Inverted Identity Matrix:
+        0 0 0 0 1  
+        0 0 0 1 0  
+        0 0 1 0 0  
+        0 1 0 0 0  
+        1 0 0 0 0  
+</pre>
+The program should ensure that <math><mi>n</mi></math> is a valid number and display an error message if not.
+     </li>
+<li>A magic square is a square matrix of integers in which all rows, columns, and diagonals sum to the same value. In the following example, each row, column, and diagonal sums to the same value (15 in this case):
+<pre>2  7  6
+9  5  1
+4  3  8
+</pre>
+Write a function <br/>
+<pre>int magic(int a[20][20], int n);
+</pre><br/>
+ that checks whether a matrix is a magic square. <br/>
+ The matrix is represented by an indexed variable <code><strong>a</strong></code> with a declared size of <math><mo>20</mo><mi>×</mi><mo>20</mo></math>; the argument <code><strong>n</strong></code> specifies the sub-matrix to consider: for example, if <code>n = 3</code> we should check whether the <math><mo>3</mo><mi>×</mi><mo>3</mo></math> sub-matrix containing the values from the first 3 rows and 3 columns is a magic square (ignoring the rest of the matrix). <br/>
+  The function should return an integer: <code><strong>1</strong></code> if it is a magic square and <code><strong>0</strong></code> otherwise.
+</li>
+<li>Write a program that first reads the size <code>N</code> of a square
+     matrix <code>a[N][N]</code>, then reads all integers values of the
+     matrix, row by row, and then calculates and outputs the same
+     matrix rotated 90 degrees right.<br/>
+     Sugestion: use an auxiliar matrix to determine the rotated
+     matrix. <br/>
+     Example:
+<pre>
+<em>Input:</em>  3
+        1 2 3
+        1 2 3
+        1 2 3
+
+<em>Output:</em> 
+        1 1 1
+        2 2 2
+        3 3 3
+</pre>
+</li><li>In a class of 25 students, what is the probability that at least two of them share the same birthday? And if there are 50 students? The  <a href="https://en.wikipedia.org/wiki/Birthday_problem">birthday paradox</a> is the observation that this probability is higher than common intuition suggests. <br/>
+Write a program to estimate experimentally the probability of shared birthdays among <math><mi>n</mi></math> students by repeatedly generating random days (<math><mi>n</mi></math> values between <math><mo>1</mo></math> and <math><mo>365</mo></math>) and checking for duplicates. <br/>
+Use the <code><strong>rand()</strong></code> function from the C standard library <code><strong>stdlib.h</strong></code> to generate a random array of <math><mi>n</mi></math> days and write a helper function to check for duplicates. <br/>
+By performing a large number of experiments, the relative frequency of duplicate occurrences provides an approximate probability. <br/>
+The number of students <math><mi>n</mi></math> and the number of experiments should be easily modifiable (for example, using <em>macros</em>).
+</li>
+</ol>
+
+<h3> Exercise 2) Working with Strings</h3>
+<p>Now test the following code example from the theoretical lesson on string manipulation. Make sure you <strong>compile</strong>, <strong>run</strong> and <strong>understand</strong> what is happening.</p>
+<ul>
+<li><code><a href="../codigo/reverse_string.c">reverse_string.c</a></code> - simple program that reverses a string
+    </li></ul>
+<p>Now you can use the previous example to solve and test the following problems, which involve implementing helper functions to work with strings.</p>
+<ol>
+<li>In the previous class, you were challenged to write a program
+    that converts a sentence read from <em>standard input</em> to uppercase. In this class, you should rewrite your program to include the definition of a helper function <br/>
+<pre>void capitalize(char str[]);
+</pre>
+<br/> which convert all letters in a given string to uppercase, leaving other characters unchanged.<br/>
+Note that the function's argument is a sequence of characters (not necessarily letters) terminated by <code><strong>'\0'</strong></code>.
+    </li>
+<li>Write a function <br/>
+<pre>int palindrome(char str[]);
+</pre>
+<br/>that checks whether a string is a palindrome, that is, if it reads the same from left to right and right to left.<br/>
+ The function should return <code><strong>1</strong></code> if the string is a palindrome and <code><strong>0</strong></code> otherwise. <br/>
+      Examples:
+<pre><em>Input:</em>  Arara
+<em>Output:</em> 1
+
+<em>Input:</em>  Praia
+<em>Output:</em> 0
+
+<em>Input:</em>  taco cat
+<em>Output:</em> 1
+</pre>
+</li><li>Write a function <br/>
+<pre>int strong(char str[]);
+</pre>
+<br/> that checks whether a string is a "strong <em>password</em>" using the following criteria:
+<ul>
+<li>It must have at least 6 characters;
+       </li><li>It must contain at least one uppercase letter, one lowercase letter, and one digit.
+	</li></ul>
+     The function should return <code><strong>1</strong></code> if both criteria are met and <code><strong>0</strong></code> otherwise. 
+<em>Hint:</em> Define a helper function to count the number of characters in a string and additional helper functions to check whether a string contains at least one uppercase letter, one lowercase letter, and at least one digit. <br/>
+      Examples:
+<pre><em>Input:</em>  Abr4cadabra
+<em>Output:</em> 1
+
+<em>Input:</em>  Apric0t
+<em>Output:</em> 1
+
+<em>Input:</em>  Ub40
+<em>Output:</em> 0
+
+<em>Input:</em>  POLICE
+<em>Output:</em> 0</pre>
+</li><li>Write a function <br/>
+<pre>int decimal(char str[]);
+</pre>
+<br/>that, given a string containing only digits (i.e., <code>'0'</code>, <code>'1'</code>, ... , <code>'9'</code>) and the null terminator <code><strong>'\0'</strong></code>, representing a non-negative integer in decimal (i.e., base 10), returns the integer value of that number. <br/>
+      Example:<br/>
+<pre>decimal(<mark>"1234"</mark>);
+1234  // returns the integer 1234
+</pre>
+
+</li><li>Write a function <br/>
+<pre>void eliminate(char str[], char ch);
+</pre>
+<br/>    that removes the first occurrence of a character <code><strong>ch</strong></code> from a string <code><strong>str</strong></code>.  
+<em>Note:</em> Ensure that the null terminator <code><strong>'\0'</strong></code>is placed correctly.<br/>
+      Example:<br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+str = "ABBA";
+
+eliminate(str, 'B');
+printf("%s", str);   // should print "ABA"
+
+eliminate(str, 'A');
+printf("%s", str);   // should print "BA"
+
+eliminate(str, 'C');
+printf("%s", str);   // should print "BA"
+</script></uc-code>
+
+</li><li> Write a program that includes the following helper functions for working with strings. Each function should perform the specified task:
+      <ul>
+<li>Determine the longest word in a string.
+		</li><li>Modify a string by replacing all occurrences of a character <code><strong>ch1</strong></code> with another given character <code><strong>ch2</strong></code>.
+		</li><li>Modify a string by replacing all occurrences of a substring <code><strong>sstr1</strong></code> with another given substring <code><strong>sstr2</strong></code>.
+		</li><li>Replace the first letter of each word in a string with its uppercase equivalent. Note that the first letter may not be the first character.
+      </li></ul>
+Assume that a string is represented by a character array terminated by the null character (<code><strong>'\0'</strong></code>).
+</li></ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula04.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

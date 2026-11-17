@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Determine the two largest values of a sequence of integers · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), example code from the lectures: Determine the two largest values of a sequence of integers.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Código</a></li><li aria-current="page">Determine the two largest values of a sequence of integers</li></ol>
+    </nav>
+    <h1>Determine the two largest values of a sequence of integers</h1>
+    <div class="uc-content">
+<p>Note: no pointers and do not use arrays.</p>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+/********************************************************
+ Problem: Determine the two largest values of a sequence
+ Goal: no pointers yet; process sequence as you input it
+
+ Author: Fernando Silva
+ Date: February/2025
+*******************************************************/
+
+#include <stdio.h>
+
+int main() {
+  int n, i, tmp, big1, big2;
+
+    // ler o número n
+    scanf("%d", &n);
+
+    if (n<2)
+      printf("sequência com menos de 2 elementos\n");
+    else {
+      // read the first 2 values
+      scanf("%d %d",&big1, &big2);
+      if (big2>big1) {
+	tmp=big1;
+	big1= big2;
+	big2= tmp;
+      }
+      i=2;
+      while (i<n) {  // read remaining, one at a time
+	scanf("%d",&tmp);
+	if (tmp>big1) {
+	  big2= big1;
+	  big1= tmp;
+	}
+	else if (tmp>big2) {
+	  big2=tmp;
+	}
+	i++;
+      }
+    }
+    printf("Largest1= %d, Largest2=%d\n", big1, big2);
+    return 0;
+}
+</script></uc-code>
+<h2>Summing the values of main and anti-diagonals of a square matrix</h2>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+/************************************************
+ Problem: Given a matrix, calculate the sum of
+          main and anti-diagonal
+ Author:  Fernando Silva (DCC/FCUP)
+ Date:    March/2025
+ ***********************************************/
+
+#include <stdio.h>
+
+void sumMatrixDiagonals (int n, int a[n][n], int *sumMD , int *sumAD) {
+  *sumMD= 0;
+  *sumAD= 0;
+  for (int i= 0; i < n; i++) { // only one loop is enough
+    *sumMD += a[i][i];
+    *sumAD += a[i][n-1-i];
+  }
+}
+
+void readMatrix(int n, int a[n][n]) {
+  for (int i= 0; i < n; i++)
+    for (int j= 0; j < n; j++)
+      scanf("%d", &a[i][j]);
+}
+
+int main () {
+  int n, sumAD, sumMD;
+  scanf("%d", &n); // square matrix dimension
+  int a[n][n];
+
+  readMatrix(n, a);
+  sumMatrixDiagonals (n, a, &sumMD, &sumAD);
+  printf("Sum main-diagonal: %d\n", sumMD);
+  printf("Sum anti-diagonal: %d\n", sumAD);
+}
+</script></uc-code>
+<h2>Rotating a square matrix 90 degrees</h2>
+<address></address>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+/******************************************
+ * Problem: Rotating right a square matrix
+ * Author: Fernando Silva
+ * Date: March/2025
+ *****************************************/
+#include <stdio.h>
+
+void printMatrix(int n, int a[n][n]) {
+for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++)
+            printf("%d ", a[i][j]);
+        printf("\n");
+    }
+}
+void rotateMatrix(int n, int matrix[n][n]) {
+    int rotated[n][n];
+
+    for (int i = 0; i < n; i++)
+      for (int j = 0; j < n; j++)
+	rotated[i][j] = matrix[n-1-j][i];
+    printf("Matrix rotated:\n");
+    printMatrix(n, rotated);
+}
+
+int main() {
+    int n;
+
+    printf("Provide the matrix dimension: \n");
+    scanf("%d", &n);
+
+    int matrix[n][n];
+    // fill in the matrix with lines all equal
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            matrix[i][j]= j+1;
+
+    printf("Matrix given:\n");
+    printMatrix(n, matrix);
+    rotateMatrix(n, matrix);
+    return 0;
+}
+</script></uc-code>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/arrays.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

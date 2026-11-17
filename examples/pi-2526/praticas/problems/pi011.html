@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI011] Tic-Tac-Toe · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI011 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI011] Tic-Tac-Toe</li></ol>
+    </nav>
+    <h1>[PI011] Tic-Tac-Toe</h1>
+    <div class="uc-content">
+<p><img alt="Exemplo de um
+tabuleiro do jogo do galo." class="uc-content__float" loading="lazy" src="pi011.jpg"/>
+</p><p>Who doesn't know the famous tic-tac-toe game? In this problem you are asked, given a tic-tac-toe board,
+with some moves possibly already played, to analyze it and determine whether any of the players has won. To make
+things a little more interesting, imagine a generalization of the game, still on a square board, but which can have
+a dimension different from 3x3. As in the original game, players take turns and win if they manage to completely fill
+a row, a column, or a diagonal.
+</p>
+<h2>
+Task
+</h2>
+<p>
+You are given a tic-tac-toe board pre-filled with some moves possibly already played.
+Your task is to determine the state of the game.
+</p>
+<h2>Input</h2>
+<p>The first line contains a number <strong>N</strong> (<code>1 &lt;= N &lt;= 101</code>), indicating the dimension of the board (which is always square).<br/>
+This is followed by <strong>N</strong> lines, each with <strong>N</strong> characters (<strong><code>X</code></strong>, 
+<strong><code>O</code></strong> or <strong><code>.</code></strong>) representing the current state of the game.<br/>
+As expected, <strong><code>X</code></strong> and <strong><code>O</code></strong> represent a cell occupied by one of the two players, 
+and <strong><code>.</code></strong> represents an empty cell.<br/> 
+You may assume that the board will always represent a valid game state (for example, there will never be two winners).
+
+</p><h2>Output</h2>
+
+The output should be a single line indicating the state of the game:
+<ul>
+<li><strong><code>Ganhou o X</code></strong> - If player X has completely filled a row, column, or diagonal
+  </li><li><strong><code>Ganhou o O</code></strong> - If player O has completely filled a row, column, or diagonal
+  </li><li><strong><code>Empate</code></strong> - If neither player has won and the game has finished
+  </li><li><strong><code>Jogo incompleto</code></strong> - If neither player has won and the game has not finished yet
+</li></ul>
+<h2>Example input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col"> </th>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<th scope="col">Example 1</th>
+<td>
+<pre>
+3
+...
+...
+...
+</pre>
+</td>
+<td>Jogo incompleto<br/> </td>
+</tr>
+<tr>
+<th scope="col">Example 2</th>
+<td>
+<pre>
+4
+XXXX
+OOO.
+....
+....
+</pre>
+</td>
+<td>Ganhou o X<br/> </td>
+</tr>
+<tr>
+<th scope="col">Example 3</th>
+<td>
+<pre>
+2
+XO
+O.
+</pre>
+</td>
+<td>Ganhou o O<br/> </td>
+</tr>
+<tr>
+<th scope="col">Example 4</th>
+<td>
+<pre>
+3
+XOX
+OOX
+XXO
+</pre>
+</td>
+<td>Empate<br/> </td>
+</tr>
+</table></div>
+
+ <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi011.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

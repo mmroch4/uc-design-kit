@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 04 · Arrays e Strings · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 4: Arrays e Strings">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="4">
+    <h1>Aula Prática 04 · Arrays e Strings</h1>
+    <p class="uc-small"><a href="aula04.html" hreflang="en" lang="en">English version</a></p>
+    <div class="uc-content">
+<p><a href="aula04.html">Version in English</a><br/>
+</p>
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi006.html">[PI006] Distância do Satélite</a> (peso 20%) (exercício principal)</li>
+<li><a href="problems/pi007.html">[PI007] Embaralhamento Especial</a> (peso 30%) (exercício extra)</li>
+<li><a href="problems/pi008.html">[PI008] Dia de Caminhada</a> (peso 40%) (exercício principal)</li>
+<li><a href="problems/pi009.html">[PI009] Linha de Pascal</a> (peso 40%) (exercício principal)</li>
+<li><a href="problems/pi010.html">[PI010] Ordenação de Coleção</a> (peso 20%) (exercício extra)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>24 de Março</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3>Exercício 1) Manipulando Arrays</h3>
+<p>Antes de começar os exercícios, teste os seguintes exemplos de código da aula teórica sobre arrays. Certifique-se de que <strong>compila</strong>, <strong>executa</strong> e <strong>compreende</strong> o que está a acontecer.</p>
+<ul>
+<li><code><a href="../codigo/write_binary.c">write_binary.c</a></code> - simple usage of an array to write binary digits
+      </li><li><code><a href="../codigo/check_rep_digits.c">check_rep_digits.c</a></code> - simple usage of an array to check repeated digits
+    </li></ul>
+<p>Agora vamos resolver alguns problemas que envolvem a manipulação de arrays. <br/> Resolva tanto os problemas do Mooshak como os problemas extra desta folha de exercícios.</p>
+<ol>
+<li>Pretende-se contar numa sequência de valores lidos, todos eles compreendidos entre <math><mo>0</mo></math> e <math><mo>150</mo></math>, o número de valores entre <math><mo>0</mo></math> e <math><mo>5</mo></math>, o número de valores entre <math><mo>5</mo></math> e <math><mo>10</mo></math>, ..., o número de valores entre <math><mo>145</mo></math> e <math><mo>150</mo></math> (<strong>o limite inferior é excluído e o limite superior é incluído</strong>). Escreva um programa que imprima essas quantidades. 
+<br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- use um array de contadores <code>c[0], c[1], ..., c[29]</code>, em que <code>c[i]</code> conta os valores de <code>x</code> tais que
+<code>5*i &lt; x &lt;= 5*(i+1)</code>.
+      </p></details>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi006.html">[PI006] Distância do Satélite</a><br/>  
+      Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
+<br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- lê os dois arrays.
+</p><p>- percorre os dois ao mesmo tempo (mesmo índice <code>i</code>).
+</p><p>- calcula a diferença absoluta entre <code>a[i]</code> e <code>b[i]</code>.
+</p><p>- guarda o menor valor que encontrares.
+</p><p> <em>Nota:</em> Para a diferença absoluta em C, podes usar a função <code>abs()</code> da biblioteca <code>stdlib.h</code>.
+      </p></details>
+</li>
+<li>Escreva uma função que dado um conjunto de valores inteiros retorne quantos desses valores são estritamente maiores do que um valor dado pelo utilizador. A função deve ter a seguinte declaração de protótipo:
+	<br/>
+<pre>int count_biggers(int arr[], int size, int val);
+</pre>
+<br/>
+    Os argumentos da função são uma variável indexada <code><strong>arr</strong></code> com tamanho <code><strong>size</strong></code> e um valor <code><strong>val</strong></code> e o valor de retorno deve ser
+a contagem do número de elementos de <code><strong>arr</strong></code> que são estritamente maiores do que o valor <code><strong>val</strong></code>.<br/>
+	Exemplo:<br/>
+<pre>int a[10] = {2, -3, 5, 10, 9, 88, -5, 8, 5, 2};
+count = count_biggers(a, 10, 2);    // a função deve retornar 6
+</pre>
+</li>
+<li>Defina uma função com a seguinte declaração de protótipo:
+      <br/>
+<pre>void range(int arr[], unsigned size, int start, int incr);
+</pre>
+<br/>
+     A função deve inicializar os primeiros <code><strong>size</strong></code> elementos de um array <code><strong>arr</strong></code> com os valores <code>start, start + incr, start + 2*incr, ...</code>, isto é, segundo uma progressão aritmética, com termo inicial <code><strong>start</strong></code> e razão <code><strong>incr</strong></code>.<br/>
+	Exemplo:<br/>
+<pre>int a[5];
+range(a, 5, 3, 2);    // a[] passa a conter {3, 5, 7, 9, 11}
+</pre>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi008.html">[PI008] Dia de Caminhada</a><br/>  
+      Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
+<br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- lê o array.
+</p><p>- calcula <code>|a[i] - a[i-1]|</code> para todos os <code>i</code> (incluindo a ligação <code>a[n-1]</code> -&gt; <code>a[0]</code>).
+</p><p>- encontra o índice onde essa diferença é máxima.
+</p><p>- imprime o array a partir do elemento seguinte a esse índice, dando a volta circular. Para isso pode começar a partir do índice <code>k</code>, podes usar <code>i % n</code> para "dar a volta".
+      </p></details>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi009.html">[PI009] Linha de Pascal</a><br/>  
+      Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
+<br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- O triângulo de Pascal tem uma propriedade simples: cada elemento é a soma dos dois elementos diretamente acima dele. 
+</p><p>- A linha 1 é apenas 1. 
+</p><p>- Cada linha seguinte é construída a partir da anterior.
+      </p></details>
+</li>
+<li>Escreva um programa que gere e imprima uma matriz identidade invertida de ordem <math><mi>n</mi></math>. A matriz identidade invertida é obtida ao espelhar a matriz identidade tradicional na sua linha central. O programa deve receber do utilizador um número inteiro positivo <math><mi>n</mi></math> (dimensão da matriz) e, em seguida, imprimir a matriz resultante.<br/>
+	Exemplo:
+<pre><em>Input:</em> Qual a dimensão da matriz?
+       5
+
+<em>Output:</em> Matriz Identidade Invertida:
+        0 0 0 0 1  
+        0 0 0 1 0  
+        0 0 1 0 0  
+        0 1 0 0 0  
+        1 0 0 0 0  
+</pre>
+O programa deve garantir que <math><mi>n</mi></math> seja um número válido e exibir uma mensagem de erro caso contrário.
+     </li>
+<li>Um quadrado mágico é uma matrix quadrada de números inteiros tal que todas as linhas, colunas e diagonais somam o mesmo valor. No exemplo seguinte cada linha, coluna e diagonal soma o mesmo valor (15 neste caso):
+<pre>2  7  6
+9  5  1
+4  3  8
+</pre>
+Escreva uma função <br/>
+<pre>int magic(int a[20][20], int n);
+</pre><br/>
+que testa se uma matrix é uma quadrado mágico. <br/>
+A matriz é representada por uma variável indexada <code><strong>a</strong></code> com dimensão declarada <math><mo>20</mo><mi>×</mi><mo>20</mo></math>; o argumento <code><strong>n</strong></code> indica qual sub-matrix a considerar: por exemplo, se <code>n = 3</code> devemos testar se a sub-matriz <math><mo>3</mo><mi>×</mi><mo>3</mo></math> que contém os valores das primeiras 3 linhas e 3 colunas é um quadrado mágico (e ignorar o resto da matriz). <br/>
+O resultado deve ser um inteiro: <code><strong>1</strong></code> se é um quadrado mágico e <code><strong>0</strong></code> caso contrário.
+</li>
+<li>Escreva um programa que leia a dimensão  <code>N</code> de uma matriz
+     quadrada, <code>a[N][N]</code>, depois leia por linha os valores inteiros da
+     matriz, e depois determine e escreva para o output a matriz que
+     resulta de uma rotação de 90 graus para a direita
+<em>Sugestão:</em> use uma matriz auxiliar para determinar a rotação. <br/>
+     Exemplo:
+<pre>
+<em>Input:</em>  3
+        1 2 3
+        1 2 3
+        1 2 3
+
+<em>Output:</em> 
+        1 1 1
+        2 2 2
+        3 3 3
+</pre>
+</li><li>Numa turma com 25 alunos, qual é a probabilidade de que o aniversário de pelo menos dois deles seja no mesmo dia? E se forem 50 alunos? O <a href="https://en.wikipedia.org/wiki/Birthday_problem">paradoxo do aniversário</a> é a constatação de que esta probabilidade é maior do que parece ao senso comum. <br/>
+Escreva um programa capaz de estimar experimentalmente a probabilidade de aniversários repetidos com <math><mi>n</mi></math> alunos escrevendo um programa que repetidamente gere dias aleatoriamente (<math><mi>n</mi></math> valores de <math><mo>1</mo></math> a <math><mo>365</mo></math>) e verifique a ocorrência de repetições. <br/>
+Utilize a função <code><strong>rand()</strong></code> da biblioteca standard do C <code><strong>stdlib.h</strong></code> para gerar aleatoriamente um vector com <math><mi>n</mi></math> dias e escreva uma função auxiliar para testar repetições. <br/>
+Se fizer um grande número de experiências, a frequência relativa de ocorrência de repetidos dá um valor aproximado da probabilidade. <br/> 
+O número de alunos <math><mi>n</mi></math> e de experiências deve ser facilmente
+modificável (por exemplo, usando <em>macros</em>).
+</li>
+</ol>
+
+<h3>Exercício 2) Trabalhando com Strings</h3>
+<p>Agora teste o seguinte exemplo de código da aula teórica sobre manipulação de string. Certifique-se de que <strong>compila</strong>, <strong>executa</strong> e <strong>compreende</strong> o que está a acontecer.</p>
+<ul>
+<li><code><a href="../codigo/reverse_string.c">reverse_string.c</a></code> - programa simples que reverte uma string
+    </li></ul>
+<p>Agora pode aproveitar o exemplo anterior para resolver e testar os problemas seguintes que envolvem implementação de funções auxiliares para trabalhar com strings.</p>
+<ol>
+<li>Na aula passada foi desafiado a escrever um programa convertesse para maiúsculas uma frase lida do <em>standard input</em>. Nesta aula pretendemos que reescreva o seu programa para incluir a definição de uma função auxiliar <br/>
+<pre>void capitalize(char str[]);
+</pre>
+<br/> que transforma todas as letras de uma string lida em maiúsculas; os outros caracteres devem ficar inalterados.<br/>
+Note 	que o argumento da sua função é uma sequência de caracteres (não necessariamente letras) terminada por <code><strong>'\0'</strong></code>.
+    </li>
+<li>Escreva uma função <br/>
+<pre>int palindrome(char str[]);
+</pre>
+<br/> que testa se uma string é um palíndromo, isto é, se a string é  igual quando lida da esquerda para a direita ou da direita para a esquerda. <br/>
+A função deve retornar <code><strong>1</strong></code> caso a string seja um palíndromo, e <code><strong>0</strong></code> caso contrário. <br/>
+      Exemplos:
+<pre><em>Input:</em>  Arara
+<em>Output:</em> 1
+
+<em>Input:</em>  Praia
+<em>Output:</em> 0
+
+<em>Input:</em>  taco cat
+<em>Output:</em> 1
+</pre>
+</li><li>Escreva uma função <br/>
+<pre>int strong(char str[]);
+</pre>
+<br/> que verifica se uma string é uma "<em>password</em> forte" usando o seguinte critério:
+<ul>
+<li>Deve ter pelo menos 6 caracteres;
+       </li><li>Deve conter pelo menos uma letra maiúscula, uma letra minúscula e um algarismo.
+	</li></ul>
+     O resultado da função deve ser <code><strong>1</strong></code> se ambos os critérios se verificam e <code><strong>0</strong></code> caso contrário. 
+
+<em>Sugestão:</em> Defina uma função auxiliar para contar o número de caracteres em um string e outras funções auxiliares para verificar se uma dada string contém pelo menos uma letra maiúscula e uma minúscula, e se contem pelo menos um digito. <br/>
+      Exemplos:
+<pre><em>Input:</em>  Abr4cadabra
+<em>Output:</em> 1
+
+<em>Input:</em>  Apric0t
+<em>Output:</em> 1
+
+<em>Input:</em>  Ub40
+<em>Output:</em> 0
+
+<em>Input:</em>  POLICE
+<em>Output:</em> 0</pre>
+</li><li>Escreva uma função <br/>
+<pre>int decimal(char str[]);
+</pre>
+<br/> que dada uma string que contém apenas dígitos (i.e., <code>'0'</code>, <code>'1'</code>, ... , <code>'9'</code>) além do terminador <code><strong>'\0'</strong></code>, a qual representa um inteiro não negativo em decimal (i.e., na base 10), retorna o valor desse inteiro. <br/>
+      Exemplo:<br/>
+<pre>decimal(<mark>"1234"</mark>);
+1234  // é um inteiro decimal
+</pre>
+
+</li><li>Escreva uma função <br/>
+<pre>void eliminate(char str[], char ch);
+</pre>
+<br/>      que elimina a primeira ocorrência de uma caracter <code><strong>ch</strong></code> de uma string <code><strong>str</strong></code>. 
+<em>Nota:</em> Tenha o cuidado de colocar corretamente o terminador <code><strong>'\0'</strong></code>.<br/>
+      Exemplo:<br/>
+<uc-code collapsible="" lang="c"><script type="text/plain">
+str = "ABBA";
+
+eliminate(str, 'B');
+printf("%s", str);   // deve imprimir "ABA"
+
+eliminate(str, 'A');
+printf("%s", str);   // deve imprimir "BA"
+
+eliminate(str, 'C');
+printf("%s", str);   // deve imprimir "BA"
+</script></uc-code>
+
+</li><li> Escreva um programa que inclua as seguintes funções auxiliares para trabalhar com strings. As funções devem realizar as seguintes tarefas:
+      <ul>
+<li>Determinar a maior palavra de uma string.
+		</li><li>Modificar uma string, substituindo todas as ocorrências de um carácter <code><strong>ch1</strong></code> por outro carácter dado <code><strong>ch2</strong></code>.
+		</li><li>Modificar uma string, substituindo todas as ocorrências de uma substring <code><strong>sstr1</strong></code> por outra substring dada <code><strong>sstr2</strong></code>.
+		</li><li>Substituir a primeira letra de cada palavra numa string pela correspondente letra maiúscula. Note que a primeira letra pode não ser o primeiro carácter.
+      </li></ul>
+Admita que uma string é representada por uma variável indexada de caracteres terminada pelo carácter nulo (<code><strong>'\0'</strong></code>).
+</li></ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula04_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>
