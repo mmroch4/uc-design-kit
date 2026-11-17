@@ -17,27 +17,26 @@
       <p class="uc-prose">The final grade has three components. Each component has a grade from 0% to 100%. There is no final exam.</p>
     </div>
 
-    <section class="uc-section" aria-labelledby="criteria">
-      <h2 id="criteria">Evaluation criteria</h2>
-      <p class="formula">Grade = 25% SI + 50% CE + 25% PDC <span>(+ up to 10% bonus)</span></p>
-      <div class="uc-grid">
-        <a class="uc-card component" href="#si">
-          <span class="component__head"><span class="component__letter">SI</span> <span class="component__weight">25%</span></span>
-          <span class="component__name">Submitted Implementations</span>
-          <span class="uc-muted desc">Weekly problem sets, solved on Mooshak and CodeForces.</span>
-        </a>
-        <a class="uc-card component" href="#ce">
-          <span class="component__head"><span class="component__letter">CE</span> <span class="component__weight">50%</span></span>
-          <span class="component__name">Participation in Competitive Events</span>
-          <span class="uc-muted desc">Three on-site contests.</span>
-        </a>
-        <a class="uc-card component" href="#pdc">
-          <span class="component__head"><span class="component__letter">PDC</span> <span class="component__weight">25%</span></span>
-          <span class="component__name">Presentations, Discussion of Solutions and Problem Creation</span>
-          <span class="uc-muted desc">A new problem and a discussion of your code.</span>
-        </a>
-      </div>
-    </section>
+    <!-- Formula, weights and a grade simulator: <uc-grading> builds them from this list. -->
+    <uc-grading scale="100" calculator heading="Evaluation criteria">
+      <ul>
+        <li data-code="SI"><data value="25">25%</data> Submitted Implementations. <span>Weekly problem sets.</span></li>
+        <li data-code="CE"><data value="50">50%</data> Participation in Competitive Events. <span>Three on-site contests.</span>
+          <ul>
+            <li data-code="C1"><data value="30">30%</data> 1st Contest</li>
+            <li data-code="C2"><data value="30">30%</data> 2nd Contest</li>
+            <li data-code="C3"><data value="40">40%</data> 3rd Contest</li>
+          </ul>
+        </li>
+        <li data-code="PDC"><data value="25">25%</data> Presentations, Discussion of Solutions and Problem Creation
+          <ul>
+            <li data-code="PC"><data value="50">50%</data> Problem Creation</li>
+            <li data-code="CQ"><data value="50">50%</data> Code Presentation</li>
+          </ul>
+        </li>
+        <li data-code="B" data-bonus="10%">Bonus points</li>
+      </ul>
+    </uc-grading>
 
     <!-- Dates: edit in course.js (deadlines). The state is computed. -->
     <uc-deadlines view="table" heading="Dates"></uc-deadlines>

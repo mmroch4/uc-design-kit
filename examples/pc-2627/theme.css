@@ -4,16 +4,6 @@
  * Each block says which page uses it.
  */
 
-/* evaluation.html: formula and component cards */
-.formula { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-h3); font-weight: 500; }
-.formula span { font-size: var(--uc-font-size-body-sm); font-weight: 400; color: var(--uc-color-text-muted); }
-.component { --uc-card-padding: var(--uc-space-6); display: flex; flex-direction: column; gap: var(--uc-space-1); text-decoration: none; color: var(--uc-color-text); }
-.component__head { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.75rem; }
-.component__letter { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.component__weight { font-weight: 700; }
-.component__name { font-weight: 600; }
-.desc { font-size: var(--uc-font-size-body-sm); }
-
 /* materials.html: judge and book cards, inline link lists */
 .book { --uc-card-padding: var(--uc-space-5); gap: 6px; }
 .book__kind { font-size: var(--uc-font-size-xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--uc-color-text-muted); }
