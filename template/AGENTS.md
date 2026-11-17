@@ -52,7 +52,7 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
     `search: true` no `course.js`, `python3 uc-site.py` reescreve-o).
 13. Para mostrar um algoritmo ou uma estrutura de dados passo a passo
     (ordenação, pesquisa, árvore binária de pesquisa, lista ligada, pilha e
-    fila, recursão…), usar um widget
+    fila, recursão, heap, árvore AVL, tabela de dispersão…), usar um widget
     da biblioteca em vez de escrever um componente: uma linha
     `<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-sort.js" defer></script>`
     depois do kit e o elemento (`<uc-widget-sort values="5 2 9 1" algorithm="insertion">`)

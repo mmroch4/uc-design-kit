@@ -1,0 +1,24 @@
+{
+  "name": "uc-widget-heap",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 2,
+  "title": { "pt": "Heap binário", "en": "Binary heap" },
+  "summary": {
+    "pt": "Heap de máximo ou de mínimo, em vetor e em árvore lado a lado: inserir, extrair, topo, construção (heapify) e heapsort.",
+    "en": "Max or min heap, as an array and as a tree together: insert, extract, peek, the bottom-up build (heapify) and heapsort."
+  },
+  "page": "docs/pt/widgets/uc-widget-heap.html",
+  "algorithms": ["operations", "heapify", "heapsort"],
+  "courses": ["EDados"],
+  "attributes": ["values", "ops", "kind", "algorithm", "algorithms"],
+  "predict": true,
+  "test": {
+    "input": { "values": [4, 9, 2, 7, 5, 8, 1], "ops": null, "kind": "max" },
+    "options": [
+      { "algorithm": "operations", "input": { "values": [9, 7, 8, 3, 5], "ops": [{ "verb": "insert", "args": ["10"] }, { "verb": "peek", "args": [] }, { "verb": "extract", "args": [] }, { "verb": "extract", "args": [] }], "kind": "max" } },
+      { "algorithm": "heapsort", "input": { "values": [5, 2, 8, 1, 9, 3], "ops": null, "kind": "min" } },
+      { "algorithm": "operations", "input": { "values": [4], "ops": [{ "verb": "extract", "args": [] }, { "verb": "extract", "args": [] }, { "verb": "peek", "args": [] }, { "verb": "insert", "args": ["3"] }, { "verb": "insert", "args": ["1"] }], "kind": "min" } }
+    ]
+  }
+}

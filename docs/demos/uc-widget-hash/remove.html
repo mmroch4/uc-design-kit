@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-hash: remoção · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-hash.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-hash algorithm="linear" size="7" max-load="none" values="10 17 3"
+                    ops="insert 24; remove 17; search 24; insert 31" editable>
+      <p>10, 17, 3, 24 e 31 têm todos h(k) = 3. Remover 17 deixa a posição 4 marcada
+        como apagada (✕): procurar 24 passa por ela, e 31 fica nela.</p>
+    </uc-widget-hash>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

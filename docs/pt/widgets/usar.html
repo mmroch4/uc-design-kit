@@ -92,6 +92,9 @@
           <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
           <li><a href="uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
           <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+          <li><a href="uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
+          <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
+          <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -222,7 +225,7 @@
 }&lt;/code&gt;&lt;/pre&gt;
   &lt;p&gt;…texto sem JavaScript…&lt;/p&gt;
 &lt;/uc-widget-sort&gt;</code></pre></uc-code>
-        <p>Nos widgets de operações (<code>&lt;uc-widget-bst&gt;</code>, <code>&lt;uc-widget-list&gt;</code>, <code>&lt;uc-widget-stack-queue&gt;</code>) o pseudocódigo muda com a operação em curso; <code>data-algorithm</code> recebe então o nome do bloco que a página do widget indica (<code>data-algorithm="insert"</code>, <code>data-algorithm="queue-array"</code>). Uma linha pode ter vários identificadores (<code>data-line="left right"</code>).</p>
+        <p>Nos widgets de operações (<code>&lt;uc-widget-bst&gt;</code>, <code>&lt;uc-widget-list&gt;</code>, <code>&lt;uc-widget-stack-queue&gt;</code>, <code>&lt;uc-widget-heap&gt;</code>, <code>&lt;uc-widget-avl&gt;</code>, <code>&lt;uc-widget-hash&gt;</code>) o pseudocódigo muda com a operação em curso; <code>data-algorithm</code> recebe então o nome do bloco que a página do widget indica (<code>data-algorithm="insert"</code>, <code>data-algorithm="queue-array"</code>). Uma linha pode ter vários identificadores (<code>data-line="left right"</code>).</p>
         <p>Em páginas bilingues, um <code>&lt;pre&gt;</code> com <code>lang="pt"</code> e outro com <code>lang="en"</code>; a legenda bilingue escreve-se num <code>&lt;template data-caption&gt;</code> com um <code>&lt;span lang&gt;</code> por língua.</p>
         <h2 id="previsoes">Previsões e edição</h2>
         <p>Com <code>predict</code>, ao avançar para um passo com pergunta (vai trocar? qual é escrito primeiro?), o desenho fica parado e aparecem as opções. A resposta mostra "Certo." ou "Ainda não:" com a explicação, e a linha "Previsões certas: 3 de 4" conta as respostas. Nada fica guardado nem é enviado.</p>

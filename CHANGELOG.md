@@ -34,6 +34,13 @@ released yet; contract `docs/plan/widgets-api.md`).
   Small arrays and trees are no longer drawn larger than 1:1.
 - The EDados example's lab guide 10 uses `<uc-widget-bst>`; the extension
   `extensions/uc-bst-traversal.js` stays as the custom component tutorial.
+- Phase W3 (experimental): `<uc-widget-heap>` (max or min heap drawn as its
+  array and its tree; insert, extract, peek, heapify, heapsort),
+  `<uc-widget-avl>` (insert, remove, search with heights, balance factors and
+  the four rotations), `<uc-widget-hash>` (separate chaining, linear and
+  quadratic probing; tombstones, load factor and the table doubling; integer
+  or word keys). `svg.grid` is bundled into `<uc-widget-hash>`; the core is
+  unchanged.
 
 ### Changed
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
