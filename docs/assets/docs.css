@@ -607,6 +607,8 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
   margin-top: var(--uc-space-8);
   align-items: start;
 }
+/* Several screenshots of the same size (more examples): equal columns. */
+.landing-showcase--even { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
 .landing-showcase figure { margin: 0; }
 .landing-showcase figcaption { margin-top: var(--uc-space-3); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
 .landing-note { margin-top: var(--uc-space-6); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
@@ -634,6 +636,7 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
   .landing-code,
   .landing-showcase { grid-template-columns: minmax(0, 1fr); }
   .landing-showcase figure:last-child { max-width: 360px; }
+  .landing-showcase--even figure:last-child { max-width: none; }
 }
 
 @media (max-width: 600px) {

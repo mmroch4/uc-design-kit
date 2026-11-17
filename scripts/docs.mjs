@@ -142,6 +142,7 @@ function pageTitle(page) {
 function header(ctx) {
   const { file, labels, nav, lang, hasSidebar } = ctx;
   const docsHome = path.join(DOCS, nav.languages[lang].home);
+  const examplesHome = path.join(DOCS, nav.languages[lang].examples);
   const inDocs = file.startsWith(DOCS + path.sep);
   return [
     `<a class="docs-skip" href="#content">${labels.skip}</a>`,
@@ -155,7 +156,7 @@ function header(ctx) {
     `    <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="${labels.searchPlaceholder}" data-empty="${labels.searchEmpty}" data-close="${labels.searchClose}" hidden>${ICONS.search}<span class="docs-search-button__label">${labels.search}</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>`,
     `    <nav class="docs-header__nav" aria-label="Principal">`,
     `      <a href="${href(file, docsHome)}"${inDocs ? ' aria-current="true"' : ""}>${labels.docs}</a>`,
-    `      <a href="${href(file, path.join(ROOT, "examples/edados-2526/index.html"))}">${labels.example}</a>`,
+    `      <a href="${href(file, examplesHome)}">${labels.example}</a>`,
     `      <a class="docs-header__icon" href="${nav.repository}">${ICONS.github}<span class="uc-visually-hidden">GitHub</span></a>`,
     `    </nav>`,
     `  </div>`,
@@ -171,10 +172,11 @@ function sidebar(ctx) {
   // On narrow screens the header has no room for its links (WCAG 1.4.10 at 320 px):
   // docs.css hides them there and shows this copy at the top of the menu instead.
   const docsHome = path.join(DOCS, nav.languages[lang].home);
+  const examplesHome = path.join(DOCS, nav.languages[lang].examples);
   lines.push(`  <div class="docs-sidebar__group docs-sidebar__group--site">`);
   lines.push(`    <ul class="docs-sidebar__list" aria-label="Site">`);
   lines.push(`      <li><a href="${href(file, docsHome)}">${labels.docs}</a></li>`);
-  lines.push(`      <li><a href="${href(file, path.join(ROOT, "examples/edados-2526/index.html"))}">${labels.example}</a></li>`);
+  lines.push(`      <li><a href="${href(file, examplesHome)}">${labels.example}</a></li>`);
   lines.push(`      <li><a href="${nav.repository}">GitHub</a></li>`);
   lines.push(`    </ul>`);
   lines.push(`  </div>`);

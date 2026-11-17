@@ -291,7 +291,7 @@ const LLMS_INTRO = `# UC Design Kit
 
 > A small, dependency-free kit of web components (\`<uc-page>\`, \`<uc-weeks>\`, \`<uc-deadlines>\`…) and CSS for university course ("unidade curricular") websites. Static HTML, CSS and JavaScript: no build step, works from \`file://\`. Content is written in HTML; the values that change every year (dates, team, deadlines, notices) live in one \`course.js\` file. The documentation is in European Portuguese; code, element and attribute names are in English.
 
-To build or edit a course site, read the rules below, then the pages you need. Everything in one file: ${SITE}llms-full.txt. The contract (English): ${SITE}docs/api.md is mirrored at the end of llms-full.txt. A starter site: ${SITE}docs/downloads/uc-template.zip. A complete real site: ${SITE}examples/edados-2526/index.html.
+To build or edit a course site, read the rules below, then the pages you need. Everything in one file: ${SITE}llms-full.txt. The contract (English): ${SITE}docs/api.md is mirrored at the end of llms-full.txt. A starter site: ${SITE}docs/downloads/uc-template.zip. Complete real sites: ${SITE}examples/edados-2526/index.html (Portuguese), ${SITE}examples/pc-2627/index.html and ${SITE}examples/ip-2526/index.html (English); what each page uses: ${SITE}docs/pt/exemplos/index.html.
 `;
 
 async function render(nav, lang) {
@@ -313,7 +313,7 @@ async function render(nav, lang) {
     const lines = pages.filter((page) => page.group === group.title).map((page) => `- [${page.title}](${page.url})${page.description ? `: ${page.description}` : ""}`);
     index.push(`## ${group.title}\n\n${lines.join("\n")}`);
   }
-  index.push(`## Optional\n\n- [Contrato da API (docs/api.md, inglês)](${SITE}docs/api.md): the normative list of components, attributes, course.js fields, tokens and the JavaScript API.\n- [Exemplo completo: Estruturas de Dados 2025/26](https://github.com/mmroch4/uc-design-kit/tree/main/examples/edados-2526): source of a real course site.`);
+  index.push(`## Optional\n\n- [Contrato da API (docs/api.md, inglês)](${SITE}docs/api.md): the normative list of components, attributes, course.js fields, tokens and the JavaScript API.\n- [Exemplo completo: Estruturas de Dados 2025/26](https://github.com/mmroch4/uc-design-kit/tree/main/examples/edados-2526): source of a real course site (Portuguese).\n- [Exemplo completo: Competitive Programming 2026/27](https://github.com/mmroch4/uc-design-kit/tree/main/examples/pc-2627): source of a real course site (English), weekly problem sets and contests.\n- [Exemplo completo: Introduction to Programming 2025/26](https://github.com/mmroch4/uc-design-kit/tree/main/examples/ip-2526): source of a real course site (English), practical classes and many problems.`);
   files.set(path.join(ROOT, "llms.txt"), `${index.join("\n\n")}\n`);
 
   const api = await readFile(path.join(DOCS, "api.md"), "utf8");
