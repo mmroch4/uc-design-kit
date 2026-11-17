@@ -44,3 +44,70 @@
   font-family: var(--uc-font-mono);
   font-size: var(--uc-font-size-sm);
 }
+
+/* Languages ("Testado em C++ Java"), on the item or once under the series heading. */
+:where(.uc-problems__languages) { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-1); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
+:where(.uc-problems__item > .uc-problems__languages) { flex-basis: 100%; }
+:where(.uc-problems__languages[hidden], .uc-problems__hints[hidden]) { display: none; }
+
+/* Hints: the teacher's <details>, as a small button that opens a soft panel. */
+:where(.uc-problems__hints) { flex-basis: 100%; }
+:where(.uc-problems__hints > summary) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uc-space-2);
+  min-height: var(--uc-target-min);
+  color: var(--uc-color-accent);
+  font-size: var(--uc-font-size-md);
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+:where(.uc-problems__hints > summary)::-webkit-details-marker { display: none; }
+:where(.uc-problems__hints > summary)::before {
+  content: "";
+  width: 0.45em;
+  height: 0.45em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s;
+}
+:where(.uc-problems__hints[open] > summary)::before { transform: rotate(45deg); }
+:where(.uc-problems__hints > summary:hover) { text-decoration: underline; }
+:where(.uc-problems__hints > :not(summary)) {
+  margin: 0 0 var(--uc-space-2);
+  padding: var(--uc-space-3) var(--uc-space-4);
+  border-left: 3px solid var(--uc-color-accent);
+  border-radius: var(--uc-radius-sm);
+  background: var(--uc-color-surface-sunken);
+  color: var(--uc-color-text);
+  font-size: var(--uc-font-size-body-sm);
+}
+
+/* `cards`: one card per problem. Title and judge seal; languages; hints and "Resolvido". */
+:where(uc-problems[cards] .uc-problems__list) { display: flex; flex-direction: column; gap: var(--uc-space-3); }
+:where(uc-problems[cards] .uc-problems__item) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "body tags" "langs langs" "hints solved";
+  align-items: start;
+  gap: var(--uc-space-1) var(--uc-space-4);
+  padding: var(--uc-space-3) var(--uc-space-4) var(--uc-space-1);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+:where(uc-problems[cards] .uc-problems__body) { grid-area: body; align-self: center; font-size: var(--uc-font-size-lg); font-weight: 600; }
+:where(uc-problems[cards] .uc-problems__tags) { grid-area: tags; justify-content: flex-end; align-self: center; }
+:where(uc-problems[cards] .uc-problems__item > .uc-problems__languages) { grid-area: langs; }
+:where(uc-problems[cards] .uc-problems__hints) { grid-area: hints; }
+:where(uc-problems[cards] .uc-problems__solved) { grid-area: solved; justify-self: end; }
+:where(uc-problems[cards] .uc-problems__judge) { gap: 0.4em; text-decoration: none; }
+:where(uc-problems[cards] .uc-problems__judge code) { color: inherit; font-size: inherit; font-weight: 600; }
+:where(uc-problems[cards] a.uc-problems__judge:hover) { box-shadow: inset 0 0 0 1px var(--uc-color-accent); color: var(--uc-color-accent); }
+:where(uc-problems[cards] .uc-problems__item--solved) { border-color: var(--uc-color-success-text); background: var(--uc-color-success-bg); }
+@media (max-width: 480px) {
+  :where(uc-problems[cards] .uc-problems__item) { grid-template-areas: "body body" "tags tags" "langs langs" "hints solved"; }
+  :where(uc-problems[cards] .uc-problems__tags) { justify-content: flex-start; }
+}

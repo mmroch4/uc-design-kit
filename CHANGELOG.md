@@ -28,6 +28,11 @@ released yet; contract `docs/plan/widgets-api.md`).
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
 
 ### Added
+- `<uc-problems>`: `cards` (one card per problem, with a "Mooshak PC033"
+  judge seal that links to the judge), `data-languages` on problems ("Testado
+  em C++ Java", once per series when all match) and styled hints from a
+  `<details>` in the item (hidden when empty). The PC 2026/27 example uses
+  them on its weekly problem sets.
 - `uc-site.py` in the template (search phase S2): the site maintenance
   script, Python 3.8+ with the standard library only. `python3 uc-site.py
   check` reads `course.js` without running it (values only, with constants),

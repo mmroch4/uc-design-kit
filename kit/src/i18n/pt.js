@@ -144,6 +144,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     closed: "Encerrado",
     solved: "Resolvido",
     solvedNamed: "Resolvido: {name}",
+    languages: "Testado em",
     progress: "{done} de {total} resolvidos",
   },
   team: {

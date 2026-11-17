@@ -983,6 +983,7 @@ browser.
 | --- | --- | --- |
 | `filters` | boolean | no filters; with it, buttons by type and by judge (`aria-pressed`), for groups with two or more values |
 | `track` | boolean | no checkboxes; with it, "Resolvido" per problem and "3 de 5 resolvidos" per series, saved in `localStorage` |
+| `cards` | boolean | rows; with it, one card per problem: title, a judge seal with the problem code ("Mooshak PC033", a link to the platform `url` when it has one), languages, hints and "Resolvido" |
 | `heading` | text \| `none` | `none` (problem pages have their own `<h1>`); a text adds a heading |
 | `heading-level` | `2`–`6` | `2` |
 
@@ -994,6 +995,7 @@ a list; a single `<ol>`/`<ul>` without sections is one series without a name.
 | `data-judge` | `<li>` | platform `id` or label | Judge tag with the platform's label (2.8). Unknown values are shown as written. |
 | `data-type` | `<li>` | `main` \| `extra` \| `challenge` | Default `main` (no tag). "Extra" and "Desafio" are text tags. |
 | `data-id` | `<li>` | text | Identifier for `track`. Default: `<judge>:<text of the first <code>>`, else the resolved URL of the first link. |
+| `data-languages` | `<li>` | comma-separated list | "Testado em C++ Java" as muted tags. When every problem of a series has the same list, it is shown once under the series heading instead. |
 | `data-deadline` | `<section>` | deadline `id` | "Prazo: 12 out, 23:59" under the series heading, with its state ("Daqui a 8 dias", "Hoje", "Encerrado"). |
 
 - An optional `<data value>` in an item is its weight, shown as a tag ("40 %").
@@ -1008,6 +1010,9 @@ a list; a single `<ol>`/`<ul>` without sections is one series without a name.
   bubbling `uc:problemchange` (`detail: { id, solved }`) and updates "3 de 5
   resolvidos" under the series heading (not a live region: the checkbox
   announces its own state).
+- **Hints.** A `<details>` child of an item gets `uc-problems__hints`: the
+  `<summary>` becomes a small disclosure with a chevron and the rest a soft
+  panel. A `<details>` with nothing but its `<summary>` is hidden.
 - **Unknown deadline id.** One console warning; no deadline line.
 - Without JavaScript: the teacher's sections, headings and lists.
 
