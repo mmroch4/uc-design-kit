@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI056] Well-Balanced Expressions · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI056 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI056] Well-Balanced Expressions</li></ol>
+    </nav>
+    <h1>[PI056] Well-Balanced Expressions</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi056.jpg"/>In this
+problem, you should only submit a file named <strong>pi056.c</strong> containing
+a line with <code>#include "stack.h"</code> and the implementation of a
+function <strong>balanced</strong> as described below (a complete program is not
+required). Check code at the end and explanation on how to compile.
+</p><p>You may assume that on Mooshak you will have access to the "stack
+implementation code" as provided in class. Check <a href="../../codigo/stack.c">stack.c</a> and <a href="../../codigo/stack.h">stack.h</a>
+</p>
+<h2>Function to Submit</h2>
+<p><strong><code>boolean balanced(String s)</code></strong>
+<p>This function receives a string composed only of round and square parentheses, and returns <em>true</em> if the expression is well-formed, and <em>false</em> otherwise.</p>
+<p>For example, <code>"([()])"</code> and <code>"[()()]"</code> are well-formed expressions, while <code>"(()]"</code>, <code>"[()[])"</code>, and <code>"[()[]"</code> are not balanced (some parentheses are not closed or are closed incorrectly).</p>
+
+<h2>Input/Output Examples</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Call</th>
+<th scope="col">Result</th>
+</tr>
+<tr>
+<td>balanced(<code>"([()])"</code>)</td>
+<td>true</td>
+</tr>
+<tr>
+<td>balanced(<code>"[()()]"</code>)</td>
+<td>true</td>
+</tr>
+<tr>
+<td>balanced(<code>"(()]"</code>)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>balanced(<code>"[()[])"</code>)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>balanced(<code>"[()[]"</code>)</td>
+<td>false</td>
+</tr>
+</table></div>
+
+</p><p><strong><code>boolean balanced(String s)</code></strong>
+<p>Recebe uma string formada apenas por parenteses rectos e curvos, e devolve <em>true</em> caso a expressão esteja bem formada e <em>false</em> caso contrário.</p>
+<p>Por exemplo, <code>"([()])"</code> e <code>"[()()]"</code> são expressões bem formadas, ao passo que <code>"(()]"</code>, <code>"[()[])"</code> ou <code>"[()[]"</code> não estão balanceadas (faltam parenteses por fechar ou fecham os parenteses errados).</p>
+
+<h2>Exemplos de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Chamada</th>
+<th scope="col">Resultado</th>
+</tr>
+<tr>
+<td>balanced(<code>"([()])"</code>)</td>
+<td>true</td>
+</tr>
+<tr>
+<td>balanced(<code>"[()()]"</code>)</td>
+<td>true</td>
+</tr>
+<tr>
+<td>balanced(<code>"(()]"</code>)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>balanced(<code>"[()[])"</code>)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>balanced(<code>"[()[]"</code>)</td>
+<td>false</td>
+</tr>
+</table></div>
+
+<h2>Como compilar localmente</h2>
+<p>Para compilar localmente vai precisar de ter os ficheiros seguintes:
+</p><ul>
+<li> stack.h e stack.c -- implementação de uma stack. Verificar se o
+  NodeInfo está configurado para o tipo de dados a guardar na stack.
+  </li><li> pi056.c -- o seu código com a função pedida
+  </li><li> tests056.c -- ficheiro com a função main() e onde se trata da
+  leitura e escrita.
+</li></ul>
+<p>Para compilar execute na pasta onde estão os ficheiros: <code>gcc
+tests056.c stack.c pi056.c</code> que vai gerar um executável <code>a.out</code>
+</p><p><strong>Código para testes</strong>, ficheiro: <code>tests056.c</code></p>
+<pre>// PI056 Testing
+//
+
+#include "stack.h"
+
+#define MAXCHARS 1000
+
+bool balanced(char *);
+
+int main() {	
+  int n;
+  scanf("%d",&amp;n);  // number of expressions
+  getchar();
+  const char *v[2]={"false","true"};
+
+  for (int i=0; i&lt;n; i++) {
+    char *expr= (char *) malloc(MAXCHARS);
+    fgets(expr,MAXCHARS, stdin);          // read expression
+    expr[strcspn(expr, "\n")] = '\0';     // replace \n by \0
+    printf("%s: %s\n", expr, v[(int)balanced(expr)]);
+    free(expr);
+  }
+}
+</pre>
+
+</p></section><section lang="pt">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi056.jpg"/>Neste problema
+deverá apenas submeter um ficheiro <strong>pi056.c</strong> contendo uma linha
+com <code>#include "stack.h"</code> e a implementação de uma função
+<strong>balanced</strong> como a seguir descrito (não é necessário um programa
+completo). Veja o código no final, bem como como copilar.
+</p><p>Pode assumir que terá acesso no Mooshak ao 
+  "código que implementa uma pilha" 
+  como dadas nas aulas. Consulte os ficheiros <a href="../../codigo/stack.c">stack.c</a> e <a href="../../codigo/stack.h">stack.h</a>
+</p>
+<h2>Método a submeter</h2>
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi056.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

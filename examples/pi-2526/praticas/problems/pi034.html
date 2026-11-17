@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI034] Evolving Words · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI034 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI034] Evolving Words</li></ol>
+    </nav>
+    <h1>[PI034] Evolving Words</h1>
+    <div class="uc-content">
+<p><strong>In this problem you should submit a complete program with the main function, reading with functions such as scanf and printing with functions such as printf.</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi034.png"/></p>
+<h2>The Problem</h2>
+<p>Your task is to compute the evolution of a word (made up of just letters 'A' and 'B') showing consecutive generations of it according to the following rules:</p>
+<ul>
+<li>Any 'A' becomes 'AB'
+  </li><li>Any 'B' becomes 'A'
+</li></ul>
+<p>For instance, if we start with "A" and ask for 4 generations, the following happens:</p>
+<pre>
+n=0:               A        initial
+                  / \
+n=1:             A   B      the initial single A spawned into AB by rule (A → AB), rule (B → A) couldn't be applied
+                /|    \
+n=2:           A B     A    former string AB with all rules applied, A spawned into AB again, former B turned into A
+              /| |     |\
+n=3:         A B A     A B  note all A's producing a copy of themselves in the first place, then a B, which turns ...
+            /| | |\   /| |
+n=4:       A B A A B A B A  ... into an A one generation later, starting to repeat then
+</pre>
+<h2>Input</h2>
+<p>The first line of input contain a string <strong>S</strong> representing the initial word to consider (made only of letters 'A' and/or 'B').</p>
+<p>The second line contains an integer <strong>K</strong> indicating the number of generations to compute.</p>
+<h2>Output</h2>
+<p>The output should contain exactly <strong>N</strong>+1 lines: the first line contains the initial word <strong>S</strong> and the following <strong>N</strong> lines contain the next <strong>N</strong> generations of that word.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <strong>|W|</strong> &lt; 10</td>
+<td>     </td>
+<td>Length of the initial word</td>
+</tr>
+<tr>
+<td>1 ≤ <strong>K</strong> ≤ 10</td>
+<td>     </td>
+<td>Number of generations</td>
+</tr>
+</table></div>
+<p>You can be assured that the final generation will not have more than 10&amp;nsbp;000 letters.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<td>Example Input 1</td>
+<td>Example Output 1</td>
+</tr>
+<tr>
+<td>
+<pre>
+A
+4
+</pre>
+</td>
+<td>
+<pre>
+A
+AB
+ABA
+ABAAB
+ABAABABA
+</pre>
+</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<td>Example Input 2</td>
+<td>Example Output 2</td>
+</tr>
+<tr>
+<td>
+<pre>
+ABBA
+3
+</pre>
+</td>
+<td>
+<pre>
+ABBA
+ABAAAB
+ABAABABABA
+ABAABABAABAABAAB
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi034.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

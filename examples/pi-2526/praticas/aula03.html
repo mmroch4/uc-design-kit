@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Class 03 · Mooshak, Characters and Functions · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), lab class 3: Mooshak, Characters and Functions">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="3">
+    <h1>Practical Class 03 · Mooshak, Characters and Functions</h1>
+    <p class="uc-small"><a href="aula03_pt.html" hreflang="pt">Versão em português</a></p>
+    <div class="uc-content">
+<h2><strong>Mooshak:</strong> Exercises for Submission</h2>
+<p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following, which are part of the set of exercises from the last two practical classes:<br/>
+</p><ul>
+<li><a href="problems/pi001.html">[PI001] The Even Collector's Quest</a> (weight 30%) (main exercise)</li>
+<li><a href="problems/pi002.html">[PI002] The Chessboard Challenge</a> (weight 20%) (extra exercise)</li>
+<li><a href="problems/pi003.html">[PI003] The Slanted Fortress</a> (weight 30%) (main exercise)</li>
+<li><a href="problems/pi004.html">[PI004] The Triangular Code of the Guardians</a> (weight 40%) (main exercise)</li>
+<li><a href="problems/pi005.html">[PI005] Triangle Validator</a> (weight 20%) (extra exercise)</li>
+</ul>
+<p><mark><strong>Submission deadline:</strong> <strong>March 17</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
+<p><strong>You are encouraged to talk with the instructors and other
+  colleagues to ask for ideas on how to solve a problem, but you also
+  need to make an effort to code your solution. That is the way to become competent at programming and problem
+  solving, and also to become prepared for the pratical evaluations. The same is
+  valid for ChatGPT or other LLMs. <mark>You may
+  ask for suggestions on how you could solve a given problem, but also
+    ask it to avoid giving you the code solution.</mark></strong><br/>
+</p><p>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.<br/>
+Each class accounts for 10% of the grade for this component.<br/>  
+For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
+To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+
+<h3>Exercise 1) Processing Characters</h3>
+<ol>
+<li>Write a program that repeatedly reads characters until it encounters a newline (<code><strong>'/n'</strong></code>) and counts the total number of lowercase letters (<em>note:</em> consider only ASCII letters, without accents).<br/>
+	Example:
+<pre>
+    <em>Input:</em> Hello, World!
+
+    <em>Output:</em> The sentence contains 8 lowercase letters.
+    </pre>
+</li>
+<li>Write a program that count words from the standard input. Consider that words are sequences of "normal characters" (e.g. letters, digits, or punctuation marks) separated by <strong>whitespace characters</strong>, that is: spaces (<code><strong>' '</strong></code>), tabulation (<code><strong>'\t'</strong></code>), or line breaks (<code><strong>'/n'</strong></code>).<br/>
+	Example:
+<pre>
+    <em>Input:</em> To be or    not to be,   that is the question.
+    --- William Shakespeare 
+
+    <em>Output:</em> The text contains 13 words.
+  </pre>
+<em>Note:</em> the sequence "<code><strong>---</strong></code>" is considered a word and remember that <strong>Control-D</strong> signal the end of input (<code><strong>EOF</strong></code>).
+
+     </li>
+<li>Write a program that read a sentence and convert it to uppercase.<br/>
+  Example:
+<pre>
+    <em>Input:</em> Programming is the art of algorithm design and the craft of debugging errant code!
+
+    <em>Output:</em> PROGRAMMING IS THE ART OF ALGORITHM DESIGN AND THE CRAFT OF DEBUGGING ERRANT CODE! 
+  </pre>
+<em>Hint:</em> Use ASCII manipulation: 
+    <pre>char lowercase = ch + 32;
+</pre>
+</li>
+<li>Write a program that reads a text and prints the frequency of vowels, consonants, digits, and punctuation characters in the text. The program should ignores spaces and other whitespace characters.<br/>
+	Example:
+<pre>
+    <em>Input:</em> Hello, World!!! 03/2024
+
+    <em>Output:</em> Character frequency:
+            - Vowels: 3
+            - Consonants: 7
+            - Digits: 6
+            - Punctuation: 5
+  </pre>
+</li></ol>
+
+<h3>Exercise 2) Creating Functions</h3>
+<ol>
+<li>Rewrite the program that solves the previous exercise (which counts the frequency of characters) so that the program uses the following auxiliary functions, which you must also implement:
+<ul>
+<li><code><strong>isalpha()</strong></code>: checks if a character is a letter;
+	  </li><li><code><strong>isdigit()</strong></code>: checks if a character is a digit;
+	  </li><li><code><strong>ispunct()</strong></code>: checks if a character is a punctuation mark.
+	</li></ul>
+</li>
+<li>In the game SCRABBLE, players score points by forming words from the dictionary with tiles that represent individual letters. The score for each letter depends on its rarity in the dictionary. 
+      <br/><br/>The point values for English letters are as follows:
+<ul>
+<li>A, E, I, L, N, O, R, T, S, U: 1 point;
+	  </li><li>D, G: 2 points;
+	  </li><li>B, C, M, P: 3 points;
+	  </li><li>F, H, V, W, Y: 4 points;
+	  </li><li>K: 5 points;
+	  </li><li>J, X: 8 points;
+	  </li><li>Q, Z: 10 points.
+	</li></ul>
+<br/>
+     The score of a word is the sum of the points of its individual letters (there are other conditions that affect the score, but in this exercise, we will ignore them). 
+     <br/>For example, the word "PITFALL" is worth <code>3 + 1 + 1 + 4 + 1 + 1 + 1 = 12 points</code>.<br/>
+     Write a program that reads a sequence of characters from a word, ending with "EOF", and calculates and prints its score. Consider that spaces or other non-letter characters are worth 0 points.<br/>
+     Example:
+<pre>
+    <em>Input:</em> PITF3A.L88L
+
+    <em>Output:</em> 12 pontos
+    </pre>
+<em>Hint:</em> use the previous defined <code><strong>isalpha()</strong></code> function and define another helper function to calculate the score for a single character.
+
+    </li>
+<li>Write a function with the prototype <code><strong>void position(int a, int b, int c, int d);</strong></code> that, given the coordinates <code><strong>(a, b)</strong></code> and <code><strong>(c, d)</strong></code> of two points P and Q on the plane, expressed in the usual Cartesian coordinate system, characterizes the position of P relative to Q, using <code>left</code>, <code>right</code>, <code>above</code>, or <code>below</code>. If the points coincide, the function should indicate <code>coincident</code>. The function does not return any value, it only prints the result.<br/>
+	For example:
+<ul>
+<li> if calling <code><strong>position(-1, 2, 4, -1)</strong></code>, the program prints <code><strong>left above</strong></code>;
+	  </li><li> if calling <code><strong>position(4, -1, -1, 2)</strong></code>, the program prints <code><strong>right below</strong></code>;
+	  </li><li> if calling <code><strong>position(4, -1, 4, -1)</strong></code>, the program prints <code><strong>coincident</strong></code>;
+	  </li><li> if calling <code><strong>position(4, -1, 4, 3)</strong></code>, the program prints <code><strong>below</strong></code>.
+	</li></ul>
+</li>
+<li>Write a program that reads a floating-point value <math><mi>x</mi></math>, calculates the expression 
+<math><mo>3</mo><msup><mi>x</mi><mo>5</mo></msup><mo>+</mo>
+<mo>2</mo><msup><mi>x</mi><mo>4</mo></msup><mo>-</mo>
+<mo>5</mo><msup><mi>x</mi><mo>3</mo></msup><mo>-</mo>
+<msup><mi>x</mi><mo>2</mo></msup><mo>+</mo>
+<mo>7</mo><mi>x</mi><mo>-</mo>
+<mo>6</mo></math>, 
+and prints the result. <br/>
+Since there is no predefined power operation in C, you should use repeated multiplications. For this, consider implementing a helper function to compute <math><msup><mi>x</mi><mi>n</mi></msup></math>.
+</li>
+<li>Modify the program from the previous program to calculate the expression using the following equivalent formula (Horner's method): <math><mo>(</mo><mo>(</mo><mo>(</mo><mo>(</mo><mo>3</mo><mi>x</mi><mo>+</mo><mo>2</mo><mo>)</mo><mi>x</mi><mo>-</mo><mo>5</mo><mo>)</mo><mi>x</mi><mo>-</mo><mo>1</mo><mo>)</mo><mi>x</mi><mo>+</mo><mo>7</mo><mo>)</mo><mi>x</mi><mo>-</mo><mo>6</mo></math>. <br/>
+Note that, is this form, we do not use exponentiation, and therefore the program performs fewer multiplications.
+
+     </li>
+<li>Using a primality test function, write a program that prints a list of prime numbers up to an upper limit specified by the user. Print the list of primes on a single line, separated by spaces.<br/>
+      Example:
+<pre>
+    <em>Input:</em> Upper limit? 50
+
+    <em>Output:</em> 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47
+  </pre>
+</li></ol>
+
+<h3>Exercise 3) ANSI Escape Codes</h3> <p>ANSI escape codes are a standard to control several options for the output of terminal emulators like cursor location, color, font styling, etc.
+
+    </p><p>When writing the escape code, instead of printing it as text, the terminal interprets it as a control sequence and changes according to the instructions given.
+
+	<br/>
+</p><ul>
+<li><strong>Color and Styling</strong>
+<p> For example, if you write a program with the following instruction <code><strong>printf("\x1b[1;31mHello\x1B[3;32m World\x1B[0m !!\n");</strong></code>, the program will print the sentence "<code><strong>Hello World !!</strong></code>" as following:
+    	</p><ul>
+<li>"<code><strong>Hello</strong></code>" in bold and red
+         </li><li>"<code><strong>World</strong></code>" in italic and green
+         </li><li>"<code><strong>!!</strong></code>" in regular font style
+    	</li></ul>
+</li>
+
+<li><strong>Cursor Position</strong>
+<p>You can also control the cursor position. After the cursor moves, if you start printing, it will overwrite whatever character was previously there.
+
+   	</p><p>This means that you can create small animations by overwriting the same set of cells on the terminal. <br/><em>(You need to be careful for the animation to not run too fast).</em>
+</p><p>The following code draws a small progress bar. Compile and run it to see the animation.
+
+</p><uc-code collapsible="" data-lang="c"><script type="text/plain">
+#include <stdio.h>
+
+int main() {
+  int n = 100, FACTOR = 20000;
+
+  for (int counter = 1; counter <= n * FACTOR; counter++) {
+    printf("\x1b[2H");
+    putchar('[');
+
+    for (int progress = 0; progress < n; progress++) {
+      if (progress < counter / FACTOR)
+        putchar('#');
+      else
+        putchar('-');
+    }
+
+    printf("] %d / %d", counter, n * FACTOR);
+  }
+
+  return 0;
+}
+</script></uc-code>
+<p><em>Note:</em> The instruction <code><strong>printf("\x1b[2H");</strong></code> moves the cursor to the beginning of the second line of the terminal.
+
+	</p><p>You can learn more in this link with a reference to several escape sequences: <a href="https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797">https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797</a>
+</p></li>
+
+<li><strong>Exercises</strong>
+<br/>Write a program that answer the following exercises (each exercise is a modification from the program of the previous exercise):
+<ol>
+
+<li>Make an infinite loop of a constant width object going back and forth on the same line. (The exact details don't matter, just draw something going back and forth).
+
+</li><li>Change the color of the object so that the center is red and it gets more blue approaching the edges.	 </li><li>Make an infinite loop of a square bouncing inside a fixed-sized grid. (Again the exact details don't matter, you should be able to look at the animation and say "that's a square bouncing inside a grid").
+
+</li><li>Change the square so that now it's a circle.
+
+     	</li></ol>
+<p>The final result of your program should be similar to the one illustrated below:
+        </p><p><img alt="" loading="lazy" src="images/pi-ball.gif"/><br/>
+</p></li></ul>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula03.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

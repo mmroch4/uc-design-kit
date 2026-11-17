@@ -60,4 +60,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-[MIT](LICENSE), for the kit. The course content in `examples/edados-2526/` is by Fernando Silva (DCC/FCUP) and is not covered by it; see [its notice](examples/edados-2526/NOTICE.md).
+[MIT](LICENSE), for the kit. The course content in the examples is by its lecturers (DCC/FCUP) and is not covered by it: `examples/edados-2526/` by Fernando Silva, `examples/pc-2627/` by Pedro Ribeiro, `examples/ip-2526/` by Pedro Ribeiro and Bernardo Portela, `examples/pi-2526/` by Fernando Silva and Vanessa Silva. Each folder has a `NOTICE.md`.

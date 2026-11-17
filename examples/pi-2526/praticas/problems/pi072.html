@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI072] Node Balance · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI072 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI072] Node Balance</li></ol>
+    </nav>
+    <h1>[PI072] Node Balance</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p>In this
+problem, you should only submit a file named <strong>pi072.c</strong> containing
+a line with <code>#include "binarySearchTree.h"</code> and the implementation of the
+functions <strong>findNode</strong>, <strong>nodeBalance</strong> and <strong>treBalance</strong> as
+described below (a complete program is not required). Check code at the end
+and explanation on how to compile.
+</p><p>You may assume that on Mooshak you will have access to the binary search
+tree implementation code (<a href="binarySearchTree.h"><code>binarySearchTree.h</code></a> and
+<a href="binarySearchTree.c"><code>binarySearchTree.c</code></a>) as provided in class.
+
+</p>
+<h2>Functions to Submit</h2>
+<ul>
+<li><strong><code>BTNode *findNode(BTNode *n, NodeInfo val)</code></strong>
+<p>Searches the BST rooted at <code>n</code> for a node with value
+    <code>val</code>. Returns a pointer to that node, or <code>NULL</code> if not
+    found. Take advantage of the BST property for an efficient O(h)
+    search.</p>
+</li>
+<li><strong><code>int nodeBalance(BTNode *n, NodeInfo val)</code></strong>
+<p>Returns the balance of the node containing <code>val</code> in the
+    subtree rooted at <code>n</code>. The balance is defined as:<br/>
+<code>balance = height(right subtree) - height(left subtree)</code><br/>
+    Returns <code>0</code> if <code>val</code> is not found.</p>
+</li>
+<li><strong><code>int treBalance(BTree *t, NodeInfo val)</code></strong>
+<p>Wrapper that calls <code>nodeBalance</code> on the root of tree
+    <code>t</code>.</p>
+</li>
+</ul>
+<p>The figure below shows the BST built by inserting
+<code>42 25 56 21 45 64 15 61</code> in order. For this tree:</p>
+<ul>
+<li><code>balance(t, 42) = 0</code> — left and right subtrees have the same height</li>
+<li><code>balance(t, 25) = -2</code> — left subtree is 2 taller than right</li>
+<li><code>balance(t, 56) = 1</code> — right subtree is 1 taller than left</li>
+<li><code>balance(t, 88) = 0</code> — value not in tree</li>
+</ul>
+
+<h2>Input/Output Examples</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Call</th>
+<th scope="col">Result</th>
+</tr>
+<tr>
+<td>treBalance(t, 42)   <em>[tree: 42 25 56 21 45 64 15 61]</em></td>
+<td>0</td>
+</tr>
+<tr>
+<td>treBalance(t, 25)</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>treBalance(t, 56)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>treBalance(t, 88)   <em>[not in tree]</em></td>
+<td>0</td>
+</tr>
+</table></div>
+
+<h2>How to compile locally</h2>
+<p>To compile locally you will need the following files:
+</p><ul>
+<li><a href="binarySearchTree.h"><code>binarySearchTree.h</code></a> — binary search tree declarations.
+      The type <code>NodeInfo</code> is set to <code>int</code>.</li>
+<li><a href="binarySearchTree.c"><code>binarySearchTree.c</code></a> — BST implementation (insert,
+      BST-optimised search, height, traversals, etc.).</li>
+<li><code>pi072.c</code> — your code with the required functions.</li>
+<li><a href="test072.c"><code>test072.c</code></a> — file with the <code>main()</code> function handling
+      input reading and output printing.</li>
+</ul>
+<p>To compile, run in the folder where the files are located:
+<code>gcc test072.c binarySearchTree.c pi072.c</code>, which will generate
+an executable <code>a.out</code>.</p>
+<p><strong>Test code</strong>, file: <a href="test072.c"><code>test072.c</code></a></p>
+<pre>// PI072 Testing
+
+#include &lt;stdio.h&gt;
+#include "binarySearchTree.h"
+
+int main(void) {
+  BTree t;
+  initTree(&amp;t);
+
+  /* Read n values and insert them into the BST */
+  int n;
+  scanf("%d", &amp;n);
+  for (int i = 0; i &lt; n; i++) {
+    int x;
+    scanf("%d", &amp;x);
+    insertBST(&amp;t, x);
+  }
+
+  /* Read q queries and print the balance of each */
+  int q;
+  scanf("%d", &amp;q);
+  for (int i = 0; i &lt; q; i++) {
+    int x;
+    scanf("%d", &amp;x);
+    printf("balance(t, %d) = %d\n", x, treBalance(&amp;t, x));
+  }
+
+  freeTree(t.root);
+  return 0;
+}
+</pre>
+
+</section><section lang="pt">
+
+<p>Neste
+problema deverá apenas submeter um ficheiro <strong>pi072.c</strong> contendo uma
+linha com <code>#include "binarySearchTree.h"</code> e a implementação das funções
+<strong>findNode</strong>, <strong>nodeBalance</strong> e <strong>treBalance</strong> como a seguir
+descrito (não é necessário um programa completo). Veja o código no final,
+bem como como compilar.
+</p><p>Pode assumir que terá acesso no Mooshak ao código de implementação da
+árvore binária de pesquisa (<a href="binarySearchTree.h"><code>binarySearchTree.h</code></a> e
+<a href="binarySearchTree.c"><code>binarySearchTree.c</code></a>) como fornecido nas aulas.
+
+</p>
+<h2>Funções a submeter</h2>
+<ul>
+<li><strong><code>BTNode *findNode(BTNode *n, NodeInfo val)</code></strong>
+<p>Pesquisa na BST com raiz em <code>n</code> um nó com valor <code>val</code>.
+    Devolve um ponteiro para esse nó, ou <code>NULL</code> se não existir.
+    Aproveite a propriedade da BST para uma pesquisa eficiente O(h).</p>
+</li>
+<li><strong><code>int nodeBalance(BTNode *n, NodeInfo val)</code></strong>
+<p>Devolve o balanço do nó que contém <code>val</code> na subárvore com
+    raiz em <code>n</code>. O balanço é definido como:<br/>
+<code>balanço = altura(subárvore direita) - altura(subárvore esquerda)</code><br/>
+    Devolve <code>0</code> se <code>val</code> não existir na árvore.</p>
+</li>
+<li><strong><code>int treBalance(BTree *t, NodeInfo val)</code></strong>
+<p>Função wrapper que chama <code>nodeBalance</code> na raiz da árvore
+    <code>t</code>.</p>
+</li>
+</ul>
+<p>A figura abaixo mostra a BST construída inserindo
+<code>42 25 56 21 45 64 15 61</code> por ordem. Para esta árvore:</p>
+<ul>
+<li><code>balance(t, 42) = 0</code> — as subárvores esquerda e direita têm a mesma altura</li>
+<li><code>balance(t, 25) = -2</code> — a subárvore esquerda é 2 níveis mais alta que a direita</li>
+<li><code>balance(t, 56) = 1</code> — a subárvore direita é 1 nível mais alta que a esquerda</li>
+<li><code>balance(t, 88) = 0</code> — valor não existe na árvore</li>
+</ul>
+
+<h2>Exemplos de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Chamada</th>
+<th scope="col">Resultado</th>
+</tr>
+<tr>
+<td>treBalance(t, 42)   <em>[árvore: 42 25 56 21 45 64 15 61]</em></td>
+<td>0</td>
+</tr>
+<tr>
+<td>treBalance(t, 25)</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>treBalance(t, 56)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>treBalance(t, 88)   <em>[não existe na árvore]</em></td>
+<td>0</td>
+</tr>
+</table></div>
+
+<h2>Como compilar localmente</h2>
+<p>Para compilar localmente vai precisar de ter os seguintes ficheiros:
+</p><ul>
+<li><a href="binarySearchTree.h"><code>binarySearchTree.h</code></a> — declarações da árvore binária de pesquisa.
+      O tipo <code>NodeInfo</code> está configurado para <code>int</code>.</li>
+<li><a href="binarySearchTree.c"><code>binarySearchTree.c</code></a> — implementação da BST (inserção,
+      pesquisa optimizada, altura, travessias, etc.).</li>
+<li><code>pi072.c</code> — o seu código com as funções pedidas.</li>
+<li><a href="test072.c"><code>test072.c</code></a> — ficheiro com a função <code>main()</code> que trata
+      da leitura e escrita.</li>
+</ul>
+<p>Para compilar execute na pasta onde estão os ficheiros:
+<code>gcc test072.c binaryTree.c pi072.c</code>, que vai gerar um
+executável <code>a.out</code>.</p>
+<p><strong>Código para testes</strong>, ficheiro: <a href="test072.c"><code>test072.c</code></a></p>
+<pre>// PI072 Testes
+
+#include &lt;stdio.h&gt;
+#include "binaryTree.h"
+
+int main(void) {
+  BTree t;
+  initTree(&amp;t);
+
+  /* Ler n valores e inserir na BST */
+  int n;
+  scanf("%d", &amp;n);
+  for (int i = 0; i &lt; n; i++) {
+    int x;
+    scanf("%d", &amp;x);
+    insertBST(&amp;t, x);
+  }
+
+  /* Ler q queries e imprimir o balanço de cada */
+  int q;
+  scanf("%d", &amp;q);
+  for (int i = 0; i &lt; q; i++) {
+    int x;
+    scanf("%d", &amp;x);
+    printf("balance(t, %d) = %d\n", x, treBalance(&amp;t, x));
+  }
+
+  freeTree(t.root);
+  return 0;
+}
+</pre>
+
+<p>Algoritmos e Estruturas de Dados — Exercícios de Programação<br/>
+DCC/FCUP - Faculdade de Ciências da Universidade do Porto</p>
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi072.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI023] Racing · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI023 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI023] Racing</li></ol>
+    </nav>
+    <h1>[PI023] Racing</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi023.png"/>
+</p>
+<p>There’s a collection of race cars, and each car requires a minimum skill level to drive.
+You also have a group of drivers, each with their own skill level.
+
+</p><p>Your goal is to determine, for each driver, the most difficult (i.e. highest skill-requirement) car they are able to drive.
+
+</p><h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>You are given a sorted list of integers representing the skill levels required to drive each car in the collection.
+You are also given a list of integers representing the skill level of each driver.
+
+</p><p>For each driver, find the car with the highest skill requirement that they can still drive.
+If a driver can't drive any car, the answer is <code>0</code>.
+
+</p><h2>
+Input
+</h2>
+<ul>
+<li>The first line contains an integer <code>n</code> (<code>1 ≤ n ≤ 200,000</code>) — the number of cars.
+
+</li><li>The second line contains <code>n</code> integers in increasing order (each between 1 and 1,000,000,000), representing the required skill for each car.
+
+</li><li>The third line contains an integer <code>m</code> (<code>1 ≤ m ≤ 200,000</code>) — the number of drivers.
+
+</li><li>The fourth line contains <code>m</code> integers (each between 1 and
+1,000,000,000), representing the skill level of each driver.
+</li></ul>
+<h2>
+Ouput
+</h2>
+
+Print one line with <code>m</code> integers separated by spaces.
+For each driver, print the skill requirement of the hardest car they
+can drive (i.e. with highest skill).
+If a driver can’t drive any car, print 0 instead.
+
+<h2><a id="SECTION00022000000000000000">
+Example 1</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+3
+3 5 6
+4
+1 4 5 7
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+0 3 5 6
+</pre>
+<h3>
+Explanation
+</h3>
+<ul>
+<li>The first driver has a skill level of 1. The easiest car requires
+  3, so this driver can't drive any car. Thus the output is 0.
+
+</li><li>The second driver has a skill level of 4. They can only drive the
+  car that requires 3. Thus the output is 3
+
+</li><li>The third driver has a skill level of 5. He can drive cars that
+  require 3 and 5. The hardest is 5. Thus the output is 5
+
+</li><li>The fourth driver has a skill level of 7. He can drive all cars in
+the list (3, 5, and 6). The hardest is 6. The output is 6
+
+<h2><a id="SECTION00023000000000000000">
+Example 2</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+3
+2 2 2
+4
+4 2 2 1
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+2 2 2 0
+</pre>
+
+</li></ul>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi023.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

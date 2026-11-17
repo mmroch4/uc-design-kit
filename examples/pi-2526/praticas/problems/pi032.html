@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI032] Triathlon · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI032 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI032] Triathlon</li></ol>
+    </nav>
+    <h1>[PI032] Triathlon</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi032.png"/>
+</p>
+<p>You're a triathlete, but recently the rules of the sport have changed in your city.</p>
+<p>New modalities were introduced and the athletes are allowed to
+perform them in the order of their preference.</p>
+<p>You’re confident in your endurance and can keep a steady pace in all modalities, but there’s one tricky part:
+<strong>transitioning between modalities is chaotic</strong> — you might need to change shoes, dry off, or put on a spacesuit!</p>
+<p>You want to find the order of modalities that minimizes the total time spent switching between them.</p>
+<h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>You're given the <strong>transition times</strong> between each pair of modalities.</p>
+<p>Find the<strong> minimum total switching time</strong> needed to complete all
+modalities, in any order, starting at any modality.</p>
+<h2>
+Input
+</h2>
+<p>The first line of input contains an integer <code>n</code> (<code>2 &lt;= n &lt;= 9</code>), the number of modalities.</p>
+<p>Then follow  <code>n</code> lines, each with <code>n</code> integers
+separated by spaces (basically a matrix).</p>
+<p>The value at line <code>i</code> and column <code>j</code> is the time it takes to switch from modality <code>i</code> to modality <code>j</code></p>
+<p>On this grid, the cost of swapping from a modality to itself will
+always be <code>0</code>; all other values are between <code>1</code> and <code>100</code>.</p>
+<h2>
+Ouput
+</h2>
+<p>Print a single integer with the <strong>minimum total transition time</strong> required to
+complete all modalities once.</p>
+<h2>
+Example 1
+</h2>
+<h3>
+Input
+</h3>
+<pre>
+3
+0 3 10
+2 0 5
+2 8 0
+</pre>
+<h3>
+Output
+</h3>
+<pre>
+5
+</pre>
+<h3>
+Explanation
+</h3>
+
+There are 6 possible orders of doing 3 modalities:
+<ul>
+<li><code>1 2 3</code> with time <code>3 + 5 = 8</code></li>
+<li><code>1 3 2</code> with time <code>10 + 8 = 18</code></li>
+<li><code>2 1 3</code> with time <code>2 + 10 = 12</code></li>
+<li><code>2 3 1</code> with time <code>5 + 2 = 7</code></li>
+<li><code>3 1 2</code> with time <code>2 + 3 = 5</code></li>
+<li><code>3 2 1</code> with time <code>8 + 2 = 10</code></li>
+</ul>
+
+Therefore, the minimum time is <code>5</code>.
+
+<h2><a id="SECTION00022000000000000000">
+Example 2</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+2
+0 5
+10 0
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+5
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi032.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

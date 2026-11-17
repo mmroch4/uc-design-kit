@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI042] Pizza Quest · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI042 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI042] Pizza Quest</li></ol>
+    </nav>
+    <h1>[PI042] Pizza Quest</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi042.jpg"/>
+</p><p>There’s a city-wide blackout, and the automatic doors of the local supermarket just opened for a limited time. Julie Tribbiani is on a mission: rescue the last pizza before it’s gone forever.</p>
+<p>But there’s a catch — the supermarket has turned into a maze of toppled shelves and blocked aisles, and Julie’s sense of direction isn’t exactly award-winning. Starting from his current position, he needs to figure out if he can navigate through the maze to reach the pizza.</p>
+<h2>The Supermarket Maze</h2>
+<p>The layout of the supermarket is given as a 2D grid:</p>
+<ul>
+<li>    'J' marks Julie's starting point.
+
+</li><li>    'P' marks the precious pizza.
+
+</li><li>    '.' marks a walkable path (clear floor).
+
+</li><li>    '#' marks a wall or obstacle.
+</li></ul>
+<p>Julie can move up, down, left, or right — but not diagonally (he’s wearing flip-flops, after all).</p>
+<h2>The Problem</h2>
+<p>For each supermarket layout, determine whether there exists a valid path from Julie to the pizza, using only walkable cells ('.').</p>
+<h2>Input</h2>
+<p>The first line contains an integer <code>N (1 ≤ N ≤ 20)</code> — the number of test cases.</p>
+<p>Each test case consists of:</p>
+<ul>
+<li>    A line with two integers <code>R</code> and <code>C</code> (<code>1 ≤ R, C ≤ 100</code>) — the number of rows and columns in the grid.
+
+</li><li>    Followed by <code>R</code> lines, each with <code>C</code> characters representing the map.
+</li></ul>
+<p>There will always be exactly one <code>'J'</code> and one <code>'P'</code> in each map.</p>
+<h2>Output</h2>
+<p>Print <code>N</code> lines — one per test case. For each, print:</p>
+<ul>
+<li> <code>yes</code>, if Julie can reach the pizza
+
+  </li><li> <code>no</code>, if there's no path to it
+</li></ul>
+<br/>
+<h2>Example Input 1</h2>
+<pre>
+2
+5 10
+..#.......
+###...#...
+..#...#.PS
+.J#...####
+......#...
+4 4
+J..#
+..#.
+.#..
+#..P
+</pre>
+<h2>Example Output 1</h2>
+<pre>
+yes
+no
+</pre>
+<p>On the first case Julie can reach all the positions in green, which
+include reaching the pizza (hence, the answer is "yes"):</p>
+<pre>
+..#<mark>.......</mark>
+###<mark>...</mark>#<mark>...</mark>
+<mark>..</mark>#<mark>...</mark>#<mark>..P</mark>
+<mark>.J</mark>#<mark>...</mark>####
+<mark>......</mark>#...
+</pre>
+
+On the second case Julie can reach all the positions in green, but has
+no way to reach the pizza (hence, the answer is "no"):
+
+<pre>
+<mark>J..</mark>#
+<mark>..</mark>#.
+<mark>.</mark>#..
+#..P
+</pre>
+
+</section><section lang="pt">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi042.jpg"/>
+</p><p>Há um apagão geral na cidade, e as portas automáticas do supermercado local abriram por tempo limitado. Julie Tribbiani está em uma missão: resgatar a última pizza antes que ela desapareça para sempre.</p>
+<p>Mas há um problema — o supermercado virou um labirinto de prateleiras tombadas e corredores bloqueados, e o senso de direção da Julie não é dos melhores. Partindo da sua posição atual, ela precisa descobrir se consegue navegar pelo labirinto até chegar à pizza.</p>
+<h2>O Labirinto do Supermercado</h2>
+<p>A planta do supermercado é representada por uma grelha 2D:</p>
+<ul>
+<li>    'J' marca a posição inicial da Julie.
+
+</li><li>    'P' marca a localização da preciosa pizza.
+
+</li><li>    '.' representa um caminho livre (chão desimpedido).
+
+</li><li>    '#' representa uma parede ou obstáculo.
+</li></ul>
+<p>Julie pode mover-se para cima, baixo, esquerda ou direita — mas não na diagonal (afinal, ela está de chinelos).</p>
+<h2>O Problema</h2>
+<p>Para cada planta do supermercado, determine se existe um caminho válido de Julie até a pizza, usando apenas células caminháveis ('.').</p>
+<h2>Entrada</h2>
+<p>A primeira linha contém um inteiro <code>N (1 ≤ N ≤ 20)</code> — o número de casos de teste.</p>
+<p>Cada caso de teste consiste em:</p>
+<ul>
+<li>    Uma linha com dois inteiros <code>R</code> e <code>C</code> (<code>1 ≤ R, C ≤ 100</code>) — o número de linhas e colunas da grelha.
+
+</li><li>    Seguidas por <code>R</code> linhas, cada uma com <code>C</code> caracteres representando o mapa.
+</li></ul>
+<p>Haverá sempre exatamente um <code>'J'</code> e um <code>'P'</code> em cada mapa.</p>
+<h2>Saída</h2>
+<p>Imprima <code>N</code> linhas — uma por caso de teste. Para cada uma, imprima:</p>
+<ul>
+<li> <code>yes</code>, se Julie consegue alcançar a pizza
+
+  </li><li> <code>no</code>, se não há caminho até ela
+</li></ul>
+<br/>
+<h2>Exemplo de Entrada 1</h2>
+<pre>
+2
+5 10
+..#.......
+###...#...
+..#...#.PS
+.J#...####
+......#...
+4 4
+J..#
+..#.
+.#..
+#..P
+</pre>
+<h2>Exemplo de Saída 1</h2>
+<pre>
+yes
+no
+</pre>
+<p>No primeiro caso, Julie consegue alcançar todas as posições em verde, incluindo a pizza (portanto, a resposta é "yes"):</p>
+<pre>
+..#<mark>.......</mark>
+###<mark>...</mark>#<mark>...</mark>
+<mark>..</mark>#<mark>...</mark>#<mark>..P</mark>
+<mark>.J</mark>#<mark>...</mark>####
+<mark>......</mark>#...
+</pre>
+<p>No segundo caso, Julie consegue alcançar todas as posições em verde, mas não tem como chegar até a pizza (portanto, a resposta é "no"):</p>
+<pre>
+<mark>J..</mark>#
+<mark>..</mark>#.
+<mark>.</mark>#..
+#..P
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi042.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

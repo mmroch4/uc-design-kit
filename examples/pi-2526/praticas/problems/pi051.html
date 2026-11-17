@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI051] Clinic Chaos · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI051 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI051] Clinic Chaos</li></ol>
+    </nav>
+    <h1>[PI051] Clinic Chaos</h1>
+    <div class="uc-content">
+<section lang="en">
+
+&lt;<p><img alt="" class="uc-content__float" loading="lazy" src="pi051.jpg"/>
+Things are hectic at your local clinic.
+</p>
+<p>
+With a surge in patients, managing the queue has become increasingly difficult.
+The clinic has asked for your help to restore order.
+</p>
+<h2>Task</h2>
+<p>
+Patients arrive at the clinic one by one, and from time to time, a patient is called in for consultation.
+</p>
+<p>
+Each patient has one of three priority levels: <code>A</code>, <code>B</code>, or <code>C</code>.  
+Priority <code>A</code> is the highest, followed by <code>B</code>, and then <code>C</code>.
+</p>
+<p>
+When a patient is called in, the one with the highest priority who has been waiting the longest is chosen.
+</p>
+<p>
+Your task is to determine the order in which patients are called.
+</p>
+<h2>Input</h2>
+<ul>
+<li>The first line contains an integer <code>n</code> (<code>1 ≤ n ≤ 50,000</code>) — the number of events.</li>
+<li>Each event is described by either:
+    <ul>
+<li><code>1</code> — indicating a patient is called in (you should output the name of the patient selected), or</li>
+<li><code>0</code> — indicating a patient has arrived. In this case, two more lines follow:
+        <ul>
+<li>A string with alphabetical characters (uppercase and/or lowercase) representing the patient's name.</li>
+<li>A single character: <code>A</code>, <code>B</code>, or <code>C</code>, representing the patient’s priority level.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Output</h2>
+<p>
+For each event where a patient is called in (event <code>1</code>), print the name of the selected patient.
+</p>
+<h3>Example Input 1</h3>
+<pre>
+3
+0
+JoaquimExemplar
+B
+0
+CarlosCoiso
+A
+1
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+CarlosCoiso
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+4
+0
+Jonas
+C
+0
+Chabier
+A
+1
+1
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+Chabier
+Jonas
+</pre>
+
+</section><section lang="pt">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi051.jpg"/>
+Os tempos estão complicados na tua clínica local.
+</p>
+<p>
+Com um aumento repentino no número de pacientes, gerir a fila de espera tornou-se uma tarefa difícil.
+A clínica pediu a tua ajuda para restaurar a ordem.
+</p>
+<h2>Objetivo</h2>
+<p>
+Os pacientes chegam à clínica um a um, e de tempos a tempos, um deles é chamado para consulta.
+</p>
+<p>
+Cada paciente tem um dos três níveis de prioridade: <code>A</code>, <code>B</code> ou <code>C</code>.  
+A prioridade <code>A</code> é a mais alta, seguida por <code>B</code> e depois <code>C</code>.
+</p>
+<p>
+Sempre que alguém é chamado, é escolhido o paciente com maior prioridade que está à espera há mais tempo.
+</p>
+<p>
+O teu objetivo é determinar a ordem em que os pacientes são chamados.
+</p>
+<h2>Input</h2>
+<ul>
+<li>A primeira linha contém um número inteiro <code>n</code> (<code>1 ≤ n ≤ 50.000</code>) — o número de eventos.</li>
+<li>Cada evento é descrito por:
+    <ul>
+<li><code>1</code> — indicando que um paciente é chamado (deves imprimir o nome do paciente selecionado), ou</li>
+<li><code>0</code> — indicando que chegou um novo paciente. Neste caso, seguem-se mais duas linhas:
+        <ul>
+<li>Uma string com letras (maiúsculas ou minúsculas) representando o nome do paciente.</li>
+<li>Um único caractere: <code>A</code>, <code>B</code> ou <code>C</code>, indicando o nível de prioridade do paciente.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Output</h2>
+<p>
+Para cada evento em que um paciente é chamado (evento <code>1</code>), imprime o nome do paciente selecionado.
+</p>
+<h3>Example Input 1</h3>
+<pre>
+3
+0
+JoaquimExemplar
+B
+0
+CarlosCoiso
+A
+1
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+CarlosCoiso
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+4
+0
+Jonas
+C
+0
+Chabier
+A
+1
+1
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+Chabier
+Jonas
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi051.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

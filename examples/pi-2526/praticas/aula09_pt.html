@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 09 · Recursão, Ordenação e Arrays · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 9: Recursão, Ordenação e Arrays">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="9">
+    <h1>Aula Prática 09 · Recursão, Ordenação e Arrays</h1>
+    <p class="uc-small"><a href="aula09.html" hreflang="en">English version</a></p>
+    <div class="uc-content">
+<p><a href="aula09.html">Version in English</a><br/>
+</p>
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi043.html">[PI043] Eval</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi044.html">[PI044] Beyblade Arena</a> (peso 20%) (exercício extra)</li>
+<li><a href="problems/pi045.html">[PI045] Connect Four in Two</a> (peso 40%) (exercício principal)</li>
+<li><a href="problems/pi046.html">[PI046] Largest Microbe Colony</a> (peso 40%) (exercício principal)</li>
+<li><a href="problems/pi047.html">[PI047] Pim, Pam, Pum!</a> (peso 20%) (exercício extra)</li>
+<li><a href="problems/pi048.html">[PI048] Between Brackets</a> (peso 20%) (exercício extra)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>23 de Maio</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3>Exercício 1) Recursão e Ordenação</h3>
+<ol>
+<li>Considere a função recursiva seguinte:<br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+void func_rec(int n) {
+  if (n != 0) {
+    func_rec(n / 2);
+    putchar('0' + n % 2);
+  }
+}
+</script></uc-code>
+<br/>
+Comece por acompanhar a execução da função manualmente para os seguintes valores de <code><strong>n</strong></code>: 1, 4, 10 e 15. Em seguida, escreva um programa que chama a função <code><strong>func_rec</strong></code>, passando para a função um número inteiro inserido pelo usuário. <br/>O que a função faz?
+    </li>
+<li>Escreva uma função recursiva que inverte uma string.
+<br/>Exemplos:
+<pre>
+<em>Input:</em>  str = "OLA"
+<em>Output:</em> "ALO"
+</pre>
+<pre>
+<em>Input:</em>  str = "ProGraMacao"
+<em>Output:</em> "oacaMarGorP"
+</pre>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi045.html">[PI045] Connect Four in Two</a><br/> 
+       Dado um tabuleiro de <em>Connect Four</em>, determina se o primeiro jogador consegue ganhar imediatamente ou forçar uma vitória na sua segunda jogada — ou seja, colocar-se numa posição em que, independentemente do que o segundo jogador faça, o primeiro ganha no turno seguinte.
+        <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão - Pense recursivamente com backtracking</em></summary>
+<p>- O problema tem uma estrutura natural de árvore de jogo: o primeiro jogador escolhe uma coluna, o segundo responde, e o primeiro joga de novo. Pode explorar esta árvore recursivamente, tentando todas as jogadas possíveis e verificando se existe alguma sequência em que o primeiro jogador ganha.
+</p><p>- A profundidade máxima é 3 (<em>jogada A, jogada B, jogada A</em>), por isso a árvore é pequena.
+</p><p>- Para explorar a árvore de jogo sem precisar de copiar o tabuleiro inteiro a cada jogada, use backtracking. Isto possibilitará explorar todas as possibilidades e reverter o tabuleiro ao estado original após cada tentativa.</p>
+<p>- Não se esqueça de, após cada jogada, verificar se algum jogador tem 4 peças consecutivas (horizontal, vertical ou diagonal). Basta percorrer todas as células e verificar as 4 direcções possíveis a partir de cada uma.</p>
+</details> 
+</li>
+<li>Escreva uma função <br/>
+<pre>int isGrowing(int v[], int i, int j);
+</pre>
+<br/>
+      que testa se os elementos do vector <code><strong>v</strong></code>, entre as posições <code><strong>i</strong></code> e <code><strong>j</strong></code> (<strong>inclusive</strong>) estão ordenados por ordem crescente. <br/>A função deve retornar <code><strong>1</strong></code> ou <code><strong>0</strong></code> consoante o vector esteja ou não ordenado. 
+    </li>
+<li>Escreva uma função <br/>
+<pre>int isPartitioned(int v[], int n, int p);
+</pre>
+<br/>
+      que verifica se o vetor <code><strong>v</strong></code> de <code><strong>n</strong></code> elementos foi corretamente particionado em torno de um dados <em>pivot</em>, o <em>pivot</em> está na posição <code><strong>p</strong></code> do vetor.
+    </li>
+<li>O programa para o algoritmo <em>Quicksort</em> apresentado na aula teórica escolhe sempre o <strong>primeiro</strong> valor da sub-sequência para ser o <em>pivot</em>. Isto implica que a complexidade no caso em que a sequência está ordenada seja quadrática.<br/>
+Neste exercício pretende-se melhorar esta escolha usando como <em>pivot</em> a <strong>mediana</strong> de três elementos, i.e. do primeiro, do último e do ponto-médio da sub-sequência. Para conseguir isso, basta trocar a mediana com o valor no início da partição.<br/> 
+Re-escreva a função <br/>
+<pre>int partition(int left, int right);
+</pre>
+<br/>
+dada na aula teórica de modo a atender a esta modificação no programa do <em>Quicksort</em>.
+    </li>
+<li>
+<a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi046.html">[PI046] Largest Microbe Colony</a><br/> 
+
+  Dado um tabuleiro 2D representando uma placa de Petri, onde <code><strong>#</strong></code> é um micróbio e <code><strong>.</strong></code> é uma célula vazia, determina o tamanho da maior colónia de micróbios. <br/>
+  Uma colónia é um grupo de células <code><strong>#</strong></code> conectadas horizontal, vertical ou diagonalmente.
+
+  <br/>
+  Read the problem statement carefully and try to submit an Accepted solution.
+
+  <br/><br/>
+  Este problema foi abordado na aula teórica. Tente resolvê-lo por conta própria, tem todas as ferramentas para o conseguir! 
+  <br/>
+</li>
+<li>Defina uma função <br/>
+<pre>int common(int a[], int b[], int na, int nb);
+</pre>
+<br/>
+      que calcula quantos elementos os vetores <code><strong>a</strong></code> (com <code><strong>na</strong></code> elementos) e <code><strong>b</strong></code> (com <code><strong>nb</strong></code> elementos) têm em comum. Assuma que os vetores <code><strong>a</strong></code> e <code><strong>b</strong></code> não estão ordenados.
+    </li>
+<li>Defina uma função <br/>
+<pre>int isPermutation(int a[], int b[], na, nb);
+</pre>
+<br/>
+      que, dados dois vetores não ordenado <code><strong>a</strong></code> (com <code><strong>na</strong></code> elementos) e <code><strong>b</strong></code> (com <code><strong>nb</strong></code> elementos), verifica se dois vetores são permutações um do outro.
+<br/>Exemplos:
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+Input:  a[] = {22, 10, 3, 15, 4, 3, 22}
+        b[] = {3, 22, 22, 4, 15, 3, 10}
+Output: Yes
+</script></uc-code>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+Input:  a[] = {20, 15, 3, 6}
+        b[] = {3, 22, 21, 4}
+Output: No
+</script></uc-code>
+</li>
+<li>A Ana foi ao supermercado e colocou no seu carrinho de compras <code><strong>n</strong></code> produtos que pretendia comprar. Como está com pressa, a Ana decide usar uma das caixas expresso disponíveis para efetuar o pagamento das suas compras. 
+No entanto, as caixas expresso desse supermercado limita o número de produtos a comprar a <em><strong>k</strong></em> unidades, pelo que a Ana tem de escolher apenas <em>k</em> produtos de entre os que colocou inicialmente no seu carrinho de compras. <br/>
+Como a Ana é gananciosa, vai escolher os produtos mais baratos, e se dois produtos têm o mesmo preço, ela escolhe o mais leve. 
+Escreva um programa que ajude a Ana a selecionar os seu produtos com base nas suas preferências.<br/> 
+Pode considerar que nunca existem dois produtos com o mesmo preço e peso e que os produtos são definidos adequadamente por uma <em>estrutura</em>: <code><strong>struct Product;</strong></code> definindo o <em>nome</em>, o <em>preço</em> e o <em>peso</em> do produto.<br/>
+Escreva uma função <br/>
+<pre>void express_checkout(Product products[], int n, int k);
+</pre>
+<br/>
+que remove do vetor <code><strong>products</strong></code> os produtos que a Ana vai optar por não comprar, mantendo neste vetor os produtos escolhidos pela Ana.
+<br/>Exemplo:
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+Input:  products = {{pasta, 3.2, 500}, {peanuts, 5.4, 700}, {cookies, 4.2, 600}, {milka, 5.4, 600}]
+        k = 3
+Output: res = {{pasta, 3.2, 500}, {cookies, 4.2, 600}, {milka, 5.4, 600}}
+</script></uc-code>
+</li></ol>
+
+<h3>Exercício 2) Manipulação de Arrays</h3>
+<ol>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi043.html">[PI043] Eval</a><br/> 
+       Dada uma expressão aritmética com inteiros, adições (<code><strong>+</strong></code>) e multiplicações (<code><strong>*</strong></code>), calcula o seu resultado respeitando a precedência de operadores: as multiplicações são calculadas antes das adições.
+        <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
+<br/><br/><details name="hint">
+<summary><em>Sugestão - Não calcules da esquerda para a direita</em></summary>
+<p>- Se calcular simplesmente da esquerda para a direita, <code>5 + 2 * 3</code> daria <code>(5 + 2) * 3 = 21</code> em vez de <code>5 + (2 * 3) = 11</code>. Tem de garantir que todas as multiplicações são resolvidas antes das adições!
+</p><p>- Um estratégia natural é fazer em dois passos: primeiro multiplicar, depois somar. Ou seja:
+</p><ol>
+<li>Primeiro passo: percorra a expressão e resolve todas as multiplicações, agrupando os produtos em "<em>termos</em>".</li>
+<li>Segundo passo: soma todos os termos.</li>
+<li>Por exemplo, <code>5 + 2 * 3 * 4 + 1</code> tem três termos: <code>5</code>, <code>2*3*4 = 24</code>, e <code>1</code>. A soma é <code>5 + 24 + 1 = 30</code>.</li>
+</ol>
+<p>- <em><strong>Nota:</strong></em> Não se esqueça dos elementos restantes nem do caso especial (arrays vazios)!</p>
+</details>
+<br/><details name="hint">
+<summary><em>Sugestão #2</em></summary>
+<p>- Com <code>n</code> números, a expressão tem <code>2n - 1</code> tokens no total (números e operadores alternados). Pode ler tudo para um array, guardando os números como estão e os operadores como um valor que indique <code>+</code> ou <code>*</code> (por exemplo, <code>0</code> para adição e <code>1</code> para multiplicação).
+</p><p>- Para construir os termos pode percorrer o array de tokens. Mantenha um acumulador para o termo actual (começa com o primeiro número). Cada vez que encontra um operador:
+</p><ol>
+<li>Se for <code>*</code>: multiplica o acumulador pelo número seguinte.</li>
+<li>Se for <code>+</code>: guarda o acumulador como um termo completo e começa um novo acumulador com o número seguinte.</li>
+</ol>
+<p>- No final, soma todos os termos guardados.
+      </p></details>
+</li>
+<li><strong>Rotação Circular.</strong> Implemente um programa que simule a rotação <strong>circular</strong> (para a direita) de um vetor <code><strong>v</strong></code> de números inteiros.<br/> 
+O programa deve receber do utilizador <code><strong>n</strong></code> valores inteiros e guarda-los em <code><strong>v</strong></code> e também deve receber um número de rotações válido <code><strong>r</strong></code>. O programa deve imprimir o vetor resultante depois de efetuadas as <code><strong>r</strong></code> rotações.
+<strong>Notas:</strong> rodar um vetor para a direita de forma circular significa que o primeiro elemento passa para segundo e o último elemento passa para primeiro;  deve apenas usar estruturas de dados simples, ie. <em>arrays</em>, e não deve usar bibliotecas adicionais.<br/>
+<ol>
+<li>Comece por desenvolver um algoritmo iterativo, ie. mova os elementos do vetor um a um até efetuar as <code><strong>r</strong></code> rotações.</li>
+<li>O algoritmo anterior implica mover todos os elementos <code><strong>r</strong></code> vezes! Consegue desenhar um algoritmo mais eficiente? Desenvolva um algoritmo que otimiza este processo.</li>
+</ol>
+<br/>Exemplo:
+<pre>
+<em>Input:</em>  n = 5
+        v[] = [1, 2, 3, 4, 5]
+        r = 2
+<em>Output:</em> Vetor após 2 rotações: [4, 5, 1, 2, 3]
+</pre>
+</li>
+<li><strong>Atendimentos.</strong>
+<strong>FIFO</strong> (<em>First In, First Out</em>), que em português significa "o primeiro a entrar é o primeiro a sair", é uma estratégia de organização e processamento de dados onde o primeiro item inserido é o primeiro a ser removido/processado. Uma <strong>fila</strong> está normalmente associada ao conceito FIFO, onde os dados entram por um lado (início) e saem pelo outro (fim). Tendo este conceito em mente, implemente um programa interativo para gerir uma fila de clientes para um serviço de atendimento ao público.<br/> 
+O seu programa deve permitir as seguintes operações:
+        <ul>
+<li>Adicionar um cliente ao fim da fila de clientes.</li>
+<li>Atender o próximo cliente, isto significa remover o cliente que está na frente da fila. (<em>Nota:</em>Vamos ignorar atendimentos prioritários.)</li>
+<li>Listar todos os clientes na fila a qualquer momento.</li>
+<li>Encerrar o programa.</li>
+</ul>
+<strong>Notas:</strong> Use apenas estruturas de dados simples para simular a fila, tais como <em>arrays</em>, e não use bibliotecas adicionais. A estrutura da fila deve ser circular, para isso controle as posições de início e fim da fila e o número de clientes em espera.<br/><br/> 
+Como ponto de partida, pode começar por usar o esqueleto de código apresentado mais abaixo e completar as partes em falta, ou seja, as funções correspondentes às opções de interação listadas acima. Em alternativa, pode criar o seu próprio código de raiz.<br/>
+<strong>Exemplo de interação:</strong>
+<pre>
+
+----------------------
+Available Options: 
+1. Add client
+2. Serve client
+3. List client queue
+4. Exit
+----------------------
+
+Choose an option: 1
+Insert client name: Ana Silva
+
+Choose an option: 1
+Insert client name: Pedro Moreira
+
+Choose an option: 1
+Insert client name: Teresa Santos
+
+Choose an option: 1
+Insert client name: Isabel Ribeiro
+
+Choose an option: 1
+Insert client name: Rui Torres
+
+Choose an option: 3
+Queued clients:
+1. Ana Silva
+2. Pedro Moreira
+3. Teresa Santos
+4. Isabel Ribeiro
+5. Rui Torres
+
+Choose an option: 2
+Client served: Ana Silva
+
+Choose an option: 2
+Client served: Pedro Moreira
+
+Choose an option: 3
+Queued clients:
+1. Teresa Santos
+2. Isabel Ribeiro
+3. Rui Torres
+
+Choose an option: 4
+</pre>
+<br/><strong>Código fornecido:</strong><br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+#include <stdio.h>
+#include <string.h>
+
+#define CAP 10        // max capacity of clients
+
+char queue[CAP][50];  // queue of clients
+int n = 0;            // number of clients waiting
+
+/* Functions to be implemented */
+
+void add_client(char queue[][50], int *n, int *end) {
+  // TODO
+}
+
+void rm_client(char queue[][50], int *n, int *start) {
+  // TODO
+}
+
+void list_clients(char queue[][50], int *n, int *start) {
+  // TODO
+}
+
+int main() {
+    int start = 0, end = 0;
+    int option;
+
+    printf("----------------------\nAvailable Options:\n1. Add client\n2. Serve client\n3. List client queue\n. Exit\n----------------------\n\n");
+
+    do {
+        printf("\nChoose an option: ");
+        scanf("%d", &option);
+        getchar();  // clear buffer
+
+        if (option == 1) {
+            add_client(queue, &n, &end);
+        } else if (option == 2) {
+            rm_client(queue, &n, &start);
+        } else if (option == 3) {
+            list_clients(queue, &n, &start);
+        }
+    } while (option != 4);
+
+    return 0;
+}
+</script></uc-code>
+</li>
+<li><strong>Instrução <em>Undo</em>.</strong>
+<strong>LIFO</strong> (<em>Last In, First Out</em>), que em português significa "o último a entrar é o primeiro a sair", é uma estratégia de organização e processamento de dados que é o oposto do FIFO. Uma <strong>pilha</strong> está normalmente associada ao conceito LIFO, onde os dados entram um a seguir ao outro e são colocados sempre no final e só podem sair pelo mesmo lado que entram (ie., pelo fim). Tendo este conceito em mente, implemente um programa interativo para simular a instrução <em>undo</em>.<br/>
+Num editor de texto simple, sempre que um utilizador escreve uma palavra, ela é guardada numa <strong>pilha de ações</strong>. Se o utilizador quiser <strong>desfazer a última ação</strong>, a palavra no topo da pilha é removida (simulando o comando <em>Undo</em>).<br/>
+O seu programa deve permitir as seguintes operações:
+        <ul>
+<li>Inserir uma palavra, de forma a simular a escrita num editor de texto.</li>
+<li>Desfazer a última palavra, isto significa remover a palavra que está no topo da pilha.</li>
+<li>Mostrar a palavra que está no topo da pilha (ie., última palavra escrita).</li>
+<li>Encerrar o programa.</li>
+</ul>
+<strong>Notas:</strong> Use apenas estruturas de dados simples para simular a pilha, tais como <em>arrays</em>, e não use bibliotecas adicionais. A estrutura da pilha deve ser tal que só é possível ter acesso ao último elemento introduzido na pilha, para isso controle a posição de fim da pilha e o número de palavras escritas.<br/><br/> 
+Como ponto de partida, pode começar por usar o esqueleto de código apresentado mais abaixo e completar as partes em falta, ou seja, as funções correspondentes às opções de instruções listadas acima. Em alternativa, pode criar o seu próprio código de raiz.<br/>
+<strong>Exemplo de interação:</strong>
+<pre>
+
+----------------------
+Available Options:
+1. Write word
+2. Undo
+3. List last word
+. Exit
+----------------------
+
+Choose an option: 1
+Write a word: Everybody
+
+Choose an option: 1
+Write a word: should
+
+Choose an option: 1
+Write a word: learn
+
+Choose an option: 1
+Write a word: to
+
+Choose an option: 1
+Write a word: program
+
+Choose an option: 3
+Last word: program
+
+Choose an option: 3
+Last word: program
+
+Choose an option: 1
+Write a word: a
+
+Choose an option: 1
+Write a word: computer
+
+Choose an option: 1
+Write a word: because
+
+Choose an option: 1
+Write a word: it
+
+Choose an option: 1
+Write a word: teaches
+
+Choose an option: 3
+Last word: teaches
+
+Choose an option: 1
+Write a word: you
+
+Choose an option: 1
+Write a word: how
+
+Choose an option: 1
+Write a word: to
+
+Choose an option: 1
+Write a word: think
+
+Choose an option: 3
+Last word: think
+
+Choose an option: 2
+Undo: think
+
+Choose an option: 3       
+Last word: to
+
+Choose an option: 2
+Undo: to
+
+Choose an option: 3
+Last word: how
+
+Choose an option: 2
+Undo: how
+
+Choose an option: 3
+Last word: you
+
+Choose an option: 2
+Undo: you
+
+Choose an option: 2
+Undo: teaches
+
+Choose an option: 3
+Last word: it
+
+Choose an option: 4
+</pre>
+<br/><strong>Código fornecido:</strong><br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 20
+
+void push(char stack[][50], int *n) {
+    // TODO
+}
+
+void pop(char stack[][50], int *n) {
+    // TODO
+}
+
+void top(char stack[][50], int n) {
+    // TODO
+}
+
+int main() {
+    char stack[MAX][50];
+    int n = 0;
+    int option;
+
+    printf("----------------------\nAvailable Options:\n1. Write word\n2. Undo\n3. List last word\n. Exit\n----------------------\n\n");
+
+    do {
+        printf("\nChoose an option: ");
+        scanf("%d", &option);
+        getchar();   // clear buffer
+
+        switch (option) {
+            case 1:
+                push(stack, &n);
+                break;
+            case 2:
+                pop(stack, &n);
+                break;
+            case 3:
+                top(stack, n);
+                break;
+            default:
+                printf("Invalid option.\n");
+        }
+    } while (option != 4);
+
+    return 0;
+}
+</script></uc-code>
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

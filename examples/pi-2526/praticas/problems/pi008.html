@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI008] Hiking Day · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI008 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI008] Hiking Day</li></ol>
+    </nav>
+    <h1>[PI008] Hiking Day</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi008.png"/>
+</p>
+<p>
+You are planning a hike in the famous Circular Mountain Chain. It has this name due to the circular nature of its mountains, that surround a lush valley. 
+</p>
+<p>
+You want to visit all the mountains in a clockwise manner, but you're
+afraid that it may be too tiresome. Still, you notice that if you
+start at one mountain and finish at another, you don't have to return
+to the initial mountain.
+</p>
+<p>
+You follow the connecting trails to hike
+each mountain exactly once. Find the least tiresome hike. 
+</p>
+<h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>
+You are given a sequence of mountain heights <code>a</code>, corresponding
+to a clockwise order of the mountain chain.
+</p>
+<p>
+From each mountain there is a trail to the next mountain
+clockwise. Naturally, since it is circular, there is a trail from the 
+last mountain in the sequence to the first. 
+</p>
+<p>
+The cost of a trail between two contiguous mountains with heights <code>x</code> and <code>y</code> is <code>|x - y|</code>. 
+</p>
+<p>
+The total cost of a hike is the sum of the costs of all trails hiked.
+</p>
+<p>
+You can start at any mountain and end at the mountain preceding
+it. Again naturally, because it's circular, if you start at the first
+mountain, you can end at the last.
+</p>
+<p>
+Your task is to find the hike that visits all mountains with the minimum total cost and print
+the heights of the mountains you visit in order.
+</p>
+<p>
+If multiple hikes have the same cost, choose the hike starting at the mountain that appears first in the sequence.
+</p>
+<h2>
+Input
+</h2>
+<p>
+You will receive two lines as input.
+</p>
+<p>
+In the first line, you will receive an integer <code>n</code> (<code>1 &lt;= n &lt;= 100'000</code>), corresponding to the number of mountains.
+</p>
+<p>
+In the second line, you will receive <code>n</code> integers <code>a_1, a_2, ..., a_n</code> separated by spaces;
+each number <code>a_i</code> (<code>1 &lt;= a_i &lt;= 100'000</code>) corresponds to the height of the <code>i</code>th mountain.
+</p>
+<h2>
+Output
+</h2>
+<p>
+Print one line with <code>n</code> numbers corresponding to the hike with minimal cost.
+</p>
+<h2><a id="SECTION00022000000000000000">
+Example 1</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+4
+1 10 5 4
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+10 5 4 1
+</pre>
+<h3>
+Explanation
+</h3>
+<p>
+Going from the mountain with height <code>1</code> to the mountain with height <code>10</code> has cost <code>9</code>.
+</p>
+<p>
+Going from the mountain with height <code>10</code> to the mountain with height <code>5</code> has cost <code>5</code>.
+</p>
+<p>
+Going from the mountain with height <code>5</code> to the mountain with height <code>4</code> has cost <code>1</code>.
+</p>
+<p>
+Going from the mountain with height <code>4</code> to the mountain with height <code>1</code> has cost <code>3</code>.
+</p>
+<p>
+There are 4 possible hikes:
+</p>
+<ul>
+<li><code>1 10 5 4</code> - This hike has cost <code>9+5+1 = 15</code>.</li>
+<li><code>10 5 4 1</code> - This hike has cost <code>5+1+3 = 9</code>.</li>
+<li><code>5 4 1 10</code> - This hike has cost <code>1+3+9 = 13</code>.</li>
+<li><code>4 1 10 5</code> - This hike has cost <code>3+9+5 = 17</code>.</li>
+</ul>
+<p>
+Threfore, the hike with minimum cost is <code>10 5 4 1</code>.
+
+</p><h2><a id="SECTION00023000000000000000">
+Example 2</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+5
+352 830 867 745 830
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+352 830 867 745 830
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi008.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

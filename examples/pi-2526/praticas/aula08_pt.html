@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 08 · Estruturas e Asserções · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 8: Estruturas e Asserções">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="8">
+    <h1>Aula Prática 08 · Estruturas e Asserções</h1>
+    <p class="uc-small"><a href="aula08.html" hreflang="en">English version</a></p>
+    <div class="uc-content">
+<p><a href="aula08.html">Version in English</a><br/>
+</p>
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi038.html">[PI038]
+      Merge Sorted Arrays</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi039.html">[PI039]
+      Shifting Numbers</a> (peso 40%) (exercício principal)</li>
+<li><a href="problems/pi040.html">[PI040]
+      Josephus Flower</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi041.html">[PI041] Rock
+      Site</a> (peso 30%) (exercício extra)</li>
+<li><a href="problems/pi042.html">[PI042]
+      Pizza Quest</a> (peso 40%) (exercício extra)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>9 de Maio</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3> Exercício 1) Mooshak</h3>
+<ol>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi038.html">[PI038] Merge Sorted Arrays</a><br/> 
+       Alice e Bob têm cada um um vector de notas ordenado por ordem crescente. A tua tarefa é juntá-los num único vector também ordenado, sem usar nenhuma função de ordenação já pronta.
+        <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
+<br/><br/><details name="hint">
+<summary><em>Sugestão - Não ordenes, funde</em></summary>
+<p>- A abordagem ingénua seria juntar os dois arrays e ordenar o resultado. Mas há uma forma muito mais eficiente: como os dois arrays já estão ordenados, pode construir o resultado percorrendo-os simultaneamente, escolhendo sempre o menor elemento disponível entre os dois. Isto chama-se <em>merge</em>.
+</p><p>- Pode usar 3 cursores, um por cada array (<code><strong>i</strong></code> para o da Alice, <code><strong>j</strong></code> para o do Bob) e um cursor <code><strong>k</strong></code> para a posição actual no array resultado. Em cada passo, compare os elementos apontados pelos dois cursores e copie o menor para o resultado, avançando o cursor correspondente. </p>
+<p>- <em><strong>Nota:</strong></em> Não se esqueça dos elementos restantes nem do caso especial (arrays vazios)!</p>
+</details>
+</li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi039.html">[PI039] Shifting Numbers</a><br/> 
+      A Joyce precisa de rodar um array de inteiros <code><strong>k</strong></code> posições para a direita (se <code><strong>k</strong></code> positivo) ou para a esquerda (se <code><strong>k</strong></code> negativo), de forma circular — os elementos que saem de um extremo reaparecem no outro. <br/>
+      A sua tarefa é implementar a função <br/>
+<pre>void shift(int a[], int n, int k);
+</pre><br/>
+      O código da função <code><strong>main</strong></code> e da função de impressão já são fornecidos — só tens de escrever a função <code><strong>shift</strong></code>.
+      <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Para resolver o problema que tem em mão pense na seguinte pergunta: <em>O que significa rodar <code>k</code> posições para a direita?</em>
+</p><p>- Rodar para a direita 1 posição significa que cada elemento na posição <code><strong>i</strong></code> passa para a posição <code><strong>i+1</strong></code>, e o último elemento vai para a posição <code><em>0</em></code>. 
+</p><p>- Generalizado: o elemento que estava na posição <code><strong>i</strong></code> passa para a posição <code><strong>(i + k) % n</strong></code>. 
+</p><p>- <em><strong>Nota:</strong></em> Se tentar fazer a rotação directamente no array <code><strong>a</strong></code>, vai sobrescrever valores antes de os ter copiado. <em>Pense nume forma fácil e rápida de resolver isso!</em>
+</p></details>
+<br/><details name="hint">
+<summary><em>Sugestão #2</em></summary>
+<p>- O elemento que deve ir para a posição <code><strong>i</strong></code> após rodar <code><strong>k</strong></code> posições para a direita vinha da posição <code><strong>(i - k + n) % n</strong></code>. Colocar <code><strong>+ n</strong></code> é necessário para garantir que o resultado do módulo não fica negativo quando <code><strong>k</strong></code> é positivo e <code><strong>i - k &lt; 0</strong></code>.
+</p><p>- <em>E para k negativo?</em> Para <code><strong>k</strong></code> negativo (rotação para a esquerda), a fórmula <code><strong>(i - k + n) % n</strong></code> continua a funcionar directamente — subtrair um <code><strong>k</strong></code> negativo é o mesmo que somar o seu valor absoluto. Não precisas de tratar este caso separadamente.
+      </p></details>
+</li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi040.html">[PI040] Josephus Flower</a><br/> 
+      Tens <code><strong>n</strong></code> pétalas numeradas de <strong>1</strong> a <strong>n</strong> dispostas em círculo. Percorres as pétalas alternando entre "ficar" e "remover", voltando ao início sempre que necessário, até restar apenas uma. Determina qual é a pétala que sobra.
+      <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. 
+
+<strong>Tente resolver este problema sem sugestões!</strong>
+</li>
+</ol>
+
+<h3>Exercício 2) Base de Dados de Equipas, Jogadores e Torneios de <em>eSports</em></h3>
+<p>Dada uma base de dados com informação sobre <strong>jogadores</strong>, <strong>equipas</strong> e <strong>torneios de <em>eSports</em></strong>, pretende-se consultar a mesma para obter várias informações. As estruturas de dados que vão ser usadas pelo programa obedecem à seguinte especificação:</p>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+#define MAX 10
+#define MAXNOME 100
+#define MAXJOGADORES 100
+#define MAXEQUIPAS 20
+#define MAXTORNEIOS 20
+
+typedef struct jogador {
+    char nome[MAXNOME];
+    char id[MAX];           // código único (ex: J045612)
+    int torneios[MAX], nt;
+} JOGADOR;
+
+typedef struct equipa {
+    char nome[MAXNOME];
+    int jogadores[MAX], nj;
+} EQUIPA;
+
+typedef struct torneio {
+    char nome[MAXNOME];
+    int ano;
+} TORNEIO;
+
+int NTorneios = 5;
+TORNEIO Torneios[MAXTORNEIOS] = {
+    {"World eSports Cup", 2023},
+    {"Pro League", 2024},
+    {"Elite Battle", 2023},
+    {"Champions Arena", 2024},
+    {"Global Masters", 2023}
+};
+
+int NJogadores = 6;
+JOGADOR Jogadores[MAXJOGADORES] = {
+    {"Diogo Lopes", "J045612", {0,2,4}, 3},
+    {"Andreia Silva", "J012345", {1,3}, 2},
+    {"Rui Matos", "J098765", {0,1,2}, 3},
+    {"Sofia Costa", "J078901", {3,4}, 2},
+    {"Marco Silva", "J067890", {2,4}, 2},
+    {"Tiago Rocha", "J023456", {1,2,3}, 3}
+};
+
+int NEquipas = 3;
+EQUIPA Equipas[MAXEQUIPAS] = {
+    {"Shadow Dragons", {0,2,4}, 3},
+    {"Phoenix Reborn", {1,3}, 2},
+    {"Iron Wolves", {5}, 1}
+};
+</script></uc-code>
+<p>No exemplo, <em>World eSports</em> é o torneio 0 e <em>Elite Battle</em> o torneio 2. 
+Os torneios em que um jogador está inscrito para participar são identificados pelos seus números de ordem no array <code><strong>Torneios</strong></code>. 
+Da mesma forma, os jogadores que pertencem a uma equipa são identificados pelos seus números de ordem no array <code><strong>Jogadores</strong></code>. 
+O identificador <code><strong>id</strong></code> de um jogador é uma sequência de 7 caracteres (o primeiro é a letra <strong>J</strong> seguido de 6 dígitos). </p>
+<ol>
+<li>Escreva uma função <br/>
+<pre>void procuraJogador(char *palavranome);
+</pre><br/>
+       para imprimir o código e nome dos alunos cujo nome contém uma palavra dada por <code><strong>palavranome</strong></code>. <br/>
+Por exemplo, se a palavra fosse "Silva", deveria imprimir:<br/>
+<pre>Jogadores cujo nome inclui "Silva":
+J012345 Andreia Silva
+J067890 Marco Silva
+</pre><br/>
+Não deverá ser feita qualquer ordenação dos dados. A menos que a ordenação seja explicitamente solicitada, no output deverá ser mantida a ordem de ocorrência dos dados nas estruturas de dados. 
+
+</li>
+<li>Escreva uma função <br/>
+<pre>int id2Jogador(char *id, char *nome);
+</pre><br/>
+      que escreve na cadeia de carateres <code><strong>nome</strong></code> o nome do jogador correspondente ao identificador <code><strong>id</strong></code> (a função retorna <strong><code>0</code></strong> se não existir, e <strong><code>1</code></strong> caso contrário).</li>
+<li>Escreva uma função <br/>
+<pre>int jogadoresDaEquipa(char *nomeEquipa);
+</pre><br/>
+      que imprime na saída padrão a lista de nomes dos jogadores de uma determinada equipa, sendo dado o nome da equipa como parâmetro da função, e retorna o número total de jogadores da equipa.</li>
+<li>Escreva uma função <br/>
+<pre>int jogadoresNoTorneio(char *nomeTorneio, int *indices);
+</pre><br/>
+      que guarda no array <code><strong>indices</strong></code> os índices (das posições em <code><strong>Jogadores</strong>&gt;</code>) dos jogadores que participaram num determinado torneio, dando o nome do torneio. Retorna o número de jogadores nessas condições.</li>
+<li>Escreva uma função <br/>
+<pre>int mediaTorneiosPorJogador();
+</pre><br/>
+      que retorna o número médio de torneios em que os jogadores participaram.</li>
+<li>Escreva uma função <br/>
+<pre>int jogadoresMaisAtivos(int *indices);
+</pre><br/>
+      que guarda no array <code><strong>indices</strong></code> os índices das posições (em <code><strong>Jogadores</strong></code>) dos jogadores  que participaram em mais torneios do que a média. Retorna o total desses jogadores.</li>
+<li>Escreva uma função <br/>
+<pre>int maxTorneiosPorAno(int ano);
+</pre><br/>
+      que retorna o número máximo de torneios em que um jogador participou num dado ano.</li>
+<li>Escreva uma função  
+<pre>int torneiosDoJogadorAno(int posJogador, int ano);
+</pre><br/>
+que retorna o número de torneios de um dado ano em que um jogador participou.<br/>
+Assume-se que <code><strong>posJogador</strong></code> contém o índice da posição do jogador em Jogadores, sendo uma posição válida. </li>
+<li>Escreva uma função  
+<pre>int participouEmVariosAnos(int posJogador);
+</pre><br/>
+      que verifica se um jogador participou em torneios de vários anos. Retorna um valor diferentes de <strong><code>0</code></strong> em caso afirmativo e <strong><code>0</code></strong> caso contrário.<br/>
+Assume-se que <code><strong>posJogador</strong></code> contém o índice da posição do jogador em Jogadores, sendo uma posição válida.</li>
+</ol>
+
+<h3>Exercício 3) Asserções</h3>
+<ol>
+<li>Considere o seguinte algoritmo de Euclides que calcula o máximo divisor comum:<br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+int mdc(int a, int b) {
+  while (a != b) {
+    if(a > b)
+      a = a - b;
+    else
+      b = b - a;
+  }
+  return a;
+}
+</script></uc-code><br/>
+
+Acrescente uma asserção que exprime as pré-condições para que este algoritmo termine.
+</li>
+<li>Escreva uma função, <br/>
+<pre>int mediana(int a, int b, int c);
+</pre><br/>
+      que calcula a <em>mediana</em> de 3 valores inteiros <code><strong>a</strong></code>, <code><strong>b</strong></code> e <code><strong>c</strong></code>. A <em>mediana</em> é o valor no meio quando colocamos os valores por ordem crescente.<br/>
+Modifique ainda a sua função de forma a acrescentar uma asserção correspondente à pós-condição seguinte: seja <code><strong>r</strong></code> o resultado de <code><strong>mediana(a, b, c)</strong></code>, então 
+<math><mo>min</mo><mo>(</mo><mi>a, b, c</mi><mo>)</mo><mo>≤</mo><mi>r</mi><mo>≤</mo><mo>max</mo><mo>(</mo><mi>a, b, c</mi><mo>)</mo></math>.
+<br/><em>Sugestão:</em> defina funções auxiliares para calcular o mínimo e o máximo dos três valores.
+</li>
+<li>Considere a função <br/>
+<pre>int decimal(char str[]);
+</pre><br/>
+      pedida no <strong>exercício 2.4</strong> do conjunto de exercícios da <strong>Aula Prática #04</strong> (converte uma string de dígitos decimais para um valor inteiro). <br/>Acrescente asserções para exprimir a pré-condição de que todos os caracteres da string devem ser dígitos decimais (i.e., caracteres entre <code>'0'</code> e <code>'9'</code>).
+</li>
+<li>Escreva um programa que lê uma sequência de valores inteiros positivos terminada por <code>−1</code> e no final escreve toda a sequência sem valores repetidos.
+</li>
+<li>Escreva uma função <br/>
+<pre>void eliminar(char str[], char ch);
+</pre><br/>
+      que elimina a primeira ocorrência de um carater <code><strong>ch</strong></code> de uma string <code><strong>str</strong></code>.
+<br/>Exemplo:<br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+char str[] = "ABBA";
+eliminar(str, ’B’);
+printf("%s", str);   // deve imprimir "ABA"
+</script></uc-code><br/>
+Tenha o cuidado de colocar corretamente o terminador <code>'\0'</code>.
+</li>
+<li>Considere a seguinte função para inserir um valor num vetor de <code><strong>n</strong></code> elementos baseada no algoritmo usado na <em>ordenação por inserção</em>; assume que os valores do vetor estão por ordem crescente à entrada da função; no final, o vetor terá mais um valor e manterá a ordem ascendente.<br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+void inserir(int vec[], int n, int x) {
+  int j = n-1;
+  while(j>=0 && vec[j]>x) {
+    vec[j+1] = vec[j];
+    j--;
+  }
+  vec[j+1] = x;
+}
+</script></uc-code><br/>
+Acrescente asserções à função para exprimir as seguintes condições de correção:
+	<ul>
+<li>Uma <em>pré-condição</em> à entrada da função: o vetor está ordenado.</li>
+<li>Uma <em>pós-condição</em> à saída da função: o vetor continua ordenado e o comprimento aumentou de 1 unidade.</li>
+</ul>
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula08_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

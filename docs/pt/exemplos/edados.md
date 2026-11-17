@@ -78,5 +78,6 @@ Para fazer o mesmo com um assistente de programação, ver [Migrar um site exist
 
 ## Ver também
 
+- [Todos os exemplos](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/index.md), incluindo [Competitive Programming](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md) e [Introduction to Programming](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/ip.md).
 - [Padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md): as mesmas estruturas, com o curso fictício, prontas a copiar.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md) a partir do modelo.

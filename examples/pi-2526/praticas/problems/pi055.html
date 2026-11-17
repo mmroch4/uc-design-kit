@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI055] Lake Reflection · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI055 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI055] Lake Reflection</li></ol>
+    </nav>
+    <h1>[PI055] Lake Reflection</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p> <img alt="" class="uc-content__float" loading="lazy" src="pi055.jpg"/> </p>
+<p> You’ve been assigned to support a government project reviewing the
+layout of lakes in a particular region. </p>
+<p> Partway through your work, someone calls and urgently asks: “Wait
+a second — how many lakes are there on the map right now?” </p>
+<p> You glance at the regional map and quickly calculate the
+answer. </p>
+<h2>Task</h2>
+<p> You are given a rectangular map of the
+region represented as a grid. Each cell in the grid is either land or
+water. </p>
+<p> A **lake** is defined as a group of water cells (`.`) that are
+connected orthogonally (up, down, left, or right). Diagonal
+connections do not count. </p>
+<p> Your task is to determine the number of distinct lakes present on
+the map. </p>
+<h2>Input</h2>
+<p> The first line contains two integers <code>n</code> and <code>m</code>
+(<code>1 ≤ n, m ≤ 100</code>), representing the number of rows and columns
+of the map. </p>
+<p> The next <code>n</code> lines each contain <code>m</code> characters. Each
+character is either <code>#</code> (representing land) or <code>.</code>
+(representing water). </p>
+<h2>Output</h2>
+<p> Print a single integer — the number of distinct lakes on the map. </p>
+<h3>Example Input 1</h3>
+<pre>
+3 4
+...#
+..#.
+.#.#
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+3
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+3 3
+###
+###
+###
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+0
+</pre>
+
+</section><section lang="pt">
+
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi055.jpg"/>
+</p>
+<p>
+Foste destacado para apoiar um projeto governamental que analisa a disposição dos lagos numa determinada região.
+</p>
+<p>
+A meio do teu trabalho, alguém liga-te com uma pergunta urgente: “Espera aí — quantos lagos existem no mapa neste momento?”
+</p>
+<p>
+Olhas rapidamente para o mapa da região e calculas a resposta.
+</p>
+<h2>Tarefa</h2>
+<p>
+É-te fornecido um mapa retangular da região representado por uma grelha. Cada célula da grelha é terra ou água.
+</p>
+<p>
+Um <strong>lago</strong> é definido como um grupo de células de água (`.`) conectadas ortogonalmente (cima, baixo, esquerda ou direita). Ligações diagonais não contam.
+</p>
+<p>
+O teu objetivo é determinar o número de lagos distintos presentes no mapa.
+</p>
+<h2>Input</h2>
+<p>
+A primeira linha contém dois inteiros <code>n</code> e <code>m</code> (<code>1 ≤ n, m ≤ 100</code>), representando o número de linhas e colunas do mapa.
+</p>
+<p>
+As <code>n</code> linhas seguintes contêm cada uma <code>m</code> caracteres. Cada carácter é <code>#</code> (representando terra) ou <code>.</code> (representando água).
+</p>
+<h2>Output</h2>
+<p>
+Imprime um único inteiro — o número de lagos distintos no mapa.
+</p>
+<h3>Example Input 1</h3>
+<pre>
+3 4
+...#
+..#.
+.#.#
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+3
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+3 3
+###
+###
+###
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+0
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi055.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

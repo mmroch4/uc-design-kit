@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 02 · I/O e Ciclos · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 2: I/O e Ciclos">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="2">
+    <h1>Aula Prática 02 · I/O e Ciclos</h1>
+    <p class="uc-small"><a href="aula02.html" hreflang="en">English version</a></p>
+    <div class="uc-content">
+<h2>Consolidação dos Conceitos Básicos
+
+    <h3>Exercício 1) Compreensão de Algoritmos Simples e Deteção de Erros</h3>
+</h2><p> Os Exercícios seguintes são para ser resolvidos sem usar o computador, deve seguir o funcionamento de cada um dos fragmentos de código apresentados e anotar a variação dos valores das variáveis. <br/>
+      No final, e apenas para confirmar as suas respostas, pode usar o computador para programar e executar os fragmentos de código apresentados. 
+
+    </p><ol>
+
+<li><p>Considere a seguinte declaração de variáveis: <strong>int a, b, c;</strong>. 
+      Identifique e corrija os erros nas seguintes instruções de escrita e leitura.</p><ol type="a">
+<li><pre>printf(<mark>"d%d%d</mark><mark>\n</mark><mark>"</mark>, a, b, c);</pre>
+</li><li><pre>printf(<mark>"%d;%d</mark><mark>\n</mark><mark>"</mark>, x, y);</pre>
+</li><li><pre>printf(<mark>"%d,%d</mark><mark>\n</mark><mark>"</mark>, a, b, c);</pre>
+</li><li><pre>scanf(<mark>"d"</mark>, a);</pre>
+</li><li><pre>scanf(<mark>"%d"</mark>, a);</pre>
+</li><li><pre>scanf(<mark>"d"</mark>, &amp;a);</pre>
+</li></ol></li>
+
+<li><p>As condições (<strong>if</strong>) presentes nos seguintes fragmentos de código não surtem o efeito indicado nas mensagens que são escritas. Para cada um dos fragmentos, simule a execução e indique o resultado, e corrija as condições para que correspondam à mensagem a ser imprimida.</p><ol type="a">
+<li><pre>int n = 0;
+if (1 &lt;= n &lt;= 10)
+    printf(<mark>"n entre 1 e 10</mark><mark>\n</mark><mark>"</mark>);</pre></li>
+<li><pre>int i = 1;
+if (i == 2 || 3)
+    printf(<mark>"i igual 2 ou 3</mark><mark>\n</mark><mark>"</mark>);</pre></li>
+<li><pre>int i = 2, j = 1, k = 0;
+if (i==j==k)
+    printf(<mark>"i,j,k iguais</mark><mark>\n</mark><mark>"</mark>);</pre></li>
+<li><pre>int i = 1, j = 2, k = 3;
+if (i!=(j&amp;&amp;k))
+    printf(<mark>"i diferente j e k</mark><mark>\n</mark><mark>"</mark>);</pre></li>
+</ol></li>
+
+<li><p>A seguir são apresentados alguns exemplos de programas simples. Para cada um deles, descreva o que o programa faz, ou seja, qual é o seu objetivo, e qual é o valor que é escrito no ecrã após a sua execução.</p><ol type="a">
+<li><p>Considere que o valor dado no input é
+	  <code><strong>12</strong></code>.<br/>
+</p><uc-code collapsible="" data-lang="c"><script type="text/plain">
+int main() {
+  int n, i, s;
+  printf("Valor de n? ");
+  scanf("%d",&n);
+  s= 0; i= 1;
+  while (i<=n) {
+    s= s-i*i;
+    i= i+1;
+  }
+  printf("%d\n",s);
+  return 0;
+}
+</script></uc-code>
+
+</li><li><p>Considere que os valores de input são <code><strong>13 -4 18 4 5 16 -10 32 7 18 33 17 -4 20 -12</strong></code>.
+            <br/>
+</p><uc-code collapsible="" data-lang="c"><script type="text/plain">
+int main() {
+  int x, y, n, cm, c;
+
+  printf("Valor de n (positivo)? ");
+  scanf("%d",&n);
+  printf("Valor de x (nao nulo)? ");
+  scanf("%d",&x);
+
+  c = 0;
+  cm= 0;
+  while (c < n) {
+    c = c+1;
+    printf("Valor de y? ");
+    scanf("%d",&y);
+    if (y%x == 0)
+      cm= cm+1;
+  }
+  printf("%d em %d\n",cm, n);
+  return 0;
+}
+</script></uc-code>
+
+</li></ol></li>
+
+<li><p>A seguir são apresentados alguns exemplos de programas simples que pretendem resolver os problemas enunciados, mas nem todos funcionam corretamente. <br/>
+        Encontre os erros e reescreva os programas de froma a corrigi-los.</p><ol type="a">
+<li><p><em>Somar os múltiplos de quatro de </em> <code><strong>1</strong></code> <em>até</em> <code><strong>1000</strong></code> <em>(inclusivé)</em>.<br/>
+</p><uc-code collapsible="" data-lang="c"><script type="text/plain">
+int main() {
+  int k, s;
+
+  k = 4;
+  while (k != 1000) {
+    s = 0;
+    s = s+k;
+    k = k+4;
+  }
+  printf("Soma = %d\n", s);
+  return 0;
+}
+</script></uc-code>
+
+</li><li><p><em>Determinar a soma das primeiras</em>
+<code><strong>n</strong></code> <em>potências de</em>
+<code><strong>k</strong></code>.<br/>
+</p><uc-code collapsible="" data-lang="c"><script type="text/plain">
+int main() {
+  int n, k, s;
+
+  printf("Valor de k? ");
+  scanf("%d",&k);
+
+  s = 1;
+  while (n != 0) {
+    s = k;
+    k = k*k;
+    n = n-1;
+  }
+  printf("Soma = %d\n", s);
+  return 0;
+}
+</script></uc-code>
+
+</li></ol></li>
+
+</ol>
+
+<h3>Exercício 2) Voltando a Desenhar no Ecrã</h3>
+<p><strong>Triângulos no ecrã.</strong>
+</p><ol>
+<li>Escreva um programa que, dada uma dimensão <code><strong>n</strong></code>, desenhe no ecrã um triângulo (usando os caracteres <code><strong>#</strong></code> e <code><strong>_</strong></code>). O triângulo resultante deverá ter <code><strong>n</strong></code> linhas, e a cada nova linha o número de <code><strong>#</strong></code> deve aumentar, enquanto os caracteres <code><strong>_</strong></code> preenchem o restante até à largura máxima. <br/>O resultado da execução do seu programa para uma dimensão de <code><strong>n = 5</strong></code> deverá ser o que se apresenta a seguir.
+
+<strong>
+        ____# <br/>
+        ___## <br/>
+        __### <br/>
+        _#### <br/>
+        ##### <br/>
+</strong>
+
+</li><li>Escreva um programa que, dada uma dimensão <code><strong>n</strong></code>, desenhe no ecrã um triângulo na horizontal ou na vertical (usando o caracter <code><strong>#</strong></code>). O programa deverá receber como input o valor <code><strong>1</strong></code> ou <code><strong>0</strong></code> para indicar qual a orientação do triângulo. Se receber <code><strong>1</strong></code> deverá desenhar o triângulo na horizontal, se receber <code><strong>0</strong></code> deverá desenhar o triânngulo na vertical. <br/>O resultado da execução do programa para cada uma das orientações possíveis, com uma dimensão <code><strong>n = 5</strong></code> deverá ser o que se apresenta a seguir.
+
+<ul>
+<li><em>Input:</em> <strong>5 1</strong><br/><em>Output:</em>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+    #
+   ###
+  #####
+ #######
+#########
+</script></uc-code>
+</li><li><em>Input:</em> <strong>5 0</strong><br/><em>Output:</em>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+#
+##
+###
+####
+#####
+####
+###
+##
+#
+</script></uc-code>
+
+</li></ul>
+</li></ol>
+
+<h3>Exercício 3) Calculando Volumes</h3>
+<ol>
+<li><strong>Volume da Caixa.</strong> Escreva um programa que leia as dimensões (em centimetros) de um caixa retangular e que escreva o seu volume. <br/>
+      Note que os valores correspondentes às dimensões da caixa podem pertencer ao conjunto dos números racionais. De que tipo devem ser as variáveis que guardam esses valores? <br/>
+      Tenha em atenção a forma como faz a leitura destes valores e a forma como escreve o resultado. <br/>
+    Um exemplo de execução é o seguinte: 
+<pre>
+<strong><code>$ 11 5 6 <br/>LxWxH: 11*5*6 (cm)<br/>Volume: 330 (cm^3)</code></strong></pre>
+<p>Experimente executar o seu programa para as seguintes dimensões:</p>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">L</th>
+<th scope="col">W</th>
+<th scope="col">H</th>
+<th scope="col">Volume</th>
+</tr>
+<tr>
+<td>11</td>
+<td>5</td>
+<td>6</td>
+<td>330</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6</td>
+<td>11</td>
+<td>?</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>1.2</td>
+<td>11</td>
+<td>?</td>
+</tr>
+<tr>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+<td>?</td>
+</tr>
+<tr>
+<td>20.6</td>
+<td>14.35</td>
+<td>50.2</td>
+<td>?</td>
+</tr>
+<tr>
+<td>120</td>
+<td>560</td>
+<td>1700</td>
+<td>?</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>1500</td>
+<td>1500</td>
+<td>?</td>
+</tr>
+</table></div>
+
+<ul>
+<li>Verifique que o programa não calcula o valor correto para <code><strong>L = W = H = 1500</strong></code>. Porquê? Como consegue corrigir?</li>
+</ul>
+
+</li><li><strong>Volume de um Cone.</strong> Escreva um programa que leia o valor do raio (<code><strong>R</strong></code>) da base de um cone e a altura (<code><strong>H</strong></code>) do cone e calcule o seu volume usando a seguinte fórmula: <math><mi>V</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>3</mn><mi>π</mi>
+<msup>
+<mi>R</mi>
+<mn>2</mn>
+</msup><mi>H</mi>
+</math>. 
+<em>Sugestão:</em> Use uma constante para definir <math><mi>π</mi></math> e use a multiplicação para o cálculo da potência. <br/>
+    Um exemplo de execução é o seguinte: 
+<pre>
+<strong>$ 5 12 <br/>O volume do cone com raio da base 5.00 e altura 12.00 é: 314.15927</strong></pre>
+<strong>Nota:</strong> Tenha atenção ao número de casas decimais impressas na mensagem!
+
+  </li></ol>
+
+<h3>Exercício 4) Declarações Condicionais</h3>
+<ol>
+<li>Escreva um algoritmo que calcule o preço de saldo de um artigo, sabendo que os descontos <code><strong>D</strong></code> em função do preço actual <code><strong>P</strong></code> são os seguintes.
+
+<div class="uc-table"><table>
+<tr>
+<td><code><strong>P (Preço)</strong></code></td>
+<td><code><strong>D (Desconto)</strong></code></td>
+</tr>
+<tr>
+<td><code>P &gt; 5000</code></td>
+<td><code>40%</code></td>
+</tr>
+<tr>
+<td><code>2500 &lt; P &lt;= 5000</code></td>
+<td><code>20%</code></td>
+</tr>
+<tr>
+<td><code>1000 &lt; P &lt;= 2500</code></td>
+<td><code>10%</code></td>
+</tr>
+<tr>
+<td><code>P &lt;= 1000</code></td>
+<td><code>5%</code></td>
+</tr>
+</table></div>
+
+<strong>Nota:</strong> Tenha em atenção às condições que realmente precisa de verificar!
+
+</li><li>Escreva um algoritmo em que dado <strong>um ano</strong> e <strong>um número de dias</strong>, converta corretamente para a data correspondente, isto é para o <code><strong>dia</strong></code> e o <code><strong>mês</strong></code> correto tendo em conta o <code><strong>ano</strong></code> fornecido. Não use variáveis indexadas e lembre-se que existem anos bissextos. <br/>
+      Um exemplo de execução é o seguinte: 
+<pre>
+<strong>$ 1992 45 <br/>A data completa é: 14/2/1992</strong></pre>
+
+</li><li>Três valores definem as medidas dos lados de um triângulo se e só se forem valores positivos e qualquer um dos valores for menor do que a soma dos outros dois. Esta condição chama-se <em>desigualdade triangular</em>.
+
+      <ol type="a">
+<li>Escrever um programa que leia três valores inteiros (positivos, negativos ou zero) e verifique se definem um triângulo. Se os valores atendem à desigualdade triangular, o programa deve retornar a mensagem "<em><strong>(a, b, c) define um triângulo</strong></em>", caso contrário deve retornar a mensagem "<em><strong>(a, b, c) não pode definir um triângulo</strong></em>". Na mensagem <code><strong>a</strong></code>, <code><strong>b</strong></code> e <code><strong>c</strong></code> devem ser substituidos pelos valores lidos. 
+            Um exemplo de execução é o seguinte: <br/><pre>
+ <strong>$ 3 4 5 <br/>(3, 4, 5) define um triângulo</strong></pre></li>
+
+<li>Modifique o seu programa para, verificando-se se que
+            os valores lidos atendem à desigualdade triangular, indicar se o triângulo que formam é <code><strong>equilatero</strong></code>, <code><strong>isósceles</strong></code>, ou <code><strong>escaleno</strong></code>. Recorde as suas definições:<ul>
+<li><em>Triângulo Equilátero</em>: Todos os três lados têm o mesmo comprimento.</li>
+<li><em>Triângulo Isósceles</em>: Pelo menos dois lados têm o mesmo comprimento.</li>
+<li><em>Triângulo Escaleno</em>: Todos os três lados têm comprimentos diferentes.</li>
+</ul>
+            Um exemplo de execução é o seguinte: <br/><pre>
+  <strong><code> $ 3 4 5 <br/>(3, 4, 5) define um triângulo escaleno</code></strong></pre></li>
+
+</ol>
+</li></ol>
+
+<h3>Exercício 5) Mais Algoritmos Simples</h3>
+<ol>
+<li>Escrever um programa que leia os coeficientes <code><strong>a</strong></code>, <code><strong>b</strong></code> e <code><strong>c</strong></code> de uma equação de segundo grau <math><mi>a</mi><msup>
+<mi>x</mi>
+<mn>2</mn>
+</msup>
+<mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></math> e determine as raízes da equação indicando o tipo de raízes, ou seja, se a equação tem ou não raízes reais, e se tiver, se tem uma raíz dupla ou duas raízes distintas. Caso tenha raízes, o seu problema deve devolver o(s) seu(s) valor(es). Assuma que os coeficientes são inteiros. 
+      O seu programa deve devolver as seguintes mensagens, dependendo do resultado obtido para os valores lidos: <br/>
+      "<em><strong>Sem raizes!</strong></em>", <br/>
+      "<em><strong>Com raiz dupla: x = valor</strong></em>" ou <br/> 
+      "<em><strong>Com duas raizes distintas: x1 = valor_1 e x2 = valor_2</strong></em>". <br/>
+      Substitua <code><strong><em>valor</em></strong></code>, <code><strong><em>valor_1</em></strong></code> ou <code><strong><em>valor_2</em></strong></code>  pelos valores obtidos. 
+<br/>
+      Recorde que para verificar as raízes de uma equação de segundo grau, precisamos de calcular o discriminante <math><mi>Δ</mi><mo>=</mo><mi></mi><msup>
+<mi>b</mi>
+<mn>2</mn>
+</msup><mo>-</mo><mn>4</mn><mi>a</mi><mi>c</mi></math>, e apartir do valor de Δ, podemos determinar o tipo de raízes:
+      <ul>
+<li>Se <math><mi>Δ</mi><mo>&lt;</mo><mn>0</mn></math>, a equação não tem raízes reais.</li>
+<li>Se <math><mi>Δ</mi><mo>=</mo><mn>0</mn></math>, a equação tem uma raiz real dupla.</li>
+<li>Se <math><mi>Δ</mi><mo>&gt;</mo><mn>0</mn></math>, a equação tem duas raízes reais distintas.
+      </li></ul>
+
+</li><li>Escreva um programa que, dado um número positivo
+    <code><strong>n</strong></code>, calcule e escreva a sua decomposição em
+    factores primos. O seu programa deverá escrever a decomposição da forma: <strong><code> 2 multiplicidade 3<br/>5 multiplicidade 2<br/>...
+</code></strong><br/><br/>
+      Um exemplo de execução é o seguinte: <br/><pre>
+<strong><code>$ 24 <br/>2 multiplicidade 3<br/>3 multiplicidade 1</code></strong></pre></li>
+
+<li>Escreva um programa que leia dois valores inteiros <code><strong>a</strong></code> e <code><strong>b</strong></code> e determine o menor múltiplo comum entre eles. </li>
+
+<li>A linguagem de programação C não tem um operador para
+    potências, tem uma função definida na biblioteca
+    <code><strong>math.h</strong></code>. Escreva um programa em que dados os valores <code><strong>x</strong></code> e <code><strong>n</strong></code>, calcule a potência <math><msup>
+<mi>n</mi>
+<mi>x</mi>
+</msup></math>. Note que podemos calcular <math><msup>
+<mi>n</mi>
+<mi>x</mi>
+</msup></math> efetuando multiplicações sucessivas (assumindo <math><mi>n</mi><mo>&gt;=</mo><mo>0</mo></math> inteiro).</li>
+
+<li>Escreva um programa que lê uma quantia inteira de euros e
+    mostra como pagar essa quantia em notas de 20 euros, 10 euros, 5
+    euros e moedas e 1 euro. Assuma que vai usar sempre o máximo
+    número de notas e moedas de valor máximo possível. Exemplo:<strong><code><code>Quantia em EUR? 93<br/>
+    notas EUR 20: 4<br/>
+    notas EUR 10: 1<br/>
+    notas EUR 5: 0<br/>
+    moedas EUR 1: 3</code></code></strong></li>
+
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula02_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

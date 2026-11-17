@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Circular Queue (array based) · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), example code from the lectures: Circular Queue (array based).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Código</a></li><li aria-current="page">Circular Queue (array based)</li></ol>
+    </nav>
+    <h1>Circular Queue (array based)</h1>
+    <div class="uc-content">
+<p>This implementation is for an array based circular
+queue. It needs to be adjusted to deal with larger number of
+nodes. <code>NodeInfo</code> depends on the type of values we store in the
+queue, thus adjust accordingly.</p>
+<h2>circularQueue.h</h2>
+<uc-code collapsible="" data-lang="c" filename="circularQueue.h"><script type="text/plain">
+// -------------------------------------------------
+// Programação Imperativa (CC1003)
+// Header file for an array based circular queue
+// Fernando Silva, DCC/FCUP
+// -------------------------------------------------
+
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#define MAXNODES 1000
+
+#define NodeInfo int  // adjust to the type of values
+
+typedef struct {
+  int first;
+  int last;
+  int size;
+  NodeInfo nodes[MAXNODES];
+} Queue;
+
+// prototypes
+void empty(Queue *);
+bool isEmpty(Queue *);
+bool isFull(Queue *);
+int size(Queue *);
+void addLast(Queue *, NodeInfo);
+NodeInfo removeFirst(Queue *);
+NodeInfo first(Queue *);
+</script></uc-code>
+<h2>circularQueue.c</h2>
+<uc-code collapsible="" data-lang="c" filename="circularQueue.c"><script type="text/plain">
+// -------------------------------------------------
+// Programação Imperativa (CC1003)
+// Implementation of an array based circular queue
+// Fernando Silva, DCC/FCUP
+// -------------------------------------------------
+
+#include "circularQueue.h"
+
+// make the queue empty
+void empty(Queue *q) {
+  q->size= 0;
+  q->first= q->last= 0;
+}
+// verify if queue is empty
+bool isEmpty(Queue *q) {
+  return (q->size == 0);
+}
+// verify if stack is full
+bool isFull(Queue *q) {
+  return (q->size >= MAXNODES); // or (first == last)
+}
+// insert (enqueue) a new node in last position
+void addLast(Queue *q, NodeInfo val) {
+  if (isFull(q)) {
+    printf("Queue is full\n"); exit(1);
+  }
+  q->nodes[q->last]= val;
+  q->last = (q->last+1)%MAXNODES;
+  q->size++;
+}
+// remove (dequeue) first node from queue
+NodeInfo removeFirst(Queue *q) {
+  if (isEmpty(q)){
+    printf("Stack is Empty\n"); exit(1);
+  }
+  NodeInfo val= q->nodes[q->first];
+  q->size--;
+  q->first = (q->first+1)%MAXNODES;
+  return val;
+}
+// inspect first node in the queue
+NodeInfo first(Queue *q) {
+  if (isEmpty(q)){
+    printf("Stack is Empty\n"); exit(1);
+  }
+  return q->nodes[q->first];
+}
+</script></uc-code>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/circularQueue.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

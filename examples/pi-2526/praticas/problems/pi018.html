@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI018] Palindrome Fix · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI018 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI018] Palindrome Fix</li></ol>
+    </nav>
+    <h1>[PI018] Palindrome Fix</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi018.png"/>
+</p>
+<p>Welcome to **Yti City**, where symmetry is everything. From the streets to the signs, everything must read the same forward and backward — or at least that's the rule enforced by the city's strictest civil servant: the Palindrome Inspector.
+
+</p><p>As the official inspector, your job is to assess whether strings (used in documents, signage, and digital records) are valid palindromes. If they're not, you must report how many characters need fixing to restore perfect symmetry. 
+
+</p><p>This week is the annual "Festival of Reflections," and the citizens are relying on you to make sure all text elements are palindromically perfect.
+
+</p><p>Time to inspect — and, if needed, suggest the minimal fix!
+
+</p><h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>A palindrome is a string that reads the same forwards and backwards (i.e. it is equal to its reverse).
+
+</p><p>You will be given a string and must determine:
+</p><ul>
+<li> If the string is already a palindrome, report that the inspection passed.
+</li><li> If not, determine the <strong>minimum number of character changes}</strong> needed to turn it into a valid palindrome.
+</li></ul>
+<h2>
+Input
+</h2>
+<p>
+The input consists of a single line containing a non-empty string of lowercase letters (alphabetical characters). The string's length is between 1 and 100,000 characters.
+</p>
+<h2>
+Ouput
+</h2>
+
+If the string is a palindrome, output a line with<br/>
+ <code>Inspection passed</code><br/>
+otherwise, output a line with<br/>
+ <code>Oh boy, this needs a fix. You have to change at least x characters</code><br/>
+where <code>x</code> is the minimum number changes needed to make it a palindrome.
+
+<h2><a id="SECTION00022000000000000000">
+Example 1</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+madam
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+Inspection passed
+</pre>
+<h2><a id="SECTION00023000000000000000">
+Example 2</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+xoxo
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+Oh boy, this needs a fix. You have to change at least 2 characters
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi018.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

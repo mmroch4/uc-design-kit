@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI044] Beyblade Arena · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI044 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI044] Beyblade Arena</li></ol>
+    </nav>
+    <h1>[PI044] Beyblade Arena</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi044.jpg"/>
+</p>
+<p>A beyblade is spinning inside a rectangular arena. It moves
+diagonally and bounces off the arena walls. Where will it stop after a
+given number of moves? </p>
+<h2>Task</h2>
+<p>
+You are given a rectangular arena of size <code>n</code> by
+<code>m</code>. The beyblade starts at position <code>(x, y)</code> within the
+arena.</p>
+<p>At each time step, the beyblade moves diagonally by updating its position from <code>(x, y)</code> to <code>(x + 1, y + 1)</code>. This is its initial velocity: <code>(+1, +1)</code>.</p>
+<p>If the beyblade hits a wall of the arena, the direction along the corresponding axis reverses. For example, if it hits the left or right wall, the x-direction changes sign; if it hits the top or bottom wall, the y-direction changes sign.</p>
+<p>The valid positions in the arena are those where <code>1 ≤ x ≤ n</code> and <code>1 ≤ y ≤ m</code>.</p>
+<p>After <code>k</code> moves, the beyblade stops. Your task is to determine its final position.</p>
+<h2>Input</h2>
+<p>The input consists of a single line with five integers: <code>n</code>, <code>m</code>, <code>x</code>, <code>y</code>, and <code>k</code>, separated by spaces.</p>
+<p>Constraints: <code>1 ≤ n, m ≤ 100,000</code>; <code>1 ≤ x ≤ n</code>; <code>1 ≤ y ≤ m</code>; <code>1 ≤ k ≤ 1,000,000,000</code>.</p>
+<h2>Output</h2>
+<p>Print a single line with two integers, the final coordinates <code>x</code> and <code>y</code> of the beyblade after <code>k</code> moves.</p>
+<h3>Example Input 1</h3>
+<pre>
+3 3 2 2 1
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+3 3
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+3 3 2 2 2
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+2 2
+</pre>
+<h3>Example Input 3</h3>
+<pre>
+3 3 2 2 3
+</pre>
+<h3>Example Output 3</h3>
+<pre>
+1 1
+</pre>
+<h3>Explanation:</h3>
+<p>The beyblade spins along the path (2, 2), (3, 3), (2, 2), (1, 1), at which point it loops and goes back to the beginning.</p>
+<p>After 3 moves, it ends in position (1, 1)</p>
+<h3>Example Input 4</h3>
+<pre>
+3 3 1 2 3
+</pre>
+<h3>Example Output 4</h3>
+<pre>
+2 1
+</pre>
+<h3>Explanation</h3>
+<p>The beyblade spins along the path (1, 2), (2, 3), (3, 2), (2, 1), at which point it loops and goes back to the beginning.</p>
+<p>After 3 moves, it is in position (2, 1).</p>
+</section><section lang="pt">
+
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi044.jpg"/>
+</p>
+<p>Uma beyblade está a girar dentro de uma arena retangular. Move-se na diagonal e rebate nas paredes da arena. Onde irá parar após um determinado número de movimentos?</p>
+<h2>Tarefa</h2>
+<p>
+É-lhe dada uma arena retangular com dimensões <code>n</code> por <code>m</code>. A beyblade começa na posição <code>(x, y)</code> dentro da arena.
+</p>
+<p>A cada instante de tempo, a beyblade move-se na diagonal, atualizando a sua posição de <code>(x, y)</code> para <code>(x + 1, y + 1)</code>. Esta é a sua velocidade inicial: <code>(+1, +1)</code>.</p>
+<p>Se a beyblade atingir uma das paredes da arena, a direção ao longo do respetivo eixo inverte-se. Por exemplo, se atingir a parede esquerda ou direita, a direção do eixo x muda de sinal; se atingir a parede superior ou inferior, a direção do eixo y muda de sinal.</p>
+<p>As posições válidas na arena são aquelas em que <code>1 ≤ x ≤ n</code> e <code>1 ≤ y ≤ m</code>.</p>
+<p>Após <code>k</code> movimentos, a beyblade para. A sua tarefa é determinar a posição final.</p>
+<h2>Input</h2>
+<p>A entrada consiste numa única linha com cinco inteiros: <code>n</code>, <code>m</code>, <code>x</code>, <code>y</code> e <code>k</code>, separados por espaços.</p>
+<p>Restrições: <code>1 ≤ n, m ≤ 100.000</code>; <code>1 ≤ x ≤ n</code>; <code>1 ≤ y ≤ m</code>; <code>1 ≤ k ≤ 1.000.000.000</code>.</p>
+<h2>Output</h2>
+<p>Imprima uma única linha com dois inteiros, as coordenadas finais <code>x</code> e <code>y</code> da beyblade após <code>k</code> movimentos.</p>
+<h3>Example Input 1</h3>
+<pre>
+3 3 2 2 1
+</pre>
+<h3>Example Output 1</h3>
+<pre>
+3 3
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+3 3 2 2 2
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+2 2
+</pre>
+<h3>Example Input 3</h3>
+<pre>
+3 3 2 2 3
+</pre>
+<h3>Example Output 3</h3>
+<pre>
+1 1
+</pre>
+<h3>Explicação:</h3>
+<p>A beyblade gira ao longo do percurso (2, 2), (3, 3), (2, 2), (1, 1), a partir do qual entra num ciclo e volta ao início.</p>
+<p>Após 3 movimentos, termina na posição (1, 1).</p>
+<h3>Example Input 4</h3>
+<pre>
+3 3 1 2 3
+</pre>
+<h3>Example Output 4</h3>
+<pre>
+2 1
+</pre>
+<h3>Explicação</h3>
+<p>A beyblade gira ao longo do percurso (1, 2), (2, 3), (3, 2), (2, 1), a partir do qual entra num ciclo e volta ao início.</p>
+<p>Após 3 movimentos, está na posição (2, 1).</p>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi044.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

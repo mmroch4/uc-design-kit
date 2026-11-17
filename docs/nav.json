@@ -4,9 +4,10 @@
   "languages": {
     "pt": {
       "home": "pt/index.html",
+      "examples": "pt/exemplos/index.html",
       "labels": {
         "docs": "Documentação",
-        "example": "Exemplo",
+        "example": "Exemplos",
         "menu": "Menu",
         "closeMenu": "Fechar menu",
         "sections": "Secções da documentação",
@@ -106,7 +107,11 @@
         {
           "title": "Exemplos",
           "pages": [
+            { "title": "Visão geral", "path": "pt/exemplos/index.html" },
             { "title": "EDados 2025/26", "path": "pt/exemplos/edados.html" },
+            { "title": "PC 2026/27", "path": "pt/exemplos/pc.html" },
+            { "title": "IP 2025/26", "path": "pt/exemplos/ip.html" },
+            { "title": "PI 2025/26", "path": "pt/exemplos/pi.html" },
             { "title": "Padrões de página", "path": "pt/exemplos/padroes.html" }
           ]
         },
