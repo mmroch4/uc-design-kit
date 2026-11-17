@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="6">
     <h1>Aula Prática 06 · Strings, Recursão e Pesquisa</h1>
-    <p class="uc-small"><a href="aula06.html" hreflang="en" lang="en">English version</a></p>
+    <p class="uc-small"><a href="aula06.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
 <p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
@@ -74,7 +74,7 @@ Para ter 100% bastará sempre resolver os exercícios principais.</p>
 <summary><em>Sugestão #2</em></summary>
 <p>- Em vez de analisar a string caracter a caracter e tentar perceber onde está, é mais simples percorrê-la contando grupos de caracteres iguais consecutivos. 
 </p><p>- Pode usar uma função auxiliar que avança o índice enquanto o caracter for o mesmo e devolve quantos encontrou:
-  </p><uc-code collapsible="" lang="c"><script type="text/plain">
+  </p><uc-code collapsible="" data-lang="c"><script type="text/plain">
 int get() {
     if (input[iter] == '\0') return 0;
 
@@ -216,7 +216,7 @@ Not Found
   Implementa um dos algoritmos de ordenação apresentados nas aulas teóricas e executa tanto a pesquisa <em>sequencial</em> como a pesquisa <em>binária</em> para encontrar um determinado número <code>key</code>. 
   <br/>Mede e compara o tempo de execução de cada estratégia de pesquisa utilizando a função <code><strong>clock()</strong></code> da biblioteca <code><strong>time.h</strong></code>. Observa qual algoritmo é o mais rápido.
 <br/>Um exemplo da estrutura do código é o seguinte:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -438,7 +438,7 @@ O resultado será colocado no array dado por <code><strong>res</strong></code>. 
 Recorde que se <code><strong>c</strong></code> tem o código de um algarismo, então o valor do algarismo é dado por <code><strong>c - '0'</strong></code>. Para a <strong>base 16</strong>, temos ainda <code><strong>'A', 'B', ..., 'F'</strong></code>, com valores 10, 11, . . . , 15, dados por <code><strong>c - 'A' + 10</strong></code>. 
 	</li>
 <li>Completar e testar o programa, onde valida se a cadeia de caracteres dada por <code><strong>x</strong></code> constitui uma representação válida para um inteiro na base indicada. <br/>
-Essa função retorna <code><strong>1</strong></code> se a representação for válida. Caso contrario, retorna <code><strong>0</strong></code>. <br/><uc-code collapsible="" lang="c"><script type="text/plain">
+Essa função retorna <code><strong>1</strong></code> se a representação for válida. Caso contrario, retorna <code><strong>0</strong></code>. <br/><uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include
 
 #define MAXCHARS 100

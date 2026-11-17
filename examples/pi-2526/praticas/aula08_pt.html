@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="8">
     <h1>Aula Prática 08 · Estruturas e Asserções</h1>
-    <p class="uc-small"><a href="aula08.html" hreflang="en" lang="en">English version</a></p>
+    <p class="uc-small"><a href="aula08.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <p><a href="aula08.html">Version in English</a><br/>
 </p>
@@ -97,7 +97,7 @@ Para ter 100% bastará sempre resolver os exercícios principais.</p>
 
 <h3>Exercício 2) Base de Dados de Equipas, Jogadores e Torneios de <em>eSports</em></h3>
 <p>Dada uma base de dados com informação sobre <strong>jogadores</strong>, <strong>equipas</strong> e <strong>torneios de <em>eSports</em></strong>, pretende-se consultar a mesma para obter várias informações. As estruturas de dados que vão ser usadas pelo programa obedecem à seguinte especificação:</p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define MAX 10
 #define MAXNOME 100
 #define MAXJOGADORES 100
@@ -202,7 +202,7 @@ Assume-se que <code><strong>posJogador</strong></code> contém o índice da posi
 <h3>Exercício 3) Asserções</h3>
 <ol>
 <li>Considere o seguinte algoritmo de Euclides que calcula o máximo divisor comum:<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 int mdc(int a, int b) {
   while (a != b) {
     if(a > b)
@@ -236,7 +236,7 @@ Modifique ainda a sua função de forma a acrescentar uma asserção corresponde
 </pre><br/>
       que elimina a primeira ocorrência de um carater <code><strong>ch</strong></code> de uma string <code><strong>str</strong></code>.
 <br/>Exemplo:<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 char str[] = "ABBA";
 eliminar(str, ’B’);
 printf("%s", str);   // deve imprimir "ABA"
@@ -244,7 +244,7 @@ printf("%s", str);   // deve imprimir "ABA"
 Tenha o cuidado de colocar corretamente o terminador <code>'\0'</code>.
 </li>
 <li>Considere a seguinte função para inserir um valor num vetor de <code><strong>n</strong></code> elementos baseada no algoritmo usado na <em>ordenação por inserção</em>; assume que os valores do vetor estão por ordem crescente à entrada da função; no final, o vetor terá mais um valor e manterá a ordem ascendente.<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 void inserir(int vec[], int n, int x) {
   int j = n-1;
   while(j>=0 && vec[j]>x) {

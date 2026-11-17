@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="9">
     <h1>Practical Class 09 · Recursion, Sorting and Arrays</h1>
-    <p class="uc-small"><a href="aula09_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <p class="uc-small"><a href="aula09_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
@@ -43,7 +43,7 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
 <h3>Exercise 1) Recursion and Sorting</h3>
 <ol>
 <li>Consider the following recursive function:<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 void func_rec(int n) {
   if (n != 0) {
     func_rec(n / 2);
@@ -134,12 +134,12 @@ from the theoretical lecture to implement this modification in the <em>Quicksort
 <br/>
       that, given two unsorted arrays <code><strong>a</strong></code> (with <code><strong>na</strong></code> elements) and <code><strong>b</strong></code> (with <code><strong>nb</strong></code> elements), checks if the two arrays are permutations of each other.
 <br/>Examples:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  a[] = {22, 10, 3, 15, 4, 3, 22}
         b[] = {3, 22, 22, 4, 15, 3, 10}
 Output: Yes
 </script></uc-code>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  a[] = {20, 15, 3, 6}
         b[] = {3, 22, 21, 4}
 Output: No
@@ -156,7 +156,7 @@ Write a function <br/>
 <br/>
 that removes from the array <code><strong>products</strong></code> the products Ana decides not to buy, keeping only the products Ana selected in the array.
 <br/>Example:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  products = {{pasta, 3.2, 500}, {peanuts, 5.4, 700}, {cookies, 4.2, 600}, {milka, 5.4, 600}]
         k = 3
 Output: res = {{pasta, 3.2, 500}, {cookies, 4.2, 600}, {milka, 5.4, 600}}
@@ -274,7 +274,7 @@ Queued clients:
 Choose an option: 4
 </pre>
 <br/><strong>Given code:</strong><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
 #include <string.h>
 
@@ -428,7 +428,7 @@ Last word: it
 Choose an option: 4
 </pre>
 <br/><strong>Given code:</strong><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
 #include <string.h>
 

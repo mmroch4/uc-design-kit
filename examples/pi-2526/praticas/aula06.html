@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="6">
     <h1>Practical Class 06 · Strings, Recursion and Searching</h1>
-    <p class="uc-small"><a href="aula06_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <p class="uc-small"><a href="aula06_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercxsises from the last two practical classes:<br/>
@@ -77,7 +77,7 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
 <p>- Instead of analyzing the string character by character and trying to figure out where you are, it is simpler to traverse it by counting groups of consecutive identical characters.</p>
 <p>- You can use a helper function that advances the index while the character remains the same and returns how many were found:</p>
 
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 int get() {
     if (input[iter] == '\0') return 0;
 
@@ -226,7 +226,7 @@ Not Found
   Implement one of the sorting algorithms presented in theoretical classes and execute both <em>sequential</em> and <em>binary</em> searches to find a given <code><strong>key</strong></code>. <br/>
   Measure and compare the execution time of each searching strategy using the <code><strong>clock()</strong></code> function from the <code><strong>time.h</strong></code> library. Observe which algorithm performs the fastest.
 <br/>An example of the code structure is as follows:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -455,7 +455,7 @@ The result will be placed in the array given by <code><strong>res</strong></code
 Remember that if <code><strong>c</strong></code> has a single-digit code, then the value of the digit is given by <code><strong>c - '0'</strong></code>. For a <strong>base 16</strong>, we have <code><strong>'A', 'B', ..., 'F'</strong></code>, with values 10, 11, . . . , 15, given by <code><strong>c - 'A' + 10</strong></code>. 
 	</li>
 <li>Complete and test the program, where it validates whether the string of characters given by <code><strong>x</strong></code> constitutes a valid representation for an integer in the indicated base. <br/>
-	This function returns <code><strong>1</strong></code> if the representation is valid. Otherwise, it returns <code><strong>0</strong></code>.<br/><uc-code collapsible="" lang="c"><script type="text/plain">
+	This function returns <code><strong>1</strong></code> if the representation is valid. Otherwise, it returns <code><strong>0</strong></code>.<br/><uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include
 
 #define MAXCHARS 100

@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="8">
     <h1>Practical Class 08 · Structures and Assertions</h1>
-    <p class="uc-small"><a href="aula08_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <p class="uc-small"><a href="aula08_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
@@ -91,7 +91,7 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
 
 <h3>Exercise 2) Database of Teams, Players, and <em>eSports</em> Tournaments</h3>
 <p>Given a database containing information about <strong>players</strong>, <strong>teams</strong>, and <strong><em>eSports</em> tournaments</strong>, the goal is to query it to obtain various pieces of information. The data structures that will be used by the program follow the specification below:</p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define MAX 10
 #define MAXNAME 100
 #define MAXPLAYERS 100
@@ -195,7 +195,7 @@ It is assumed that <code><strong>playerPos</strong></code> contains the index of
 <h3> Exercise 3) Assertions</h3>
 <ol>
 <li>Consider the following Euclides algorithm that calculates the greatest common divisor:<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 int mdc(int a, int b) {
   while (a != b) {
     if(a > b)
@@ -229,7 +229,7 @@ Also, modify your function to add an assertion corresponding to the following po
 </pre><br/>
       that removes the first occurrence of a character <code><strong>ch</strong></code> from a string <code><strong>str</strong></code>.
 <br/>Example:<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 char str[] = "ABBA";
 eliminate(str, ’B’);
 printf("%s", str);   // should print "ABA"
@@ -237,7 +237,7 @@ printf("%s", str);   // should print "ABA"
 Be careful to place the terminator <code>'\0'</code> correctly.
 </li>
 <li>Consider the following function for inserting a value into an array of <code><strong>n</strong></code> elements based on the algorithm used in <em>insertion sort</em>; it assumes that the array values are in ascending order at the beginning of the function; at the end, the array will have one more value and will maintain ascending order.<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 void insert(int vec[], int n, int x) {
   int j = n-1;
   while(j>=0 && vec[j]>x) {

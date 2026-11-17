@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="7">
     <h1>Practical Class 07 · Recursion, Sorting and Structures</h1>
-    <p class="uc-small"><a href="aula07_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <p class="uc-small"><a href="aula07_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
@@ -49,7 +49,7 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
 </pre><br/>
       that counts how many pairs of values in an array <code><strong>arr</strong></code> are not in <em>ascending</em> order, that is <code><strong>arr[i] &gt; arr[i + 1]</strong></code>.<br/><br/>
       Example:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  arr = {3,1,2,2,4,0}; n = 6
 Output: There are 2 pairs of values out of order!  // because 3 > 1 and 4 > 0
 </script></uc-code>
@@ -207,7 +207,7 @@ Output: There are 2 pairs of values out of order!  // because 3 > 1 and 4 > 0
 <pre>void generateSubsets(int arr[], int index, int subset[], int subsetSize);
 </pre>
 
-      Example:<br/><uc-code collapsible="" lang="c"><script type="text/plain">
+      Example:<br/><uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  Enter set: {1, 2, 3}
 Output: Possible subsets:
         {}
@@ -232,7 +232,7 @@ Output: Possible subsets:
 </msup>
 </math> 
  (in the plane): </p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef struct point {
   double x, y;
 } Point;
@@ -267,7 +267,7 @@ Represent the rectangles using the <strong>bottom-left</strong> and <strong>top-
 </li>
 <li><h4>Arrays of Structures</h4>
 <p>Given a database containing information about students and courses in a university, we want to query it to obtain information. The data structures that will be used by the program follow the specification below.</p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define MAX 11
 #define MAXNOME 100
 
@@ -392,7 +392,7 @@ ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
 </li>
 <li><h4>Struct <code>Date</code></h4>
 <p>Consider the following structure presented in the theoretical lectures, which represents dates:</p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef struct date {
   int day, month, year;
 } Date;
@@ -424,7 +424,7 @@ The result of the function should be represented by a variable of type <strong><
 </li>
 <li><h4>Struct <code>Robo</code></h4>
 <p>Consider the following structure that represents the positions and movements of a robot:</p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef enum movement {North, West, South, East} Movement;
 
 typedef struct position {

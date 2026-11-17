@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="10">
     <h1>Practical Class 10 · Linked Lists</h1>
-    <p class="uc-small"><a href="aula10_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <p class="uc-small"><a href="aula10_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
@@ -43,7 +43,7 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
 <h3>Exercise 1) Methods for Linked Lists</h3>
 
 For the following exercises, consider the following data structure to represent linked lists of integer values, based on the structure presented in the theoretical lectures:<br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define NodeInfo int
 
 typedef struct Node {
@@ -110,7 +110,7 @@ Based on the <code><strong>LinkedList</strong></code> data structure and the fun
 Your task is to use a linked list to store the data related to the books in the library, as well as to manage the flow of books that enter and leave the library. <br/>
 To do this, you must answer the following questions by adding new methods or modifying the methods developed in Exercise 1 in order to add new books, (possibly) remove others, search for a specific identifier, or at least print sets of books. <br/><br/>
 <strong>Note:</strong> Make the necessary changes to the structures defined in the previous exercise so that each node (element) of the linked list contains the information of the corresponding book. You may use the following data structure to define this information.<br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef struct {
   int day;
   int month;
@@ -167,7 +167,7 @@ typedef struct {
 </li>
 </ol>
 <strong>Given code:</strong><br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

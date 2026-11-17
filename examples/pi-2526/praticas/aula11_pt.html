@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="11">
     <h1>Aula Prática 11 · Pilhas e Filas, Complexidade e Ficheiros I/O</h1>
-    <p class="uc-small"><a href="aula11.html" hreflang="en" lang="en">English version</a></p>
+    <p class="uc-small"><a href="aula11.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <p><a href="aula11.html">Version in English</a><br/>
 </p>
@@ -53,7 +53,7 @@ Para ter 100% bastará sempre resolver os exercícios principais.</p>
 </ul>
 
 Agora, considera o <em>header file</em> dado <code><strong>linkedlist.h</strong></code>:<br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -88,11 +88,11 @@ Para cada função, indica a sua <em>complexidade temporal</em> utilizando a not
 Escreve um programa (em <code><strong>main_brackets.c</strong></code>) que leia uma cadeia de caracteres da entrada padrão e utilize a tua implementação de <em>stack</em> para verificar se os parênteses estão equilibrados. O teu programa deve tratar <code>(</code>, <code>)</code>, <code>[</code>, <code>]</code>, <code>{</code> e <code>}</code>. <br/>
 O programa deverá imprimir <code><strong>"Balanced"</strong></code> ou <code><strong>"Not balanced"</strong></code>, conforme apropriado.
 <br/>Exemplo:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  Expression: {[()]}
 Output: Balanced
 </script></uc-code>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  Expression: {[(])}
 Output: Not balanced
 </script></uc-code>
@@ -142,7 +142,7 @@ O programa deverá ler comandos da entrada padrão:
 As questões seguintes baseiam-se na breve introdução à complexidade e eficiência abordada nas aulas teóricas. <br/>
 <ol>
 <li>Considera a seguinte função em C:<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 int mystery(int n) {
     int s = 0;
     for (int i = 0; i < n; i++)

@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="10">
     <h1>Aula Prática 10 · Listas Ligadas</h1>
-    <p class="uc-small"><a href="aula10.html" hreflang="en" lang="en">English version</a></p>
+    <p class="uc-small"><a href="aula10.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <p><a href="aula10.html">Version in English</a><br/>
 </p>
@@ -49,7 +49,7 @@ Para ter 100% bastará sempre resolver os exercícios principais.</p>
 <h3>Exercício 1) Métodos para Listas Ligadas</h3>
 
 Para os seguintes exercícios considere a seguinte estrutura de dados para representar listas ligadas de values inteiros baseada da estrutura apresentada nas aulas teóricas:<br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define NodeInfo int
 
 typedef struct Node {
@@ -114,7 +114,7 @@ Tendo por base a estrutura de dados <code><strong>LinkedList</strong></code> e a
 A tua tarefa é utilizar uma lista ligada para armazenar os dados relativos aos livros que existem na biblioteca, bem como para gerir o fluxo de livros que entram e saem da biblioteca. <br/>
 Para isso deverá responder às seguintes questões de forma a adicionar novos métodos ou modificar os métodos desenvolvidos no Exercício 1 para adicionar novos livros, (possivelmente) remover outros livros, procurar por determinado indicador ou menos listar conjuntos de livros. <br/><br/>
 <strong>Nota:</strong> Faça as alterações necessárias às estruturas definidas no Exercício anterior de forma a cada nó (elemento) da lista ligada contenha a informação do livro correspondente. Pode usar a seguinte estrutura de dados para definir essa informação.<br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef struct {
   int day;
   int month;
@@ -167,7 +167,7 @@ typedef struct {
 </li>
 </ol>
 <strong>Código fornecido:</strong><br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

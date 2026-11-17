@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="11">
     <h1>Practical Class 11 · Stacks and Queues, Complexity and I/O Files</h1>
-    <p class="uc-small"><a href="aula11_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <p class="uc-small"><a href="aula11_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
@@ -47,7 +47,7 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
 </ul>
 
 Now, consider the given header file <code><strong>linkedlist.h</strong></code>:<br/><br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -82,11 +82,11 @@ void printList(LinkedList *list);
       Write a program (in <code><strong>main_brackets.c</strong></code>) that reads a string from standard input and uses your <em>stack</em> implementation to verify whether the brackets are balanced. Your program should handle <code>(</code>, <code>)</code>, <code>[</code>, <code>]</code>, <code>{</code>, and <code>}</code>. <br/>
       The program should print <code><strong>"Balanced"</strong></code> or <code><strong>"Not balanced"</strong></code> accordingly.
 <br/>Example:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  Expression: {[()]}
 Output: Balanced
 </script></uc-code>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  Expression: {[(])}
 Output: Not balanced
 </script></uc-code>
@@ -143,7 +143,7 @@ The following questions are based on the brief introduction to complexity and ef
 <br/>
 <ol>
 <li>Consider the following C function:<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 int mystery(int n) {
     int s = 0;
     for (int i = 0; i < n; i++)

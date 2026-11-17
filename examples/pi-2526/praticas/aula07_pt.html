@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="7">
     <h1>Aula Prática 07 · Recursão, Ordenação e Estruturas</h1>
-    <p class="uc-small"><a href="aula07.html" hreflang="en" lang="en">English version</a></p>
+    <p class="uc-small"><a href="aula07.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
 <p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
@@ -53,7 +53,7 @@ Para ter 100% bastará sempre resolver os exercícios principais.</p>
 </pre><br/>
       que conte quantos pares de valores em um vetor <code><strong>arr</strong></code> estão fora da ordem <em>crescente</em>, ou seja, quantos pares satisfazem <code><strong>arr[i] &gt; arr[i + 1]</strong></code>.<br/><br/>
       Exemplo:
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  arr = {3,1,2,2,4,0}; n = 6
 Output: Existem 2 pares de valores fora de ordem! // porque 3 > 1 e 4 > 0
 </script></uc-code>
@@ -195,7 +195,7 @@ Output: Existem 2 pares de valores fora de ordem! // porque 3 > 1 e 4 > 0
 <pre>void generateSubsets(int arr[], int index, int subset[], int subsetSize);
 </pre>
 
-      Exemplo:<br/><uc-code collapsible="" lang="c"><script type="text/plain">
+      Exemplo:<br/><uc-code collapsible="" data-lang="c"><script type="text/plain">
 Input:  Escreva o conjunto: {1, 2, 3}
 Output: Subconjuntos possíveis:
         {}
@@ -220,7 +220,7 @@ Output: Subconjuntos possíveis:
 </msup>
 </math> 
     (no plano): </p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef struct ponto {
   double x, y;
 } Ponto;
@@ -258,7 +258,7 @@ Represente os rectângulos mediante os pontos <strong>inferior esquerdo</strong>
   cursos de uma faculdade, pretendemos consultá-la para obter
   informações.  As estruturas de dados que vão ser usadas pelo
   programa, obedecem à especificação seguinte.</p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define MAX 11
 #define MAXNOME 100
 
@@ -400,7 +400,7 @@ ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
 </li>
 <li><h4>Estrutura <code>Data</code></h4>
 <p>Considere a seguinte estrutura apresentada nas aulas teóricas, que representa datas: </p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef struct data {
   int dia, mes, ano;
 } Data;
@@ -432,7 +432,7 @@ O resultados da função deve ser representado com uma variável do tipo <strong
 </li>
 <li><h4>Estrutura <code>Robo</code></h4>
 <p>Considere a seguinte estrutura que representa as posições e movimentos de um robô: </p>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 typedef enum movimento {Norte, Oeste, Sul, Este} Movimento;
 
 typedef struct posicao {

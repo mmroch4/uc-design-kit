@@ -14,7 +14,7 @@
   <uc-page current="weeks">
     <uc-guide week="5">
     <h1>Practical Class 05 · Mooshak, Strings and Pointers</h1>
-    <p class="uc-small"><a href="aula05_pt.html" hreflang="pt" lang="pt">Versão em português</a></p>
+    <p class="uc-small"><a href="aula05_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
@@ -131,7 +131,7 @@ int *p = &amp;a[1], *q = &amp;a[5];
       </p></details>
 </li>
 <li>Rewrite the following function to use pointer arithmetic instead of array subscripting. In other words, eliminate the variable <code><strong>i</strong></code> and all uses of the <code><strong>[]</strong></code> operator. Make as few changes as possible.<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 void storezeros(int a[], int n){
   int i ;
 
@@ -151,7 +151,7 @@ void storezeros(int a[], int n){
       </p></details>
 </li>
 <li>Rewrite the following function to use pointer arithmetic instead of array subscripting. Use a single loop instead of nested loops.<br/>
-<uc-code collapsible="" lang="c"><script type="text/plain">
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
 int sumTwoDimensionalArray(const int a[][LEN], int n) {
   int i, j, sum = 0;
 
