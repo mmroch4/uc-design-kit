@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assessment · Introduction to Programming 2025/26</title>
+  <meta name="description" content="How the final grade of Introduction to Programming 2025/26 is calculated: exercises during classes, two practical tests and the written exam.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Assessment</h1>
+      <p class="uc-prose">The final grade combines the exercises solved during the practical classes, two practical tests and a written exam. No component has a minimum grade.</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="eligibility">
+      <h2 id="eligibility">Eligibility for the exam</h2>
+      <ul class="uc-checklist">
+        <li>Attendance of at least <strong>3/4 (75%) of the practical classes</strong>.</li>
+      </ul>
+    </section>
+
+    <section class="uc-section" aria-labelledby="grades">
+      <h2 id="grades">Calculation formula of the final grade</h2>
+      <p class="formula">Final = 0.1·A + 0.2·T1 + 0.2·T2 + 0.5·E <span>(0 to 20)</span></p>
+      <div class="uc-grid" style="--uc-grid-min: 200px">
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter">A</span> <span class="component__weight">10%</span></p>
+          <p class="component__name">Exercises during classes</p>
+          <p class="uc-muted desc">Problems of the practical classes submitted to Mooshak before each class's deadline.</p>
+        </div>
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter">T1</span> <span class="component__weight">20%</span></p>
+          <p class="component__name">1st Practical Test</p>
+          <p class="uc-muted desc">Problems in Mooshak, classes #01 to #05. <a href="practical/test1.html">Information and goals</a></p>
+        </div>
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter">T2</span> <span class="component__weight">20%</span></p>
+          <p class="component__name">2nd Practical Test</p>
+          <p class="uc-muted desc">Problems in Mooshak, later classes. <a href="practical/test2.html">Information and goals</a></p>
+        </div>
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter">E</span> <span class="component__weight">50%</span></p>
+          <p class="component__name">Final exam</p>
+          <p class="uc-muted desc">Written exam. <a href="exam.html">Information and goals</a></p>
+        </div>
+      </div>
+      <div class="uc-callout">
+        <p><strong>Notes</strong></p>
+        <ul class="uc-bullets">
+          <li>There is no minimum grade requirement for any component.</li>
+          <li>Students will be allowed to improve one of the practical tests (T1 or T2, 20%).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Test and exam dates: edit in course.js (deadlines). The status is computed. -->
+    <section class="uc-section" aria-labelledby="tests_exam">
+      <h2 id="tests_exam">Tests and exam</h2>
+      <uc-deadlines view="table" kind="assessment exam" heading="none"></uc-deadlines>
+    </section>
+
+    <section class="uc-section" aria-labelledby="exercises">
+      <h2 id="exercises">Exercises during classes</h2>
+      <ul class="uc-bullets">
+        <li>Each practical class lists the Mooshak problems you can submit and a deadline. After the deadline the problems stay available on Mooshak, but submissions no longer count.</li>
+        <li>Each practical class is worth 10% of this component. Since there are 11 classes with submissions, you can get the maximum grade without doing all of them.</li>
+        <li>A problem only counts with an <em>Accepted</em> (all tests passed). Even if you solve all problems, the maximum on one class is 100%; solving the main exercises is always enough for 100%.</li>
+        <li>Talking to the professors and colleagues is encouraged, but any direct help from colleagues or LLMs must be acknowledged in the comments of the code you submit.</li>
+      </ul>
+      <p class="uc-small uc-muted">Your results: <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/">evaluation elements</a> (authentication sent by email).</p>
+    </section>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation.html</a>.</p>
+  </uc-page>
+</body>
+</html>

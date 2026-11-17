@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #05 · Lists · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class 5 of Introduction to Programming (CC1024): lists, list methods and matrices as lists of lists, with problems themed on The Simpsons.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="6">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #05</span>
+          <span class="uc-mono uc-muted">20/10 to 24/10</span>
+        </p>
+        <h1>Class #05 · Lists</h1>
+        <p class="uc-prose">Create, traverse and change lists, use list methods, and represent matrices as lists of lists. This week's theme for the exercises is <strong>The Simpsons</strong>.</p>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip045.html">[IP045] List Transformation</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip046.html">[IP046] Kwik-E-Mart</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip047.html">[IP047] Fibonacci Sequence</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip048.html">[IP048] Drunken Lists</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip049.html">[IP049] Rotating Toys</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip050.html">[IP050] Duplicated Reports</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip051.html">[IP051] Just an Average Person</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip052.html">[IP052] Messy Matrix</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip053.html">[IP053] Turn it Back!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip054.html">[IP054] Is it magical?</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip055.html">[IP055] Church Members</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip056.html">[IP056] Eeny, Meeny, Miny, Moe</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip057.html">[IP057] Donut Path</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip058.html">[IP058] Treasure Hunt</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p05" format="long"></uc-date> (November 8th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore function definition and function calling</li>
+          <li>Understand the concept of lists and how you can use them in Python</li>
+          <li>Know how to insert, remove and modify elements in lists</li>
+          <li>Know how to call auxiliary list methods, such as count and sort</li>
+          <li>Understand that a list variable is essentially a reference to the list</li>
+          <li>Understand how matrices can be represented as a list of lists</li>
+          <li>Gain experience with some algorithmic patterns</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise all the lectures, but in particular <a href="../materials.html#lectures">T07: Tuples and Lists, T08: More (on) Lists and T09: Advanced Lists</a>.</strong></p>
+      </section>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="start" title="1) The start" open>
+          <p>The first set of problems will give you the basics about lists.</p>
+          <p>Read the statements, code and try to submit Accepted solutions to all of the following problems. Don't forget to test first on your computer!</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip045.html">[IP045] List Transformation</a> <span class="uc-muted">(changing elements from a list)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip046.html">[IP046] Kwik-E-Mart</a> <span class="uc-muted">(create a new list)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip047.html">[IP047] Fibonacci Sequence</a> <span class="uc-muted">(creating a list and accessing its elements)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip048.html">[IP048] Drunken Lists</a> <span class="uc-muted">(traversing a list)</span></li>
+          </ul>
+        </uc-exercise>
+        <uc-exercise id="harder" title="2) Getting a bit harder">
+          <p>Now that you understand the basics, let's see if you can solve the next batch of problems (and if you paid attention to some of the existing list methods).</p>
+          <p>Read the statements, code and try to submit Accepted solutions to all of the following problems. Don't forget to test first on your computer!</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip049.html">[IP049] Rotating Toys</a> <span class="uc-muted">(inserting/removing elements from a list)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip050.html">[IP050] Duplicated Reports</a> <span class="uc-muted">(using count)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip051.html">[IP051] Just an Average Person</a> <span class="uc-muted">(using sort)</span></li>
+          </ul>
+        </uc-exercise>
+        <uc-exercise id="matrices" title="3) Working with matrices">
+          <p>What if we told you that matrices are just lists of lists?</p>
+          <p>Read the statements, code and try to submit Accepted solutions to all of the following problems. Don't forget to test first on your computer!</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip052.html">[IP052] Messy Matrix</a> <span class="uc-muted">(from a matrix to a list)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip053.html">[IP053] Turn it Back!</a> <span class="uc-muted">(from a list to a matrix)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip054.html">[IP054] Is it magical?</a> <span class="uc-muted">(checking if we have a magic square)</span></li>
+          </ul>
+        </uc-exercise>
+        <uc-exercise id="extra" title="4) Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span> Loved the main exercises and want more adventure in Springfield, home of the Simpsons? Here are more exercises to sharpen your skills.</p>
+          <p>Read the statements, code and try to submit Accepted solutions to all of the following problems. Don't forget to test first on your computer!</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip055.html">[IP055] Church Members</a> <span class="uc-muted">(how to use a normal sort with two criteria?)</span></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip056.html">[IP056] Eeny, Meeny, Miny, Moe</a> <span class="uc-muted">(be organized!)</span></li>
+          </ul>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="5) Challenge exercises">
+          <p><span class="uc-tag uc-tag--warning">challenge</span> You’ve tackled the trickiest tasks across town, from sorting Ned Flanders' humble lists to helping Milhouse dodge Nelson, and even assisting Reverend Lovejoy’s congregation in order. Springfield thanks you for your Python prowess and quick thinking!</p>
+          <p>But as any true problem-solver knows, there are always two final challenges awaiting at the end: Homer and Mr. Burns' spiral quests.</p>
+          <ul class="uc-bullets">
+            <li>Homer needs you to chart a path through a spiral matrix, collecting each element as you follow his dizzying donut-inspired path. Can you help him lay out the grid one twist at a time?</li>
+            <li>Mr. Burns, of course, demands precise calculations. He seeks treasure values hidden at specific coordinates within a spiral matrix. Only by decoding this ancient spiral map will you help him uncover riches and satisfy his thirst for wealth.</li>
+          </ul>
+          <p>Think you have what it takes? Tackle these two last challenges, and you’ll truly be a Springfield Python Master! Good luck, and may the spirals align in your favor!</p>
+          <p>Read the statements, code and try to submit Accepted solutions to the following problems. Don't forget to test first on your computer!</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip057.html">[IP057] Donut Path</a></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip058.html">[IP058] Treasure Hunt</a></li>
+          </ul>
+        </uc-exercise>
+      </section>
+
+      <p>Happy coding! 😊</p>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class05.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class05.html</a>.</p>
+  </uc-page>
+</body>
+</html>
