@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC031</li></ol>
-    </nav>
-    <h1>[PC031] Book Shop II</h1>
+  <uc-page current="problems" source="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc031.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC031</li></ol>
+      </nav>
+      <h1>[PC031] Book Shop II</h1>
+    </header>
     <p><a class="uc-button uc-button--primary" href="https://mooshak.dcc.fc.up.pt/~pc/">Submit on Mooshak</a> <a class="uc-button" href="../problem-sets/ps06.html">Weekly Problems #06</a></p>
     <div class="uc-content">
 <p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://cses.fi/problemset/task/1159">Book Shop II</a>.</p>
@@ -37,14 +39,13 @@ You are in a book shop which sells \(n\) different books. You know the price, th
   </li><li>\( 1 \leq x \leq 10^5 \)
   </li><li>\( 1 \leq h_i,s_i,k_i \leq 1\,000 \)
 </li></ul>
-<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">3 10
+<div class="uc-samples"><div><p class="uc-samples__label">Example input</p><pre data-copy="Input">3 10
 2 6 3
 8 5 4
-3 5 2</pre></td><td><pre data-copy="Output">28</pre></td></tr></table></div>
+3 5 2</pre></div><div><p class="uc-samples__label">Example output</p><pre data-copy="Output">28</pre></div></div>
 <p><strong>Explanation of example</strong>
 </p><p>You can buy three copies of book 1 and one copy of book 3. The price is \(3 \cdot 2 + 3 = 9\) and the number of pages is \(3 \cdot 8 + 4 = 28\).</p>
     </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc031.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc031.html</a> to demonstrate the UC Design Kit.</p>
   </uc-page>
 </body>
 </html>

@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC037</li></ol>
-    </nav>
-    <h1>[PC037] This is the way</h1>
+  <uc-page current="problems" source="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc037.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC037</li></ol>
+      </nav>
+      <h1>[PC037] This is the way</h1>
+    </header>
     <p><a class="uc-button uc-button--primary" href="https://mooshak.dcc.fc.up.pt/~pc/">Submit on Mooshak</a> <a class="uc-button" href="../problem-sets/ps07.html">Weekly Problems #07</a></p>
     <div class="uc-content">
 <p class="uc-small uc-muted">This problem is from <a href="https://dei.uc.pt/miup/2023">MIUP'2023</a>.</p>
@@ -75,16 +77,16 @@ You have just arrived at planet Numberlore. While ordering 2 space beers from th
 </tr>
 </table></div>
 
-<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">5
+<div class="uc-samples"><div><p class="uc-samples__label">Example input</p><pre data-copy="Input">5
 1 25
 10 100
 41 42
 999 999
-1234 5678</pre></td><td><pre data-copy="Output">14
+1234 5678</pre></div><div><p class="uc-samples__label">Example output</p><pre data-copy="Output">14
 48
 0
 1
-2258</pre></td></tr></table></div>
+2258</pre></div></div>
 <p><strong>Explanation of example</strong>
 </p><ul>
 <li> There are 14 numbers in the range [1,25] that have more ones than zeroes in their binary representation <i>(the numbers given in the problem statement for the 10101 hotel)</i>
@@ -94,7 +96,6 @@ You have just arrived at planet Numberlore. While ordering 2 space beers from th
     </li><li> There are 2258 such numbers in the range [1234,5678]
   </li></ul>
     </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc037.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc037.html</a> to demonstrate the UC Design Kit.</p>
   </uc-page>
 </body>
 </html>

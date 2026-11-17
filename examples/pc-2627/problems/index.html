@@ -11,13 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+  <uc-page current="problems" source="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems.html">
+    <header class="uc-page-header">
       <h1>List of problems</h1>
       <p class="uc-prose">All problems of the course (Mooshak, CodeForces, CSES and UVA), grouped by weekly problem set, with the optional problems suggested in the class pages. Mooshak problems are submitted on the <a href="https://mooshak.dcc.fc.up.pt/~pc/">course's Mooshak</a>.</p>
-      <!-- <uc-search scope="problems/">: searches only the problem statements in this folder (the index is written by uc-site.py). -->
-      <uc-search scope="problems/" label="Search the problem statements" placeholder="Search by name, topic or technique"></uc-search>
-    </div>
+    </header>
+    <!-- <uc-search scope="problems/">: searches only the problem statements in this folder (the index is written by uc-site.py). -->
+    <uc-search scope="problems/" label="Search the problem statements" placeholder="Search by name, topic or technique"></uc-search>
 
     <!--
       <uc-problems>: one <section> per problem set (data-deadline = id in course.js deadlines),
@@ -130,7 +130,6 @@
       </ul>
     </section>
     </uc-problems>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems.html">dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems.html</a>.</p>
   </uc-page>
 </body>
 </html>
