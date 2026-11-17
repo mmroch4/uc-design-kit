@@ -67,3 +67,28 @@ widgets da biblioteca `widgets/v1/`: `<uc-widget-complexity>` (semana 2),
 `<uc-widget-sort>` com counting sort (3), `<uc-widget-dp>` mochila e LCS (6) e
 `<uc-widget-toposort>` (7, DP em DAGs). Conteúdo novo, escrito para o exemplo, não do
 site original. MST e union-find ficam para quando as semanas 8–12 existirem.
+
+## Curadoria "design-kitted" (17 nov 2026)
+
+Revisão: <https://claude.ai/artifact/6Lrmrk2AvynqjVUUxehkS6>. O Miguel aprovou as
+recomendações (22:29). Feito com peças que o kit já tem:
+
+- Aulas (`classes/weekNN`): dentro de `<uc-guide week="N">` (a aula #06 é a semana 7 e
+  a #07 a semana 9), prazo da série com `<uc-event>`, objetivos em `uc-checklist`,
+  material da cadeira (diapositivos, código, vídeos) em `<uc-materials>`, leituras em
+  `uc-links` por tema, problemas de treino em `<uc-problems cards track>` com as notas
+  do professor como dicas. Fórmulas TeX soltas (sem MathJax) passaram a texto. As
+  ligações "colorized" para o original (segtree) saíram: o botão descarrega o `.cpp`.
+- Problem sets: `<uc-event>` do prazo em vez da lista de datas; "About the delivery"
+  passou à avaliação (`evaluation.html#delivery`), com ligação em cada série.
+- Avaliação: tabela dos contests e aviso RFC retirados (estão em "Dates" e no
+  `<uc-grading>`), pesos em `uc-tag`, datas de janeiro com `<uc-date>`, pontuação SI
+  em tabela. Contest #1: regras dentro do `<uc-assessment-info>`, pontuação em tabela.
+- Materiais: cartões com `uc-card` + `uc-tag`, ligações curtas em `uc-links--grid`; o
+  `theme.css` perdeu os blocos `.book` e `.inline-links`.
+- Semanas: `href` em cada `<uc-week>` com página; a semana 6 já não repete o contest.
+- Enunciados: botões "Submit on Mooshak" e da série; `.hl` → `<mark>`, `.center` fora.
+- Prisoner Challenge passou a `data-type="challenge"`.
+
+Por fazer, à espera das lacunas do kit (thread do PI): migalhas (`.crumbs`), introdução
+da página, nota de origem e estilo dos memes (`<details class="meme">`).

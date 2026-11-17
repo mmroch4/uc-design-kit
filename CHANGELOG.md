@@ -6,6 +6,10 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- `<uc-materials>`: an item with many links no longer squeezes its title to
+  one letter per line; the title keeps at least 12rem and the buttons wrap.
+
 ### Added
 - `<uc-grading>` reads the assessment method as text formulas, as on the
   course slide: an `<ol data-formulas>` with `max`/`min` and named formulas

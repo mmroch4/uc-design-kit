@@ -17,6 +17,7 @@
       <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC034</li></ol>
     </nav>
     <h1>[PC034] Bridge Building</h1>
+    <p><a class="uc-button uc-button--primary" href="https://mooshak.dcc.fc.up.pt/~pc/">Submit on Mooshak</a> <a class="uc-button" href="../problem-sets/ps07.html">Weekly Problems #07</a></p>
     <div class="uc-content">
 <p class="uc-small uc-muted">This problem is from <strong>CPUP'2006</strong>.</p>
 
@@ -43,7 +44,7 @@ this map can be seen as a grid of chars. <strong>'#'</strong> means a piece of
 terrain and <strong>'.'</strong> means water. So, for example, a map could be something
 like:
 
-</p><pre class="center">####################
+</p><pre>####################
 ..######........##..
 ....##..............
 ....................
@@ -51,7 +52,7 @@ like:
 .................#..
 ..######........##..
 ####################</pre>
-<p class="center">
+<p>
 <strong>Figure 1</strong> - An example of a valid map
 </p>
 <p>You can be sure that the map will always have
@@ -66,14 +67,14 @@ there will never be a south piece of the bank above a north
 one. However, small lakes (that do not belong to the river) can exist 
 inside banks, as exemplified in figure 2.
 
-</p><pre class="center">###############
+</p><pre>###############
 .#..#.......#..
 .####......##..
 .####..........
 .#........##...
 ..........#....
 ###############</pre>
-<p class="center">
+<p>
 <strong>Figure 2</strong> - Another example of a valid map
 </p>
 <p>The Algorithm City mayor is very old fashioned and has decided that the
@@ -83,7 +84,7 @@ in the grid). So, for example, imagine that the mayor would like to build
 the figure 1. A solution that would minimize the length of the bridges
 would be the one in figure 3, where <strong>'B'</strong> represents a bridge.
 
-</p><pre class="center">####################
+</p><pre>####################
 ..######........##..
 ..<strong>B</strong>.##.<strong>B</strong>.........<strong>B</strong>..
 ..<strong>B</strong>....<strong>B</strong>.........<strong>B</strong>..
@@ -91,7 +92,7 @@ would be the one in figure 3, where <strong>'B'</strong> represents a bridge.
 ..<strong>B</strong>....<strong>B</strong>.........#..
 ..######........##..
 ####################</pre>
-<p class="center">
+<p>
 <strong>Figure 3</strong> - A solution for the map of figure 1
 </p>
 <p>Note that the first two bridges in the solution are exactly separated by
