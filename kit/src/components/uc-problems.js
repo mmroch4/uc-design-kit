@@ -34,6 +34,30 @@
     return link ? link.href : normalise(item.textContent);
   }
 
+  /** "Prazo: 12 out, 23:59 · Encerrado", from a deadline in course.js (a series of <uc-problems>, or <uc-problem>). */
+  function deadlineLine(element, deadline, className) {
+    const { precision, date } = deadline.parsed;
+    const when = date && precision === "day" ? withTime(UC.formatDate(date), deadlineTimes(deadline)) : UC.formatDate(deadline.date);
+    const { status, days } = deadlineStatus(deadline, UC.today());
+    const text =
+      status === "done"
+        ? element.t("problems.closed")
+        : status === "today"
+          ? element.t("assessment.today")
+          : status === "upcoming"
+            ? days === 1
+              ? element.t("assessment.tomorrow")
+              : element.t("assessment.inDays", { count: days })
+            : null;
+    const tone = status === "done" ? "uc-tag--muted" : "uc-tag--warning";
+    return h(
+      "p",
+      { class: className },
+      element.t("problems.deadline", { date: when }),
+      text ? [" ", h("span", { class: `uc-tag ${tone}` }, text)] : null,
+    );
+  }
+
   class UCProblems extends UC.Element {
     setup() {
       this.classList.add("uc-problems");
@@ -200,28 +224,8 @@
       return list.length ? [this.t("problems.languages"), " ", list.map((language) => h("span", { class: "uc-tag uc-tag--muted" }, language))].flat() : [];
     }
 
-    /** "Prazo: 12 out, 23:59 · Encerrado", from the series' deadline in course.js. */
     deadlineLine(deadline) {
-      const { precision, date } = deadline.parsed;
-      const when = date && precision === "day" ? withTime(UC.formatDate(date), deadlineTimes(deadline)) : UC.formatDate(deadline.date);
-      const { status, days } = deadlineStatus(deadline, UC.today());
-      const text =
-        status === "done"
-          ? this.t("problems.closed")
-          : status === "today"
-            ? this.t("assessment.today")
-            : status === "upcoming"
-              ? days === 1
-                ? this.t("assessment.tomorrow")
-                : this.t("assessment.inDays", { count: days })
-              : null;
-      const tone = status === "done" ? "uc-tag--muted" : "uc-tag--warning";
-      return h(
-        "p",
-        { class: "uc-problems__deadline" },
-        this.t("problems.deadline", { date: when }),
-        text ? [" ", h("span", { class: `uc-tag ${tone}` }, text)] : null,
-      );
+      return deadlineLine(this, deadline, "uc-problems__deadline");
     }
 
     /** The filter bar: one group per attribute with two or more values, rebuilt per render (language). */
@@ -274,4 +278,76 @@
   }
 
   UC.define("uc-problems", UCProblems);
+
+  /**
+   * <uc-problem code="PI013" judge="mooshak" deadline="aula05" track> — the
+   * header of one problem statement: the judge and code (a link to the
+   * platform), the deadline of its series, "Submeter no …" and "Resolvido",
+   * stored under the same key as the problem in <uc-problems track>.
+   */
+  class UCProblem extends UC.Element {
+    setup() {
+      this.classList.add("uc-problem");
+      this.code = (this.getAttribute("code") || "").trim();
+      const value = (this.getAttribute("judge") || "").trim();
+      this.platform = value ? platformOf(value) : null;
+      const judge = this.platform ? this.platform.id || normalise(UC.text(this.platform.label)) : normalise(value);
+      this.problemId = this.getAttribute("data-id") || [judge, this.code].filter(Boolean).join(":");
+      this.judgeLabel = value;
+      const id = this.getAttribute("deadline");
+      this.deadline = id ? UC.course.deadlines.find((deadline) => deadline.id === id) || null : null;
+      if (id && !this.deadline) console.warn(`[uc-kit] <uc-problem>: no deadline with id "${id}" in course.js.`);
+      if (flag(this, "track")) {
+        this.checkbox = h("input", { type: "checkbox", onChange: () => this.toggle() });
+        this.onChange = (event) => {
+          if (event.target !== this && event.detail.id === this.problemId) this.mark(event.detail.solved);
+        };
+      }
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      if (this.onChange) document.addEventListener("uc:problemchange", this.onChange);
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      if (this.onChange) document.removeEventListener("uc:problemchange", this.onChange);
+    }
+
+    mark(solved) {
+      this.checkbox.checked = solved;
+      this.classList.toggle("uc-problem--solved", solved);
+    }
+
+    toggle() {
+      const solved = this.checkbox.checked;
+      if (solved) storage.set("solved", this.problemId, "1");
+      else storage.remove("solved", this.problemId);
+      this.mark(solved);
+      this.dispatchEvent(new CustomEvent("uc:problemchange", { bubbles: true, detail: { id: this.problemId, solved } }));
+    }
+
+    render() {
+      const label = this.platform ? this.text(this.platform.label) : this.judgeLabel;
+      const url = this.platform && this.platform.url;
+      const seal = label || this.code
+        ? h(url ? "a" : "span", { class: "uc-tag uc-tag--muted uc-problem__judge", href: url || null }, [label, this.code].filter(Boolean).join(" "))
+        : null;
+      const meta = h("div", { class: "uc-problem__meta" }, seal, this.deadline ? deadlineLine(this, this.deadline, "uc-problem__deadline") : null);
+      const submit = url
+        ? h("a", { class: "uc-button uc-button--primary uc-problem__submit", href: url }, this.t("exercise.submitOn", { platform: label }))
+        : null;
+      let solved = null;
+      if (this.checkbox) {
+        this.checkbox.setAttribute("aria-label", this.t("problems.solvedNamed", { name: this.code || document.title }));
+        solved = h("label", { class: "uc-problems__solved uc-problem__solved" }, this.checkbox, h("span", {}, this.t("problems.solved")));
+        this.mark(storage.get("solved", this.problemId) === "1");
+      }
+      const actions = submit || solved ? h("div", { class: "uc-problem__actions" }, submit, solved) : null;
+      this.replaceChildren(meta, actions || "");
+    }
+  }
+
+  UC.define("uc-problem", UCProblem);
 })(window.UC);

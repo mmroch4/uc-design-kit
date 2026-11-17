@@ -60,6 +60,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [uc-assessment-info](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md): Documentação do componente uc-assessment-info do UC Design Kit: o cartão de um teste ou exame com data, turnos, duração, local, estado e ficheiro de calendário.
 - [uc-materials](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md): Documentação do componente uc-materials do UC Design Kit: os materiais de cada aula com o tipo de cada link, a data da última alteração, Novo e Sem material.
 - [uc-problems](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md): Documentação do componente uc-problems do UC Design Kit: listas de problemas por séries com juiz, tipo, prazo, filtros e Resolvido guardado no browser.
+- [uc-problem](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problem.md): Documentação do componente uc-problem do UC Design Kit: o cabeçalho de um enunciado, com o juiz e o código, o prazo, o botão de submeter e Resolvido.
 
 ## Widgets
 

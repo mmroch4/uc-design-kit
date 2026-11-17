@@ -100,11 +100,27 @@ Com `no-toc`, o índice das secções não é gerado e a coluna da direita fica 
 
 A diferença só se vê com o guião largo (ver [Índice e progresso](#indice-e-progresso)), por isso este exemplo não tem demonstração.
 
+### Semana por cima do título e guiões vizinhos
+
+Com `week-label`, a semana e as suas datas aparecem por cima do título; com `prev` e `next`, o guião termina com ligações para o anterior e o seguinte. Num guião que não pertence a uma semana (o de um teste prático, por exemplo), `parent="assessment"` faz o caminho de navegação começar na página da avaliação.
+
+Exemplo (guião com a semana por cima do título e ligações para os vizinhos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-guide/week-pager.html):
+
+```html
+<uc-guide week="10" week-label prev="aula09.html" next="aula11.html" no-toc>
+  <h1>Guião 10 · Pesquisa binária</h1>
+  <p>Por cima do título, a semana e as suas datas; no fim, as ligações para os guiões vizinhos.</p>
+</uc-guide>
+```
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `week` | número | — | Semana a que o guião pertence. Acrescenta ao caminho de navegação uma ligação para `semanas.html#week-<n>` (o ficheiro é o da página `weeks`). |
+| `week-label` | booleano | ausente | Com `week`: escreve "Semana 6 · 20–24 out" por cima do `<h1>`, com as datas do `semester`. |
+| `parent` | `id` de uma página | `weeks` | A primeira ligação do caminho de navegação passa a ser essa página de `pages` (por exemplo `assessment`, num guião de teste), sem a ligação para a semana. |
+| `prev`, `next` | endereço | ausente | Ligações "Guião anterior" e "Guião seguinte" no fim do conteúdo. |
 | `no-toc` | booleano | ausente | Não gera o índice das secções. O progresso continua a aparecer se houver exercícios. |
 
 ## Configuração usada
@@ -138,6 +154,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-guide__content` | O conteúdo escrito pelo professor. |
 | `.uc-guide__aside` | A coluna com o progresso e o índice. |
 | `.uc-guide__progress`, `__progress-text`, `__progress-count`, `__progress-bar` | O cartão do progresso, a frase, o número de feitos e a barra. |
+| `.uc-guide__week` | A linha "Semana 6 · 20–24 out" de `week-label` (também tem `uc-eyebrow`). |
+| `.uc-guide__pager`, `__pager-link`, `__pager-link--prev`, `__pager-link--next` | As ligações para os guiões vizinhos de `prev` e `next`. |
 | `.uc-guide__toc`, `__toc-label`, `__toc-list`, `__toc-item`, `__toc-link` | O índice, o rótulo "Nesta página", a lista, cada entrada e a sua ligação (a da secção à vista tem `aria-current`). |
 
 `theme.css`:

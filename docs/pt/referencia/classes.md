@@ -217,6 +217,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-guide__content` | O conteúdo escrito pelo professor. |
 | `.uc-guide__aside` | A coluna com o progresso e o índice. |
 | `.uc-guide__progress`, `__progress-text`, `__progress-count`, `__progress-bar` | O cartão do progresso, a frase, o número de feitos e a barra. |
+| `.uc-guide__week` | A linha "Semana 6 · 20–24 out" de `week-label` (também tem `uc-eyebrow`). |
+| `.uc-guide__pager`, `__pager-link`, `__pager-link--prev`, `__pager-link--next` | As ligações para os guiões vizinhos de `prev` e `next`. |
 | `.uc-guide__toc`, `__toc-label`, `__toc-list`, `__toc-item`, `__toc-link` | O índice, o rótulo "Nesta página", a lista, cada entrada e a sua ligação (a da secção à vista tem `aria-current`). |
 
 ### [`<uc-exercise>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md)
@@ -228,7 +230,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-exercise__details`, `__summary`, `__body` | O cartão (`<details>`), a linha que abre e fecha e o conteúdo. |
 | `.uc-exercise__number`, `__title`, `__chevron` | O círculo com o número (ou o visto), o título e a seta. |
 | `.uc-exercise__meta` | As etiquetas à direita do título. |
-| `.uc-exercise__level`, `__problem`, `__done-tag` | As etiquetas de nível, de problema no Mooshak e "Feito". |
+| `.uc-exercise__level`, `__kind`, `__problem`, `__done-tag` | As etiquetas de nível, de tipo ("Extra", "Desafio"), de problema no Mooshak e "Feito". |
 | `.uc-exercise__actions` | A linha do fim, com os botões. |
 | `.uc-exercise__submit` | O botão "Submeter no Mooshak". |
 | `.uc-exercise__toggle`, `__checkbox` | O botão "Marcar como feito" e a sua caixa. |
@@ -331,6 +333,19 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-problems__hints` | O `<details>` das dicas. |
 | `.uc-problems__solved` | O rótulo com a caixa "Resolvido". |
 | `.uc-problems__empty` | A linha "Nenhum problema com estes filtros." |
+
+### [`<uc-problem>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problem.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-problem` | O próprio `<uc-problem>`, um cartão. |
+| `.uc-problem--solved` | O cartão de um problema marcado como resolvido. |
+| `.uc-problem__meta` | O selo do juiz e a linha do prazo. |
+| `.uc-problem__judge` | O selo "Mooshak PI013" (uma ligação quando a plataforma tem `url`). |
+| `.uc-problem__deadline` | A linha "Prazo: …" com a etiqueta do estado. |
+| `.uc-problem__actions` | O botão de submeter e a caixa "Resolvido". |
+| `.uc-problem__submit` | O botão "Submeter no …". |
+| `.uc-problem__solved` | A caixa "Resolvido" (também tem `uc-problems__solved`). |
 
 ## Blocos
 

@@ -79,6 +79,7 @@
           <li><a href="uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
           <li><a href="uc-materials.html"><code>uc-materials</code></a></li>
           <li><a href="uc-problems.html"><code>uc-problems</code></a></li>
+          <li><a href="uc-problem.html"><code>uc-problem</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -256,6 +257,28 @@ return maior&lt;/code&gt;&lt;/pre&gt;
         <!-- /docs:demo -->
         <p>O botão abre o endereço da plataforma (<code>url</code>), não o problema: o kit não constrói endereços por problema, e o código na etiqueta diz ao aluno qual escolher. Se não houver uma plataforma chamada "Mooshak" (a comparação ignora maiúsculas), a etiqueta mostra só o código e o botão não aparece.</p>
 
+        <h3 id="extra-e-desafio">Exercícios extra e desafios</h3>
+        <p><code>kind="extra"</code> e <code>kind="challenge"</code> marcam os exercícios que não são obrigatórios, com as mesmas etiquetas das listas de problemas.</p>
+        <!-- docs:demo src="../../demos/uc-exercise/kind.html" title="exercícios com as etiquetas Extra e Desafio" height="200" -->
+        <div class="docs-demo" id="demo-uc-exercise-kind">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-exercise/kind.html" title="Demonstração: exercícios com as etiquetas Extra e Desafio" loading="lazy" style="height: 200px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-exercise id=&quot;principal&quot; title=&quot;Soma dos dígitos&quot;&gt;
+  &lt;p&gt;Exercício principal: sem etiqueta.&lt;/p&gt;
+&lt;/uc-exercise&gt;
+&lt;uc-exercise id=&quot;extra&quot; title=&quot;Dígitos repetidos&quot; kind=&quot;extra&quot;&gt;
+  &lt;p&gt;Exercício extra.&lt;/p&gt;
+&lt;/uc-exercise&gt;
+&lt;uc-exercise id=&quot;desafio&quot; title=&quot;Números de Armstrong&quot; kind=&quot;challenge&quot; level=&quot;hard&quot;&gt;
+  &lt;p&gt;Desafio, também com nível.&lt;/p&gt;
+&lt;/uc-exercise&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-exercise/kind.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
         <h3 id="dicas-sem-summary">Dicas e soluções sem título</h3>
         <p>Um <code>uc-hint</code> ou <code>uc-solution</code> escrito sem <code>&lt;summary&gt;</code> recebe um na língua ativa: "Dica" ou "Solução". Pode haver várias dicas, de mais vaga para mais concreta.</p>
         <!-- docs:demo src="../../demos/uc-exercise/generated-summary.html" title="duas dicas e uma solução sem summary" height="421" -->
@@ -294,6 +317,7 @@ return s[::-1]&lt;/code&gt;&lt;/pre&gt;
               <tr><td><code>id</code></td><td>texto</td><td>—</td><td>Obrigatório para lembrar o estado "feito". Único na página; mudá-lo faz perder a marca já guardada.</td></tr>
               <tr><td><code>title</code></td><td>texto</td><td>—</td><td>Obrigatório. Título do exercício. O atributo é retirado depois de lido, para não aparecer como dica ao passar o rato sobre o cartão.</td></tr>
               <tr><td><code>level</code></td><td><code>easy</code> | <code>medium</code> | <code>hard</code></td><td>ausente</td><td>Etiqueta "Fácil", "Médio" ou "Difícil". Outro valor é ignorado.</td></tr>
+              <tr><td><code>kind</code></td><td><code>main</code> | <code>extra</code> | <code>challenge</code></td><td><code>main</code></td><td>Etiqueta "Extra" ou "Desafio", os mesmos tipos de <a href="uc-problems.html"><code>&lt;uc-problems&gt;</code></a>. <code>main</code> não mostra etiqueta.</td></tr>
               <tr><td><code>mooshak</code></td><td>código do problema</td><td>ausente</td><td>Etiqueta com o código no título e, se houver a plataforma "Mooshak" em <code>platforms</code>, o botão "Submeter no Mooshak" no fim do exercício.</td></tr>
               <tr><td><code>open</code></td><td>booleano</td><td>ausente</td><td>Começa aberto.</td></tr>
             </tbody>
@@ -339,7 +363,7 @@ return s[::-1]&lt;/code&gt;&lt;/pre&gt;
               <tr><td><code>.uc-exercise__details</code>, <code>__summary</code>, <code>__body</code></td><td>O cartão (<code>&lt;details&gt;</code>), a linha que abre e fecha e o conteúdo.</td></tr>
               <tr><td><code>.uc-exercise__number</code>, <code>__title</code>, <code>__chevron</code></td><td>O círculo com o número (ou o visto), o título e a seta.</td></tr>
               <tr><td><code>.uc-exercise__meta</code></td><td>As etiquetas à direita do título.</td></tr>
-              <tr><td><code>.uc-exercise__level</code>, <code>__problem</code>, <code>__done-tag</code></td><td>As etiquetas de nível, de problema no Mooshak e "Feito".</td></tr>
+              <tr><td><code>.uc-exercise__level</code>, <code>__kind</code>, <code>__problem</code>, <code>__done-tag</code></td><td>As etiquetas de nível, de tipo ("Extra", "Desafio"), de problema no Mooshak e "Feito".</td></tr>
               <tr><td><code>.uc-exercise__actions</code></td><td>A linha do fim, com os botões.</td></tr>
               <tr><td><code>.uc-exercise__submit</code></td><td>O botão "Submeter no Mooshak".</td></tr>
               <tr><td><code>.uc-exercise__toggle</code>, <code>__checkbox</code></td><td>O botão "Marcar como feito" e a sua caixa.</td></tr>
@@ -404,6 +428,7 @@ details.uc-solution {
           <li><a href="#exemplos">Exemplos</a></li>
           <li class="docs-toc__sub"><a href="#niveis-e-numeracao">Níveis e numeração</a></li>
           <li class="docs-toc__sub"><a href="#problema-no-mooshak">Problema no Mooshak</a></li>
+          <li class="docs-toc__sub"><a href="#extra-e-desafio">Exercícios extra e desafios</a></li>
           <li class="docs-toc__sub"><a href="#dicas-sem-summary">Dicas e soluções sem título</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
