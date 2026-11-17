@@ -285,7 +285,7 @@
         </div>
 
         <h2 id="configuracao">Configuração usada</h2>
-        <p>Nenhuma: tudo vem do HTML. Os textos gerados ("Como é calculada a nota", "Simular a nota", a nota sobre o SIGARRA) vêm dos dicionários do kit e podem ser mudados com <a href="../referencia/api-js.html"><code>UC.addTranslations</code></a>, por exemplo para outra instituição.</p>
+        <p>Nenhuma: tudo vem do HTML. O componente está no ficheiro <code>uc-grading.js</code>, ao lado do <code>uc-kit.js</code>, que o kit só descarrega nas páginas com um <code>&lt;uc-grading&gt;</code>; não é preciso acrescentar nada ao <code>&lt;head&gt;</code>. Os textos gerados ("Como é calculada a nota", "Simular a nota", a nota sobre o SIGARRA) vêm dos dicionários do kit e podem ser mudados com <a href="../referencia/api-js.html"><code>UC.addTranslations</code></a>, por exemplo para outra instituição.</p>
 
         <h2 id="personalizar">Personalizar</h2>
         <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>.</p>
@@ -324,7 +324,7 @@ uc-grading { --uc-grading-bar-height: 20px; }
         </div>
 
         <h2 id="sem-javascript">Sem JavaScript</h2>
-        <p>Aparece a lista tal como foi escrita, com os pesos dentro de cada item. Não há fórmula, tabela nem simulador.</p>
+        <p>Aparece a lista tal como foi escrita, com os pesos dentro de cada item. Não há fórmula, tabela nem simulador. O mesmo acontece se o <code>uc-grading.js</code> não puder ser descarregado.</p>
 
         <h2 id="ver-tambem">Ver também</h2>
         <ul>

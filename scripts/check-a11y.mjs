@@ -181,6 +181,10 @@ async function open(browser, origin, relative, options = {}) {
   await page
     .waitForFunction(() => !document.querySelector("uc-page") || document.documentElement.classList.contains("uc-visible"), null, { timeout: 4000 })
     .catch(() => {});
+  // <uc-grading> comes from uc-grading.js, loaded next to uc-kit.js (core/modules.js).
+  await page
+    .waitForFunction(() => !document.querySelector("uc-grading") || Boolean(customElements.get("uc-grading")), null, { timeout: 4000 })
+    .catch(() => {});
   // A site with `search` asks whether its index exists when idle: wait for the answer.
   await page.waitForFunction(() => !document.querySelector(".uc-search-button--pending"), null, { timeout: 7000 }).catch(() => {});
   await page.waitForTimeout(200);

@@ -16,9 +16,9 @@
   const local = window.location.protocol === "file:";
   const { h, icon } = UC.internal;
 
-  /** uc-search.js sits next to uc-kit.js. */
-  const kitScript = document.currentScript || Array.from(document.scripts).find((item) => /uc-kit(\.min)?\.js([?#]|$)/.test(item.src));
-  const engineUrl = () => new URL("uc-search.js", kitScript ? kitScript.src : document.baseURI).href;
+  /** uc-search.js sits next to uc-kit.js (core/modules.js). */
+  const { loadScript, kitUrl } = UC.internal;
+  const engineUrl = () => kitUrl("uc-search.js");
   /** The index path is relative to course.js, like page hrefs. */
   const indexUrl = () => new URL(UC.internal.resolvePageHref(config.index), document.baseURI).href;
 
@@ -75,26 +75,6 @@
   }
 
   /* ---------- Loading the index and uc-search.js (7.3) ---------- */
-
-  const scripts = new Map();
-  function loadScript(src) {
-    if (!scripts.has(src)) {
-      scripts.set(
-        src,
-        new Promise((resolve, reject) => {
-          const script = h("script", { src });
-          script.addEventListener("load", resolve);
-          script.addEventListener("error", () => {
-            scripts.delete(src);
-            script.remove();
-            reject(new Error(`could not load ${src}`));
-          });
-          document.head.append(script);
-        }),
-      );
-    }
-    return scripts.get(src);
-  }
 
   /** Console warnings for the maintainer when the index looks stale (7.4). */
   function warnIfStale(index) {

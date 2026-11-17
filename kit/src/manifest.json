@@ -1,5 +1,5 @@
 {
-  "$comment": "Concatenation order for kit/v1/uc-kit.js, kit/v1/uc-search.js (loaded when the site search opens) and kit/v1/uc-kit.css. Built by scripts/build.mjs.",
+  "$comment": "Concatenation order for kit/v1/uc-kit.js, kit/v1/uc-grading.js (loaded when the page has a <uc-grading>), kit/v1/uc-search.js (loaded when the site search opens) and kit/v1/uc-kit.css. Built by scripts/build.mjs.",
   "js": [
     "core/namespace.js",
     "core/i18n.js",
@@ -14,6 +14,7 @@
     "core/announce.js",
     "core/storage.js",
     "core/anchors.js",
+    "core/modules.js",
     "core/search-loader.js",
     "core/time.js",
     "core/filters.js",
@@ -34,7 +35,6 @@
     "components/uc-guide.js",
     "components/uc-team.js",
     "components/uc-timetable.js",
-    "components/uc-grading.js",
     "components/uc-assessment-info.js",
     "components/uc-materials.js",
     "components/uc-problems.js",
@@ -46,6 +46,10 @@
     "core/copy-blocks.js",
     "core/auth-links.js",
     "core/bootstrap.js"
+  ],
+  "grading": [
+    "grading/strings.js",
+    "grading/element.js"
   ],
   "search": [
     "search/strings.js",

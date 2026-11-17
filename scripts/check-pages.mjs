@@ -180,6 +180,10 @@ async function openPage(context, url, origin) {
     .waitForFunction(() => !document.querySelector("uc-page") || document.documentElement.classList.contains("uc-visible"), null, { timeout: 3000 })
     .then(() => true, () => false);
   if (!revealed) problems.push("page was not revealed: <html> never got .uc-visible");
+  // <uc-grading> comes from uc-grading.js, loaded next to uc-kit.js (core/modules.js).
+  await page
+    .waitForFunction(() => !document.querySelector("uc-grading") || Boolean(customElements.get("uc-grading")), null, { timeout: 4000 })
+    .catch(() => problems.push("<uc-grading> was never defined: uc-grading.js did not load"));
   await page.waitForTimeout(300);
   return { page, problems, warnings };
 }
@@ -238,6 +242,26 @@ async function checkPage(browser, item, origin, axeSource, options) {
     const context = await newContext(browser, { viewport: { width: 1280, height: 900 } });
     const result = await openPage(context, fileUrl, null);
     problems.push(...result.problems.map((p) => `[file://] ${p}`));
+    await context.close();
+  }
+
+  if (relative === "tests/pages/uc-grading.html") {
+    // uc-grading.js missing (a site that copied only uc-kit.js): one warning, the page shows, the list stays (docs/plan/grading-api.md 2.2).
+    const context = await newContext(browser, { viewport: { width: 1280, height: 900 } });
+    await context.route("**/kit/v1/uc-grading.js", (route) => route.fulfill({ status: 404, body: "" }));
+    const page = await context.newPage();
+    const messages = [];
+    page.on("console", (message) => messages.push(message.text()));
+    await page.goto(httpUrl, { waitUntil: "load" });
+    const revealed = await page
+      .waitForFunction(() => document.documentElement.classList.contains("uc-visible"), null, { timeout: 3000 })
+      .then(() => true, () => false);
+    await page.waitForTimeout(200);
+    const listShown = await page.evaluate(() => Array.from(document.querySelectorAll("uc-grading > ul, uc-grading > ol")).every((list) => list.offsetHeight > 0));
+    const warned = messages.filter((text) => text.includes("could not load uc-grading.js next to uc-kit.js")).length;
+    if (!revealed) problems.push("[no uc-grading.js] the page was not revealed");
+    if (!listShown) problems.push("[no uc-grading.js] the teacher's list is not shown");
+    if (warned !== 1) problems.push(`[no uc-grading.js] expected one console warning, got ${warned}`);
     await context.close();
   }
 
