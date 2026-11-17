@@ -23,43 +23,38 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip067.html">[IP067] Price Increase</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
-          <li><a href="../problems/ip068.html">[IP068] Dish Renaming</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
-          <li><a href="../problems/ip069.html">[IP069] Reversed Menu</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
-          <li><a href="../problems/ip070.html">[IP070] A New Translation</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
-          <li><a href="../problems/ip071.html">[IP071] High Price</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip072.html">[IP072] Price Diversity</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip073.html">[IP073] Items Removal</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip074.html">[IP074] Coin Change</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
-          <li><a href="../problems/ip075.html">[IP075] Restaurant Inventory</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
-          <li><a href="../problems/ip076.html">[IP076] Super Reversed Menu</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
-          <li><a href="../problems/ip077.html">[IP077] Allowed Digits</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
-          <li><a href="../problems/ip078.html">[IP078] Saving Coins</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p07" format="long"></uc-date> (November 29th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p07">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip067.html">Price Increase</a> <code>IP067</code> <data value="13">13%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip068.html">Dish Renaming</a> <code>IP068</code> <data value="13">13%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip069.html">Reversed Menu</a> <code>IP069</code> <data value="13">13%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip070.html">A New Translation</a> <code>IP070</code> <data value="13">13%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip071.html">High Price</a> <code>IP071</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip072.html">Price Diversity</a> <code>IP072</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip073.html">Items Removal</a> <code>IP073</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip074.html">Coin Change</a> <code>IP074</code> <data value="12">12%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip075.html">Restaurant Inventory</a> <code>IP075</code> <data value="15">15%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip076.html">Super Reversed Menu</a> <code>IP076</code> <data value="15">15%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip077.html">Allowed Digits</a> <code>IP077</code> <data value="15">15%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip078.html">Saving Coins</a> <code>IP078</code> <data value="20">20%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore function definition and function calling</li>
           <li>Understand the concept of dictionaries and how you can use them in Python</li>
           <li>Know how to traverse, insert, remove and modify elements in dictionaries</li>
           <li>Understand the concept of sets and how you can use them in Python</li>
           <li>Know how to traverse, insert and remove elements in sets</li>
           <li>Gain experience with some algorithmic patterns</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lecture <a href="../materials.html#lectures">T10: Sets and T14: Dictionaries</a>.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lecture <a href="../materials.html#lectures">T10: Sets and T14: Dictionaries</a>.</p></div>
       </section>
       <div class="uc-prose">
 <p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Bob%27s_Burgers">Bob's Burgers</a>.</p>

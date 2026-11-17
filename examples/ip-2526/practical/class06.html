@@ -26,39 +26,34 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip059.html">[IP059] Cinnamon Jumping Game</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip060.html">[IP060] Experimental Stability</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip061.html">[IP061] Wallet Watcher</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip062.html">[IP062] Rocket Pair Protocol</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip063.html">[IP063] Neural Activity</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip064.html">[IP064] Comic Dilemma</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip065.html">[IP065] Bacterial Cultures</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip066.html">[IP066] Alphabetical Obsession</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 25%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p06" format="long"></uc-date> (November 22nd; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p06">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip059.html">Cinnamon Jumping Game</a> <code>IP059</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip060.html">Experimental Stability</a> <code>IP060</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip061.html">Wallet Watcher</a> <code>IP061</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip062.html">Rocket Pair Protocol</a> <code>IP062</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip063.html">Neural Activity</a> <code>IP063</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip064.html">Comic Dilemma</a> <code>IP064</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip065.html">Bacterial Cultures</a> <code>IP065</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip066.html">Alphabetical Obsession</a> <code>IP066</code> <data value="25">25%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore the notion of correctness in algorithms</li>
           <li>Understand some of the most common errors of beginner coders</li>
           <li>Explore the notion of efficiency in algorithms</li>
           <li>Learn some new algorithmic techniques such as sliding windows and prefix sums</li>
           <li>Gain insight into the efficiency of some Python data structures such as sets</li>
           <li>Work on your problem solving skills</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lectures.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="exercises">
         <h2 id="exercises">Exercises</h2>
@@ -295,7 +290,7 @@ def random_list(n, a, b):
 [4, 2, 4, 8, 8, 4, 5, 5, 8, 5]
 </pre>
 <p>Now we can try to run our previous code on lists of different sizes and see how much time they take. We will experiment on fixing \(k = n/2\) and see how the execution time grows as we increase the size of the list, that we will call \(n\).</p>
-<p>Download the following python script: <a class="code" href="ip060_experiment.py">ip060_experiment.py</a></p>
+<p>Download the following python script: <a href="ip060_experiment.py">ip060_experiment.py</a></p>
 <p>Try to understand what it is doing and run it on your computer. You should get an output similar to:</p>
 <pre>
 n = 100, time = 0.000s 0.00x

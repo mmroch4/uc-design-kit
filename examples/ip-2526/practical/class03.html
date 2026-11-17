@@ -23,40 +23,35 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip023.html">[IP023] Summing Numbers</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip024.html">[IP024] Freezing in here</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 15%</span></li>
-          <li><a href="../problems/ip025.html">[IP025] All in one</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 15%</span></li>
-          <li><a href="../problems/ip026.html">[IP026] And may the odds...</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip027.html">[IP027] Like the frog, get it?</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip028.html">[IP028] Factorial Frenzy</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip029.html">[IP029] Collatz Sequence</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip030.html">[IP030] Numerus Maximus!</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip031.html">[IP031] Just an Average Party</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="../problems/ip032.html">[IP032] The Prime Suspects</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p03" format="long"></uc-date> (October 25th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p03">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip023.html">Summing Numbers</a> <code>IP023</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip024.html">Freezing in here</a> <code>IP024</code> <data value="15">15%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip025.html">All in one</a> <code>IP025</code> <data value="15">15%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip026.html">And may the odds...</a> <code>IP026</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip027.html">Like the frog, get it?</a> <code>IP027</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip028.html">Factorial Frenzy</a> <code>IP028</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip029.html">Collatz Sequence</a> <code>IP029</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip030.html">Numerus Maximus!</a> <code>IP030</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip031.html">Just an Average Party</a> <code>IP031</code> <data value="30">30%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip032.html">The Prime Suspects</a> <code>IP032</code> <data value="30">30%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore function definition and function calling</li>
           <li>Explore argument passing and return statements</li>
           <li>Practice breaking down problems into smaller tasks by writing functions</li>
           <li>Explore how functions help in reusing code and making it more organized</li>
           <li>Consolidate your knowledge of coding, debugging and problem solving</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lectures <a href="../materials.html#lectures">T02: The basics | T03: Conditionals | T04: Program Flow | | T05: Functions | T06: More Functions</a>.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lectures <a href="../materials.html#lectures">T02: The basics | T03: Conditionals | T04: Program Flow | | T05: Functions | T06: More Functions</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="exercises">
         <h2 id="exercises">Exercises</h2>
