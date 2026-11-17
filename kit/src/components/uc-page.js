@@ -180,14 +180,15 @@
       );
 
       let platforms = null;
-      if (course.platforms.length) {
+      const listed = course.platforms.filter((platform) => !platform.hidden);
+      if (listed.length) {
         const labelId = `${this.navId}-platforms`;
         platforms = [
           h("p", { class: "uc-nav__group", id: labelId }, this.t("nav.platforms")),
           h(
             "ul",
             { class: "uc-nav__list", "aria-labelledby": labelId },
-            course.platforms.map((platform) => {
+            listed.map((platform) => {
               const external = isExternal(platform.url);
               return h(
                 "li",

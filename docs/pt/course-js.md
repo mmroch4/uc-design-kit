@@ -78,7 +78,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | Campo e tipo | Necessário | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `pages`lista | Recomendado | `["home"]` | Páginas da navegação, por ordem. Ver [Páginas](#paginas). |
-| `platforms``{ label, url }[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação. A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
+| `platforms``Platform[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação (ver [Plataformas](#plataformas)). A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
 
 ### Equipa, horário, prazos e avisos
 
@@ -178,6 +178,26 @@ schedule: [
 | `note` | `HTMLText` | Uma nota curta, por exemplo "Só nas semanas ímpares". |
 
 Uma entrada a que falte `type`, `class`, `day`, `start` ou `end` não aparece, e a consola diz qual é.
+
+## Plataformas
+
+Os links externos do grupo "Plataformas" da navegação. As mesmas entradas dão o nome do juiz nas listas de problemas ([`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md)).
+
+`course.js`:
+
+```js
+platforms: [
+  { id: "mooshak", label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~edados/" },
+  { id: "codeforces", label: "Codeforces", url: "https://codeforces.com", hidden: true },
+],
+```
+
+| Campo | Tipo | Descrição |
+| --- | --- | --- |
+| `label` | `LocalizedText` | Obrigatório. O nome na navegação e na etiqueta do juiz. |
+| `url` | URL | Obrigatório. |
+| `id` | texto | Nome curto, usado em `data-judge="codeforces"`. Sem ele, `data-judge` é comparado com `label`, sem distinguir maiúsculas nem acentos. |
+| `hidden` | booleano | Com `true`, a plataforma não aparece na navegação, mas as listas de problemas conhecem-na (um juiz usado só numa série). |
 
 ## Prazos
 

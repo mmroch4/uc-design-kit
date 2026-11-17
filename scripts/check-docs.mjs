@@ -89,7 +89,7 @@ function documentedAttributes(content) {
 // documents it. The first column of the subsection's first table is compared
 // with the first <code> of each row of the tables in that h2 section.
 const COURSE_PAGE = "pt/course-js.html";
-const COURSE_SECTIONS = { "2.1": "tipos", "2.2": "campos", "2.3": "paginas", "2.4": "equipa", "2.5": "prazos", "2.6": "avisos", "2.7": "horario" };
+const COURSE_SECTIONS = { "2.1": "tipos", "2.2": "campos", "2.3": "paginas", "2.4": "equipa", "2.5": "prazos", "2.6": "avisos", "2.7": "horario", "2.8": "plataformas" };
 
 /** Map of subsection number ("2.2") → names in the first column of its first table. */
 export async function apiCourseTables() {

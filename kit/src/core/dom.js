@@ -43,6 +43,7 @@
   }
 
   const SVG_ATTRS = 'xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"';
+  const small = (paths) => `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
   const ICONS = {
     chevronDown: `<svg ${SVG_ATTRS} width="18" height="18" viewBox="0 0 24 24" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>`,
     menu: `<svg ${SVG_ATTRS} width="20" height="20" viewBox="0 0 24 24" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>`,
@@ -54,6 +55,15 @@
     download: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>`,
     play: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"><path d="M7 5v14l12-7z"/></svg>`,
     reset: `<svg ${SVG_ATTRS} width="16" height="16" viewBox="0 0 24 24" stroke-width="2"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg>`,
+    // Material types of <uc-materials> (decorative: the type is also text).
+    pdf: small('<path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/>'),
+    notebook: small('<path d="M6 3h12v18H6zM10 3v18M13 8h2"/>'),
+    github: small('<circle cx="7" cy="5" r="2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="7" r="2"/><path d="M7 7v10M17 9c0 5-10 3-10 8"/>'),
+    video: small('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/>'),
+    archive: small('<path d="M4 4h16v5H4zM5 9v11h14V9M10 13h4"/>'),
+    code: small('<path d="m8 8-4 4 4 4M16 8l4 4-4 4"/>'),
+    slides: small('<path d="M3 4h18v12H3zM12 16v4M8 20h8"/>'),
+    link: small('<path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1 1M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1-1"/>'),
     tree: `<svg ${SVG_ATTRS} width="28" height="28" viewBox="0 0 28 28" stroke-width="2"><circle cx="14" cy="5" r="3"/><circle cx="6" cy="22" r="3"/><circle cx="22" cy="22" r="3"/><path d="M12.5 7.5 7.5 19.5M15.5 7.5l5 12"/></svg>`,
   };
 

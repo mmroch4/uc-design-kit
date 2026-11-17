@@ -1,0 +1,46 @@
+/* <uc-problems>: problem series with judge and type tags, deadlines, filters and "Resolvido" (docs/api.md, section 3.7). */
+
+:where(uc-problems) { display: block; }
+:where(.uc-problems__section) { display: flex; flex-direction: column; gap: var(--uc-space-6); }
+:where(.uc-problems__heading) { margin: 0; font-size: var(--uc-font-size-h2); }
+:where(.uc-problems__series) { display: flex; flex-direction: column; gap: var(--uc-space-3); }
+:where(.uc-problems__series > :is(h2, h3, h4, h5, h6)) { margin: 0; }
+:where(.uc-problems__meta) { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-1) var(--uc-space-4); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+:where(.uc-problems__meta > p) { margin: 0; }
+
+:where(.uc-problems__list) { margin: 0; padding: 0; list-style: none; }
+:where(.uc-problems__item) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--uc-space-1) var(--uc-space-3);
+  min-height: var(--uc-target-min);
+  padding: var(--uc-space-1) 0;
+  border-top: 1px solid var(--uc-color-border);
+}
+:where(.uc-problems__body) { flex: 1 1 14rem; min-width: 0; }
+:where(.uc-problems__body code) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
+:where(.uc-problems__tags) { display: flex; flex-wrap: wrap; gap: var(--uc-space-1); }
+:where(.uc-problems__tags:empty) { display: none; }
+
+/* The whole label is the click target: 44 px tall. */
+:where(.uc-problems__solved) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uc-space-2);
+  min-height: var(--uc-target-min);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+  cursor: pointer;
+}
+:where(.uc-problems__solved input) { width: 1.125rem; height: 1.125rem; margin: 0; accent-color: var(--uc-color-success-text); }
+:where(.uc-problems__item--solved .uc-problems__solved) { color: var(--uc-color-success-text); }
+:where(.uc-problems__empty) { margin: 0; color: var(--uc-color-text-muted); }
+:where(ol.uc-problems__list) { counter-reset: uc-problems; }
+:where(ol.uc-problems__list > .uc-problems__item) { counter-increment: uc-problems; }
+:where(ol.uc-problems__list > .uc-problems__item .uc-problems__body)::before {
+  content: counter(uc-problems) ". ";
+  color: var(--uc-color-text-muted);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-sm);
+}

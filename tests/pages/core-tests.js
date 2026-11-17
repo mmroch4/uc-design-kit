@@ -260,6 +260,67 @@
     equal(result, ["uc-week__page", "w3.html", "week-3"]);
   });
 
+  test("materialType: URL → type", () =>
+    equal(
+      [
+        "slides/a.PDF",
+        "https://colab.research.google.com/drive/x",
+        "https://github.com/a/b/blob/main/n.ipynb",
+        "https://gitlab.com/a/b",
+        "https://youtu.be/x",
+        "https://www.youtube.com/watch?v=x",
+        "aula.mp4",
+        "code.tar.gz",
+        "a.tgz",
+        "Main.java",
+        "https://github.com/a/b",
+        "https://example.org/",
+        "folder/",
+      ].map(UC.internal.materialType),
+      ["pdf", "notebook", "notebook", "github", "video", "video", "video", "archive", "archive", "code", "github", "link", "link"],
+    ));
+  test("uc-materials: title, updated, Novo, Sem material, data-type and hidden type", () => {
+    const host = document.createElement("div");
+    host.hidden = true;
+    host.innerHTML =
+      '<uc-materials><ol><li><time datetime="2025-11-25">25 nov</time> — Árvores <a href="a.pdf">PDF</a> · <a href="s.pdf" data-type="slides">Diapositivos</a></li>' +
+      '<li><time datetime="2025-12-25">25 dez</time> Futuro</li><li><time datetime="2025-11-01">1 nov</time> Antigo <a href="x.zip">Ficheiros</a></li></ol></uc-materials>';
+    document.body.append(host);
+    const items = Array.from(host.querySelectorAll(".uc-materials__item"), (item) => [
+      item.querySelector(".uc-materials__title").textContent.trim(),
+      (item.querySelector(".uc-materials__updated") || {}).textContent || "",
+      Boolean(item.querySelector(".uc-materials__new")),
+      item.querySelector(".uc-materials__empty").hidden,
+      Array.from(item.querySelectorAll(".uc-materials__link"), (link) => `${link.dataset.type}:${link.textContent}`),
+    ]);
+    host.remove();
+    const today = iso(UC.today());
+    if (today !== "2025-11-27") return; // dates below assume the test day
+    equal(items, [
+      ["Árvores", "Atualizado a 25 nov", true, true, ["pdf:PDF", "slides:Diapositivos"]],
+      ["Futuro", "Atualizado a 25 dez", false, false, []],
+      ["Antigo", "Atualizado a 1 nov", false, true, ["archive:Ficheiros (arquivo)"]],
+    ]);
+  });
+  test("uc-problems: ids, judge by id or label, series hidden by filters", () => {
+    const host = document.createElement("div");
+    host.hidden = true;
+    host.innerHTML =
+      '<uc-problems filters><section><h3>S1</h3><ul><li data-judge="MOOSHAK"><a href="#a">A</a> <code>P1</code></li>' +
+      '<li data-judge="Kattis" data-type="extra" data-id="k-hello"><a href="#b">B</a></li></ul></section>' +
+      '<section><h3>S2</h3><ul><li><a href="#c">C</a></li></ul></section></uc-problems>';
+    document.body.append(host);
+    const element = host.querySelector("uc-problems");
+    const ids = element.items.map((item) => item.id);
+    const judges = Array.from(host.querySelectorAll(".uc-problems__judge"), (tag) => tag.textContent);
+    host.querySelectorAll(".uc-filters__button").forEach((button) => button.dataset.value === "extra" && button.click());
+    const hidden = Array.from(host.querySelectorAll("section.uc-problems__series"), (section) => section.hidden);
+    host.remove();
+    equal(ids, ["mooshak:P1", "k-hello", new URL("#c", location.href).href]);
+    equal(judges, ["Mooshak", "Kattis"]);
+    equal(hidden, [false, true]);
+  });
+
   const summary = document.createElement("p");
   summary.textContent = failures ? `${failures} failing` : "All tests passed.";
   results.after(summary);

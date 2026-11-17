@@ -75,6 +75,8 @@
           <li><a href="componentes/uc-question.html"><code>uc-question</code></a></li>
           <li><a href="componentes/uc-grading.html"><code>uc-grading</code></a></li>
           <li><a href="componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="componentes/uc-problems.html"><code>uc-problems</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -230,7 +232,7 @@
             </thead>
             <tbody>
               <tr><td><code>pages</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--accent">Recomendado</span></td><td><code>["home"]</code></td><td>Páginas da navegação, por ordem. Ver <a href="#paginas">Páginas</a>.</td></tr>
-              <tr><td><code>platforms</code><span class="docs-type"><code>{ label, url }[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação. A plataforma chamada "Mooshak" dá também o link dos exercícios (<a href="componentes/uc-exercise.html#problema-no-mooshak"><code>&lt;uc-exercise mooshak&gt;</code></a>).</td></tr>
+              <tr><td><code>platforms</code><span class="docs-type"><code>Platform[]</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação (ver <a href="#plataformas">Plataformas</a>). A plataforma chamada "Mooshak" dá também o link dos exercícios (<a href="componentes/uc-exercise.html#problema-no-mooshak"><code>&lt;uc-exercise mooshak&gt;</code></a>).</td></tr>
             </tbody>
           </table>
         </div>
@@ -351,6 +353,27 @@
         </div>
         <p>Uma entrada a que falte <code>type</code>, <code>class</code>, <code>day</code>, <code>start</code> ou <code>end</code> não aparece, e a consola diz qual é.</p>
 
+        <h2 id="plataformas">Plataformas</h2>
+        <p>Os links externos do grupo "Plataformas" da navegação. As mesmas entradas dão o nome do juiz nas listas de problemas (<a href="componentes/uc-problems.html"><code>&lt;uc-problems&gt;</code></a>).</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>platforms: [
+  { id: "mooshak", label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~edados/" },
+  { id: "codeforces", label: "Codeforces", url: "https://codeforces.com", hidden: true },
+],</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos de uma plataforma</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>label</code></td><td><code>LocalizedText</code></td><td>Obrigatório. O nome na navegação e na etiqueta do juiz.</td></tr>
+              <tr><td><code>url</code></td><td>URL</td><td>Obrigatório.</td></tr>
+              <tr><td><code>id</code></td><td>texto</td><td>Nome curto, usado em <code>data-judge="codeforces"</code>. Sem ele, <code>data-judge</code> é comparado com <code>label</code>, sem distinguir maiúsculas nem acentos.</td></tr>
+              <tr><td><code>hidden</code></td><td>booleano</td><td>Com <code>true</code>, a plataforma não aparece na navegação, mas as listas de problemas conhecem-na (um juiz usado só numa série).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2 id="prazos">Prazos</h2>
         <p>Um prazo escreve-se uma vez e aparece onde fizer falta: na lista de próximas datas, dentro da semana em que cai, no cartão "Esta semana" e na tabela da avaliação.</p>
         <uc-code lang="js" filename="course.js" no-download><pre><code>deadlines: [
@@ -465,6 +488,7 @@
           <li><a href="#paginas">Páginas</a></li>
           <li><a href="#equipa">Equipa</a></li>
           <li><a href="#horario">Horário</a></li>
+          <li><a href="#plataformas">Plataformas</a></li>
           <li><a href="#prazos">Prazos</a></li>
           <li><a href="#avisos">Avisos</a></li>
           <li><a href="#erros-comuns">Erros comuns</a></li>

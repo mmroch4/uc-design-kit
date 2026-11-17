@@ -30,9 +30,11 @@ window.UC_COURSE = {
     { id: "about", href: "sobre.html" },
   ],
 
+  // `id` names a platform in <uc-problems data-judge>; `hidden` keeps it out of the navigation.
   platforms: [
-    { label: "Plataforma de entregas", url: "https://example.org/entregas" },
-    { label: "Fórum da UC", url: "https://example.org/forum" },
+    { id: "entregas", label: "Plataforma de entregas", url: "https://example.org/entregas" },
+    { id: "forum", label: "Fórum da UC", url: "https://example.org/forum" },
+    { id: "codeforces", label: "Codeforces", url: "https://codeforces.com", hidden: true },
   ],
 
   team: [

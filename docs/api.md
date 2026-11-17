@@ -135,7 +135,7 @@ window.UC_COURSE = {
 | `semester.teachingDays` | `[from, to]` | no | `[1, 5]` | ISO weekdays with classes (1 = Monday … 7 = Sunday). Week ranges are shown with these days, e.g. `[2, 5]` → "25–28 nov". |
 | `semester.breaks` | `{ start, end, label }[]` | no | `[]` | Weeks without classes. Weeks are numbered skipping them. A calendar week that has any teaching day inside a break is a break week as a whole. |
 | `pages` | `(PageId \| Page)[]` | no | `["home"]` | Navigation, in order. See 2.3. |
-| `platforms` | `{ label, url }[]` | no | `[]` | External links listed under "Platforms" in the navigation. |
+| `platforms` | `Platform[]` | no | `[]` | External links listed under "Platforms" in the navigation. See 2.8. |
 | `team` | `TeamMember[]` | no | `[]` | See 2.4. |
 | `schedule` | `ScheduleEntry[]` | no | `[]` | Weekly classes. See 2.7. Read by `<uc-timetable>`. |
 | `scheduleTypes` | `{ [type]: LocalizedText }` | no | — | Labels for custom schedule types, or to rename built-in ones, e.g. `{ seminar: { pt: "Seminários", en: "Seminars" } }`. |
@@ -266,6 +266,22 @@ schedule: [
 
 An entry without `type`, `class`, `day`, `start` or `end` is skipped with one
 console warning.
+
+### 2.8 Platform
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `label` | `LocalizedText` | Required. Shown in the navigation and as the judge tag of `<uc-problems>`. |
+| `url` | URL | Required. |
+| `id` | string | Optional short name, used by `<uc-problems data-judge="codeforces">`. Without it, `data-judge` is matched against `label`, ignoring case and accents. |
+| `hidden` | boolean | Default `false`. `true` keeps the platform out of the navigation while `<uc-problems>` still knows it (a judge used by one series). |
+
+```js
+platforms: [
+  { id: "mooshak", label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~edados/" },
+  { id: "codeforces", label: "Codeforces", url: "https://codeforces.com", hidden: true },
+],
+```
 
 ## 3. Components
 
@@ -767,6 +783,112 @@ element and stays below the card.
 - Without JavaScript: only the children. Write the date in a `<noscript>` on
   exam pages.
 
+### 3.7 Materials and problems
+
+#### `<uc-materials>`
+
+Decorates the teacher's list of materials per lecture or chapter: each link
+becomes a button with its recognised type, the date of the last update and a
+"Novo" tag.
+
+```html
+<uc-materials new-days="7">
+  <ol>
+    <li><time datetime="2025-11-18">18 nov</time> Árvores binárias
+      <a href="slides/7_arvores.pdf">Slides</a> <a href="codigo/arvores/">Código</a></li>
+    <li>Revisões para o 1.º teste</li>
+  </ol>
+</uc-materials>
+```
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `new-days` | number | `7`; items updated fewer days ago (and not in the future) get "Novo"; `0` disables it |
+| `heading` | text \| `none` | localised "Materiais" / "Materials" |
+| `heading-level` | `2`–`6` | `2` |
+
+- **Items** are the `<li>` of the first `<ol>`/`<ul>` child. The text before
+  the item's first link is its title. The first `<time datetime>` that is a
+  direct child of the item is the date of the last update, shown under the
+  title as "Atualizado a 18 nov" in the active language (the teacher's text
+  stays in `data-uc-text`). An `<ol>` keeps its numbers.
+- **Links** that are direct children of the item become buttons
+  (`uc-button uc-materials__link`) with a decorative type icon; text that
+  only separates them ("·", "|", ",") is dropped. The type comes from the URL;
+  `data-type` on the `<a>` overrides it, and the computed or given type is
+  written back to `data-type`:
+
+  | Type | Recognised from |
+  | --- | --- |
+  | `pdf` | `.pdf` |
+  | `notebook` | `.ipynb`, `colab.research.google.com` |
+  | `github` | `github.com`, `gitlab.com` |
+  | `video` | `youtube.com`, `youtu.be`, `vimeo.com`, `.mp4` |
+  | `archive` | `.zip`, `.tar.gz`, `.tgz` |
+  | `code` | `.java`, `.py`, `.c`, `.cpp`, `.h`, `.hs`, `.ml`, `.js` |
+  | `slides` | only with `data-type` |
+  | `link` | anything else |
+
+  The type joins the accessible name after the visible text ("Slides
+  (PDF)"), through visually hidden text, unless the visible text already says
+  it ("PDF").
+- **No links** (or none in the active language): "Sem material", muted.
+- **Languages.** Items and links with `lang` follow section 6, so PT and EN
+  slides can share a list.
+- Other content of an item (a `<span>` note after the links) stays in the
+  title column. Elements after the list stay after it.
+- Without JavaScript: the list with its normal links.
+
+#### `<uc-problems>`
+
+Decorates problem lists grouped in series: judge and type tags, the series
+deadline, filters and, with `track`, a "Resolvido" checkbox saved in the
+browser.
+
+```html
+<uc-problems filters track>
+  <section data-deadline="ps01">
+    <h2>Série 1 · Introdução</h2>
+    <ul>
+      <li data-judge="mooshak"><a href="problems/pc001.html">Increasing Array</a> <code>PC001</code></li>
+      <li data-judge="codeforces" data-type="extra"><a href="https://codeforces.com/problemset/problem/499/B">Lecture</a> <code>499B</code></li>
+    </ul>
+  </section>
+</uc-problems>
+```
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `filters` | boolean | no filters; with it, buttons by type and by judge (`aria-pressed`), for groups with two or more values |
+| `track` | boolean | no checkboxes; with it, "Resolvido" per problem and "3 de 5 resolvidos" per series, saved in `localStorage` |
+| `heading` | text \| `none` | `none` (problem pages have their own `<h1>`); a text adds a heading |
+| `heading-level` | `2`–`6` | `2` |
+
+The series are the `<section>` children, each with a heading (`h2`–`h6`) and
+a list; a single `<ol>`/`<ul>` without sections is one series without a name.
+
+| Item attribute | On | Values | Notes |
+| --- | --- | --- | --- |
+| `data-judge` | `<li>` | platform `id` or label | Judge tag with the platform's label (2.8). Unknown values are shown as written. |
+| `data-type` | `<li>` | `main` \| `extra` \| `challenge` | Default `main` (no tag). "Extra" and "Desafio" are text tags. |
+| `data-id` | `<li>` | text | Identifier for `track`. Default: `<judge>:<text of the first <code>>`, else the resolved URL of the first link. |
+| `data-deadline` | `<section>` | deadline `id` | "Prazo: 12 out, 23:59" under the series heading, with its state ("Daqui a 8 dias", "Hoje", "Encerrado"). |
+
+- An optional `<data value>` in an item is its weight, shown as a tag ("40 %").
+- **Filters.** Two `role="group"` groups, "Tipo" and "Juiz", each with "Todos"
+  and one button per value that occurs. Groups combine with AND; a series
+  with no problem left is hidden; the count is announced ("2 de 6
+  problemas"). Focus stays on the pressed button.
+- **Track.** A checkbox labelled "Resolvido" whose accessible name includes
+  the problem ("Resolvido: Increasing Array"). Its key is
+  `uc:<course>:solved:<id>`, so a problem listed on two pages (a series and an
+  index) shares its state, also between lists of one page. A change fires a
+  bubbling `uc:problemchange` (`detail: { id, solved }`) and updates "3 de 5
+  resolvidos" under the series heading (not a live region: the checkbox
+  announces its own state).
+- **Unknown deadline id.** One console warning; no deadline line.
+- Without JavaScript: the teacher's sections, headings and lists.
+
 ## 4. CSS building blocks
 
 Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
@@ -922,6 +1044,7 @@ Events on `document`:
 | `uc:languagechange` | After the active language changes. `event.detail.lang`. |
 | `uc:exercisechange` | Bubbles from a `<uc-exercise>` when it is marked done or not done. |
 | `uc:classchange` | On `document`, when "My class" of a `<uc-timetable>` changes. `event.detail = { type, class }` (`class` is `""` for all). |
+| `uc:problemchange` | Bubbles from a `<uc-problems track>` when a problem is marked solved or not. `event.detail = { id, solved }`. |
 
 ### 7.1 Code runners
 

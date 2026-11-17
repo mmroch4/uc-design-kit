@@ -130,6 +130,7 @@ Todos são `CustomEvent` e chegam ao `document`.
 | `uc:ready` | A configuração foi lida e os componentes do kit estão definidos. Uma vez por página; o `<html>` recebe a classe `uc-ready` ao mesmo tempo. | `{ version }` |
 | `uc:languagechange` | Depois de a língua ativa mudar na mesma página (não quando a mudança navega para outro ficheiro). | `{ lang }` |
 | `uc:classchange` | Um estudante escolheu "A minha turma" num `<uc-timetable>`. Dispara no `document`; os outros horários da página seguem a escolha. | `{ type, class }` (`class` vazio = todas) |
+| `uc:problemchange` | Um problema de um `<uc-problems track>` foi marcado como resolvido ou não. Dispara na lista e sobe até ao `document`; as outras listas da página com o mesmo problema seguem a escolha. | `{ id, solved }` |
 | `uc:exercisechange` | Um `<uc-exercise>` foi marcado como feito ou por fazer. Dispara no exercício e sobe até ao `document`. | `{ id, done }` |
 
 ```js

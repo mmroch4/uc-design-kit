@@ -93,5 +93,15 @@
     document.dispatchEvent(new CustomEvent("uc:languagechange", { detail: { lang: code } }));
   };
 
+  /**
+   * True when `element` is written in a configured language other than the
+   * active one, so the kit hides it (mirrors the CSS rule of updateVisibilityStyle).
+   */
+  UC.internal.otherLanguage = function otherLanguage(element) {
+    const lang = element.getAttribute && element.getAttribute("lang");
+    if (!lang || UC.course.languages.length < 2) return false;
+    return UC.course.languages.some((code) => code !== UC.lang && (lang === code || lang.startsWith(`${code}-`)));
+  };
+
   apply(resolve());
 })(window.UC);
