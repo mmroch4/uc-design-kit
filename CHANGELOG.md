@@ -28,11 +28,21 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   16:30") or the range with the duration ("14:30–16:30"); `<uc-event>` and the
   table of `<uc-deadlines>` also show the location.
 - `UC.formatTime`, `UC.formatDuration`, `UC.weekdayName`.
+- `<uc-summaries>` (blocks phase 3): decorates the teacher's list of lecture
+  summaries with the date and weekday in the active language, a link to the
+  item's week, the semester breaks between items, "Última aula" and
+  "Prevista" states (`order="desc"`, `no-breaks`, `no-weeks`) and an
+  accent-insensitive search that highlights matches (`search`).
+- `<uc-weeks view="compact">` (blocks phase 3): the same weeks as one table,
+  one row per week (dates, topic, deadlines, status), breaks as full-width
+  rows; and `href` on `<uc-week>`, the page of that week's class ("Página da
+  aula" in the full view, the title link in the compact view).
 - Internal pieces for the new blocks: one shared live region
   (`<pre data-copy>` and `<uc-code>` now use it), course-scoped storage keys
   (`uc:<course>:…`), the filter bar (`uc-filters`), page enhancements run
-  after each component render. `scripts/build.mjs` fails above 37 KB gzipped
-  for `uc-kit.js` and prints its size.
+  after each component render. `scripts/build.mjs` fails above 48 KB gzipped
+  for `uc-kit.js` and prints its size (37 KB until phase 3, raised with
+  Miguel's approval on 17 Nov 2026 to fit the remaining blocks).
 - Accessibility (WCAG 2.1 AA audit): `heading-level` on `<uc-notices>`,
   `<uc-deadlines>`, `<uc-team>` and `<uc-this-week>` (2–6, default 2; the
   heading looks the same at any level); a check mark on the right answers of a

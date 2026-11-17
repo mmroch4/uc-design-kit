@@ -126,6 +126,25 @@ Exemplo (semana com um prazo do course.js), [demonstração ao vivo](https://uc-
 
 Para escolher que prazos aparecem nas semanas, use `kind` ou `no-deadlines` no `<uc-weeks>`. Um prazo que já tenha um [`<uc-event deadline="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md) escrito em qualquer semana da lista não é repetido.
 
+### Página da aula
+
+Com `href`, a semana liga à página dessa aula (um `semana06.html`, por exemplo): a primeira linha do conteúdo é a ligação "Página da aula". Não fica na linha que abre e fecha, porque uma ligação dentro de um `<summary>` não funciona bem com teclado nem com leitores de ecrã. Na [vista compacta](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md#vista-compacta), é o título da semana que liga à página.
+
+Exemplo (semana com ligação para a página da aula), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-week/href.html):
+
+```html
+<uc-weeks no-breaks no-deadlines>
+  <uc-week n="10" title="Dicionários e conjuntos" href="#">
+    <dl>
+      <dt>Teóricas</dt>
+      <dd>Tabelas de dispersão; contar palavras de um texto</dd>
+      <dt>Prática</dt>
+      <dd>Guião 10: dicionários</dd>
+    </dl>
+  </uc-week>
+</uc-weeks>
+```
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
@@ -135,6 +154,7 @@ Para escolher que prazos aparecem nas semanas, use `kind` ou `no-deadlines` no `
 | `title-<lang>` | texto | `title` | Título noutra língua, usado quando essa língua está ativa. Por exemplo `title-en`. |
 | `start` | data ISO | calculada | Primeiro dia da semana (`AAAA-MM-DD`), em vez do calculado a partir do `course.js`. |
 | `end` | data ISO | calculada | Último dia da semana. Sem `start`, só muda o fim do intervalo mostrado. |
+| `href` | endereço | ausente | Página da aula dessa semana, relativa à página. Acrescenta a ligação "Página da aula" ([exemplo](#pagina-da-aula)). |
 | `open` | booleano | ausente | Começa aberta. Sem ele, só a semana atual (ou a do endereço `#week-<n>`) abre sozinha. |
 
 ## Configuração usada
@@ -171,6 +191,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-week__number`, `__title`, `__date` | "Semana 10", o título e o intervalo de datas. |
 | `.uc-week__now` | A etiqueta "Esta semana". |
 | `.uc-week__body` | O conteúdo escrito pelo professor e os prazos. |
+| `.uc-week__page` | O parágrafo com a ligação "Página da aula" (`href`). |
 
 `theme.css`:
 

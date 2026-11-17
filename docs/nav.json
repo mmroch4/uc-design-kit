@@ -53,6 +53,7 @@
             { "title": "uc-week", "path": "pt/componentes/uc-week.html", "code": true, "component": "uc-week" },
             { "title": "uc-event", "path": "pt/componentes/uc-event.html", "code": true, "component": "uc-event" },
             { "title": "uc-this-week", "path": "pt/componentes/uc-this-week.html", "code": true, "component": "uc-this-week" },
+            { "title": "uc-summaries", "path": "pt/componentes/uc-summaries.html", "code": true, "component": "uc-summaries" },
             { "title": "uc-team", "path": "pt/componentes/uc-team.html", "code": true, "component": "uc-team" },
             { "title": "uc-timetable", "path": "pt/componentes/uc-timetable.html", "code": true, "component": "uc-timetable" },
             { "title": "uc-guide", "path": "pt/componentes/uc-guide.html", "code": true, "component": "uc-guide" },

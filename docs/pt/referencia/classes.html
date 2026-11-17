@@ -66,6 +66,7 @@
           <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
           <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
           <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
           <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
           <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
@@ -271,6 +272,11 @@
               <tr><td><code>.uc-weeks__go</code></td><td>O botão "Ir para esta semana" (também <code>.uc-button</code> e <code>.uc-button--primary</code>).</td></tr>
               <tr><td><code>.uc-weeks__break</code></td><td>O aviso de uma interrupção.</td></tr>
               <tr><td><code>.uc-weeks__break-date</code></td><td>As datas da interrupção.</td></tr>
+              <tr><td><code>.uc-weeks__compact</code>, <code>__table</code></td><td>Vista compacta: a caixa da tabela e a tabela.</td></tr>
+              <tr><td><code>.uc-weeks__row</code>, <code>--past</code>, <code>--current</code>, <code>--future</code></td><td>Vista compacta: a linha de uma semana e o seu estado.</td></tr>
+              <tr><td><code>.uc-weeks__dates</code>, <code>__topic</code>, <code>__status</code></td><td>Vista compacta: as células das datas, do tema e do estado.</td></tr>
+              <tr><td><code>.uc-weeks__deadlines</code></td><td>Vista compacta: a lista dos prazos por baixo do tema.</td></tr>
+              <tr><td><code>.uc-weeks__break-row</code></td><td>Vista compacta: a linha de uma interrupção.</td></tr>
             </tbody>
           </table>
         </div>
@@ -291,6 +297,7 @@
               <tr><td><code>.uc-week__number</code>, <code>__title</code>, <code>__date</code></td><td>"Semana 10", o título e o intervalo de datas.</td></tr>
               <tr><td><code>.uc-week__now</code></td><td>A etiqueta "Esta semana".</td></tr>
               <tr><td><code>.uc-week__body</code></td><td>O conteúdo escrito pelo professor e os prazos.</td></tr>
+              <tr><td><code>.uc-week__page</code></td><td>O parágrafo com a ligação "Página da aula" (<code>href</code>).</td></tr>
             </tbody>
           </table>
         </div>
@@ -334,6 +341,33 @@
               <tr><td><code>.uc-this-week__items</code>, <code>__item</code></td><td>A grelha de linhas e prazos, e cada um deles.</td></tr>
               <tr><td><code>.uc-this-week__label</code>, <code>__title</code>, <code>__detail</code>, <code>__date</code></td><td>Partes de um item: etiqueta ("Teóricas", "Entrega"), título do prazo, valor ou nota, e data.</td></tr>
               <tr><td><code>.uc-this-week__more</code>, <code>__link</code></td><td>O parágrafo e a ligação "Ver semana 10".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-summaries"><a href="../componentes/uc-summaries.html"><code>&lt;uc-summaries&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-summaries.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-summaries&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-summaries</code></td><td>O componente (o próprio <code>&lt;uc-summaries&gt;</code>).</td></tr>
+              <tr><td><code>.uc-summaries__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-summaries__search</code></td><td>O parágrafo com o rótulo e o campo de pesquisa.</td></tr>
+              <tr><td><code>.uc-summaries__list</code></td><td>A lista escrita pelo professor.</td></tr>
+              <tr><td><code>.uc-summaries__item</code>, <code>--last</code>, <code>--planned</code></td><td>Cada aula; a última dada e as previstas.</td></tr>
+              <tr><td><code>.uc-summaries__aside</code>, <code>__body</code></td><td>A coluna da data e o resto do item.</td></tr>
+              <tr><td><code>.uc-summaries__number</code></td><td>O número da aula.</td></tr>
+              <tr><td><code>.uc-summaries__date</code></td><td>A data (o <code>&lt;time&gt;</code> do professor).</td></tr>
+              <tr><td><code>.uc-summaries__week</code></td><td>A ligação "Semana 7".</td></tr>
+              <tr><td><code>.uc-summaries__state</code></td><td>As etiquetas "Última aula" e "Prevista".</td></tr>
+              <tr><td><code>.uc-summaries__break</code></td><td>A linha de uma interrupção.</td></tr>
+              <tr><td><code>.uc-summaries__mark</code></td><td>O texto realçado pela pesquisa.</td></tr>
+              <tr><td><code>.uc-summaries__empty</code></td><td>A linha "Nenhum sumário encontrado."</td></tr>
             </tbody>
           </table>
         </div>
@@ -608,6 +642,7 @@
           <li class="docs-toc__sub"><a href="#uc-week">&lt;uc-week&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-event">&lt;uc-event&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-this-week">&lt;uc-this-week&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-summaries">&lt;uc-summaries&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-team">&lt;uc-team&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-timetable">&lt;uc-timetable&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-guide">&lt;uc-guide&gt;</a></li>

@@ -109,9 +109,10 @@ audit, PR #35) and `scripts/check-pages.mjs`:
 
 ### 1.5 Size budget
 
-`kit/v1/uc-kit.js` is 27 KB gzipped today. All blocks together must keep it
-at **37 KB gzipped or less**. Phase 1 adds the check to `scripts/build.mjs`
-(the build fails above the limit and prints the size).
+`kit/v1/uc-kit.js` was 27 KB gzipped before the blocks. All blocks together
+must keep it at **48 KB gzipped or less** (37 KB until phase 3; Miguel
+approved raising it on 17 Nov 2026, see 16.1). Phase 1 added the check to
+`scripts/build.mjs` (the build fails above the limit and prints the size).
 
 ### 1.6 Versioning
 
@@ -711,7 +712,7 @@ New **local** tokens (read with a fallback, not defined on `:root`):
 | Token | Fallback | Use |
 | --- | --- | --- |
 | `--uc-timetable-time-width` | `7.5rem` | Time column of `<uc-timetable>` (days view). |
-| `--uc-summaries-date-width` | `9rem` | Date column of `<uc-summaries>` on wide screens. |
+| `--uc-summaries-date-width` | `10rem` | Date column of `<uc-summaries>` on wide screens. |
 | `--uc-grading-bar-height` | `12px` | Height of the proportions bar. |
 | `--uc-links-min` | `260px` | Column width of `uc-links--grid`. |
 
@@ -1078,3 +1079,48 @@ now in `docs/api.md` (2.1 `Minutes`, 2.5, 3.6). Refinements made while coding:
     37). `<uc-grading>` is ~2.4 KB, `<uc-assessment-info>` ~1.5 KB, `ics.js`
     ~1 KB on their own. Phases 3–5 cannot fit in 0.2 KB: Miguel was asked (17
     Nov) whether to raise the budget to 48 KB; see the phase 2 handoff.
+
+
+## 16. Changes made in phase 3
+
+Phase 3 implemented sections 3.4, 4.1, 4.2, the `--uc-summaries-date-width`
+token and the phase 3 strings of section 8; they are now in `docs/api.md`
+(3.3 and 5). Refinements made while coding:
+
+1. **Size budget raised to 48 KB** (Miguel, 17 Nov 2026, decision card of the
+   phase 2 thread): `JS_BUDGET_GZIP` in `scripts/build.mjs`, 1.5 above and
+   `CHANGELOG.md`. Phase 3 took `uc-kit.js` from 36.8 to **39.4 KB**
+   (`<uc-summaries>` ~1.9 KB, compact view and `href` ~0.7 KB).
+2. **Item layout.** With JavaScript each summary is split once into a date
+   column (`uc-summaries__aside`: the moved `<time>`, the week link, the
+   state) and a body (`uc-summaries__body`). The `<time>` moves only when it
+   is a direct child of the `<li>`; a separator right after it ("—", ":",
+   "·") is dropped. A grid item is not a `list-item`, so the number is
+   written in a `uc-summaries__number` span (and in `value`).
+3. **Numbers and states per language.** `value`, "Última aula" and the search
+   count use only the items shown in the active language (`<li lang>`), so a
+   bilingual list numbers each language 1, 2, 3…
+4. **Fewer strings.** The week link reuses `weeks.week`; there is no
+   `summaries.week`. A break without `label` reads "Interrupção: sem aulas
+   (…)" (`weeks.noClasses`).
+5. **Break dates** use `UC.formatDateRange` ("27–31 out"), like `<uc-weeks>`,
+   not "27 a 31 out".
+6. **Date column** fallback is `10rem`, not `9rem`: "segunda-feira, 24 nov"
+   wrapped at 9rem.
+7. **Compact view details.** Deadlines in a row include the ones written by
+   hand as `<uc-event deadline>` in that week (the week body is hidden), still
+   filtered by `kind`; deadlines in a break follow the break text in its row;
+   deadlines after the last week are appended after the table, as in the full
+   view. The current row is `aria-current="date"` with class
+   `uc-weeks__row--current`; `<uc-week>` gives up its `id` in the compact
+   view so the row can take `week-<n>`. New stable classes:
+   `uc-weeks__compact`, `__table`, `__row` (`--past`, `--current`,
+   `--future`), `__dates`, `__topic`, `__status`, `__deadlines`,
+   `__break-row`; `uc-week__page`.
+8. **More stable classes** on `<uc-summaries>` than 3.4 listed: `__section`,
+   `__heading`, `__list`, `__aside`, `__body`, `__number`, `__mark`,
+   `__item--last`, `__item--planned`.
+9. **Internal helpers.** `UC.internal.weekSpan(weekElement)` and
+   `UC.internal.weekStateOf(span)` (from `uc-week.js`, used by the compact
+   view) and `UC.internal.findMatches(text, query)` (accent-insensitive match
+   ranges, unit-tested).

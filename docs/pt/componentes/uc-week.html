@@ -66,6 +66,7 @@
           <li><a href="uc-week.html" aria-current="page"><code>uc-week</code></a></li>
           <li><a href="uc-event.html"><code>uc-event</code></a></li>
           <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-summaries.html"><code>uc-summaries</code></a></li>
           <li><a href="uc-team.html"><code>uc-team</code></a></li>
           <li><a href="uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
@@ -261,6 +262,29 @@
         <!-- /docs:demo -->
         <p>Para escolher que prazos aparecem nas semanas, use <code>kind</code> ou <code>no-deadlines</code> no <code>&lt;uc-weeks&gt;</code>. Um prazo que já tenha um <a href="uc-event.html"><code>&lt;uc-event deadline="…"&gt;</code></a> escrito em qualquer semana da lista não é repetido.</p>
 
+        <h3 id="pagina-da-aula">Página da aula</h3>
+        <p>Com <code>href</code>, a semana liga à página dessa aula (um <code>semana06.html</code>, por exemplo): a primeira linha do conteúdo é a ligação "Página da aula". Não fica na linha que abre e fecha, porque uma ligação dentro de um <code>&lt;summary&gt;</code> não funciona bem com teclado nem com leitores de ecrã. Na <a href="uc-weeks.html#vista-compacta">vista compacta</a>, é o título da semana que liga à página.</p>
+        <!-- docs:demo src="../../demos/uc-week/href.html" title="semana com ligação para a página da aula" height="291" -->
+        <div class="docs-demo" id="demo-uc-week-href">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-week/href.html" title="Demonstração: semana com ligação para a página da aula" loading="lazy" style="height: 291px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks no-breaks no-deadlines&gt;
+  &lt;uc-week n=&quot;10&quot; title=&quot;Dicionários e conjuntos&quot; href=&quot;#&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Teóricas&lt;/dt&gt;
+      &lt;dd&gt;Tabelas de dispersão; contar palavras de um texto&lt;/dd&gt;
+      &lt;dt&gt;Prática&lt;/dt&gt;
+      &lt;dd&gt;Guião 10: dicionários&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-week/href.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
           <table>
@@ -274,6 +298,7 @@
               <tr><td><code>title-&lt;lang&gt;</code></td><td>texto</td><td><code>title</code></td><td>Título noutra língua, usado quando essa língua está ativa. Por exemplo <code>title-en</code>.</td></tr>
               <tr><td><code>start</code></td><td>data ISO</td><td>calculada</td><td>Primeiro dia da semana (<code>AAAA-MM-DD</code>), em vez do calculado a partir do <code>course.js</code>.</td></tr>
               <tr><td><code>end</code></td><td>data ISO</td><td>calculada</td><td>Último dia da semana. Sem <code>start</code>, só muda o fim do intervalo mostrado.</td></tr>
+              <tr><td><code>href</code></td><td>endereço</td><td>ausente</td><td>Página da aula dessa semana, relativa à página. Acrescenta a ligação "Página da aula" (<a href="#pagina-da-aula">exemplo</a>).</td></tr>
               <tr><td><code>open</code></td><td>booleano</td><td>ausente</td><td>Começa aberta. Sem ele, só a semana atual (ou a do endereço <code>#week-&lt;n&gt;</code>) abre sozinha.</td></tr>
             </tbody>
           </table>
@@ -321,6 +346,7 @@
               <tr><td><code>.uc-week__number</code>, <code>__title</code>, <code>__date</code></td><td>"Semana 10", o título e o intervalo de datas.</td></tr>
               <tr><td><code>.uc-week__now</code></td><td>A etiqueta "Esta semana".</td></tr>
               <tr><td><code>.uc-week__body</code></td><td>O conteúdo escrito pelo professor e os prazos.</td></tr>
+              <tr><td><code>.uc-week__page</code></td><td>O parágrafo com a ligação "Página da aula" (<code>href</code>).</td></tr>
             </tbody>
           </table>
         </div>
@@ -385,6 +411,7 @@
           <li class="docs-toc__sub"><a href="#titulo-noutra-lingua">Título noutra língua</a></li>
           <li class="docs-toc__sub"><a href="#datas-manuais">Datas manuais</a></li>
           <li class="docs-toc__sub"><a href="#prazos-da-semana">Prazos da semana</a></li>
+          <li class="docs-toc__sub"><a href="#pagina-da-aula">Página da aula</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#estados">Estados e ligações</a></li>

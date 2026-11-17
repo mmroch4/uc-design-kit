@@ -1,0 +1,64 @@
+- table "Planeamento das semanas":
+  - caption: Planeamento das semanas
+  - rowgroup:
+    - row "Semana Datas Tema Estado":
+      - columnheader "Semana"
+      - columnheader "Datas"
+      - columnheader "Tema"
+      - columnheader "Estado"
+  - rowgroup:
+    - row "5 14–17 out Listas ligadas Dada":
+      - rowheader "5"
+      - cell "14–17 out":
+        - time: 14–17 out
+      - cell "Listas ligadas"
+      - cell "Dada"
+    - row "6 21–24 out Pilhas e filas Dada":
+      - rowheader "6"
+      - cell "21–24 out":
+        - time: 21–24 out
+      - cell "Pilhas e filas":
+        - link "Pilhas e filas":
+          - /url: "#aula6"
+      - cell "Dada"
+    - row "27–31 out · Atividades FCUP II, sem aulas Teste de treino · quarta-feira, 29 out, 10:00":
+      - cell "27–31 out · Atividades FCUP II, sem aulas Teste de treino · quarta-feira, 29 out, 10:00":
+        - time: 27–31 out
+        - text: · Atividades FCUP II, sem aulas
+        - list:
+          - listitem:
+            - strong: Teste de treino
+            - text: ·
+            - time: quarta-feira, 29 out, 10:00
+    - row "7 4–7 nov Complexidade algorítmica Dada":
+      - rowheader "7"
+      - cell "4–7 nov":
+        - time: 4–7 nov
+      - cell "Complexidade algorítmica"
+      - cell "Dada"
+    - row "8 11–14 nov Recursividade Avaliação Prática 1 · quarta-feira, 12 nov, 16:00 Dada":
+      - rowheader "8"
+      - cell "11–14 nov":
+        - time: 11–14 nov
+      - cell "Recursividade Avaliação Prática 1 · quarta-feira, 12 nov, 16:00":
+        - text: Recursividade
+        - list:
+          - listitem:
+            - strong: Avaliação Prática 1
+            - text: ·
+            - time: quarta-feira, 12 nov, 16:00
+      - cell "Dada"
+    - row "10 25–28 nov Árvores binárias de pesquisa Esta semana":
+      - rowheader "10"
+      - cell "25–28 nov":
+        - time: 25–28 nov
+      - cell "Árvores binárias de pesquisa":
+        - link "Árvores binárias de pesquisa":
+          - /url: "#aula10"
+      - cell "Esta semana"
+    - row "11 2–5 dez Filas de prioridade Prevista":
+      - rowheader "11"
+      - cell "2–5 dez":
+        - time: 2–5 dez
+      - cell "Filas de prioridade"
+      - cell "Prevista"

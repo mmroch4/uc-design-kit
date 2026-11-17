@@ -31,6 +31,8 @@
  *   - links with data-auth have a hidden "requires login" text and a decorative lock
  *   - "My class" of <uc-timetable>: keeps focus, announces the class, hides the
  *     other classes, is followed by the other timetables and survives a reload
+ *   - the search of <uc-summaries>: keeps focus while typing, announces the
+ *     count, highlights matches, hides the breaks and is cleared with Escape
  *
  * Accessibility-tree snapshots (Playwright ariaSnapshot) of the blocks' test
  * pages, stored next to them (tests/pages/*.aria.yml), fail the check when a
@@ -76,6 +78,8 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-timetable.html", selector: "#days", file: "tests/pages/uc-timetable-days.aria.yml" },
   { page: "tests/pages/uc-grading.html", selector: "#pc", file: "tests/pages/uc-grading.aria.yml" },
   { page: "tests/pages/uc-assessment-info.html", selector: "#full", file: "tests/pages/uc-assessment-info.aria.yml" },
+  { page: "tests/pages/uc-summaries.html", selector: "#main", file: "tests/pages/uc-summaries.aria.yml" },
+  { page: "tests/pages/uc-weeks-compact.html", selector: "#compact .uc-weeks__table", file: "tests/pages/uc-weeks-compact.aria.yml" },
 ];
 
 /** Component demos, the EDados example (top level and one lab guide) and the template. */
@@ -361,6 +365,7 @@ async function checkBehaviour(browser, origin, relative) {
 
   problems.push(...(await checkClassFilter(browser, origin, relative)));
   problems.push(...(await checkGradingCalculator(browser, origin, relative)));
+  problems.push(...(await checkSummariesSearch(browser, origin, relative)));
 
   if (relative.includes("uc-page") || relative.startsWith("examples/")) {
     const phone = await open(browser, origin, relative, { viewport: { width: 390, height: 844 } });
@@ -453,6 +458,44 @@ async function checkGradingCalculator(browser, origin, relative) {
   if ((await input.getAttribute("aria-invalid")) !== "false") problems.push("calculator: aria-invalid stays set after a valid value");
   if (!/Nota final|Final grade/.test(await liveText(page))) problems.push("calculator: the simulated grade is not announced");
   if (!(await focusedMatches(page, ".uc-grading__calculator input"))) problems.push("calculator: focus left the field");
+  await context.close();
+  return problems;
+}
+
+/** The search field of <uc-summaries search>, on pages that have one. */
+async function checkSummariesSearch(browser, origin, relative) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  const input = await firstVisible(page, ".uc-summaries__search input");
+  if (!input) {
+    await context.close();
+    return problems;
+  }
+  const box = await input.boundingBox();
+  if (box && box.height < 44) problems.push(`summaries search: the field is ${Math.round(box.height)}px tall (44px minimum)`);
+  if (!(await input.evaluate((node) => (node.labels[0] ? node.labels[0].textContent.trim() : "")))) problems.push("summaries search: the field has no visible <label>");
+  // The first word of the first summary, typed without its accents.
+  const word = await page.evaluate(() => {
+    const body = document.querySelector(".uc-summaries__item .uc-summaries__body strong, .uc-summaries__item .uc-summaries__body");
+    return (body.textContent.match(/[\p{L}]{4,}/u) || [""])[0].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  });
+  await input.focus();
+  await page.keyboard.type(word.toUpperCase());
+  await page.waitForTimeout(500);
+  if (!(await focusedMatches(page, ".uc-summaries__search input"))) problems.push("summaries search: focus left the field");
+  if (!/\d+ (de|of) \d+/.test(await liveText(page))) problems.push("summaries search: the number of results is not announced");
+  const state = await page.evaluate(() => {
+    const root = document.querySelector(".uc-summaries__search").closest("uc-summaries");
+    return {
+      marks: root.querySelectorAll("mark").length,
+      breaks: Array.from(root.querySelectorAll(".uc-summaries__break")).filter((node) => !node.hidden).length,
+    };
+  });
+  if (!state.marks) problems.push(`summaries search: "${word}" is not highlighted`);
+  if (state.breaks) problems.push("summaries search: breaks are still shown while searching");
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(100);
+  if (await input.evaluate((node) => node.value)) problems.push("summaries search: Escape did not clear the field");
   await context.close();
   return problems;
 }

@@ -1,0 +1,69 @@
+/* <uc-summaries>: lecture summaries with dates, weeks, breaks and search (docs/api.md, section 3.3). */
+
+:where(uc-summaries) { display: block; }
+:where(.uc-summaries__section) { display: flex; flex-direction: column; gap: var(--uc-space-4); }
+:where(.uc-summaries__heading) { margin: 0; font-size: var(--uc-font-size-h2); }
+
+:where(.uc-summaries__search) { display: flex; flex-direction: column; gap: var(--uc-space-1); max-width: 28rem; margin: 0; }
+:where(.uc-summaries__search label) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); font-weight: 600; }
+:where(.uc-summaries__search input) {
+  min-height: var(--uc-target-min);
+  padding: 0 var(--uc-space-3);
+  border: 1px solid var(--uc-color-text-subtle);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface);
+  font: inherit;
+}
+
+:where(.uc-summaries__list) { margin: 0; padding: 0; list-style: none; }
+:where(.uc-summaries__item, .uc-summaries__break) { border-top: 1px solid var(--uc-color-border); }
+:where(.uc-summaries__item) {
+  display: grid;
+  grid-template-columns: var(--uc-summaries-date-width, 10rem) minmax(0, 1fr);
+  gap: var(--uc-space-1) var(--uc-space-5);
+  padding: var(--uc-space-4) 0;
+}
+/* The lecture number, from the item's original position (it is also its value). */
+:where(.uc-summaries__number) { color: var(--uc-color-text-muted); font-family: var(--uc-font-mono); font-size: var(--uc-font-size-sm); }
+:where(.uc-summaries__body > :first-child) { margin-top: 0; }
+:where(.uc-summaries__body > :last-child) { margin-bottom: 0; }
+:where(.uc-summaries__body p) { margin: var(--uc-space-1) 0 0; color: var(--uc-color-text-secondary); }
+
+:where(.uc-summaries__aside) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--uc-space-1);
+  font-size: var(--uc-font-size-md);
+}
+:where(.uc-summaries__date) { font-weight: 600; }
+:where(.uc-summaries__week) { color: var(--uc-color-text-muted); }
+
+:where(.uc-summaries__item--last) {
+  background: var(--uc-color-highlight);
+  box-shadow: calc(-1 * var(--uc-space-4)) 0 0 var(--uc-color-highlight), var(--uc-space-4) 0 0 var(--uc-color-highlight);
+}
+/* Planned lectures are dimmed with lighter text colours, not opacity, so contrast stays AA. */
+:where(.uc-summaries__item--planned .uc-summaries__body, .uc-summaries__item--planned .uc-summaries__body p, .uc-summaries__item--planned .uc-summaries__date) {
+  color: var(--uc-color-text-muted);
+}
+
+:where(.uc-summaries__break) {
+  padding: 14px var(--uc-space-5);
+  background: var(--uc-color-surface-muted);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-body-sm);
+}
+:where(.uc-summaries__mark) { padding: 0; border-radius: 2px; background: var(--uc-color-warning-bg); color: inherit; }
+:where(.uc-summaries__empty) { margin: 0; color: var(--uc-color-text-muted); }
+
+@media (max-width: 760px) {
+  :where(.uc-summaries__item) { grid-template-columns: minmax(0, 1fr); }
+  :where(.uc-summaries__aside) { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--uc-space-1) var(--uc-space-3); }
+  :where(.uc-summaries__item--last) {
+    box-shadow: calc(-1 * var(--uc-space-3)) 0 0 var(--uc-color-highlight), var(--uc-space-3) 0 0 var(--uc-color-highlight);
+  }
+}
+
+/* The week link reaches the 44 px target height without taking more room. */
+:where(.uc-summaries__week) { padding: 12px 0; margin: -12px 0; }

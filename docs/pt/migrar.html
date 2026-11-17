@@ -66,6 +66,7 @@
           <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
           <li><a href="componentes/uc-event.html"><code>uc-event</code></a></li>
           <li><a href="componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
           <li><a href="componentes/uc-team.html"><code>uc-team</code></a></li>
           <li><a href="componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="componentes/uc-guide.html"><code>uc-guide</code></a></li>
@@ -190,7 +191,9 @@ avaliação]</code></pre></uc-code>
             <tbody>
               <tr><td>Datas do semestre, equipa, prazos, avisos, menu</td><td><code>course.js</code>: <code>semester</code>, <code>team</code>, <code>deadlines</code>, <code>notices</code>, <code>pages</code></td></tr>
               <tr><td>Página inicial</td><td><code>index.html</code> com <a href="componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a>, <a href="componentes/uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>, <a href="componentes/uc-notices.html"><code>&lt;uc-notices&gt;</code></a>, <a href="componentes/uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a></td></tr>
-              <tr><td>Calendário, sumários, planeamento</td><td><code>semanas.html</code> com <a href="componentes/uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a> e uma <a href="componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a> por semana, sem datas escritas</td></tr>
+              <tr><td>Calendário, planeamento</td><td><code>semanas.html</code> com <a href="componentes/uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a> e uma <a href="componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a> por semana, sem datas escritas</td></tr>
+              <tr><td>Planeamento com uma página por aula ("week06.html")</td><td><a href="componentes/uc-weeks.html#vista-compacta"><code>&lt;uc-weeks view="compact"&gt;</code></a> e <code>href</code> em cada <code>&lt;uc-week&gt;</code></td></tr>
+              <tr><td>Sumários das aulas, plano aula a aula (T01–T23)</td><td>A mesma lista numerada dentro de <a href="componentes/uc-summaries.html"><code>&lt;uc-summaries&gt;</code></a>, com a data de cada aula num <code>&lt;time datetime&gt;</code> no início do item</td></tr>
               <tr><td>Avaliação</td><td><code>avaliacao.html</code>, com os prazos a vir do <code>course.js</code></td></tr>
               <tr><td>Fórmula e pesos da nota ("Nota = 0,1 × A + …", "14 valores")</td><td>A mesma lista dentro de <a href="componentes/uc-grading.html"><code>&lt;uc-grading&gt;</code></a>, com o peso em <code>&lt;data&gt;</code> e <code>data-code</code>, <code>data-min</code> em cada item</td></tr>
               <tr><td>Página de um teste ou exame (data, turnos, salas, duração)</td><td>Os dados no prazo do <code>course.js</code> (<code>duration</code>, <code>location</code>, <code>shifts</code>) e <a href="componentes/uc-assessment-info.html"><code>&lt;uc-assessment-info&gt;</code></a> no topo da página</td></tr>

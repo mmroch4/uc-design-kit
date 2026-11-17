@@ -132,6 +132,7 @@ Não estão definidos em `:root`: o kit lê-os com um valor de recurso. Definem-
 | `--uc-deadlines-date-width` | `5.25rem` | Coluna da data de `<uc-deadlines>` em lista. |
 | `--uc-timetable-time-width` | `7.5rem` | Coluna das horas de `<uc-timetable view="days">`. |
 | `--uc-grading-bar-height` | `12px` | Altura da barra das proporções de `<uc-grading>`. |
+| `--uc-summaries-date-width` | `10rem` | Largura da coluna da data de `<uc-summaries>`, em ecrãs largos. |
 
 ```html
 <div class="uc-grid" style="--uc-grid-min: 160px">

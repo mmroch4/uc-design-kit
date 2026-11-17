@@ -64,9 +64,13 @@ Quando o professor pede para passar um site existente para esta pasta:
    as semanas:
    - página inicial → `index.html` (`uc-hero`, `uc-this-week`, `uc-notices`,
      `uc-deadlines`, `uc-team`);
-   - calendário, sumários, planeamento → `semanas.html` (`uc-weeks` com uma
+   - calendário e planeamento → `semanas.html` (`uc-weeks` com uma
      `uc-week` por semana; os prazos do `course.js` aparecem sozinhos na
-     semana certa);
+     semana certa). Um planeamento com uma página por aula → `<uc-weeks
+     view="compact">` e `href` em cada `uc-week`;
+   - sumários das aulas (e planos aula a aula com datas futuras) → a lista
+     numerada dentro de `<uc-summaries>`, com a data de cada aula num
+     `<time datetime="AAAA-MM-DD">` no início do item;
    - horários e atendimento → `uc-timetable` (uma entrada de `schedule` por
      aula semanal; os docentes vêm de `team[].classes`) e `uc-team`;
    - avaliação → `avaliacao.html`; a fórmula e os pesos da nota → a lista

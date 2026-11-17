@@ -1,0 +1,69 @@
+- region "Sumários":
+  - heading "Sumários" [level=2]
+  - paragraph:
+    - text: Pesquisar nos sumários
+    - searchbox "Pesquisar nos sumários"
+  - list:
+    - listitem:
+      - time: terça-feira, 16 set
+      - link "Semana 1":
+        - /url: uc-weeks.html#week-1
+      - text: "1."
+      - strong: Apresentação; Introdução ao Java
+      - paragraph: Programa, bibliografia, funcionamento e avaliação. História do Java.
+    - listitem:
+      - time: sexta-feira, 19 set
+      - link "Semana 1":
+        - /url: uc-weeks.html#week-1
+      - text: "2."
+      - strong: Tipos básicos e operadores
+      - paragraph: Conversão entre tipos, operadores e precedência, ciclos e execução condicional.
+    - listitem:
+      - time: sexta-feira, 24 out
+      - link "Semana 6":
+        - /url: uc-weeks.html#week-6
+      - text: "3."
+      - strong: Pilhas e filas
+      - paragraph:
+        - text: Implementação com
+        - code: array
+        - text: e com listas ligadas.
+    - listitem: "Interrupção: Atividades FCUP II (27–31 out)"
+    - listitem: "Interrupção: Fim de semana prolongado (1–2 nov)"
+    - listitem:
+      - time: terça-feira, 4 nov
+      - link "Semana 7":
+        - /url: uc-weeks.html#week-7
+      - text: "4."
+      - strong: Complexidade algorítmica
+      - paragraph:
+        - text: Notação
+        - emphasis: O
+        - text: ", análise do pior caso."
+    - listitem:
+      - text: "5."
+      - strong: Aula de dúvidas
+      - text: (sem data)
+    - listitem:
+      - time: terça-feira, 25 nov
+      - link "Semana 10":
+        - /url: uc-weeks.html#week-10
+      - text: Última aula 6.
+      - strong: Árvores binárias de pesquisa
+    - listitem:
+      - time: sexta-feira, 28 nov
+      - link "Semana 10":
+        - /url: uc-weeks.html#week-10
+      - text: Prevista 7.
+      - strong: Dicionários
+      - list:
+        - listitem:
+          - time: não é a data
+          - text: lista interna
+    - listitem:
+      - time: terça-feira, 2 dez
+      - link "Semana 11":
+        - /url: uc-weeks.html#week-11
+      - text: Prevista 8.
+      - strong: Filas de prioridade e heaps
+  - paragraph: Texto do docente depois da lista.

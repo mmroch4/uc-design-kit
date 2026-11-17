@@ -99,6 +99,11 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-weeks__go` | O botão "Ir para esta semana" (também `.uc-button` e `.uc-button--primary`). |
 | `.uc-weeks__break` | O aviso de uma interrupção. |
 | `.uc-weeks__break-date` | As datas da interrupção. |
+| `.uc-weeks__compact`, `__table` | Vista compacta: a caixa da tabela e a tabela. |
+| `.uc-weeks__row`, `--past`, `--current`, `--future` | Vista compacta: a linha de uma semana e o seu estado. |
+| `.uc-weeks__dates`, `__topic`, `__status` | Vista compacta: as células das datas, do tema e do estado. |
+| `.uc-weeks__deadlines` | Vista compacta: a lista dos prazos por baixo do tema. |
+| `.uc-weeks__break-row` | Vista compacta: a linha de uma interrupção. |
 
 ### [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md)
 
@@ -110,6 +115,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-week__number`, `__title`, `__date` | "Semana 10", o título e o intervalo de datas. |
 | `.uc-week__now` | A etiqueta "Esta semana". |
 | `.uc-week__body` | O conteúdo escrito pelo professor e os prazos. |
+| `.uc-week__page` | O parágrafo com a ligação "Página da aula" (`href`). |
 
 ### [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md)
 
@@ -135,6 +141,24 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-this-week__items`, `__item` | A grelha de linhas e prazos, e cada um deles. |
 | `.uc-this-week__label`, `__title`, `__detail`, `__date` | Partes de um item: etiqueta ("Teóricas", "Entrega"), título do prazo, valor ou nota, e data. |
 | `.uc-this-week__more`, `__link` | O parágrafo e a ligação "Ver semana 10". |
+
+### [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-summaries` | O componente (o próprio `<uc-summaries>`). |
+| `.uc-summaries__section`, `__heading` | A secção e o seu título. |
+| `.uc-summaries__search` | O parágrafo com o rótulo e o campo de pesquisa. |
+| `.uc-summaries__list` | A lista escrita pelo professor. |
+| `.uc-summaries__item`, `--last`, `--planned` | Cada aula; a última dada e as previstas. |
+| `.uc-summaries__aside`, `__body` | A coluna da data e o resto do item. |
+| `.uc-summaries__number` | O número da aula. |
+| `.uc-summaries__date` | A data (o `<time>` do professor). |
+| `.uc-summaries__week` | A ligação "Semana 7". |
+| `.uc-summaries__state` | As etiquetas "Última aula" e "Prevista". |
+| `.uc-summaries__break` | A linha de uma interrupção. |
+| `.uc-summaries__mark` | O texto realçado pela pesquisa. |
+| `.uc-summaries__empty` | A linha "Nenhum sumário encontrado." |
 
 ### [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md)
 
