@@ -181,7 +181,7 @@
   }
 
   /**
-   * Weight columns (6): the result's branches, each { name, coefficients: { code: c } },
+   * Weight columns (6): the result's branches, each { name, coefficients: { code: c }, tree },
    * or null when a branch is not linear. `name` is the formula name of a branch that is one.
    */
   function columnsOf(tree, byName) {
@@ -192,7 +192,7 @@
     const columns = branches.map((branch) => {
       const linear = linearOf(branch, byName);
       if (linear) delete linear[""];
-      return linear && { name: branch.type === "name" && byName.has(branch.name) ? branch.name : null, coefficients: linear };
+      return linear && { name: branch.type === "name" && byName.has(branch.name) ? branch.name : null, coefficients: linear, tree: branch };
     });
     return columns.every(Boolean) ? columns : null;
   }

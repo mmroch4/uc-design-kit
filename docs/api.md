@@ -997,8 +997,25 @@ above.
   warning with the formula number and column, e.g.
   `[uc-kit] uc-grading: formula 1, column 18: unknown name "X". Known: P, E.`
   A rule that cannot be read becomes a text rule, with a warning.
-- **Calculator.** With formulas, `calculator` is ignored until grading phase
-  G3, which simulates every branch and checks the rules.
+- **Calculator.** With formulas, `calculator` keeps the same fields (one per
+  leaf and per bonus item) and evaluates the formulas as the student types
+  (grading phase G3, contract 9). Its output, in order: one line with the
+  value of each branch when there are two or more ("Fórmula 1: 12,8 ·
+  Fórmula 2: 13", `.uc-grading__branches`); the final grade, named after the
+  result formula and with the branch that counts ("Nota final (CF): 13
+  valores (conta a Fórmula 2)"); one item per rule (`.uc-grading__checks`):
+  "✓"/"✗" plus the words "cumprido"/"não cumprido" for screen readers, and
+  "não verificado: …" for a text rule; then the state ("Aprovado nesta
+  simulação.", "Aprovado nesta simulação, se cumprires os requisitos não
+  verificados." when there are text rules, or "Não aprovado nesta simulação.
+  Abaixo do mínimo: E ≥ 4,9" with the first rule that fails). The final grade
+  is the result formula plus the bonus items, clamped to `[0, scale]`; in
+  rules, `RESULT` and the result formula's name are that final grade. Rules
+  are checked on unrounded values. A division by 0 gives "Não é possível
+  calcular a nota com estes valores." One announcement, 300 ms after typing
+  stops, says the final grade and the state. With only a rules list (no
+  formulas) the calculator works as above, from `data-min` and `pass`, and
+  does not check the written rules.
 
 #### `<uc-assessment-info>`
 

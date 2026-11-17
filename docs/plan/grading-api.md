@@ -760,3 +760,42 @@ Each phase adds a subsection here when it changes a detail above.
     "uc-grading with data-formulas and data-rules". New snapshot
     `tests/pages/uc-grading-formulas.aria.yml` (`#edados-2627`). Demo
     `docs/demos/uc-grading/formulas.html` (axe in `check-a11y`).
+
+### 17.3 G3
+
+1. **`RESULT` and the result formula's name in rules are the final grade**
+   (5.3: result formula + Σ bonus, clamped to `[0, scale]`), so `CF >= 9.5`
+   and `RESULT >= 9.5` agree when there is a bonus. Formulas evaluated
+   *after* the result formula still see its unclamped value, because formulas
+   are evaluated first. "conta a …" compares the branches with the result
+   formula's value before the bonus.
+2. **Branches exposed:** each `model.columns` entry now also has `tree`, the
+   branch's tree (a name node for a named formula). The calculator evaluates
+   it for the branches line; so the line and "conta a …" exist only when
+   `columns` does (every branch linear) and has two or more entries (9).
+3. **Output DOM** (formula mode only; legacy unchanged):
+   `p.uc-grading__branches` (before the result paragraph) and
+   `ul.uc-grading__checks` (after it), both hidden while empty. A checked rule
+   is `<li><span aria-hidden="true">✓</span> E ≥ 4,9<span
+   class="uc-visually-hidden"> (cumprido)</span></li>`; an undefined one
+   uses "?" and "(não verificado)"; a text rule is "não verificado: " plus
+   the item's text. The state line reuses `.uc-grading__status`.
+4. **Undefined:** when the final grade is NaN (division by 0) the result line
+   is empty, nothing is checked and the state is the 5.1 message. When only a
+   rule is undefined, the state is the same message.
+5. **Rules list without formulas** (17.2 item 9): the legacy calculator is
+   kept as it is (only `data-min` and `pass`, exact legacy strings); written
+   rules are not checked there. Doing so would need the legacy weights as a
+   formula and is left for a later version if a course asks.
+6. **Tests.** `core-tests.js`: "grading 13.3: EDados 2026/27 simulation" and
+   "grading 13.3: PI literal, tolerance, text rules, clamp, bonus, division
+   by 0". `#edados-2627` in `tests/pages/uc-grading.html` now has
+   `calculator` (snapshot updated) and a new snapshot
+   `tests/pages/uc-grading-simulation.aria.yml` after typing P 20, R 20, E 4.
+   `check-a11y` runs its calculator check on the first legacy calculator and
+   on the first calculator with formulas of each page; for the second it also
+   checks one announcement with result and state, words next to every ✓/✗,
+   and axe after input. The demo `docs/demos/uc-grading/formulas.html` has
+   `calculator`.
+7. **Size:** `uc-grading.js` is 7.8 KB of 8 KB gzipped after G3 (the new
+   strings are about a third of the growth).

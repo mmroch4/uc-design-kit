@@ -100,10 +100,10 @@ Exemplo (pesos decimais sem fórmula e com uma nota), [demonstração ao vivo](h
 
 Quando o método de avaliação é uma fórmula, como no diapositivo da cadeira, escreve-se essa fórmula numa lista `<ol data-formulas>`, dentro de um `<code>`, e as condições para aprovar numa lista `<ul data-rules>`. Os pesos saem da fórmula, por isso as componentes já não precisam de `<data>`, mas todas precisam de um `data-code`. Com `max`, cada fórmula dentro dos parênteses tem a sua coluna na tabela e a sua barra.
 
-Exemplo (duas fórmulas, conta a mais favorável, e regras para aprovar), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-grading/formulas.html):
+Exemplo (duas fórmulas, conta a mais favorável, regras para aprovar e simulador), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-grading/formulas.html):
 
 ```html
-<uc-grading scale="20">
+<uc-grading scale="20" calculator>
   <ul>
     <li data-code="P">Avaliação prática</li>
     <li data-code="R">Resolução de problemas</li>
@@ -124,7 +124,9 @@ A fórmula pode usar números (`0.75` ou `0,75`), os códigos das componentes, `
 
 Cada regra é uma comparação (`>=`, `>`, `<=`, `<`, `=`) entre expressões; `RESULT` é a nota final. Um item sem `<code>` é uma regra escrita só em texto. O `data-min` e o `pass` também aparecem na lista "Para aprovar". Uma regra como `E >= 4.9` também preenche a coluna Mínimo.
 
-Se uma fórmula tiver um erro, a página mostra as listas tal como estão escritas e a consola do navegador diz qual é a fórmula e a coluna do erro, por exemplo `formula 1, column 18: unknown name "X"`. O simulador com fórmulas chega na próxima versão; por agora, com `data-formulas`, o atributo `calculator` é ignorado.
+Se uma fórmula tiver um erro, a página mostra as listas tal como estão escritas e a consola do navegador diz qual é a fórmula e a coluna do erro, por exemplo `formula 1, column 18: unknown name "X"`.
+
+Com `calculator`, o simulador calcula as fórmulas enquanto o aluno escreve. Com `max` mostra o valor de cada fórmula ("Fórmula 1: 12,8 · Fórmula 2: 13") e diz qual conta ("Nota final (CF): 13 valores (conta a Fórmula 2)"). Depois verifica cada regra, com ✓ ou ✗ e as palavras "cumprido" ou "não cumprido" para quem usa um leitor de ecrã; as regras escritas só em texto aparecem como "não verificado". A última linha diz o estado: "Aprovado nesta simulação.", "Aprovado nesta simulação, se cumprires os requisitos não verificados." ou "Não aprovado nesta simulação." seguido da primeira regra que falha. Os bónus somam-se à fórmula e a nota final fica entre 0 e a escala; nas regras, `RESULT` e o nome da fórmula final (`CF`) são essa nota final. As regras usam a nota sem arredondar: 9,45 não cumpre `CF >= 9.5`, mesmo aparecendo como 9,5. Só com uma lista `data-rules`, sem fórmulas, o simulador usa apenas o `data-min` e o `pass`.
 
 ## Atributos
 
@@ -159,6 +161,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-grading__sub` | As linhas das partes de uma componente, recolhidas. |
 | `.uc-grading__calculator`, `__fields`, `__field`, `__error` | O simulador, os campos, cada campo e a sua mensagem de erro. |
 | `.uc-grading__result`, `__status` | A nota simulada e a linha do estado ("Aprovado nesta simulação"). |
+| `.uc-grading__branches`, `__checks` | Com `data-formulas`: o valor de cada fórmula e a lista das regras verificadas (✓ / ✗). |
 
 `theme.css`:
 

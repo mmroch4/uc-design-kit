@@ -550,11 +550,84 @@
       ]);
     });
 
+  /* The calculator with formulas and rules (grading-api.md 9 and 13.3). */
+  const calculatorTests = () => {
+    /** Renders `html` with `calculator`, types each row of `rows` into the fields and reads [branches, result, checks, state]. */
+    const simulate = (attributes, html, rows) => {
+      const host = document.createElement("div");
+      host.hidden = true;
+      host.innerHTML = `<uc-grading calculator ${attributes}>${html}</uc-grading>`;
+      document.body.append(host);
+      const element = host.firstElementChild;
+      const read = (selector) => element.querySelector(selector).textContent.replace(/\s+/g, " ").trim();
+      const out = inLang("pt", () => {
+        element.render();
+        return rows.map((row) => {
+          element.querySelectorAll(".uc-grading__calculator input").forEach((input, index) => {
+            input.value = row[index] ?? "";
+            input.dispatchEvent(new Event("input"));
+          });
+          return [read(".uc-grading__branches"), read(".uc-grading__result"), Array.from(element.querySelectorAll(".uc-grading__checks li"), (li) => li.textContent), read(".uc-grading__status")];
+        });
+      });
+      host.remove();
+      return out;
+    };
+    const EDADOS = `<ul><li data-code="P">P</li><li data-code="R">R</li><li data-code="E">E</li></ul>
+      <ol data-formulas><li><code>CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)</code></li></ol>
+      <ul data-rules><li><code>E >= 4.9</code> Exame.</li><li><code>CF >= 9.5</code></li></ul>`;
+
+    test("grading 13.3: EDados 2026/27 simulation", () => {
+      const rows = [[14, 20, 12], [10, 20, 14], [20, 20, 4], [8, 10, 10], [8, 0, 10], [10, 10, 10], [0, 0, 0], [20, 20, 20]];
+      const short = simulate('scale="20"', EDADOS, rows).map(([branches, result, checks, state]) => [branches, result.replace("Nota final (CF): ", ""), checks.map((check) => check[0]).join(""), state]);
+      const pass = "Aprovado nesta simulação.";
+      const failE = "Não aprovado nesta simulação. Abaixo do mínimo: E ≥ 4,9";
+      equal(short, [
+        ["Fórmula 1: 12,8 · Fórmula 2: 13", "13 valores (conta a Fórmula 2)", "✓✓", pass],
+        ["Fórmula 1: 13,5 · Fórmula 2: 13,1", "13,5 valores (conta a Fórmula 1)", "✓✓", pass],
+        ["Fórmula 1: 8 · Fórmula 2: 9,6", "9,6 valores (conta a Fórmula 2)", "✗✓", failE],
+        ["Fórmula 1: 9,6 · Fórmula 2: 9,4", "9,6 valores (conta a Fórmula 1)", "✓✓", pass],
+        ["Fórmula 1: 9,1 · Fórmula 2: 8,9", "9,1 valores (conta a Fórmula 1)", "✓✗", "Não aprovado nesta simulação. Abaixo do mínimo: CF ≥ 9,5"],
+        ["Fórmula 1: 10 · Fórmula 2: 10", "10 valores (conta a Fórmula 1)", "✓✓", pass],
+        ["Fórmula 1: 0 · Fórmula 2: 0", "0 valores (conta a Fórmula 1)", "✗✗", failE],
+        ["Fórmula 1: 20 · Fórmula 2: 20", "20 valores (conta a Fórmula 1)", "✓✓", pass],
+      ]);
+      // Each check says met / not met in words, not only with ✓ / ✗ (12).
+      const [[, , checks]] = simulate('scale="20"', EDADOS, [[20, 20, 4]]);
+      equal(checks, ["✗ E ≥ 4,9 (não cumprido)", "✓ CF ≥ 9,5 (cumprido)"]);
+    });
+
+    test("grading 13.3: PI literal, tolerance, text rules, clamp, bonus, division by 0", () => {
+      const PI = `<ul><li data-code="EX" data-scale="100">EX</li><li data-code="PA" data-scale="100">PA</li><li data-code="WP" data-scale="100">WP</li></ul>
+        <ol data-formulas><li><code>CF = (0.7*EX + 0.25*PA + 0.05*WP) / 5</code></li></ol><ul data-rules><li><code>0.7*EX/5 >= 4.9</code></li><li><code>CF >= 9.5</code></li></ul>`;
+      const pi = simulate("", PI, [[50, 80, 100], [35, 100, 100], [34, 100, 100], [60, 0, 0]]).map(([branches, result, , state]) => [branches, result, state]);
+      equal(pi, [
+        ["", "Nota final (CF): 12 valores", "Aprovado nesta simulação."],
+        ["", "Nota final (CF): 10,9 valores", "Aprovado nesta simulação."],
+        ["", "Nota final (CF): 10,8 valores", "Não aprovado nesta simulação. Abaixo do mínimo: 0,7 × EX / 5 ≥ 4,9"],
+        ["", "Nota final (CF): 8,4 valores", "Não aprovado nesta simulação. Abaixo do mínimo: CF ≥ 9,5"],
+      ]);
+      const PC = `<ul><li data-code="SI">SI</li><li data-code="CE">CE</li><li data-code="PDC">PDC</li><li data-code="B" data-bonus="10%">B</li></ul>
+        <ol data-formulas><li><code>0.25*SI + 0.5*CE + 0.25*PDC</code></li></ol><ul data-rules><li><code>RESULT >= 9.5</code></li><li>Comparecer a 2 dos 3 concursos.</li></ul>`;
+      equal(simulate("", PC, [[20, 20, 20, 2], [10, 10, 10, 2], [10, 10, 10]]).map(([, result, checks, state]) => [result, checks, state]), [
+        ["Nota final: 20 valores", ["✓ Nota ≥ 9,5 (cumprido)", "não verificado: Comparecer a 2 dos 3 concursos."], "Aprovado nesta simulação, se cumprires os requisitos não verificados."],
+        ["Nota final: 12 valores", ["✓ Nota ≥ 9,5 (cumprido)", "não verificado: Comparecer a 2 dos 3 concursos."], "Aprovado nesta simulação, se cumprires os requisitos não verificados."],
+        ["Nota final: 10 valores", ["✓ Nota ≥ 9,5 (cumprido)", "não verificado: Comparecer a 2 dos 3 concursos."], "Aprovado nesta simulação, se cumprires os requisitos não verificados."],
+      ]);
+      const ratio = '<ul><li data-code="E">E</li><li data-code="P">P</li></ul><ol data-formulas><li><code>CF = E / P</code></li></ol>';
+      equal(simulate("", ratio, [[10, 0], [10, 5], [10]]).map(([, result, , state]) => [result, state]), [
+        ["", "Não é possível calcular a nota com estes valores."],
+        ["Nota final (CF): 2 valores", ""],
+        ["", "Preenche todas as componentes para ver a nota."],
+      ]);
+    });
+  };
+
   test("modules: kit files resolve next to uc-kit.js", () => equal(new URL(UC.internal.kitUrl("uc-grading.js")).pathname.endsWith("/kit/v1/uc-grading.js"), true));
 
   UC.internal
     .loadModule("grading")
-    .then(() => [gradingTests, formulaTests, gradingFormulaTests].forEach((run) => run()), (error) => test("uc-grading.js loads next to uc-kit.js", () => { throw error; }))
+    .then(() => [gradingTests, formulaTests, gradingFormulaTests, calculatorTests].forEach((run) => run()), (error) => test("uc-grading.js loads next to uc-kit.js", () => { throw error; }))
     .then(() => {
       const summary = document.createElement("p");
       summary.textContent = failures ? `${failures} failing` : "All tests passed.";

@@ -1,0 +1,15 @@
+- group "Simular a nota":
+  - text: "Simular a nota P: Avaliação prática (laboratório) (0 a 20)"
+  - 'textbox "P: Avaliação prática (laboratório) (0 a 20)"': "20"
+  - text: "R: Resolução de problemas ao longo do semestre (0 a 20)"
+  - 'textbox "R: Resolução de problemas ao longo do semestre (0 a 20)"': "20"
+  - text: "E: Exame final (0 a 20)"
+  - 'textbox "E: Exame final (0 a 20)"': "4"
+  - paragraph: "Fórmula 1: 8 · Fórmula 2: 9,6"
+  - paragraph:
+    - status: "Nota final (CF): 9,6 valores (conta a Fórmula 2)"
+  - list:
+    - listitem: E ≥ 4,9 (não cumprido)
+    - listitem: CF ≥ 9,5 (cumprido)
+  - paragraph: "Não aprovado nesta simulação. Abaixo do mínimo: E ≥ 4,9"
+  - paragraph: Simulação. A nota oficial é a publicada no SIGARRA.
