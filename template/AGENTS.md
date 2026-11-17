@@ -50,7 +50,9 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
     corrigir todos os `ERRO` (e os `AVISO` que forem do que se alterou). Nunca
     editar o `uc-site.py` nem o `search-index.js` (é gerado: com
     `search: true` no `course.js`, `python3 uc-site.py` reescreve-o).
-13. Para mostrar um algoritmo passo a passo (ordenação, …), usar um widget
+13. Para mostrar um algoritmo ou uma estrutura de dados passo a passo
+    (ordenação, pesquisa, árvore binária de pesquisa, lista ligada, pilha e
+    fila, recursão…), usar um widget
     da biblioteca em vez de escrever um componente: uma linha
     `<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-sort.js" defer></script>`
     depois do kit e o elemento (`<uc-widget-sort values="5 2 9 1" algorithm="insertion">`)

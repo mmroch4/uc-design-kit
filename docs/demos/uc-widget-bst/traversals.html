@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-bst: percursos · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-bst.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-bst values="5 3 8 1 4 7 9" algorithm="inorder"
+                   algorithms="preorder inorder postorder levelorder" predict>
+      <ul>
+        <li>Pré-ordem: 5 3 1 4 8 7 9</li>
+        <li>Em-ordem: 1 3 4 5 7 8 9</li>
+        <li>Pós-ordem: 1 4 3 7 9 8 5</li>
+        <li>Em largura: 5 3 8 1 4 7 9</li>
+      </ul>
+    </uc-widget-bst>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

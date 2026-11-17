@@ -108,18 +108,28 @@
     }
   }
 
-  /** Loads and returns the parsed index. An index of an unknown format version turns the search off. */
+  /** Loads and returns the parsed index, once (a failed download can be retried). An unknown format version turns the search off. */
+  let indexPromise = null;
   function loadIndex() {
-    return loadScript(indexUrl()).then(() => {
-      const index = window.UC_SEARCH_INDEX;
-      if (!index || index.v !== INDEX_VERSION || !Array.isArray(index.pages)) {
-        console.warn(`[uc-kit] ${config.index} is not a search index this kit can read (format ${index && index.v}).`);
-        if (state === "yes") settle(false);
-        throw new Error("unknown search index format");
-      }
-      warnIfStale(index);
-      return index;
-    });
+    if (!indexPromise) {
+      indexPromise = loadScript(indexUrl()).then(
+        () => {
+          const index = window.UC_SEARCH_INDEX;
+          if (!index || index.v !== INDEX_VERSION || !Array.isArray(index.pages)) {
+            console.warn(`[uc-kit] ${config.index} is not a search index this kit can read (format ${index && index.v}).`);
+            if (state === "yes") settle(false);
+            throw new Error("unknown search index format");
+          }
+          warnIfStale(index);
+          return index;
+        },
+        (error) => {
+          indexPromise = null;
+          throw error;
+        },
+      );
+    }
+    return indexPromise;
   }
 
   /* ---------- Header button and shortcuts (8.1) ---------- */
@@ -160,20 +170,37 @@
 
   /* ---------- Public API (8.4) ---------- */
 
+  /** Loads uc-search.js once; the header buttons say they are busy meanwhile. A failure is announced and can be retried. */
+  function loadEngine() {
+    const buttons = document.querySelectorAll(".uc-search-button");
+    buttons.forEach((button) => button.setAttribute("aria-busy", "true"));
+    return loadScript(engineUrl()).then(
+      () => buttons.forEach((button) => button.removeAttribute("aria-busy")),
+      (error) => {
+        buttons.forEach((button) => button.removeAttribute("aria-busy"));
+        console.warn(`[uc-kit] ${error.message}`);
+        UC.internal.announce(UC.t("search.failed"));
+        throw error;
+      },
+    );
+  }
+
   UC.search = {
     /** Promise<boolean>: whether the site has a search index. */
     available: check,
-    /** Opens the search, optionally with a query. Does nothing when there is no index. */
+    /**
+     * Opens the search, optionally with a query. Does nothing when there is no
+     * index. The index downloads while uc-search.js loads; the dialog shows
+     * "Loading…" until it arrives (and a retry button if it fails).
+     */
     open(query) {
       const opener = document.activeElement;
       return check().then((available) => {
         if (!available) return;
-        return Promise.all([loadScript(engineUrl()), loadIndex()]).then(
-          ([, index]) => {
-            const ui = UC.internal.searchUI;
-            if (ui && typeof ui.open === "function") ui.open({ index, query: query || "", opener });
-          },
-          (error) => console.warn(`[uc-kit] ${error.message}`),
+        loadIndex().catch(() => {});
+        return loadEngine().then(
+          () => UC.internal.searchUI.open({ load: loadIndex, query: query || "", opener }),
+          () => {},
         );
       });
     },
@@ -183,6 +210,10 @@
 
   if (!config) return;
   document.addEventListener("keydown", onKeydown);
+  // <uc-search> is defined in uc-search.js: load it once the index is known to exist.
+  document.addEventListener("uc:searchready", () => {
+    if (document.querySelector("uc-search")) loadEngine().catch(() => {});
+  });
   document.addEventListener("uc:ready", () => {
     if (checking) {
       // Answer known from earlier in this visit: no request.

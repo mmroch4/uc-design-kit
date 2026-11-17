@@ -1,0 +1,25 @@
+{
+  "name": "uc-widget-stack-queue",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 1,
+  "title": { "pt": "Pilha e fila", "en": "Stack and queue" },
+  "summary": {
+    "pt": "Pilha (push, pop, peek) e fila (enqueue, dequeue, peek), em vetor (a fila como vetor circular) ou em lista ligada.",
+    "en": "Stack (push, pop, peek) and queue (enqueue, dequeue, peek), in an array (the queue as a circular buffer) or in a linked list."
+  },
+  "page": "docs/pt/widgets/uc-widget-stack-queue.html",
+  "algorithms": ["stack", "queue"],
+  "courses": ["EDados", "PI"],
+  "attributes": ["values", "ops", "algorithm", "impl", "capacity"],
+  "predict": false,
+  "test": {
+    "input": { "values": [4, 7, 1], "ops": null, "impl": "array", "capacity": 4 },
+    "options": [
+      { "algorithm": "stack", "input": { "values": [3, 8], "ops": [{ "verb": "push", "args": ["5"] }, { "verb": "peek", "args": [] }, { "verb": "pop", "args": [] }, { "verb": "pop", "args": [] }, { "verb": "pop", "args": [] }, { "verb": "pop", "args": [] }], "impl": "array", "capacity": 4 } },
+      { "algorithm": "queue", "input": { "values": [3, 8, 5], "ops": [{ "verb": "dequeue", "args": [] }, { "verb": "enqueue", "args": ["1"] }, { "verb": "enqueue", "args": ["9"] }, { "verb": "enqueue", "args": ["7"] }, { "verb": "dequeue", "args": [] }], "impl": "array", "capacity": 4 } },
+      { "algorithm": "stack", "input": { "values": [3, 8], "ops": [{ "verb": "push", "args": ["5"] }, { "verb": "pop", "args": [] }, { "verb": "peek", "args": [] }], "impl": "list", "capacity": 8 } },
+      { "algorithm": "queue", "input": { "values": [3], "ops": [{ "verb": "enqueue", "args": ["1"] }, { "verb": "dequeue", "args": [] }, { "verb": "dequeue", "args": [] }, { "verb": "dequeue", "args": [] }], "impl": "list", "capacity": 8 } }
+    ]
+  }
+}

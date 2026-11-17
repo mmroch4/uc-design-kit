@@ -338,6 +338,28 @@
     equal(hidden, [false, true]);
   });
 
+  test("uc-problems: cards seal, languages once or per item, empty hints hidden", () => {
+    const host = document.createElement("div");
+    host.hidden = true;
+    host.innerHTML =
+      '<uc-problems cards><section><h3>S1</h3><ul>' +
+      '<li data-judge="mooshak" data-languages="C++, Java"><a href="#a">A</a> <code>P1</code><details><summary>Dicas</summary><p>Usa DP.</p></details></li>' +
+      '<li data-judge="mooshak" data-languages="C++,Java"><a href="#b">B</a> <code>P2</code><details><summary>Dicas</summary></details></li>' +
+      '</ul></section><section><h3>S2</h3><ul>' +
+      '<li data-languages="C"><a href="#c">C</a></li><li data-languages="C, Python"><a href="#d">D</a></li>' +
+      '</ul></section></uc-problems>';
+    document.body.append(host);
+    const seal = host.querySelector(".uc-problems__judge");
+    const series = Array.from(host.querySelectorAll(".uc-problems__meta .uc-problems__languages"), (line) => line.textContent);
+    const items = Array.from(host.querySelectorAll(".uc-problems__item > .uc-problems__languages"), (line) => (line.hidden ? "" : line.textContent));
+    const hints = Array.from(host.querySelectorAll(".uc-problems__hints"), (details) => details.hidden);
+    host.remove();
+    equal([seal.localName, seal.textContent], ["a", "Mooshak P1"]);
+    equal(series, ["Testado em C++Java"]);
+    equal(items, ["", "", "Testado em C", "Testado em CPython"]);
+    equal(hints, [false, true]);
+  });
+
   test("sortable tables: sort values", () => {
     const cell = (html, attrs = "") => {
       const row = document.createElement("tr");

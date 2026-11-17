@@ -1110,7 +1110,7 @@ O script termina com o código `0` quando não há erros (mesmo que haja avisos)
 | O `course.js` lê-se ([só valores](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#so-valores)); tem `title`; cada página de `pages` existe; as datas são válidas (`AAAA-MM-DD`, e também `AAAA-MM` ou `null` nos prazos); os `id` dos prazos não se repetem; os links dentro dos avisos e os `url` locais existem | erro |
 | Links (`href`) e ficheiros (`src`, `srcset`) locais existem, com as mesmas maiúsculas e minúsculas; um link para uma pasta precisa do `index.html` dessa pasta. Links externos (`https:`, `mailto:`…), âncoras (`#`) e caminhos fora da pasta do site não são verificados | erro |
 | Cada página com `<uc-page>` carrega `uc-kit.css`, `course.js` e `uc-kit.js`. Páginas antigas sem o kit (copiadas tal como estavam) não precisam | erro |
-| `id` repetido numa página; num site com duas línguas, `lang` com uma língua que o site não tem | erro |
+| `id` repetido numa página; num site com duas línguas, `lang` com uma língua que o site não tem (o `lang` de um `<uc-code>` é a linguagem de programação e não conta) | erro |
 | Falta `semester.start` (as semanas ficam sem datas); prazo sem `id` ou sem `title`, ou com um `kind` desconhecido | aviso |
 | Imagem sem `alt` (`alt=""` numa imagem decorativa está certo); página sem `<h1>` (o `<uc-hero>` conta como `<h1>`); títulos que saltam um nível (`h2` → `h4`) | aviso |
 | Link com caminho absoluto (`/~utilizador/…`), que deixa de funcionar quando a pasta muda de sítio | aviso |
@@ -1394,6 +1394,7 @@ A moldura de cada página e o título do curso.
 
 - [**`<uc-page>`**: Cabeçalho, navegação entre páginas, rodapé e seletor de língua, tudo a partir do course.js.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md)
 - [**`<uc-hero>`**: Código, título e descrição do curso no topo da página inicial.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md)
+- [**`<uc-search>`**: Um campo de pesquisa no meio da página, sobre o índice do site (versão 1.2.0).](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
 
 ## Datas e avisos
 
@@ -1660,11 +1661,19 @@ O script [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md)
 
 ## Pesquisa no site
 
-Em preparação para a versão 1.2.0: ainda não se deve ligar num site real, porque a janela de resultados chega na fase seguinte. Com `search: true` no `course.js` e o ficheiro `search-index.js` criado pelo `uc-site.py`, o cabeçalho mostra o botão **Pesquisar** antes do botão de língua, com os atalhos `Ctrl` `K`, `⌘` `K` e `/`.
+Versão 1.2.0, em preparação. Com `search: true` no `course.js` e o ficheiro `search-index.js` criado pelo `uc-site.py`, o cabeçalho mostra o botão **Pesquisar** antes do botão de língua, com os atalhos `Ctrl` `K`, `⌘` `K` e `/`.
 
 - O kit pergunta ao servidor se o índice existe uma vez por visita, quando o browser está desocupado. Enquanto espera, guarda o lugar do botão para nada saltar; se o índice não existir, o botão não aparece.
 - Sem `search` no `course.js` nada disto acontece e não há nenhum pedido a mais.
 - Nos ecrãs estreitos só aparece a lupa, com o mesmo nome acessível.
+
+O botão abre uma janela por cima da página. Só então o browser descarrega a pesquisa (`uc-search.js`, cerca de 5 KB) e o índice; enquanto chegam, a janela diz «A carregar…», e se falharem mostra «Tentar de novo».
+
+- Os resultados aparecem enquanto se escreve, agrupados por página (por exemplo «Semanas · Guião 9»), com as palavras encontradas destacadas. Os prazos e os avisos do `course.js` também são pesquisados, sempre atualizados, nos grupos «Prazos» e «Avisos».
+- As setas escolhem um resultado, `Enter` abre-o e `Esc` fecha a janela e devolve o foco ao botão. Um resultado na mesma página abre a semana ou o exercício que o esconde, desloca a página, destaca-o e leva lá o foco.
+- O rodapé da janela mostra a data do índice («Índice de 20 nov 2025»). Se o `course.js` foi atualizado depois, o kit deixa um aviso na consola do browser para quem mantém o site: é altura de correr o `uc-site.py` outra vez.
+
+As regras da pesquisa (acentos, uma letra trocada, ordem dos resultados) estão em [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md#como-pesquisa), o campo de pesquisa para pôr dentro de uma página.
 
 ## Personalizar
 
@@ -1870,6 +1879,132 @@ Se o kit não carregar, o código, o nome e a descrição não aparecem, porque 
 - [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md): o cartão "Esta semana", que costuma vir logo a seguir na página inicial.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md#configurar): o passo em que se mudam o nome e a descrição no `course.js`.
 - Uso real: [a página inicial de Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html).
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md -->
+
+# `<uc-search>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.html
+
+Um campo de pesquisa no meio de uma página, com os resultados por baixo, por exemplo no topo da lista de problemas. Pesquisa o mesmo índice que o botão «Pesquisar» do cabeçalho e só aparece num site que tenha esse índice.
+
+Exemplo (campo que pesquisa todo o site), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-search/basic.html):
+
+```html
+<uc-search></uc-search>
+```
+
+Escreva, por exemplo, `pesquisa` ou `ordenacao` (sem acentos também funciona). O índice desta demonstração tem só algumas páginas das outras demonstrações.
+
+## Utilização
+
+Primeiro, o site tem de ter pesquisa: `search: true` no `course.js` e o ficheiro `search-index.js`, que o script [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md) cria na pasta do ano. Com isso, todas as páginas ganham o botão [«Pesquisar»](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#pesquisa) no cabeçalho. O `<uc-search>` só é preciso quando se quer um campo dentro de uma página.
+
+`problemas.html`:
+
+`problemas.html`:
+
+```html
+<h1>Problemas</h1>
+<uc-search scope="problemas/" label="Pesquisar nos problemas"></uc-search>
+```
+
+`course.js`:
+
+`course.js`:
+
+```js
+window.UC_COURSE = {
+  title: "Programação Competitiva",
+  search: true,
+};
+```
+
+Sem o ficheiro do índice o elemento fica vazio, sem mensagem de erro: é seguro deixá-lo na página antes de correr o `uc-site.py` pela primeira vez.
+
+## Exemplos
+
+### Só numa pasta
+
+`scope` limita a pesquisa às páginas cujo caminho começa pelo texto indicado, relativo à pasta do `course.js`. Os prazos e os avisos ficam de fora. `limit` muda o número de resultados.
+
+Exemplo (pesquisa só nas páginas de uma pasta, com outro texto e no máximo 5 resultados), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-search/scope.html):
+
+```html
+<uc-search scope="patterns/" label="Pesquisar nos problemas e guiões" placeholder="Por exemplo: pesquisa binária" limit="5"></uc-search>
+```
+
+## Atributos
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `scope` | início de um caminho | — | Só as páginas cujo caminho começa assim, por exemplo `problemas/`. Sem `scope`, pesquisa todo o site, incluindo os prazos e os avisos do `course.js`. |
+| `label` | texto | «Pesquisar no site» | O rótulo visível do campo. |
+| `placeholder` | texto | «Pesquisar páginas, aulas, exercícios…» | O texto de exemplo dentro do campo vazio. |
+| `limit` | número | `10` | Quantos resultados mostrar, no máximo. |
+
+## Configuração usada
+
+| Campo | Para quê |
+| --- | --- |
+| [`search`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-avancado) | Liga a pesquisa e diz onde está o índice (`search-index.js`, por omissão). |
+| [`deadlines`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos), [`notices`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#avisos) | Pesquisados no momento, sempre atualizados, quando não há `scope`. |
+| [`languages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-linguas) | Só aparecem resultados da língua ativa (e das páginas comuns às duas). |
+
+## Como pesquisa
+
+- Maiúsculas e acentos não contam: `arvore` encontra «Árvores».
+- Cada palavra escrita tem de aparecer no resultado, como início de uma palavra: `arv bin` encontra «Árvores binárias».
+- Palavras curtas e muito comuns («de», «com», «the») não são obrigatórias.
+- Uma letra trocada ou duas letras seguidas trocadas são aceites em palavras de 5 letras ou mais: `arvroe` encontra «árvore», mais abaixo na lista.
+- Primeiro vêm os resultados em que a palavra está no título da secção, depois no título da página, depois no texto. Os resultados são agrupados por página.
+- As palavras encontradas ficam destacadas.
+
+O botão «Pesquisar» do cabeçalho usa as mesmas regras, numa janela por cima da página (até 50 resultados). As duas formas de pesquisar estão descritas, do lado de quem mantém o site, em [Manter o site](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md#indice).
+
+## Personalizar
+
+Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As de resultados são as mesmas no campo e na janela do botão «Pesquisar». O método está em [Nível 2: CSS livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md).
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-search`, `__label`, `__field` | O próprio `<uc-search>`, o rótulo e o campo. |
+| `.uc-search__input` | O campo de pesquisa, aqui e na janela. |
+| `.uc-search__results`, `__group`, `__group-label` | A lista de resultados, cada grupo (uma página, os prazos, os avisos) e o seu título. |
+| `.uc-search__option`, `__title`, `__text` | Um resultado (uma ligação), o seu título e o excerto. |
+| `.uc-search__mark` | Uma palavra encontrada, destacada. |
+| `.uc-search__message`, `__status`, `__retry` | «A carregar…» ou «Sem resultados» (no campo), a mesma linha na janela, e o botão «Tentar de novo». |
+| `.uc-search-dialog`, `__bar`, `__close`, `__body` | A janela do botão «Pesquisar»: a barra com o campo, o botão «Fechar» e a zona dos resultados. |
+| `.uc-search-dialog__footer`, `__date`, `__keys` | O rodapé da janela: a data do índice e as teclas. |
+
+`theme.css`:
+
+```css
+/* Palavras encontradas sublinhadas em vez de fundo amarelo. */
+.uc-search__mark { background: none; text-decoration: underline 2px var(--uc-color-accent); }
+```
+
+## Acessibilidade
+
+### O que o componente faz
+
+O campo tem rótulo visível e é uma `combobox` ligada a uma `listbox` de resultados agrupados por página. As setas escolhem um resultado (anunciado pelo leitor de ecrã sem tirar o foco do campo), `Enter` abre-o e `Esc` limpa o campo. O número de resultados é anunciado quando se para de escrever. Um resultado na mesma página abre o que o esconde (uma semana fechada, por exemplo), desloca a página até ele, destaca-o e leva lá o foco.
+
+### O que cabe a quem escreve
+
+Um `label` que diga o que se pesquisa, quando há `scope` («Pesquisar nos problemas»), e títulos de secção claros nas páginas: são eles que aparecem nos resultados.
+
+## Sem JavaScript
+
+Não aparece nada: a pesquisa precisa do kit. O resto da página fica igual.
+
+## Ver também
+
+- [Pesquisa no site](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#pesquisa): o botão «Pesquisar» do cabeçalho e os atalhos `Ctrl` `K` e `/`.
+- [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md): verificar o site e criar o índice.
+- [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md): a lista de problemas, com filtros.
 
 ---
 
@@ -5395,12 +5530,38 @@ Com `filters`, por cima das séries aparecem dois grupos de botões, "Tipo" e "J
 
 Com `track`, cada problema tem uma caixa "Resolvido" e cada série diz "3 de 5 resolvidos". A escolha fica guardada no browser do estudante (`localStorage`), com uma chave que inclui o código da cadeira e o identificador do problema. Por omissão o identificador é o juiz mais o código (`mooshak:PC001`), por isso um problema que aparece numa série e num índice partilha o estado; `data-id` no `<li>` escolhe outro.
 
+### Cartões, linguagens e dicas
+
+Com `cards`, cada problema fica num cartão: o título em destaque e, ao lado, um selo "Mooshak PC033" com o juiz e o código do problema, que leva ao endereço do juiz no `course.js`. "Resolvido" fica no canto do cartão. É a forma pensada para a página de uma série, com poucos problemas e dicas; num índice com muitas séries, a lista simples ocupa menos.
+
+`data-languages` no `<li>` diz em que linguagens o problema foi testado, separadas por vírgulas. Aparecem como etiquetas pequenas ("Testado em C++ Java Python"); se todos os problemas da série tiverem as mesmas, a linha aparece uma só vez, por baixo do título da série. Um `<details>` dentro do `<li>` são as dicas: o `<summary>` fica um botão discreto com uma seta e o resto um painel. Um `<details>` só com o `<summary>` (dicas ainda por escrever) não aparece. Com `name="hint"` em todos, abrir uma dica fecha a anterior.
+
+`problem-sets/ps07.html`:
+
+```html
+<uc-problems cards track>
+  <section data-deadline="ps07">
+    <h2>Problemas propostos (5)</h2>
+    <ul>
+      <li data-judge="mooshak" data-languages="C++, Java, Python">
+        <a href="../problems/pc033.html">Football Teams</a> <code>PC033</code>
+        <details name="hint">
+          <summary>Dicas</summary>
+          <p>Precisamos de usar DP para contar.</p>
+        </details>
+      </li>
+    </ul>
+  </section>
+</uc-problems>
+```
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `filters` | booleano | ausente | Acrescenta os filtros por tipo e por juiz. |
 | `track` | booleano | ausente | Acrescenta "Resolvido" a cada problema e o progresso de cada série. |
+| `cards` | booleano | ausente | Um cartão por problema, com o selo do juiz e do código a ligar ao juiz. |
 | `heading` | texto ou `none` | `none` | Título da secção. Por omissão não há, porque a página de problemas tem o seu `<h1>`. |
 | `heading-level` | `2` a `6` | `2` | Nível do título gerado. |
 
@@ -5411,6 +5572,7 @@ Nos itens e nas séries:
 | `data-judge` | `<li>` | O `id` ou o nome de uma plataforma. |
 | `data-type` | `<li>` | `main`, `extra` ou `challenge`. |
 | `data-id` | `<li>` | Identificador para "Resolvido". Por omissão, o juiz e o primeiro `<code>`, ou o endereço do link. |
+| `data-languages` | `<li>` | As linguagens em que o problema foi testado, separadas por vírgulas. |
 | `data-deadline` | `<section>` | O `id` do prazo da série no `course.js`. |
 
 ## Configuração usada
@@ -5437,6 +5599,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-problems__body` | O conteúdo escrito do problema (link, código). |
 | `.uc-problems__tags`, `__judge`, `__type` | As etiquetas do juiz e do tipo. |
 | `.uc-problems__weight` | O `<data>` do peso. |
+| `.uc-problems__languages` | A linha "Testado em", no problema ou na série. |
+| `.uc-problems__hints` | O `<details>` das dicas. |
 | `.uc-problems__solved` | O rótulo com a caixa "Resolvido". |
 | `.uc-problems__empty` | A linha "Nenhum problema com estes filtros." |
 
@@ -5451,7 +5615,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 
 ### O que o componente faz
 
-Os filtros são botões com `aria-pressed` em grupos com nome ("Tipo", "Juiz"), com 44 px de altura; filtrar não tira o foco do botão e o número de problemas é anunciado. Cada caixa "Resolvido" tem o nome do problema no nome acessível ("Resolvido: Increasing Array") e o rótulo inteiro, com 44 px, serve para a marcar. Juiz, tipo e estado do prazo são texto, não só cor.
+Os filtros são botões com `aria-pressed` em grupos com nome ("Tipo", "Juiz"), com 44 px de altura; filtrar não tira o foco do botão e o número de problemas é anunciado. Cada caixa "Resolvido" tem o nome do problema no nome acessível ("Resolvido: Increasing Array") e o rótulo inteiro, com 44 px, serve para a marcar. Juiz, tipo e estado do prazo são texto, não só cor. As dicas são o `<details>` do browser: abrem com Enter ou Espaço e o leitor de ecrã anuncia se estão abertas.
 
 ### O que cabe a quem escreve
 
@@ -5459,7 +5623,7 @@ Dar um título a cada série, com o nível certo na página (`<h2>` debaixo do `
 
 ## Sem JavaScript
 
-Aparecem as secções, os títulos e as listas tal como foram escritos. Não há etiquetas, prazos, filtros nem "Resolvido".
+Aparecem as secções, os títulos e as listas tal como foram escritos. Não há etiquetas, prazos, filtros nem "Resolvido"; as dicas abrem e fecham na mesma, com o aspeto do browser.
 
 ## Ver também
 
@@ -5483,6 +5647,34 @@ Os widgets são uma biblioteca à parte do kit, em `widgets/v1/`: uma página qu
 
 Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o widget ainda pode mudar de forma compatível até à versão 1.0.0 da biblioteca.
 
+- [Árvore binária de pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) `<uc-widget-bst>`
+
+  Inserir, remover, procurar, mínimo e máximo numa árvore binária de pesquisa, e os percursos pré-ordem, em-ordem, pós-ordem e em largura.
+
+  Experimental Vaga 1 EDados
+
+  Algoritmos: `operations`, `preorder`, `inorder`, `postorder`, `levelorder` · 5.5 KB gzip
+- [Lista ligada](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-list.md) `<uc-widget-list>`
+
+  Lista ligada simples: adicionar no início e no fim, inserir, remover, procurar e inverter, ponteiro a ponteiro.
+
+  Experimental Vaga 1 EDados PI
+
+  Algoritmos: `singly` · 6.0 KB gzip
+- [Recursão](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-recursion.md) `<uc-widget-recursion>`
+
+  Árvore de chamadas e pilha de chamadas do fatorial, de Fibonacci e das Torres de Hanói.
+
+  Experimental Vaga 1 IP PI EDados
+
+  Algoritmos: `factorial`, `fibonacci`, `hanoi` · 3.2 KB gzip
+- [Pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-search.md) `<uc-widget-search>`
+
+  Pesquisa linear, pesquisa binária e primeira posição ≥ alvo (lower bound), passo a passo.
+
+  Experimental Vaga 1 IP EDados PI PC
+
+  Algoritmos: `linear`, `binary`, `lower` · 3.2 KB gzip
 - [Ordenação](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-sort.md) `<uc-widget-sort>`
 
   Bolha, seleção, inserção, merge sort, quicksort e counting sort, passo a passo.
@@ -5490,6 +5682,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 IP EDados PI
 
   Algoritmos: `bubble`, `selection`, `insertion`, `merge`, `quick`, `counting` · 5.2 KB gzip
+- [Pilha e fila](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-stack-queue.md) `<uc-widget-stack-queue>`
+
+  Pilha (push, pop, peek) e fila (enqueue, dequeue, peek), em vetor (a fila como vetor circular) ou em lista ligada.
+
+  Experimental Vaga 1 EDados PI
+
+  Algoritmos: `stack`, `queue` · 5.7 KB gzip
 
 ## Planeados
 
@@ -5552,6 +5751,7 @@ Todos os widgets aceitam estes atributos; os próprios de cada um estão na sua 
 | Atributo | Valores | Por omissão | Efeito |
 | --- | --- | --- | --- |
 | `algorithm` | um nome da lista do widget | o primeiro | Que algoritmo da família corre. |
+| `algorithms` | nomes da lista do widget, separados por espaços | ausente | Botões por cima do desenho para o estudante trocar de algoritmo (por exemplo os quatro percursos de `<uc-widget-bst>`). Começa em `algorithm`. |
 | `speed` | milissegundos, 200 a 5000 | `900` | Tempo entre passos ao reproduzir. |
 | `controls` | `full`, `compact` | `full` | `compact`: só Recuar, Passo e o contador. |
 | `editable` | booleano | ausente | O estudante muda os dados e corre outra vez. |
@@ -5593,13 +5793,15 @@ Cada algoritmo traz pseudocódigo em português e inglês, com a linha atual des
 </uc-widget-sort>
 ```
 
+Nos widgets de operações (`<uc-widget-bst>`, `<uc-widget-list>`, `<uc-widget-stack-queue>`) o pseudocódigo muda com a operação em curso; `data-algorithm` recebe então o nome do bloco que a página do widget indica (`data-algorithm="insert"`, `data-algorithm="queue-array"`). Uma linha pode ter vários identificadores (`data-line="left right"`).
+
 Em páginas bilingues, um `<pre>` com `lang="pt"` e outro com `lang="en"`; a legenda bilingue escreve-se num `<template data-caption>` com um `<span lang>` por língua.
 
 ## Previsões e edição
 
 Com `predict`, ao avançar para um passo com pergunta (vai trocar? qual é escrito primeiro?), o desenho fica parado e aparecem as opções. A resposta mostra "Certo." ou "Ainda não:" com a explicação, e a linha "Previsões certas: 3 de 4" conta as respostas. Nada fica guardado nem é enviado.
 
-Com `editable`, por baixo do leitor aparece um campo com os dados, "Correr" e "Repor". Dados inválidos deixam a execução anterior e mostram o erro junto ao campo.
+Com `editable`, por baixo do leitor aparece um campo com os dados (nos widgets de operações, as operações; na pesquisa, os valores e o alvo depois de `:`), "Correr" e "Repor". Dados inválidos deixam a execução anterior e mostram o erro junto ao campo.
 
 ## Versões e uso offline
 
@@ -5734,6 +5936,496 @@ Uma frase por passo, com os valores ("Compara 5 com 2: 5 > 2, trocam."), anuncia
 ### O que cabe a quem escreve
 
 Escrever dentro do elemento um texto com o resultado ou os passos principais, para quem lê sem JavaScript, e manter os dados pequenos (8 a 10 valores leem-se bem num telemóvel).
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver.
+
+## Ver também
+
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md): importar, teclado, previsões, versões.
+- [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md) dos widgets.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-search.md -->
+
+# `<uc-widget-search>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-search.html
+
+Pesquisa linear, pesquisa binária e a primeira posição com valor maior ou igual ao alvo (lower bound), passo a passo, com os ponteiros `lo`, `mid` e `hi` e as posições já descartadas.
+
+Exemplo (pesquisa binária de 9 em oito valores), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-search/basic.html):
+
+```html
+<uc-widget-search values="1 3 4 7 8 9 12 15" target="9" algorithm="binary">
+  <p>Pesquisa binária de 9 em 1 3 4 7 8 9 12 15: o meio é 7 (posição 3), 7 &lt; 9;
+    depois o meio é 9 (posição 5): encontrado.</p>
+</uc-widget-search>
+```
+
+As posições descartadas ficam marcadas com um ponto (•); a posição que está a ser comparada tem contorno tracejado e a resposta fica com ✓.
+
+## Utilização
+
+Os valores vão em `values` (até 16 inteiros), o valor a procurar em `target` e o algoritmo em `algorithm`. As pesquisas binárias precisam de valores por ordem crescente: com valores desordenados aparece uma nota de erro e o texto alternativo. Com `values="random N"`, os valores são ordenados antes da pesquisa binária.
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-search.js" defer></script>
+
+<uc-widget-search values="4 8 1 9 3" target="9" algorithm="linear">
+  <p>Pesquisa linear de 9 em 4 8 1 9 3: posição 3.</p>
+</uc-widget-search>
+```
+
+## Com previsões e edição
+
+Exemplo (pesquisa binária com perguntas e dados editáveis), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-search/predict.html):
+
+```html
+<uc-widget-search values="2 5 8 12 16 23 38 56 72 91" target="23" algorithm="binary" predict editable>
+  <p>Pesquisa binária de 23: 16, 56, 23. Encontrado na posição 5.</p>
+</uc-widget-search>
+```
+
+Na edição, o alvo escreve-se depois de dois pontos: `1 3 5 7 : 5`. As perguntas aparecem antes destes passos:
+
+| Algoritmo | Pergunta |
+| --- | --- |
+| `linear` | a[3] = 9 é o alvo 9? (Sim / Não) |
+| `binary` | a[3] = 7 e o alvo é 9. E agora? (Continua à esquerda / Continua à direita / Encontrou) |
+| `lower` | a[4] = 8 é menor do que 9? (Sim / Não) |
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `values` | inteiros, ou `random N [MIN..MAX]` | `random 10` | Os valores, até 16. |
+| `target` | inteiro | um valor do vetor (a dois terços) | O valor a procurar. |
+| `algorithm` | `linear`, `binary`, `lower` | `linear` | `lower` devolve a primeira posição com valor ≥ alvo, ou `n` se não houver nenhuma. |
+
+## Linhas do pseudocódigo
+
+Os identificadores para marcar as linhas de um `<pre data-pseudocode>` próprio (ver [Pseudocódigo próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#pseudocodigo)):
+
+| Bloco | Linhas |
+| --- | --- |
+| `linear` | `compare`, `found`, `missing` |
+| `binary` | `mid`, `found`, `right`, `left`, `missing` |
+| `lower` | `mid`, `right`, `left`, `result` |
+
+## Painel de estado
+
+O número de comparações.
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo ("7 < 9: o alvo só pode estar à direita de 3."), anunciada ao avançar e recuar; o vetor e o alvo descritos em palavras; estados com cor, contorno e sinal; "Vista em texto" com todos os passos e a tabela posição, valor e estado.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento o resultado e os valores comparados, para quem lê sem JavaScript, e usar até 10 a 12 valores para que o vetor caiba num telemóvel sem deslocar.
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver.
+
+## Ver também
+
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md): importar, teclado, previsões, versões.
+- [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md) dos widgets.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md -->
+
+# `<uc-widget-bst>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.html
+
+Uma árvore binária de pesquisa: inserir, remover, procurar, mínimo e máximo, e os percursos pré-ordem, em-ordem, pós-ordem e em largura, com a pilha de chamadas ou a fila.
+
+Exemplo (quatro operações numa árvore com sete nós), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-bst/basic.html):
+
+```html
+<uc-widget-bst values="50 30 70 20 40 60 80" ops="insert 45; search 60; remove 30; min">
+  <p>Árvore com raiz 50. Inserir 45 (fica à direita de 40), procurar 60 (encontrado),
+    remover 30 (o sucessor 40 ocupa o seu lugar), mínimo: 20.</p>
+</uc-widget-bst>
+```
+
+Cada operação desce a partir da raiz: o caminho já percorrido fica marcado com um ponto (•) e o nó comparado com contorno tracejado. O pseudocódigo muda para o da operação em curso.
+
+## Utilização
+
+`values` são os valores inseridos, por esta ordem, numa árvore vazia (até 15 nós; valores repetidos são ignorados). Com `ops`, a árvore de `values` aparece já feita e as operações correm passo a passo; sem `ops`, a inserção de cada valor é a demonstração.
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-bst.js" defer></script>
+
+<uc-widget-bst values="8 3 10 1 6 14">
+  <p>Inserção de 8 3 10 1 6 14: raiz 8; 3 e 10 filhos de 8; 1 e 6 filhos de 3; 14 à direita de 10.</p>
+</uc-widget-bst>
+```
+
+### Operações
+
+Separadas por `;`, com os verbos em inglês (lêem-se como código):
+
+| Operação | Efeito |
+| --- | --- |
+| `insert v` | Insere v (se já existir, não muda nada). |
+| `remove v` | Remove v: uma folha sai; um nó com um filho é substituído pelo filho; um nó com dois filhos recebe o sucessor (o mínimo da subárvore direita). |
+| `search v` | Procura v. |
+| `min`, `max` | Desce sempre para a esquerda / direita. |
+
+## Percursos
+
+Exemplo (os quatro percursos, com botões para escolher), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-bst/traversals.html):
+
+```html
+<uc-widget-bst values="5 3 8 1 4 7 9" algorithm="inorder"
+               algorithms="preorder inorder postorder levelorder" predict>
+  <ul>
+    <li>Pré-ordem: 5 3 1 4 8 7 9</li>
+    <li>Em-ordem: 1 3 4 5 7 8 9</li>
+    <li>Pós-ordem: 1 4 3 7 9 8 5</li>
+    <li>Em largura: 5 3 8 1 4 7 9</li>
+  </ul>
+</uc-widget-bst>
+```
+
+Com `algorithm` igual a `preorder`, `inorder`, `postorder` ou `levelorder`, a árvore de `values` é percorrida. O atributo comum `algorithms` mostra botões para o aluno trocar de percurso sem sair da página. O painel mostra a saída e a pilha de chamadas (em largura, a fila). Este é o widget do [guião da aula 10](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) de Estruturas de Dados.
+
+As perguntas de previsão são: "Onde está 45 em relação a 30?" (Esquerda / Direita / Encontrado) nas operações, e "Qual é o próximo valor impresso?" nos percursos.
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `values` | inteiros, ou `random N [MIN..MAX]` | `random 7` | Os valores da árvore, até 15. |
+| `ops` | operações separadas por `;` | ausente | As operações a mostrar (só em `operations`). |
+| `algorithm` | `operations`, `preorder`, `inorder`, `postorder`, `levelorder` | `operations` | Operações ou um percurso. |
+
+Com `editable`, o aluno muda os valores da árvore.
+
+## Linhas do pseudocódigo
+
+Os identificadores para marcar as linhas de um `<pre data-pseudocode>` próprio (ver [Pseudocódigo próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#pseudocodigo)); nas operações, use `data-algorithm` com o nome da operação (`data-algorithm="insert"`):
+
+| Bloco | Linhas |
+| --- | --- |
+| `insert` | `left`, `right`, `found`, `dup`, `place` |
+| `search` | `left`, `right`, `found`, `missing` |
+| `remove` | `left`, `right`, `found`, `missing`, `leaf`, `one`, `succ`, `copy` |
+| `min`, `max` | `walk`, `found` |
+| `preorder`, `inorder`, `postorder` | `left`, `right`, `print` |
+| `levelorder` | `start`, `take`, `print`, `push` |
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo ("45 > 40: desce para a direita de 40."); a árvore descrita em palavras ("Árvore com raiz 50. Filhos de 50: 30 e 70. …"); estados com cor, contorno e sinal, e as arestas do caminho marcadas; "Vista em texto" com uma tabela nó, filho esquerdo, filho direito e estado.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento a árvore e o resultado (os percursos, a árvore final), e ficar pelos 7 a 10 nós para que a árvore se leia num telemóvel.
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver.
+
+## Ver também
+
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md): importar, teclado, previsões, versões.
+- [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md) dos widgets.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-list.md -->
+
+# `<uc-widget-list>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-list.html
+
+Uma lista ligada simples, ponteiro a ponteiro: adicionar no início e no fim, inserir numa posição, remover, procurar e inverter, com `head`, `cur`, `prev` e `next` desenhados.
+
+Exemplo (quatro operações numa lista de três nós), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-list/basic.html):
+
+```html
+<uc-widget-list values="3 8 5" ops="add-first 1; insert 2 4; remove 8; reverse">
+  <p>Lista 3 → 8 → 5. Depois de adicionar 1 no início, inserir 4 na posição 2,
+    remover 8 e inverter: 5 → 4 → 3 → 1.</p>
+</uc-widget-list>
+```
+
+Um nó novo aparece por cima da lista até ficar ligado; a seta que muda em cada passo fica a violeta. Ao inverter, as setas passam a apontar para trás e, no fim, os nós arrumam-se pela nova ordem.
+
+## Utilização
+
+`values` é a lista inicial (até 10 nós) e `ops` as operações. Sem `ops`, cada valor é adicionado no fim, passo a passo.
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-list.js" defer></script>
+
+<uc-widget-list values="4 2 7" ops="remove 2">
+  <p>Remover 2 de 4 → 2 → 7: 4.next passa a ser 7. Fica 4 → 7.</p>
+</uc-widget-list>
+```
+
+### Operações
+
+| Operação | Efeito |
+| --- | --- |
+| `add-first v` | Novo nó no início. |
+| `add-last v` | Percorre até ao último e liga um nó novo depois dele. |
+| `insert k v` | Novo nó na posição k (0 é o início); uma posição que não existe não muda nada. |
+| `remove-first`, `remove-last` | Tira o primeiro / o último nó. |
+| `remove v` | Tira o primeiro nó com v. |
+| `search v` | Procura v e diz a posição. |
+| `reverse` | Inverte a lista com `prev`, `cur` e `next`. |
+
+## Com previsões e edição
+
+Exemplo (procurar e remover, com perguntas e operações editáveis), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-list/editable.html):
+
+```html
+<uc-widget-list values="4 2 7" ops="search 7; remove-last; add-last 6" predict editable>
+  <p>Procurar 7 (posição 2), remover o último e adicionar 6 no fim: 4 → 2 → 6.</p>
+</uc-widget-list>
+```
+
+Com `predict`, cada comparação de `search` e `remove` pergunta "7 é igual a 7?". Com `editable`, o aluno escreve as suas próprias operações.
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `values` | inteiros, ou `random N [MIN..MAX]` | `random 4 1..20` | A lista inicial, até 10 nós. |
+| `ops` | operações separadas por `;` | ausente | As operações a mostrar. |
+
+## Linhas do pseudocódigo
+
+Os identificadores para marcar as linhas de um `<pre data-pseudocode>` próprio (ver [Pseudocódigo próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#pseudocodigo)); o bloco é o nome da operação (`data-algorithm="reverse"`):
+
+| Bloco | Linhas |
+| --- | --- |
+| `add-first` | `new`, `link`, `head` |
+| `add-last` | `new`, `link`, `head`, `walk`, `relink` |
+| `insert` | `head`, `walk`, `new`, `link`, `relink` |
+| `remove-first` | `head`, `free` |
+| `remove-last` | `walk`, `head`, `unlink`, `free` |
+| `remove` | `compare`, `missing`, `head`, `unlink`, `free` |
+| `search` | `compare`, `found`, `missing` |
+| `reverse` | `start`, `next`, `turn`, `move`, `head` |
+
+## Painel de estado
+
+O tamanho da lista.
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo com o ponteiro que muda ("cur.next = prev: 4 passa a apontar para 3."); a lista descrita em palavras ("Lista: 1 → 3 → 8 → null."); "Vista em texto" com a tabela posição, valor, seguinte e estado.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento a lista final e o que cada operação fez, e manter a lista curta (até 6 ou 7 nós leem-se bem num telemóvel).
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver.
+
+## Ver também
+
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md): importar, teclado, previsões, versões.
+- [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md) dos widgets.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-stack-queue.md -->
+
+# `<uc-widget-stack-queue>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-stack-queue.html
+
+Pilha (push, pop, peek) e fila (enqueue, dequeue, peek), em vetor de capacidade fixa (a fila é um vetor circular, com `front` e `back` a dar a volta) ou em lista ligada.
+
+Exemplo (fila circular de capacidade 4), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-stack-queue/basic.html):
+
+```html
+<uc-widget-stack-queue algorithm="queue" capacity="4" values="3 8 5"
+                       ops="dequeue; enqueue 1; enqueue 9; enqueue 7; dequeue">
+  <p>Fila circular de capacidade 4 com 3 8 5. Sai 3, entram 1 e 9 (o 9 vai para a
+    posição 0), 7 não cabe, sai 8. Fica 5 1 9.</p>
+</uc-widget-stack-queue>
+```
+
+Num vetor cheio, `push` e `enqueue` dão overflow e não mudam nada; numa estrutura vazia, `pop`, `dequeue` e `peek` dão underflow.
+
+## Utilização
+
+`algorithm` escolhe a estrutura (`stack` ou `queue`) e `impl` a implementação. `values` são os elementos iniciais (do fundo para o topo, ou da frente para o fim) e `ops` as operações; sem `ops`, cada valor entra passo a passo.
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-stack-queue.js" defer></script>
+
+<uc-widget-stack-queue algorithm="stack" capacity="5" ops="push 4; push 7; pop; push 2">
+  <p>Pilha: push 4, push 7, pop devolve 7, push 2. Fica 4 2 (2 no topo).</p>
+</uc-widget-stack-queue>
+```
+
+## Em lista ligada
+
+Exemplo (pilha em lista ligada, com operações editáveis), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-stack-queue/list.html):
+
+```html
+<uc-widget-stack-queue algorithm="stack" impl="list" values="3 8" ops="push 5; pop; peek; pop; pop; pop" editable>
+  <p>Pilha 3 8 (8 no topo). push 5, pop devolve 5, peek devolve 8, depois saem 8 e 3
+    e o último pop encontra a pilha vazia.</p>
+</uc-widget-stack-queue>
+```
+
+Com `impl="list"` a pilha guarda o topo no primeiro nó (`top`) e a fila guarda `front` e `back`; os nós são desenhados como em [`<uc-widget-list>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-list.md). Não há perguntas de previsão neste widget.
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `algorithm` | `stack`, `queue` | `stack` | A estrutura. |
+| `impl` | `array`, `list` | `array` | A implementação. |
+| `capacity` | inteiro de 1 a 16 | `8` | O tamanho do vetor (só em `array`). Em lista, até 10 nós. |
+| `values` | inteiros | vazio | Os elementos iniciais. |
+| `ops` | operações separadas por `;` | ausente | `push v`, `pop`, `peek` (pilha); `enqueue v`, `dequeue`, `peek` (fila). |
+
+Com `editable`, o aluno escreve as suas próprias operações.
+
+## Linhas do pseudocódigo
+
+Os identificadores para marcar as linhas de um `<pre data-pseudocode>` próprio (ver [Pseudocódigo próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#pseudocodigo)); o bloco é a estrutura e a implementação (`data-algorithm="queue-array"`):
+
+| Bloco | Linhas |
+| --- | --- |
+| `stack-array`, `queue-array` | `full`, `write`, `empty`, `read`, `move` |
+| `stack-list`, `queue-list` | `new`, `link`, `empty`, `read`, `move` |
+
+## Painel de estado
+
+O número de elementos.
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo ("Escreve 9 na posição 0: o fim deu a volta ao vetor; back = 0."); a estrutura descrita em palavras, do fundo para o topo ou da frente para o fim; "Vista em texto" com a tabela posição, valor e estado.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento o conteúdo final e o que cada operação devolveu, e manter a capacidade pequena (4 a 8) para mostrar o overflow e a volta do vetor circular.
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver.
+
+## Ver também
+
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md): importar, teclado, previsões, versões.
+- [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md) dos widgets.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-recursion.md -->
+
+# `<uc-widget-recursion>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-recursion.html
+
+A árvore de chamadas e a pilha de chamadas de três funções recursivas: fatorial, Fibonacci e as Torres de Hanói, com o valor devolvido por cada chamada.
+
+Exemplo (fib(4) com perguntas de previsão), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-recursion/basic.html):
+
+```html
+<uc-widget-recursion algorithm="fibonacci" n="4" predict>
+  <p>fib(4) = fib(3) + fib(2) = 2 + 1 = 3, com 9 chamadas: fib(2) é calculado duas vezes
+    e fib(1) três.</p>
+</uc-widget-recursion>
+```
+
+A chamada em curso está cheia; as chamadas que esperam por ela (a pilha) têm um ponto (•); as que já devolveram têm ✓ e o valor ao lado. Em Fibonacci vê-se que as mesmas chamadas se repetem.
+
+## Utilização
+
+`algorithm` escolhe a função e `n` o argumento. Para a árvore caber no ecrã, `n` vai até 8 no fatorial, 6 em Fibonacci e 4 nas Torres de Hanói.
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-recursion.js" defer></script>
+
+<uc-widget-recursion algorithm="factorial" n="4">
+  <p>fact(4) = 4 × fact(3) = 4 × 6 = 24, com 4 chamadas.</p>
+</uc-widget-recursion>
+```
+
+## Torres de Hanói
+
+Exemplo (Torres de Hanói com 3 discos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-recursion/hanoi.html):
+
+```html
+<uc-widget-recursion algorithm="hanoi" n="3">
+  <p>Torres de Hanói com 3 discos: A→C, A→B, C→B, A→C, B→A, B→C, A→C (7 movimentos).</p>
+</uc-widget-recursion>
+```
+
+O painel mostra os três postes (os discos de baixo para cima) e os movimentos feitos. Cada chamada `h(n,A,C)` move `n` discos de A para C.
+
+Com `predict`, no fatorial e em Fibonacci, antes de cada chamada devolver o widget pergunta "Quanto devolve fib(3)?".
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `algorithm` | `factorial`, `fibonacci`, `hanoi` | `factorial` | A função. |
+| `n` | inteiro | 5, 4 ou 3 | O argumento (fatorial ≤ 8, Fibonacci ≤ 6, Hanói de 1 a 4). |
+
+Com `editable`, o aluno muda `n`.
+
+## Linhas do pseudocódigo
+
+Os identificadores para marcar as linhas de um `<pre data-pseudocode>` próprio (ver [Pseudocódigo próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#pseudocodigo)):
+
+| Bloco | Linhas |
+| --- | --- |
+| `factorial` | `base`, `call`, `return` |
+| `fibonacci` | `base`, `left`, `right`, `return` |
+| `hanoi` | `base`, `left`, `move`, `right`, `return` |
+
+## Painel de estado
+
+A pilha de chamadas, com o topo primeiro; nas Torres de Hanói também os postes e a saída (os movimentos).
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo ("fib(3) = fib(3 - 1) + fib(3 - 2) = 1 + 1 = 2."); a árvore descrita em palavras, chamada a chamada; "Vista em texto" com a tabela chamada, valor devolvido e estado.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento o resultado e o número de chamadas, e preferir argumentos pequenos (fib(4), Hanói com 3 discos): a árvore de fib(6) já tem 25 chamadas e num telemóvel desloca-se na horizontal.
 
 ## Sem JavaScript
 
@@ -7175,7 +7867,7 @@ O resto pode mudar numa versão 1 mais recente: classes que não estão nas tabe
 
 ## Um caso real
 
-O [site de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html) usa quatro níveis: o `course.js` com a cor e as páginas, um [`theme.css`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/theme.css) com classes próprias escritas só com tokens, um componente próprio para animar percursos em árvores (`<uc-bst-traversal>`, no [guião da aula 10](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html)) e páginas com HTML livre dentro de `<uc-page>`. A página do [exemplo Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md) mostra o que cada página usa.
+O [site de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html) usa quatro níveis: o `course.js` com a cor e as páginas, um [`theme.css`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/theme.css) com classes próprias escritas só com tokens, um componente próprio para animar percursos em árvores (`<uc-bst-traversal>`, na pasta `extensions/`; o [guião da aula 10](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) usa hoje o widget `<uc-widget-bst>`) e páginas com HTML livre dentro de `<uc-page>`. A página do [exemplo Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md) mostra o que cada página usa.
 
 ## Ver também
 
@@ -8085,7 +8777,7 @@ O que o professor escreve dentro do elemento é a alternativa: aparece quando o 
 
 ## Um caso real
 
-O [guião da aula 10 de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) usa `<uc-bst-traversal>`, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O [código](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/extensions/uc-bst-traversal.js) segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página.
+O exemplo de Estruturas de Dados tem `<uc-bst-traversal>`, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O [código](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/extensions/uc-bst-traversal.js) segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página. O [guião da aula 10](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) usa agora o widget [`<uc-widget-bst>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) da biblioteca de widgets, que faz o mesmo e mais; a extensão fica como exemplo de um componente escrito pelo professor.
 
 ## Ver também
 
@@ -8700,7 +9392,7 @@ O site completo de Estruturas de Dados (CC1007, DCC/FCUP), refeito com o kit a p
 | [`materiais.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/materiais.html) | — | Tabela de slides com botões PT/EN (`uc-button--sm`), `uc-links`, cartões da bibliografia. |
 | [`horarios.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/horarios.html) | `<uc-team view="table">` | Cartões das turmas, `uc-tag`, `uc-table`. |
 | [`sobre.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/sobre.html) | — | Programa numerado, `uc-bullets`, `uc-tag`. |
-| [`guioes/aula01–12.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) | `<uc-guide>`, `<uc-exercise>`, `<uc-code>`, `<uc-question>` | Dicas e soluções (`uc-hint`, `uc-solution`), código que corre na página com testes; a aula 10 usa o componente próprio `<uc-bst-traversal>`. |
+| [`guioes/aula01–12.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) | `<uc-guide>`, `<uc-exercise>`, `<uc-code>`, `<uc-question>` | Dicas e soluções (`uc-hint`, `uc-solution`), código que corre na página com testes; a aula 10 usa o widget [`<uc-widget-bst>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) para os percursos. |
 | [`guioes/teste-pratico-*.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/teste-pratico-1.html) | `<uc-guide>`, `<uc-exercise>` | Os enunciados dos testes práticos de anos anteriores. |
 | [`problemas/`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/problemas/index.html) | — | 65 enunciados migrados dentro de `uc-content`, com `<pre data-copy>` na maioria dos exemplos de entrada e saída. |
 | `codigo/` | `<uc-code collapsible>` | Uma página por aula com o código das teóricas e os ficheiros `.java` para descarregar. |
@@ -8727,7 +9419,7 @@ O exemplo usa quatro dos cinco [níveis de personalização](https://uc-design-k
 | --- | --- |
 | 0: `course.js` | A cor de destaque, as páginas e as plataformas. |
 | 2: CSS livre | O [`theme.css`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/edados-2526/theme.css) tem estilos próprios por página (fórmula da avaliação, programa numerado, navegação entre guiões), escritos só com tokens, por isso mudam de cor com `accentColor`. |
-| 3: componentes próprios | [`extensions/uc-bst-traversal.js`](https://github.com/mmroch4/uc-design-kit/tree/main/examples/edados-2526/extensions): uma demonstração interativa dos percursos numa árvore binária, na aula 10. Ver [o caso real do nível 3](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/componentes.md#caso-real). |
+| 3: componentes próprios | [`extensions/uc-bst-traversal.js`](https://github.com/mmroch4/uc-design-kit/tree/main/examples/edados-2526/extensions): uma demonstração interativa dos percursos numa árvore binária, guardada como exemplo de componente próprio (a aula 10 passou a usar o widget `<uc-widget-bst>`). Ver [o caso real do nível 3](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/componentes.md#caso-real). |
 | 4: HTML livre | Os enunciados, as páginas de ajuda e o código das aulas: HTML do site antigo dentro de `<uc-page>` (ver [abaixo](#migracao)). |
 
 Há mais sobre estas escolhas em [Personalizar: o caso real](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/index.md#caso-real).
@@ -9643,6 +10335,19 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
 
+### [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-search`, `__label`, `__field` | O próprio `<uc-search>`, o rótulo e o campo. |
+| `.uc-search__input` | O campo de pesquisa, aqui e na janela. |
+| `.uc-search__results`, `__group`, `__group-label` | A lista de resultados, cada grupo (uma página, os prazos, os avisos) e o seu título. |
+| `.uc-search__option`, `__title`, `__text` | Um resultado (uma ligação), o seu título e o excerto. |
+| `.uc-search__mark` | Uma palavra encontrada, destacada. |
+| `.uc-search__message`, `__status`, `__retry` | «A carregar…» ou «Sem resultados» (no campo), a mesma linha na janela, e o botão «Tentar de novo». |
+| `.uc-search-dialog`, `__bar`, `__close`, `__body` | A janela do botão «Pesquisar»: a barra com o campo, o botão «Fechar» e a zona dos resultados. |
+| `.uc-search-dialog__footer`, `__date`, `__keys` | O rodapé da janela: a data do índice e as teclas. |
+
 ### [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md)
 
 | Classe | Elemento |
@@ -9898,6 +10603,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-problems__body` | O conteúdo escrito do problema (link, código). |
 | `.uc-problems__tags`, `__judge`, `__type` | As etiquetas do juiz e do tipo. |
 | `.uc-problems__weight` | O `<data>` do peso. |
+| `.uc-problems__languages` | A linha "Testado em", no problema ou na série. |
+| `.uc-problems__hints` | O `<details>` das dicas. |
 | `.uc-problems__solved` | O rótulo com a caixa "Resolvido". |
 | `.uc-problems__empty` | A linha "Nenhum problema com estes filtros." |
 
@@ -10589,10 +11296,70 @@ index, once. Without `search` nothing of this runs and no request is made.
 Stable classes: `uc-search-button`, `uc-search-button--pending`,
 `uc-search-button__label`, `uc-search-button__hint`.
 
+**Search dialog** (v1.2.0, in progress). The button opens a modal
+`<dialog class="uc-search-dialog">`. While `uc-search.js` (about 5 KB
+gzipped) loads, the button has `aria-busy="true"`; if it cannot load,
+"Não foi possível carregar a pesquisa." is announced and the next press tries
+again. While the index downloads the dialog says "A carregar…"; if it fails,
+it shows the same message and a "Tentar de novo" button. Results appear as
+the visitor types, grouped by page (the label is the `pages[]` label of the
+page's `g` and the page title, "Semanas · Guião 9"), at most 5 per page and
+50 in all; `UC_COURSE.deadlines` and the notices already shown by
+`<uc-notices>` are searched at runtime, in the groups "Prazos" and "Avisos"
+(a deadline links to its `url`, else to the `assessment` page; a notice to
+its first link, else to `home`). The field is a `combobox` controlling a
+`listbox` (`aria-activedescendant`; ↑ ↓ Page Up/Down move, Enter opens, Esc
+closes and gives focus back to the opener), the count goes into a
+`role="status"` line, and the footer shows the index date
+(`generated`). A result on the current page sets `#hash`, opens the
+`<details>` around the target, scrolls, flashes it (`uc-target-flash`) and
+moves focus to it. Matching rules: `<uc-search>`. Stable classes: the
+`uc-search__*` classes of `<uc-search>` plus `uc-search-dialog`,
+`uc-search-dialog__bar`, `__close`, `__body`, `__footer`, `__date`, `__keys`.
+
 #### `<uc-hero>`
 
 Course heading block: code, title (as `<h1>`) and tagline from the
 configuration. Children, if any, are appended below the tagline.
+
+#### `<uc-search>`
+
+A search field with its results below it, inside a page (v1.2.0, in
+progress). It is defined in `uc-search.js`, which `uc-kit.js` loads when the
+site's index is known to exist (`uc:searchready`) and the page has a
+`<uc-search>`: without `search` in `course.js` or without the index file the
+element stays empty and nothing is downloaded. The index itself downloads
+the first time the field gets focus ("A carregar…", or "Tentar de novo" on a
+failure).
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `scope` | path prefix | — | Only index pages whose `p` starts with it, e.g. `problemas/`. Without it, deadlines and notices are searched too. |
+| `label` | text | `search.label` ("Pesquisar no site") | Visible label of the field. |
+| `placeholder` | text | `search.placeholder` | Placeholder of the field. |
+| `limit` | number | `10` | Most results shown. |
+
+Matching (shared with the dialog, docs/plan/search-api.md 9): the query is
+folded like the index words (lowercase, accents removed) and split into
+terms; every term of 3+ letters (or with a digit) that is not a stop word
+must be the start of a word of the section title, the page title or the
+text (stop words and 1–2 letter terms only add points; a query made only of
+them requires them all). From 5 letters, one substituted letter or two
+swapped neighbours also match, for fewer points. Points: section title >
+page title > text; ties keep the index order. Entries whose `l` is not the
+active language are skipped. Matched words are wrapped in
+`<mark class="uc-search__mark">` (built as DOM nodes, never HTML from the
+index).
+
+The field is a `combobox` with a visible `<label>`, controlling a `listbox`
+of options grouped by page (`aria-activedescendant`; ↑ ↓ Page Up/Down, Enter
+opens, Esc clears); the count is announced through the shared live region
+when typing pauses. Stable classes: `uc-search`, `uc-search__label`,
+`uc-search__field`, `uc-search__input`, `uc-search__results`,
+`uc-search__group`, `uc-search__group-label`, `uc-search__option`,
+`uc-search__title`, `uc-search__text`, `uc-search__mark`,
+`uc-search__message`, `uc-search__status`, `uc-search__retry`.
+
 
 ### 3.2 Dates, deadlines and notices
 
@@ -11130,6 +11897,7 @@ browser.
 | --- | --- | --- |
 | `filters` | boolean | no filters; with it, buttons by type and by judge (`aria-pressed`), for groups with two or more values |
 | `track` | boolean | no checkboxes; with it, "Resolvido" per problem and "3 de 5 resolvidos" per series, saved in `localStorage` |
+| `cards` | boolean | rows; with it, one card per problem: title, a judge seal with the problem code ("Mooshak PC033", a link to the platform `url` when it has one), languages, hints and "Resolvido" |
 | `heading` | text \| `none` | `none` (problem pages have their own `<h1>`); a text adds a heading |
 | `heading-level` | `2`–`6` | `2` |
 
@@ -11141,6 +11909,7 @@ a list; a single `<ol>`/`<ul>` without sections is one series without a name.
 | `data-judge` | `<li>` | platform `id` or label | Judge tag with the platform's label (2.8). Unknown values are shown as written. |
 | `data-type` | `<li>` | `main` \| `extra` \| `challenge` | Default `main` (no tag). "Extra" and "Desafio" are text tags. |
 | `data-id` | `<li>` | text | Identifier for `track`. Default: `<judge>:<text of the first <code>>`, else the resolved URL of the first link. |
+| `data-languages` | `<li>` | comma-separated list | "Testado em C++ Java" as muted tags. When every problem of a series has the same list, it is shown once under the series heading instead. |
 | `data-deadline` | `<section>` | deadline `id` | "Prazo: 12 out, 23:59" under the series heading, with its state ("Daqui a 8 dias", "Hoje", "Encerrado"). |
 
 - An optional `<data value>` in an item is its weight, shown as a tag ("40 %").
@@ -11155,6 +11924,9 @@ a list; a single `<ol>`/`<ul>` without sections is one series without a name.
   bubbling `uc:problemchange` (`detail: { id, solved }`) and updates "3 de 5
   resolvidos" under the series heading (not a live region: the checkbox
   announces its own state).
+- **Hints.** A `<details>` child of an item gets `uc-problems__hints`: the
+  `<summary>` becomes a small disclosure with a chevron and the rest a soft
+  panel. A `<details>` with nothing but its `<summary>` is hidden.
 - **Unknown deadline id.** One console warning; no deadline line.
 - Without JavaScript: the teacher's sections, headings and lists.
 
@@ -11255,7 +12027,12 @@ system font and skips downloading Inter, if a course prefers.
 ## 6. Languages
 
 - Interface strings live in `kit/src/i18n/<lang>.js` (`pt` and `en` in v1).
-  Adding a language means adding one dictionary file.
+  Adding a language means adding one dictionary file. The strings of the
+  site search (`search.label`, `search.placeholder`, `search.loading`,
+  `search.retry`, `search.empty`, `search.count`, `search.countOne`,
+  `search.close`, `search.indexDate`, `search.deadlines`, `search.notices`,
+  `search.keys`) come with `uc-search.js` (`kit/src/search/strings.js`) and
+  never replace a string the site already set with `UC.addTranslations`.
 - **Active language** is resolved in this order: `?lang=` query, saved choice
   (`localStorage` key `uc:lang`), `<html lang>`, first of `languages`.
 - **In-place bilingual content:** any element with a `lang` attribute whose
@@ -11382,13 +12159,24 @@ one file per widget type after the kit:
 ```
 
 The widget file loads `uc-widget-core.js` and `uc-widget.css` from its own
-folder. Widgets: `<uc-widget-sort>` (`values`, `algorithm` = `bubble`
-`selection` `insertion` `merge` `quick` `counting`, `pivot` = `last` `first`
-`middle` `random`, `bars`). The catalogue is `widgets/v1/catalog.json`.
+folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
+
+| Element | Own attributes | `algorithm` |
+| --- | --- | --- |
+| `<uc-widget-sort>` | `values`, `pivot` = `last` `first` `middle` `random`, `bars` | `bubble` `selection` `insertion` `merge` `quick` `counting` |
+| `<uc-widget-search>` | `values`, `target` (binary searches need sorted values) | `linear` `binary` `lower` |
+| `<uc-widget-bst>` | `values` (≤ 15), `ops` = `insert v; remove v; search v; min; max` | `operations` `preorder` `inorder` `postorder` `levelorder` |
+| `<uc-widget-list>` | `values` (≤ 10), `ops` = `add-first v; add-last v; insert k v; remove-first; remove-last; remove v; search v; reverse` | `singly` |
+| `<uc-widget-stack-queue>` | `values`, `ops` = `push v; pop; peek` / `enqueue v; dequeue; peek`, `impl` = `array` `list`, `capacity` (1–16, default 8) | `stack` `queue` |
+| `<uc-widget-recursion>` | `n` (factorial ≤ 8, fibonacci ≤ 6, hanoi 1–4) | `factorial` `fibonacci` `hanoi` |
+
+With `ops`, `values` builds the structure without steps and the operations
+are the demo; without `ops`, inserting / adding each value is the demo.
 
 | Common attribute | Values | Default |
 | --- | --- | --- |
 | `algorithm` | a name from the widget's list | the first |
+| `algorithms` | names from the list: toggle buttons to switch algorithm | absent |
 | `speed` | ms, 200–5000 | `900` |
 | `controls` | `full`, `compact` | `full` |
 | `editable` | boolean | absent |
@@ -11409,8 +12197,11 @@ folder. Widgets: `<uc-widget-sort>` (`values`, `algorithm` = `bubble`
 | `uc:widgetpredict` | `{ widget, step, correct, right, asked }` | Every predict answer. |
 
 A step (the unit the player moves through) is plain JSON: `{ state, marks,
-pointers, line, say: [i18n key, params], stats, aux, predict }`; marks are
-`current`, `compared`, `swapped`, `visited`, `done`.
+pointers, line, say: [i18n key, params], stats, aux, predict, code }`; marks
+are `current`, `compared`, `swapped`, `visited`, `done`. `code` names the
+pseudocode block of the step (an operation such as `insert`); without it the
+block is the algorithm's. A teacher's `<pre data-pseudocode
+data-algorithm="…">` matches either.
 
 | `UC.widgets` property | Description |
 | --- | --- |
@@ -11418,6 +12209,7 @@ pointers, line, say: [i18n key, params], stats, aux, predict }`; marks are
 | `Widget` | Base class (extends `UC.Element`); a widget defines `parse()`, `steps(input, emit)`, `draw(step, svg)` and optionally `describe`, `table`, `panel`, `pseudocode`, `serialize`. |
 | `register(name, Class)` | Defines the element (`UC.define`). |
 | `svg.array(svg, values, { marks, pointers, bars })` | Draws an array. |
+| `svg.tree(svg, root, { children, binary, key, label, note, marks, pointers, empty })` | Draws a binary (in-order layout, default `[node.l, node.r]`) or n-ary tree; nodes kept by key and moved. |
 | `parse.values`, `parse.ops`, `parse.graph` | Input parsers; throw `InputError(key, params)`. |
 | `random(seed)` | Seeded generator: `int(min, max)`, `pick`, `shuffle`. |
 | `MAX_STEPS`, `STATES`, `InputError`, `TooManySteps` | Limits and error types. |

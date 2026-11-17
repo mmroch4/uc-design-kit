@@ -60,6 +60,7 @@
           <li><a href="index.html">Visão geral</a></li>
           <li><a href="uc-page.html"><code>uc-page</code></a></li>
           <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-search.html"><code>uc-search</code></a></li>
           <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
           <li><a href="uc-date.html"><code>uc-date</code></a></li>
@@ -86,6 +87,11 @@
           <li><a href="../widgets/index.html">Catálogo</a></li>
           <li><a href="../widgets/usar.html">Usar widgets</a></li>
           <li><a href="../widgets/uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="../widgets/uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="../widgets/uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="../widgets/uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="../widgets/uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="../widgets/uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -201,6 +207,23 @@
         <p>Com <code>filters</code>, por cima das séries aparecem dois grupos de botões, "Tipo" e "Juiz", cada um com "Todos" e um botão por valor que exista na página (um grupo com um só valor não aparece). Os dois grupos combinam-se; uma série sem problemas visíveis esconde-se, e o número de problemas que ficaram é anunciado ("2 de 6 problemas").</p>
         <h3 id="resolvidos">Resolvidos</h3>
         <p>Com <code>track</code>, cada problema tem uma caixa "Resolvido" e cada série diz "3 de 5 resolvidos". A escolha fica guardada no browser do estudante (<code>localStorage</code>), com uma chave que inclui o código da cadeira e o identificador do problema. Por omissão o identificador é o juiz mais o código (<code>mooshak:PC001</code>), por isso um problema que aparece numa série e num índice partilha o estado; <code>data-id</code> no <code>&lt;li&gt;</code> escolhe outro.</p>
+        <h3 id="cartoes">Cartões, linguagens e dicas</h3>
+        <p>Com <code>cards</code>, cada problema fica num cartão: o título em destaque e, ao lado, um selo "Mooshak PC033" com o juiz e o código do problema, que leva ao endereço do juiz no <code>course.js</code>. "Resolvido" fica no canto do cartão. É a forma pensada para a página de uma série, com poucos problemas e dicas; num índice com muitas séries, a lista simples ocupa menos.</p>
+        <p><code>data-languages</code> no <code>&lt;li&gt;</code> diz em que linguagens o problema foi testado, separadas por vírgulas. Aparecem como etiquetas pequenas ("Testado em C++ Java Python"); se todos os problemas da série tiverem as mesmas, a linha aparece uma só vez, por baixo do título da série. Um <code>&lt;details&gt;</code> dentro do <code>&lt;li&gt;</code> são as dicas: o <code>&lt;summary&gt;</code> fica um botão discreto com uma seta e o resto um painel. Um <code>&lt;details&gt;</code> só com o <code>&lt;summary&gt;</code> (dicas ainda por escrever) não aparece. Com <code>name="hint"</code> em todos, abrir uma dica fecha a anterior.</p>
+        <uc-code lang="html" filename="problem-sets/ps07.html" no-download><pre><code>&lt;uc-problems cards track&gt;
+  &lt;section data-deadline="ps07"&gt;
+    &lt;h2&gt;Problemas propostos (5)&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li data-judge="mooshak" data-languages="C++, Java, Python"&gt;
+        &lt;a href="../problems/pc033.html"&gt;Football Teams&lt;/a&gt; &lt;code&gt;PC033&lt;/code&gt;
+        &lt;details name="hint"&gt;
+          &lt;summary&gt;Dicas&lt;/summary&gt;
+          &lt;p&gt;Precisamos de usar DP para contar.&lt;/p&gt;
+        &lt;/details&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+&lt;/uc-problems&gt;</code></pre></uc-code>
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
           <table>
@@ -211,6 +234,7 @@
             <tbody>
               <tr><td><code>filters</code></td><td>booleano</td><td>ausente</td><td>Acrescenta os filtros por tipo e por juiz.</td></tr>
               <tr><td><code>track</code></td><td>booleano</td><td>ausente</td><td>Acrescenta "Resolvido" a cada problema e o progresso de cada série.</td></tr>
+              <tr><td><code>cards</code></td><td>booleano</td><td>ausente</td><td>Um cartão por problema, com o selo do juiz e do código a ligar ao juiz.</td></tr>
               <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td><code>none</code></td><td>Título da secção. Por omissão não há, porque a página de problemas tem o seu <code>&lt;h1&gt;</code>.</td></tr>
               <tr><td><code>heading-level</code></td><td><code>2</code> a <code>6</code></td><td><code>2</code></td><td>Nível do título gerado.</td></tr>
             </tbody>
@@ -227,6 +251,7 @@
               <tr><th scope="row"><code>data-judge</code></th><td><code>&lt;li&gt;</code></td><td>O <code>id</code> ou o nome de uma plataforma.</td></tr>
               <tr><th scope="row"><code>data-type</code></th><td><code>&lt;li&gt;</code></td><td><code>main</code>, <code>extra</code> ou <code>challenge</code>.</td></tr>
               <tr><th scope="row"><code>data-id</code></th><td><code>&lt;li&gt;</code></td><td>Identificador para "Resolvido". Por omissão, o juiz e o primeiro <code>&lt;code&gt;</code>, ou o endereço do link.</td></tr>
+              <tr><th scope="row"><code>data-languages</code></th><td><code>&lt;li&gt;</code></td><td>As linguagens em que o problema foi testado, separadas por vírgulas.</td></tr>
               <tr><th scope="row"><code>data-deadline</code></th><td><code>&lt;section&gt;</code></td><td>O <code>id</code> do prazo da série no <code>course.js</code>.</td></tr>
             </tbody>
           </table>
@@ -264,6 +289,8 @@
               <tr><td><code>.uc-problems__body</code></td><td>O conteúdo escrito do problema (link, código).</td></tr>
               <tr><td><code>.uc-problems__tags</code>, <code>__judge</code>, <code>__type</code></td><td>As etiquetas do juiz e do tipo.</td></tr>
               <tr><td><code>.uc-problems__weight</code></td><td>O <code>&lt;data&gt;</code> do peso.</td></tr>
+              <tr><td><code>.uc-problems__languages</code></td><td>A linha "Testado em", no problema ou na série.</td></tr>
+              <tr><td><code>.uc-problems__hints</code></td><td>O <code>&lt;details&gt;</code> das dicas.</td></tr>
               <tr><td><code>.uc-problems__solved</code></td><td>O rótulo com a caixa "Resolvido".</td></tr>
               <tr><td><code>.uc-problems__empty</code></td><td>A linha "Nenhum problema com estes filtros."</td></tr>
             </tbody>
@@ -275,7 +302,7 @@
         <div class="docs-grid-2">
           <div class="uc-card">
             <h3>O que o componente faz</h3>
-            <p>Os filtros são botões com <code>aria-pressed</code> em grupos com nome ("Tipo", "Juiz"), com 44 px de altura; filtrar não tira o foco do botão e o número de problemas é anunciado. Cada caixa "Resolvido" tem o nome do problema no nome acessível ("Resolvido: Increasing Array") e o rótulo inteiro, com 44 px, serve para a marcar. Juiz, tipo e estado do prazo são texto, não só cor.</p>
+            <p>Os filtros são botões com <code>aria-pressed</code> em grupos com nome ("Tipo", "Juiz"), com 44 px de altura; filtrar não tira o foco do botão e o número de problemas é anunciado. Cada caixa "Resolvido" tem o nome do problema no nome acessível ("Resolvido: Increasing Array") e o rótulo inteiro, com 44 px, serve para a marcar. Juiz, tipo e estado do prazo são texto, não só cor. As dicas são o <code>&lt;details&gt;</code> do browser: abrem com Enter ou Espaço e o leitor de ecrã anuncia se estão abertas.</p>
           </div>
           <div class="uc-card">
             <h3>O que cabe a quem escreve</h3>
@@ -283,7 +310,7 @@
           </div>
         </div>
         <h2 id="sem-javascript">Sem JavaScript</h2>
-        <p>Aparecem as secções, os títulos e as listas tal como foram escritos. Não há etiquetas, prazos, filtros nem "Resolvido".</p>
+        <p>Aparecem as secções, os títulos e as listas tal como foram escritos. Não há etiquetas, prazos, filtros nem "Resolvido"; as dicas abrem e fecham na mesma, com o aspeto do browser.</p>
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
           <li><a href="uc-materials.html"><code>&lt;uc-materials&gt;</code></a>: os materiais de cada aula.</li>
@@ -317,6 +344,7 @@
           <li class="docs-toc__sub"><a href="#prazos">Prazo de cada série</a></li>
           <li class="docs-toc__sub"><a href="#filtros">Filtros</a></li>
           <li class="docs-toc__sub"><a href="#resolvidos">Resolvidos</a></li>
+          <li class="docs-toc__sub"><a href="#cartoes">Cartões, linguagens e dicas</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#personalizar">Personalizar</a></li>

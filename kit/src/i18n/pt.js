@@ -65,6 +65,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
   },
   search: {
     button: "Pesquisar",
+    failed: "Não foi possível carregar a pesquisa.",
   },
   nav: {
     label: "Secções da cadeira",
@@ -144,6 +145,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     closed: "Encerrado",
     solved: "Resolvido",
     solvedNamed: "Resolvido: {name}",
+    languages: "Testado em",
     progress: "{done} de {total} resolvidos",
   },
   team: {

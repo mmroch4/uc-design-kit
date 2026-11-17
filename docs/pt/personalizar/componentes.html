@@ -60,6 +60,7 @@
           <li><a href="../componentes/index.html">Visão geral</a></li>
           <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
           <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
           <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
           <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
@@ -86,6 +87,11 @@
           <li><a href="../widgets/index.html">Catálogo</a></li>
           <li><a href="../widgets/usar.html">Usar widgets</a></li>
           <li><a href="../widgets/uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="../widgets/uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="../widgets/uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="../widgets/uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="../widgets/uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="../widgets/uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -595,7 +601,7 @@ document.addEventListener("uc:exercisechange", () =&gt; {
         <p>O que o professor escreve dentro do elemento é a alternativa: aparece quando o JavaScript está desligado ou o ficheiro não carrega. O componente não a apaga; guarda-a num bloco com <code>hidden</code> quando consegue construir a versão interativa, e mostra-a se faltarem atributos. Uma frase com o resultado (como no exemplo), uma imagem ou uma tabela chegam.</p>
 
         <h2 id="caso-real">Um caso real</h2>
-        <p>O <a href="../../../examples/edados-2526/guioes/aula10.html">guião da aula 10 de Estruturas de Dados</a> usa <code>&lt;uc-bst-traversal&gt;</code>, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O <a href="../../../examples/edados-2526/extensions/uc-bst-traversal.js">código</a> segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página.</p>
+        <p>O exemplo de Estruturas de Dados tem <code>&lt;uc-bst-traversal&gt;</code>, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O <a href="../../../examples/edados-2526/extensions/uc-bst-traversal.js">código</a> segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página. O <a href="../../../examples/edados-2526/guioes/aula10.html">guião da aula 10</a> usa agora o widget <a href="../widgets/uc-widget-bst.html"><code>&lt;uc-widget-bst&gt;</code></a> da biblioteca de widgets, que faz o mesmo e mais; a extensão fica como exemplo de um componente escrito pelo professor.</p>
 
         <h2 id="ver-tambem">Ver também</h2>
         <ul>

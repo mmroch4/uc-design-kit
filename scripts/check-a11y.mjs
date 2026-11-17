@@ -41,6 +41,10 @@
  *     flips aria-sort, keeps focus and announces the order
  *   - "Outros anos" of <uc-page>: Enter opens the list (aria-expanded),
  *     Escape closes it and gives focus back to the button
+ *   - the site search: the dialog (modal, combobox + listbox, arrows, the
+ *     count in a status region, 44 px results, Esc gives focus back, axe
+ *     while open, 320 px) and <uc-search> (label, 44 px, count announced,
+ *     Esc clears, axe with results)
  *   - widgets (uc-widget-*): from the stage, the keyboard walks from the first
  *     to the last step (answering predict questions with Enter), each move is
  *     announced; axe passes at step 0, at the last step, with the text view
@@ -99,9 +103,21 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-summaries.html", selector: "#main", file: "tests/pages/uc-summaries.aria.yml" },
   { page: "tests/pages/uc-materials.html", selector: "#main", file: "tests/pages/uc-materials.aria.yml" },
   { page: "tests/pages/uc-problems.html", selector: "#series", file: "tests/pages/uc-problems.aria.yml" },
+  { page: "tests/pages/uc-problems.html", selector: "#cards", file: "tests/pages/uc-problems-cards.aria.yml" },
   { page: "tests/pages/uc-weeks-compact.html", selector: "#compact .uc-weeks__table", file: "tests/pages/uc-weeks-compact.aria.yml" },
   { page: "tests/pages/extras.html", selector: "#ranking-table", file: "tests/pages/sortable-table.aria.yml" },
   { page: "tests/pages/editions/2425/index.html", selector: "uc-page", file: "tests/pages/editions.aria.yml" },
+  // The site search: the dialog with results, and <uc-search> with results.
+  { page: "tests/pages/search/index.html", selector: ".uc-search-dialog", file: "tests/pages/search/dialog.aria.yml", prepare: (page) => openSearchDialog(page, "arvores") },
+  {
+    page: "tests/pages/search/index.html",
+    selector: "uc-search",
+    file: "tests/pages/search/uc-search.aria.yml",
+    prepare: async (page) => {
+      await page.fill("uc-search input", "arvore");
+      await page.waitForSelector("uc-search [role='option']", { timeout: 4000 });
+    },
+  },
 ];
 
 /** Component demos, the sortable table demo, the EDados example (top level and one lab guide), the template and the search test page. */
@@ -121,7 +137,7 @@ async function findPages() {
   }
   pages.push("examples/edados-2526/guioes/aula10.html");
   // The widget test page (several widgets, predict, editable, bilingual).
-  pages.push("tests/pages/uc-widget-sort.html");
+  pages.push("tests/pages/uc-widget-sort.html", "tests/pages/uc-widget-w2.html");
   // The header search button (a site with search on and an index).
   pages.push("tests/pages/search/index.html");
   // The one CSS-block demo with behaviour (sortable headers).
@@ -626,7 +642,94 @@ async function checkPage(browser, origin, relative, axeSource) {
   problems.push(...(await checkMotion(browser, origin, relative)));
   problems.push(...(await checkBehaviour(browser, origin, relative)));
   problems.push(...(await checkWidgets(browser, origin, relative, axeSource)));
+  problems.push(...(await checkSearch(browser, origin, relative, axeSource)));
   return [...new Set(problems)];
+}
+
+/** Opens the search dialog from the header button with the keyboard and types `query`. */
+async function openSearchDialog(page, query) {
+  await page.focus(".uc-search-button");
+  await page.keyboard.press("Enter");
+  await page.waitForSelector(".uc-search-dialog[open]", { timeout: 4000 });
+  await page.waitForFunction(() => document.querySelector(".uc-search-dialog [role='status']").textContent !== UC.t("search.loading"), null, { timeout: 4000 });
+  if (query) {
+    await page.keyboard.type(query);
+    await page.waitForTimeout(100);
+  }
+}
+
+/**
+ * The site search (docs/plan/search-api.md 10), on pages whose site has an
+ * index: the dialog (modal, combobox and listbox, arrows, Esc and focus
+ * back, the count in a status region, 44 px options, axe while open, no
+ * horizontal scroll at 320 px) and <uc-search> (label, 44 px field, the count
+ * announced, Esc clears, axe with results).
+ */
+async function checkSearch(browser, origin, relative, axeSource) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  if (!(await page.$(".uc-search-button:not(.uc-search-button--pending)"))) {
+    await context.close();
+    return problems;
+  }
+  await openSearchDialog(page, "arvores");
+  const dialog = await page.evaluate(() => {
+    const box = document.querySelector(".uc-search-dialog");
+    const input = document.activeElement;
+    const options = Array.from(box.querySelectorAll("[role='option']"));
+    return {
+      modal: box.matches(":modal"),
+      named: Boolean(box.getAttribute("aria-labelledby") && document.getElementById(box.getAttribute("aria-labelledby")).textContent.trim()),
+      combobox: input.getAttribute("role") === "combobox" && input.getAttribute("aria-expanded") === "true" && document.getElementById(input.getAttribute("aria-controls"))?.getAttribute("role") === "listbox",
+      active: input.getAttribute("aria-activedescendant"),
+      options: options.map((option) => option.id),
+      short: options.filter((option) => option.getBoundingClientRect().height < 44).length,
+      status: box.querySelector("[role='status']").textContent,
+    };
+  });
+  if (!dialog.modal) problems.push("search: the dialog is not modal");
+  if (!dialog.named) problems.push("search: the dialog has no accessible name");
+  if (!dialog.combobox) problems.push("search: the field is not an expanded combobox controlling a listbox");
+  if (!dialog.options.length) problems.push("search: no results for 'arvores'");
+  if (dialog.active !== dialog.options[0]) problems.push("search: the first result is not the active descendant");
+  if (dialog.short) problems.push(`search: ${dialog.short} result(s) shorter than 44px`);
+  if (!/\d+ (resultados?|results?)/.test(dialog.status)) problems.push(`search: the count is not in the status region ("${dialog.status}")`);
+  if (dialog.options.length > 1) {
+    await page.keyboard.press("ArrowDown");
+    const active = await page.evaluate(() => document.activeElement.getAttribute("aria-activedescendant"));
+    if (active !== dialog.options[1]) problems.push("search: ArrowDown did not move to the second result");
+  }
+  (await runAxe(page, axeSource)).forEach((line) => problems.push(`[search dialog] [axe] ${line}`));
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(100);
+  if (await page.$(".uc-search-dialog[open]")) problems.push("search: Escape did not close the dialog");
+  if (!(await focusedMatches(page, ".uc-search-button"))) problems.push("search: focus did not go back to the button");
+
+  const field = await page.$("uc-search input");
+  if (field) {
+    const box = await field.boundingBox();
+    if (box && box.height < 44) problems.push(`uc-search: the field is ${Math.round(box.height)}px tall (44px minimum)`);
+    if (!(await field.evaluate((node) => (node.labels[0] ? node.labels[0].textContent.trim() : "")))) problems.push("uc-search: the field has no visible <label>");
+    await field.focus();
+    await page.keyboard.type("arvore");
+    await page.waitForTimeout(1000);
+    if (!/\d+ (resultados?|results?)/.test(await liveText(page))) problems.push("uc-search: the number of results is not announced");
+    if (!(await focusedMatches(page, "uc-search input"))) problems.push("uc-search: focus left the field");
+    (await runAxe(page, axeSource)).forEach((line) => problems.push(`[uc-search] [axe] ${line}`));
+    await page.keyboard.press("Escape");
+    if (await field.evaluate((node) => node.value)) problems.push("uc-search: Escape did not clear the field");
+  }
+  await context.close();
+
+  const narrow = await open(browser, origin, relative, { viewport: { width: 320, height: 640 } });
+  await openSearchDialog(narrow.page, "arvores");
+  const overflow = await narrow.page.evaluate(() => {
+    const box = document.querySelector(".uc-search-dialog");
+    return Math.max(box.scrollWidth - box.clientWidth, box.getBoundingClientRect().right - window.innerWidth);
+  });
+  if (overflow > 1) problems.push(`search: the dialog overflows by ${Math.round(overflow)}px at 320px wide`);
+  await narrow.context.close();
+  return problems;
 }
 
 /** Widgets (docs/plan/widgets-api.md 18.3 item 4), on pages that have one. */
@@ -721,8 +824,9 @@ async function checkWidgets(browser, origin, relative, axeSource) {
 async function checkAriaSnapshots(browser, origin, update, filters, shard) {
   let failed = 0;
   const snapshots = ARIA_SNAPSHOTS.filter(({ page }) => !filters.length || filters.some((filter) => page.includes(filter)));
-  for (const { page: relative, selector, file } of shardOf(snapshots, shard)) {
+  for (const { page: relative, selector, file, prepare } of shardOf(snapshots, shard)) {
     const { context, page } = await open(browser, origin, relative);
+    if (prepare) await prepare(page);
     const actual = `${await page.locator(selector).first().ariaSnapshot()}\n`;
     await context.close();
     const target = path.join(ROOT, file);

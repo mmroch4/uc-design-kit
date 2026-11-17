@@ -7,11 +7,10 @@
   <meta name="description" content="Guião da aula prática 10 de Estruturas de Dados (CC1007): representações preorder, inorder, postorder e em largura, implementação de árvores binárias e exercícios ED204 a ED207 e ED211 a ED213.">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
-  <!-- Extensão desta cadeira: demonstração animada dos percursos -->
-  <link rel="stylesheet" href="../extensions/uc-bst-traversal.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
-  <script src="../extensions/uc-bst-traversal.js" defer></script>
+  <!-- Widget da biblioteca: árvore binária de pesquisa e os seus percursos -->
+  <script src="../../../widgets/v1/uc-widget-bst.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -88,13 +87,14 @@
         </uc-exercise>
       </section>
 
-      <!-- Ver os percursos: usa a extensão <uc-bst-traversal> (pasta extensions/) -->
+      <!-- Ver os percursos: widget <uc-widget-bst> (widgets/v1/). A extensão extensions/uc-bst-traversal.js fica como exemplo de componente próprio. -->
       <section class="uc-section" aria-labelledby="percursos">
         <h2 id="percursos">Ver os percursos</h2>
-        <p class="uc-prose">Escolhe um percurso e carrega em Reproduzir, ou avança um passo de cada vez. O nó a azul é o que está a ser visitado agora.</p>
+        <p class="uc-prose">Escolhe um percurso e carrega em Reproduzir, ou avança um passo de cada vez. O nó cheio a azul é o que está a ser visitado agora; os nós com ✓ já foram impressos. Com as previsões ligadas, o widget pergunta qual é o próximo valor impresso.</p>
 
-        <!-- values: valores inseridos, por esta ordem, numa árvore binária de pesquisa vazia -->
-        <uc-bst-traversal values="5 3 8 1 4 7 9">
+        <!-- values: valores inseridos, por esta ordem, numa árvore binária de pesquisa vazia;
+             algorithms: os percursos que o aluno pode escolher -->
+        <uc-widget-bst values="5 3 8 1 4 7 9" algorithm="preorder" algorithms="preorder inorder postorder levelorder" predict>
           <p>Árvore de exemplo: raiz 5; filhos de 5: 3 e 8; filhos de 3: 1 e 4; filhos de 8: 7 e 9.</p>
           <ul>
             <li>Pré-ordem: <code>5 3 1 4 8 7 9</code></li>
@@ -102,7 +102,7 @@
             <li>Pós-ordem: <code>1 4 3 7 9 8 5</code></li>
             <li>Largura: <code>5 3 8 1 4 7 9</code></li>
           </ul>
-        </uc-bst-traversal>
+        </uc-widget-bst>
 
         <uc-question>
           <p>Qual é a altura da árvore acima? (uma árvore só com a raiz tem altura 0)</p>

@@ -469,7 +469,7 @@ O que o professor escreve dentro do elemento é a alternativa: aparece quando o 
 
 ## Um caso real
 
-O [guião da aula 10 de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) usa `<uc-bst-traversal>`, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O [código](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/extensions/uc-bst-traversal.js) segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página.
+O exemplo de Estruturas de Dados tem `<uc-bst-traversal>`, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O [código](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/extensions/uc-bst-traversal.js) segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página. O [guião da aula 10](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) usa agora o widget [`<uc-widget-bst>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) da biblioteca de widgets, que faz o mesmo e mais; a extensão fica como exemplo de um componente escrito pelo professor.
 
 ## Ver também
 

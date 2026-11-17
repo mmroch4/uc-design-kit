@@ -1042,7 +1042,9 @@ class PageScanner(HTMLParser):
             self.has_page = True
         if "id" in a and a["id"]:
             self.ids.append((a["id"], line))
-        if "lang" in a and tag != "html" and a["lang"].strip():
+        # On <uc-code>, lang is the programming language (lang="c"), not a
+        # human language: it is never checked against the site's languages.
+        if "lang" in a and tag not in ("html", "uc-code") and a["lang"].strip():
             self.langs.append((a["lang"].strip(), line))
         if tag == "img" and "alt" not in a:
             self.images_without_alt.append((a.get("src", ""), line))

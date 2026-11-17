@@ -60,6 +60,7 @@
           <li><a href="../componentes/index.html">Visão geral</a></li>
           <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
           <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
           <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
           <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
@@ -86,6 +87,11 @@
           <li><a href="index.html" aria-current="page">Catálogo</a></li>
           <li><a href="usar.html">Usar widgets</a></li>
           <li><a href="uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -152,10 +158,40 @@
         <!-- widgets:catalog -->
         <ul class="docs-widget-cards" role="list">
           <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-bst.html">Árvore binária de pesquisa</a> <code>&lt;uc-widget-bst&gt;</code></h3>
+            <p>Inserir, remover, procurar, mínimo e máximo numa árvore binária de pesquisa, e os percursos pré-ordem, em-ordem, pós-ordem e em largura.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 1</span> <span class="uc-tag uc-tag--accent">EDados</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>operations</code>, <code>preorder</code>, <code>inorder</code>, <code>postorder</code>, <code>levelorder</code> · 5.5 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-list.html">Lista ligada</a> <code>&lt;uc-widget-list&gt;</code></h3>
+            <p>Lista ligada simples: adicionar no início e no fim, inserir, remover, procurar e inverter, ponteiro a ponteiro.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 1</span> <span class="uc-tag uc-tag--accent">EDados</span> <span class="uc-tag uc-tag--accent">PI</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>singly</code> · 6.0 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-recursion.html">Recursão</a> <code>&lt;uc-widget-recursion&gt;</code></h3>
+            <p>Árvore de chamadas e pilha de chamadas do fatorial, de Fibonacci e das Torres de Hanói.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 1</span> <span class="uc-tag uc-tag--accent">IP</span> <span class="uc-tag uc-tag--accent">PI</span> <span class="uc-tag uc-tag--accent">EDados</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>factorial</code>, <code>fibonacci</code>, <code>hanoi</code> · 3.2 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-search.html">Pesquisa</a> <code>&lt;uc-widget-search&gt;</code></h3>
+            <p>Pesquisa linear, pesquisa binária e primeira posição ≥ alvo (lower bound), passo a passo.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 1</span> <span class="uc-tag uc-tag--accent">IP</span> <span class="uc-tag uc-tag--accent">EDados</span> <span class="uc-tag uc-tag--accent">PI</span> <span class="uc-tag uc-tag--accent">PC</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>linear</code>, <code>binary</code>, <code>lower</code> · 3.2 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
             <h3><a href="uc-widget-sort.html">Ordenação</a> <code>&lt;uc-widget-sort&gt;</code></h3>
             <p>Bolha, seleção, inserção, merge sort, quicksort e counting sort, passo a passo.</p>
             <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 1</span> <span class="uc-tag uc-tag--accent">IP</span> <span class="uc-tag uc-tag--accent">EDados</span> <span class="uc-tag uc-tag--accent">PI</span></p>
             <p class="docs-widget-card__meta">Algoritmos: <code>bubble</code>, <code>selection</code>, <code>insertion</code>, <code>merge</code>, <code>quick</code>, <code>counting</code> · 5.2 KB gzip</p>
+          </li>
+          <li class="uc-card docs-widget-card">
+            <h3><a href="uc-widget-stack-queue.html">Pilha e fila</a> <code>&lt;uc-widget-stack-queue&gt;</code></h3>
+            <p>Pilha (push, pop, peek) e fila (enqueue, dequeue, peek), em vetor (a fila como vetor circular) ou em lista ligada.</p>
+            <p class="docs-widget-card__meta"><span class="uc-tag">Experimental</span> <span class="uc-tag">Vaga 1</span> <span class="uc-tag uc-tag--accent">EDados</span> <span class="uc-tag uc-tag--accent">PI</span></p>
+            <p class="docs-widget-card__meta">Algoritmos: <code>stack</code>, <code>queue</code> · 5.7 KB gzip</p>
           </li>
         </ul>
         <!-- /widgets:catalog -->

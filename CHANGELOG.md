@@ -23,6 +23,17 @@ released yet; contract `docs/plan/widgets-api.md`).
 - Documentation: "Widgets" group (Catálogo, Usar widgets, uc-widget-sort),
   `docs/api.md` 7.2, `template/AGENTS.md`; tests in `tests/widgets/`
   (`npm run test:widgets`).
+- Phase W2 (experimental): `<uc-widget-search>` (linear, binary, lower
+  bound), `<uc-widget-bst>` (insert, remove, search, min, max; pre-, in-,
+  post- and level-order traversals), `<uc-widget-list>` (singly linked list,
+  including reverse), `<uc-widget-stack-queue>` (stack and queue, in an array
+  with a circular queue or in a linked list), `<uc-widget-recursion>`
+  (factorial, Fibonacci, Towers of Hanoi). Core: `svg.tree`, the common
+  attribute `algorithms` (toggle buttons), per-operation pseudocode
+  (`step.code`); `svg.list` is bundled into the two widgets that use it.
+  Small arrays and trees are no longer drawn larger than 1:1.
+- The EDados example's lab guide 10 uses `<uc-widget-bst>`; the extension
+  `extensions/uc-bst-traversal.js` stays as the custom component tutorial.
 
 ### Changed
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
@@ -33,6 +44,11 @@ released yet; contract `docs/plan/widgets-api.md`).
   `{ src | svg, alt }` whose `alt` (a `LocalizedText`) names the image for
   screen readers. Without `alt` the logo stays decorative. `uc-site.py check`
   checks `logo.src` and skips inline SVG.
+- `<uc-problems>`: `cards` (one card per problem, with a "Mooshak PC033"
+  judge seal that links to the judge), `data-languages` on problems ("Testado
+  em C++ Java", once per series when all match) and styled hints from a
+  `<details>` in the item (hidden when empty). The PC 2026/27 example uses
+  them on its weekly problem sets.
 - `uc-site.py` in the template (search phase S2): the site maintenance
   script, Python 3.8+ with the standard library only. `python3 uc-site.py
   check` reads `course.js` without running it (values only, with constants),
@@ -68,6 +84,18 @@ released yet; contract `docs/plan/widgets-api.md`).
   `uc:searchready` event and the new `uc-search.js` (loaded on open, 6 KB
   budget; the dialog comes in phase S4). Sites without `search` make no new
   request. Browser checks in `scripts/check-search.mjs`.
+- The search dialog and `<uc-search>` (search phase S4, v1.2.0 in progress):
+  `uc-search.js` (5 KB gzipped) now holds the engine (folded prefix
+  matching, one typo from 5 letters, section title > page title > text,
+  grouped by page, language filter), the modal dialog of the header button
+  ("A carregar…", "Tentar de novo", index date, results on the same page
+  open their `<details>` and take focus) and the new `<uc-search>` element
+  (`scope`, `label`, `placeholder`, `limit`), loaded only on sites with an
+  index. Deadlines and notices of `course.js` are searched at runtime.
+  Combobox + listbox with arrows, Enter and Esc; checked by `check-search`,
+  `check-a11y` and two new accessibility-tree snapshots. Fix:
+  `uc-site.py check` no longer reports the `lang` of `<uc-code>` (the
+  programming language, `lang="c"`) as a language the site does not have.
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type

@@ -442,10 +442,70 @@ index, once. Without `search` nothing of this runs and no request is made.
 Stable classes: `uc-search-button`, `uc-search-button--pending`,
 `uc-search-button__label`, `uc-search-button__hint`.
 
+**Search dialog** (v1.2.0, in progress). The button opens a modal
+`<dialog class="uc-search-dialog">`. While `uc-search.js` (about 5 KB
+gzipped) loads, the button has `aria-busy="true"`; if it cannot load,
+"Não foi possível carregar a pesquisa." is announced and the next press tries
+again. While the index downloads the dialog says "A carregar…"; if it fails,
+it shows the same message and a "Tentar de novo" button. Results appear as
+the visitor types, grouped by page (the label is the `pages[]` label of the
+page's `g` and the page title, "Semanas · Guião 9"), at most 5 per page and
+50 in all; `UC_COURSE.deadlines` and the notices already shown by
+`<uc-notices>` are searched at runtime, in the groups "Prazos" and "Avisos"
+(a deadline links to its `url`, else to the `assessment` page; a notice to
+its first link, else to `home`). The field is a `combobox` controlling a
+`listbox` (`aria-activedescendant`; ↑ ↓ Page Up/Down move, Enter opens, Esc
+closes and gives focus back to the opener), the count goes into a
+`role="status"` line, and the footer shows the index date
+(`generated`). A result on the current page sets `#hash`, opens the
+`<details>` around the target, scrolls, flashes it (`uc-target-flash`) and
+moves focus to it. Matching rules: `<uc-search>`. Stable classes: the
+`uc-search__*` classes of `<uc-search>` plus `uc-search-dialog`,
+`uc-search-dialog__bar`, `__close`, `__body`, `__footer`, `__date`, `__keys`.
+
 #### `<uc-hero>`
 
 Course heading block: code, title (as `<h1>`) and tagline from the
 configuration. Children, if any, are appended below the tagline.
+
+#### `<uc-search>`
+
+A search field with its results below it, inside a page (v1.2.0, in
+progress). It is defined in `uc-search.js`, which `uc-kit.js` loads when the
+site's index is known to exist (`uc:searchready`) and the page has a
+`<uc-search>`: without `search` in `course.js` or without the index file the
+element stays empty and nothing is downloaded. The index itself downloads
+the first time the field gets focus ("A carregar…", or "Tentar de novo" on a
+failure).
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `scope` | path prefix | — | Only index pages whose `p` starts with it, e.g. `problemas/`. Without it, deadlines and notices are searched too. |
+| `label` | text | `search.label` ("Pesquisar no site") | Visible label of the field. |
+| `placeholder` | text | `search.placeholder` | Placeholder of the field. |
+| `limit` | number | `10` | Most results shown. |
+
+Matching (shared with the dialog, docs/plan/search-api.md 9): the query is
+folded like the index words (lowercase, accents removed) and split into
+terms; every term of 3+ letters (or with a digit) that is not a stop word
+must be the start of a word of the section title, the page title or the
+text (stop words and 1–2 letter terms only add points; a query made only of
+them requires them all). From 5 letters, one substituted letter or two
+swapped neighbours also match, for fewer points. Points: section title >
+page title > text; ties keep the index order. Entries whose `l` is not the
+active language are skipped. Matched words are wrapped in
+`<mark class="uc-search__mark">` (built as DOM nodes, never HTML from the
+index).
+
+The field is a `combobox` with a visible `<label>`, controlling a `listbox`
+of options grouped by page (`aria-activedescendant`; ↑ ↓ Page Up/Down, Enter
+opens, Esc clears); the count is announced through the shared live region
+when typing pauses. Stable classes: `uc-search`, `uc-search__label`,
+`uc-search__field`, `uc-search__input`, `uc-search__results`,
+`uc-search__group`, `uc-search__group-label`, `uc-search__option`,
+`uc-search__title`, `uc-search__text`, `uc-search__mark`,
+`uc-search__message`, `uc-search__status`, `uc-search__retry`.
+
 
 ### 3.2 Dates, deadlines and notices
 
@@ -983,6 +1043,7 @@ browser.
 | --- | --- | --- |
 | `filters` | boolean | no filters; with it, buttons by type and by judge (`aria-pressed`), for groups with two or more values |
 | `track` | boolean | no checkboxes; with it, "Resolvido" per problem and "3 de 5 resolvidos" per series, saved in `localStorage` |
+| `cards` | boolean | rows; with it, one card per problem: title, a judge seal with the problem code ("Mooshak PC033", a link to the platform `url` when it has one), languages, hints and "Resolvido" |
 | `heading` | text \| `none` | `none` (problem pages have their own `<h1>`); a text adds a heading |
 | `heading-level` | `2`–`6` | `2` |
 
@@ -994,6 +1055,7 @@ a list; a single `<ol>`/`<ul>` without sections is one series without a name.
 | `data-judge` | `<li>` | platform `id` or label | Judge tag with the platform's label (2.8). Unknown values are shown as written. |
 | `data-type` | `<li>` | `main` \| `extra` \| `challenge` | Default `main` (no tag). "Extra" and "Desafio" are text tags. |
 | `data-id` | `<li>` | text | Identifier for `track`. Default: `<judge>:<text of the first <code>>`, else the resolved URL of the first link. |
+| `data-languages` | `<li>` | comma-separated list | "Testado em C++ Java" as muted tags. When every problem of a series has the same list, it is shown once under the series heading instead. |
 | `data-deadline` | `<section>` | deadline `id` | "Prazo: 12 out, 23:59" under the series heading, with its state ("Daqui a 8 dias", "Hoje", "Encerrado"). |
 
 - An optional `<data value>` in an item is its weight, shown as a tag ("40 %").
@@ -1008,6 +1070,9 @@ a list; a single `<ol>`/`<ul>` without sections is one series without a name.
   bubbling `uc:problemchange` (`detail: { id, solved }`) and updates "3 de 5
   resolvidos" under the series heading (not a live region: the checkbox
   announces its own state).
+- **Hints.** A `<details>` child of an item gets `uc-problems__hints`: the
+  `<summary>` becomes a small disclosure with a chevron and the rest a soft
+  panel. A `<details>` with nothing but its `<summary>` is hidden.
 - **Unknown deadline id.** One console warning; no deadline line.
 - Without JavaScript: the teacher's sections, headings and lists.
 
@@ -1108,7 +1173,12 @@ system font and skips downloading Inter, if a course prefers.
 ## 6. Languages
 
 - Interface strings live in `kit/src/i18n/<lang>.js` (`pt` and `en` in v1).
-  Adding a language means adding one dictionary file.
+  Adding a language means adding one dictionary file. The strings of the
+  site search (`search.label`, `search.placeholder`, `search.loading`,
+  `search.retry`, `search.empty`, `search.count`, `search.countOne`,
+  `search.close`, `search.indexDate`, `search.deadlines`, `search.notices`,
+  `search.keys`) come with `uc-search.js` (`kit/src/search/strings.js`) and
+  never replace a string the site already set with `UC.addTranslations`.
 - **Active language** is resolved in this order: `?lang=` query, saved choice
   (`localStorage` key `uc:lang`), `<html lang>`, first of `languages`.
 - **In-place bilingual content:** any element with a `lang` attribute whose
@@ -1235,13 +1305,24 @@ one file per widget type after the kit:
 ```
 
 The widget file loads `uc-widget-core.js` and `uc-widget.css` from its own
-folder. Widgets: `<uc-widget-sort>` (`values`, `algorithm` = `bubble`
-`selection` `insertion` `merge` `quick` `counting`, `pivot` = `last` `first`
-`middle` `random`, `bars`). The catalogue is `widgets/v1/catalog.json`.
+folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
+
+| Element | Own attributes | `algorithm` |
+| --- | --- | --- |
+| `<uc-widget-sort>` | `values`, `pivot` = `last` `first` `middle` `random`, `bars` | `bubble` `selection` `insertion` `merge` `quick` `counting` |
+| `<uc-widget-search>` | `values`, `target` (binary searches need sorted values) | `linear` `binary` `lower` |
+| `<uc-widget-bst>` | `values` (≤ 15), `ops` = `insert v; remove v; search v; min; max` | `operations` `preorder` `inorder` `postorder` `levelorder` |
+| `<uc-widget-list>` | `values` (≤ 10), `ops` = `add-first v; add-last v; insert k v; remove-first; remove-last; remove v; search v; reverse` | `singly` |
+| `<uc-widget-stack-queue>` | `values`, `ops` = `push v; pop; peek` / `enqueue v; dequeue; peek`, `impl` = `array` `list`, `capacity` (1–16, default 8) | `stack` `queue` |
+| `<uc-widget-recursion>` | `n` (factorial ≤ 8, fibonacci ≤ 6, hanoi 1–4) | `factorial` `fibonacci` `hanoi` |
+
+With `ops`, `values` builds the structure without steps and the operations
+are the demo; without `ops`, inserting / adding each value is the demo.
 
 | Common attribute | Values | Default |
 | --- | --- | --- |
 | `algorithm` | a name from the widget's list | the first |
+| `algorithms` | names from the list: toggle buttons to switch algorithm | absent |
 | `speed` | ms, 200–5000 | `900` |
 | `controls` | `full`, `compact` | `full` |
 | `editable` | boolean | absent |
@@ -1262,8 +1343,11 @@ folder. Widgets: `<uc-widget-sort>` (`values`, `algorithm` = `bubble`
 | `uc:widgetpredict` | `{ widget, step, correct, right, asked }` | Every predict answer. |
 
 A step (the unit the player moves through) is plain JSON: `{ state, marks,
-pointers, line, say: [i18n key, params], stats, aux, predict }`; marks are
-`current`, `compared`, `swapped`, `visited`, `done`.
+pointers, line, say: [i18n key, params], stats, aux, predict, code }`; marks
+are `current`, `compared`, `swapped`, `visited`, `done`. `code` names the
+pseudocode block of the step (an operation such as `insert`); without it the
+block is the algorithm's. A teacher's `<pre data-pseudocode
+data-algorithm="…">` matches either.
 
 | `UC.widgets` property | Description |
 | --- | --- |
@@ -1271,6 +1355,7 @@ pointers, line, say: [i18n key, params], stats, aux, predict }`; marks are
 | `Widget` | Base class (extends `UC.Element`); a widget defines `parse()`, `steps(input, emit)`, `draw(step, svg)` and optionally `describe`, `table`, `panel`, `pseudocode`, `serialize`. |
 | `register(name, Class)` | Defines the element (`UC.define`). |
 | `svg.array(svg, values, { marks, pointers, bars })` | Draws an array. |
+| `svg.tree(svg, root, { children, binary, key, label, note, marks, pointers, empty })` | Draws a binary (in-order layout, default `[node.l, node.r]`) or n-ary tree; nodes kept by key and moved. |
 | `parse.values`, `parse.ops`, `parse.graph` | Input parsers; throw `InputError(key, params)`. |
 | `random(seed)` | Seeded generator: `int(min, max)`, `pick`, `shuffle`. |
 | `MAX_STEPS`, `STATES`, `InputError`, `TooManySteps` | Limits and error types. |

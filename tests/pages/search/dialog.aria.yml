@@ -1,0 +1,24 @@
+- dialog "Pesquisar no site":
+  - heading "Pesquisar no site" [level=2]
+  - combobox "Pesquisar no site" [expanded]: arvores
+  - button "Fechar"
+  - status: 3 resultados
+  - listbox:
+    - group "Prazos":
+      - text: Prazos
+      - option "Teste de árvores 5 nov 2025 · 14:30" [selected]:
+        - text: Teste de
+        - mark: árvores
+        - text: 5 nov 2025 · 14:30
+    - group "Avisos":
+      - text: Avisos
+      - option "As árvores AVL saem no teste. 1 out 2025":
+        - text: As
+        - mark: árvores
+        - text: AVL saem no teste. 1 out 2025
+    - group "Início · Pesquisa no site":
+      - text: Início · Pesquisa no site
+      - 'option "Árvores binárias Secção sem id escrito: o kit dá-lhe um."':
+        - mark: Árvores
+        - text: "binárias Secção sem id escrito: o kit dá-lhe um."
+  - text: Índice de 20 nov 2025

@@ -10,7 +10,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { collect, random } from "../../widgets/src/core/engine.js";
-import { loadWidgets, optionSets, LANGUAGES, format, describeOptions, ROOT } from "./helpers.mjs";
+import { loadWidgets, optionSets, splitInput, LANGUAGES, format, describeOptions, ROOT } from "./helpers.mjs";
 
 export const DIR = path.join(ROOT, "tests", "widgets", "narration");
 
@@ -19,10 +19,11 @@ export async function narrations() {
   const files = {};
   for (const widget of await loadWidgets()) {
     for (const lang of LANGUAGES) {
-      const blocks = optionSets(widget.meta).map((options) => {
-        const { steps } = collect(widget.algorithm.run, widget.meta.test.input, { ...options, random: random(1) });
+      const blocks = optionSets(widget.meta).map((set) => {
+        const { input, options } = splitInput(widget.meta, set);
+        const { steps } = collect(widget.algorithm.run, input, { ...options, random: random(1) });
         const lines = steps.map((step, i) => `${String(i + 1).padStart(3)}. ${format(widget.dictionaries[lang], step.say)}`);
-        return [`## ${describeOptions(options)} · input ${JSON.stringify(widget.meta.test.input)}`, ...lines].join("\n");
+        return [`## ${describeOptions(options)} · input ${JSON.stringify(input)}`, ...lines].join("\n");
       });
       files[`${widget.id}.${lang}.txt`] = `${blocks.join("\n\n")}\n`;
     }

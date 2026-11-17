@@ -42,6 +42,8 @@ Contents:
 18. [Build, size, tests and documentation](#18-build-size-tests-and-documentation)
 19. [Phases](#19-phases)
 20. [Decisions taken in phase W0](#20-decisions-taken-in-phase-w0)
+21. [Refinements made in phase W1](#21-refinements-made-in-phase-w1)
+22. [Refinements made in phase W2](#22-refinements-made-in-phase-w2)
 
 ---
 
@@ -1149,3 +1151,58 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
     `scripts/check-a11y.mjs`, on every page with a widget.
 14. **Counting sort** refuses inputs with more than 100 distinct possible
     values (`widget.sort.error.range`).
+
+## 22. Refinements made in phase W2
+
+1. **`svg.tree` is in the core** (bst, avl, heap, recursion, backtracking
+   use it: rule 16.3). Options `children`, `binary` (in-order layout, the
+   default; `false` gives the n-ary layout: one column per leaf, a parent
+   above the middle of its children), `key`, `label`, `note` (drawn right of
+   the node, e.g. a return value), `marks`, `pointers`, `empty`. Nodes are
+   pill-shaped boxes as wide as the longest label. An edge takes the state of
+   its lower node when that node is `current`, `visited` or `done`.
+2. **`svg.list` is bundled** into `uc-widget-list` and
+   `uc-widget-stack-queue` (two widgets: rule 16.3), from
+   `widgets/src/core/svg/list.js`. Nodes `[{ id, v, next }]` in display
+   order; `raised` ids are drawn above the row (a node not linked yet, or
+   just taken out); arrows to the next slot are straight, others are arcs
+   (below when they point left, as in a reversal); an edge mark is keyed
+   `"<id>>"`. Lists hold at most **10 nodes** (5.5 had no list row).
+3. **Moves animate**: tree and list nodes are kept by key and placed with a
+   CSS `transform`, so insertions, removals and the successor moving up
+   slide over `--uc-widget-duration`. Each primitive records its kind in
+   `svg.__ucKind`, so one widget can switch primitives (stack-queue `impl`).
+4. **Not larger than 1:1**: trees and lists set `max-width` to their
+   natural size, arrays to 1.25 ×; small inputs no longer fill the column
+   with huge cells.
+5. **Per-operation pseudocode (`step.code`)**: a step may name the
+   pseudocode block it belongs to (`insert`, `reverse`, `queue-array`);
+   without it the block is the algorithm's. The panel switches blocks while
+   moving through the steps; a teacher's `<pre data-pseudocode
+   data-algorithm="insert">` matches the block name. The step validator
+   checks line ids against the step's block.
+6. **Several ids per default line**: `"left right found|…"` — the part
+   before `|` may hold space-separated ids, like `data-line`.
+7. **Common attribute `algorithms`**: space-separated names of the widget's
+   list; with two or more, a `button[aria-pressed]` group
+   (`.uc-widget__choices`, labelled "Algoritmo") under the caption switches
+   the algorithm and rebuilds at step 0 (12). Labels are the algorithms'
+   captions. Changing the `algorithm` attribute clears the choice.
+8. **Editable field per widget**: `static editAttribute` (default: the
+   first input attribute) and `static editLabel` (an i18n key). The list
+   and stack-queue edit `ops`; the search edits `values` with the target
+   after `:` (`1 3 5 7 : 5`, also accepted in the attribute).
+9. **Meta `test.options` may carry their own `input`** (the search's
+   binary/lower inputs, the BST's operations, the stack-queue's four
+   structures); `tests/widgets/helpers.mjs` `splitInput`.
+10. **Widget choices**: BST `algorithm` = `operations` (default; insert
+    each value, or run `ops`) or a traversal; removal of a node with two
+    children copies the successor's value and removes the successor in one
+    step, so the successor's node visibly moves up. Search target defaults
+    to the value two thirds along the array; `random` inputs are sorted for
+    the binary searches, explicit unsorted inputs are an error. The list has
+    one algorithm, `singly` (room for `doubly`). Stack-queue: arrays have a
+    fixed `capacity` (1–16, default 8) with overflow / underflow steps; the
+    queue is circular. Recursion: `n` caps of 5.5, Hanoi node labels
+    `h(n,from,to)`, pegs in `aux.pegs`, moves in `aux.output`.
+11. **New core keys**: `algorithm`, `edit.ops`, `tree.empty`.
