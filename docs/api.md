@@ -174,7 +174,7 @@ v1.2.0.
 | `languages` | string[] | no | `[<html lang>]` | BCP 47 codes. First is the default. More than one enables the language switch. |
 | `institution` | `{ name, url? }` | no | — | Shown in the header. |
 | `accentColor` | CSS colour | no | `#1D4ED8` | Sets `--uc-color-accent`; soft and strong variants are derived. Must reach 4.5:1 contrast on white. |
-| `logo` | URL \| `null` | no | built-in tree icon | Header mark. `null` hides it. |
+| `logo` | URL \| SVG string \| `{ src \| svg, alt? }` \| `null` | no | built-in tree icon | Header mark, shown 28 × 28 px. A string starting with `<` is inline SVG (it inherits the accent colour through `currentColor`; give it a `viewBox`). `alt` (`LocalizedText`) makes the mark an image with that name; without it the mark is decorative (`alt=""` / `aria-hidden`), since the course title is next to it. `null` hides it. |
 | `semester.start` | `ISODate` | for week features | — | First day of classes; week 1 is the calendar week containing it. |
 | `semester.weeks` | number | no | `14` | Number of teaching weeks (breaks not counted). |
 | `semester.teachingDays` | `[from, to]` | no | `[1, 5]` | ISO weekdays with classes (1 = Monday … 7 = Sunday). Week ranges are shown with these days, e.g. `[2, 5]` → "25–28 nov". |

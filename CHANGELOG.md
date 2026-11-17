@@ -39,6 +39,11 @@ released yet; contract `docs/plan/widgets-api.md`).
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
 
 ### Added
+- `logo` in `course.js` also takes an inline SVG string (`"<svg …>"`, drawn
+  in the accent colour when it uses `currentColor`) and an object
+  `{ src | svg, alt }` whose `alt` (a `LocalizedText`) names the image for
+  screen readers. Without `alt` the logo stays decorative. `uc-site.py check`
+  checks `logo.src` and skips inline SVG.
 - `<uc-problems>`: `cards` (one card per problem, with a "Mooshak PC033"
   judge seal that links to the judge), `data-languages` on problems ("Testado
   em C++ Java", once per series when all match) and styled hints from a
