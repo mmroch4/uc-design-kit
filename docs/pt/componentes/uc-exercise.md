@@ -94,6 +94,24 @@ Exemplo (exercício com problema no Mooshak), [demonstração ao vivo](https://u
 
 O botão abre o endereço da plataforma (`url`), não o problema: o kit não constrói endereços por problema, e o código na etiqueta diz ao aluno qual escolher. Se não houver uma plataforma chamada "Mooshak" (a comparação ignora maiúsculas), a etiqueta mostra só o código e o botão não aparece.
 
+### Exercícios extra e desafios
+
+`kind="extra"` e `kind="challenge"` marcam os exercícios que não são obrigatórios, com as mesmas etiquetas das listas de problemas.
+
+Exemplo (exercícios com as etiquetas Extra e Desafio), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-exercise/kind.html):
+
+```html
+<uc-exercise id="principal" title="Soma dos dígitos">
+  <p>Exercício principal: sem etiqueta.</p>
+</uc-exercise>
+<uc-exercise id="extra" title="Dígitos repetidos" kind="extra">
+  <p>Exercício extra.</p>
+</uc-exercise>
+<uc-exercise id="desafio" title="Números de Armstrong" kind="challenge" level="hard">
+  <p>Desafio, também com nível.</p>
+</uc-exercise>
+```
+
 ### Dicas e soluções sem título
 
 Um `uc-hint` ou `uc-solution` escrito sem `<summary>` recebe um na língua ativa: "Dica" ou "Solução". Pode haver várias dicas, de mais vaga para mais concreta.
@@ -125,6 +143,7 @@ As classes `uc-hint` e `uc-solution` também têm o mesmo aspeto fora de um exer
 | `id` | texto | — | Obrigatório para lembrar o estado "feito". Único na página; mudá-lo faz perder a marca já guardada. |
 | `title` | texto | — | Obrigatório. Título do exercício. O atributo é retirado depois de lido, para não aparecer como dica ao passar o rato sobre o cartão. |
 | `level` | `easy` \| `medium` \| `hard` | ausente | Etiqueta "Fácil", "Médio" ou "Difícil". Outro valor é ignorado. |
+| `kind` | `main` \| `extra` \| `challenge` | `main` | Etiqueta "Extra" ou "Desafio", os mesmos tipos de [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md). `main` não mostra etiqueta. |
 | `mooshak` | código do problema | ausente | Etiqueta com o código no título e, se houver a plataforma "Mooshak" em `platforms`, o botão "Submeter no Mooshak" no fim do exercício. |
 | `open` | booleano | ausente | Começa aberto. |
 
@@ -162,7 +181,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-exercise__details`, `__summary`, `__body` | O cartão (`<details>`), a linha que abre e fecha e o conteúdo. |
 | `.uc-exercise__number`, `__title`, `__chevron` | O círculo com o número (ou o visto), o título e a seta. |
 | `.uc-exercise__meta` | As etiquetas à direita do título. |
-| `.uc-exercise__level`, `__problem`, `__done-tag` | As etiquetas de nível, de problema no Mooshak e "Feito". |
+| `.uc-exercise__level`, `__kind`, `__problem`, `__done-tag` | As etiquetas de nível, de tipo ("Extra", "Desafio"), de problema no Mooshak e "Feito". |
 | `.uc-exercise__actions` | A linha do fim, com os botões. |
 | `.uc-exercise__submit` | O botão "Submeter no Mooshak". |
 | `.uc-exercise__toggle`, `__checkbox` | O botão "Marcar como feito" e a sua caixa. |

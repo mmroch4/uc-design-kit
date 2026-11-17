@@ -90,5 +90,8 @@ recomendações (22:29). Feito com peças que o kit já tem:
 - Enunciados: botões "Submit on Mooshak" e da série; `.hl` → `<mark>`, `.center` fora.
 - Prisoner Challenge passou a `data-type="challenge"`.
 
-Por fazer, à espera das lacunas do kit (thread do PI): migalhas (`.crumbs`), introdução
-da página, nota de origem e estilo dos memes (`<details class="meme">`).
+Depois das lacunas do kit (PR #79): migalhas em `nav.uc-crumbs` dentro de
+`header.uc-page-header`, introduções das páginas sem `style=`, nota de origem no rodapé
+(`source` no `course.js` + `source="…"` em cada `<uc-page>`, em vez do parágrafo em 56
+páginas), memes em `details.uc-details`, exemplos dos 37 enunciados em `uc-samples`. O
+`theme.css` ficou vazio.

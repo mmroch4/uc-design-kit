@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC024</li></ol>
-    </nav>
-    <h1>[PC024] Matrix Summation</h1>
+  <uc-page current="problems" source="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc024.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC024</li></ol>
+      </nav>
+      <h1>[PC024] Matrix Summation</h1>
+    </header>
     <p><a class="uc-button uc-button--primary" href="https://mooshak.dcc.fc.up.pt/~pc/">Submit on Mooshak</a> <a class="uc-button" href="../problem-sets/ps05.html">Weekly Problems #05</a></p>
     <div class="uc-content">
 <p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/MATSUM/">SPOJ Problem</a>.</p>
@@ -42,19 +44,18 @@ A \(N \times N\) matrix is filled with numbers.  BuggyD is analyzing the matrix,
   </li><li>\( 0 \leq y1 \leq y2 \lt N \)
 </li></ul>
 <p>There will be at most \(100\,000\) commands.</p>
-<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4
+<div class="uc-samples"><div><p class="uc-samples__label">Example input</p><pre data-copy="Input">4
 SET 0 0 1
 SUM 0 0 3 3
 SET 2 2 12
 SUM 2 2 2 2
 SUM 2 2 3 3
 SUM 0 0 2 2
-END</pre></td><td><pre data-copy="Output">1
+END</pre></div><div><p class="uc-samples__label">Example output</p><pre data-copy="Output">1
 12
 12
-13</pre></td></tr></table></div>
+13</pre></div></div>
     </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc024.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc024.html</a> to demonstrate the UC Design Kit.</p>
   </uc-page>
 </body>
 </html>

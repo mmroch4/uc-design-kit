@@ -61,6 +61,7 @@ O que os estudantes descarregam e resolvem, a partir das listas que o professor 
 
 - [**`<uc-materials>`**: Os materiais de cada aula, com o tipo de cada link, a data da última alteração e Novo.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md)
 - [**`<uc-problems>`**: Problemas por séries com juiz, tipo e prazo, filtros e Resolvido guardado no browser.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md)
+- [**`<uc-problem>`**: O cabeçalho de um enunciado: juiz e código, prazo, Submeter e Resolvido.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problem.md)
 
 ## Regras comuns
 

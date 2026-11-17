@@ -79,6 +79,7 @@
           <li><a href="../componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
           <li><a href="../componentes/uc-materials.html"><code>uc-materials</code></a></li>
           <li><a href="../componentes/uc-problems.html"><code>uc-problems</code></a></li>
+          <li><a href="../componentes/uc-problem.html"><code>uc-problem</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -496,6 +497,8 @@
               <tr><td><code>.uc-guide__content</code></td><td>O conteúdo escrito pelo professor.</td></tr>
               <tr><td><code>.uc-guide__aside</code></td><td>A coluna com o progresso e o índice.</td></tr>
               <tr><td><code>.uc-guide__progress</code>, <code>__progress-text</code>, <code>__progress-count</code>, <code>__progress-bar</code></td><td>O cartão do progresso, a frase, o número de feitos e a barra.</td></tr>
+              <tr><td><code>.uc-guide__week</code></td><td>A linha "Semana 6 · 20–24 out" de <code>week-label</code> (também tem <code>uc-eyebrow</code>).</td></tr>
+              <tr><td><code>.uc-guide__pager</code>, <code>__pager-link</code>, <code>__pager-link--prev</code>, <code>__pager-link--next</code></td><td>As ligações para os guiões vizinhos de <code>prev</code> e <code>next</code>.</td></tr>
               <tr><td><code>.uc-guide__toc</code>, <code>__toc-label</code>, <code>__toc-list</code>, <code>__toc-item</code>, <code>__toc-link</code></td><td>O índice, o rótulo "Nesta página", a lista, cada entrada e a sua ligação (a da secção à vista tem <code>aria-current</code>).</td></tr>
             </tbody>
           </table>
@@ -516,7 +519,7 @@
               <tr><td><code>.uc-exercise__details</code>, <code>__summary</code>, <code>__body</code></td><td>O cartão (<code>&lt;details&gt;</code>), a linha que abre e fecha e o conteúdo.</td></tr>
               <tr><td><code>.uc-exercise__number</code>, <code>__title</code>, <code>__chevron</code></td><td>O círculo com o número (ou o visto), o título e a seta.</td></tr>
               <tr><td><code>.uc-exercise__meta</code></td><td>As etiquetas à direita do título.</td></tr>
-              <tr><td><code>.uc-exercise__level</code>, <code>__problem</code>, <code>__done-tag</code></td><td>As etiquetas de nível, de problema no Mooshak e "Feito".</td></tr>
+              <tr><td><code>.uc-exercise__level</code>, <code>__kind</code>, <code>__problem</code>, <code>__done-tag</code></td><td>As etiquetas de nível, de tipo ("Extra", "Desafio"), de problema no Mooshak e "Feito".</td></tr>
               <tr><td><code>.uc-exercise__actions</code></td><td>A linha do fim, com os botões.</td></tr>
               <tr><td><code>.uc-exercise__submit</code></td><td>O botão "Submeter no Mooshak".</td></tr>
               <tr><td><code>.uc-exercise__toggle</code>, <code>__checkbox</code></td><td>O botão "Marcar como feito" e a sua caixa.</td></tr>
@@ -677,6 +680,28 @@
           </table>
         </div>
         <!-- /docs:classes -->
+
+        <h3 id="uc-problem"><a href="../componentes/uc-problem.html"><code>&lt;uc-problem&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-problem.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-problem&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-problem</code></td><td>O próprio <code>&lt;uc-problem&gt;</code>, um cartão.</td></tr>
+              <tr><td><code>.uc-problem--solved</code></td><td>O cartão de um problema marcado como resolvido.</td></tr>
+              <tr><td><code>.uc-problem__meta</code></td><td>O selo do juiz e a linha do prazo.</td></tr>
+              <tr><td><code>.uc-problem__judge</code></td><td>O selo "Mooshak PI013" (uma ligação quando a plataforma tem <code>url</code>).</td></tr>
+              <tr><td><code>.uc-problem__deadline</code></td><td>A linha "Prazo: …" com a etiqueta do estado.</td></tr>
+              <tr><td><code>.uc-problem__actions</code></td><td>O botão de submeter e a caixa "Resolvido".</td></tr>
+              <tr><td><code>.uc-problem__submit</code></td><td>O botão "Submeter no …".</td></tr>
+              <tr><td><code>.uc-problem__solved</code></td><td>A caixa "Resolvido" (também tem <code>uc-problems__solved</code>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
         <h2 id="blocos">Blocos</h2>
         <p>As classes que se escrevem no HTML para dar forma ao conteúdo. Cada página de blocos explica as variantes e os tokens locais.</p>
         <div class="uc-table">
@@ -771,6 +796,7 @@
           <li class="docs-toc__sub"><a href="#uc-assessment-info">&lt;uc-assessment-info&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-materials">&lt;uc-materials&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-problems">&lt;uc-problems&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-problem">&lt;uc-problem&gt;</a></li>
           <li><a href="#blocos">Blocos</a></li>
           <li><a href="#internas">Internas</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>

@@ -1,13 +1,5 @@
 /*
  * Competitive Programming 2026/27: site styles (customisation level 2).
- * Only --uc-* tokens, so everything follows accentColor.
- * Each block says which page uses it.
+ * Empty: every page uses only the kit's components and classes. Add rules
+ * here with --uc-* tokens only, so everything follows accentColor.
  */
-
-/* Migrated pages (problems/, classes/, problem sets, contest) */
-.crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: var(--uc-font-size-md); color: var(--uc-color-text-muted); }
-.crumbs li { margin: 0; }
-.crumbs li + li::before { content: "/"; margin-right: 6px; color: var(--uc-color-text-subtle); }
-.crumbs a { color: var(--uc-color-text-muted); text-decoration: none; }
-.crumbs a:hover { color: var(--uc-color-accent); text-decoration: underline; }
-.source-note { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }

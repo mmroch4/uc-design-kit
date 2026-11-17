@@ -22,6 +22,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 - `<link rel="alternate" hreflang="…">` in a page's `<head>`: the language
   switch opens that file. Lab guides and problem statements with one file per
   language no longer need an "English version" link.
+- `<uc-problem>`: the header of a problem statement, with the judge seal and
+  code, the deadline of its series, "Submeter no …" and, with `track`, the
+  same "Resolvido" state as the problem in `<uc-problems track>`.
+- `<uc-guide>`: `week-label` (the week and its dates above the title),
+  `parent` (breadcrumbs that start at another page, e.g. an exam guide under
+  the assessment page) and `prev`/`next` (links to the neighbouring guides).
+- `<uc-exercise kind="extra|challenge">`: the "Extra" and "Desafio" tags of
+  problem lists on an exercise.
 - `source` in `course.js` (`{ author, url }`) and `<uc-page source="…">`: a
   footer line "Conteúdo de …, a partir do site original" for sites copied
   from an older one, instead of a note at the end of every page. New class

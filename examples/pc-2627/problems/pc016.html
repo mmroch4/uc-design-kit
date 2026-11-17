@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC016</li></ol>
-    </nav>
-    <h1>[PC016] Frequent Values</h1>
+  <uc-page current="problems" source="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc016.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC016</li></ol>
+      </nav>
+      <h1>[PC016] Frequent Values</h1>
+    </header>
     <p><a class="uc-button uc-button--primary" href="https://mooshak.dcc.fc.up.pt/~pc/">Submit on Mooshak</a> <a class="uc-button" href="../problem-sets/ps04.html">Weekly Problems #04</a></p>
     <div class="uc-content">
 <p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://onlinejudge.org/external/112/11235.pdf">UVA</a> and <a href="https://www.spoj.com/problems/FREQUENT/">SPOJ</a> problem.</p>
@@ -38,20 +40,19 @@ You are given a sequence of \(n\) integers \(a_1, a_2 , \ldots , a_n\) in non-de
   </li><li>\( -10^5 \leq a_i \leq 10^5 \)
   </li><li>\( 1 \leq i \leq j \leq n\)
 </li></ul>
-<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">10 3
+<div class="uc-samples"><div><p class="uc-samples__label">Example input</p><pre data-copy="Input">10 3
 -1 -1 1 1 1 1 3 10 10 10
 2 3
 1 10
-5 10</pre></td><td><pre data-copy="Output">1
+5 10</pre></div><div><p class="uc-samples__label">Example output</p><pre data-copy="Output">1
 4
-3</pre></td></tr></table></div>
+3</pre></div></div>
 <ul>
 <li> Query 1 (2–3): The range is [-1, 1], the most frequent values are -1 or 1 which appears once.
   </li><li> Query 2 (1-10): The range is [-1, -1, 1, 1, 1, 1, 3, 10, 10, 10], the most frequent value is 1 which appears 4 times. 
   </li><li> Query 3 (5-10):  The range is [1, 3, 10, 10, 10], the most frequent value is 10 which appears 3 times. 
 </li></ul>
     </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc016.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc016.html</a> to demonstrate the UC Design Kit.</p>
   </uc-page>
 </body>
 </html>

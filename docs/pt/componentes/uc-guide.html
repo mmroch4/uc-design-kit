@@ -79,6 +79,7 @@
           <li><a href="uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
           <li><a href="uc-materials.html"><code>uc-materials</code></a></li>
           <li><a href="uc-problems.html"><code>uc-problems</code></a></li>
+          <li><a href="uc-problem.html"><code>uc-problem</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -254,6 +255,23 @@
 &lt;/uc-guide&gt;</code></pre></uc-code>
         <p>A diferença só se vê com o guião largo (ver <a href="#indice-e-progresso">Índice e progresso</a>), por isso este exemplo não tem demonstração.</p>
 
+        <h3 id="semana-e-vizinhos">Semana por cima do título e guiões vizinhos</h3>
+        <p>Com <code>week-label</code>, a semana e as suas datas aparecem por cima do título; com <code>prev</code> e <code>next</code>, o guião termina com ligações para o anterior e o seguinte. Num guião que não pertence a uma semana (o de um teste prático, por exemplo), <code>parent="assessment"</code> faz o caminho de navegação começar na página da avaliação.</p>
+        <!-- docs:demo src="../../demos/uc-guide/week-pager.html" title="guião com a semana por cima do título e ligações para os vizinhos" height="420" -->
+        <div class="docs-demo" id="demo-uc-guide-week-pager">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-guide/week-pager.html" title="Demonstração: guião com a semana por cima do título e ligações para os vizinhos" loading="lazy" style="height: 420px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-guide week=&quot;10&quot; week-label prev=&quot;aula09.html&quot; next=&quot;aula11.html&quot; no-toc&gt;
+  &lt;h1&gt;Guião 10 · Pesquisa binária&lt;/h1&gt;
+  &lt;p&gt;Por cima do título, a semana e as suas datas; no fim, as ligações para os guiões vizinhos.&lt;/p&gt;
+&lt;/uc-guide&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-guide/week-pager.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
           <table>
@@ -263,6 +281,9 @@
             </thead>
             <tbody>
               <tr><td><code>week</code></td><td>número</td><td>—</td><td>Semana a que o guião pertence. Acrescenta ao caminho de navegação uma ligação para <code>semanas.html#week-&lt;n&gt;</code> (o ficheiro é o da página <code>weeks</code>).</td></tr>
+              <tr><td><code>week-label</code></td><td>booleano</td><td>ausente</td><td>Com <code>week</code>: escreve "Semana 6 · 20–24 out" por cima do <code>&lt;h1&gt;</code>, com as datas do <code>semester</code>.</td></tr>
+              <tr><td><code>parent</code></td><td><code>id</code> de uma página</td><td><code>weeks</code></td><td>A primeira ligação do caminho de navegação passa a ser essa página de <code>pages</code> (por exemplo <code>assessment</code>, num guião de teste), sem a ligação para a semana.</td></tr>
+              <tr><td><code>prev</code>, <code>next</code></td><td>endereço</td><td>ausente</td><td>Ligações "Guião anterior" e "Guião seguinte" no fim do conteúdo.</td></tr>
               <tr><td><code>no-toc</code></td><td>booleano</td><td>ausente</td><td>Não gera o índice das secções. O progresso continua a aparecer se houver exercícios.</td></tr>
             </tbody>
           </table>
@@ -307,6 +328,8 @@
               <tr><td><code>.uc-guide__content</code></td><td>O conteúdo escrito pelo professor.</td></tr>
               <tr><td><code>.uc-guide__aside</code></td><td>A coluna com o progresso e o índice.</td></tr>
               <tr><td><code>.uc-guide__progress</code>, <code>__progress-text</code>, <code>__progress-count</code>, <code>__progress-bar</code></td><td>O cartão do progresso, a frase, o número de feitos e a barra.</td></tr>
+              <tr><td><code>.uc-guide__week</code></td><td>A linha "Semana 6 · 20–24 out" de <code>week-label</code> (também tem <code>uc-eyebrow</code>).</td></tr>
+              <tr><td><code>.uc-guide__pager</code>, <code>__pager-link</code>, <code>__pager-link--prev</code>, <code>__pager-link--next</code></td><td>As ligações para os guiões vizinhos de <code>prev</code> e <code>next</code>.</td></tr>
               <tr><td><code>.uc-guide__toc</code>, <code>__toc-label</code>, <code>__toc-list</code>, <code>__toc-item</code>, <code>__toc-link</code></td><td>O índice, o rótulo "Nesta página", a lista, cada entrada e a sua ligação (a da secção à vista tem <code>aria-current</code>).</td></tr>
             </tbody>
           </table>
@@ -368,6 +391,7 @@ uc-guide { --uc-guide-gap: var(--uc-space-8); }
           <li><a href="#exemplos">Exemplos</a></li>
           <li class="docs-toc__sub"><a href="#ligacao-a-semana">Ligação à semana</a></li>
           <li class="docs-toc__sub"><a href="#sem-indice">Sem índice</a></li>
+          <li class="docs-toc__sub"><a href="#semana-e-vizinhos">Semana por cima do título e guiões vizinhos</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#indice-e-progresso">Índice e progresso</a></li>
