@@ -12,7 +12,7 @@
  *
  * With --widgets it freezes widgets/v1 as widgets/v<version>/ instead, where
  * <version> is VERSION in widgets/src/core/version.js (the library has its
- * own semver, docs/plan/widgets-api.md 2.2). A widgets release needs a kit
+ * own semver, docs/architecture/widgets-api.md 2.2). A widgets release needs a kit
  * release that satisfies KIT_MIN to exist first (kit/vX.Y.Z/).
  *
  * Usage: node scripts/snapshot.mjs [--widgets]
@@ -64,7 +64,7 @@ await cp(source, target, { recursive: true });
 await writeFile(path.join(target, CHECKSUMS), await checksums(target));
 console.log(`kit/${name} created. Commit it together with the version bump and tag ${name}.`);
 
-/** widgets/v1 → widgets/v<VERSION>/ (docs/plan/widgets-api.md 2.2 and 19, phase W6). */
+/** widgets/v1 → widgets/v<VERSION>/ (docs/architecture/widgets-api.md 2.2 and 19, phase W6). */
 async function snapshotWidgets() {
   const { VERSION, KIT_MIN } = await import(pathToFileURL(path.join(WIDGETS, "src", "core", "version.js")).href);
   const name = `v${VERSION}`;

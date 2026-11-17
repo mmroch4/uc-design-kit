@@ -1,7 +1,7 @@
 /**
  * <uc-widget-mst>: minimum spanning tree (or forest) of an undirected
  * graph by Kruskal (sorted edges and union-find) and Prim (lazy priority
- * queue of edges) (docs/plan/widgets-api.md 17; page
+ * queue of edges) (docs/architecture/widgets-api.md 17; page
  * docs/pt/widgets/uc-widget-mst.html). Same input as the graph widget
  * (../graph/element.js).
  */

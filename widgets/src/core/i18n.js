@@ -1,5 +1,5 @@
 /**
- * Interface strings of the core, `widget.core.*` (docs/plan/widgets-api.md
+ * Interface strings of the core, `widget.core.*` (docs/architecture/widgets-api.md
  * 14.3). Plain data, so the Node tests can check every key exists in both
  * languages. A page may override any of them with UC.addTranslations.
  */

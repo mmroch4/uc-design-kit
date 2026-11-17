@@ -23,8 +23,9 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, isExternal } = UC.internal;
-  const STORAGE_PREFIX = "uc:done:";
+  const { h, icon, isExternal, storage } = UC.internal;
+  /** Keys written before 1.1, adopted on first read. */
+  const LEGACY_PREFIX = "uc:done:";
   const LEVELS = ["easy", "medium", "hard"];
   const LEVEL_TAGS = { easy: "uc-tag--muted", medium: "uc-tag--accent", hard: "uc-tag--warning" };
   const MOOSHAK_LABEL = "mooshak";
@@ -57,28 +58,19 @@
     return clone.textContent.replace(/\s+/g, " ").trim();
   }
 
-  function storageKey(id) {
-    return `${STORAGE_PREFIX}${window.location.pathname}#${id}`;
-  }
+  /* Saved per course (core/storage.js): uc:<course>:done:<path>#<id>. Without storage the state lasts for this page only. */
+  const detail = (id) => `${window.location.pathname}#${id}`;
 
   /** Reads the persisted "done" state of an exercise id. */
   function readDone(id) {
     if (!id) return false;
-    try {
-      return window.localStorage.getItem(storageKey(id)) === "1";
-    } catch (error) {
-      return false;
-    }
+    return storage.get("done", detail(id), { legacy: `${LEGACY_PREFIX}${detail(id)}` }) === "1";
   }
 
   function writeDone(id, done) {
     if (!id) return;
-    try {
-      if (done) window.localStorage.setItem(storageKey(id), "1");
-      else window.localStorage.removeItem(storageKey(id));
-    } catch (error) {
-      /* Storage unavailable (private mode): the state lasts for this page only. */
-    }
+    if (done) storage.set("done", detail(id), "1");
+    else storage.remove("done", detail(id));
   }
 
   /** The exercises that count in `scope`, in document order (hidden-language ones excluded). */

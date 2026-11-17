@@ -1,5 +1,5 @@
 /**
- * svg.plot (docs/plan/widgets-api.md 16.3, 24): a line chart of growth
+ * svg.plot (docs/architecture/widgets-api.md 16.3, 24): a line chart of growth
  * functions, bundled into <uc-widget-complexity> only (one user).
  *
  *   plot(svg, series, { xmax, ymax, log, guide, dots, yLabel })

@@ -86,5 +86,4 @@
     return result.filter((part) => part !== "");
   };
 
-  UC.internal.hasLanguage = (lang) => Boolean(dictionaries[lang] || dictionaries[lang.split("-")[0]]);
 })(window.UC);

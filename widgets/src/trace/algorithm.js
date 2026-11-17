@@ -1,6 +1,6 @@
 /**
  * <uc-widget-trace>: the teacher's own steps, checked and turned into the
- * step format (docs/plan/widgets-api.md 5.4, 6.2). Pure: no DOM, no UC.
+ * step format (docs/architecture/widgets-api.md 5.4, 6.2). Pure: no DOM, no UC.
  *
  * Input: { data, graph }. `data` is the JSON of the element's
  * <script type="application/json" data-input>:

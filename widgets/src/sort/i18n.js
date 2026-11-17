@@ -1,6 +1,6 @@
 /**
  * Strings of <uc-widget-sort>, `widget.sort.*`, and its default pseudocode
- * (docs/plan/widgets-api.md 9.1: "<line id>|<text>", the same ids in every
+ * (docs/architecture/widgets-api.md 9.1: "<line id>|<text>", the same ids in every
  * language). Plain data, checked by tests/widgets/steps.test.mjs.
  */
 export const strings = {

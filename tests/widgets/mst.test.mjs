@@ -1,5 +1,5 @@
 /**
- * <uc-widget-mst> against references (docs/plan/widgets-api.md 18.3): on
+ * <uc-widget-mst> against references (docs/architecture/widgets-api.md 18.3): on
  * 200 random weighted undirected graphs (some disconnected, with loops and
  * parallel edges), Kruskal and Prim give the same total weight as an
  * independent eager Prim on a weight matrix (and as brute force over edge

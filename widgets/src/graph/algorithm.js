@@ -1,6 +1,6 @@
 /**
  * Graph traversals of <uc-widget-graph>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { graph, source } where graph is model() of ./model.js (edge ids,
  * adjacency lists in input order). meta.json and the tests write it as text

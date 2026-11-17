@@ -138,7 +138,7 @@ Sem `mooshak` no exercício, o componente não lê nada do `course.js`.
 
 ## Marcar como feito
 
-- **Onde fica guardado**: no `localStorage` do navegador do aluno, com a chave `uc:done:` seguida do caminho da página e do `id` (por exemplo `uc:done:/guioes/aula10.html#procurar`). Cada página tem as suas marcas; dois guiões podem usar o mesmo `id`. Nada é enviado para um servidor, e noutro navegador ou computador as marcas não aparecem.
+- **Onde fica guardado**: no `localStorage` do navegador do aluno, com uma chave da cadeira (o `code` do `course.js`) seguida do caminho da página e do `id` (por exemplo `uc:CC1007:done:/guioes/aula10.html#procurar`). As marcas guardadas antes da versão 1.1 (`uc:done:…`) passam para a chave nova na primeira visita. Cada página tem as suas marcas; dois guiões podem usar o mesmo `id`. Nada é enviado para um servidor, e noutro navegador ou computador as marcas não aparecem.
 - **O que muda**: o número dá lugar a um visto, o título fica mais claro, aparece a etiqueta "Feito" e o botão fica verde e premido. O exercício não fecha.
 - **Sem `id`**: o botão funciona, mas a marca perde-se ao recarregar, e a consola mostra um aviso.
 - **Evento**: cada clique dispara `uc:exercisechange`, que sobe pela página com `detail.id` e `detail.done`. É o que o `<uc-guide>` usa para o progresso, e pode ser usado numa extensão.

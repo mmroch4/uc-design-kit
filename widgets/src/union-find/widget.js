@@ -1,7 +1,7 @@
 /**
  * <uc-widget-union-find>: disjoint sets (union-find) with union by size and
  * path compression, or without them, drawn as the parent array above the
- * forest (docs/plan/widgets-api.md 17; page
+ * forest (docs/architecture/widgets-api.md 17; page
  * docs/pt/widgets/uc-widget-union-find.html).
  *
  * The forest is one n-ary svg.tree (core) under a hidden root, so the trees

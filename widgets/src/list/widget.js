@@ -1,6 +1,6 @@
 /**
  * <uc-widget-list>: a singly linked list and its operations, pointer by
- * pointer (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-list.html).
+ * pointer (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-list.html).
  */
 import { ALGORITHMS, VERBS, MAX_NODES, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

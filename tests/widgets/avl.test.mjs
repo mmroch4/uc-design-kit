@@ -1,5 +1,5 @@
 /**
- * <uc-widget-avl> against a reference (docs/plan/widgets-api.md 18.3): on 200
+ * <uc-widget-avl> against a reference (docs/architecture/widgets-api.md 18.3): on 200
  * random operation scripts and the edge cases (the four rotation cases, removals
  * that rotate more than once), after every operation the in-order is sorted,
  * every factor is in {-1, 0, 1}, every stored height is right, the contents

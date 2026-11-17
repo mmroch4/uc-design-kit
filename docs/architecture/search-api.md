@@ -1,6 +1,6 @@
 # Site search — API contract (phase S0)
 
-This is the contract of the site search that the kit adds in **v1.2.0**: the
+This is the contract of the site search that the kit added in **v1.0.0**: the
 maintenance script `uc-site.py`, the index file `search-index.js`, and the
 kit side (`search` in `course.js`, the header button, `<uc-search>`). It was
 written before any code, so that phases S1 to S5 share one design. It does not
@@ -9,9 +9,9 @@ change `docs/api.md` or the kit: each phase copies its sections from here into
 
 - Plan (Portuguese, the 8 decisions approved by Miguel on 17 Nov 2026, 10:53):
   <https://claude.ai/artifact/GvPxc6XQpJsWyp7d6xJ561>
-- Status: **approved design, not implemented**. A phase may refine a detail
-  that turns out wrong while coding; it records the change in this file
-  (section 13) and in its handoff note, so later phases see it.
+- Status: **implemented** (S0 to S5, PRs 45, 49, 54, 57, 62 and 65), released
+  in v1.0.0. Sections 11.3 and 13 to 18 are the history of the phases;
+  the phase handoff notes were removed in the repository cleanup of 17 Nov 2026; read them in the git history at commit `846b283`.
 - Everything is **additive**: a v1.0/v1.1 site without `search` in
   `course.js` looks and behaves exactly as before and makes **no new request**.
 - Measurements: section 12 (the S0 prototype behind them was deleted in S3;
@@ -473,7 +473,7 @@ snapshots and keyboard tests. Targets 44 px; `<mark>` contrast checked.
 
 | Phase | Builds | Main files | Starts after |
 | --- | --- | --- | --- |
-| S0 | This contract, measurements, prototype | `docs/plan/search-api.md`, `search-phase-0-handoff.md`, `search-prototype.py` (deleted in S3) | — |
+| S0 | This contract, measurements, prototype | `docs/architecture/search-api.md`, `search-phase-0-handoff.md`, `search-prototype.py` (deleted in S3) | — |
 | S2 | `uc-site.py`: `course.js` reader, checks, commands, output; tests; `template/AGENTS.md`, `template/README.txt`, first version of `docs/pt/manter.html`, `course-js.html` values-only rule | `template/uc-site.py`, `tests/site-script/` | S0 |
 | S3 | Extractor and index writer; `tests/search/slugs.json`; examples' indexes from `build.mjs`; `estrutura.html`; `manter.html` completed; delete the prototype | `template/uc-site.py`, `scripts/build.mjs` (only the call) | S2 |
 | S1 | `core/anchors.js`, `core/search-loader.js` (detection, button, shortcuts, `UC.search`), `search` in `config.js`, `uc-guide.js` uses anchors, `uc-search.js` budget | `kit/src/core/*`, `uc-page.js`, `build.mjs`, `manifest.json` | blocks phase 5 and S3 |

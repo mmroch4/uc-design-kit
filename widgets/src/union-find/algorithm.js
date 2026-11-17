@@ -1,6 +1,6 @@
 /**
  * Disjoint sets of <uc-widget-union-find>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { n, ops }: the elements 0 … n − 1, each in its own set, and the
  * operations `union a b`, `find a`, `connected a b` (ops null: a default

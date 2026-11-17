@@ -1,6 +1,6 @@
 /**
  * The backtracking searches of <uc-widget-backtracking>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * - "queens": input { n, all }. State { board } (n × n, "Q" or null). One
  *   step per try of a cell (row by row, columns left to right): a cut when a

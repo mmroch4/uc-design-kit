@@ -292,7 +292,7 @@ class Report:
 
 
 # ---------------------------------------------------------------------------
-# course.js reader (values only, see docs/plan/search-api.md section 2.2)
+# course.js reader (values only, see docs/architecture/search-api.md section 2.2)
 # ---------------------------------------------------------------------------
 
 
@@ -1235,7 +1235,7 @@ def check_site(site, report, command, fix_permissions=False):
 
 
 # ---------------------------------------------------------------------------
-# Search index (docs/plan/search-api.md sections 4 to 6)
+# Search index (docs/architecture/search-api.md sections 4 to 6)
 # ---------------------------------------------------------------------------
 
 INDEX_FORMAT = 1

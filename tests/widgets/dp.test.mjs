@@ -1,5 +1,5 @@
 /**
- * <uc-widget-dp> against references (docs/plan/widgets-api.md 18.3): on 200
+ * <uc-widget-dp> against references (docs/architecture/widgets-api.md 18.3): on 200
  * random inputs per problem, the table equals a straightforward reference
  * and the reconstruction is valid — the LCS is a common subsequence of that
  * length; the edit operations turn a into b and their count is the

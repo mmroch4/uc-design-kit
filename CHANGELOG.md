@@ -13,13 +13,13 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   rules in a `<ul data-rules>` (`E >= 4.9`, `CF >= 9.5`, or plain text). The
   table and bars get one weight column per formula, and a new `result`
   attribute names the final formula. Pages without these lists are unchanged
-  (grading phase G2, `docs/plan/grading-api.md` 3 to 8).
+  (grading phase G2, `docs/architecture/grading-api.md` 3 to 8).
 - With `data-formulas`, `<uc-grading calculator>` simulates the formulas: the
   value of each branch of a `max`/`min`, the final grade with the branch
   that counts, every rule checked with ✓/✗ and words ("cumprido" / "não
   cumprido", "não verificado" for text rules) and a pass or fail line naming
   the first rule that fails. New classes `.uc-grading__branches` and
-  `.uc-grading__checks` (grading phase G3, `docs/plan/grading-api.md` 9).
+  `.uc-grading__checks` (grading phase G3, `docs/architecture/grading-api.md` 9).
 
 - Guide for `<uc-grading>`: a new "Exemplos das cadeiras" section with three
   real methods written with formulas and rules (Estruturas de Dados 2026/27,
@@ -36,16 +36,29 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ### Changed
 - `<uc-grading>` now lives in its own file, `kit/v1/uc-grading.js`, which
   `uc-kit.js` loads from its own folder only on pages that have a
-  `<uc-grading>` (grading phase G1, `docs/plan/grading-api.md` 2). Nothing
+  `<uc-grading>` (grading phase G1, `docs/architecture/grading-api.md` 2). Nothing
   changes on the page, and `uc-kit.js` drops from 47.0 KB (in 1.0.0) to 44.9 KB
   gzipped. Sites that load the kit from `uc-design-kit.miguelrocha.dev` need
   nothing; a site that keeps its own copy of the kit must copy the whole
   `kit/v1` folder, not only `uc-kit.js` and `uc-kit.css`.
+- The saved language, the "done" marks of `<uc-exercise>` and the cached
+  weeks page of `<uc-this-week>` are saved per course, like every newer
+  choice (`uc:<course>:lang`, `uc:<course>:done:…`,
+  `uc:<course>:weeks-page:…`), through the kit's one storage helper. On the
+  first visit a value saved under the old key is adopted, so students keep
+  their marks; choosing a language in one course no longer changes the
+  others on the same server.
+
+### Removed
+- Two unused internal helpers, `UC.internal.hasLanguage` and
+  `UC.internal.hasText`.
+- The phase plans and handoff notes in `docs/plan/` (history in git); the
+  four design contracts moved to `docs/architecture/`.
 
 ## Widgets [1.0.0] - 2026-11-17
 
 The algorithm widget library (`widgets/v1/`, frozen as `widgets/v1.0.0/`)
-has its own versions; contract `docs/plan/widgets-api.md`. Its first release
+has its own versions; contract `docs/architecture/widgets-api.md`. Its first release
 ships together with kit 1.0.0, under the same tag `v1.0.0`, and needs kit
 1.0 or later.
 

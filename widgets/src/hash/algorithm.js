@@ -1,6 +1,6 @@
 /**
  * The hash table of <uc-widget-hash>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { values, ops, size, maxLoad }. Keys are integers or words; the
  * hash of a key is code(k) mod m, where code(k) is the integer itself or,

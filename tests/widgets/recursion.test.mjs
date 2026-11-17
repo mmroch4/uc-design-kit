@@ -1,5 +1,5 @@
 /**
- * <uc-widget-recursion> against a reference (docs/plan/widgets-api.md 18.3):
+ * <uc-widget-recursion> against a reference (docs/architecture/widgets-api.md 18.3):
  * n! and Fibonacci for every allowed n, Hanoi with 2^n − 1 legal moves that
  * end with every disk on C; the call tree has one node per call and the call
  * stack is empty at the end.

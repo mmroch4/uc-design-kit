@@ -1,7 +1,7 @@
 /**
  * <uc-widget-backtracking>: N queens on a board, subsets (with an optional
  * target sum and its cuts) and permutations on the search tree
- * (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-backtracking.html).
+ * (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-backtracking.html).
  */
 import { ALGORITHMS, LIMITS, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

@@ -1,6 +1,6 @@
 /**
  * <uc-widget-sort>: six sorting algorithms, step by step
- * (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-sort.html).
+ * (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-sort.html).
  */
 import { ALGORITHMS, PIVOTS, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

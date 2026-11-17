@@ -1,5 +1,5 @@
 /**
- * <uc-widget-shortest-path> against references (docs/plan/widgets-api.md
+ * <uc-widget-shortest-path> against references (docs/architecture/widgets-api.md
  * 18.3): on 200 random weighted graphs, Dijkstra's distances (non-negative
  * weights) equal Bellman-Ford's and a Floyd-Warshall reference; with
  * negative weights, Bellman-Ford reports a negative cycle exactly when one is

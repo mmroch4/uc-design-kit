@@ -1,5 +1,5 @@
 /**
- * Interface strings of uc-search.js (docs/plan/search-api.md 8.5). Added
+ * Interface strings of uc-search.js (docs/architecture/search-api.md 8.5). Added
  * with UC.internal.addDefaults, so strings a site already set with
  * UC.addTranslations win. uc-kit.js itself only has search.button and
  * search.failed (shown when this file cannot load).

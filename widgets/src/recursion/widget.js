@@ -1,6 +1,6 @@
 /**
  * <uc-widget-recursion>: the tree of recursive calls and the call stack of
- * factorial, Fibonacci and the Towers of Hanoi (docs/plan/widgets-api.md 17;
+ * factorial, Fibonacci and the Towers of Hanoi (docs/architecture/widgets-api.md 17;
  * page docs/pt/widgets/uc-widget-recursion.html).
  */
 import { ALGORITHMS, MAX_N, run } from "./algorithm.js";

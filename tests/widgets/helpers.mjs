@@ -1,5 +1,5 @@
 /**
- * Shared helpers of the widget tests (docs/plan/widgets-api.md 18.3): load
+ * Shared helpers of the widget tests (docs/architecture/widgets-api.md 18.3): load
  * every widget's algorithm, strings and meta.json, flatten the dictionaries
  * like UC.addTranslations and format a step's sentence like UC.t.
  */

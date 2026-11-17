@@ -1,6 +1,6 @@
 /**
  * The results list shared by the search dialog and <uc-search>
- * (docs/plan/search-api.md 10): a combobox field driving a listbox of
+ * (docs/architecture/search-api.md 10): a combobox field driving a listbox of
  * options grouped by page, with aria-activedescendant, arrows, Home/End and
  * Enter, and the jump to a result (on this page: scroll, open, focus).
  */

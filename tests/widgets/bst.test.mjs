@@ -1,5 +1,5 @@
 /**
- * <uc-widget-bst> against a reference (docs/plan/widgets-api.md 18.3): on
+ * <uc-widget-bst> against a reference (docs/architecture/widgets-api.md 18.3): on
  * 200 random operation scripts and the edge cases, the in-order of the tree
  * is sorted after every step, the final contents equal a Set model, search /
  * min / max answers match the model; the four traversals equal reference

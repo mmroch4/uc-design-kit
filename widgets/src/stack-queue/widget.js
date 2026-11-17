@@ -1,7 +1,7 @@
 /**
  * <uc-widget-stack-queue>: a stack or a queue, in an array (the queue as a
  * circular buffer) or in a linked list, operation by operation
- * (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-stack-queue.html).
+ * (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-stack-queue.html).
  */
 import { ALGORITHMS, IMPLS, VERBS, MAX_ITEMS, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

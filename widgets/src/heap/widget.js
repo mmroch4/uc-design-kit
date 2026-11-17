@@ -1,7 +1,7 @@
 /**
  * <uc-widget-heap>: a binary heap (max or min) drawn as its array and as its
  * tree, one above the other; insert, extract, peek, the bottom-up build and
- * heapsort (docs/plan/widgets-api.md 17; page docs/pt/widgets/uc-widget-heap.html).
+ * heapsort (docs/architecture/widgets-api.md 17; page docs/pt/widgets/uc-widget-heap.html).
  */
 import { ALGORITHMS, VERBS, KINDS, MAX_ITEMS, parent, run } from "./algorithm.js";
 import { strings } from "./i18n.js";

@@ -1,6 +1,6 @@
 /**
  * <uc-search> — a search field with its results below it, inside the page
- * (docs/plan/search-api.md 8.2), e.g. at the top of a problems page with
+ * (docs/architecture/search-api.md 8.2), e.g. at the top of a problems page with
  * scope="problemas/". It is defined here, in uc-search.js, which uc-kit.js
  * loads only when the site has a search index: without one the element stays
  * empty. The index downloads the first time the field gets focus.

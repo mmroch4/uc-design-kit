@@ -187,7 +187,7 @@
   ],
 };</code></pre></uc-code>
         <p>Cada texto do <code>course.js</code> que muda com a língua passa a objeto, com um valor por língua (o tipo <a href="course-js.html#tipos"><code>LocalizedText</code></a>). Um texto simples fica igual nas duas, e se faltar uma língua usa-se a primeira.</p>
-        <p>A língua ativa escolhe-se por esta ordem: <code>?lang=en</code> no endereço, a última escolha feita no botão (guardada no browser), o <code>&lt;html lang&gt;</code> da página e, por fim, a primeira de <code>languages</code>.</p>
+        <p>A língua ativa escolhe-se por esta ordem: <code>?lang=en</code> no endereço, a última escolha feita no botão (guardada no browser, para cada cadeira), o <code>&lt;html lang&gt;</code> da página e, por fim, a primeira de <code>languages</code>.</p>
 
         <h2 id="mesma-pagina">Conteúdo na mesma página</h2>
         <p>É a forma mais prática quando os textos são curtos. Cada bloco que existe em duas versões leva o atributo <code>lang</code>, e o kit esconde as versões que não são da língua ativa. O que não tem <code>lang</code> aparece sempre.</p>

@@ -7,26 +7,15 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const STORAGE_KEY = "uc:lang";
+  /** The key every course shared before 1.1; still read once by a course with no choice of its own. */
+  const LEGACY_KEY = "uc:lang";
   const STYLE_ID = "uc-language-visibility";
   const root = document.documentElement;
   const authoredLang = (root.getAttribute("lang") || "").trim();
 
-  function readStorage() {
-    try {
-      return window.localStorage.getItem(STORAGE_KEY);
-    } catch (error) {
-      return null;
-    }
-  }
-
-  function writeStorage(value) {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, value);
-    } catch (error) {
-      /* Storage unavailable (private mode): the choice lasts for this page only. */
-    }
-  }
+  /* The choice is saved per course (core/storage.js); without storage it lasts for this page only. */
+  const readStorage = () => UC.internal.storage.get("lang", null, { legacy: LEGACY_KEY, keepLegacy: true });
+  const writeStorage = (value) => UC.internal.storage.set("lang", null, value);
 
   function queryLanguage() {
     try {

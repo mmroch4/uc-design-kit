@@ -2,3 +2,18 @@
 # keep LF line endings on every platform so the build is reproducible.
 template/** text eol=lf
 *.zip binary
+
+# Files written by `npm run build` (committed because Cloudflare Pages has no
+# build step; `npm run build:check` keeps them in sync). Marked as generated so
+# GitHub collapses them in pull request diffs and leaves them out of the
+# language statistics.
+kit/v1/** linguist-generated
+kit/v1.*/** linguist-generated
+widgets/v1/** linguist-generated
+widgets/v1.*/** linguist-generated
+llms.txt linguist-generated
+llms-full.txt linguist-generated
+docs/pt/**/*.md linguist-generated
+docs/assets/search-index.js linguist-generated
+**/search-index.js linguist-generated
+docs/downloads/uc-template.zip linguist-generated

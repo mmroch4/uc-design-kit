@@ -1,5 +1,5 @@
 {
-  "about": "Shared by uc-site.py (tests/site-script) and the kit's search engine: the words of a text (docs/plan/search-api.md 4.5).",
+  "about": "Shared by uc-site.py (tests/site-script) and the kit's search engine: the words of a text (docs/architecture/search-api.md 4.5).",
   "stopWords": [
     "ainda",
     "all",

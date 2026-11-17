@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Checks of the site search foundations in uc-kit.js (docs/plan/search-api.md
+ * Checks of the site search foundations in uc-kit.js (docs/architecture/search-api.md
  * sections 6 to 8, phase S1), in a real browser:
  *
  *   - automatic heading ids: every case of tests/search/slugs.json (shared

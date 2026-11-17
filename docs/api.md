@@ -149,7 +149,7 @@ automatic id the kit gives them (slug of the text in the first language,
 gives one entry per language. The file is a script that sets
 `window.UC_SEARCH_INDEX` (format version `1`, one page per line), so it also
 loads from `file://`; `SOURCE_DATE_EPOCH` fixes its `generated` time. Full
-rules: `docs/plan/search-api.md` sections 4 to 6. The kit reads it.
+rules: `docs/architecture/search-api.md` sections 4 to 6. The kit reads it.
 Above 1 MB the script prints a warning after the summary (the first
 search of a visit gets slower; leave folders out with `search.exclude`). The
 template ships with `search: true` and a `search-index.js` for its sample
@@ -487,7 +487,7 @@ failure).
 | `placeholder` | text | `search.placeholder` | Placeholder of the field. |
 | `limit` | number | `10` | Most results shown. |
 
-Matching (shared with the dialog, docs/plan/search-api.md 9): the query is
+Matching (shared with the dialog, docs/architecture/search-api.md 9): the query is
 folded like the index words (lowercase, accents removed) and split into
 terms; every term of 3+ letters (or with a digit) that is not a stop word
 must be the start of a word of the section title, the page title or the
@@ -941,7 +941,7 @@ Item attributes, on the `<li>` of the first `<ul>`/`<ol>` child:
 
 Since grading phase G2 the method can be written as text formulas, as on the
 course slide, in an `<ol data-formulas>`, with the pass rules in a
-`<ul data-rules>` (contract: `docs/plan/grading-api.md` 3 to 8). The three
+`<ul data-rules>` (contract: `docs/architecture/grading-api.md` 3 to 8). The three
 lists can be in any order; without a formulas list the element works as
 above.
 
@@ -1279,7 +1279,9 @@ system font and skips downloading Inter, if a course prefers.
   the `grading.*` strings with `uc-grading.js` (`kit/src/grading/strings.js`);
   neither replaces a string the site already set with `UC.addTranslations`.
 - **Active language** is resolved in this order: `?lang=` query, saved choice
-  (`localStorage` key `uc:lang`), `<html lang>`, first of `languages`.
+  (`localStorage` key `uc:<course>:lang`, per course; a course with no saved
+  choice adopts the pre-1.1 shared key `uc:lang`), `<html lang>`, first of
+  `languages`.
 - **In-place bilingual content:** any element with a `lang` attribute whose
   value is a configured language but not the active one is hidden. Untagged
   content is always visible. `data-uc-keep-lang` on an element with `lang`
@@ -1395,7 +1397,7 @@ message in `stderr`.
 
 The algorithm widget library is separate from the kit: files in
 `widgets/v1/`, its own semver (widgets 1.0.0 needs kit 1.0+), outside the
-kit's size budget. Full contract: `docs/plan/widgets-api.md`. A page loads
+kit's size budget. Full contract: `docs/architecture/widgets-api.md`. A page loads
 one file per widget type after the kit:
 
 ```html

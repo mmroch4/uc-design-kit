@@ -1,6 +1,6 @@
 /**
  * <uc-widget-graph>: breadth-first and depth-first search and the connected
- * components of a graph, directed or not (docs/plan/widgets-api.md 17; page
+ * components of a graph, directed or not (docs/architecture/widgets-api.md 17; page
  * docs/pt/widgets/uc-widget-graph.html).
  */
 import { ALGORITHMS, run } from "./algorithm.js";

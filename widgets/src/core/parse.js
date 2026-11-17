@@ -1,5 +1,5 @@
 /**
- * Shared input parsers (docs/plan/widgets-api.md 5). Pure: they throw
+ * Shared input parsers (docs/architecture/widgets-api.md 5). Pure: they throw
  * InputError with an i18n key, which the widget turns into an error note.
  */
 import { InputError, random as seeded } from "./engine.js";

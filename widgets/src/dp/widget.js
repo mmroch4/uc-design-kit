@@ -1,7 +1,7 @@
 /**
  * <uc-widget-dp>: dynamic programming tables filled cell by cell, then the
  * reconstruction path from the answer back: longest common subsequence, edit
- * distance, 0/1 knapsack and coin change (docs/plan/widgets-api.md 5.4, 17;
+ * distance, 0/1 knapsack and coin change (docs/architecture/widgets-api.md 5.4, 17;
  * page docs/pt/widgets/uc-widget-dp.html).
  */
 import { ALGORITHMS, LIMITS, run, check } from "./algorithm.js";

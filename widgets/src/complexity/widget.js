@@ -1,6 +1,6 @@
 /**
  * <uc-widget-complexity>: growth functions side by side as n grows, and the
- * real counts of another widget on the page (docs/plan/widgets-api.md 17,
+ * real counts of another widget on the page (docs/architecture/widgets-api.md 17,
  * 24; page docs/pt/widgets/uc-widget-complexity.html).
  *
  * Measured points come from the `points` attribute ("n:count …") and, with

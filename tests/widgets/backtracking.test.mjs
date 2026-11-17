@@ -1,5 +1,5 @@
 /**
- * <uc-widget-backtracking> against references (docs/plan/widgets-api.md
+ * <uc-widget-backtracking> against references (docs/architecture/widgets-api.md
  * 18.3): N-queens counts 1, 0, 0, 2, 10, 4, 40, 92 for n = 1..8, every
  * solution valid; subsets equal a brute force over every subset (all 2^n
  * without a target, those with the sum with one); permutations are all n!,

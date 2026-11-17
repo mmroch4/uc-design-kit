@@ -1,6 +1,6 @@
 /**
  * The singly linked list of <uc-widget-list>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { values, ops }. `values` builds the list without steps; `ops` runs
  * with steps. Without `ops`, every value is added at the end with steps.

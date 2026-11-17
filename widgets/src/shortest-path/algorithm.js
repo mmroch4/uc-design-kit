@@ -1,6 +1,6 @@
 /**
  * Single-source shortest paths of <uc-widget-shortest-path>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { graph, source } as in the graph widget (../graph/model.js);
  * an unweighted graph has weight 1 on every edge. Marks: vertex names and

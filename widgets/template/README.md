@@ -27,7 +27,7 @@ them as JSON in `<uc-widget-trace>` instead: no JavaScript at all.
 
 A catalogue widget lives in `widgets/src/<name>/` as ES modules and is
 built by `npm run build` into `widgets/v1/uc-widget-<name>.js`. Contract:
-`docs/plan/widgets-api.md`. Checklist for the pull request:
+`docs/architecture/widgets-api.md`. Checklist for the pull request:
 
 1. `algorithm.js`: pure (no DOM, no `UC`, no `Math.random`, no `Date`),
    exports `ALGORITHMS` and `run(input, options, emit)`; `steps[0]` has

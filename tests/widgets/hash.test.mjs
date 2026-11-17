@@ -1,5 +1,5 @@
 /**
- * <uc-widget-hash> against a reference (docs/plan/widgets-api.md 18.3): on
+ * <uc-widget-hash> against a reference (docs/architecture/widgets-api.md 18.3): on
  * 200 random scripts per algorithm and the edge cases, answers equal a Set
  * model, every key of the model is found afterwards and removed keys are not,
  * the table holds exactly the model's keys, the load factor is n / m, each

@@ -1,7 +1,7 @@
 /**
  * Weekdays, times and durations (timetables, office hours, assessments),
  * and the helpers that read and localise <time datetime> in teacher HTML.
- * See docs/plan/blocks-api.md 1.2 and 7.
+ * See docs/architecture/blocks-api.md 1.2 and 7.
  */
 (function (UC) {
   "use strict";

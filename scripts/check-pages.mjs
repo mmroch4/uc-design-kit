@@ -11,7 +11,7 @@
  *   - content is still present with JavaScript disabled
  *
  * It also opens tests/widgets/compat.html once for widgets/v1/ and once for
- * every frozen widgets release (docs/plan/widgets-api.md 18.3 item 6).
+ * every frozen widgets release (docs/architecture/widgets-api.md 18.3 item 6).
  *
  * Usage:
  *   node scripts/check-pages.mjs [--screenshots] [--shard=i/n] [--concurrency=n] [filter ...]
@@ -21,17 +21,16 @@
  * --concurrency=n checks n pages at the same time (default: CPU count, max 4).
  * Set TEST_TODAY=YYYY-MM-DD to change the frozen date (default 2025-11-27).
  */
-import { createServer } from "node:http";
 import { readFile, readdir, mkdir, stat } from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { pathToFileURL } from "node:url";
 import { chromium } from "playwright";
 import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
 import { WIDGETS, listReleases } from "./releases.mjs";
+import { ROOT, routePublicKit, startServer } from "./static-server.mjs";
 
 const require = createRequire(import.meta.url);
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SCREENSHOT_DIR = path.join(ROOT, "tests", "screenshots");
 const PAGE_DIRS = ["tests/pages", "examples", "template", "docs"];
 const IGNORED_DIRS = new Set(["node_modules", ".git", "screenshots"]);
@@ -44,27 +43,8 @@ const NARROW_WIDTH = 360;
 // Pages that load the kit from its public URL (the template, which must work
 // when opened from disk) are served the kit of this checkout instead, so the
 // check tests the code under review and needs no network.
-const PUBLIC_KIT = "https://uc-design-kit.miguelrocha.dev/kit/";
 const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
 const BLOCKING_IMPACTS = new Set(["serious", "critical"]);
-
-const MIME_TYPES = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".mjs": "text/javascript; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".json": "application/json",
-  ".svg": "image/svg+xml",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".gif": "image/gif",
-  ".pdf": "application/pdf",
-  ".java": "text/plain; charset=utf-8",
-  ".py": "text/plain; charset=utf-8",
-  ".txt": "text/plain; charset=utf-8",
-  ".woff2": "font/woff2",
-  ".map": "application/json",
-};
 
 async function findPages() {
   const pages = [];
@@ -110,43 +90,10 @@ async function exists(file) {
   }
 }
 
-function startServer() {
-  const server = createServer(async (request, response) => {
-    const url = new URL(request.url, "http://localhost");
-    let file = path.join(ROOT, decodeURIComponent(url.pathname));
-    if (!file.startsWith(ROOT)) {
-      response.writeHead(403).end();
-      return;
-    }
-    try {
-      if ((await stat(file)).isDirectory()) file = path.join(file, "index.html");
-      const body = await readFile(file);
-      const type = MIME_TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
-      response.writeHead(200, { "Content-Type": type }).end(body);
-    } catch {
-      response.writeHead(404).end("Not found");
-    }
-  });
-  return new Promise((resolve) => {
-    server.listen(0, "127.0.0.1", () => resolve(server));
-  });
-}
-
 /** A browser context whose requests to the public kit URL are answered from kit/ on disk. */
 async function newContext(browser, options) {
   const context = await browser.newContext(options);
-  await context.route(`${PUBLIC_KIT}**`, async (route) => {
-    const pathname = decodeURIComponent(new URL(route.request().url()).pathname);
-    const file = path.join(ROOT, pathname);
-    if (!file.startsWith(path.join(ROOT, "kit") + path.sep)) return route.fulfill({ status: 404 });
-    try {
-      const body = await readFile(file);
-      const type = MIME_TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
-      await route.fulfill({ status: 200, body, headers: { "Content-Type": type, "Access-Control-Allow-Origin": "*" } });
-    } catch {
-      await route.fulfill({ status: 404 });
-    }
-  });
+  await routePublicKit(context);
   return context;
 }
 
@@ -246,7 +193,7 @@ async function checkPage(browser, item, origin, axeSource, options) {
   }
 
   if (relative === "tests/pages/uc-grading.html") {
-    // uc-grading.js missing (a site that copied only uc-kit.js): one warning, the page shows, the list stays (docs/plan/grading-api.md 2.2).
+    // uc-grading.js missing (a site that copied only uc-kit.js): one warning, the page shows, the list stays (docs/architecture/grading-api.md 2.2).
     const context = await newContext(browser, { viewport: { width: 1280, height: 900 } });
     await context.route("**/kit/v1/uc-grading.js", (route) => route.fulfill({ status: 404, body: "" }));
     const page = await context.newPage();

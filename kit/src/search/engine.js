@@ -1,5 +1,5 @@
 /**
- * The search engine of uc-search.js (docs/plan/search-api.md 9): query
+ * The search engine of uc-search.js (docs/architecture/search-api.md 9): query
  * folding, prefix matching with one typo, ranking, grouping by page and the
  * course.js entries (deadlines, notices) searched at runtime.
  *

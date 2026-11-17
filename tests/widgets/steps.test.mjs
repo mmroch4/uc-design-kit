@@ -1,5 +1,5 @@
 /**
- * The step validator (docs/plan/widgets-api.md 18.3 item 2), for every widget
+ * The step validator (docs/architecture/widgets-api.md 18.3 item 2), for every widget
  * and algorithm on its meta.json test input: JSON steps, a mark-free first
  * step, the five states only, pseudocode line ids that exist in pt and en
  * (the same ids), say/predict keys in pt and en, at most MAX_STEPS steps.

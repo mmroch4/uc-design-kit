@@ -1,5 +1,5 @@
 /**
- * <uc-widget-union-find> against references (docs/plan/widgets-api.md
+ * <uc-widget-union-find> against references (docs/architecture/widgets-api.md
  * 18.3): on 200 random operation scripts per variant, the answers of find
  * and connected and the final sets equal a naive labelling; after every
  * step the parent array is a forest whose roots carry their set's size;

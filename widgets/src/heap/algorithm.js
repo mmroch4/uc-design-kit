@@ -1,6 +1,6 @@
 /**
  * The binary heap of <uc-widget-heap>, as step lists
- * (docs/plan/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
+ * (docs/architecture/widgets-api.md 6.4). Pure: no DOM, no UC, no Math.random.
  *
  * Input: { values, ops, kind } with kind "max" (default) or "min". State:
  * { a, ids, n }: the array, a stable id per value (so the tree drawing can

@@ -4,10 +4,10 @@
  * `calculator`, a grade simulation. Weights are read from each item's <data>
  * or, with an <ol data-formulas>, from the formulas (formula.js); an
  * <ul data-rules> lists the pass rules. See docs/api.md, section 3.6, and
- * docs/plan/grading-api.md 3 and 7.
+ * docs/architecture/grading-api.md 3 and 7.
  *
  * Part of uc-grading.js, which uc-kit.js loads when the page has a
- * <uc-grading> (core/modules.js, docs/plan/grading-api.md 2.2).
+ * <uc-grading> (core/modules.js, docs/architecture/grading-api.md 2.2).
  */
 (function (UC) {
   "use strict";

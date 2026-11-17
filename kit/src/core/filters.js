@@ -5,7 +5,7 @@
  *
  * Each group is either a set of toggle buttons (aria-pressed, inside a
  * role="group" named by the group's label) or a native <select> with a
- * visible <label>. See docs/plan/blocks-api.md 7.2.
+ * visible <label>. See docs/architecture/blocks-api.md 7.2.
  *
  *   const bar = UC.internal.filterBar({
  *     label: "Filtrar",                       // optional name of the whole bar

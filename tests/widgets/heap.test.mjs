@@ -1,5 +1,5 @@
 /**
- * <uc-widget-heap> against a reference (docs/plan/widgets-api.md 18.3): on
+ * <uc-widget-heap> against a reference (docs/architecture/widgets-api.md 18.3): on
  * 200 random scripts and the edge cases, the heap property holds after every
  * operation (max and min), extract / peek answers equal a sorted-array model,
  * heapify gives a heap with the same values and heapsort equals the sorted copy.

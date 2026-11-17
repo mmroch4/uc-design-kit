@@ -1,6 +1,6 @@
 """
 Tests of template/uc-site.py (the site maintenance script), phase S2: the
-course.js reader, every check of docs/plan/search-api.md section 3.3, the
+course.js reader, every check of docs/architecture/search-api.md section 3.3, the
 commands, options and output. The search index (phase S3) is tested in
 test_index.py.
 

@@ -1,6 +1,6 @@
 /**
  * <uc-widget-search>: linear search, binary search and the lower bound,
- * step by step (docs/plan/widgets-api.md 17; page
+ * step by step (docs/architecture/widgets-api.md 17; page
  * docs/pt/widgets/uc-widget-search.html).
  */
 import { ALGORITHMS, run } from "./algorithm.js";

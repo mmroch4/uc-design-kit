@@ -5,7 +5,7 @@
  * component renders, with the same rule as template/uc-site.py, so that the
  * search index (and any shared link) can point at a section. The cases both
  * sides must agree on are in tests/search/slugs.json; the rule is in
- * docs/plan/search-api.md, section 6.
+ * docs/architecture/search-api.md, section 6.
  */
 (function (UC) {
   "use strict";

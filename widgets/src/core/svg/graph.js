@@ -1,5 +1,5 @@
 /**
- * svg.graph (docs/plan/widgets-api.md 16.3, 24): vertices, edges or arcs,
+ * svg.graph (docs/architecture/widgets-api.md 16.3, 24): vertices, edges or arcs,
  * weights and a note beside each vertex (a distance, a visit number). It is
  * bundled into each graph widget, not the core (section 24.1).
  *

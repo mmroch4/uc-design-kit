@@ -35,7 +35,7 @@ window.UC_COURSE = {
 
 Cada texto do `course.js` que muda com a língua passa a objeto, com um valor por língua (o tipo [`LocalizedText`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#tipos)). Um texto simples fica igual nas duas, e se faltar uma língua usa-se a primeira.
 
-A língua ativa escolhe-se por esta ordem: `?lang=en` no endereço, a última escolha feita no botão (guardada no browser), o `<html lang>` da página e, por fim, a primeira de `languages`.
+A língua ativa escolhe-se por esta ordem: `?lang=en` no endereço, a última escolha feita no botão (guardada no browser, para cada cadeira), o `<html lang>` da página e, por fim, a primeira de `languages`.
 
 ## Conteúdo na mesma página
 
