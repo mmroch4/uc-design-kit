@@ -12,34 +12,25 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="3">
-
-      <!-- Cabeçalho do guião -->
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 3</span>
-          <span class="uc-mono uc-muted">30 set – 3 out</span>
-        </p>
-        <h1>Aula 3 · Introdução a classes</h1>
-      </div>
+    <uc-guide week="3" week-label prev="aula02.html" next="aula04.html">
+      <h1>Aula 3 · Introdução a classes</h1>
 
       <!-- Exercícios para submissão -->
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob186.html">[ED186] TAD Rectângulo (Rectangle)</a> (peso 50%) (exercício do guião principal)</li>
-          <li><a href="../problemas/prob187.html">[ED187] TAD Matriz (Matrix)</a> (peso 50%) (exercício do guião principal)</li>
-          <li><a href="../problemas/prob216.html">[ED216] Contando Cardinais</a> (peso 25%) (exercício extra)</li>
-        </ul>
-        <div class="uc-callout">
-          <p><strong>Prazo de submissão:</strong> 14 de outubro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <p>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br>
-            Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.<br>
-            Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br>
-            Para ter 100% bastará sempre resolver os exercícios do guião principal.</p>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub03"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub03">
+            <h3>Problemas da aula 3</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob186.html">TAD Rectângulo (Rectangle)</a> <code>ED186</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob187.html">TAD Matriz (Matrix)</a> <code>ED187</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob216.html">Contando Cardinais</a> <code>ED216</code> <data value="25">25 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <!-- Exercício 1 do original -->
@@ -358,18 +349,6 @@
           <p>Adicione um construtor novo à classe <code>Matrix</code> que dadas as dimensões e dois inteiros <strong>min</strong> e <strong>max</strong> cria uma nova matriz preenchida com números aleatórios entre <strong>min</strong> e <strong>max</strong>. A única dica que vamos dar é que existe uma classe <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Random.html">java.util.Random</a> para lidar com geração de números (pseudo)aleatórios.</p>
         </uc-exercise>
       </section>
-
-      <!-- Aula anterior e seguinte -->
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula02.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 2 · Input/Output e Mooshak</strong>
-        </a>
-        <a class="uc-card" href="aula04.html">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 4 · Programação estruturada</strong>
-        </a>
-      </nav>
 
     </uc-guide>
   </uc-page>

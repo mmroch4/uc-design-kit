@@ -108,7 +108,7 @@ Exemplo (cartões de turmas com uma classe própria), [demonstração ao vivo](h
 </div>
 ```
 
-É o padrão do [`theme.css` de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/theme.css): classes curtas (`.formula`, `.class-card`), sem o prefixo `uc-`, agrupadas por página. Um nome sem `uc-` nunca colide com uma classe do kit.
+Era o padrão do `theme.css` de Estruturas de Dados, antes de o kit ter blocos para esses casos: classes curtas (`.formula`, `.class-card`), sem o prefixo `uc-`, agrupadas por página. Um nome sem `uc-` nunca colide com uma classe do kit.
 
 ### Por linguagem ou tipo
 

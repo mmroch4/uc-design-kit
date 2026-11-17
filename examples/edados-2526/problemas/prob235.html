@@ -11,13 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED235</li></ol>
-    </nav>
-    <h1>[ED235] Triângulo Retângulo</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob235.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED235</li></ol>
+      </nav>
+      <h1>Triângulo Retângulo</h1>
+      <uc-problem code="ED235" judge="mooshak" track></uc-problem>
+    </header>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED235</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).</p></div></p>
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED235</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).</p></div>
 
       <p><img alt="" class="uc-content__float" height="502" loading="lazy" src="imagens/235.png" width="559"/>
       Para começar motivado neste teste, nada como desenhar alguns simples triângulos!
@@ -30,17 +33,18 @@
       </p><h2>Output</h2>
       <p>O output deve conter <strong>N</strong> triângulos, cada um desenhado com o tamanho pedido (e pela mesma ordem em que os tamanhos aparecem no input). Cada triângulo deve ser representado por um quadrado de T<sub>i</sub> por T<sub>i</sub> caracteres, onde o triângulo é representado por cardinais ('#') e deve estar encostado em cima à esquerda, sendo que os espaços são representados por pontos ('.'). Veja o exemplo de input para garantir que percebe o pedido.
 
-      </p><h2>Exemplo de Input/Output </h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">3
+      </p><h2>Exemplo de input e output</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">3
 5
 2
 4</pre>
-      </td><td>
-      <pre data-copy="Output">#####
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">#####
 ####.
 ###..
 ##...
@@ -51,14 +55,12 @@
 ###.
 ##..
 #...</pre>
-      </td>
-      <td>
-      As primeiras 5 linhas são um triângulo de tamanho 5.<br/>
+        </div>
+      </div>
+      <p>As primeiras 5 linhas são um triângulo de tamanho 5.<br/>
       As 2 linhas seguintes são um triângulo de tamanho 2.<br/>
-      As 4 linhas seguintes são um triângulo de tamanho 4.</td>
-      </tr></table></div>
+      As 4 linhas seguintes são um triângulo de tamanho 4.</p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob235.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob235.html</a>.</p>
   </uc-page>
 </body>
 </html>

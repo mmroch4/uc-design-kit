@@ -11,11 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED243</li></ol>
-    </nav>
-    <h1>[ED243] Pizza</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob243.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED243</li></ol>
+      </nav>
+      <h1>Pizza</h1>
+      <uc-problem code="ED243" judge="mooshak" deadline="sub02" track></uc-problem>
+    </header>
     <div class="uc-content">
       <h2>O problema</h2>
       <p>
@@ -29,53 +32,44 @@
       <p>É garantido que não existem duas pizzas completamente iguais.</p>
       <h2>Output</h2>
       <p>Uma linha com um inteiro indicando o número de diferentes pizzas que o Mario pode encomendar.</p>
-      <h2>Exemplo de input/output 1</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">1 2
+      <h2>Exemplo 1</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">1 2
 3
 1 1
 1 2
 1 3</pre>
-      </td>
-      <td>
-      <pre data-copy="Output">2</pre>
-      </td>
-      </tr>
-      </table></div>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">2</pre>
+        </div>
+      </div>
       <p>Explicação do exemplo 1: O Mario pode encomendar a 1ª e a 3ª pizzas (não tem contêm o ingrediente 2), mas não pode encomendar a 2ª pizza.
 
-      </p><h2>Exemplo de input/output 2</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">2 1 2
+      </p><h2>Exemplo 2</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">2 1 2
 5
 3 3 5 7
 2 4 1
 3 1 3 2
 2 3 4
 1 9</pre>
-      </td>
-      <td>
-      <pre data-copy="Output">3</pre>
-      </td>
-      </tr>
-      </table></div>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">3</pre>
+        </div>
+      </div>
       <p>Explicação do exemplo 2: O Mario pode encomendar a 1ª, 3ª e 4ª pizzas (não contêm os ingredientes 1 ou 2).
 
       </p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob243.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob243.html</a>.</p>
   </uc-page>
 </body>
 </html>

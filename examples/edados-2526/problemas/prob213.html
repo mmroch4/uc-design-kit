@@ -11,14 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED213</li></ol>
-    </nav>
-    <h1>[ED213] Caminho de maior soma</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob213.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED213</li></ol>
+      </nav>
+      <h1>Caminho de maior soma</h1>
+      <uc-problem code="ED213" judge="mooshak" deadline="sub10" track></uc-problem>
+    </header>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>ED213</strong> contendo um método estático <strong>maxSum</strong> como a seguir descrito (não é necessário um programa completo).</div>
-      </p><p>Pode assumir que o Mooshak terá acesso às classes descritas no enunciado do exercício 2 da aula prática.
+      <div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>ED213</strong> contendo um método estático <strong>maxSum</strong> como a seguir descrito (não é necessário um programa completo).</div><p>Pode assumir que o Mooshak terá acesso às classes descritas no enunciado do exercício 2 da aula prática.
 
       </p>
       <h2>Método a submeter</h2>
@@ -29,9 +31,9 @@
           </p><p>Pode assumir que <strong>os nós contêm inteiros positivos e que existe sempre um único caminho de soma máxima com pelo menos dois nós</strong> para os casos que serão testados com o seu programa. A figura seguinte ilustra uma árvore e os 4 caminhos possíveis, sendo que o caminho de maior soma é o segundo, pelo que para esta árvore a função deveria devolver "EED". 
 
       </p><p><img alt="" height="307" loading="lazy" src="imagens/213.png" width="770"/></p>
-      <h2>Exemplos de Input/Output</h2>
+      <h2>Exemplos de input e output</h2>
       <p>O primeiro exemplo corresponde à árvore da figura do enunciado.</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Árvore <em>t</em> (em preorder com N<br/>a ser uma subárvore nula)</th>
       <th scope="col">maxSum(t)</th>
@@ -51,7 +53,6 @@
       </table></div>
 
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob213.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob213.html</a>.</p>
   </uc-page>
 </body>
 </html>

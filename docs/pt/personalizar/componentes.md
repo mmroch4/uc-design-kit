@@ -50,7 +50,7 @@ Os componentes ficam no DOM normal da página (*light DOM*), como os do kit: nã
 
 ## O nome
 
-O nome de um elemento personalizado tem de ter um hífen. A [API do kit](https://github.com/mmroch4/uc-design-kit/blob/main/docs/api.md) e o exemplo de Estruturas de Dados (`uc-bst-traversal`) usam o prefixo `uc-` seguido de um nome específico; esta documentação segue a mesma regra.
+O nome de um elemento personalizado tem de ter um hífen. A [API do kit](https://github.com/mmroch4/uc-design-kit/blob/main/docs/api.md) e a demonstração `uc-bst-traversal` usam o prefixo `uc-` seguido de um nome específico; esta documentação segue a mesma regra.
 
 - Um nome concreto, que descreva o que faz: `uc-binary-search`, `uc-bst-traversal`, `uc-turing-machine`. Nomes genéricos (`uc-quiz`, `uc-table`, `uc-tabs`) podem vir a ser usados pelo kit.
 - Se o kit vier a ter um componente com o mesmo nome, fica o primeiro a ser registado (o do kit, que carrega antes) e o próprio é ignorado. `UC.define` nunca dá erro por um nome repetido.
@@ -469,7 +469,7 @@ O que o professor escreve dentro do elemento é a alternativa: aparece quando o 
 
 ## Um caso real
 
-O exemplo de Estruturas de Dados tem `<uc-bst-traversal>`, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O [código](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/extensions/uc-bst-traversal.js) segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página. O [guião da aula 10](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) usa agora o widget [`<uc-widget-bst>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) da biblioteca de widgets, que faz o mesmo e mais; a extensão fica como exemplo de um componente escrito pelo professor.
+O exemplo de Estruturas de Dados tem `<uc-bst-traversal>`, uma animação dos percursos em pré-ordem, em-ordem, pós-ordem e em largura numa árvore binária de pesquisa. O [código](https://uc-design-kit.miguelrocha.dev/docs/demos/customize/extensions/uc-bst-traversal.js) ([demonstração](https://uc-design-kit.miguelrocha.dev/docs/demos/customize/bst-traversal.html)) segue o mesmo modelo, mais completo: desenho da árvore em SVG, reproduzir e pausar, pilha de chamadas e fila, pseudocódigo, textos em português e inglês, e uma descrição da árvore para leitores de ecrã. O comentário no início do ficheiro resume as regras desta página. Foi escrito para o guião da aula 10, que usa agora o widget [`<uc-widget-bst>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) da biblioteca de widgets, que faz o mesmo e mais; a extensão passou para as demonstrações desta documentação, como exemplo de um componente escrito pelo professor.
 
 ## Ver também
 

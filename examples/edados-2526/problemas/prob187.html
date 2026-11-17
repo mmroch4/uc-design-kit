@@ -11,11 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED187</li></ol>
-    </nav>
-    <h1>[ED187] TAD Matriz (Matrix)</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob187.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED187</li></ol>
+      </nav>
+      <h1>TAD Matriz (Matrix)</h1>
+      <uc-problem code="ED187" judge="mooshak" deadline="sub03" track></uc-problem>
+    </header>
     <div class="uc-content">
       <p><img alt="" class="uc-content__float" height="114" loading="lazy" src="imagens/prob187.gif" width="205"/><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas
       submeter uma classe <strong>Matrix</strong> (e não um programa completo).</div>
@@ -94,8 +97,10 @@ class TestMatrix {
    }
 }</pre>
       <p>Se o programa anterior for alimentado com o input:</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr><td><pre data-copy="Input">3 5
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">3 5
 1 2 3 4 5
 6 7 8 9 10
 11 12 13 14 15
@@ -110,11 +115,11 @@ class TestMatrix {
 3 4 4 3
 5 6 6 5
 7 8 8 7
-9 10 10 9</pre></td></tr>
-      </table></div>
-      <p>Deverá produzir o output:</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr><td><pre data-copy="Output">1 0 0 0 0 
+9 10 10 9</pre>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">1 0 0 0 0 
 0 1 0 0 0 
 0 0 1 0 0 
 0 0 0 1 0 
@@ -153,9 +158,10 @@ class TestMatrix {
 95 110 110 95 
 220 260 260 220 
 345 410 410 345 
-    </pre></td></tr>
-      </table></div>
-      <h2>Input e Output</h2>
+    </pre>
+        </div>
+      </div>
+      <h2>Input e output</h2>
       <p>Se submeter no Mooshak deverá apenas submeter a
       classe <strong>Matrix</strong>. O Mooshak irá chamar criar várias instâncias da
       sua classe usando o construtores definido e irá fazer uma série de
@@ -165,7 +171,6 @@ class TestMatrix {
 
       </p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob187.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob187.html</a>.</p>
   </uc-page>
 </body>
 </html>

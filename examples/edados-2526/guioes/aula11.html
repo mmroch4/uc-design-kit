@@ -14,39 +14,28 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="11">
-
-      <!-- Cabeçalho do guião -->
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 11</span>
-          <span class="uc-mono uc-muted">2–5 dez</span>
-        </p>
-        <h1>Aula 11 · Árvores binárias de pesquisa</h1>
-      </div>
+    <uc-guide week="11" week-label prev="aula10.html" next="aula12.html">
+      <h1>Aula 11 · Árvores binárias de pesquisa</h1>
 
       <!-- Exercícios para submissão -->
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob208.html">[ED208] Mínimo e Máximo</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob164.html">[ED164] Quantas Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob172.html">[ED172] Contagem de Palavras</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob209.html">[ED209] Intervalo de valores</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-          <li><a href="../problemas/prob210.html">[ED210] Será uma árvore de pesquisa?</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-          <li><a href="../problemas/prob165.html">[ED165] Somas</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-        </ul>
-        <p class="uc-prose"><strong>Prazo de submissão:</strong> 15 de dezembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
-        <div class="uc-callout">
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <ul class="uc-bullets">
-            <li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
-            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.</li>
-            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
-            <li>Para ter 100% bastará sempre resolver os exercícios do guião principal.</li>
-          </ul>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub11"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub11">
+            <h3>Problemas da aula 11</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob208.html">Mínimo e Máximo</a> <code>ED208</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob164.html">Quantas Palavras</a> <code>ED164</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob172.html">Contagem de Palavras</a> <code>ED172</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob209.html">Intervalo de valores</a> <code>ED209</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob210.html">Será uma árvore de pesquisa?</a> <code>ED210</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob165.html">Somas</a> <code>ED165</code> <data value="40">40 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <!-- Exercício 1 -->
@@ -58,7 +47,7 @@
           <p>Neste exercício, para compilar o código de árvores binárias de pesquisa irá necessitar das classes (e interfaces) <code>DNode</code>, <code>DoublyLinkedList</code>, <code>LinkedListQueue</code>, <code>LinkedListStack</code>, <code>MyQueue</code>, <code>MyStack</code> abordadas na <a href="aula07.html">aula prática 7</a>.</p>
         </div>
 
-        <p class="aula-label">Nó da árvore binária de pesquisa</p>
+        <p class="uc-eyebrow">Nó da árvore binária de pesquisa</p>
         <uc-code lang="java" filename="BSTNode.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -93,7 +82,7 @@ public class BSTNode<T extends Comparable<? super T>> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Árvore binária de pesquisa</p>
+        <p class="uc-eyebrow">Árvore binária de pesquisa</p>
         <uc-code lang="java" filename="BSTree.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -303,7 +292,7 @@ public class BSTree<T extends Comparable<? super T>> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Exemplo de teste das árvores binárias de pesquisa</p>
+        <p class="uc-eyebrow">Exemplo de teste das árvores binárias de pesquisa</p>
         <uc-code lang="java" filename="TestBSTree.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -352,7 +341,7 @@ $ java TestBSTree
             </script>
           </uc-code>
           <p>Espreite e acompanhe a implementação do método <code>insert</code> da classe <code>BSTree</code>. Relembre que numa árvore binária de pesquisa, para um qualquer nó, todos os elementos da subárvore esquerda são menores e todos os elementos da subárvore direita são maiores. Para o ajudar a compreender, a imagem seguinte mostra o conteúdo da árvore após cada inserção (em cada passo o elemento inserido está indicado a amarelo):</p>
-          <p><img src="../imagens/bst_insert.png" width="1342" height="681" style="max-width:100%;height:auto" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
+          <p><img src="../imagens/bst_insert.png" width="1342" height="681" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
           <ul class="uc-bullets">
             <li>Depois da remoção de 14, que número ficou na raiz? Acompanhe a implementação do método <code>remove</code> da classe <code>BSTree</code> para verificar como isto é feito.</li>
           </ul>
@@ -413,7 +402,7 @@ $ java TestBSTree
         <p class="uc-prose">Verifique o código seguinte que implementa um dicionário de pares (chave,valor) usando árvores binárias de pesquisa (ex. métodos: <code>put</code>, <code>get</code> e <code>keys</code>).</p>
         <p class="uc-prose">Espreite a classe <code>BSTMapNode</code> para ver como o nó está implementado; note que o tipo <em>K</em> (a chave) é <em>comparável</em>, mas o tipo <em>V</em> (o valor) não.</p>
 
-        <p class="aula-label">Nó da árvore</p>
+        <p class="uc-eyebrow">Nó da árvore</p>
         <uc-code lang="java" filename="BSTMapNode.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -453,7 +442,7 @@ public class BSTMapNode<K extends Comparable<? super K>, V> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Dicionário</p>
+        <p class="uc-eyebrow">Dicionário</p>
         <uc-code lang="java" filename="BSTMap.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -582,7 +571,7 @@ public class BSTMap<K extends Comparable<? super K>,V> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Exemplo de teste dos dicionários</p>
+        <p class="uc-eyebrow">Exemplo de teste dos dicionários</p>
         <uc-code lang="java" filename="TestBSTMap.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -765,18 +754,6 @@ public class TestForEach {
       </section>
 
       <p class="uc-muted">DCC/FCUP · Última atualização do original: 27/11/2025</p>
-
-      <!-- Aula anterior e seguinte -->
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula10.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 10 · Árvores binárias</strong>
-        </a>
-        <a class="uc-card" href="aula12.html">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 12 · Filas de prioridade (e revisões)</strong>
-        </a>
-      </nav>
 
     </uc-guide>
   </uc-page>

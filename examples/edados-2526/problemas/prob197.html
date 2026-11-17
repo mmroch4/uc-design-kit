@@ -11,17 +11,19 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED197</li></ol>
-    </nav>
-    <h1>[ED197] União ordenada</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob197.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED197</li></ol>
+      </nav>
+      <h1>União ordenada</h1>
+      <uc-problem code="ED197" judge="mooshak" deadline="sub07" track></uc-problem>
+    </header>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning">Se submeter este problema no Mooshak, deverá
+      <div class="uc-callout uc-callout--warning">Se submeter este problema no Mooshak, deverá
       apenas submeter uma classe <strong>ED197</strong> contendo um método
       estático <strong>merge</strong> como a seguir descrito (não é necessário um
-      programa completo).</div>
-      </p><p>Pode assumir que terá acesso no Mooshak às "classes de filas" mencionadas na respectiva aula pratica.
+      programa completo).</div><p>Pode assumir que terá acesso no Mooshak às "classes de filas" mencionadas na respectiva aula pratica.
 
       </p>
       <h2>Método a submeter</h2>
@@ -29,8 +31,8 @@
         classe <strong><code>ED197</code></strong>
       <p>Assumindo que as filas <code>a</code> e <code>b</code> vêm ordenadas de forma crescente, este método deve criar e devolver uma nova fila que é a união ordenada (<em>merge</em>) das duas filas. Por exemplo, juntar [2,4,8,10] com [1,4,9] daria [1,2,4,4,8,9,10]. As duas filas iniciais podem ser destruidas durante o processo de junção.
       </p>
-      <h2>Exemplos de input/output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <h2>Exemplos de input e output</h2>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Fila <em>a</em></th>
       <th scope="col">Fila <em>b</em></th>
@@ -49,7 +51,6 @@
       </table></div>
 
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob197.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob197.html</a>.</p>
   </uc-page>
 </body>
 </html>

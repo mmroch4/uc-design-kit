@@ -11,11 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED195</li></ol>
-    </nav>
-    <h1>[ED195] Expressões bem balanceadas</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob195.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED195</li></ol>
+      </nav>
+      <h1>Expressões bem balanceadas</h1>
+      <uc-problem code="ED195" judge="mooshak" deadline="sub07" track></uc-problem>
+    </header>
     <div class="uc-content">
       <p><img alt="" class="uc-content__float" height="180" loading="lazy" src="imagens/prob195.jpg" width="283"/><div class="uc-callout uc-callout--warning">Se submeter
       no Mooshak, deverá apenas submeter uma classe <strong>ED195</strong> contendo um
@@ -30,8 +33,8 @@
       <p>Recebe uma string formada apenas por parenteses rectos e curvos, e devolve <em>true</em> caso a expressão esteja bem formada e <em>false</em> caso contrário.</p>
       <p>Por exemplo, <code>"([()])"</code> e <code>"[()()]"</code> são expressões bem formadas, ao passo que <code>"(()]"</code>, <code>"[()[])"</code> ou <code>"[()[]"</code> não estão balanceadas (faltam parenteses por fechar ou fecham os parenteses errados).</p>
 
-      <h2>Exemplos de input/output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <h2>Exemplos de input e output</h2>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Chamada</th>
       <th scope="col">Resultado</th>
@@ -59,7 +62,6 @@
       </table></div>
 
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob195.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob195.html</a>.</p>
   </uc-page>
 </body>
 </html>

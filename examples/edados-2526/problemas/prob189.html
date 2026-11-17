@@ -11,14 +11,17 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED189</li></ol>
-    </nav>
-    <h1>[ED189] Remover elemento numa dada posição</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob189.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED189</li></ol>
+      </nav>
+      <h1>Remover elemento numa dada posição</h1>
+      <uc-problem code="ED189" judge="mooshak" deadline="sub06" track></uc-problem>
+    </header>
     <div class="uc-content">
       <p><img alt="" height="100" loading="lazy" src="imagens/linkedlist.png" width="699"/>
-      </p><h2>Código Base</h2>
+      </p><h2>Código base</h2>
       <p>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (descrita
       no exercício 1 da aula prática 06 - não esquecer da
       classe <strong>Node</strong>) que implementa uma lista ligada simples e tem
@@ -32,7 +35,7 @@
       (assuma que as posições começam em zero). Se a posição não existir, o
       método não deve alterar a lista e deve devolver <em>null</em>.
 
-      </p><h2>Submissão no Mooshak</h2>
+      </p><h2>Submissão</h2>
       <p>Se submeter no Mooskak, deverá submeter apenas a
       classe <strong>SinglyLinkedList&lt;T&gt;</strong>, acrescentando o
       método <strong>remove</strong> como pedido <strong>(e sem apagar nenhum dos outros
@@ -42,8 +45,8 @@
       sua classe e irá fazer uma série de testes ao método por si
       implementado.
 
-      </p><h2>Exemplos de Input/Output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><h2>Exemplos de input e output</h2>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Lista inicial</th>
       <th scope="col">  Chamada   </th>
@@ -76,7 +79,6 @@
       </tr>
       </table></div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob189.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob189.html</a>.</p>
   </uc-page>
 </body>
 </html>

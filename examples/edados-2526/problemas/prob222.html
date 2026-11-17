@@ -11,18 +11,21 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED222</li></ol>
-    </nav>
-    <h1>[ED222] Salvando os Ruivacos</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob222.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED222</li></ol>
+      </nav>
+      <h1>Salvando os Ruivacos</h1>
+      <uc-problem code="ED222" judge="mooshak" deadline="sub08" track></uc-problem>
+    </header>
     <div class="uc-content">
       <p>Para efeitos da nota atribuida à resolução de exercícios ao longo do semestre - <strong>Submeter até 23:59 de 3 de Dezembro</strong><br/>
       <em>(o problema continuará depois disponível para submissão, mas sem contar para a nota)</em><br/>
       <strong>[para perceber o contexto do problema deve <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/praticas/aula08.html">ler o guião da aula #08</a>]</strong></p>
 
-      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED222</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).
-      </p></div></p>
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED222</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).
+      </p></div>
 
       <p>
       <img alt="" class="uc-content__float" height="194" loading="lazy" src="imagens/222.jpg" width="259"/>
@@ -92,7 +95,7 @@
             que podes ajudá-lo nesta tarefa para que ele possa voltar a
             dedicar-se a ajudar espécies indefesas?
           </p>
-      <h2>O Problema</h2>
+      <h2>O problema</h2>
       <p>Dados inteiros <strong>N</strong>, <strong>K</strong>, <strong>T</strong> e uma sequência de
           <strong>N</strong> inteiros, calcular o número de subsequências contíguas de
           comprimento <strong>K</strong> em que pelo menos metade dos elementos são
@@ -112,7 +115,7 @@
       <h2>Restrições</h2>
       <p>São garantidos os seguintes limites em todos os casos de teste
           que irão ser colocados ao programa:</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <td>1 ≤ <strong>K</strong> ≤ <strong>N</strong> ≤ 100 000</td>
       <td> </td>
@@ -131,7 +134,7 @@
       </table></div>
       <p>Os casos de teste deste problema estão organizados em 2 grupos com restrições adicionais
             diferentes:</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Grupo</th>
       <th scope="col">Número de Pontos</th>
@@ -166,7 +169,6 @@
       <em>(adaptação para a UC de Estruturas de Dados - CC1007 - DCC/FCUP)</em><br/><br/>
       <strong>Qualificação para a final das ONI'2019</strong><br/><em>(28/02 a 02/03 de 2019)</em>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob222.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob222.html</a>.</p>
   </uc-page>
 </body>
 </html>

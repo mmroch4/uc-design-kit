@@ -11,11 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED172</li></ol>
-    </nav>
-    <h1>[ED172] Contagem de palavras</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob172.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED172</li></ol>
+      </nav>
+      <h1>Contagem de palavras</h1>
+      <uc-problem code="ED172" judge="mooshak" deadline="sub11" track></uc-problem>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshak, deverá submeter uma classe <strong>ED172</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
       Pode assumir que no Mooshak terá acesso às classes de dicionários (ou seja, não precisa de incluir a classe <strong>BSTMap</strong> no código submetido).
@@ -31,14 +34,19 @@
 
       O output deve ser constituído por uma linha por cada palavra que ocorre pelo menos uma vez no texto no formato "PALAVRA: NUMERO_OCORRENCIAS". As palavras devem vir por ordem alfabética.
 
-      <h2>Exemplo de Input</h2>
-      <pre data-copy="Input">o tempo perguntou ao tempo
+      <h2>Exemplo de input e output</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">o tempo perguntou ao tempo
 quanto tempo o tempo tem
 o tempo respondeu ao tempo
 que o tempo tem tanto tempo
 quanto tempo o tempo tem</pre>
-      <h2>Exemplo de Output</h2>
-      <pre data-copy="Output">ao: 2
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">ao: 2
 o: 5
 perguntou: 1
 quanto: 2
@@ -47,8 +55,8 @@ respondeu: 1
 tanto: 1
 tem: 3
 tempo: 10</pre>
-    </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob172.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob172.html</a>.</p>
+        </div>
+      </div></div>
   </uc-page>
 </body>
 </html>

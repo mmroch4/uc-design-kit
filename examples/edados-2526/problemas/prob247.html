@@ -11,14 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED247</li></ol>
-    </nav>
-    <h1>[ED247] TAD Conjunto (ArrayListIntSet)</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED247</li></ol>
+      </nav>
+      <h1>TAD Conjunto (ArrayListIntSet)</h1>
+      <uc-problem code="ED247" judge="mooshak" deadline="sub05" track></uc-problem>
+    </header>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning">Neste problema deverá apenas submeter uma classe <strong>ArrayListIntSet</strong> (e não um programa completo).</div>
-      </p><h2><img alt="" class="uc-content__float" height="283" loading="lazy" src="imagens/prob247.png" width="270"/>O problema</h2>
+      <div class="uc-callout uc-callout--warning">Neste problema deverá apenas submeter uma classe <strong>ArrayListIntSet</strong> (e não um programa completo).</div><h2><img alt="" class="uc-content__float" height="283" loading="lazy" src="imagens/prob247.png" width="270"/>O problema</h2>
       <p>Para este problema deve usar como base a classe <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/codigo/ArrayListIntSet.java">ArrayListIntSet</a>.</p>
       <p>A sua tarefa é criar uma classe <strong>ArrayListIntSet</strong>, que representa um conjunto de números inteiros, implementando o seguinte interface:
 
@@ -66,12 +68,11 @@ s3 = {3,4,5} | tamanho = 3
 s4 = {3,4,5} | tamanho = 3
 s1.equals(s2) = false
 s3.equals(s4) = true</pre>
-      <h2>Input e Output</h2>
+      <h2>Input e output</h2>
       <p>Deverá apenas submeter a classe <strong>ArrayListIntSet</strong>. O Mooshak irá criar várias instâncias da sua classe usando o construtor (como mostrado no exemplo de utilização) e irá fazer uma série de testes aos métodos por si implementados.</p>
       <p>É garantido que o conjunto nunca terá mais do que 100 números diferentes, e que todos os números serão inteiros positivos entre 1 e 1000 (inclusive).</p>
       <p>É garantido que os métodos são chamados de forma correcta (os argumentos fazem sentido e não geram excepções).</p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob247.html</a>.</p>
   </uc-page>
 </body>
 </html>

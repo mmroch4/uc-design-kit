@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="../semanas.html">Semanas</a></li><li aria-current="page">Breve Introdução à linguagem Java</li></ol>
-    </nav>
-    <h1>Breve Introdução à linguagem Java</h1>
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../semanas.html">Semanas</a></li><li aria-current="page">Breve Introdução à linguagem Java</li></ol>
+      </nav>
+      <h1>Breve Introdução à linguagem Java</h1>
+    </header>
     <div class="uc-content">
       <ul>
       <li><a href="#compile">Compilação e execução de um programa em Java</a>
@@ -47,7 +49,7 @@ class Hello {
       <p>Os tipos primitivos (ou "simples") em Java são (todos os outros tipos são objectos):
 
       </p><blockquote>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Tipo</th>
       <th scope="col">Descrição</th>
@@ -213,7 +215,7 @@ System.out.println("Tamanho = " + s.length());</pre>
       <p>São usados operadores semelhantes ao C:
 
       </p><blockquote>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Operador</th>
       <th scope="col">Explicação</th>
@@ -249,7 +251,7 @@ System.out.println("Tamanho = " + s.length());</pre>
       <p>As instruções são em tudo semelhantes ao C:
 
       </p><blockquote>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Expressão</th>
       <th scope="col">Tipo</th>
@@ -396,7 +398,7 @@ i.Actuar(true);
 i.MostrarEstado();</pre>
 
       <h2 id="access">Acesso às variáveis e métodos de classes<a> </a></h2>
-      <p>Em Java, podem estar os seguintes qualificadores antes de um método ou variável de uma classe:</p><div class="uc-table" style="--uc-table-min: 0"><table>
+      <p>Em Java, podem estar os seguintes qualificadores antes de um método ou variável de uma classe:</p><div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Accessível em:</th>
       <th scope="col">public</th>
@@ -438,7 +440,6 @@ i.MostrarEstado();</pre>
       (DCC-FCUP)</a><strong>
       </strong></p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/aula01-intro.html</a>.</p>
   </uc-page>
 </body>
 </html>

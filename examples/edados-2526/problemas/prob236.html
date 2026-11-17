@@ -11,18 +11,21 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED236</li></ol>
-    </nav>
-    <h1>[ED236] Métodos para Listas Ligadas Simples</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob236.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED236</li></ol>
+      </nav>
+      <h1>Métodos para Listas Ligadas Simples</h1>
+      <uc-problem code="ED236" judge="mooshak" track></uc-problem>
+    </header>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>SinglyLinkedList&lt;T&gt;</strong> (e não um programa completo).
-      </p></div></p>
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>SinglyLinkedList&lt;T&gt;</strong> (e não um programa completo).
+      </p></div>
 
-      <h2>Código Base</h2>
+      <h2>Código base</h2>
       <p><img alt="" class="uc-content__float" height="100" loading="lazy" src="imagens/linkedlist.png" width="699"/>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (<a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/codigo/lista_ligada_simples.html">ver código</a> | download de <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/codigo/Node.java">Node.Java</a> e <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/edados2223/codigo/SinglyLinkedList.java">SinglyLinkedList.Java</a>), que representa uma lista ligada simples e tem disponíveis métodos para adicionar ou remover um elemento no início ou no final, devolver o tamanho, saber se a lista está vazia ou retornar representação em <em>string</em> para escrita (tal como dado nas aulas).</p>
-      <h2>Métodos a Implementar</h2>
+      <h2>Métodos a implementar</h2>
       <p>Deve acrescentar à classe dada os seguintes métodos (<strong>não modificando nenhum dos métodos já existentes no código base</strong>):
 
       </p><ul>
@@ -40,8 +43,8 @@
         </li><li>Pode implementar métodos auxiliares, se quiser.
         </li><li>Para testar na sua máquina deve criar uma lista (pode criar no código ou ler a partir de um input) e chamar o método correspondente.
       </li></ul>
-      <h2>Exemplos de Input/Output para o método <em>cut</em></h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <h2>Exemplos de input e output para o método <em>cut</em></h2>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Lista inicial</th>
       <th scope="col">Chamada</th>
@@ -73,8 +76,8 @@
       <td>new_list = {1,2,3,4,5,6,7}</td>
       </tr>
       </table></div>
-      <h2>Exemplos de Input/Output para o método <em>shift</em></h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <h2>Exemplos de input e output para o método <em>shift</em></h2>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Lista inicial</th>
       <th scope="col">  Chamada   </th>
@@ -102,7 +105,6 @@
       </tr>
       </table></div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob236.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob236.html</a>.</p>
   </uc-page>
 </body>
 </html>

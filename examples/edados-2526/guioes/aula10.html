@@ -15,38 +15,29 @@
 <body>
   <uc-page current="weeks">
     <!-- week="10": o caminho de navegação liga a semanas.html#week-10 -->
-    <uc-guide week="10">
-
-      <!-- Cabeçalho do guião -->
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 10</span>
-          <span class="uc-mono uc-muted">25–28 nov · 2 h · FC6</span>
-        </p>
-        <h1>Aula 10 · Árvores binárias</h1>
-      </div>
+    <uc-guide week="10" week-label prev="aula09.html" next="aula11.html">
+      <h1>Aula 10 · Árvores binárias</h1>
 
       <!-- Exercícios para submissão -->
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#classificacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob204.html">[ED204] Contando folhas</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob205.html">[ED205] Árvores estritamente binárias</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob206.html">[ED206] Percorrendo caminhos</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob207.html">[ED207] Nós profundos</a> (peso 40%) <span class="uc-muted">(exercício do guião principal)</span></li>
-          <li><a href="../problemas/prob211.html">[ED211] Contando os números pares</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-          <li><a href="../problemas/prob212.html">[ED212] Soma de todos os níveis</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-          <li><a href="../problemas/prob213.html">[ED213] Caminho de maior soma</a> (peso 40%) <span class="uc-muted">(exercício extra)</span></li>
-        </ul>
-        <p class="uc-prose"><strong>Prazo de submissão:</strong> 8 de dezembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>)</p>
-        <div class="uc-callout">
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <p>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</p>
-          <p>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, pode ter pontuação máxima mesmo sem ter feito tudo.</p>
-          <p>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</p>
-          <p>Para ter 100% bastará sempre resolver os exercícios do guião principal.</p>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub10"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub10">
+            <h3>Problemas da aula 10</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob204.html">Contando folhas</a> <code>ED204</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob205.html">Árvores estritamente binárias</a> <code>ED205</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob206.html">Percorrendo caminhos</a> <code>ED206</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob207.html">Nós profundos</a> <code>ED207</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob211.html">Contando os números pares</a> <code>ED211</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob212.html">Soma de todos os níveis</a> <code>ED212</code> <data value="40">40 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob213.html">Caminho de maior soma</a> <code>ED213</code> <data value="40">40 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <!-- Exercício 1 -->
@@ -87,7 +78,7 @@
         </uc-exercise>
       </section>
 
-      <!-- Ver os percursos: widget <uc-widget-bst> (widgets/v1/). A extensão extensions/uc-bst-traversal.js fica como exemplo de componente próprio. -->
+      <!-- Ver os percursos: widget <uc-widget-bst> (widgets/v1/). O componente próprio que existia antes está agora em docs/demos/customize/. -->
       <section class="uc-section" aria-labelledby="percursos">
         <h2 id="percursos">Ver os percursos</h2>
         <p class="uc-prose">Escolhe um percurso e carrega em Reproduzir, ou avança um passo de cada vez. O nó cheio a azul é o que está a ser visitado agora; os nós com ✓ já foram impressos. Com as previsões ligadas, o widget pergunta qual é o próximo valor impresso.</p>
@@ -591,18 +582,6 @@
           <p>Resolva o problema <a href="../problemas/prob213.html">[ED213] Caminho de maior soma</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
         </uc-exercise>
       </section>
-
-      <!-- Aula anterior e seguinte -->
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula09.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 9 · Recursividade</strong>
-        </a>
-        <a class="uc-card aula-pager__next" href="aula11.html">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 11 · Árvores binárias de pesquisa</strong>
-        </a>
-      </nav>
 
     </uc-guide>
   </uc-page>

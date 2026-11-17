@@ -12,10 +12,10 @@
 </head>
 <body>
   <uc-page current="materials">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+    <header class="uc-page-header">
       <h1>Materiais</h1>
       <p class="uc-prose">Slides, código e guiões das aulas, ferramentas de Java e Mooshak, bibliografia e sítios para praticar.</p>
-    </div>
+    </header>
 
     <section class="uc-section" aria-labelledby="slides">
       <h2 id="slides">Slides das teóricas</h2>
@@ -60,8 +60,8 @@
       </uc-materials>
     </section>
 
-    <div class="uc-grid links-grid" style="--uc-grid-min: 280px; --uc-grid-gap: var(--uc-space-10)">
-      <section class="uc-section" aria-labelledby="aulas" style="gap: var(--uc-space-2)">
+    <div class="uc-grid" style="--uc-grid-min: 280px">
+      <section class="uc-section" aria-labelledby="aulas">
         <h2 id="aulas">Aulas práticas e código</h2>
         <ul class="uc-links">
           <li><a href="semanas.html">Guiões das aulas práticas</a><span>Um guião por aula, organizados por semana</span></li>
@@ -69,14 +69,14 @@
           <li><a href="problemas/index.html">Enunciados dos problemas</a><span>Problemas das aulas práticas, testes e treino</span></li>
         </ul>
       </section>
-      <section class="uc-section" aria-labelledby="mooshak" style="gap: var(--uc-space-2)">
+      <section class="uc-section" aria-labelledby="mooshak">
         <h2 id="mooshak">Mooshak</h2>
         <ul class="uc-links">
           <li><a href="https://mooshak.dcc.fc.up.pt/~edados/">Entrar e lista de problemas</a><span>Exercícios, quizzes e avaliações práticas</span></li>
           <li><p class="uc-small">Não tens password? Cada estudante tem a sua. Pede-a ao Prof. Fernando Silva.</p></li>
         </ul>
       </section>
-      <section class="uc-section" aria-labelledby="java" style="gap: var(--uc-space-2)">
+      <section class="uc-section" aria-labelledby="java">
         <h2 id="java">Java</h2>
         <ul class="uc-links">
           <li><a href="https://docs.oracle.com/en/java/javase/">Documentação da API do Java</a><span>Inclui a classe Scanner</span></li>
@@ -86,7 +86,7 @@
           <li><a href="https://introcs.cs.princeton.edu/java/home/">Introduction to Programming in Java</a><span>Livro e curso de Princeton</span></li>
         </ul>
       </section>
-      <section class="uc-section" aria-labelledby="praticar" style="gap: var(--uc-space-2)">
+      <section class="uc-section" aria-labelledby="praticar">
         <h2 id="praticar">Praticar e visualizar</h2>
         <ul class="uc-links">
           <li><a href="https://visualgo.net/en">VisuAlgo</a><span>Estruturas de dados e algoritmos animados</span></li>
@@ -98,7 +98,7 @@
           <li><a href="https://github.com/lnishan/awesome-competitive-programming">Awesome Competitive Programming</a><span>Lista de recursos de programação competitiva</span></li>
         </ul>
       </section>
-      <section class="uc-section" aria-labelledby="algoritmos" style="gap: var(--uc-space-2)">
+      <section class="uc-section" aria-labelledby="algoritmos">
         <h2 id="algoritmos">Repositórios de algoritmos</h2>
         <ul class="uc-links">
           <li><a href="https://xlinux.nist.gov/dads/">Dictionary of Algorithms and Data Structures</a><span>NIST</span></li>
@@ -111,29 +111,29 @@
     <section class="uc-section" aria-labelledby="biblio">
       <h2 id="biblio">Bibliografia</h2>
       <div class="uc-grid" style="--uc-grid-min: 280px">
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main">Principal</span>
-          <span class="book__title">Building Java Programs: a Back to Basics Approach</span>
+        <div class="uc-card">
+          <span class="uc-eyebrow">Principal</span>
+          <strong>Building Java Programs: a Back to Basics Approach</strong>
           <span class="uc-muted uc-small">Stuart Reges e Marty Stepp · 5.ª ed., Pearson, 2020</span>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main">Principal</span>
-          <span class="book__title">Data Structures and Algorithms in Java</span>
+        <div class="uc-card">
+          <span class="uc-eyebrow">Principal</span>
+          <strong>Data Structures and Algorithms in Java</strong>
           <span class="uc-muted uc-small">Michael T. Goodrich e Roberto Tamassia · 6.ª ed., 2014</span>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind">Recomendado</span>
-          <span class="book__title">Introduction to Algorithms</span>
+        <div class="uc-card">
+          <span class="uc-eyebrow">Recomendado</span>
+          <strong>Introduction to Algorithms</strong>
           <span class="uc-muted uc-small">Cormen, Leiserson, Rivest e Stein · 4.ª ed., MIT Press, 2022</span>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind">Recomendado · grátis</span>
-          <span class="book__title"><a href="http://greenteapress.com/wp/think-java-2e/">Think Java</a></span>
+        <div class="uc-card">
+          <span class="uc-eyebrow">Recomendado · grátis</span>
+          <strong><a href="http://greenteapress.com/wp/think-java-2e/">Think Java</a></strong>
           <span class="uc-muted uc-small">Allen B. Downey e Chris Mayfield · 2.ª ed., 2020 · PDF</span>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind">Recomendado · grátis</span>
-          <span class="book__title"><a href="http://greenteapress.com/wp/think-data-structures/">Think Data Structures</a></span>
+        <div class="uc-card">
+          <span class="uc-eyebrow">Recomendado · grátis</span>
+          <strong><a href="http://greenteapress.com/wp/think-data-structures/">Think Data Structures</a></strong>
           <span class="uc-muted uc-small">Allen B. Downey · 2017 · PDF</span>
         </div>
       </div>

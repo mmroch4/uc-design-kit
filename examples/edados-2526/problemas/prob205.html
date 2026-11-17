@@ -11,14 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED205</li></ol>
-    </nav>
-    <h1>[ED205] Árvores estritamente binárias</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob205.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED205</li></ol>
+      </nav>
+      <h1>Árvores estritamente binárias</h1>
+      <uc-problem code="ED205" judge="mooshak" deadline="sub10" track></uc-problem>
+    </header>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).</div>
-      </p><h2>Código Base</h2>
+      <div class="uc-callout uc-callout--warning">Se submeter no Mooshak, deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).</div><h2>Código base</h2>
       <p>Use como base as classes <strong>BTree&lt;T&gt;</strong> e <strong>BTNode&lt;T&gt;</strong> conforme descritas no exercício 2 da aula prática.
 
       </p><h2>O problema</h2>
@@ -30,9 +32,9 @@
       </p><h2>Submissão</h2>
       <p>Deverá submeter apenas a classe <strong>BTree&lt;T&gt;</strong>, acrescentando o método <strong>strict</strong> como pedido <strong>(e sem apagar ou modificar nenhum dos outros métodos dados como base)</strong>. Pode assumir que terá acesso no Mooshak à classe BTNode&lt;T&gt; (não a pode mudar) e se precisar pode criar outros métodos auxiliares. O Mooshak irá criar várias instâncias da sua classe e irá fazer uma série de testes ao método por si implementado.
 
-      </p><h2>Exemplos de Input/Output</h2>
+      </p><h2>Exemplos de input e output</h2>
       <p>Os exemplos correspondem às seis árvores da figura:</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Árvore em <em>preorder</em></th>
       <th scope="col">  Chamada   </th>
@@ -70,7 +72,6 @@
       </tr>
       </table></div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob205.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob205.html</a>.</p>
   </uc-page>
 </body>
 </html>

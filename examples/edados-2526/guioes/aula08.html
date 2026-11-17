@@ -14,35 +14,25 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="8">
-
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 8</span>
-          <span class="uc-mono uc-muted">11–14 nov</span>
-        </p>
-        <h1>Aula 8 · Complexidade algorítmica</h1>
-        <p class="uc-prose">Nesta aula comparas o crescimento de funções, analisas a complexidade de métodos que já conheces e vês como algoritmos de complexidades diferentes resolvem o mesmo problema.</p>
-      </div>
+    <uc-guide week="8" week-label prev="aula07.html" next="aula09.html">
+      <h1>Aula 8 · Complexidade algorítmica</h1>
+      <p class="uc-prose">Nesta aula comparas o crescimento de funções, analisas a complexidade de métodos que já conheces e vês como algoritmos de complexidades diferentes resolvem o mesmo problema.</p>
 
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html#formula">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob198.html">[ED198] Um Jogo com Sequências</a> (peso 100%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob222.html">[ED222] Salvando os Ruivacos</a> (peso 50%, exercício extra)</li>
-          <li><a href="../problemas/prob199.html">[ED199] Tesouros de Kilmia</a> (peso 50%, exercício extra)</li>
-        </ul>
-        <p><strong>Prazo de submissão:</strong> 24 de novembro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
-        <div class="uc-callout">
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <ul class="uc-bullets">
-            <li>Depois do prazo os problemas continuam disponíveis no Mooshak, mas as submissões não contam para a nota.</li>
-            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, podes ter pontuação máxima mesmo sem ter feito tudo.</li>
-            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolvas todos os problemas, o máximo numa aula é de 100%.</li>
-            <li>Para ter 100% basta sempre resolver os exercícios do guião principal.</li>
-          </ul>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub08"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub08">
+            <h3>Problemas da aula 8</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob198.html">Um Jogo com Sequências</a> <code>ED198</code> <data value="100">100 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob222.html">Salvando os Ruivacos</a> <code>ED222</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob199.html">Tesouros de Kilmia</a> <code>ED199</code> <data value="50">50 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <section class="uc-section" aria-labelledby="notacao">
@@ -211,7 +201,7 @@ System.out.println(maxSoFar);
           <p>Se soubermos o valor de <var>best</var>(<var>i</var>), como calcular o valor de <var>best</var>(<var>i</var>+1)?</p>
           <ul class="uc-bullets">
             <li>Se <var>best</var>(<var>i</var>) for positivo, então <var>best</var>(<var>i</var>+1) = <var>best</var>(<var>i</var>) + <code>v[i+1]</code>: como os subarrays têm de ser contíguos, se aproveitarmos algo "de trás", terá de ser o melhor possível a terminar na posição anterior. Por exemplo, para o array [4, −2, 1, 5]:
-              <div class="uc-table" style="--uc-table-min: 0">
+              <div class="uc-table uc-table--fit">
                 <table>
                   <caption class="uc-visually-hidden">best(i) para o array [4, −2, 1, 5]</caption>
                   <tbody>
@@ -224,7 +214,7 @@ System.out.println(maxSoFar);
               <p><var>best</var>(2) = 3, obtido com o subarray [4, −2, 1]. <var>best</var>(3) = <var>best</var>(2) + <code>v[3]</code> = 3 + 5 = 8, obtido com o subarray [4, −2, 1, 5] (estendeu-se o subarray anterior).</p>
             </li>
             <li>Se <var>best</var>(<var>i</var>) for negativo, então <var>best</var>(<var>i</var>+1) = <code>v[i+1]</code>, pois o que está "para trás" só pode fazer diminuir a soma do subarray a terminar na posição <var>i</var>+1. Por exemplo, para o array [−5, 2, −3, 4]:
-              <div class="uc-table" style="--uc-table-min: 0">
+              <div class="uc-table uc-table--fit">
                 <table>
                   <caption class="uc-visually-hidden">best(i) para o array [−5, 2, −3, 4]</caption>
                   <tbody>
@@ -270,17 +260,6 @@ System.out.println(maxSoFar);
           </details>
         </uc-exercise>
       </section>
-
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula07.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 7 · Listas, pilhas e filas</strong>
-        </a>
-        <a class="uc-card" href="aula09.html" style="text-align: right">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 9 · Recursividade</strong>
-        </a>
-      </nav>
     </uc-guide>
   </uc-page>
 </body>

@@ -11,11 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED089</li></ol>
-    </nav>
-    <h1>[ED089] O Cobrador de Impostos O problema</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob89.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED089</li></ol>
+      </nav>
+      <h1>O Cobrador de Impostos O problema</h1>
+      <uc-problem code="ED089" judge="mooshak" track></uc-problem>
+    </header>
     <div class="uc-content">
       <p>Foi-lhe fornecida uma série de dados sobre um conjunto de empresas. Nomeadamente, para cada empresa, foi-lhe dada informação sobre:
 
@@ -35,17 +38,12 @@
       No caso de a flag ter o valor 0, deverá escrever para o output o número de actividades económicas diferentes que aparecem no input.</p>
       <p>
       Se a flag tiver o valor 1, deverá apresentar como resultado uma lista ordenada do total de rendimentos por cada área de actividade económica. A ordem deve ser crescente nos códigos da área de actividade económica. Cada linha de output deverá incluir o código da área de actividade económica seguido de um espaço e do total de rendimentos respectivo.</p>
-      <h2>Exemplos de input/output</h2>
+      <h2>Exemplos de input e output</h2>
       <h2>
-      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
-
-      <tr>
-      <th scope="col"><p>Input</p> </th>
-      <th scope="col"> <p>Output</p></th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">5 1
+      </h2><div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">5 1
 234523455
 Restaurante Abocanhado
 Restauracao
@@ -71,22 +69,19 @@ ZXY Informatica
 Servicos
 20
 200430</pre>
-      </td>
-      <td> <pre data-copy="Output">10 141666
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">10 141666
 15 447346
-20 200430</pre> </td>
-      </tr>
-      </table></div>
+20 200430</pre>
+        </div>
+      </div>
       <h2>
-      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
-
-      <tr>
-      <th scope="col"><p>Input</p> </th>
-      <th scope="col"> <p>Output</p></th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">5 0
+      </h2><div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">5 0
 234523455
 Restaurante Abocanhado
 Restauracao
@@ -112,13 +107,14 @@ ZXY Informatica
 Servicos
 20
 200430</pre>
-      </td>
-      <td> <pre data-copy="Output">3</pre> </td>
-      </tr>
-      </table></div>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">3</pre>
+        </div>
+      </div>
        <p>Última actualização: <strong></strong></p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob89.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob89.html</a>.</p>
   </uc-page>
 </body>
 </html>

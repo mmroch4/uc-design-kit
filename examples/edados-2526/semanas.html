@@ -12,17 +12,18 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+    <header class="uc-page-header">
       <h1>Semanas</h1>
-      <p class="uc-prose">Tudo o que acontece em cada semana num só sítio: matéria das teóricas, guião da prática, quiz e slides; os sumários das teóricas estão em <a href="sumarios.html">Sumários</a>. Clica numa semana para ver os detalhes. As semanas que ainda não começaram aparecem a cinzento.</p>
+      <p class="uc-prose">Tudo o que acontece em cada semana num só sítio: matéria das teóricas, guião da prática, slides, quizzes e prazos; os sumários das teóricas estão em <a href="sumarios.html">Sumários</a>. Clica numa semana para ver os detalhes. As semanas que ainda não começaram aparecem a cinzento.</p>
+    </header>
 
       <!--
         Uma <uc-week> por semana. As datas são calculadas a partir de course.js
         (semester.start e breaks); a semana atual abre sozinha.
-        As avaliações e exames de course.js (deadlines) aparecem sozinhos na semana
-        certa; kind="…" deixa de fora os quizzes, que já estão na linha "Quiz".
+        Os prazos de course.js (deadlines: quizzes, exercícios das aulas, avaliações
+        e exames) aparecem sozinhos na semana certa.
       -->
-      <uc-weeks kind="assessment exam submission">
+      <uc-weeks>
         <uc-week n="1" title="Apresentação e introdução ao Java">
           <dl>
             <dt>Teóricas</dt>
@@ -38,8 +39,6 @@
             <dd>Aulas 3 e 4 · <a href="materiais.html#slides">slides 1</a> · <a href="sumarios.html#aula-3">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula02.html">Aula 2: I/O com a classe Scanner</a></dd>
-            <dt>Quiz</dt>
-            <dd>#01 Introdução ao Java I · 23 a 30 set</dd>
           </dl>
         </uc-week>
 
@@ -49,8 +48,6 @@
             <dd>Aulas 5 e 6 · <a href="materiais.html#slides">slides 2 e 3</a> · <a href="sumarios.html#aula-5">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula03.html">Aula 3: Introdução a classes</a></dd>
-            <dt>Quiz</dt>
-            <dd>#02 Introdução ao Java II · 30 set a 7 out</dd>
           </dl>
         </uc-week>
 
@@ -60,8 +57,6 @@
             <dd>Aulas 7 e 8 · <a href="materiais.html#slides">slides 3 e 4</a> · <a href="sumarios.html#aula-7">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula04.html">Aula 4: Programação estruturada</a></dd>
-            <dt>Quiz</dt>
-            <dd>#03 Introdução ao Java III · 7 a 14 out</dd>
           </dl>
         </uc-week>
 
@@ -71,8 +66,6 @@
             <dd>Aulas 9 e 10 · <a href="materiais.html#slides">slides 4</a> · <a href="sumarios.html#aula-9">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula05.html">Aula 5: Tipos abstratos de dados</a></dd>
-            <dt>Quiz</dt>
-            <dd>#04 TADs I · 14 a 21 out</dd>
           </dl>
         </uc-week>
 
@@ -82,8 +75,6 @@
             <dd>Aulas 11 e 12 · <a href="materiais.html#slides">slides 4</a> · <a href="sumarios.html#aula-11">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula06.html">Aula 6: Listas ligadas simples</a></dd>
-            <dt>Quiz</dt>
-            <dd>#05 TADs II e listas I · 21 a 28 out</dd>
           </dl>
         </uc-week>
 
@@ -95,8 +86,6 @@
             <dd>Aulas 13 e 14 · <a href="materiais.html#slides">slides 5</a> · <a href="sumarios.html#aula-13">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula07.html">Aula 7: Listas, pilhas e filas</a> · <a href="guioes/teste-pratico-1.html">Informações e treino para a Avaliação Prática 1</a></dd>
-            <dt>Quiz</dt>
-            <dd>#06 Listas II · 4 a 11 nov</dd>
           </dl>
         </uc-week>
 
@@ -106,8 +95,6 @@
             <dd>Aulas 15 e 16 · <a href="materiais.html#slides">slides 5 e 6</a> · <a href="sumarios.html#aula-15">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula08.html">Aula 8: Complexidade algorítmica</a></dd>
-            <dt>Quiz</dt>
-            <dd>#07 Complexidade I · 11 a 18 nov</dd>
           </dl>
         </uc-week>
 
@@ -117,8 +104,6 @@
             <dd>Aulas 17 e 18 · <a href="materiais.html#slides">slides 7 e 8</a> · <a href="sumarios.html#aula-17">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula09.html">Aula 9: Recursividade</a></dd>
-            <dt>Quiz</dt>
-            <dd>#08 Complexidade II e recursividade · 18 a 25 nov</dd>
           </dl>
         </uc-week>
 
@@ -128,8 +113,6 @@
             <dd>Aulas 19 e 20 · <a href="materiais.html#slides">slides 8</a> · <a href="sumarios.html#aula-19">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula10.html">Aula 10: Árvores binárias</a></dd>
-            <dt>Quiz</dt>
-            <dd>#09 Árvores binárias · 25 nov a 2 dez</dd>
           </dl>
         </uc-week>
 
@@ -139,8 +122,6 @@
             <dd>Aulas 21 e 22 · <a href="materiais.html#slides">slides 8 e 9</a> · <a href="sumarios.html#aula-21">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula11.html">Aula 11: Árvores binárias de pesquisa</a></dd>
-            <dt>Quiz</dt>
-            <dd>#10 Árvores binárias de pesquisa · 2 a 9 dez</dd>
           </dl>
         </uc-week>
 
@@ -150,12 +131,9 @@
             <dd>Aulas 23 e 24 · <a href="materiais.html#slides">slides 9</a> · <a href="sumarios.html#aula-23">sumários</a></dd>
             <dt>Prática</dt>
             <dd><a href="guioes/aula12.html">Aula 12: Filas de prioridade (e revisões)</a> · <a href="guioes/teste-pratico-2.html">Informações e treino para a Avaliação Prática 2</a></dd>
-            <dt>Quiz</dt>
-            <dd>#11 Dicionários e filas de prioridade · 9 a 16 dez</dd>
           </dl>
         </uc-week>
       </uc-weeks>
-    </div>
   </uc-page>
 </body>
 </html>

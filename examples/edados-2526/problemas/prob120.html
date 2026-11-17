@@ -11,11 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED120</li></ol>
-    </nav>
-    <h1>[ED120] Desenhando um Losango</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob120.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED120</li></ol>
+      </nav>
+      <h1>Desenhando um Losango</h1>
+      <uc-problem code="ED120" judge="mooshak" deadline="sub02" track></uc-problem>
+    </header>
     <div class="uc-content">
       <h2>O problema</h2>
       <p>
@@ -50,41 +53,37 @@
       <p>O output deve conter tantas linhas quantas as necessárias para
       desenhar o losango no formato descrito atrás, ou seja, com cardinais e pontos.
 
-      </p><h2>Exemplo de input/output 1</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td><pre data-copy="Input">3</pre></td>
-      <td>
-      <pre data-copy="Output">.#.
+      </p><h2>Exemplo 1</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">3</pre>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">.#.
 ###
 .#.</pre>
-      </td>
-      </tr>
-      </table></div>
-      <h2>Exemplo de input/output 2</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td><pre data-copy="Input">7</pre></td>
-      <td>
-      <pre data-copy="Output">...#...
+        </div>
+      </div>
+      <h2>Exemplo 2</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">7</pre>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">...#...
 ..###..
 .#####.
 #######
 .#####.
 ..###..
-...#...</pre></td>
-      </tr>
-      </table></div>
+...#...</pre>
+        </div>
+      </div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob120.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob120.html</a>.</p>
   </uc-page>
 </body>
 </html>

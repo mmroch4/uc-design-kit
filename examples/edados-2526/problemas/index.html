@@ -11,83 +11,150 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <h1>Problemas</h1>
-    <p class="uc-lead">Enunciados dos problemas das aulas práticas, dos testes práticos e de treino. As submissões fazem-se no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>.</p>
-    <section class="uc-section" aria-labelledby="lista">
-      <h2 id="lista">Todos os problemas</h2>
-      <!-- data-judge="mooshak": id da plataforma em course.js. track: caixa "Resolvido"
-           por problema, guardada no browser de cada estudante. -->
-      <uc-problems track>
-      <ul>
-        <li data-judge="mooshak"><a href="prob004.html">Jogo do Galo</a> <code>ED004</code></li>
-        <li data-judge="mooshak"><a href="prob005.html">Notação Polaca Invertida</a> <code>ED005</code></li>
-        <li data-judge="mooshak"><a href="prob006.html">Pim, Pam, Pum</a> <code>ED006</code></li>
-        <li data-judge="mooshak"><a href="prob007.html">Entre Parênteses</a> <code>ED007</code></li>
-        <li data-judge="mooshak"><a href="prob015.html">Sopa de Letras</a> <code>ED015</code></li>
-        <li data-judge="mooshak"><a href="prob029.html">Confusão no Aeroporto</a> <code>ED029</code></li>
-        <li data-judge="mooshak"><a href="prob088.html">Jogo da Vida</a> <code>ED088</code></li>
-        <li data-judge="mooshak"><a href="prob089.html">O Cobrador de Impostos O problema</a> <code>ED089</code></li>
-        <li data-judge="mooshak"><a href="prob101.html">O Mundo da Tartaruga</a> <code>ED101</code></li>
-        <li data-judge="mooshak"><a href="prob120.html">Desenhando um Losango</a> <code>ED120</code></li>
-        <li data-judge="mooshak"><a href="prob121.html">Palíndromos</a> <code>ED121</code></li>
-        <li data-judge="mooshak"><a href="prob164.html">Quantas palavras?</a> <code>ED164</code></li>
-        <li data-judge="mooshak"><a href="prob165.html">Somas</a> <code>ED165</code></li>
-        <li data-judge="mooshak"><a href="prob172.html">Contagem de palavras</a> <code>ED172</code></li>
-        <li data-judge="mooshak"><a href="prob183.html">Estatísticas</a> <code>ED183</code></li>
-        <li data-judge="mooshak"><a href="prob185.html">TAD Números Arbitrariamente Grandes (BigNumber)</a> <code>ED185</code></li>
-        <li data-judge="mooshak"><a href="prob186.html">TAD Rectângulo (Rectangle)</a> <code>ED186</code></li>
-        <li data-judge="mooshak"><a href="prob187.html">TAD Matriz (Matrix)</a> <code>ED187</code></li>
-        <li data-judge="mooshak"><a href="prob188.html">Devolver elemento numa dada posição</a> <code>ED188</code></li>
-        <li data-judge="mooshak"><a href="prob189.html">Remover elemento numa dada posição</a> <code>ED189</code></li>
-        <li data-judge="mooshak"><a href="prob190.html">Cópia de uma lista</a> <code>ED190</code></li>
-        <li data-judge="mooshak"><a href="prob191.html">Duplicando elementos</a> <code>ED191</code></li>
-        <li data-judge="mooshak"><a href="prob192.html">Contando elementos</a> <code>ED192</code></li>
-        <li data-judge="mooshak"><a href="prob193.html">Removendo todas as ocorrências de um elemento</a> <code>ED193</code></li>
-        <li data-judge="mooshak"><a href="prob194.html">Invertendo uma pilha</a> <code>ED194</code></li>
-        <li data-judge="mooshak"><a href="prob195.html">Expressões bem balanceadas</a> <code>ED195</code></li>
-        <li data-judge="mooshak"><a href="prob196.html">Duas filas</a> <code>ED196</code></li>
-        <li data-judge="mooshak"><a href="prob197.html">União ordenada</a> <code>ED197</code></li>
-        <li data-judge="mooshak"><a href="prob198.html">Um Jogo com Sequências</a> <code>ED198</code></li>
-        <li data-judge="mooshak"><a href="prob199.html">Tesouros de Kilmia</a> <code>ED199</code></li>
-        <li data-judge="mooshak"><a href="prob200.html">Contagem de Células</a> <code>ED200</code></li>
-        <li data-judge="mooshak"><a href="prob201.html">Playlist</a> <code>ED201</code></li>
-        <li data-judge="mooshak"><a href="prob202.html">Procurando Pokemons</a> <code>ED202</code></li>
-        <li data-judge="mooshak"><a href="prob204.html">Contando folhas</a> <code>ED204</code></li>
-        <li data-judge="mooshak"><a href="prob205.html">Árvores estritamente binárias</a> <code>ED205</code></li>
-        <li data-judge="mooshak"><a href="prob206.html">Percorrendo caminhos</a> <code>ED206</code></li>
-        <li data-judge="mooshak"><a href="prob207.html">Nós profundos</a> <code>ED207</code></li>
-        <li data-judge="mooshak"><a href="prob208.html">Mínimo e máximo</a> <code>ED208</code></li>
-        <li data-judge="mooshak"><a href="prob209.html">Intervalo de valores</a> <code>ED209</code></li>
-        <li data-judge="mooshak"><a href="prob210.html">Será uma árvore de pesquisa?</a> <code>ED210</code></li>
-        <li data-judge="mooshak"><a href="prob211.html">Contando os números pares</a> <code>ED211</code></li>
-        <li data-judge="mooshak"><a href="prob212.html">Soma de todos os níveis</a> <code>ED212</code></li>
-        <li data-judge="mooshak"><a href="prob213.html">Caminho de maior soma</a> <code>ED213</code></li>
-        <li data-judge="mooshak"><a href="prob215.html">Leilões</a> <code>ED215</code></li>
-        <li data-judge="mooshak"><a href="prob216.html">Contando Cardinais</a> <code>ED216</code></li>
-        <li data-judge="mooshak"><a href="prob222.html">Salvando os Ruivacos</a> <code>ED222</code></li>
-        <li data-judge="mooshak"><a href="prob231.html">Estatísticas Epidemiológicas</a> <code>ED231</code></li>
-        <li data-judge="mooshak"><a href="prob232.html">O Senhor das Listas</a> <code>ED232</code></li>
-        <li data-judge="mooshak"><a href="prob233.html">Árvores na Terra dos Dados</a> <code>ED233</code></li>
-        <li data-judge="mooshak"><a href="prob234.html">Avaliações Cinematográficas</a> <code>ED234</code></li>
-        <li data-judge="mooshak"><a href="prob235.html">Triângulo Retângulo</a> <code>ED235</code></li>
-        <li data-judge="mooshak"><a href="prob236.html">Métodos para Listas Ligadas Simples</a> <code>ED236</code></li>
-        <li data-judge="mooshak"><a href="prob237.html">Round-Robin</a> <code>ED237</code></li>
-        <li data-judge="mooshak"><a href="prob239.html">Métodos para Árvores Binárias</a> <code>ED239</code></li>
-        <li data-judge="mooshak"><a href="prob241.html">Submissões</a> <code>ED241</code></li>
-        <li data-judge="mooshak"><a href="prob242.html">Lagos</a> <code>ED242</code></li>
-        <li data-judge="mooshak"><a href="prob243.html">Pizza</a> <code>ED243</code></li>
-        <li data-judge="mooshak"><a href="prob244.html">Primos</a> <code>ED244</code></li>
-        <li data-judge="mooshak"><a href="prob247.html">TAD Conjunto (ArrayListIntSet)</a> <code>ED247</code></li>
-        <li data-judge="mooshak"><a href="prob248.html">TAD Conjunto (BooleanArrayIntSet)</a> <code>ED248</code></li>
-        <li data-judge="mooshak"><a href="prob254.html">Desenhando a letra Y</a> <code>ED254</code></li>
-        <li data-judge="mooshak"><a href="prob269.html">Inserindo e removendo numa lista</a> <code>ED269</code></li>
-        <li data-judge="mooshak"><a href="prob282.html">Black Friday</a> <code>ED282</code></li>
-        <li data-judge="mooshak"><a href="prob300.html">Hiérarquias de Nós</a> <code>ED300</code></li>
-        <li data-judge="mooshak"><a href="prob301.html">Triagem de Manchester</a> <code>ED301</code></li>
-      </ul>
-      </uc-problems>
-    </section>
+  <uc-page current="materials">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li aria-current="page">Problemas</li></ol>
+      </nav>
+      <h1>Problemas</h1>
+      <p class="uc-lead">Enunciados dos problemas das aulas práticas, organizados por aula com o prazo de submissão, e os de treino para as avaliações práticas. As submissões fazem-se no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>.</p>
+    </header>
+    <!-- Uma secção por aula, com o prazo de course.js (data-deadline). data-type="extra": exercício extra
+         (sem data-type = guião principal). filters: filtros por tipo; track: "Resolvido", partilhado com os guiões. -->
+    <uc-problems filters track>
+      <section data-deadline="sub02">
+        <h2><a href="../guioes/aula02.html">Aula 2 · Input/Output e Mooshak</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob183.html">Estatísticas</a> <code>ED183</code></li>
+          <li data-judge="mooshak"><a href="prob120.html">Desenhando um Losango</a> <code>ED120</code></li>
+          <li data-judge="mooshak"><a href="prob121.html">Palíndromos</a> <code>ED121</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob243.html">Pizza</a> <code>ED243</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob244.html">Primos</a> <code>ED244</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub03">
+        <h2><a href="../guioes/aula03.html">Aula 3 · Introdução a classes</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob186.html">TAD Rectângulo (Rectangle)</a> <code>ED186</code></li>
+          <li data-judge="mooshak"><a href="prob187.html">TAD Matriz (Matrix)</a> <code>ED187</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob216.html">Contando Cardinais</a> <code>ED216</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub04">
+        <h2><a href="../guioes/aula04.html">Aula 4 · Programação estruturada</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob004.html">Jogo do Galo</a> <code>ED004</code></li>
+          <li data-judge="mooshak"><a href="prob088.html">Jogo da Vida</a> <code>ED088</code></li>
+          <li data-judge="mooshak"><a href="prob015.html">Sopa de Letras</a> <code>ED015</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob101.html">O Mundo da Tartaruga</a> <code>ED101</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub05">
+        <h2><a href="../guioes/aula05.html">Aula 5 · Tipos abstratos de dados</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob247.html">TAD Conjunto (ArrayListIntSet)</a> <code>ED247</code></li>
+          <li data-judge="mooshak"><a href="prob248.html">TAD Conjunto (BooleanArrayIntSet)</a> <code>ED248</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob185.html">TAD Números Arbitrariamente Grandes (BigNumber)</a> <code>ED185</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub06">
+        <h2><a href="../guioes/aula06.html">Aula 6 · Listas ligadas simples</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob188.html">Devolver elemento numa dada posição</a> <code>ED188</code></li>
+          <li data-judge="mooshak"><a href="prob189.html">Remover elemento numa dada posição</a> <code>ED189</code></li>
+          <li data-judge="mooshak"><a href="prob190.html">Cópia de uma lista</a> <code>ED190</code></li>
+          <li data-judge="mooshak"><a href="prob191.html">Duplicando elementos</a> <code>ED191</code></li>
+          <li data-judge="mooshak"><a href="prob192.html">Contando elementos</a> <code>ED192</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob193.html">Removendo todas as ocorrências de um elemento</a> <code>ED193</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub07">
+        <h2><a href="../guioes/aula07.html">Aula 7 · Listas, pilhas e filas</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob006.html">Pim, Pam, Pum</a> <code>ED006</code></li>
+          <li data-judge="mooshak"><a href="prob194.html">Invertendo uma pilha</a> <code>ED194</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob195.html">Expressões bem balanceadas</a> <code>ED195</code></li>
+          <li data-judge="mooshak"><a href="prob196.html">Duas filas</a> <code>ED196</code></li>
+          <li data-judge="mooshak"><a href="prob197.html">União ordenada</a> <code>ED197</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob005.html">Notação Polaca Invertida</a> <code>ED005</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob007.html">Entre Parênteses</a> <code>ED007</code></li>
+          <li data-judge="mooshak"><a href="prob029.html">Confusão no Aeroporto</a> <code>ED029</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub08">
+        <h2><a href="../guioes/aula08.html">Aula 8 · Complexidade algorítmica</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob198.html">Um Jogo com Sequências</a> <code>ED198</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob222.html">Salvando os Ruivacos</a> <code>ED222</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob199.html">Tesouros de Kilmia</a> <code>ED199</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub09">
+        <h2><a href="../guioes/aula09.html">Aula 9 · Recursividade</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob200.html">Contagem de Células</a> <code>ED200</code></li>
+          <li data-judge="mooshak"><a href="prob201.html">Playlist</a> <code>ED201</code></li>
+          <li data-judge="mooshak"><a href="prob202.html">Procurando Pokemons</a> <code>ED202</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub10">
+        <h2><a href="../guioes/aula10.html">Aula 10 · Árvores binárias</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob204.html">Contando folhas</a> <code>ED204</code></li>
+          <li data-judge="mooshak"><a href="prob205.html">Árvores estritamente binárias</a> <code>ED205</code></li>
+          <li data-judge="mooshak"><a href="prob206.html">Percorrendo caminhos</a> <code>ED206</code></li>
+          <li data-judge="mooshak"><a href="prob207.html">Nós profundos</a> <code>ED207</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob211.html">Contando os números pares</a> <code>ED211</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob212.html">Soma de todos os níveis</a> <code>ED212</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob213.html">Caminho de maior soma</a> <code>ED213</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub11">
+        <h2><a href="../guioes/aula11.html">Aula 11 · Árvores binárias de pesquisa</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob208.html">Mínimo e máximo</a> <code>ED208</code></li>
+          <li data-judge="mooshak"><a href="prob164.html">Quantas palavras?</a> <code>ED164</code></li>
+          <li data-judge="mooshak"><a href="prob172.html">Contagem de palavras</a> <code>ED172</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob209.html">Intervalo de valores</a> <code>ED209</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob210.html">Será uma árvore de pesquisa?</a> <code>ED210</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob165.html">Somas</a> <code>ED165</code></li>
+        </ul>
+      </section>
+      <section data-deadline="sub12">
+        <h2><a href="../guioes/aula12.html">Aula 12 · Filas de prioridade</a></h2>
+        <ul>
+          <li data-judge="mooshak"><a href="prob215.html">Leilões</a> <code>ED215</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob300.html">Hiérarquias de Nós</a> <code>ED300</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob301.html">Triagem de Manchester</a> <code>ED301</code></li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="../guioes/teste-pratico-1.html">Treino para a Avaliação Prática 1</a></h2>
+        <p class="uc-small uc-muted">Os outros problemas de treino são os das aulas acima.</p>
+        <ul>
+          <li data-judge="mooshak" data-type="extra"><a href="prob089.html">O Cobrador de Impostos</a> <code>ED089</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob231.html">Estatísticas Epidemiológicas</a> <code>ED231</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob232.html">O Senhor das Listas</a> <code>ED232</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob235.html">Triângulo Retângulo</a> <code>ED235</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob236.html">Métodos para Listas Ligadas Simples</a> <code>ED236</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob237.html">Round-Robin</a> <code>ED237</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob254.html">Desenhando a letra Y</a> <code>ED254</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob269.html">Inserindo e removendo numa lista</a> <code>ED269</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob282.html">Black Friday</a> <code>ED282</code></li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="../guioes/teste-pratico-2.html">Treino para a Avaliação Prática 2</a></h2>
+        <p class="uc-small uc-muted">Os outros problemas de treino são os das aulas acima.</p>
+        <ul>
+          <li data-judge="mooshak" data-type="extra"><a href="prob233.html">Árvores na Terra dos Dados</a> <code>ED233</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob234.html">Avaliações Cinematográficas</a> <code>ED234</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob239.html">Métodos para Árvores Binárias</a> <code>ED239</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob241.html">Submissões</a> <code>ED241</code></li>
+          <li data-judge="mooshak" data-type="extra"><a href="prob242.html">Lagos</a> <code>ED242</code></li>
+        </ul>
+      </section>
+    </uc-problems>
   </uc-page>
 </body>
 </html>

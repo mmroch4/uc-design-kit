@@ -12,10 +12,10 @@
 </head>
 <body>
   <uc-page current="assessment">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+    <header class="uc-page-header">
       <h1>Avaliação</h1>
       <p class="uc-prose">A nota final soma três componentes. Para aprovar precisas de pelo menos 4,9 valores no exame e de 9,5 valores no total.</p>
-    </div>
+    </header>
 
     <!-- Componentes da nota: o peso de cada uma fica no <data> (aqui em valores, 14/5/1).
          O kit gera a fórmula, a barra, a tabela e o simulador (calculator). -->
@@ -56,6 +56,18 @@
       </ul>
     </section>
 
+    <section class="uc-section" aria-labelledby="exercicios">
+      <h2 id="exercicios">Exercícios das aulas</h2>
+      <p class="uc-prose">Cada guião das aulas 2 a 12 tem uma lista de problemas para submeter no Mooshak, com o prazo e o peso de cada um. Os prazos estão também em <a href="semanas.html">Semanas</a>.</p>
+      <ul class="uc-bullets">
+        <li>Cada aula vale 11% da nota desta componente. Como há 11 aulas com submissões, podes ter a nota máxima sem fazer tudo.</li>
+        <li>Para ter 100% numa aula basta resolver os exercícios do guião principal. Os extra compensam os que falharem, mas o máximo por aula é 100%.</li>
+        <li>Um problema só conta com todos os testes certos (<em lang="en">accepted</em>).</li>
+        <li>Depois do prazo os problemas continuam no Mooshak, mas as submissões já não contam.</li>
+        <li>Podes falar com os docentes e colegas quando tiveres dificuldades. Uma ajuda mais direta de um colega tem de ficar indicada nos comentários do programa que submetes.</li>
+      </ul>
+    </section>
+
     <section class="uc-section" aria-labelledby="frequencia">
       <h2 id="frequencia">Frequência</h2>
       <p class="uc-prose">Sem frequência não podes ir a exame. Para a obter precisas de:</p>
@@ -67,51 +79,20 @@
 
     <section class="uc-section" aria-labelledby="quizzes">
       <h2 id="quizzes">Quizzes</h2>
-      <p class="uc-prose">Todas as semanas há no Mooshak um questionário online de preenchimento obrigatório, com perguntas de escolha múltipla sobre a matéria da semana anterior. Cada questionário fica aberto pelo menos 7 dias. A nota não conta para a avaliação, mas para obter frequência tens de responder a pelo menos 50%: estão previstos 11, por isso o mínimo é 6. Depois de responder podes ver as respostas certas e voltar a submeter até ao fim do semestre, para treinar; para a frequência só contam os que fizeres na semana certa.</p>
-      <div class="uc-table">
-        <table>
-          <thead>
-            <tr><th scope="col">Quiz</th><th scope="col">Tema</th><th scope="col">Abre</th><th scope="col">Fecha</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="uc-mono">#01</td><td>Introdução ao Java I</td><td class="uc-mono">23 set, 19h</td><td class="uc-mono">30 set, 21h</td></tr>
-            <tr><td class="uc-mono">#02</td><td>Introdução ao Java II</td><td class="uc-mono">30 set, 19h</td><td class="uc-mono">7 out, 21h</td></tr>
-            <tr><td class="uc-mono">#03</td><td>Introdução ao Java III</td><td class="uc-mono">7 out, 19h</td><td class="uc-mono">14 out, 21h</td></tr>
-            <tr><td class="uc-mono">#04</td><td>TADs I</td><td class="uc-mono">14 out, 19h</td><td class="uc-mono">21 out, 21h</td></tr>
-            <tr><td class="uc-mono">#05</td><td>TADs II e listas I</td><td class="uc-mono">21 out, 19h</td><td class="uc-mono">28 out, 21h</td></tr>
-            <tr><td class="uc-mono">#06</td><td>Listas II</td><td class="uc-mono">4 nov, 19h</td><td class="uc-mono">11 nov, 21h</td></tr>
-            <tr><td class="uc-mono">#07</td><td>Complexidade I</td><td class="uc-mono">11 nov, 19h</td><td class="uc-mono">18 nov, 21h</td></tr>
-            <tr><td class="uc-mono">#08</td><td>Complexidade II e recursividade</td><td class="uc-mono">18 nov, 19h</td><td class="uc-mono">25 nov, 21h</td></tr>
-            <tr><td class="uc-mono">#09</td><td>Árvores binárias</td><td class="uc-mono">25 nov, 19h</td><td class="uc-mono">2 dez, 21h</td></tr>
-            <tr><td class="uc-mono">#10</td><td>Árvores binárias de pesquisa</td><td class="uc-mono">2 dez, 19h</td><td class="uc-mono">9 dez, 21h</td></tr>
-            <tr><td class="uc-mono">#11</td><td>Dicionários e filas de prioridade</td><td class="uc-mono">9 dez, 19h</td><td class="uc-mono">16 dez, 21h</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <p class="uc-prose">Todas as semanas há no Mooshak um questionário online de preenchimento obrigatório, com perguntas de escolha múltipla sobre a matéria da semana anterior. Cada questionário abre às 19:00 do primeiro dia e fecha às 21:00 do último. A nota não conta para a avaliação, mas para obter frequência tens de responder a pelo menos 50%: estão previstos 11, por isso o mínimo é 6. Depois de responder podes ver as respostas certas e voltar a submeter até ao fim do semestre, para treinar; para a frequência só contam os que fizeres na semana certa.</p>
+      <!-- Calendário dos quizzes: editar em course.js (deadlines, kind "quiz"). -->
+      <uc-deadlines view="table" kind="quiz" heading="none"></uc-deadlines>
     </section>
 
     <section class="uc-section" aria-labelledby="progresso">
       <h2 id="progresso">O teu progresso</h2>
       <!-- data-auth: o kit junta o cadeado e o texto "(Requer autenticação)" para leitores de ecrã. -->
-      <p class="uc-muted desc">Documentos com autenticação estão assinalados com um cadeado.</p>
-      <div class="uc-grid" style="--uc-grid-min: 240px">
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/quizzes_2526_27nov2025.pdf">
-          <span class="progress__title">Respostas aos quizzes</span>
-          <span class="uc-muted uc-small">Atualizado a 27 nov 2025</span>
-        </a>
-        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/presencas_praticas_aulas1a10.pdf">
-          <span class="progress__title">Presenças nas práticas</span>
-          <span class="uc-muted uc-small">Até 30 nov 2025</span>
-        </a>
-        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/index.html">
-          <span class="progress__title">Exercícios no Mooshak</span>
-          <span class="uc-muted uc-small">Atualizado a 31 out 2025</span>
-        </a>
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/avalpratica_2526.pdf">
-          <span class="progress__title">Avaliação prática e frequência</span>
-          <span class="uc-muted uc-small">Pauta final · 19 dez 2025</span>
-        </a>
-      </div>
+      <ul class="uc-links">
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/quizzes_2526_27nov2025.pdf">Respostas aos quizzes</a><span>Atualizado a 27 nov 2025</span></li>
+        <li><a data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/presencas_praticas_aulas1a10.pdf">Presenças nas práticas</a><span>Até 30 nov 2025</span></li>
+        <li><a data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/index.html">Exercícios no Mooshak</a><span>Atualizado a 31 out 2025</span></li>
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/avalpratica_2526.pdf">Avaliação prática e frequência</a><span>Pauta final · 19 dez 2025</span></li>
+      </ul>
     </section>
 
     <section class="uc-section" aria-labelledby="especiais">

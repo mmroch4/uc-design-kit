@@ -11,14 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Tipos e Variáveis</li></ol>
-    </nav>
-    <h1>Tipos e Variáveis</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/tipos_vars.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Código das teóricas</a></li><li aria-current="page">Tipos e Variáveis</li></ol>
+      </nav>
+      <h1>Tipos e Variáveis</h1>
+    </header>
     <section class="uc-section" aria-labelledby="testbasictypes">
       <h2 id="testbasictypes">TestBasicTypes.java</h2>
-      <uc-code lang="java" filename="TestBasicTypes.java" collapsible>
+      <uc-code lang="java" filename="TestBasicTypes.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -49,11 +51,17 @@ public class TestBasicTypes {
    }
 }
         </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestBasicTypes.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestBasicTypes.main(args); }
+          }
+        </script>
       </uc-code>
     </section>
     <section class="uc-section" aria-labelledby="testconversion">
       <h2 id="testconversion">TestConversion.java</h2>
-      <uc-code lang="java" filename="TestConversion.java" collapsible>
+      <uc-code lang="java" filename="TestConversion.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -86,11 +94,17 @@ class TestConversion {
    }
 }
         </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestConversion.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestConversion.main(args); }
+          }
+        </script>
       </uc-code>
     </section>
     <section class="uc-section" aria-labelledby="testlimits">
       <h2 id="testlimits">TestLimits.java</h2>
-      <uc-code lang="java" filename="TestLimits.java" collapsible>
+      <uc-code lang="java" filename="TestLimits.java" collapsible run>
         <script type="text/plain">
 // -----------------------------------------------------------
 // Estruturas de Dados 2025/2026 (CC1007) - DCC/FCUP
@@ -123,9 +137,14 @@ public class TestLimits {
     }
 }
         </script>
+        <!-- run: o Codapi precisa de uma classe Main; este ficheiro escondido só chama TestLimits.main. -->
+        <script type="text/plain" data-harness>
+          public class Main {
+              public static void main(String[] args) { TestLimits.main(args); }
+          }
+        </script>
       </uc-code>
     </section>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/tipos_vars.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/codigo/tipos_vars.html</a>.</p>
   </uc-page>
 </body>
 </html>

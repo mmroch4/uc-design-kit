@@ -11,18 +11,21 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED239</li></ol>
-    </nav>
-    <h1>[ED239] Métodos para Árvores Binárias</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob239.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED239</li></ol>
+      </nav>
+      <h1>Métodos para Árvores Binárias</h1>
+      <uc-problem code="ED239" judge="mooshak" track></uc-problem>
+    </header>
     <div class="uc-content">
-      <p><div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).
-      </p></div></p>
+      <div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).
+      </p></div>
 
-      <h2>Código Base</h2>
+      <h2>Código base</h2>
       <p><img alt="" class="uc-content__float" height="222" loading="lazy" src="imagens/arvores.png" width="382"/>O código base são as <a href="../codigo/arvores_binarias.html">classes de árvores binárias</a> dadas nas aulas. Use como base a classe <strong>BTree&lt;T&gt;</strong>, que é a única que deverá submeter.</p>
-      <h2>Métodos a Implementar</h2>
+      <h2>Métodos a implementar</h2>
       <p>Deve acrescentar à classe dada os seguintes métodos (<strong>não modificando nenhum dos métodos já existentes no código base</strong>):
 
       </p><ul>
@@ -42,9 +45,9 @@
         </li><li>Para testar na sua máquina deve criar uma árvore. Pode ler uma árvore com número inteiros usando o método <em>readIntTree</em> da classe <em>LibBTree</em> (um exemplo foi dado nas aulas e está disponível na classe <em>TestBTree</em>).
         </li><li>Em todos os casos de teste as árvores têm tamanho máximo de 100 nós.
       </li></ul>
-      <h2>Exemplos de Input/Output para o método <em>count</em></h2>
+      <h2>Exemplos de input e output para o método <em>count</em></h2>
       <p>Os exemplos correspondem às quatro árvores da figura.</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
       <th scope="col">Valor devolvido por <em>t.count()</em></th>
@@ -66,9 +69,9 @@
       <td>1</td>
       </tr>
       </table></div>
-      <h2>Exemplos de Input/Output para o método <em>level</em></h2>
+      <h2>Exemplos de input e output para o método <em>level</em></h2>
       <p>Os exemplos correspondem às quatro árvores da figura.</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
       <th scope="col">Chamada</th>
@@ -96,7 +99,6 @@
       </tr>
       </table></div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob239.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob239.html</a>.</p>
   </uc-page>
 </body>
 </html>

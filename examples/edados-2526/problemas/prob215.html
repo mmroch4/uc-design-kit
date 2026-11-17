@@ -11,11 +11,14 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED215</li></ol>
-    </nav>
-    <h1>[ED215] Leilões</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob215.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="../materiais.html">Materiais</a></li><li><a href="index.html">Problemas</a></li><li aria-current="page">ED215</li></ol>
+      </nav>
+      <h1>Leilões</h1>
+      <uc-problem code="ED215" judge="mooshak" deadline="sub12" track></uc-problem>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Se submeter este problema no Mooshak, deverá
       submeter uma classe <strong>ED215</strong> contendo um programa completo para
@@ -54,8 +57,11 @@
 
         </p><p>É garantido que quando alguém quer vender existe sempre pelo menos uma oferta e que não existem empates (há sempre alguém com um preço máximo).
 
-      </p><h2>Exemplo de Input</h2>
-      <pre data-copy="Input">7
+      </p><h2>Exemplo de input e output</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">7
 OFERTA Joao 20
 OFERTA Ana 35
 OFERTA Raquel 15
@@ -63,12 +69,14 @@ VENDA
 OFERTA Pedro 45
 VENDA
 VENDA</pre>
-      <h2>Exemplo de Output</h2>
-      <pre data-copy="Output">35 Ana
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">35 Ana
 45 Pedro
 20 Joao</pre>
-    </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob215.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob215.html</a>.</p>
+        </div>
+      </div></div>
   </uc-page>
 </body>
 </html>

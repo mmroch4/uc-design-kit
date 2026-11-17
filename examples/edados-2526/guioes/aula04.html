@@ -12,37 +12,27 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="4">
-
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 4</span>
-          <span class="uc-mono uc-muted">7–10 out</span>
-        </p>
-        <h1>Aula 4 · Programação estruturada</h1>
-        <p class="uc-prose">Nesta aula resolves problemas maiores de forma organizada: dividir em métodos, generalizar código repetido e testar cada parte à medida que a escreves.</p>
-      </div>
+    <uc-guide week="4" week-label prev="aula03.html" next="aula05.html">
+      <h1>Aula 4 · Programação estruturada</h1>
+      <p class="uc-prose">Nesta aula resolves problemas maiores de forma organizada: dividir em métodos, generalizar código repetido e testar cada parte à medida que a escreves.</p>
 
       <!-- Exercícios que contam para a componente R da avaliação -->
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
-        <p class="uc-prose">Para efeitos da <a href="../avaliacao.html">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que podes submeter desta aula são:</p>
-        <ul class="uc-bullets">
-          <li><a href="../problemas/prob004.html">[ED004] Jogo do Galo</a> (peso 10%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob088.html">[ED088] Jogo da Vida</a> (peso 50%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob015.html">[ED015] Sopa de Letras</a> (peso 50%, exercício do guião principal)</li>
-          <li><a href="../problemas/prob101.html">[ED101] O Mundo da Tartaruga</a> (peso 25%, exercício extra)</li>
-        </ul>
-        <p><strong>Prazo de submissão:</strong> 28 de outubro (submeter no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak de EDados</a>).</p>
-        <div class="uc-callout">
-          <p><strong>É encorajado que vão falando com os docentes e outros colegas se tiverem dificuldades. No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</strong></p>
-          <ul class="uc-bullets">
-            <li>Depois do prazo os problemas continuam disponíveis no Mooshak, mas as submissões não contam para a nota.</li>
-            <li>Cada aula vale 11% da nota desta componente. Como existem 11 aulas com submissões, podes ter pontuação máxima mesmo sem ter feito tudo.</li>
-            <li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em lang="en">accepted</em>). Mesmo que resolvas todos os problemas, o máximo numa aula é de 100%.</li>
-            <li>Para ter 100% basta sempre resolver os exercícios do guião principal.</li>
-          </ul>
-        </div>
+        <!-- O prazo vem de course.js (deadlines, id "sub04"): aparece também no Início e em Semanas.
+             data-value: peso de cada problema na nota da aula. Sem data-type = exercício do guião principal. -->
+        <p class="uc-prose">Contam para a nota dos <a href="../avaliacao.html#exercicios">exercícios das aulas</a> e submetem-se no Mooshak até ao prazo. Para ter 100% nesta aula basta resolver os exercícios do guião principal. Se um colega te ajudou de forma direta, indica-o nos comentários do programa.</p>
+        <uc-problems track>
+          <section data-deadline="sub04">
+            <h3>Problemas da aula 4</h3>
+            <ul>
+          <li data-judge="mooshak"><a href="../problemas/prob004.html">Jogo do Galo</a> <code>ED004</code> <data value="10">10 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob088.html">Jogo da Vida</a> <code>ED088</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak"><a href="../problemas/prob015.html">Sopa de Letras</a> <code>ED015</code> <data value="50">50 %</data></li>
+          <li data-judge="mooshak" data-type="extra"><a href="../problemas/prob101.html">O Mundo da Tartaruga</a> <code>ED101</code> <data value="25">25 %</data></li>
+            </ul>
+          </section>
+        </uc-problems>
       </section>
 
       <section class="uc-section" aria-labelledby="exercicios">
@@ -50,7 +40,7 @@
 
         <uc-exercise id="jogo-do-galo" title="Jogo do Galo" open>
           <p>Resolve o problema <a href="../problemas/prob004.html">[ED004] Jogo do Galo</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
-          <p class="aula-label">Dicas e notas</p>
+          <p class="uc-eyebrow">Dicas e notas</p>
           <ul class="uc-bullets">
             <li>Podes começar por criar uma solução adaptada para as colunas, linhas e diagonais e verificar que a tua solução está correta.</li>
             <li>Cria os teus casos de teste e testa se a tua solução está correta.</li>
@@ -61,7 +51,7 @@
 
         <uc-exercise id="jogo-da-vida" title="Jogo da Vida">
           <p>Resolve o problema <a href="../problemas/prob088.html">[ED088] Jogo da Vida</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
-          <p class="aula-label">Dicas e notas</p>
+          <p class="uc-eyebrow">Dicas e notas</p>
           <ul class="uc-bullets">
             <li>O <a href="https://pt.wikipedia.org/wiki/Jogo_da_vida">Jogo da Vida</a> é talvez o mais conhecido autómato celular e foi criado para simular a vida através de regras simples.</li>
             <li>O objetivo principal é que submetas um código adequado e estruturado.</li>
@@ -142,7 +132,7 @@
               }
             </script>
           </uc-code>
-          <p class="aula-label">Passos sugeridos</p>
+          <p class="uc-eyebrow">Passos sugeridos</p>
           <ol class="uc-bullets">
             <li>Começa por completar o método <code>write()</code> da classe <code>Game</code>, que deve escrever a matriz <code>m[][]</code> na saída padrão. Chama <code>g.write()</code> no método <code>main</code> para testar se o que fizeste está a funcionar. <strong>Sempre que implementares novos métodos, testa o seu funcionamento individual!</strong></li>
             <li>Implementa o método <code>int countAlive(int y, int x)</code>. Este método deve percorrer as oito células vizinhas da posição <em>(y,x)</em> e contar quantas são iguais a <code>ALIVE</code> (ou seja, iguais a <code>'O'</code>). Não te esqueças de testar depois de implementar!</li>
@@ -153,12 +143,12 @@
 
         <uc-exercise id="sopa-de-letras" title="Sopa de Letras">
           <p>Neste exercício a ideia é tentares <strong>resolver o problema de forma organizada e estruturada</strong> sozinho. O problema é o <a href="../problemas/prob015.html">[ED015] Sopa de Letras</a>, também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
-          <p class="aula-label">Antes de começar a escrever código</p>
+          <p class="uc-eyebrow">Antes de começar a escrever código</p>
           <ul class="uc-bullets">
             <li>Lê todo o enunciado com atenção e percebe as tarefas e as restrições (limites do input).</li>
             <li>Pensa em como vais organizar o código: como dividir as tarefas em blocos pequenos? Que classes usar? Onde guardar os dados? Que métodos criar?</li>
           </ul>
-          <p class="aula-label">Durante a implementação</p>
+          <p class="uc-eyebrow">Durante a implementação</p>
           <ul class="uc-bullets">
             <li>Cria métodos: <strong>não faças tudo no <code>main</code></strong>.</li>
             <li>Escreve <strong>código para humanos</strong> (a melhor documentação é um código bem escrito).</li>
@@ -179,7 +169,7 @@
 
         <uc-exercise id="tartaruga-grafica" title="O Mundo da Tartaruga… gráfico!">
           <p>Se já fizeste todos os outros exercícios e quiseres brincar um pouco com interfaces gráficas no seguimento do problema anterior, podes usar um TAD de desenho chamado StdDraw, implementado por docentes da Universidade de Princeton. Começa por descarregar o ficheiro <a href="../downloads/StdDraw.java">StdDraw.java</a>, compila-o e executa-o. Deves ver uma janela como a que se segue:</p>
-          <p><img src="../imagens/stddraw.png" alt="Janela do StdDraw com as figuras de exemplo desenhadas pelo método main." style="max-width: 100%; height: auto"></p>
+          <p><img src="../imagens/stddraw.png" alt="Janela do StdDraw com as figuras de exemplo desenhadas pelo método main."></p>
           <p>Espreita o método <code>main</code> para ver como as imagens da janela foram geradas. Como referência, podes consultar a <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdDraw.html">documentação da classe StdDraw</a>.</p>
           <p>A ideia deste exercício é criar uma classe para <a href="https://en.wikipedia.org/wiki/Turtle_graphics" lang="en">Turtle Graphics</a>, um termo que designa um tipo de criação de desenhos usando um "cursor" que vai "andando" por um plano. Desenhas num plano cartesiano (com tamanho dado na construção do objeto) e tens um "cursor", a tartaruga, com uma posição e orientação, que pode andar na direção atual e tem um lápis que pode estar levantado ou pousado.</p>
           <ol class="uc-bullets">
@@ -215,17 +205,6 @@
           </ol>
         </uc-exercise>
       </section>
-
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula03.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 3 · Introdução a classes</strong>
-        </a>
-        <a class="uc-card" href="aula05.html" style="text-align: right">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 5 · Tipos abstratos de dados</strong>
-        </a>
-      </nav>
     </uc-guide>
   </uc-page>
 </body>
