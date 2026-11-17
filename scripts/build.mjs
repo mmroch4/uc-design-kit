@@ -19,8 +19,8 @@
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
  * they were created, because browsers cache them for a year.
  *
- * It fails when uc-kit.js (48 KB gzipped) or uc-search.js (6 KB) is over
- * its size budget and prints the sizes on every run.
+ * It fails when uc-kit.js (48 KB gzipped), uc-grading.js (6 KB) or
+ * uc-search.js (6 KB) is over its size budget and prints the sizes on every run.
  *
  * Usage: node scripts/build.mjs [--check]
  *   --check  exits with an error when kit/v1, a documentation page or the
@@ -45,6 +45,8 @@ const OUT = path.join(KIT, "v1");
 const JS_BUDGET_GZIP = 48 * 1024;
 /** Size budget of uc-search.js, gzipped (docs/plan/search-api.md 11.1). */
 const SEARCH_BUDGET_GZIP = 6 * 1024;
+/** Size budget of uc-grading.js, gzipped (docs/plan/grading-api.md 2.3). */
+const GRADING_BUDGET_GZIP = 6 * 1024;
 
 /* ---------- source maps for the concatenation ---------- */
 
@@ -130,6 +132,7 @@ async function main() {
   const manifest = JSON.parse(await readFile(path.join(SRC, "manifest.json"), "utf8"));
   const outputs = {
     ...(await bundle(manifest.js, "js", "uc-kit.js")),
+    ...(await bundle(manifest.grading, "js", "uc-grading.js")),
     ...(await bundle(manifest.search, "js", "uc-search.js")),
     ...(await bundle(manifest.css, "css", "uc-kit.css")),
   };
@@ -149,6 +152,7 @@ async function main() {
   }
   for (const [name, limit, where] of [
     ["uc-kit.js", JS_BUDGET_GZIP, "docs/plan/blocks-api.md 1.5"],
+    ["uc-grading.js", GRADING_BUDGET_GZIP, "docs/plan/grading-api.md 2.3"],
     ["uc-search.js", SEARCH_BUDGET_GZIP, "docs/plan/search-api.md 11.1"],
   ]) {
     const gzipped = gzipSync(outputs[name], { level: 9 }).length;

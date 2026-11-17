@@ -686,4 +686,27 @@ Details decided in G0 (beyond the plan):
 
 ## 17. Refinements made in later phases
 
-None yet. Each phase adds a subsection here when it changes a detail above.
+Each phase adds a subsection here when it changes a detail above.
+
+### 17.1 G1
+
+1. **No `UC.__duplicate` check in `uc-grading.js`** (2.2 "Twice"). That flag
+   is set on the first `UC` when a second copy of `uc-kit.js` runs and stays
+   set, so a module that tested it would never define its element. The
+   module starts with `if (!UC) return;`, like `uc-search.js`; `UC.define`
+   already ignores a tag that is defined, and `UC.internal.loadModule` loads
+   each file once.
+2. **`tags` is a selector string**, not an array (`"uc-grading"`), passed to
+   `querySelector` as is.
+3. **The "whole `kit/v1` folder" check (2.4)**: `docs/pt/publicar.html`,
+   `docs/pt/novo-ano.html`, `template/README.txt` and `template/AGENTS.md`
+   never tell teachers to copy kit files. Every site loads the kit from
+   `https://uc-design-kit.miguelrocha.dev/kit/v1/` (or a frozen
+   `kit/vX.Y.Z/`), where `uc-grading.js` is published next to `uc-kit.js`, so
+   nothing changed there. The CHANGELOG line covers the rare site that keeps
+   its own copy. Frozen releases before G1 keep `uc-grading` inside their
+   `uc-kit.js`.
+4. **Failure check**: `scripts/check-pages.mjs` opens
+   `tests/pages/uc-grading.html` with `uc-grading.js` answering 404 and checks
+   that the page is revealed, the lists stay visible and exactly one console
+   warning is written.

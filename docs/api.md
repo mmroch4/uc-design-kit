@@ -870,6 +870,12 @@ proportions bar, a table of weights and minimums and, optionally, a grade
 simulation. Each weight is written once, in a `<data>` element that shows
 without JavaScript.
 
+It is defined in `uc-grading.js`, which `uc-kit.js` loads from its own folder
+when the page has a `<uc-grading>` (at start, or when a script adds one
+later). The page is shown once it has loaded, waiting at most 300 ms, as for
+the fonts; if the file cannot load, the teacher's list stays as it is and the
+console says `[uc-kit] could not load uc-grading.js next to uc-kit.js`.
+
 ```html
 <uc-grading scale="20" pass="9.5" calculator>
   <ul>
@@ -1179,8 +1185,9 @@ system font and skips downloading Inter, if a course prefers.
   site search (`search.label`, `search.placeholder`, `search.loading`,
   `search.retry`, `search.empty`, `search.count`, `search.countOne`,
   `search.close`, `search.indexDate`, `search.deadlines`, `search.notices`,
-  `search.keys`) come with `uc-search.js` (`kit/src/search/strings.js`) and
-  never replace a string the site already set with `UC.addTranslations`.
+  `search.keys`) come with `uc-search.js` (`kit/src/search/strings.js`), and
+  the `grading.*` strings with `uc-grading.js` (`kit/src/grading/strings.js`);
+  neither replaces a string the site already set with `UC.addTranslations`.
 - **Active language** is resolved in this order: `?lang=` query, saved choice
   (`localStorage` key `uc:lang`), `<html lang>`, first of `languages`.
 - **In-place bilingual content:** any element with a `lang` attribute whose

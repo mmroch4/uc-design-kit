@@ -187,29 +187,6 @@
     const lines = UC.internal.icsText(deadline({ id: "q", title: "Quiz", date: "2025-11-24", end: "2025-11-30" })).split("\r\n");
     equal([lines.includes("DTSTART;VALUE=DATE:20251124"), lines.includes("DTEND;VALUE=DATE:20251201"), lines.includes("TZID:Europe/Lisbon")], [true, true, false]);
   });
-  test("uc-grading: normalised weights and formula coefficients", () => {
-    const render = (html, attributes = "") => {
-      const host = document.createElement("div");
-      host.hidden = true;
-      host.innerHTML = `<uc-grading ${attributes}>${html}</uc-grading>`;
-      document.body.append(host);
-      const element = host.firstElementChild;
-      const result = {
-        formula: element.querySelector(".uc-grading__formula").textContent,
-        weights: Array.from(element.querySelectorAll(".uc-grading__table tbody td:nth-child(2)"), (cell) => cell.textContent),
-      };
-      host.remove();
-      return result;
-    };
-    const edados = render('<ul><li data-code="E" data-scale="14"><data value="14">14 valores</data> Exame</li><li data-code="AP" data-scale="5"><data value="5">5 valores</data> AP</li><li data-code="P" data-scale="1"><data value="1">1 valor</data> P</li></ul>');
-    const ip = render('<ul><li data-code="A"><data value="0,1">0,1</data> A</li><li data-code="T"><data value="0.4">0,4</data> T</li><li data-code="E"><data value="0.5">0,5</data> E</li><li data-code="B" data-bonus="2">Bónus</li></ul>');
-    equal(
-      inLang("pt", () => [edados.formula, ip.formula, ip.weights[3]]),
-      ["Nota = E + AP + P", "Nota = 0,1 × A + 0,4 × T + 0,5 × E + B", "Bónus · até 2 valores"],
-    );
-    equal(edados.weights[0].replace(/\s/g, " "), "14 valores · 70%");
-  });
-
   test("findMatches ignores case and accents and maps back to the text", () => {
     const text = "Árvores binárias; ÁRVORES";
     const ranges = UC.internal.findMatches(text, UC.internal.normalise("arvores"));
@@ -401,7 +378,38 @@
     equal(byName, ["A", "B", "C", "Total"]);
   });
 
-  const summary = document.createElement("p");
-  summary.textContent = failures ? `${failures} failing` : "All tests passed.";
-  results.after(summary);
+  /* uc-grading lives in uc-grading.js (core/modules.js): load it before creating one. */
+  const gradingTests = () => test("uc-grading: normalised weights and formula coefficients", () => {
+    const render = (html, attributes = "") => {
+      const host = document.createElement("div");
+      host.hidden = true;
+      host.innerHTML = `<uc-grading ${attributes}>${html}</uc-grading>`;
+      document.body.append(host);
+      const element = host.firstElementChild;
+      const result = {
+        formula: element.querySelector(".uc-grading__formula").textContent,
+        weights: Array.from(element.querySelectorAll(".uc-grading__table tbody td:nth-child(2)"), (cell) => cell.textContent),
+      };
+      host.remove();
+      return result;
+    };
+    const edados = render('<ul><li data-code="E" data-scale="14"><data value="14">14 valores</data> Exame</li><li data-code="AP" data-scale="5"><data value="5">5 valores</data> AP</li><li data-code="P" data-scale="1"><data value="1">1 valor</data> P</li></ul>');
+    const ip = render('<ul><li data-code="A"><data value="0,1">0,1</data> A</li><li data-code="T"><data value="0.4">0,4</data> T</li><li data-code="E"><data value="0.5">0,5</data> E</li><li data-code="B" data-bonus="2">Bónus</li></ul>');
+    equal(
+      inLang("pt", () => [edados.formula, ip.formula, ip.weights[3]]),
+      ["Nota = E + AP + P", "Nota = 0,1 × A + 0,4 × T + 0,5 × E + B", "Bónus · até 2 valores"],
+    );
+    equal(edados.weights[0].replace(/\s/g, " "), "14 valores · 70%");
+  });
+
+  test("modules: kit files resolve next to uc-kit.js", () => equal(new URL(UC.internal.kitUrl("uc-grading.js")).pathname.endsWith("/kit/v1/uc-grading.js"), true));
+
+  UC.internal
+    .loadModule("grading")
+    .then(gradingTests, (error) => test("uc-grading.js loads next to uc-kit.js", () => { throw error; }))
+    .then(() => {
+      const summary = document.createElement("p");
+      summary.textContent = failures ? `${failures} failing` : "All tests passed.";
+      results.after(summary);
+    });
 })();

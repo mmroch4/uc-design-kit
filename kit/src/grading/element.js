@@ -3,10 +3,14 @@
  * formula, proportions bar, table of weights and minimums and, with
  * `calculator`, a grade simulation. Weights are read from each item's <data>.
  * See docs/api.md, section 3.6.
+ *
+ * Part of uc-grading.js, which uc-kit.js loads when the page has a
+ * <uc-grading> (core/modules.js, docs/plan/grading-api.md 2.2).
  */
 (function (UC) {
   "use strict";
-  if (UC.__duplicate) return;
+  // No UC.__duplicate check: that flag stays set after a second copy of uc-kit.js, and UC.define ignores a tag that is already defined.
+  if (!UC) return;
 
   const { h, uid, flag, number, announce } = UC.internal;
 

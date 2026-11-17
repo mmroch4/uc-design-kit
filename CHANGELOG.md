@@ -6,6 +6,15 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- `<uc-grading>` now lives in its own file, `kit/v1/uc-grading.js`, which
+  `uc-kit.js` loads from its own folder only on pages that have a
+  `<uc-grading>` (grading phase G1, `docs/plan/grading-api.md` 2). Nothing
+  changes on the page, and `uc-kit.js` drops from 47.0 KB (in 1.0.0) to 44.9 KB
+  gzipped. Sites that load the kit from `uc-design-kit.miguelrocha.dev` need
+  nothing; a site that keeps its own copy of the kit must copy the whole
+  `kit/v1` folder, not only `uc-kit.js` and `uc-kit.css`.
+
 ## Widgets [1.0.0] - 2026-11-17
 
 The algorithm widget library (`widgets/v1/`, frozen as `widgets/v1.0.0/`)

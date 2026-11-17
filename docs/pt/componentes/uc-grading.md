@@ -109,7 +109,7 @@ Exemplo (pesos decimais sem fórmula e com uma nota), [demonstração ao vivo](h
 
 ## Configuração usada
 
-Nenhuma: tudo vem do HTML. Os textos gerados ("Como é calculada a nota", "Simular a nota", a nota sobre o SIGARRA) vêm dos dicionários do kit e podem ser mudados com [`UC.addTranslations`](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/api-js.md), por exemplo para outra instituição.
+Nenhuma: tudo vem do HTML. O componente está no ficheiro `uc-grading.js`, ao lado do `uc-kit.js`, que o kit só descarrega nas páginas com um `<uc-grading>`; não é preciso acrescentar nada ao `<head>`. Os textos gerados ("Como é calculada a nota", "Simular a nota", a nota sobre o SIGARRA) vêm dos dicionários do kit e podem ser mudados com [`UC.addTranslations`](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/api-js.md), por exemplo para outra instituição.
 
 ## Personalizar
 
@@ -146,7 +146,7 @@ Dar a cada componente um `data-code` curto e um nome claro. Escrever o peso no `
 
 ## Sem JavaScript
 
-Aparece a lista tal como foi escrita, com os pesos dentro de cada item. Não há fórmula, tabela nem simulador.
+Aparece a lista tal como foi escrita, com os pesos dentro de cada item. Não há fórmula, tabela nem simulador. O mesmo acontece se o `uc-grading.js` não puder ser descarregado.
 
 ## Ver também
 
