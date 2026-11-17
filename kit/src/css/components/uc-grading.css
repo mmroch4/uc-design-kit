@@ -75,4 +75,6 @@
 :where(.uc-grading__field input[aria-invalid="true"]) { border-color: var(--uc-color-danger-text); }
 :where(.uc-grading__error) { color: var(--uc-color-danger-text); font-size: var(--uc-font-size-md); }
 :where(.uc-grading__result) { font-size: var(--uc-font-size-lg); font-weight: 600; }
-:where(.uc-grading__status:empty) { display: none; }
+:where(.uc-grading__status:empty, .uc-grading__branches:empty) { display: none; }
+:where(.uc-grading__checks) { margin: 0; padding: 0; list-style: none; }
+:where(.uc-grading__checks:empty) { display: none; }

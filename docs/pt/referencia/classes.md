@@ -286,6 +286,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-grading__sub` | As linhas das partes de uma componente, recolhidas. |
 | `.uc-grading__calculator`, `__fields`, `__field`, `__error` | O simulador, os campos, cada campo e a sua mensagem de erro. |
 | `.uc-grading__result`, `__status` | A nota simulada e a linha do estado ("Aprovado nesta simulação"). |
+| `.uc-grading__branches`, `__checks` | Com `data-formulas`: o valor de cada fórmula e a lista das regras verificadas (✓ / ✗). |
 
 ### [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md)
 

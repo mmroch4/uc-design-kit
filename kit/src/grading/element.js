@@ -186,6 +186,8 @@
 
       const columns = formulas ? model.columns || [] : fallback ? [] : null;
       const labelOf = (column, index) => column.name || (columns.length > 1 ? this.t("grading.formulaN", { n: index + 1 }) : this.t("grading.column.weight"));
+      // With formulas, the calculator evaluates them and checks every rule (grading-api.md 9).
+      this.calc = formulas && { model, rules, all, fn, alias, labels: columns.map((column, index) => labelOf(column, index)) };
       const bar = (column) =>
         h(
           "div",
@@ -217,8 +219,7 @@
                 ),
               ]
             : null,
-          // The calculator with formulas and rules comes in phase G3 (grading-api.md 9).
-          flag(this, "calculator") && !columns ? this.renderCalculator(components, scale) : null,
+          flag(this, "calculator") && !fallback ? this.renderCalculator(components, scale) : null,
           this.extra,
         ),
       );
@@ -286,6 +287,8 @@
 
     renderCalculator(components, scale) {
       this.result = h("output", { class: "uc-grading__result" });
+      this.branches = h("p", { class: "uc-grading__branches" });
+      this.checks = h("ul", { class: "uc-grading__checks" });
       this.status = h("p", { class: "uc-grading__status" });
       const inputs = fields(components).map((component) => {
         const max = component.bonus !== null ? component.bonus : component.scale;
@@ -312,7 +315,9 @@
         { class: "uc-grading__calculator" },
         h("legend", {}, this.t("grading.calculator.legend")),
         h("div", { class: "uc-grading__fields" }, inputs),
+        this.calc && this.branches,
         h("p", {}, this.result),
+        this.calc && this.checks,
         this.status,
         h("p", { class: "uc-small uc-muted" }, this.t("grading.calculator.disclaimer")),
       );
@@ -337,7 +342,11 @@
       }
       let result = "";
       let status = "";
+      const calc = this.calc;
+      if (calc) this.branches.textContent = "";
+      if (calc) this.checks.replaceChildren();
       if (!complete) status = this.t("grading.calculator.incomplete");
+      else if (calc) [result, status] = this.simulate(calc, components, scale, values);
       else {
         const bonus = components.reduce((sum, component) => sum + (component.bonus !== null ? values.get(component) : 0), 0);
         const grade = Math.min(scale, components.reduce((sum, component) => sum + (component.bonus === null ? coefficient(component, scale) * gradeOf(component, values) : 0), 0) + bonus);
@@ -356,6 +365,42 @@
       this.result.textContent = result;
       this.status.textContent = status;
       if (speak) announce([result, status].filter(Boolean).join(". "), 300);
+    }
+
+    /** Formula mode (grading-api.md 9): fills the branches line and the checks, returns [result line, state line]. */
+    simulate({ model, rules, all, fn, alias, labels }, components, scale, values) {
+      const t = (key, data) => this.t(`grading.calculator.${key}`, data);
+      const own = new Map();
+      const value = (name) => (own.has(name) ? own.get(name) : gradeOf(all.find((component) => component.code === name), values));
+      model.formulas.forEach(({ name, tree }) => name && own.set(name, grading.evaluate(tree, value)));
+      const raw = grading.evaluate(model.result.tree, value);
+      const bonus = components.reduce((sum, component) => sum + (component.bonus !== null ? values.get(component) : 0), 0);
+      // RESULT, and the result formula's name in rules, are the final grade: bonus added, clamped (5.3).
+      const grade = Math.max(0, Math.min(scale, raw + bonus));
+      if (Number.isNaN(grade)) return ["", t("undefined")];
+      own.set("RESULT", grade).set(model.result.name, grade);
+      const branches = (model.columns || []).map((column) => grading.evaluate(column.tree, value));
+      let result = model.result.name ? t("resultNamed", { name: model.result.name, grade: fmt(grade, 1) }) : t("result", { grade: fmt(grade, 1) });
+      if (branches.length > 1) {
+        this.branches.textContent = branches.map((branch, index) => t("branch", { name: labels[index], grade: fmt(branch, 1) })).join(" · ");
+        result += ` (${t("counts", { name: labels[branches.findIndex((branch) => Math.abs(branch - raw) <= 1e-9)] })})`;
+      }
+      const checked = rules.map(({ rule }) => (rule ? grading.check(rule, value) : undefined));
+      const word = (ok) => t(ok ? "ruleMet" : ok === false ? "ruleFailed" : "unchecked");
+      this.checks.append(
+        ...rules.map(({ rule, item }, index) =>
+          h("li", {}, rule ? [h("span", { "aria-hidden": "true" }, checked[index] ? "✓" : checked[index] === false ? "✗" : "?"), " ", grading.printRule(rule, fn, alias), h("span", { class: "uc-visually-hidden" }, ` (${word(checked[index])})`)] : `${word()}: ${item.textContent.trim()}`),
+        ),
+      );
+      const failed = checked.indexOf(false);
+      const status = !rules.length
+        ? ""
+        : checked.includes(null)
+          ? t("undefined")
+          : failed >= 0
+            ? `${t("fail")} ${t("failRule", { rule: grading.printRule(rules[failed].rule, (type) => this.t(`grading.${type}`), alias).join("") })}`
+            : t(checked.includes(undefined) ? "passIf" : "passRules");
+      return [result, status];
     }
   }
 

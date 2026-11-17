@@ -100,6 +100,16 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-timetable.html", selector: "#days", file: "tests/pages/uc-timetable-days.aria.yml" },
   { page: "tests/pages/uc-grading.html", selector: "#pc", file: "tests/pages/uc-grading.aria.yml" },
   { page: "tests/pages/uc-grading.html", selector: "#edados-2627", file: "tests/pages/uc-grading-formulas.aria.yml" },
+  {
+    page: "tests/pages/uc-grading.html",
+    selector: "#edados-2627 .uc-grading__calculator",
+    file: "tests/pages/uc-grading-simulation.aria.yml",
+    // P 20, R 20, E 4 (grading-api.md 13.3): two branches, Fórmula 2 counts, E ≥ 4,9 fails.
+    prepare: async (page) => {
+      for (const [index, value] of ["20", "20", "4"].entries()) await page.locator("#edados-2627 .uc-grading__calculator input").nth(index).fill(value);
+      await page.waitForTimeout(450);
+    },
+  },
   { page: "tests/pages/uc-assessment-info.html", selector: "#full", file: "tests/pages/uc-assessment-info.aria.yml" },
   { page: "tests/pages/uc-summaries.html", selector: "#main", file: "tests/pages/uc-summaries.aria.yml" },
   { page: "tests/pages/uc-materials.html", selector: "#main", file: "tests/pages/uc-materials.aria.yml" },
@@ -417,7 +427,6 @@ async function checkBehaviour(browser, origin, relative) {
   await context.close();
 
   problems.push(...(await checkClassFilter(browser, origin, relative)));
-  problems.push(...(await checkGradingCalculator(browser, origin, relative)));
   problems.push(...(await checkSummariesSearch(browser, origin, relative)));
   problems.push(...(await checkProblems(browser, origin, relative)));
   problems.push(...(await checkSortableAndEditions(browser, origin, relative)));
@@ -480,20 +489,30 @@ async function checkClassFilter(browser, origin, relative) {
   return problems;
 }
 
-/** The grade simulation of <uc-grading calculator>, on pages that have one. */
-async function checkGradingCalculator(browser, origin, relative) {
+/**
+ * The grade simulation of <uc-grading calculator>, on pages that have one: the first legacy
+ * calculator and the first one with formulas and rules (docs/plan/grading-api.md 9 and 12).
+ */
+async function checkGradingCalculator(browser, origin, relative, axeSource) {
+  const problems = [];
+  for (const formulas of [false, true]) problems.push(...(await checkOneGradingCalculator(browser, origin, relative, axeSource, formulas)));
+  return problems;
+}
+
+async function checkOneGradingCalculator(browser, origin, relative, axeSource, formulas) {
   const problems = [];
   const { context, page } = await open(browser, origin, relative);
-  const calculator = await firstVisible(page, ".uc-grading__calculator");
+  const calculator = await firstVisible(page, `uc-grading${formulas ? ":has(> [data-formulas])" : ":not(:has(> [data-formulas]))"} .uc-grading__calculator`);
   if (!calculator) {
     await context.close();
     return problems;
   }
+  const label = formulas ? "calculator with formulas" : "calculator";
   const fields = await calculator.$$("input");
   const input = fields[0];
   const box = await input.boundingBox();
-  if (box && box.height < 44) problems.push(`calculator: a field is ${Math.round(box.height)}px tall (44px minimum)`);
-  if (!(await input.evaluate((node) => (node.labels[0] ? node.labels[0].textContent.trim() : "")))) problems.push("calculator: a field has no visible <label>");
+  if (box && box.height < 44) problems.push(`${label}: a field is ${Math.round(box.height)}px tall (44px minimum)`);
+  if (!(await input.evaluate((node) => (node.labels[0] ? node.labels[0].textContent.trim() : "")))) problems.push(`${label}: a field has no visible <label>`);
   await input.focus();
   await page.keyboard.type("999");
   await page.waitForTimeout(100);
@@ -501,8 +520,8 @@ async function checkGradingCalculator(browser, origin, relative) {
     state: node.getAttribute("aria-invalid"),
     error: (document.getElementById(node.getAttribute("aria-describedby") || "") || {}).textContent || "",
   }));
-  if (invalid.state !== "true") problems.push("calculator: an out-of-range value does not set aria-invalid");
-  if (!invalid.error.trim()) problems.push("calculator: the error is not linked with aria-describedby");
+  if (invalid.state !== "true") problems.push(`${label}: an out-of-range value does not set aria-invalid`);
+  if (!invalid.error.trim()) problems.push(`${label}: the error is not linked with aria-describedby`);
   // Every field set to 0 by keyboard: the field is valid again and the result is announced.
   for (const field of fields) {
     await field.focus();
@@ -510,9 +529,17 @@ async function checkGradingCalculator(browser, origin, relative) {
     await page.keyboard.type("0");
   }
   await page.waitForTimeout(450);
-  if ((await input.getAttribute("aria-invalid")) !== "false") problems.push("calculator: aria-invalid stays set after a valid value");
-  if (!/Nota final|Final grade/.test(await liveText(page))) problems.push("calculator: the simulated grade is not announced");
-  if (!(await focusedMatches(page, ".uc-grading__calculator input"))) problems.push("calculator: focus left the field");
+  if ((await input.getAttribute("aria-invalid")) !== "false") problems.push(`${label}: aria-invalid stays set after a valid value`);
+  if (!/Nota final|Final grade/.test(await liveText(page))) problems.push(`${label}: the simulated grade is not announced`);
+  if (!(await focusedMatches(page, ".uc-grading__calculator input"))) problems.push(`${label}: focus left the field`);
+  if (formulas) {
+    // One announcement with the result line and the state line; ✓ / ✗ always come with words (12).
+    const ruled = await calculator.evaluate((node) => Boolean(node.querySelector(".uc-grading__checks li")));
+    if (ruled && !/(?:Nota final|Final grade).*\. (?:Aprovado|Não aprovado|Pass|Not a pass)/.test(await liveText(page))) problems.push(`${label}: the result and state lines are not announced together`);
+    const silent = await calculator.evaluate((node) => Array.from(node.querySelectorAll(".uc-grading__checks li")).filter((item) => /[✓✗]/.test(item.textContent) && !item.querySelector(".uc-visually-hidden")).length);
+    if (silent) problems.push(`${label}: ${silent} check(s) show ✓ / ✗ without words`);
+    problems.push(...(await runAxe(page, axeSource)).map((line) => `[${label}, after input] [axe] ${line}`));
+  }
   await context.close();
   return problems;
 }
@@ -648,6 +675,7 @@ async function checkPage(browser, origin, relative, axeSource) {
   problems.push(...(await checkReflowAndZoom(browser, origin, relative)));
   problems.push(...(await checkMotion(browser, origin, relative)));
   problems.push(...(await checkBehaviour(browser, origin, relative)));
+  problems.push(...(await checkGradingCalculator(browser, origin, relative, axeSource)));
   problems.push(...(await checkWidgets(browser, origin, relative, axeSource)));
   problems.push(...(await checkSearch(browser, origin, relative, axeSource)));
   return [...new Set(problems)];

@@ -13,8 +13,13 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   rules in a `<ul data-rules>` (`E >= 4.9`, `CF >= 9.5`, or plain text). The
   table and bars get one weight column per formula, and a new `result`
   attribute names the final formula. Pages without these lists are unchanged
-  (grading phase G2, `docs/plan/grading-api.md` 3 to 8). The simulation for
-  formulas comes in G3.
+  (grading phase G2, `docs/plan/grading-api.md` 3 to 8).
+- With `data-formulas`, `<uc-grading calculator>` simulates the formulas: the
+  value of each branch of a `max`/`min`, the final grade with the branch
+  that counts, every rule checked with ✓/✗ and words ("cumprido" / "não
+  cumprido", "não verificado" for text rules) and a pass or fail line naming
+  the first rule that fails. New classes `.uc-grading__branches` and
+  `.uc-grading__checks` (grading phase G3, `docs/plan/grading-api.md` 9).
 
 ### Changed
 - `<uc-grading>` now lives in its own file, `kit/v1/uc-grading.js`, which

@@ -268,13 +268,13 @@
 
         <h3 id="formulas">Várias fórmulas e regras para aprovar</h3>
         <p>Quando o método de avaliação é uma fórmula, como no diapositivo da cadeira, escreve-se essa fórmula numa lista <code>&lt;ol data-formulas&gt;</code>, dentro de um <code>&lt;code&gt;</code>, e as condições para aprovar numa lista <code>&lt;ul data-rules&gt;</code>. Os pesos saem da fórmula, por isso as componentes já não precisam de <code>&lt;data&gt;</code>, mas todas precisam de um <code>data-code</code>. Com <code>max</code>, cada fórmula dentro dos parênteses tem a sua coluna na tabela e a sua barra.</p>
-        <!-- docs:demo src="../../demos/uc-grading/formulas.html" title="duas fórmulas, conta a mais favorável, e regras para aprovar" height="560" -->
+        <!-- docs:demo src="../../demos/uc-grading/formulas.html" title="duas fórmulas, conta a mais favorável, regras para aprovar e simulador" height="940" -->
         <div class="docs-demo" id="demo-uc-grading-formulas">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-grading/formulas.html" title="Demonstração: duas fórmulas, conta a mais favorável, e regras para aprovar" loading="lazy" style="height: 560px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-grading/formulas.html" title="Demonstração: duas fórmulas, conta a mais favorável, regras para aprovar e simulador" loading="lazy" style="height: 940px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
-            <uc-code lang="html" no-download><pre><code>&lt;uc-grading scale=&quot;20&quot;&gt;
+            <uc-code lang="html" no-download><pre><code>&lt;uc-grading scale=&quot;20&quot; calculator&gt;
   &lt;ul&gt;
     &lt;li data-code=&quot;P&quot;&gt;Avaliação prática&lt;/li&gt;
     &lt;li data-code=&quot;R&quot;&gt;Resolução de problemas&lt;/li&gt;
@@ -295,7 +295,8 @@
         <!-- /docs:demo -->
         <p>A fórmula pode usar números (<code>0.75</code> ou <code>0,75</code>), os códigos das componentes, <code>+ - * /</code> (também <code>×</code> e <code>−</code>), parênteses e <code>max</code> ou <code>min</code>, com os argumentos separados por <code>;</code>. Cuidado com a vírgula: <code>max(1,5)</code> lê-se como um só número, 1,5; escreve-se <code>max(1; 5)</code>. Com <code>NOME = …</code> a fórmula tem nome e as seguintes podem usá-lo (<code>A = …</code>, <code>B = …</code>, <code>CF = max(A; B)</code>). O texto depois do <code>&lt;code&gt;</code> aparece por baixo da fórmula.</p>
         <p>Cada regra é uma comparação (<code>&gt;=</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&lt;</code>, <code>=</code>) entre expressões; <code>RESULT</code> é a nota final. Um item sem <code>&lt;code&gt;</code> é uma regra escrita só em texto. O <code>data-min</code> e o <code>pass</code> também aparecem na lista "Para aprovar". Uma regra como <code>E &gt;= 4.9</code> também preenche a coluna Mínimo.</p>
-        <p>Se uma fórmula tiver um erro, a página mostra as listas tal como estão escritas e a consola do navegador diz qual é a fórmula e a coluna do erro, por exemplo <code>formula 1, column 18: unknown name "X"</code>. O simulador com fórmulas chega na próxima versão; por agora, com <code>data-formulas</code>, o atributo <code>calculator</code> é ignorado.</p>
+        <p>Se uma fórmula tiver um erro, a página mostra as listas tal como estão escritas e a consola do navegador diz qual é a fórmula e a coluna do erro, por exemplo <code>formula 1, column 18: unknown name "X"</code>. </p>
+        <p>Com <code>calculator</code>, o simulador calcula as fórmulas enquanto o aluno escreve. Com <code>max</code> mostra o valor de cada fórmula ("Fórmula 1: 12,8 · Fórmula 2: 13") e diz qual conta ("Nota final (CF): 13 valores (conta a Fórmula 2)"). Depois verifica cada regra, com ✓ ou ✗ e as palavras "cumprido" ou "não cumprido" para quem usa um leitor de ecrã; as regras escritas só em texto aparecem como "não verificado". A última linha diz o estado: "Aprovado nesta simulação.", "Aprovado nesta simulação, se cumprires os requisitos não verificados." ou "Não aprovado nesta simulação." seguido da primeira regra que falha. Os bónus somam-se à fórmula e a nota final fica entre 0 e a escala; nas regras, <code>RESULT</code> e o nome da fórmula final (<code>CF</code>) são essa nota final. As regras usam a nota sem arredondar: 9,45 não cumpre <code>CF &gt;= 9.5</code>, mesmo aparecendo como 9,5. Só com uma lista <code>data-rules</code>, sem fórmulas, o simulador usa apenas o <code>data-min</code> e o <code>pass</code>.</p>
 
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
@@ -339,6 +340,7 @@
               <tr><td><code>.uc-grading__sub</code></td><td>As linhas das partes de uma componente, recolhidas.</td></tr>
               <tr><td><code>.uc-grading__calculator</code>, <code>__fields</code>, <code>__field</code>, <code>__error</code></td><td>O simulador, os campos, cada campo e a sua mensagem de erro.</td></tr>
               <tr><td><code>.uc-grading__result</code>, <code>__status</code></td><td>A nota simulada e a linha do estado ("Aprovado nesta simulação").</td></tr>
+              <tr><td><code>.uc-grading__branches</code>, <code>__checks</code></td><td>Com <code>data-formulas</code>: o valor de cada fórmula e a lista das regras verificadas (✓ / ✗).</td></tr>
             </tbody>
           </table>
         </div>
