@@ -49,14 +49,14 @@ window.UC_COURSE = {
   ],
 
   deadlines: [
-    /*__PS_DEADLINES__*/
+    // TODO: one deadline per weekly problem set (kind "submission"); the dates are on the ps01–ps06 pages, which could not be read yet.
     {
       id: "contest1",
       title: "1st Contest",
       date: "2026-10-20",
       kind: "assessment",
       note: "In class, individual, ICPC style · 30% of CE",
-      url: "contest1.html",
+      url: "https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/contest1.html",
     },
     {
       id: "contest2",
