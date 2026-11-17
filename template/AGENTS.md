@@ -41,6 +41,14 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
    login (pautas, SIGARRA) leva `data-auth` (ou `data-auth="SIGARRA"`), sem
    imagem de cadeado: o kit acrescenta-a.
 10. Se faltar uma informação, escrever `<!-- TODO: … -->` em vez de a inventar.
+11. O `course.js` só tem valores: comentários, constantes (`const NOME = …;`)
+    e uma única atribuição `window.UC_COURSE = { … };`. Objetos, listas,
+    textos, números, `true`, `false`, `null`; uma constante, `+` entre textos
+    e `${NOME}` dentro de `` ` ``. Nada de funções, `new Date()`, chamadas,
+    `...` nem outras atribuições: o `uc-site.py` lê-o sem o executar.
+12. Depois de mexer no site, correr `python3 uc-site.py check` nesta pasta e
+    corrigir todos os `ERRO` (e os `AVISO` que forem do que se alterou). Nunca
+    editar o `uc-site.py`.
 
 ## Migrar um site antigo
 
@@ -93,8 +101,9 @@ Quando o professor pede para passar um site existente para esta pasta:
    caminhos relativos. Um link para uma página que fica de fora aponta para o
    site antigo, com endereço absoluto.
 8. **Verificar** antes de dizer que acabou:
-   - cada `href` e `src` local aponta para um ficheiro que existe;
-   - cada página tem o `<head>` da regra 2, um `<uc-page>` e um `<h1>`;
+   - `python3 uc-site.py check` termina sem `ERRO` (links e imagens locais,
+     `course.js`, `<head>` de cada página, ids, `<h1>`, `alt`, permissões);
+   - cada página tem o `<head>` da regra 2 e um `<uc-page>`;
    - se for possível abrir um browser, abrir cada página e confirmar que a
      consola não tem erros nem avisos `[uc-kit]`; `?today=AAAA-MM-DD` no
      endereço simula um dia do semestre;

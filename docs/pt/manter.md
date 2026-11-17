@@ -1,0 +1,99 @@
+# Manter o site
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/manter.html
+
+Depois de cada alteração, um comando verifica o site inteiro: links e imagens que não existem, erros no `course.js`, ids repetidos, páginas sem o kit e permissões que o servidor web não consegue ler. Chama-se `uc-site.py`, vem com o modelo e só precisa de Python 3.
+
+## Correr o script
+
+O `uc-site.py` está na pasta do site, ao lado do `course.js`, e passa de ano para ano com o resto da pasta. Corre-se depois de cada alteração:
+
+```sh
+cd 2627
+python3 uc-site.py
+```
+
+No servidor do departamento, por SSH, sem mudar de pasta (o script verifica sempre a pasta onde está):
+
+```sh
+ssh utilizador@servidor "python3 ~/public_html/aulas/minha-uc/2627/uc-site.py"
+```
+
+- Precisa de **Python 3.8 ou mais recente** (`python3 --version` diz qual há). Não instala nada, não usa a Internet e nunca altera o `course.js` nem as páginas.
+- No Windows, o comando é `py uc-site.py`.
+- Se o servidor não tiver Python 3, corre-se na cópia local antes de publicar: o resultado é o mesmo, exceto as permissões, que dependem do servidor.
+
+Na versão 1.2.0 do kit, o mesmo comando passa também a escrever o índice da pesquisa no site, quando o `course.js` tiver `search: true`. Até lá, só verifica.
+
+## Comandos e opções
+
+| Comando | O que faz |
+| --- | --- |
+| `python3 uc-site.py` | Verifica tudo e, com a pesquisa ligada, escreve o índice. É o comando a usar depois de cada alteração. |
+| `python3 uc-site.py check` | Só verifica. Não escreve nada. |
+| `python3 uc-site.py index` | Só escreve o índice da pesquisa (a partir da versão 1.2.0). |
+
+| Opção | Efeito |
+| --- | --- |
+| `--site PASTA` | A pasta do site. Por omissão, a pasta onde está o script, seja qual for a pasta atual. |
+| `--fix-permissions` | Dá permissão de leitura a todos os ficheiros e pastas do site que não a têm (ver [Permissões](#permissoes)). |
+| `--quiet` | Mostra só os erros, e nada quando não há erros. Para o `cron`. |
+| `--lang pt` ou `--lang en` | Língua das mensagens. Por omissão, a primeira língua do `course.js` (inglês se não for `pt` nem `en`). |
+| `--version` | A versão do script (a do kit com que saiu). |
+| `--help` | Ajuda. |
+
+## Ler o resultado
+
+Uma linha por problema, agrupadas por ficheiro, com o número da linha quando se sabe, e um resumo no fim:
+
+```text
+UC Design Kit · uc-site.py 1.2.0 · Estruturas de Dados 2025/26 (CC1007)
+ERRO   semanas.html:142     ligação para guioes/aula13.html: o ficheiro não existe
+AVISO  guioes/aula04.html:31  imagem sem alt: imagens/heap.png (se for decorativa, use alt="")
+INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
+116 páginas · 1 erro · 1 aviso · 1 informação
+```
+
+- **ERRO**: algo que os alunos vão ver partido (um link que dá "Not Found", uma página sem o kit). Corrigir antes de publicar.
+- **AVISO**: um problema de acessibilidade ou de manutenção que convém corrigir.
+- **INFO**: só para saber, por exemplo uma página antiga que ficou esquecida.
+
+O script termina com o código `0` quando não há erros (mesmo que haja avisos), `1` quando há pelo menos um erro e `2` quando o comando está mal escrito. Isto permite usá-lo em scripts: `python3 uc-site.py --quiet && rsync …` só publica um site sem erros.
+
+## O que é verificado
+
+| Verificação | Nível |
+| --- | --- |
+| O `course.js` lê-se ([só valores](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#so-valores)); tem `title`; cada página de `pages` existe; as datas são válidas (`AAAA-MM-DD`, e também `AAAA-MM` ou `null` nos prazos); os `id` dos prazos não se repetem; os links dentro dos avisos e os `url` locais existem | erro |
+| Links (`href`) e ficheiros (`src`, `srcset`) locais existem, com as mesmas maiúsculas e minúsculas; um link para uma pasta precisa do `index.html` dessa pasta. Links externos (`https:`, `mailto:`…), âncoras (`#`) e caminhos fora da pasta do site não são verificados | erro |
+| Cada página com `<uc-page>` carrega `uc-kit.css`, `course.js` e `uc-kit.js`. Páginas antigas sem o kit (copiadas tal como estavam) não precisam | erro |
+| `id` repetido numa página; num site com duas línguas, `lang` com uma língua que o site não tem | erro |
+| Falta `semester.start` (as semanas ficam sem datas); prazo sem `id` ou sem `title`, ou com um `kind` desconhecido | aviso |
+| Imagem sem `alt` (`alt=""` numa imagem decorativa está certo); página sem `<h1>` (o `<uc-hero>` conta como `<h1>`); títulos que saltam um nível (`h2` → `h4`) | aviso |
+| Link com caminho absoluto (`/~utilizador/…`), que deixa de funcionar quando a pasta muda de sítio | aviso |
+| Ficheiro ou pasta que o servidor web não consegue ler | aviso |
+| Página para a qual nenhuma outra página liga (e que não está em `pages`) | informação |
+
+Os links externos não são verificados: o servidor pode não ter acesso à Internet, e seria lento.
+
+## Permissões
+
+O servidor web do departamento lê os ficheiros como outro utilizador, por isso cada ficheiro precisa de permissão de leitura para todos (`o+r`) e cada pasta de permissão de leitura e passagem (`o+rx`). Um ficheiro sem ela dá "Forbidden" (erro 403). O script avisa; com `--fix-permissions` corrige, sem tirar nenhuma permissão:
+
+```sh
+python3 uc-site.py --fix-permissions
+```
+
+Só mexe nos ficheiros e pastas do site. A pasta pessoal e a `public_html` também precisam de `o+x` (ver [Publicar](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md#dcc-permissoes)).
+
+## Automatizar
+
+Com `--quiet` o script não escreve nada quando está tudo bem, por isso pode correr sozinho. Uma linha no `crontab -e` do servidor verifica o site todas as manhãs e envia um email só quando há erros:
+
+```sh
+0 7 * * * python3 ~/public_html/aulas/minha-uc/2627/uc-site.py --quiet
+```
+
+## Atualizar o script
+
+O script passa de ano com a pasta e não precisa de ser atualizado. Uma versão mais recente vem no [modelo](https://uc-design-kit.miguelrocha.dev/docs/downloads/uc-template.zip): basta substituir o ficheiro `uc-site.py` da pasta do site. `python3 uc-site.py --version` mostra a versão que se tem.

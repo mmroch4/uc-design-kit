@@ -29,6 +29,38 @@ Nas tabelas, a coluna **Necessário** diz quando preencher o campo:
 - Recomendado sem ele há funcionalidades que não aparecem (por exemplo, sem `semester.start` não há datas nas semanas).
 - Opcional tem um valor por omissão razoável.
 
+### Só valores, sem código
+
+O script de manutenção [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md) lê o `course.js` sem o executar. Por isso o ficheiro só pode ter valores:
+
+- comentários (`//` e `/* */`);
+- uma única atribuição `window.UC_COURSE = { … };`;
+- antes dela, constantes opcionais: `const NOME = valor;`;
+- valores: objetos, listas, textos (com `"`, `'` ou `` ` ``), números, `true`, `false` e `null`, com ou sem vírgula no fim;
+- uma constante usada como valor, textos juntos com `+` e `${NOME}` dentro de um texto com `` ` ``.
+
+As constantes evitam repetir um endereço:
+
+`course.js`:
+
+```js
+const ORIGINAL = "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/";
+
+window.UC_COURSE = {
+  // …
+  platforms: [
+    { label: "Pautas", url: ORIGINAL + "evaluation/" },
+    { label: "Site antigo", url: `${ORIGINAL}index.html` },
+  ],
+};
+```
+
+Funções, `new Date()`, chamadas de métodos, `...` e outras atribuições não são permitidas. O browser aceita-as, mas o `uc-site.py` para nesse ponto e diz a linha:
+
+```text
+ERRO   course.js:3  'new' não é um valor: o course.js só pode ter valores (texto, números, listas, objetos)
+```
+
 ## Tipos
 
 Além de texto, números e listas, os campos usam quatro tipos:
@@ -257,7 +289,7 @@ notices: [
 
 ## Erros comuns
 
-O kit avisa na consola (F12) com mensagens começadas por `[uc-kit]`. Estes são os casos mais frequentes:
+O kit avisa na consola (F12) com mensagens começadas por `[uc-kit]`, e o [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md) encontra os mesmos erros sem abrir o browser, com a linha de cada um. Estes são os casos mais frequentes:
 
 | Sintoma | Causa e solução |
 | --- | --- |

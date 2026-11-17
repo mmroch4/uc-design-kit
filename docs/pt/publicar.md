@@ -10,6 +10,7 @@ O site é uma pasta de ficheiros estáticos, sem passo de compilação: publica-
 - A consola do browser não mostra avisos `[uc-kit]`.
 - Os links são relativos e com `.html` (ver [Links e ficheiros](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#links)).
 - O `updated` do `course.js` tem a data de hoje.
+- `python3 uc-site.py` termina sem erros (ver [Manter o site](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md)).
 
 ## Servidor do departamento (~/public_html)
 
@@ -37,7 +38,7 @@ A barra no fim de `2627/` importa: copia o conteúdo da pasta para dentro da pas
 
 ### Permissões
 
-O servidor web só mostra ficheiros que todos podem ler. Se uma página der "Forbidden" (erro 403), dá-se permissão de leitura a tudo e de passagem às pastas:
+O servidor web só mostra ficheiros que todos podem ler. Se uma página der "Forbidden" (erro 403), `python3 uc-site.py --fix-permissions` corrige as do site (ver [Manter o site](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md#permissoes)); sem Python, dá-se permissão de leitura a tudo e de passagem às pastas:
 
 ```sh
 ssh utilizador@servidor "chmod -R a+rX ~/public_html/aulas/minha-uc"

@@ -49,6 +49,7 @@
           <li><a href="linguas.html">Línguas</a></li>
           <li><a href="novo-ano.html">Novo ano letivo</a></li>
           <li><a href="publicar.html">Publicar</a></li>
+          <li><a href="manter.html">Manter o site</a></li>
           <li><a href="llm.html">Usar com uma LLM</a></li>
           <li><a href="migrar.html">Migrar um site existente</a></li>
         </ul>
@@ -152,6 +153,28 @@
           <li><span class="uc-tag uc-tag--accent">Recomendado</span> sem ele há funcionalidades que não aparecem (por exemplo, sem <code>semester.start</code> não há datas nas semanas).</li>
           <li><span class="uc-tag uc-tag--muted">Opcional</span> tem um valor por omissão razoável.</li>
         </ul>
+
+        <h3 id="so-valores">Só valores, sem código</h3>
+        <p>O script de manutenção <a href="manter.html"><code>uc-site.py</code></a> lê o <code>course.js</code> sem o executar. Por isso o ficheiro só pode ter valores:</p>
+        <ul>
+          <li>comentários (<code>//</code> e <code>/* */</code>);</li>
+          <li>uma única atribuição <code>window.UC_COURSE = { … };</code>;</li>
+          <li>antes dela, constantes opcionais: <code>const NOME = valor;</code>;</li>
+          <li>valores: objetos, listas, textos (com <code>"</code>, <code>'</code> ou <code>`</code>), números, <code>true</code>, <code>false</code> e <code>null</code>, com ou sem vírgula no fim;</li>
+          <li>uma constante usada como valor, textos juntos com <code>+</code> e <code>${NOME}</code> dentro de um texto com <code>`</code>.</li>
+        </ul>
+        <p>As constantes evitam repetir um endereço:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>const ORIGINAL = "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/";
+
+window.UC_COURSE = {
+  // …
+  platforms: [
+    { label: "Pautas", url: ORIGINAL + "evaluation/" },
+    { label: "Site antigo", url: `${ORIGINAL}index.html` },
+  ],
+};</code></pre></uc-code>
+        <p>Funções, <code>new Date()</code>, chamadas de métodos, <code>...</code> e outras atribuições não são permitidas. O browser aceita-as, mas o <code>uc-site.py</code> para nesse ponto e diz a linha:</p>
+        <uc-code lang="text" no-download><pre><code>ERRO   course.js:3  'new' não é um valor: o course.js só pode ter valores (texto, números, listas, objetos)</code></pre></uc-code>
 
         <h2 id="tipos">Tipos</h2>
         <p>Além de texto, números e listas, os campos usam quatro tipos:</p>
@@ -433,7 +456,7 @@
         </div>
 
         <h2 id="erros-comuns">Erros comuns</h2>
-        <p>O kit avisa na consola (F12) com mensagens começadas por <code>[uc-kit]</code>. Estes são os casos mais frequentes:</p>
+        <p>O kit avisa na consola (F12) com mensagens começadas por <code>[uc-kit]</code>, e o <a href="manter.html"><code>uc-site.py</code></a> encontra os mesmos erros sem abrir o browser, com a linha de cada um. Estes são os casos mais frequentes:</p>
         <div class="uc-table">
           <table>
             <caption class="uc-visually-hidden">Erros comuns no course.js</caption>
@@ -477,6 +500,7 @@
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
           <li><a href="#forma">A forma do ficheiro</a></li>
+          <li class="docs-toc__sub"><a href="#so-valores">Só valores, sem código</a></li>
           <li><a href="#tipos">Tipos</a></li>
           <li><a href="#campos">Campos</a></li>
           <li class="docs-toc__sub"><a href="#campos-curso">Curso</a></li>

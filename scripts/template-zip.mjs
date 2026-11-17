@@ -100,7 +100,7 @@ export function createZip(entries) {
 export async function buildTemplateZip({ check = false } = {}) {
   const files = (await walk(SOURCE))
     .map((file) => path.relative(SOURCE, file).split(path.sep).join("/"))
-    .filter((name) => !name.split("/").some((part) => part.startsWith(".")))
+    .filter((name) => !name.split("/").some((part) => part.startsWith(".") || part === "__pycache__"))
     .sort();
   const entries = await Promise.all(
     files.map(async (name) => ({ name: FOLDER + name, data: await readFile(path.join(SOURCE, name)) })),

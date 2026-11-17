@@ -36,6 +36,7 @@
             { "title": "Línguas", "path": "pt/linguas.html" },
             { "title": "Novo ano letivo", "path": "pt/novo-ano.html" },
             { "title": "Publicar", "path": "pt/publicar.html" },
+            { "title": "Manter o site", "path": "pt/manter.html" },
             { "title": "Usar com uma LLM", "path": "pt/llm.html" },
             { "title": "Migrar um site existente", "path": "pt/migrar.html" }
           ]

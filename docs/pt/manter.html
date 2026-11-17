@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manter o site · UC Design Kit</title>
+  <meta name="description" content="Verificar um site feito com o UC Design Kit com o script uc-site.py: links e imagens, course.js, ids, acessibilidade e permissões no servidor.">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../assets/kit-config.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="index.html" aria-current="true">Documentação</a>
+        <a href="../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="index.html">Documentação</a></li>
+          <li><a href="../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="index.html">Introdução</a></li>
+          <li><a href="criar-site.html">Criar o meu site</a></li>
+          <li><a href="estrutura.html">Estrutura de um site</a></li>
+          <li><a href="course-js.html">O ficheiro course.js</a></li>
+          <li><a href="linguas.html">Línguas</a></li>
+          <li><a href="novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="publicar.html">Publicar</a></li>
+          <li><a href="manter.html" aria-current="page">Manter o site</a></li>
+          <li><a href="llm.html">Usar com uma LLM</a></li>
+          <li><a href="migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="componentes/index.html">Visão geral</a></li>
+          <li><a href="componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="componentes/uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="componentes/uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="componentes/uc-problems.html"><code>uc-problems</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="estilos/index.html">Princípios de design</a></li>
+          <li><a href="estilos/cor.html">Cor</a></li>
+          <li><a href="estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="estilos/tokens.html">Tokens</a></li>
+          <li><a href="estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="personalizar/index.html">Visão geral</a></li>
+          <li><a href="personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="referencia/runners.html">Runners</a></li>
+          <li><a href="referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="referencia/versoes.html">Versões</a></li>
+          <li><a href="referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Começar</p>
+          <h1>Manter o site</h1>
+          <p class="docs-lead">Depois de cada alteração, um comando verifica o site inteiro: links e imagens que não existem, erros no <code>course.js</code>, ids repetidos, páginas sem o kit e permissões que o servidor web não consegue ler. Chama-se <code>uc-site.py</code>, vem com o modelo e só precisa de Python 3.</p>
+        </header>
+
+        <h2 id="correr">Correr o script</h2>
+        <p>O <code>uc-site.py</code> está na pasta do site, ao lado do <code>course.js</code>, e passa de ano para ano com o resto da pasta. Corre-se depois de cada alteração:</p>
+        <uc-code lang="bash" no-download><pre><code>cd 2627
+python3 uc-site.py</code></pre></uc-code>
+        <p>No servidor do departamento, por SSH, sem mudar de pasta (o script verifica sempre a pasta onde está):</p>
+        <uc-code lang="bash" no-download><pre><code>ssh utilizador@servidor "python3 ~/public_html/aulas/minha-uc/2627/uc-site.py"</code></pre></uc-code>
+        <ul>
+          <li>Precisa de <strong>Python 3.8 ou mais recente</strong> (<code>python3 --version</code> diz qual há). Não instala nada, não usa a Internet e nunca altera o <code>course.js</code> nem as páginas.</li>
+          <li>No Windows, o comando é <code>py uc-site.py</code>.</li>
+          <li>Se o servidor não tiver Python 3, corre-se na cópia local antes de publicar: o resultado é o mesmo, exceto as permissões, que dependem do servidor.</li>
+        </ul>
+        <p>Na versão 1.2.0 do kit, o mesmo comando passa também a escrever o índice da pesquisa no site, quando o <code>course.js</code> tiver <code>search: true</code>. Até lá, só verifica.</p>
+
+        <h2 id="comandos">Comandos e opções</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Comandos do uc-site.py</caption>
+            <thead>
+              <tr><th scope="col">Comando</th><th scope="col">O que faz</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>python3 uc-site.py</code></td><td>Verifica tudo e, com a pesquisa ligada, escreve o índice. É o comando a usar depois de cada alteração.</td></tr>
+              <tr><td><code>python3 uc-site.py check</code></td><td>Só verifica. Não escreve nada.</td></tr>
+              <tr><td><code>python3 uc-site.py index</code></td><td>Só escreve o índice da pesquisa (a partir da versão 1.2.0).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Opções do uc-site.py</caption>
+            <thead>
+              <tr><th scope="col">Opção</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--site PASTA</code></td><td>A pasta do site. Por omissão, a pasta onde está o script, seja qual for a pasta atual.</td></tr>
+              <tr><td><code>--fix-permissions</code></td><td>Dá permissão de leitura a todos os ficheiros e pastas do site que não a têm (ver <a href="#permissoes">Permissões</a>).</td></tr>
+              <tr><td><code>--quiet</code></td><td>Mostra só os erros, e nada quando não há erros. Para o <code>cron</code>.</td></tr>
+              <tr><td><code>--lang pt</code> ou <code>--lang en</code></td><td>Língua das mensagens. Por omissão, a primeira língua do <code>course.js</code> (inglês se não for <code>pt</code> nem <code>en</code>).</td></tr>
+              <tr><td><code>--version</code></td><td>A versão do script (a do kit com que saiu).</td></tr>
+              <tr><td><code>--help</code></td><td>Ajuda.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="resultado">Ler o resultado</h2>
+        <p>Uma linha por problema, agrupadas por ficheiro, com o número da linha quando se sabe, e um resumo no fim:</p>
+        <uc-code lang="text" no-download><pre><code>UC Design Kit · uc-site.py 1.2.0 · Estruturas de Dados 2025/26 (CC1007)
+ERRO   semanas.html:142     ligação para guioes/aula13.html: o ficheiro não existe
+AVISO  guioes/aula04.html:31  imagem sem alt: imagens/heap.png (se for decorativa, use alt="")
+INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
+116 páginas · 1 erro · 1 aviso · 1 informação</code></pre></uc-code>
+        <ul>
+          <li><strong>ERRO</strong>: algo que os alunos vão ver partido (um link que dá "Not Found", uma página sem o kit). Corrigir antes de publicar.</li>
+          <li><strong>AVISO</strong>: um problema de acessibilidade ou de manutenção que convém corrigir.</li>
+          <li><strong>INFO</strong>: só para saber, por exemplo uma página antiga que ficou esquecida.</li>
+        </ul>
+        <p>O script termina com o código <code>0</code> quando não há erros (mesmo que haja avisos), <code>1</code> quando há pelo menos um erro e <code>2</code> quando o comando está mal escrito. Isto permite usá-lo em scripts: <code>python3 uc-site.py --quiet &amp;&amp; rsync …</code> só publica um site sem erros.</p>
+
+        <h2 id="verificacoes">O que é verificado</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Verificações do uc-site.py</caption>
+            <thead>
+              <tr><th scope="col">Verificação</th><th scope="col">Nível</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>O <code>course.js</code> lê-se (<a href="course-js.html#so-valores">só valores</a>); tem <code>title</code>; cada página de <code>pages</code> existe; as datas são válidas (<code>AAAA-MM-DD</code>, e também <code>AAAA-MM</code> ou <code>null</code> nos prazos); os <code>id</code> dos prazos não se repetem; os links dentro dos avisos e os <code>url</code> locais existem</td><td>erro</td></tr>
+              <tr><td>Links (<code>href</code>) e ficheiros (<code>src</code>, <code>srcset</code>) locais existem, com as mesmas maiúsculas e minúsculas; um link para uma pasta precisa do <code>index.html</code> dessa pasta. Links externos (<code>https:</code>, <code>mailto:</code>…), âncoras (<code>#</code>) e caminhos fora da pasta do site não são verificados</td><td>erro</td></tr>
+              <tr><td>Cada página com <code>&lt;uc-page&gt;</code> carrega <code>uc-kit.css</code>, <code>course.js</code> e <code>uc-kit.js</code>. Páginas antigas sem o kit (copiadas tal como estavam) não precisam</td><td>erro</td></tr>
+              <tr><td><code>id</code> repetido numa página; num site com duas línguas, <code>lang</code> com uma língua que o site não tem</td><td>erro</td></tr>
+              <tr><td>Falta <code>semester.start</code> (as semanas ficam sem datas); prazo sem <code>id</code> ou sem <code>title</code>, ou com um <code>kind</code> desconhecido</td><td>aviso</td></tr>
+              <tr><td>Imagem sem <code>alt</code> (<code>alt=""</code> numa imagem decorativa está certo); página sem <code>&lt;h1&gt;</code> (o <code>&lt;uc-hero&gt;</code> conta como <code>&lt;h1&gt;</code>); títulos que saltam um nível (<code>h2</code> → <code>h4</code>)</td><td>aviso</td></tr>
+              <tr><td>Link com caminho absoluto (<code>/~utilizador/…</code>), que deixa de funcionar quando a pasta muda de sítio</td><td>aviso</td></tr>
+              <tr><td>Ficheiro ou pasta que o servidor web não consegue ler</td><td>aviso</td></tr>
+              <tr><td>Página para a qual nenhuma outra página liga (e que não está em <code>pages</code>)</td><td>informação</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Os links externos não são verificados: o servidor pode não ter acesso à Internet, e seria lento.</p>
+
+        <h2 id="permissoes">Permissões</h2>
+        <p>O servidor web do departamento lê os ficheiros como outro utilizador, por isso cada ficheiro precisa de permissão de leitura para todos (<code>o+r</code>) e cada pasta de permissão de leitura e passagem (<code>o+rx</code>). Um ficheiro sem ela dá "Forbidden" (erro 403). O script avisa; com <code>--fix-permissions</code> corrige, sem tirar nenhuma permissão:</p>
+        <uc-code lang="bash" no-download><pre><code>python3 uc-site.py --fix-permissions</code></pre></uc-code>
+        <p>Só mexe nos ficheiros e pastas do site. A pasta pessoal e a <code>public_html</code> também precisam de <code>o+x</code> (ver <a href="publicar.html#dcc-permissoes">Publicar</a>).</p>
+
+        <h2 id="automatizar">Automatizar</h2>
+        <p>Com <code>--quiet</code> o script não escreve nada quando está tudo bem, por isso pode correr sozinho. Uma linha no <code>crontab -e</code> do servidor verifica o site todas as manhãs e envia um email só quando há erros:</p>
+        <uc-code lang="bash" no-download><pre><code>0 7 * * * python3 ~/public_html/aulas/minha-uc/2627/uc-site.py --quiet</code></pre></uc-code>
+
+        <h2 id="atualizar">Atualizar o script</h2>
+        <p>O script passa de ano com a pasta e não precisa de ser atualizado. Uma versão mais recente vem no <a href="../downloads/uc-template.zip">modelo</a>: basta substituir o ficheiro <code>uc-site.py</code> da pasta do site. <code>python3 uc-site.py --version</code> mostra a versão que se tem.</p>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="publicar.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Publicar</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="llm.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Usar com uma LLM</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/manter.html">Editar esta página no GitHub</a> · <a href="manter.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#correr">Correr o script</a></li>
+          <li><a href="#comandos">Comandos e opções</a></li>
+          <li><a href="#resultado">Ler o resultado</a></li>
+          <li><a href="#verificacoes">O que é verificado</a></li>
+          <li><a href="#permissoes">Permissões</a></li>
+          <li><a href="#automatizar">Automatizar</a></li>
+          <li><a href="#atualizar">Atualizar o script</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

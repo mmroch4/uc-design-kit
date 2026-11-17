@@ -531,3 +531,47 @@ Prototype (`search-prototype.py`, Python 3.13, the rules of sections 4–6),
 6. **`<nav>` and `<svg>` stay out** of the index (the teacher's breadcrumbs
    repeat the page names on every page).
 7. **`g` (group) is the `<uc-page current>`** value, not a docs-style label.
+
+## 14. Decisions taken in phase S2
+
+Phase S2 wrote `template/uc-site.py` (checks, commands, output) and refined
+section 3 as follows.
+
+1. **`semester.start` missing is a warning**, not an error: the teacher guide
+   (`course-js.html`) has it as "Recomendado" and the kit works without it
+   (the weeks have no dates). Only `title` is required.
+2. **`course.js` links are checked too**: local `url` fields, `logo`, and
+   `href`/`src` inside HTML texts (notices, notes), resolved against
+   `course.js` as the kit does (`resolveCourseLinks`). A target found there
+   also counts as "linked" for the orphan check.
+3. **Kit checks only on kit pages.** A page needs `uc-kit.css`, `course.js`
+   and `uc-kit.js` only when it has `<uc-page>` or loads one of them; an old
+   page copied as it was (migration "copiar tal como está") is not an error.
+   The `<h1>` and heading-level warnings follow the same rule. `<uc-hero>`
+   counts as the `<h1>` (it renders it).
+4. **Extra checks**, all cheap and found useful on the examples:
+   a local link whose file exists only with another case (`Semanas.html` vs
+   `semanas.html`; macOS hides it, the DCC's Linux does not) is an **error**;
+   a root-absolute path (`/~fds/…`) is a **warning**; a deadline without `id`
+   or `title` or with an unknown `kind` is a **warning** (the same cases the
+   kit writes to the console); a page that is not UTF-8 is a **warning** (it
+   is then read as Latin-1 and still checked).
+5. **Outside the site folder nothing is checked** (links and kit paths
+   alike), as 3.3 says for the kit path: on the server a link to `../2526/`
+   exists even when the local copy does not have it.
+6. **Hidden files and folders** (name starting with `.`) and `__pycache__`
+   are ignored by every check (`.git` of a local copy). Folders starting with
+   `_` are checked; S3 leaves them out of the index only.
+7. **`index` with search off** prints that search is off and exits `0`.
+   Until S3, the default command and `index` print a line saying the index is
+   not generated yet. `--version` says `1.2.0-dev`; S5 sets `1.2.0`.
+8. **Message argument names** never use `file`, `line`, `level` or `key`
+   (they clash with `Report.add`); see `MESSAGES` in the script.
+9. **CI**: a separate workflow, `.github/workflows/site-script.yml`, runs the
+   unit tests and `uc-site.py check` on every example in the official
+   `python:3.8-slim` and `python:3-slim` images (3.8 is no longer in the
+   runner images). It is not part of the required `check` status, so a PR
+   is merged only when both workflows are green.
+10. The first run found one real error: `examples/ip-2526/course.js` linked
+    the second practical test to `practical/test2.html`, which was never
+    migrated. It now points to the original site, as `MIGRACAO.md` says.

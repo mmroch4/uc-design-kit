@@ -7,6 +7,16 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `uc-site.py` in the template (search phase S2): the site maintenance
+  script, Python 3.8+ with the standard library only. `python3 uc-site.py
+  check` reads `course.js` without running it (values only, with constants),
+  checks required fields, pages, dates, deadline ids, local links and images
+  (exact case), the kit files of every page, duplicate ids, `lang` values,
+  `alt`, `<h1>` and heading levels, web-server read permissions
+  (`--fix-permissions`) and pages nothing links to. Messages in Portuguese and
+  English, exit status 1 on errors, `--quiet` for `cron`. Teacher guide page
+  "Manter o site"; tests in `tests/site-script/` run on Python 3.8 and the
+  current Python in CI. The search index it will write comes in phase S3.
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type

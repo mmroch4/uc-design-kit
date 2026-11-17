@@ -12,7 +12,8 @@
     "test": "node scripts/check-docs.mjs --strict && node scripts/check-a11y.mjs && node scripts/check-pages.mjs",
     "test:docs": "node scripts/check-docs.mjs",
     "test:update-screenshots": "node scripts/build.mjs && node scripts/check-pages.mjs --screenshots",
-    "test:a11y": "node scripts/build.mjs && node scripts/check-a11y.mjs"
+    "test:a11y": "node scripts/build.mjs && node scripts/check-a11y.mjs",
+    "test:site-script": "python3 -m unittest discover -s tests/site-script"
   },
   "devDependencies": {
     "axe-core": "4.10.3",

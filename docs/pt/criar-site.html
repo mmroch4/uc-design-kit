@@ -49,6 +49,7 @@
           <li><a href="linguas.html">Línguas</a></li>
           <li><a href="novo-ano.html">Novo ano letivo</a></li>
           <li><a href="publicar.html">Publicar</a></li>
+          <li><a href="manter.html">Manter o site</a></li>
           <li><a href="llm.html">Usar com uma LLM</a></li>
           <li><a href="migrar.html">Migrar um site existente</a></li>
         </ul>
@@ -157,6 +158,7 @@ mv uc-template 2627</code></pre></uc-code>
               <tr><td><code>sobre.html</code></td><td>Objetivos, programa, horário em tabela e equipa.</td></tr>
               <tr><td><code>theme.css</code></td><td>Estilos próprios, vazio com um exemplo comentado.</td></tr>
               <tr><td><code>README.txt</code></td><td>Estes passos, em resumo.</td></tr>
+              <tr><td><code>uc-site.py</code></td><td>Verifica o site depois de cada alteração: <code>python3 uc-site.py</code>. Ver <a href="manter.html">Manter o site</a>.</td></tr>
               <tr><td><code>AGENTS.md</code></td><td>As regras do kit para assistentes de programação (Claude Code, Codex). Ver <a href="migrar.html#agents">O ficheiro AGENTS.md</a>.</td></tr>
             </tbody>
           </table>
@@ -243,6 +245,7 @@ python3 -m http.server 8000
           <li><strong>Telemóvel.</strong> No modo de dispositivo das ferramentas do browser (Ctrl+Shift+M), a navegação passa a um menu e as tabelas deslizam na horizontal.</li>
           <li><strong>Consola.</strong> Sem avisos <code>[uc-kit]</code>.</li>
         </ul>
+        <p>Os links e imagens partidos, os erros no <code>course.js</code> e as permissões encontram-se de uma vez com <code>python3 uc-site.py</code> na pasta do site (ver <a href="manter.html">Manter o site</a>).</p>
 
         <h2 id="publicar">6. Publicar</h2>
         <p>O site é uma pasta de ficheiros estáticos: publica-se copiando-a para um servidor web. No servidor do departamento é uma cópia para o <code>~/public_html</code>:</p>
