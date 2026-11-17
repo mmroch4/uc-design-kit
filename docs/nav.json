@@ -110,6 +110,7 @@
             { "title": "EDados 2025/26", "path": "pt/exemplos/edados.html" },
             { "title": "PC 2026/27", "path": "pt/exemplos/pc.html" },
             { "title": "IP 2025/26", "path": "pt/exemplos/ip.html" },
+            { "title": "PI 2025/26", "path": "pt/exemplos/pi.html" },
             { "title": "Padrões de página", "path": "pt/exemplos/padroes.html" }
           ]
         },

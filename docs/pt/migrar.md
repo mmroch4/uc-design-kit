@@ -103,6 +103,6 @@ Pode acrescentar-se no fim o que o assistente deve saber sobre a cadeira, como "
 
 ## Ver também
 
-- [EDados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): um site migrado, página a página. A [PC](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md) e a [IP](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/ip.md) foram migradas da mesma forma, com o registo em `MIGRACAO.md`.
+- [EDados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): um site migrado, página a página. A [PC](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md), a [IP](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/ip.md) e a [PI](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pi.md) foram migradas da mesma forma, com o registo em `MIGRACAO.md`.
 - [Usar com uma LLM](https://uc-design-kit.miguelrocha.dev/docs/pt/llm.md): construir um site novo ou alterar uma página.
 - [Nível 4: HTML livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/html.md): o que fazer com HTML antigo.

@@ -122,6 +122,7 @@
           <li><a href="edados.html">EDados 2025/26</a></li>
           <li><a href="pc.html">PC 2026/27</a></li>
           <li><a href="ip.html">IP 2025/26</a></li>
+          <li><a href="pi.html">PI 2025/26</a></li>
           <li><a href="padroes.html">Padrões de página</a></li>
         </ul>
       </div>
@@ -143,7 +144,7 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Exemplos</p>
           <h1>Exemplos</h1>
-          <p class="docs-lead">Sites reais de unidades curriculares do DCC/FCUP, refeitos com o kit a partir dos sites originais. Cada um mostra uma forma diferente de organizar uma cadeira: guiões com código executável, problem sets semanais com concursos, ou aulas práticas com centenas de problemas.</p>
+          <p class="docs-lead">Sites reais de unidades curriculares do DCC/FCUP, refeitos com o kit a partir dos sites originais. Cada um mostra uma forma diferente de organizar uma cadeira: guiões com código executável, problem sets semanais com concursos, aulas práticas com centenas de problemas, ou um site em duas línguas.</p>
         </header>
 
         <div class="uc-callout">
@@ -155,7 +156,7 @@
           <li><a class="docs-component" href="edados.html"><img src="../../assets/img/edados-home.webp" width="1600" height="1000" loading="lazy" alt=""><span class="docs-component__text"><span class="docs-component__name">Estruturas de Dados 2025/26</span><span class="docs-component__desc">Em português. Guiões com código Java que corre no browser, testes práticos, 65 enunciados e o código das aulas. Usa um componente próprio.</span></span></a></li>
           <li><a class="docs-component" href="pc.html"><img src="../../assets/img/pc-home.webp" width="1600" height="1000" loading="lazy" alt=""><span class="docs-component__text"><span class="docs-component__name">Competitive Programming 2026/27</span><span class="docs-component__desc">Só em inglês. Uma aula por semana com um problem set e prazo, concursos presenciais, avaliação com várias componentes e 52 problemas de vários juízes.</span></span></a></li>
           <li><a class="docs-component" href="ip.html"><img src="../../assets/img/ip-home.webp" width="1600" height="1000" loading="lazy" alt=""><span class="docs-component__text"><span class="docs-component__name">Introduction to Programming 2025/26</span><span class="docs-component__desc">Só em inglês. Teóricas com sumários, onze aulas práticas, dois testes, 107 problemas no Mooshak com filtros e marcação de resolvidos.</span></span></a></li>
-          <!-- PI: when examples/pi-2526 is merged, add its card here (screenshot docs/assets/img/pi-home.webp), a page exemplos/pi.html and an entry in docs/nav.json. See docs/plan/examples-docs-handoff.md. -->
+          <li><a class="docs-component" href="pi.html"><img src="../../assets/img/pi-home.webp" width="1600" height="1000" loading="lazy" alt=""><span class="docs-component__text"><span class="docs-component__name">Programação Imperativa 2025/26</span><span class="docs-component__desc">Em português e inglês. Horários por turma, simulador de nota, testes práticos com turnos, guiões nas duas línguas e 112 problemas no Mooshak.</span></span></a></li>
         </ul>
 
         <h2 id="comparar">O que cada um mostra</h2>
@@ -163,15 +164,15 @@
           <table>
             <caption class="uc-visually-hidden">Comparação dos exemplos</caption>
             <thead>
-              <tr><th scope="col"></th><th scope="col">EDados</th><th scope="col">PC</th><th scope="col">IP</th></tr>
+              <tr><th scope="col"></th><th scope="col">EDados</th><th scope="col">PC</th><th scope="col">IP</th><th scope="col">PI</th></tr>
             </thead>
             <tbody>
-              <tr><th scope="row">Línguas</th><td>PT</td><td>EN</td><td>EN</td></tr>
-              <tr><th scope="row">Semanas</th><td><code>&lt;uc-weeks&gt;</code>, 12 semanas, e <code>&lt;uc-summaries&gt;</code></td><td><code>&lt;uc-weeks&gt;</code>, 11 aulas à terça, duas interrupções</td><td><code>&lt;uc-weeks&gt;</code>, 13 semanas, e <code>&lt;uc-summaries&gt;</code> para as teóricas</td></tr>
-              <tr><th scope="row">Aulas práticas</th><td><code>&lt;uc-guide&gt;</code> com <code>&lt;uc-code&gt;</code> executável</td><td>Páginas migradas em <code>uc-content</code></td><td><code>&lt;uc-guide&gt;</code> com <code>&lt;uc-exercise&gt;</code></td></tr>
-              <tr><th scope="row">Problemas</th><td><code>&lt;uc-problems&gt;</code> e 65 enunciados migrados</td><td><code>&lt;uc-problems&gt;</code> com filtro por juiz</td><td><code>&lt;uc-problems&gt;</code> com filtro por tipo</td></tr>
-              <tr><th scope="row">Avaliação</th><td>Blocos CSS e <code>&lt;uc-deadlines&gt;</code></td><td><code>&lt;uc-grading&gt;</code> com subcomponentes e simulador</td><td><code>&lt;uc-grading&gt;</code> e <code>&lt;uc-assessment-info&gt;</code></td></tr>
-              <tr><th scope="row">Personalização</th><td>Níveis 0, 2, 3 e 4</td><td>Níveis 0, 2 e 4</td><td>Níveis 0, 2 e 4</td></tr>
+              <tr><th scope="row">Línguas</th><td>PT</td><td>EN</td><td>EN</td><td>PT e EN</td></tr>
+              <tr><th scope="row">Semanas</th><td><code>&lt;uc-weeks&gt;</code>, 12 semanas, e <code>&lt;uc-summaries&gt;</code></td><td><code>&lt;uc-weeks&gt;</code>, 11 aulas à terça, duas interrupções</td><td><code>&lt;uc-weeks&gt;</code>, 13 semanas, e <code>&lt;uc-summaries&gt;</code> para as teóricas</td><td><code>&lt;uc-weeks&gt;</code>, 13 semanas, <code>&lt;uc-summaries&gt;</code> e <code>&lt;uc-timetable&gt;</code></td></tr>
+              <tr><th scope="row">Aulas práticas</th><td><code>&lt;uc-guide&gt;</code> com <code>&lt;uc-code&gt;</code> executável</td><td>Páginas migradas em <code>uc-content</code></td><td><code>&lt;uc-guide&gt;</code> com <code>&lt;uc-exercise&gt;</code></td><td><code>&lt;uc-guide&gt;</code> em PT e EN, convertidos por script</td></tr>
+              <tr><th scope="row">Problemas</th><td><code>&lt;uc-problems&gt;</code> e 65 enunciados migrados</td><td><code>&lt;uc-problems&gt;</code> com filtro por juiz</td><td><code>&lt;uc-problems&gt;</code> com filtro por tipo</td><td><code>&lt;uc-problems track&gt;</code> com peso e prazo por aula</td></tr>
+              <tr><th scope="row">Avaliação</th><td>Blocos CSS e <code>&lt;uc-deadlines&gt;</code></td><td><code>&lt;uc-grading&gt;</code> com subcomponentes e simulador</td><td><code>&lt;uc-grading&gt;</code> e <code>&lt;uc-assessment-info&gt;</code></td><td><code>&lt;uc-grading calculator&gt;</code> e testes com turnos</td></tr>
+              <tr><th scope="row">Personalização</th><td>Níveis 0, 2, 3 e 4</td><td>Níveis 0, 2 e 4</td><td>Níveis 0, 2 e 4</td><td>Níveis 0, 2 e 4</td></tr>
             </tbody>
           </table>
         </div>
