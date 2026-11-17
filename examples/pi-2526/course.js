@@ -67,7 +67,7 @@ window.UC_COURSE = {
       time: "14:15",
       kind: "assessment",
       note: { pt: "Dois turnos, o 2.º às 16:15 · no Mooshak", en: "Two shifts, the 2nd at 16:15 · on Mooshak" },
-      url: "guioes/teste-pratico-1.html",
+      url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html",
       links: [
         { label: { pt: "Turnos e laboratórios", en: "Shifts and labs" }, url: ORIGINAL + "evaluation/Aval1_Labs_Turnos1e2.pdf" },
         { label: { pt: "Resultados", en: "Results" }, url: ORIGINAL + "evaluation/PI2526_aval1_22Abril.pdf" },
@@ -80,7 +80,7 @@ window.UC_COURSE = {
       time: "14:10",
       kind: "assessment",
       note: { pt: "Dois turnos, o 2.º às 16:10 · no Mooshak", en: "Two shifts, the 2nd at 16:10 · on Mooshak" },
-      url: "guioes/teste-pratico-2.html",
+      url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html",
       links: [
         { label: { pt: "Turnos e laboratórios", en: "Shifts and labs" }, url: ORIGINAL + "evaluation/Aval2_Labs_Turnos1e2.pdf" },
         // No site original, este link aponta para um ficheiro com o prefixo do ano anterior (PI2425_…).
@@ -170,8 +170,8 @@ window.UC_COURSE = {
     {
       date: "2026-05-21",
       text: {
-        pt: 'Avaliação Prática 2: <a href="guioes/teste-pratico-2.html">informação e treino</a>',
-        en: 'Practical evaluation 2: <a href="guioes/teste-pratico-2.html">information and practice</a>',
+        pt: 'Avaliação Prática 2: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">informação e treino</a>',
+        en: 'Practical evaluation 2: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">information and practice</a>',
       },
     },
     {
@@ -198,8 +198,8 @@ window.UC_COURSE = {
     {
       date: "2026-04-01",
       text: {
-        pt: 'Avaliação Prática 1: <a href="guioes/teste-pratico-1.html">informação e treino</a>',
-        en: 'Practical evaluation 1: <a href="guioes/teste-pratico-1.html">information and practice</a>',
+        pt: 'Avaliação Prática 1: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">informação e treino</a>',
+        en: 'Practical evaluation 1: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">information and practice</a>',
       },
     },
     {
