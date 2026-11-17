@@ -173,6 +173,9 @@ window.UC_COURSE = {
     },
   ],
 
+  // Where the content comes from: shown in the footer, linked to each page's
+  // address on the original site (the source attribute of <uc-page>).
+  source: { author: "Pedro Ribeiro", url: "https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/" },
   footer: '<a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> · <a href="https://www.dcc.fc.up.pt/">DCC</a>/<a href="https://www.fc.up.pt/">FCUP</a>',
   updated: "2026-11-17",
   // Demo: freezes "today" at the date the original site was captured

@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC018</li></ol>
-    </nav>
-    <h1>[PC018] K-Query</h1>
+  <uc-page current="problems" source="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc018.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC018</li></ol>
+      </nav>
+      <h1>[PC018] K-Query</h1>
+    </header>
     <p><a class="uc-button uc-button--primary" href="https://mooshak.dcc.fc.up.pt/~pc/">Submit on Mooshak</a> <a class="uc-button" href="../problem-sets/ps04.html">Weekly Problems #04</a></p>
     <div class="uc-content">
 <p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/KQUERY/">SPOJ problem</a>.</p>
@@ -36,20 +38,19 @@
   </li><li>\( 1 \leq a_i, k \leq 10^9 \)
   </li><li>\( 1 \leq i \leq j \leq n\)
 </li></ul>
-<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">6 3
+<div class="uc-samples"><div><p class="uc-samples__label">Example input</p><pre data-copy="Input">6 3
 5 1 2 3 4 5
 2 4 1
 4 4 4
-1 6 2</pre></td><td><pre data-copy="Output">2
+1 6 2</pre></div><div><p class="uc-samples__label">Example output</p><pre data-copy="Output">2
 0
-4</pre></td></tr></table></div>
+4</pre></div></div>
 <ul>
 <li> Query 1 (2,4,1): The range is [1,2,3] and there are 2 values greather than k=1, which are 2 and 3.
   </li><li> Query 2 (4,4,4): The range is [4] and there are no greather than k=4,
   </li><li> Query 3 (1,6,2): The range is [5,1,2,3,4] and there are 3 values greather than k=2, which are 5, 3, 4 and 5.
 </li></ul>
     </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc018.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc018.html</a> to demonstrate the UC Design Kit.</p>
   </uc-page>
 </body>
 </html>
