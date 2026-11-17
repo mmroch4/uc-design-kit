@@ -43,7 +43,11 @@
  * role, name or state text changes. After an intended change, run
  * `node scripts/check-a11y.mjs --update-snapshots` and review the diff.
  *
- * Usage: node scripts/check-a11y.mjs [filter ...]
+ * Usage: node scripts/check-a11y.mjs [--shard=i/n] [--concurrency=n] [--update-snapshots] [filter ...]
+ *
+ * --shard=i/n checks the i-th of n parts of the pages and of the snapshots (CI
+ * runs the parts in parallel jobs); --concurrency=n checks n pages at the same
+ * time (default: CPU count, max 4).
  */
 import { createServer } from "node:http";
 import { readFile, readdir, stat, writeFile } from "node:fs/promises";
@@ -51,6 +55,7 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -567,10 +572,10 @@ async function checkPage(browser, origin, relative, axeSource) {
 }
 
 /** Compares (or, with --update-snapshots, writes) the accessibility-tree snapshots. */
-async function checkAriaSnapshots(browser, origin, update, filters) {
+async function checkAriaSnapshots(browser, origin, update, filters, shard) {
   let failed = 0;
-  for (const { page: relative, selector, file } of ARIA_SNAPSHOTS) {
-    if (filters.length && !filters.some((filter) => relative.includes(filter))) continue;
+  const snapshots = ARIA_SNAPSHOTS.filter(({ page }) => !filters.length || filters.some((filter) => page.includes(filter)));
+  for (const { page: relative, selector, file } of shardOf(snapshots, shard)) {
     const { context, page } = await open(browser, origin, relative);
     const actual = `${await page.locator(selector).first().ariaSnapshot()}\n`;
     await context.close();
@@ -598,9 +603,14 @@ async function checkAriaSnapshots(browser, origin, update, filters) {
 }
 
 async function main() {
-  const update = process.argv.includes("--update-snapshots");
-  const filters = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
-  const pages = (await findPages()).filter((page) => !filters.length || filters.some((filter) => page.includes(filter)));
+  const args = process.argv.slice(2);
+  const update = args.includes("--update-snapshots");
+  const filters = filterArgs(args);
+  const shard = parseShard(args);
+  const concurrency = parseConcurrency(args);
+  const matching = (await findPages()).filter((page) => !filters.length || filters.some((filter) => page.includes(filter)));
+  const pages = shardOf(matching, shard);
+  if (shard.total > 1) console.log(`Shard ${shard.index}/${shard.total}: ${pages.length} of ${matching.length} pages.`);
   const axeSource = await readFile(require.resolve("axe-core/axe.min.js"), "utf8");
   const server = await startServer();
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -608,13 +618,18 @@ async function main() {
   let failed = 0;
   let snapshotsFailed = 0;
   try {
-    for (const relative of pages) {
-      const problems = await checkPage(browser, origin, relative, axeSource);
-      console.log(`${problems.length ? "FAIL" : "ok  "} ${relative}`);
-      problems.forEach((problem) => console.log(`       ✗ ${problem}`));
-      if (problems.length) failed += 1;
-    }
-    snapshotsFailed = await checkAriaSnapshots(browser, origin, update, filters);
+    await runPool(
+      pages,
+      concurrency,
+      (relative) => checkPage(browser, origin, relative, axeSource),
+      (relative, result) => {
+        const problems = result.error ? [`check crashed: ${result.error.stack || result.error}`] : result;
+        console.log(`${problems.length ? "FAIL" : "ok  "} ${relative}`);
+        problems.forEach((problem) => console.log(`       ✗ ${problem}`));
+        if (problems.length) failed += 1;
+      },
+    );
+    snapshotsFailed = await checkAriaSnapshots(browser, origin, update, filters, shard);
   } finally {
     await browser.close();
     server.close();

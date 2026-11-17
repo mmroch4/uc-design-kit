@@ -40,7 +40,7 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png
 | `check-docs` | Navegação, títulos, links e âncoras; e cobertura: cada componente, atributo, campo do `course.js`, bloco, token, membro e evento da API, runner incluído e classe que o kit gera está na página certa. |
 | `check-pages` | Em cada página (testes, exemplos, modelo, documentação e demonstrações): sem erros na consola por HTTP e em `file://`, sem ficheiros em falta, sem deslocamento horizontal a 360 px, sem violações graves do axe (WCAG 2.1 AA), conteúdo visível sem JavaScript. |
 
-As páginas são verificadas com a data fixa de 27 de novembro de 2025 (`TEST_TODAY` muda-a). O GitHub Actions corre `build:check` e `npm test` em cada pull request; o Cloudflare Pages publica uma pré-visualização.
+As páginas são verificadas com a data fixa de 27 de novembro de 2025 (`TEST_TODAY` muda-a). O GitHub Actions corre `build:check` e as verificações de `npm test` em cada pull request, divididas em 4 tarefas paralelas (`--shard=i/4`), cada uma a abrir várias páginas ao mesmo tempo (`--concurrency=n`); o estado obrigatório `check` só fica verde quando as quatro passam. As capturas de ecrã só se tiram em `main`. O Cloudflare Pages publica uma pré-visualização.
 
 ## Documentar uma alteração
 
