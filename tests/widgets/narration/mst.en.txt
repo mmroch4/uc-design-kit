@@ -1,0 +1,56 @@
+## algorithm=kruskal · input {"text":"A B 4\nA C 1\nB C 2\nB D 5\nC D 8\nD E 3\nC E 9","directed":false,"source":"A"}
+  1. Kruskal in a graph with 5 vertices and 7 edges.
+  2. Each vertex is in a set of its own; beside it, in square brackets, the set's representative.
+  3. Sort the edges by weight: A–C 1, B–C 2, D–E 3, A–B 4, B–D 5, C–D 8, C–E 9.
+  4. Next edge: A–C (weight 1). find(A) = A, find(C) = C.
+  5. A–C joins the tree: the set [C] merges into [A]. Total weight 1.
+  6. Next edge: B–C (weight 2). find(B) = B, find(C) = A.
+  7. B–C joins the tree: the set [B] merges into [A]. Total weight 3.
+  8. Next edge: D–E (weight 3). find(D) = D, find(E) = E.
+  9. D–E joins the tree: the set [E] merges into [D]. Total weight 6.
+ 10. Next edge: A–B (weight 4). find(A) = A, find(B) = A.
+ 11. A and B are already in the same set: A–B would close a cycle, left out.
+ 12. Next edge: B–D (weight 5). find(B) = A, find(D) = D.
+ 13. B–D joins the tree: the set [D] merges into [A]. Total weight 11.
+ 14. The tree already has 4 edges (|V| − 1): stop.
+ 15. Minimum spanning tree: A–C 1, B–C 2, D–E 3, B–D 5. Total weight 11.
+
+## algorithm=prim · input {"text":"A B 4\nA C 1\nB C 2\nB D 5\nC D 8\nD E 3\nC E 9","directed":false,"source":"A"}
+  1. Prim from A, in a graph with 5 vertices and 7 edges.
+  2. Start at A: A joins the tree.
+  3. The edges from A to outside the tree join the queue: A–B 4, A–C 1.
+  4. A–C (weight 1) leaves the queue: C joins the tree. Total weight 1.
+  5. The edges from C to outside the tree join the queue: C–B 2, C–D 8, C–E 9.
+  6. C–B (weight 2) leaves the queue: B joins the tree. Total weight 3.
+  7. The edges from B to outside the tree join the queue: B–D 5.
+  8. A–B (weight 4) leaves the queue: B is already in the tree, left out.
+  9. B–D (weight 5) leaves the queue: D joins the tree. Total weight 8.
+ 10. The edges from D to outside the tree join the queue: D–E 3.
+ 11. D–E (weight 3) leaves the queue: E joins the tree. Total weight 11.
+ 12. Minimum spanning tree: A–C 1, B–C 2, B–D 5, D–E 3. Total weight 11.
+
+## algorithm=kruskal · input {"text":"A B 2\nC D 1\nB A 3\nA A 1\nE","directed":false,"source":"A"}
+  1. Kruskal in a graph with 5 vertices and 4 edges.
+  2. Each vertex is in a set of its own; beside it, in square brackets, the set's representative.
+  3. Sort the edges by weight: C–D 1, A–A 1, A–B 2, B–A 3.
+  4. Next edge: C–D (weight 1). find(C) = C, find(D) = D.
+  5. C–D joins the tree: the set [D] merges into [C]. Total weight 1.
+  6. Next edge: A–A (weight 1). find(A) = A, find(A) = A.
+  7. A–A joins A to itself: it would close a cycle, left out.
+  8. Next edge: A–B (weight 2). find(A) = A, find(B) = B.
+  9. A–B joins the tree: the set [B] merges into [A]. Total weight 3.
+ 10. Next edge: B–A (weight 3). find(B) = A, find(A) = A.
+ 11. B and A are already in the same set: B–A would close a cycle, left out.
+ 12. The graph has 3 components: minimum spanning forest C–D 1, A–B 2. Total weight 3.
+
+## algorithm=prim · input {"text":"A B 2\nC D 1\nB A 3\nA A 1\nE","directed":false,"source":"A"}
+  1. Prim from A, in a graph with 5 vertices and 4 edges.
+  2. Start at A: A joins the tree.
+  3. The edges from A to outside the tree join the queue: A–B 2, A–B 3.
+  4. A–B (weight 2) leaves the queue: B joins the tree. Total weight 2.
+  5. A–B (weight 3) leaves the queue: B is already in the tree, left out.
+  6. The queue is empty, but some vertices are outside the tree: start again at C, which joins the tree.
+  7. The edges from C to outside the tree join the queue: C–D 1.
+  8. C–D (weight 1) leaves the queue: D joins the tree. Total weight 3.
+  9. The queue is empty, but some vertices are outside the tree: start again at E, which joins the tree.
+ 10. The graph has 3 components: minimum spanning forest A–B 2, C–D 1. Total weight 3.

@@ -1,0 +1,23 @@
+{
+  "name": "uc-widget-mst",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 3,
+  "title": { "pt": "Árvore de cobertura mínima", "en": "Minimum spanning tree" },
+  "summary": {
+    "pt": "Kruskal e Prim.",
+    "en": "Kruskal and Prim."
+  },
+  "page": "docs/pt/widgets/uc-widget-mst.html",
+  "algorithms": ["kruskal", "prim"],
+  "courses": ["PC", "EDados"],
+  "attributes": ["edges", "source", "algorithm", "algorithms"],
+  "predict": true,
+  "test": {
+    "input": { "text": "A B 4\nA C 1\nB C 2\nB D 5\nC D 8\nD E 3\nC E 9", "directed": false, "source": "A" },
+    "options": [
+      { "algorithm": "kruskal", "input": { "text": "A B 2\nC D 1\nB A 3\nA A 1\nE", "directed": false, "source": "A" } },
+      { "algorithm": "prim", "input": { "text": "A B 2\nC D 1\nB A 3\nA A 1\nE", "directed": false, "source": "A" } }
+    ]
+  }
+}

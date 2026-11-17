@@ -1,0 +1,24 @@
+{
+  "name": "uc-widget-toposort",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 3,
+  "title": { "pt": "Ordenação topológica", "en": "Topological sort" },
+  "summary": {
+    "pt": "Kahn e DFS, com deteção de ciclos.",
+    "en": "Kahn and DFS, with cycle detection."
+  },
+  "page": "docs/pt/widgets/uc-widget-toposort.html",
+  "algorithms": ["kahn", "dfs"],
+  "courses": ["PC", "EDados"],
+  "attributes": ["edges", "algorithm", "algorithms"],
+  "predict": true,
+  "test": {
+    "input": { "text": "Prog1 Prog2\nProg1 EDados\nMD EDados\nProg2 POO\nEDados Algo\nPOO ES\nAlgo ES" },
+    "options": [
+      { "algorithm": "kahn", "input": { "text": "A B\nB C\nC D\nD B\nA E" } },
+      { "algorithm": "dfs", "input": { "text": "A B\nB C\nC D\nD B\nA E" } },
+      { "algorithm": "dfs", "input": { "text": "A B\nC B\nA A" } }
+    ]
+  }
+}
