@@ -95,3 +95,10 @@ Depois das lacunas do kit (PR #79): migalhas em `nav.uc-crumbs` dentro de
 (`source` no `course.js` + `source="…"` em cada `<uc-page>`, em vez do parágrafo em 56
 páginas), memes em `details.uc-details`, exemplos dos 37 enunciados em `uc-samples`. O
 `theme.css` ficou vazio.
+
+Depois da parte 2 das lacunas (PR #83): os 37 enunciados usam `<uc-problem code judge
+deadline track>` por baixo do `<h1>` (selo do juiz, prazo da série, botão de submeter e
+"Resolvido" com a mesma chave das listas), em vez dos botões feitos à mão; a série passou
+para as migalhas (Problems / Weekly Problems #NN / PCNNN). As páginas das aulas têm
+`week-label` e `prev`/`next`. `parent="assessment"` não se aplica: nenhum guião fica fora
+de uma semana.
