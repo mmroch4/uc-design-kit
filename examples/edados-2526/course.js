@@ -13,6 +13,7 @@ window.UC_COURSE = {
   languages: ["pt"],
   institution: { name: "DCC · FCUP", url: "https://www.dcc.fc.up.pt" },
   accentColor: "#1D4ED8",
+  search: true,
 
   semester: {
     start: "2025-09-16",

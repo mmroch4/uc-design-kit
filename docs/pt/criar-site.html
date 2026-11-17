@@ -179,7 +179,8 @@ mv uc-template 2627</code></pre></uc-code>
               <tr><td><code>sobre.html</code></td><td>Objetivos, programa, horário em tabela e equipa.</td></tr>
               <tr><td><code>theme.css</code></td><td>Estilos próprios, vazio com um exemplo comentado.</td></tr>
               <tr><td><code>README.txt</code></td><td>Estes passos, em resumo.</td></tr>
-              <tr><td><code>uc-site.py</code></td><td>Verifica o site depois de cada alteração: <code>python3 uc-site.py</code>. Ver <a href="manter.html">Manter o site</a>.</td></tr>
+              <tr><td><code>uc-site.py</code></td><td>Verifica o site depois de cada alteração e reescreve o índice da pesquisa: <code>python3 uc-site.py</code>. Ver <a href="manter.html">Manter o site</a>.</td></tr>
+              <tr><td><code>search-index.js</code></td><td>O índice da <a href="componentes/uc-page.html#pesquisa">pesquisa no site</a> (o botão «Pesquisar» do cabeçalho), gerado pelo <code>uc-site.py</code>. Não se edita. Para tirar a pesquisa, apaga-se o ficheiro e a linha <code>search: true</code> do <code>course.js</code>.</td></tr>
               <tr><td><code>AGENTS.md</code></td><td>As regras do kit para assistentes de programação (Claude Code, Codex). Ver <a href="migrar.html#agents">O ficheiro AGENTS.md</a>.</td></tr>
             </tbody>
           </table>
@@ -266,7 +267,7 @@ python3 -m http.server 8000
           <li><strong>Telemóvel.</strong> No modo de dispositivo das ferramentas do browser (Ctrl+Shift+M), a navegação passa a um menu e as tabelas deslizam na horizontal.</li>
           <li><strong>Consola.</strong> Sem avisos <code>[uc-kit]</code>.</li>
         </ul>
-        <p>Os links e imagens partidos, os erros no <code>course.js</code> e as permissões encontram-se de uma vez com <code>python3 uc-site.py</code> na pasta do site (ver <a href="manter.html">Manter o site</a>).</p>
+        <p>Os links e imagens partidos, os erros no <code>course.js</code> e as permissões encontram-se de uma vez com <code>python3 uc-site.py</code> na pasta do site (ver <a href="manter.html">Manter o site</a>). O mesmo comando reescreve o índice da pesquisa, por isso corre-se depois de cada alteração: até lá, a pesquisa ainda mostra o texto do modelo.</p>
 
         <h2 id="publicar">6. Publicar</h2>
         <p>O site é uma pasta de ficheiros estáticos: publica-se copiando-a para um servidor web. No servidor do departamento é uma cópia para o <code>~/public_html</code>:</p>

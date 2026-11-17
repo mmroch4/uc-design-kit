@@ -301,7 +301,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
             <tbody>
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
               <tr><td><code>layout</code></td><td><code>sidebar</code> ou <code>full</code></td><td><code>sidebar</code></td><td>Com <code>full</code>, a página não tem navegação e o conteúdo ocupa toda a largura.</td></tr>
-              <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa (versão 1.2.0, em preparação). <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
+              <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa (versão 1.2.0). <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
               <tr><td><code>updated</code></td><td>data <code>AAAA-MM-DD</code> ou <code>auto</code></td><td><code>updated</code> do <code>course.js</code></td><td>Data do rodapé só nesta página. <code>auto</code> usa a data do ficheiro que o servidor envia (<code>Last-Modified</code>); sem ela, não mostra data. Ver <a href="#data-da-pagina">Data de atualização de uma página</a>.</td></tr>
             </tbody>
           </table>
@@ -356,7 +356,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
         <p>O script <a href="../manter.html"><code>uc-site.py</code></a> segue a mesma regra, por isso os resultados da pesquisa apontam para a secção certa.</p>
 
         <h2 id="pesquisa">Pesquisa no site</h2>
-        <p>Versão 1.2.0, em preparação. Com <code>search: true</code> no <code>course.js</code> e o ficheiro <code>search-index.js</code> criado pelo <code>uc-site.py</code>, o cabeçalho mostra o botão <strong>Pesquisar</strong> antes do botão de língua, com os atalhos <kbd>Ctrl</kbd> <kbd>K</kbd>, <kbd>⌘</kbd> <kbd>K</kbd> e <kbd>/</kbd>.</p>
+        <p>A partir da versão 1.2.0. Com <code>search: true</code> no <code>course.js</code> e o ficheiro <code>search-index.js</code> criado pelo <code>uc-site.py</code>, o cabeçalho mostra o botão <strong>Pesquisar</strong> antes do botão de língua, com os atalhos <kbd>Ctrl</kbd> <kbd>K</kbd>, <kbd>⌘</kbd> <kbd>K</kbd> e <kbd>/</kbd>.</p>
         <ul>
           <li>O kit pergunta ao servidor se o índice existe uma vez por visita, quando o browser está desocupado. Enquanto espera, guarda o lugar do botão para nada saltar; se o índice não existir, o botão não aparece.</li>
           <li>Sem <code>search</code> no <code>course.js</code> nada disto acontece e não há nenhum pedido a mais.</li>

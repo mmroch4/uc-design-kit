@@ -83,7 +83,7 @@ released yet; contract `docs/plan/widgets-api.md`).
   the same rule as `uc-site.py`, so any section can be linked. After start-up
   the kit scrolls again to the `#hash` target and highlights it for 2 s
   (`.uc-target-flash`). `<uc-guide>` uses the same ids.
-- Search foundations in the kit (search phase S1, v1.2.0 in progress): the
+- Search foundations in the kit (search phase S1, v1.2.0): the
   `search` field of `course.js` (`UC.course.search`), one `HEAD` per visit at
   idle for the index (`sessionStorage`, 5 s timeout; the index script over
   `file://`), the header button "Pesquisar" with `Ctrl K`, `⌘K` and `/`,
@@ -91,7 +91,7 @@ released yet; contract `docs/plan/widgets-api.md`).
   `uc:searchready` event and the new `uc-search.js` (loaded on open, 6 KB
   budget; the dialog comes in phase S4). Sites without `search` make no new
   request. Browser checks in `scripts/check-search.mjs`.
-- The search dialog and `<uc-search>` (search phase S4, v1.2.0 in progress):
+- The search dialog and `<uc-search>` (search phase S4, v1.2.0):
   `uc-search.js` (5 KB gzipped) now holds the engine (folded prefix
   matching, one typo from 5 letters, section title > page title > text,
   grouped by page, language filter), the modal dialog of the header button
@@ -103,6 +103,18 @@ released yet; contract `docs/plan/widgets-api.md`).
   `check-a11y` and two new accessibility-tree snapshots. Fix:
   `uc-site.py check` no longer reports the `lang` of `<uc-code>` (the
   programming language, `lang="c"`) as a language the site does not have.
+- Search on in the template and the examples (search phase S5): `search:
+  true` in `template/course.js` and in the four examples, each with its
+  `search-index.js` (the template's is rewritten by the first run of
+  `uc-site.py`); `<uc-search scope="problems/">` on the PC problems page; the
+  PI problem statements are back in its index. `uc-site.py` is `1.2.0` and
+  warns above 1 MB instead of 500 KB. Teacher guide: index date and console
+  warnings (`manter`), search on Cloudflare and optional Apache compression
+  (`publicar`), run the script after copying a year (`novo-ano`) or
+  migrating (`migrar`), `template/AGENTS.md` rule 14.
+- The search dialog's result area is a keyboard stop (`tabindex="0"`), so a
+  long list that scrolls can be reached without a mouse (WCAG 2.1.1; found
+  by axe once the EDados example had a real index).
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type

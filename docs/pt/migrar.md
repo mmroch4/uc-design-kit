@@ -99,6 +99,7 @@ Pode acrescentar-se no fim o que o assistente deve saber sobre a cadeira, como "
 - Comparar o `semester` e os `deadlines` do `course.js` com o calendário escolar.
 - Abrir o `index.html` do disco, com a consola aberta (F12), e acrescentar `?today=` com um dia do semestre ao endereço, como em [Verificar o resultado](https://uc-design-kit.miguelrocha.dev/docs/pt/llm.md#verificar).
 - Confirmar que não foi copiado nenhum ficheiro com dados de alunos (folhas de notas, pautas, listas de turnos).
+- Correr `python3 uc-site.py` na pasta nova: verifica os links e imagens e escreve o índice da [pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#pesquisa) com as páginas migradas. Um site com muitos enunciados ou guiões ganha uma caixa [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md) na página que os lista, como a dos problemas de [Programação Competitiva](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md).
 - Guardar o site antigo até o novo estar publicado.
 
 ## Ver também

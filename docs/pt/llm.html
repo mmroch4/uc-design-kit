@@ -215,6 +215,7 @@ avaliação e prazos, programa, avisos, ou o texto do site antigo]</code></pre><
           <li><strong>Acessível</strong>: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.</li>
           <li><strong>Línguas</strong>: para um site bilingue, <code>languages</code> no <code>course.js</code> e o mesmo conteúdo duas vezes com <code>lang="pt"</code> e <code>lang="en"</code>, ou um ficheiro por língua.</li>
           <li><strong>Sem dados de estudantes</strong>: notas, números ou listas de turnos ficam fora do site público.</li>
+          <li><strong>Pesquisa</strong>: o <code>search-index.js</code> é gerado pelo <code>uc-site.py</code> e nunca se edita. Para tirar texto dos resultados, <code>data-search-ignore</code> no elemento; para pesquisar só numa pasta, <a href="componentes/uc-search.html"><code>&lt;uc-search scope="…"&gt;</code></a>.</li>
         </ol>
 
         <h2 id="verificar">Verificar o resultado</h2>
@@ -223,6 +224,7 @@ avaliação e prazos, programa, avisos, ou o texto do site antigo]</code></pre><
           <li>Abrir a consola do browser (F12): os avisos <code>[uc-kit]</code> apontam campos do <code>course.js</code> em falta ou inválidos.</li>
           <li>Acrescentar <code>?today=2026-10-15</code> ao endereço para ver o site como num dia do semestre: a semana atual, os prazos e os avisos mudam.</li>
           <li>Comparar os atributos usados com as tabelas "Atributos" das páginas dos componentes. Um atributo que não está lá não faz nada.</li>
+          <li>Correr <code>python3 uc-site.py</code> na pasta do site: verifica links, imagens e o <code>course.js</code> e reescreve o índice da pesquisa.</li>
           <li>Publicar só depois: ver <a href="publicar.html">Publicar</a>.</li>
         </ul>
 

@@ -256,7 +256,10 @@ class CleanSiteTest(SiteTestCase):
         site = uc_site.Site(os.path.join(ROOT, "template"))
         report = uc_site.Report()
         uc_site.check_site(site, report, "check")
-        self.assertEqual(report.problems, [])
+        # The template ships its search-index.js; whether it is "older" than
+        # the pages depends only on the order git wrote the files (mtimes).
+        problems = [p for p in report.problems if p.key != "index.stale"]
+        self.assertEqual(problems, [])
 
 
 class CourseCheckTest(SiteTestCase):

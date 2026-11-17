@@ -37,7 +37,9 @@
       { class: "uc-search-dialog", "aria-labelledby": titleId },
       h("h2", { class: "uc-visually-hidden", id: titleId }),
       h("div", { class: "uc-search-dialog__bar" }, icon("search"), input, close),
-      h("div", { class: "uc-search-dialog__body" }, status, retry, results.list),
+      // tabindex: a long list scrolls, and a scrollable region must be
+      // reachable with the keyboard (the options themselves are not tab stops).
+      h("div", { class: "uc-search-dialog__body", tabindex: "0" }, status, retry, results.list),
       footer,
     );
     input.addEventListener("input", update);

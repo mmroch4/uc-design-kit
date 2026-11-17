@@ -52,6 +52,7 @@ Num único ficheiro, [`course.js`](https://github.com/mmroch4/uc-design-kit/blob
 - Seis páginas na navegação e duas plataformas (Mooshak e SIGARRA).
 - A equipa (cinco pessoas, com turmas e gabinete), mostrada no início e nos horários.
 - Os prazos (testes, entregas, exame) e os avisos, que aparecem no início, na avaliação e dentro das semanas certas.
+- `search: true`: o botão «Pesquisar» do cabeçalho (`Ctrl` `K`) procura em todas as páginas, guiões incluídos. O índice é gerado pelo [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md).
 
 Para o ano seguinte, copia-se a pasta e muda-se sobretudo este ficheiro: ver [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md).
 

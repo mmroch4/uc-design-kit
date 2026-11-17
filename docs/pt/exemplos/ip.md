@@ -52,6 +52,7 @@ O [`course.js`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/ip-2
 - Seis páginas na navegação e três plataformas (Mooshak, Discord e SIGARRA).
 - Uma equipa de sete pessoas: dois regentes e cinco assistentes.
 - Doze prazos de submissão (um por aula prática e o desafio de Natal), os testes e o exame, que aparecem no início, na avaliação, nas semanas e na lista de problemas.
+- `search: true`: o botão «Pesquisar» do cabeçalho procura em todas as páginas, incluindo os enunciados dos problemas e as aulas práticas. O índice é gerado pelo [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md).
 
 ## Personalização
 

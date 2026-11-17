@@ -59,6 +59,14 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
     com, lá dentro, um texto com o resultado para quem não tem JavaScript.
     Os widgets existentes estão no catálogo
     (https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.html).
+14. Pesquisa: com `search: true` no `course.js` o cabeçalho tem o botão
+    «Pesquisar» sobre o `search-index.js`. Para pesquisar só numa parte do
+    site, dentro de uma página, `<uc-search scope="problemas/">` (o caminho é
+    relativo ao `course.js`). Partes de uma página que não devem aparecer nos
+    resultados (soluções, texto repetido) levam `data-search-ignore`; uma
+    página inteira, `<uc-page search="noindex">`; pastas, `search.exclude` no
+    `course.js`. Depois de mudar páginas, `python3 uc-site.py` (sem `check`)
+    reescreve o índice.
 
 ## Migrar um site antigo
 
@@ -126,7 +134,9 @@ Quando o professor pede para passar um site existente para esta pasta:
    - se for possível abrir um browser, abrir cada página e confirmar que a
      consola não tem erros nem avisos `[uc-kit]`; `?today=AAAA-MM-DD` no
      endereço simula um dia do semestre;
-   - nenhum dado de estudantes foi copiado.
+   - nenhum dado de estudantes foi copiado;
+   - no fim, `python3 uc-site.py` (sem `check`) escreve o índice da
+     pesquisa com as páginas novas.
 9. **Relatório**: completar `MIGRACAO.md` com o que ficou feito, os `TODO`
    que ficaram nas páginas e o que o professor tem de confirmar.
 

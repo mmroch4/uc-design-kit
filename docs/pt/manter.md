@@ -23,7 +23,7 @@ ssh utilizador@servidor "python3 ~/public_html/aulas/minha-uc/2627/uc-site.py"
 - No Windows, o comando é `py uc-site.py`.
 - Se o servidor não tiver Python 3, corre-se na cópia local antes de publicar: o resultado é o mesmo, exceto as permissões, que dependem do servidor.
 
-Quando o `course.js` tem `search: true`, o mesmo comando escreve também o índice da pesquisa no site (ver [O índice da pesquisa](#indice)). O botão "Pesquisar" que o usa chega na versão 1.2.0 do kit.
+Quando o `course.js` tem `search: true`, o mesmo comando escreve também o índice da pesquisa no site (ver [O índice da pesquisa](#indice)). O kit mostra então o botão «Pesquisar» no cabeçalho de todas as páginas (ver [Pesquisa no site](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#pesquisa)).
 
 ## Comandos e opções
 
@@ -112,7 +112,19 @@ Para deixar conteúdo de fora:
 
 Um título comprido pode ter outro título nos resultados, com `data-search-title="…"` no título ou no elemento da secção.
 
-O índice de Estruturas de Dados, com 116 páginas, tem cerca de 290 KB (73 KB comprimido pelo servidor) e só é descarregado quando um aluno abre a pesquisa. O script avisa acima de 500 KB: nesse caso, convém deixar de fora pastas que ninguém pesquisa.
+O índice de Estruturas de Dados, com 116 páginas, tem cerca de 290 KB (75 KB comprimido pelo servidor); o de Programação Imperativa, com os 112 enunciados em duas línguas, cerca de 370 KB (100 KB comprimido). Só é descarregado quando um aluno abre a pesquisa, e uma vez por visita. Um índice maior não estraga nada: só torna mais lenta a primeira pesquisa. O script avisa acima de 1 MB; nesse caso, convém deixar de fora pastas que ninguém pesquisa (arquivos de anos anteriores, código gerado).
+
+### Confirmar que o índice está atualizado
+
+A janela da pesquisa mostra no rodapé a data em que o índice foi gerado («Índice de 20 nov 2025»). Se for mais antiga que a última alteração, falta correr o `python3 uc-site.py`.
+
+Quem mantém o site também vê avisos na consola do browser (`F12`, separador Consola), começados por `[uc-kit]`. Os alunos não os veem.
+
+| Aviso | O que fazer |
+| --- | --- |
+| `search-index.js is older than course.js` | O `updated` do `course.js` é mais recente que o índice. Correr `python3 uc-site.py`. |
+| `search-index.js was made for "…", not for this course.js` | O índice veio de outra cadeira ou de outro ano (por exemplo, copiado com a pasta). Correr `python3 uc-site.py`. |
+| `… is not a search index this kit can read` | O ficheiro foi editado à mão ou foi gerado por um `uc-site.py` mais recente que o kit. Correr o `uc-site.py` do [modelo](https://uc-design-kit.miguelrocha.dev/docs/downloads/uc-template.zip). |
 
 ## Permissões
 

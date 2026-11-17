@@ -28,6 +28,10 @@ window.UC_COURSE = {
   // um '<svg …>' ou null para nenhum. Sem este campo aparece o ícone do kit.
   // logo: "logo.svg",
 
+  // Pesquisa no site: o botão «Pesquisar» aparece quando existe o search-index.js,
+  // que o uc-site.py reescreve. Correr python3 uc-site.py depois de cada alteração.
+  search: true,
+
   // Semanas de aulas: a semana 1 é a que contém start. As interrupções não contam.
   semester: {
     start: "2026-09-14",

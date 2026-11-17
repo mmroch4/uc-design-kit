@@ -30,7 +30,7 @@ from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from urllib.parse import unquote
 
-VERSION = "1.2.0-dev"
+VERSION = "1.2.0"
 SCRIPT_NAME = "uc-site.py"
 DEFAULT_INDEX = "search-index.js"
 
@@ -66,7 +66,7 @@ MESSAGES = {
         "index.written": "Índice: {index} ({pages}, {sections}, {size} KB)",
         "index.pages": ("{n} página", "{n} páginas"),
         "index.sections": ("{n} secção", "{n} secções"),
-        "index.large": "Aviso: o índice tem {size} KB. Considere deixar pastas de fora com search.exclude no course.js.",
+        "index.large": "Aviso: o índice tem {size} KB e a primeira pesquisa de cada visita fica mais lenta. Considere deixar pastas de fora com search.exclude no course.js.",
         "index.failed": "Índice: não foi possível escrever {index}: {error}",
         "index.outside": "Índice: search.index (\"{index}\") tem de ficar dentro da pasta do site",
         "index.off": "A pesquisa está desligada no course.js (falta search: true): não há índice para escrever.",
@@ -153,7 +153,7 @@ MESSAGES = {
         "index.written": "Index: {index} ({pages}, {sections}, {size} KB)",
         "index.pages": ("{n} page", "{n} pages"),
         "index.sections": ("{n} section", "{n} sections"),
-        "index.large": "Warning: the index is {size} KB. Consider leaving folders out with search.exclude in course.js.",
+        "index.large": "Warning: the index is {size} KB, so the first search of each visit is slower. Consider leaving folders out with search.exclude in course.js.",
         "index.failed": "Index: could not write {index}: {error}",
         "index.outside": "Index: search.index (\"{index}\") must be inside the site folder",
         "index.off": "Search is off in course.js (no search: true): there is no index to write.",
@@ -1240,7 +1240,10 @@ def check_site(site, report, command, fix_permissions=False):
 
 INDEX_FORMAT = 1
 EXCERPT_LENGTH = 140
-LARGE_INDEX = 500 * 1024
+# Above this size the first search of a visit takes noticeably longer (about
+# 250 KB gzipped). The index is fetched once, when the search opens. Sites far
+# bigger than this should leave folders out with search.exclude.
+LARGE_INDEX = 1024 * 1024
 
 # Frequent words that never narrow a search (the docs index list, plus
 # English). The same list is in tests/search/words.json, which the kit's
