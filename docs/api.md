@@ -191,6 +191,7 @@ v1.2.0.
 | `editions` | URL | no | — | Address of the shared editions file, relative to `course.js`, usually `"../editions.js"`. See 2.9. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
 | `runner` | object | no | Codapi + browser | Where `<uc-code run>` executes code. See 7.1. |
+| `search` | `true` \| `{ index?, exclude? }` | no | off | Site search (v1.2.0, **in progress**: the results dialog arrives with the next phase, so do not turn it on in a real site yet). `true` = `{ index: "search-index.js", exclude: [] }`. `index` is the index file, relative to `course.js`, written by `uc-site.py`; `exclude` is read by the script only. Normalised to `UC.course.search = { index, exclude }` or `null`. See 3.1 and 7. |
 
 ### 2.3 Pages
 
@@ -400,12 +401,46 @@ with JavaScript disabled it is shown at once.
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
 | `layout` | `sidebar` \| `full` | `sidebar` | `full` hides the navigation (single-page sites, guides). |
+| `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
 | `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
 
 With `editions` in `course.js` (2.9), the header also has "Outros anos" and
 older editions show a notice at the top of `<main>`. Stable classes:
 `uc-page__editions`, `uc-page__editions-button`, `uc-page__editions-menu`,
 `uc-page__edition-notice` (a `uc-callout`).
+
+**Automatic heading ids.** Before any component renders, every `<h2>` and
+`<h3>` written inside `<uc-page>` without an `id` gets one, so that any
+section can be linked (`semanas.html#exercicio-2`) and the search index can
+point at it. The id is the heading text without accents, in lowercase, with
+every run of other characters turned into `-` (`Exercício 2` →
+`exercicio-2`; nothing left → `section`); a repeated id gets `-2`, `-3`, … in
+page order. Ids written in the HTML never change and are never reused, and
+`week-<n>` of every `<uc-week n>` counts as taken. On a bilingual site the
+text of the **first** language is used (or the file's own language when
+`pages[].href` gives the page one file per language), so the id is the same
+whatever language the visitor reads. `template/uc-site.py` applies the same
+rule; both run the cases of `tests/search/slugs.json`.
+
+**Links to a section.** The page is shown only after the components render,
+so the kit scrolls to the `#hash` target again once the page is visible and
+marks it for 2 s with the class `uc-target-flash` (a soft accent background
+and outline; no transition with `prefers-reduced-motion`).
+
+**Search button** (v1.2.0, in progress). With `search` in `course.js`, the kit
+asks once per visit, when the browser is idle, whether the index file exists
+(`HEAD`, no cache, 5 s timeout; the answer is kept in `sessionStorage` under
+`uc:<course>:search`; over `file://` the index is loaded instead). While it
+waits, the header keeps an invisible placeholder of the button's size; if the
+index exists, the header shows **Pesquisar** before the language switch
+(`aria-haspopup="dialog"`, `aria-keyshortcuts="Control+K Meta+K /"`, a
+`Ctrl K` hint, or `⌘ K` on Apple devices, on screens wider than 960 px; icon
+only below 480 px, with the same accessible name), otherwise nothing. `Ctrl K`,
+`⌘K` and `/` open the search (`/` types normally in fields and in
+`<uc-code>`). Opening it loads `uc-search.js` (next to `uc-kit.js`) and the
+index, once. Without `search` nothing of this runs and no request is made.
+Stable classes: `uc-search-button`, `uc-search-button--pending`,
+`uc-search-button__label`, `uc-search-button__hint`.
 
 #### `<uc-hero>`
 
@@ -1115,6 +1150,8 @@ system font and skips downloading Inter, if a course prefers.
 | `UC.define(name, class)` | Registers a component once (safe to call twice). |
 | `UC.addTranslations(lang, dict)` | Adds or overrides interface strings. |
 | `UC.registerRunner(name, runner)` | Adds or replaces a code runner (7.1). |
+| `UC.search.available()` | `Promise<boolean>`: whether the site has a search index (asks the server if this visit has not yet; `false` without `search`). v1.2.0. |
+| `UC.search.open(query?)` | Opens the site search, optionally with a query. Does nothing without an index. v1.2.0. |
 
 `UC.Element` extends `HTMLElement` and provides `render()` (called on
 connect and on language change), `this.t()`, `this.text()`, and
@@ -1135,6 +1172,7 @@ Events on `document`:
 | `uc:exercisechange` | Bubbles from a `<uc-exercise>` when it is marked done or not done. |
 | `uc:classchange` | On `document`, when "My class" of a `<uc-timetable>` changes. `event.detail = { type, class }` (`class` is `""` for all). |
 | `uc:problemchange` | Bubbles from a `<uc-problems track>` when a problem is marked solved or not. `event.detail = { id, solved }`. |
+| `uc:searchready` | On `document`, when the search index is known to exist (v1.2.0). |
 
 ### 7.1 Code runners
 

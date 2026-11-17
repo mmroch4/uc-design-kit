@@ -94,6 +94,31 @@
 }
 :where(.uc-lang-switch__button:hover) { border-color: var(--uc-color-accent); color: var(--uc-color-accent); }
 
+:where(.uc-search-button) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uc-space-2);
+  min-width: var(--uc-target-min);
+  min-height: var(--uc-target-min);
+  padding: 0 var(--uc-space-3);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface);
+  color: var(--uc-color-text-muted);
+  font: inherit;
+  cursor: pointer;
+}
+:where(.uc-search-button:hover) { border-color: var(--uc-color-accent); color: var(--uc-color-accent); }
+/* Keeps the button's space while the kit asks whether the index exists (no layout shift). */
+:where(.uc-search-button--pending) { visibility: hidden; }
+:where(.uc-search-button__hint) {
+  padding: 0 var(--uc-space-1);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-sm, 4px);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-sm);
+}
+
 /* Shell: sidebar + main */
 :where(.uc-shell) {
   display: grid;
@@ -214,12 +239,26 @@
   :where(.uc-nav__link) { min-height: 48px; font-size: 1rem; }
 }
 
+@media (max-width: 960px) {
+  :where(.uc-search-button__hint) { display: none; }
+}
+
 @media (max-width: 480px) {
   :where(.uc-brand__edition, .uc-header__institution) { display: none; }
+  /* Icon only; the label stays as the accessible name. */
+  :where(.uc-search-button) { justify-content: center; padding: 0; }
+  :where(.uc-search-button__label) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
 }
 
 @media print {
-  :where(.uc-sidebar, .uc-skip-link, .uc-lang-switch) { display: none; }
+  :where(.uc-sidebar, .uc-skip-link, .uc-lang-switch, .uc-search-button) { display: none; }
   :where(.uc-shell) { display: block; padding: 0; }
 }
 

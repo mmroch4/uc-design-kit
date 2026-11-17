@@ -181,6 +181,8 @@
               <tr><td><code>UC.define(name, class)</code></td><td>nada</td><td>Regista um componente uma só vez: uma segunda chamada com o mesmo nome é ignorada, sem erro.</td></tr>
               <tr><td><code>UC.addTranslations(lang, dict)</code></td><td>nada</td><td>Acrescenta ou substitui textos da interface de uma língua. Se for a língua ativa, os componentes já desenhados voltam a ser desenhados.</td></tr>
               <tr><td><code>UC.registerRunner(name, runner)</code></td><td>nada</td><td>Acrescenta ou substitui um runner de código. Ver <a href="runners.html">Runners</a>.</td></tr>
+              <tr><td><code>UC.search.available()</code></td><td><code>Promise&lt;boolean&gt;</code></td><td>Se o site tem índice de pesquisa. Pergunta ao servidor se ainda não o fez nesta visita; <code>false</code> sem <code>search</code> no <code>course.js</code>. Versão 1.2.0, em preparação.</td></tr>
+              <tr><td><code>UC.search.open(query?)</code></td><td>nada</td><td>Abre a pesquisa do site, com <code>query</code> já escrita se for dada. Sem índice, não faz nada. Versão 1.2.0, em preparação.</td></tr>
             </tbody>
           </table>
         </div>
@@ -270,6 +272,7 @@ UC.weekOf("2025-12-25");     // null: after week 12</code></pre></uc-code>
               <tr><td><code>uc:languagechange</code></td><td>Depois de a língua ativa mudar na mesma página (não quando a mudança navega para outro ficheiro).</td><td><code>{ lang }</code></td></tr>
               <tr><td><code>uc:classchange</code></td><td>Um estudante escolheu "A minha turma" num <code>&lt;uc-timetable&gt;</code>. Dispara no <code>document</code>; os outros horários da página seguem a escolha.</td><td><code>{ type, class }</code> (<code>class</code> vazio = todas)</td></tr>
               <tr><td><code>uc:problemchange</code></td><td>Um problema de um <code>&lt;uc-problems track&gt;</code> foi marcado como resolvido ou não. Dispara na lista e sobe até ao <code>document</code>; as outras listas da página com o mesmo problema seguem a escolha.</td><td><code>{ id, solved }</code></td></tr>
+              <tr><td><code>uc:searchready</code></td><td>O índice de pesquisa existe (só em sites com <code>search</code>). O botão «Pesquisar» aparece ao mesmo tempo.</td><td>—</td></tr>
               <tr><td><code>uc:exercisechange</code></td><td>Um <code>&lt;uc-exercise&gt;</code> foi marcado como feito ou por fazer. Dispara no exercício e sobe até ao <code>document</code>.</td><td><code>{ id, done }</code></td></tr>
             </tbody>
           </table>

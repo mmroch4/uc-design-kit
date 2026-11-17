@@ -102,6 +102,14 @@
     return { ...entry, parsedDate: date };
   }
 
+  /** `search` (docs/plan/search-api.md 2.1): true or { index, exclude } → { index, exclude }, else null. */
+  function normalizeSearch(value) {
+    if (value !== true && !(value && typeof value === "object" && !Array.isArray(value))) return null;
+    const options = value === true ? {} : value;
+    const index = typeof options.index === "string" && options.index.trim() ? options.index.trim() : "search-index.js";
+    return { index, exclude: asArray(options.exclude).filter((entry) => typeof entry === "string") };
+  }
+
   function normalize(raw) {
     const htmlLang = (document.documentElement.getAttribute("lang") || "pt").trim();
     const languages = asArray(raw.languages).length ? raw.languages.slice() : [htmlLang];
@@ -141,6 +149,7 @@
       team: asArray(raw.team).map((entry) => withUrl(entry, resolve)),
       deadlines,
       notices,
+      search: normalizeSearch(raw.search),
       logo: raw.logo === undefined ? "default" : raw.logo && typeof raw.logo === "string" && raw.logo !== "default" ? resolve(raw.logo) : raw.logo,
     });
   }

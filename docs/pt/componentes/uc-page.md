@@ -151,6 +151,7 @@ O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igua
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
 | `layout` | `sidebar` ou `full` | `sidebar` | Com `full`, a página não tem navegação e o conteúdo ocupa toda a largura. |
+| `search` | `off` ou `noindex` | — | Para sites com pesquisa (versão 1.2.0, em preparação). `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
 
 ## Configuração usada
@@ -187,6 +188,27 @@ Uma página que fique em branco durante 2 segundos e depois apareça sem estilo 
 
 Os `href` de `pages` são relativos ao `course.js`, não à página. Uma página em `guioes/aula10.html`, que carrega `../course.js`, recebe por isso uma navegação que aponta para `../semanas.html` sem escrever nada. O `logo`, os links escritos no HTML e os do rodapé continuam relativos à página que os mostra. O exemplo completo está em [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas).
 
+## Ligações para secções
+
+Qualquer título `<h2>` ou `<h3>` dentro do `<uc-page>` pode receber uma ligação, mesmo sem `id` escrito no HTML: o kit dá-lhe um a partir do texto, antes de desenhar os componentes.
+
+- O `id` é o texto do título sem acentos, em minúsculas, com espaços e sinais trocados por `-`: «Exercício 2» dá `exercicio-2`, e a ligação é `semanas.html#exercicio-2`. Um título só com sinais dá `section`.
+- Dois títulos iguais dão `exercicio-2` e `exercicio-2-2`, pela ordem da página.
+- Um `id` escrito no HTML nunca muda e nunca é repetido. Os `week-1`, `week-2`… das semanas também contam como ocupados. Para uma ligação que não pode mudar quando o texto do título muda, escreve-se o `id` à mão.
+- Num site com duas línguas usa-se o texto da **primeira** língua de `languages`, por isso a ligação é a mesma em português e em inglês.
+
+Como a página só aparece depois de pronta, o kit volta a deslocar-se até ao título da ligação quando a página aparece e destaca-o durante 2 segundos (classe `uc-target-flash`: fundo e contorno na cor de destaque, sem transição para quem pede menos movimento).
+
+O script [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md) segue a mesma regra, por isso os resultados da pesquisa apontam para a secção certa.
+
+## Pesquisa no site
+
+Em preparação para a versão 1.2.0: ainda não se deve ligar num site real, porque a janela de resultados chega na fase seguinte. Com `search: true` no `course.js` e o ficheiro `search-index.js` criado pelo `uc-site.py`, o cabeçalho mostra o botão **Pesquisar** antes do botão de língua, com os atalhos `Ctrl` `K`, `⌘` `K` e `/`.
+
+- O kit pergunta ao servidor se o índice existe uma vez por visita, quando o browser está desocupado. Enquanto espera, guarda o lugar do botão para nada saltar; se o índice não existir, o botão não aparece.
+- Sem `search` no `course.js` nada disto acontece e não há nenhum pedido a mais.
+- Nos ecrãs estreitos só aparece a lupa, com o mesmo nome acessível.
+
 ## Personalizar
 
 Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em [Nível 2: CSS livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md); para mudar só cores, cantos ou letra em todo o site bastam os [tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md).
@@ -199,6 +221,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
 | `.uc-header__meta`, `.uc-header__institution` | O lado direito do cabeçalho e a instituição. |
 | `.uc-lang-switch`, `__button` | Os botões para mudar de língua. |
+| `.uc-search-button`, `--pending`, `__label`, `__hint` | O botão «Pesquisar» (sites com pesquisa), o lugar guardado enquanto o kit pergunta se o índice existe, o texto e o atalho `Ctrl K`. |
+| `.uc-target-flash` | O destaque de 2 segundos no destino de uma ligação `#…` ao abrir a página. |
 | `.uc-page__editions`, `.uc-page__editions-button`, `.uc-page__editions-menu` | "Outros anos": o contentor, o botão e a lista de edições. |
 | `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |

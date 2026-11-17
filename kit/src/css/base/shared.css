@@ -65,3 +65,15 @@
 :where(.uc-sort-button svg) { flex: none; opacity: 0.45; }
 :where(th[aria-sort] .uc-sort-button svg) { opacity: 1; color: var(--uc-color-accent); }
 :where(th[aria-sort="ascending"] .uc-sort-down, th[aria-sort="descending"] .uc-sort-up) { opacity: 0.25; }
+
+/* The #hash target after start-up, for 2 s (core/anchors.js). */
+:where(.uc-target-flash) {
+  border-radius: var(--uc-radius-md);
+  background-color: var(--uc-color-accent-soft);
+  outline: 2px solid var(--uc-color-accent);
+  outline-offset: 4px;
+  transition: background-color 0.4s, outline-color 0.4s;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.uc-target-flash) { transition: none; }
+}

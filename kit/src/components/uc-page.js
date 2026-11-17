@@ -160,7 +160,13 @@
       return h(
         "header",
         { class: "uc-header" },
-        h("div", { class: "uc-header__inner" }, brand, h("div", { class: "uc-header__meta" }, institution, this.renderLanguageSwitch())),
+        h("div", { class: "uc-header__inner" }, brand, h(
+          "div",
+          { class: "uc-header__meta" },
+          institution,
+          this.getAttribute("search") === "off" ? null : UC.internal.searchButton(),
+          this.renderLanguageSwitch(),
+        )),
       );
     }
 

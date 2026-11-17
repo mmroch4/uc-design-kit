@@ -34,6 +34,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
 | `.uc-header__meta`, `.uc-header__institution` | O lado direito do cabeçalho e a instituição. |
 | `.uc-lang-switch`, `__button` | Os botões para mudar de língua. |
+| `.uc-search-button`, `--pending`, `__label`, `__hint` | O botão «Pesquisar» (sites com pesquisa), o lugar guardado enquanto o kit pergunta se o índice existe, o texto e o atalho `Ctrl K`. |
+| `.uc-target-flash` | O destaque de 2 segundos no destino de uma ligação `#…` ao abrir a página. |
 | `.uc-page__editions`, `.uc-page__editions-button`, `.uc-page__editions-menu` | "Outros anos": o contentor, o botão e a lista de edições. |
 | `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |

@@ -44,6 +44,8 @@ Estes são os membros públicos. Os nomes e o comportamento descritos aqui não 
 | `UC.define(name, class)` | nada | Regista um componente uma só vez: uma segunda chamada com o mesmo nome é ignorada, sem erro. |
 | `UC.addTranslations(lang, dict)` | nada | Acrescenta ou substitui textos da interface de uma língua. Se for a língua ativa, os componentes já desenhados voltam a ser desenhados. |
 | `UC.registerRunner(name, runner)` | nada | Acrescenta ou substitui um runner de código. Ver [Runners](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/runners.md). |
+| `UC.search.available()` | `Promise<boolean>` | Se o site tem índice de pesquisa. Pergunta ao servidor se ainda não o fez nesta visita; `false` sem `search` no `course.js`. Versão 1.2.0, em preparação. |
+| `UC.search.open(query?)` | nada | Abre a pesquisa do site, com `query` já escrita se for dada. Sem índice, não faz nada. Versão 1.2.0, em preparação. |
 
 O objeto também tem `UC.internal`, partilhado entre os ficheiros do kit, e outros membros que não estão nesta tabela. Não fazem parte do contrato e podem mudar numa versão de correção.
 
@@ -131,6 +133,7 @@ Todos são `CustomEvent` e chegam ao `document`.
 | `uc:languagechange` | Depois de a língua ativa mudar na mesma página (não quando a mudança navega para outro ficheiro). | `{ lang }` |
 | `uc:classchange` | Um estudante escolheu "A minha turma" num `<uc-timetable>`. Dispara no `document`; os outros horários da página seguem a escolha. | `{ type, class }` (`class` vazio = todas) |
 | `uc:problemchange` | Um problema de um `<uc-problems track>` foi marcado como resolvido ou não. Dispara na lista e sobe até ao `document`; as outras listas da página com o mesmo problema seguem a escolha. | `{ id, solved }` |
+| `uc:searchready` | O índice de pesquisa existe (só em sites com `search`). O botão «Pesquisar» aparece ao mesmo tempo. | — |
 | `uc:exercisechange` | Um `<uc-exercise>` foi marcado como feito ou por fazer. Dispara no exercício e sobe até ao `document`. | `{ id, done }` |
 
 ```js

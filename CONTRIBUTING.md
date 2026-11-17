@@ -51,6 +51,13 @@ WCAG 2.1 A/AA (serious and critical violations fail), and visible content with
 JavaScript disabled. Pages are loaded with `?today=2025-11-27` (override with
 `TEST_TODAY`) so date-dependent output is stable.
 
+`scripts/check-search.mjs` (`npm run test:search`) checks the kit side of
+the site search on pages it makes up and serves from a fake origin: the
+automatic heading ids against `tests/search/slugs.json` (the cases
+`uc-site.py` runs too), the jump to `#hash`, the index detection (no request
+without `search`, one `HEAD` per visit, 404, timeout, `file://`), the header
+button, the shortcuts and `UC.search`. CI runs it in the second job.
+
 `check-pages.mjs` and `check-a11y.mjs` check several pages at the same time
 (`--concurrency=n`, default: CPU count, at most 4) and can check one part of
 the pages (`--shard=i/n`; the environment variables `CHECK_CONCURRENCY` and
