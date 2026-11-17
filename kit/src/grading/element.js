@@ -82,10 +82,10 @@
     return `${UC.t("grading.formula")} = ${terms.join(" + ")}`;
   }
 
-  /** The item's content without its <data> and its nested list. */
+  /** The item's content without its <data> and its nested list (a label also drops descriptions and other languages). */
   function contentOf(component, forLabel) {
     const copy = component.item.cloneNode(true);
-    copy.querySelectorAll(forLabel ? "data, ul, ol, span" : "data, ul, ol").forEach((node) => node.closest("li") === copy && node.remove());
+    copy.querySelectorAll(forLabel ? `data, ul, ol, span:not([lang]), [lang]:not([lang|="${UC.lang}"])` : "data, ul, ol").forEach((node) => node.closest("li") === copy && node.remove());
     return forLabel ? copy.textContent.replace(/\s+/g, " ").trim().replace(/[.:;,]$/, "") : Array.from(copy.childNodes);
   }
 

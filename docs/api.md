@@ -926,7 +926,8 @@ Item attributes, on the `<li>` of the first `<ul>`/`<ol>` child:
   "+ B".
 - **Calculator.** A `<fieldset>` "Simular a nota" with one labelled field per
   leaf component and per bonus item ("E: Exame final (0 a 14)"; the label
-  leaves out the item's `<span>` description). Comma or dot are accepted. A
+  leaves out the item's `<span>` description, but keeps a `<span lang>` in
+  the active language, so bilingual names work). Comma or dot are accepted. A
   value out of range shows an error linked with `aria-describedby` and sets
   `aria-invalid`. An empty bonus counts as 0; any other empty field shows
   "Preenche todas as componentes para ver a nota.". The result is an
@@ -1016,6 +1017,14 @@ above.
   stops, says the final grade and the state. With only a rules list (no
   formulas) the calculator works as above, from `data-min` and `pass`, and
   does not check the written rules.
+- **Examples.** The guide's "Exemplos das cadeiras" shows three real methods:
+  two formulas with `max` and an exam minimum (Estruturas de Dados 2026/27,
+  demo `docs/demos/uc-grading/edados-2627.html`); components graded 0–100
+  with `data-scale="100"`, the literal formula
+  `CF = (0.7*EF + 0.25*AP + 0.05*RE) / 5` and a rule on an expression,
+  `0.7*EF/5 >= 4.9` (`examples/pi-2526/avaliacao.html`); and weights kept in
+  `<data>` with a rules list holding only a text rule
+  (`examples/pc-2627/evaluation.html`).
 
 #### `<uc-assessment-info>`
 

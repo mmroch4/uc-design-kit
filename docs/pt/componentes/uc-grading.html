@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-grading · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-grading do UC Design Kit: a fórmula, os pesos, os mínimos e um simulador da nota, a partir da lista escrita pelo professor.">
+  <meta name="description" content="Documentação do componente uc-grading do UC Design Kit: a fórmula (uma ou várias), os pesos, as regras para aprovar e um simulador da nota, a partir das listas escritas pelo professor.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -298,6 +298,70 @@
         <p>Se uma fórmula tiver um erro, a página mostra as listas tal como estão escritas e a consola do navegador diz qual é a fórmula e a coluna do erro, por exemplo <code>formula 1, column 18: unknown name "X"</code>. </p>
         <p>Com <code>calculator</code>, o simulador calcula as fórmulas enquanto o aluno escreve. Com <code>max</code> mostra o valor de cada fórmula ("Fórmula 1: 12,8 · Fórmula 2: 13") e diz qual conta ("Nota final (CF): 13 valores (conta a Fórmula 2)"). Depois verifica cada regra, com ✓ ou ✗ e as palavras "cumprido" ou "não cumprido" para quem usa um leitor de ecrã; as regras escritas só em texto aparecem como "não verificado". A última linha diz o estado: "Aprovado nesta simulação.", "Aprovado nesta simulação, se cumprires os requisitos não verificados." ou "Não aprovado nesta simulação." seguido da primeira regra que falha. Os bónus somam-se à fórmula e a nota final fica entre 0 e a escala; nas regras, <code>RESULT</code> e o nome da fórmula final (<code>CF</code>) são essa nota final. As regras usam a nota sem arredondar: 9,45 não cumpre <code>CF &gt;= 9.5</code>, mesmo aparecendo como 9,5. Só com uma lista <code>data-rules</code>, sem fórmulas, o simulador usa apenas o <code>data-min</code> e o <code>pass</code>.</p>
 
+        <h3 id="cadeiras">Exemplos das cadeiras</h3>
+        <p>Três avaliações reais escritas com fórmulas e regras. Em todas, o docente copia o método do programa da UC quase letra a letra, e o kit trata da tabela, das barras e do simulador.</p>
+        <h4>Estruturas de Dados 2026/27: duas fórmulas</h4>
+        <p>A fórmula do diapositivo da cadeira, com as três componentes de 0 a 20. O comentário HTML por cima da primeira regra guarda uma dúvida para o professor: o mínimo de 4,9 vinha do esquema antigo, em que o exame valia 14; se for 35 % de 20, a regra passa a <code>E &gt;= 7</code>, e só essa linha muda.</p>
+        <!-- docs:demo src="../../demos/uc-grading/edados-2627.html" title="Estruturas de Dados 2026/27: duas fórmulas, mínimo no exame e simulador" height="1100" -->
+        <div class="docs-demo" id="demo-uc-grading-edados-2627">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-grading/edados-2627.html" title="Demonstração: Estruturas de Dados 2026/27: duas fórmulas, mínimo no exame e simulador" loading="lazy" style="height: 1100px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-grading scale=&quot;20&quot; calculator&gt;
+  &lt;ul&gt;
+    &lt;li data-code=&quot;P&quot;&gt;Prática de resolução de problemas.
+      &lt;span&gt;Duas avaliações práticas individuais, cada uma com pelo menos 1 h 45 min.&lt;/span&gt;&lt;/li&gt;
+    &lt;li data-code=&quot;R&quot;&gt;Exercícios propostos no Mooshak.&lt;/li&gt;
+    &lt;li data-code=&quot;E&quot;&gt;Exame final.&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ol data-formulas&gt;
+    &lt;li&gt;&lt;code&gt;CF = max(0.75*E + 0.2*P + 0.05*R; 0.65*E + 0.3*P + 0.05*R)&lt;/code&gt; Conta a fórmula mais favorável.&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;ul data-rules&gt;
+    &lt;!-- Mínimo do exame: 4,9 como no diapositivo. A confirmar com o professor (35 % de 20 seriam 7). --&gt;
+    &lt;li&gt;&lt;code&gt;E &gt;= 4.9&lt;/code&gt; Exame com pelo menos 4,9 valores.&lt;/li&gt;
+    &lt;li&gt;&lt;code&gt;CF &gt;= 9.5&lt;/code&gt; Nota final com pelo menos 9,5 valores.&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;Os quizzes do Mooshak servem só para estudo autónomo e não contam para a nota.&lt;/p&gt;
+&lt;/uc-grading&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-grading/edados-2627.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <h4>Programação Imperativa 2025/26: a fórmula literal</h4>
+        <p>O programa da UC dá as notas de 0 a 100 e divide por 5 no fim. Com <code>data-scale="100"</code> em cada componente, a fórmula escreve-se tal como está, e a regra sobre uma expressão (<code>0.7*EF/5</code>, a parte do exame na nota final) diz sem ambiguidade o que é "4,9 (35 % de 14)". As avaliações práticas continuam a ser partes de AP, com os pesos no <code>&lt;data&gt;</code>. Ver a página em <a href="../../../examples/pi-2526/avaliacao.html"><code>examples/pi-2526/avaliacao.html</code></a>.</p>
+        <uc-code lang="html" filename="avaliacao.html" no-download><pre><code>&lt;uc-grading scale="20" calculator&gt;
+  &lt;ul&gt;
+    &lt;li data-code="EF" data-scale="100"&gt;Exame final escrito&lt;/li&gt;
+    &lt;li data-code="AP" data-scale="100"&gt;Avaliações práticas
+      &lt;ul&gt;
+        &lt;li data-code="AP1"&gt;&lt;data value="50%"&gt;50 %&lt;/data&gt; Avaliação Prática 1&lt;/li&gt;
+        &lt;li data-code="AP2"&gt;&lt;data value="50%"&gt;50 %&lt;/data&gt; Avaliação Prática 2&lt;/li&gt;
+      &lt;/ul&gt;&lt;/li&gt;
+    &lt;li data-code="RE" data-scale="100"&gt;Resolução de exercícios&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ol data-formulas&gt;
+    &lt;li&gt;&lt;code&gt;CF = (0.7*EF + 0.25*AP + 0.05*RE) / 5&lt;/code&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;ul data-rules&gt;
+    &lt;li&gt;&lt;code&gt;0.7*EF/5 &gt;= 4.9&lt;/code&gt; Exame com pelo menos 4,9 valores na nota final (35 % de 14).&lt;/li&gt;
+    &lt;li&gt;&lt;code&gt;CF &gt;= 9.5&lt;/code&gt; Classificação final com pelo menos 9,5 valores.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/uc-grading&gt;</code></pre></uc-code>
+        <h4>Competitive Programming 2026/27: só uma regra em texto</h4>
+        <p>Os pesos continuam no <code>&lt;data&gt;</code> de cada componente, como antes (SI 25 %, CE 50 % com três concursos, PDC 25 %, e um bónus). Só se acrescenta uma lista de regras com um item sem <code>&lt;code&gt;</code>, que aparece em "Para aprovar" ("To pass"). Sem fórmulas, o simulador continua a calcular a nota a partir dos pesos e não mostra a regra escrita em texto. Ver a página em <a href="../../../examples/pc-2627/evaluation.html"><code>examples/pc-2627/evaluation.html</code></a>.</p>
+        <uc-code lang="html" filename="evaluation.html" no-download><pre><code>&lt;uc-grading scale="100" calculator heading="Evaluation criteria"&gt;
+  &lt;ul&gt;
+    &lt;li data-code="SI"&gt;&lt;data value="25"&gt;25%&lt;/data&gt; Submitted Implementations.&lt;/li&gt;
+    …
+    &lt;li data-code="B" data-bonus="10%"&gt;Bonus points&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ul data-rules&gt;
+    &lt;li&gt;Take part in at least 2 of the 3 contests. Otherwise, RFC (lack of an evaluation component).&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/uc-grading&gt;</code></pre></uc-code>
+
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
           <table>
@@ -356,7 +420,7 @@ uc-grading { --uc-grading-bar-height: 20px; }
           </div>
           <div class="uc-card">
             <h3>O que cabe a quem escreve</h3>
-            <p>Dar a cada componente um <code>data-code</code> curto e um nome claro. Escrever o peso no <code>&lt;data&gt;</code> como se lê ("14 valores", "25 %"), porque é esse o texto sem JavaScript.</p>
+            <p>Dar a cada componente um <code>data-code</code> curto e um nome claro. Escrever o peso no <code>&lt;data&gt;</code> como se lê ("14 valores", "25 %"), porque é esse o texto sem JavaScript. Com fórmulas, escrever depois de cada <code>&lt;code&gt;</code> de uma regra uma frase que a explique ("Exame com pelo menos 4,9 valores"): a condição sozinha é pouco clara para quem não conhece as siglas.</p>
           </div>
         </div>
 
@@ -396,6 +460,7 @@ uc-grading { --uc-grading-bar-height: 20px; }
           <li class="docs-toc__sub"><a href="#partes">Componentes com partes</a></li>
           <li class="docs-toc__sub"><a href="#pesos-decimais">Pesos decimais, sem fórmula</a></li>
           <li class="docs-toc__sub"><a href="#formulas">Várias fórmulas e regras para aprovar</a></li>
+          <li class="docs-toc__sub"><a href="#cadeiras">Exemplos das cadeiras</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#personalizar">Personalizar</a></li>

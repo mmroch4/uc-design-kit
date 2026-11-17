@@ -21,6 +21,18 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   the first rule that fails. New classes `.uc-grading__branches` and
   `.uc-grading__checks` (grading phase G3, `docs/plan/grading-api.md` 9).
 
+- Guide for `<uc-grading>`: a new "Exemplos das cadeiras" section with three
+  real methods written with formulas and rules (Estruturas de Dados 2026/27,
+  Programação Imperativa 2025/26 with its literal formula, Competitive
+  Programming 2026/27 with a text rule). The PI example page now uses
+  `CF = (0.7*EF + 0.25*AP + 0.05*RE) / 5`, and the PC one lists the RFC rule
+  (grading phase G4).
+
+### Fixed
+- `<uc-grading calculator>`: on a bilingual page, a field's label keeps the
+  component's name written in `<span lang="…">` (only the active language);
+  before, every `<span>` was dropped and the label read "E: (0 a 20)".
+
 ### Changed
 - `<uc-grading>` now lives in its own file, `kit/v1/uc-grading.js`, which
   `uc-kit.js` loads from its own folder only on pages that have a

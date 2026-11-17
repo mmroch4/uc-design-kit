@@ -106,7 +106,13 @@ Quando o professor pede para passar um site existente para esta pasta:
    - horários e atendimento → `uc-timetable` (uma entrada de `schedule` por
      aula semanal; os docentes vêm de `team[].classes`) e `uc-team`;
    - avaliação → `avaliacao.html`; a fórmula e os pesos da nota → a lista
-     dentro de `<uc-grading>` (peso em `<data>`, `data-code` em cada item);
+     dentro de `<uc-grading>` (peso em `<data>`, `data-code` em cada item).
+     Se o programa da UC der a fórmula por escrito (com `max`, `min` ou uma
+     divisão), copiá-la para `<ol data-formulas><li><code>CF = …</code></li></ol>`
+     (separar argumentos com `;`) e as condições para aprovar para
+     `<ul data-rules>` (`<code>E >= 4.9</code>` seguido da frase; uma regra
+     sem `<code>` fica só em texto). Não inventar valores: um mínimo com
+     dúvida fica como está, com um comentário HTML a dizê-lo;
    - página de um teste ou exame → `<uc-assessment-info deadline="…">` no
      topo, com o resto da página dentro;
    - materiais de cada aula → a lista dentro de `<uc-materials>` (título,

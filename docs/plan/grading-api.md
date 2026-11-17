@@ -11,7 +11,8 @@ into the documentation, in the same PR as the code.
 - Plan (Portuguese): [`grading-formulas.md`](grading-formulas.md), merged in
   PR 70. Miguel approved it on 17 Nov 2026, 15:25 ("aprovo o plano"), with
   the recommended option of every decision (section 16).
-- Status: **approved design, not implemented**. A phase may refine a detail
+- Status: **implemented** (G0–G4, PRs 71, 73, 74, 75 and the G4 PR); D6
+  still open for the professor. A phase may refine a detail
   that turns out wrong while coding; it records the change in section 17 and
   in its handoff note, so later phases see it.
 - Everything is **backward compatible**: a page without `data-formulas` and
@@ -799,3 +800,20 @@ Each phase adds a subsection here when it changes a detail above.
    `calculator`.
 7. **Size:** `uc-grading.js` is 7.8 KB of 8 KB gzipped after G3 (the new
    strings are about a third of the growth).
+
+### 17.4 G4
+
+1. **EDados 2026/27 is a documentation demo**, not a new example site:
+   `docs/demos/uc-grading/edados-2627.html`, shown in the guide under
+   "Exemplos das cadeiras", with the D6 comment above `E >= 4.9`. There is
+   no 2026/27 EDados site yet; `examples/edados-2526` keeps its own method.
+2. **PI** uses the PT codes of the programme (`EF`, `AP`, `RE`), each with
+   `data-scale="100"`; AP keeps its parts AP1/AP2 (50/50 in `<data>`). The
+   exam minimum is the rule `0.7*EF/5 >= 4.9` (EF ≥ 35), so the Minimum
+   column shows "—" for EF and the "Para aprovar" list carries it.
+3. **Bilingual labels (fix).** The calculator's label dropped every `<span>`,
+   so on PI (names in `<span lang>`) it read "E: (0 a 20)". Now it drops
+   `span:not([lang])` (descriptions) and elements in another language.
+   `uc-grading.js` stays at 7.8 KB.
+4. **PC** with only a text rule: as contract 9 says, the calculator does not
+   show it (no formulas); it is listed under "To pass".
