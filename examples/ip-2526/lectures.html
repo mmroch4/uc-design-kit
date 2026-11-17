@@ -11,14 +11,14 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="weeks.html">Weeks</a></li><li aria-current="page">Lectures</li></ol>
-    </nav>
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/plan.html" current="weeks">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="weeks.html">Weeks</a></li><li aria-current="page">Lectures</li></ol>
+      </nav>
       <h1>Lectures</h1>
       <p class="uc-prose">The lectures (T01–T23), on Mondays and Fridays. The notebooks of each lecture are in <a href="materials.html#lectures">materials</a>; the official summaries are on <a href="https://sigarra.up.pt/fcup/en/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=570289">SIGARRA</a>.</p>
-    </div>
+    </header>
 
     <!--
       Dates of T01–T08 come from the original plan.html ("Predicted Lectures").
@@ -52,8 +52,6 @@
         <li><time datetime="2025-12-15">15 Dec</time> <strong>T23: Revisions for the exam</strong></li>
       </ol>
     </uc-summaries>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/plan.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/plan.html</a>.</p>
   </uc-page>
 </body>
 </html>

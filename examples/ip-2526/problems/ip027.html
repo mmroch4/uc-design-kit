@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP027</li></ol>
-    </nav>
-    <h1>[IP027] Like the frog, get it?</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip027.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP027</li></ol>
+      </nav>
+      <h1>[IP027] Like the frog, get it?</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p03" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -36,31 +38,23 @@ A year is considered a <em>"leap year"</em> if it is divisible by 4, except when
 <tr>
 <td>1 ≤ <em>y</em> ≤ 5000</td>
 <td>The year to compute</td> </tr> </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(leap(2000))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(leap(2000))
 print(leap(1900))
 print(leap(2019))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-True
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">True
 False
 False
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip027.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip027.html</a>.</p>
   </uc-page>
 </body>
 </html>

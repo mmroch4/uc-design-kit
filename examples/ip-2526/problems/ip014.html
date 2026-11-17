@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP014</li></ol>
-    </nav>
-    <h1>[IP014] Odd Feelings</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip014.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP014</li></ol>
+      </nav>
+      <h1>[IP014] Odd Feelings</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p02" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
@@ -46,15 +48,10 @@ Write a program that given a sequence of <em>n</em> positive integers, counts ho
 <td>Integers in the sequence</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-8
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input</p>
+    <pre data-copy="Example Input">8
 25
 12
 15
@@ -64,18 +61,15 @@ Write a program that given a sequence of <em>n</em> positive integers, counts ho
 27
 49
 </pre>
-</td>
-<td>
-<pre data-copy="">
-3 5
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">3 5
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
 <p>Explanation of the example input: there are 8 integers in the sequence. 3 of them are even (12, 80 and 6) and the other 5 are odd (25, 15, 59, 27, 49.)</p>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip014.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip014.html</a>.</p>
   </uc-page>
 </body>
 </html>

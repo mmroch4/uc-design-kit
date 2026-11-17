@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP032</li></ol>
-    </nav>
-    <h1>[IP032] The Prime Suspects</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip032.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP032</li></ol>
+      </nav>
+      <h1>[IP032] The Prime Suspects</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p03" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -45,37 +47,29 @@ Every integer has its secrets, but some can’t hide them for long. Your task is
 </table></div>
 <div class="uc-callout uc-callout--warning"><p>NOTE: the limits on <em>n are high and you must have an <strong>efficient</strong> solution that can compute this quicker than simply trying to divide <em>n</em> by all possible integers from <em>1</em> to <em>n</em> (or you risk having <strong>Time Limit Exceeded</strong>). Your program will need to be able to compute around 100 factorizations in less than one second.</em></p></div>
 <br/>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(factorize(84))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(factorize(84))
 print(factorize(29))
 print(factorize(6))
 print(factorize(630))
 print(factorize(100))
 print(factorize(13))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-84=2*2*3*7
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">84=2*2*3*7
 29=29
 6=2*3
 630=2*3*3*5*7
 100=2*2*5*5
 13=13
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip032.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip032.html</a>.</p>
   </uc-page>
 </body>
 </html>

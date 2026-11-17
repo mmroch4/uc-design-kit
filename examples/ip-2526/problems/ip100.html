@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP100</li></ol>
-    </nav>
-    <h1>[IP100] Hawkins Threat Simulator</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP100</li></ol>
+      </nav>
+      <h1>[IP100] Hawkins Threat Simulator</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p10" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
@@ -90,15 +92,10 @@ Max Mayfield has always loved video games and she’s been thinking about how th
 <td>x coordinate (column) of first move</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 1</th>
-<th scope="col">Example Output 1</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-9 9
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 1</p>
+    <pre data-copy="Example Input 1">9 9
 B.B....B.
 .........
 ......B.B
@@ -110,10 +107,10 @@ B.B....B.
 ...B....B
 3 4
 </pre>
-</td>
-<td>
-<pre data-copy="">
-???1..1??
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 1</p>
+    <pre data-copy="Example Output 1">???1..1??
 1211.12??
 .....1???
 .....12??
@@ -123,18 +120,12 @@ B.B....B.
 ..2?2..11
 ..2?2..1?
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 2</th>
-<th scope="col">Example Output 2</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-9 9
+  </div>
+</div>
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 2</p>
+    <pre data-copy="Example Input 2">9 9
 B.B....B.
 .........
 ......B.B
@@ -146,10 +137,10 @@ B.B....B.
 ...B....B
 1 3
 </pre>
-</td>
-<td>
-<pre data-copy="">
-??B??????
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 2</p>
+    <pre data-copy="Example Output 2">??B??????
 ?????????
 ?????????
 ?????????
@@ -159,18 +150,12 @@ B.B....B.
 ?????????
 ?????????
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 3</th>
-<th scope="col">Example Output 3</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-9 9
+  </div>
+</div>
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 3</p>
+    <pre data-copy="Example Input 3">9 9
 B.B....B.
 .........
 ......B.B
@@ -182,10 +167,10 @@ B.B....B.
 ...B....B
 1 4
 </pre>
-</td>
-<td>
-<pre data-copy="">
-???1?????
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 3</p>
+    <pre data-copy="Example Output 3">???1?????
 ?????????
 ?????????
 ?????????
@@ -195,12 +180,9 @@ B.B....B.
 ?????????
 ?????????
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html</a>.</p>
   </uc-page>
 </body>
 </html>

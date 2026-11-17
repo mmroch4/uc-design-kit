@@ -11,11 +11,11 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/material.html" current="materials">
+    <header class="uc-page-header">
       <h1>Materials</h1>
       <p class="uc-prose">Lecture notebooks, practical classes, books and other courses.</p>
-    </div>
+    </header>
 
     <section class="uc-section" aria-labelledby="lectures">
       <h2 id="lectures">Lectures</h2>
@@ -98,14 +98,14 @@
     <section class="uc-section" aria-labelledby="books">
       <h2 id="books">Recommended books</h2>
       <div class="uc-grid" style="--uc-grid-min: 260px">
-        <div class="uc-card book">
-          <a class="book__title" href="https://openbookproject.net/thinkcs/python/english3e/">How to Think Like a Computer Scientist: Learning with Python 3</a>
-          <span class="uc-muted uc-small">Peter Wentworth, Jeffrey Elkner, Allen B. Downey and Chris Meyers</span>
-        </div>
-        <div class="uc-card book">
-          <a class="book__title" href="https://greenteapress.com/wp/think-python-2e/">Think Python</a>
-          <span class="uc-muted uc-small">Allen B. Downey</span>
-        </div>
+        <a class="uc-card" href="https://openbookproject.net/thinkcs/python/english3e/">
+          <h3>How to Think Like a Computer Scientist: Learning with Python 3</h3>
+          <p class="uc-muted uc-small">Peter Wentworth, Jeffrey Elkner, Allen B. Downey and Chris Meyers</p>
+        </a>
+        <a class="uc-card" href="https://greenteapress.com/wp/think-python-2e/">
+          <h3>Think Python</h3>
+          <p class="uc-muted uc-small">Allen B. Downey</p>
+        </a>
       </div>
     </section>
 
@@ -125,8 +125,6 @@
       </ul>
       <!-- TODO: the original site had empty "Selected Topics" and "Other Links" sections ("(...)"); add them here when there is content. -->
     </section>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/material.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/material.html</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP096</li></ol>
-    </nav>
-    <h1>[IP096] Chess Puzzle</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip096.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP096</li></ol>
+      </nav>
+      <h1>[IP096] Chess Puzzle</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p09" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -41,15 +43,10 @@ Dr. Zoidberg has been given an intriguing puzzle to solve. He's been tasked with
 <td>number of rows and columns</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-output = queens(4, 4)
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">output = queens(4, 4)
 print(sorted(output))
 
 print()
@@ -59,10 +56,10 @@ print("output is of type", type(output))
 print("output has size:", len(output))
 for x in sorted(output): print(x)
 </pre>
-</td>
-<td>
-<pre data-copy="">
-[[2, 4, 1, 3], [3, 1, 4, 2]]
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">[[2, 4, 1, 3], [3, 1, 4, 2]]
 
 output is of type &lt;class 'list'&gt;
 output has size: 40
@@ -107,12 +104,9 @@ output has size: 40
 [6, 3, 5, 2, 4]
 [6, 4, 2, 5, 3]
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip096.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip096.html</a>.</p>
   </uc-page>
 </body>
 </html>

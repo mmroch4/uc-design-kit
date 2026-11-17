@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP101</li></ol>
-    </nav>
-    <h1>[IP101] Dark Resonance</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip101.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP101</li></ol>
+      </nav>
+      <h1>[IP101] Dark Resonance</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p10" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
@@ -55,25 +57,19 @@ of the rightmost tower. Observe that the distance between any two towers, in met
 <td>Height of each tower</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 1</th>
-<th scope="col">Example Output 1</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-5
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 1</p>
+    <pre data-copy="Example Input 1">5
 7 3 2 100 1
 </pre>
-</td>
-<td>
-<pre data-copy="">
-6
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 1</p>
+    <pre data-copy="Example Output 1">6
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
 <p><strong>Explanation of Sample Input 1</strong></p>
 <ul>
 <li>Distance of the 1st tower to the closest taller tower (4th tower): 3
@@ -83,25 +79,19 @@ of the rightmost tower. Observe that the distance between any two towers, in met
 </li></ul>
 <p>The tallest tower (the 4th) is not considered. Hence, 3+1+1+1=6.</p>
 <br/>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 2</th>
-<th scope="col">Example Output 2</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-8
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 2</p>
+    <pre data-copy="Example Input 2">8
 45 13 18 10 8 56 17 19
 </pre>
-</td>
-<td>
-<pre data-copy="">
-13
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 2</p>
+    <pre data-copy="Example Output 2">13
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
 <p><strong>Explanation of Sample Input 2</strong></p>
 <ul>
 <li>Distance of the 1st tower to the closest taller tower (6th tower): 5
@@ -115,8 +105,6 @@ of the rightmost tower. Observe that the distance between any two towers, in met
 <p>The tallest tower (the 6th) is not considered. Hence, 5+1+2+1+1+1+2=13.</p>
 <br/>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip101.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip101.html</a>.</p>
   </uc-page>
 </body>
 </html>

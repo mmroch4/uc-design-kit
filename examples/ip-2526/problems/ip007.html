@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP007</li></ol>
-    </nav>
-    <h1>[IP007] Microwave Oven</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip007.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP007</li></ol>
+      </nav>
+      <h1>[IP007] Microwave Oven</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p01" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
@@ -69,77 +71,58 @@ HH, MM, and SS represent the time when the cake should be taken out of the oven:
 <li>It is guaranteed that the number of hours, minutes, and seconds will be non-negative integer numbers.</li>
 <li>The baking duration hours, minutes, and seconds may surpass 24h, 60m, and 60s, respectively.</li>
 </ul>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 1</th>
-<th scope="col">Example Output 1</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-13
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 1</p>
+    <pre data-copy="Example Input 1">13
 30
 12
 1
 20
 30
 </pre>
-</td>
-<td>
-<pre data-copy="">
-Take the cake out at 14:50:42.
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 1</p>
+    <pre data-copy="Example Output 1">Take the cake out at 14:50:42.
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 2</th>
-<th scope="col">Example Output 2</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-18
+  </div>
+</div>
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 2</p>
+    <pre data-copy="Example Input 2">18
 30
 0
 9
 20
 15
 </pre>
-</td>
-<td>
-<pre data-copy="">
-Take the cake out at 03:50:15.
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 2</p>
+    <pre data-copy="Example Output 2">Take the cake out at 03:50:15.
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 3</th>
-<th scope="col">Example Output 3</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-17
+  </div>
+</div>
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 3</p>
+    <pre data-copy="Example Input 3">17
 0
 0
 36
 75
 124
 </pre>
-</td>
-<td>
-<pre data-copy="">
-Take the cake out at 06:17:04.
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 3</p>
+    <pre data-copy="Example Output 3">Take the cake out at 06:17:04.
 </pre>
-</td>
-</tr></table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip007.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip007.html</a>.</p>
   </uc-page>
 </body>
 </html>

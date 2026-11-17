@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP030</li></ol>
-    </nav>
-    <h1>[IP030] Numerus Maximus!</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip030.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP030</li></ol>
+      </nav>
+      <h1>[IP030] Numerus Maximus!</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p03" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -40,31 +42,23 @@ Sarah seeks to unlock the ancient spell of Numerus Maximus, a powerful incantati
 <td>The integer from which to fing the longest ascending sequence</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(largest_sequence(129643457))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(largest_sequence(129643457))
 print(largest_sequence(1213478911))
 print(largest_sequence(123123412345))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-4
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">4
 6
 5
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip030.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip030.html</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP095</li></ol>
-    </nav>
-    <h1>[IP095] Dinner Trouble</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip095.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP095</li></ol>
+      </nav>
+      <h1>[IP095] Dinner Trouble</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p09" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -45,15 +47,10 @@ Leela, the fearless captain of the <em>Planet Express</em>, is organizing a dinn
 <td>number of pairs of enemies</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-friends = ["bender", "conrad", "fry", "leela", "amy"]
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">friends = ["bender", "conrad", "fry", "leela", "amy"]
 enemies = {("fry", "bender"), ("leela", "conrad")}
 output = dinner(friends, 3, enemies)
 print(sorted(output))
@@ -67,10 +64,10 @@ print("output is of type", type(output))
 print("output has size:", len(output))
 for x in sorted(output): print(x)
 </pre>
-</td>
-<td>
-<pre data-copy="">
-[['amy', 'bender', 'conrad'], ['amy', 'bender', 'leela'], ['amy', 'conrad', 'fry'], ['amy', 'fry', 'leela']]
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">[['amy', 'bender', 'conrad'], ['amy', 'bender', 'leela'], ['amy', 'conrad', 'fry'], ['amy', 'fry', 'leela']]
 
 output is of type &lt;class 'list'&gt;
 output has size: 13
@@ -88,12 +85,9 @@ output has size: 13
 ['conrad', 'farnsworth', 'fry', 'leela']
 ['conrad', 'farnsworth', 'leela', 'zoidberg']
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip095.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip095.html</a>.</p>
   </uc-page>
 </body>
 </html>

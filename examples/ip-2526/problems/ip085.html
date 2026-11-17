@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP085</li></ol>
-    </nav>
-    <h1>[IP085] A Girl has no Name</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip085.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP085</li></ol>
+      </nav>
+      <h1>[IP085] A Girl has no Name</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p08" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -39,31 +41,23 @@
 </table></div>
 <p>You can also be assured that the text will only be made by whitespace and upper and lowercase letters adn there will always exist at least one word.</p>
 <br/>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(sort_initials("stark Lannister TaRgArYeN ARRYN tully"))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(sort_initials("stark Lannister TaRgArYeN ARRYN tully"))
 print(sort_initials("a girl has no name in Braavos"))
 print(sort_initials("pedro Pedro PEDRO"))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-tals
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">tals
 nabghi
 p
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip085.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip085.html</a>.</p>
   </uc-page>
 </body>
 </html>

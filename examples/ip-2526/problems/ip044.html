@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP044</li></ol>
-    </nav>
-    <h1>[IP044] Which one?</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip044.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP044</li></ol>
+      </nav>
+      <h1>[IP044] Which one?</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p04" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -57,15 +59,10 @@ ABAABABAABAABABAABABA
   A solution that simply tries to simulate the evolution and recreate the entire word up to <em>n</em> will most likely have <strong>Time Limit Exceeded</strong>.<br/>
   Your program will need to be able to answer around five hundred queries in less than one second.</p></div>
 <br/>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(whichone(1))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(whichone(1))
 print(whichone(2))
 print(whichone(3))
 print(whichone(4))
@@ -73,10 +70,10 @@ print(whichone(5))
 print(whichone(10))
 print(whichone(16))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-A
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">A
 B
 A
 A
@@ -85,12 +82,9 @@ B
 A
 
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip044.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip044.html</a>.</p>
   </uc-page>
 </body>
 </html>

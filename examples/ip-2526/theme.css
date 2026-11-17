@@ -1,36 +1,8 @@
 /*
  * Introduction to Programming 2025/26: the site's own styles (customisation level 2).
- * Only kit tokens (--uc-*) are used, so everything follows accentColor.
- * Each block says which page uses it.
+ * Only the colours of the original problem statements are left: everything else
+ * comes from the kit's components and classes.
  */
-
-/* about.html: syllabus as a numbered list 01, 02, … */
-.program { list-style: none; margin: 0; padding: 0; max-width: 760px; }
-.program > li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--uc-space-4); margin: 0; padding: var(--uc-space-3) 0; border-top: 1px solid var(--uc-color-border); }
-.program > li:first-child { border-top: 0; }
-.program__n { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.program p { margin: 0; color: var(--uc-color-text-secondary); }
-
-/* materials.html */
-.book { --uc-card-padding: var(--uc-space-5); display: flex; flex-direction: column; gap: 6px; }
-.book__title { font-weight: 600; }
-
-/* practical/class*.html: the line above the title (until uc-guide shows the week's dates) */
-.class-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3); margin: 0; font-size: var(--uc-font-size-sm); }
-
-/* problems/, practical/, exam.html: pages migrated from the original site */
-.crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: var(--uc-font-size-md); color: var(--uc-color-text-muted); }
-.crumbs li { margin: 0; }
-.crumbs li + li::before { content: "/"; margin-right: 6px; color: var(--uc-color-text-subtle); }
-.crumbs a { color: var(--uc-color-text-muted); text-decoration: none; }
-.crumbs a:hover { color: var(--uc-color-accent); text-decoration: underline; }
-.source-note { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
-
-/* practical/test1.html, practical/test2.html: rules of the test */
-.test-rules { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--uc-space-2) var(--uc-space-6); margin: 0; max-width: 760px; }
-.test-rules dt { font-weight: 600; }
-.test-rules dd { margin: 0; color: var(--uc-color-text-secondary); }
-@media (max-width: 560px) { .test-rules { grid-template-columns: 1fr; } .test-rules dd { margin-bottom: var(--uc-space-2); } }
 
 /* problems/ and practical/: colours of the original statements, with enough contrast */
 .c-red { color: #B42318; }

@@ -14,15 +14,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="weeks">
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class06.html" current="weeks">
     <uc-guide week="7">
-      <div class="uc-stack">
-        <p class="class-meta">
-          <span class="uc-tag uc-tag--accent">Practical class #06</span>
-          <span class="uc-mono uc-muted">03/11 to 07/11</span>
-        </p>
+      <header class="uc-page-header">
+        <p class="uc-eyebrow">Practical class #06 · 03/11 to 07/11</p>
         <h1>Class #06 · Correction and Efficiency</h1>
-      </div>
+      </header>
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
@@ -226,12 +223,12 @@ print(lst)</code></pre></uc-code>
         if i%2 == 0: pos += a
         else: pos -= b
     return pos</code></pre></uc-code>
-<p>This actually solves the example function calls and all "small" inputs. Save this code to a file and submit to Mooshak. You will get a... <span class="c-red b">Time Limit Exceeded</span>.
+<p>This actually solves the example function calls and all "small" inputs. Save this code to a file and submit to Mooshak. You will get a... <span class="uc-tag uc-tag--danger">Time Limit Exceeded</span>.
 
       </p><p>What is the problem with this code? The execution time it takes depends on the \(k\), as we are doing a <code>for</code> cycle with \(k\) iterations. More than that, it takes time that is in <strong>linear</strong> proportion to \(k\), that is, if you double the number \(k\), you will need double the iterations and your code will roughly take double the execution time (you will later learn on other courses that this is a \(\mathcal{O}(k)\) algorithm, roughly meaning that it takes linear time on \(k\)). And in this problem \(k\) can be as large as \(10^9\), which is too high for this kind of solution...</p>
 <p><strong>A better efficient solution</strong></p>
 <p>So how can you solve this? Think a bit about the problem and try to think on a solution that <strong>does not depend on \(k\)</strong>. If you get stuck you can have a look at the hints below, that is hidden so it is not spoiling your joy in solving the problem ☺️.<br/>
-      After you solve, test your solution and get your deserved <span class="c-green b">Accepted</span> for a solution that takes constant time and does not depend on \(k\) (what you will learn later to be a \(\mathcal{O}(1)\) solution)</p>
+      After you solve, test your solution and get your deserved <span class="uc-tag uc-tag--success">Accepted</span> for a solution that takes constant time and does not depend on \(k\) (what you will learn later to be a \(\mathcal{O}(1)\) solution)</p>
 <details class="uc-hint">
 <summary>Hints</summary>
 <p>- Instead of doing \(+a -b\) for \(k/2\) times, you can simply multiply \(a-b\) by \(k/2\), right?<br/>
@@ -268,9 +265,9 @@ print(lst)</code></pre></uc-code>
   </li><li>Why to we use <code>range(len(lst) - k + 1)</code>. Until what position can a \(segment\) start?
   </li><li>What does the <code>best = max(best, count)</code> do? We could have also just used an <code>if</code>, right?
 </li></ul>
-<p>After you are sure you understood, you can save to file and submit to Mooshak. You will get a... <span class="c-red b">Time Limit Exceeded</span> (<span class="c-red b">TLE</span>), yet again 😇.
+<p>After you are sure you understood, you can save to file and submit to Mooshak. You will get a... <span class="uc-tag uc-tag--danger">Time Limit Exceeded</span> (<span class="uc-tag uc-tag--danger">TLE</span>), yet again 😇.
 
-</p><p>Why is this happening? Now it might not be so clear why we are getting (<span class="c-red b">TLE</span>)...</p>
+</p><p>Why is this happening? Now it might not be so clear why we are getting (<span class="uc-tag uc-tag--danger">TLE</span>)...</p>
 <p><strong>Measuring execution time</strong></p>
 <p>For the purposes of learning, we will do a more in-depth analysis. First, we will define a function to create random lists on demand on \(n\) integers on the range \([a,b]\):<br/>
 (you can remember about <strong>pseudo-randomness</strong> and the <strong>random</strong> library by looking at <a href="../materials.html#lectures">lecture T11</a>)</p>
@@ -311,7 +308,7 @@ n = 51200, time = 26.031s 3.77x
 </p><p><strong>A better efficient solution</strong></p>
 <p>So yes, we need a linear time algorithm for this problem. Can you think about one? What do we change each time our considered sequence moves one position to the right? Do we really need to compute again "from scratch" the number of positive values in that sequence?</p>
 <p>Again, try to think a bit about the problem and think on a solution that just depend linearly on \(n\). We again provide hints if you need them, and even if you solve the problem by yourself, you should look at the afterwards.<br/>
-      After you solve, test your solution and get your deserved <span class="c-green b">Accepted</span> for an efficient solution.</p>
+      After you solve, test your solution and get your deserved <span class="uc-tag uc-tag--success">Accepted</span> for an efficient solution.</p>
 <p>If you "plug in" your better solution to the previous experiment code, you should get something like the following, showcasing that the growth ratio of execution time has gone down to <strong>2x</strong> instead of <strong>4x</strong>:
 
  </p><pre>
@@ -363,7 +360,7 @@ for _ in range(q):
     for i in range(a-1, b):
         mysum += lst[i]        
     print(mysum)</code></pre></uc-code>
-<p>Understand the code and then test with the sample input. The code works and seems correct but if you submit to Mooshak you will get a... <span class="c-red b">Time Limit Exceeded</span>.
+<p>Understand the code and then test with the sample input. The code works and seems correct but if you submit to Mooshak you will get a... <span class="uc-tag uc-tag--danger">Time Limit Exceeded</span>.
 
       </p><p>What is the problem? For each query we might need to traverse the entire list, in the worst case we might need \(q \times n\) iterations to get the answer. But both \(n\) and \(q\) can go up to \(50\,000\) which is too high for such a naive solution...</p>
 <p>Don't be fooled to think that calling Python's sum function will change what is happening "behind the curtains". For instance, the previous code could have also be written in the following way:</p>
@@ -389,7 +386,7 @@ for _ in range(q):
 <p>If we have stored the prefix sums (which can be computed in linear time on the size of the list\), finding the sum of a given interval can now be done in constant time!<br/>
 For example, if \(psum[]\) stores the prefix sum, the sum between positions \(a\) and \(b\) is equal to \(psum[b] - psum[a-1]\). Can you see why?</p>
 <p>This technique can be used to help solve many problems more efficiently, including helping Penny. If the prefix sums are calculated right after reading the money operations, we can answer each query with a simple subtraction, and the entire code will have time proportional to \(n + q\) instead of \(n \times q\) which is a big change!</p>
-<p>Implement this idea using as a basis the previous code, test it and submit to get your well deserved <span class="c-green b">Accepted</span>! 😎
+<p>Implement this idea using as a basis the previous code, test it and submit to get your well deserved <span class="uc-tag uc-tag--success">Accepted</span>! 😎
 
 </p>
         </uc-exercise>
@@ -407,13 +404,13 @@ For example, if \(psum[]\) stores the prefix sum, the sum between positions \(a\
     return False</code></pre></uc-code>
 <p>We try all possible pairs \(a,b\) and check if they are different (avoiding using twice the same element - remember the elements are distinct) and if they sum to our desired target. As soon as we find one match, we can safely return \(True\). If no match is found, than the answer is \(False\).</p>
 <p>Seems like a solid approach, and if we are lucky to find the sum, we can even return "quickly", but in the worst case the answer is \(False\) and we still need to check all pairs.</p>
-<p>You could think on actually avoid trying twice each pair (as we test \(a,b\) and \(b,a\)), but that would only cut the time in two, not changing the growth ratio of the execution time, which grows <strong>quadratically</strong> on the size of the list, since we have a quadratic number of pairs. Because the size of the list can be \(50,000\) we are doomed to have a <span class="c-red b">Time Limit Exceeded</span> with this approach...</p>
+<p>You could think on actually avoid trying twice each pair (as we test \(a,b\) and \(b,a\)), but that would only cut the time in two, not changing the growth ratio of the execution time, which grows <strong>quadratically</strong> on the size of the list, since we have a quadratic number of pairs. Because the size of the list can be \(50,000\) we are doomed to have a <span class="uc-tag uc-tag--danger">Time Limit Exceeded</span> with this approach...</p>
 <p><strong>A better efficient solution</strong></p>
 <p>So how can you solve the problem?</p>
 <p>On the lectures (<a href="../materials.html#lectures">T10</a>) you already discussed the <code>set</code> data structure and you had a quick discussion on its efficiency (using <em>hash functions</em>) and how, <em>on average</em>, it provides constant time for adding an element, removing an element and checking if an element is on the set.</p>
 <p>How can we use this to solve our task? Try to come up with an algorithm in which one of the loops of the naive solution is essentially transformed into a set membership operation.</p>
 <p>If you get stuck you can have a look at the hints below 😉</p>
-<p>After you solve, test your solution and get your deserved <span class="c-green b">Accepted</span> for an efficient solution.</p>
+<p>After you solve, test your solution and get your deserved <span class="uc-tag uc-tag--success">Accepted</span> for an efficient solution.</p>
 <details class="uc-hint">
 <summary>Hints</summary>
 <p>- Traverse all the items of the list and keep a set of all previous values (adding them one by one to the set)<br/>
@@ -425,7 +422,7 @@ For example, if \(psum[]\) stores the prefix sum, the sum between positions \(a\
           <p><span class="uc-tag uc-tag--accent">extra</span></p>
 <p>Loved the main exercises and want more adventure in the universe of efficiency and Big Bang Theory? Here are more exercises to sharpen your skills.</p>
 <p>
-    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+    Read the statements, code and try to submit <span class="uc-tag uc-tag--success">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
 <ol type="a">
 <li><a href="../problems/ip063.html">[IP063] Neural Activity</a> <em>(oh no, more sliding windows!)</em>
 </li><li><a href="../problems/ip064.html">[IP064] Comic Dilemma</a> <em>(hum... sets again?)</em>
@@ -436,7 +433,7 @@ For example, if \(psum[]\) stores the prefix sum, the sum between positions \(a\
 <p>You've made your way Pasadena's finest minds, helping Raj, Leonard, Penny, Howard, Amy and Stuart. But no... two final bosses remain: the deceptively sweet yet terrifying Bernadette, and the ultimate challenge,  Sheldon Cooper, whose logic defies not only code, but the very laws of physics themselves!</p>
 <p><strong>Bazinga</strong>! Let's see if your Python can handle that. 🧠🐍</p>
 <p>
-    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to the following problems. Don't forget to test first on your computer!</p>
+    Read the statements, code and try to submit <span class="uc-tag uc-tag--success">Accepted</span> solutions to the following problems. Don't forget to test first on your computer!</p>
 <ol type="a">
 <li><a href="../problems/ip065.html">[IP065] Bacterial Cultures</a> <em>(2D prefix sums?)</em>
 </li><li><a href="../problems/ip066.html">[IP066] Alphabetical Obsession</a> <em>(advanced sliding windows?)</em>
@@ -445,8 +442,6 @@ For example, if \(psum[]\) stores the prefix sum, the sum between positions \(a\
         </uc-exercise>
       </section>
     </uc-guide>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class06.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class06.html</a>.</p>
   </uc-page>
 </body>
 </html>

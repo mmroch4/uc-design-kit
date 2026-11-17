@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP060</li></ol>
-    </nav>
-    <h1>[IP060] Experimental Stability</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip060.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP060</li></ol>
+      </nav>
+      <h1>[IP060] Experimental Stability</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p06" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -50,28 +52,22 @@ Leonard Hofstadter is once again deep into his physics experiments at Caltech. E
   If your code simply tries all possible sublists and for each of them you iterate through all elements of the sublist, it will result in a <strong>Time Limit Exceeded</strong>.
 </p></div>
 <br/>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(stable(3, [-1, -1, 2, -3, 1, -5]))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(stable(3, [-1, -1, 2, -3, 1, -5]))
 print(stable(4, [1, 2, 3, 4, 5, 6]))
 print(stable(5, [-1, -2, 1, 1, 0, 3, 0, -4]))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-2
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">2
 4
 3
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
 <p><strong>Explanation of the first example</strong>
 </p><p>The answer is <strong>2</strong>. There are 4 possible contiguous sublists of size 3:</p>
 <ul>
@@ -85,8 +81,6 @@ print(stable(5, [-1, -2, 1, 1, 0, 3, 0, -4]))
 <p><strong>Explanation of the third example</strong>
 </p><p>The answer is <strong>3</strong>. There are two sublists of size 5 with 3 positive numbers: [-2, <strong>1</strong>, <strong>1</strong>, 0, <strong>3</strong>] and [<strong>1</strong>, <strong>1</strong>, 0, <strong>3</strong>, 0]</p>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip060.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip060.html</a>.</p>
   </uc-page>
 </body>
 </html>

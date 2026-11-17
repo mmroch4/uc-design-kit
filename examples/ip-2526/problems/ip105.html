@@ -12,11 +12,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP105</li></ol>
-    </nav>
-    <h1>[IP105] Trinity's Escape</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip105.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP105</li></ol>
+      </nav>
+      <h1>[IP105] Trinity's Escape</h1>
+    </header>
     <div class="uc-callout uc-small problem-context">
 <p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p11" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
@@ -53,15 +55,10 @@ The sound of gunfire echoes through the hallway as Trinity sprints through a nar
 <td>Length of map string</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-maps = [".B.A...B..T..A",
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">maps = [".B.A...B..T..A",
         ".B.B.T.B.B.",
         "..A..T..A..",
         "AB..T...B...AAAAA"]
@@ -74,16 +71,16 @@ for s in maps:
    else:
       print(distance)
 </pre>
-</td>
-<td>
-<pre data-copy="">
-3
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">3
 2
 Caught exception: 404 booth not found!
 Caught exception: No possible escape...
 </pre>
-</td></tr>
-</table></div>
+  </div>
+</div>
 <p><strong>Explanation of example function calls:</strong></p>
 <ul>
 <li>For the first string (<code>".B.A...B..T..A"</code>), the answer is 3 (Trinity has a booth at distance 3 that she can reach before any agent)
@@ -92,8 +89,6 @@ Caught exception: No possible escape...
   </li><li>For the fourth string (<code>"AB..T...B...AAAAA"</code>), an Exception <code>"No possible escape..."</code> is generated (no booth closer to Trinity than to any agent)
 </li></ul>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip105.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip105.html</a>.</p>
   </uc-page>
 </body>
 </html>
