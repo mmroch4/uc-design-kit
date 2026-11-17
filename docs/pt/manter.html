@@ -154,7 +154,7 @@ python3 uc-site.py</code></pre></uc-code>
           <li>No Windows, o comando é <code>py uc-site.py</code>.</li>
           <li>Se o servidor não tiver Python 3, corre-se na cópia local antes de publicar: o resultado é o mesmo, exceto as permissões, que dependem do servidor.</li>
         </ul>
-        <p>Na versão 1.2.0 do kit, o mesmo comando passa também a escrever o índice da pesquisa no site, quando o <code>course.js</code> tiver <code>search: true</code>. Até lá, só verifica.</p>
+        <p>Quando o <code>course.js</code> tem <code>search: true</code>, o mesmo comando escreve também o índice da pesquisa no site (ver <a href="#indice">O índice da pesquisa</a>). O botão "Pesquisar" que o usa chega na versão 1.2.0 do kit.</p>
 
         <h2 id="comandos">Comandos e opções</h2>
         <div class="uc-table">
@@ -166,7 +166,7 @@ python3 uc-site.py</code></pre></uc-code>
             <tbody>
               <tr><td><code>python3 uc-site.py</code></td><td>Verifica tudo e, com a pesquisa ligada, escreve o índice. É o comando a usar depois de cada alteração.</td></tr>
               <tr><td><code>python3 uc-site.py check</code></td><td>Só verifica. Não escreve nada.</td></tr>
-              <tr><td><code>python3 uc-site.py index</code></td><td>Só escreve o índice da pesquisa (a partir da versão 1.2.0).</td></tr>
+              <tr><td><code>python3 uc-site.py index</code></td><td>Só escreve o índice da pesquisa, sem verificar as páginas (só lê o <code>course.js</code>).</td></tr>
             </tbody>
           </table>
         </div>
@@ -180,6 +180,7 @@ python3 uc-site.py</code></pre></uc-code>
               <tr><td><code>--site PASTA</code></td><td>A pasta do site. Por omissão, a pasta onde está o script, seja qual for a pasta atual.</td></tr>
               <tr><td><code>--fix-permissions</code></td><td>Dá permissão de leitura a todos os ficheiros e pastas do site que não a têm (ver <a href="#permissoes">Permissões</a>).</td></tr>
               <tr><td><code>--quiet</code></td><td>Mostra só os erros, e nada quando não há erros. Para o <code>cron</code>.</td></tr>
+              <tr><td><code>--stdout</code></td><td>Com <code>index</code>: mostra o índice no ecrã em vez de escrever o ficheiro. Para ferramentas que o queiram guardar noutro sítio.</td></tr>
               <tr><td><code>--lang pt</code> ou <code>--lang en</code></td><td>Língua das mensagens. Por omissão, a primeira língua do <code>course.js</code> (inglês se não for <code>pt</code> nem <code>en</code>).</td></tr>
               <tr><td><code>--version</code></td><td>A versão do script (a do kit com que saiu).</td></tr>
               <tr><td><code>--help</code></td><td>Ajuda.</td></tr>
@@ -193,13 +194,15 @@ python3 uc-site.py</code></pre></uc-code>
 ERRO   semanas.html:142     ligação para guioes/aula13.html: o ficheiro não existe
 AVISO  guioes/aula04.html:31  imagem sem alt: imagens/heap.png (se for decorativa, use alt="")
 INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
-116 páginas · 1 erro · 1 aviso · 1 informação</code></pre></uc-code>
+116 páginas · 1 erro · 1 aviso · 1 informação
+Índice: search-index.js (116 páginas, 685 secções, 290 KB)</code></pre></uc-code>
         <ul>
           <li><strong>ERRO</strong>: algo que os alunos vão ver partido (um link que dá "Not Found", uma página sem o kit). Corrigir antes de publicar.</li>
           <li><strong>AVISO</strong>: um problema de acessibilidade ou de manutenção que convém corrigir.</li>
           <li><strong>INFO</strong>: só para saber, por exemplo uma página antiga que ficou esquecida.</li>
         </ul>
-        <p>O script termina com o código <code>0</code> quando não há erros (mesmo que haja avisos), <code>1</code> quando há pelo menos um erro e <code>2</code> quando o comando está mal escrito. Isto permite usá-lo em scripts: <code>python3 uc-site.py --quiet &amp;&amp; rsync …</code> só publica um site sem erros.</p>
+        <p>A última linha só aparece com a pesquisa ligada. Os erros não impedem o índice de ser escrito: um link partido não deve tirar a pesquisa aos alunos.</p>
+        <p>O script termina com o código <code>0</code> quando não há erros (mesmo que haja avisos), <code>1</code> quando há pelo menos um erro (ou quando não conseguiu escrever o índice) e <code>2</code> quando o comando está mal escrito. Isto permite usá-lo em scripts: <code>python3 uc-site.py --quiet &amp;&amp; rsync …</code> só publica um site sem erros.</p>
 
         <h2 id="verificacoes">O que é verificado</h2>
         <div class="uc-table">
@@ -218,10 +221,43 @@ INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
               <tr><td>Link com caminho absoluto (<code>/~utilizador/…</code>), que deixa de funcionar quando a pasta muda de sítio</td><td>aviso</td></tr>
               <tr><td>Ficheiro ou pasta que o servidor web não consegue ler</td><td>aviso</td></tr>
               <tr><td>Página para a qual nenhuma outra página liga (e que não está em <code>pages</code>)</td><td>informação</td></tr>
+              <tr><td>Só com <code>check</code> e a pesquisa ligada: o índice ainda não existe, ou é mais antigo do que uma página</td><td>informação</td></tr>
             </tbody>
           </table>
         </div>
         <p>Os links externos não são verificados: o servidor pode não ter acesso à Internet, e seria lento.</p>
+
+        <h2 id="indice">O índice da pesquisa</h2>
+        <p>Com <code>search: true</code> no <code>course.js</code>, o script escreve na pasta do site o ficheiro <code>search-index.js</code>, com o texto de todas as páginas <code>.html</code> da pasta e das subpastas. É este ficheiro que a pesquisa do site lê: o browser nunca percorre o site sozinho, por isso o índice só está atualizado se o script correr depois de cada alteração.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>search: true,
+// ou, com opções:
+search: {
+  index: "search-index.js",          // nome do ficheiro (por omissão)
+  exclude: ["rascunhos/", "velho.html"],
+},</code></pre></uc-code>
+        <ul>
+          <li><strong>O que entra:</strong> o título de cada página e o texto dividido em secções, uma por cada <code>&lt;h2&gt;</code> e <code>&lt;h3&gt;</code>, semana (<code>&lt;uc-week&gt;</code>), exercício, pergunta e item de lista ou artigo com <code>id</code>. Cada resultado da pesquisa leva diretamente à secção.</li>
+          <li><strong>O que fica de fora:</strong> o cabeçalho, a navegação e o rodapé (são do kit), os <code>&lt;nav&gt;</code>, scripts e estilos, e o código dentro de <code>&lt;uc-code&gt;</code> (só o nome do ficheiro entra). O texto alternativo das imagens entra.</li>
+          <li><strong>Títulos sem <code>id</code>:</strong> o script dá-lhes um a partir do texto (<code>Exercício 2</code> → <code>exercicio-2</code>), o mesmo que o kit lhes dá no browser. Um <code>id</code> escrito à mão nunca muda; convém escrevê-lo nos títulos para onde há links de fora.</li>
+          <li><strong>Sites com duas línguas:</strong> uma página com texto em <code>lang="pt"</code> e <code>lang="en"</code> entra uma vez por língua, e cada aluno só vê os resultados da língua que escolheu.</li>
+          <li>O ficheiro é gerado: não se edita à mão. Fica com permissão de leitura para todos (<code>644</code>) e é escrito de uma vez, por isso um aluno nunca apanha meio índice.</li>
+        </ul>
+        <p>Para deixar conteúdo de fora:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Como deixar conteúdo fora do índice</caption>
+            <thead>
+              <tr><th scope="col">O quê</th><th scope="col">Como</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Uma pasta ou um ficheiro</td><td><code>exclude</code> no <code>course.js</code>: caminhos relativos à pasta do site; um caminho que acaba em <code>/</code> é uma pasta inteira. As pastas cujo nome começa por <code>_</code> ou <code>.</code> ficam sempre de fora.</td></tr>
+              <tr><td>Uma página</td><td><code>&lt;uc-page search="noindex"&gt;</code></td></tr>
+              <tr><td>Uma parte de uma página</td><td><code>data-search-ignore</code> no elemento: ele e tudo o que tem dentro ficam de fora</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Um título comprido pode ter outro título nos resultados, com <code>data-search-title="…"</code> no título ou no elemento da secção.</p>
+        <p>O índice de Estruturas de Dados, com 116 páginas, tem cerca de 290 KB (73 KB comprimido pelo servidor) e só é descarregado quando um aluno abre a pesquisa. O script avisa acima de 500 KB: nesse caso, convém deixar de fora pastas que ninguém pesquisa.</p>
 
         <h2 id="permissoes">Permissões</h2>
         <p>O servidor web do departamento lê os ficheiros como outro utilizador, por isso cada ficheiro precisa de permissão de leitura para todos (<code>o+r</code>) e cada pasta de permissão de leitura e passagem (<code>o+rx</code>). Um ficheiro sem ela dá "Forbidden" (erro 403). O script avisa; com <code>--fix-permissions</code> corrige, sem tirar nenhuma permissão:</p>
@@ -231,6 +267,7 @@ INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
         <h2 id="automatizar">Automatizar</h2>
         <p>Com <code>--quiet</code> o script não escreve nada quando está tudo bem, por isso pode correr sozinho. Uma linha no <code>crontab -e</code> do servidor verifica o site todas as manhãs e envia um email só quando há erros:</p>
         <uc-code lang="bash" no-download><pre><code>0 7 * * * python3 ~/public_html/aulas/minha-uc/2627/uc-site.py --quiet</code></pre></uc-code>
+        <p>Com a pesquisa ligada, esta linha também reescreve o índice todas as manhãs, o que apanha as alterações de quem se esqueceu de correr o script.</p>
 
         <h2 id="atualizar">Atualizar o script</h2>
         <p>O script passa de ano com a pasta e não precisa de ser atualizado. Uma versão mais recente vem no <a href="../downloads/uc-template.zip">modelo</a>: basta substituir o ficheiro <code>uc-site.py</code> da pasta do site. <code>python3 uc-site.py --version</code> mostra a versão que se tem.</p>
@@ -260,6 +297,7 @@ INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
           <li><a href="#comandos">Comandos e opções</a></li>
           <li><a href="#resultado">Ler o resultado</a></li>
           <li><a href="#verificacoes">O que é verificado</a></li>
+          <li><a href="#indice">O índice da pesquisa</a></li>
           <li><a href="#permissoes">Permissões</a></li>
           <li><a href="#automatizar">Automatizar</a></li>
           <li><a href="#atualizar">Atualizar o script</a></li>

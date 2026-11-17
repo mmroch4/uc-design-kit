@@ -12,9 +12,6 @@
 .inline-links { display: flex; flex-wrap: wrap; gap: var(--uc-space-2) var(--uc-space-4); margin: 0; padding: 0; list-style: none; }
 .inline-links > li { margin: 0; }
 
-/* classes.html and problems/: judge ids and problem tables */
-.judge { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-sm); color: var(--uc-color-text-muted); white-space: nowrap; }
-
 /* Migrated pages (problems/, classes/, problem sets, contest) */
 .crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: var(--uc-font-size-md); color: var(--uc-color-text-muted); }
 .crumbs li { margin: 0; }

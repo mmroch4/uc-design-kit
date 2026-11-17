@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sumários · Estruturas de Dados 2025/26</title>
+  <meta name="description" content="Sumários das 24 aulas teóricas de Estruturas de Dados 2025/26, com data, semana e pesquisa.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="summaries">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1>Sumários</h1>
+      <p class="uc-prose">O que foi dado em cada aula teórica. Cada sumário liga à sua semana, onde estão os slides e o guião da prática.</p>
+    </div>
+
+    <!--
+      Um <li> por aula, pela ordem das aulas. A data é o primeiro <time datetime="AAAA-MM-DD">.
+      O kit junta o dia da semana, a ligação à semana, a interrupção letiva (de course.js)
+      e "Prevista" nas aulas futuras. search: caixa de pesquisa.
+      O id="aula-N" permite ligar a uma aula a partir de semanas.html.
+    -->
+    <uc-summaries search heading="none">
+      <ol>
+        <li id="aula-1"><time datetime="2025-09-16">16 set</time> <strong>Apresentação; Introdução ao Java</strong>
+          <p>Considerações gerais sobre o programa, bibliografia, funcionamento das aulas e método de avaliação. Breve introdução dos capítulos da UC. Perspetiva histórica sobre a linguagem Java. Vantagens e modelo de programação. Tipos básicos de dados e limites dos tipos numéricos.</p></li>
+        <li id="aula-2"><time datetime="2025-09-18">18 set</time> <strong>Introdução ao Java</strong>
+          <p>Perspetiva histórica sobre Java. Vantagens e modelo de programação. Tipos básicos e limites numéricos. Conversão entre tipos. Operadores lógicos e matemáticos e precedência. Ciclos e execução condicional.</p></li>
+        <li id="aula-3"><time datetime="2025-09-23">23 set</time> <strong>Introdução ao Java</strong>
+          <p>Instruções de controlo de fluxo (if, switch-case). Ciclos (for, while, do-while). break, continue. Noção de classe, objeto e atributo. Métodos. O método construtor. Exemplo de uma classe para pontos no plano.</p></li>
+        <li id="aula-4"><time datetime="2025-09-25">25 set</time> <strong>Introdução ao Java (cont.)</strong>
+          <p>Métodos e atributos. Comparação de objetos. Variáveis e métodos estáticos. API do Java. A classe String. Arrays de tipos básicos vs arrays de objetos. Arrays multidimensionais. Operações sobre matrizes. I/O com Scanner. Leitura com diferentes canais de input.</p></li>
+        <li id="aula-5"><time datetime="2025-09-30">30 set</time> <strong>Java (cont.); Programação Estruturada</strong>
+          <p>Output formatado. Regras simples de boa programação. Generalização do código. Código modular. Casos de teste e assert. Resolução modular do Jogo do Galo (TicTacToe). Exemplo: o cobrador de impostos.</p></li>
+        <li id="aula-6"><time datetime="2025-10-02">2 out</time> <strong>Programação Orientada a Objetos</strong>
+          <p>Abstração, encapsulamento, modularidade; conceito de TAD; TAD vetor; &quot;this&quot; e &quot;private&quot;; override de toString. Interfaces e classes. Visibilidade de atributos e métodos. Getters/setters.</p></li>
+        <li id="aula-7"><time datetime="2025-10-07">7 out</time> <strong>Tipos Abstratos de Dados</strong>
+          <p>TAD Conjunto com array de inteiros e de booleanos. Diferentes classes a implementar interfaces. Exceções. Tipos genéricos. Boxing/unboxing (wrappers). Herança: superclasse vs subclasse.</p></li>
+        <li id="aula-8"><time datetime="2025-10-09">9 out</time> <strong>TADs (cont.); Listas Ligadas, Pilhas e Filas</strong>
+          <p>Override. Classes e métodos abstratos. Progressões com herança. Estruturas sequenciais; vantagens e desvantagens de arrays; conceito de listas ligadas.</p></li>
+        <li id="aula-9"><time datetime="2025-10-14">14 out</time> <strong>Listas Ligadas, Pilhas e Filas</strong>
+          <p>Implementação de listas ligadas: nó e lista, adicionar, remover, aceder, imprimir. Nós genéricos. Listas circulares. Caso de uso: escalonamento Round-Robin.</p></li>
+        <li id="aula-10"><time datetime="2025-10-16">16 out</time> <strong>Listas Ligadas, Pilhas e Filas (cont.)</strong>
+          <p>Round-Robin com lista circular. Listas duplamente ligadas. Sentinelas.</p></li>
+        <li id="aula-11"><time datetime="2025-10-21">21 out</time> <strong>Listas Ligadas, Pilhas e Filas (cont.)</strong>
+          <p>TAD Pilha (push, pop) com listas ligadas; TAD Fila (enqueue, dequeue); TAD Deque; TADs sequenciais na API do Java; Iterable e foreach.</p></li>
+        <li id="aula-12"><time datetime="2025-10-23">23 out</time> <strong>Resolução de problemas</strong>
+          <p>Problemas com pilhas e filas: ED195 Expressões Bem Balanceadas; ED029 Confusão no Aeroporto.</p></li>
+        <li id="aula-13"><time datetime="2025-11-04">4 nov</time> <strong>Complexidade Algorítmica</strong>
+          <p>Algoritmo, instância, correção e eficiência. Caixeiro-viajante (TSP): heurísticas e solução exaustiva. Complexidade temporal e espacial; P vs NP-Difícil vs NP-Completo. Modelo RAM. Pior caso, caso médio, melhor caso.</p></li>
+        <li id="aula-14"><time datetime="2025-11-06">6 nov</time> <strong>Complexidade Algorítmica (cont.)</strong>
+          <p>Análise assintótica. Notação Θ, Ω, O. Crescimento assintótico. Previsão do tempo de execução. Complexidade dos métodos de listas ligadas simples, duplas e circulares.</p></li>
+        <li id="aula-15"><time datetime="2025-11-11">11 nov</time> <strong>Complexidade Algorítmica (cont.)</strong>
+          <p>Complexidade de ciclos e somatórios. Algoritmos dividir para conquistar recursivos. MergeSort e MaxD&amp;C com árvores de recorrência.</p></li>
+        <li id="aula-16"><time datetime="2025-11-13">13 nov</time> <strong>Recursividade</strong>
+          <p>Fórmulas e funções recursivas em Java. Pilha de execução. Tail vs tree recursion. Casos base e recursivos. Recursão infinita (Stack Overflow). Merge-sort, flood fill, subconjuntos, permutações.</p></li>
+        <li id="aula-17"><time datetime="2025-11-18">18 nov</time> <strong>Árvores Binárias</strong>
+          <p>Estruturas não lineares. Terminologia. Árvore binária genérica. Contagem de nós, altura, procura. DFS. PreOrder, InOrder, PostOrder.</p></li>
+        <li id="aula-18"><time datetime="2025-11-20">20 nov</time> <strong>Árvores Binárias (cont.); BST</strong>
+          <p>BFS. Leitura de árvore em preorder; complexidade. Objetos comparáveis e motivação para BSTs; propriedades; inserir, remover, pesquisar; visualização.</p></li>
+        <li id="aula-19"><time datetime="2025-11-25">25 nov</time> <strong>Árvores Binárias (cont.); BST</strong>
+          <p>Leitura de árvore e preorder; complexidade. BSTs: conceito, propriedades e métodos essenciais.</p></li>
+        <li id="aula-20"><time datetime="2025-11-27">27 nov</time> <strong>BST (cont.); Dicionários</strong>
+          <p>Complexidade numa BST, altura e equilíbrio; altura esperada com inserção aleatória; Comparable; BST como conjunto. Dicionários: conceito e API; implementação com BST; contagem de nomes; API Java de conjuntos e dicionários.</p></li>
+        <li id="aula-21"><time datetime="2025-12-02">2 dez</time> <strong>Exercícios</strong>
+          <p>Resolução de exercícios sobre BSTs.</p></li>
+        <li id="aula-22"><time datetime="2025-12-04">4 dez</time> <strong>Filas de Prioridade e Heaps</strong>
+          <p>Conceito e API; implementações naive; invariantes de heap; heap implícita em array; implementação.</p></li>
+        <li id="aula-23"><time datetime="2025-12-09">9 dez</time> <strong>Filas de Prioridade e Heaps (cont.)</strong>
+          <p>Heaps com arrays; diferentes tipos e comparadores. Comparadores com classes anónimas e lambdas.</p></li>
+        <li id="aula-24"><time datetime="2025-12-11">11 dez</time> <strong>Revisões</strong>
+          <p>Revisões e exercícios.</p></li>
+      </ol>
+    </uc-summaries>
+  </uc-page>
+</body>
+</html>

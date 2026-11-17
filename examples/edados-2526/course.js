@@ -24,6 +24,7 @@ window.UC_COURSE = {
   pages: [
     "home",
     { id: "weeks", href: "semanas.html" },
+    { id: "summaries", href: "sumarios.html", label: "Sumários" },
     { id: "assessment", href: "avaliacao.html" },
     { id: "materials", href: "materiais.html" },
     { id: "schedule", href: "horarios.html" },
@@ -31,16 +32,38 @@ window.UC_COURSE = {
   ],
 
   platforms: [
-    { label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~edados/" },
-    { label: "SIGARRA", url: "https://sigarra.up.pt/fcup/" },
+    { id: "mooshak", label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~edados/" },
+    { id: "sigarra", label: "SIGARRA", url: "https://sigarra.up.pt/fcup/" },
   ],
 
   team: [
-    { name: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds", role: "coordinator", classes: ["T1", "T2"], office: "Gab. 1.25" },
+    { name: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds", role: "coordinator", classes: ["T1", "T2"], office: "Gab. 1.25",
+      // Atendimento a estudantes: aparece em horarios.html e no cartão da equipa.
+      officeHours: [
+        { day: 2, start: "16:00", end: "18:00" },
+        // No site original aparece "61:30"; confirmar a hora com o docente.
+        { day: 4, start: "16:30", end: "18:00", note: "Hora a confirmar" },
+      ] },
     { name: "Eduardo R. B. Marques", url: "https://www.dcc.fc.up.pt/~edrdo/", role: "assistant", classes: ["PL1", "PL5", "PL7"] },
     { name: "Joana Leite", role: "assistant", classes: ["PL2", "PL3"] },
     { name: "Duarte Nóbrega", role: "assistant", classes: ["PL4", "PL8"] },
     { name: "Maria Pedroto", role: "assistant", classes: ["PL6"] },
+  ],
+
+  // Horário das aulas (horarios.html). Os docentes de cada turma vêm de team[].classes.
+  schedule: [
+    { type: "lecture", class: "T1", day: 2, start: "14:00", end: "15:00", room: "FC4 0.41" },
+    { type: "lecture", class: "T1", day: 4, start: "14:00", end: "15:00", room: "FC4 0.41" },
+    { type: "lecture", class: "T2", day: 2, start: "15:00", end: "16:00", room: "FC6 0.29" },
+    { type: "lecture", class: "T2", day: 4, start: "15:00", end: "16:00", room: "FC6 0.29" },
+    { type: "lab", class: "PL2", day: 2, start: "16:00", end: "18:00", room: "FC6 1.65" },
+    { type: "lab", class: "PL7", day: 2, start: "16:00", end: "18:00", room: "FC6 0.08" },
+    { type: "lab", class: "PL8", day: 3, start: "11:00", end: "13:00", room: "FC6 1.57" },
+    { type: "lab", class: "PL6", day: 3, start: "14:00", end: "16:00", room: "FC6 1.84" },
+    { type: "lab", class: "PL4", day: 4, start: "16:00", end: "18:00", room: "FC6 1.63" },
+    { type: "lab", class: "PL5", day: 4, start: "16:00", end: "18:00", room: "FC6 1.57" },
+    { type: "lab", class: "PL1", day: 5, start: "16:00", end: "18:00", room: "FC6 1.57" },
+    { type: "lab", class: "PL3", day: 5, start: "16:00", end: "18:00", room: "FC6 1.55" },
   ],
 
   deadlines: [
@@ -58,7 +81,9 @@ window.UC_COURSE = {
       date: "2025-11-12",
       time: "16:00",
       kind: "assessment",
-      note: "Turnos das 16h e 18h",
+      duration: 100,
+      shifts: [{ time: "16:00" }, { time: "18:00" }],
+      location: "Laboratórios do DCC (FC6)",
       url: "guioes/teste-pratico-1.html",
       links: [
         { label: "Turnos", url: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/turnos_avalpratica1_2526.pdf" },
@@ -74,7 +99,9 @@ window.UC_COURSE = {
       date: "2025-12-16",
       time: "14:00",
       kind: "assessment",
-      note: "Turnos das 14h e 16h",
+      duration: 110,
+      shifts: [{ time: "14:00" }, { time: "16:00" }],
+      location: "Laboratórios do DCC (FC6)",
       url: "guioes/teste-pratico-2.html",
       links: [
         { label: "Turnos", url: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/turnos_avalpratica2_2526.pdf" },

@@ -37,7 +37,18 @@ released yet; contract `docs/plan/widgets-api.md`).
   (`--fix-permissions`) and pages nothing links to. Messages in Portuguese and
   English, exit status 1 on errors, `--quiet` for `cron`. Teacher guide page
   "Manter o site"; tests in `tests/site-script/` run on Python 3.8 and the
-  current Python in CI. The search index it will write comes in phase S3.
+  current Python in CI.
+- The search index (search phase S3): with `search: true` (or
+  `search: { index, exclude }`) in `course.js`, `python3 uc-site.py` and
+  `python3 uc-site.py index` write `search-index.js` (a script setting
+  `window.UC_SEARCH_INDEX`, so it also loads from `file://`): every page split
+  into sections at `<h2>`/`<h3>`, weeks, exercises, questions and `<li id>`/
+  `<article id>`, with automatic ids for headings without one, one entry per
+  language on bilingual pages, `data-search-ignore`, `data-search-title` and
+  `<uc-page search="noindex">`. Written atomically with mode 644;
+  `index --stdout` prints it. Shared test cases for the kit in
+  `tests/search/` (`slugs.json`, `words.json`). `npm run build` regenerates
+  the index of every example whose `course.js` has `search`.
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type
@@ -238,6 +249,14 @@ released yet; contract `docs/plan/widgets-api.md`).
   (new block `uc-tag--success`).
 
 ### Fixed
+- `<uc-materials>` keeps the `start` of the teacher's `<ol>` (chapter 0 was
+  numbered 1).
+- Example `edados-2526` uses the new blocks (blocks phase 6): `<uc-timetable>`
+  and office hours in `horarios.html`, `<uc-grading>` with the simulator and
+  `a[data-auth]` in `avaliacao.html`, `<uc-assessment-info>` on both practical
+  test pages, a new `sumarios.html` with `<uc-summaries>`, `<uc-materials>` for
+  the slides (the PT PDFs were placeholders) and `<uc-problems track>` in
+  `problemas/`.
 - Copy buttons keep focus when the clipboard fallback is used (`file://`).
 - `<uc-weeks>`: two breaks in a row after the same week appear in date order
   (they were reversed).

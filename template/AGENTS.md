@@ -48,7 +48,8 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
     `...` nem outras atribuições: o `uc-site.py` lê-o sem o executar.
 12. Depois de mexer no site, correr `python3 uc-site.py check` nesta pasta e
     corrigir todos os `ERRO` (e os `AVISO` que forem do que se alterou). Nunca
-    editar o `uc-site.py`.
+    editar o `uc-site.py` nem o `search-index.js` (é gerado: com
+    `search: true` no `course.js`, `python3 uc-site.py` reescreve-o).
 13. Para mostrar um algoritmo passo a passo (ordenação, …), usar um widget
     da biblioteca em vez de escrever um componente: uma linha
     `<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-sort.js" defer></script>`

@@ -6,32 +6,14 @@
 
 /* avaliacao.html */
 .desc { font-size: var(--uc-font-size-body-sm); }
-/* Fórmula e cartões das componentes da nota. */
-.formula { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-h3); font-weight: 500; }
-.formula span { font-size: var(--uc-font-size-body-sm); font-weight: 400; color: var(--uc-color-text-muted); }
-.component { --uc-card-padding: var(--uc-space-6); }
-.component__head { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.75rem; }
-.component__letter { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.component__weight { font-weight: 700; }
-.component__name, .progress__title { font-weight: 600; }
+.progress__title { font-weight: 600; }
 .progress { --uc-card-padding: var(--uc-space-5); gap: var(--uc-space-1); }
 .progress__title { display: flex; align-items: center; gap: var(--uc-space-2); color: var(--uc-color-accent); }
-
-/* horarios.html */
-.class-card { gap: var(--uc-space-1); }
-.class-card__code { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.class-card__time { font-weight: 600; }
-.office { flex-direction: row; flex-wrap: wrap; gap: var(--uc-space-6); align-items: flex-start; }
-.office > :first-child { flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px; }
-.office > :last-child { flex: 2 1 280px; display: flex; flex-direction: column; gap: 6px; font-size: var(--uc-font-size-body-sm); }
-.office__line { display: flex; align-items: center; gap: var(--uc-space-2); flex-wrap: wrap; }
-#praticas-table td { vertical-align: middle; }
-#praticas-table td:first-child { font-weight: 500; }
+/* Cadeado de a[data-auth] no canto do cartão, ao lado do título. */
+.progress[data-auth] { position: relative; padding-right: calc(var(--uc-space-5) + 24px); }
+.progress .uc-auth-icon { position: absolute; top: var(--uc-space-5); right: var(--uc-space-5); color: var(--uc-color-accent); }
 
 /* materiais.html */
-/* Botões PT/EN da tabela de slides (uc-button uc-button--sm). */
-.pdf-links { display: flex; gap: var(--uc-space-2); }
-#slides-table td { vertical-align: middle; }
 /* Cartões da bibliografia. */
 .book { --uc-card-padding: var(--uc-space-5); gap: 6px; }
 .book__kind { font-size: var(--uc-font-size-xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--uc-color-text-muted); }
@@ -74,9 +56,6 @@
 .crumbs li + li::before { content: "/"; margin-right: 6px; color: var(--uc-color-text-subtle); }
 .crumbs a { color: var(--uc-color-text-muted); text-decoration: none; }
 .crumbs a:hover { color: var(--uc-color-accent); text-decoration: underline; }
-.problem-list { columns: 2 300px; column-gap: var(--uc-space-8); margin: 0; padding: 0; list-style: none; }
-.problem-list > li { break-inside: avoid; margin: 0 0 var(--uc-space-2); }
-.problem-list .uc-mono { color: var(--uc-color-text-muted); margin-right: var(--uc-space-2); }
 .code-list { display: flex; flex-direction: column; gap: var(--uc-space-4); max-width: 760px; margin: 0; padding: 0; list-style: none; }
 .code-list > li { margin: 0; }
 .code-list .uc-small a { margin-right: var(--uc-space-2); }

@@ -41,6 +41,9 @@
       this.headingId = uid("uc-materials-heading");
       if (!this.list) return;
       this.list.classList.add("uc-materials__list");
+      // The CSS counter replaces the list numbers: keep the teacher's <ol start>.
+      const start = this.list.localName === "ol" ? parseInt(this.list.getAttribute("start"), 10) : NaN;
+      if (Number.isFinite(start)) this.list.style.counterReset = `uc-materials ${start - 1}`;
       this.items = Array.from(this.list.children)
         .filter((item) => item.localName === "li")
         .map((element) => this.prepare(element));

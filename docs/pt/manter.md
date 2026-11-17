@@ -23,7 +23,7 @@ ssh utilizador@servidor "python3 ~/public_html/aulas/minha-uc/2627/uc-site.py"
 - No Windows, o comando é `py uc-site.py`.
 - Se o servidor não tiver Python 3, corre-se na cópia local antes de publicar: o resultado é o mesmo, exceto as permissões, que dependem do servidor.
 
-Na versão 1.2.0 do kit, o mesmo comando passa também a escrever o índice da pesquisa no site, quando o `course.js` tiver `search: true`. Até lá, só verifica.
+Quando o `course.js` tem `search: true`, o mesmo comando escreve também o índice da pesquisa no site (ver [O índice da pesquisa](#indice)). O botão "Pesquisar" que o usa chega na versão 1.2.0 do kit.
 
 ## Comandos e opções
 
@@ -31,13 +31,14 @@ Na versão 1.2.0 do kit, o mesmo comando passa também a escrever o índice da p
 | --- | --- |
 | `python3 uc-site.py` | Verifica tudo e, com a pesquisa ligada, escreve o índice. É o comando a usar depois de cada alteração. |
 | `python3 uc-site.py check` | Só verifica. Não escreve nada. |
-| `python3 uc-site.py index` | Só escreve o índice da pesquisa (a partir da versão 1.2.0). |
+| `python3 uc-site.py index` | Só escreve o índice da pesquisa, sem verificar as páginas (só lê o `course.js`). |
 
 | Opção | Efeito |
 | --- | --- |
 | `--site PASTA` | A pasta do site. Por omissão, a pasta onde está o script, seja qual for a pasta atual. |
 | `--fix-permissions` | Dá permissão de leitura a todos os ficheiros e pastas do site que não a têm (ver [Permissões](#permissoes)). |
 | `--quiet` | Mostra só os erros, e nada quando não há erros. Para o `cron`. |
+| `--stdout` | Com `index`: mostra o índice no ecrã em vez de escrever o ficheiro. Para ferramentas que o queiram guardar noutro sítio. |
 | `--lang pt` ou `--lang en` | Língua das mensagens. Por omissão, a primeira língua do `course.js` (inglês se não for `pt` nem `en`). |
 | `--version` | A versão do script (a do kit com que saiu). |
 | `--help` | Ajuda. |
@@ -52,13 +53,16 @@ ERRO   semanas.html:142     ligação para guioes/aula13.html: o ficheiro não e
 AVISO  guioes/aula04.html:31  imagem sem alt: imagens/heap.png (se for decorativa, use alt="")
 INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
 116 páginas · 1 erro · 1 aviso · 1 informação
+Índice: search-index.js (116 páginas, 685 secções, 290 KB)
 ```
 
 - **ERRO**: algo que os alunos vão ver partido (um link que dá "Not Found", uma página sem o kit). Corrigir antes de publicar.
 - **AVISO**: um problema de acessibilidade ou de manutenção que convém corrigir.
 - **INFO**: só para saber, por exemplo uma página antiga que ficou esquecida.
 
-O script termina com o código `0` quando não há erros (mesmo que haja avisos), `1` quando há pelo menos um erro e `2` quando o comando está mal escrito. Isto permite usá-lo em scripts: `python3 uc-site.py --quiet && rsync …` só publica um site sem erros.
+A última linha só aparece com a pesquisa ligada. Os erros não impedem o índice de ser escrito: um link partido não deve tirar a pesquisa aos alunos.
+
+O script termina com o código `0` quando não há erros (mesmo que haja avisos), `1` quando há pelo menos um erro (ou quando não conseguiu escrever o índice) e `2` quando o comando está mal escrito. Isto permite usá-lo em scripts: `python3 uc-site.py --quiet && rsync …` só publica um site sem erros.
 
 ## O que é verificado
 
@@ -73,8 +77,42 @@ O script termina com o código `0` quando não há erros (mesmo que haja avisos)
 | Link com caminho absoluto (`/~utilizador/…`), que deixa de funcionar quando a pasta muda de sítio | aviso |
 | Ficheiro ou pasta que o servidor web não consegue ler | aviso |
 | Página para a qual nenhuma outra página liga (e que não está em `pages`) | informação |
+| Só com `check` e a pesquisa ligada: o índice ainda não existe, ou é mais antigo do que uma página | informação |
 
 Os links externos não são verificados: o servidor pode não ter acesso à Internet, e seria lento.
+
+## O índice da pesquisa
+
+Com `search: true` no `course.js`, o script escreve na pasta do site o ficheiro `search-index.js`, com o texto de todas as páginas `.html` da pasta e das subpastas. É este ficheiro que a pesquisa do site lê: o browser nunca percorre o site sozinho, por isso o índice só está atualizado se o script correr depois de cada alteração.
+
+`course.js`:
+
+```js
+search: true,
+// ou, com opções:
+search: {
+  index: "search-index.js",          // nome do ficheiro (por omissão)
+  exclude: ["rascunhos/", "velho.html"],
+},
+```
+
+- **O que entra:** o título de cada página e o texto dividido em secções, uma por cada `<h2>` e `<h3>`, semana (`<uc-week>`), exercício, pergunta e item de lista ou artigo com `id`. Cada resultado da pesquisa leva diretamente à secção.
+- **O que fica de fora:** o cabeçalho, a navegação e o rodapé (são do kit), os `<nav>`, scripts e estilos, e o código dentro de `<uc-code>` (só o nome do ficheiro entra). O texto alternativo das imagens entra.
+- **Títulos sem `id`:** o script dá-lhes um a partir do texto (`Exercício 2` → `exercicio-2`), o mesmo que o kit lhes dá no browser. Um `id` escrito à mão nunca muda; convém escrevê-lo nos títulos para onde há links de fora.
+- **Sites com duas línguas:** uma página com texto em `lang="pt"` e `lang="en"` entra uma vez por língua, e cada aluno só vê os resultados da língua que escolheu.
+- O ficheiro é gerado: não se edita à mão. Fica com permissão de leitura para todos (`644`) e é escrito de uma vez, por isso um aluno nunca apanha meio índice.
+
+Para deixar conteúdo de fora:
+
+| O quê | Como |
+| --- | --- |
+| Uma pasta ou um ficheiro | `exclude` no `course.js`: caminhos relativos à pasta do site; um caminho que acaba em `/` é uma pasta inteira. As pastas cujo nome começa por `_` ou `.` ficam sempre de fora. |
+| Uma página | `<uc-page search="noindex">` |
+| Uma parte de uma página | `data-search-ignore` no elemento: ele e tudo o que tem dentro ficam de fora |
+
+Um título comprido pode ter outro título nos resultados, com `data-search-title="…"` no título ou no elemento da secção.
+
+O índice de Estruturas de Dados, com 116 páginas, tem cerca de 290 KB (73 KB comprimido pelo servidor) e só é descarregado quando um aluno abre a pesquisa. O script avisa acima de 500 KB: nesse caso, convém deixar de fora pastas que ninguém pesquisa.
 
 ## Permissões
 
@@ -93,6 +131,8 @@ Com `--quiet` o script não escreve nada quando está tudo bem, por isso pode co
 ```sh
 0 7 * * * python3 ~/public_html/aulas/minha-uc/2627/uc-site.py --quiet
 ```
+
+Com a pesquisa ligada, esta linha também reescreve o índice todas as manhãs, o que apanha as alterações de quem se esqueceu de correr o script.
 
 ## Atualizar o script
 
