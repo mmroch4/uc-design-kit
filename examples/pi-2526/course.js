@@ -39,6 +39,7 @@ window.UC_COURSE = {
   pages: [
     "home",
     { id: "weeks", href: "semanas.html" },
+    { id: "summaries", href: "sumarios.html", label: { pt: "Sumários", en: "Summaries" } },
     { id: "assessment", href: "avaliacao.html" },
     { id: "materials", href: "materiais.html" },
     { id: "schedule", href: "horarios.html" },
@@ -46,17 +47,35 @@ window.UC_COURSE = {
   ],
 
   platforms: [
-    { label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~pi/" },
+    { id: "mooshak", label: "Mooshak", url: "https://mooshak.dcc.fc.up.pt/~pi/" },
     { label: "SIGARRA", url: "https://sigarra.up.pt/fcup/" },
   ],
 
   team: [
-    { name: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds", role: { pt: "Co-regente", en: "Course coordinator" }, classes: ["T1", "T2"], office: "Gab. 1.25" },
-    { name: "Vanessa Silva", url: "https://www.dcc.fc.up.pt/~vanessa.silva/", role: { pt: "Co-regente", en: "Course coordinator" }, classes: ["T1", "T2", "PL2", "PL6"], office: "Gab. 0.09" },
+    { name: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds", role: { pt: "Co-regente", en: "Course coordinator" }, classes: ["T1", "T2"], office: "Gab. 1.25",
+      officeHours: [{ day: 2, start: "14:30", end: "15:30" }, { day: 4, start: "16:00", end: "17:00" }] },
+    { name: "Vanessa Silva", url: "https://www.dcc.fc.up.pt/~vanessa.silva/", role: { pt: "Co-regente", en: "Course coordinator" }, classes: ["T1", "T2", "PL2", "PL6"], office: "Gab. 0.09",
+      officeHours: [{ day: 3, start: "11:00", end: "12:00" }, { day: 4, start: "09:30", end: "10:30" }] },
     { name: "Ricardo Pereira", role: "assistant", classes: ["PL1"] },
     { name: "Tadeu Freitas", role: "assistant", classes: ["PL3", "PL5"] },
     { name: "Pedro D'Orey", role: "assistant", classes: ["PL4", "PL7"] },
     { name: "Bernardo Portela", role: "assistant", classes: ["PL8"] },
+  ],
+
+  // Horário: uma entrada por aula semanal. Os docentes de cada turma vêm de team[].classes.
+  schedule: [
+    { type: "lecture", class: "T1", day: 2, start: "12:00", end: "13:00", room: "FC1 0.03" },
+    { type: "lecture", class: "T1", day: 4, start: "12:00", end: "13:00", room: "FC1 0.03" },
+    { type: "lecture", class: "T2", day: 2, start: "11:00", end: "12:00", room: "FC1 0.07" },
+    { type: "lecture", class: "T2", day: 4, start: "11:00", end: "12:00", room: "FC1 0.07" },
+    { type: "lab", class: "PL4", day: 1, start: "09:00", end: "11:00", room: "FC6 1.84" },
+    { type: "lab", class: "PL7", day: 1, start: "11:00", end: "13:00", room: "FC6 1.55" },
+    { type: "lab", class: "PL5", day: 1, start: "14:00", end: "16:00", room: "FC6 1.55" },
+    { type: "lab", class: "PL2", day: 2, start: "14:00", end: "16:00", room: "FC6 1.82" },
+    { type: "lab", class: "PL1", day: 3, start: "09:00", end: "11:00", room: "FC6 1.65" },
+    { type: "lab", class: "PL6", day: 3, start: "09:00", end: "11:00", room: "FC6 1.63" },
+    { type: "lab", class: "PL3", day: 4, start: "14:00", end: "16:00", room: "FC6 1.63" },
+    { type: "lab", class: "PL8", day: 5, start: "09:00", end: "11:00", room: "FC6 1.82" },
   ],
 
   deadlines: [
@@ -66,10 +85,15 @@ window.UC_COURSE = {
       date: "2026-04-22",
       time: "14:15",
       kind: "assessment",
-      note: { pt: "Dois turnos, o 2.º às 16:15 · no Mooshak", en: "Two shifts, the 2nd at 16:15 · on Mooshak" },
-      url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html",
+      duration: 90,
+      shifts: [{ time: "14:15" }, { time: "16:15" }],
+      location: {
+        pt: `Laboratórios do DCC · <a href="${ORIGINAL}evaluation/Aval1_Labs_Turnos1e2.pdf">turno e laboratório de cada estudante</a>`,
+        en: `DCC labs · <a href="${ORIGINAL}evaluation/Aval1_Labs_Turnos1e2.pdf">shift and lab for each student</a>`,
+      },
+      note: { pt: "No Mooshak", en: "On Mooshak" },
+      url: "praticas/teste_pratico1.html",
       links: [
-        { label: { pt: "Turnos e laboratórios", en: "Shifts and labs" }, url: ORIGINAL + "evaluation/Aval1_Labs_Turnos1e2.pdf" },
         { label: { pt: "Resultados", en: "Results" }, url: ORIGINAL + "evaluation/PI2526_aval1_22Abril.pdf" },
       ],
     },
@@ -79,10 +103,15 @@ window.UC_COURSE = {
       date: "2026-05-27",
       time: "14:10",
       kind: "assessment",
-      note: { pt: "Dois turnos, o 2.º às 16:10 · no Mooshak", en: "Two shifts, the 2nd at 16:10 · on Mooshak" },
-      url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html",
+      duration: 90,
+      shifts: [{ time: "14:10" }, { time: "16:10" }],
+      location: {
+        pt: `Laboratórios do DCC · <a href="${ORIGINAL}evaluation/Aval2_Labs_Turnos1e2.pdf">turno e laboratório de cada estudante</a>`,
+        en: `DCC labs · <a href="${ORIGINAL}evaluation/Aval2_Labs_Turnos1e2.pdf">shift and lab for each student</a>`,
+      },
+      note: { pt: "No Mooshak", en: "On Mooshak" },
+      url: "praticas/teste_pratico2.html",
       links: [
-        { label: { pt: "Turnos e laboratórios", en: "Shifts and labs" }, url: ORIGINAL + "evaluation/Aval2_Labs_Turnos1e2.pdf" },
         // No site original, este link aponta para um ficheiro com o prefixo do ano anterior (PI2425_…).
         { label: { pt: "Resultados", en: "Results" }, url: ORIGINAL + "evaluation/PI2526_avalprat_1jun2026.pdf" },
       ],
@@ -93,7 +122,8 @@ window.UC_COURSE = {
       date: "2026-06-12",
       time: "09:00",
       kind: "exam",
-      note: { pt: "Até às 11:00 · salas no SIGARRA", en: "Until 11:00 · rooms on SIGARRA" },
+      duration: 120,
+      location: { pt: "Salas no SIGARRA", en: "Rooms on SIGARRA" },
       links: [
         { label: { pt: "Salas", en: "Rooms" }, url: "https://sigarra.up.pt/fcup/pt/exa_geral.mapa_de_exames?p_ocorr_id=570322" },
         { label: { pt: "Exame modelo", en: "Model exam (PT)" }, url: ORIGINAL + "evaluation/exame_modelo.pdf" },
@@ -106,7 +136,8 @@ window.UC_COURSE = {
       date: "2026-07-07",
       time: "09:00",
       kind: "exam",
-      note: { pt: "Até às 11:00 · salas no SIGARRA", en: "Until 11:00 · rooms on SIGARRA" },
+      duration: 120,
+      location: { pt: "Salas no SIGARRA", en: "Rooms on SIGARRA" },
       links: [{ label: { pt: "Salas", en: "Rooms" }, url: "https://sigarra.up.pt/fcup/pt/exa_geral.mapa_de_exames?p_ocorr_id=570322" }],
     },
   ],
@@ -170,8 +201,8 @@ window.UC_COURSE = {
     {
       date: "2026-05-21",
       text: {
-        pt: 'Avaliação Prática 2: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">informação e treino</a>',
-        en: 'Practical evaluation 2: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">information and practice</a>',
+        pt: 'Avaliação Prática 2: <a href="praticas/teste_pratico2.html">informação e treino</a>',
+        en: 'Practical evaluation 2: <a href="praticas/teste_pratico2.html">information and practice</a>',
       },
     },
     {
@@ -198,8 +229,8 @@ window.UC_COURSE = {
     {
       date: "2026-04-01",
       text: {
-        pt: 'Avaliação Prática 1: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">informação e treino</a>',
-        en: 'Practical evaluation 1: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">information and practice</a>',
+        pt: 'Avaliação Prática 1: <a href="praticas/teste_pratico1.html">informação e treino</a>',
+        en: 'Practical evaluation 1: <a href="praticas/teste_pratico1.html">information and practice</a>',
       },
     },
     {

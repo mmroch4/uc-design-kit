@@ -20,31 +20,22 @@
 
     <section class="uc-section" aria-labelledby="formula">
       <h2 id="formula"><span lang="pt">Como é calculada a nota</span><span lang="en">How the grade is calculated</span></h2>
-      <p class="formula" lang="pt">CF = 0,70 × EF + 0,25 × AP + 0,05 × RE <span>(0 a 20 valores)</span></p>
-      <p class="formula" lang="en">CF = 0.70 × EX + 0.25 × PA + 0.05 × WP <span>(0 to 20)</span></p>
-      <div class="uc-grid">
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter"><span lang="pt">EF</span><span lang="en">EX</span></span> <span class="component__weight">70%</span></p>
-          <p class="component__name" lang="pt">Exame final escrito</p>
-          <p class="component__name" lang="en">Written exam</p>
-          <p class="uc-muted desc" lang="pt">Questões sobre o programa da UC. Época normal ou de recurso.</p>
-          <p class="uc-muted desc" lang="en">Questions on the topics of the syllabus. Regular or resit period.</p>
-        </div>
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter"><span lang="pt">AP</span><span lang="en">PA</span></span> <span class="component__weight">25%</span></p>
-          <p class="component__name" lang="pt">Duas avaliações práticas</p>
-          <p class="component__name" lang="en">Two practical assessments</p>
-          <p class="uc-muted desc" lang="pt">Presenciais, em computador: problemas no Mooshak de dificuldade semelhante aos de treino.</p>
-          <p class="uc-muted desc" lang="en">In person, on the computer: Mooshak problems similar to the practice ones.</p>
-        </div>
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter"><span lang="pt">RE</span><span lang="en">WP</span></span> <span class="component__weight">5%</span></p>
-          <p class="component__name" lang="pt">Resolução de exercícios</p>
-          <p class="component__name" lang="en">Weekly problems</p>
-          <p class="uc-muted desc" lang="pt">Componente remota: problemas semanais de treino propostos no Mooshak, das aulas 3 a 12.</p>
-          <p class="uc-muted desc" lang="en">Remote component: weekly problems proposed on Mooshak, from class 3 to 12.</p>
-        </div>
-      </div>
+      <!-- Componentes da nota: o peso de cada uma está no <data>; data-min é o mínimo na escala da componente (0 a 20).
+           O kit gera a fórmula, a tabela e a simulação da nota (calculator). -->
+      <uc-grading scale="20" pass="9.5" calculator heading="none">
+        <ul>
+          <li data-code="E" data-min="7"><data value="70%">70 %</data> <span lang="pt">Exame final escrito</span><span lang="en">Written exam</span>
+            <span><span lang="pt">Questões sobre o programa da UC, na época normal ou de recurso. Mínimo de 4,9 valores na nota final, ou seja 7 em 20 no exame.</span><span lang="en">Questions on the syllabus, in the regular or resit period. Minimum 4.9 in the final grade, that is 7 out of 20 in the exam.</span></span></li>
+          <li data-code="AP"><data value="25%">25 %</data> <span lang="pt">Avaliações práticas</span><span lang="en">Practical assessments</span>
+            <span><span lang="pt">Presenciais, em computador, no Mooshak.</span><span lang="en">In person, on the computer, on Mooshak.</span></span>
+            <ul>
+              <li data-code="AP1"><data value="50%">50 %</data> <span lang="pt">Avaliação Prática 1</span><span lang="en">Practical evaluation 1</span></li>
+              <li data-code="AP2"><data value="50%">50 %</data> <span lang="pt">Avaliação Prática 2</span><span lang="en">Practical evaluation 2</span></li>
+            </ul></li>
+          <li data-code="RE"><data value="5%">5 %</data> <span lang="pt">Resolução de exercícios</span><span lang="en">Weekly problems</span>
+            <span><span lang="pt">Problemas semanais de treino no Mooshak, das aulas 3 a 12.</span><span lang="en">Weekly practice problems on Mooshak, from class 3 to 12.</span></span></li>
+        </ul>
+      </uc-grading>
       <div class="uc-callout">
         <p><strong lang="pt">Para aprovar</strong><strong lang="en">To pass</strong></p>
         <ul class="uc-bullets" lang="pt">
@@ -79,8 +70,8 @@
         <li>Failing to attend a test results in a zero grade.</li>
         <li>Solutions submitted via Mooshak are graded with partial scores for the different test cases.</li>
       </ul>
-      <p class="uc-small" lang="pt">Informação e treino: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">Avaliação Prática 1</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">Avaliação Prática 2</a></p>
-      <p class="uc-small" lang="en">Information and practice: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">Practical evaluation 1</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">Practical evaluation 2</a></p>
+      <p class="uc-small" lang="pt">Informação e treino: <a href="praticas/teste_pratico1.html">Avaliação Prática 1</a> · <a href="praticas/teste_pratico2.html">Avaliação Prática 2</a></p>
+      <p class="uc-small" lang="en">Information and practice: <a href="praticas/teste_pratico1.html">Practical evaluation 1</a> · <a href="praticas/teste_pratico2.html">Practical evaluation 2</a></p>
     </section>
 
     <section class="uc-section" aria-labelledby="frequencia">
@@ -93,16 +84,15 @@
       <h2 id="progresso"><span lang="pt">O teu progresso</span><span lang="en">Your progress</span></h2>
       <p class="uc-muted desc" lang="pt">Só para estudantes inscritos. Estes documentos têm dados de alunos e ficam no site original; os que pedem autenticação estão assinalados com um cadeado.</p>
       <p class="uc-muted desc" lang="en">For enrolled students only. These documents contain student data and stay on the original website; those that require authentication are marked with a lock.</p>
+      <!-- data-auth: o kit junta o cadeado e o texto "(Requer autenticação)" para leitores de ecrã. -->
       <div class="uc-grid" style="--uc-grid-min: 240px">
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/index.html">
+        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/index.html">
           <span class="progress__title"><span lang="pt">Exercícios no Mooshak</span><span lang="en">Mooshak exercises</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
           </span>
           <span class="uc-muted uc-small"><span lang="pt">Estatísticas · atualizado a 13 mai 2026</span><span lang="en">Statistics · updated 13 May 2026</span></span>
         </a>
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/Presencas_18Abril2026.pdf">
+        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/Presencas_18Abril2026.pdf">
           <span class="progress__title"><span lang="pt">Presenças nas práticas</span><span lang="en">Lab attendance</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
           </span>
           <span class="uc-muted uc-small"><span lang="pt">Até 18 abr 2026</span><span lang="en">Until 18 Apr 2026</span></span>
         </a>
