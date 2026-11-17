@@ -64,7 +64,18 @@ As páginas que só existiam no original passaram a caminhos relativos.
 - **Discord**: o link original (`discord.com/app/` sem `https://`) estava partido;
   corrigido.
 
+## Blocos novos do kit
+
+- `lectures.html`: as 23 aulas teóricas em `<uc-summaries search>`; as futuras aparecem
+  como "Prevista". Datas de T01–T08 do `plan.html`; T09–T23 reconstruídas (segundas e
+  sextas, sem a semana de atividades nem os feriados de 1 e 8 de dezembro).
+- `materials.html`: os notebooks em `<uc-materials>` (as aulas de revisão dizem "Sem
+  material"); as aulas práticas em `<uc-weeks view="compact">` com `href` para cada guião;
+  ligações de apoio e outras cadeiras em `uc-links--grid`.
+- `problems/index.html`: `<uc-problems filters track>` com o prazo de cada aula.
+- Testes: `<uc-assessment-info>` com turnos, duração e local vindos do `course.js`.
+
 ## Por confirmar com os docentes
 
-- O calendário reconstruído em `weeks.html` (ver acima).
+- O calendário reconstruído em `weeks.html` e as datas das aulas T09–T23 em `lectures.html`.
 - Os papéis da equipa em `course.js`.
