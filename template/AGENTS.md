@@ -59,7 +59,7 @@ Quando o professor pede para passar um site existente para esta pasta:
    resposta.
 4. **`course.js` primeiro**: código, título, edição, `semester` (início, fim,
    interrupções), `team` (com `officeHours`), `schedule`, `deadlines`,
-   `notices`, `pages`.
+   `notices`, `pages`, `platforms`.
 5. **Reescrever com componentes** só as páginas que os estudantes usam todas
    as semanas:
    - página inicial → `index.html` (`uc-hero`, `uc-this-week`, `uc-notices`,
@@ -77,6 +77,12 @@ Quando o professor pede para passar um site existente para esta pasta:
      dentro de `<uc-grading>` (peso em `<data>`, `data-code` em cada item);
    - página de um teste ou exame → `<uc-assessment-info deadline="…">` no
      topo, com o resto da página dentro;
+   - materiais de cada aula → a lista dentro de `<uc-materials>` (título,
+     depois os links; a data da última alteração num `<time datetime>` no
+     início do item; `data-type="slides"` nos diapositivos em PDF);
+   - listas de problemas → `<uc-problems>`, uma `<section data-deadline="…">`
+     por série com `data-judge` em cada `<li>`; os juízes vão para
+     `platforms` com `id` (e `hidden: true` se não forem para o menu);
    - guiões de aula → `uc-guide` com `uc-exercise`; código → `uc-code`.
 6. **O resto** (enunciados, páginas de ajuda, textos longos) vai quase como
    está, dentro de `<uc-page>` e de `<div class="uc-content">`, que dá forma a

@@ -1,0 +1,48 @@
+/* <uc-materials>: materials per lecture or chapter, links as typed buttons (docs/api.md, section 3.7). */
+
+:where(uc-materials) { display: block; }
+:where(.uc-materials__section) { display: flex; flex-direction: column; gap: var(--uc-space-4); }
+:where(.uc-materials__heading) { margin: 0; font-size: var(--uc-font-size-h2); }
+
+:where(.uc-materials__list) { margin: 0; padding: 0; list-style: none; counter-reset: uc-materials; }
+:where(.uc-materials__item) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "main links" "meta links";
+  align-items: center;
+  gap: var(--uc-space-1) var(--uc-space-5);
+  padding: var(--uc-space-4) 0;
+  border-top: 1px solid var(--uc-color-border);
+}
+:where(.uc-materials__main) { grid-area: main; }
+:where(.uc-materials__title) { font-weight: 600; }
+:where(ol.uc-materials__list > .uc-materials__item) { counter-increment: uc-materials; }
+:where(ol.uc-materials__list > .uc-materials__item .uc-materials__title)::before {
+  content: counter(uc-materials) ". ";
+  color: var(--uc-color-text-muted);
+  font-family: var(--uc-font-mono);
+  font-size: var(--uc-font-size-sm);
+  font-weight: 400;
+}
+:where(.uc-materials__meta) {
+  grid-area: meta;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--uc-space-2);
+  margin: 0;
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+}
+:where(.uc-materials__links, .uc-materials__empty) { grid-area: links; justify-self: end; }
+:where(.uc-materials__links) { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--uc-space-2); }
+:where(.uc-materials__links:empty) { display: none; }
+:where(.uc-materials__link) { font-size: var(--uc-font-size-sm); }
+:where(.uc-materials__link svg) { flex: none; color: var(--uc-color-text-muted); }
+:where(.uc-materials__empty) { margin: 0; color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+
+@media (max-width: 760px) {
+  :where(.uc-materials__item) { grid-template-columns: minmax(0, 1fr); grid-template-areas: "main" "meta" "links"; }
+  :where(.uc-materials__links, .uc-materials__empty) { justify-self: start; }
+  :where(.uc-materials__links) { justify-content: flex-start; }
+}

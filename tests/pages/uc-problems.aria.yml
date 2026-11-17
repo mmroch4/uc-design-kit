@@ -1,0 +1,58 @@
+- region "Séries de problemas":
+  - heading "Séries de problemas" [level=2]
+  - group "Filtrar problemas":
+    - group "Tipo":
+      - text: Tipo
+      - button "Todos" [pressed]
+      - button "Principal"
+      - button "Extra"
+      - button "Desafio"
+    - group "Juiz":
+      - text: Juiz
+      - button "Todos" [pressed]
+      - button "Mooshak"
+      - button "Codeforces"
+      - button "Kattis"
+  - heading "Série 1 · Introdução" [level=3]
+  - paragraph: "Prazo: 10 out, 23:59 Encerrado"
+  - paragraph: 0 de 3 resolvidos
+  - list:
+    - listitem:
+      - 'checkbox "Resolvido: Increasing Array"'
+      - text: Resolvido
+      - link "Increasing Array":
+        - /url: "#p1"
+      - code: PC001
+      - text: 40 % Mooshak
+    - listitem:
+      - 'checkbox "Resolvido: Lecture"'
+      - text: Resolvido
+      - link "Lecture":
+        - /url: "#p2"
+      - code: 499B
+      - text: Codeforces Extra
+    - listitem:
+      - 'checkbox "Resolvido: Hello World!"'
+      - text: Resolvido
+      - link "Hello World!":
+        - /url: "#p3"
+      - code: hello
+      - text: Kattis
+  - heading "Série 2 · Ordenação" [level=3]
+  - paragraph: "Prazo: 5 dez, 23:59 Daqui a 8 dias"
+  - paragraph: 0 de 2 resolvidos
+  - list:
+    - listitem:
+      - 'checkbox "Resolvido: Sorting Olympics"'
+      - text: Resolvido
+      - link "Sorting Olympics":
+        - /url: "#p4"
+      - code: PC010
+      - text: Mooshak Desafio
+    - listitem:
+      - 'checkbox "Resolvido: Towers"'
+      - text: Resolvido
+      - link "Towers":
+        - /url: "#p5"
+      - code: 37D
+      - text: Codeforces

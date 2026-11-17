@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-problems · UC Design Kit</title>
+  <meta name="description" content="Documentação do componente uc-problems do UC Design Kit: listas de problemas por séries com juiz, tipo, prazo, filtros e Resolvido guardado no browser.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="uc-problems.html" aria-current="page"><code>uc-problems</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Componentes · Materiais e problemas</p>
+          <h1><code>&lt;uc-problems&gt;</code></h1>
+          <p class="docs-lead">As listas de problemas, por séries, a partir do HTML que o professor já escreve: o juiz de cada problema (Mooshak, Codeforces…), os problemas extra e de desafio, o prazo de cada série, filtros por tipo e por juiz e, com <code>track</code>, um "Resolvido" que cada estudante marca e que fica guardado no seu browser.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o HTML</span></p>
+        </header>
+        <!-- docs:demo src="../../demos/uc-problems/basic.html" title="duas séries com prazos, filtros e Resolvido" height="682" -->
+        <div class="docs-demo" id="demo-uc-problems-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-problems/basic.html" title="Demonstração: duas séries com prazos, filtros e Resolvido" loading="lazy" style="height: 682px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-problems filters track&gt;
+  &lt;section data-deadline=&quot;ps1&quot;&gt;
+    &lt;h2&gt;Série 1 · Introdução&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li data-judge=&quot;entregas&quot;&gt;&lt;a href=&quot;#&quot;&gt;Soma de dois números&lt;/a&gt; &lt;code&gt;AP001&lt;/code&gt;&lt;/li&gt;
+      &lt;li data-judge=&quot;entregas&quot;&gt;&lt;a href=&quot;#&quot;&gt;Contar vogais&lt;/a&gt; &lt;code&gt;AP002&lt;/code&gt;&lt;/li&gt;
+      &lt;li data-judge=&quot;codeforces&quot; data-type=&quot;extra&quot;&gt;&lt;a href=&quot;#&quot;&gt;Watermelon&lt;/a&gt; &lt;code&gt;4A&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+  &lt;section data-deadline=&quot;ps2&quot;&gt;
+    &lt;h2&gt;Série 2 · Ordenação&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li data-judge=&quot;entregas&quot;&gt;&lt;a href=&quot;#&quot;&gt;Ordenar notas&lt;/a&gt; &lt;code&gt;AP010&lt;/code&gt;&lt;/li&gt;
+      &lt;li data-judge=&quot;entregas&quot;&gt;&lt;a href=&quot;#&quot;&gt;Mediana&lt;/a&gt; &lt;code&gt;AP011&lt;/code&gt;&lt;/li&gt;
+      &lt;li data-judge=&quot;codeforces&quot; data-type=&quot;challenge&quot;&gt;&lt;a href=&quot;#&quot;&gt;Towers&lt;/a&gt; &lt;code&gt;37A&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+&lt;/uc-problems&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-problems/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Na demonstração, hoje é 27 de novembro: o prazo da série 1 já passou ("Encerrado") e o da série 2 é daqui a 8 dias. Ao escolher "Extra" ficam só os problemas extra, e a série que fica vazia desaparece. Os "Resolvido" marcados continuam marcados depois de recarregar a página.</p>
+        <h2 id="utilizacao">Utilização</h2>
+        <p>Cada série é uma <code>&lt;section&gt;</code> com um título e uma lista, um <code>&lt;li&gt;</code> por problema. No <code>&lt;li&gt;</code>, <code>data-judge</code> diz onde se submete; o link e o <code>&lt;code&gt;</code> com o código do problema são texto livre. Uma página com uma só lista, sem secções, também serve (uma série sem nome).</p>
+        <uc-code lang="html" filename="problemas.html" no-download><pre><code>&lt;uc-problems filters track&gt;
+  &lt;section data-deadline="ps01"&gt;
+    &lt;h2&gt;Série 1 · Introdução&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li data-judge="mooshak"&gt;&lt;a href="problems/pc001.html"&gt;Increasing Array&lt;/a&gt; &lt;code&gt;PC001&lt;/code&gt;&lt;/li&gt;
+      &lt;li data-judge="codeforces" data-type="extra"&gt;&lt;a href="https://codeforces.com/problemset/problem/499/B"&gt;Lecture&lt;/a&gt; &lt;code&gt;499B&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+&lt;/uc-problems&gt;</code></pre></uc-code>
+        <p>Com JavaScript, cada problema ganha:</p>
+        <ul>
+          <li><strong>A etiqueta do juiz</strong>, com o nome da plataforma do <code>course.js</code>. <code>data-judge</code> pode ser o <code>id</code> da plataforma (<code>"codeforces"</code>) ou o seu nome, sem distinguir maiúsculas nem acentos (<code>"Mooshak"</code>). Um juiz que não está no <code>course.js</code> aparece tal como foi escrito.</li>
+          <li><strong>O tipo</strong>, com <code>data-type</code>: <code>main</code> (por omissão, sem etiqueta), <code>extra</code> ("Extra") ou <code>challenge</code> ("Desafio").</li>
+          <li><strong>O peso</strong>, quando o item tem um <code>&lt;data value="40"&gt;40 %&lt;/data&gt;</code>: aparece como etiqueta.</li>
+        </ul>
+        <p>Um juiz usado só nos problemas, que não deve aparecer na navegação, escreve-se em <code>platforms</code> com <code>hidden: true</code> (ver <a href="../course-js.html#plataformas">Plataformas</a>).</p>
+        <h2 id="exemplos">Exemplos</h2>
+        <h3 id="prazos">Prazo de cada série</h3>
+        <p>Com <code>data-deadline="ps01"</code> na <code>&lt;section&gt;</code>, por baixo do título aparece "Prazo: 12 out, 23:59" com o estado ("Daqui a 8 dias", "Amanhã", "Hoje" ou "Encerrado"). O prazo escreve-se uma vez no <code>course.js</code> (<a href="../course-js.html#prazos">Prazos</a>), por isso aparece também nas próximas datas e na semana certa.</p>
+        <h3 id="filtros">Filtros</h3>
+        <p>Com <code>filters</code>, por cima das séries aparecem dois grupos de botões, "Tipo" e "Juiz", cada um com "Todos" e um botão por valor que exista na página (um grupo com um só valor não aparece). Os dois grupos combinam-se; uma série sem problemas visíveis esconde-se, e o número de problemas que ficaram é anunciado ("2 de 6 problemas").</p>
+        <h3 id="resolvidos">Resolvidos</h3>
+        <p>Com <code>track</code>, cada problema tem uma caixa "Resolvido" e cada série diz "3 de 5 resolvidos". A escolha fica guardada no browser do estudante (<code>localStorage</code>), com uma chave que inclui o código da cadeira e o identificador do problema. Por omissão o identificador é o juiz mais o código (<code>mooshak:PC001</code>), por isso um problema que aparece numa série e num índice partilha o estado; <code>data-id</code> no <code>&lt;li&gt;</code> escolhe outro.</p>
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-problems</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>filters</code></td><td>booleano</td><td>ausente</td><td>Acrescenta os filtros por tipo e por juiz.</td></tr>
+              <tr><td><code>track</code></td><td>booleano</td><td>ausente</td><td>Acrescenta "Resolvido" a cada problema e o progresso de cada série.</td></tr>
+              <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td><code>none</code></td><td>Título da secção. Por omissão não há, porque a página de problemas tem o seu <code>&lt;h1&gt;</code>.</td></tr>
+              <tr><td><code>heading-level</code></td><td><code>2</code> a <code>6</code></td><td><code>2</code></td><td>Nível do título gerado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Nos itens e nas séries:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos dos problemas e das séries</caption>
+            <thead>
+              <tr><th scope="col">Atributo de dados</th><th scope="col">Em</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><code>data-judge</code></th><td><code>&lt;li&gt;</code></td><td>O <code>id</code> ou o nome de uma plataforma.</td></tr>
+              <tr><th scope="row"><code>data-type</code></th><td><code>&lt;li&gt;</code></td><td><code>main</code>, <code>extra</code> ou <code>challenge</code>.</td></tr>
+              <tr><th scope="row"><code>data-id</code></th><td><code>&lt;li&gt;</code></td><td>Identificador para "Resolvido". Por omissão, o juiz e o primeiro <code>&lt;code&gt;</code>, ou o endereço do link.</td></tr>
+              <tr><th scope="row"><code>data-deadline</code></th><td><code>&lt;section&gt;</code></td><td>O <code>id</code> do prazo da série no <code>course.js</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 id="configuracao">Configuração usada</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js usados por uc-problems</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>platforms</code></td><td>O nome de cada juiz; <code>id</code> e <code>hidden</code> (<a href="../course-js.html#plataformas">plataformas</a>).</td></tr>
+              <tr><td><code>deadlines</code></td><td>O prazo de cada série (<a href="../course-js.html#prazos">prazos</a>).</td></tr>
+              <tr><td><code>code</code></td><td>Faz parte da chave onde se guardam os "Resolvido", para que cadeiras no mesmo servidor não se misturem.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-problems</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-problems</code></td><td>O componente (o próprio <code>&lt;uc-problems&gt;</code>).</td></tr>
+              <tr><td><code>.uc-problems__section</code>, <code>__heading</code></td><td>O conteúdo do componente e o título opcional.</td></tr>
+              <tr><td><code>.uc-problems__filters</code></td><td>A barra de filtros (também <code>uc-filters</code>).</td></tr>
+              <tr><td><code>.uc-problems__series</code></td><td>Cada <code>&lt;section&gt;</code> do professor.</td></tr>
+              <tr><td><code>.uc-problems__meta</code>, <code>__deadline</code>, <code>__progress</code></td><td>A linha por baixo do título da série: o prazo e "3 de 5 resolvidos".</td></tr>
+              <tr><td><code>.uc-problems__list</code></td><td>A lista de problemas.</td></tr>
+              <tr><td><code>.uc-problems__item</code>, <code>--solved</code></td><td>Cada problema; os resolvidos.</td></tr>
+              <tr><td><code>.uc-problems__body</code></td><td>O conteúdo escrito do problema (link, código).</td></tr>
+              <tr><td><code>.uc-problems__tags</code>, <code>__judge</code>, <code>__type</code></td><td>As etiquetas do juiz e do tipo.</td></tr>
+              <tr><td><code>.uc-problems__weight</code></td><td>O <code>&lt;data&gt;</code> do peso.</td></tr>
+              <tr><td><code>.uc-problems__solved</code></td><td>O rótulo com a caixa "Resolvido".</td></tr>
+              <tr><td><code>.uc-problems__empty</code></td><td>A linha "Nenhum problema com estes filtros."</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Problemas resolvidos mais discretos. */
+.uc-problems__item--solved .uc-problems__body { opacity: 0.7; }</code></pre></uc-code>
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>Os filtros são botões com <code>aria-pressed</code> em grupos com nome ("Tipo", "Juiz"), com 44 px de altura; filtrar não tira o foco do botão e o número de problemas é anunciado. Cada caixa "Resolvido" tem o nome do problema no nome acessível ("Resolvido: Increasing Array") e o rótulo inteiro, com 44 px, serve para a marcar. Juiz, tipo e estado do prazo são texto, não só cor.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Dar um título a cada série, com o nível certo na página (<code>&lt;h2&gt;</code> debaixo do <code>&lt;h1&gt;</code>), e pôr o nome do problema no link.</p>
+          </div>
+        </div>
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Aparecem as secções, os títulos e as listas tal como foram escritos. Não há etiquetas, prazos, filtros nem "Resolvido".</p>
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-materials.html"><code>&lt;uc-materials&gt;</code></a>: os materiais de cada aula.</li>
+          <li><a href="uc-exercise.html"><code>&lt;uc-exercise&gt;</code></a>: exercícios dentro de um guião, com "Marcar como feito".</li>
+          <li><a href="uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a>: os prazos do <code>course.js</code>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-materials.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-materials</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="../estilos/index.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Princípios de design</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-problems.html">Editar esta página no GitHub</a> · <a href="uc-problems.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#prazos">Prazo de cada série</a></li>
+          <li class="docs-toc__sub"><a href="#filtros">Filtros</a></li>
+          <li class="docs-toc__sub"><a href="#resolvidos">Resolvidos</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

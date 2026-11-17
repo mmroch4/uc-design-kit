@@ -33,13 +33,21 @@
  *     other classes, is followed by the other timetables and survives a reload
  *   - the search of <uc-summaries>: keeps focus while typing, announces the
  *     count, highlights matches, hides the breaks and is cleared with Escape
+ *   - the filters of <uc-problems>: buttons 44 px tall, Enter flips
+ *     aria-pressed and keeps focus, the count is announced, only matching
+ *     problems stay; "Resolvido" is 44 px tall, named after the problem and
+ *     kept after a reload
  *
  * Accessibility-tree snapshots (Playwright ariaSnapshot) of the blocks' test
  * pages, stored next to them (tests/pages/*.aria.yml), fail the check when a
  * role, name or state text changes. After an intended change, run
  * `node scripts/check-a11y.mjs --update-snapshots` and review the diff.
  *
- * Usage: node scripts/check-a11y.mjs [filter ...]
+ * Usage: node scripts/check-a11y.mjs [--shard=i/n] [--concurrency=n] [--update-snapshots] [filter ...]
+ *
+ * --shard=i/n checks the i-th of n parts of the pages and of the snapshots (CI
+ * runs the parts in parallel jobs); --concurrency=n checks n pages at the same
+ * time (default: CPU count, max 4).
  */
 import { createServer } from "node:http";
 import { readFile, readdir, stat, writeFile } from "node:fs/promises";
@@ -47,6 +55,7 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -79,6 +88,8 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-grading.html", selector: "#pc", file: "tests/pages/uc-grading.aria.yml" },
   { page: "tests/pages/uc-assessment-info.html", selector: "#full", file: "tests/pages/uc-assessment-info.aria.yml" },
   { page: "tests/pages/uc-summaries.html", selector: "#main", file: "tests/pages/uc-summaries.aria.yml" },
+  { page: "tests/pages/uc-materials.html", selector: "#main", file: "tests/pages/uc-materials.aria.yml" },
+  { page: "tests/pages/uc-problems.html", selector: "#series", file: "tests/pages/uc-problems.aria.yml" },
   { page: "tests/pages/uc-weeks-compact.html", selector: "#compact .uc-weeks__table", file: "tests/pages/uc-weeks-compact.aria.yml" },
 ];
 
@@ -366,6 +377,7 @@ async function checkBehaviour(browser, origin, relative) {
   problems.push(...(await checkClassFilter(browser, origin, relative)));
   problems.push(...(await checkGradingCalculator(browser, origin, relative)));
   problems.push(...(await checkSummariesSearch(browser, origin, relative)));
+  problems.push(...(await checkProblems(browser, origin, relative)));
 
   if (relative.includes("uc-page") || relative.startsWith("examples/")) {
     const phone = await open(browser, origin, relative, { viewport: { width: 390, height: 844 } });
@@ -500,6 +512,47 @@ async function checkSummariesSearch(browser, origin, relative) {
   return problems;
 }
 
+/** The filters and "Resolvido" checkboxes of <uc-problems>, on pages that have them. */
+async function checkProblems(browser, origin, relative) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  // The last button of the first group (a type): its tag must be on every problem left.
+  const button = await firstVisible(page, ".uc-problems__filters .uc-filters__group:first-child .uc-filters__button:last-child");
+  if (button) {
+    const box = await button.boundingBox();
+    if (box && box.height < 44) problems.push(`problem filters: a button is ${Math.round(box.height)}px tall (44px minimum)`);
+    await button.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(200);
+    if ((await button.getAttribute("aria-pressed")) !== "true") problems.push("problem filters: Enter did not set aria-pressed");
+    if (!(await focusedMatches(page, ".uc-problems__filters .uc-filters__button"))) problems.push("problem filters: the button lost focus");
+    if (!/\d+ (de|of) \d+/.test(await liveText(page))) problems.push("problem filters: the number of problems is not announced");
+    const wrong = await button.evaluate((node) =>
+      Array.from(node.closest("uc-problems").querySelectorAll(".uc-problems__item"))
+        .filter((item) => !item.hidden)
+        .filter((item) => !Array.from(item.querySelectorAll(".uc-problems__tags .uc-tag")).some((tag) => tag.textContent === node.textContent)).length,
+    );
+    if (wrong) problems.push(`problem filters: ${wrong} problems that do not match "${await button.textContent()}" are still shown`);
+  }
+  const checkbox = await firstVisible(page, ".uc-problems__solved input");
+  if (checkbox) {
+    const box = await page.locator(".uc-problems__solved").first().boundingBox();
+    if (box && box.height < 44) problems.push(`problems: the "Resolvido" label is ${Math.round(box.height)}px tall (44px minimum)`);
+    const name = await checkbox.getAttribute("aria-label");
+    if (!/^(Resolvido|Solved): .+/.test(name || "")) problems.push(`problems: the checkbox name does not name the problem ("${name}")`);
+    await checkbox.focus();
+    await page.keyboard.press("Space");
+    await page.waitForTimeout(100);
+    if (!(await checkbox.isChecked())) problems.push("problems: Space did not check 'Resolvido'");
+    await page.reload({ waitUntil: "load" });
+    await page.waitForTimeout(300);
+    const kept = await page.evaluate(() => Array.from(document.querySelectorAll(".uc-problems__solved input")).some((input) => input.checked));
+    if (!kept) problems.push("problems: 'Resolvido' was not kept after a reload");
+  }
+  await context.close();
+  return problems;
+}
+
 async function checkPage(browser, origin, relative, axeSource) {
   const problems = [];
   const { context, page } = await open(browser, origin, relative);
@@ -519,10 +572,10 @@ async function checkPage(browser, origin, relative, axeSource) {
 }
 
 /** Compares (or, with --update-snapshots, writes) the accessibility-tree snapshots. */
-async function checkAriaSnapshots(browser, origin, update, filters) {
+async function checkAriaSnapshots(browser, origin, update, filters, shard) {
   let failed = 0;
-  for (const { page: relative, selector, file } of ARIA_SNAPSHOTS) {
-    if (filters.length && !filters.some((filter) => relative.includes(filter))) continue;
+  const snapshots = ARIA_SNAPSHOTS.filter(({ page }) => !filters.length || filters.some((filter) => page.includes(filter)));
+  for (const { page: relative, selector, file } of shardOf(snapshots, shard)) {
     const { context, page } = await open(browser, origin, relative);
     const actual = `${await page.locator(selector).first().ariaSnapshot()}\n`;
     await context.close();
@@ -550,9 +603,14 @@ async function checkAriaSnapshots(browser, origin, update, filters) {
 }
 
 async function main() {
-  const update = process.argv.includes("--update-snapshots");
-  const filters = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
-  const pages = (await findPages()).filter((page) => !filters.length || filters.some((filter) => page.includes(filter)));
+  const args = process.argv.slice(2);
+  const update = args.includes("--update-snapshots");
+  const filters = filterArgs(args);
+  const shard = parseShard(args);
+  const concurrency = parseConcurrency(args);
+  const matching = (await findPages()).filter((page) => !filters.length || filters.some((filter) => page.includes(filter)));
+  const pages = shardOf(matching, shard);
+  if (shard.total > 1) console.log(`Shard ${shard.index}/${shard.total}: ${pages.length} of ${matching.length} pages.`);
   const axeSource = await readFile(require.resolve("axe-core/axe.min.js"), "utf8");
   const server = await startServer();
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -560,13 +618,18 @@ async function main() {
   let failed = 0;
   let snapshotsFailed = 0;
   try {
-    for (const relative of pages) {
-      const problems = await checkPage(browser, origin, relative, axeSource);
-      console.log(`${problems.length ? "FAIL" : "ok  "} ${relative}`);
-      problems.forEach((problem) => console.log(`       ✗ ${problem}`));
-      if (problems.length) failed += 1;
-    }
-    snapshotsFailed = await checkAriaSnapshots(browser, origin, update, filters);
+    await runPool(
+      pages,
+      concurrency,
+      (relative) => checkPage(browser, origin, relative, axeSource),
+      (relative, result) => {
+        const problems = result.error ? [`check crashed: ${result.error.stack || result.error}`] : result;
+        console.log(`${problems.length ? "FAIL" : "ok  "} ${relative}`);
+        problems.forEach((problem) => console.log(`       ✗ ${problem}`));
+        if (problems.length) failed += 1;
+      },
+    );
+    snapshotsFailed = await checkAriaSnapshots(browser, origin, update, filters, shard);
   } finally {
     await browser.close();
     server.close();

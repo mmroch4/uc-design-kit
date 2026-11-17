@@ -75,6 +75,8 @@
           <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
           <li><a href="../componentes/uc-grading.html"><code>uc-grading</code></a></li>
           <li><a href="../componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="../componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="../componentes/uc-problems.html"><code>uc-problems</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -258,6 +260,7 @@ UC.weekOf("2025-12-25");     // null: after week 12</code></pre></uc-code>
               <tr><td><code>uc:ready</code></td><td>A configuração foi lida e os componentes do kit estão definidos. Uma vez por página; o <code>&lt;html&gt;</code> recebe a classe <code>uc-ready</code> ao mesmo tempo.</td><td><code>{ version }</code></td></tr>
               <tr><td><code>uc:languagechange</code></td><td>Depois de a língua ativa mudar na mesma página (não quando a mudança navega para outro ficheiro).</td><td><code>{ lang }</code></td></tr>
               <tr><td><code>uc:classchange</code></td><td>Um estudante escolheu "A minha turma" num <code>&lt;uc-timetable&gt;</code>. Dispara no <code>document</code>; os outros horários da página seguem a escolha.</td><td><code>{ type, class }</code> (<code>class</code> vazio = todas)</td></tr>
+              <tr><td><code>uc:problemchange</code></td><td>Um problema de um <code>&lt;uc-problems track&gt;</code> foi marcado como resolvido ou não. Dispara na lista e sobe até ao <code>document</code>; as outras listas da página com o mesmo problema seguem a escolha.</td><td><code>{ id, solved }</code></td></tr>
               <tr><td><code>uc:exercisechange</code></td><td>Um <code>&lt;uc-exercise&gt;</code> foi marcado como feito ou por fazer. Dispara no exercício e sobe até ao <code>document</code>.</td><td><code>{ id, done }</code></td></tr>
             </tbody>
           </table>

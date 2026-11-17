@@ -1124,3 +1124,63 @@ token and the phase 3 strings of section 8; they are now in `docs/api.md`
    `UC.internal.weekStateOf(span)` (from `uc-week.js`, used by the compact
    view) and `UC.internal.findMatches(text, query)` (accent-insensitive match
    ranges, unit-tested).
+
+
+## 17. Changes made in phase 4
+
+Phase 4 implemented sections 2.6, 3.5, 3.6, the `uc:problemchange` event of
+7.1, the phase 4 strings of section 8 and the phase 4 parts of 9.1 and 9.2;
+they are now in `docs/api.md` (2.2, new 2.8 "Platform", 3.7 and 7). Refinements
+made while coding:
+
+1. **Platform is its own sub-section** of `docs/api.md` (2.8, with `label`,
+   `url`, `id`, `hidden`), not rows in 2.6 (2.6 is Notice there). The course.js
+   docs page has a matching `#plataformas` section and `check-docs`
+   (`COURSE_SECTIONS`) knows it. `<uc-page>` skips `hidden` platforms.
+2. **`UC.internal.otherLanguage(element)`** moved from `uc-summaries.js` to
+   `core/language.js`; `<uc-summaries>`, `<uc-materials>` and `<uc-problems>`
+   use it.
+3. **Strings.** `problems.type` is the group label, so the type names live in
+   `problems.types.main` / `.extra` / `.challenge` (a key cannot be both a
+   string and a namespace). New: `problems.all` ("Todos": `common.all` is
+   "Todas", for classes), `problems.closed` ("Encerrado", the state of a past
+   series deadline), `problems.none` ("Nenhum problema com estes filtros.").
+   The other states reuse `assessment.today`, `.tomorrow`, `.inDays`.
+4. **Material buttons are full-size `uc-button`s** (44 px) with a smaller
+   font, not `uc-button--sm` (32 px), as the filter buttons of phase 1.
+5. **Accessible name of a material link** is "Diapositivos (PDF)", not
+   "Diapositivos, PDF": the visually hidden span is absolutely positioned,
+   so Chrome puts a space before it and the comma read as "Diapositivos ,
+   PDF". The type is left out when the visible text already says it ("PDF",
+   "Código").
+6. **Only direct-child links** of a materials item become buttons; text that
+   only separates them ("·", "|", ",") is removed; other content after the
+   links (a `<span>` note) stays in the title column
+   (`uc-materials__main`). An `<ol>` keeps its numbers with a CSS counter on
+   the title (the item is a grid, not a `list-item`). New stable classes:
+   `uc-materials__main`, `__meta`, `__date`, `__new`.
+7. **Problems layout.** Each item's own content moves once into
+   `uc-problems__body`; generated tags go to `uc-problems__tags`; the
+   "Resolvido" `<label>` (44 px) comes first. Under each series heading,
+   `uc-problems__meta` holds the deadline line and the progress. The weight
+   `<data>` gets `uc-tag uc-problems__weight` in place. Without `heading`
+   the wrapper is a `<div class="uc-problems__section">`, with it a
+   `<section aria-labelledby>`. New stable classes: `uc-problems__section`,
+   `__heading`, `__meta`, `__list`, `__body`, `__tags`, `__weight`,
+   `__empty`, `__item--solved`.
+8. **Filters.** A group appears only when two or more values occur (a single
+   judge gives no "Juiz" group). Judges are keyed by platform `id`, else by
+   the normalised label or written value, so "mooshak" and "Mooshak" are one
+   button. The filter choice is not saved.
+9. **Track.** Lists of the same page follow each other: a change in one fires
+   `uc:problemchange`, and every other `<uc-problems track>` updates its
+   items with that id. Without a judge the default id is the `<code>` text
+   alone.
+10. **Demo data.** `docs/demos/course.js` got the platform ids and the hidden
+    Codeforces of 9.1, but the two series deadlines (`ps1`, `ps2`) are added
+    by an inline script in `docs/demos/uc-problems/basic.html` only: in the
+    shared file they would appear in every deadlines and weeks demo and
+    change their heights and thumbnails. The test page does the same.
+11. **Size.** Phase 4 took `uc-kit.js` from 39.4 to **42.9 KB** gzipped
+    (`<uc-materials>` with its 8 icons ~1.4 KB, `<uc-problems>` ~2.1 KB).
+    Phase 5 has 5.1 KB.

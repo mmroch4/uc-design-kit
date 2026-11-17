@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-problems · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script>
+    // The two series deadlines of this demo (in a real site they are in course.js).
+    UC_COURSE.deadlines.push(
+      { id: "ps1", title: "Série 1", date: "2025-10-10", time: "23:59", kind: "submission" },
+      { id: "ps2", title: "Série 2", date: "2025-12-05", time: "23:59", kind: "submission" },
+    );
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-problems filters track>
+      <section data-deadline="ps1">
+        <h2>Série 1 · Introdução</h2>
+        <ul>
+          <li data-judge="entregas"><a href="#">Soma de dois números</a> <code>AP001</code></li>
+          <li data-judge="entregas"><a href="#">Contar vogais</a> <code>AP002</code></li>
+          <li data-judge="codeforces" data-type="extra"><a href="#">Watermelon</a> <code>4A</code></li>
+        </ul>
+      </section>
+      <section data-deadline="ps2">
+        <h2>Série 2 · Ordenação</h2>
+        <ul>
+          <li data-judge="entregas"><a href="#">Ordenar notas</a> <code>AP010</code></li>
+          <li data-judge="entregas"><a href="#">Mediana</a> <code>AP011</code></li>
+          <li data-judge="codeforces" data-type="challenge"><a href="#">Towers</a> <code>37A</code></li>
+        </ul>
+      </section>
+    </uc-problems>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

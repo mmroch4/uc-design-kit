@@ -11,9 +11,11 @@
  *   - content is still present with JavaScript disabled
  *
  * Usage:
- *   node scripts/check-pages.mjs [--screenshots] [filter ...]
+ *   node scripts/check-pages.mjs [--screenshots] [--shard=i/n] [--concurrency=n] [filter ...]
  *
- * Filters are substrings matched against the page path.
+ * Filters are substrings matched against the page path. --shard=i/n checks
+ * the i-th of n parts of the pages (CI runs the parts in parallel jobs);
+ * --concurrency=n checks n pages at the same time (default: CPU count, max 4).
  * Set TEST_TODAY=YYYY-MM-DD to change the frozen date (default 2025-11-27).
  */
 import { createServer } from "node:http";
@@ -22,6 +24,7 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { chromium } from "playwright";
+import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -233,15 +236,19 @@ async function checkPage(browser, file, origin, axeSource, options) {
 async function main() {
   const args = process.argv.slice(2);
   const options = { screenshots: args.includes("--screenshots") };
-  const filters = args.filter((arg) => !arg.startsWith("--"));
+  const filters = filterArgs(args);
+  const shard = parseShard(args);
+  const concurrency = parseConcurrency(args);
 
-  const pages = (await findPages()).filter(
+  const matching = (await findPages()).filter(
     (file) => filters.length === 0 || filters.some((filter) => file.includes(filter)),
   );
+  const pages = shardOf(matching, shard);
   if (pages.length === 0) {
     console.log("No pages to check.");
     return;
   }
+  if (shard.total > 1) console.log(`Shard ${shard.index}/${shard.total}: ${pages.length} of ${matching.length} pages.`);
   if (options.screenshots) await mkdir(SCREENSHOT_DIR, { recursive: true });
 
   const axeSource = await readFile(require.resolve("axe-core/axe.min.js"), "utf8");
@@ -251,14 +258,21 @@ async function main() {
 
   let failed = 0;
   try {
-    for (const file of pages) {
-      const { relative, problems, warnings } = await checkPage(browser, file, origin, axeSource, options);
-      const status = problems.length ? "FAIL" : "ok  ";
-      console.log(`${status} ${relative}`);
-      for (const problem of problems) console.log(`       ✗ ${problem}`);
-      for (const warning of warnings) console.log(`       ! ${warning}`);
-      if (problems.length) failed += 1;
-    }
+    await runPool(
+      pages,
+      concurrency,
+      (file) => checkPage(browser, file, origin, axeSource, options),
+      (file, result) => {
+        const relative = path.relative(ROOT, file).split(path.sep).join("/");
+        const problems = result.error ? [`check crashed: ${result.error.stack || result.error}`] : result.problems;
+        const warnings = result.error ? [] : result.warnings;
+        const status = problems.length ? "FAIL" : "ok  ";
+        console.log(`${status} ${relative}`);
+        for (const problem of problems) console.log(`       ✗ ${problem}`);
+        for (const warning of warnings) console.log(`       ! ${warning}`);
+        if (problems.length) failed += 1;
+      },
+    );
   } finally {
     await browser.close();
     server.close();
