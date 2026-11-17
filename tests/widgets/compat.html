@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compatibilidade dos widgets 1.0.0 · test</title>
+  <!--
+    Compatibility page (docs/plan/widgets-api.md 18.3 item 6).
+
+    The attributes, ops verbs, methods, properties and events of every widget
+    as they were in widgets 1.0.0, plus a teacher's own widget built on
+    UC.widgets.Widget. Nothing here may be changed to make a later version
+    pass: widgets/v1/ only gets compatible changes. Add to it only for
+    features of later releases, and only once they are frozen.
+
+    ?release=v1 (default) loads widgets/v1/; ?release=v1.0.0 loads the frozen
+    release. scripts/check-pages.mjs opens it once per folder and fails on any
+    console error; the result is also written to <output id="compat-result">.
+  -->
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="../pages/course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script>
+    // The widget scripts of the folder under test, after the kit (they need UC).
+    document.addEventListener("DOMContentLoaded", function () {
+      var release = new URLSearchParams(location.search).get("release") || "v1";
+      if (!/^v\d+(\.\d+\.\d+)?$/.test(release)) release = "v1";
+      document.documentElement.dataset.release = release;
+      ["sort", "search", "bst", "list", "stack-queue", "recursion", "heap", "avl", "hash", "graph", "shortest-path", "complexity", "mst", "union-find", "toposort", "dp", "backtracking", "trace"].forEach(function (name) {
+        var script = document.createElement("script");
+        script.src = "../../widgets/" + release + "/uc-widget-" + name + ".js";
+        script.async = false;
+        document.head.append(script);
+      });
+    });
+  </script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>Compatibilidade dos widgets 1.0.0 (teste)</h1>
+    <p>Resultado: <output id="compat-result">a verificar…</output></p>
+
+    <h2>Vaga 1</h2>
+    <uc-widget-sort id="sort" values="5 2 9 1 7 3" algorithm="quick" pivot="middle" algorithms="bubble selection insertion merge quick counting" predict editable>
+      <p>Ordenação de 5 2 9 1 7 3: 1 2 3 5 7 9.</p>
+    </uc-widget-sort>
+    <uc-widget-sort id="sort-bars" values="4 1 3 2" algorithm="bubble" bars caption="Barras">
+      <p>Bubble sort de 4 1 3 2: 1 2 3 4.</p>
+    </uc-widget-sort>
+    <uc-widget-search id="search" values="1 3 4 7 8 9 12 15" target="9" algorithm="binary" algorithms="linear binary lower-bound" predict>
+      <p>Pesquisa binária de 9: encontrado na posição 5.</p>
+    </uc-widget-search>
+    <uc-widget-bst id="bst" values="50 30 70 20 40 60 80" ops="insert 45; search 60; remove 30; min; max">
+      <p>Árvore com raiz 50; depois das operações, em ordem: 20 40 45 50 60 70 80.</p>
+    </uc-widget-bst>
+    <uc-widget-bst id="bst-traversals" values="5 3 8 1 4 7 9" algorithm="inorder" algorithms="preorder inorder postorder levelorder" predict>
+      <p>Em ordem: 1 3 4 5 7 8 9.</p>
+    </uc-widget-bst>
+    <uc-widget-list id="list" values="3 8 5" ops="add-first 1; insert 2 4; remove 8; search 4; remove-last; add-last 6; reverse" editable>
+      <p>Lista final: 6 → 4 → 1.</p>
+    </uc-widget-list>
+    <uc-widget-stack-queue id="queue" algorithm="queue" capacity="4" values="3 8 5" ops="dequeue; enqueue 1; enqueue 9; enqueue 7; dequeue">
+      <p>Fila circular: fica 5 1 9.</p>
+    </uc-widget-stack-queue>
+    <uc-widget-stack-queue id="stack" algorithm="stack" impl="list" values="3 8" ops="push 5; pop; peek; pop; pop; pop">
+      <p>Pilha 3 8: no fim fica vazia.</p>
+    </uc-widget-stack-queue>
+    <uc-widget-recursion id="recursion" algorithm="fibonacci" n="4" algorithms="factorial fibonacci hanoi" predict>
+      <p>fib(4) = 3, com 9 chamadas.</p>
+    </uc-widget-recursion>
+
+    <h2>Vaga 2</h2>
+    <uc-widget-heap id="heap" values="9 7 8 3 5 6" ops="insert 10; extract; peek" predict>
+      <p>Heap de máximo: depois de inserir 10 e extrair, a raiz é 9.</p>
+    </uc-widget-heap>
+    <uc-widget-heap id="heapsort" values="4 9 2 7 5 8 1" algorithm="heapsort" algorithms="heapify heapsort">
+      <p>Heapsort: 1 2 4 5 7 8 9.</p>
+    </uc-widget-heap>
+    <uc-widget-avl id="avl" values="10 20 30 25 28 5 4" ops="search 25; remove 10" predict>
+      <p>Árvore AVL com raiz 20.</p>
+    </uc-widget-avl>
+    <uc-widget-hash id="hash" values="15 8 22 4 29 11" algorithm="linear" algorithms="chaining linear quadratic">
+      <p>Tabela de dispersão com sondagem linear; cresce para 14 posições.</p>
+    </uc-widget-hash>
+    <uc-widget-graph id="graph" source="A" algorithms="bfs dfs components" edges="A B; A C; B D; C D; D E; F G" predict>
+      <p>BFS a partir de A: A 0, B 1, C 1, D 2, E 3.</p>
+    </uc-widget-graph>
+    <uc-widget-shortest-path id="shortest-path" source="A" directed algorithms="dijkstra bellman-ford" predict>
+      <pre data-input>
+A B 4
+A C 1
+C B 2
+B D 5
+C D 8
+      </pre>
+      <p>Distâncias a partir de A: B 3, C 1, D 8.</p>
+    </uc-widget-shortest-path>
+    <uc-widget-complexity id="complexity" functions="n nlogn n2" max="16" for="sort">
+      <p>Comparações da ordenação comparadas com n, n log n e n².</p>
+    </uc-widget-complexity>
+
+    <h2>Vaga 3</h2>
+    <uc-widget-mst id="mst" algorithms="kruskal prim" edges="A B 4; A C 1; B C 2; B D 5; C D 8; D E 3" predict>
+      <p>Árvore mínima: A–C 1, B–C 2, D–E 3, B–D 5; peso 11.</p>
+    </uc-widget-mst>
+    <uc-widget-union-find id="union-find" n="8" algorithm="compression" algorithms="compression size naive">
+      <p>Um só conjunto no fim.</p>
+    </uc-widget-union-find>
+    <uc-widget-toposort id="toposort" algorithms="kahn dfs" edges="A B; A C; B D; C D" predict>
+      <p>Uma ordem topológica: A, B, C, D.</p>
+    </uc-widget-toposort>
+    <uc-widget-dp id="dp" problem="knapsack" weights="1 3 4 5" values="1 4 5 7" capacity="7" editable>
+      <p>Valor máximo 9.</p>
+    </uc-widget-dp>
+    <uc-widget-dp id="dp-lcs" problem="lcs" a="ABCBDAB" b="BDCABA" predict>
+      <p>Comprimento 4.</p>
+    </uc-widget-dp>
+    <uc-widget-backtracking id="backtracking" n="4" predict>
+      <p>4 rainhas: colunas 1, 3, 0 e 2.</p>
+    </uc-widget-backtracking>
+    <uc-widget-backtracking id="subsets" algorithm="subsets" values="3 1 4 2" target="5">
+      <p>Subconjuntos com soma 5: {3, 2} e {1, 4}.</p>
+    </uc-widget-backtracking>
+    <uc-widget-trace id="trace" caption="Máximo de um vetor">
+      <script type="application/json" data-input>
+{
+  "view": "array",
+  "code": { "pt": ["start|m = a[0]", "end|devolver m"], "en": ["start|m = a[0]", "end|return m"] },
+  "steps": [
+    { "state": [4, 7, 2], "say": { "pt": "Procurar o máximo de 4 7 2.", "en": "Find the maximum of 4 7 2." } },
+    { "marks": { "0": "current" }, "line": "start", "vars": { "m": 4 }, "say": { "pt": "m = 4.", "en": "m = 4." } },
+    { "marks": { "1": "done" }, "line": "end", "vars": { "m": 7 }, "say": { "pt": "O máximo é 7.", "en": "The maximum is 7." } }
+  ]
+}
+      </script>
+      <p>Máximo de 4 7 2: 7.</p>
+    </uc-widget-trace>
+
+    <h2>Entrada inválida e widget próprio</h2>
+    <uc-widget-sort id="invalid" values="5 x 9"><p>Entrada inválida: a nota de erro aparece e este texto fica.</p></uc-widget-sort>
+    <compat-widget-gcd id="own" a="48" b="18"><p>mdc(48, 18) = 6.</p></compat-widget-gcd>
+  </uc-page>
+
+  <script>
+    // A teacher's own widget on the 1.0.0 extension API (Widget, register, InputError, svg.array).
+    document.addEventListener("DOMContentLoaded", function () {
+      var widgets = UC.widgets || (UC.widgets = { __queue: [] });
+      var define = function (UC) {
+        var W = UC.widgets;
+        var strings = {
+          caption: { euclid: "Euclides" },
+          describe: "a = {a}, b = {b}.",
+          divide: "{a} mod {b} = {r}.",
+          end: "mdc = {a}.",
+          error: { number: "a e b inteiros." },
+          code: { euclid: ["loop|enquanto b ≠ 0:", "divide|  (a, b) = (b, a mod b)", "end|devolver a"] },
+        };
+        UC.addTranslations("pt", { widget: { compatgcd: strings } });
+        UC.addTranslations("en", { widget: { compatgcd: strings } });
+        class Gcd extends W.Widget {
+          static id = "compatgcd";
+          static algorithms = ["euclid"];
+          static inputAttributes = ["a", "b"];
+          parse() {
+            var a = Number(this.getAttribute("a"));
+            var b = Number(this.getAttribute("b"));
+            if (!Number.isInteger(a) || !Number.isInteger(b)) throw new W.InputError("widget.compatgcd.error.number");
+            return { a: a, b: b };
+          }
+          steps(input, emit) {
+            var a = input.a, b = input.b;
+            emit({ state: { a: a, b: b }, marks: {}, line: null, say: ["widget.compatgcd.describe", { a: a, b: b }] });
+            while (b !== 0) {
+              var r = a % b;
+              emit({ state: { a: b, b: r }, marks: { 0: "current" }, line: "divide", say: ["widget.compatgcd.divide", { a: a, b: b, r: r }] });
+              a = b; b = r;
+            }
+            emit({ state: { a: a, b: 0 }, marks: { 0: "done" }, line: "end", say: ["widget.compatgcd.end", { a: a }] });
+            return a;
+          }
+          draw(step, svg) { W.svg.array(svg, [step.state.a, step.state.b], { marks: step.marks }); }
+          describe(step) { return UC.t("widget.compatgcd.describe", step.state); }
+          table(step) { return { head: ["a", "b"], rows: [[step.state.a, step.state.b]] }; }
+        }
+        W.register("compat-widget-gcd", Gcd);
+      };
+      if (widgets.version) define(UC); else widgets.__queue.push(define);
+    });
+
+    // The checks: everything a 1.0.0 page may rely on.
+    window.addEventListener("load", function () {
+      var output = document.getElementById("compat-result");
+      var failures = [];
+      var fail = function (message) { failures.push(message); console.error("[compat " + document.documentElement.dataset.release + "] " + message); };
+      var names = Array.from(document.querySelectorAll("uc-page *")).filter(function (node) { return /-widget-/.test(node.localName); });
+      var tags = Array.from(new Set(names.map(function (node) { return node.localName; })));
+      var timeout = new Promise(function (resolve) { setTimeout(resolve, 8000, "timeout"); });
+      Promise.race([Promise.all(tags.map(function (tag) { return customElements.whenDefined(tag); })), timeout]).then(function (result) {
+        if (result === "timeout") {
+          tags.filter(function (tag) { return !customElements.get(tag); }).forEach(function (tag) { fail("<" + tag + "> was never defined"); });
+          return;
+        }
+        var W = UC.widgets;
+        if (!/^1\.\d+\.\d+/.test(W.version)) fail("UC.widgets.version is " + W.version);
+        ["Widget", "register", "InputError", "TooManySteps", "random", "parse"].forEach(function (key) { if (!W[key]) fail("UC.widgets." + key + " is missing"); });
+        if (!W.svg || typeof W.svg.array !== "function" || typeof W.svg.tree !== "function") fail("UC.widgets.svg.array / svg.tree are missing");
+        if (!(W.MAX_STEPS >= 2000)) fail("UC.widgets.MAX_STEPS went down: " + W.MAX_STEPS);
+        ["current", "compared", "swapped", "done", "visited"].forEach(function (state) { if (W.STATES.indexOf(state) < 0) fail("state " + state + " is missing"); });
+
+        var events = { step: 0, done: 0 };
+        names.forEach(function (widget) {
+          var label = "#" + widget.id;
+          ["go", "next", "back", "play", "pause", "reset"].forEach(function (method) { if (typeof widget[method] !== "function") fail(label + "." + method + "() is missing"); });
+          widget.addEventListener("uc:widgetstep", function (event) { if (typeof event.detail.step === "number") events.step += 1; });
+          widget.addEventListener("uc:widgetdone", function (event) { if (event.detail.stats) events.done += 1; });
+          widget.go(0);
+          if (widget.id === "invalid") {
+            if (!widget.error) fail(label + ": invalid input did not give an error");
+            return;
+          }
+          if (widget.error) return fail(label + ": " + widget.error[0]);
+          if (!(widget.total > 1)) return fail(label + ": " + widget.total + " steps");
+          // With predict, next() may stop at a question first (contract section 11), so those use go().
+          if (!widget.hasAttribute("predict")) {
+            widget.next();
+            if (widget.step !== 1) fail(label + ": next() went to step " + widget.step);
+            widget.back();
+            if (widget.step !== 0) fail(label + ": back() went to step " + widget.step);
+            widget.go(widget.total - 2);
+            widget.next();
+          } else {
+            widget.go(widget.total - 1);
+          }
+          if (widget.step !== widget.total - 1) fail(label + ": did not reach the last step");
+          if (widget.result === undefined) fail(label + ": no result at the last step");
+          widget.reset();
+          if (widget.step !== 0) fail(label + ": reset() did not go back to step 0");
+          if (!widget.querySelector(".uc-widget__stage svg")) fail(label + ": no drawing");
+        });
+        if (events.step === 0) fail("uc:widgetstep never fired");
+        if (events.done === 0) fail("uc:widgetdone never fired");
+        var own = document.getElementById("own");
+        if (own && own.result !== 6) fail("#own: gcd(48, 18) gave " + own.result);
+      }).then(function () {
+        output.textContent = failures.length ? failures.length + " falha(s)" : "ok";
+        document.documentElement.dataset.compat = failures.length ? "fail" : "ok";
+      });
+    });
+  </script>
+</body>
+</html>

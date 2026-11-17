@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Widget da biblioteca: subconjuntos e permutações (pesquisa exaustiva) -->
+  <script src="../../../widgets/v1/uc-widget-backtracking.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -336,6 +338,13 @@ public class TestSets {
             </ul>
           </details>
         </uc-exercise>
+
+        <!-- Widget <uc-widget-backtracking> (widgets/v1/): a árvore de chamadas de goSets -->
+        <h3 id="ver-subconjuntos">Ver a árvore de chamadas</h3>
+        <p class="uc-prose">Cada chamada de <code>goSets</code> decide se o elemento <code>cur</code> entra ou não no subconjunto; as folhas da árvore são os subconjuntos. Siga a árvore para {1, 2, 3}: quantas chamadas são feitas ao todo?</p>
+        <uc-widget-backtracking algorithm="subsets" values="1 2 3" predict>
+          <p>Os 8 subconjuntos de {1, 2, 3} são {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3} e {1, 2, 3}: um por folha de uma árvore com 15 chamadas.</p>
+        </uc-widget-backtracking>
       </section>
 
       <!-- Exercício 5 -->
@@ -397,6 +406,13 @@ public class TestPerm {
             </ul>
           </details>
         </uc-exercise>
+
+        <!-- Widget <uc-widget-backtracking> (widgets/v1/): a árvore de chamadas de goPerm -->
+        <h3 id="ver-permutacoes">Ver a árvore de chamadas</h3>
+        <p class="uc-prose">Em <code>goPerm</code>, a posição <code>cur</code> recebe cada elemento ainda não usado (<code>used[i]</code> falso). Siga a árvore para 1 2 3.</p>
+        <uc-widget-backtracking algorithm="permutations" values="1 2 3">
+          <p>As 6 permutações de 1 2 3: 1 2 3, 1 3 2, 2 1 3, 2 3 1, 3 1 2, 3 2 1.</p>
+        </uc-widget-backtracking>
       </section>
 
       <p class="uc-muted">DCC/FCUP · Última atualização do original: 15/11/2025</p>

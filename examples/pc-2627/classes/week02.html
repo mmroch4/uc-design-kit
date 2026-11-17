@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Algorithm widgets (widgets/v1/) -->
+  <script src="../../../widgets/v1/uc-widget-complexity.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -75,6 +77,13 @@
       </li><li><a href="https://www.geeksforgeeks.org/python/fast-i-o-for-competitive-programming-in-python/">Fast I/O for Competitive Programming in Python</a> [GeeksforGeeks]
     </li></ul>
 </li></ul>
+
+<h2 id="step-by-step">See it step by step</h2>
+<p>How fast do the usual complexities grow? Move n from 1 to 16 and compare. With about 10<sup>8</sup> simple operations per second, n² is fine for n = 10<sup>4</sup> but 2ⁿ is already too slow for n = 40.</p>
+<!-- Widget <uc-widget-complexity>: growth of the usual functions -->
+<uc-widget-complexity functions="n nlogn n2 n3 2n" max="16" predict>
+  <p>For n = 16: n &lt; n log n &lt; n² &lt; n³ &lt; 2ⁿ. 2ⁿ overtakes n² at n = 5 and n³ at n = 10.</p>
+</uc-widget-complexity>
 
 <h2>(some) Training Problems</h2>
 <ul>

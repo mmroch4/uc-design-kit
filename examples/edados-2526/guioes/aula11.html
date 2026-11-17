@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Widget da biblioteca: inserir e remover numa árvore binária de pesquisa -->
+  <script src="../../../widgets/v1/uc-widget-bst.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -358,10 +360,12 @@ $ java TestBSTree
 
         <uc-exercise id="visualizar-insercoes" title="Visualizando inserções e remoções">
           <p>Procure desenhar no seu caderno como ficaria uma árvore binária de pesquisa depois de <strong>inserir</strong> os seguintes elementos (por esta ordem): <code>4 8 1 3 9 2 7 6</code>.</p>
-          <p>Depois de desenhar, use a seguinte página para verificar se acertou no desenho da árvore:</p>
-          <ul class="uc-bullets">
-            <li><a href="https://www.cs.usfca.edu/~galles/visualization/BST.html">Visualização de árvores binárias de pesquisa</a></li>
-          </ul>
+          <p>Depois de desenhar, siga as inserções no widget abaixo para verificar se acertou no desenho da árvore (com as previsões ligadas, ele pergunta para que lado vai cada valor). No fim, o widget remove a raiz 4: quem fica no seu lugar?</p>
+          <!-- Widget <uc-widget-bst> (widgets/v1/): as inserções do exercício e a remoção da raiz -->
+          <uc-widget-bst values="" ops="insert 4; insert 8; insert 1; insert 3; insert 9; insert 2; insert 7; insert 6; remove 4" predict editable>
+            <p>Depois das inserções, a raiz é 4; filhos de 4: 1 e 8; filho direito de 1: 3, com filho esquerdo 2; filhos de 8: 7 e 9; filho esquerdo de 7: 6. Ao remover 4, o sucessor 6 (o mínimo da subárvore direita) passa para a raiz. Em ordem: 1 2 3 6 7 8 9.</p>
+          </uc-widget-bst>
+          <p>Também pode usar a <a href="https://www.cs.usfca.edu/~galles/visualization/BST.html">visualização de árvores binárias de pesquisa</a> da Universidade de São Francisco.</p>
           <p>Experimente <strong>retirar</strong> e <strong>inserir</strong> mais alguns elementos, procurando primeiro confirmar como ficaria a árvore, e depois usando a página para confirmar o que previu.</p>
         </uc-exercise>
       </section>

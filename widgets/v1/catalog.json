@@ -5,7 +5,7 @@
     {
       "name": "uc-widget-avl",
       "file": "uc-widget-avl.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 2,
       "title": {
@@ -33,7 +33,7 @@
     {
       "name": "uc-widget-backtracking",
       "file": "uc-widget-backtracking.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 3,
       "title": {
@@ -68,7 +68,7 @@
     {
       "name": "uc-widget-bst",
       "file": "uc-widget-bst.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 1,
       "title": {
@@ -102,7 +102,7 @@
     {
       "name": "uc-widget-complexity",
       "file": "uc-widget-complexity.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 2,
       "title": {
@@ -137,7 +137,7 @@
     {
       "name": "uc-widget-dp",
       "file": "uc-widget-dp.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 3,
       "title": {
@@ -176,7 +176,7 @@
     {
       "name": "uc-widget-graph",
       "file": "uc-widget-graph.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 2,
       "title": {
@@ -210,7 +210,7 @@
     {
       "name": "uc-widget-hash",
       "file": "uc-widget-hash.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 2,
       "title": {
@@ -244,7 +244,7 @@
     {
       "name": "uc-widget-heap",
       "file": "uc-widget-heap.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 2,
       "title": {
@@ -277,7 +277,7 @@
     {
       "name": "uc-widget-list",
       "file": "uc-widget-list.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 1,
       "title": {
@@ -306,7 +306,7 @@
     {
       "name": "uc-widget-mst",
       "file": "uc-widget-mst.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 3,
       "title": {
@@ -338,7 +338,7 @@
     {
       "name": "uc-widget-recursion",
       "file": "uc-widget-recursion.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 1,
       "title": {
@@ -370,7 +370,7 @@
     {
       "name": "uc-widget-search",
       "file": "uc-widget-search.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 1,
       "title": {
@@ -404,7 +404,7 @@
     {
       "name": "uc-widget-shortest-path",
       "file": "uc-widget-shortest-path.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 2,
       "title": {
@@ -437,7 +437,7 @@
     {
       "name": "uc-widget-sort",
       "file": "uc-widget-sort.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 1,
       "title": {
@@ -474,7 +474,7 @@
     {
       "name": "uc-widget-stack-queue",
       "file": "uc-widget-stack-queue.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 1,
       "title": {
@@ -507,7 +507,7 @@
     {
       "name": "uc-widget-toposort",
       "file": "uc-widget-toposort.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 3,
       "title": {
@@ -538,7 +538,7 @@
     {
       "name": "uc-widget-trace",
       "file": "uc-widget-trace.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 3,
       "title": {
@@ -570,7 +570,7 @@
     {
       "name": "uc-widget-union-find",
       "file": "uc-widget-union-find.js",
-      "status": "experimental",
+      "status": "stable",
       "since": "1.0.0",
       "wave": 3,
       "title": {

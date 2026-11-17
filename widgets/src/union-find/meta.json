@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-union-find",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 3,
   "title": { "pt": "Union-find", "en": "Union-find" },

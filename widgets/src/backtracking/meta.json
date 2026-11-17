@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-backtracking",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 3,
   "title": { "pt": "Backtracking", "en": "Backtracking" },

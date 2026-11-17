@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-sort",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 1,
   "title": { "pt": "Ordenação", "en": "Sorting" },

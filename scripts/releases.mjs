@@ -1,5 +1,7 @@
 /**
- * Frozen kit releases: kit/vX.Y.Z/ folders made by scripts/snapshot.mjs.
+ * Frozen releases: kit/vX.Y.Z/ and widgets/vX.Y.Z/ folders made by
+ * scripts/snapshot.mjs (the widget library has its own versions,
+ * docs/plan/widgets-api.md 2.2).
  *
  * A release is served with `Cache-Control: immutable` for a year (see
  * _headers), so its files must never change once published. Each release
@@ -13,12 +15,13 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const KIT = path.join(ROOT, "kit");
+export const WIDGETS = path.join(ROOT, "widgets");
 export const CHECKSUMS = "SHA256SUMS";
 export const RELEASE_NAME = /^v\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/;
 
-/** Folder names of the releases, e.g. ["v1.0.0"]. */
-export async function listReleases() {
-  const entries = await readdir(KIT, { withFileTypes: true });
+/** Folder names of the releases in `base` (kit/ or widgets/), e.g. ["v1.0.0"]. */
+export async function listReleases(base = KIT) {
+  const entries = await readdir(base, { withFileTypes: true }).catch(() => []);
   return entries
     .filter((entry) => entry.isDirectory() && RELEASE_NAME.test(entry.name))
     .map((entry) => entry.name)
@@ -46,8 +49,8 @@ export async function checksums(dir) {
 }
 
 /** Returns a list of problems; empty when the release is intact. */
-export async function verifyRelease(name) {
-  const dir = path.join(KIT, name);
+export async function verifyRelease(name, base = KIT) {
+  const dir = path.join(base, name);
   const expected = await readFile(path.join(dir, CHECKSUMS), "utf8").catch(() => null);
   if (expected === null) return [`${CHECKSUMS} is missing`];
   const actual = await checksums(dir);

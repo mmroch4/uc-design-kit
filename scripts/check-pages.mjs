@@ -10,6 +10,9 @@
  *   - no serious or critical accessibility violations (axe-core, WCAG 2.1 A/AA)
  *   - content is still present with JavaScript disabled
  *
+ * It also opens tests/widgets/compat.html once for widgets/v1/ and once for
+ * every frozen widgets release (docs/plan/widgets-api.md 18.3 item 6).
+ *
  * Usage:
  *   node scripts/check-pages.mjs [--screenshots] [--shard=i/n] [--concurrency=n] [filter ...]
  *
@@ -25,6 +28,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { chromium } from "playwright";
 import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
+import { WIDGETS, listReleases } from "./releases.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -75,7 +79,14 @@ async function findPages() {
   // away while being checked; their target is checked on its own.
   const isRedirect = async (file) => /http-equiv="refresh"/i.test(await readFile(file, "utf8"));
   const flags = await Promise.all(html.map(isRedirect));
-  return html.filter((_, index) => !flags[index]);
+  const checked = html.filter((_, index) => !flags[index]);
+  // The widgets compatibility page, against widgets/v1/ and every frozen release.
+  const compat = path.join(ROOT, "tests", "widgets", "compat.html");
+  if (await exists(compat)) {
+    checked.push(compat);
+    for (const release of await listReleases(WIDGETS)) checked.push(`${compat}?release=${release}`);
+  }
+  return checked;
 }
 
 async function walk(dir) {
@@ -173,10 +184,12 @@ async function openPage(context, url, origin) {
   return { page, problems, warnings };
 }
 
-async function checkPage(browser, file, origin, axeSource, options) {
+async function checkPage(browser, item, origin, axeSource, options) {
+  // An item may carry a query (the compatibility page: "compat.html?release=v1.0.0").
+  const [file, query = ""] = item.split("?");
   const relative = path.relative(ROOT, file).split(path.sep).join("/");
-  const httpUrl = withToday(`${origin}/${relative}`);
-  const fileUrl = withToday(pathToFileURL(file).toString());
+  const httpUrl = withToday(`${origin}/${relative}${query ? `?${query}` : ""}`);
+  const fileUrl = withToday(`${pathToFileURL(file)}${query ? `?${query}` : ""}`);
   const problems = [];
   const warnings = [];
 
@@ -185,6 +198,13 @@ async function checkPage(browser, file, origin, axeSource, options) {
     const result = await openPage(context, httpUrl, origin);
     problems.push(...result.problems.map((p) => `[http ${viewport.name}] ${p}`));
     warnings.push(...result.warnings.map((w) => `[http ${viewport.name}] ${w}`));
+
+    if (viewport.name === "desktop" && relative === "tests/widgets/compat.html") {
+      const compat = await result.page
+        .waitForFunction(() => document.documentElement.dataset.compat, null, { timeout: 10000 })
+        .then((handle) => handle.jsonValue(), () => "no result");
+      if (compat !== "ok") problems.push(`[compat ${query || "release=v1"}] ${compat} (see the console errors above)`);
+    }
 
     if (viewport.name === "desktop") {
       await result.page.addScriptTag({ content: axeSource });
@@ -200,7 +220,7 @@ async function checkPage(browser, file, origin, axeSource, options) {
     }
 
     if (options.screenshots) {
-      const name = relative.replace(/\.html$/, "").replace(/[\\/]/g, "__");
+      const name = `${relative.replace(/\.html$/, "")}${query ? `-${query.replace(/\W+/g, "-")}` : ""}`.replace(/[\\/]/g, "__");
       await result.page.screenshot({ path: path.join(SCREENSHOT_DIR, `${name}--${viewport.name}.png`), fullPage: true });
     }
     await context.close();

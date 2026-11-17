@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Algorithm widgets (widgets/v1/) -->
+  <script src="../../../widgets/v1/uc-widget-dp.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -59,6 +61,16 @@
 </ul></li>
 
 </ul>
+
+<h2 id="step-by-step">See it step by step</h2>
+<p>Two classic bottom-up DPs: the table is filled one cell at a time from smaller subproblems, then the answer is rebuilt by walking the table back.</p>
+<!-- Widget <uc-widget-dp>: 0/1 knapsack and longest common subsequence -->
+<uc-widget-dp problem="knapsack" weights="1 3 4 5" values="1 4 5 7" capacity="7" predict editable>
+  <p>0/1 knapsack with capacity 7: the best value is 9, taking items 2 and 3 (weights 3 and 4, values 4 and 5).</p>
+</uc-widget-dp>
+<uc-widget-dp problem="lcs" a="ABCBDAB" b="BDCABA" predict>
+  <p>The longest common subsequence of ABCBDAB and BDCABA has length 4, for example BCBA.</p>
+</uc-widget-dp>
 
 <h2>Initiation/Reinforcement Problems</h2>
 <ul>

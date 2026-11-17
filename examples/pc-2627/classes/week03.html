@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Algorithm widgets (widgets/v1/) -->
+  <script src="../../../widgets/v1/uc-widget-sort.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -58,6 +60,13 @@
 </li><li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/binary-search">Binary Search @ Top Coder Tutorials</a>
 </li></ul>
 </li></ul>
+
+<h2 id="step-by-step">See it step by step</h2>
+<p>Counting sort never compares two values: it counts how many times each value occurs and writes them back in order, in O(n + k) for values in a range of size k. Switch to merge sort or quicksort and compare the counters.</p>
+<!-- Widget <uc-widget-sort>: counting sort next to two comparison sorts -->
+<uc-widget-sort values="3 1 4 1 5 9 2 6" algorithm="counting" algorithms="merge quick counting" predict>
+  <p>Counting sort of 3 1 4 1 5 9 2 6: counts for 1 to 9 are 2 1 1 1 1 1 0 0 1, giving 1 1 2 3 4 5 6 9.</p>
+</uc-widget-sort>
 
 <h2>(more) Problems to Submit</h2>
 <p>Besides the evaluation problems, here are some more suggestions:</p>

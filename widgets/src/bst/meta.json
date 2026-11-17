@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-bst",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 1,
   "title": { "pt": "Árvore binária de pesquisa", "en": "Binary search tree" },

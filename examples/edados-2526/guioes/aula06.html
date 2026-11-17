@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Widget da biblioteca: lista ligada simples -->
+  <script src="../../../widgets/v1/uc-widget-list.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -268,6 +270,13 @@ public class TestSinglyLinkedList {
             <li>Para poderes simplesmente mandar imprimir a lista, cria o método <code>toString</code> na classe <code>Pair</code> (que define o que a classe devolve quando é esperada uma <code>String</code>).</li>
           </ul>
         </uc-exercise>
+
+        <!-- Widget <uc-widget-list> (widgets/v1/): as operações de SinglyLinkedList, passo a passo -->
+        <h3 id="ver-lista">Ver as operações passo a passo</h3>
+        <p class="uc-prose">Antes de correr o <code>main</code> da classe <code>SinglyLinkedList</code>, acompanhe estas operações numa lista com 8 e 5: que referências mudam em cada uma? Repare que <code>removeLast</code> tem de percorrer a lista toda para chegar ao penúltimo nó. Com as previsões ligadas, o widget pergunta o resultado antes de o mostrar; os valores e as operações podem ser mudados no próprio widget.</p>
+        <uc-widget-list values="8 5" ops="add-first 3; add-last 9; remove-first; add-first 1; remove-last" predict editable>
+          <p>Lista 8 → 5. <code>addFirst(3)</code>: 3 → 8 → 5. <code>addLast(9)</code>: 3 → 8 → 5 → 9. <code>removeFirst()</code>: 8 → 5 → 9. <code>addFirst(1)</code>: 1 → 8 → 5 → 9. <code>removeLast()</code>: 1 → 8 → 5.</p>
+        </uc-widget-list>
       </section>
 
       <section class="uc-section" aria-labelledby="simples">

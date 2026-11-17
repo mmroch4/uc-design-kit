@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Algorithm widgets (widgets/v1/) -->
+  <script src="../../../widgets/v1/uc-widget-toposort.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -76,6 +78,13 @@
 
 </ul>
 </li></ul>
+
+<h2 id="step-by-step">See it step by step</h2>
+<p>DP on a DAG computes the states in a topological order, so every state comes after the states it depends on. Kahn's algorithm finds such an order (and a cycle, when there is no DAG); switch to the DFS version and compare.</p>
+<!-- Widget <uc-widget-toposort>: a topological order of a DAG -->
+<uc-widget-toposort algorithms="kahn dfs" edges="A B; A C; B D; C D; C E; D F; E F" predict>
+  <p>A DAG with arcs A→B, A→C, B→D, C→D, C→E, D→F, E→F. One topological order (Kahn): A, B, C, D, E, F.</p>
+</uc-widget-toposort>
 
 <h2>Initiation/Reinforcement Problems</h2>
 <ul>

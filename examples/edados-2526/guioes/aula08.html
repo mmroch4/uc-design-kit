@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Widget da biblioteca: crescimento das funções -->
+  <script src="../../../widgets/v1/uc-widget-complexity.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -89,6 +91,13 @@
             </div>
           </details>
         </uc-exercise>
+
+        <!-- Widget <uc-widget-complexity> (widgets/v1/): as funções da notação assintótica lado a lado -->
+        <h3 id="ver-crescimento">Ver o crescimento das funções</h3>
+        <p class="uc-prose">Avance <em>n</em> de 1 a 20 e compare as funções mais comuns. Para <em>n</em> pequeno a ordem ainda pode trocar; a partir de certo <em>n</em> fica sempre a mesma, e é isso que a notação assintótica descreve.</p>
+        <uc-widget-complexity max="20" predict>
+          <p>Para n = 20: 1 &lt; log n &lt; n &lt; n log n &lt; n² &lt; 2ⁿ. 2ⁿ passa à frente de n² em n = 5 e nunca mais fica para trás.</p>
+        </uc-widget-complexity>
       </section>
 
       <section class="uc-section" aria-labelledby="conjunto">

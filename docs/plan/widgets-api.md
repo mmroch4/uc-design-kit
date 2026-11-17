@@ -1069,7 +1069,7 @@ Each phase: its own thread and branch, one PR merged with green CI, a
 | **W3** | `uc-widget-heap`, `uc-widget-avl`, `uc-widget-hash`; `svg.grid` if needed. | |
 | **W4** | `svg.graph` with automatic layout, `uc-widget-graph`, `uc-widget-shortest-path`, `uc-widget-complexity` (`svg.plot`; can read the counters of another widget on the page through `uc:widgetdone`). | |
 | **W5** | `uc-widget-mst`, `uc-widget-union-find`, `uc-widget-toposort`, `uc-widget-dp`, `uc-widget-backtracking`, `uc-widget-trace`; "Criar um widget" guide, template folder and contribution checklist. | |
-| **W6** | Freeze `widgets/v1.0.0/` (snapshot), compatibility page, final catalogue, apply widgets to the examples (EDados, PC, IP guides), tell the migration threads. | **Releasing is Miguel's gate**: prepare everything, cut nothing. Widgets 1.0.0 needs kit 1.1.0 released first. |
+| **W6** | Prepare the `widgets/v1.0.0/` freeze (`snapshot:widgets`, section 26), compatibility page, final catalogue, apply widgets to the examples (EDados, PC, IP guides), tell the migration threads. | **Releasing is Miguel's gate**: prepare everything, cut nothing. Widgets 1.0.0 needs kit 1.1.0 released first. |
 
 Every phase also: keeps `npm test` green, keeps the budgets, adds its
 strings in pt and en, updates `llms-full.txt` through the build, and lists in
@@ -1429,3 +1429,42 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
     `svg.grid`'s 300), so 9 columns fit 320 px.
 12. **Core fix**: a rebuild (attribute change) clears an old editable
     field error.
+
+## 26. Refinements made in phase W6
+
+1. **Every widget is `stable`** (`meta.json`); the catalogue says what
+   stable means (attributes, `ops` verbs, members and events kept for all of
+   1.x) and lists the waitlist of section 17 instead of planned waves. New
+   widgets (template README, "Criar um widget") still start `experimental`.
+2. **Releases are prepared, not cut.** `VERSION` stays `1.0.0-dev` and no
+   `widgets/v1.0.0/` folder is committed: freezing it is Miguel's decision,
+   after kit 1.1.0 is released. `npm run snapshot:widgets`
+   (`scripts/snapshot.mjs --widgets`) refuses a `-dev` version, a widget that
+   is not `stable`, a build of another version, a missing `_headers` rule,
+   and the absence of a kit release `kit/vX.Y.Z/` that satisfies `KIT_MIN`.
+   The release gets a `SHA256SUMS`; `scripts/releases.mjs` takes a base
+   folder and `npm run build:check` verifies `widgets/v*.*.*` like
+   `kit/v*.*.*`. Tag name: `widgets-vX.Y.Z` (the kit keeps `vX.Y.Z`).
+3. **Compatibility page** (18.3 item 6): `tests/widgets/compat.html`. It
+   loads the 18 widget files of `?release=<folder>` (default `v1`) after the
+   kit, uses each widget with its 1.0.0 attributes and `ops` verbs, checks
+   `UC.widgets` (`version` 1.x, `Widget`, `register`, `InputError`,
+   `TooManySteps`, `random`, `parse`, `svg.array`, `svg.tree`, `MAX_STEPS ≥
+   2000`, the five states), every member (`go next back play pause reset`,
+   `step total result`), `uc:widgetstep` and `uc:widgetdone`, an invalid
+   input (`error` set) and a teacher's own widget on the extension API.
+   Failures are console errors; the result is `data-compat` on `<html>`.
+   `check-pages` opens it for `widgets/v1/` and once per frozen release
+   (items may carry a `?query`). The page must not be edited to make a later
+   version pass.
+4. **Examples**: widgets are applied where a guide already teaches the
+   algorithm, inside the exercise or as a closing `h3` of its section (PC:
+   an `h2` "See it step by step" before the problems), always with fallback
+   text checked against the widget's result. EDados aula 6 list, 7 stack
+   and circular queue, 8 complexity, 9 subsets and permutations, 11 bst
+   (the insertions exercise, replacing the external visualisation as the
+   main tool), 12 min-heap (same); IP class 6 complexity, class 9 recursion
+   and subsets; PC week 2 complexity, 3 counting sort, 6 knapsack and LCS,
+   7 toposort. Hash, graph, shortest-path, mst and union-find have no guide
+   yet in the examples (EDados ends at priority queues; PC weeks 8–12 are
+   not published).

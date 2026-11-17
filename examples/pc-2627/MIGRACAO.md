@@ -59,3 +59,11 @@ em `uc-table` com `pre[data-copy]`, fórmulas com MathJax (cdnjs) como no origin
   data: ficam com o mês (`2027-01`) até serem anunciadas.
 - São 10 problem sets; a 17 nov estavam publicados 7. Ao publicar um novo, criar
   `problem-sets/psNN.html` e acrescentar o prazo ao `course.js`.
+
+## Widgets (17 nov 2026, fase W6)
+
+As semanas 2, 3, 6 e 7 têm uma secção "See it step by step" (antes dos problemas) com
+widgets da biblioteca `widgets/v1/`: `<uc-widget-complexity>` (semana 2),
+`<uc-widget-sort>` com counting sort (3), `<uc-widget-dp>` mochila e LCS (6) e
+`<uc-widget-toposort>` (7, DP em DAGs). Conteúdo novo, escrito para o exemplo, não do
+site original. MST e union-find ficam para quando as semanas 8–12 existirem.

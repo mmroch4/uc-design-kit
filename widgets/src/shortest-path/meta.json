@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-shortest-path",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 2,
   "title": { "pt": "Caminhos mais curtos", "en": "Shortest paths" },

@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-stack-queue",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 1,
   "title": { "pt": "Pilha e fila", "en": "Stack and queue" },
