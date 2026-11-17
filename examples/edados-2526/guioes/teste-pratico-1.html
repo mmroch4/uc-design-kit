@@ -23,12 +23,16 @@
         <h1>Informações para o 1.º Teste Prático</h1>
       </div>
 
+      <!-- Resumo: data, turnos, duração, local e ligações vêm de course.js (deadlines, id "ap1").
+           calendar: botão para juntar os turnos ao calendário (.ics). -->
+      <uc-assessment-info deadline="ap1" calendar heading="Resumo">
+        <noscript><p>12 de novembro de 2025, turnos das 16:00 e das 18:00, 1h40m.</p></noscript>
+      </uc-assessment-info>
+
       <!-- Informações gerais -->
       <section class="uc-section" aria-labelledby="gerais">
         <h2 id="gerais">Informações gerais</h2>
         <ul class="uc-bullets">
-          <li><strong>Data:</strong> 12 de novembro de 2025</li>
-          <li><strong>Hora:</strong> Existirão dois turnos: 16:00 e 18:00. [ver atribuição de turno e sala (a divulgar dia 11)]</li>
           <li><strong>Local:</strong> Laboratórios:
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69108">L1 (FC6 1.55)</a>,
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69045">L2 (FC6 1.57)</a>,
@@ -37,7 +41,6 @@
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69101">L8 (FC6 0.08)</a>,
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69035">L10 (FC6 1.82)</a> e
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69149">L11 (FC6 1.84)</a>.</li>
-          <li><strong>Duração:</strong> 1h40m (exercícios dimensionados para menos tempo)</li>
           <li><strong>Método:</strong> o teste será presencial (nos laboratórios do DCC, que têm Linux e os editores habituais) e irão ter acesso a computador, documentação do Java, código base (essencialmente o que está na <a href="../codigo/index.html">lista de código exemplo</a>) e irão submeter no Mooshak, sendo que poderão ver alguns casos de teste quando falham, tal como nas aulas práticas.</li>
           <li><strong>Pontuação:</strong> este teste vale 2.5 valores para a nota final. São 3 exercícios cotados com 30%+30%+40%.<br>
             Em cada exercício podem existir cotações parciais (ex: passa nalguns testes, falha noutros). Só em casos muito excepcionais a pontuação será diferente da atribuída pelo Mooshak. Podem acontecer casos onde recebem mais pontos do que o Mooshak atribuiu (ex: está tudo certo e falta apenas um ponto e vírgula :)) ou menos pontos (ex: não fizeram o pedido ou tentaram fazer "batota"). Se tentarem genuinamente fazer os problemas não vão ter nenhum "problema".</li>

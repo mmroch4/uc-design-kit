@@ -217,6 +217,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   (new block `uc-tag--success`).
 
 ### Fixed
+- `<uc-materials>` keeps the `start` of the teacher's `<ol>` (chapter 0 was
+  numbered 1).
+- Example `edados-2526` uses the new blocks (blocks phase 6): `<uc-timetable>`
+  and office hours in `horarios.html`, `<uc-grading>` with the simulator and
+  `a[data-auth]` in `avaliacao.html`, `<uc-assessment-info>` on both practical
+  test pages, a new `sumarios.html` with `<uc-summaries>`, `<uc-materials>` for
+  the slides (the PT PDFs were placeholders) and `<uc-problems track>` in
+  `problemas/`.
 - Copy buttons keep focus when the clipboard fallback is used (`file://`).
 - `<uc-weeks>`: two breaks in a row after the same week appear in date order
   (they were reversed).

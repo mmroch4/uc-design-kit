@@ -18,30 +18,46 @@
     </div>
 
     <section class="uc-section" aria-labelledby="slides">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--uc-space-3); flex-wrap: wrap">
-        <h2 id="slides">Slides das teóricas</h2>
-        <span class="uc-muted uc-small">PDF em português e inglês</span>
-      </div>
-      <!-- Slides: um capítulo por linha. Os PDF estão no site original. -->
-      <div class="uc-table" id="slides-table">
-        <table>
-          <thead>
-            <tr><th scope="col">#</th><th scope="col">Capítulo</th><th scope="col">Páginas</th><th scope="col">Atualizado</th><th scope="col">PDF</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="uc-mono uc-muted">0</td><td>Apresentação e funcionamento</td><td class="uc-mono">19</td><td class="uc-mono uc-muted">—</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 0 em português">PT</a><a class="uc-button uc-button--sm" href="slides/01-funcionamento-en.pdf" aria-label="EN: Capítulo 0 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">1</td><td>Introdução ao Java</td><td class="uc-mono">69</td><td class="uc-mono uc-muted">—</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 1 em português">PT</a><a class="uc-button uc-button--sm" href="slides/1_java-en.pdf" aria-label="EN: Capítulo 1 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">2</td><td>Programação estruturada</td><td class="uc-mono">18</td><td class="uc-mono uc-muted">—</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="slides/2_estruturada-en.pdf" aria-label="EN: Capítulo 2 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">3</td><td>Tipos abstratos de dados</td><td class="uc-mono">55</td><td class="uc-mono">6 out</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 3 em português">PT</a><a class="uc-button uc-button--sm" href="slides/3_tads-en.pdf" aria-label="EN: Capítulo 3 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">4</td><td>Listas ligadas, pilhas, filas e deques</td><td class="uc-mono">52</td><td class="uc-mono">14 out</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 4 em português">PT</a><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="EN: Capítulo 4 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">5</td><td>Noções de complexidade de algoritmos</td><td class="uc-mono">67</td><td class="uc-mono">4 nov</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 5 em português">PT</a><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="EN: Capítulo 5 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">6</td><td>Recursividade</td><td class="uc-mono">19</td><td class="uc-mono">15 nov</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 6 em português">PT</a><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="EN: Capítulo 6 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">7</td><td>Árvores binárias</td><td class="uc-mono">35</td><td class="uc-mono">18 nov</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 7 em português">PT</a><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="EN: Capítulo 7 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">8</td><td>Árvores binárias de pesquisa</td><td class="uc-mono">50</td><td class="uc-mono">20 nov</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 8 em português">PT</a><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="EN: Capítulo 8 em inglês">EN</a></span></td></tr>
-            <tr><td class="uc-mono uc-muted">9</td><td>Filas de prioridade e heaps</td><td class="uc-mono">30</td><td class="uc-mono">8 dez</td><td><span class="pdf-links"><a class="uc-button uc-button--sm" href="materiais.html#slides" aria-label="PT: Capítulo 9 em português">PT</a><a class="uc-button uc-button--sm" href="slides/9_heaps-en.pdf" aria-label="EN: Capítulo 9 em inglês">EN</a></span></td></tr>
-          </tbody>
-        </table>
-      </div>
+      <h2 id="slides">Slides das teóricas</h2>
+      <!--
+        Um <li> por capítulo: título, data da última atualização (<time>, opcional)
+        e as ligações. O kit transforma as ligações em botões com o tipo (PDF)
+        e marca como "Novo" o que mudou nos últimos 7 dias.
+      -->
+      <uc-materials heading="none">
+        <ol start="0">
+          <li>Apresentação e funcionamento
+            <a href="slides/01-funcionamento.pdf">Português</a> <a href="slides/01-funcionamento-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">19 páginas</span></li>
+          <li>Introdução ao Java
+            <a href="slides/1_java.pdf">Português</a> <a href="slides/1_java-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">69 páginas</span></li>
+          <li>Programação estruturada
+            <a href="slides/2_estruturada-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">18 páginas</span></li>
+          <li><time datetime="2025-10-06">6 out</time> Tipos abstratos de dados
+            <a href="slides/3_tads.pdf">Português</a> <a href="slides/3_tads-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">55 páginas</span></li>
+          <li><time datetime="2025-10-14">14 out</time> Listas ligadas, pilhas, filas e deques
+            <a href="slides/4_listasligadas.pdf">Português</a> <a href="slides/4_listasligadas-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">52 páginas</span></li>
+          <li><time datetime="2025-11-04">4 nov</time> Noções de complexidade de algoritmos
+            <a href="slides/5_complexidade.pdf">Português</a> <a href="slides/5_complexidade-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">67 páginas</span></li>
+          <li><time datetime="2025-11-15">15 nov</time> Recursividade
+            <a href="slides/6_recursividade.pdf">Português</a> <a href="slides/6_recursividade-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">19 páginas</span></li>
+          <li><time datetime="2025-11-18">18 nov</time> Árvores binárias
+            <a href="slides/7_arvoresbinarias.pdf">Português</a> <a href="slides/7_binarytrees.pdf" hreflang="en">English</a>
+            <span class="uc-muted">35 páginas</span></li>
+          <li><time datetime="2025-11-20">20 nov</time> Árvores binárias de pesquisa
+            <a href="slides/8_arvoresBinPesq.pdf">Português</a> <a href="slides/8_binarySearchTrees.pdf" hreflang="en">English</a>
+            <span class="uc-muted">50 páginas</span></li>
+          <li><time datetime="2025-12-08">8 dez</time> Filas de prioridade e heaps
+            <a href="slides/9_heaps.pdf">Português</a> <a href="slides/9_heaps-en.pdf" hreflang="en">English</a>
+            <span class="uc-muted">30 páginas</span></li>
+        </ol>
+      </uc-materials>
     </section>
 
     <div class="uc-grid links-grid" style="--uc-grid-min: 280px; --uc-grid-gap: var(--uc-space-10)">

@@ -302,6 +302,15 @@
       ["Antigo", "Atualizado a 1 nov", false, true, ["archive:Ficheiros (arquivo)"]],
     ]);
   });
+  test("uc-materials: <ol start> keeps its first number", () => {
+    const host = document.createElement("div");
+    host.innerHTML = '<uc-materials><ol start="0"><li>Zero <a href="a.pdf">PDF</a></li></ol></uc-materials>' +
+      '<uc-materials><ul><li>Sem número <a href="b.pdf">PDF</a></li></ul></uc-materials>';
+    document.body.append(host);
+    const lists = Array.from(host.querySelectorAll(".uc-materials__list"), (list) => list.style.counterReset);
+    host.remove();
+    equal(lists, ["uc-materials -1", ""]);
+  });
   test("uc-problems: ids, judge by id or label, series hidden by filters", () => {
     const host = document.createElement("div");
     host.hidden = true;

@@ -17,26 +17,21 @@
       <p class="uc-prose">A nota final soma três componentes. Para aprovar precisas de pelo menos 4,9 valores no exame e de 9,5 valores no total.</p>
     </div>
 
-    <section class="uc-section" aria-labelledby="formula">
-      <h2 id="formula">Como é calculada a nota</h2>
-      <p class="formula">Nota final = E + P + R <span>(0 a 20 valores)</span></p>
-      <div class="uc-grid">
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter">E</span> <span class="component__weight">70%</span></p>
-          <p class="component__name">Exame escrito</p>
-          <p class="uc-muted desc">14 valores. Teórico-prático, sem consulta nem computador. Época normal ou recurso.</p>
-        </div>
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter">P</span> <span class="component__weight">25%</span></p>
-          <p class="component__name">Duas avaliações práticas</p>
-          <p class="uc-muted desc">5 valores, 2,5 cada. Problemas no Mooshak, semelhantes aos de treino.</p>
-        </div>
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter">R</span> <span class="component__weight">5%</span></p>
-          <p class="component__name">Exercícios das aulas</p>
-          <p class="uc-muted desc">Até 1 valor. Exercícios das aulas práticas 2 a 12 resolvidos durante o semestre.</p>
-        </div>
-      </div>
+    <!-- Componentes da nota: o peso de cada uma fica no <data> (aqui em valores, 14/5/1).
+         O kit gera a fórmula, a barra, a tabela e o simulador (calculator). -->
+    <uc-grading scale="20" pass="9.5" calculator>
+      <ul>
+        <li data-code="E" data-scale="14" data-min="4.9"><data value="14">14 valores</data> Exame escrito.
+          <span>Teórico-prático, sem consulta nem computador. Época normal ou recurso.</span></li>
+        <li data-code="P" data-scale="5"><data value="5">5 valores</data> Duas avaliações práticas.
+          <span>Problemas no Mooshak, semelhantes aos de treino.</span>
+          <ul>
+            <li data-code="P1" data-scale="2.5"><data value="2.5">2,5 valores</data> Avaliação Prática 1</li>
+            <li data-code="P2" data-scale="2.5"><data value="2.5">2,5 valores</data> Avaliação Prática 2</li>
+          </ul></li>
+        <li data-code="R" data-scale="1"><data value="1">1 valor</data> Exercícios das aulas.
+          <span>Exercícios das aulas práticas 2 a 12 resolvidos durante o semestre.</span></li>
+      </ul>
       <div class="uc-callout">
         <p><strong>Para aprovar</strong></p>
         <ul class="uc-bullets">
@@ -45,7 +40,7 @@
           <li>Na época de recurso só se repete o exame. P e R ficam como estavam.</li>
         </ul>
       </div>
-    </section>
+    </uc-grading>
 
     <!-- Datas das provas: editar em course.js (deadlines). O estado é calculado. -->
     <uc-deadlines view="table" kind="assessment exam" heading="Datas"></uc-deadlines>
@@ -97,22 +92,19 @@
 
     <section class="uc-section" aria-labelledby="progresso">
       <h2 id="progresso">O teu progresso</h2>
+      <!-- data-auth: o kit junta o cadeado e o texto "(Requer autenticação)" para leitores de ecrã. -->
       <p class="uc-muted desc">Documentos com autenticação estão assinalados com um cadeado.</p>
       <div class="uc-grid" style="--uc-grid-min: 240px">
         <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/quizzes_2526_27nov2025.pdf">
           <span class="progress__title">Respostas aos quizzes</span>
           <span class="uc-muted uc-small">Atualizado a 27 nov 2025</span>
         </a>
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/presencas_praticas_aulas1a10.pdf">
-          <span class="progress__title">Presenças nas práticas
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
-          </span>
+        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/presencas_praticas_aulas1a10.pdf">
+          <span class="progress__title">Presenças nas práticas</span>
           <span class="uc-muted uc-small">Até 30 nov 2025</span>
         </a>
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/index.html">
-          <span class="progress__title">Exercícios no Mooshak
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
-          </span>
+        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/index.html">
+          <span class="progress__title">Exercícios no Mooshak</span>
           <span class="uc-muted uc-small">Atualizado a 31 out 2025</span>
         </a>
         <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/evaluation/avalpratica_2526.pdf">
