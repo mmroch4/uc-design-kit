@@ -1323,6 +1323,8 @@ folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
 | `<uc-widget-graph>` | graph in `<pre data-input>` (`U V [W]` per line, `U` alone, `U @ X,Y`, `#` comments) or `edges="A B; A C"`, `directed`, `source` (default: the first vertex); ≤ 10 vertices, 20 edges | `bfs` `dfs` `components` |
 | `<uc-widget-shortest-path>` | as `<uc-widget-graph>`, integer weights (negative only for Bellman-Ford; unweighted = 1) | `dijkstra` `bellman-ford` |
 | `<uc-widget-complexity>` | `functions` (≤ 8 of `1 log sqrt n nlogn n2 n3 2n fact`), `max` (2–32, default 16), `scale` = `linear` `log`, `for` (id of a widget to measure), `measure` (its counter), `points` (`n:count …`) | `growth` |
+| `<uc-widget-mst>` | as `<uc-widget-graph>`, undirected only (`directed` is an error), `source` (Prim's start); a disconnected graph gives a spanning forest | `kruskal` `prim` |
+| `<uc-widget-toposort>` | as `<uc-widget-graph>`, always directed, no `source`; a cycle is found and named | `kahn` `dfs` |
 | `<uc-widget-union-find>` | `n` (1–16 elements, 0 … n − 1, default 8), `ops` = `union a b; find a; connected a b` (default: neighbours, then pairs of sets, a find and a connected) | `compression` `size` `naive` |
 | `<uc-widget-trace>` | the steps as JSON in `<script type="application/json" data-input>`: `view` = `array` `tree` `graph` `grid`, `code`, `graph`/`directed` (graph view), `rowHeads`/`colHeads` (grid view), `steps` = `[{ state, marks, pointers, line, say, vars, predict }]` (`say` a string or `{ pt, en }`; a step without `state` keeps the previous one) | `trace` |
 

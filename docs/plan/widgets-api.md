@@ -1368,3 +1368,28 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
    and in `widgets/template/README.md`.
 6. **Test helpers**: `format(dictionary, pair, lang)` applies `decimals`;
    `loadWidgets()` gives each widget an `input(metaForm)` (its fixture).
+7. **`uc-widget-mst`**: `kruskal` (default) and `prim`, attributes `edges`
+   (or `<pre data-input>`) and `source` (Prim's start). `directed` is an
+   input error (`widget.mst.error.directed`, checked in `algorithm.js`);
+   unweighted = weight 1; a disconnected graph gives a spanning forest
+   (`endForest`). Kruskal: stable sort (input order on ties), union by size
+   (v's set under u's on a tie), vertex notes `[rep]`, two steps per edge
+   (`check`, then `union` or `cycle`; a loop has its own sentence), stops
+   at |V| − 1 edges (so the pseudocode is the textbook one; a forest
+   examines every edge). Prim: lazy, queue of edges as aux `pq`
+   (`u–v w`, u in the tree, ties by insertion order), restarts at the first
+   vertex outside the tree when the queue empties. Line ids: kruskal `init
+   sort stop check union cycle`, prim `init restart skip add push`. Predict
+   "A–B (peso 3) entra na árvore?". Aux `edges`/`pq` and `weight`; counter
+   `edges`. Result `{ edges, weight }`. Parallel undirected edges overlap
+   in `svg.graph` (only opposite arcs are bent).
+8. **`uc-widget-toposort`**: `kahn` (default) and `dfs`, attribute `edges`,
+   always directed (the model is built with directed = true), no source.
+   Kahn: notes are in-degrees, core aux `queue` and `output`; predict per
+   arc "o grau de entrada de v passa a 0?"; vertices left over → a real
+   cycle is found by walking back along their arcs and named. DFS: core
+   aux `stack` and `output` (finished vertices prepended); an arc to a
+   vertex on the stack is `swapped` and stops the run; predict per arc with
+   three options (not visited / on the stack / finished). Line ids: kahn
+   `init pop dec push cycle`, dfs `root enter arc back down done`. Result
+   `{ order, cycle }`. No layered layout (`layout()` unchanged).
