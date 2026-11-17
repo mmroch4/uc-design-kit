@@ -1184,3 +1184,46 @@ made while coding:
 11. **Size.** Phase 4 took `uc-kit.js` from 39.4 to **42.9 KB** gzipped
     (`<uc-materials>` with its 8 icons ~1.4 KB, `<uc-problems>` ~2.1 KB).
     Phase 5 has 5.1 KB.
+
+
+## 18. Changes made in phase 5
+
+Phase 5 implemented sections 2.1 (`editions`), 2.8, 2.9, 4.5, 4.6, 5.1, 5.3,
+5.4, the `--uc-links-min` token and the phase 5 strings of section 8; they are
+now in `docs/api.md` (2.2, new 2.9, 3.1, 4 and 5). Refinements made while
+coding:
+
+1. **No `sort.button` string.** The header button's name is the column text
+   itself; `aria-sort` on the `<th>` says the state. An `aria-label`
+   "Ordenar por Pontos" would repeat what screen readers already say.
+2. **Sort details.** Empty cells go last in both directions; numbers sort
+   before text in a mixed column; `−` (minus sign) is a minus; the sort
+   icon is one 16 px SVG with two arrows (`uc-sort-up`, `uc-sort-down`,
+   internal classes), the inactive one dimmed. Only header cells of the last
+   `<thead>` row without `colspan` become buttons. Helpers
+   `UC.internal.sortValue(cell)` and `UC.internal.compareSortValues` are
+   unit-tested.
+3. **Editions.** Relative `href`s are rewritten relative to the page
+   (prefix: the folder of `editions` as seen from the page), so links stay
+   relative (works from `file://`, stable snapshots). `window.UC_EDITIONS`
+   already defined (a `<script>` written by hand) is used without loading the
+   file again. The disclosure sits right after the brand
+   (`margin-right: auto`), lists only the *other* editions, and also closes on
+   a click or focus outside it. New stable class `uc-page__editions-button`.
+   The notice is a `uc-callout`, prepended to `<main>`.
+4. **Template.** `editions: "../editions.js"` is in `template/course.js` but
+   commented out: the template zip has no parent folder, and a missing file
+   would log an error on every page (decision 9 said "sets it").
+5. **Link checker.** Also reads `course.js` and `editions.js`; skips
+   reserved example domains, localhost and the generated "Editar no GitHub"
+   links; HEAD then GET; 401/403/429 are listed apart ("refused the robot"),
+   not as broken. The workflow closes the issue when every link answers. No
+   npm install in the workflow (Node built-ins only).
+6. **Release.** `CHANGELOG.md` keeps the blocks under "Unreleased": v1.0.0
+   itself was never tagged or frozen (gate 3 of the original plan, Miguel's
+   decision), so v1.1.0 is not cut by this phase. Cutting it is
+   `package.json` + `namespace.js` version, `npm run build`,
+   `node scripts/snapshot.mjs`, CHANGELOG heading, tag.
+7. **Size.** `uc-kit.js` went from 42.9 to **44.6 KB** gzipped (sortable
+   tables ~0.7 KB, editions and `updated` ~0.9 KB). 3.4 KB left.
+

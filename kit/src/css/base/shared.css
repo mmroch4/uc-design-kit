@@ -1,4 +1,4 @@
-/* Pieces shared by several blocks: the filter bar and links that need a login. */
+/* Pieces shared by several blocks: the filter bar, links that need a login and sortable tables. */
 
 /* Filter bar (UC.internal.filterBar): toggle-button groups and labelled selects. */
 :where(.uc-filters) {
@@ -42,3 +42,26 @@
   margin-left: 0.25em;
   vertical-align: -0.1em;
 }
+
+/* Sortable tables (table[data-sortable]): the header text becomes a button
+   that fills the cell (44 px tall); the arrow of the sorted direction is darker. */
+:where(.uc-table th:has(> .uc-sort-button)) { padding: 0; }
+:where(.uc-sort-button) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uc-space-2);
+  width: 100%;
+  min-height: var(--uc-target-min);
+  padding: var(--uc-space-2) var(--uc-space-4);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+}
+:where(.uc-sort-button:hover) { color: var(--uc-color-text); }
+:where(.uc-sort-button:focus-visible) { outline-offset: -2px; }
+:where(.uc-sort-button svg) { flex: none; opacity: 0.45; }
+:where(th[aria-sort] .uc-sort-button svg) { opacity: 1; color: var(--uc-color-accent); }
+:where(th[aria-sort="ascending"] .uc-sort-down, th[aria-sort="descending"] .uc-sort-up) { opacity: 0.25; }

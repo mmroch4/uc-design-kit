@@ -12,11 +12,11 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 1. **Site estático.** Só HTML, CSS e JavaScript em ficheiros. Sem frameworks, sem npm, sem passo de compilação, sem módulos ES: scripts clássicos, para as páginas funcionarem abertas do disco (`file://`).
 2. **O `<head>` de cada página**, por esta ordem: `uc-kit.css` do kit, `theme.css`, `course.js` sem `defer`, `uc-kit.js` com `defer`, e só depois os scripts próprios com `defer`. O kit carrega do endereço absoluto `https://uc-design-kit.miguelrocha.dev/kit/v1/`.
 3. **Uma página é um `<uc-page>`** com todo o conteúdo dentro e um único `<h1>`. As páginas que não estão na navegação dizem qual fica ativa com `current`.
-4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
+4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `schedule`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
 5. **Só o que está documentado.** Nenhum elemento, atributo, campo do `course.js` ou classe `uc-…` inventado. Para um comportamento que o kit não tem, um componente próprio em `extensions/` com `UC.define` e `UC.Element` (Nível 3).
 6. **Light DOM.** Os componentes do kit e os próprios não usam shadow DOM; o conteúdo escrito pelo professor fica no HTML, legível sem JavaScript.
 7. **Personalizar por níveis**: `accentColor` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
-8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`; HTML antigo sem classes vai dentro de `uc-content`.
+8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
 9. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
 10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
 11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
@@ -29,15 +29,15 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md): Os ficheiros de um site feito com o UC Design Kit, o head de cada página, páginas em subpastas e links.
 - [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md): Todos os campos do course.js do UC Design Kit, com tipo, valor por omissão e exemplo, e os erros mais comuns.
 - [Línguas](https://uc-design-kit.miguelrocha.dev/docs/pt/linguas.md): Sites com uma ou mais línguas no UC Design Kit: conteúdo bilingue na mesma página, um ficheiro por língua e acrescentar uma língua.
-- [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md): Lista de verificação para criar o site do ano seguinte a partir da pasta do ano anterior.
-- [Publicar](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md): Publicar um site feito com o UC Design Kit no servidor do departamento (~/public_html), no GitHub Pages ou no Cloudflare Pages; versão do kit e cache.
+- [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md): Lista de verificação para criar o site do ano seguinte a partir da pasta do ano anterior, e ligar os anos com o editions.js.
+- [Publicar](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md): Publicar um site feito com o UC Design Kit no servidor do departamento (~/public_html), no GitHub Pages ou no Cloudflare Pages; versão do kit, links partidos, data de atualização e cache.
 - [Usar com uma LLM](https://uc-design-kit.miguelrocha.dev/docs/pt/llm.md): Construir o site de uma cadeira com um assistente de IA: a documentação em texto (llms.txt, llms-full.txt), um pedido inicial pronto a copiar e as regras do kit.
 - [Migrar um site existente](https://uc-design-kit.miguelrocha.dev/docs/pt/migrar.md): Passar o site antigo de uma cadeira para o kit com um assistente de programação (Claude Code, Codex): o pedido pronto a colar, o ficheiro AGENTS.md e o que rever.
 
 ## Componentes
 
 - [Visão geral](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md): Os componentes do UC Design Kit, agrupados por função.
-- [uc-page](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md): Documentação do componente uc-page do UC Design Kit: o corpo de cada página, com cabeçalho, navegação, conteúdo principal e rodapé gerados a partir do course.js.
+- [uc-page](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md): Documentação do componente uc-page do UC Design Kit: o corpo de cada página, com cabeçalho, navegação, conteúdo principal e rodapé gerados a partir do course.js, com outros anos (editions.js) e data de atualização por página.
 - [uc-hero](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md): Documentação do componente uc-hero do UC Design Kit: o título da página inicial, com código, nome e descrição do curso tirados do course.js.
 - [uc-notices](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md): Documentação do componente uc-notices do UC Design Kit: os avisos do course.js, do mais recente para o mais antigo, com a etiqueta Novo e os avisos antigos recolhidos.
 - [uc-deadlines](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md): Documentação do componente uc-deadlines do UC Design Kit: os prazos do course.js como lista de próximas datas ou como tabela com o estado de cada prova.
@@ -66,8 +66,8 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [Espaço e forma](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/espaco.md): A escala de espaçamento, os cantos, as larguras do layout e os alvos de toque.
 - [Tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md): Referência de todas as variáveis CSS do kit, com valor e onde são usadas.
 - [Blocos: layout](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md): Blocos de layout do UC Design Kit: uc-section, uc-stack, uc-grid e uc-split, com os tokens locais que leem.
-- [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md): Blocos de superfície e listas do UC Design Kit: uc-card, uc-callout, uc-links, uc-shortcuts, uc-checklist e uc-bullets.
-- [Blocos: elementos](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md): Elementos do UC Design Kit: uc-button, uc-tag, uc-table, pre data-copy e os utilitários de texto.
+- [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md): Blocos de superfície e listas do UC Design Kit: uc-card, uc-callout, uc-links (também em colunas, uc-links--grid), uc-shortcuts, uc-checklist e uc-bullets.
+- [Blocos: elementos](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md): Elementos do UC Design Kit: uc-button, uc-tag, uc-table (também ordenável, data-sortable), pre data-copy, a[data-auth] e os utilitários de texto.
 - [Acessibilidade](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/acessibilidade.md): O que o UC Design Kit garante em acessibilidade (WCAG 2.1 AA) e o que cabe a quem escreve o site, com uma lista de verificação.
 
 ## Personalizar
@@ -84,7 +84,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 ## Exemplos
 
 - [EDados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): O site de Estruturas de Dados (DCC/FCUP) feito com o kit: capturas, componentes usados em cada página, course.js e personalização.
-- [Padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md): Página inicial, semanas, avaliação, guião com exercícios e enunciado de problema, prontos a copiar.
+- [Padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md): Página inicial, semanas, avaliação, horários, sumários, materiais, guião com exercícios e enunciado de problema, prontos a copiar.
 
 ## Referência
 

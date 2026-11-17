@@ -37,13 +37,21 @@
  *     aria-pressed and keeps focus, the count is announced, only matching
  *     problems stay; "Resolvido" is 44 px tall, named after the problem and
  *     kept after a reload
+ *   - sortable tables: the header buttons are 44 px tall, Enter sorts,
+ *     flips aria-sort, keeps focus and announces the order
+ *   - "Outros anos" of <uc-page>: Enter opens the list (aria-expanded),
+ *     Escape closes it and gives focus back to the button
  *
  * Accessibility-tree snapshots (Playwright ariaSnapshot) of the blocks' test
  * pages, stored next to them (tests/pages/*.aria.yml), fail the check when a
  * role, name or state text changes. After an intended change, run
  * `node scripts/check-a11y.mjs --update-snapshots` and review the diff.
  *
- * Usage: node scripts/check-a11y.mjs [filter ...]
+ * Usage: node scripts/check-a11y.mjs [--shard=i/n] [--concurrency=n] [--update-snapshots] [filter ...]
+ *
+ * --shard=i/n checks the i-th of n parts of the pages and of the snapshots (CI
+ * runs the parts in parallel jobs); --concurrency=n checks n pages at the same
+ * time (default: CPU count, max 4).
  */
 import { createServer } from "node:http";
 import { readFile, readdir, stat, writeFile } from "node:fs/promises";
@@ -51,6 +59,7 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -86,9 +95,11 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-materials.html", selector: "#main", file: "tests/pages/uc-materials.aria.yml" },
   { page: "tests/pages/uc-problems.html", selector: "#series", file: "tests/pages/uc-problems.aria.yml" },
   { page: "tests/pages/uc-weeks-compact.html", selector: "#compact .uc-weeks__table", file: "tests/pages/uc-weeks-compact.aria.yml" },
+  { page: "tests/pages/extras.html", selector: "#ranking-table", file: "tests/pages/sortable-table.aria.yml" },
+  { page: "tests/pages/editions/2425/index.html", selector: "uc-page", file: "tests/pages/editions.aria.yml" },
 ];
 
-/** Component demos, the EDados example (top level and one lab guide) and the template. */
+/** Component demos, the sortable table demo, the EDados example (top level and one lab guide) and the template. */
 async function findPages() {
   const pages = [];
   const demos = path.join(ROOT, "docs", "demos");
@@ -104,6 +115,8 @@ async function findPages() {
     }
   }
   pages.push("examples/edados-2526/guioes/aula10.html");
+  // The one CSS-block demo with behaviour (sortable headers).
+  pages.push("docs/demos/blocks/table-sortable.html");
   return pages.sort();
 }
 
@@ -373,6 +386,7 @@ async function checkBehaviour(browser, origin, relative) {
   problems.push(...(await checkGradingCalculator(browser, origin, relative)));
   problems.push(...(await checkSummariesSearch(browser, origin, relative)));
   problems.push(...(await checkProblems(browser, origin, relative)));
+  problems.push(...(await checkSortableAndEditions(browser, origin, relative)));
 
   if (relative.includes("uc-page") || relative.startsWith("examples/")) {
     const phone = await open(browser, origin, relative, { viewport: { width: 390, height: 844 } });
@@ -548,6 +562,43 @@ async function checkProblems(browser, origin, relative) {
   return problems;
 }
 
+/** Sortable table headers and the "Outros anos" disclosure, on pages that have them. */
+async function checkSortableAndEditions(browser, origin, relative) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  const sort = await firstVisible(page, ".uc-sort-button");
+  if (sort) {
+    const box = await sort.boundingBox();
+    if (box && box.height < 44) problems.push(`sortable table: a header button is ${Math.round(box.height)}px tall (44px minimum)`);
+    const state = () => sort.evaluate((node) => node.closest("th").getAttribute("aria-sort"));
+    await sort.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(150);
+    const first = await state();
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(150);
+    const second = await state();
+    if (!first || !second || first === second) problems.push(`sortable table: aria-sort went ${first} then ${second}`);
+    if (!(await focusedMatches(page, ".uc-sort-button"))) problems.push("sortable table: the header button lost focus");
+    if (!/Ordenado por|Sorted by/.test(await liveText(page))) problems.push("sortable table: the new order is not announced");
+  }
+  const editions = await firstVisible(page, ".uc-page__editions-button");
+  if (editions) {
+    await editions.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(100);
+    const opened = await editions.getAttribute("aria-expanded");
+    const shown = await page.locator(".uc-page__editions-menu a").first().isVisible();
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(100);
+    const closed = await editions.getAttribute("aria-expanded");
+    if (opened !== "true" || !shown || closed !== "false") problems.push(`editions: aria-expanded went ${opened} then ${closed} (list shown: ${shown})`);
+    if (!(await focusedMatches(page, ".uc-page__editions-button"))) problems.push("editions: Escape did not return focus to the button");
+  }
+  await context.close();
+  return problems;
+}
+
 async function checkPage(browser, origin, relative, axeSource) {
   const problems = [];
   const { context, page } = await open(browser, origin, relative);
@@ -567,10 +618,10 @@ async function checkPage(browser, origin, relative, axeSource) {
 }
 
 /** Compares (or, with --update-snapshots, writes) the accessibility-tree snapshots. */
-async function checkAriaSnapshots(browser, origin, update, filters) {
+async function checkAriaSnapshots(browser, origin, update, filters, shard) {
   let failed = 0;
-  for (const { page: relative, selector, file } of ARIA_SNAPSHOTS) {
-    if (filters.length && !filters.some((filter) => relative.includes(filter))) continue;
+  const snapshots = ARIA_SNAPSHOTS.filter(({ page }) => !filters.length || filters.some((filter) => page.includes(filter)));
+  for (const { page: relative, selector, file } of shardOf(snapshots, shard)) {
     const { context, page } = await open(browser, origin, relative);
     const actual = `${await page.locator(selector).first().ariaSnapshot()}\n`;
     await context.close();
@@ -598,9 +649,14 @@ async function checkAriaSnapshots(browser, origin, update, filters) {
 }
 
 async function main() {
-  const update = process.argv.includes("--update-snapshots");
-  const filters = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
-  const pages = (await findPages()).filter((page) => !filters.length || filters.some((filter) => page.includes(filter)));
+  const args = process.argv.slice(2);
+  const update = args.includes("--update-snapshots");
+  const filters = filterArgs(args);
+  const shard = parseShard(args);
+  const concurrency = parseConcurrency(args);
+  const matching = (await findPages()).filter((page) => !filters.length || filters.some((filter) => page.includes(filter)));
+  const pages = shardOf(matching, shard);
+  if (shard.total > 1) console.log(`Shard ${shard.index}/${shard.total}: ${pages.length} of ${matching.length} pages.`);
   const axeSource = await readFile(require.resolve("axe-core/axe.min.js"), "utf8");
   const server = await startServer();
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -608,13 +664,18 @@ async function main() {
   let failed = 0;
   let snapshotsFailed = 0;
   try {
-    for (const relative of pages) {
-      const problems = await checkPage(browser, origin, relative, axeSource);
-      console.log(`${problems.length ? "FAIL" : "ok  "} ${relative}`);
-      problems.forEach((problem) => console.log(`       ✗ ${problem}`));
-      if (problems.length) failed += 1;
-    }
-    snapshotsFailed = await checkAriaSnapshots(browser, origin, update, filters);
+    await runPool(
+      pages,
+      concurrency,
+      (relative) => checkPage(browser, origin, relative, axeSource),
+      (relative, result) => {
+        const problems = result.error ? [`check crashed: ${result.error.stack || result.error}`] : result;
+        console.log(`${problems.length ? "FAIL" : "ok  "} ${relative}`);
+        problems.forEach((problem) => console.log(`       ✗ ${problem}`));
+        if (problems.length) failed += 1;
+      },
+    );
+    snapshotsFailed = await checkAriaSnapshots(browser, origin, update, filters, shard);
   } finally {
     await browser.close();
     server.close();

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>uc-page · UC Design Kit</title>
-  <meta name="description" content="Documentação do componente uc-page do UC Design Kit: o corpo de cada página, com cabeçalho, navegação, conteúdo principal e rodapé gerados a partir do course.js.">
+  <meta name="description" content="Documentação do componente uc-page do UC Design Kit: o corpo de cada página, com cabeçalho, navegação, conteúdo principal e rodapé gerados a partir do course.js, com outros anos (editions.js) e data de atualização por página.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -242,6 +242,33 @@ tagline: { pt: "Um curso fictício…", en: "A fictional course…" },
 footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional course" },</code></pre></uc-code>
         <p>A escolha fica guardada no browser e vale para as outras páginas do site. Quando uma página tem um ficheiro por língua (<code>href</code> com um endereço por língua), o botão abre o outro ficheiro em vez de trocar o texto na mesma página. As duas formas estão em <a href="../linguas.html#mesma-pagina">Línguas</a>.</p>
 
+        <h3 id="outros-anos">Outros anos</h3>
+        <p>Com o campo <a href="../course-js.html#edicoes"><code>editions</code></a> no <code>course.js</code>, o cabeçalho ganha um botão "Outros anos" com a lista das outras edições da cadeira. Numa edição que não é a atual, aparece também um aviso no topo do conteúdo com o link para a edição atual. A lista fica num ficheiro <code>editions.js</code> partilhado, na pasta acima dos anos: acrescentar um ano novo atualiza os sites dos anos anteriores sem lhes mexer.</p>
+        <!-- docs:demo src="../../demos/uc-page/editions.html" title="página de uma edição antiga com a lista de outros anos" height="718" -->
+        <div class="docs-demo" id="demo-uc-page-editions">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/editions.html" title="Demonstração: página de uma edição antiga com a lista de outros anos" loading="lazy" style="height: 718px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page updated=&quot;2025-07-15&quot;&gt;
+  &lt;uc-hero&gt;&lt;/uc-hero&gt;
+  &lt;p&gt;Página da edição 2024/25: o aviso no topo leva à edição atual e &quot;Outros anos&quot;, no cabeçalho, às restantes.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/editions.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração simula a edição 2024/25 e usa este ficheiro de edições:</p>
+        <uc-code lang="js" filename="editions.js" no-download><pre><code>window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },   // a primeira é a edição atual
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];</code></pre></uc-code>
+        <p>Como se organiza a pasta e o que muda em cada ano novo está em <a href="../novo-ano.html#outros-anos">Novo ano letivo</a>.</p>
+
+        <h3 id="data-da-pagina">Data de atualização de uma página</h3>
+        <p>O rodapé mostra "Atualizado a …" com a data de <code>updated</code> do <code>course.js</code>, igual em todas as páginas. Uma página que muda mais vezes (sumários, problemas) pode mostrar a sua: <code>&lt;uc-page updated="2025-11-20"&gt;</code>. Com <code>updated="auto"</code>, a data é a da última alteração do ficheiro, que o servidor indica no cabeçalho <code>Last-Modified</code>; se o servidor não a indicar, o rodapé fica sem data, em vez de mostrar a data de hoje. Aberta a partir do disco (<code>file://</code>), a página mostra a data do ficheiro.</p>
+
         <h2 id="atributos">Atributos</h2>
         <div class="uc-table">
           <table>
@@ -252,6 +279,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
             <tbody>
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
               <tr><td><code>layout</code></td><td><code>sidebar</code> ou <code>full</code></td><td><code>sidebar</code></td><td>Com <code>full</code>, a página não tem navegação e o conteúdo ocupa toda a largura.</td></tr>
+              <tr><td><code>updated</code></td><td>data <code>AAAA-MM-DD</code> ou <code>auto</code></td><td><code>updated</code> do <code>course.js</code></td><td>Data do rodapé só nesta página. <code>auto</code> usa a data do ficheiro que o servidor envia (<code>Last-Modified</code>); sem ela, não mostra data. Ver <a href="#data-da-pagina">Data de atualização de uma página</a>.</td></tr>
             </tbody>
           </table>
         </div>
@@ -274,7 +302,8 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><a href="../course-js.html#paginas"><code>pages</code></a></td><td>Itens da navegação, pela ordem escrita, e página de destino do nome do curso.</td></tr>
               <tr><td><a href="../course-js.html#campos-navegacao"><code>platforms</code></a></td><td>Links externos no grupo "Plataformas", por baixo das páginas.</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>footer</code></a></td><td>Texto à esquerda do rodapé. Sem ele, o nome do curso e da instituição.</td></tr>
-              <tr><td><a href="../course-js.html#campos-curso"><code>updated</code></a></td><td>"Atualizado a …" à direita do rodapé.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>updated</code></a></td><td>"Atualizado a …" à direita do rodapé, quando a página não tem o seu <code>updated</code>.</td></tr>
+              <tr><td><a href="../course-js.html#edicoes"><code>editions</code></a></td><td>Ficheiro com as edições da cadeira: botão "Outros anos" e aviso nas edições antigas.</td></tr>
             </tbody>
           </table>
         </div>
@@ -307,6 +336,8 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>.uc-brand</code>, <code>__logo</code>, <code>__title</code>, <code>__edition</code></td><td>O link com o logótipo, o nome do curso e o ano letivo.</td></tr>
               <tr><td><code>.uc-header__meta</code>, <code>.uc-header__institution</code></td><td>O lado direito do cabeçalho e a instituição.</td></tr>
               <tr><td><code>.uc-lang-switch</code>, <code>__button</code></td><td>Os botões para mudar de língua.</td></tr>
+              <tr><td><code>.uc-page__editions</code>, <code>.uc-page__editions-button</code>, <code>.uc-page__editions-menu</code></td><td>"Outros anos": o contentor, o botão e a lista de edições.</td></tr>
+              <tr><td><code>.uc-page__edition-notice</code></td><td>O aviso no topo de uma edição antiga (um <code>uc-callout</code>).</td></tr>
               <tr><td><code>.uc-shell</code></td><td>A grelha com a navegação e o conteúdo.</td></tr>
               <tr><td><code>.uc-sidebar</code>, <code>.uc-nav</code></td><td>A coluna da navegação e o <code>&lt;nav&gt;</code> dentro dela.</td></tr>
               <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
@@ -331,7 +362,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
         <div class="docs-grid-2">
           <div class="uc-card">
             <h3>O que o componente faz</h3>
-            <p>Gera os pontos de referência <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code> e <code>&lt;footer&gt;</code> e um link "Saltar para o conteúdo" como primeiro elemento focável. O item ativo tem <code>aria-current="page"</code>; o botão "Menu" indica com <code>aria-expanded</code> se está aberto e fecha com Escape. As plataformas externas são anunciadas como "(site externo)" e o botão de língua diz para que língua muda.</p>
+            <p>Gera os pontos de referência <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code> e <code>&lt;footer&gt;</code> e um link "Saltar para o conteúdo" como primeiro elemento focável. O item ativo tem <code>aria-current="page"</code>; os botões "Menu" e "Outros anos" indicam com <code>aria-expanded</code> se estão abertos e fecham com Escape, devolvendo o foco ao botão. As plataformas externas são anunciadas como "(site externo)" e o botão de língua diz para que língua muda.</p>
           </div>
           <div class="uc-card">
             <h3>O que cabe a quem escreve</h3>
@@ -377,6 +408,8 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           <li class="docs-toc__sub"><a href="#item-ativo">Item ativo escolhido</a></li>
           <li class="docs-toc__sub"><a href="#sem-navegacao">Sem navegação</a></li>
           <li class="docs-toc__sub"><a href="#mudar-de-lingua">Mudar de língua</a></li>
+          <li class="docs-toc__sub"><a href="#outros-anos">Outros anos</a></li>
+          <li class="docs-toc__sub"><a href="#data-da-pagina">Data de atualização de uma página</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>
           <li><a href="#comportamento">Aparecer já pronta</a></li>
