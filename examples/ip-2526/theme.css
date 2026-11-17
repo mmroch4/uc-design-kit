@@ -9,13 +9,6 @@
 
 /* assessment.html */
 .desc { font-size: var(--uc-font-size-body-sm); }
-.formula { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-h3); font-weight: 500; }
-.formula span { font-size: var(--uc-font-size-body-sm); font-weight: 400; color: var(--uc-color-text-muted); }
-.component { --uc-card-padding: var(--uc-space-6); }
-.component__head { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.75rem; }
-.component__letter { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.component__weight { font-weight: 700; }
-.component__name { font-weight: 600; }
 
 /* about.html: syllabus as a numbered list 01, 02, … */
 .program { list-style: none; margin: 0; padding: 0; max-width: 760px; }
@@ -53,3 +46,7 @@
 .test-ex h3 { font-size: 1rem; margin: 0; }
 .test-ex__train { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0; }
 .test-ex__train a.uc-tag { font-family: var(--uc-font-mono); text-decoration: none; }
+.test-rules { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--uc-space-2) var(--uc-space-6); margin: 0; max-width: 760px; }
+.test-rules dt { font-weight: 600; }
+.test-rules dd { margin: 0; color: var(--uc-color-text-secondary); }
+@media (max-width: 560px) { .test-rules { grid-template-columns: 1fr; } .test-rules dd { margin-bottom: var(--uc-space-2); } }

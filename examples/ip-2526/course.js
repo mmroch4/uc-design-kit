@@ -54,8 +54,10 @@ window.UC_COURSE = {
       title: "1st Practical Test",
       date: "2025-11-05",
       time: "14:30",
+      duration: 120,
       kind: "assessment",
-      note: "Two shifts: 14:30 and 16:30",
+      shifts: [{ time: "14:30" }, { time: "16:30" }],
+      location: 'DCC Labs (FC6) · <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/turnos_teste1.pdf" data-auth>allocation to shift and room</a>',
       url: "practical/test1.html",
     },
     {
@@ -69,7 +71,10 @@ window.UC_COURSE = {
       id: "exam",
       title: "Written Exam (Época Normal)",
       date: "2026-01-06",
+      time: "14:00",
+      duration: 120,
       kind: "exam",
+      location: 'FC1 120, FC1 122, FC1 219 · <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/salas_jan6.pdf" data-auth>student allocation to rooms</a>',
       url: "exam.html",
     },
     { id: "improvement", title: "Improvement Test (T1 or T2)", date: null, kind: "assessment", note: "Choose which practical test to improve" },
@@ -77,8 +82,8 @@ window.UC_COURSE = {
 
   // Notices: a notice dated in the future only appears from that day on.
   notices: [
-    { date: "2026-02-05", text: 'Grades (Época de Recurso) published: <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/epoca_recurso.pdf">PDF</a> (authentication needed)' },
-    { date: "2026-01-18", text: 'Grades (Época Normal) published: <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/epoca_normal.pdf">PDF</a> (authentication needed)' },
+    { date: "2026-02-05", text: 'Grades (Época de Recurso) published: <a data-auth href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/epoca_recurso.pdf">PDF</a>' },
+    { date: "2026-01-18", text: 'Grades (Época Normal) published: <a data-auth href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/epoca_normal.pdf">PDF</a>' },
     { date: "2025-12-15", text: 'Information about the <a href="exam.html">written exam</a> published (Época Normal)' },
     { date: "2025-12-10", text: 'Information about the <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test2.html">2nd practical test</a> published' },
     { date: "2025-12-07", text: 'Practical class <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class11.html">#11</a> made available (exceptions)' },

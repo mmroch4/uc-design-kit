@@ -24,38 +24,24 @@
       </ul>
     </section>
 
-    <section class="uc-section" aria-labelledby="grades">
-      <h2 id="grades">Calculation formula of the final grade</h2>
-      <p class="formula">Final = 0.1·A + 0.2·T1 + 0.2·T2 + 0.5·E <span>(0 to 20)</span></p>
-      <div class="uc-grid" style="--uc-grid-min: 200px">
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter">A</span> <span class="component__weight">10%</span></p>
-          <p class="component__name">Exercises during classes</p>
-          <p class="uc-muted desc">Problems of the practical classes submitted to Mooshak before each class's deadline.</p>
-        </div>
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter">T1</span> <span class="component__weight">20%</span></p>
-          <p class="component__name">1st Practical Test</p>
-          <p class="uc-muted desc">Problems in Mooshak, classes #01 to #05. <a href="practical/test1.html">Information and goals</a></p>
-        </div>
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter">T2</span> <span class="component__weight">20%</span></p>
-          <p class="component__name">2nd Practical Test</p>
-          <p class="uc-muted desc">Problems in Mooshak, later classes. <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test2.html">Information and goals</a></p>
-        </div>
-        <div class="uc-card component">
-          <p class="component__head"><span class="component__letter">E</span> <span class="component__weight">50%</span></p>
-          <p class="component__name">Final exam</p>
-          <p class="uc-muted desc">Written exam. <a href="exam.html">Information and goals</a></p>
-        </div>
-      </div>
-      <div class="uc-callout">
-        <p><strong>Notes</strong></p>
-        <ul class="uc-bullets">
-          <li>There is no minimum grade requirement for any component.</li>
-          <li>Students will be allowed to improve one of the practical tests (T1 or T2, 20%).</li>
+    <!-- uc-grading: the formula, the bar and the table are generated from the list. -->
+    <section class="uc-section" id="grades">
+      <uc-grading scale="20" pass="9.5" calculator heading="Calculation formula of the final grade">
+        <ul>
+          <li data-code="A"><data value="0.1">10%</data> Exercises during classes <span>Problems of the practical classes accepted on Mooshak before each class's deadline.</span></li>
+          <li data-code="T1"><data value="0.2">20%</data> 1st Practical Test <span>Problems in Mooshak, classes #01 to #05.</span></li>
+          <li data-code="T2"><data value="0.2">20%</data> 2nd Practical Test <span>Problems in Mooshak, later classes.</span></li>
+          <li data-code="E"><data value="0.5">50%</data> Final exam <span>Written exam.</span></li>
         </ul>
-      </div>
+        <div class="uc-callout">
+          <p><strong>Notes</strong></p>
+          <ul class="uc-bullets">
+            <li>There is no minimum grade requirement for any component.</li>
+            <li>Students will be allowed to improve one of the practical tests (T1 or T2, 20%).</li>
+          </ul>
+        </div>
+      </uc-grading>
+      <p class="uc-small uc-muted">Information and goals: <a href="practical/test1.html">1st practical test</a> · <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test2.html">2nd practical test</a> · <a href="exam.html">written exam</a></p>
     </section>
 
     <!-- Test and exam dates: edit in course.js (deadlines). The status is computed. -->
@@ -72,7 +58,7 @@
         <li>A problem only counts with an <em>Accepted</em> (all tests passed). Even if you solve all problems, the maximum on one class is 100%; solving the main exercises is always enough for 100%.</li>
         <li>Talking to the professors and colleagues is encouraged, but any direct help from colleagues or LLMs must be acknowledged in the comments of the code you submit.</li>
       </ul>
-      <p class="uc-small uc-muted">Your results: <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/">evaluation elements</a> (authentication sent by email).</p>
+      <p class="uc-small uc-muted">Your results: <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/" data-auth>evaluation elements</a> (authentication sent by email).</p>
     </section>
 
     <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation.html</a>.</p>

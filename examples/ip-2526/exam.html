@@ -17,20 +17,10 @@
     </nav>
     <h1>Information for the written exam</h1>
 
-    <section class="uc-section" aria-labelledby="when">
-      <h2 id="when">Date, time and place (“Normal Season”, a.k.a. “Época Normal”)</h2>
-      <div class="uc-table" style="--uc-table-min: 320px">
-        <table>
-          <caption class="uc-visually-hidden">Date, time and place of the written exam</caption>
-          <tbody>
-            <tr><th scope="row">Date</th><td><uc-date deadline="exam" format="weekday"></uc-date> 2026</td></tr>
-            <tr><th scope="row">Time</th><td>14:00</td></tr>
-            <tr><th scope="row">Duration</th><td>2h</td></tr>
-            <tr><th scope="row">Rooms</th><td>FC1 120, FC1 122, FC1 219 · <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/salas_jan6.pdf">student allocation to rooms</a> (protected access)</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <!-- Date, time, duration and rooms: edit in course.js (deadline "exam"). -->
+    <uc-assessment-info deadline="exam" calendar heading="Date, time and place (“Época Normal”)">
+      <noscript><p>Tuesday, 6 January 2026, 14:00, 2 hours. Rooms FC1 120, FC1 122 and FC1 219.</p></noscript>
+    </uc-assessment-info>
 
     <section class="uc-section" aria-labelledby="valuation">
       <h2 id="valuation">Valuation</h2>
@@ -41,7 +31,7 @@
       <h2 id="sample">Exam sample questions</h2>
       <p class="uc-prose">Here you can see the exam from last year:</p>
       <ul class="uc-bullets">
-        <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/exam_jan_8_2025_en.pdf">Exam 24/25 (“Época Normal”)</a> (use the same authentication as when seeing your grades)</li>
+        <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/exam_jan_8_2025_en.pdf" data-auth>Exam 24/25 (“Época Normal”)</a> (use the same authentication as when seeing your grades)</li>
       </ul>
     </section>
 

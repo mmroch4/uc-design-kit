@@ -19,21 +19,16 @@
 
     <section class="uc-section" aria-labelledby="general">
       <h2 id="general">General information</h2>
-      <div class="uc-table" style="--uc-table-min: 320px">
-        <table>
-          <caption class="uc-visually-hidden">General information about the 1st practical test</caption>
-          <tbody>
-            <tr><th scope="row">Date</th><td><uc-date deadline="t1" format="weekday"></uc-date> 2025</td></tr>
-            <tr><th scope="row">Time</th><td>Two shifts: 14:30 and 16:30 · <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/evaluation/turnos_teste1.pdf">student allocation to shift and room</a> (protected access)</td></tr>
-            <tr><th scope="row">Place</th><td>DCC Labs (FC6)</td></tr>
-            <tr><th scope="row">Duration</th><td>2h</td></tr>
-            <tr><th scope="row">Method</th><td>Individual. Practical problems for which you submit Python code to Mooshak and receive feedback that might include public test cases, like in the practical classes.</td></tr>
-            <tr><th scope="row">Language</th><td>All problem statements are available in English and in Portuguese.</td></tr>
-            <tr><th scope="row">Environment</th><td>Linux, with Python available at the command line and the usual editors and IDEs. You have access to documentation (a local copy of the <a href="https://docs.python.org/3/">Python docs</a>) and to a local copy of the lecture notebooks (a static HTML version).</td></tr>
-            <tr><th scope="row">Scoring</th><td>Worth 4 points out of 20 (20% of your grade). See the <a href="../assessment.html#grades">calculation formula of the final grade</a>.</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <!-- Date, shifts, duration and place: edit in course.js (deadline "t1"). -->
+      <uc-assessment-info deadline="t1" calendar heading="none">
+        <noscript><p>Wednesday, 5 November 2025, two shifts (14:30 and 16:30), 2 hours, DCC Labs (FC6).</p></noscript>
+      </uc-assessment-info>
+      <dl class="test-rules">
+        <dt>Method</dt><dd>Individual. Practical problems for which you submit Python code to Mooshak and receive feedback that might include public test cases, like in the practical classes.</dd>
+        <dt>Language</dt><dd>All problem statements are available in English and in Portuguese.</dd>
+        <dt>Environment</dt><dd>Linux, with Python available at the command line and the usual editors and IDEs. You have access to documentation (a local copy of the <a href="https://docs.python.org/3/">Python docs</a>) and to a local copy of the lecture notebooks (a static HTML version).</dd>
+        <dt>Scoring</dt><dd>Worth 4 points out of 20 (20% of your grade). See the <a href="../assessment.html#grades">calculation formula of the final grade</a>.</dd>
+      </dl>
       <p class="uc-prose">You will have 7 small exercises in Mooshak worth 20% + 20% + 15% + 15% + 15% + 10% + 5%. In each exercise there might be partial scoring (e.g. passes some tests, fails on others).</p>
       <p class="uc-prose">When submitting, you will know the score you got on all tests. Your grade on a problem is the grade of your best submission on that problem (the one with the highest score), and you can submit as many times as you want (with 60 seconds between submissions).</p>
     </section>
