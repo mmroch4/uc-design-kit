@@ -18,12 +18,12 @@
     </nav>
     <h1>[IP061] Wallet Watcher</h1>
     <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 22nd</span></strong><br/>
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p06" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
 <strong>[to understand the context of this problem, you should read the <a href="../practical/class06.html">class #06 exercise sheet</a>]</strong></p>
     </div>
     <div class="uc-content">
-<p class="uc-callout"><strong>In this problem you should read your input from <em>stdin</em> using the input() function and you should print the requested output.</strong></p>
+<div class="uc-callout uc-callout--warning"><p>In this problem you should read your input from <em>stdin</em> using the input() function and you should print the requested output.</p></div>
 
 <p><img alt="" class="uc-content__float" loading="lazy" src="ip061.png" width="330"/>
 Penny has decided to finally get her finances under control (after a few too many Cheesecake Factory shifts and online shopping sprees).</p>
@@ -41,28 +41,24 @@ Penny has decided to finally get her finances under control (after a few too man
 <div class="uc-table"><table>
 <tr>
 <td>1 ≤ <em>n</em> ≤ 50 000</td>
-<td>     </td>
 <td>Number of operations</td>
 </tr>
 <tr>
 <td>-10 000 ≤ <em>|lst|</em> ≤ 10 000</td>
-<td>     </td>
 <td>Quantity of money in each operation</td>
 </tr>
 <tr>
 <td>1 ≤ <em>q</em> ≤ 50 000</td>
-<td>     </td>
 <td>Number of queries</td>
 </tr>
 <tr>
 <td>1 ≤ <em>a</em> ≤ <em>b</em> ≤ n</td>
-<td>     </td>
 <td>Range of each query</td>
 </tr>
 </table></div>
-<p class="uc-callout">NOTE: the limits are high and you must have an <strong>efficient</strong> solution.<br/>
+<div class="uc-callout uc-callout--warning"><p>NOTE: the limits are high and you must have an <strong>efficient</strong> solution.<br/>
   If your code in each query simply iterates through positions <em>a</em> and <em>b</em> and sums, it will result in a <strong>Time Limit Exceeded</strong>.
-</p>
+</p></div>
 <br/>
 <div class="uc-table"><table>
 <tr>

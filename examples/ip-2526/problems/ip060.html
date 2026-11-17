@@ -17,13 +17,13 @@
     </nav>
     <h1>[IP060] Experimental Stability</h1>
     <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 22nd</span></strong><br/>
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p06" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
 <strong>[to understand the context of this problem, you should read the <a href="../practical/class06.html">class #06 exercise sheet</a>]</strong></p>
     </div>
     <div class="uc-content">
-<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
-<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+<div class="uc-callout uc-callout--warning"><p>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</p></div>
+<div class="uc-callout uc-callout--warning"><p>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</p></div>
 
 <p><img alt="" class="uc-content__float" loading="lazy" src="ip060.png" width="200"/>
 Leonard Hofstadter is once again deep into his physics experiments at Caltech. Each trial produces a long list of energy readings, represented as integers. <strong>Positive</strong> values indicate stable, successful reactions, while <strong>negative</strong> ones show instability (often caused by Sheldon interrupting mid-test). Zeros are neutral and do not count as either positive or negative.</p>
@@ -35,23 +35,20 @@ Leonard Hofstadter is once again deep into his physics experiments at Caltech. E
 <div class="uc-table"><table>
 <tr>
 <td>1 ≤ <em>k</em> ≤ 50 000</td>
-<td>     </td>
 <td>Size of sublists to consider</td>
 </tr>
 <tr>
 <td>k ≤ <em>|lst|</em> ≤ 50 000</td>
-<td>     </td>
 <td>Number of elements in the list</td>
 </tr>
 <tr>
 <td>-1000 ≤ <em>lst[i]</em> ≤ 1000</td>
-<td>     </td>
 <td>Readings in the list</td>
 </tr>
 </table></div>
-<p class="uc-callout">NOTE: the limits are high and you must have an <strong>efficient</strong> solution.<br/>
+<div class="uc-callout uc-callout--warning"><p>NOTE: the limits are high and you must have an <strong>efficient</strong> solution.<br/>
   If your code simply tries all possible sublists and for each of them you iterate through all elements of the sublist, it will result in a <strong>Time Limit Exceeded</strong>.
-</p>
+</p></div>
 <br/>
 <div class="uc-table"><table>
 <tr>

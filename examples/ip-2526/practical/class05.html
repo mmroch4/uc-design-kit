@@ -24,37 +24,32 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip045.html">[IP045] List Transformation</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip046.html">[IP046] Kwik-E-Mart</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip047.html">[IP047] Fibonacci Sequence</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip048.html">[IP048] Drunken Lists</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip049.html">[IP049] Rotating Toys</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip050.html">[IP050] Duplicated Reports</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip051.html">[IP051] Just an Average Person</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip052.html">[IP052] Messy Matrix</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip053.html">[IP053] Turn it Back!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip054.html">[IP054] Is it magical?</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
-          <li><a href="../problems/ip055.html">[IP055] Church Members</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
-          <li><a href="../problems/ip056.html">[IP056] Eeny, Meeny, Miny, Moe</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
-          <li><a href="../problems/ip057.html">[IP057] Donut Path</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip058.html">[IP058] Treasure Hunt</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p05" format="long"></uc-date> (November 8th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p05">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip045.html">List Transformation</a> <code>IP045</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip046.html">Kwik-E-Mart</a> <code>IP046</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip047.html">Fibonacci Sequence</a> <code>IP047</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip048.html">Drunken Lists</a> <code>IP048</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip049.html">Rotating Toys</a> <code>IP049</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip050.html">Duplicated Reports</a> <code>IP050</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip051.html">Just an Average Person</a> <code>IP051</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip052.html">Messy Matrix</a> <code>IP052</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip053.html">Turn it Back!</a> <code>IP053</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip054.html">Is it magical?</a> <code>IP054</code> <data value="10">10%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip055.html">Church Members</a> <code>IP055</code> <data value="15">15%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip056.html">Eeny, Meeny, Miny, Moe</a> <code>IP056</code> <data value="15">15%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip057.html">Donut Path</a> <code>IP057</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip058.html">Treasure Hunt</a> <code>IP058</code> <data value="20">20%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore function definition and function calling</li>
           <li>Understand the concept of lists and how you can use them in Python</li>
           <li>Know how to insert, remove and modify elements in lists</li>
@@ -62,8 +57,8 @@
           <li>Understand that a list variable is essentially a reference to the list</li>
           <li>Understand how matrices can be represented as a list of lists</li>
           <li>Gain experience with some algorithmic patterns</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise all the lectures, but in particular <a href="../materials.html#lectures">T07: Tuples and Lists, T08: More (on) Lists and T09: Advanced Lists</a>.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise all the lectures, but in particular <a href="../materials.html#lectures">T07: Tuples and Lists, T08: More (on) Lists and T09: Advanced Lists</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="exercises">
         <h2 id="exercises">Exercises</h2>

@@ -23,34 +23,29 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip102.html">[IP102] Neo's Error Awakening</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip103.html">[IP103] A Glitch in the Matrix</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip104.html">[IP104] The Wisdom of the Oracle</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip105.html">[IP105] Trinity's Escape</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip106.html">[IP106] Cypher's Betrayal</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip107.html">[IP107] Hello, Mr. Anderson</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 25%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p11" format="long"></uc-date> (January 3rd; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p11">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip102.html">Neo's Error Awakening</a> <code>IP102</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip103.html">A Glitch in the Matrix</a> <code>IP103</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip104.html">The Wisdom of the Oracle</a> <code>IP104</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip105.html">Trinity's Escape</a> <code>IP105</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip106.html">Cypher's Betrayal</a> <code>IP106</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip107.html">Hello, Mr. Anderson</a> <code>IP107</code> <data value="25">25%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Understand exceptions and learn to identify, catch, raise and handle different types of runtime errors</li>
           <li>Antecipate and prevent exceptions, writing defensive code that avoids crashes before they happen</li>
           <li>Debug more complex workflows, involving unpredictable inputs</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lectures.</p></div>
       </section>
       <div class="uc-prose">
 <p>This week's theme for the exercises is <a href="https://pt.wikipedia.org/wiki/Matrix">The Matrix</a>.</p>

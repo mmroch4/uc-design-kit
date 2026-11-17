@@ -14,93 +14,100 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #07</li></ol>
-    </nav>
-    <h1>Week #07</h1>
-    <p class="uc-lead">Dynamic Programming II (partitions, games, dags, counting, search) · Problems: <a href="../problem-sets/ps07.html">Weekly Problems #07</a></p>
-    <div class="uc-content">
-<h2>Main learning outcomes for this class</h2>
-<ol>
-<li><strong>Dynamic Programming (DP) Concepts:</strong>
-<ul>
-<li>I know the <strong>minimax principle for games</strong> and how to use DP for solving simple game problems.
-      </li><li>I know the <strong>linear partitions problem</strong> and how to use DP to obtain optimal partitions.
-      </li><li>I know the concept of <strong>DAGs</strong> and how to use DP to solve problems in DAGs.
-      </li><li>I know the concept of <strong>bitmasks</strong> and how to use them in DP states; I know the TSP problem and how to solve in O(n^2 2^n) using DP and bitmasks.
-      </li><li>I know the concept of <strong>counting with DP</strong>
-</li></ul>
-</li></ol>
+    <!-- Class #07 was given in week 9 (no class in week 8: the faculty closed). -->
+    <uc-guide week="9">
+      <h1>Class #07 · Dynamic Programming II</h1>
+      <p class="uc-lead">Partitions, games, DAGs, counting, search.</p>
+      <!-- Deadline of this class's problem set: from course.js (deadlines, id "ps07"). -->
+      <uc-event deadline="ps07"></uc-event>
 
-<h2>Study Material</h2>
-<h2>Main references</h2>
-<ul>
-<li><strong>Lecture this year</strong> (live coding by invited professor <strong>Patrick Daniel</strong>, a former contestant and winner of MIUP'2025, the Portuguese ICPC contest):
-    <ul>
-<li><i>Material will be published here after the class</i>
-</li></ul>
-</li><li><strong>Material from previous years</strong> (lectures given by Duarte Nóbrega):
-    <ul>
-<li><a href="../material/dp2_2526/slides.pdf">Slides 25/26</a> | <a href="../material/dp2_2425/slides.pdf">Slides 24/25</a>
-</li><li><strong>Code from 25/26:</strong> <a href="../material/dp2_2526/bakery.cpp">bakery.cpp</a> | <a href="../material/dp2_2526/independent_set.cpp">independent_set.cpp</a> | <a href="../material/dp2_2526/pokemon.cpp">pokemon.cpp</a> | <a href="../material/dp2_2526/removal.cpp">removal.cpp</a>
-</li><li><strong>Code from 24/25:</strong> <a href="../material/dp2_2425/bachets.cpp">bachets.cpp</a> | <a href="../material/dp2_2425/bakery.cpp">bakery.cpp</a> | <a href="../material/dp2_2425/codigos_preguicosos.cpp">codigos_preguicosos.cpp</a> | <a href="../material/dp2_2425/counting.cpp">counting.cpp</a> | <a href="../material/dp2_2425/independent_set.cpp">independent_set.cpp</a> | <a href="../material/dp2_2425/longest_path.cpp">longest_path.cpp</a> | <a href="../material/dp2_2425/pokemons.cpp">pokemons.cpp</a> | <a href="../material/dp2_2425/removal.cpp">removal.cpp</a>
-</li></ul>
-</li><li><strong>Topics:</strong>
-<ul>
-<li><strong>Games and minimax principle</strong><ul>
-<li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games</a> (TopCoder)</li>
-<li><a href="http://wcipeg.com/wiki/Game_theory">Game Theory</a> (PG Wiki)</li>
-</ul></li>
+      <section class="uc-section" aria-labelledby="outcomes">
+        <h2 id="outcomes">Main learning outcomes for this class</h2>
+        <ul class="uc-checklist">
+          <li>I know the <strong>minimax principle for games</strong> and how to use DP for solving simple game problems.</li>
+          <li>I know the <strong>linear partitions problem</strong> and how to use DP to obtain optimal partitions.</li>
+          <li>I know the concept of <strong>DAGs</strong> and how to use DP to solve problems in DAGs.</li>
+          <li>I know the concept of <strong>bitmasks</strong> and how to use them in DP states; I know the TSP problem and how to solve it in O(n² 2ⁿ) using DP and bitmasks.</li>
+          <li>I know the concept of <strong>counting with DP</strong></li>
+        </ul>
+      </section>
 
-<li><strong>Linear Partitions</strong><ul>
-<li><a href="http://www8.cs.umu.se/kurser/TDBAfl/VT06/algorithms/BOOK/BOOK2/NODE45.HTM">The Partition Problem</a> (Algorithm Design Manual)
-      </li></ul></li>
+      <section class="uc-section" aria-labelledby="material">
+        <h2 id="material">Study material</h2>
+        <!-- An item with no links shows "No material" until the material is published. -->
+        <uc-materials heading="none">
+          <ul>
+            <li>Lecture this year: live coding by invited professor Patrick Daniel, a former contestant and winner of MIUP'2025, the Portuguese ICPC contest</li>
+            <li>Slides from previous years (lectures given by Duarte Nóbrega) <a href="../material/dp2_2526/slides.pdf">Slides 25/26</a> <a href="../material/dp2_2425/slides.pdf">Slides 24/25</a></li>
+            <li>Code from 25/26 <a href="../material/dp2_2526/bakery.cpp">bakery.cpp</a> <a href="../material/dp2_2526/independent_set.cpp">independent_set.cpp</a> <a href="../material/dp2_2526/pokemon.cpp">pokemon.cpp</a> <a href="../material/dp2_2526/removal.cpp">removal.cpp</a></li>
+            <li>Code from 24/25 <a href="../material/dp2_2425/bachets.cpp">bachets.cpp</a> <a href="../material/dp2_2425/bakery.cpp">bakery.cpp</a> <a href="../material/dp2_2425/codigos_preguicosos.cpp">codigos_preguicosos.cpp</a> <a href="../material/dp2_2425/counting.cpp">counting.cpp</a> <a href="../material/dp2_2425/independent_set.cpp">independent_set.cpp</a> <a href="../material/dp2_2425/longest_path.cpp">longest_path.cpp</a> <a href="../material/dp2_2425/pokemons.cpp">pokemons.cpp</a> <a href="../material/dp2_2425/removal.cpp">removal.cpp</a></li>
+          </ul>
+        </uc-materials>
+        <h3>Games and minimax principle</h3>
+        <ul class="uc-links">
+          <li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games</a><span>TopCoder</span></li>
+          <li><a href="http://wcipeg.com/wiki/Game_theory">Game Theory</a><span>PEG Wiki</span></li>
+        </ul>
+        <h3>Linear partitions</h3>
+        <ul class="uc-links">
+          <li><a href="http://www8.cs.umu.se/kurser/TDBAfl/VT06/algorithms/BOOK/BOOK2/NODE45.HTM">The Partition Problem</a><span>The Algorithm Design Manual</span></li>
+        </ul>
+        <h3>DP in DAGs</h3>
+        <ul class="uc-links">
+          <li><a href="https://noi.ph/training/weekly/week5.pdf">DP on Trees and DAGs</a><span>IOI Training, Philippines</span></li>
+        </ul>
+        <h3>Bitmasks and DP</h3>
+        <ul class="uc-links">
+          <li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/a-bit-of-fun-fun-with-bits/">A bit of fun: fun with bits</a><span>TopCoder</span></li>
+          <li><a href="https://www.hackerearth.com/practice/algorithms/dynamic-programming/bit-masking/tutorial/">Dynamic Programming and Bit Masking</a><span>HackerEarth</span></li>
+          <li><a href="https://codeforces.com/blog/entry/337">A little bit of classics: dynamic programming over subsets and paths in graphs</a><span>CodeForces</span></li>
+        </ul>
+        <h3>TSP with DP</h3>
+        <ul class="uc-links">
+          <li><a href="https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/">Travelling Salesman Problem</a><span>GeeksforGeeks</span></li>
+          <li><a href="https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm">Held-Karp Algorithm</a><span>Wikipedia</span></li>
+        </ul>
+        <h3>Digit DP</h3>
+        <ul class="uc-links">
+          <li><a href="https://usaco.guide/gold/digit-dp?lang=cpp">Digit DP</a><span>USACO Guide</span></li>
+          <li><a href="https://www.geeksforgeeks.org/dsa/digit-dp-introduction/">Digit DP</a><span>GeeksforGeeks</span></li>
+        </ul>
+      </section>
 
-<li><strong>DP in DAGs</strong><ul>
-<li><a href="https://noi.ph/training/weekly/week5.pdf">DP on Trees and DAGs</a> (IOI Training, Philippines)</li>
-</ul></li>
+      <section class="uc-section" aria-labelledby="step-by-step">
+        <h2 id="step-by-step">See it step by step</h2>
+        <p class="uc-prose">DP on a DAG computes the states in a topological order, so every state comes after the states it depends on. Kahn's algorithm finds such an order (and a cycle, when there is no DAG); switch to the DFS version and compare.</p>
+        <!-- Widget <uc-widget-toposort>: a topological order of a DAG -->
+        <uc-widget-toposort algorithms="kahn dfs" edges="A B; A C; B D; C D; C E; D F; E F" predict>
+          <p>A DAG with arcs A→B, A→C, B→D, C→D, C→E, D→F, E→F. One topological order (Kahn): A, B, C, D, E, F.</p>
+        </uc-widget-toposort>
+      </section>
 
-<li><strong>Bitmasks and DP</strong><ul>
-<li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/a-bit-of-fun-fun-with-bits/">A bit of fun: fun with bits</a> (TopCoder)</li>
-<li><a href="https://www.hackerearth.com/practice/algorithms/dynamic-programming/bit-masking/tutorial/">Dynamic Programming and Bit Masking</a> (HackerEarth)</li>
-<li><a href="https://codeforces.com/blog/entry/337">A little bit of classics: dynamic programming over subsets and paths in graphs</a> (CodeForces)</li>
-</ul></li>
+      <section class="uc-section" aria-labelledby="training">
+        <h2 id="training">Initiation/reinforcement problems</h2>
+        <uc-problems cards track>
+          <section>
+            <h3 class="uc-visually-hidden">Initiation problems</h3>
+            <ul>
+              <li data-judge="uva" data-type="extra"><a href="https://uva.onlinejudge.org/external/104/10404.pdf">Bachet&#x27;s Game</a> <code>10404</code>
+                <details name="hint"><summary>What it tests</summary><p>DP with games: minimax principle.</p></details></li>
+              <li data-judge="uva" data-type="extra"><a href="https://uva.onlinejudge.org/external/112/11258.pdf">String Partition</a> <code>11258</code>
+                <details name="hint"><summary>What it tests</summary><p>DP partitions.</p></details></li>
+              <li data-judge="uva" data-type="extra"><a href="https://uva.onlinejudge.org/external/102/10285.pdf">Longest Run on a Snowboard</a> <code>10285</code>
+                <details name="hint"><summary>What it tests</summary><p>DP in DAGs.</p></details></li>
+              <li data-judge="spoj" data-type="extra"><a href="https://www.spoj.com/problems/COURIER/">The Courier</a> <code>COURIER</code>
+                <details name="hint"><summary>What it tests</summary><p>DP with bitmasks, TSP.</p></details></li>
+              <li data-judge="uva" data-type="extra"><a href="https://uva.onlinejudge.org/external/109/10910.pdf">Marks Distribution</a> <code>10910</code>
+                <details name="hint"><summary>What it tests</summary><p>DP counting.</p></details></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/pc032.html">Car Rallying</a> <code>PC032</code>
+                <details name="hint"><summary>What it tests</summary><p>Directly tests your implementation of DP in a DAG.</p></details></li>
+            </ul>
+          </section>
+        </uc-problems>
+      </section>
 
-<li><strong>TSP with DP</strong><ul>
-<li><a href="https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/">Travelling Salesman Problem</a> (GeeksforGeeks)</li>
-<li><a href="https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm">Held-Karp Algorithm</a> (Wikipedia)
-      </li></ul></li>
-
-<li><strong>Digit DP</strong><ul>
-<li><a href="https://usaco.guide/gold/digit-dp?lang=cpp">Digit DP</a> (Usaco Guide)</li>
-<li><a href="https://www.geeksforgeeks.org/dsa/digit-dp-introduction/">Digit DP</a> (GeeksforGeeks)
-      </li></ul></li>
-
-</ul>
-</li></ul>
-
-<h2 id="step-by-step">See it step by step</h2>
-<p>DP on a DAG computes the states in a topological order, so every state comes after the states it depends on. Kahn's algorithm finds such an order (and a cycle, when there is no DAG); switch to the DFS version and compare.</p>
-<!-- Widget <uc-widget-toposort>: a topological order of a DAG -->
-<uc-widget-toposort algorithms="kahn dfs" edges="A B; A C; B D; C D; C E; D F; E F" predict>
-  <p>A DAG with arcs A→B, A→C, B→D, C→D, C→E, D→F, E→F. One topological order (Kahn): A, B, C, D, E, F.</p>
-</uc-widget-toposort>
-
-<h2>Initiation/Reinforcement Problems</h2>
-<ul>
-<li><a href="https://uva.onlinejudge.org/external/104/10404.pdf">[UVA 10404] Bachet's Game</a> (DP with games - minimax principle)
-  </li><li><a href="https://uva.onlinejudge.org/external/112/11258.pdf">[UVA 11258] String Partition</a> (DP partitions)
-  </li><li><a href="https://uva.onlinejudge.org/external/102/10285.pdf">[UVA 10285] Longest Run on a Snowboard</a> (DP in DAGs)
-  </li><li><a href="https://www.spoj.com/problems/COURIER/">[SPOJ COURIER] The Courier</a> (DP with bitmasks, TSP) 
-  </li><li><a href="https://uva.onlinejudge.org/external/109/10910.pdf">[UVA 10910] Marks Distribution</a> (DP counting)
-</li></ul>
-<p>Here is also a problem to directly test your implementation of DP in a DAG:
-
-  </p><ul>
-<li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC032]</a> - <a href="../problems/pc032.html">Car Rallying</a>
-</li></ul>
-    </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week07.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week07.html</a> to demonstrate the UC Design Kit.</p>
+      <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week07.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week07.html</a> to demonstrate the UC Design Kit.</p>
+    </uc-guide>
   </uc-page>
 </body>
 </html>

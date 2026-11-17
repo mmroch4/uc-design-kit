@@ -6,6 +6,10 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- `<uc-materials>`: an item with many links no longer squeezes its title to
+  one letter per line; the title keeps at least 12rem and the buttons wrap.
+
 ### Added
 - Blocks for the patterns that the four example sites wrote by hand
   (curation of the examples): `uc-page-header` and `uc-eyebrow` for the top of

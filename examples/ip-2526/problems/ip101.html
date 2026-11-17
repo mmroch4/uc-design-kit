@@ -18,12 +18,12 @@
     </nav>
     <h1>[IP101] Dark Resonance</h1>
     <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 20th</span></strong><br/>
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p10" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
 <strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
     </div>
     <div class="uc-content">
-<p class="uc-callout"><strong>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</strong></p>
+<div class="uc-callout uc-callout--warning"><p>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</p></div>
 <p class="c-blue"><strong>(because this is a challenge problem, a naive solution will most likely have a <em>Time Limit Exceeded result</em>)</strong></p>
 
 <p><span class="uc-muted"><em>(this problem is an adaptation from a SWERC'2024 problem)</em></span></p>
@@ -48,16 +48,13 @@ of the rightmost tower. Observe that the distance between any two towers, in met
 <div class="uc-table"><table>
 <tr>
 <td>\(2 \leq N \leq 200\,000\)</td>
-<td>     </td>
 <td>Number of towers</td>
 </tr>
 <tr>
 <td>\(0 \leq H_i \leq 10^{18}\)</td>
-<td>     </td>
 <td>Height of each tower</td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <th scope="col">Example Input 1</th>

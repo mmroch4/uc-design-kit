@@ -23,33 +23,28 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip097.html">[IP097] Stranger Cells</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 50%</span></li>
-          <li><a href="../problems/ip098.html">[IP098] Shifting Patterns</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 50%</span></li>
-          <li><a href="../problems/ip099.html">[IP099] Messages from the Upside Down</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 50%</span></li>
-          <li><a href="../problems/ip100.html">[IP100] Hawkins Threat Simulator</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 50%</span></li>
-          <li><a href="../problems/ip101.html">[IP101] Dark Resonance</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 50%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p10" format="long"></uc-date> (December 20th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p10">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip097.html">Stranger Cells</a> <code>IP097</code> <data value="50">50%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip098.html">Shifting Patterns</a> <code>IP098</code> <data value="50">50%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip099.html">Messages from the Upside Down</a> <code>IP099</code> <data value="50">50%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip100.html">Hawkins Threat Simulator</a> <code>IP100</code> <data value="50">50%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip101.html">Dark Resonance</a> <code>IP101</code> <data value="50">50%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Read and understand more complex problems statements</li>
           <li>Gain experience on thinking on a problem and how to organize your code and divide a task into simpler blocks</li>
           <li>Gain experience on developing your program incrementally and testing every block independently</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lectures.</p></div>
       </section>
       <div class="uc-prose">
 <p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Stranger_Things">Stranger Things</a>.</p>
@@ -81,9 +76,54 @@
 </li><li><strong>Structuring the Code:</strong>
 <p>You can of course divide the problem as you want (and/or you can try again afterwards with your own approach or variation), but for now we propose you follow a specific organization of the code into different functions.</p>
 <p>You can use as a start the following "skeleton" code with all functions already with their headers made (but still missing the code: all of them are with the pass instruction so that the code compiles):</p>
-<ul>
-<li><a class="shell" href="ip097_skeleton.py">ip097_skeleton.py</a> (<a href="ip097_skeleton.html">see in html</a>)
-        </li></ul>
+<uc-code lang="python" filename="ip097_skeleton.py" collapsible collapsed><pre><code># [IP097] Stranger Cells
+# Example skeleton code for student
+# (exemplifying the usage of global variables)
+
+# read the input and change the following global variables
+# - r: integer rule
+# - k: number of iterations
+# - line: the initial generation
+def read():
+    global r, k, line
+    # TO DO
+    pass
+
+# return a list of the 8 bits of rule r
+def rule_to_8bits(r):
+    # TO DO
+    pass
+
+# return the number that represented a triplet (string of 3 chars)
+def str_to_number(triplet):
+    # TO DO
+    pass
+
+# return a new character (# or .) according to the current triplet
+# - rules: the set of rules as a list of 8 bits
+# - triplet: a string with 3 chars - LEFT CENTER RIGHT
+def calculate(rule, triplet):    
+    # TO DO
+    pass
+
+# generate and return a new line:
+# - rules: the set of rules as a list of 8 bits
+# - line: the current line from which to generate the next one
+def create(rule, line):
+    # TO DO
+    pass
+
+# simulate the game
+# cycle trough the number of generations and for each one:
+# - create the new generation (calling create)
+# - update and print the current line
+def simulate():
+    # TO DO
+    pass
+
+# Main code: read the input and the simulate the automaton
+read()
+simulate()</code></pre></uc-code>
 <p>The code is structured in the following way:
         </p><ul>
 <li>The <code>read()</code> function will read the input (and store it on <a href="https://realpython.com/python-use-global-variable-in-function/">global variables</a>)
@@ -97,7 +137,7 @@
 </li></ul>
 <p>We know that for now this is a bit <em>"too much"</em>, but it serves to give you a brief overview of what you will be doing next.</p>
 </li><li><strong>Reading the input</strong>
-<p>Let's start by implementing the <code>read()</code> function. You should start by putting the input examples on files (e.g. <a class="terminal" href="ip097_input01.txt">ip097_input01.txt</a> and <a class="terminal" href="ip097_input02.txt">ip097_input02.txt</a>) so that you can easily call them afterwards to test your code.</p>
+<p>Let's start by implementing the <code>read()</code> function. You should start by putting the input examples on files (e.g. <a href="ip097_input01.txt">ip097_input01.txt</a> and <a href="ip097_input02.txt">ip097_input02.txt</a>) so that you can easily call them afterwards to test your code.</p>
 <p>To get you started we will give you the code for this one:</p>
 <uc-code lang="python"><pre><code>def read():
     global r, k, line
