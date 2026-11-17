@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="assessment">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="../assessment.html">Assessment</a></li><li aria-current="page">2nd practical test</li></ol>
-    </nav>
-    <h1>Information for the 2nd practical test</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test2.html" current="assessment">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="../assessment.html">Assessment</a></li><li aria-current="page">2nd practical test</li></ol>
+      </nav>
+      <h1>Information for the 2nd practical test</h1>
+    </header>
 
     <section class="uc-section" aria-labelledby="general">
       <h2 id="general">General information</h2>
@@ -24,7 +26,7 @@
         <noscript><p>Wednesday, 17 December 2025, two shifts (14:30 and 16:30), 2 hours, DCC Labs (FC6).</p></noscript>
       </uc-assessment-info>
       <p class="uc-prose uc-small uc-muted">If you have a well-founded reason to go to only one of the shifts, send an email to Bernardo Portela and Pedro Ribeiro until 13:00 of 15 December explaining your situation, and it will be considered.</p>
-      <dl class="test-rules">
+      <dl class="uc-facts">
         <dt>Method</dt><dd>Individual. Practical problems for which you submit Python code to Mooshak and receive feedback that might include public test cases, like in the practical classes.</dd>
         <dt>Language</dt><dd>All problem statements are available in English and in Portuguese.</dd>
         <dt>Environment</dt><dd>Linux, with Python available at the command line and the usual editors and IDEs. You have access to documentation (a local copy of the <a href="https://docs.python.org/3/">Python docs</a>) and to a local copy of the lecture notebooks (a static HTML version).</dd>
@@ -85,8 +87,6 @@
         </div>
       </div>
     </section>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test2.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test2.html</a>.</p>
   </uc-page>
 </body>
 </html>

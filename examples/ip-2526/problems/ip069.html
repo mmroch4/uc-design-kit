@@ -11,15 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP069</li></ol>
-    </nav>
-    <h1>[IP069] Reversed Menu</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p07" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class07.html">class #07 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip069.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP069</li></ol>
+      </nav>
+      <h1>[IP069] Reversed Menu</h1>
+    </header>
+    <uc-problem code="IP069" judge="mooshak" deadline="p07" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class07.html">class #07 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <div class="uc-callout uc-callout--warning"><p>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</p></div>
@@ -38,33 +39,25 @@ Jimmy Pesto Jr., always looking to one-up his rival restaurant, decides to exper
 <td>number of items on the menu</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-menu1 = {"coffee":60, "croissant":120, "donut":100, "burger":400}
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">menu1 = {"coffee":60, "croissant":120, "donut":100, "burger":400}
 new_menu1 = swap(menu1)
 print(sorted(list(new_menu1.items())))
 menu2 = {"one":"um", "two":"dois", "three":"tres", "four":"quatro"}
 new_menu2 = swap(menu2)
 print(sorted(list(new_menu2.items())))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-[(60, 'coffee'), (100, 'donut'), (120, 'croissant'), (400, 'burger')]
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">[(60, 'coffee'), (100, 'donut'), (120, 'croissant'), (400, 'burger')]
 [('dois', 'two'), ('quatro', 'four'), ('tres', 'three'), ('um', 'one')]
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip069.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip069.html</a>.</p>
   </uc-page>
 </body>
 </html>

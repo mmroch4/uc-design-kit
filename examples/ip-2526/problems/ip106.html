@@ -12,15 +12,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP106</li></ol>
-    </nav>
-    <h1>[IP106] Cypher's Betrayal</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p11" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class11.html">class #11 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip106.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP106</li></ol>
+      </nav>
+      <h1>[IP106] Cypher's Betrayal</h1>
+    </header>
+    <uc-problem code="IP106" judge="mooshak" deadline="p11" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class11.html">class #11 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <div class="uc-callout uc-callout--warning"><p>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</p></div>
@@ -51,15 +52,10 @@ Cypher has done his part. The glitch is in place. Now, it's up to you to help Ne
 <td>Number of lines to process</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-16
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input</p>
+    <pre data-copy="Example Input">16
 1 / 0
 1 % 0
 1 + 2
@@ -77,10 +73,10 @@ int("is this real life?")
 open("smith.txt")
 [0]*(2**100)
 </pre>
-</td>
-<td>
-<pre data-copy="">
-3 SyntaxError
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">3 SyntaxError
 2 ValueError
 2 ZeroDivisionError
 1 FileNotFoundError
@@ -89,9 +85,8 @@ open("smith.txt")
 1 NameError
 1 OverflowError
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
 <p><strong>Explanation of example input:</strong></p>
 <ul>
 <li><code>"1 / 0"</code> creates a <span class="c-red"><strong>ZeroDivisionError</strong></span> error: <em>"division by zero"</em>
@@ -112,8 +107,6 @@ open("smith.txt")
 </li><li><code>"[0]*(2**100)"</code> creates a <span class="c-red"><strong>OverflowError</strong></span> error: <em>"cannot fit 'int' into an index-sized integer"</em>
 </li></ul>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip106.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip106.html</a>.</p>
   </uc-page>
 </body>
 </html>

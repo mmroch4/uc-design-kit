@@ -14,15 +14,11 @@
   <script src="../../../widgets/v1/uc-widget-backtracking.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="10">
-      <div class="uc-stack">
-        <p class="class-meta">
-          <span class="uc-tag uc-tag--accent">Practical class #09</span>
-          <span class="uc-mono uc-muted">24/11 to 28/11</span>
-        </p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class09.html" current="weeks">
+    <uc-guide week="10" week-label prev="class08.html" next="class10.html">
+      <header class="uc-page-header">
         <h1>Class #09 · Recursion</h1>
-      </div>
+      </header>
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
@@ -107,7 +103,7 @@ print(mysum_v5([1,2,3,4]))</code></pre></uc-code>
         <uc-exercise id="a-recursive-mooshak-problem" title="3) A recursive mooshak problem">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip089.html">[IP089] Dataset Confusion</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>For this problem you should first see the flatten example code that was given in the lecture. Read it carefully and understand how it works:</p>
 <uc-code lang="python"><pre><code># recursive function
 def flatten(lst):
@@ -128,7 +124,7 @@ print(flatten([[[[4,1],7]],3,[[2]],[5,6],[[42],[40]],[[[[[[[10]]]]]]]]))</code><
         <uc-exercise id="generating-strings" title="4) Generating strings">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip090.html">[IP090] Binary Communication</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>For this problem you should first see the AB strings generation example code that was given in the lecture. Read it carefully and understand how it works (the lecture includes a recursive tree):</p>
 <uc-code lang="python"><pre><code># recursive function
 # k: remaining size to generate
@@ -155,7 +151,7 @@ print(gen_v2(3)) # all strings of size 3 with As and Bs</code></pre></uc-code>
         <uc-exercise id="generating-sequences-of-planets" title="5) Generating sequences of planets">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip091.html">[IP091] Planetary Weekends</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>This is almost like the last problem. Can you see the resemblance? This like a generalization that is easier in one sense (no limitation on the number of occurrences of one planet) but harder on another sense (since we now don't simple use two characters to form sequences, but a list of planets).</p>
 <details class="uc-hint">
 <summary>Hints</summary>
@@ -165,7 +161,7 @@ print(gen_v2(3)) # all strings of size 3 with As and Bs</code></pre></uc-code>
         <uc-exercise id="generating-quantities-with-coins" title="6) Generating quantities with coins">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip092.html">[IP092] Intergalatic Shopping</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>This problem has similarities with <a href="../problems/ip074.html">[IP074]</a>, but here we have a generalization (and we can only use each coin once).</p>
 <p>Its essence, we need to generate all the possible subsets of coins, and subset generation was directly given in the lecture. See the code and try to understand it:</p>
 <uc-code lang="python"><pre><code># recursive function
@@ -197,13 +193,12 @@ print(subsets([1,2,3])) # generate all subsets of [1,2,3]</code></pre></uc-code>
   <p>The 8 subsets of [1, 2, 3] are [], [1], [2], [3], [1, 2], [1, 3], [2, 3] and [1, 2, 3]: one for each leaf of a tree of 15 calls.</p>
 </uc-widget-backtracking>
         </uc-exercise>
-        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
-          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+        <uc-exercise id="extra" kind="extra" title="Extra exercises for consolidating your knowledge">
 <p>Do you want to continue your adventure on the world of Futurama? Here are more exercises 🙂</p>
 <p><strong>7) A <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">TSP</a> brute force approach</strong></p>
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip093.html">[IP093] Delivery Route</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <details class="uc-hint">
 <summary>Hints</summary>
 <p>- Essentially the problem asks for the permutations. Can you generate them recursively?
@@ -212,7 +207,7 @@ print(subsets([1,2,3])) # generate all subsets of [1,2,3]</code></pre></uc-code>
 <p><strong>8) Generating numbers</strong></p>
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip094.html">[IP094] Eccentric Numbers</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <details class="uc-hint">
 <summary>Hints</summary>
 <p>- This problem is similar to another one you did in this class, right?
@@ -222,26 +217,23 @@ print(subsets([1,2,3])) # generate all subsets of [1,2,3]</code></pre></uc-code>
 <p><strong>9) Generating with constrainsts</strong></p>
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip095.html">[IP095] Dinner Trouble</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <details class="uc-hint">
 <summary>Hints</summary>
 <p>- Can you do one totally by yourself? 😁
       </p></details>
         </uc-exercise>
-        <uc-exercise id="challenge" title="10) Challenge exercise">
-          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+        <uc-exercise id="challenge" kind="challenge" title="10) Challenge exercise">
 <p>Congratulations! 🎉 You've successfully tackled all the problems with precision and creativity. Your journey through these challenges has been nothing short of impressive - like a true coding master navigating planet Recursion and Python! 🚀🐍</p>
 <p>Now, the final frontier awaits: Dr. Zoidberg's queen-placement conundrum. It’s a chessboard-sized (classic) challenge, a test of strategy, recursion, and a touch of elegance. But with your skills and determination, this is just another puzzle waiting to be solved. 💡♟️</p>
 <p>So go forth, conquer Zoidberg’s problem, and show that your brilliance shines even in the farthest reaches of logic. Good luck, and as Zoidberg might say: <em>"Hooray for you!"</em></p>
 <p>
   For this exercise you will be solving the problem <a href="../problems/ip096.html">[IP096] Chess Puzzle </a><br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
 <p>Happy coding! 😊</p>
         </uc-exercise>
       </section>
     </uc-guide>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class09.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class09.html</a>.</p>
   </uc-page>
 </body>
 </html>

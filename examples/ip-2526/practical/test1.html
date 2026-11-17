@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="assessment">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="../assessment.html">Assessment</a></li><li aria-current="page">1st practical test</li></ol>
-    </nav>
-    <h1>Information for the 1st practical test</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test1.html" current="assessment">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="../assessment.html">Assessment</a></li><li aria-current="page">1st practical test</li></ol>
+      </nav>
+      <h1>Information for the 1st practical test</h1>
+    </header>
 
     <section class="uc-section" aria-labelledby="general">
       <h2 id="general">General information</h2>
@@ -23,7 +25,7 @@
       <uc-assessment-info deadline="t1" calendar heading="none">
         <noscript><p>Wednesday, 5 November 2025, two shifts (14:30 and 16:30), 2 hours, DCC Labs (FC6).</p></noscript>
       </uc-assessment-info>
-      <dl class="test-rules">
+      <dl class="uc-facts">
         <dt>Method</dt><dd>Individual. Practical problems for which you submit Python code to Mooshak and receive feedback that might include public test cases, like in the practical classes.</dd>
         <dt>Language</dt><dd>All problem statements are available in English and in Portuguese.</dd>
         <dt>Environment</dt><dd>Linux, with Python available at the command line and the usual editors and IDEs. You have access to documentation (a local copy of the <a href="https://docs.python.org/3/">Python docs</a>) and to a local copy of the lecture notebooks (a static HTML version).</dd>
@@ -85,8 +87,6 @@
         </div>
       </div>
     </section>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test1.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test1.html</a>.</p>
   </uc-page>
 </body>
 </html>

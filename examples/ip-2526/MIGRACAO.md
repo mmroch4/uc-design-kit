@@ -104,6 +104,13 @@ Revisão: <https://claude.ai/artifact/Bdn6q8AE1LZAs2f4nTDZC6>. Primeira parte, s
   os links do Python passaram para `materials.html`.
 - `practical/ip097_skeleton.html` saiu: o código está na aula 10, num `uc-code` recolhido.
 
-Fica para quando o kit tiver as peças (thread do PI): caminho de navegação (`.crumbs`), cabeçalho
-de página, exemplos de entrada e saída, nota de origem, lista numerada (`.program`), etiqueta de
-erro para os veredictos do Mooshak, datas da semana no `uc-guide` (`.class-meta`).
+Segunda parte, com as peças novas do kit (PR #79): cabeçalho `uc-page-header` com `uc-crumbs` e
+`uc-eyebrow` em todas as páginas; exemplos dos enunciados em `uc-samples`; programa em `uc-steps`;
+regras dos testes em `uc-facts`; livros como `a.uc-card`; veredictos do Mooshak em `uc-tag--success`
+/ `uc-tag--danger`; nota de origem em `source` no `course.js` e `source="…"` em cada `<uc-page>`
+(sai o parágrafo de cada página). O `theme.css` ficou só com as cores dos enunciados.
+
+Terceira parte, com a parte 2 do kit (PR #83): guiões com `week-label` (semana e datas calculadas,
+em vez das datas escritas) e `prev`/`next`; exercícios extra e desafio com `kind`; cada enunciado
+tem `<uc-problem code judge deadline track>` por baixo do título (prazo, "Submit on Mooshak" e
+"Resolvido" partilhado com as listas), e a caixa de contexto ficou só com a ligação à aula.

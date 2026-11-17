@@ -11,15 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP001</li></ol>
-    </nav>
-    <h1>[IP001] Hello there.</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p01" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class01.html">class #01 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip001.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP001</li></ol>
+      </nav>
+      <h1>[IP001] Hello there.</h1>
+    </header>
+    <uc-problem code="IP001" judge="mooshak" deadline="p01" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class01.html">class #01 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <p><img alt="" class="uc-content__float" loading="lazy" src="ip001.jpg" width="300"/>Everyone knows that <a href="https://starwars.fandom.com/wiki/Hello_there">"Hello there."</a> is how Obi-Wan Kenobi introduces himself. Can you help him do this in Python?
@@ -30,19 +31,13 @@
 <p>For this problem there is no input you need to read.</p>
 <h2>Output</h2>
 <p>The output should be a single line containing <em>"Hello there."</em> (without the quotes).</p>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">Hello there.</pre>
-</td>
-</tr>
-</table></div>
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">Hello there.</pre>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip001.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip001.html</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,15 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP100</li></ol>
-    </nav>
-    <h1>[IP100] Hawkins Threat Simulator</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p10" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP100</li></ol>
+      </nav>
+      <h1>[IP100] Hawkins Threat Simulator</h1>
+    </header>
+    <uc-problem code="IP100" judge="mooshak" deadline="p10" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class10.html">class #10 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <div class="uc-callout uc-callout--warning"><p>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</p></div>
@@ -90,15 +91,10 @@ Max Mayfield has always loved video games and she’s been thinking about how th
 <td>x coordinate (column) of first move</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 1</th>
-<th scope="col">Example Output 1</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-9 9
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 1</p>
+    <pre data-copy="Example Input 1">9 9
 B.B....B.
 .........
 ......B.B
@@ -110,10 +106,10 @@ B.B....B.
 ...B....B
 3 4
 </pre>
-</td>
-<td>
-<pre data-copy="">
-???1..1??
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 1</p>
+    <pre data-copy="Example Output 1">???1..1??
 1211.12??
 .....1???
 .....12??
@@ -123,18 +119,12 @@ B.B....B.
 ..2?2..11
 ..2?2..1?
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 2</th>
-<th scope="col">Example Output 2</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-9 9
+  </div>
+</div>
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 2</p>
+    <pre data-copy="Example Input 2">9 9
 B.B....B.
 .........
 ......B.B
@@ -146,10 +136,10 @@ B.B....B.
 ...B....B
 1 3
 </pre>
-</td>
-<td>
-<pre data-copy="">
-??B??????
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 2</p>
+    <pre data-copy="Example Output 2">??B??????
 ?????????
 ?????????
 ?????????
@@ -159,18 +149,12 @@ B.B....B.
 ?????????
 ?????????
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input 3</th>
-<th scope="col">Example Output 3</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-9 9
+  </div>
+</div>
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input 3</p>
+    <pre data-copy="Example Input 3">9 9
 B.B....B.
 .........
 ......B.B
@@ -182,10 +166,10 @@ B.B....B.
 ...B....B
 1 4
 </pre>
-</td>
-<td>
-<pre data-copy="">
-???1?????
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output 3</p>
+    <pre data-copy="Example Output 3">???1?????
 ?????????
 ?????????
 ?????????
@@ -195,12 +179,9 @@ B.B....B.
 ?????????
 ?????????
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html</a>.</p>
   </uc-page>
 </body>
 </html>

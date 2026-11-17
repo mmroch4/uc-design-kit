@@ -133,6 +133,12 @@ window.UC_COURSE = {
     { date: "2025-09-08", text: "Website made available" },
   ],
 
+  // Origin of the content: one line in the footer; each page links to its own original with <uc-page source="…">.
+  source: {
+    author: '<a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP)',
+    url: "https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/",
+  },
+
   footer: '© 2025 <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela · DCC, Faculty of Sciences, University of Porto',
   updated: "2026-02-05",
   // Demo: freezes "today" in week 10 of the semester, like the other examples.

@@ -11,15 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP099</li></ol>
-    </nav>
-    <h1>[IP099] Messages from the Upside Down</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p10" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip099.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP099</li></ol>
+      </nav>
+      <h1>[IP099] Messages from the Upside Down</h1>
+    </header>
+    <uc-problem code="IP099" judge="mooshak" deadline="p10" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class10.html">class #10 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <div class="uc-callout uc-callout--warning"><p>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</p></div>
@@ -60,15 +61,10 @@
 <td>size of each word</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Input</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-6 7
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Input</p>
+    <pre data-copy="Example Input">6 7
 DXLOWIL
 UWEVETS
 SINKATT
@@ -82,10 +78,10 @@ DUSTIN
 STEVE
 JONATHAN
 </pre>
-</td>
-<td>
-<pre data-copy="">
-MIKE: 2 5 NE
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">MIKE: 2 5 NE
 WILL: NOT FOUND
 DUSTIN: 1 1 S
 STEVE: 7 2 W
@@ -97,12 +93,9 @@ T.I....
 IM.....
 N......
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip099.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip099.html</a>.</p>
   </uc-page>
 </body>
 </html>

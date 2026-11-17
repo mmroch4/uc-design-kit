@@ -11,15 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP040</li></ol>
-    </nav>
-    <h1>[IP040] Searching for the treasure</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p04" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class04.html">class #04 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip040.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP040</li></ol>
+      </nav>
+      <h1>[IP040] Searching for the treasure</h1>
+    </header>
+    <uc-problem code="IP040" judge="mooshak" deadline="p04" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class04.html">class #04 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <div class="uc-callout uc-callout--warning"><p>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</p></div>
@@ -39,33 +40,25 @@ As you marveled at how many challenges you had faced in Wonderland, a group of C
 <td>size of the input tuple</td>
 </tr>
 </table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(search( (1,2,1,2,1), 1 ))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(search( (1,2,1,2,1), 1 ))
 print(search( ("a","b","b","c"), "b" ))
 print(search( ("a","b","b","c"), "c" ))
 print(search( (True, True, True), False ))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-(0, 4)
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">(0, 4)
 (1, 2)
 (3, 3)
 (-1, -1)
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip040.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip040.html</a>.</p>
   </uc-page>
 </body>
 </html>

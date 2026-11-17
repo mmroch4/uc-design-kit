@@ -11,15 +11,16 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP088</li></ol>
-    </nav>
-    <h1>[IP088] Dracarys!</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p08" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class08.html">class #08 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip088.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP088</li></ol>
+      </nav>
+      <h1>[IP088] Dracarys!</h1>
+    </header>
+    <uc-problem code="IP088" judge="mooshak" deadline="p08" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class08.html">class #08 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <div class="uc-callout uc-callout--warning"><p>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</p></div>
@@ -60,31 +61,23 @@ ABAABABAABAABABAABABA
 <div class="uc-callout uc-callout--warning"><p>NOTE: the limits are really high and you must have an <strong>efficient</strong> solution that can compute this very quickly.
  Your program will need to be able to answer around five hundred queries in less than one second.</p></div>
 <br/>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(count_range(3,10))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(count_range(3,10))
 print(count_range(2,19))
 print(count_range(42,297))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-5
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">5
 11
 159
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip088.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip088.html</a>.</p>
   </uc-page>
 </body>
 </html>

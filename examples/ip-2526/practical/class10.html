@@ -11,15 +11,11 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="11">
-      <div class="uc-stack">
-        <p class="class-meta">
-          <span class="uc-tag uc-tag--accent">Practical class #10</span>
-          <span class="uc-mono uc-muted">01/12 to 05/12</span>
-        </p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class10.html" current="weeks">
+    <uc-guide week="11" week-label prev="class09.html" next="class11.html">
+      <header class="uc-page-header">
         <h1>Class #10 · Structured Programming and Incremental Development</h1>
-      </div>
+      </header>
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
@@ -55,7 +51,7 @@
         <uc-exercise id="elementary-cellular-automaton" title="1) Elementary Cellular Automaton" open>
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip097.html">[IP097] Stranger Cells</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>By the end of this part of the class you will be submitting the problem at hand, but for now let's approach it differently and on a more structured way (resist to urge to just go directly to Mooshak and stick with the strategy given here).
   
   </p><ol type="a">
@@ -224,14 +220,14 @@ calculate(rules, "###")='.'
 <p>Implement the <code>simulate</code> that can simply iterate <em>k</em> times and keep calling <code>create</code> to produce the new line given the previous line.</p>
 <p>Don't forget to test!</p>
 </li><li><strong>Submitting to Mooshak</strong>
-<p>After testing everything, now is the time to submit and get your deserved <strong><span class="c-green">Accepted</span></strong>.</p>
-<p>If you get a <strong><span class="c-red">Wrong Answer</span></strong> or another error, you can use the details of the submission to fetch a case where your code fails and use it to debug your code.</p>
+<p>After testing everything, now is the time to submit and get your deserved <strong><span class="uc-tag uc-tag--success">Accepted</span></strong>.</p>
+<p>If you get a <strong><span class="uc-tag uc-tag--danger">Wrong Answer</span></strong> or another error, you can use the details of the submission to fetch a case where your code fails and use it to debug your code.</p>
 </li></ol>
         </uc-exercise>
         <uc-exercise id="a-2d-cellular-automaton" title="2) A 2D Cellular Automaton">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip098.html">[IP098] Shifting Patterns</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>Can you try to organize the code yourself? Try first to think on how to do it and use structured programming to divide the task into small simple blocks that you can incrementally develop and test.</p>
 <p>Here are some online simulators for the game of life, if you want to try it:</p>
 <ul>
@@ -248,12 +244,11 @@ calculate(rules, "###")='.'
   </p><p>- Use a helper function to print the list of lists as a "normal" output of matrix of chars
 </p></details>
         </uc-exercise>
-        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
-          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+        <uc-exercise id="extra" kind="extra" title="Extra exercises for consolidating your knowledge">
 <p><strong>3) Word Search</strong>
 </p><p>
     For this exercise you will be solving the problem <a href="../problems/ip099.html">[IP099] Messages from the Upside Down</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>Can you try to organize the code yourself? And can you generalize so that you don't end up repeating code for all the eight directions? Try first to think on how to do it and use structured programming to divide the task into small simple blocks that you can incrementally develop and test.</p>
 <p>If you are stuck or want to see a possible approach, the hints sections provides a possible code organization and generalization.</p>
 <details class="uc-hint">
@@ -277,7 +272,7 @@ calculate(rules, "###")='.'
 <p><strong>4) The Minesweeper Game</strong>
 </p><p>
     For this exercise you will be solving the problem <a href="../problems/ip100.html">[IP100] Hawkins Threat Simulator</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>You know the game, right? 😎 Here is an <a href="https://minesweeper.online/">online version</a></p>
 <p>Can you think about the problem by yourself and think on how to divide the code?</p>
 <p>For the "recursive propagation" part have a look at the <a href="../materials.html#lectures">recursion notebook</a> (there is a section explaining <strong>flood fill</strong>)
@@ -304,20 +299,17 @@ sys.setrecursionlimit(100000)</code></pre></uc-code>
 </p><p>If you want more exercises, have a look at <a href="https://adventofcode.com/">Advent of Code 2025</a> for more daily day in December! 🎄 [more about the <a href="https://en.wikipedia.org/wiki/Advent_of_Code">Advent of Code</a> on Wikipedia]</p>
 <p><a href="https://adventofcode.com/2025"><img alt="" loading="lazy" src="advent.png"/></a></p>
         </uc-exercise>
-        <uc-exercise id="challenge" title="5) Challenge exercise">
-          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+        <uc-exercise id="challenge" kind="challenge" title="5) Challenge exercise">
 <p>For the last exercise, the proposal is to do one of the (easier) problems of <a href="https://swerc.eu/2024/">SWERC'2024</a>, an international programming competition that takes place every year.</p>
-<p>Because it is a challenge, we will not give hints beforehand, but if you get stuck contact @PedroRibeiro at Discord. This is an exercise on efficiency, as a naive solution will get a <strong><span class="c-red">Time Limit Exceeded</span></strong> (Mooshak will give 2 seconds to your code and it needs to be able to solve the 200 thousand case in that amount of time - for instance the following naive solution will fail: cycle through all towers and for each of them do another cycle over all towers to search which one is taller and closer)
+<p>Because it is a challenge, we will not give hints beforehand, but if you get stuck contact @PedroRibeiro at Discord. This is an exercise on efficiency, as a naive solution will get a <strong><span class="uc-tag uc-tag--danger">Time Limit Exceeded</span></strong> (Mooshak will give 2 seconds to your code and it needs to be able to solve the 200 thousand case in that amount of time - for instance the following naive solution will fail: cycle through all towers and for each of them do another cycle over all towers to search which one is taller and closer)
 
 </p><p>
   For this exercise you will be solving the problem <a href="../problems/ip101.html">[IP101] Dark Resonance</a><br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
 <p>Happy coding! 😊</p>
         </uc-exercise>
       </section>
     </uc-guide>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class10.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class10.html</a>.</p>
   </uc-page>
 </body>
 </html>

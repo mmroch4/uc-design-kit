@@ -11,11 +11,13 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="assessment">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="assessment.html">Assessment</a></li><li aria-current="page">Written exam</li></ol>
-    </nav>
-    <h1>Information for the written exam</h1>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/exam.html" current="assessment">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="assessment.html">Assessment</a></li><li aria-current="page">Written exam</li></ol>
+      </nav>
+      <h1>Information for the written exam</h1>
+    </header>
 
     <!-- Date, time, duration and rooms: edit in course.js (deadline "exam"). -->
     <uc-assessment-info deadline="exam" calendar heading="Date, time and place (“Época Normal”)">
@@ -222,8 +224,6 @@
         </ul>
       </div>
     </section>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/exam.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/exam.html</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -12,15 +12,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <uc-page current="problems">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP066</li></ol>
-    </nav>
-    <h1>[IP066] Alphabetical Obsession</h1>
-    <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p06" format="long"></uc-date></strong><br/>
-<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
-<strong>[to understand the context of this problem, you should read the <a href="../practical/class06.html">class #06 exercise sheet</a>]</strong></p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip066.html" current="problems">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP066</li></ol>
+      </nav>
+      <h1>[IP066] Alphabetical Obsession</h1>
+    </header>
+    <uc-problem code="IP066" judge="mooshak" deadline="p06" track></uc-problem>
+    <div class="uc-callout uc-small">
+      <p>To understand the context of this problem, read the <a href="../practical/class06.html">class #06 exercise sheet</a>. After the deadline the problem stays open on Mooshak, but submissions no longer count towards your grade.</p>
     </div>
     <div class="uc-content">
 <div class="uc-callout uc-callout--warning"><p>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</p></div>
@@ -48,28 +49,22 @@ Sheldon Cooper has developed a new obsession: he only wants to read text segment
   If your code checks all possible segments and iterates in each one through all characters one by one, it will result in a <strong>Time Limit Exceeded</strong>.
 </p></div>
 <br/>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Example Function Calls</th>
-<th scope="col">Example Output</th>
-</tr>
-<tr>
-<td>
-<pre data-copy="">
-print(letters(2, "sheldon cooper"))
+<div class="uc-samples">
+  <div>
+    <p class="uc-samples__label">Example Function Calls</p>
+    <pre data-copy="Example Function Calls">print(letters(2, "sheldon cooper"))
 print(letters(6, "introduction to programming"))
 print(letters(4, "ip|cc1024|dcc|fcup"))
 </pre>
-</td>
-<td>
-<pre data-copy="">
-4
+  </div>
+  <div>
+    <p class="uc-samples__label">Example Output</p>
+    <pre data-copy="Example Output">4
 11
 15
 </pre>
-</td>
-</tr>
-</table></div>
+  </div>
+</div>
 <p><strong>Explanation of the first example</strong>
 </p><p>The largest substring is " coo" with length=4 and 2 distinct letters (<em>c</em> and <em>o</em>)</p>
 <p><strong>Explanation of the second example</strong>
@@ -77,8 +72,6 @@ print(letters(4, "ip|cc1024|dcc|fcup"))
 <p><strong>Explanation of the third example</strong>
 </p><p>The largest substring is "p|cc1024|dcc|fc" with length=15 and 4 distinct letters (<em>p</em>, <em>c</em>, <em>d</em>  and <em>f</em>)</p>
     </div>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip066.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip066.html</a>.</p>
   </uc-page>
 </body>
 </html>

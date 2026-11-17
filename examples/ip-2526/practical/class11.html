@@ -11,15 +11,11 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="12">
-      <div class="uc-stack">
-        <p class="class-meta">
-          <span class="uc-tag uc-tag--accent">Practical class #11</span>
-          <span class="uc-mono uc-muted">08/12 to 12/12</span>
-        </p>
+  <uc-page source="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class11.html" current="weeks">
+    <uc-guide week="12" week-label prev="class10.html">
+      <header class="uc-page-header">
         <h1>Class #11 · Exceptions</h1>
-      </div>
+      </header>
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
@@ -56,52 +52,48 @@
         <uc-exercise id="neo-s-error-awakening" title="1) Neo&#x27;s Error Awakening" open>
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip102.html">[IP102] Neo's Error Awakening</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>In this simple exercise, you'll have to specifically catch two common types of errors, <code>ZeroDivisionError</code> and <code>TypeError</code>.<br/> Take a look at <a href="../materials.html#lectures">T21: Exceptions</a> and try to define the proper blocks to catch these exceptions.</p>
         </uc-exercise>
         <uc-exercise id="a-glitch-in-the-matrix" title="2) A Glitch in the Matrix">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip103.html">[IP103] A Glitch in the Matrix</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>Imagine that you don't really know the exception that might be raised in your code. How can you capture <strong>any</strong> exception?<br/> Can you revisit <a href="../materials.html#lectures">T21: Exceptions</a> and find out what <code>except Exception as error:</code> does?<br/> How about <code>type(error).__name__</code>?</p>
         </uc-exercise>
         <uc-exercise id="the-wisdom-of-the-oracle" title="3) The Wisdom of the Oracle">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip104.html">[IP104] The Wisdom of the Oracle</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>Now you'll have a function that receives a function as input! What happens when you try to call a function that raises an error?<br/> Can you wrap this function call in a <code>try</code> block? And if it raises an error... incrementing a counter? 😉</p>
         </uc-exercise>
         <uc-exercise id="trinity-s-escape" title="4) Trinity&#x27;s Escape">
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip105.html">[IP105] Trinity's Escape</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>Take a look at <a href="../materials.html#lectures">T21: Exceptions</a> to find how to raise an <code>Exception</code> with a customized text message.</p>
 <p>Can you find the positions of Trinity, the agents and the booths? Can you compute the distance between a pair of positions? Can you use that to solve the problem? 😎
 </p>
         </uc-exercise>
-        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
-          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+        <uc-exercise id="extra" kind="extra" title="Extra exercises for consolidating your knowledge">
 <p><strong>5) Cypher's Betrayal</strong> <span class="c-blue">[extra]</span></p>
 <p>
     For this exercise you will be solving the problem <a href="../problems/ip106.html">[IP106] Cypher's Betrayal</a>.<br/>
-    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+    Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution. Don't forget to test first on your computer!</p>
 <p>You do remember that <code>input()</code> reads one line of the standard input, right?</p>
 <p>Evaluate each string <em>line</em> using <code>eval(line)</code> and catch any exception.</p>
 <p>You can use a map to keep the frequencies (using the type name as the key and the frequency as the value).</p>
 <p>How can you sorted based on frequency? You already did <a href="../problems/ip085.html">similar problems</a>, right? 😉</p>
         </uc-exercise>
-        <uc-exercise id="challenge" title="6) Hello, Mr. Anderson">
-          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+        <uc-exercise id="challenge" kind="challenge" title="6) Hello, Mr. Anderson">
 <p>You're finally facing the wrath of Agent Smith! Good luck!</p>
 <p>
   For this exercise you will be solving the problem <a href="../problems/ip107.html">[IP107] Hello, Mr. Anderson</a><br/>
-  Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+  Read the statement, code and try to submit an <span class="uc-tag uc-tag--success">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
 <p>Happy coding! 😊</p>
         </uc-exercise>
       </section>
     </uc-guide>
-
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class11.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class11.html</a>.</p>
   </uc-page>
 </body>
 </html>
