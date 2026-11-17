@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-problems · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    // A judge known to <uc-problems> but not listed in the navigation, and two series deadlines.
+    UC_COURSE.platforms.push({ id: "codeforces", label: "Codeforces", url: "https://codeforces.com", hidden: true });
+    UC_COURSE.deadlines.push(
+      { id: "ps1", title: "Série 1", date: "2025-10-10", time: "23:59", kind: "submission" },
+      { id: "ps2", title: "Série 2", date: "2025-12-05", time: "23:59", kind: "submission" },
+    );
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <h1><span lang="pt">Problemas (teste)</span><span lang="en">Problems (test)</span></h1>
+
+    <!-- Series with deadlines, filters, track, an unknown judge, a label match without id, a weight. -->
+    <uc-problems id="series" filters track heading="Séries de problemas">
+      <section data-deadline="ps1">
+        <h3>Série 1 · Introdução</h3>
+        <ul>
+          <li data-judge="mooshak"><a href="#p1">Increasing Array</a> <code>PC001</code> <data value="40">40 %</data></li>
+          <li data-judge="codeforces" data-type="extra"><a href="#p2">Lecture</a> <code>499B</code></li>
+          <li data-judge="Kattis"><a href="#p3">Hello World!</a> <code>hello</code></li>
+        </ul>
+      </section>
+      <section data-deadline="ps2">
+        <h3>Série 2 · Ordenação</h3>
+        <ul>
+          <li data-judge="Mooshak" data-type="challenge"><a href="#p4">Sorting Olympics</a> <code>PC010</code></li>
+          <li data-judge="codeforces"><a href="#p5">Towers</a> <code>37D</code></li>
+        </ul>
+      </section>
+    </uc-problems>
+
+    <!-- A single list without sections, on the same page: shares "solved" with the series above. -->
+    <uc-problems id="index" track>
+      <ol>
+        <li data-judge="mooshak"><a href="#p1">Increasing Array</a> <code>PC001</code></li>
+        <li><a href="#p6">Sem juiz</a></li>
+      </ol>
+    </uc-problems>
+  </uc-page>
+</body>
+</html>

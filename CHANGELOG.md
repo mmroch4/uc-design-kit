@@ -37,6 +37,21 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   one row per week (dates, topic, deadlines, status), breaks as full-width
   rows; and `href` on `<uc-week>`, the page of that week's class ("Página da
   aula" in the full view, the title link in the compact view).
+- `<uc-materials>` (blocks phase 4): decorates the teacher's list of
+  materials per lecture: links become buttons with a type icon recognised
+  from the URL (PDF, notebook, GitHub, video, archive, code; `data-type`
+  overrides, `slides` only by hand), the first `<time>` reads "Atualizado a
+  18 nov", recent items get "Novo" (`new-days`) and items without links read
+  "Sem material".
+- `<uc-problems>` (blocks phase 4): problem series (`<section
+  data-deadline>`) with judge (`data-judge`) and type (`data-type`: extra,
+  challenge) tags, a weight from `<data>`, the series deadline and its state,
+  filters by type and judge (`filters`) and a "Resolvido" checkbox per
+  problem saved per course in `localStorage` (`track`, event
+  `uc:problemchange`).
+- `id` and `hidden` on `platforms` entries: `<uc-problems data-judge>` finds a
+  platform by `id` (or by label), and `hidden: true` keeps it out of the
+  navigation.
 - Internal pieces for the new blocks: one shared live region
   (`<pre data-copy>` and `<uc-code>` now use it), course-scoped storage keys
   (`uc:<course>:…`), the filter bar (`uc-filters`), page enhancements run

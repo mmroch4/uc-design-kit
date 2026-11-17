@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-materials · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <h1><span lang="pt">Materiais (teste)</span><span lang="en">Materials (test)</span></h1>
+
+    <!-- Every URL type, a data-type override, an item without links, a future date (no "Novo"), PT/EN links. -->
+    <uc-materials id="main">
+      <ol>
+        <li><time datetime="2025-09-16">16 set</time> Introdução ao Java
+          <a href="slides/1_intro.pdf">Diapositivos</a> · <a href="codigo/Intro.java">Código</a></li>
+        <li><time datetime="2025-11-24">24 nov</time> — Árvores binárias
+          <a href="slides/7_arvores.pdf" data-type="slides">Slides</a>
+          <a href="https://colab.research.google.com/drive/abc">Notebook</a>
+          <a href="https://github.com/exemplo/arvores">Repositório</a></li>
+        <li>Vídeos e arquivo
+          <a href="https://www.youtube.com/watch?v=abc">Aula gravada</a> | <a href="downloads/aula8.zip">Ficheiros</a>
+          <a href="https://www.dcc.fc.up.pt/~fds/">Página do docente</a></li>
+        <li><time datetime="2025-12-10">10 dez</time> Filas de prioridade <span class="uc-muted">(em preparação)</span></li>
+        <li>Revisões para o 1.º teste</li>
+        <li><time datetime="2025-11-26">26 nov</time> Tabelas de dispersão
+          <a href="slides/9_hash.pdf" lang="pt">Diapositivos (PT)</a>
+          <a href="slides/9_hash_en.pdf" lang="en">Slides (EN)</a></li>
+      </ol>
+      <p class="uc-muted">Texto do docente depois da lista.</p>
+    </uc-materials>
+
+    <!-- No "Novo" tags, without heading. -->
+    <uc-materials id="plain" new-days="0" heading="none">
+      <ul>
+        <li><time datetime="2025-11-26">26 nov</time> Grafos <a href="slides/10_grafos.pdf">PDF</a></li>
+      </ul>
+    </uc-materials>
+  </uc-page>
+</body>
+</html>

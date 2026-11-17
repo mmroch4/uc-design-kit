@@ -1,0 +1,50 @@
+- region "Materiais":
+  - heading "Materiais" [level=2]
+  - list:
+    - listitem:
+      - text: Introdução ao Java
+      - paragraph:
+        - text: Atualizado a
+        - time: 16 set
+      - link "Diapositivos (PDF)":
+        - /url: slides/1_intro.pdf
+      - link "Código":
+        - /url: codigo/Intro.java
+    - listitem:
+      - text: Árvores binárias
+      - paragraph:
+        - text: Atualizado a
+        - time: 24 nov
+        - text: Novo
+      - link "Slides (diapositivos)":
+        - /url: slides/7_arvores.pdf
+      - link "Notebook":
+        - /url: https://colab.research.google.com/drive/abc
+      - link "Repositório (GitHub)":
+        - /url: https://github.com/exemplo/arvores
+    - listitem:
+      - text: Vídeos e arquivo
+      - link "Aula gravada (vídeo)":
+        - /url: https://www.youtube.com/watch?v=abc
+      - link "Ficheiros (arquivo)":
+        - /url: downloads/aula8.zip
+      - link "Página do docente (ligação)":
+        - /url: https://www.dcc.fc.up.pt/~fds/
+    - listitem:
+      - text: Filas de prioridade (em preparação)
+      - paragraph:
+        - text: Atualizado a
+        - time: 10 dez
+      - paragraph: Sem material
+    - listitem:
+      - text: Revisões para o 1.º teste
+      - paragraph: Sem material
+    - listitem:
+      - text: Tabelas de dispersão
+      - paragraph:
+        - text: Atualizado a
+        - time: 26 nov
+        - text: Novo
+      - link "Diapositivos (PT) (PDF)":
+        - /url: slides/9_hash.pdf
+  - paragraph: Texto do docente depois da lista.

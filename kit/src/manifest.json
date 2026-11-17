@@ -34,6 +34,8 @@
     "components/uc-timetable.js",
     "components/uc-grading.js",
     "components/uc-assessment-info.js",
+    "components/uc-materials.js",
+    "components/uc-problems.js",
     "components/uc-code.js",
     "components/uc-question.js",
     "core/tables.js",
@@ -65,6 +67,8 @@
     "css/components/uc-timetable.css",
     "css/components/uc-grading.css",
     "css/components/uc-assessment-info.css",
+    "css/components/uc-materials.css",
+    "css/components/uc-problems.css",
     "css/components/uc-code.css",
     "css/components/uc-question.css"
   ]

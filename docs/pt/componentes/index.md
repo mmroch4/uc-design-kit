@@ -54,6 +54,13 @@ Como se calcula a nota e o que é preciso saber de cada prova.
 - [**`<uc-grading>`**: A fórmula, os pesos e os mínimos da nota, com um simulador opcional.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md)
 - [**`<uc-assessment-info>`**: O cartão de um teste ou exame: data, turnos, duração, local, estado e calendário.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md)
 
+## Materiais e problemas
+
+O que os estudantes descarregam e resolvem, a partir das listas que o professor já escreve.
+
+- [**`<uc-materials>`**: Os materiais de cada aula, com o tipo de cada link, a data da última alteração e Novo.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md)
+- [**`<uc-problems>`**: Problemas por séries com juiz, tipo e prazo, filtros e Resolvido guardado no browser.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md)
+
 ## Regras comuns
 
 - **Atributos** em minúsculas, separados por hífen. Os booleanos valem pela presença (`open`, `no-breaks`).

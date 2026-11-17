@@ -278,6 +278,37 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-assessment-info__note` | A nota do prazo, por baixo da lista. |
 | `.uc-assessment-info__calendar` | O botão "Adicionar ao calendário". |
 
+### [`<uc-materials>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-materials` | O componente (o próprio `<uc-materials>`). |
+| `.uc-materials__section`, `__heading` | A secção e o seu título. |
+| `.uc-materials__list` | A lista escrita pelo professor. |
+| `.uc-materials__item` | Cada aula ou capítulo. |
+| `.uc-materials__main`, `__title` | A coluna do título e o título. |
+| `.uc-materials__meta`, `__updated`, `__date` | A linha "Atualizado a 24 nov" e a data (o `<time>` do professor). |
+| `.uc-materials__new` | A etiqueta "Novo". |
+| `.uc-materials__links`, `__link` | Os botões; cada um tem `data-type`. |
+| `.uc-materials__empty` | O texto "Sem material". |
+
+### [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-problems` | O componente (o próprio `<uc-problems>`). |
+| `.uc-problems__section`, `__heading` | O conteúdo do componente e o título opcional. |
+| `.uc-problems__filters` | A barra de filtros (também `uc-filters`). |
+| `.uc-problems__series` | Cada `<section>` do professor. |
+| `.uc-problems__meta`, `__deadline`, `__progress` | A linha por baixo do título da série: o prazo e "3 de 5 resolvidos". |
+| `.uc-problems__list` | A lista de problemas. |
+| `.uc-problems__item`, `--solved` | Cada problema; os resolvidos. |
+| `.uc-problems__body` | O conteúdo escrito do problema (link, código). |
+| `.uc-problems__tags`, `__judge`, `__type` | As etiquetas do juiz e do tipo. |
+| `.uc-problems__weight` | O `<data>` do peso. |
+| `.uc-problems__solved` | O rótulo com a caixa "Resolvido". |
+| `.uc-problems__empty` | A linha "Nenhum problema com estes filtros." |
+
 ## Blocos
 
 As classes que se escrevem no HTML para dar forma ao conteúdo. Cada página de blocos explica as variantes e os tokens locais.

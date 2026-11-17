@@ -9,14 +9,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, flag, announce, normalise, firstTime, localiseTime, parseDay } = UC.internal;
-
-  /** True when `element` is written in a configured language other than the active one (hidden by the kit). */
-  function otherLanguage(element) {
-    const lang = element.getAttribute && element.getAttribute("lang");
-    if (!lang || UC.course.languages.length < 2) return false;
-    return UC.course.languages.some((code) => code !== UC.lang && (lang === code || lang.startsWith(`${code}-`)));
-  }
+  const { h, uid, flag, announce, normalise, firstTime, localiseTime, parseDay, otherLanguage } = UC.internal;
 
   /** Text nodes of `root` that are shown in the active language. */
   function visibleTextNodes(root) {
