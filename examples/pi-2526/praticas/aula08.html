@@ -5,91 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 08 · Structures and Assertions · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 8: Structures and Assertions">
+  <link rel="alternate" hreflang="pt" href="aula08_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="8">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula08.html">
+    <uc-guide week="8" week-label prev="aula07.html" next="aula09.html">
     <h1>Practical Class 08 · Structures and Assertions</h1>
-    <p class="uc-small"><a href="aula08_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi038.html">[PI038]
-      Merge Sorted Arrays</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi039.html">[PI039]
-      Shifting Numbers</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi040.html">[PI040]
-      Josephus Flower</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi041.html">[PI041] Rock
-      Site</a> (weight 30%) (extra exercise)</li>
-<li><a href="problems/pi042.html">[PI042]
-      Pizza Quest</a> (weight 40%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula08">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi038.html">Merge Sorted Arrays</a> <code>PI038</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi039.html">Shifting Numbers</a> <code>PI039</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi040.html">Josephus Flower</a> <code>PI040</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi041.html">Rock Site</a> <code>PI041</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi042.html">Pizza Quest</a> <code>PI042</code> <data value="40">40 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>May 9</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3> Exercício 1) Mooshak</h3>
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Mooshak">
 <ol>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi038.html">[PI038] Merge Sorted Arrays</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi038.html">[PI038] Merge Sorted Arrays</a><br/> 
        Alice and Bob each have a vector of grades sorted in ascending order. Your task is to merge them into a single sorted vector, without using any built-in sorting function.
         <br/>Read the problem statement carefully and try to submit an Accepted solution. <strong>Don't forget to test it first on your computer!</strong>
-<br/><br/><details name="hint">
-<summary><em>Hint - Don't sort, merge</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint - Don't sort, merge</summary>
 <p>- A naive approach would be to join the two arrays and sort the result. But there is a much more efficient way: since both arrays are already sorted, you can build the result by traversing them simultaneously, always choosing the smallest available element from the two. This is called <em>merge</em>.</p>
 <p>- You can use 3 pointers, one for each array (<code><strong>i</strong></code> for Alice's, <code><strong>j</strong></code> for Bob's) and a pointer <code><strong>k</strong></code> for the current position in the result array. At each step, compare the elements pointed to by the two pointers and copy the smaller one to the result, advancing the corresponding pointer.</p>
 <p>- <em><strong>Note:</strong></em> Don't forget the remaining elements or the special case (empty arrays)!</p>
 </details>
 </li>
 
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi039.html">[PI039] Shifting Numbers</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi039.html">[PI039] Shifting Numbers</a><br/> 
   Joyce needs to rotate an array of integers <code><strong>k</strong></code> positions to the right (if <code><strong>k</strong></code> is positive) or to the left (if <code><strong>k</strong></code> is negative), in a circular way — elements that leave one end reappear at the other. <br/>
   Your task is to implement the function <br/>
 <pre>void shift(int a[], int n, int k);
 </pre><br/>
   The code for the <code><strong>main</strong></code> function and the printing function is already provided — you only need to write the <code><strong>shift</strong></code> function.
   <br/>Read the problem statement carefully and try to submit an Accepted solution. 
-  <br/><br/><details name="hint">
-<summary><em>Hint</em></summary>
+  <details class="uc-hint" name="hint">
+<summary>Hint</summary>
 <p>- To solve the problem at hand, think about the following question: <em>What does it mean to rotate <code>k</code> positions to the right?</em></p>
 <p>- Rotating to the right by 1 position means that each element at position <code><strong>i</strong></code> moves to position <code><strong>i+1</strong></code>, and the last element goes to position <code><em>0</em></code>.</p>
 <p>- Generalized: the element that was at position <code><strong>i</strong></code> moves to position <code><strong>(i + k) % n</strong></code>.</p>
 <p>- <em><strong>Note:</strong></em> If you try to perform the rotation directly in array <code><strong>a</strong></code>, you will overwrite values before copying them. <em>Think of a simple and fast way to solve this!</em></p>
 </details>
-<br/><details name="hint">
-<summary><em>Hint #2</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint #2</summary>
 <p>- The element that should go to position <code><strong>i</strong></code> after rotating <code><strong>k</strong></code> positions to the right originally came from position <code><strong>(i - k + n) % n</strong></code>. The <code><strong>+ n</strong></code> ensures that the modulo result is not negative when <code><strong>k</strong></code> is positive and <code><strong>i - k &lt; 0</strong></code>.</p>
 <p>- <em>And for negative k?</em> For negative <code><strong>k</strong></code> (left rotation), the formula <code><strong>(i - k + n) % n</strong></code> still works directly — subtracting a negative <code><strong>k</strong></code> is the same as adding its absolute value. You don’t need to handle this case separately.</p>
 </details>
 </li>
 
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi040.html">[PI040] Josephus Flower</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi040.html">[PI040] Josephus Flower</a><br/> 
   You have <code><strong>n</strong></code> petals numbered from <strong>1</strong> to <strong>n</strong> arranged in a circle. You go through the petals alternating between "keep" and "remove", returning to the beginning whenever necessary, until only one remains. Determine which petal is left.
   <br/>Read the problem statement carefully and try to submit an Accepted solution. 
 
 <strong>Try to solve this problem without hints!</strong>
 </li>
 </ol>
-
-<h3>Exercise 2) Database of Teams, Players, and <em>eSports</em> Tournaments</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Database of Teams, Players, and eSports Tournaments">
 <p>Given a database containing information about <strong>players</strong>, <strong>teams</strong>, and <strong><em>eSports</em> tournaments</strong>, the goal is to query it to obtain various pieces of information. The data structures that will be used by the program follow the specification below:</p>
 <uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define MAX 10
@@ -191,8 +193,8 @@ It is assumed that <code><strong>playerPos</strong></code> contains the index of
       that checks if a player participated in tournaments in multiple years. It returns a value different from <strong><code>0</code></strong> if true, and <strong><code>0</code></strong> otherwise.<br/>
 It is assumed that <code><strong>playerPos</strong></code> contains the index of the player's position in the Players array, and that it is a valid position.</li>
 </ol>
-
-<h3> Exercise 3) Assertions</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-3" title="Assertions">
 <ol>
 <li>Consider the following Euclides algorithm that calculates the greatest common divisor:<br/>
 <uc-code collapsible="" data-lang="c"><script type="text/plain">
@@ -254,9 +256,10 @@ Add assertions to the function to express the following correctness conditions:
 </ul>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula08.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

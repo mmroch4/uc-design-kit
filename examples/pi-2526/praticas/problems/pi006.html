@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI006] Satellite Distance</li></ol>
-    </nav>
-    <h1>[PI006] Satellite Distance</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi006.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI006] Satellite Distance</li></ol>
+      </nav>
+      <h1>Satellite Distance</h1>
+      <uc-problem code="PI006" judge="mooshak" deadline="aula04" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi006.png"/>
@@ -50,7 +53,7 @@ In the third line, you will receive <code>n</code> integers <code>b_1, b_2, ...,
 each number <code>b_i</code> (<code>1 &lt;= b_i &lt;= 1'000</code>) corresponds to the height of the second satellite on day <code>i</code>.
 </p>
 <h2>
-Ouput
+Output
 </h2>
 <p>
 Print an integer that corresponds to the minimum of the observed differences in heights of the two satellites. For example, the first difference in example 1 below is 9 and it corresponds to the first observations for the two satellites.
@@ -58,43 +61,42 @@ Print an integer that corresponds to the minimum of the observed differences in 
 </p><h2><a id="SECTION00022000000000000000">
 Example 1</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-<pre>
-3
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3
 1 2 10
 10 14 8
 </pre>
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2
 </pre>
+</div>
+</div>
 <h2><a id="SECTION00023000000000000000">
 Example 2</a>
 </h2>
-<h3><a id="SECTION00023100000000000000">
-Input</a>
-</h3>
-<pre>
-5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 291 720 789 576 62
 499 865 278 746 628
 </pre>
-<h3><a id="SECTION00023200000000000000">
-Output</a>
-</h3>
-<pre>
-145
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">145
 </pre>
+</div>
+</div>
 <br/>
 <address>
 PI 2024/25
 </address>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi006.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

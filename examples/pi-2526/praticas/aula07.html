@@ -5,44 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 07 · Recursion, Sorting and Structures · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 7: Recursion, Sorting and Structures">
+  <link rel="alternate" hreflang="pt" href="aula07_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="7">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07.html">
+    <uc-guide week="7" week-label prev="aula06.html" next="aula08.html">
     <h1>Practical Class 07 · Recursion, Sorting and Structures</h1>
-    <p class="uc-small"><a href="aula07_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi022.html">[PI022] Quadratic Sorting</a> (weight 30%) (extra exercise)</li>
-<li><a href="problems/pi024.html">[PI024] Odd Numbers Sorting</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi026.html">[PI026] Hanoi</a> (weight 20%) (main exercise)</li>
-<li><a href="problems/pi027.html">[PI027] Bits</a> (weight 30%) (extra exercise)</li>
-<li><a href="problems/pi028.html">[PI028] Permutations</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi029.html">[PI029] The Tax Collector</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi030.html">[PI030] University Access Statistics</a> (weight 30%)(main exercise)</li>
-<li><a href="problems/pi032.html">[PI032] Triathlon</a> (weight 30%)(extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula07">
+<ul>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi022.html">Quadratic Sorting</a> <code>PI022</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi024.html">Odd Numbers Sorting</a> <code>PI024</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi026.html">Hanoi</a> <code>PI026</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi027.html">Bits</a> <code>PI027</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi028.html">Permutations</a> <code>PI028</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi029.html">The Tax Collector</a> <code>PI029</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi030.html">University Access Statistics</a> <code>PI030</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi032.html">Triathlon</a> <code>PI032</code> <data value="30">30 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>April 25</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3>Exercise 1) Sorting</h3>
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Sorting">
 <ol>
 <li>Write a function <br/>
 <pre>int disorder(int arr[], int n);
@@ -60,8 +70,8 @@ Output: There are 2 pairs of values out of order!  // because 3 > 1 and 4 > 0
 	from standard input, ending with zero, sorts them, and prints
 	them in ascending order. <br/>
     The maximum size of the sequence is	lower than 1000. Choose any of the three sorting algorithms presented in the theoretical lecture.
-<br/><details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- The <code><strong>main</strong></code> function in your program should:
   </p><ol type="a">
 <li>declare an indexed variable with a maximum size (e.g., 1000),</li>
@@ -82,14 +92,10 @@ Output: There are 2 pairs of values out of order!  // because 3 > 1 and 4 > 0
 </pre>
 </li>
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi024.html">[PI024] Odd Numbers Sorting</a><br/>  
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi024.html">[PI024] Odd Numbers Sorting</a><br/>  
   Read the problem statement and try to submit an Accepted solution. <strong>Don't forget to test it first on your computer!</strong>
-<br/>
-<details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- The problem is essentially about sorting an array, but with a different notion of "less than". Instead of directly comparing values, you must apply the rules:</p>
 <ol>
 <li>If both numbers are odd or both are even, the smaller value comes first.</li>
@@ -128,15 +134,15 @@ Output: There are 2 pairs of values out of order!  // because 3 > 1 and 4 > 0
 </pre>
 </li>
 </ol>
-
-<h3>Exercise 2) Still about Recursion</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Still about Recursion">
 <ol>
 <li><strong>The Enchanted Mirror.</strong> A wizard’s enchanted mirror can only reflect correctly if a word or a sentence is reversed using magic recursion.<br/>
   	Write a recursive function to reverse a given word/sentence:<br/>
 <pre>void reverseString(char str[], int start, int end);
 </pre>
-<br/><details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- You can swap characters between <code><strong>start</strong></code> and <code><strong>end</strong></code> recursively. 
       </p></details>
 <br/>
@@ -167,30 +173,22 @@ Output: There are 2 pairs of values out of order!  // because 3 > 1 and 4 > 0
 </pre></li>
 
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi026.html">[PI026] Hanoi</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi026.html">[PI026] Hanoi</a><br/> 
   The Tower of Hanoi is a classic puzzle. This problem was covered in the lecture.<br/>
   You now have the opportunity to implement it and submit an Accepted solution. 
 
-  <br/>
-<details name="hint">
-<summary><em>Hints</em></summary>
+  <details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- Refer to the slides from the <a href="../apontamentos/5_recursion.pdf">recursion lecture</a>.</p>
 </details>
 </li>
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi028.html">[PI028] Permutations</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi028.html">[PI028] Permutations</a><br/> 
   Given an integer <code><strong>n</strong></code>, print all permutations of the numbers from <code><strong>1</strong></code> to <code><strong>n</strong></code>, each on its own line, in increasing lexicographic order.<br/>
   Read the problem statement carefully and try to submit an Accepted solution.
 
-  <br/>
-<details name="hint">
-<summary><em>Hints</em></summary>
+  <details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- A permutation of <code><strong>n</strong></code> elements is built by choosing an element for the first position, and then filling the remaining <code><strong>n-1</strong></code> positions with the remaining elements. This suggests a recursive approach.</p>
 <p>- You can implement a function <code><strong>solve(x)</strong></code> that decides which element to place at position <code><strong>x</strong></code>, and then calls <code><strong>solve(x+1)</strong></code> for the next positions.</p>
 <p>- The base case is <code><strong>x == n</strong></code>: the permutation is complete, so you can print it.</p>
@@ -221,8 +219,8 @@ Output: Possible subsets:
 </script></uc-code></li>
 
 </ol>
-
-<h3>Exercise 3) Structures</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-3" title="Structures">
 <ol>
 <li><h4>Struct <code>Point</code></h4>
 <p>Consider the following structure presented in the theoretical classes, which represents the points in <math>
@@ -352,15 +350,11 @@ ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
 </ol>
 
 </li><li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi029.html">[PI029] The Tax Collector</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi029.html">[PI029] The Tax Collector</a><br/> 
   Now that you have practiced with structures, read the statement of problem PI029 and try to submit an Accepted solution.
 
-  <br/>
-<details name="hint">
-<summary><em>Hint</em></summary>
+  <details class="uc-hint" name="hint">
+<summary>Hint</summary>
 <p>- Each company has 5 fields, each on a separate line. Note that the company name and the activity area are strings that may contain spaces — therefore, you cannot use <code><strong>scanf("%s", ...)</strong></code> to read them. Use <code><strong>fgets</strong></code> or read character by character until the end of the line.</p>
 <p>- The activity code is an integer between 1 and 100. This allows using an array <code>act[101]</code> initialized to zero, where <code><em>act[i]</em></code> accumulates the total revenue of all companies with code <code><strong>i</strong></code>.</p>
 <p>- For <code><strong>flag == 0</strong></code>, simply count how many positions in the array are non-zero.</p>
@@ -371,15 +365,11 @@ ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
 </li>
 
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi030.html">[PI030] University Access Statistics</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi030.html">[PI030] University Access Statistics</a><br/> 
   Read the problem statement and try to submit an Accepted solution.
 
-  <br/>
-<details name="hint">
-<summary><em>Hint</em></summary>
+  <details class="uc-hint" name="hint">
+<summary>Hint</summary>
 <p>- You need two arrays:</p>
 <ul>
 <li>One with all the applicants (needed for <code><strong>flag == 1</strong></code>, where you must print them in the order they were read).</li>
@@ -452,9 +442,10 @@ The function should fill at most <code><strong>n</strong></code> elements of the
 </ol>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

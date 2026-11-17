@@ -5,41 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 05 · Mooshak, Strings and Pointers · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 5: Mooshak, Strings and Pointers">
+  <link rel="alternate" hreflang="pt" href="aula05_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="5">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula05.html">
+    <uc-guide week="5" week-label prev="aula04.html" next="aula06.html">
     <h1>Practical Class 05 · Mooshak, Strings and Pointers</h1>
-    <p class="uc-small"><a href="aula05_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi011.html">[PI011] Tic-Tac-Toe</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi012.html">[PI012] Word Search</a> (weight 20%) (extra exercise)</li>
-<li><a href="problems/pi013.html">[PI013] Game of Life</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi014.html">[PI014] The World of the Turtle</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi015.html">[PI015] Anagrams</a> (weight 20%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula05">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi011.html">Tic-Tac-Toe</a> <code>PI011</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi012.html">Word Search</a> <code>PI012</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi013.html">Game of Life</a> <code>PI013</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi014.html">The World of the Turtle</a> <code>PI014</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi015.html">Anagrams</a> <code>PI015</code> <data value="20">20 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>March 31</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3> Exercise 1) Understanding Pointers</h3>
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Understanding Pointers">
 <ol>
 <li>Let <code><strong>i</strong></code> be an integer variable and <code><strong>p</strong></code> and <code><strong>q</strong></code> be pointers to integers. Indicate which of the following assignments are legal.<br/>
 <ol type="a">
@@ -101,11 +111,10 @@ int *p = &amp;a[1], *q = &amp;a[5];
 <pre>middle = (low + high) / 2;
 </pre>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi011.html">[PI011] Tic-Tac-Toe</a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi011.html">[PI011] Tic-Tac-Toe</a><br/>  
       Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
-<br/><br/><details name="hint">
-<summary><em>Hints #1 - Thinking about the problem...</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints #1 - Thinking about the problem...</summary>
 <p>- What are the possible output situations? Think about how you should check them...
 </p><p>- The following situations exist:
   </p><ol>
@@ -124,8 +133,8 @@ int *p = &amp;a[1], *q = &amp;a[5];
     </li><li> If that value is equal to <code>N×N</code>, it is a draw; otherwise, the game has not finished yet.
   </li></ul>
 </details>
-<br/><br/><details name="hint">
-<summary><em>Hints #2 - Reading the game board...</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints #2 - Reading the game board...</summary>
 <p>- The board is an <code>N×N</code> matrix of characters. You can read it row by row (i.e., as a string) using the function <code><strong>scanf("%s", ...)</strong></code>. 
 </p><p>- Declare a two-dimensional <code><strong>char</strong></code> array with sufficient size to store each row (<em>note: </em>do not forget the <code><strong>'\0'</strong></code> character at the end of each string).
       </p></details>
@@ -143,8 +152,8 @@ void storezeros(int a[], int n){
 <li>In the previous practical class you had to write a program to
     produce an Inverted Identity Matrix, where you used two nested for
     loops to accomplish it. Rewrite that code, to print the Identity Matrix (instead of the inverted) using a single pointer to step through the array one element at a time. 
-<br/><details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- Since we won't be using row and col index variables, it won't be easy to tell where to store the one's (1). 
 </p><p>- Instead, we can use the fact that the first element of the array should be 1; the next N elements should be 0; the next element should be 1; and so forth. 
 </p><p>- Use a variable to keep track of how many consecutive 0's have been stored: when the count reaches N, it’s time to store 1.
@@ -163,17 +172,16 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 }
 </script></uc-code>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi013.html">[PI013] Game of Life </a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi013.html">[PI013] Game of Life </a><br/>  
       Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
-<br/><br/><details name="hint">
-<summary><em>Hints #1 - Thinking about the problem...</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints #1 - Thinking about the problem...</summary>
 <p>- The game evolves in iterations. 
 </p><p>- In each iteration, the new state of all cells is calculated based on the current state — never on the new state being calculated. 
 </p><p>- A live cell dies if it has 0, 1, or 4+ alive neighbors; a dead cell becomes alive if it has exactly 3 alive neighbors.
       </p></details>
-<br/><br/><details name="hint">
-<summary><em>Hints #2</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints #2</summary>
 <p>- Start by reading the initial state of the matrix.
 </p><p>- Begin a loop that iterates <code><strong>I</strong></code> times, and in each iteration calculate the next state and replace the current one.
   </p><ul>
@@ -209,8 +217,8 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 	The result should be a pointer to the first occurrence of the <code><strong>ch</strong></code> character (if it occurs) or <code><strong>NULL</strong></code> otherwise.
      </li>
 </ol>
-
-<h3> Exercise 2) More Problems with Pointers and Strings</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="More Problems with Pointers and Strings">
 <ol>
 <li>Implement a function similar to the predefined function in C:<br/>
 <pre>char *strcat(char s1[], char s2[]);
@@ -237,11 +245,10 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 </pre><br/>
 	which determines the position where the string <code><strong>s2</strong></code> occurs in the string <code><strong>s1</strong></code>. The function should return <code><strong>NULL</strong></code> if <code><strong>s2</strong></code> does not occur in <code><strong>s1</strong></code>.
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi014.html">[PI014] The World of the Turtle </a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi014.html">[PI014] The World of the Turtle </a><br/>  
       Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
-<br/><br/><details name="hint">
-<summary><em>Hints </em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- Save the state of the turtle.
   </p><ul>
 <li> The turtle has four attributes you need to save: position (x, y), current direction, and whether the pen is up or down.
@@ -302,9 +309,10 @@ truncW(text, 4);  // text becomes "univ facu and frat"
 </ol>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula05.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

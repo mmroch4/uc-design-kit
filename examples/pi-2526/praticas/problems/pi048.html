@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI048] Between Brackets</li></ol>
-    </nav>
-    <h1>[PI048] Between Brackets</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi048.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI048] Between Brackets</li></ol>
+      </nav>
+      <h1>Between Brackets</h1>
+      <uc-problem code="PI048" judge="mooshak" deadline="aula09" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -53,29 +56,25 @@ messages (in Portuguese):</p>
 the character <code>(</code> is at position 0, <code>+</code> is at position 4, and <code>)</code> is at position 8.</p>
 <p>All non-bracket characters can be ignored — for this problem, only brackets matter.</p>
 <h2>Example Input/Output</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input</th>
-<th scope="col">Output</th>
-</tr>
-<tr>
-<td>
-<pre>5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 ( 1 )
 ( 1 + 2 ) )
 [ ( ] )
 ( 1 + ( 2 )
 ( 1 + ( 2 + 3 * ( 4 + 5 * ( 6 * ( 7 ) ) ) ) )</pre>
-</td>
-<td>
-<pre>Expressao bem formada
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Expressao bem formada
 Erro na posicao 10
 Erro na posicao 4
 Ficam parenteses por fechar
 Expressao bem formada</pre>
-</td>
-</tr>
-</table></div>
+</div>
+</div>
 <p><strong>Suggestion:</strong> Use this code to handle the input and just implement the <code>verify()</code>
 function and/or other functions that you may find necessary. Submit the full program.</p>
 <pre>#include &lt;stdio.h&gt;
@@ -144,29 +143,26 @@ sítio em causa. Por exemplo, na linha "<code>( 1 + 2 )</code>", o <code>(</code
 problema em particular, é irrelevante.
 
 </p><h2>Exemplo de input/output</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input</th>
-<th scope="col">Output</th>
-</tr>
-<tr>
-<td>
-<pre>5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 ( 1 )
 ( 1 + 2 ) )
 [ ( ] )
 ( 1 + ( 2 )
 ( 1 + ( 2 + 3 * ( 4 + 5 * ( 6 * ( 7 ) ) ) ) )</pre>
-</td>
-<td>
-<pre>Expressao bem formada
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Expressao bem formada
 Erro na posicao 10
 Erro na posicao 4
 Ficam parenteses por fechar
 Expressao bem formada
-<pre></pre></pre></td>
-</tr>
-</table></div>
+<pre></pre>
+</div>
+</div>
 <p><strong>Sugestão:</strong> Use o código seguinte para a leitura e implemente
 apenas a função <code>verify()</code> e outras que considere
 necessárias. Submeta o programa completo.</p>
@@ -193,7 +189,6 @@ int main() {
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi048.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

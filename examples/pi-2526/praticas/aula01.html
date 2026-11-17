@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 01 · Introduction to C · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 1: Introduction to C">
+  <link rel="alternate" hreflang="pt" href="aula01_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="1">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula01.html">
+    <uc-guide week="1" week-label next="aula02.html">
     <h1>Practical Class 01 · Introduction to C</h1>
-    <p class="uc-small"><a href="aula01_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2>Installing C
 
@@ -40,7 +40,7 @@
 <ul>
 </ul>
 
-<h3>Exercise 1) A First Program in C</h3>
+<uc-exercise id="exercicio-1" title="A First Program in C">
 <p>Consider the following program. It prints all even numbers between 2 and <em>n</em> (where, <em>n=20</em>).</p>
 <uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
@@ -85,8 +85,8 @@ $
 </li><li>The expected output should include an additional line: Sum = 100 (for <em>n=20</em>). 
 </li></ul>
 </li></ol>
-
-<h3>Exercise 2) Drawing Shapes on the Screen</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Drawing Shapes on the Screen">
 <ol>
 <li><strong>Squares on the Screen.</strong><br/>
       Write a program that prints on the screen (using <em><strong>#</strong></em> character) a square of size  <strong>4</strong>. The result of running your program should be as shown below.
@@ -111,8 +111,8 @@ _#_#_
 </script></uc-code>
 </li></ul>
 </li></ol>
-
-<h3>Exercise 3) Counting in sequences of values</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-3" title="Counting in sequences of values">
 <p>Write small programs that solve the following challenges:</p>
 <ol>
 <li>Assign a number to the variable <code>n</code> and output the number of digits that
@@ -129,9 +129,10 @@ _#_#_
     and displays the two largest values in the given sequence.</li>
 <li>Modify the previous program to determine the length of the longest sequence of positive numbers that appears in the sequence of <code>n</code> elements read.</li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula01.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI040] Josephus Flower</li></ol>
-    </nav>
-    <h1>[PI040] Josephus Flower</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi040.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI040] Josephus Flower</li></ol>
+      </nav>
+      <h1>Josephus Flower</h1>
+      <uc-problem code="PI040" judge="mooshak" deadline="aula08" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -40,21 +43,21 @@ The petal you end up with will determine your chosen love!</p>
 <p>Given the number of love candidates, determine which one will be chosen.</p>
 <h2>Input</h2>
 <p>You are given a single line with an integer <code>n</code> (<code>1 &lt;= n &lt;= 1000</code>), representing the number of candidates (and petals).</p>
-<h2>Ouput</h2>
+<h2>Output</h2>
 <p>Print a line with the chosen candidate.</p>
 <h2>Example 1</h2>
-<h3>
-Input
-</h3>
-<pre>
-7
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">7
 </pre>
-<h3>
-Output
-</h3>
-<pre>
-7
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">7
 </pre>
+</div>
+</div>
 <h3>
 Explanation
 </h3>
@@ -102,14 +105,18 @@ v
 <p>Now only petal 7 remains. Thus, candidate 7 is the chosen one!
 
 </p><h2>Example 2</h2>
-<h3>Input</h3>
-<pre>
-5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 </pre>
-<h3>Output</h3>
-<pre>
-3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3
 </pre>
+</div>
+</div>
 
 </section><section lang="pt">
 
@@ -136,14 +143,18 @@ A pétala que sobrar determinará o amor escolhido!</p>
 <h2>Output</h2>
 <p>Imprima uma linha com o número do candidato escolhido.</p>
 <h2>Exemplo 1</h2>
-<h3>Input</h3>
-<pre>
-7
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">7
 </pre>
-<h3>Output</h3>
-<pre>
-7
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">7
 </pre>
+</div>
+</div>
 <h3>Explicação</h3>
 <p>Começamos com as pétalas numeradas de 1 a 7:</p>
 <code>
@@ -188,18 +199,21 @@ v
 </code>
 <p>Agora resta apenas a pétala 7. Assim, o candidato 7 é o escolhido!</p>
 <h2>Exemplo 2</h2>
-<h3>Input</h3>
-<pre>
-5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 </pre>
-<h3>Output</h3>
-<pre>
-3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3
 </pre>
+</div>
+</div>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi040.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

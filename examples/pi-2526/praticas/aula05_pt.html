@@ -5,49 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aula Prática 05 · Mooshak, Strings e Apontadores · Programação Imperativa 2025/26</title>
   <meta name="description" content="Programação Imperativa (CC1003), aula prática 5: Mooshak, Strings e Apontadores">
+  <link rel="alternate" hreflang="en" href="aula05.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="5">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula05_pt.html">
+    <uc-guide week="5" week-label prev="aula04_pt.html" next="aula06_pt.html">
     <h1>Aula Prática 05 · Mooshak, Strings e Apontadores</h1>
-    <p class="uc-small"><a href="aula05.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
 <p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
-</p><ul>
-<li><a href="problems/pi011_pt.html">[PI011] Jogo
-      do Galo</a> (peso 40%) (main exercise)</li>
-<li>[PI012] Sopa
-      de Letras (peso 20%) (extra exercise)</li>
-<li><a href="problems/pi013_pt.html">[PI013] Jogo
-      da Vida</a> (peso 40%) (main exercise)</li>
-<li><a href="problems/pi014_pt.html">[PI014] O
-      Mundo da Tartaruga</a> (peso 40%) (main exercise)</li>
-<li>[PI015] Anagramas (peso 20%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula05">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi011_pt.html">Jogo do Galo</a> <code>PI011</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra">Sopa de Letras <code>PI012</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi013_pt.html">Jogo da Vida</a> <code>PI013</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi014_pt.html">O Mundo da Tartaruga</a> <code>PI014</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra">Anagramas <code>PI015</code> <data value="20">20 %</data></li>
 </ul>
-<p><mark><strong>Prazo de submissão:</strong> <strong>31 de Março</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
-<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
-    obterem sugestões de como abordar um determinado problema, mas
-    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
-    solução. Esta é a melhor forma de ficarem competentes na
-    resolução destes problemas (ou
-    seja aprenderem)  e habituados a ultrapassar as
-    dificuldades que possam surgir. O mesmo se aplica ao uso do
-    ChatGPT ou outras LLMs. 
-    <mark>Evitem pedir a solução, peçam antes
-    sugestões de como abordar o problem com a indicação para não vos
-    ser dado o código da solução.</mark></strong><br/>
-</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
-Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
-Cada aula vale 10% da nota desta componente.<br/>  
-Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
-Para ter 100% bastará sempre resolver os exercícios principais.</p>
+</section>
+</uc-problems>
+<p>Submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>.</p>
+<div class="uc-callout">
+<p>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+  obterem sugestões de como abordar um determinado problema, mas
+  façam um esforço genuíno para depois codificarem e porem a funcionar a vossa
+  solução. Esta é a melhor forma de ficarem competentes na
+  resolução destes problemas (ou
+  seja aprenderem)  e habituados a ultrapassar as
+  dificuldades que possam surgir. O mesmo se aplica ao uso do
+  ChatGPT ou outras LLMs.
+  <strong>Evitem pedir a solução, peçam antes
+  sugestões de como abordar o problema com a indicação para não vos
+  ser dado o código da solução.</strong></p>
+</div>
+<ul>
+<li>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</li>
+<li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+<li>Cada aula vale 10% da nota desta componente.</li>
+<li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+<li>Para ter 100% bastará sempre resolver os exercícios principais.</li>
+</ul>
 
-<h3>Exercício 1) Entendendo Apontadores</h3>
+<h2>Exercícios</h2>
+<uc-exercise id="exercicio-1" title="Entendendo Apontadores">
 <ol>
 <li>Sejam <code><strong>i</strong></code> uma variável inteira e <code><strong>p</strong></code> e <code><strong>q</strong></code> apontadores para inteiros. Indique quais das seguintes atribuições são corretas. <br/>
 <ol type="a">
@@ -112,11 +118,10 @@ int *p = &amp;a[1], *q = &amp;a[5];
 <pre>middle = (low + high) / 2;
 </pre>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi011_pt.html">[PI011] Jogo do Galo</a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi011_pt.html">[PI011] Jogo do Galo</a><br/>  
       Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
-<br/><br/><details name="hint">
-<summary><em>Sugestão #1 - Pensando no problema...</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão #1 - Pensando no problema...</summary>
 <p>- Quais as situações possíveis de output? Pense como as deves verificar... 
 </p><p>- Há as seguintes situações: 
   </p><ol>
@@ -135,8 +140,8 @@ int *p = &amp;a[1], *q = &amp;a[5];
     </li><li> Se esse valor for igual a <code>N×N</code>, é empate; caso contrário, o jogo ainda não terminou.
   </li></ul>
 </details>
-<br/><br/><details name="hint">
-<summary><em>Sugestão #2 - Ler o tabuleiro de jogo...</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão #2 - Ler o tabuleiro de jogo...</summary>
 <p>- O tabuleiro é uma matrix <code>N×N</code> de caracteres. Pode lê-lo linha a linha (i.e., como uma string) usando a função <code><strong>scanf("%s", ...)</strong></code>. 
 </p><p>- Declara um array bidimensional de <code><strong>char</strong></code> com dimensão suficiente para guardar cada linha (<em>nota: </em>não se esqueça do carater <code><strong>'\0'</strong></code> no final de cada string).
       </p></details>
@@ -159,8 +164,8 @@ void storezeros(int a[], int n){
     matriz. Reescreva esse código de modo a escrever como output a
     Matriz Identidade (em vez da invertida) fazendo uso de apenas um apontador
     para percorrer os elementos da matriz. 
-<br/><details name="hint">
-<summary><em>Sugestão</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Como não vamos usar variáveis indexadas (indíces de linha e de coluna), não será fácil dizer onde colocar 1. 
 </p><p>- Em vez disso, podemos utilizar o facto de que o primeiro elemento da matriz deve ser 1; os N elementos seguintes devem ser 0; o elemento seguinte deve ser 1; e assim por diante. 
 </p><p>- Utilize uma variável para saber quantos 0's consecutivos foram armazenados: quando a contagem atingir N, é altura de colocar 1.
@@ -181,17 +186,16 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 }
 </script></uc-code>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi013_pt.html">[PI013] Jogo da Vida </a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi013_pt.html">[PI013] Jogo da Vida </a><br/>  
       Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
-<br/><br/><details name="hint">
-<summary><em>Sugestão #1 - Pensando no problema...</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão #1 - Pensando no problema...</summary>
 <p>- O jogo evolui em iterações. 
 </p><p>- Em cada iteração, o novo estado de todas as células é calculado com base no estado atual — nunca no novo estado que está a ser calculado. 
 </p><p>- Uma célula viva morre se tiver 0, 1 ou 4+ vizinhos vivos; uma célula morta nasce se tiver exatamente 3 vizinhos vivos.
       </p></details>
-<br/><br/><details name="hint">
-<summary><em>Sugestão #2</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão #2</summary>
 <p>- Comece por ler o estado inicial da matrix.
 </p><p>- Inicie um ciclo que itere <code><strong>I</strong></code> vezes e em cada iteração calcule o próximo estado e substitua o atual.
   </p><ul>
@@ -207,7 +211,7 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 <pre>void decompose(int totalSegs, int *horas, int *mins, int *segs);
 </pre><br/>
 	Dado um valor <code><strong>totalSegs</strong></code> com o total de segundos, a
-	função decompõe este avor em horas, minutos (0-59) e segundos (0-59); os resultados devem ser atribuídos ao conteúdo dos apontadores <code><strong>horas</strong></code>, <code><strong>mins</strong></code> e <code><strong>segs</strong></code>. Pode assumir que o total de segundos é maior que zero.
+	função decompõe este valor em horas, minutos (0-59) e segundos (0-59); os resultados devem ser atribuídos ao conteúdo dos apontadores <code><strong>horas</strong></code>, <code><strong>mins</strong></code> e <code><strong>segs</strong></code>. Pode assumir que o total de segundos é maior que zero.
 </li>
 <li>Implemente uma função com a seguinte declaração:<br/>
 <pre>void twoLargest(int vec[], int size, int *pmax1, int *pmax2);
@@ -219,18 +223,18 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 	<code><strong>pmax1</strong></code> e <code><strong>pmax2</strong></code>. Pode assumir que
 	<code><strong>size</strong></code> é sempre maior que um.
 </li>
-<li>Considere a função apresentada na aula teórica para inverter a ordem de caracteres de uma cadeia. Pretende-se que escreva uma versão alternativa desta função usando apontadores em vez de índices. A função dever ter a declaração seguinte:<br/>
+<li>Considere a função apresentada na aula teórica para inverter a ordem de caracteres de uma cadeia. Pretende-se que escreva uma versão alternativa desta função usando apontadores em vez de índices. A função deve ter a declaração seguinte:<br/>
 <pre>void reverse(char *str);
 </pre>
 </li>
-<li>Escreva uma função para procurar um caracter numa string, usando apontadores. A função dever ter a declaração seguinte:<br/>
+<li>Escreva uma função para procurar um caracter numa string, usando apontadores. A função deve ter a declaração seguinte:<br/>
 <pre>char *occursAt(char *str, char ch);
 </pre><br/>
 	O resultado deve ser um apontador para a primeira ocorrência do caracter <code><strong>ch</strong></code> (se este ocorrer) ou <code><strong>NULL</strong></code> caso contrário.
      </li>
 </ol>
-
-<h3>Exercício 2) Mais Problemas com Apontadores e Strings</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Mais Problemas com Apontadores e Strings">
 <ol>
 <li>Implemente a função pré-definida na biblioteca 
 	<code><strong>strings.h</strong></code> do C:<br/>
@@ -245,7 +249,7 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 </pre><br/>
 	que copia a string <code><strong>source</strong></code> para a string <code><strong>dest</strong></code> e retorna o valor desta última.
 </li>
-<li>Implemente a função pré-definidana  biblioteca 
+<li>Implemente a função pré-definida na biblioteca 
 	<code><strong>strings.h</strong></code> do C: <br/>
 <pre>int strcmp(char s1[], char s2[]);
 </pre><br/>
@@ -263,11 +267,10 @@ int sumTwoDimensionalArray(const int a[][LEN], int n) {
 	que determina a posição onde a string <code><strong>s2</strong></code> ocorre na string <code><strong>s1</strong></code>. 
   A função deverá retornar <code><strong>NULL</strong></code> caso <code><strong>s2</strong></code> não ocorra em <code><strong>s1</strong></code>.
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi014_pt.html">[PI014]  Mundo da Tartaruga </a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi014_pt.html">[PI014]  Mundo da Tartaruga </a><br/>  
       Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
-<br/><br/><details name="hint">
-<summary><em>Sugestão </em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Gruarde o estado da tartaruga.
   </p><ul>
 <li> A tartaruga tem quatro atributos que precisas de guardar: posição (x, y), direção atual, e se a caneta está para cima ou para baixo.
@@ -298,7 +301,7 @@ truncW(text, 4);  // text deverá ser "univ facu e frat"
 <pre>int remConsecutives(char s[]);
 </pre><br/>
 	em que dada uma string <code><strong>s</strong></code>, a função remove todos os
-	carateres repetidos, produzind uma substring da string
+	carateres repetidos, produzindo uma substring da string
 	original em que os caracteres são todos diferentes.
 <br/>Exemplo:
 <pre>int result = remConsecutives(<mark>"aabcccaac"</mark>); 
@@ -323,9 +326,10 @@ que coloca no array <code><strong>res</strong></code> o resultado da intersecç�
 </ol>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula05_pt.html">site original</a>.</p>
   </uc-page>
 </body>
 </html>

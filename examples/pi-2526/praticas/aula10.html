@@ -5,43 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 10 · Linked Lists · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 10: Linked Lists">
+  <link rel="alternate" hreflang="pt" href="aula10_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="10">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula10.html">
+    <uc-guide week="10" week-label prev="aula09.html" next="aula11.html">
     <h1>Practical Class 10 · Linked Lists</h1>
-    <p class="uc-small"><a href="aula10_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi049.html">[PI049] Lake Buldozing</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi050.html">[PI050] Survival of the Fittest</a> (weight 20%) (extra exercise)</li>
-<li><a href="problems/pi051.html">[PI051] Clinic Chaos</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi052.html">[PI052] Reversed Polish Notation</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi053.html">[PI053] Duplicate Elements</a> (weight 30%) (extra exercise)</li>
-<li><a href="problems/pi054.html">[PI054] Remove All</a> (weight 30%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula10">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi049.html">Lake Buldozing</a> <code>PI049</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi050.html">Survival of the Fittest</a> <code>PI050</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi051.html">Clinic Chaos</a> <code>PI051</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi052.html">Reversed Polish Notation</a> <code>PI052</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi053.html">Duplicate Elements</a> <code>PI053</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi054.html">Remove All</a> <code>PI054</code> <data value="30">30 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>June 11</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3>Exercise 1) Methods for Linked Lists</h3>
-
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Methods for Linked Lists">
 For the following exercises, consider the following data structure to represent linked lists of integer values, based on the structure presented in the theoretical lectures:<br/><br/>
 <uc-code collapsible="" data-lang="c"><script type="text/plain">
 #define NodeInfo int
@@ -94,17 +103,16 @@ The function should return the <strong>new</strong> first element of the list.
 </pre><br/>
       that receives as argument the first element of an <strong>unsorted</strong> linked list and prints the values contained in the list in <strong>ascending order</strong>. 
 
-<details name="hint">
-<summary><em>Hint</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint</summary>
 <p>- you may use an <em>array</em> of pointers to store pointers to the nodes (elements) of the linked list, and then apply a sorting algorithm (e.g., <code><strong>qsort()</strong></code>) to the <em>array</em>. 
       </p><p>- However, be careful: in this case, the values to compare during the sorting are the data fields of the nodes pointed to by the pointers in the <em>array</em>.
 
   </p></details>
 </li>
 </ol>
-
-<h3>Exercise 2) Book Management</h3>
-
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Book Management">
 Based on the <code><strong>LinkedList</strong></code> data structure and the functions developed in Exercise 1, write a program to manage the book records of a library. For each book, the library stores the following information: a unique identifier (an integer value), title (a string), author’s name (a string), year of publication (an integer value), and acquisition date (a structure containing day, month, and year information). <br/><br/>
 
 Your task is to use a linked list to store the data related to the books in the library, as well as to manage the flow of books that enter and leave the library. <br/>
@@ -143,8 +151,8 @@ typedef struct {
 <pre>void print_by_author(LinkedList *list, char *name);
 </pre>
 
-<details name="hint">
-<summary><em>Hint</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint</summary>
 <p>- use the <code><strong>strstr()</strong></code> function from the <code><strong>string.h</strong></code> library to search for a substring within a larger string.
 
   </p></details>
@@ -154,8 +162,8 @@ typedef struct {
 <pre>void printSortByTitle(Node *first);
 </pre>
 
-<details name="hint">
-<summary><em>Hint</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint</summary>
 <p>- use an <em>array</em> of pointers and the function <code><strong>qsort()</strong></code> together with <code><strong>strcmp()</strong></code>.
 
   </p></details>
@@ -239,9 +247,10 @@ int main() {
     return 0;
 }
 </script></uc-code>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula10.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

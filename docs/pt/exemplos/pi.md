@@ -60,8 +60,8 @@ O [`course.js`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/pi-2
 | Nível | No exemplo |
 | --- | --- |
 | 0: `course.js` | A cor de destaque (`#C2410C`), as línguas, as páginas e as plataformas. |
-| 2: CSS livre | O [`theme.css`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/pi-2526/theme.css) tem a fórmula da nota, os cartões da bibliografia e o `pre` dos enunciados, só com tokens. |
-| 4: HTML livre | Os guiões, a ajuda do Mooshak e os 112 enunciados: HTML do site antigo dentro de `<uc-page>` e `uc-content`. |
+| 2: CSS livre | O [`theme.css`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/pi-2526/theme.css) tem uma única regra (o `pre` dos enunciados parte as linhas longas): o resto vem dos componentes e dos blocos do kit. |
+| 4: HTML livre | O texto dos guiões, da ajuda do Mooshak e dos 112 enunciados continua a ser o HTML do site antigo dentro de `uc-content`, mas com componentes à volta: `<uc-exercise>` e `<uc-problems>` nos guiões, `<uc-problem>` e `uc-samples` nos enunciados. |
 
 ## Migrar um site antigo
 

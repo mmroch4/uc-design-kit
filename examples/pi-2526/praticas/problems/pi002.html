@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI002] The Chessboard Challenge</li></ol>
-    </nav>
-    <h1>[PI002] The Chessboard Challenge</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi002.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI002] The Chessboard Challenge</li></ol>
+      </nav>
+      <h1>The Chessboard Challenge</h1>
+      <uc-problem code="PI002" judge="mooshak" deadline="aula03" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p><img alt="" class="uc-content__float" loading="lazy" src="pi002.png"/> In the kingdom of CodeLand, a royal artisan has been tasked with designing a beautiful, alternating pattern for the castle's grand floor. The pattern must follow strict rules—each tile must alternate between two symbols: <code>#</code> and <code>_</code>, just like a classic chessboard.</p>
 <p>The artisan, however, is struggling to create the pattern for different floor sizes. The king has requested a program that, given a number nn, generates an n×nn×n board with the alternating pattern. Can you help create the perfect design?</p>
@@ -28,45 +31,34 @@ representing the size of a <code>nxn</code> board.
 and <code>_</code>. The top-left square should always be <code>#</code>.
 </p>
 <h2>Input/Output Examples</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 2</th>
-<th scope="col">Output 2</th>
-</tr>
-<tr>
-<td>
-<pre>3</pre>
-</td>
-<td>
-<pre>
-#_#
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 2</p>
+<pre data-copy="Input 2">3</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 2</p>
+<pre data-copy="Output 2">#_#
 _#_
 #_#
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 2</th>
-<th scope="col">Output 2</th>
-</tr>
-<tr>
-<td>
-<pre>4</pre>
-</td>
-<td>
-<pre>
-#_#_
+</div>
+</div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 2</p>
+<pre data-copy="Input 2">4</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 2</p>
+<pre data-copy="Output 2">#_#_
 _#_#
 #_#_
 _#_#
 </pre>
-</td>
-</tr>
-</table></div>
+</div>
+</div>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi002.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

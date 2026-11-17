@@ -9,16 +9,22 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-sort.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/sorting.html">
+    <nav class="uc-crumbs" aria-label="Breadcrumb">
       <ol><li><a href="index.html">Código</a></li><li aria-current="page">Sorting Methods: selection, insertion, bubble</li></ol>
     </nav>
     <h1>Sorting Methods: selection, insertion, bubble</h1>
     <div class="uc-content">
 <p>This is an implementation of 3 quadratic sorting methods: selection
 of minimum, insertion, and bubble sort. An example of use is also given.</p>
+<h2>See it run</h2>
+<p>Step through insertion sort on a small array, then switch to selection or bubble sort in the widget.</p>
+<uc-widget-sort values="5 2 9 1 7 3" algorithm="insertion">
+<p>Insertion sort of 5 2 9 1 7 3 gives 1 2 3 5 7 9.</p>
+</uc-widget-sort>
 <h2>quadraticSorting.c</h2>
 <uc-code collapsible="" data-lang="c" filename="quadraticSorting.c"><script type="text/plain">
 // -------------------------------------------------
@@ -134,7 +140,6 @@ void bubbleSort3(int v[], int n) {
 }
 </script></uc-code>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/sorting.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI050] Survival of the Fittest</li></ol>
-    </nav>
-    <h1>[PI050] Survival of the Fittest</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi050.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI050] Survival of the Fittest</li></ol>
+      </nav>
+      <h1>Survival of the Fittest</h1>
+      <uc-problem code="PI050" judge="mooshak" deadline="aula10" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -53,7 +56,7 @@ Input
 <li>The final line contains 10 distinct integers between 1 and 500, specifying the power of each species from <code>0</code> to <code>9</code>.</li>
 </ul>
 <h2>
-Ouput
+Output
 </h2>
 <p>
 Print the final state of the Petri dish — <code>n</code> lines each with <code>m</code> characters — after the simulation has stabilized.
@@ -82,9 +85,11 @@ Example Output 1
 9999
 9999
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-6 6
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">6 6
 #4##41
 #8###4
 #098#6
@@ -93,15 +98,18 @@ Example Output 1
 #34#6#
 286 102 464 166 52 430 32 363 118 143
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-#2##11
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">#2##11
 #2###1
 #222#1
 22#2##
 ##22##
 #22#6#
 </pre>
+</div>
+</div>
 
 </section><section lang="pt">
 
@@ -158,9 +166,11 @@ Example Output 1
 9999
 9999
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-6 6
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">6 6
 #4##41
 #8###4
 #098#6
@@ -169,19 +179,21 @@ Example Output 1
 #34#6#
 286 102 464 166 52 430 32 363 118 143
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-#2##11
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">#2##11
 #2###1
 #222#1
 22#2##
 ##22##
 #22#6#
 </pre>
+</div>
+</div>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi050.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -5,48 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aula Prática 09 · Recursão, Ordenação e Arrays · Programação Imperativa 2025/26</title>
   <meta name="description" content="Programação Imperativa (CC1003), aula prática 9: Recursão, Ordenação e Arrays">
+  <link rel="alternate" hreflang="en" href="aula09.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="9">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09_pt.html">
+    <uc-guide week="9" week-label prev="aula08_pt.html" next="aula10_pt.html">
     <h1>Aula Prática 09 · Recursão, Ordenação e Arrays</h1>
-    <p class="uc-small"><a href="aula09.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <p><a href="aula09.html">Version in English</a><br/>
 </p>
 <h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
 <p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
-</p><ul>
-<li><a href="problems/pi043.html">[PI043] Eval</a> (peso 30%) (exercício principal)</li>
-<li><a href="problems/pi044.html">[PI044] Beyblade Arena</a> (peso 20%) (exercício extra)</li>
-<li><a href="problems/pi045.html">[PI045] Connect Four in Two</a> (peso 40%) (exercício principal)</li>
-<li><a href="problems/pi046.html">[PI046] Largest Microbe Colony</a> (peso 40%) (exercício principal)</li>
-<li><a href="problems/pi047.html">[PI047] Pim, Pam, Pum!</a> (peso 20%) (exercício extra)</li>
-<li><a href="problems/pi048.html">[PI048] Between Brackets</a> (peso 20%) (exercício extra)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula09">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi043.html">Eval</a> <code>PI043</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi044.html">Beyblade Arena</a> <code>PI044</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi045.html">Connect Four in Two</a> <code>PI045</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi046.html">Largest Microbe Colony</a> <code>PI046</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi047.html">Pim, Pam, Pum!</a> <code>PI047</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi048.html">Between Brackets</a> <code>PI048</code> <data value="20">20 %</data></li>
 </ul>
-<p><mark><strong>Prazo de submissão:</strong> <strong>23 de Maio</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
-<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
-    obterem sugestões de como abordar um determinado problema, mas
-    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
-    solução. Esta é a melhor forma de ficarem competentes na
-    resolução destes problemas (ou
-    seja aprenderem)  e habituados a ultrapassar as
-    dificuldades que possam surgir. O mesmo se aplica ao uso do
-    ChatGPT ou outras LLMs. 
-    <mark>Evitem pedir a solução, peçam antes
-    sugestões de como abordar o problem com a indicação para não vos
-    ser dado o código da solução.</mark></strong><br/>
-</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
-Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
-Cada aula vale 10% da nota desta componente.<br/>  
-Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
-Para ter 100% bastará sempre resolver os exercícios principais.</p>
+</section>
+</uc-problems>
+<p>Submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>.</p>
+<div class="uc-callout">
+<p>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+  obterem sugestões de como abordar um determinado problema, mas
+  façam um esforço genuíno para depois codificarem e porem a funcionar a vossa
+  solução. Esta é a melhor forma de ficarem competentes na
+  resolução destes problemas (ou
+  seja aprenderem)  e habituados a ultrapassar as
+  dificuldades que possam surgir. O mesmo se aplica ao uso do
+  ChatGPT ou outras LLMs.
+  <strong>Evitem pedir a solução, peçam antes
+  sugestões de como abordar o problema com a indicação para não vos
+  ser dado o código da solução.</strong></p>
+</div>
+<ul>
+<li>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</li>
+<li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+<li>Cada aula vale 10% da nota desta componente.</li>
+<li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+<li>Para ter 100% bastará sempre resolver os exercícios principais.</li>
+</ul>
 
-<h3>Exercício 1) Recursão e Ordenação</h3>
+<h2>Exercícios</h2>
+<uc-exercise id="exercicio-1" title="Recursão e Ordenação">
 <ol>
 <li>Considere a função recursiva seguinte:<br/>
 <uc-code collapsible="" data-lang="c"><script type="text/plain">
@@ -71,12 +81,11 @@ Comece por acompanhar a execução da função manualmente para os seguintes val
 <em>Output:</em> "oacaMarGorP"
 </pre>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi045.html">[PI045] Connect Four in Two</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi045.html">[PI045] Connect Four in Two</a><br/> 
        Dado um tabuleiro de <em>Connect Four</em>, determina se o primeiro jogador consegue ganhar imediatamente ou forçar uma vitória na sua segunda jogada — ou seja, colocar-se numa posição em que, independentemente do que o segundo jogador faça, o primeiro ganha no turno seguinte.
         <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. 
-        <br/><br/><details name="hint">
-<summary><em>Sugestão - Pense recursivamente com backtracking</em></summary>
+        <details class="uc-hint" name="hint">
+<summary>Sugestão - Pense recursivamente com backtracking</summary>
 <p>- O problema tem uma estrutura natural de árvore de jogo: o primeiro jogador escolhe uma coluna, o segundo responde, e o primeiro joga de novo. Pode explorar esta árvore recursivamente, tentando todas as jogadas possíveis e verificando se existe alguma sequência em que o primeiro jogador ganha.
 </p><p>- A profundidade máxima é 3 (<em>jogada A, jogada B, jogada A</em>), por isso a árvore é pequena.
 </p><p>- Para explorar a árvore de jogo sem precisar de copiar o tabuleiro inteiro a cada jogada, use backtracking. Isto possibilitará explorar todas as possibilidades e reverter o tabuleiro ao estado original após cada tentativa.</p>
@@ -104,10 +113,7 @@ Re-escreva a função <br/>
 dada na aula teórica de modo a atender a esta modificação no programa do <em>Quicksort</em>.
     </li>
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi046.html">[PI046] Largest Microbe Colony</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi046.html">[PI046] Largest Microbe Colony</a><br/> 
 
   Dado um tabuleiro 2D representando uma placa de Petri, onde <code><strong>#</strong></code> é um micróbio e <code><strong>.</strong></code> é uma célula vazia, determina o tamanho da maior colónia de micróbios. <br/>
   Uma colónia é um grupo de células <code><strong>#</strong></code> conectadas horizontal, vertical ou diagonalmente.
@@ -159,15 +165,14 @@ Input:  products = {{pasta, 3.2, 500}, {peanuts, 5.4, 700}, {cookies, 4.2, 600},
 Output: res = {{pasta, 3.2, 500}, {cookies, 4.2, 600}, {milka, 5.4, 600}}
 </script></uc-code>
 </li></ol>
-
-<h3>Exercício 2) Manipulação de Arrays</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Manipulação de Arrays">
 <ol>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi043.html">[PI043] Eval</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi043.html">[PI043] Eval</a><br/> 
        Dada uma expressão aritmética com inteiros, adições (<code><strong>+</strong></code>) e multiplicações (<code><strong>*</strong></code>), calcula o seu resultado respeitando a precedência de operadores: as multiplicações são calculadas antes das adições.
         <br/>Leia o enunciado do problema com atenção e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
-<br/><br/><details name="hint">
-<summary><em>Sugestão - Não calcules da esquerda para a direita</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão - Não calcules da esquerda para a direita</summary>
 <p>- Se calcular simplesmente da esquerda para a direita, <code>5 + 2 * 3</code> daria <code>(5 + 2) * 3 = 21</code> em vez de <code>5 + (2 * 3) = 11</code>. Tem de garantir que todas as multiplicações são resolvidas antes das adições!
 </p><p>- Um estratégia natural é fazer em dois passos: primeiro multiplicar, depois somar. Ou seja:
 </p><ol>
@@ -177,8 +182,8 @@ Output: res = {{pasta, 3.2, 500}, {cookies, 4.2, 600}, {milka, 5.4, 600}}
 </ol>
 <p>- <em><strong>Nota:</strong></em> Não se esqueça dos elementos restantes nem do caso especial (arrays vazios)!</p>
 </details>
-<br/><details name="hint">
-<summary><em>Sugestão #2</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão #2</summary>
 <p>- Com <code>n</code> números, a expressão tem <code>2n - 1</code> tokens no total (números e operadores alternados). Pode ler tudo para um array, guardando os números como estão e os operadores como um valor que indique <code>+</code> ou <code>*</code> (por exemplo, <code>0</code> para adição e <code>1</code> para multiplicação).
 </p><p>- Para construir os termos pode percorrer o array de tokens. Mantenha um acumulador para o termo actual (começa com o primeiro número). Cada vez que encontra um operador:
 </p><ol>
@@ -467,9 +472,10 @@ int main() {
 </script></uc-code>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09_pt.html">site original</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI016] Signal in the Silence</li></ol>
-    </nav>
-    <h1>[PI016] Signal in the Silence</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi016.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI016] Signal in the Silence</li></ol>
+      </nav>
+      <h1>Signal in the Silence</h1>
+      <uc-problem code="PI016" judge="mooshak" deadline="aula06" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi016.png"/>
@@ -48,7 +51,7 @@ Input
 Input consists of one line with characters '0' and '1'.
 
 <h2>
-Ouput
+Output
 </h2>
 
 You have to print the encoded message. The encoded message will have at least 1 and at most 50 characters.
@@ -56,40 +59,37 @@ You have to print the encoded message. The encoded message will have at least 1 
 <h2><a id="SECTION00022000000000000000">
 Example 1</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-
-<pre>
-101110001110101010001110101110100011101010001000101011101000111011101000101010100010100010111011101110001110101110001011101010001110111000111010001110111011100010111011101000111011101011100010111010001010100011100010101110001010101110001011101110001110101011100011101011101110001110111010100011101110111011101110001011101110111011100010101110111011100010101011101110001010101011100010101010100011101010101000111011101010100011101110111010100011101110111011101
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">101110001110101010001110101110100011101010001000101011101000111011101000101010100010100010111011101110001110101110001011101010001110111000111010001110111011100010111011101000111011101011100010111010001010100011100010101110001010101110001011101110001110101011100011101011101110001110111010100011101110111011101110001011101110111011100010101110111011100010101011101110001010101011100010101010100011101010101000111011101010100011101110111010100011101110111011101
 </pre>
-
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
 </pre>
+</div>
+</div>
 <p><strong>Note:</strong> This output example includes of all the characters that are used.
 
 </p><h2><a id="SECTION00023000000000000000">
 Example 2</a>
 </h2>
-<h3><a id="SECTION00023100000000000000">
-Input</a>
-</h3>
-<pre>
-101010100010001011101010001011101010001110111011100000001011101110001110111011100010111010001011101010001110101
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">101010100010001011101010001011101010001110111011100000001011101110001110111011100010111010001011101010001110101
 </pre>
-<h3><a id="SECTION00023200000000000000">
-Output</a>
-</h3>
-<pre>
-HELLO WORLD
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">HELLO WORLD
 </pre>
+</div>
+</div>
 <br/>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi016.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

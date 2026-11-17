@@ -5,45 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aula Prática 12 · Árvores Binárias · Programação Imperativa 2025/26</title>
   <meta name="description" content="Programação Imperativa (CC1003), aula prática 12: Árvores Binárias">
+  <link rel="alternate" hreflang="en" href="aula12.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="12">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula12_pt.html">
+    <uc-guide week="12" week-label prev="aula11_pt.html">
     <h1>Aula Prática 12 · Árvores Binárias</h1>
-    <p class="uc-small"><a href="aula12.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <p><a href="aula12.html">Version in English</a><br/>
 </p>
 <h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
 <p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
-</p><ul>
-<li><a href="problems/pi070.html">[PI070] Counting Leafs</a> (peso 50%) (main exercise)</li>
-<li><a href="problems/pi071.html">[PI071] Sum of All Levels</a> (peso 50%) (main exercise)</li>
-<li><a href="problems/pi072.html">[PI072] Node Balance</a> (peso 50%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula12">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi070.html">Counting Leafs</a> <code>PI070</code> <data value="50">50 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi071.html">Sum of All Levels</a> <code>PI071</code> <data value="50">50 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi072.html">Node Balance</a> <code>PI072</code> <data value="50">50 %</data></li>
 </ul>
-<p><mark><strong>Prazo de submissão:</strong> <strong>15 de Junho</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
-<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
-    obterem sugestões de como abordar um determinado problema, mas
-    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
-    solução. Esta é a melhor forma de ficarem competentes na
-    resolução destes problemas (ou
-    seja aprenderem)  e habituados a ultrapassar as
-    dificuldades que possam surgir. O mesmo se aplica ao uso do
-    ChatGPT ou outras LLMs. 
-    <mark>Evitem pedir a solução, peçam antes
-    sugestões de como abordar o problem com a indicação para não vos
-    ser dado o código da solução.</mark></strong><br/>
-</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
-Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
-Cada aula vale 10% da nota desta componente.<br/>  
-Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
-Para ter 100% bastará sempre resolver os exercícios principais.</p>
+</section>
+</uc-problems>
+<p>Submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>.</p>
+<div class="uc-callout">
+<p>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+  obterem sugestões de como abordar um determinado problema, mas
+  façam um esforço genuíno para depois codificarem e porem a funcionar a vossa
+  solução. Esta é a melhor forma de ficarem competentes na
+  resolução destes problemas (ou
+  seja aprenderem)  e habituados a ultrapassar as
+  dificuldades que possam surgir. O mesmo se aplica ao uso do
+  ChatGPT ou outras LLMs.
+  <strong>Evitem pedir a solução, peçam antes
+  sugestões de como abordar o problema com a indicação para não vos
+  ser dado o código da solução.</strong></p>
+</div>
+<ul>
+<li>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</li>
+<li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+<li>Cada aula vale 10% da nota desta componente.</li>
+<li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+<li>Para ter 100% bastará sempre resolver os exercícios principais.</li>
+</ul>
 
-<h3>Exercício 1) Árvores Binárias</h3>
+<h2>Exercícios</h2>
+<uc-exercise id="exercicio-1" title="Árvores Binárias">
 <p>Para os exercícios seguintes, considere as estruturas de dados utilizadas nas aulas teóricas para representar árvores binárias de valores inteiros:<br/>
 </p><uc-code collapsible="" data-lang="c"><script type="text/plain">
 #include <stdio.h>
@@ -101,9 +111,8 @@ void freeTree(BTNode *node);
 </pre>
 <br/>
     que devolve <code><strong>1</strong></code> se a árvore for <strong>simétrica</strong>, ou <code><strong>0</strong></code> caso contrário. 
-Uma árvore é considerada simétrica se as suas subárvores esquerda e direita forem imagens espelhadas uma da outra. Por exemplo, uma árvore cuja raiz tem valor 1, filho esquerdo 2 e filho direito 2, em que o filho esquerdo tem um filho direito 3 e o filho direito tem um filho esquerdo 3, é simétrica.<br/>
-<details name="hint">
-<summary><em>Dica</em></summary>
+Uma árvore é considerada simétrica se as suas subárvores esquerda e direita forem imagens espelhadas uma da outra. Por exemplo, uma árvore cuja raiz tem valor 1, filho esquerdo 2 e filho direito 2, em que o filho esquerdo tem um filho direito 3 e o filho direito tem um filho esquerdo 3, é simétrica.<details class="uc-hint" name="hint">
+<summary>Dica</summary>
 <p>- Escreva uma função auxiliar <code><strong>isMirror(BTNode *a, BTNode *b)</strong></code> que verifica se duas subárvores são imagens espelhadas uma da outra: são espelhadas se ambas estiverem vazias, ou se ambas tiverem o mesmo valor e <code><strong>a-&gt;left</strong></code> for o espelho de <code><strong>b-&gt;right</strong></code> e <code><strong>a-&gt;right</strong></code> for o espelho de <code><strong>b-&gt;left</strong></code>.</p>
 </details>
 
@@ -121,8 +130,8 @@ Uma árvore é considerada simétrica se as suas subárvores esquerda e direita 
 <br/>
 que devolve <code><strong>1</strong></code> se a árvore for <strong>equilibrada</strong>, significando que, para cada nó, as alturas das suas subárvores esquerda e direita diferem em <strong>no máximo 1</strong>, ou <code><strong>0</strong></code> caso contrário.
 
-<details name="hint">
-<summary><em>Sugestão</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Uma solução ingénua chama <code><strong>height</strong></code> e <code><strong>isBalanced</strong></code> separadamente em cada nó, visitando os nós várias vezes.</p>
 <p>- Para uma solução mais eficiente, escreva uma função auxiliar que devolva a altura de uma subárvore se esta estiver equilibrada, ou <code><strong>-2</strong></code> como valor sentinela caso seja detetado algum desequilíbrio, permitindo interromper a recursão antecipadamente.</p>
 </details>
@@ -137,8 +146,8 @@ Escreva uma função<br/>
 <br/>
 que devolve <code><strong>1</strong></code> se existir um caminho da raiz até uma folha cuja soma dos valores dos nós seja igual a <code><strong>target</strong></code>, ou <code><strong>0</strong></code> caso contrário.
 
-<details name="hint">
-<summary><em>Sugestão</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Em cada chamada recursiva, subtraia o valor do nó atual ao <code><strong>target</strong></code>. Quando chegar a uma folha, verifique se o valor restante de <code><strong>target</strong></code> é zero.</p>
 </details>
 
@@ -158,9 +167,8 @@ que devolve a <strong>profundidade</strong> do nó com valor <code><strong>val</
 </pre>
 
 <br/>
-que devolve <code><strong>1</strong></code> se a árvore respeitar a propriedade de BST em todos os nós, ou <code><strong>0</strong></code> caso contrário.<br/>
-<details name="hint">
-<summary><em>Sugestão</em></summary>
+que devolve <code><strong>1</strong></code> se a árvore respeitar a propriedade de BST em todos os nós, ou <code><strong>0</strong></code> caso contrário.<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Verificar apenas os filhos imediatos de cada nó <strong>não</strong> é suficiente. Utilize uma função auxiliar que propague limites mínimos e máximos permitidos ao longo da recursão. Pode usar <code><strong>INT_MIN</strong></code> e <code><strong>INT_MAX</strong></code> de <code><strong>limits.h</strong></code> como limites iniciais.</p>
 </details>
 
@@ -171,9 +179,8 @@ que devolve <code><strong>1</strong></code> se a árvore respeitar a propriedade
 </pre>
 
 <br/>
-que devolve o <strong>valor mínimo</strong> armazenado numa BST não vazia sem percorrer a árvore inteira.<br/>
-<details name="hint">
-<summary><em>Dica</em></summary>
+que devolve o <strong>valor mínimo</strong> armazenado numa BST não vazia sem percorrer a árvore inteira.<details class="uc-hint" name="hint">
+<summary>Dica</summary>
 <p>- Numa BST, o valor mínimo encontra-se sempre no nó mais à esquerda. Continue a seguir o filho esquerdo até chegar a um nó sem filho esquerdo.</p>
 </details>
 
@@ -184,17 +191,17 @@ que devolve o <strong>valor mínimo</strong> armazenado numa BST não vazia sem 
 </pre>
 
 <br/>
-que remove o nó com valor <code><strong>val</strong></code> da BST com raiz em <code><strong>r</strong></code> e devolve a nova raiz da subárvore. A propriedade da BST deve ser mantida após a remoção. Considere os três casos habituais: (a) o nó a remover é uma folha; (b) tem um filho; (c) tem dois filhos.<br/>
-<details name="hint">
-<summary><em>Dica</em></summary>
+que remove o nó com valor <code><strong>val</strong></code> da BST com raiz em <code><strong>r</strong></code> e devolve a nova raiz da subárvore. A propriedade da BST deve ser mantida após a remoção. Considere os três casos habituais: (a) o nó a remover é uma folha; (b) tem um filho; (c) tem dois filhos.<details class="uc-hint" name="hint">
+<summary>Dica</summary>
 <p>- Para o caso (c), substitua o valor do nó pelo do seu <strong>sucessor em ordem</strong> (o valor mínimo da subárvore direita) e, em seguida, remova esse sucessor em ordem da subárvore direita. Pode reutilizar <code><strong>minBST</strong></code>.</p>
 </details>
 
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula12_pt.html">site original</a>.</p>
   </uc-page>
 </body>
 </html>

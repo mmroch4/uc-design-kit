@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI005] Triangle Validator</li></ol>
-    </nav>
-    <h1>[PI005] Triangle Validator</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi005.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI005] Triangle Validator</li></ol>
+      </nav>
+      <h1>Triangle Validator</h1>
+      <uc-problem code="PI005" judge="mooshak" deadline="aula03" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p><img alt="" class="uc-content__float" loading="lazy" src="pi005.png"/> A geometric explorer, Alex, is working on classifying different sets of three line segments. Given three lengths, Alex wants to determine whether they can form a valid triangle. Your task is to help Alex by implementing a program that checks the triangle inequality theorem.</p>
 <p>A valid triangle can be formed if and only if the sum of any two sides
@@ -28,32 +31,27 @@ given numbers satisfy this condition.</p>
 not. If the numbers form a valid triangle, print <strong><code>(a, b, c) defines a triangle</code></strong>. Otherwise, print <strong><code>(a, b, c) cannot define a triangle</code></strong>.
 
 </p><h2>Input/Output Examples</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 1</th>
-<th scope="col">Output 1</th>
-</tr>
-<tr>
-<td>
-<pre>3 4 5</pre>
-</td>
-<td><pre>(3, 4, 5) defines a triangle</pre></td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 2</th>
-<th scope="col">Output 2</th>
-</tr>
-<tr>
-<td>
-<pre>0 0 0</pre>
-</td>
-<td><pre>(0, 0, 0) cannot define a triangle</pre></td>
-</tr>
-</table></div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 1</p>
+<pre data-copy="Input 1">3 4 5</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 1</p>
+<pre data-copy="Output 1">(3, 4, 5) defines a triangle</pre>
+</div>
+</div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 2</p>
+<pre data-copy="Input 2">0 0 0</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 2</p>
+<pre data-copy="Output 2">(0, 0, 0) cannot define a triangle</pre>
+</div>
+</div>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi005.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

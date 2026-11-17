@@ -11,8 +11,8 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="assessment">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+  <uc-page current="assessment" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_pt.html">
+    <div class="uc-page-header">
       <h1><span lang="pt">Avaliação</span><span lang="en">Assessment</span></h1>
       <p class="uc-prose" lang="pt">Avaliação distribuída com exame final. A nota final junta o exame escrito com duas componentes contínuas, feitas no Mooshak. Para aprovar precisas de pelo menos 4,9 valores no exame e de 9,5 valores no total.</p>
       <p class="uc-prose" lang="en">Continuous assessment with a final exam. The final grade combines the written exam with two continuous components, done on Mooshak. To pass you need at least 4.9 in the exam and 9.5 overall.</p>
@@ -78,29 +78,15 @@
 
     <section class="uc-section" aria-labelledby="progresso">
       <h2 id="progresso"><span lang="pt">O teu progresso</span><span lang="en">Your progress</span></h2>
-      <p class="uc-muted desc" lang="pt">Só para estudantes inscritos. Estes documentos têm dados de alunos e ficam no site original; os que pedem autenticação estão assinalados com um cadeado.</p>
-      <p class="uc-muted desc" lang="en">For enrolled students only. These documents contain student data and stay on the original website; those that require authentication are marked with a lock.</p>
+      <p class="uc-muted uc-small" lang="pt">Só para estudantes inscritos. Estes documentos têm dados de alunos e ficam no site original; os que pedem autenticação estão assinalados com um cadeado.</p>
+      <p class="uc-muted uc-small" lang="en">For enrolled students only. These documents contain student data and stay on the original website; those that require authentication are marked with a lock.</p>
       <!-- data-auth: o kit junta o cadeado e o texto "(Requer autenticação)" para leitores de ecrã. -->
-      <div class="uc-grid" style="--uc-grid-min: 240px">
-        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/index.html">
-          <span class="progress__title"><span lang="pt">Exercícios no Mooshak</span><span lang="en">Mooshak exercises</span>
-          </span>
-          <span class="uc-muted uc-small"><span lang="pt">Estatísticas · atualizado a 13 mai 2026</span><span lang="en">Statistics · updated 13 May 2026</span></span>
-        </a>
-        <a class="uc-card progress" data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/Presencas_18Abril2026.pdf">
-          <span class="progress__title"><span lang="pt">Presenças nas práticas</span><span lang="en">Lab attendance</span>
-          </span>
-          <span class="uc-muted uc-small"><span lang="pt">Até 18 abr 2026</span><span lang="en">Until 18 Apr 2026</span></span>
-        </a>
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/PI2526_aval1_22Abril.pdf">
-          <span class="progress__title"><span lang="pt">Resultados da Avaliação Prática 1</span><span lang="en">Results of practical evaluation 1</span></span>
-          <span class="uc-muted uc-small"><span lang="pt">22 abr 2026</span><span lang="en">22 Apr 2026</span></span>
-        </a>
-        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/PI2526_avalprat_12jun2026.pdf">
-          <span class="progress__title"><span lang="pt">Avaliação prática: resultados finais</span><span lang="en">Practical evaluation: final results</span></span>
-          <span class="uc-muted uc-small"><span lang="pt">Pauta final · 12 jun 2026</span><span lang="en">Final list · 12 Jun 2026</span></span>
-        </a>
-      </div>
+      <ul class="uc-links uc-links--grid">
+        <li><a data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/index.html"><span lang="pt">Exercícios no Mooshak</span><span lang="en">Mooshak exercises</span></a><span><span lang="pt">Estatísticas · atualizado a 13 mai 2026</span><span lang="en">Statistics · updated 13 May 2026</span></span></li>
+        <li><a data-auth href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/Presencas_18Abril2026.pdf"><span lang="pt">Presenças nas práticas</span><span lang="en">Lab attendance</span></a><span><span lang="pt">Até 18 abr 2026</span><span lang="en">Until 18 Apr 2026</span></span></li>
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/PI2526_aval1_22Abril.pdf"><span lang="pt">Resultados da Avaliação Prática 1</span><span lang="en">Results of practical evaluation 1</span></a><span><span lang="pt">22 abr 2026</span><span lang="en">22 Apr 2026</span></span></li>
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/PI2526_avalprat_12jun2026.pdf"><span lang="pt">Avaliação prática: resultados finais</span><span lang="en">Practical evaluation: final results</span></a><span><span lang="pt">Pauta final · 12 jun 2026</span><span lang="en">Final list · 12 Jun 2026</span></span></li>
+      </ul>
     </section>
 
     <section class="uc-section" aria-labelledby="especiais">
@@ -115,8 +101,6 @@
       </ul>
     </section>
 
-    <p class="uc-muted uc-small source-note" lang="pt">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), a partir da <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_pt.html">ficha da UC no site original</a>.</p>
-    <p class="uc-muted uc-small source-note" lang="en">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_en.html">course description on the original website</a>.</p>
   </uc-page>
 </body>
 </html>
