@@ -69,12 +69,38 @@ Com `filters`, por cima das séries aparecem dois grupos de botões, "Tipo" e "J
 
 Com `track`, cada problema tem uma caixa "Resolvido" e cada série diz "3 de 5 resolvidos". A escolha fica guardada no browser do estudante (`localStorage`), com uma chave que inclui o código da cadeira e o identificador do problema. Por omissão o identificador é o juiz mais o código (`mooshak:PC001`), por isso um problema que aparece numa série e num índice partilha o estado; `data-id` no `<li>` escolhe outro.
 
+### Cartões, linguagens e dicas
+
+Com `cards`, cada problema fica num cartão: o título em destaque e, ao lado, um selo "Mooshak PC033" com o juiz e o código do problema, que leva ao endereço do juiz no `course.js`. "Resolvido" fica no canto do cartão. É a forma pensada para a página de uma série, com poucos problemas e dicas; num índice com muitas séries, a lista simples ocupa menos.
+
+`data-languages` no `<li>` diz em que linguagens o problema foi testado, separadas por vírgulas. Aparecem como etiquetas pequenas ("Testado em C++ Java Python"); se todos os problemas da série tiverem as mesmas, a linha aparece uma só vez, por baixo do título da série. Um `<details>` dentro do `<li>` são as dicas: o `<summary>` fica um botão discreto com uma seta e o resto um painel. Um `<details>` só com o `<summary>` (dicas ainda por escrever) não aparece. Com `name="hint"` em todos, abrir uma dica fecha a anterior.
+
+`problem-sets/ps07.html`:
+
+```html
+<uc-problems cards track>
+  <section data-deadline="ps07">
+    <h2>Problemas propostos (5)</h2>
+    <ul>
+      <li data-judge="mooshak" data-languages="C++, Java, Python">
+        <a href="../problems/pc033.html">Football Teams</a> <code>PC033</code>
+        <details name="hint">
+          <summary>Dicas</summary>
+          <p>Precisamos de usar DP para contar.</p>
+        </details>
+      </li>
+    </ul>
+  </section>
+</uc-problems>
+```
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `filters` | booleano | ausente | Acrescenta os filtros por tipo e por juiz. |
 | `track` | booleano | ausente | Acrescenta "Resolvido" a cada problema e o progresso de cada série. |
+| `cards` | booleano | ausente | Um cartão por problema, com o selo do juiz e do código a ligar ao juiz. |
 | `heading` | texto ou `none` | `none` | Título da secção. Por omissão não há, porque a página de problemas tem o seu `<h1>`. |
 | `heading-level` | `2` a `6` | `2` | Nível do título gerado. |
 
@@ -85,6 +111,7 @@ Nos itens e nas séries:
 | `data-judge` | `<li>` | O `id` ou o nome de uma plataforma. |
 | `data-type` | `<li>` | `main`, `extra` ou `challenge`. |
 | `data-id` | `<li>` | Identificador para "Resolvido". Por omissão, o juiz e o primeiro `<code>`, ou o endereço do link. |
+| `data-languages` | `<li>` | As linguagens em que o problema foi testado, separadas por vírgulas. |
 | `data-deadline` | `<section>` | O `id` do prazo da série no `course.js`. |
 
 ## Configuração usada
@@ -111,6 +138,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-problems__body` | O conteúdo escrito do problema (link, código). |
 | `.uc-problems__tags`, `__judge`, `__type` | As etiquetas do juiz e do tipo. |
 | `.uc-problems__weight` | O `<data>` do peso. |
+| `.uc-problems__languages` | A linha "Testado em", no problema ou na série. |
+| `.uc-problems__hints` | O `<details>` das dicas. |
 | `.uc-problems__solved` | O rótulo com a caixa "Resolvido". |
 | `.uc-problems__empty` | A linha "Nenhum problema com estes filtros." |
 
@@ -125,7 +154,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 
 ### O que o componente faz
 
-Os filtros são botões com `aria-pressed` em grupos com nome ("Tipo", "Juiz"), com 44 px de altura; filtrar não tira o foco do botão e o número de problemas é anunciado. Cada caixa "Resolvido" tem o nome do problema no nome acessível ("Resolvido: Increasing Array") e o rótulo inteiro, com 44 px, serve para a marcar. Juiz, tipo e estado do prazo são texto, não só cor.
+Os filtros são botões com `aria-pressed` em grupos com nome ("Tipo", "Juiz"), com 44 px de altura; filtrar não tira o foco do botão e o número de problemas é anunciado. Cada caixa "Resolvido" tem o nome do problema no nome acessível ("Resolvido: Increasing Array") e o rótulo inteiro, com 44 px, serve para a marcar. Juiz, tipo e estado do prazo são texto, não só cor. As dicas são o `<details>` do browser: abrem com Enter ou Espaço e o leitor de ecrã anuncia se estão abertas.
 
 ### O que cabe a quem escreve
 
@@ -133,7 +162,7 @@ Dar um título a cada série, com o nível certo na página (`<h2>` debaixo do `
 
 ## Sem JavaScript
 
-Aparecem as secções, os títulos e as listas tal como foram escritos. Não há etiquetas, prazos, filtros nem "Resolvido".
+Aparecem as secções, os títulos e as listas tal como foram escritos. Não há etiquetas, prazos, filtros nem "Resolvido"; as dicas abrem e fecham na mesma, com o aspeto do browser.
 
 ## Ver também
 

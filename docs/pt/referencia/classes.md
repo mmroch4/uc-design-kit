@@ -323,6 +323,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-problems__body` | O conteúdo escrito do problema (link, código). |
 | `.uc-problems__tags`, `__judge`, `__type` | As etiquetas do juiz e do tipo. |
 | `.uc-problems__weight` | O `<data>` do peso. |
+| `.uc-problems__languages` | A linha "Testado em", no problema ou na série. |
+| `.uc-problems__hints` | O `<details>` das dicas. |
 | `.uc-problems__solved` | O rótulo com a caixa "Resolvido". |
 | `.uc-problems__empty` | A linha "Nenhum problema com estes filtros." |
 

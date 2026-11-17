@@ -103,6 +103,7 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-summaries.html", selector: "#main", file: "tests/pages/uc-summaries.aria.yml" },
   { page: "tests/pages/uc-materials.html", selector: "#main", file: "tests/pages/uc-materials.aria.yml" },
   { page: "tests/pages/uc-problems.html", selector: "#series", file: "tests/pages/uc-problems.aria.yml" },
+  { page: "tests/pages/uc-problems.html", selector: "#cards", file: "tests/pages/uc-problems-cards.aria.yml" },
   { page: "tests/pages/uc-weeks-compact.html", selector: "#compact .uc-weeks__table", file: "tests/pages/uc-weeks-compact.aria.yml" },
   { page: "tests/pages/extras.html", selector: "#ranking-table", file: "tests/pages/sortable-table.aria.yml" },
   { page: "tests/pages/editions/2425/index.html", selector: "uc-page", file: "tests/pages/editions.aria.yml" },
