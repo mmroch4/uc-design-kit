@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-dp",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 3,
   "title": { "pt": "Programação dinâmica", "en": "Dynamic programming" },

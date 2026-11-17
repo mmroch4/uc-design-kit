@@ -4,13 +4,17 @@ All notable changes to the kit are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and the kit uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## Widgets [1.0.0] - not released yet
 
-### Widgets
+The algorithm widget library (`widgets/v1/`) has its own versions; contract
+`docs/plan/widgets-api.md`. Release 1.0.0 is prepared but not cut: it needs
+kit 1.1.0 released first (steps in `docs/deployment.md`, "Widget library
+releases").
 
-The algorithm widget library (`widgets/v1/`, own version, widgets 1.0.0 not
-released yet; contract `docs/plan/widgets-api.md`).
-
+### Added
+- 18 widgets, all `stable`: sort, search, bst, list, stack-queue, recursion
+  (wave 1); heap, avl, hash, graph, shortest-path, complexity (wave 2); mst,
+  union-find, toposort, dp, backtracking, trace (wave 3).
 - Core (phase W1): `uc-widget-core.js` and `uc-widget.css`, loaded by each
   widget file from its own folder; `UC.widgets` (`Widget`, `register`,
   `svg.array`, `parse`, `random`); step engine, player (Play, Back, Step,
@@ -18,12 +22,12 @@ released yet; contract `docs/plan/widgets-api.md`).
   `data-line`), state panel, narration with a live region, "Vista em texto",
   `predict`, `editable`, error notes, events `uc:widgetstep`,
   `uc:widgetdone`, `uc:widgetpredict`; `widgets/v1/catalog.json`.
-- `<uc-widget-sort>` (experimental): bubble, selection, insertion, merge,
+- `<uc-widget-sort>`: bubble, selection, insertion, merge,
   quick (`pivot`) and counting sort, `bars`.
 - Documentation: "Widgets" group (Catálogo, Usar widgets, uc-widget-sort),
   `docs/api.md` 7.2, `template/AGENTS.md`; tests in `tests/widgets/`
   (`npm run test:widgets`).
-- Phase W2 (experimental): `<uc-widget-search>` (linear, binary, lower
+- Phase W2: `<uc-widget-search>` (linear, binary, lower
   bound), `<uc-widget-bst>` (insert, remove, search, min, max; pre-, in-,
   post- and level-order traversals), `<uc-widget-list>` (singly linked list,
   including reverse), `<uc-widget-stack-queue>` (stack and queue, in an array
@@ -34,14 +38,14 @@ released yet; contract `docs/plan/widgets-api.md`).
   Small arrays and trees are no longer drawn larger than 1:1.
 - The EDados example's lab guide 10 uses `<uc-widget-bst>`; the extension
   `extensions/uc-bst-traversal.js` stays as the custom component tutorial.
-- Phase W3 (experimental): `<uc-widget-heap>` (max or min heap drawn as its
+- Phase W3: `<uc-widget-heap>` (max or min heap drawn as its
   array and its tree; insert, extract, peek, heapify, heapsort),
   `<uc-widget-avl>` (insert, remove, search with heights, balance factors and
   the four rotations), `<uc-widget-hash>` (separate chaining, linear and
   quadratic probing; tombstones, load factor and the table doubling; integer
   or word keys). `svg.grid` is bundled into `<uc-widget-hash>`; the core is
   unchanged.
-- Phase W4 (experimental): `<uc-widget-graph>` (BFS with its queue and
+- Phase W4: `<uc-widget-graph>` (BFS with its queue and
   distances, recursive DFS with its call stack, connected components;
   directed or not), `<uc-widget-shortest-path>` (Dijkstra with its priority
   queue, Bellman-Ford with negative cycle detection),
@@ -51,7 +55,7 @@ released yet; contract `docs/plan/widgets-api.md`).
   component) is bundled into the graph widgets and `svg.plot` into the
   complexity widget. Core: `uc:widgetdone` carries `stats` and `input`; new
   counters `edges` and `relaxations`.
-- Phase W5 (experimental): `<uc-widget-mst>` (Kruskal with union-find,
+- Phase W5: `<uc-widget-mst>` (Kruskal with union-find,
   lazy Prim; spanning forests), `<uc-widget-union-find>` (union by size and
   path compression, or without them; the parent array and the forest),
   `<uc-widget-toposort>` (Kahn and DFS, naming a cycle when there is one),
@@ -63,9 +67,26 @@ released yet; contract `docs/plan/widgets-api.md`).
   plain script, and the catalogue checklist). Core: decimals in the page
   language ("2,3" in Portuguese) in narration, panel, text view and labels;
   a rebuild clears an old field error.
+- Phase W6: every widget is `stable` (attributes, `ops` verbs, methods and
+  events kept for all of 1.x). `npm run snapshot:widgets` freezes
+  `widgets/v1/` as `widgets/vX.Y.Z/` with its `SHA256SUMS` (it refuses a
+  `-dev` version, an unstable widget or a missing kit release), and
+  `npm run build:check` verifies widget releases like kit releases.
+  `tests/widgets/compat.html` uses the 1.0.0 API of every widget and of a
+  teacher's own widget, and the page check opens it against `widgets/v1/` and
+  every frozen release. The catalogue lists the waitlist instead of the
+  planned waves.
+- The EDados, IP and PC examples use widgets in their lab guides (see the
+  kit notes below).
+
+## [Unreleased]
 
 ### Changed
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
+- Examples: the EDados lab guides 6, 7, 8, 9, 11 and 12, the IP practical
+  classes 6 and 9 and the PC weeks 2, 3, 6 and 7 show their algorithms with
+  widgets (list, stack and queue, complexity, backtracking, bst, heap,
+  recursion, sort, dp, toposort), each with its fallback text.
 
 ### Added
 - `logo` in `course.js` also takes an inline SVG string (`"<svg …>"`, drawn

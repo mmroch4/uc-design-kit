@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Algorithm widgets (widgets/v1/): recursive calls -->
+  <script src="../../../widgets/v1/uc-widget-recursion.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-backtracking.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -89,6 +92,11 @@ print(mysum_v5([1,2,3,4]))</code></pre></uc-code>
 <p>Here is the recursive tree showing the calls being made in this second recursive function:</p>
 <p><img alt="" loading="lazy" src="mysum_v5.png"/></p>
 </li></ol>
+<p>Another classic is Fibonacci, with two recursive calls. Follow the calls one by one and watch the call stack: some values are computed more than once.</p>
+<!-- Widget <uc-widget-recursion>: the tree of calls of fib(5) -->
+<uc-widget-recursion algorithm="fibonacci" n="5" predict>
+  <p>fib(5) = fib(4) + fib(3) = 3 + 2 = 5, with 15 calls: fib(3) is computed twice and fib(2) three times.</p>
+</uc-widget-recursion>
         </uc-exercise>
         <uc-exercise id="my-first-recursion" title="2) My first recursion">
 <p>Implement a <strong>recursive</strong> method <code>palindrome(word)</code> that given a string <em>word</em> constituted by lower case letters, returns <em>True</em> if the word is a palindrome and <em>False</em> if it isn't.</p>
@@ -188,6 +196,11 @@ print(subsets([1,2,3])) # generate all subsets of [1,2,3]</code></pre></uc-code>
 </p><p>- On the base case you can add the sum to a set, so that you just save unique quantities
 </p><p>- Another (slightly less eficient) would be to simply generate the subsets and then process them (i.e., sum them)
       </p></details>
+<p>The tree of calls of <code>subsets_rec</code> for [1, 2, 3]: each call decides whether the next element goes into the subset, and every leaf is one subset.</p>
+<!-- Widget <uc-widget-backtracking>: the tree of subsets -->
+<uc-widget-backtracking algorithm="subsets" values="1 2 3" predict>
+  <p>The 8 subsets of [1, 2, 3] are [], [1], [2], [3], [1, 2], [1, 3], [2, 3] and [1, 2, 3]: one for each leaf of a tree of 15 calls.</p>
+</uc-widget-backtracking>
         </uc-exercise>
         <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
           <p><span class="uc-tag uc-tag--accent">extra</span></p>

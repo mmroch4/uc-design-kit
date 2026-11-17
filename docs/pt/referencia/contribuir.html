@@ -249,6 +249,14 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pr
           <li>Fundir em <code>main</code> (publicado automaticamente) e criar a etiqueta <code>vX.Y.Z</code>.</li>
           <li>Voltar a pôr a versão seguinte com <code>-dev</code>.</li>
         </ol>
+        <h3 id="lancar-widgets">Lançar uma versão dos widgets</h3>
+        <p>Os widgets (<code>widgets/v1/</code>) têm versões próprias e só se lançam depois de uma versão do kit que satisfaça <code>KIT_MIN</code> (a 1.0.0 dos widgets precisa do kit 1.1.0).</p>
+        <ol>
+          <li>Todos os <code>meta.json</code> com <code>"status": "stable"</code> (o snapshot recusa-se sem isso). Mudar <code>VERSION</code> em <code>widgets/src/core/version.js</code> e passar as notas de <em>Widgets</em> para <code>## Widgets [X.Y.Z]</code> no <code>CHANGELOG.md</code>.</li>
+          <li><code>npm run build</code> e depois <code>npm run snapshot:widgets</code>, que copia <code>widgets/v1/</code> para <code>widgets/vX.Y.Z/</code> e escreve o seu <code>SHA256SUMS</code>.</li>
+          <li>Fundir em <code>main</code> e criar a etiqueta <code>widgets-vX.Y.Z</code>. A partir daí, a verificação abre <code>tests/widgets/compat.html</code> com <code>widgets/v1/</code> e com cada versão congelada.</li>
+          <li>Voltar a pôr a versão seguinte com <code>-dev</code>.</li>
+        </ol>
         <p>Os pormenores de publicação (cabeçalhos de cache, domínio, espelho no jsDelivr) estão em <a href="https://github.com/mmroch4/uc-design-kit/blob/main/docs/deployment.md">docs/deployment.md</a>.</p>
 
         <h2 id="ver-tambem">Ver também</h2>
@@ -284,6 +292,7 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pr
           <li class="docs-toc__sub"><a href="#outras-alteracoes">Outras alterações</a></li>
           <li><a href="#pull-requests">Pull requests</a></li>
           <li><a href="#lancar">Lançar uma versão</a></li>
+          <li class="docs-toc__sub"><a href="#lancar-widgets">Lançar uma versão dos widgets</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>

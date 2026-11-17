@@ -75,6 +75,14 @@ As páginas que só existiam no original passaram a caminhos relativos.
 - `problems/index.html`: `<uc-problems filters track>` com o prazo de cada aula.
 - Testes: `<uc-assessment-info>` com turnos, duração e local vindos do `course.js`.
 
+## Widgets (17 nov 2026, fase W6)
+
+- `practical/class06.html`, exercício 2: `<uc-widget-complexity>` com 1, n e n².
+- `practical/class09.html`: `<uc-widget-recursion>` (fib(5)) no exercício 1 e
+  `<uc-widget-backtracking>` (subconjuntos de [1, 2, 3]) no exercício 6.
+
+Conteúdo novo, escrito para o exemplo, não do site original.
+
 ## Por confirmar com os docentes
 
 - O calendário reconstruído em `weeks.html` e as datas das aulas T09–T23 em `lectures.html`.

@@ -31,7 +31,7 @@ import { gzipSync } from "node:zlib";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { transform } from "esbuild";
-import { KIT, listReleases, verifyRelease } from "./releases.mjs";
+import { KIT, WIDGETS, listReleases, verifyRelease } from "./releases.mjs";
 import { buildDocs, buildSearchIndex } from "./docs.mjs";
 import { buildTemplateZip } from "./template-zip.mjs";
 import { buildLlms } from "./llms.mjs";
@@ -167,10 +167,12 @@ async function main() {
   if ((await buildExampleIndexes({ check })) > 0) failed = true;
   if ((await buildLlms({ check })) > 0) failed = true;
   if ((await buildTemplateZip({ check })) > 0) failed = true;
-  for (const release of await listReleases()) {
-    const problems = await verifyRelease(release);
-    for (const problem of problems) console.error(`kit/${release}: ${problem}`);
-    if (problems.length) failed = true;
+  for (const [base, label] of [[KIT, "kit"], [WIDGETS, "widgets"]]) {
+    for (const release of await listReleases(base)) {
+      const problems = await verifyRelease(release, base);
+      for (const problem of problems) console.error(`${label}/${release}: ${problem}`);
+      if (problems.length) failed = true;
+    }
   }
   if (failed) process.exitCode = 1;
 }

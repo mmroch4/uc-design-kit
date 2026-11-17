@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Widget da biblioteca: pilhas e filas -->
+  <script src="../../../widgets/v1/uc-widget-stack-queue.js" defer></script>
 </head>
 <body>
   <uc-page current="weeks">
@@ -670,6 +672,13 @@ public class ED194 {
             </ul>
           </details>
         </uc-exercise>
+
+        <!-- Widget <uc-widget-stack-queue> (widgets/v1/): a pilha de ArrayStack -->
+        <h3 id="ver-pilha">Ver uma pilha passo a passo</h3>
+        <p class="uc-prose">Uma pilha num array, como em <code>ArrayStack</code>: o topo é a última posição ocupada. Siga as operações e confirme o que devolve cada <code>pop</code> e <code>top</code>. No botão de algoritmo pode mudar para uma pilha numa lista ligada, como em <code>LinkedListStack</code>.</p>
+        <uc-widget-stack-queue algorithm="stack" values="3 8" ops="push 5; push 1; pop; peek; pop; pop" predict>
+          <p>Pilha 3 8 (8 no topo). <code>push(5)</code> e <code>push(1)</code>: 3 8 5 1. <code>pop()</code> devolve 1, <code>top()</code> devolve 5, depois saem 5 e 8. Fica 3.</p>
+        </uc-widget-stack-queue>
       </section>
 
       <!-- Exercício 4 -->
@@ -801,6 +810,13 @@ public class LinkedListQueue<T> implements MyQueue<T> {
             </ul>
           </details>
         </uc-exercise>
+
+        <!-- Widget <uc-widget-stack-queue> (widgets/v1/): uma fila circular num array -->
+        <h3 id="ver-fila">Ver uma fila passo a passo</h3>
+        <p class="uc-prose">A <code>LinkedListQueue</code> guarda a fila numa lista ligada. Outra implementação comum usa um array circular: quando a cauda chega ao fim do array, volta à posição 0. Siga as operações numa fila de capacidade 4 e repare onde entra o 9.</p>
+        <uc-widget-stack-queue algorithm="queue" capacity="4" values="3 8 5" ops="dequeue; enqueue 1; enqueue 9; enqueue 7; dequeue" predict>
+          <p>Fila circular de capacidade 4 com 3 8 5. Sai 3, entram 1 e 9 (o 9 vai para a posição 0), 7 não cabe, sai 8. Fica 5 1 9.</p>
+        </uc-widget-stack-queue>
       </section>
 
       <!-- Aula anterior e seguinte -->

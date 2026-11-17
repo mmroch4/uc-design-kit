@@ -82,6 +82,24 @@ a frozen release was modified.
 Never edit a frozen release: publish a new version instead. `kit/v1/` must stay
 backwards compatible (see `docs/api.md`, section 9).
 
+### Widget library releases
+
+The widgets (`widgets/v1/`) have their own versions (`docs/plan/widgets-api.md`
+2.2). A widgets release needs a kit release that satisfies `KIT_MIN` first
+(widgets 1.0.0 needs kit 1.1.0).
+
+1. Every widget's `meta.json` has `"status": "stable"` (the snapshot refuses
+   otherwise). Set `VERSION` in `widgets/src/core/version.js` (e.g. `1.0.0`)
+   and move the *Widgets* notes in `CHANGELOG.md` under `## Widgets [X.Y.Z]`.
+2. `npm run build`, then `npm run snapshot:widgets`: copies `widgets/v1/` to
+   `widgets/vX.Y.Z/` and writes its `SHA256SUMS`. `npm run build:check`
+   verifies the checksums of every release, kit and widgets.
+3. Commit, merge to `main` and tag `widgets-vX.Y.Z`. From then on the check
+   opens `tests/widgets/compat.html` against `widgets/v1/` and against every
+   frozen release: the 1.0.0 attributes, `ops` verbs, methods and events must
+   keep working.
+4. Set `VERSION` back to the next `-dev` version.
+
 ## Mirror on jsDelivr (fallback)
 
 jsDelivr serves any tagged version of a public GitHub repository, with no

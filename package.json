@@ -8,6 +8,7 @@
     "build": "node scripts/build.mjs",
     "build:check": "node scripts/build.mjs --check",
     "snapshot": "node scripts/snapshot.mjs",
+    "snapshot:widgets": "node scripts/snapshot.mjs --widgets",
     "pretest": "node scripts/build.mjs",
     "test": "node --test tests/widgets/*.test.mjs && node scripts/check-docs.mjs --strict && node scripts/check-search.mjs && node scripts/check-a11y.mjs && node scripts/check-pages.mjs",
     "test:widgets": "node --test tests/widgets/*.test.mjs",

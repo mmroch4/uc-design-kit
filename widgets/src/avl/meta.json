@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-avl",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 2,
   "title": { "pt": "Árvore AVL", "en": "AVL tree" },

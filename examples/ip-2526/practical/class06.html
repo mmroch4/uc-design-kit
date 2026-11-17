@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <!-- Algorithm widget (widgets/v1/): constant, linear and quadratic time -->
+  <script src="../../../widgets/v1/uc-widget-complexity.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
@@ -240,6 +242,12 @@ print(lst)</code></pre></uc-code>
 <p>- Instead of doing \(+a -b\) for \(k/2\) times, you can simply multiply \(a-b\) by \(k/2\), right?<br/>
     - You just need to be careful about \(k\) being odd or even, to that you know if the last iteration is on \(+a\) or \(-b\)
 </p></details>
+<p><strong>Constant, linear and quadratic</strong></p>
+<p>Move \(n\) from 1 to 20 and see how the number of steps grows for a constant-time solution, a linear one (like the loop above, with \(n = k\)) and a quadratic one (a loop inside a loop).</p>
+<!-- Widget <uc-widget-complexity>: 1, n and n² -->
+<uc-widget-complexity functions="1 n n2" max="20" predict>
+  <p>For n = 20: 1 step for the constant solution, 20 for the linear one and 400 for the quadratic one.</p>
+</uc-widget-complexity>
         </uc-exercise>
         <uc-exercise id="now-for-something-algorithmically-more-i" title="3) Now for something algorithmically more interesting (sliding windows)">
 <p>Start by carefully reading the following problem and make sure you fully understand what is asked:</p>

@@ -1307,7 +1307,12 @@ one file per widget type after the kit:
 ```
 
 The widget file loads `uc-widget-core.js` and `uc-widget.css` from its own
-folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
+folder. The catalogue is `widgets/v1/catalog.json`. Every widget is
+`stable`: its attributes, `ops` verbs, members and events below keep working
+in all of 1.x (`tests/widgets/compat.html` checks `widgets/v1/` and every
+frozen release on each change). Releases are frozen as `widgets/vX.Y.Z/`
+(`npm run snapshot:widgets`; widgets 1.0.0 is prepared and waits for kit
+1.1.0). Widgets:
 
 | Element | Own attributes | `algorithm` |
 | --- | --- | --- |

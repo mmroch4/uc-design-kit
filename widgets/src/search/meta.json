@@ -1,6 +1,6 @@
 {
   "name": "uc-widget-search",
-  "status": "experimental",
+  "status": "stable",
   "since": "1.0.0",
   "wave": 1,
   "title": { "pt": "Pesquisa", "en": "Searching" },

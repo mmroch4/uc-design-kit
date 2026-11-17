@@ -78,6 +78,15 @@ Os widgets de algoritmos (`widgets/src/<nome>/`) têm a sua própria lista: algo
 3. Fundir em `main` (publicado automaticamente) e criar a etiqueta `vX.Y.Z`.
 4. Voltar a pôr a versão seguinte com `-dev`.
 
+### Lançar uma versão dos widgets
+
+Os widgets (`widgets/v1/`) têm versões próprias e só se lançam depois de uma versão do kit que satisfaça `KIT_MIN` (a 1.0.0 dos widgets precisa do kit 1.1.0).
+
+1. Todos os `meta.json` com `"status": "stable"` (o snapshot recusa-se sem isso). Mudar `VERSION` em `widgets/src/core/version.js` e passar as notas de *Widgets* para `## Widgets [X.Y.Z]` no `CHANGELOG.md`.
+2. `npm run build` e depois `npm run snapshot:widgets`, que copia `widgets/v1/` para `widgets/vX.Y.Z/` e escreve o seu `SHA256SUMS`.
+3. Fundir em `main` e criar a etiqueta `widgets-vX.Y.Z`. A partir daí, a verificação abre `tests/widgets/compat.html` com `widgets/v1/` e com cada versão congelada.
+4. Voltar a pôr a versão seguinte com `-dev`.
+
 Os pormenores de publicação (cabeçalhos de cache, domínio, espelho no jsDelivr) estão em [docs/deployment.md](https://github.com/mmroch4/uc-design-kit/blob/main/docs/deployment.md).
 
 ## Ver também
