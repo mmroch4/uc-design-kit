@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weekly Problems #05 · Competitive Programming 2026/27</title>
+  <meta name="description" content="Weekly problem set #05 of Competitive Programming (CC3032): Cumulative sums and fenwick trees (BITs).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="../problems/index.html">Problems</a></li><li aria-current="page">Weekly Problems #05</li></ol>
+    </nav>
+    <h1>Weekly Problems #05</h1>
+    <p class="uc-lead">Cumulative sums and fenwick trees (BITs) · Class: <a href="../classes/week05.html">Week #05</a></p>
+    <div class="uc-content">
+<p>This is one of 10 weekly problem sets. Each one is worth 10% of the grade of the <strong>"Submitted Implementation"</strong> evaluation criteria.</p>
+<ul>
+<li><strong>Date of publication:</strong> 12/10/2026
+  </li><li><strong>Date of delivery (deadline):</strong> 23h59m of <strong>02/11/2026</strong> (-4% for each extra day)
+  </li><li><strong>Topics:</strong> Cumulative sums and fenwick trees (BITs)
+</li></ul>
+
+<h2>Proposed problems (5)</h2><ul>
+<li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC021]</a> - <a href="../problems/pc021.html">Maximum Sum</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>
+          - Use cumulative sums<br/><br/>
+          - Can you see how to use Kadane algorithm on one dimension to reduce the runtime complexity to \(\mathcal{O}(n^3)\)?<br/><br/>
+</p>
+</details>
+
+</li><li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC022]</a> - <a href="../problems/pc022.html">Japan</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>
+          - Can you see how the number of crossing is equal to the number of "inversions"?<br/><br/>
+          - Can you use a fenwick tree (with single queries and single updates) to compute?
+        </p>
+</details>
+
+</li><li> <a href="https://codeforces.com/contest/276/problem/C">[CodeForces 276C]</a> - <a href="https://codeforces.com/contest/276/problem/C">Little Girl and Maximum Sum</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>- Which position should have the highest value? And the 2nd highest? ...<br/><br/>
+           - How to use fenwick trees to compute frequencies of positions in the queries?<br/>
+              <i>(perhaps using range updates and single queries?)</i>
+</p>
+</details>
+
+</li><li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC023]</a> - <a href="../problems/pc023.html">Horrible Queries</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>- Use a fenwick tree with range update and range queries</p>
+</details>
+
+</li><li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC025]</a> - <a href="../problems/pc025.html">Calculate The Cost</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>- A "naive" fenwick tree approach will not fit on memory...<br/><br/>
+          - Would processing the trees and queries in a different order help you?
+        </p>
+</details>
+
+</li></ul>
+
+<h2>About the delivery</h2>
+<ul>
+<li>I will automatically catch your submissions from Codeforces (as well as in Mooshak).
+    </li><li>At the end of the semester you will need to send all your submitted code to me.
+    </li><li>You can chat and discuss the problems among yourselves, but you should do your own implementation (simply copying code from other or from an LLM is considered a severe break of the code of conduct).
+    </li><li>The final code submitted to should include comments with the temporal and spatial complexity, as well as a small explanation of your algorithmic idea. You should also refer any helps you got (including referencing any sources you have consulted).
+  </li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/ps05.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/ps05.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

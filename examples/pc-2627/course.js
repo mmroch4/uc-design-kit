@@ -49,14 +49,77 @@ window.UC_COURSE = {
   ],
 
   deadlines: [
-    // TODO: one deadline per weekly problem set (kind "submission"); the dates are on the ps01–ps06 pages, which could not be read yet.
+    // Weekly problem sets: deadline at 23:59 (−4% per extra day). Add one per new problem set.
+    {
+      id: "ps01",
+      title: "Weekly Problems #01",
+      date: "2026-09-28",
+      time: "23:59",
+      kind: "submission",
+      note: "Introduction to the course & first problems · −4% per extra day",
+      url: "problem-sets/ps01.html",
+    },
+    {
+      id: "ps02",
+      title: "Weekly Problems #02",
+      date: "2026-10-07",
+      time: "23:59",
+      kind: "submission",
+      note: "Sublinear complexity data structures · −4% per extra day · Extended from 5 Oct (DCC websites were down)",
+      url: "problem-sets/ps02.html",
+    },
+    {
+      id: "ps03",
+      title: "Weekly Problems #03",
+      date: "2026-10-12",
+      time: "23:59",
+      kind: "submission",
+      note: "Sorting, binary search, ternary search, bisection · −4% per extra day",
+      url: "problem-sets/ps03.html",
+    },
+    {
+      id: "ps04",
+      title: "Weekly Problems #04",
+      date: "2026-10-19",
+      time: "23:59",
+      kind: "submission",
+      note: "Sqrt decomposition, segment trees and variants · −4% per extra day",
+      url: "problem-sets/ps04.html",
+    },
+    {
+      id: "ps05",
+      title: "Weekly Problems #05",
+      date: "2026-11-02",
+      time: "23:59",
+      kind: "submission",
+      note: "Cumulative sums and fenwick trees (BITs) · −4% per extra day",
+      url: "problem-sets/ps05.html",
+    },
+    {
+      id: "ps06",
+      title: "Weekly Problems #06",
+      date: "2026-11-23",
+      time: "23:59",
+      kind: "submission",
+      note: "Dynamic Programming I (classic) · −4% per extra day · Extended by one week from 16 Nov",
+      url: "problem-sets/ps06.html",
+    },
+    {
+      id: "ps07",
+      title: "Weekly Problems #07",
+      date: "2026-11-30",
+      time: "23:59",
+      kind: "submission",
+      note: "Dynamic Programming II · −4% per extra day",
+      url: "problem-sets/ps07.html",
+    },
     {
       id: "contest1",
       title: "1st Contest",
       date: "2026-10-20",
       kind: "assessment",
       note: "In class, individual, ICPC style · 30% of CE",
-      url: "https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/contest1.html",
+      url: "contest1.html",
     },
     {
       id: "contest2",
@@ -103,7 +166,7 @@ window.UC_COURSE = {
   ],
 
   footer: '<a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> · <a href="https://www.dcc.fc.up.pt/">DCC</a>/<a href="https://www.fc.up.pt/">FCUP</a>',
-  updated: "2026-11-10",
+  updated: "2026-11-17",
   // Demo: freezes "today" at the date the original site was captured
   // (week 9, class #07). On a real site, delete this line.
   today: "2026-11-17",

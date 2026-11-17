@@ -78,6 +78,12 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     about: "Sobre a UC",
   },
   footer: { updated: "Atualizado a {date}" },
+  editions: {
+    other: "Outros anos",
+    notice: "Esta página é da edição {edition}.",
+    current: "Ver a edição atual ({edition})",
+  },
+  sort: { announce: "Ordenado por {column}, {direction}", asc: "crescente", desc: "decrescente" },
   notices: {
     heading: "Avisos",
     earlier: "Avisos anteriores ({count})",

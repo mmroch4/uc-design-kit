@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC002] Encryption · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC002 (Encryption) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC002</li></ol>
+    </nav>
+    <h1>[PC002] Encryption</h1>
+    <div class="uc-content">
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc002.png"/>Forty-Two Password Inc. has created a new encryption technique which encodes a message by inserting between its characters randomly generated strings in a clever way. You must help them validate their method by creating a program that checks if the original message is really encoded in the final string.</p>
+<h2>The Problem</h2>
+<p>Given two strings \(A\) and \(B\), you have to check if \(A\) is a subsequence of \(B\), that is, if you can remove characters from \(B\) such that the concatenation of the remaining characters is \(A\).</p>
+<h2>Input</h2>
+<p>The first line contains \(T\), the number of test cases that you will need to process. Each of the following \(T\) lines contains \(A\) and \(B\), two strings of lowercase letters.</p>
+<h2>Output</h2>
+<p>For each test case (in the same order as they appear in the input) output a line with <big><tt>"yes"</tt></big> if \(A\) is a subsequence of \(B\) and <big><tt>"no"</tt></big> otherwise.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>\(1 \leq T \leq 20\)</td>
+
+<td>Number of test cases</td>
+</tr>
+<tr>
+<td>\(1 \leq |A| \leq |B| \leq 100\)</td>
+
+<td>Length of strings A and B</td>
+</tr>
+</table></div>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4
+sequence subsequence
+mordor middleearth
+jasp javascript
+person compression</pre></td><td><pre data-copy="Output">yes
+no
+yes
+no</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc002.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc002.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

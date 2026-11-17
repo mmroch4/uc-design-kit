@@ -133,6 +133,7 @@ Não estão definidos em `:root`: o kit lê-os com um valor de recurso. Definem-
 | `--uc-timetable-time-width` | `7.5rem` | Coluna das horas de `<uc-timetable view="days">`. |
 | `--uc-grading-bar-height` | `12px` | Altura da barra das proporções de `<uc-grading>`. |
 | `--uc-summaries-date-width` | `10rem` | Largura da coluna da data de `<uc-summaries>`, em ecrãs largos. |
+| `--uc-links-min` | `260px` | Largura mínima de cada coluna de `uc-links--grid`. |
 
 ```html
 <div class="uc-grid" style="--uc-grid-min: 160px">

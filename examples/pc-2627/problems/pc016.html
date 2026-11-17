@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC016] Frequent Values · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC016 (Frequent Values) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC016</li></ol>
+    </nav>
+    <h1>[PC016] Frequent Values</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://onlinejudge.org/external/112/11235.pdf">UVA</a> and <a href="https://www.spoj.com/problems/FREQUENT/">SPOJ</a> problem.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc016.png"/>
+You are given a sequence of \(n\) integers \(a_1, a_2 , \ldots , a_n\) in non-decreasing order. In addition to that, you are given several queries consisting of indices \(i\) and \(j\). For each query, determine the most frequent value among the integers \(a_i, ..., a_j\).
+
+</p><h2>Input</h2>
+<p>The first input line contains two inters integer \(n\) and \(q\), respectively the amount of numbers and and queries.</p>
+<p>The second line contains \(n\) integers \(a_1, a_2, \ldots, a_n\): the sequence of integers.</p>
+<p>The next \(q\) lines describe the queries: each contains two integers \(i \, j\) describing the query range.
+
+</p><h2>Output</h2>
+<p>\(q\) lines, each with one integer: the number of occurrences of the most frequent value within the given range. </p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n \leq 10^5 \)
+  </li><li>\( 1 \leq q \leq 10^5 \)
+  </li><li>\( -10^5 \leq a_i \leq 10^5 \)
+  </li><li>\( 1 \leq i \leq j \leq n\)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">10 3
+-1 -1 1 1 1 1 3 10 10 10
+2 3
+1 10
+5 10</pre></td><td><pre data-copy="Output">1
+4
+3</pre></td></tr></table></div>
+<ul>
+<li> Query 1 (2–3): The range is [-1, 1], the most frequent values are -1 or 1 which appears once.
+  </li><li> Query 2 (1-10): The range is [-1, -1, 1, 1, 1, 1, 3, 10, 10, 10], the most frequent value is 1 which appears 4 times. 
+  </li><li> Query 3 (5-10):  The range is [1, 3, 10, 10, 10], the most frequent value is 10 which appears 3 times. 
+</li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc016.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc016.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

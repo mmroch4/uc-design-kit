@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC017] Hotel Queries · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC017 (Hotel Queries) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC017</li></ol>
+    </nav>
+    <h1>[PC017] Hotel Queries</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://cses.fi/problemset/task/1143">CSES problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc017.png"/>
+  There are \(n\) hotels on a street. For each hotel you know the number of free rooms. Your task is to assign hotel rooms for groups of tourists. All members of a group want to stay in the same hotel.</p>
+<p>The groups will come to you one after another, and you know for each group the number of rooms it requires. You always assign a group to the first hotel having enough rooms. After this, the number of free rooms in the hotel decreases.</p>
+<h2>Input</h2>
+<p>The first input line contains two integers \(n\) and \(m\): the number of hotels and the number of groups. The hotels are numbered \(1,2 \ldots, n\).
+
+</p><p>The next line contains \(n\) integers \(h_1, h_2, \ldots, h_n\)​: the number of free rooms in each hotel.</p>
+<p>The last line contains \(m\) integers \(r_1, r_2,\ldots, r_m\)​: the number of rooms each group requires.</p>
+<h2>Output</h2>
+<p>Print the assigned hotel for each group. If a group cannot be assigned a hotel, print 0 instead. The assignments should come in the same line, separated by a single space.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n,m \leq 2 \cdot 10^5 \)
+  </li><li>\( 1 \leq h_i \leq 10^9 \)
+  </li><li>\( 1 \leq r_i \leq 10^9 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">8 5
+3 2 4 1 5 5 2 6
+4 4 7 1 1</pre></td><td><pre data-copy="Output">3 5 0 1 1</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc017.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc017.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

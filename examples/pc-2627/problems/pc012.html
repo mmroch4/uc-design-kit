@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC012] Factory Machines · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC012 (Factory Machines) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC012</li></ol>
+    </nav>
+    <h1>[PC012] Factory Machines</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://cses.fi/problemset/task/1620">CSES problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc012.jpg" width="300"/>
+A factory has \(n\) machines which can be used to make products. Your goal is to make a total of \(t\) products.</p>
+<p>For each machine, you know the number of seconds it needs to make a single product. The machines can work simultaneously, and you can freely decide their schedule.</p>
+<p>What is the shortest time needed to make \(t\) products?</p>
+<h2>Input</h2>
+<p>The first input line has two integers \(n\) and \(t\): the number of machines and products.</p>
+<p>The next line has nn integers \(k_1, k_2, \ldots, k_n\)​: the time needed to make a product using each machine.</p>
+<h2>Output</h2>
+<p>Print a line one integer: the minimum time needed to make \(t\) products.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n \leq 2 \cdot 10^5 \)
+  </li><li>\( 1 \leq t \leq 10^9 \)
+  </li><li>\( 1 \leq k_i \leq 10^9 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">3 7
+3 2 5</pre></td><td><pre data-copy="Output">8</pre></td></tr></table></div>
+<p>Explanation: Machine 1 makes two products, machine 2 makes four products and machine 3 makes one product.</p>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc012.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc012.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

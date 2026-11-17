@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC027] Mixtures · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC027 (Mixtures) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC027</li></ol>
+    </nav>
+    <h1>[PC027] Mixtures</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/CCOST/">SPOJ Problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc027.png"/>
+Harry Potter has \(n\) mixtures in front of him, arranged in a row. Each mixture has one of 100 different colors (colors have numbers from 0 to 99).</p>
+<p>He wants to mix all these mixtures together. At each step, he is going to take two mixtures that stand next to each other and mix them together, and put the resulting mixture in their place.</p>
+<p>When mixing two mixtures of colors \(a\) and \(b\), the resulting mixture will have the color \((a+b) \mod 100\).</p>
+<p>Also, there will be some smoke in the process. The amount of smoke generated when mixing two mixtures of colors \(a\) and \(b\) is \(a \times b\).</p>
+<p>Find out what is the minimum amount of smoke that Harry can get when mixing all the mixtures together.</p>
+<h2>Input</h2>
+<p>The first line contains \(t\), the number of test cases in the input</p>
+<p>\(t\) lines follow, each containing one test case. Each case starts with \(n\), the number of mixtures, followed by \(n\) numbers \(m_1, m_2, \ldots, m_n\), the initial colors of the mixtures.</p>
+<h2>Output</h2>
+<p>For each test case, output a line with the minimum amount of smoke. </p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq t \leq 10 \)
+  </li><li>\( 1 \leq n \leq 100 \)
+  </li><li>\( 0 \leq m_i \leq 99 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">2
+2 18 19
+3 40 60 20</pre></td><td><pre data-copy="Output">342
+2400</pre></td></tr></table></div>
+<p><strong>Explanation of example</strong></p>
+<p>For the first case, the only option is to mix 18 and 19 resulting in 18 × 19 = 342 smoke.</p>
+<p>In the second test case, there are two possibilities:</p>
+<ul>
+<li>first mix 40 and 60 (smoke: 2400), getting 0, then mix 0 and 20 (smoke: 0); total amount of smoke is 2400
+  </li><li>first mix 60 and 20 (smoke: 1200), getting 80, then mix 40 and 80 (smoke: 3200); total amount of smoke is 4400 
+</li></ul>
+<p>The first scenario is a much better way to proceed.</p>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc027.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc027.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

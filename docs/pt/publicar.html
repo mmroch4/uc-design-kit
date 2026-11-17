@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Publicar · UC Design Kit</title>
-  <meta name="description" content="Publicar um site feito com o UC Design Kit no servidor do departamento (~/public_html), no GitHub Pages ou no Cloudflare Pages; versão do kit e cache.">
+  <meta name="description" content="Publicar um site feito com o UC Design Kit no servidor do departamento (~/public_html), no GitHub Pages ou no Cloudflare Pages; versão do kit, links partidos, data de atualização e cache.">
   <link rel="icon" href="../../favicon.ico">
   <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../assets/docs.css">
@@ -142,6 +142,7 @@
           <li>Os links são relativos e com <code>.html</code> (ver <a href="estrutura.html#links">Links e ficheiros</a>).</li>
           <li>O <code>updated</code> do <code>course.js</code> tem a data de hoje.</li>
           <li><code>python3 uc-site.py</code> termina sem erros (ver <a href="manter.html">Manter o site</a>).</li>
+          <li>Os links externos funcionam (ver <a href="#links-partidos">Links partidos</a>).</li>
         </ul>
 
         <h2 id="dcc">Servidor do departamento (~/public_html)</h2>
@@ -195,6 +196,13 @@ git add . && git commit -m "Site 2026/27" && git push</code></pre></uc-code>
         </div>
         <p>Para fixar a versão troca-se <code>v1</code> pelo número nos três endereços do <code>&lt;head&gt;</code> (o <code>preload</code> da letra, o CSS e o JavaScript). As versões publicadas e o que mudou em cada uma estão no <a href="https://github.com/mmroch4/uc-design-kit/blob/main/CHANGELOG.md">CHANGELOG</a>.</p>
 
+        <h2 id="links-partidos">Links partidos</h2>
+        <p>Os links para fora do site (enunciados noutros servidores, juízes online, outras cadeiras) deixam de funcionar sem aviso. O <a href="https://validator.w3.org/checklink">W3C Link Checker</a> verifica-os sem instalar nada: indica-se o endereço do site publicado, marca-se "Check linked documents recursively" com profundidade 1 ou 2, e ele lista os links que respondem com erro. Os links com <code>data-auth</code> (pautas, SIGARRA) aparecem como erro de autenticação, o que é normal.</p>
+        <p>O repositório do kit verifica uma vez por semana os links externos dos exemplos e da documentação e abre uma <em>issue</em> com os que falharem.</p>
+
+        <h2 id="data-das-paginas">Data de atualização</h2>
+        <p>O rodapé diz "Atualizado a …" com o <code>updated</code> do <code>course.js</code>. Uma página com <code>&lt;uc-page updated="auto"&gt;</code> mostra a data do próprio ficheiro, que o servidor envia no cabeçalho <code>Last-Modified</code>. O servidor do DCC e o GitHub Pages enviam-no; se o servidor não o enviar, a página não mostra data. Com <code>rsync -a</code> a data é a da última alteração no computador, não a da cópia.</p>
+
         <h2 id="cache">Cache</h2>
         <ul>
           <li><strong>O kit</strong> (<code>kit/v1/</code>) fica guardado no browser durante 5 minutos e depois é verificado em segundo plano: uma correção ao kit chega aos alunos na visita seguinte, sem que esperem por ela.</li>
@@ -230,6 +238,8 @@ git add . && git commit -m "Site 2026/27" && git push</code></pre></uc-code>
           <li><a href="#github-pages">GitHub Pages</a></li>
           <li><a href="#cloudflare">Cloudflare Pages</a></li>
           <li><a href="#versao">Versão do kit</a></li>
+          <li><a href="#links-partidos">Links partidos</a></li>
+          <li><a href="#data-das-paginas">Data de atualização</a></li>
           <li><a href="#cache">Cache</a></li>
         </ul>
       </nav>

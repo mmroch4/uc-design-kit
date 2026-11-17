@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC026] The Perfect Harmony · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC026 (The Perfect Harmony) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC026</li></ol>
+    </nav>
+    <h1>[PC026] The Perfect Harmony</h1>
+    <div class="uc-content">
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc026.png"/>
+Two great musicians, Alice and Bob, each composed a sequence of notes. Each note has an intensity (which may be positive or negative), representing how strongly it resonates.</p>
+<p>When the royal orchestra plays, Alice and Bob may <strong>each select some of their notes (keeping their original order)</strong> to perform together, forming a duet. However, they must each pick the <strong>same number of notes</strong>, so that their performances align perfectly.</p>
+<p>The <strong>harmony value</strong> of their duet is calculated as the <strong>sum of the products of the paired notes intensities</strong>.</p>
+<p>Find the <strong>maximum possible harmony value</strong> that Alice and Bob can achieve, that is, the maximum dot product of two (equally long) subsequences of their compositions.</p>
+<h2>Input</h2>
+<p>The first line of input contains \(n\), the length of the original sequence of Alice. The second line contains \(n\) space-separated values \(a_1, a_2, \ldots, a_n\) representing the original sequence of notes of Alice.</p>
+<p>The third line of input contains \(m\), the length of the original sequence of Bob. The fourth line contains \(n\) space-separated values \(b_1, b_2, \ldots, b_m\) representing the original sequence of notes of Bob.</p>
+<h2>Output</h2>
+<p>The output should be a line with one integer representing the maximum possible harmony, as described.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n, m \leq 1\,000 \)
+  </li><li>\( -1\,000 \leq a_i, b_i \leq 1\,000 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4
+2 1 -2 5
+3
+3 0 -6</pre></td><td><pre data-copy="Output">18</pre></td></tr></table></div>
+<p><strong>Explanation of example</strong></p>
+<p>Take subsequence \(2\) \(-2\) from Alice and subsequence \(3\) \(-6\) from Bob.
+Their harmony value is  \((2 \times 3 + (-2) \times (-6)) = 18\).
+
+</p>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc026.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc026.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

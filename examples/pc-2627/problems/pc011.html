@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC011] Special Sort · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC011 (Special Sort) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC011</li></ol>
+    </nav>
+    <h1>[PC011] Special Sort</h1>
+    <div class="uc-content">
+<p><img alt="" class="uc-content__float" height="220" loading="lazy" src="images/pc011.jpg"/>You are given an array of \(n\) distinct integers. Your task is to sort the array into descending order according to the number of 1's in their binary representation. If two numbers have the same number of 1's, you have to sort them in ascending order of their value.</p>
+<h2>Input</h2>
+<p>The first input line an integer \(n\): the amount of numbers in the array.</p>
+<p>The second line contains \(n\) integers \(x_1, x_2, \ldots, x_n\): the numbers of the array sorted as described above.</p>
+<h2>Output</h2>
+<p>A single line containing the numbers in sorted order, separated by single spaces <i>(there should be no space after the last number)</i>.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n \leq 10^5 \)
+  </li><li>\( 1 \leq x_i \leq 10^9 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">8
+5 2 15 3 9 4 6 7</pre></td><td><pre data-copy="Output">15 7 3 5 6 9 2 4</pre></td></tr></table></div>
+<p>The binary representation of each number in the input is:
+  </p><ul>
+<li>15: 1111 <i>(four 1's)</i>
+</li><li>7: 0111 <i>(three 1's)</i>
+</li><li>3: 0011 <i>(two 1's)</i>
+</li><li>5: 0101 (two 1's)
+</li><li>6: 0110 <i>(two 1's)</i>
+</li><li>9: 1001 <i>(two 1's)</i>
+</li><li>2: 0010 <i>(one 1)</i>
+</li><li>4: 0100 <i>(one 1)</i>
+</li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc011.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc011.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

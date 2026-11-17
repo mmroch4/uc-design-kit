@@ -88,7 +88,8 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
 | `logo`URL ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho, relativa ao `course.js`; `null` esconde-a. |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
-| `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. |
+| `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. Uma página pode mostrar a sua própria data com [`<uc-page updated>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#data-da-pagina). |
+| `editions`URL | Opcional | — | Ficheiro com as edições da cadeira, relativo ao `course.js`, normalmente `"../editions.js"`. Ver [Edições](#edicoes). |
 
 ### Línguas
 
@@ -286,6 +287,34 @@ notices: [
 | `date` | `ISODate` | Obrigatório. Os avisos mostram-se do mais recente para o mais antigo, e um aviso com data futura só aparece nesse dia: podem escrever-se com antecedência. |
 | `text` | `HTMLText` | Obrigatório. Uma linha. |
 | `details` | `HTMLText` | Segunda linha, opcional. |
+
+## Edições
+
+Um ficheiro `editions.js` na pasta da cadeira, **acima** das pastas dos anos, lista todas as edições. O `course.js` de cada ano aponta para ele com `editions: "../editions.js"`, e [`<uc-page>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#outros-anos) mostra o botão "Outros anos" e, nas edições antigas, um aviso com o link para a atual.
+
+```text
+EDados/
+  editions.js      ← lista das edições (window.UC_EDITIONS)
+  2425/course.js   ← editions: "../editions.js"
+  2526/course.js   ← editions: "../editions.js"
+```
+
+`editions.js`:
+
+```js
+window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },   // a primeira é a edição atual
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];
+```
+
+| Campo | Tipo | Descrição |
+| --- | --- | --- |
+| `label` | texto | Obrigatório. Igual ao `edition` do `course.js` desse ano: é assim que o kit sabe em que edição está a página. |
+| `href` | URL | Obrigatório. Relativo ao `editions.js` (`"2526/"`), ou um endereço completo para anos que estão noutro sítio. |
+
+O kit carrega o ficheiro sozinho, também a partir do disco. Se não o encontrar, escreve um aviso na consola e a página fica como sem `editions`. Como o ficheiro está fora das pastas dos anos, acrescentar um ano novo atualiza os sites anteriores sem lhes mexer (ver [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#outros-anos)).
 
 ## Erros comuns
 

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week #06 · Competitive Programming 2026/27</title>
+  <meta name="description" content="Class #06 of Competitive Programming (CC3032): Dynamic Programming I (classic).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #06</li></ol>
+    </nav>
+    <h1>Week #06</h1>
+    <p class="uc-lead">Dynamic Programming I (classic) · Problems: <a href="../problem-sets/ps06.html">Weekly Problems #06</a></p>
+    <div class="uc-content">
+<h2>Main learning outcomes for this class</h2>
+<ol>
+<li><strong>Dynamic Programming (DP) Concepts:</strong>
+<ul>
+<li>I know the <strong>Dynamic Programming</strong> algorithmic technique and the type of problems where it is usually applied
+      </li><li>I know the characteristics of a problem where DP is applicable: <strong>optimal substructure</strong> and <strong>overlapping substructure</strong>
+</li><li>I know that DP can be applied <strong>bottom-up</strong> (finding the right order of the subproblems) or in <strong>top-down</strong> fashion (using more directly the recursive formula and <strong>memoization</strong> to store the already calculated values)
+    </li></ul>
+</li><li><strong>Classical Dynamic Programming Problems:</strong>
+<ul>
+<li>I know the <strong>longest increasing subsequence (LIS)</strong> problem, its DP formulation, how it can be solved more naively in \(\mathcal{O}(n^2)\) or in \(\mathcal{O}(n \log n)\) using binary search.
+      </li><li>I know the <strong>longest common subsequence (LCS)</strong> problem, its DP formulation, and how it can be seen as a specific case of <strong>edit distance</strong>
+</li><li>I know the <strong>0-1 knapsack</strong> problem and its DP formulation
+      </li><li>I know the <strong>coin change</strong> problem and its DP formulation
+      </li><li>I know the <strong>matrix chain multiplication (MCM)</strong> and its DP formulation	
+    </li></ul>
+</li></ol>
+
+<h2>Study Material</h2>
+<h2>Main references</h2>
+<ul>
+<li><strong>DP concepts</strong><ul>
+<li><strong>My own slides:</strong> <a href="../material/dp.pdf">Dynamic Programming</a>
+</li><li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/dynamic-programming-from-novice-to-advanced/">Dynamic Programming: From Novice to Advanced</a> (TopCoder)
+    </li><li><a href="http://wcipeg.com/wiki/Dynamic_programming">Dynamic programming
+      </a> (PEG Wiki)
+    </li><li><a href="https://cp-algorithms.com/dynamic_programming/intro-to-dp.html">Introduction to Dynamic Programming</a> (cp-algorithms)
+    </li><li>Chapter 7 of <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
+    </li><li>Section 3.5 of the <a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">Competitive Programming</a> book
+  </li></ul></li>
+
+<li><strong>Classical DP Problems</strong><ul>
+<li>LIS - Longest Increasing Subsequence: <a href="https://en.wikipedia.org/wiki/Longest_increasing_subsequence">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/">GeeksforGeeks</a> | <a href="https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html">cp-algorithms</a></li>
+<li>LCS - Longest Common Subsequence <a href="https://en.wikipedia.org/wiki/Longest_common_subsequence_problem">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/">GeeksforGeeks</a> </li>
+<li>ED - Edit Distance: <a href="https://en.wikipedia.org/wiki/Edit_distance">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/edit-distance-dp-5/">GeeksforGeeks</a> </li>
+<li>0-1 Knapsack: <a href="https://en.wikipedia.org/wiki/Knapsack_problem">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/">GeeksforGeeks</a> | <a href="https://cp-algorithms.com/dynamic_programming/knapsack.html">cp-algorithms</a> </li>
+<li>Coin Change: <a href="https://en.wikipedia.org/wiki/Change-making_problem">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/coin-change-dp-7/">GeeksforGeeks</a> </li>
+<li>MCM - Matrix Chain Multiplication: <a href="https://en.wikipedia.org/wiki/Matrix_chain_multiplication">Wikipedia</a> | <a href="https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/">GeeksforGeeks</a> </li>
+</ul></li>
+
+</ul>
+
+<h2>Initiation/Reinforcement Problems</h2>
+<ul>
+<li><a href="https://uva.onlinejudge.org/external/4/497.pdf">[UVA 497] Strategic Defense Initiative</a> (testing simple LIS with quadratic time)
+  </li><li><a href="https://cses.fi/problemset/task/1145">[CSES] Increasing Subsequence</a> (testing n log n LIS)
+  </li><li><a href="https://cses.fi/problemset/task/3403">[CSES] Longest Common Subsequence</a> (testing simple and direct LCS)
+  </li><li><a href="https://cses.fi/problemset/task/1639">[CSES] Edit Distance</a> (testing simple and direct edit distance)
+  </li><li><a href="https://cses.fi/problemset/task/1158">[CSES] Book Shop</a> (testing simple and direct 0-1 knapsack)
+  </li><li><a href="https://uva.onlinejudge.org/external/111/11137.pdf">[UVA 11137] Ingenuous Cubrency</a> (testing coin change, counting the number of ways to make change)
+  </li><li><a href="https://uva.onlinejudge.org/external/3/348.pdf">[UVA 348] Optimal Array Multiplication Sequence</a> (testing simple and direct MCM)
+</li></ul>
+<p>Here is also a problem to directly test your implementation of a bounded coin change:
+
+  </p><ul>
+<li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC030]</a> - <a href="../problems/pc030.html">Making Change</a>
+</li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week06.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week06.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blocos: elementos · UC Design Kit</title>
-  <meta name="description" content="Elementos do UC Design Kit: uc-button, uc-tag, uc-table, pre data-copy e os utilitários de texto.">
+  <meta name="description" content="Elementos do UC Design Kit: uc-button, uc-tag, uc-table (também ordenável, data-sortable), pre data-copy, a[data-auth] e os utilitários de texto.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -293,6 +293,55 @@
         </div>
         <p>O mesmo comportamento de teclado aplica-se às tabelas que os componentes geram (<a href="../componentes/uc-deadlines.html"><code>&lt;uc-deadlines view="table"&gt;</code></a>, <a href="../componentes/uc-team.html"><code>&lt;uc-team view="table"&gt;</code></a>) e aos <code>&lt;pre&gt;</code> largos dentro de <code>uc-content</code>.</p>
 
+        <h3 id="table-sortable"><code>table[data-sortable]</code></h3>
+        <p>Com <code>data-sortable</code> na <code>&lt;table&gt;</code>, os títulos das colunas passam a botões que ordenam a tabela: um clique ordena por ordem crescente, o seguinte por decrescente. Serve para classificações e listas longas que cada aluno quer ver por outra ordem.</p>
+        <!-- docs:demo src="../../demos/blocks/table-sortable.html" title="classificação ordenada por pontos, com linha de total" height="291" -->
+        <div class="docs-demo" id="demo-blocks-table-sortable">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/table-sortable.html" title="Demonstração: classificação ordenada por pontos, com linha de total" loading="lazy" style="height: 291px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-table&quot;&gt;
+  &lt;table data-sortable&gt;
+    &lt;caption class=&quot;uc-visually-hidden&quot;&gt;Classificação do 1.º concurso&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope=&quot;col&quot;&gt;Equipa&lt;/th&gt;
+        &lt;th scope=&quot;col&quot;&gt;Turma&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; data-sort-default=&quot;desc&quot;&gt;Pontos&lt;/th&gt;
+        &lt;th scope=&quot;col&quot;&gt;Última submissão&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; data-no-sort&gt;Notas&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Árvores&lt;/td&gt;&lt;td class=&quot;uc-mono&quot;&gt;PL10&lt;/td&gt;&lt;td&gt;12,5&lt;/td&gt;&lt;td&gt;&lt;time datetime=&quot;2025-11-03&quot;&gt;3 nov&lt;/time&gt;&lt;/td&gt;&lt;td&gt;—&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Bits&lt;/td&gt;&lt;td class=&quot;uc-mono&quot;&gt;PL1&lt;/td&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;&lt;time datetime=&quot;2025-11-12&quot;&gt;12 nov&lt;/time&gt;&lt;/td&gt;&lt;td&gt;Fora do prazo&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Grafos&lt;/td&gt;&lt;td class=&quot;uc-mono&quot;&gt;PL2&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;&lt;time datetime=&quot;2025-10-28&quot;&gt;28 out&lt;/time&gt;&lt;/td&gt;&lt;td&gt;—&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr data-sort-fixed&gt;&lt;td&gt;Total&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;33,5&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/table-sortable.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uma tabela ordenável</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Onde</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>data-sortable</code></td><td><code>&lt;table&gt;</code></td><td>Torna ordenáveis as colunas do <code>&lt;thead&gt;</code>.</td></tr>
+              <tr><td><code>data-sort-default</code></td><td><code>&lt;th&gt;</code></td><td><code>"asc"</code> ou <code>"desc"</code>: a tabela abre ordenada por essa coluna.</td></tr>
+              <tr><td><code>data-no-sort</code></td><td><code>&lt;th&gt;</code></td><td>Essa coluna não se ordena (notas, ligações).</td></tr>
+              <tr><td><code>data-sort</code></td><td><code>&lt;td&gt;</code></td><td>Valor usado em vez do texto, por exemplo <code>data-sort="-1"</code> numa célula "desistiu".</td></tr>
+              <tr><td><code>data-sort-fixed</code></td><td><code>&lt;tr&gt;</code></td><td>A linha fica sempre no fim (totais).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cada célula ordena-se pelo <code>data-sort</code>, senão pelo <code>datetime</code> do seu <code>&lt;time&gt;</code>, senão pelo texto. Números com vírgula ou ponto ("12,5") e percentagens ordenam-se como números, datas como datas, e o texto pela ordem da língua ativa com os números dentro dele comparados como números ("PL2" antes de "PL10"). As células vazias ficam no fim. Cada ordenação é anunciada aos leitores de ecrã ("Ordenado por Pontos, decrescente") e a coluna ordenada tem <code>aria-sort</code>. Os botões têm a classe <code>uc-sort-button</code>; as setas, <code>uc-sort-up</code> e <code>uc-sort-down</code>. Sem JavaScript, a tabela fica pela ordem em que foi escrita.</p>
+
         <h2 id="pre-data-copy"><code>&lt;pre data-copy&gt;</code></h2>
         <p>Acrescenta um botão de copiar ao canto de um bloco de texto pré-formatado, para o que o estudante cola noutro sítio: a entrada e a saída de um exemplo, um comando.</p>
         <!-- docs:demo src="../../demos/blocks/pre-copy.html" title="entrada e saída de um exemplo com botões de copiar" height="263" -->
@@ -451,6 +500,7 @@
           <li><a href="#table">uc-table</a></li>
           <li class="docs-toc__sub"><a href="#table-min">Largura mínima</a></li>
           <li class="docs-toc__sub"><a href="#table-caption">Legenda</a></li>
+          <li class="docs-toc__sub"><a href="#table-sortable">table[data-sortable]</a></li>
           <li><a href="#pre-data-copy">&lt;pre data-copy&gt;</a></li>
           <li><a href="#data-auth">a[data-auth]</a></li>
           <li><a href="#utilitarios">Utilitários de texto</a></li>

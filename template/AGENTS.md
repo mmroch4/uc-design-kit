@@ -91,6 +91,15 @@ Quando o professor pede para passar um site existente para esta pasta:
    - listas de problemas → `<uc-problems>`, uma `<section data-deadline="…">`
      por série com `data-judge` em cada `<li>`; os juízes vão para
      `platforms` com `id` (e `hidden: true` se não forem para o menu);
+   - listas longas de ligações (juízes, outras cadeiras, recursos externos)
+     → `<ul class="uc-links uc-links--grid">`;
+   - classificações e tabelas que se querem ver por outra ordem →
+     `<table data-sortable>` dentro de `.uc-table` (`data-sort-default`,
+     `data-no-sort`, `data-sort-fixed` na linha de totais);
+   - "última atualização" escrita à mão numa página → `<uc-page
+     updated="AAAA-MM-DD">` (ou `updated="auto"`), não texto no HTML;
+   - links "anos anteriores" → `editions.js` na pasta acima dos anos e
+     `editions: "../editions.js"` no `course.js` (não links à mão);
    - guiões de aula → `uc-guide` com `uc-exercise`; código → `uc-code`.
 6. **O resto** (enunciados, páginas de ajuda, textos longos) vai quase como
    está, dentro de `<uc-page>` e de `<div class="uc-content">`, que dá forma a

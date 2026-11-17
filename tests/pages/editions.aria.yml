@@ -1,0 +1,21 @@
+- link "Saltar para o conteúdo":
+  - /url: "#uc-main"
+- banner:
+  - link "Estruturas de Dados 2024/25":
+    - /url: index.html
+  - button "Outros anos"
+  - link "DCC · FCUP":
+    - /url: https://www.dcc.fc.up.pt
+- navigation "Secções da cadeira":
+  - list:
+    - listitem:
+      - link "Início":
+        - /url: index.html
+- main:
+  - paragraph:
+    - text: Esta página é da edição 2024/25.
+    - link "Ver a edição atual (2025/26)":
+      - /url: ../2526/
+  - heading "Estruturas de Dados 2024/25" [level=1]
+  - paragraph: "Página de teste das edições: \"Outros anos\" no cabeçalho e o aviso de edição antiga no topo."
+- contentinfo: Estruturas de Dados · DCC · FCUP

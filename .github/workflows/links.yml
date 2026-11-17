@@ -1,0 +1,54 @@
+name: Check links
+
+# Weekly check of the external links of examples/, template/ and docs/
+# (scripts/check-links.mjs). Never runs on pull requests: other sites going
+# down must not block a merge. The result is one issue labelled
+# "broken-links", opened, updated or closed by this workflow.
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # No npm install: the checker uses only Node's own modules.
+      - id: check
+        run: node scripts/check-links.mjs --report links-report.md
+        continue-on-error: true
+      - name: Open, update or close the broken-links issue
+        uses: actions/github-script@v7
+        env:
+          OUTCOME: ${{ steps.check.outcome }}
+        with:
+          script: |
+            const fs = require("node:fs");
+            const label = "broken-links";
+            const title = "Broken external links";
+            const { owner, repo } = context.repo;
+            const open = await github.paginate(github.rest.issues.listForRepo, { owner, repo, labels: label, state: "open" });
+            const run = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            if (process.env.OUTCOME === "success") {
+              for (const issue of open) {
+                await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: `Every external link answered in the latest check (${run}).` });
+                await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: "closed", state_reason: "completed" });
+              }
+              return;
+            }
+            const report = fs.existsSync("links-report.md") ? fs.readFileSync("links-report.md", "utf8") : "The link checker failed before writing its report.";
+            const body = `${report}\n\nRun: ${run}`;
+            if (open.length) {
+              await github.rest.issues.update({ owner, repo, issue_number: open[0].number, body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body, labels: [label] });
+            }

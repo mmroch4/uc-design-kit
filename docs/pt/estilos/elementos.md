@@ -127,6 +127,45 @@ Cada tabela deve ter um `<caption>` como primeiro filho: é o nome que os leitor
 
 O mesmo comportamento de teclado aplica-se às tabelas que os componentes geram ([`<uc-deadlines view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md), [`<uc-team view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md)) e aos `<pre>` largos dentro de `uc-content`.
 
+### `table[data-sortable]`
+
+Com `data-sortable` na `<table>`, os títulos das colunas passam a botões que ordenam a tabela: um clique ordena por ordem crescente, o seguinte por decrescente. Serve para classificações e listas longas que cada aluno quer ver por outra ordem.
+
+Exemplo (classificação ordenada por pontos, com linha de total), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/table-sortable.html):
+
+```html
+<div class="uc-table">
+  <table data-sortable>
+    <caption class="uc-visually-hidden">Classificação do 1.º concurso</caption>
+    <thead>
+      <tr>
+        <th scope="col">Equipa</th>
+        <th scope="col">Turma</th>
+        <th scope="col" data-sort-default="desc">Pontos</th>
+        <th scope="col">Última submissão</th>
+        <th scope="col" data-no-sort>Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Árvores</td><td class="uc-mono">PL10</td><td>12,5</td><td><time datetime="2025-11-03">3 nov</time></td><td>—</td></tr>
+      <tr><td>Bits</td><td class="uc-mono">PL1</td><td>14</td><td><time datetime="2025-11-12">12 nov</time></td><td>Fora do prazo</td></tr>
+      <tr><td>Grafos</td><td class="uc-mono">PL2</td><td>7</td><td><time datetime="2025-10-28">28 out</time></td><td>—</td></tr>
+      <tr data-sort-fixed><td>Total</td><td></td><td>33,5</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+| Atributo | Onde | Efeito |
+| --- | --- | --- |
+| `data-sortable` | `<table>` | Torna ordenáveis as colunas do `<thead>`. |
+| `data-sort-default` | `<th>` | `"asc"` ou `"desc"`: a tabela abre ordenada por essa coluna. |
+| `data-no-sort` | `<th>` | Essa coluna não se ordena (notas, ligações). |
+| `data-sort` | `<td>` | Valor usado em vez do texto, por exemplo `data-sort="-1"` numa célula "desistiu". |
+| `data-sort-fixed` | `<tr>` | A linha fica sempre no fim (totais). |
+
+Cada célula ordena-se pelo `data-sort`, senão pelo `datetime` do seu `<time>`, senão pelo texto. Números com vírgula ou ponto ("12,5") e percentagens ordenam-se como números, datas como datas, e o texto pela ordem da língua ativa com os números dentro dele comparados como números ("PL2" antes de "PL10"). As células vazias ficam no fim. Cada ordenação é anunciada aos leitores de ecrã ("Ordenado por Pontos, decrescente") e a coluna ordenada tem `aria-sort`. Os botões têm a classe `uc-sort-button`; as setas, `uc-sort-up` e `uc-sort-down`. Sem JavaScript, a tabela fica pela ordem em que foi escrita.
+
 ## `<pre data-copy>`
 
 Acrescenta um botão de copiar ao canto de um bloco de texto pré-formatado, para o que o estudante cola noutro sítio: a entrada e a saída de um exemplo, um comando.

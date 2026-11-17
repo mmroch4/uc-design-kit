@@ -1,0 +1,54 @@
+- table "Classificação do concurso 1":
+  - caption: Classificação do concurso 1
+  - rowgroup:
+    - row "Equipa Turma Pontos Taxa Última submissão Notas":
+      - columnheader "Equipa":
+        - button "Equipa"
+      - columnheader "Turma":
+        - button "Turma"
+      - columnheader "Pontos":
+        - button "Pontos"
+      - columnheader "Taxa":
+        - button "Taxa"
+      - columnheader "Última submissão":
+        - button "Última submissão"
+      - columnheader "Notas"
+  - rowgroup:
+    - row "Bits PL1 12.75 5 % 12 nov Fora do prazo":
+      - cell "Bits"
+      - cell "PL1"
+      - cell "12.75"
+      - cell "5 %"
+      - cell "12 nov":
+        - time: 12 nov
+      - cell "Fora do prazo"
+    - row "Árvores PL10 12,5 50 % 3 nov —":
+      - cell "Árvores"
+      - cell "PL10"
+      - cell "12,5"
+      - cell "50 %"
+      - cell "3 nov":
+        - time: 3 nov
+      - cell "—"
+    - row "arrays PL2 7 100 % 28 out —":
+      - cell "arrays"
+      - cell "PL2"
+      - cell "7"
+      - cell "100 %"
+      - cell "28 out":
+        - time: 28 out
+      - cell "—"
+    - row "Grafos PL2 desistiu —":
+      - cell "Grafos"
+      - cell "PL2"
+      - cell "desistiu"
+      - cell
+      - cell
+      - cell "—"
+    - row "Total 31,25":
+      - cell "Total"
+      - cell
+      - cell "31,25"
+      - cell
+      - cell
+      - cell

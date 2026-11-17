@@ -321,6 +321,47 @@
     equal(hidden, [false, true]);
   });
 
+  test("sortable tables: sort values", () => {
+    const cell = (html, attrs = "") => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td ${attrs}>${html}</td>`;
+      return row.cells[0];
+    };
+    const { sortValue } = UC.internal;
+    equal(
+      [sortValue(cell("12,5")), sortValue(cell(" 50 % ")), sortValue(cell("−3")), sortValue(cell("x", 'data-sort="7"')), sortValue(cell("PL2")), sortValue(cell(""))],
+      [12.5, 50, -3, 7, "PL2", ""],
+    );
+    equal(sortValue(cell('<time datetime="2025-11-03">3 nov</time>')), new Date(2025, 10, 3).getTime());
+  });
+  test("sortable tables: order (numbers, numeric-aware text, empty last)", () => {
+    const collator = new Intl.Collator("pt", { numeric: true, sensitivity: "base" });
+    const order = (values, direction) => values.slice().sort((a, b) => UC.internal.compareSortValues(a, b, collator, direction));
+    equal(order(["PL10", "PL2", "", "pl1"], "asc"), ["pl1", "PL2", "PL10", ""]);
+    equal(order([3, "", 12.5, 7], "desc"), [12.5, 7, 3, ""]);
+    equal(order(["Árvores", "arrays", "Bits"], "asc"), ["arrays", "Árvores", "Bits"]);
+  });
+  test("sortable tables: header buttons, default sort, fixed rows", () => {
+    const host = document.createElement("div");
+    host.innerHTML =
+      '<div class="uc-table"><table data-sortable><thead><tr><th>Nome</th><th data-sort-default="desc">Pontos</th><th data-no-sort>Notas</th></tr></thead>' +
+      '<tbody><tr><td>A</td><td>2</td><td></td></tr><tr data-sort-fixed><td>Total</td><td>13</td><td></td></tr><tr><td>B</td><td>10,5</td><td></td></tr><tr><td>C</td><td>1</td><td></td></tr></tbody></table></div>';
+    document.body.append(host);
+    UC.internal.enhance(host);
+    const names = () => Array.from(host.querySelectorAll("tbody tr"), (row) => row.cells[0].textContent);
+    const buttons = host.querySelectorAll(".uc-sort-button").length;
+    const first = names();
+    const sorted = host.querySelectorAll("th")[1].getAttribute("aria-sort");
+    host.querySelector("th .uc-sort-button").click();
+    const byName = names();
+    UC.internal.enhance(host);
+    const again = host.querySelectorAll(".uc-sort-button").length;
+    host.remove();
+    equal([buttons, again, sorted], [2, 2, "descending"]);
+    equal(first, ["B", "A", "C", "Total"]);
+    equal(byName, ["A", "B", "C", "Total"]);
+  });
+
   const summary = document.createElement("p");
   summary.textContent = failures ? `${failures} failing` : "All tests passed.";
   results.after(summary);

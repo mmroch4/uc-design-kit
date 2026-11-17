@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC009] Sliding Window Cost · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC009 (Sliding Window Cost) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC009</li></ol>
+    </nav>
+    <h1>[PC009] Sliding Window Cost</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://cses.fi/problemset/task/1077">CSES problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc009.png"/>You are given an array of \(n\) integers. Your task is to calculate for each window of \(k\) elements, from left to right, the minimum total cost of making all elements equal.</p>
+<p>You can increase or decrease each element with cost \(x\) where \(x\) is the difference between the new and the original value. The total cost is the sum of such costs.</p>
+<h2>Input</h2>
+<p>The first input line contains two integers \(n\) and \(k\): the number of elements and the size of the window.</p>
+<p>Then there are \(n\) integers \(x_1,x_2\ldots,x_n\)​: the contents of the array.</p>
+<h2>Output</h2>
+<p>Output \(n−k+1\) values: the costs.</p>
+<p><strong>Don't forget to print a new line in the end and in this problem all printed integers should have a space after it, including the last number in the output.</strong></p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq k \leq n \leq 2 \cdot 10^5 \)
+  </li><li>\( 1 \leq x_i \leq 10^9 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">8 3
+2 4 3 5 8 1 2 1</pre></td><td><pre data-copy="Output">2 2 5 7 7 1</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc009.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc009.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

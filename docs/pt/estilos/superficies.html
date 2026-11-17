@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blocos: superfícies e listas · UC Design Kit</title>
-  <meta name="description" content="Blocos de superfície e listas do UC Design Kit: uc-card, uc-callout, uc-links, uc-shortcuts, uc-checklist e uc-bullets.">
+  <meta name="description" content="Blocos de superfície e listas do UC Design Kit: uc-card, uc-callout, uc-links (também em colunas, uc-links--grid), uc-shortcuts, uc-checklist e uc-bullets.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -294,6 +294,27 @@
         </div>
         <p>A descrição fica fora da ligação: o nome da ligação deve fazer sentido sozinho. O formato e o tamanho de ficheiros (PDF, ZIP) cabem bem na descrição.</p>
 
+        <h3 id="links-grid"><code>uc-links--grid</code></h3>
+        <p>Para listas longas (juízes online, outras cadeiras, recursos externos), a variante <code>uc-links--grid</code> põe as ligações em colunas. Cada coluna tem pelo menos <code>--uc-links-min</code> (260 px); no telemóvel fica uma só. Vários grupos fazem-se com um <code>&lt;h3&gt;</code> antes de cada lista, como de costume.</p>
+        <!-- docs:demo src="../../demos/blocks/links-grid.html" title="seis ligações em três colunas" height="273" -->
+        <div class="docs-demo" id="demo-blocks-links-grid">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/links-grid.html" title="Demonstração: seis ligações em três colunas" loading="lazy" style="height: 273px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;ul class=&quot;uc-links uc-links--grid&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;https://codeforces.com/&quot;&gt;Codeforces&lt;/a&gt;&lt;span&gt;Concursos semanais&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://open.kattis.com/&quot;&gt;Kattis&lt;/a&gt;&lt;span&gt;Arquivo de problemas&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://atcoder.jp/&quot;&gt;AtCoder&lt;/a&gt;&lt;span&gt;Concursos ao fim de semana&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cses.fi/problemset/&quot;&gt;CSES Problem Set&lt;/a&gt;&lt;span&gt;Lista clássica por temas&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://usaco.guide/&quot;&gt;USACO Guide&lt;/a&gt;&lt;span&gt;Guia de estudo&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cp-algorithms.com/&quot;&gt;cp-algorithms&lt;/a&gt;&lt;span&gt;Algoritmos explicados&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/links-grid.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
         <h2 id="shortcuts"><code>uc-shortcuts</code></h2>
         <p>Atalhos grandes, em grelha, para as páginas mais visitadas. Cada um tem pelo menos 48 px de altura e uma seta no fim.</p>
         <!-- docs:demo src="../../demos/blocks/shortcuts.html" title="três atalhos" height="96" -->
@@ -425,6 +446,7 @@
           <li><a href="#callout">uc-callout</a></li>
           <li class="docs-toc__sub"><a href="#callout-warning">uc-callout--warning</a></li>
           <li><a href="#links">uc-links</a></li>
+          <li class="docs-toc__sub"><a href="#links-grid">uc-links--grid</a></li>
           <li><a href="#shortcuts">uc-shortcuts</a></li>
           <li><a href="#checklist">uc-checklist</a></li>
           <li><a href="#bullets">uc-bullets</a></li>

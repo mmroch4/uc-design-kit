@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC023] Horrible Queries · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC023 (Horrible Queries) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC023</li></ol>
+    </nav>
+    <h1>[PC023] Horrible Queries</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/HORRIBLE/">SPOJ Problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc023.png"/>
+  World is getting more evil and it's getting tougher to get into the Evil League of Evil. Since the legendary Bad Horse has retired, now you have to correctly answer the evil questions of Dr. Horrible, who has a PhD in horribleness (but not in Computer Science). You are given an array of \(N\) elements, which are initially all 0. After that you will be given \(C\) commands. They are:</p>
+<ul>
+<li> <strong>0 p q v</strong> - you have to add \(v\) to all numbers in the range of \(p\) to \(q\) (inclusive), where \(p\) and \(q\) are two indexes of the array.
+</li><li><strong>1 p q</strong> - output a line containing a single integer which is the sum of all the array elements between \(p\) and \(q\) (inclusive).
+</li></ul>
+<h2>Input</h2>
+<p>The first line contains \(N \) and \(C\). After that you'll be given \(C\) commands in the format mentioned above.</p>
+<h2>Output</h2>
+<p>Print the answers of the queries, one per line.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq N \leq 100\,000 \)
+  </li><li>\( 1 \leq C \leq 100\,000 \)
+  </li><li>\( 1 \leq p, q \leq N \)
+  </li><li>\( 1 \leq v \leq 10^7 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">8 6
+0 2 4 26
+0 4 8 80
+0 4 5 20
+1 8 8
+0 5 7 14
+1 4 8</pre></td><td><pre data-copy="Output">80
+508</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc023.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc023.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

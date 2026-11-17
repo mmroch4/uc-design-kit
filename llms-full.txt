@@ -14,11 +14,11 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 1. **Site estático.** Só HTML, CSS e JavaScript em ficheiros. Sem frameworks, sem npm, sem passo de compilação, sem módulos ES: scripts clássicos, para as páginas funcionarem abertas do disco (`file://`).
 2. **O `<head>` de cada página**, por esta ordem: `uc-kit.css` do kit, `theme.css`, `course.js` sem `defer`, `uc-kit.js` com `defer`, e só depois os scripts próprios com `defer`. O kit carrega do endereço absoluto `https://uc-design-kit.miguelrocha.dev/kit/v1/`.
 3. **Uma página é um `<uc-page>`** com todo o conteúdo dentro e um único `<h1>`. As páginas que não estão na navegação dizem qual fica ativa com `current`.
-4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
+4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `schedule`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
 5. **Só o que está documentado.** Nenhum elemento, atributo, campo do `course.js` ou classe `uc-…` inventado. Para um comportamento que o kit não tem, um componente próprio em `extensions/` com `UC.define` e `UC.Element` (Nível 3).
 6. **Light DOM.** Os componentes do kit e os próprios não usam shadow DOM; o conteúdo escrito pelo professor fica no HTML, legível sem JavaScript.
 7. **Personalizar por níveis**: `accentColor` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
-8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`; HTML antigo sem classes vai dentro de `uc-content`.
+8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
 9. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
 10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
 11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
@@ -123,11 +123,13 @@ Normalmente as páginas ficam dentro de um [`<uc-page>`](https://uc-design-kit.m
 | Datas e avisos | [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md), [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md), [`<uc-date>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-date.md) |
 | Calendário | [`<uc-weeks>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md), [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md), [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md), [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md) |
 | Pessoas | [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md) |
+| Horário e avaliação | [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md), [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md) (fórmula, pesos e simulador da nota), [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md) (data, turnos e sala de uma prova) |
+| Aulas e materiais | [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md), [`<uc-materials>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md), [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md) (séries de problemas com filtros e "Resolvido") |
 | Guiões e código | [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md), [`<uc-exercise>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md), [`<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) (realce, edição e execução com testes), [`<uc-question>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-question.md) |
 
 A [visão geral dos componentes](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md) mostra-os todos com uma miniatura e uma linha sobre cada um.
 
-Além dos componentes há blocos só de CSS (cartões, tabelas, botões, chamadas, grelhas) e tokens de design (cores, letra, espaços) que se mudam num `theme.css`.
+Além dos componentes há blocos só de CSS (cartões, tabelas ordenáveis, listas de ligações em colunas, botões, chamadas, grelhas) e tokens de design (cores, letra, espaços) que se mudam num `theme.css`. Um `editions.js` partilhado liga os sites dos vários anos da mesma cadeira.
 
 ## Quando não usar
 
@@ -506,7 +508,8 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
 | `logo`URL ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho, relativa ao `course.js`; `null` esconde-a. |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
-| `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. |
+| `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. Uma página pode mostrar a sua própria data com [`<uc-page updated>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#data-da-pagina). |
+| `editions`URL | Opcional | — | Ficheiro com as edições da cadeira, relativo ao `course.js`, normalmente `"../editions.js"`. Ver [Edições](#edicoes). |
 
 ### Línguas
 
@@ -705,6 +708,34 @@ notices: [
 | `text` | `HTMLText` | Obrigatório. Uma linha. |
 | `details` | `HTMLText` | Segunda linha, opcional. |
 
+## Edições
+
+Um ficheiro `editions.js` na pasta da cadeira, **acima** das pastas dos anos, lista todas as edições. O `course.js` de cada ano aponta para ele com `editions: "../editions.js"`, e [`<uc-page>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#outros-anos) mostra o botão "Outros anos" e, nas edições antigas, um aviso com o link para a atual.
+
+```text
+EDados/
+  editions.js      ← lista das edições (window.UC_EDITIONS)
+  2425/course.js   ← editions: "../editions.js"
+  2526/course.js   ← editions: "../editions.js"
+```
+
+`editions.js`:
+
+```js
+window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },   // a primeira é a edição atual
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];
+```
+
+| Campo | Tipo | Descrição |
+| --- | --- | --- |
+| `label` | texto | Obrigatório. Igual ao `edition` do `course.js` desse ano: é assim que o kit sabe em que edição está a página. |
+| `href` | URL | Obrigatório. Relativo ao `editions.js` (`"2526/"`), ou um endereço completo para anos que estão noutro sítio. |
+
+O kit carrega o ficheiro sozinho, também a partir do disco. Se não o encontrar, escreve um aviso na consola e a página fica como sem `editions`. Como o ficheiro está fora das pastas dos anos, acrescentar um ano novo atualiza os sites anteriores sem lhes mexer (ver [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#outros-anos)).
+
 ## Erros comuns
 
 O kit avisa na consola (F12) com mensagens começadas por `[uc-kit]`, e o [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md) encontra os mesmos erros sem abrir o browser, com a linha de cada um. Estes são os casos mais frequentes:
@@ -837,20 +868,36 @@ Cada ano é uma pasta. Para o ano seguinte copia-se a pasta, revê-se o `course.
 cp -r 2526 2627
 ```
 
-A pasta do ano anterior fica como está, para os alunos que a consultam. Um link "Anos anteriores" na página `sobre.html` do ano novo ajuda a encontrá-la.
+A pasta do ano anterior fica como está, para os alunos que a consultam. O ficheiro `editions.js` (passo seguinte) liga os anos entre si.
 
-## 2. Rever o course.js
+## 2. Acrescentar o ano ao editions.js
 
-- **`edition`**: `"2026/27"`.
+Na pasta da cadeira, acima das pastas dos anos, fica um `editions.js` com a lista de todas as edições, da mais recente para a mais antiga. Acrescenta-se o ano novo no início:
+
+`editions.js`:
+
+```js
+window.UC_EDITIONS = [
+  { label: "2026/27", href: "2627/" },   // nova: passa a ser a atual
+  { label: "2025/26", href: "2526/" },
+  { label: "2024/25", href: "2425/" },
+];
+```
+
+Cada `course.js` aponta para ele com `editions: "../editions.js"` (a cópia da pasta já o traz). A partir daí o botão "Outros anos" aparece no cabeçalho de todos os anos, e os anos anteriores mostram no topo "Esta página é da edição 2025/26. Ver a edição atual (2026/27)", sem se mexer nas pastas deles. O `label` tem de ser igual ao `edition` do `course.js` desse ano. Na primeira vez, cria-se o ficheiro e acrescenta-se o campo `editions` aos `course.js` que já existam (ver [Edições](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes)).
+
+## 3. Rever o course.js
+
+- **`edition`**: `"2026/27"`, o mesmo texto do `label` no `editions.js`.
 - **`semester.start`**: o primeiro dia de aulas do novo calendário escolar. É a mudança que move todas as semanas.
 - **`semester.weeks` e `semester.breaks`**: número de semanas e interrupções (semanas de estudo, feriados prolongados).
 - **`deadlines`**: todas as datas. Os prazos ainda sem dia podem ficar com `"AAAA-MM"` ou `null` e serem completados durante o semestre.
 - **`notices`**: apagar os avisos do ano anterior, deixando a lista vazia ou um aviso de boas-vindas.
 - **`team`**: quem dá aulas e as turmas de cada um.
-- **`footer` e `updated`**: o ano do rodapé e a data de atualização.
+- **`footer` e `updated`**: o ano do rodapé e a data de atualização. As páginas com `<uc-page updated="…">` têm a sua própria data; com `updated="auto"` não há nada a mudar.
 - **`today`**: não deve existir; se ficou de testes, apagar a linha.
 
-## 3. Rever as páginas
+## 4. Rever as páginas
 
 O HTML tem poucas datas, porque as do calendário vêm do `course.js`. As que existem (horários, "aulas a partir de…", sumários) encontram-se com uma pesquisa pelo ano anterior:
 
@@ -864,7 +911,7 @@ grep -rn "2025\|2026" --include="*.html" .
 - **Avaliação e horários.** Regras, pesos, turmas e salas.
 - **Links absolutos.** Um link para `…/2526/…` dentro da pasta nova aponta para o ano anterior; os links relativos não têm esse problema.
 
-## 4. Versão do kit
+## 5. Versão do kit
 
 Com `kit/v1/` nos endereços não há nada a fazer: o site usa sempre a versão 1 mais recente. Se o site fixou uma versão exata (`kit/v1.0.0/`), o início do ano é a altura certa para passar à mais recente, trocando o número nos três endereços do `<head>` de cada página:
 
@@ -874,7 +921,7 @@ grep -rl "kit/v1.0.0/" --include="*.html" . | xargs sed -i "s#kit/v1.0.0/#kit/v1
 
 Ver [Versão do kit](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md#versao). Em macOS, `sed -i ""` em vez de `sed -i`.
 
-## 5. Verificar e publicar
+## 6. Verificar e publicar
 
 Abre-se o site com `?today=` num dia da primeira semana, por exemplo `index.html?today=2026-09-16`, e confirma-se que a semana 1 é a atual e que os prazos são os do ano novo. Depois publica-se a pasta como no ano anterior (ver [Publicar](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md)).
 
@@ -895,6 +942,7 @@ O site é uma pasta de ficheiros estáticos, sem passo de compilação: publica-
 - Os links são relativos e com `.html` (ver [Links e ficheiros](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#links)).
 - O `updated` do `course.js` tem a data de hoje.
 - `python3 uc-site.py` termina sem erros (ver [Manter o site](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md)).
+- Os links externos funcionam (ver [Links partidos](#links-partidos)).
 
 ## Servidor do departamento (~/public_html)
 
@@ -964,6 +1012,16 @@ As páginas carregam o kit de `https://uc-design-kit.miguelrocha.dev/kit/v1/`. H
 | `kit/v1.0.0/` | Uma versão exata, que nunca muda. O browser guarda-a durante um ano sem voltar a perguntar, por isso as visitas seguintes são as mais rápidas. | Para ter o mesmo kit durante todo o semestre. Atualiza-se no início do ano (ver [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#kit)). |
 
 Para fixar a versão troca-se `v1` pelo número nos três endereços do `<head>` (o `preload` da letra, o CSS e o JavaScript). As versões publicadas e o que mudou em cada uma estão no [CHANGELOG](https://github.com/mmroch4/uc-design-kit/blob/main/CHANGELOG.md).
+
+## Links partidos
+
+Os links para fora do site (enunciados noutros servidores, juízes online, outras cadeiras) deixam de funcionar sem aviso. O [W3C Link Checker](https://validator.w3.org/checklink) verifica-os sem instalar nada: indica-se o endereço do site publicado, marca-se "Check linked documents recursively" com profundidade 1 ou 2, e ele lista os links que respondem com erro. Os links com `data-auth` (pautas, SIGARRA) aparecem como erro de autenticação, o que é normal.
+
+O repositório do kit verifica uma vez por semana os links externos dos exemplos e da documentação e abre uma *issue* com os que falharem.
+
+## Data de atualização
+
+O rodapé diz "Atualizado a …" com o `updated` do `course.js`. Uma página com `<uc-page updated="auto">` mostra a data do próprio ficheiro, que o servidor envia no cabeçalho `Last-Modified`. O servidor do DCC e o GitHub Pages enviam-no; se o servidor não o enviar, a página não mostra data. Com `rsync -a` a data é a da última alteração no computador, não a da cópia.
 
 ## Cache
 
@@ -1135,11 +1193,11 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 1. **Site estático.** Só HTML, CSS e JavaScript em ficheiros. Sem frameworks, sem npm, sem passo de compilação, sem módulos ES: scripts clássicos, para as páginas funcionarem abertas do disco (`file://`).
 2. **O `<head>` de cada página**, por esta ordem: `uc-kit.css` do kit, `theme.css`, `course.js` sem `defer`, `uc-kit.js` com `defer`, e só depois os scripts próprios com `defer`. O kit carrega do endereço absoluto `https://uc-design-kit.miguelrocha.dev/kit/v1/`.
 3. **Uma página é um `<uc-page>`** com todo o conteúdo dentro e um único `<h1>`. As páginas que não estão na navegação dizem qual fica ativa com `current`.
-4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
+4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `schedule`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
 5. **Só o que está documentado.** Nenhum elemento, atributo, campo do `course.js` ou classe `uc-…` inventado. Para um comportamento que o kit não tem, um componente próprio em `extensions/` com `UC.define` e `UC.Element` (Nível 3).
 6. **Light DOM.** Os componentes do kit e os próprios não usam shadow DOM; o conteúdo escrito pelo professor fica no HTML, legível sem JavaScript.
 7. **Personalizar por níveis**: `accentColor` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
-8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`; HTML antigo sem classes vai dentro de `uc-content`.
+8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
 9. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
 10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
 11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
@@ -1243,6 +1301,10 @@ Se o assistente não tiver acesso à Internet, descarregar antes o [`llms-full.t
 | Links com cadeado ou "requer login" (pautas, SIGARRA) | `<a data-auth>` (ou `data-auth="SIGARRA"`), sem imagem de cadeado: o kit acrescenta-a, com texto para leitores de ecrã |
 | Materiais de cada aula ou capítulo (diapositivos, notebooks, código) | A mesma lista dentro de [`<uc-materials>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md): título, links e a data da última alteração num `<time datetime>` no início do item |
 | Listas de problemas, séries, juízes (Mooshak, Codeforces) | Uma `<section data-deadline>` por série dentro de [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md), com `data-judge` em cada problema; os juízes em `platforms` (com `id`, e `hidden` se não forem para o menu) |
+| Listas longas de ligações (juízes, outras cadeiras, recursos) | `<ul class="uc-links uc-links--grid">`, em colunas (ver [`uc-links--grid`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#links-grid)) |
+| Classificações, rankings | A mesma tabela com [`data-sortable`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md#table-sortable), dentro de `uc-table` |
+| "Última atualização" escrita à mão numa página | [`<uc-page updated>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#data-da-pagina) (uma data, ou `auto`) |
+| Links para os anos anteriores | Um [`editions.js`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes) na pasta da cadeira e `editions: "../editions.js"` no `course.js` |
 | Guiões e fichas das aulas | [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md) com [`<uc-exercise>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md) e [`<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) |
 | Enunciados, ajudas, textos longos | O mesmo HTML dentro de [`uc-content`](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/html.md#uc-content), sem o estilo antigo |
 | PDF, imagens, código | Copiados para subpastas, com os mesmos nomes e links relativos |
@@ -1464,12 +1526,44 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
 
 A escolha fica guardada no browser e vale para as outras páginas do site. Quando uma página tem um ficheiro por língua (`href` com um endereço por língua), o botão abre o outro ficheiro em vez de trocar o texto na mesma página. As duas formas estão em [Línguas](https://uc-design-kit.miguelrocha.dev/docs/pt/linguas.md#mesma-pagina).
 
+### Outros anos
+
+Com o campo [`editions`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes) no `course.js`, o cabeçalho ganha um botão "Outros anos" com a lista das outras edições da cadeira. Numa edição que não é a atual, aparece também um aviso no topo do conteúdo com o link para a edição atual. A lista fica num ficheiro `editions.js` partilhado, na pasta acima dos anos: acrescentar um ano novo atualiza os sites dos anos anteriores sem lhes mexer.
+
+Exemplo (página de uma edição antiga com a lista de outros anos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/editions.html):
+
+```html
+<uc-page updated="2025-07-15">
+  <uc-hero></uc-hero>
+  <p>Página da edição 2024/25: o aviso no topo leva à edição atual e "Outros anos", no cabeçalho, às restantes.</p>
+</uc-page>
+```
+
+A demonstração simula a edição 2024/25 e usa este ficheiro de edições:
+
+`editions.js`:
+
+```js
+window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },   // a primeira é a edição atual
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];
+```
+
+Como se organiza a pasta e o que muda em cada ano novo está em [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#outros-anos).
+
+### Data de atualização de uma página
+
+O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igual em todas as páginas. Uma página que muda mais vezes (sumários, problemas) pode mostrar a sua: `<uc-page updated="2025-11-20">`. Com `updated="auto"`, a data é a da última alteração do ficheiro, que o servidor indica no cabeçalho `Last-Modified`; se o servidor não a indicar, o rodapé fica sem data, em vez de mostrar a data de hoje. Aberta a partir do disco (`file://`), a página mostra a data do ficheiro.
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
 | `layout` | `sidebar` ou `full` | `sidebar` | Com `full`, a página não tem navegação e o conteúdo ocupa toda a largura. |
+| `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
 
 ## Configuração usada
 
@@ -1486,7 +1580,8 @@ Campos do `course.js` que o componente lê. Só `title` é obrigatório; sem `pa
 | [`pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas) | Itens da navegação, pela ordem escrita, e página de destino do nome do curso. |
 | [`platforms`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao) | Links externos no grupo "Plataformas", por baixo das páginas. |
 | [`footer`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Texto à esquerda do rodapé. Sem ele, o nome do curso e da instituição. |
-| [`updated`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | "Atualizado a …" à direita do rodapé. |
+| [`updated`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | "Atualizado a …" à direita do rodapé, quando a página não tem o seu `updated`. |
+| [`editions`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes) | Ficheiro com as edições da cadeira: botão "Outros anos" e aviso nas edições antigas. |
 
 A referência completa dos campos está em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao).
 
@@ -1516,6 +1611,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
 | `.uc-header__meta`, `.uc-header__institution` | O lado direito do cabeçalho e a instituição. |
 | `.uc-lang-switch`, `__button` | Os botões para mudar de língua. |
+| `.uc-page__editions`, `.uc-page__editions-button`, `.uc-page__editions-menu` | "Outros anos": o contentor, o botão e a lista de edições. |
+| `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
@@ -1543,7 +1640,7 @@ A largura da navegação é `--uc-sidebar-width` (216 px), a da página é `--uc
 
 ### O que o componente faz
 
-Gera os pontos de referência `<header>`, `<nav>`, `<main>` e `<footer>` e um link "Saltar para o conteúdo" como primeiro elemento focável. O item ativo tem `aria-current="page"`; o botão "Menu" indica com `aria-expanded` se está aberto e fecha com Escape. As plataformas externas são anunciadas como "(site externo)" e o botão de língua diz para que língua muda.
+Gera os pontos de referência `<header>`, `<nav>`, `<main>` e `<footer>` e um link "Saltar para o conteúdo" como primeiro elemento focável. O item ativo tem `aria-current="page"`; os botões "Menu" e "Outros anos" indicam com `aria-expanded` se estão abertos e fecham com Escape, devolvendo o foco ao botão. As plataformas externas são anunciadas como "(site externo)" e o botão de língua diz para que língua muda.
 
 ### O que cabe a quem escreve
 
@@ -5877,6 +5974,7 @@ Não estão definidos em `:root`: o kit lê-os com um valor de recurso. Definem-
 | `--uc-timetable-time-width` | `7.5rem` | Coluna das horas de `<uc-timetable view="days">`. |
 | `--uc-grading-bar-height` | `12px` | Altura da barra das proporções de `<uc-grading>`. |
 | `--uc-summaries-date-width` | `10rem` | Largura da coluna da data de `<uc-summaries>`, em ecrãs largos. |
+| `--uc-links-min` | `260px` | Largura mínima de cada coluna de `uc-links--grid`. |
 
 ```html
 <div class="uc-grid" style="--uc-grid-min: 160px">
@@ -6175,6 +6273,23 @@ Exemplo (três ligações com descrição), [demonstração ao vivo](https://uc-
 
 A descrição fica fora da ligação: o nome da ligação deve fazer sentido sozinho. O formato e o tamanho de ficheiros (PDF, ZIP) cabem bem na descrição.
 
+### `uc-links--grid`
+
+Para listas longas (juízes online, outras cadeiras, recursos externos), a variante `uc-links--grid` põe as ligações em colunas. Cada coluna tem pelo menos `--uc-links-min` (260 px); no telemóvel fica uma só. Vários grupos fazem-se com um `<h3>` antes de cada lista, como de costume.
+
+Exemplo (seis ligações em três colunas), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/links-grid.html):
+
+```html
+<ul class="uc-links uc-links--grid">
+  <li><a href="https://codeforces.com/">Codeforces</a><span>Concursos semanais</span></li>
+  <li><a href="https://open.kattis.com/">Kattis</a><span>Arquivo de problemas</span></li>
+  <li><a href="https://atcoder.jp/">AtCoder</a><span>Concursos ao fim de semana</span></li>
+  <li><a href="https://cses.fi/problemset/">CSES Problem Set</a><span>Lista clássica por temas</span></li>
+  <li><a href="https://usaco.guide/">USACO Guide</a><span>Guia de estudo</span></li>
+  <li><a href="https://cp-algorithms.com/">cp-algorithms</a><span>Algoritmos explicados</span></li>
+</ul>
+```
+
 ## `uc-shortcuts`
 
 Atalhos grandes, em grelha, para as páginas mais visitadas. Cada um tem pelo menos 48 px de altura e uma seta no fim.
@@ -6386,6 +6501,45 @@ Cada tabela deve ter um `<caption>` como primeiro filho: é o nome que os leitor
 | `uc-mono` | Numa célula, para códigos de turma, horas e salas que se comparam em coluna. |
 
 O mesmo comportamento de teclado aplica-se às tabelas que os componentes geram ([`<uc-deadlines view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md), [`<uc-team view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md)) e aos `<pre>` largos dentro de `uc-content`.
+
+### `table[data-sortable]`
+
+Com `data-sortable` na `<table>`, os títulos das colunas passam a botões que ordenam a tabela: um clique ordena por ordem crescente, o seguinte por decrescente. Serve para classificações e listas longas que cada aluno quer ver por outra ordem.
+
+Exemplo (classificação ordenada por pontos, com linha de total), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/table-sortable.html):
+
+```html
+<div class="uc-table">
+  <table data-sortable>
+    <caption class="uc-visually-hidden">Classificação do 1.º concurso</caption>
+    <thead>
+      <tr>
+        <th scope="col">Equipa</th>
+        <th scope="col">Turma</th>
+        <th scope="col" data-sort-default="desc">Pontos</th>
+        <th scope="col">Última submissão</th>
+        <th scope="col" data-no-sort>Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Árvores</td><td class="uc-mono">PL10</td><td>12,5</td><td><time datetime="2025-11-03">3 nov</time></td><td>—</td></tr>
+      <tr><td>Bits</td><td class="uc-mono">PL1</td><td>14</td><td><time datetime="2025-11-12">12 nov</time></td><td>Fora do prazo</td></tr>
+      <tr><td>Grafos</td><td class="uc-mono">PL2</td><td>7</td><td><time datetime="2025-10-28">28 out</time></td><td>—</td></tr>
+      <tr data-sort-fixed><td>Total</td><td></td><td>33,5</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+| Atributo | Onde | Efeito |
+| --- | --- | --- |
+| `data-sortable` | `<table>` | Torna ordenáveis as colunas do `<thead>`. |
+| `data-sort-default` | `<th>` | `"asc"` ou `"desc"`: a tabela abre ordenada por essa coluna. |
+| `data-no-sort` | `<th>` | Essa coluna não se ordena (notas, ligações). |
+| `data-sort` | `<td>` | Valor usado em vez do texto, por exemplo `data-sort="-1"` numa célula "desistiu". |
+| `data-sort-fixed` | `<tr>` | A linha fica sempre no fim (totais). |
+
+Cada célula ordena-se pelo `data-sort`, senão pelo `datetime` do seu `<time>`, senão pelo texto. Números com vírgula ou ponto ("12,5") e percentagens ordenam-se como números, datas como datas, e o texto pela ordem da língua ativa com os números dentro dele comparados como números ("PL2" antes de "PL10"). As células vazias ficam no fim. Cada ordenação é anunciada aos leitores de ecrã ("Ordenado por Pontos, decrescente") e a coluna ordenada tem `aria-sort`. Os botões têm a classe `uc-sort-button`; as setas, `uc-sort-up` e `uc-sort-down`. Sem JavaScript, a tabela fica pela ordem em que foi escrita.
 
 ## `<pre data-copy>`
 
@@ -8215,7 +8369,7 @@ Para fazer o mesmo com um assistente de programação, ver [Migrar um site exist
 
 Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.html
 
-As cinco páginas que quase todas as cadeiras têm, montadas com o curso fictício das demonstrações. O separador Código mostra o conteúdo do `<body>` pronto a copiar; o `<head>` é sempre o mesmo, descrito em [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md).
+As páginas que quase todas as cadeiras têm, montadas com o curso fictício das demonstrações. O separador Código mostra o conteúdo do `<body>` pronto a copiar; o `<head>` é sempre o mesmo, descrito em [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md).
 
 As demonstrações têm a largura de um tablet, por isso a navegação do `<uc-page>` aparece como menu. Para ver uma página no tamanho real, use "Abrir demo". As três primeiras também estão no [modelo inicial](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md), com comentários.
 
@@ -8298,7 +8452,7 @@ Exemplo (página de semanas), [demonstração ao vivo](https://uc-design-kit.mig
 
 ## Avaliação
 
-Cartões para as componentes da nota, uma chamada para a regra que ninguém pode esquecer e a tabela de datas com o estado de cada prova.
+A fórmula da nota com os pesos e mínimos e um simulador, o cartão do teste com data, turnos, sala e estado, e a tabela de datas com o estado de cada prova.
 
 Exemplo (página de avaliação), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/assessment.html):
 
@@ -8306,24 +8460,27 @@ Exemplo (página de avaliação), [demonstração ao vivo](https://uc-design-kit
 <uc-page current="assessment">
   <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
     <h1>Avaliação</h1>
-    <p class="uc-prose">A nota final soma duas componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total.</p>
+    <p class="uc-prose">A nota final soma quatro componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total e 8 no exame.</p>
   </div>
-  <section class="uc-section" aria-labelledby="componentes">
-    <h2 id="componentes">Componentes da nota</h2>
-    <div class="uc-grid">
-      <div class="uc-card">
-        <h3>Exame</h3>
-        <p><strong>60%</strong> · época normal ou recurso, sem consulta.</p>
-      </div>
-      <div class="uc-card">
-        <h3>Trabalho e teste</h3>
-        <p><strong>40%</strong> · 20% cada, ao longo do semestre.</p>
-      </div>
-    </div>
-    <div class="uc-callout">
-      <p><strong>Para aprovar:</strong> pelo menos 9,5 valores no total e 40% no exame.</p>
-    </div>
-  </section>
+  <uc-grading heading="Como é calculada a nota" calculator>
+    <ul>
+      <li data-code="Q"><data value="10">10 %</data> Quizzes semanais</li>
+      <li data-code="T"><data value="30">30 %</data> Trabalho prático
+        <ul>
+          <li data-code="T1"><data value="40">40 %</data> Primeira entrega</li>
+          <li data-code="T2"><data value="60">60 %</data> Entrega final e apresentação</li>
+        </ul>
+      </li>
+      <li data-code="E" data-min="8"><data value="60">60 %</data> Exame final. <span>Sem consulta.</span></li>
+      <li data-code="B" data-bonus="1">Desafios extra</li>
+    </ul>
+  </uc-grading>
+  <uc-assessment-info deadline="teste" calendar>
+    <ul class="uc-bullets">
+      <li>Sem consulta; traz o cartão de estudante.</li>
+      <li>Matéria: semanas 1 a 10.</li>
+    </ul>
+  </uc-assessment-info>
   <uc-deadlines view="table" heading="Datas"></uc-deadlines>
   <section class="uc-section" aria-labelledby="regras">
     <h2 id="regras">Regras</h2>
@@ -8336,8 +8493,109 @@ Exemplo (página de avaliação), [demonstração ao vivo](https://uc-design-kit
 </uc-page>
 ```
 
+- A lista de componentes é HTML normal: sem JavaScript lê-se como lista, com ele passa a fórmula, barra de proporções e tabela.
+- O cartão do teste lê a data, os turnos e a sala do `course.js` (o mesmo prazo que aparece na tabela e nas semanas); o que se escreve dentro dele fica por baixo.
 - A tabela de datas é a mesma informação da página inicial, noutra vista: `view="table"`.
-- Blocos: [`uc-grid`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md#grid), [`uc-card`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#card), [`uc-callout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#callout), [`uc-bullets`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#bullets).
+- Componentes: [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md), [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md), [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md). Blocos: [`uc-bullets`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#bullets).
+
+## Horários e equipa
+
+O horário semanal e a equipa com o atendimento, tudo a partir do `course.js` (`schedule` e `team`). Cada aluno escolhe a sua turma prática e a escolha fica guardada.
+
+Exemplo (página de horários e equipa), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/schedule.html):
+
+```html
+<uc-page>
+  <h1>Horários e equipa</h1>
+  <uc-timetable class-filter></uc-timetable>
+  <uc-team view="table" heading="Equipa"></uc-team>
+</uc-page>
+```
+
+- Mudar uma sala ou uma hora é mudar uma linha do `course.js`; a página não tem dados.
+- Componentes: [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md), [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md).
+
+## Sumários
+
+Uma lista numerada, um item por aula, com a data num `<time>`. O kit escreve o dia da semana, liga cada aula à sua semana, marca a última aula dada e as previstas, mostra as interrupções e acrescenta a pesquisa.
+
+Exemplo (página de sumários com pesquisa), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/summaries.html):
+
+```html
+<uc-page>
+  <h1>Sumários</h1>
+  <uc-summaries search>
+    <ol start="13">
+      <li><time datetime="2025-10-20">20 out</time> <strong>Listas e fatias</strong>
+        <p>Índices, fatias e cópia de listas. Listas de listas.</p></li>
+      <li><time datetime="2025-10-22">22 out</time> <strong>Complexidade e notação O</strong>
+        <p>Contar operações; melhor e pior caso; crescimento das funções.</p></li>
+      <li><time datetime="2025-11-03">3 nov</time> <strong>Recursão</strong>
+        <p>Caso base e chamada recursiva. A pilha de chamadas.</p></li>
+      <li><time datetime="2025-11-05">5 nov</time> <strong>Recursão em listas</strong>
+        <p>Soma, máximo e inversão de uma lista, de forma recursiva.</p></li>
+      <li><time datetime="2025-11-10">10 nov</time> <strong>Ordenação por seleção e por inserção</strong>
+        <p>Invariantes de ciclo e número de comparações.</p></li>
+      <li><time datetime="2025-11-12">12 nov</time> <strong>Pesquisa binária</strong>
+        <p>Pesquisa num vetor ordenado; análise da complexidade.</p></li>
+      <li><time datetime="2025-11-17">17 nov</time> <strong>Ordenação por fusão</strong>
+        <p>Dividir para conquistar; a função de fusão.</p></li>
+      <li><time datetime="2025-11-19">19 nov</time> <strong>Quicksort</strong>
+        <p>Escolha do pivô, partição e caso médio.</p></li>
+      <li><time datetime="2025-11-24">24 nov</time> <strong>Dicionários</strong>
+        <p>Tabelas de dispersão: chaves, colisões e custo médio.</p></li>
+      <li><time datetime="2025-11-26">26 nov</time> <strong>Conjuntos e dicionários na prática</strong>
+        <p>Contar palavras de um texto; agrupar por chave.</p></li>
+      <li><time datetime="2025-12-01">1 dez</time> <strong>Árvores binárias</strong>
+        <p>Nós, altura e percursos em profundidade.</p></li>
+      <li><time datetime="2025-12-03">3 dez</time> <strong>Revisões para o teste</strong></li>
+    </ol>
+  </uc-summaries>
+</uc-page>
+```
+
+- Os sumários das aulas futuras podem ficar escritos desde o início do semestre: aparecem como "Prevista".
+- Componentes: [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md).
+
+## Materiais
+
+Os materiais de cada aula como botões com o tipo (PDF, notebook, vídeo, código) e a data da última alteração, e os recursos externos em colunas.
+
+Exemplo (página de materiais e outros recursos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/materials.html):
+
+```html
+<uc-page>
+  <h1>Materiais</h1>
+  <uc-materials heading="Aulas teóricas">
+    <ol>
+      <li><time datetime="2025-09-15">15 set</time> Introdução e primeiros programas
+        <a href="#" data-type="slides">Diapositivos</a> · <a href="https://colab.research.google.com/">Notebook</a></li>
+      <li><time datetime="2025-10-06">6 out</time> Listas e fatias
+        <a href="#" data-type="pdf">PDF</a> · <a href="https://github.com/">Exemplos</a></li>
+      <li><time datetime="2025-10-20">20 out</time> Complexidade
+        <a href="#" data-type="pdf">PDF</a> · <a href="https://www.youtube.com/">Aula gravada</a></li>
+      <li>Revisões para o teste</li>
+      <li><time datetime="2025-11-10">10 nov</time> Ordenação
+        <a href="#" data-type="pdf">PDF</a> · <a href="#" data-type="archive">Código</a></li>
+      <li><time datetime="2025-11-24">24 nov</time> Dicionários
+        <a href="#" data-type="pdf">PDF</a> · <a href="#" data-type="code">Exemplo</a></li>
+    </ol>
+  </uc-materials>
+  <section class="uc-section" aria-labelledby="recursos">
+    <h2 id="recursos">Outros recursos</h2>
+    <ul class="uc-links uc-links--grid">
+      <li><a href="https://docs.python.org/pt-br/3/tutorial/">Tutorial de Python</a><span>Documentação oficial</span></li>
+      <li><a href="https://pythontutor.com/">Python Tutor</a><span>Ver a execução passo a passo</span></li>
+      <li><a href="https://cses.fi/problemset/">CSES Problem Set</a><span>Problemas para treinar</span></li>
+      <li><a href="https://example.org/pautas" data-auth="SIGARRA">Pautas</a><span>Notas oficiais</span></li>
+    </ul>
+  </section>
+</uc-page>
+```
+
+- O tipo de cada botão vem do endereço; `data-type` escolhe-o à mão.
+- `uc-links--grid` põe uma lista longa de ligações em colunas; no telemóvel fica numa só.
+- Componentes: [`<uc-materials>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md). Blocos: [`uc-links--grid`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#links-grid), [`a[data-auth]`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md#data-auth).
 
 ## Guião com exercícios
 
@@ -8455,6 +8713,7 @@ Exemplo (enunciado de problema), [demonstração ao vivo](https://uc-design-kit.
 ## Ver também
 
 - [Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): as mesmas páginas num site real.
+- [Materiais e problemas](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md#materiais-e-problemas): as listas de problemas com filtros e "Resolvido", para páginas de problemas.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md).
 
 ---
@@ -8739,6 +8998,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
 | `.uc-header__meta`, `.uc-header__institution` | O lado direito do cabeçalho e a instituição. |
 | `.uc-lang-switch`, `__button` | Os botões para mudar de língua. |
+| `.uc-page__editions`, `.uc-page__editions-button`, `.uc-page__editions-menu` | "Outros anos": o contentor, o botão e a lista de edições. |
+| `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
@@ -9036,6 +9297,8 @@ O kit também gera estas classes, mas não promete mantê-las: podem mudar de no
 | `.uc-nav-toggle__current` | `<uc-page>`: o nome da página atual no botão "Menu". |
 | `.uc-nav-toggle__chevron` | `<uc-page>`: a seta do botão "Menu". |
 | `.uc-footer__inner` | `<uc-page>`: a faixa centrada do rodapé. |
+| `.uc-sort-up` | `table[data-sortable]`: a seta para cima do ícone de cada botão de ordenação. |
+| `.uc-sort-down` | `table[data-sortable]`: a seta para baixo do mesmo ícone. |
 | `.uc-notices__earlier--only` | `<uc-notices>`: "Avisos anteriores" quando não há avisos recentes. |
 | `.uc-week__details` | `<uc-week>`: o `<details>` que abre e fecha a semana. |
 | `.uc-week__meta` | `<uc-week>`: a etiqueta "Esta semana" e as datas. |
@@ -9425,7 +9688,8 @@ pages; from v1.2.0 it also writes the site search index.
 | `deadlines` | `Deadline[]` | no | `[]` | See 2.5. |
 | `notices` | `Notice[]` | no | `[]` | See 2.6. |
 | `footer` | `HTMLText` | no | course title + institution | Footer left side. |
-| `updated` | `ISODate` | no | — | "Last updated" in the footer. |
+| `updated` | `ISODate` | no | — | "Last updated" in the footer. One page can show its own date with `<uc-page updated>` (3.1). |
+| `editions` | URL | no | — | Address of the shared editions file, relative to `course.js`, usually `"../editions.js"`. See 2.9. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
 | `runner` | object | no | Codapi + browser | Where `<uc-code run>` executes code. See 7.1. |
 
@@ -9566,6 +9830,41 @@ platforms: [
 ],
 ```
 
+### 2.9 Editions file (`editions.js`)
+
+One file in the course folder, **above** the year folders, shared by every
+edition. Each year's `course.js` points to it with `editions`:
+
+```
+EDados/
+  editions.js      ← window.UC_EDITIONS
+  2425/course.js   ← editions: "../editions.js"
+  2526/course.js   ← editions: "../editions.js"
+```
+
+```js
+window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },        // first = current edition
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];
+```
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `label` | string | Required. Compared with `edition` of `course.js` to find the edition of the current page. |
+| `href` | URL | Required. Relative to `editions.js`. |
+
+When `editions` is set, the kit loads the file with an injected `<script>`
+(it works from `file://`; a missing file logs one warning). Then `<uc-page>`
+shows an "Outros anos" button next to the brand in the header, with a list of
+the other editions (a disclosure: `aria-expanded`, Esc closes it and returns
+focus), and, on an edition that is not the first of the list, a notice at the
+top of `<main>`: "Esta página é da edição 2024/25. Ver a edição atual
+(2025/26)." Because the file lives outside the year folders, adding a year
+updates the older sites without editing them. Sites without `editions` are
+unchanged.
+
 ## 3. Components
 
 All components are custom elements in the **light DOM**: their content is part
@@ -9602,6 +9901,12 @@ with JavaScript disabled it is shown at once.
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
 | `layout` | `sidebar` \| `full` | `sidebar` | `full` hides the navigation (single-page sites, guides). |
+| `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
+
+With `editions` in `course.js` (2.9), the header also has "Outros anos" and
+older editions show a notice at the top of `<main>`. Stable classes:
+`uc-page__editions`, `uc-page__editions-button`, `uc-page__editions-menu`,
+`uc-page__edition-notice` (a `uc-callout`).
 
 #### `<uc-hero>`
 
@@ -10184,6 +10489,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--muted`. |
 | `uc-table` | Put on a wrapper `<div>` around a `<table>`: horizontal scroll, borders, header style. While the table overflows, the kit makes the wrapper focusable (`tabindex="0"`, `role="region"`, labelled by the `<caption>`) so it can be scrolled with the keyboard. Set `--uc-table-min` (default `560px`) to change the minimum table width. |
 | `uc-links` | A `<ul>` of links with a secondary description in a `<span>`. |
+| `uc-links--grid` | Variant of `uc-links` in columns, for long lists (judges, other courses). Column width from `--uc-links-min` (default `260px`); one column on phones. Group several lists with `<h3>` headings as usual. |
 | `uc-shortcuts` | A `<nav>` or `<ul>` of large link buttons (quick access). |
 | `uc-callout` | Soft grey panel; `uc-callout--warning` for amber. |
 | `uc-checklist` | A `<ul>` with check icons. The kit adds `role="list"` to `uc-links`, `uc-shortcuts` and `uc-checklist` lists, which Safari would otherwise not announce as lists. |
@@ -10196,6 +10502,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-content` | Wrapper for plain HTML written without kit classes (pasted from an older site or an editor): spacing for headings, paragraphs, lists, tables, `<pre>` and images. `<img class="uc-content__float">` floats right on wide screens. |
 | `<pre data-copy>` | Adds a copy button to the top-right corner of a preformatted block (for example the input and output of a problem's examples). The value names what is copied in the button's accessible label: `data-copy="Input"` reads "Copiar Input"; an empty value reads "Copiar". Works anywhere on the page, not only inside `uc-content`, with the same box (background, padding, rounded corners). |
 | `a[data-auth]` | Link that needs a login. The kit adds a decorative lock icon (`uc-auth-icon`, `aria-hidden="true"`) after the text and a visually hidden "(Requer autenticação)" (`uc-auth-label`); with a value it names the system: `data-auth="SIGARRA"` → "(Requer autenticação: SIGARRA)". Works in page HTML, in `HTMLText` from `course.js` and inside components. Without JavaScript it is a normal link. |
+| `table[data-sortable]` | Inside `.uc-table`. The header cells of the `<thead>` become buttons (`uc-sort-button`, 44 px tall) and the sorted column has `aria-sort`. A cell sorts by its `data-sort` attribute, else its `<time datetime>`, else its text: numbers (decimal comma or dot, optional `%`) and ISO dates numerically, text in the active language with numbers inside compared as numbers ("PL2" before "PL10"); empty cells go last. Rows of the first `<tbody>` move; rows with `data-sort-fixed` (totals) stay last. `data-sort-default="asc"` or `"desc"` on a `<th>` sorts on load; `data-no-sort` on a `<th>` leaves that column out. Each sort is announced ("Ordenado por Pontos, decrescente"). Works in tables written by components too. Without JavaScript the table keeps its written order. |
 | `uc-muted`, `uc-mono`, `uc-small` | Text utilities. |
 | `uc-visually-hidden` | Hidden visually, available to screen readers. |
 
@@ -10258,6 +10565,7 @@ fallback, so they can be set on `:root` for the whole site or on one element
 | `--uc-timetable-time-width` | `7.5rem` | Time column of `<uc-timetable view="days">`. |
 | `--uc-grading-bar-height` | `12px` | Height of the proportions bar of `<uc-grading>`. |
 | `--uc-summaries-date-width` | `10rem` | Date column of `<uc-summaries>` on wide screens. |
+| `--uc-links-min` | `260px` | Column width of `uc-links--grid`. |
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the

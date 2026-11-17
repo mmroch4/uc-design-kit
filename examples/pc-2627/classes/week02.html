@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week #02 · Competitive Programming 2026/27</title>
+  <meta name="description" content="Class #02 of Competitive Programming (CC3032): Sublinear complexity data structures (map, set, priority_queue).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #02</li></ol>
+    </nav>
+    <h1>Week #02</h1>
+    <p class="uc-lead">Sublinear complexity data structures (map, set, priority_queue) · Problems: <a href="../problem-sets/ps02.html">Weekly Problems #02</a></p>
+    <div class="uc-content">
+<h2>Main learning outcomes for this class</h2>
+<ol>
+<li><strong>Big O Notation:</strong>
+<ul>
+<li>I understand the basic meaning of <strong>Big O Notation</strong>
+</li><li>I know how to estimate the complexity of simple programs and how to use it to estimate if my program will not obtain time limit exceeded when submitted
+    </li></ul>
+</li><li><strong>Fundamental Data Structures:</strong>
+<ul>
+<li>I know the concept of <strong>stacks</strong>, <strong>queues</strong> and <strong>deques</strong> and how to use them on my programming language
+      </li><li>I know the concept of sets (<strong>set</strong> and <strong>multiset</strong>) and how to use them on my programming language
+      </li><li>I know the concept of maps/dictionaries (<strong>map</strong> and <strong>multimap</strong>) and how to use them on my programming language
+      </li><li>I know the concept of priority queues (<strong>priority_queue</strong>) and how to use them on my programming language
+      </li><li>I understand the concept of <strong>ordered data structures</strong> and how to traverse them using <strong>iterators</strong>
+</li><li>I know that there are <strong>non ordered</strong> data structures for the fundamental data structures (ex: <i>unordered_set</i> and <i>unordered_map</i>)
+      </li><li>I know that there are <strong>policy based</strong> data structures as a GNU extension that provide two additional operations in O(log n): <i>order_of_key</i> and <i>find_by_order</i>
+</li></ul>
+</li><li><strong>Fast I/O:</strong>
+<ul>
+<li>I understand that some problems might require a lot of input and/or output and therefore need efficient I/O primitives
+      </li><li>I know how to perform fast IO on my preferred language
+    </li></ul>
+</li></ol>
+
+<h2>Study Material</h2>
+<ul>
+<li><strong>Big O Notation</strong>
+<ul>
+<li><a href="../material/bigo_bmerry.pdf">How fast is fast? Order of magnitude analysis</a> [Bruce Merry] (brief introduction to big-oh notation)
+      </li><li><a href="https://en.wikipedia.org/wiki/Big_O_notation">Big O notation</a> [Wikipedia] 
+      </li><li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/daa2223/slides/1_analiseassintotica_2702.pdf">Slides from my Design and Analysis of Algorithms class</a> [Pedro Ribeiro, in portuguese 🇵🇹] (<a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/daa2223/videos/">video lectures</a>) [<a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/alg1819/slides/2_asymptoticanalysis_02102018.pdf">similar slides</a> in english 🇬🇧, for my Algorithms class]
+      </li><li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/material/bigo_table.html">Doing the math with big o: cheat sheet</a> [Pedro Ribeiro]
+      </li><li>Chapter 2 of <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
+    </li></ul>
+</li><li><strong>Programming Language References</strong>
+<ul>
+<li>C++ Reference: <a href="https://en.cppreference.com/w/">cppreference.com</a> | <a href="http://www.cplusplus.com/">cplusplus.com</a> | <a href="https://devdocs.io/cpp/">devdocs.io</a>
+</li><li>Java Reference: <a href="https://docs.oracle.com/en/java/javase/17/docs/api/index.html">Oracle - Java 17 API</a>
+</li></ul>
+</li><li><strong>Fundamental Data Structures:</strong>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/container">cppreference containers library</a>
+</li><li><a href="https://www.geeksforgeeks.org/the-c-standard-template-library-stl/">The C++ Standard Template Library (STL)</a> [GeeksforGeeks] (includes examples in C++ for native all data structures discussed in this class)
+      </li><li><a href="https://www.geeksforgeeks.org/java-collection-tutorial/">Java Collection Tutorial</a> (<a href="https://www.geeksforgeeks.org/collections-in-java-2/">version 2</a>) [GeeksforGeeks] (includes examples in Java for all native data structures discussed in this class)
+      </li><li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/aed2526/slides/9_bst.pdf">Slides from my Algorithms and Data Structures Class</a> (about balanced binary search tree) | <a href="https://www.cs.usfca.edu/~galles/visualization/RedBlack.html">Visualization of Red-Black Trees</a>
+</li><li><a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_data_structures.html">PBDS @ GNU</a> | <a href="https://www.geeksforgeeks.org/cpp/ordered-set-gnu-c-pbds/">Ordered Set and GNU C++ PBDS</a> [GeeksforGeeks] | <a href="https://codeforces.com/blog/entry/11080">C++ STL: PBDS</a> [CodeForces] | <a href="https://medium.com/nybles/policy-based-data-structure-491ac62ddeaa">PBDS</a> [Ansh Gupta @ Medium] 
+      </li><li>Sections 2.1 and 2.2 of the <a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">Competitive Programming</a> book
+      </li><li>Chapter 4 of <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
+    </li></ul>
+</li><li><strong>Fast I/O:</strong>
+<ul>
+<li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/daa2223/praticas/fastio.html">Fast Reading and Printing for C, C++ and Java</a> [Pedro Ribeiro, in Portuguese 🇵🇹]<br/>
+<i>(note: FastScanner and FastPrint are available at Mooshak, no need to include their code)</i>
+</li><li>Fast Input &amp; Output for <a href="https://usaco.guide/general/fast-io?lang=cpp">C++</a> and <a href="https://usaco.guide/general/fast-io?lang=java">Java</a> [USACO]
+      </li><li><a href="https://www.geeksforgeeks.org/python/fast-i-o-for-competitive-programming-in-python/">Fast I/O for Competitive Programming in Python</a> [GeeksforGeeks]
+    </li></ul>
+</li></ul>
+
+<h2>(some) Training Problems</h2>
+<ul>
+<li><strong>Mooshak:</strong>
+<ul>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC004]</a> - <a href="../problems/pc004.html">Cool Sequences</a> (simple usage of map to keep frequency)
+      </li><li><a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC010]</a> - <a href="../problems/pc010.html">Concert Tickets</a> (multiset + upper_bound + erase)
+    </li></ul>
+</li><li><strong>Codeforces:</strong>
+<ul>
+<li><a href="https://codeforces.com/problemset/problem/978/A">[CodeForces 978A]</a> - <a href="https://codeforces.com/problemset/problem/978/A">Remove Duplicates</a> (use a set of integers to know which elements already exist)
+      </li><li><a href="https://codeforces.com/problemset/problem/499/B">[CodeForces 499B]</a> - <a href="https://codeforces.com/problemset/problem/499/B">Lecture</a> (use map to associate words with their translation)
+    </li></ul>
+</li></ul>
+
+<h2>I want my memes!</h2>
+<details class="meme" name="meme">
+<summary>😁 big O notation</summary>
+<p><img alt="Meme: big O notation" loading="lazy" src="../images/memes/meme_bigo.jpg" width="600"/></p>
+</details>
+
+<details class="meme" name="meme">
+<summary>😁 the role of containers...</summary>
+<p><img alt="Meme: the role of containers..." loading="lazy" src="../images/memes/meme_foundations.jpg"/></p>
+</details>
+
+<details class="meme" name="meme">
+<summary>😁 data structures!</summary>
+<p><img alt="Meme: data structures!" loading="lazy" src="../images/memes/meme_datastructures.jpg"/></p>
+</details>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week02.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week02.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

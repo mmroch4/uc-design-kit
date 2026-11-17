@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC028] Wavio Sequence · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC028 (Wavio Sequence) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC028</li></ol>
+    </nav>
+    <h1>[PC028] Wavio Sequence</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://onlinejudge.org/external/105/10534.pdf">UVA Online Judge Problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc028.png"/>
+  Wavio is a sequence of integers. It has some interesting properties.</p>
+<ul>
+<li>Wavio is of odd length i.e. \(L = 2 \times n + 1\)
+  </li><li>The first \((n + 1)\) integers of Wavio sequence makes a strictly increasing sequence.    
+  </li><li>The last \((n + 1)\) integers of Wavio sequence makes a strictly decreasing sequence.
+  </li><li>No two adjacent integers are same in a Wavio sequence.
+</li></ul>
+<p>For example 1, 2, 3, 4, 5, 4, 3, 2, 0 is an Wavio sequence of length 9. But 1, 2, 3, 4, 5, 4, 3, 2, 2 is
+  not a valid wavio sequence.</p>
+<p>In this problem, you will be given a sequence of integers. You have to find
+  out the length of the longest Wavio sequence which is a subsequence of the given sequence.</p>
+<p>For example, if the given sequence is:</p>
+<p>1, 2, 3, 2, 1, 2, 3, 4, 3, 2, 1, 5, 4, 1, 2, 3, 2, 2, 1</p>
+<p>The longest Wavio subsequence would be 1, 2, 3, 4, 5, 4, 3, 2, 1 so the output should be 9.</p>
+<h2>Input</h2>
+<p>The first line of input contains \(t\), the number of test cases</p>
+<p>\(t\) lines follow, each containing one test case. Each case starts with \(n\), followed by a sequence of \(n\) integers \(s_1, s_2, \ldots, s_n\).</p>
+<h2>Output</h2>
+<p>For each test case, output a line with the length of longest wavio subsequence.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq t \leq 10 \)
+  </li><li>\( 1 \leq n \leq 20\,000 \)
+  </li><li>\( 1 \leq s_i \leq 10^6 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4
+10 1 2 3 4 5 4 3 2 1 10
+19 1 2 3 2 1 2 3 4 3 2 1 5 4 1 2 3 2 2 1
+5 1 2 3 4 5
+8 1 4 5 3 4 6 3 2</pre></td><td><pre data-copy="Output">9
+9
+1
+5</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc028.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc028.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

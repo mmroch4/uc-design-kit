@@ -34,6 +34,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
 | `.uc-header__meta`, `.uc-header__institution` | O lado direito do cabeçalho e a instituição. |
 | `.uc-lang-switch`, `__button` | Os botões para mudar de língua. |
+| `.uc-page__editions`, `.uc-page__editions-button`, `.uc-page__editions-menu` | "Outros anos": o contentor, o botão e a lista de edições. |
+| `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
@@ -331,6 +333,8 @@ O kit também gera estas classes, mas não promete mantê-las: podem mudar de no
 | `.uc-nav-toggle__current` | `<uc-page>`: o nome da página atual no botão "Menu". |
 | `.uc-nav-toggle__chevron` | `<uc-page>`: a seta do botão "Menu". |
 | `.uc-footer__inner` | `<uc-page>`: a faixa centrada do rodapé. |
+| `.uc-sort-up` | `table[data-sortable]`: a seta para cima do ícone de cada botão de ordenação. |
+| `.uc-sort-down` | `table[data-sortable]`: a seta para baixo do mesmo ícone. |
 | `.uc-notices__earlier--only` | `<uc-notices>`: "Avisos anteriores" quando não há avisos recentes. |
 | `.uc-week__details` | `<uc-week>`: o `<details>` que abre e fecha a semana. |
 | `.uc-week__meta` | `<uc-week>`: a etiqueta "Esta semana" e as datas. |
