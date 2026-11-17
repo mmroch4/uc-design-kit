@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-assessment-info · UC Design Kit</title>
+  <meta name="description" content="Documentação do componente uc-assessment-info do UC Design Kit: o cartão de um teste ou exame com data, turnos, duração, local, estado e ficheiro de calendário.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="uc-assessment-info.html" aria-current="page"><code>uc-assessment-info</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Componentes · Avaliação</p>
+          <h1><code>&lt;uc-assessment-info&gt;</code></h1>
+          <p class="docs-lead">O cartão no topo da página de um teste ou exame: dia, horas ou turnos, duração, local, quanto falta e os links, tirados do prazo no <code>course.js</code>. Pode juntar um botão para guardar a prova no calendário.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
+        </header>
+        <!-- docs:demo src="../../demos/uc-assessment-info/basic.html" title="cartão do teste prático com turnos e calendário" height="518" -->
+        <div class="docs-demo" id="demo-uc-assessment-info-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-assessment-info/basic.html" title="Demonstração: cartão do teste prático com turnos e calendário" loading="lazy" style="height: 518px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-assessment-info deadline=&quot;teste&quot; calendar&gt;
+  &lt;h2&gt;Regras&lt;/h2&gt;
+  &lt;ul class=&quot;uc-bullets&quot;&gt;
+    &lt;li&gt;Sem consulta; traz o cartão de estudante.&lt;/li&gt;
+    &lt;li&gt;Matéria: semanas 1 a 10.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/uc-assessment-info&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-assessment-info/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A demonstração mostra o teste prático do curso fictício: dois turnos (o segundo noutra sala), 1 h 45 min, as salas com um link que pede autenticação e o estado "Daqui a 13 dias". As regras escritas dentro do elemento ficam por baixo do cartão.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>Põe-se o elemento no início da página da prova, com o <code>id</code> do prazo. O resto da página (regras, matéria, enunciados anteriores) escreve-se dentro dele.</p>
+        <uc-code lang="html" filename="teste1.html" no-download><pre><code>&lt;uc-assessment-info deadline="t1" calendar&gt;
+  &lt;h2&gt;Regras&lt;/h2&gt;
+  &lt;p&gt;Sem consulta.&lt;/p&gt;
+  &lt;h2&gt;Enunciados anteriores&lt;/h2&gt;
+  &lt;ul class="uc-links"&gt;&lt;li&gt;&lt;a href="…" data-auth&gt;Teste 1 de 2024/25&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;/uc-assessment-info&gt;</code></pre></uc-code>
+        <p>Os dados vêm do <a href="../course-js.html#prazos">prazo</a>. Além de <code>date</code> e <code>time</code>, um prazo pode ter <code>duration</code> (minutos), <code>location</code> e <code>shifts</code> (turnos):</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>{ id: "t1", title: "1.º teste", date: "2025-11-05", time: "14:30", kind: "assessment",
+  duration: 120,
+  location: "FC1 120, FC1 122 · &lt;a href=\"evaluation/salas_t1.pdf\" data-auth&gt;distribuição por salas&lt;/a&gt;",
+  shifts: [{ time: "14:30" }, { time: "16:30", note: "Turmas PL5 a PL8" }],
+  url: "teste1.html" },</code></pre></uc-code>
+        <p>Estes campos servem também os outros componentes: <a href="uc-deadlines.html"><code>&lt;uc-deadlines&gt;</code></a>, <a href="uc-event.html"><code>&lt;uc-event&gt;</code></a> e o cartão "Esta semana" mostram "14:30 e 16:30" para turnos e "14:30–16:30" com uma duração.</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+        <h3 id="o-cartao">O que o cartão mostra</h3>
+        <ul>
+          <li><strong>Data</strong>, por extenso e com o dia da semana; só o mês, ou "Por marcar", quando o dia ainda não se sabe.</li>
+          <li><strong>Hora</strong> (com a hora de fim, se houver duração) ou <strong>Turnos</strong>, um por linha, com a sala e a nota de cada um e o dia quando é outro.</li>
+          <li><strong>Duração</strong>, <strong>Local</strong> e <strong>Estado</strong>: "Daqui a 5 dias", "Amanhã", "Hoje", "A decorrer", "Realizado" ou "Por marcar".</li>
+          <li><strong>Ligações</strong>: o <code>url</code> do prazo (se não for a própria página) e os <code>links</code>. A <code>note</code> do prazo aparece por baixo.</li>
+        </ul>
+
+        <h3 id="por-marcar">Data por marcar</h3>
+        <p>Um exame de que só se sabe o mês mostra o mês e "Por marcar", e não tem o botão do calendário.</p>
+        <!-- docs:demo src="../../demos/uc-assessment-info/unscheduled.html" title="exame com o dia por marcar" height="193" -->
+        <div class="docs-demo" id="demo-uc-assessment-info-unscheduled">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-assessment-info/unscheduled.html" title="Demonstração: exame com o dia por marcar" loading="lazy" style="height: 193px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-assessment-info deadline=&quot;exame&quot; heading-level=&quot;2&quot;&gt;&lt;/uc-assessment-info&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-assessment-info/unscheduled.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="calendario">Adicionar ao calendário</h3>
+        <p>Com <code>calendar</code>, o botão descarrega um ficheiro <code>.ics</code> criado no browser (<code>&lt;code&gt;-&lt;id&gt;.ics</code>), com um evento por turno, a hora de Lisboa, o local e o endereço da página. Abre-se no Google Calendar, no Outlook ou no calendário do telemóvel. Uma prova sem hora fica como evento de dia inteiro.</p>
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-assessment-info</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>deadline</code></td><td><code>id</code> de um prazo</td><td>obrigatório</td><td>O prazo de onde vêm os dados. Com um <code>id</code> que não existe, só aparece o que está escrito dentro, e a consola avisa.</td></tr>
+              <tr><td><code>calendar</code></td><td>booleano</td><td>ausente</td><td>Botão "Adicionar ao calendário" (ficheiro <code>.ics</code>). Não aparece quando o dia não está marcado.</td></tr>
+              <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td>o <code>title</code> do prazo</td><td>Título do cartão. Com <code>none</code>, não há título visível.</td></tr>
+              <tr><td><code>heading-level</code></td><td><code>2</code> a <code>6</code></td><td><code>2</code></td><td>Nível do título gerado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-assessment-info</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="../course-js.html#prazos"><code>deadlines</code></a></td><td><code>title</code>, <code>date</code>, <code>end</code>, <code>time</code>, <code>duration</code>, <code>location</code>, <code>shifts</code>, <code>note</code>, <code>url</code> e <code>links</code> do prazo indicado.</td></tr>
+              <tr><td><a href="../course-js.html#campos"><code>code</code></a></td><td>O nome do ficheiro <code>.ics</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-assessment-info</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-assessment-info</code></td><td>O componente (o próprio <code>&lt;uc-assessment-info&gt;</code>).</td></tr>
+              <tr><td><code>.uc-assessment-info__card</code>, <code>__heading</code></td><td>O cartão (também <code>uc-card</code>) e o seu título.</td></tr>
+              <tr><td><code>.uc-assessment-info__shifts</code></td><td>A lista dos turnos.</td></tr>
+              <tr><td><code>.uc-assessment-info__status</code></td><td>A etiqueta do estado ("Daqui a 5 dias").</td></tr>
+              <tr><td><code>.uc-assessment-info__note</code></td><td>A nota do prazo, por baixo da lista.</td></tr>
+              <tr><td><code>.uc-assessment-info__calendar</code></td><td>O botão "Adicionar ao calendário".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Cartão com o fundo de destaque. */
+.uc-assessment-info__card { background: var(--uc-color-highlight); }</code></pre></uc-code>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>O cartão é uma secção com título e uma lista de definições (<code>&lt;dl&gt;</code>); as datas e as horas são elementos <code>&lt;time&gt;</code>. O estado é texto, e a cor só o repete. O nome do botão diz o que descarrega ("Adicionar ao calendário, ficheiro .ics").</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Escrever as salas de forma curta e pôr <code>data-auth</code> nos links que pedem autenticação. Manter os títulos do que se escreve dentro um nível abaixo do título da página.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Os dados estão no <code>course.js</code>, por isso sem o kit só aparece o que está escrito dentro do elemento. Numa página de exame, convém escrever a data também num <code>&lt;noscript&gt;</code>:</p>
+        <uc-code lang="html" filename="exame.html" no-download><pre><code>&lt;uc-assessment-info deadline="exame"&gt;
+  &lt;noscript&gt;&lt;p&gt;Exame: 14 de janeiro de 2026, 14:00.&lt;/p&gt;&lt;/noscript&gt;
+  …
+&lt;/uc-assessment-info&gt;</code></pre></uc-code>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="../course-js.html#prazos">O ficheiro course.js</a>: os campos de um prazo, incluindo os turnos.</li>
+          <li><a href="uc-grading.html"><code>&lt;uc-grading&gt;</code></a>: como é calculada a nota.</li>
+          <li><a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>: a mesma prova dentro da semana em que cai.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-grading.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-grading</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="../estilos/index.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Princípios de design</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-assessment-info.html">Editar esta página no GitHub</a> · <a href="uc-assessment-info.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#o-cartao">O que o cartão mostra</a></li>
+          <li class="docs-toc__sub"><a href="#por-marcar">Data por marcar</a></li>
+          <li class="docs-toc__sub"><a href="#calendario">Adicionar ao calendário</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

@@ -15,6 +15,7 @@
     "core/storage.js",
     "core/time.js",
     "core/filters.js",
+    "core/ics.js",
     "core/element.js",
     "core/runners.js",
     "components/uc-page.js",
@@ -30,6 +31,8 @@
     "components/uc-guide.js",
     "components/uc-team.js",
     "components/uc-timetable.js",
+    "components/uc-grading.js",
+    "components/uc-assessment-info.js",
     "components/uc-code.js",
     "components/uc-question.js",
     "core/tables.js",
@@ -58,6 +61,8 @@
     "css/components/uc-guide.css",
     "css/components/uc-team.css",
     "css/components/uc-timetable.css",
+    "css/components/uc-grading.css",
+    "css/components/uc-assessment-info.css",
     "css/components/uc-code.css",
     "css/components/uc-question.css"
   ]

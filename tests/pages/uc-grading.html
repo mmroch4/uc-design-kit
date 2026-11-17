@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-grading · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <h1>
+      <span lang="pt">Avaliação (teste)</span>
+      <span lang="en">Assessment (test)</span>
+    </h1>
+
+    <!-- EDados: weights 14/5/1 written in "valores", each on its own scale: "Nota = E + AP + P". -->
+    <uc-grading id="edados" scale="20" pass="9.5" calculator>
+      <ul>
+        <li data-code="E" data-scale="14" data-min="4.9"><data value="14">14 valores</data> Exame final. <span>Teórico-prático, sem consulta.</span></li>
+        <li data-code="AP" data-scale="5"><data value="5">5 valores</data> Avaliações práticas (duas, no laboratório)</li>
+        <li data-code="P" data-scale="1"><data value="1">1 valor</data> Exercícios das aulas práticas</li>
+      </ul>
+      <p class="uc-muted">Texto do docente, abaixo da tabela.</p>
+    </uc-grading>
+
+    <!-- IP: decimal weights, every component on 20: "Nota = 0,1 × A + 0,2 × T1 + 0,2 × T2 + 0,5 × E". -->
+    <uc-grading id="ip" heading="Fórmula da IP" heading-level="3">
+      <ol>
+        <li data-code="A"><data value="0,1">0,1</data> Atividades semanais</li>
+        <li data-code="T1"><data value="0.2">0,2</data> Teste 1</li>
+        <li data-code="T2"><data value="0.2">0,2</data> Teste 2</li>
+        <li data-code="E"><data value="0.5">0,5</data> Exame</li>
+      </ol>
+    </uc-grading>
+
+    <!-- PC: percentages, sub-items relative to their parent and a 10 % bonus. -->
+    <uc-grading id="pc" calculator pass="9.5">
+      <ul>
+        <li data-code="SI"><data value="25%">25 %</data> Submissões individuais</li>
+        <li data-code="CE" data-min="8"><data value="50%">50 %</data> Concursos em equipa
+          <ul>
+            <li data-code="C1"><data value="30">30 %</data> Concurso 1</li>
+            <li data-code="C2"><data value="30">30 %</data> Concurso 2</li>
+            <li data-code="C3"><data value="40">40 %</data> Concurso 3</li>
+          </ul>
+        </li>
+        <li data-code="PDC"><data value="25%">25 %</data> Participação nas aulas</li>
+        <li data-code="B" data-bonus="10%">Problemas extra, ao longo do semestre</li>
+      </ul>
+    </uc-grading>
+
+    <!-- No heading, no formula. -->
+    <uc-grading id="plain" heading="none" no-formula>
+      <ul>
+        <li data-code="P"><data value="40">40 %</data> Projeto</li>
+        <li data-code="E" data-min="8"><data value="60">60 %</data> Exame</li>
+      </ul>
+    </uc-grading>
+  </uc-page>
+</body>
+</html>

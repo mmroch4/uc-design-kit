@@ -74,6 +74,8 @@ const MIME_TYPES = {
 const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-timetable.html", selector: "#all", file: "tests/pages/uc-timetable.aria.yml" },
   { page: "tests/pages/uc-timetable.html", selector: "#days", file: "tests/pages/uc-timetable-days.aria.yml" },
+  { page: "tests/pages/uc-grading.html", selector: "#pc", file: "tests/pages/uc-grading.aria.yml" },
+  { page: "tests/pages/uc-assessment-info.html", selector: "#full", file: "tests/pages/uc-assessment-info.aria.yml" },
 ];
 
 /** Component demos, the EDados example (top level and one lab guide) and the template. */
@@ -358,6 +360,7 @@ async function checkBehaviour(browser, origin, relative) {
   await context.close();
 
   problems.push(...(await checkClassFilter(browser, origin, relative)));
+  problems.push(...(await checkGradingCalculator(browser, origin, relative)));
 
   if (relative.includes("uc-page") || relative.startsWith("examples/")) {
     const phone = await open(browser, origin, relative, { viewport: { width: 390, height: 844 } });
@@ -413,6 +416,43 @@ async function checkClassFilter(browser, origin, relative) {
   await page.waitForTimeout(300);
   const kept = await page.evaluate(() => document.querySelector(".uc-timetable__filters select")?.value);
   if (kept !== choice) problems.push(`class filter: the choice was not kept after a reload ("${kept}")`);
+  await context.close();
+  return problems;
+}
+
+/** The grade simulation of <uc-grading calculator>, on pages that have one. */
+async function checkGradingCalculator(browser, origin, relative) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  const calculator = await firstVisible(page, ".uc-grading__calculator");
+  if (!calculator) {
+    await context.close();
+    return problems;
+  }
+  const fields = await calculator.$$("input");
+  const input = fields[0];
+  const box = await input.boundingBox();
+  if (box && box.height < 44) problems.push(`calculator: a field is ${Math.round(box.height)}px tall (44px minimum)`);
+  if (!(await input.evaluate((node) => (node.labels[0] ? node.labels[0].textContent.trim() : "")))) problems.push("calculator: a field has no visible <label>");
+  await input.focus();
+  await page.keyboard.type("999");
+  await page.waitForTimeout(100);
+  const invalid = await input.evaluate((node) => ({
+    state: node.getAttribute("aria-invalid"),
+    error: (document.getElementById(node.getAttribute("aria-describedby") || "") || {}).textContent || "",
+  }));
+  if (invalid.state !== "true") problems.push("calculator: an out-of-range value does not set aria-invalid");
+  if (!invalid.error.trim()) problems.push("calculator: the error is not linked with aria-describedby");
+  // Every field set to 0 by keyboard: the field is valid again and the result is announced.
+  for (const field of fields) {
+    await field.focus();
+    await page.keyboard.press("Control+A");
+    await page.keyboard.type("0");
+  }
+  await page.waitForTimeout(450);
+  if ((await input.getAttribute("aria-invalid")) !== "false") problems.push("calculator: aria-invalid stays set after a valid value");
+  if (!/Nota final|Final grade/.test(await liveText(page))) problems.push("calculator: the simulated grade is not announced");
+  if (!(await focusedMatches(page, ".uc-grading__calculator input"))) problems.push("calculator: focus left the field");
   await context.close();
   return problems;
 }

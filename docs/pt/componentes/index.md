@@ -46,6 +46,13 @@ Aulas práticas com exercícios, código executável e perguntas.
 - [**`<uc-code>`**: Código com realce, copiar e descarregar, edição e execução com testes.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md)
 - [**`<uc-question>`**: Pergunta de escolha múltipla com resposta imediata e explicação.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-question.md)
 
+## Avaliação
+
+Como se calcula a nota e o que é preciso saber de cada prova.
+
+- [**`<uc-grading>`**: A fórmula, os pesos e os mínimos da nota, com um simulador opcional.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md)
+- [**`<uc-assessment-info>`**: O cartão de um teste ou exame: data, turnos, duração, local, estado e calendário.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md)
+
 ## Regras comuns
 
 - **Atributos** em minúsculas, separados por hífen. Os booleanos valem pela presença (`open`, `no-breaks`).

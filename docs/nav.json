@@ -58,7 +58,9 @@
             { "title": "uc-guide", "path": "pt/componentes/uc-guide.html", "code": true, "component": "uc-guide" },
             { "title": "uc-exercise", "path": "pt/componentes/uc-exercise.html", "code": true, "component": "uc-exercise" },
             { "title": "uc-code", "path": "pt/componentes/uc-code.html", "code": true, "component": "uc-code" },
-            { "title": "uc-question", "path": "pt/componentes/uc-question.html", "code": true, "component": "uc-question" }
+            { "title": "uc-question", "path": "pt/componentes/uc-question.html", "code": true, "component": "uc-question" },
+            { "title": "uc-grading", "path": "pt/componentes/uc-grading.html", "code": true, "component": "uc-grading" },
+            { "title": "uc-assessment-info", "path": "pt/componentes/uc-assessment-info.html", "code": true, "component": "uc-assessment-info" }
           ]
         },
         {

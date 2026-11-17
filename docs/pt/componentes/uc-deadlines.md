@@ -10,7 +10,7 @@ Exemplo (próximas datas do curso de demonstração), [demonstração ao vivo](h
 <uc-deadlines></uc-deadlines>
 ```
 
-A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Aparecem os prazos que ainda não passaram, por ordem de data: a entrega do trabalho 2, o teste prático e o exame, de que só se sabe o mês. A hora vai no início da linha de baixo, antes da nota.
+A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Aparecem os prazos que ainda não passaram, por ordem de data: a entrega do trabalho 2, o teste prático e o exame, de que só se sabe o mês. A hora vai no início da linha de baixo, antes da nota; o teste prático tem dois turnos, por isso mostra "14:00 e 16:00".
 
 ## Utilização
 
@@ -125,7 +125,7 @@ Campos do `course.js` que o componente lê. Sem `deadlines`, mostra "Não há da
 
 | Campo | Para quê |
 | --- | --- |
-| [`deadlines`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos) | Os prazos: `id`, `title`, `date`, `time`, `end`, `kind`, `note`, `url` e `links`. |
+| [`deadlines`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos) | Os prazos: `id`, `title`, `date`, `time`, `end`, `kind`, `note`, `url` e `links`, e ainda `shifts` e `duration` (as horas) e `location` (na tabela, antes da nota). |
 | [`today`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-avancado) | Fixar o dia de hoje (demonstrações, capturas). O endereço `?today=AAAA-MM-DD` tem prioridade. |
 
 A referência completa dos campos está em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos).

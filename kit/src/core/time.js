@@ -74,6 +74,22 @@
     });
   }
 
+  /** End of a session: `end`, else `time` + the deadline's `duration` (minutes), else null. */
+  function endTime(time, end, duration) {
+    if (end) return end;
+    const start = minutesOf(time);
+    const minutes = start + Number(duration);
+    if (!(duration > 0) || !Number.isFinite(minutes)) return null;
+    return `${String(Math.floor(minutes / 60) % 24).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
+  }
+
+  /** Short time text of a deadline: "14:30 e 16:30" (shifts), "14:30–16:30" (duration), "14:30" or "". */
+  function deadlineTimes(deadline) {
+    const shifts = Array.isArray(deadline.shifts) ? deadline.shifts.filter((shift) => shift && shift.time) : [];
+    if (shifts.length) return joinNodes(shifts.map((shift) => UC.formatTime(shift.time))).join("");
+    return deadline.time ? UC.formatTime(deadline.time, endTime(deadline.time, null, deadline.duration)) : "";
+  }
+
   /** Lowercase, accents removed: for search and for matching names written by hand. */
   function normalise(text) {
     return String(text || "")
@@ -107,5 +123,5 @@
     if (date) element.textContent = UC.formatDate(date, format);
   }
 
-  Object.assign(UC.internal, { parseTime, minutesOf, dayNode, timeRangeNode, joinNodes, normalise, firstTime, localiseTime });
+  Object.assign(UC.internal, { endTime, deadlineTimes, parseTime, minutesOf, dayNode, timeRangeNode, joinNodes, normalise, firstTime, localiseTime });
 })(window.UC);

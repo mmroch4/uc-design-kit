@@ -1,0 +1,70 @@
+/* <uc-grading> — formula, proportions bar, weights table and grade simulation. */
+:where(uc-grading) { display: block; }
+:where(.uc-grading__section) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-4);
+}
+:where(.uc-grading__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }
+:where(.uc-grading__formula) { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-md); font-weight: 500; }
+
+/* Proportions bar: one segment per top-level component, width = its share. Decorative (the table says it). */
+:where(.uc-grading__bar) {
+  display: flex;
+  gap: 2px;
+  overflow: hidden;
+  border-radius: var(--uc-radius-sm);
+}
+:where(.uc-grading__segment) {
+  flex-basis: 0;
+  min-width: 0;
+  min-height: var(--uc-grading-bar-height, 12px);
+  overflow: hidden;
+  background: var(--uc-color-accent);
+  color: var(--uc-color-on-accent);
+  font-size: var(--uc-font-size-xs);
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: center;
+  white-space: nowrap;
+}
+:where(.uc-grading__segment:nth-child(even)) { background: var(--uc-color-accent-strong); }
+
+:where(.uc-grading__table) { --uc-table-min: 480px; }
+:where(.uc-grading__table tbody th) {
+  background: transparent;
+  color: var(--uc-color-text);
+  font-size: inherit;
+  font-weight: 400;
+}
+:where(.uc-grading__table tbody th > .uc-mono) { font-weight: 600; }
+:where(.uc-grading__table tbody th span:not(.uc-mono)) { color: var(--uc-color-text-muted); }
+:where(.uc-grading__table tbody tr:last-child th) { border-bottom: 0; }
+:where(.uc-grading__sub th) { padding-left: var(--uc-space-8); }
+
+/* Calculator */
+:where(.uc-grading__calculator) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-3);
+  margin: 0;
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+}
+:where(.uc-grading__calculator legend) { padding: 0 var(--uc-space-1); font-weight: 600; }
+:where(.uc-grading__fields) { display: flex; flex-wrap: wrap; gap: var(--uc-space-4) var(--uc-space-6); }
+:where(.uc-grading__field) { max-width: 100%; display: flex; flex-direction: column; gap: var(--uc-space-1); }
+:where(.uc-grading__field label) { font-size: var(--uc-font-size-md); }
+:where(.uc-grading__field input) {
+  width: 8rem;
+  min-height: var(--uc-target-min);
+  padding: 0 var(--uc-space-3);
+  border: 1px solid var(--uc-color-text-subtle);
+  border-radius: var(--uc-radius-md);
+  font: inherit;
+}
+:where(.uc-grading__field input[aria-invalid="true"]) { border-color: var(--uc-color-danger-text); }
+:where(.uc-grading__error) { color: var(--uc-color-danger-text); font-size: var(--uc-font-size-md); }
+:where(.uc-grading__result) { font-size: var(--uc-font-size-lg); font-weight: 600; }
+:where(.uc-grading__status:empty) { display: none; }

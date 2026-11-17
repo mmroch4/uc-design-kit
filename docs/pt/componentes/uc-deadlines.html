@@ -72,6 +72,8 @@
           <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="uc-code.html"><code>uc-code</code></a></li>
           <li><a href="uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -141,7 +143,7 @@
           <a class="docs-demo__open" href="../../demos/uc-deadlines/basic.html">Abrir demo</a>
         </div>
         <!-- /docs:demo -->
-        <p>A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Aparecem os prazos que ainda não passaram, por ordem de data: a entrega do trabalho 2, o teste prático e o exame, de que só se sabe o mês. A hora vai no início da linha de baixo, antes da nota.</p>
+        <p>A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Aparecem os prazos que ainda não passaram, por ordem de data: a entrega do trabalho 2, o teste prático e o exame, de que só se sabe o mês. A hora vai no início da linha de baixo, antes da nota; o teste prático tem dois turnos, por isso mostra "14:00 e 16:00".</p>
 
         <h2 id="utilizacao">Utilização</h2>
         <p>O elemento fica vazio na página. Cada prazo escreve-se uma vez no <code>course.js</code> e aparece em todos os componentes que o usam: aqui, na semana em que cai e no cartão "Esta semana".</p>
@@ -170,10 +172,10 @@
 
         <h3 id="tabela">Tabela</h3>
         <p>Com <code>view="table"</code>, os prazos aparecem numa tabela com a prova, a data com o ano, a hora, a informação (nota e ligações) e o estado. A tabela mostra todos os prazos, passados e futuros, e num ecrã estreito desliza na horizontal.</p>
-        <!-- docs:demo src="../../demos/uc-deadlines/table.html" title="tabela de prazos com estados" height="484" -->
+        <!-- docs:demo src="../../demos/uc-deadlines/table.html" title="tabela de prazos com estados" height="648" -->
         <div class="docs-demo" id="demo-uc-deadlines-table">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/table.html" title="Demonstração: tabela de prazos com estados" loading="lazy" style="height: 484px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-deadlines/table.html" title="Demonstração: tabela de prazos com estados" loading="lazy" style="height: 648px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;uc-deadlines view=&quot;table&quot; heading=&quot;Calendário de avaliação&quot;&gt;&lt;/uc-deadlines&gt;</code></pre></uc-code>
@@ -268,7 +270,7 @@
               <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
             </thead>
             <tbody>
-              <tr><td><a href="../course-js.html#prazos"><code>deadlines</code></a></td><td>Os prazos: <code>id</code>, <code>title</code>, <code>date</code>, <code>time</code>, <code>end</code>, <code>kind</code>, <code>note</code>, <code>url</code> e <code>links</code>.</td></tr>
+              <tr><td><a href="../course-js.html#prazos"><code>deadlines</code></a></td><td>Os prazos: <code>id</code>, <code>title</code>, <code>date</code>, <code>time</code>, <code>end</code>, <code>kind</code>, <code>note</code>, <code>url</code> e <code>links</code>, e ainda <code>shifts</code> e <code>duration</code> (as horas) e <code>location</code> (na tabela, antes da nota).</td></tr>
               <tr><td><a href="../course-js.html#campos-avancado"><code>today</code></a></td><td>Fixar o dia de hoje (demonstrações, capturas). O endereço <code>?today=AAAA-MM-DD</code> tem prioridade.</td></tr>
             </tbody>
           </table>

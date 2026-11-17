@@ -122,6 +122,86 @@
     equal([time.textContent, time.getAttribute("data-uc-text")], [inLang(UC.lang, () => UC.formatDate("2025-11-18", "long")), "18/11"]);
   });
 
+  /* Blocks phase 2: deadline times, status, grading and calendar files. */
+  const deadline = (fields) => ({ links: [], ...fields, parsed: UC.internal.parseDeadlineDate(fields.date), endDate: UC.internal.parseDay(fields.end) });
+  test("deadlineTimes: shifts, duration, time", () =>
+    equal(
+      inLang("pt", () => [
+        UC.internal.deadlineTimes({ time: "14:30", shifts: [{ time: "14:30" }, { time: "16:30" }, { time: "18:30" }] }),
+        UC.internal.deadlineTimes({ time: "14:30", duration: 120 }),
+        UC.internal.deadlineTimes({ time: "9:00", duration: 105 }),
+        UC.internal.deadlineTimes({ time: "21:00" }),
+        UC.internal.deadlineTimes({}),
+      ]),
+      ["14:30, 16:30 e 18:30", "14:30–16:30", "09:00–10:45", "21:00", ""],
+    ));
+  test("deadlineStatus counts days and spans", () => {
+    const today = UC.internal.parseDay("2025-11-27");
+    const status = (fields) => {
+      const { status: value, days } = UC.internal.deadlineStatus(deadline(fields), today);
+      return days === undefined ? value : `${value} ${days}`;
+    };
+    equal(
+      [
+        status({ date: "2025-12-02" }),
+        status({ date: "2025-11-28" }),
+        status({ date: "2025-11-27" }),
+        status({ date: "2025-11-24", end: "2025-11-30" }),
+        status({ date: "2025-11-12" }),
+        status({ date: "2026-01" }),
+        status({ date: null }),
+      ],
+      ["upcoming 5", "upcoming 1", "today 0", "ongoing -3", "done -15", "toBeScheduled", "toBeScheduled"],
+    );
+  });
+  test("icsText: one event per shift, Lisbon time, escaped text", () => {
+    const text = UC.internal.icsText(
+      deadline({ id: "t1", title: "Teste 1; parte A", date: "2025-12-03", time: "14:30", duration: 120, location: "FC1 120, <a href=\"#\">salas</a>", shifts: [{ time: "14:30" }, { time: "16:30", date: "2025-12-04", location: "FC6" }] }),
+      "https://example.org/t1.html",
+    );
+    const lines = text.split("\r\n");
+    equal(
+      [
+        lines.filter((line) => line === "BEGIN:VEVENT").length,
+        lines.includes("DTSTART;TZID=Europe/Lisbon:20251203T143000"),
+        lines.includes("DTEND;TZID=Europe/Lisbon:20251203T163000"),
+        lines.includes("DTSTART;TZID=Europe/Lisbon:20251204T163000"),
+        lines.includes("SUMMARY:Teste 1\\; parte A"),
+        lines.includes("LOCATION:FC1 120\\, salas"),
+        lines.includes("LOCATION:FC6"),
+        lines.includes("TZID:Europe/Lisbon"),
+        text.endsWith("END:VCALENDAR\r\n"),
+      ],
+      [2, true, true, true, true, true, true, true, true],
+    );
+  });
+  test("icsText: a deadline without time is an all-day event", () => {
+    const lines = UC.internal.icsText(deadline({ id: "q", title: "Quiz", date: "2025-11-24", end: "2025-11-30" })).split("\r\n");
+    equal([lines.includes("DTSTART;VALUE=DATE:20251124"), lines.includes("DTEND;VALUE=DATE:20251201"), lines.includes("TZID:Europe/Lisbon")], [true, true, false]);
+  });
+  test("uc-grading: normalised weights and formula coefficients", () => {
+    const render = (html, attributes = "") => {
+      const host = document.createElement("div");
+      host.hidden = true;
+      host.innerHTML = `<uc-grading ${attributes}>${html}</uc-grading>`;
+      document.body.append(host);
+      const element = host.firstElementChild;
+      const result = {
+        formula: element.querySelector(".uc-grading__formula").textContent,
+        weights: Array.from(element.querySelectorAll(".uc-grading__table tbody td:nth-child(2)"), (cell) => cell.textContent),
+      };
+      host.remove();
+      return result;
+    };
+    const edados = render('<ul><li data-code="E" data-scale="14"><data value="14">14 valores</data> Exame</li><li data-code="AP" data-scale="5"><data value="5">5 valores</data> AP</li><li data-code="P" data-scale="1"><data value="1">1 valor</data> P</li></ul>');
+    const ip = render('<ul><li data-code="A"><data value="0,1">0,1</data> A</li><li data-code="T"><data value="0.4">0,4</data> T</li><li data-code="E"><data value="0.5">0,5</data> E</li><li data-code="B" data-bonus="2">Bónus</li></ul>');
+    equal(
+      inLang("pt", () => [edados.formula, ip.formula, ip.weights[3]]),
+      ["Nota = E + AP + P", "Nota = 0,1 × A + 0,4 × T + 0,5 × E + B", "Bónus · até 2 valores"],
+    );
+    equal(edados.weights[0].replace(/\s/g, " "), "14 valores · 70%");
+  });
+
   const summary = document.createElement("p");
   summary.textContent = failures ? `${failures} failing` : "All tests passed.";
   results.after(summary);

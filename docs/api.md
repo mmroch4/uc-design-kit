@@ -115,6 +115,7 @@ window.UC_COURSE = {
 | `ISODate` | `"YYYY-MM-DD"`. A deadline may also use `"YYYY-MM"` (month known, day not) or `null` (to be scheduled). |
 | `Time` | `"HH:MM"`, 24-hour. |
 | `Weekday` | ISO weekday number: `1` = Monday … `7` = Sunday (as `semester.teachingDays`). |
+| `Minutes` | A whole number of minutes, e.g. `120` for two hours. |
 | `HTMLText` | A `LocalizedText` whose values may contain inline HTML (links, `<strong>`, `<em>`, `<code>`). It is written by the teacher and inserted as HTML. |
 
 ### 2.2 Fields
@@ -217,6 +218,22 @@ team: [
 | `note` | `HTMLText` | Short secondary line (shifts, rooms…). |
 | `url` | URL | Main link (information page). |
 | `links` | `{ label, url }[]` | Extra links (results, shifts…). |
+| `duration` | `Minutes` | Length of the assessment. With `time`, the end is computed ("14:30–16:30"). |
+| `location` | `HTMLText` | Rooms, or a link to the room allocation (may use `data-auth`). |
+| `shifts` | `Shift[]` | When the same assessment runs more than once. Shown instead of `time`; `time` stays the first shift's start, for sorting. |
+
+`Shift`: `{ time: Time, end?: Time, date?: ISODate, location?: HTMLText, note?: HTMLText }`.
+`end` defaults to `time` + `duration`; `date` to the deadline's `date` (set it
+for an assessment that runs on two days); a shift's `location` is shown next to
+that shift only (the deadline's `location` applies to all).
+
+```js
+{ id: "t1", title: { pt: "1.º teste", en: "Test 1" }, date: "2025-11-05", time: "14:30", kind: "assessment",
+  duration: 120,
+  location: { pt: "FC1 120, FC1 122 · <a href=\"evaluation/salas_t1.pdf\" data-auth>distribuição por salas</a>" },
+  shifts: [{ time: "14:30" }, { time: "16:30" }],
+  url: "test1.html" },
+```
 
 ### 2.6 Notice
 
@@ -328,7 +345,10 @@ upcoming), *Scheduled* (later), *To be scheduled* (`date: null` or month only).
 A deadline with an `end` date counts as upcoming until it ends and is shown as
 a range. Children written inside the element are kept below the list. In
 the list view the time goes at the start of the note line ("21:00 · Mooshak");
-the table view shows dates and ranges with the year.
+the table view shows dates and ranges with the year. A deadline with `shifts`
+shows their start times ("14:30 e 16:30"), and one with `duration` its range
+("14:30–16:30"), in both views; the table's details column shows `location`
+before `note`.
 
 #### `<uc-date>`
 
@@ -388,7 +408,7 @@ A highlighted item inside or between weeks (assessments, exams).
 
 | Attribute | Values | Notes |
 | --- | --- | --- |
-| `deadline` | deadline id | Takes title, date, note and links from the configuration. |
+| `deadline` | deadline id | Takes title, date, time, location, note and links from the configuration. The time reads "14:30 e 16:30" for shifts and "14:30–16:30" with a `duration`; the location goes before the note. |
 | `kind` | deadline kind | When not using `deadline`. |
 | `date` | `ISODate` | When not using `deadline`. |
 
@@ -579,6 +599,112 @@ A multiple-choice self-check question with immediate feedback.
 
 Attributes: `multiple` (boolean) allows more than one correct answer.
 
+### 3.6 Assessment
+
+#### `<uc-grading>`
+
+Decorates the teacher's list of grade components: a generated formula, a
+proportions bar, a table of weights and minimums and, optionally, a grade
+simulation. Each weight is written once, in a `<data>` element that shows
+without JavaScript.
+
+```html
+<uc-grading scale="20" pass="9.5" calculator>
+  <ul>
+    <li data-code="E" data-scale="14" data-min="4.9"><data value="14">14 valores</data> Exame final.
+      <span>Teórico-prático, sem consulta.</span></li>
+    <li data-code="AP" data-scale="5"><data value="5">5 valores</data> Avaliações práticas</li>
+    <li data-code="P" data-scale="1"><data value="1">1 valor</data> Exercícios das aulas práticas</li>
+  </ul>
+</uc-grading>
+```
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `scale` | number | `20` | Scale of the final grade. |
+| `pass` | number | absent | Pass mark, on `scale`. Used by the calculator. |
+| `calculator` | boolean | absent | Adds the grade simulation. |
+| `no-formula` | boolean | absent | Hides the generated formula. |
+| `heading` | text \| `none` | localised "Como é calculada a nota" / "How the grade is calculated" | |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading. |
+
+Item attributes, on the `<li>` of the first `<ul>`/`<ol>` child:
+
+| Item attribute | Values | Notes |
+| --- | --- | --- |
+| `data-code` | text | Short name used by the formula, the table and the calculator, e.g. `E`, `AP`, `T1`. |
+| `data-scale` | number | Scale in which this component is graded. Default: the element's `scale` (for parts: the parent's). |
+| `data-min` | number | Minimum on this component's own scale ("4,9 em 14"). |
+| `data-bonus` | number \| `N%` | A bonus item: not part of the weights; adds up to this many points on the final scale (`2`) or this share of it (`10%`). The final grade is capped at `scale`. Needs no `<data>`. |
+
+- **Weights.** The `value` of the item's `<data>` (a number; a trailing `%`
+  and a decimal comma are accepted). Weights are normalised among siblings,
+  so `0.1/0.2/0.2/0.5`, `14/5/1` and `25%/50%/25%` all work.
+- **Parts.** A `<ul>`/`<ol>` inside an item lists its parts, with weights
+  relative to the parent (contests 30/30/40 inside a 50 % component). The
+  parent's grade is the weighted mean of its parts, on the parent's scale.
+- **Rendering.** The teacher's list stays in the page but hidden; the element
+  shows, in order, the formula, the proportions bar (`aria-hidden`, one segment
+  per top-level component, labelled with its code) and a table (visually
+  hidden caption "Componentes da nota"; columns Component, Weight, Minimum).
+  The component cell is the code and a copy of the item without its `<data>`
+  and nested list. The weight cell is the teacher's `<data>` text and the
+  normalised share ("14 valores · 70 %"; a weight written as a percentage is
+  not repeated); parts are indented rows reading "15 % (30 % de CE)"; bonus
+  rows read "Bónus · até 2 valores". Other children follow the table.
+- **Formula.** Coefficients are on each top-level component's own scale and a
+  coefficient of 1 is omitted: "Nota = E + AP + P",
+  "Nota = 0,1 × A + 0,2 × T1 + 0,2 × T2 + 0,5 × E". Bonus items are added as
+  "+ B".
+- **Calculator.** A `<fieldset>` "Simular a nota" with one labelled field per
+  leaf component and per bonus item ("E: Exame final (0 a 14)"; the label
+  leaves out the item's `<span>` description). Comma or dot are accepted. A
+  value out of range shows an error linked with `aria-describedby` and sets
+  `aria-invalid`. An empty bonus counts as 0; any other empty field shows
+  "Preenche todas as componentes para ver a nota.". The result is an
+  `<output>` ("Nota final: 12,4 valores") with a state line ("Aprovado nesta
+  simulação", "Abaixo do mínimo em E (4,9 em 14)" or "Abaixo de 9,5"),
+  announced 300 ms after typing stops. A fixed note says the official grade is
+  the one published on SIGARRA. Nothing is saved.
+- Without JavaScript: the teacher's list with the weights as written.
+
+#### `<uc-assessment-info>`
+
+A summary card of one configured deadline, at the top of an exam or test page.
+The rest of the page (rules, syllabus, past papers) is written inside the
+element and stays below the card.
+
+```html
+<uc-assessment-info deadline="t1" calendar>
+  <h2>Regras</h2> …
+</uc-assessment-info>
+```
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `deadline` | deadline id | required | Date, time, duration, location, shifts, note and links come from it. |
+| `calendar` | boolean | absent | "Adicionar ao calendário" button that downloads an `.ics` file made in the browser. Not shown when the date is not a full day. |
+| `heading` | text \| `none` | the deadline's `title` | |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading. |
+
+- **Card.** A `<dl>` with the rows that have data, in this order: Date (long,
+  with the weekday: "quarta-feira, 5 de novembro de 2025"; a month or "Por
+  marcar" otherwise), Time ("14:30–16:30") or Shifts (one line per shift:
+  "14:30–16:30 · FC1 120 · note", with the shift's day when it differs),
+  Duration ("2 h"), Location, Status, Links (the deadline's `url`, unless it
+  is this page, and its `links`). The deadline's `note` follows the list.
+- **Status** (text in a tag): "Daqui a 5 dias", "Amanhã", "Hoje", "A decorrer"
+  (inside a multi-day deadline), "Realizado", "Por marcar". No status row
+  when the date is `null`.
+- **Calendar file.** `<code>-<id>.ics` (RFC 5545): one event per shift, times
+  in `Europe/Lisbon` (with its `VTIMEZONE`), `LOCATION` from the plain text of
+  the location, `URL` of the page; a deadline without a time becomes an
+  all-day event. The button's name says what it downloads ("Adicionar ao
+  calendário, ficheiro .ics").
+- **Unknown id.** One console warning; only the children are shown.
+- Without JavaScript: only the children. Write the date in a `<noscript>` on
+  exam pages.
+
 ## 4. CSS building blocks
 
 Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
@@ -663,6 +789,7 @@ fallback, so they can be set on `:root` for the whole site or on one element
 | `--uc-notices-date-width` | `64px` | Date column of `<uc-notices>`. |
 | `--uc-deadlines-date-width` | `5.25rem` | Date column of `<uc-deadlines>` in the list view. |
 | `--uc-timetable-time-width` | `7.5rem` | Time column of `<uc-timetable view="days">`. |
+| `--uc-grading-bar-height` | `12px` | Height of the proportions bar of `<uc-grading>`. |
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the

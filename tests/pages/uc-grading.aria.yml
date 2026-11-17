@@ -1,0 +1,56 @@
+- region "Como é calculada a nota":
+  - heading "Como é calculada a nota" [level=2]
+  - paragraph: Nota = 0,25 × SI + 0,5 × CE + 0,25 × PDC + B
+  - table "Componentes da nota":
+    - caption: Componentes da nota
+    - rowgroup:
+      - row "Componente Peso Mínimo":
+        - columnheader "Componente"
+        - columnheader "Peso"
+        - columnheader "Mínimo"
+    - rowgroup:
+      - row "SI Submissões individuais 25 % —":
+        - rowheader "SI Submissões individuais"
+        - cell "25 %"
+        - cell "—"
+      - row "CE Concursos em equipa 50 % 8 em 20":
+        - rowheader "CE Concursos em equipa"
+        - cell "50 %"
+        - cell "8 em 20"
+      - row "C1 Concurso 1 15% (30% de CE) —":
+        - rowheader "C1 Concurso 1"
+        - cell "15% (30% de CE)"
+        - cell "—"
+      - row "C2 Concurso 2 15% (30% de CE) —":
+        - rowheader "C2 Concurso 2"
+        - cell "15% (30% de CE)"
+        - cell "—"
+      - row "C3 Concurso 3 20% (40% de CE) —":
+        - rowheader "C3 Concurso 3"
+        - cell "20% (40% de CE)"
+        - cell "—"
+      - row "PDC Participação nas aulas 25 % —":
+        - rowheader "PDC Participação nas aulas"
+        - cell "25 %"
+        - cell "—"
+      - row "B Problemas extra, ao longo do semestre Bónus · até 10% —":
+        - rowheader "B Problemas extra, ao longo do semestre"
+        - cell "Bónus · até 10%"
+        - cell "—"
+  - group "Simular a nota":
+    - text: "Simular a nota SI: Submissões individuais (0 a 20)"
+    - 'textbox "SI: Submissões individuais (0 a 20)"'
+    - text: "C1: Concurso 1 (0 a 20)"
+    - 'textbox "C1: Concurso 1 (0 a 20)"'
+    - text: "C2: Concurso 2 (0 a 20)"
+    - 'textbox "C2: Concurso 2 (0 a 20)"'
+    - text: "C3: Concurso 3 (0 a 20)"
+    - 'textbox "C3: Concurso 3 (0 a 20)"'
+    - text: "PDC: Participação nas aulas (0 a 20)"
+    - 'textbox "PDC: Participação nas aulas (0 a 20)"'
+    - text: "B: Problemas extra, ao longo do semestre (0 a 2)"
+    - 'textbox "B: Problemas extra, ao longo do semestre (0 a 2)"'
+    - paragraph:
+      - status
+    - paragraph: Preenche todas as componentes para ver a nota.
+    - paragraph: Simulação. A nota oficial é a publicada no SIGARRA.

@@ -1037,3 +1037,44 @@ Refinements made while coding:
    tight; each phase should check the number the build prints and keep
    strings and helpers shared.
 
+
+## 15. Changes made in phase 2
+
+Phase 2 implemented sections 2.5, 3.2, 3.3, 4.4, the
+`--uc-grading-bar-height` token and the phase 2 part of 9.1 and 9.2; they are
+now in `docs/api.md` (2.1 `Minutes`, 2.5, 3.6). Refinements made while coding:
+
+1. **Shared deadline helpers moved to `core/time.js`**:
+   `UC.internal.endTime(time, end, duration)` and
+   `UC.internal.deadlineTimes(deadline)` ("14:30 e 16:30" / "14:30–16:30" /
+   "14:30"). They cannot live in `uc-event.js`: `<uc-deadlines>` is defined
+   (and renders) before `uc-event.js` runs.
+2. **`deadlineStatus(deadline, today)`** is exported by `uc-deadlines.js` as
+   `UC.internal.deadlineStatus` and returns
+   `{ status: "upcoming" | "today" | "ongoing" | "done" | "toBeScheduled", days }`
+   (single-deadline states; the table's "next"/"scheduled" stay private).
+3. **`heading-level`** on `<uc-grading>` and `<uc-assessment-info>` (2–6,
+   default 2), like every other block with a heading.
+4. **Fewer strings.** The card reuses `deadlines.column.date`, `.time`,
+   `.status` and `deadlines.toBeScheduled` instead of `assessment.date`,
+   `.time`, `.status`. Added `grading.point` ("{n} valor", singular).
+5. **Month-only date** reads the month ("janeiro 2026") in the Date row and
+   "Por marcar" in Status; a `null` date reads "Por marcar" and has no Status
+   row.
+6. **A shift's own `location` and `note`** show on that shift's line only; the
+   deadline's `location` is its own row (not repeated per shift). A shift on
+   another day shows that day first ("quinta-feira, 4 dez, 09:00–10:45").
+7. **Calculator.** An empty bonus counts as 0 (only weighted fields are
+   required); the initial state shows the "incomplete" line; fields sit in a
+   wrapping row (`uc-grading__fields`, `__field`, `__error`). The label leaves
+   out the item's `<span>` description and a trailing full stop.
+8. **Weight cell.** The share is not repeated when the teacher's `<data>` text
+   is already a percentage ("25 %", not "25 % · 25 %"); parts show only
+   "15 % (30 % de CE)". The formula lists top-level components only.
+9. **Calendar button** is named with `aria-label` ("Adicionar ao calendário,
+   ficheiro .ics"; the visible text is its start, so label-in-name holds).
+   `DTSTAMP` is `UC.today()` at midnight UTC so the text is reproducible.
+10. **Size.** Phase 2 took `uc-kit.js` from 32.1 to **36.8 KB** gzipped (budget
+    37). `<uc-grading>` is ~2.4 KB, `<uc-assessment-info>` ~1.5 KB, `ics.js`
+    ~1 KB on their own. Phases 3–5 cannot fit in 0.2 KB: Miguel was asked (17
+    Nov) whether to raise the budget to 48 KB; see the phase 2 handoff.

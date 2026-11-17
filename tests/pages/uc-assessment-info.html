@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-assessment-info · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    /* A test split across two days and rooms (shifts), with duration and location. */
+    window.UC_COURSE.deadlines.push({
+      id: "t1", title: { pt: "1.º teste", en: "Test 1" }, date: "2025-12-03", time: "14:30", kind: "assessment",
+      duration: 120,
+      location: { pt: "FC1 120, FC1 122 · <a href=\"#salas\" data-auth>distribuição por salas</a>", en: "FC1 120, FC1 122 · <a href=\"#rooms\" data-auth>room allocation</a>" },
+      shifts: [
+        { time: "14:30" },
+        { time: "16:30", note: { pt: "Turmas PL5 a PL8", en: "Classes PL5 to PL8" } },
+        { time: "9:00", end: "10:45", date: "2025-12-04", location: "FC6 1.65" },
+      ],
+      note: { pt: "Traz o cartão de estudante.", en: "Bring your student card." },
+      url: "uc-assessment-info.html",
+      links: [{ label: { pt: "Enunciado de 2024/25", en: "2024/25 paper" }, url: "#anterior" }],
+    });
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <h1>
+      <span lang="pt">Testes (teste)</span>
+      <span lang="en">Tests (test)</span>
+    </h1>
+
+    <!-- Full day, shifts on two dates, calendar file. Children stay below the card. -->
+    <uc-assessment-info id="full" deadline="t1" calendar>
+      <h2>Regras</h2>
+      <p>Sem consulta. <a href="#pautas" data-auth="SIGARRA">Pautas</a>.</p>
+    </uc-assessment-info>
+
+    <!-- Past assessment with a time (no shifts, no duration). -->
+    <uc-assessment-info id="past" deadline="ap1" heading-level="3"></uc-assessment-info>
+
+    <!-- Month-only date: no calendar button even with `calendar`. -->
+    <uc-assessment-info id="month" deadline="exam" calendar heading="Exame"></uc-assessment-info>
+
+    <!-- To be scheduled, no heading. -->
+    <uc-assessment-info id="unscheduled" deadline="resit" heading="none"></uc-assessment-info>
+
+    <!-- Unknown id: one warning, children kept. -->
+    <uc-assessment-info id="unknown" deadline="nope">
+      <p>Informação escrita à mão.</p>
+    </uc-assessment-info>
+  </uc-page>
+</body>
+</html>

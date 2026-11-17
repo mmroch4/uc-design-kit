@@ -11,7 +11,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, parseDay, parseDeadlineDate, addDays } = UC.internal;
+  const { h, parseDay, parseDeadlineDate, addDays, deadlineTimes } = UC.internal;
 
   /** Kinds shown with the amber (warning) tag; the others use a neutral tag. */
   const WARNING_KINDS = ["assessment", "exam"];
@@ -30,7 +30,7 @@
     if (parsed.precision !== "day") return UC.formatDate(deadline.date);
     const end = deadline.endDate || parseDay(deadline.end);
     const text = end ? UC.formatDateRange(parsed.date, end) : UC.formatDate(parsed.date);
-    return UC.internal.withTime(text, deadline.time);
+    return UC.internal.withTime(text, deadlineTimes(deadline));
   }
 
   /** A <time> element for a deadline's date (or plain text when it has none). */
@@ -139,6 +139,7 @@
           );
         }
         if (data.date || data.title) generated.push(deadlineTime(data, "uc-event__date"));
+        if (data.location) generated.push(h("span", { class: "uc-event__note", html: this.text(data.location) }));
         if (data.note) generated.push(h("span", { class: "uc-event__note", html: this.text(data.note) }));
         data.links.forEach((link) => {
           generated.push(h("a", { class: "uc-event__link", href: link.url }, this.text(link.label)));

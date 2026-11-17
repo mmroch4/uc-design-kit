@@ -230,6 +230,30 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-question__feedback`, `--none`, `--empty`, `--incorrect`, `--correct` | A zona da mensagem e o seu estado. |
 | `.uc-question__message`, `__explanation` | A mensagem e a explicação. |
 
+### [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-grading` | O componente (o próprio `<uc-grading>`). |
+| `.uc-grading__section`, `__heading` | A secção e o seu título. |
+| `.uc-grading__formula` | A fórmula ("Nota = E + AP + P"). |
+| `.uc-grading__bar`, `__segment` | A barra das proporções e cada segmento (largura = peso). |
+| `.uc-grading__table` | A tabela das componentes. |
+| `.uc-grading__sub` | As linhas das partes de uma componente, recolhidas. |
+| `.uc-grading__calculator`, `__fields`, `__field`, `__error` | O simulador, os campos, cada campo e a sua mensagem de erro. |
+| `.uc-grading__result`, `__status` | A nota simulada e a linha do estado ("Aprovado nesta simulação"). |
+
+### [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-assessment-info` | O componente (o próprio `<uc-assessment-info>`). |
+| `.uc-assessment-info__card`, `__heading` | O cartão (também `uc-card`) e o seu título. |
+| `.uc-assessment-info__shifts` | A lista dos turnos. |
+| `.uc-assessment-info__status` | A etiqueta do estado ("Daqui a 5 dias"). |
+| `.uc-assessment-info__note` | A nota do prazo, por baixo da lista. |
+| `.uc-assessment-info__calendar` | O botão "Adicionar ao calendário". |
+
 ## Blocos
 
 As classes que se escrevem no HTML para dar forma ao conteúdo. Cada página de blocos explica as variantes e os tokens locais.

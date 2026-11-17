@@ -1,0 +1,18 @@
+/* <uc-assessment-info> — summary card of one exam or test, above the page's own content. */
+:where(uc-assessment-info) { display: flex; flex-direction: column; gap: var(--uc-space-6); }
+:where(.uc-assessment-info__card) { display: flex; flex-direction: column; align-items: flex-start; gap: var(--uc-space-4); }
+:where(.uc-assessment-info__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }
+:where(.uc-assessment-info__card dl) {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--uc-space-2) var(--uc-space-6);
+  margin: 0;
+}
+:where(.uc-assessment-info__card dt) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); font-weight: 600; }
+:where(.uc-assessment-info__card dd) { margin: 0; overflow-wrap: anywhere; }
+:where(.uc-assessment-info__shifts) { margin: 0; padding: 0; list-style: none; }
+:where(.uc-assessment-info__note) { color: var(--uc-color-text-secondary); }
+@media (max-width: 480px) {
+  :where(.uc-assessment-info__card dl) { grid-template-columns: minmax(0, 1fr); }
+  :where(.uc-assessment-info__card dd + dt) { margin-top: var(--uc-space-2); }
+}

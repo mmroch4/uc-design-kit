@@ -8,7 +8,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, number, toISO } = UC.internal;
+  const { h, uid, number, toISO, diffDays } = UC.internal;
   const VIEWS = ["list", "table"];
   const FILTERS = ["upcoming", "past", "all"];
   const TABLE_COLUMNS = ["item", "date", "time", "details", "status"];
@@ -36,6 +36,20 @@
     const last = lastDay(deadline);
     return !last || last >= today;
   }
+
+  /**
+   * State of one deadline on `today`, for blocks that show a single deadline:
+   * { status: "upcoming" | "today" | "ongoing" | "done" | "toBeScheduled", days }
+   * where `days` counts from today to the first day (negative once it started).
+   */
+  function deadlineStatus(deadline, today) {
+    const { precision, date } = deadline.parsed;
+    const upcoming = isUpcoming(deadline, today);
+    if (precision !== "day") return { status: upcoming ? "toBeScheduled" : "done" };
+    const days = diffDays(date, today);
+    return { status: days > 0 ? "upcoming" : days === 0 ? "today" : upcoming ? "ongoing" : "done", days };
+  }
+  UC.internal.deadlineStatus = deadlineStatus;
 
   /** "2025-12-02", "2025-12-02T21:00" or "2026-01"; null when there is no date. */
   function datetimeOf(deadline, withTime) {
@@ -183,7 +197,7 @@
           ].filter(Boolean);
           // The list's narrow date column shows the day only; the time goes
           // first on the note line ("21:00 · No Mooshak").
-          const time = datetime && deadline.time ? deadline.time : null;
+          const time = datetime && UC.internal.deadlineTimes(deadline);
           const note = this.renderNote(deadline);
           let meta = note;
           if (time) {
@@ -218,6 +232,7 @@
         const datetime = datetimeOf(deadline, false);
         const status = statusMap.get(deadline);
         const note = this.renderNote(deadline);
+        const location = deadline.location ? h("span", { class: "uc-deadlines__note", html: this.text(deadline.location) }) : null;
         const links = this.renderLinks(deadline);
         const empty = () => h("span", { class: "uc-deadlines__none", "aria-hidden": "true" }, "—");
         return h(
@@ -232,9 +247,9 @@
           h(
             "td",
             { class: "uc-deadlines__time" },
-            deadline.time && datetime && deadline.parsed.precision === "day" ? deadline.time : empty(),
+            (datetime && deadline.parsed.precision === "day" && UC.internal.deadlineTimes(deadline)) || empty(),
           ),
-          h("td", { class: "uc-deadlines__details" }, note || links ? [note, links] : empty()),
+          h("td", { class: "uc-deadlines__details" }, location || note || links ? [location, note, links] : empty()),
           h("td", { class: "uc-deadlines__status" }, h("span", { class: STATUS_TAG[status] }, this.t(`deadlines.status.${status}`))),
         );
       });
