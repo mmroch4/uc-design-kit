@@ -53,8 +53,8 @@ em `uc-table` com `pre[data-copy]`, fórmulas com MathJax (cdnjs) como no origin
 
 - 10 nov: não houve aula porque a faculdade fechou de forma inesperada devido ao
   mau tempo (semana 8, "No class (faculty closed)").
-- A aula #09 (24 nov) e a #10 (segunda, 14 dez) são reposições das terças que
-  são feriado (1 e 8 dez).
+- A 24 nov dão-se as duas matérias (#08 e #09, grafos I e II) na mesma aula.
+- A aula #10 (segunda, 14 dez) é reposição das terças que são feriado (1 e 8 dez).
 - O 3.º contest, a criação de problemas e a apresentação de código ainda não têm
   data: ficam com o mês (`2027-01`) até serem anunciadas.
 - São 10 problem sets; a 17 nov estavam publicados 7. Ao publicar um novo, criar
