@@ -37,7 +37,8 @@ for (const widget of widgets) {
       };
       for (const step of steps) {
         for (const state of Object.values(step.marks || {})) assert.ok(STATES.includes(state), `state ${state}`);
-        const ids = lineIds(step.code || options.algorithm);
+        // A widget whose pseudocode comes with its input (trace) exports lineIds(input).
+        const ids = widget.algorithm.lineIds ? widget.algorithm.lineIds(widget.input(input)) : lineIds(step.code || options.algorithm);
         for (const line of [].concat(step.line ?? [])) assert.ok(ids.includes(line), `pseudocode line "${line}" in ${step.code || options.algorithm}`);
         for (const lang of LANGUAGES) {
           const dictionary = widget.dictionaries[lang];

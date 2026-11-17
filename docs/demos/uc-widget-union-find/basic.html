@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-union-find · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-union-find.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-union-find n="8" predict>
+      <p>Uniões 0-1, 2-3, 4-5, 6-7, depois 0-2 e 4-6, por fim 0-4: um só conjunto com raiz 0.
+         find(7) sobe 7 → 6 → 4 → 0 e a compressão liga 7 e 6 diretamente a 0.</p>
+    </uc-widget-union-find>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

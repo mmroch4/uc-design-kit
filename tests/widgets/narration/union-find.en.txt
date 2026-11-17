@@ -1,0 +1,170 @@
+## algorithm=compression · input {"n":8,"ops":null}
+  1. 8 elements (0 to 7), each in its own set: parent[i] = i. Union by size and path compression.
+  2. union(0, 1): find the roots of 0 and 1.
+  3. find(0) = 0: 0 is already a root.
+  4. find(1) = 1: 1 is already a root.
+  5. Equal sizes (1): 1 goes under 0; parent[1] = 0, size 2.
+  6. union(2, 3): find the roots of 2 and 3.
+  7. find(2) = 2: 2 is already a root.
+  8. find(3) = 3: 3 is already a root.
+  9. Equal sizes (1): 3 goes under 2; parent[3] = 2, size 2.
+ 10. union(4, 5): find the roots of 4 and 5.
+ 11. find(4) = 4: 4 is already a root.
+ 12. find(5) = 5: 5 is already a root.
+ 13. Equal sizes (1): 5 goes under 4; parent[5] = 4, size 2.
+ 14. union(6, 7): find the roots of 6 and 7.
+ 15. find(6) = 6: 6 is already a root.
+ 16. find(7) = 7: 7 is already a root.
+ 17. Equal sizes (1): 7 goes under 6; parent[7] = 6, size 2.
+ 18. union(0, 2): find the roots of 0 and 2.
+ 19. find(0) = 0: 0 is already a root.
+ 20. find(2) = 2: 2 is already a root.
+ 21. Equal sizes (2): 2 goes under 0; parent[2] = 0, size 4.
+ 22. union(4, 6): find the roots of 4 and 6.
+ 23. find(4) = 4: 4 is already a root.
+ 24. find(6) = 6: 6 is already a root.
+ 25. Equal sizes (2): 6 goes under 4; parent[6] = 4, size 4.
+ 26. union(0, 4): find the roots of 0 and 4.
+ 27. find(0) = 0: 0 is already a root.
+ 28. find(4) = 4: 4 is already a root.
+ 29. Equal sizes (4): 4 goes under 0; parent[4] = 0, size 8.
+ 30. find(7): parent[7] = 6, go up to 6.
+ 31. find(7): parent[6] = 4, go up to 4.
+ 32. find(7): parent[4] = 0, go up to 0.
+ 33. find(7) = 0: 0 is the root, along the path 7 → 6 → 4 → 0.
+ 34. Compression: parent[7] = 0, 7 now points to the root.
+ 35. Compression: parent[6] = 0, 6 now points to the root.
+ 36. connected(1, 7): find the roots of 1 and 7.
+ 37. find(1): parent[1] = 0, go up to 0.
+ 38. find(1) = 0: 0 is the root, along the path 1 → 0.
+ 39. find(7): parent[7] = 0, go up to 0.
+ 40. find(7) = 0: 0 is the root, along the path 7 → 0.
+ 41. Same root (0): 1 and 7 are in the same set.
+ 42. One set: { 0 1 2 3 4 5 6 7 }. Tree height: 2.
+
+## algorithm=size · input {"n":8,"ops":null}
+  1. 8 elements (0 to 7), each in its own set: parent[i] = i. Union by size, no compression.
+  2. union(0, 1): find the roots of 0 and 1.
+  3. find(0) = 0: 0 is already a root.
+  4. find(1) = 1: 1 is already a root.
+  5. Equal sizes (1): 1 goes under 0; parent[1] = 0, size 2.
+  6. union(2, 3): find the roots of 2 and 3.
+  7. find(2) = 2: 2 is already a root.
+  8. find(3) = 3: 3 is already a root.
+  9. Equal sizes (1): 3 goes under 2; parent[3] = 2, size 2.
+ 10. union(4, 5): find the roots of 4 and 5.
+ 11. find(4) = 4: 4 is already a root.
+ 12. find(5) = 5: 5 is already a root.
+ 13. Equal sizes (1): 5 goes under 4; parent[5] = 4, size 2.
+ 14. union(6, 7): find the roots of 6 and 7.
+ 15. find(6) = 6: 6 is already a root.
+ 16. find(7) = 7: 7 is already a root.
+ 17. Equal sizes (1): 7 goes under 6; parent[7] = 6, size 2.
+ 18. union(0, 2): find the roots of 0 and 2.
+ 19. find(0) = 0: 0 is already a root.
+ 20. find(2) = 2: 2 is already a root.
+ 21. Equal sizes (2): 2 goes under 0; parent[2] = 0, size 4.
+ 22. union(4, 6): find the roots of 4 and 6.
+ 23. find(4) = 4: 4 is already a root.
+ 24. find(6) = 6: 6 is already a root.
+ 25. Equal sizes (2): 6 goes under 4; parent[6] = 4, size 4.
+ 26. union(0, 4): find the roots of 0 and 4.
+ 27. find(0) = 0: 0 is already a root.
+ 28. find(4) = 4: 4 is already a root.
+ 29. Equal sizes (4): 4 goes under 0; parent[4] = 0, size 8.
+ 30. find(7): parent[7] = 6, go up to 6.
+ 31. find(7): parent[6] = 4, go up to 4.
+ 32. find(7): parent[4] = 0, go up to 0.
+ 33. find(7) = 0: 0 is the root, along the path 7 → 6 → 4 → 0.
+ 34. connected(1, 7): find the roots of 1 and 7.
+ 35. find(1): parent[1] = 0, go up to 0.
+ 36. find(1) = 0: 0 is the root, along the path 1 → 0.
+ 37. find(7): parent[7] = 6, go up to 6.
+ 38. find(7): parent[6] = 4, go up to 4.
+ 39. find(7): parent[4] = 0, go up to 0.
+ 40. find(7) = 0: 0 is the root, along the path 7 → 6 → 4 → 0.
+ 41. Same root (0): 1 and 7 are in the same set.
+ 42. One set: { 0 1 2 3 4 5 6 7 }. Tree height: 3.
+
+## algorithm=naive · input {"n":8,"ops":null}
+  1. 8 elements (0 to 7), each in its own set: parent[i] = i. No heuristics.
+  2. union(0, 1): find the roots of 0 and 1.
+  3. find(0) = 0: 0 is already a root.
+  4. find(1) = 1: 1 is already a root.
+  5. Link root 0 to root 1: parent[0] = 1.
+  6. union(2, 3): find the roots of 2 and 3.
+  7. find(2) = 2: 2 is already a root.
+  8. find(3) = 3: 3 is already a root.
+  9. Link root 2 to root 3: parent[2] = 3.
+ 10. union(4, 5): find the roots of 4 and 5.
+ 11. find(4) = 4: 4 is already a root.
+ 12. find(5) = 5: 5 is already a root.
+ 13. Link root 4 to root 5: parent[4] = 5.
+ 14. union(6, 7): find the roots of 6 and 7.
+ 15. find(6) = 6: 6 is already a root.
+ 16. find(7) = 7: 7 is already a root.
+ 17. Link root 6 to root 7: parent[6] = 7.
+ 18. union(0, 2): find the roots of 0 and 2.
+ 19. find(0): parent[0] = 1, go up to 1.
+ 20. find(0) = 1: 1 is the root, along the path 0 → 1.
+ 21. find(2): parent[2] = 3, go up to 3.
+ 22. find(2) = 3: 3 is the root, along the path 2 → 3.
+ 23. Link root 1 to root 3: parent[1] = 3.
+ 24. union(4, 6): find the roots of 4 and 6.
+ 25. find(4): parent[4] = 5, go up to 5.
+ 26. find(4) = 5: 5 is the root, along the path 4 → 5.
+ 27. find(6): parent[6] = 7, go up to 7.
+ 28. find(6) = 7: 7 is the root, along the path 6 → 7.
+ 29. Link root 5 to root 7: parent[5] = 7.
+ 30. union(0, 4): find the roots of 0 and 4.
+ 31. find(0): parent[0] = 1, go up to 1.
+ 32. find(0): parent[1] = 3, go up to 3.
+ 33. find(0) = 3: 3 is the root, along the path 0 → 1 → 3.
+ 34. find(4): parent[4] = 5, go up to 5.
+ 35. find(4): parent[5] = 7, go up to 7.
+ 36. find(4) = 7: 7 is the root, along the path 4 → 5 → 7.
+ 37. Link root 3 to root 7: parent[3] = 7.
+ 38. find(7) = 7: 7 is already a root.
+ 39. connected(1, 7): find the roots of 1 and 7.
+ 40. find(1): parent[1] = 3, go up to 3.
+ 41. find(1): parent[3] = 7, go up to 7.
+ 42. find(1) = 7: 7 is the root, along the path 1 → 3 → 7.
+ 43. find(7) = 7: 7 is already a root.
+ 44. Same root (7): 1 and 7 are in the same set.
+ 45. One set: { 0 1 2 3 4 5 6 7 }. Tree height: 3.
+
+## algorithm=compression · input {"n":6,"ops":[{"verb":"union","args":["0","1"]},{"verb":"union","args":["1","2"]},{"verb":"union","args":["3","4"]},{"verb":"union","args":["4","2"]},{"verb":"find","args":["3"]},{"verb":"union","args":["0","4"]},{"verb":"connected","args":["5","0"]}]}
+  1. 6 elements (0 to 5), each in its own set: parent[i] = i. Union by size and path compression.
+  2. union(0, 1): find the roots of 0 and 1.
+  3. find(0) = 0: 0 is already a root.
+  4. find(1) = 1: 1 is already a root.
+  5. Equal sizes (1): 1 goes under 0; parent[1] = 0, size 2.
+  6. union(1, 2): find the roots of 1 and 2.
+  7. find(1): parent[1] = 0, go up to 0.
+  8. find(1) = 0: 0 is the root, along the path 1 → 0.
+  9. find(2) = 2: 2 is already a root.
+ 10. Link the smaller root to the larger: 2 (size 1) goes under 0 (size 2); parent[2] = 0, size 3.
+ 11. union(3, 4): find the roots of 3 and 4.
+ 12. find(3) = 3: 3 is already a root.
+ 13. find(4) = 4: 4 is already a root.
+ 14. Equal sizes (1): 4 goes under 3; parent[4] = 3, size 2.
+ 15. union(4, 2): find the roots of 4 and 2.
+ 16. find(4): parent[4] = 3, go up to 3.
+ 17. find(4) = 3: 3 is the root, along the path 4 → 3.
+ 18. find(2): parent[2] = 0, go up to 0.
+ 19. find(2) = 0: 0 is the root, along the path 2 → 0.
+ 20. Link the smaller root to the larger: 3 (size 2) goes under 0 (size 3); parent[3] = 0, size 5.
+ 21. find(3): parent[3] = 0, go up to 0.
+ 22. find(3) = 0: 0 is the root, along the path 3 → 0.
+ 23. union(0, 4): find the roots of 0 and 4.
+ 24. find(0) = 0: 0 is already a root.
+ 25. find(4): parent[4] = 3, go up to 3.
+ 26. find(4): parent[3] = 0, go up to 0.
+ 27. find(4) = 0: 0 is the root, along the path 4 → 3 → 0.
+ 28. Compression: parent[4] = 0, 4 now points to the root.
+ 29. 0 and 4 are already in the same set (root 0): nothing to do.
+ 30. connected(5, 0): find the roots of 5 and 0.
+ 31. find(5) = 5: 5 is already a root.
+ 32. find(0) = 0: 0 is already a root.
+ 33. Different roots (5 and 0): 5 and 0 are in different sets.
+ 34. 2 sets: { 0 1 2 3 4 } { 5 }. Tallest tree: 1.

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-trace · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-trace.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-trace caption="Avaliar uma árvore de expressão" controls="compact">
+      <script type="application/json" data-input>
+{
+  "view": "tree",
+  "steps": [
+    { "state": { "id": "r", "v": "×", "l": { "id": "s", "v": "+", "l": { "v": 2 }, "r": { "v": 3 } }, "r": { "v": 4 } },
+      "say": "(2 + 3) × 4" },
+    { "marks": { "2": "visited", "3": "visited", "s": "current" },
+      "state": { "id": "r", "v": "×", "l": { "id": "s", "v": "+", "note": "= 5", "l": { "v": 2 }, "r": { "v": 3 } }, "r": { "v": 4 } },
+      "say": { "pt": "2 + 3 = 5.", "en": "2 + 3 = 5." } },
+    { "marks": { "s": "done", "4": "visited", "r": "current" },
+      "state": { "id": "r", "v": "×", "note": "= 20", "l": { "id": "s", "v": "+", "note": "= 5", "l": { "v": 2 }, "r": { "v": 3 } }, "r": { "v": 4 } },
+      "say": { "pt": "5 × 4 = 20: o valor da expressão.", "en": "5 × 4 = 20: the value of the expression." } }
+  ]
+}
+      </script>
+      <p>(2 + 3) × 4 = 20.</p>
+    </uc-widget-trace>
+
+    <uc-widget-trace caption="Triângulo de Pascal" controls="compact">
+      <script type="application/json" data-input>
+{
+  "view": "grid",
+  "rowHeads": ["n=0", "n=1", "n=2", "n=3"],
+  "steps": [
+    { "state": [[1], [1, 1], [1, null, 1], [1, null, null, 1]], "say": { "pt": "As pontas valem 1.", "en": "The edges are 1." } },
+    { "state": [[1], [1, 1], [1, 2, 1], [1, null, null, 1]], "marks": { "2,1": "current", "1,0": "compared", "1,1": "compared" },
+      "say": { "pt": "C(2,1) = 1 + 1 = 2.", "en": "C(2,1) = 1 + 1 = 2." } },
+    { "state": [[1], [1, 1], [1, 2, 1], [1, 3, null, 1]], "marks": { "3,1": "current", "2,0": "compared", "2,1": "compared" },
+      "say": { "pt": "C(3,1) = 1 + 2 = 3.", "en": "C(3,1) = 1 + 2 = 3." } },
+    { "state": [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]], "marks": { "3,2": "current", "2,1": "compared", "2,2": "compared" },
+      "say": { "pt": "C(3,2) = 2 + 1 = 3.", "en": "C(3,2) = 2 + 1 = 3." } }
+  ]
+}
+      </script>
+      <p>Triângulo de Pascal até n = 3: 1; 1 1; 1 2 1; 1 3 3 1.</p>
+    </uc-widget-trace>
+
+    <uc-widget-trace caption="Coloração gulosa" controls="compact">
+      <script type="application/json" data-input>
+{
+  "view": "graph",
+  "graph": "A B; A C; B C; C D",
+  "steps": [
+    { "state": {}, "say": { "pt": "Dar a cada vértice a menor cor que os vizinhos não usam.", "en": "Give each vertex the smallest colour its neighbours do not use." } },
+    { "state": { "A": "1" }, "marks": { "A": "current" }, "say": { "pt": "A: cor 1.", "en": "A: colour 1." } },
+    { "state": { "A": "1", "B": "2" }, "marks": { "B": "current", "A": "compared" }, "say": { "pt": "B é vizinho de A (cor 1): cor 2.", "en": "B is a neighbour of A (colour 1): colour 2." } },
+    { "state": { "A": "1", "B": "2", "C": "3" }, "marks": { "C": "current", "A": "compared", "B": "compared" }, "say": { "pt": "C é vizinho de A e de B: cor 3.", "en": "C is a neighbour of A and B: colour 3." } },
+    { "state": { "A": "1", "B": "2", "C": "3", "D": "1" }, "marks": { "A": "done", "B": "done", "C": "done", "D": "done" }, "say": { "pt": "D só é vizinho de C: cor 1. Três cores.", "en": "D is only a neighbour of C: colour 1. Three colours." } }
+  ]
+}
+      </script>
+      <p>Coloração gulosa: A 1, B 2, C 3, D 1.</p>
+    </uc-widget-trace>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

@@ -1,0 +1,170 @@
+## algorithm=compression · input {"n":8,"ops":null}
+  1. 8 elementos (0 a 7), cada um no seu conjunto: parent[i] = i. União por tamanho e compressão de caminhos.
+  2. union(0, 1): procura as raízes de 0 e de 1.
+  3. find(0) = 0: 0 já é a raiz.
+  4. find(1) = 1: 1 já é a raiz.
+  5. Tamanhos iguais (1): 1 fica debaixo de 0; parent[1] = 0, tamanho 2.
+  6. union(2, 3): procura as raízes de 2 e de 3.
+  7. find(2) = 2: 2 já é a raiz.
+  8. find(3) = 3: 3 já é a raiz.
+  9. Tamanhos iguais (1): 3 fica debaixo de 2; parent[3] = 2, tamanho 2.
+ 10. union(4, 5): procura as raízes de 4 e de 5.
+ 11. find(4) = 4: 4 já é a raiz.
+ 12. find(5) = 5: 5 já é a raiz.
+ 13. Tamanhos iguais (1): 5 fica debaixo de 4; parent[5] = 4, tamanho 2.
+ 14. union(6, 7): procura as raízes de 6 e de 7.
+ 15. find(6) = 6: 6 já é a raiz.
+ 16. find(7) = 7: 7 já é a raiz.
+ 17. Tamanhos iguais (1): 7 fica debaixo de 6; parent[7] = 6, tamanho 2.
+ 18. union(0, 2): procura as raízes de 0 e de 2.
+ 19. find(0) = 0: 0 já é a raiz.
+ 20. find(2) = 2: 2 já é a raiz.
+ 21. Tamanhos iguais (2): 2 fica debaixo de 0; parent[2] = 0, tamanho 4.
+ 22. union(4, 6): procura as raízes de 4 e de 6.
+ 23. find(4) = 4: 4 já é a raiz.
+ 24. find(6) = 6: 6 já é a raiz.
+ 25. Tamanhos iguais (2): 6 fica debaixo de 4; parent[6] = 4, tamanho 4.
+ 26. union(0, 4): procura as raízes de 0 e de 4.
+ 27. find(0) = 0: 0 já é a raiz.
+ 28. find(4) = 4: 4 já é a raiz.
+ 29. Tamanhos iguais (4): 4 fica debaixo de 0; parent[4] = 0, tamanho 8.
+ 30. find(7): parent[7] = 6, sobe para 6.
+ 31. find(7): parent[6] = 4, sobe para 4.
+ 32. find(7): parent[4] = 0, sobe para 0.
+ 33. find(7) = 0: 0 é a raiz, pelo caminho 7 → 6 → 4 → 0.
+ 34. Compressão: parent[7] = 0, agora 7 aponta para a raiz.
+ 35. Compressão: parent[6] = 0, agora 6 aponta para a raiz.
+ 36. connected(1, 7): procura as raízes de 1 e de 7.
+ 37. find(1): parent[1] = 0, sobe para 0.
+ 38. find(1) = 0: 0 é a raiz, pelo caminho 1 → 0.
+ 39. find(7): parent[7] = 0, sobe para 0.
+ 40. find(7) = 0: 0 é a raiz, pelo caminho 7 → 0.
+ 41. Raízes iguais (0): 1 e 7 estão no mesmo conjunto.
+ 42. Um só conjunto: { 0 1 2 3 4 5 6 7 }. Altura da árvore: 2.
+
+## algorithm=size · input {"n":8,"ops":null}
+  1. 8 elementos (0 a 7), cada um no seu conjunto: parent[i] = i. União por tamanho, sem compressão.
+  2. union(0, 1): procura as raízes de 0 e de 1.
+  3. find(0) = 0: 0 já é a raiz.
+  4. find(1) = 1: 1 já é a raiz.
+  5. Tamanhos iguais (1): 1 fica debaixo de 0; parent[1] = 0, tamanho 2.
+  6. union(2, 3): procura as raízes de 2 e de 3.
+  7. find(2) = 2: 2 já é a raiz.
+  8. find(3) = 3: 3 já é a raiz.
+  9. Tamanhos iguais (1): 3 fica debaixo de 2; parent[3] = 2, tamanho 2.
+ 10. union(4, 5): procura as raízes de 4 e de 5.
+ 11. find(4) = 4: 4 já é a raiz.
+ 12. find(5) = 5: 5 já é a raiz.
+ 13. Tamanhos iguais (1): 5 fica debaixo de 4; parent[5] = 4, tamanho 2.
+ 14. union(6, 7): procura as raízes de 6 e de 7.
+ 15. find(6) = 6: 6 já é a raiz.
+ 16. find(7) = 7: 7 já é a raiz.
+ 17. Tamanhos iguais (1): 7 fica debaixo de 6; parent[7] = 6, tamanho 2.
+ 18. union(0, 2): procura as raízes de 0 e de 2.
+ 19. find(0) = 0: 0 já é a raiz.
+ 20. find(2) = 2: 2 já é a raiz.
+ 21. Tamanhos iguais (2): 2 fica debaixo de 0; parent[2] = 0, tamanho 4.
+ 22. union(4, 6): procura as raízes de 4 e de 6.
+ 23. find(4) = 4: 4 já é a raiz.
+ 24. find(6) = 6: 6 já é a raiz.
+ 25. Tamanhos iguais (2): 6 fica debaixo de 4; parent[6] = 4, tamanho 4.
+ 26. union(0, 4): procura as raízes de 0 e de 4.
+ 27. find(0) = 0: 0 já é a raiz.
+ 28. find(4) = 4: 4 já é a raiz.
+ 29. Tamanhos iguais (4): 4 fica debaixo de 0; parent[4] = 0, tamanho 8.
+ 30. find(7): parent[7] = 6, sobe para 6.
+ 31. find(7): parent[6] = 4, sobe para 4.
+ 32. find(7): parent[4] = 0, sobe para 0.
+ 33. find(7) = 0: 0 é a raiz, pelo caminho 7 → 6 → 4 → 0.
+ 34. connected(1, 7): procura as raízes de 1 e de 7.
+ 35. find(1): parent[1] = 0, sobe para 0.
+ 36. find(1) = 0: 0 é a raiz, pelo caminho 1 → 0.
+ 37. find(7): parent[7] = 6, sobe para 6.
+ 38. find(7): parent[6] = 4, sobe para 4.
+ 39. find(7): parent[4] = 0, sobe para 0.
+ 40. find(7) = 0: 0 é a raiz, pelo caminho 7 → 6 → 4 → 0.
+ 41. Raízes iguais (0): 1 e 7 estão no mesmo conjunto.
+ 42. Um só conjunto: { 0 1 2 3 4 5 6 7 }. Altura da árvore: 3.
+
+## algorithm=naive · input {"n":8,"ops":null}
+  1. 8 elementos (0 a 7), cada um no seu conjunto: parent[i] = i. Sem heurísticas.
+  2. union(0, 1): procura as raízes de 0 e de 1.
+  3. find(0) = 0: 0 já é a raiz.
+  4. find(1) = 1: 1 já é a raiz.
+  5. Liga a raiz 0 à raiz 1: parent[0] = 1.
+  6. union(2, 3): procura as raízes de 2 e de 3.
+  7. find(2) = 2: 2 já é a raiz.
+  8. find(3) = 3: 3 já é a raiz.
+  9. Liga a raiz 2 à raiz 3: parent[2] = 3.
+ 10. union(4, 5): procura as raízes de 4 e de 5.
+ 11. find(4) = 4: 4 já é a raiz.
+ 12. find(5) = 5: 5 já é a raiz.
+ 13. Liga a raiz 4 à raiz 5: parent[4] = 5.
+ 14. union(6, 7): procura as raízes de 6 e de 7.
+ 15. find(6) = 6: 6 já é a raiz.
+ 16. find(7) = 7: 7 já é a raiz.
+ 17. Liga a raiz 6 à raiz 7: parent[6] = 7.
+ 18. union(0, 2): procura as raízes de 0 e de 2.
+ 19. find(0): parent[0] = 1, sobe para 1.
+ 20. find(0) = 1: 1 é a raiz, pelo caminho 0 → 1.
+ 21. find(2): parent[2] = 3, sobe para 3.
+ 22. find(2) = 3: 3 é a raiz, pelo caminho 2 → 3.
+ 23. Liga a raiz 1 à raiz 3: parent[1] = 3.
+ 24. union(4, 6): procura as raízes de 4 e de 6.
+ 25. find(4): parent[4] = 5, sobe para 5.
+ 26. find(4) = 5: 5 é a raiz, pelo caminho 4 → 5.
+ 27. find(6): parent[6] = 7, sobe para 7.
+ 28. find(6) = 7: 7 é a raiz, pelo caminho 6 → 7.
+ 29. Liga a raiz 5 à raiz 7: parent[5] = 7.
+ 30. union(0, 4): procura as raízes de 0 e de 4.
+ 31. find(0): parent[0] = 1, sobe para 1.
+ 32. find(0): parent[1] = 3, sobe para 3.
+ 33. find(0) = 3: 3 é a raiz, pelo caminho 0 → 1 → 3.
+ 34. find(4): parent[4] = 5, sobe para 5.
+ 35. find(4): parent[5] = 7, sobe para 7.
+ 36. find(4) = 7: 7 é a raiz, pelo caminho 4 → 5 → 7.
+ 37. Liga a raiz 3 à raiz 7: parent[3] = 7.
+ 38. find(7) = 7: 7 já é a raiz.
+ 39. connected(1, 7): procura as raízes de 1 e de 7.
+ 40. find(1): parent[1] = 3, sobe para 3.
+ 41. find(1): parent[3] = 7, sobe para 7.
+ 42. find(1) = 7: 7 é a raiz, pelo caminho 1 → 3 → 7.
+ 43. find(7) = 7: 7 já é a raiz.
+ 44. Raízes iguais (7): 1 e 7 estão no mesmo conjunto.
+ 45. Um só conjunto: { 0 1 2 3 4 5 6 7 }. Altura da árvore: 3.
+
+## algorithm=compression · input {"n":6,"ops":[{"verb":"union","args":["0","1"]},{"verb":"union","args":["1","2"]},{"verb":"union","args":["3","4"]},{"verb":"union","args":["4","2"]},{"verb":"find","args":["3"]},{"verb":"union","args":["0","4"]},{"verb":"connected","args":["5","0"]}]}
+  1. 6 elementos (0 a 5), cada um no seu conjunto: parent[i] = i. União por tamanho e compressão de caminhos.
+  2. union(0, 1): procura as raízes de 0 e de 1.
+  3. find(0) = 0: 0 já é a raiz.
+  4. find(1) = 1: 1 já é a raiz.
+  5. Tamanhos iguais (1): 1 fica debaixo de 0; parent[1] = 0, tamanho 2.
+  6. union(1, 2): procura as raízes de 1 e de 2.
+  7. find(1): parent[1] = 0, sobe para 0.
+  8. find(1) = 0: 0 é a raiz, pelo caminho 1 → 0.
+  9. find(2) = 2: 2 já é a raiz.
+ 10. Liga a raiz menor à maior: 2 (tamanho 1) fica debaixo de 0 (tamanho 2); parent[2] = 0, tamanho 3.
+ 11. union(3, 4): procura as raízes de 3 e de 4.
+ 12. find(3) = 3: 3 já é a raiz.
+ 13. find(4) = 4: 4 já é a raiz.
+ 14. Tamanhos iguais (1): 4 fica debaixo de 3; parent[4] = 3, tamanho 2.
+ 15. union(4, 2): procura as raízes de 4 e de 2.
+ 16. find(4): parent[4] = 3, sobe para 3.
+ 17. find(4) = 3: 3 é a raiz, pelo caminho 4 → 3.
+ 18. find(2): parent[2] = 0, sobe para 0.
+ 19. find(2) = 0: 0 é a raiz, pelo caminho 2 → 0.
+ 20. Liga a raiz menor à maior: 3 (tamanho 2) fica debaixo de 0 (tamanho 3); parent[3] = 0, tamanho 5.
+ 21. find(3): parent[3] = 0, sobe para 0.
+ 22. find(3) = 0: 0 é a raiz, pelo caminho 3 → 0.
+ 23. union(0, 4): procura as raízes de 0 e de 4.
+ 24. find(0) = 0: 0 já é a raiz.
+ 25. find(4): parent[4] = 3, sobe para 3.
+ 26. find(4): parent[3] = 0, sobe para 0.
+ 27. find(4) = 0: 0 é a raiz, pelo caminho 4 → 3 → 0.
+ 28. Compressão: parent[4] = 0, agora 4 aponta para a raiz.
+ 29. 0 e 4 já estão no mesmo conjunto (raiz 0): nada a fazer.
+ 30. connected(5, 0): procura as raízes de 5 e de 0.
+ 31. find(5) = 5: 5 já é a raiz.
+ 32. find(0) = 0: 0 já é a raiz.
+ 33. Raízes diferentes (5 e 0): 5 e 0 estão em conjuntos diferentes.
+ 34. 2 conjuntos: { 0 1 2 3 4 } { 5 }. Altura máxima das árvores: 1.

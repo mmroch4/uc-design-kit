@@ -397,6 +397,71 @@
       ],
       "predict": false,
       "gzip": 5810
+    },
+    {
+      "name": "uc-widget-trace",
+      "file": "uc-widget-trace.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Traço de um algoritmo",
+        "en": "Algorithm trace"
+      },
+      "summary": {
+        "pt": "Os passos do seu próprio algoritmo, escritos em JSON, reproduzidos com o desenho de vetor, árvore, grafo ou tabela.",
+        "en": "The steps of your own algorithm, written as JSON, played with an array, tree, graph or table drawing."
+      },
+      "page": "docs/pt/widgets/uc-widget-trace.html",
+      "algorithms": [
+        "trace"
+      ],
+      "courses": [
+        "IP",
+        "EDados",
+        "PI",
+        "PC"
+      ],
+      "attributes": [
+        "caption",
+        "controls",
+        "predict"
+      ],
+      "predict": true,
+      "gzip": 7234
+    },
+    {
+      "name": "uc-widget-union-find",
+      "file": "uc-widget-union-find.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Union-find",
+        "en": "Union-find"
+      },
+      "summary": {
+        "pt": "Conjuntos disjuntos com união por tamanho e compressão de caminhos, ou sem elas, com o vetor parent e a floresta.",
+        "en": "Disjoint sets with union by size and path compression, or without them, with the parent array and the forest."
+      },
+      "page": "docs/pt/widgets/uc-widget-union-find.html",
+      "algorithms": [
+        "compression",
+        "size",
+        "naive"
+      ],
+      "courses": [
+        "PC",
+        "EDados"
+      ],
+      "attributes": [
+        "n",
+        "ops",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 4647
     }
   ]
 }

@@ -37,7 +37,8 @@ export async function loadWidgets() {
     for (const lang of LANGUAGES) {
       dictionaries[lang] = { ...flatten(coreStrings[lang], "widget.core"), ...flatten(strings[lang], `widget.${id}`) };
     }
-    widgets.push({ id, meta, algorithm, dictionaries });
+    // input(meta form) → run()'s input, for hooks such as trace's lineIds(input).
+    widgets.push({ id, meta, algorithm, dictionaries, input: (value) => (fixture ? fixture.input(value, id) : value) });
   }
   return widgets;
 }

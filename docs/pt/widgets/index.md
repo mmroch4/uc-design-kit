@@ -94,6 +94,20 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 EDados PI
 
   Algoritmos: `stack`, `queue` · 5.7 KB gzip
+- [Traço de um algoritmo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-trace.md) `<uc-widget-trace>`
+
+  Os passos do seu próprio algoritmo, escritos em JSON, reproduzidos com o desenho de vetor, árvore, grafo ou tabela.
+
+  Experimental Vaga 3 IP EDados PI PC
+
+  Algoritmos: `trace` · 7.1 KB gzip
+- [Union-find](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-union-find.md) `<uc-widget-union-find>`
+
+  Conjuntos disjuntos com união por tamanho e compressão de caminhos, ou sem elas, com o vetor parent e a floresta.
+
+  Experimental Vaga 3 PC EDados
+
+  Algoritmos: `compression`, `size`, `naive` · 4.5 KB gzip
 
 ## Planeados
 

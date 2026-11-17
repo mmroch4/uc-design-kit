@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-trace · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-trace.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-trace caption="Máximo de um vetor" predict>
+      <script type="application/json" data-input>
+{
+  "view": "array",
+  "code": {
+    "pt": ["start|m = a[0]", "loop|para i de 1 a n − 1:", "test|  se a[i] > m:", "take|    m = a[i]", "end|devolver m"],
+    "en": ["start|m = a[0]", "loop|for i from 1 to n − 1:", "test|  if a[i] > m:", "take|    m = a[i]", "end|return m"]
+  },
+  "steps": [
+    { "state": [4, 7, 2, 9, 5], "say": { "pt": "Procurar o máximo de 4 7 2 9 5.", "en": "Find the maximum of 4 7 2 9 5." } },
+    { "marks": { "0": "current" }, "line": "start", "vars": { "m": 4 },
+      "say": { "pt": "m começa com a[0] = 4.", "en": "m starts as a[0] = 4." } },
+    { "marks": { "1": "current", "0": "visited" }, "pointers": { "i": "1" }, "line": ["test", "take"], "vars": { "i": 1, "m": 7 },
+      "say": { "pt": "a[1] = 7 > 4: m passa a 7.", "en": "a[1] = 7 > 4: m becomes 7." },
+      "predict": { "ask": { "pt": "a[1] = 7 é maior do que m = 4?", "en": "Is a[1] = 7 larger than m = 4?" }, "options": [{ "pt": "Sim", "en": "Yes" }, { "pt": "Não", "en": "No" }], "answer": 0 } },
+    { "marks": { "2": "compared", "1": "current" }, "pointers": { "i": "2" }, "line": "test", "vars": { "i": 2, "m": 7 },
+      "say": { "pt": "a[2] = 2 não é maior do que 7.", "en": "a[2] = 2 is not larger than 7." } },
+    { "marks": { "3": "current", "1": "visited" }, "pointers": { "i": "3" }, "line": ["test", "take"], "vars": { "i": 3, "m": 9 },
+      "say": { "pt": "a[3] = 9 > 7: m passa a 9.", "en": "a[3] = 9 > 7: m becomes 9." },
+      "predict": { "ask": { "pt": "a[3] = 9 é maior do que m = 7?", "en": "Is a[3] = 9 larger than m = 7?" }, "options": [{ "pt": "Sim", "en": "Yes" }, { "pt": "Não", "en": "No" }], "answer": 0 } },
+    { "marks": { "4": "compared", "3": "current" }, "pointers": { "i": "4" }, "line": "test", "vars": { "i": 4, "m": 9 },
+      "say": { "pt": "a[4] = 5 não é maior do que 9.", "en": "a[4] = 5 is not larger than 9." } },
+    { "marks": { "3": "done" }, "line": "end", "vars": { "m": 9 },
+      "say": { "pt": "O máximo é 9, na posição 3.", "en": "The maximum is 9, at index 3." } }
+  ]
+}
+      </script>
+      <p>Máximo de 4 7 2 9 5: m = 4, 7, 7, 9, 9. O máximo é 9.</p>
+    </uc-widget-trace>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>
