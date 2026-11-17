@@ -12,16 +12,8 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="1">
-
-      <!-- Cabeçalho do guião -->
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 1</span>
-          <span class="uc-mono uc-muted">16–19 set</span>
-        </p>
-        <h1>Aula 1 · Introdução ao Java</h1>
-      </div>
+    <uc-guide week="1" week-label next="aula02.html">
+      <h1>Aula 1 · Introdução ao Java</h1>
 
       <!-- Exercício 1 do original -->
       <section class="uc-section" aria-labelledby="instalacao">
@@ -355,15 +347,6 @@
           </uc-code>
         </uc-exercise>
       </section>
-
-      <!-- Aula anterior e seguinte -->
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <div></div>
-        <a class="uc-card" href="aula02.html">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 2 · Input/Output e Mooshak</strong>
-        </a>
-      </nav>
 
     </uc-guide>
   </uc-page>

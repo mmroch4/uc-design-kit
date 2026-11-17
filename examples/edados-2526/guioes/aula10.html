@@ -15,16 +15,8 @@
 <body>
   <uc-page current="weeks">
     <!-- week="10": o caminho de navegação liga a semanas.html#week-10 -->
-    <uc-guide week="10">
-
-      <!-- Cabeçalho do guião -->
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 10</span>
-          <span class="uc-mono uc-muted">25–28 nov · 2 h · FC6</span>
-        </p>
-        <h1>Aula 10 · Árvores binárias</h1>
-      </div>
+    <uc-guide week="10" week-label prev="aula09.html" next="aula11.html">
+      <h1>Aula 10 · Árvores binárias</h1>
 
       <!-- Exercícios para submissão -->
       <section class="uc-section" aria-labelledby="submissao">
@@ -86,7 +78,7 @@
         </uc-exercise>
       </section>
 
-      <!-- Ver os percursos: widget <uc-widget-bst> (widgets/v1/). A extensão extensions/uc-bst-traversal.js fica como exemplo de componente próprio. -->
+      <!-- Ver os percursos: widget <uc-widget-bst> (widgets/v1/). O componente próprio que existia antes está agora em docs/demos/customize/. -->
       <section class="uc-section" aria-labelledby="percursos">
         <h2 id="percursos">Ver os percursos</h2>
         <p class="uc-prose">Escolhe um percurso e carrega em Reproduzir, ou avança um passo de cada vez. O nó cheio a azul é o que está a ser visitado agora; os nós com ✓ já foram impressos. Com as previsões ligadas, o widget pergunta qual é o próximo valor impresso.</p>
@@ -590,18 +582,6 @@
           <p>Resolva o problema <a href="../problemas/prob213.html">[ED213] Caminho de maior soma</a> (também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>).</p>
         </uc-exercise>
       </section>
-
-      <!-- Aula anterior e seguinte -->
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula09.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 9 · Recursividade</strong>
-        </a>
-        <a class="uc-card aula-pager__next" href="aula11.html">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 11 · Árvores binárias de pesquisa</strong>
-        </a>
-      </nav>
 
     </uc-guide>
   </uc-page>

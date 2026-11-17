@@ -55,7 +55,7 @@ O resto pode mudar numa versão 1 mais recente: classes que não estão nas tabe
 
 ## Um caso real
 
-O [site de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html) usa quatro níveis: o `course.js` com a cor e as páginas, um [`theme.css`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/theme.css) com classes próprias escritas só com tokens, um componente próprio para animar percursos em árvores (`<uc-bst-traversal>`, na pasta `extensions/`; o [guião da aula 10](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) usa hoje o widget `<uc-widget-bst>`) e páginas com HTML livre dentro de `<uc-page>`. A página do [exemplo Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md) mostra o que cada página usa.
+O [site de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html) mostra até onde se chega sem personalizar: o `course.js` dá a cor, as páginas e os prazos, e as páginas, com HTML livre dentro de `<uc-page>`, usam só componentes e classes do kit (o [`theme.css`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/theme.css) está vazio). O componente próprio `<uc-bst-traversal>` foi escrito para esse site antes de existir o widget `<uc-widget-bst>` e ficou como [demonstração do nível 3](https://uc-design-kit.miguelrocha.dev/docs/demos/customize/bst-traversal.html). A página do [exemplo Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md) mostra o que cada página usa.
 
 ## Ver também
 

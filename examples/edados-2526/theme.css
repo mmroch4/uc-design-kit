@@ -1,13 +1,5 @@
 /*
  * Estruturas de Dados 2025/26: estilos próprios do site (nível 2 de personalização).
- * Só usa os tokens --uc-* do kit, por isso muda de cor com accentColor.
- * Quase tudo o resto já vem do kit (uc-page-header, uc-crumbs, uc-steps, uc-samples…).
+ * Neste momento está vazio: todas as páginas usam só componentes e classes do kit.
+ * Para acrescentar estilos, usar os tokens --uc-* do kit (mudam de cor com accentColor).
  */
-
-/* guioes/aula*.html */
-.aula-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3); margin: 0; font-size: var(--uc-font-size-sm); }
-.aula-actions { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); margin: 0; }
-.aula-pager { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
-.aula-pager > .uc-card { display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: var(--uc-color-text); }
-.aula-pager > .uc-card span { font-size: var(--uc-font-size-sm); }
-.aula-pager__next { text-align: right; background: var(--uc-color-surface-sunken); color: var(--uc-color-text-muted); }

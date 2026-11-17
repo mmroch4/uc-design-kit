@@ -14,16 +14,8 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="7">
-
-      <!-- Cabeçalho do guião -->
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 7</span>
-          <span class="uc-mono uc-muted">4–7 nov</span>
-        </p>
-        <h1>Aula 7 · Listas, pilhas e filas</h1>
-      </div>
+    <uc-guide week="7" week-label prev="aula06.html" next="aula08.html">
+      <h1>Aula 7 · Listas, pilhas e filas</h1>
 
       <!-- Exercícios para submissão -->
       <section class="uc-section" aria-labelledby="submissao">
@@ -815,18 +807,6 @@ public class LinkedListQueue<T> implements MyQueue<T> {
           <p>Fila circular de capacidade 4 com 3 8 5. Sai 3, entram 1 e 9 (o 9 vai para a posição 0), 7 não cabe, sai 8. Fica 5 1 9.</p>
         </uc-widget-stack-queue>
       </section>
-
-      <!-- Aula anterior e seguinte -->
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula06.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 6 · Listas ligadas simples</strong>
-        </a>
-        <a class="uc-card" href="aula08.html">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 8 · Complexidade algorítmica</strong>
-        </a>
-      </nav>
 
     </uc-guide>
   </uc-page>

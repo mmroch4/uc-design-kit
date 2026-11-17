@@ -14,16 +14,9 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="6">
-
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 6</span>
-          <span class="uc-mono uc-muted">21–24 out</span>
-        </p>
-        <h1>Aula 6 · Listas ligadas simples</h1>
-        <p class="uc-prose">Nesta aula exploras uma implementação genérica de listas ligadas simples em Java e acrescentas-lhe novos métodos.</p>
-      </div>
+    <uc-guide week="6" week-label prev="aula05.html" next="aula07.html">
+      <h1>Aula 6 · Listas ligadas simples</h1>
+      <p class="uc-prose">Nesta aula exploras uma implementação genérica de listas ligadas simples em Java e acrescentas-lhe novos métodos.</p>
 
       <section class="uc-section" aria-labelledby="submissao">
         <h2 id="submissao">Exercícios para submissão</h2>
@@ -360,17 +353,6 @@ public class TestSinglyLinkedList {
           <p>Para melhorar a eficiência dos métodos que precisam de aceder ao fim da lista (<code>getLast</code> e <code>addLast</code>), acrescenta um atributo <code>private Node&lt;T&gt; last</code> à tua classe de lista ligada. Faz as modificações necessárias em todos os métodos implementados (no fim têm de ficar corretos não só os valores de <code>first</code> e <code>size</code>, mas também o de <code>last</code>). Este é um <em lang="en">tradeoff</em> típico: melhorar a eficiência tornando (ligeiramente) mais complexa a implementação.</p>
         </uc-exercise>
       </section>
-
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula05.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 5 · Tipos abstratos de dados</strong>
-        </a>
-        <a class="uc-card" href="aula07.html" style="text-align: right">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 7 · Listas, pilhas e filas</strong>
-        </a>
-      </nav>
     </uc-guide>
   </uc-page>
 </body>

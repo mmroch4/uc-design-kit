@@ -12,16 +12,8 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <uc-guide week="3">
-
-      <!-- Cabeçalho do guião -->
-      <div class="uc-stack">
-        <p class="aula-meta">
-          <span class="uc-tag uc-tag--accent">Semana 3</span>
-          <span class="uc-mono uc-muted">30 set – 3 out</span>
-        </p>
-        <h1>Aula 3 · Introdução a classes</h1>
-      </div>
+    <uc-guide week="3" week-label prev="aula02.html" next="aula04.html">
+      <h1>Aula 3 · Introdução a classes</h1>
 
       <!-- Exercícios para submissão -->
       <section class="uc-section" aria-labelledby="submissao">
@@ -357,18 +349,6 @@
           <p>Adicione um construtor novo à classe <code>Matrix</code> que dadas as dimensões e dois inteiros <strong>min</strong> e <strong>max</strong> cria uma nova matriz preenchida com números aleatórios entre <strong>min</strong> e <strong>max</strong>. A única dica que vamos dar é que existe uma classe <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Random.html">java.util.Random</a> para lidar com geração de números (pseudo)aleatórios.</p>
         </uc-exercise>
       </section>
-
-      <!-- Aula anterior e seguinte -->
-      <nav class="aula-pager uc-grid" aria-label="Outras aulas">
-        <a class="uc-card" href="aula02.html">
-          <span class="uc-muted">← Anterior</span>
-          <strong>Aula 2 · Input/Output e Mooshak</strong>
-        </a>
-        <a class="uc-card" href="aula04.html">
-          <span class="uc-muted">Seguinte →</span>
-          <strong>Aula 4 · Programação estruturada</strong>
-        </a>
-      </nav>
 
     </uc-guide>
   </uc-page>
