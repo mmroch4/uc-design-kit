@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stack (array based) · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), example code from the lectures: Stack (array based).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Código</a></li><li aria-current="page">Stack (array based)</li></ol>
+    </nav>
+    <h1>Stack (array based)</h1>
+    <div class="uc-content">
+<p>This implementation is for an array based stack. It needs to be adjusted to deal with larger number of
+nodes. <code>NodeInfo</code> depends on the type of values we store in the
+queue, thus adjust accordingly.</p>
+<h2>stack.h</h2>
+<uc-code collapsible="" data-lang="c" filename="stack.h"><script type="text/plain">
+// -------------------------------------------------
+// Programação Imperativa (CC1003)
+// Header file for an array basedstack
+// Fernando Silva, DCC/FCUP
+// -------------------------------------------------
+
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#define MAXNODES 1000
+
+#define NodeInfo int  // adjust depending on the type of values
+
+typedef struct {
+  int top;
+  NodeInfo nodes[MAXNODES];
+} Stack;
+
+// interface functions
+void empty(Stack *s);
+bool isEmpty(Stack *s);
+bool isFull(STACK *s);
+void push(Stack *s, NodeInfo val);
+NodeInfo pop(Stack *s);
+NodeInfo top(Stack *s);
+</script></uc-code>
+<h2>stack.c</h2>
+<uc-code collapsible="" data-lang="c" filename="stack.c"><script type="text/plain">
+// -------------------------------------------------
+// Programação Imperativa (CC1003)
+// Implementation of an array based stack
+// Interface functions
+// Fernando Silva, DCC/FCUP
+// -------------------------------------------------
+
+#include "stack.h"
+
+// make the stack empty
+void empty(Stack *s) {
+  s->top= 0;
+}
+// verify if stack is empty
+bool isEmpty(Stack *s) {
+  return (s->top == 0);
+}
+// verify if stack is full
+bool isFull(Stack *s) {
+  return (s->top >= MAXNODES);
+}
+// insert a new node to top of stack
+void push(Stack *s, NodeInfo val) {
+  if (isFull(s)) {
+    printf("Stack is full\n");
+    exit(1);
+  }
+  s->nodes[s->top]= val;
+  s->top++;
+}
+// remove the top node from stack
+NodeInfo pop(Stack *s) {
+  if (isEmpty(s)){
+    printf("Stack is Empty\n");
+    exit(1);
+  }
+  s->top--;
+  return s->nodes[s->top];
+}
+// inspect top node at stack, but do not remove it
+NodeInfo top(Stack *s) {
+  if (isEmpty(s)){
+    printf("Stack is Empty\n");
+    exit(1);
+  }
+  return s->nodes[s->top-1];
+}
+</script></uc-code>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/stack.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

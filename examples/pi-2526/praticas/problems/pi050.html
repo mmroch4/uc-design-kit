@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI050] Survival of the Fittest · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI050 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI050] Survival of the Fittest</li></ol>
+    </nav>
+    <h1>[PI050] Survival of the Fittest</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi050.jpg"/>
+You're in your lab, and you have access to ten different species of bacteria.  
+You’ve observed their behavior in a Petri dish before, and now it’s time to test whether your predictions match reality.
+</p>
+<p>
+Each species has a known strength, and when different species come into contact, only the strongest survives.  
+Your task is to simulate this competitive environment and predict how the dish will look once the stronger bacteria have overpowered the weaker ones.
+</p>
+<h2>
+Task
+</h2>
+<p>
+You are given a grid representing a Petri dish. Each cell can be:
+</p>
+<ul>
+<li>A barrier, represented by the character <code>#</code>, which blocks movement and interaction.</li>
+<li>Occupied by a species of bacteria, represented by a digit <code>0</code> through <code>9</code>.</li>
+</ul>
+<p>
+Each species has a unique power level (from 1 to 500).  
+When two species are orthogonally adjacent (up, down, left, or right), the stronger one eventually spreads and takes over the weaker one’s cell.
+</p>
+<p>
+Once no further changes occur (i.e., the dish stabilizes), your program should output the final configuration of the Petri dish.
+</p>
+<h2>
+Input
+</h2>
+<ul>
+<li>The first line contains two integers <code>n</code> and <code>m</code> — the number of rows and columns of the grid (<code>1 ≤ n, m ≤ 500</code>).</li>
+<li>The next <code>n</code> lines each contain <code>m</code> characters: either <code>#</code> (barrier) or a digit <code>0</code> to <code>9</code> (indicating the species occupying that cell).</li>
+<li>The final line contains 10 distinct integers between 1 and 500, specifying the power of each species from <code>0</code> to <code>9</code>.</li>
+</ul>
+<h2>
+Ouput
+</h2>
+<p>
+Print the final state of the Petri dish — <code>n</code> lines each with <code>m</code> characters — after the simulation has stabilized.
+</p>
+<p>
+Print <code>n</code> lines each with <code>m</code> characters corresponding
+to the final state of the Petri dish after the simulation  has stabilized.
+</p>
+<h3>
+Example input 1
+</h3>
+<pre>
+4 4
+3982
+597#
+9190
+7483
+99 368 241 277 429 282 244 204 328 441
+</pre>
+<h3>
+Example Output 1
+</h3>
+<pre>
+9999
+999#
+9999
+9999
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+6 6
+#4##41
+#8###4
+#098#6
+62#4##
+##85##
+#34#6#
+286 102 464 166 52 430 32 363 118 143
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+#2##11
+#2###1
+#222#1
+22#2##
+##22##
+#22#6#
+</pre>
+
+</section><section lang="pt">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi050.jpg"/>
+Estás no teu laboratório e tens ao teu dispor dez espécies diferentes de bactérias.  
+Já observaste o comportamento destas espécies numa caixa de Petri, e agora chegou o momento de testar se as tuas previsões estão corretas.
+</p>
+<p>
+Cada espécie tem uma força associada. Quando duas espécies diferentes entram em contacto, apenas a mais forte sobrevive.  
+A tua tarefa é simular este ambiente competitivo e prever como ficará a caixa de Petri depois de as bactérias mais fortes dominarem as mais fracas.
+</p>
+<h2>Descrição da Tarefa</h2>
+<p>
+É-te dado um grelha que representa a caixa de Petri. Cada célula pode conter:
+</p>
+<ul>
+<li>Uma barreira, representada pelo caractere <code>#</code>, que bloqueia movimento e interações.</li>
+<li>Uma bactéria, representada por um dígito entre <code>0</code> e <code>9</code>, indicando a espécie presente nessa célula.</li>
+</ul>
+<p>
+Cada espécie tem um nível de força (de 1 a 500), e todas as forças são distintas.  
+Quando duas espécies estão ortogonalmente adjacentes (isto é, acima, abaixo, à esquerda ou à direita), a espécie mais forte acabará por invadir a célula da mais fraca.
+</p>
+<p>
+Quando já não for possível haver mais mudanças — ou seja, quando a caixa de Petri estabilizar — o teu programa deve imprimir o estado final da grelha.
+</p>
+<h2>Input</h2>
+<ul>
+<li>A primeira linha contém dois inteiros <code>n</code> e <code>m</code> — o número de linhas e colunas da grelha (<code>1 ≤ n, m ≤ 500</code>).</li>
+<li>As <code>n</code> linhas seguintes contêm exatamente <code>m</code> caracteres cada: ou <code>#</code> (barreira), ou um dígito de <code>0</code> a <code>9</code> (espécie de bactéria).</li>
+<li>A última linha contém 10 inteiros distintos entre 1 e 500, indicando a força das espécies de <code>0</code> a <code>9</code>, por ordem.</li>
+</ul>
+<h2>Output</h2>
+<p>
+Imprime o estado final da caixa de Petri — <code>n</code> linhas com <code>m</code> caracteres cada — após a estabilização da simulação.
+</p>
+<h3>
+Example input 1
+</h3>
+<pre>
+4 4
+3982
+597#
+9190
+7483
+99 368 241 277 429 282 244 204 328 441
+</pre>
+<h3>
+Example Output 1
+</h3>
+<pre>
+9999
+999#
+9999
+9999
+</pre>
+<h3>Example Input 2</h3>
+<pre>
+6 6
+#4##41
+#8###4
+#098#6
+62#4##
+##85##
+#34#6#
+286 102 464 166 52 430 32 363 118 143
+</pre>
+<h3>Example Output 2</h3>
+<pre>
+#2##11
+#2###1
+#222#1
+22#2##
+##22##
+#22#6#
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi050.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

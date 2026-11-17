@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI014] The World of the Turtle · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI014 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI014] The World of the Turtle</li></ol>
+    </nav>
+    <h1>[PI014] The World of the Turtle</h1>
+    <div class="uc-content">
+<img alt="" class="uc-content__float" loading="lazy" src="pi014.png"/>
+<p>
+The Logo programming language, created in 1967, was primarily designed to aid in learning geometric concepts, spatial exploration, and basic programming principles. One of the features provided by this language is the turtle (derived from a robot with that name), which represents a cursor on the screen to which movement and drawing instructions can be given.
+</p>
+<p>
+The turtle has a built-in pen which, when down, leaves a trail (drawn on the screen). Whenever the pen is up, its movement does not leave a trail (and nothing is drawn on the screen). </p>
+<p>
+Your first task is to start by defining a world for the turtle; create a turtle in this world and move it according to a set of instructions to create an image. </p>
+<p>
+Assume that the turtle's world is defined by a grid with a given height and width, through which the turtle can move according to the following set of instructions:</p>
+<ul>
+<li> <strong><t>U (up)</t></strong>: lifts the pen, leaving no trail; 
+</li><li> <strong><t>D (down)</t></strong>: lowers the pen, leaving a trail; 
+</li><li> <strong><t>F x (forward)</t></strong>: moves forward <t>x</t> steps;
+</li><li> <strong><t>L (left)</t></strong>: turns left; 
+</li><li> <strong><t>R (right)</t></strong>: turns right.
+</li></ul>
+<p>
+The turtle is associated with a grid, a position (x, y), a direction (North, South, East, and West), and the pen position (up or down).</p>
+<p>
+When created, the turtle is positioned at <strong>(0,0)</strong>, taking the top-left corner of the grid as a reference, is facing <strong>East</strong>, and has the pen up.</p>
+<p>
+If instructions are given that would move the turtle outside the grid boundaries, it <strong>moves as far as it can to the edge and stays there</strong>.</p>
+<p>
+Once the set of instructions given to the turtle has been executed and an image created, the second and third parts of your task consist of analyzing the image and recognizing a pattern within it.</p>
+<h2>Input</h2>
+<p>
+The first line of input contains a flag value that can be 0, 1, or 2.<br/>
+The next line contains two integers <strong>LINS</strong> and <strong>COLS</strong> (<code>1 &lt;= <strong>LINS</strong>, <strong>COLS</strong> &lt;= 10</code>), indicating the number of rows and columns that define the image grid, respectively.<br/>
+The following lines contain the instructions to be given to the turtle, one instruction per line. The set of instructions ends with the word <strong><code>end</code></strong>.<br/>
+Each instruction of the form <strong><code>F x</code></strong> must satisfy <code>1 &lt;= x &lt;= 20</code>.<br/>
+From this point in the input, the pattern to search for in the image is defined.
+The first line contains two integers <strong>N</strong> and <strong>M</strong> (<code>1 &lt;= <strong>N</strong>, <strong>M</strong> &lt;= 10</code>), indicating the number of rows and columns of the pattern, respectively. The following <strong>N</strong> lines define the pattern. Each of these lines contains <strong>M</strong> characters ('.' or '*'), left-aligned and separated by a single character space.
+</p>
+<h2>Output</h2>
+<p>
+If the <strong>flag value is 0</strong>, you should display on the screen the result of executing the instructions given to the turtle. 
+To do this, assume that all positions on the grid are initially filled with '.' and that the turtle, when the pen is down, marks the positions it passes over with '*'. The grid positions should be displayed left-aligned with a spacing of 1 character.
+</p>
+<p>
+If the <strong>flag value is 1</strong>, you should indicate, separated by a space, the percentage of grid positions marked by the turtle and the number of rows and columns that have no marks.
+</p>
+<p>
+If the <strong>flag value is 2</strong>, you should read from the input the pattern to search for and respond with <strong><code>Yes</code></strong> if it is found in the image created by the turtle, and <strong><code>No</code></strong> otherwise.
+</p>
+<h2>Examples:</h2>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+0
+5 5
+D
+F 4
+U
+R
+R
+F 4
+D
+L
+F 2
+L
+F 2
+L
+L
+U
+F 2
+D
+L
+F 2
+L
+F 4
+end
+3 3
+* . .
+* * *
+* . .
+</pre>
+</td>
+<td> <pre>
+* * * * * 
+* . . . . 
+* * * . . 
+* . . . . 
+* * * * *
+</pre> </td>
+</tr>
+</table></div>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+1
+5 5
+D
+F 4
+U
+R
+R
+F 4
+D
+L
+F 2
+L
+F 2
+L
+L
+U
+F 2
+D
+L
+F 2
+L
+F 4
+end
+3 3
+* . .
+* * *
+* . .
+</pre>
+</td>
+<td> <pre>
+60 0 0
+</pre> </td>
+</tr>
+</table></div>
+<div class="uc-table"><table>
+<col/> <col/>
+<tr>
+<th scope="col"><p>Input</p> </th>
+<th scope="col"> <p>Output</p></th>
+</tr>
+<tr>
+<td>
+<pre>
+2
+5 5
+D
+F 4
+U
+R
+R
+F 4
+D
+L
+F 2
+L
+F 2
+L
+L
+U
+F 2
+D
+L
+F 2
+L
+F 4
+end
+3 3
+* . .
+* * *
+* . .
+</pre>
+</td>
+<td> <pre>
+Sim
+</pre> </td>
+</tr>
+</table></div>
+  <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi014.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 01 · Introdução ao C · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 1: Introdução ao C">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="1">
+    <h1>Aula Prática 01 · Introdução ao C</h1>
+    <p class="uc-small"><a href="aula01.html" hreflang="en">English version</a></p>
+    <div class="uc-content">
+<h2>Instalação do C
+
+    </h2><p>Se utilizar os computadores dos laboratórios do DCC, recorde que os computadores correm um sistema operativo GNU/Linux com ambiente gráfico. Nos menus pode encontrar algumas aplicações que poderão ser úteis para esta e próximas aulas:
+      </p><ul>
+<li><strong>Google Chrome/Firefox:</strong> navegadores de páginas <em>web</em>;
+      </li><li><strong>Terminal:</strong> um interpretador de comandos (<em>shell</em>);
+      </li><li><strong>GNU Emacs:</strong> um editor de texto.
+      </li><li><strong>IDEs</strong>: ambientes integrados de desenvolvimento, e.g. Visual Studio Code (vscode).	
+      </li></ul>
+<p>Nesta unidade curricular iremos usar a linguagem C e vamos usar o <a href="https://pt.wikipedia.org/wiki/GNU_Compiler_Collection">GCC</a> (<em>GNU Compiler Collection</em>) como o compilador programa escritos em C.</p>
+<p>A primeira coisa que deverá fazer é garantir que tem um compilador C instalado na sua máquina. (<em>Nota:</em> se utilizar os computadores dos laboratórios o GCC já está instalado.) 
+    </p><p>Se utilizar o seu computador e preferir utilizar o sistema operativo Microsoft Windows, aconcelhamos a utilizar o WSL (<em>Windows Subsystem for Linux</em>). 
+
+      Tente seguir as seguintes ligações:
+
+      </p><ul>
+<li><a href="aula01-instalacao.html">Breve manual de instalação do GCC</a>
+</li><li><a href="aula01-configuracao_wsl.html">Configuração do WSL e instalação do GCC no Windows</a>
+</li><li><a href="1_intro_c.pdf">Breve introdução à Linguagem C</a>
+</li></ul>
+<ul>
+</ul>
+
+<h3>Exercício 1) Primeiro programa em C</h3>
+<p>Considere o programa a seguir que escreve os números pares entre 2 e <em>n</em> (no caso, <em>n=20</em>).</p>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+#include <stdio.h>
+
+int main() {
+    int n = 20;  // number limit
+
+    printf("Even numbers from 2 to %d:\n", n);
+
+    for (int i=2; i < n; i+=2) {
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+</script></uc-code>
+<ol>
+<li><strong>A minha primeira execução de código C.</strong><br/>
+	  Copie este pedaço de código para um ficheiro, compile-o e
+	  execute o programa.<ul>
+<li>O nome do ficheiro contendo código tem de ter a extensão <code>.c</code>, dê o seguinte nome ao ficheiro: <code><strong>numbers.c</strong></code>
+</li><li>Como compilar o programa? 
+        <p>$ gcc -o numbers numbers.c
+</p></li><li>Como executar o programa? 
+        <p>$ ./numbers
+</p></li></ul><ol type="a">
+<li>Com que nome fica o ficheiro resultante da compilação?
+	  </li><li>Qual o resultado da sua execução? Experimente mesmo
+	    executar o programa.
+	</li></ol></li>
+
+<li><strong>Erros de compilação</strong><br/> Experimente retirar o ';' na
+	  declaração da variável <em>n</em> e compile. O que acontece?
+	</li><li><strong>Escrevendo código.</strong><br/>  Modifique o programa para que passe a escrever os números ímpares em vez dos pares e passe a escrever os números todos na mesma linha,  separados por vírgulas (sem nenhuma vírgula a mais no final, mas com mudança de linha).
+      Exemplo de execução pretendida:
+<pre>
+$ ./numbers
+Números de 1 a 20: 1,3,5,7,9,11,13,15,17,19
+$
+</pre>
+</li><li><strong>Somando números ímpares.</strong><br/>
+    Acrescente ao programa código para somar todos os números entre 1 e <em>n</em> e no final imprimir a soma.
+    <ul>
+<li>Vamos precisar de uma variável para ir acumulando a soma. De que tipo deve ser? 
+</li><li>O resultado da execução deverá acrescentar ao output uma linha com Soma = 100 (com <em>n=20</em>). 
+</li></ul>
+</li></ol>
+
+<h3>Exercício 2) Desenhando figuras no ecrã</h3>
+<ol>
+<li><strong>Quadrados no ecrã.</strong><br/>
+      Escreva um programa que desenhe no ecrã (usando o caractere <em><strong>#</strong></em>) um quadrado de dimensão <strong>4</strong>. O resultado da execução do seu programa deverá ser o que se apresenta a seguir.
+    <uc-code collapsible="" data-lang="c"><script type="text/plain">
+####
+####
+####
+####
+</script></uc-code>
+<ul>
+<li>Faça as alterações necessárias para que o programa receba qualquer valor <em>n</em> para a dimensão do quadrado.
+      </li><li>Consegue alterar o programa para que desenhe um tabuleiro de xadrez de dimensão <em>n</em> (usando os caracteres <em><strong>#</strong></em> e <em><strong>_</strong></em>). O resultado da execução do seu programa para um tabuleiro de dimensão <strong>5</strong> deverá ser o que se apresenta a seguir.
+    <uc-code collapsible="" data-lang="c"><script type="text/plain">
+#_#_#
+_#_#_
+#_#_#
+_#_#_
+#_#_#
+</script></uc-code>
+</li></ul>
+</li></ol>
+
+<h3>Exercício 3) Contagem em sequências de valores</h3>
+<p>Escreve pequenos programas que respondam aos desafios seguintes:
+  </p><ol>
+<li>Atribua um número à variável <code>n</code> e escreva como resultado o número de
+  digitos que cosntituem o númer. Por exemplo, dado <code>n=12345</code>, a
+    resposta deverá ser Num. de digitos= 5
+<em>Sugestão:</em> pense em divisões inteiras sucessivas por
+    10.</li>
+<li>Modifique o programa anterior para que em vez de contar o
+   número de dígitos de um dado número, apresente a soma desses
+   digitos. Por exemplo, dado <code>n=12345</code>, a
+    resposta deverá ser Soma dos digitos= 15
+<em>Sugestão:</em> além de divisões inteiras, use também
+    sucessivamnete o resto da divisão por 10.
+
+    </li><li>Escreva um programa que leia o número de elementos, n, de uma
+ sequência com comprimento maior ou igual a 2, leia os n valores da sequência e determine e escreva os dois maiores
+    valores da sequência lida.
+    </li><li>Modifique o programa anterior de modo a determinar qual o
+ comprimento da maior sequência de números positivos que apareceu na
+ sequência de <code>n</code> elementos lidos.
+ </li></ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula01_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

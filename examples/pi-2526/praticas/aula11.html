@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical Class 11 · Stacks and Queues, Complexity and I/O Files · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), lab class 11: Stacks and Queues, Complexity and I/O Files">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="11">
+    <h1>Practical Class 11 · Stacks and Queues, Complexity and I/O Files</h1>
+    <p class="uc-small"><a href="aula11_pt.html" hreflang="pt">Versão em português</a></p>
+    <div class="uc-content">
+<h2><strong>Mooshak:</strong> Exercises for Submission</h2>
+<p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
+</p><ul>
+<li><a href="problems/pi055.html">[PI055] Lake Reflection</a> (weigth 30%) (main exercise)</li>
+<li><a href="problems/pi056.html">[PI056] Well Balanced Expression</a> (weigth 30%) (main exercise)</li>
+<li><a href="problems/pi057.html">[PI057] Two Queues</a> (weigth 40%) (main exercise)</li>
+</ul>
+<p><mark><strong>Submission deadline:</strong> <strong>June 15</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
+<p><strong>You are encouraged to talk with the instructors and other
+  colleagues to ask for ideas on how to solve a problem, but you also
+  need to make an effort to code your solution. That is the way to become competent at programming and problem
+  solving, and also to become prepared for the pratical evaluations. The same is
+  valid for ChatGPT or other LLMs. <mark>You may
+  ask for suggestions on how you could solve a given problem, but also
+    ask it to avoid giving you the code solution.</mark></strong><br/>
+</p><p>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.<br/>
+Each class accounts for 10% of the grade for this component.<br/>  
+For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
+To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+
+<h3>Exercício 1) Stacks and Queues with <code><strong>LinkedList</strong></code></h3>
+<p>In this class you are expected to use the same <code><strong>LinkedList</strong></code> structure from Exercise 1 of the previous class (<a href="aula10.html">Pratical Class #10</a>), recall that a stack follows a <strong>LIFO</strong> (Last In, First Out) policy and a queue follows a <strong>FIFO</strong> (First In, First Out) policy.<br/>
+</p><p>This exercise also introduces the use of header files (<code><strong>.h</strong></code>) to separate the interface of a data structure from its implementation. Consider the following organization:
+
+</p><ul>
+<li><code><strong>linkedlist.h</strong></code> : declares the structures and function prototypes</li>
+<li><code><strong>main.c</strong></code> : includes <code><strong>linkedlist.h</strong></code> and uses the functions</li>
+</ul>
+
+Now, consider the given header file <code><strong>linkedlist.h</strong></code>:<br/><br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
+#define NodeInfo int
+
+typedef struct Node {
+    NodeInfo val;
+    struct Node *next;
+} Node;
+
+typedef struct {
+    Node *first;
+    Node *last;
+} LinkedList;
+
+void init(LinkedList *list);
+void push(LinkedList *stack, int val);      // stack: insert at front
+int  pop(LinkedList *stack);                // stack: remove from front
+void enqueue(LinkedList *queue, int val);   // queue: insert at back
+int  dequeue(LinkedList *queue);            // queue: remove from front
+int  isEmpty(LinkedList *list);
+void printList(LinkedList *list);
+
+#endif
+</script></uc-code>
+<br/>
+<ol>
+<li>Implement the functions declared in <code><strong>linkedlist.h</strong></code> in a file <code><strong>linkedlist.c</strong></code>. 
+      For each function, indicate its <em>time complexity</em> using <em><strong>Big-O</strong></em> notation in a comment above the function.</li>
+
+<li>A <em>stack</em> is commonly used to check whether an expression has balanced brackets. 
+      Write a program (in <code><strong>main_brackets.c</strong></code>) that reads a string from standard input and uses your <em>stack</em> implementation to verify whether the brackets are balanced. Your program should handle <code>(</code>, <code>)</code>, <code>[</code>, <code>]</code>, <code>{</code>, and <code>}</code>. <br/>
+      The program should print <code><strong>"Balanced"</strong></code> or <code><strong>"Not balanced"</strong></code> accordingly.
+<br/>Example:
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+Input:  Expression: {[()]}
+Output: Balanced
+</script></uc-code>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+Input:  Expression: {[(])}
+Output: Not balanced
+</script></uc-code>
+
+<ul>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi056.html">[PI056] Well-Balanced Expressions</a><br/> 
+  You can now read the statement of problem PI056 carefully and try to submit an Accepted solution. You only need to adapt your solution.
+</li></ul><br/>
+</li>
+<li>A <em>queue</em> can be used to simulate a service line. 
+        Write a program (in <code><strong>main_hospital_triage.c</strong></code>) that simulates a hospital triage queue. Patients arrive with a name and a priority level (<code>1</code> = urgent, <code>2</code> = normal). <br/>
+        The program should read commands from standard input:
+        <ul>
+<li><code><strong>ADD [name] [priority]</strong></code> — adds a patient to the queue</li>
+<li><code><strong>NEXT</strong></code> — removes and prints the next patient from the queue (urgent patients always come first)</li>
+<li><code><strong>LIST</strong></code> — prints all patients currently in the queue</li>
+<li><code><strong>EXIT</strong></code> — ends the program</li>
+</ul>
+
+<details name="hint">
+<summary><em>Hint</em></summary>
+<p>- use two separate queues, one for each priority level.
+  </p></details>
+<br/>Example:
+<pre>
+
+   ADD Alice 2
+   ADD Bob 1
+   ADD Carol 2
+   NEXT
+   Next patient: Bob (priority 1)
+   LIST
+   Alice (priority 2)
+   Carol (priority 2)
+
+  </pre>
+
+<ul>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/">
+<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
+</a>
+<a href="problems/pi057.html">[PI057] Two Queues</a><br/> 
+  You can now read the statement of problem PI057 carefully and try to submit an Accepted solution. You only need to adapt your solution.
+</li></ul>
+</li>
+</ol>
+
+<h3>Exercise 2) Complexity Analysis</h3>
+
+The following questions are based on the brief introduction to complexity and efficiency covered in the theoretical lectures.
+<br/>
+<ol>
+<li>Consider the following C function:<br/>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+int mystery(int n) {
+    int s = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = i; j < n; j++)
+            s++;
+    return s;
+}
+</script></uc-code>
+
+<ul>
+<li>How many times is <code><strong>s++</strong></code> executed, as a function of <code><strong>n</strong></code>? </li>
+<li>What is the time complexity of <code><strong>mystery()</strong></code> in <em><strong>Big-O</strong></em> notation? Justify.</li>
+<li>What value does <code><strong>mystery(n)</strong></code> return? Is there a closed-form formula?</li>
+</ul>
+</li>
+
+<li>For each of the following functions, state their time complexity in Big-O notation and briefly justify:
+<ul>
+<li><code><strong>size()</strong></code> from Exercise 1 of <strong>Practical Class #10</strong></li>
+<li><code><strong>removeEquals()</strong></code> from Exercise 1 of <strong>Practical Class #10</strong></li>
+<li><code><strong>insertOrd()</strong></code> from Exercise 1 of <strong>Practical Class #10</strong></li>
+<li><code><strong>push()</strong></code> and <code><strong>pop()</strong></code> from Exercise 2 of this class</li>
+<li><code><strong>enqueue()</strong></code> and <code><strong>dequeue()</strong></code> from Exercise 2 of this class</li>
+</ul>
+</li>
+</ol>
+
+<h3>Exercise 3) Reading and Writing Files</h3>
+<ol>
+<li>Write a simple program that reads a given number of lines from the <strong>standard input</strong> and writes those lines to a <strong>text file</strong>. Example:
+<pre>
+
+Number of lines: 4
+Line 1
+Line 2
+Line 3
+Line 4
+
+</pre>
+</li>
+<li>Write a program that reads the text file created in the previous exercise and stores the file's lines in an array.
+	</li>
+<li>Write a function  <code><strong>int number_lines(char *file_name);</strong></code> that returns the number of lines in a file.
+	</li>
+<li>Write a program to count the words contained in a file. Consider that words are sequences of <em>“normal characters”</em> (e.g., letters, digits, or punctuation marks) separated by <em>“whitespace characters”</em> (spaces, tabs, or newline characters, i.e., <code>' '</code>, <code>'\t'</code>, or <code>'\n'</code>).
+	</li>
+<li>Write a program that reads the contents of two text files, <strong>"file1.txt"</strong> and <strong>"file2.txt"</strong>, and writes a <strong>new file</strong> (named <strong>"union.txt"</strong>) obtained by merging the contents of the two original files.
+	</li>
+<li>Write a function that reads a list of contacts stored in a file named <strong>"contacts.txt"</strong> without using <code><strong>fscanf</strong></code>. Each contact is defined by a person’s name and their mobile phone number, and the file must follow this format:
+<pre>
+
+joaquina, 016002222
+ana pinto, 0671445566
+joao costa, 8442222
+
+</pre>
+That is, each name is followed by a comma (<code>','</code>) and each mobile number ends with a newline character (<code>'\n'</code>). 
+Names and mobile numbers may be preceded by spaces, as shown in the example above.<br/>
+The implemented function should display the names and contacts read from the file on the <strong>screen</strong> (standard output).
+      </li>
+<li>Modify the previous program to include an efficient search function for a phone contact.<br/>
+To do this, create a new file named <strong>"sorted_contacts.txt"</strong> containing all the original phone contacts sorted in <strong>alphabetical order by the person's name</strong>. <br/>
+Also, create a function that allows searching for a contact by the person's name using <strong>binary search</strong> (which is efficient in terms of performance).<br/> The function should return the mobile phone number if the contact exists, and <code>-1</code> otherwise.
+      </li>
+<li>To manage information about students enrolled in a given course, it is necessary to store the following data:
+      <ul>
+<li>Student's name (a string with a maximum of 60 characters)</li>
+<li>Student's ID number (mechanographic number)</li>
+<li>Grade obtained in the course</li>
+</ul>
+
+<ol type="a">
+<li>Define the types <code><strong>Student</strong></code> and <code><strong>Class</strong></code>. For this purpose, consider that the information related to the students in a class is stored in a <strong>linked list</strong> of students.</li>
+<li>Define a function <code><strong>int addStudent(Class *t, Student a, FILE *f);</strong></code> that adds the information of a given student <code><strong>a</strong></code> to a class <code><strong>t</strong></code>, which is stored in a file <code><strong>f</strong></code> named <strong>"info_new_students.txt"</strong>. The file follows the format:
+<pre>
+
+Ana Filipa Silva, 202105440, 19
+Pedro Tomás, 202005823, 10
+José Filipe Fernandes, 202105635, 15
+
+</pre>
+The implemented function should return <code><strong>0</strong></code> if the operation is successful and <code><strong>1</strong></code> otherwise.</li>
+<li>Define a function <code><strong>Student *search(Class t, int number);</strong></code> that searches for the student with a given number <code><strong>number</strong></code> in the class <code><strong>t</strong></code>.<br/> 
+The function should return <code><strong>NULL</strong></code> if the student's information does not exist; otherwise, it should return the address where that information is stored.</li>
+<li>Define a function that determines how many students passed the course (i.e., those who obtained a final grade greater than or equal to 10). Write this information to a file named <strong>"approved.txt"</strong>.</li>
+</ol>
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

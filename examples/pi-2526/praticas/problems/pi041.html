@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI041] Rock Site · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI041 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI041] Rock Site</li></ol>
+    </nav>
+    <h1>[PI041] Rock Site</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi041.jpg"/>
+</p>
+<p>You're in charge of a construction site, and today is rock delivery day.</p>
+<p>You already know where each truck will dump its load of
+rocks. However, these aren’t neatly delivered — each truck drops a big
+pile in one spot, and the rocks scatter to the nearby sections. You
+need to calculate how many rocks end up in each section of your
+worksite.</p>
+<h2>Task</h2>
+<p>Your dumping ground is a straight line, divided into <code>N</code> numbered sections (from <code>1</code> to N <code>N</code>).</p>
+<p>Each truck is described by two values:</p>
+<ul>
+<li> <code>X</code>: the section where the truck dumps its load
+
+</li><li> <code>S</code>: the size of the truck (i.e., how far the rocks will spread)
+</li></ul>
+<p>A truck of size <code>S</code> dumping rocks at section <code>X</code> will distribute rocks like this:</p>
+<ul>
+<li>    Section <code>X</code> gets <code>S</code> rocks.
+
+</li><li>    Sections <code>X ± 1</code> get <code>S - 1</code> rocks.
+
+</li><li>    Sections <code>X ± 2</code> get <code>S - 2</code> rocks.
+
+</li><li> ...
+
+</li><li> Sections <code>X ± (S - 1)</code> get <code>1</code> rock.
+</li></ul>
+<p>If any rocks spill outside the bounds of the site (i.e., to section <code>0</code> or section <code>N + 1</code>), you can ignore them — that’s someone else’s problem.</p>
+<p>Your task is to calculate how many rocks end up in each section after
+all the trucks have dumped their loads.</p>
+<h2>Input</h2>
+<p>The first line contains two integers <code>N</code> and <code>M</code> (<code>1  ≤ N, M  ≤ 100'000</code>) — the number of sections and the number of trucks.</p>
+<p>The next M <code>M</code> lines each contain two integers <code>X</code> and <code>S</code> (<code>1 ≤ X ≤ N, 1 ≤ S ≤
+5</code>) — the dumping section and the size of the truck.</p>
+<h2>Ouput</h2>
+<p>Print a single line with <code>N</code> integers, separated by spaces, representing the number of rocks in each section from 1 <code>1</code> to <code>N</code> after all trucks have dumped their rocks.</p>
+<h2>Example 1</h2>
+<h3>Input</h3>
+<pre>
+10 1
+5 3
+</pre>
+<h3>
+Output
+</h3>
+<pre>
+0 0 1 2 3 2 1 0 0 0
+</pre>
+<h2>Example 2</h2>
+<h3>Input</h3>
+<pre>
+10 2
+5 3
+9 5
+</pre>
+<h3>Output</h3>
+<pre>
+0 0 1 2 4 4 4 4 5 4
+</pre>
+
+</section><section lang="pt">
+
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi041.jpg"/>
+</p>
+<p>Estás responsável por organizar o empilhamento das pedras necessárias
+para um conjunto de obras em curso, e hoje é dia de entrega de pedras.</p>
+<p>Já sabes onde cada camião vai despejar a sua carga de pedras. No entanto, estas não são entregues de forma ordenada — cada camião despeja uma grande pilha num ponto, e as pedras espalham-se pelas secções vizinhas. O teu objetivo é calcular quantas pedras acabam em cada secção do terreno.</p>
+<h2>Tarefa</h2>
+<p>O terreno de descarga é uma linha reta, dividida em <code>N</code> secções numeradas (de <code>1</code> a <code>N</code>).</p>
+<p>Cada camião é descrito por dois valores:</p>
+<ul>
+<li> <code>X</code>: a secção onde o camião despeja a sua carga
+
+</li><li> <code>S</code>: o tamanho da carga do camião (define até onde as pedras se espalham)
+</li></ul>
+<p>Um camião de tamanho <code>S</code> que despeja pedras na secção <code>X</code> irá distribuí-las da seguinte forma:</p>
+<ul>
+<li>    A secção <code>X</code> recebe <code>S</code> pedras.
+
+</li><li>    As secções <code>X ± 1</code> recebem <code>S - 1</code> pedras.
+
+</li><li>    As secções <code>X ± 2</code> recebem <code>S - 2</code> pedras.
+
+</li><li> ...
+
+</li><li> As secções <code>X ± (S - 1)</code> recebem <code>1</code> pedra.
+</li></ul>
+<p>Se algumas pedras saírem fora dos limites do terreno (isto é, para a secção <code>0</code> ou para a secção <code>N + 1</code>), podes ignorá-las — isso já não é da tua responsabilidade.</p>
+<p>A tua tarefa é calcular quantas pedras existem em cada secção após todos os camiões terem descarregado.</p>
+<h2>Input</h2>
+<p>A primeira linha contém dois inteiros <code>N</code> e <code>M</code> (<code>1 ≤ N, M ≤ 100,000</code>) — o número de secções e o número de camiões.</p>
+<p>As <code>M</code> linhas seguintes contêm dois inteiros <code>X</code> e <code>S</code> (<code>1 ≤ X ≤ N, 1 ≤ S ≤ 5</code>) — a secção onde o camião descarrega e o tamanho do camião.</p>
+<h2>Output</h2>
+<p>Imprime uma única linha com <code>N</code> inteiros, separados por espaços, representando o número de pedras em cada secção, da <code>1</code> à <code>N</code>, depois de todos os despejos.</p>
+<h2>Exemplo 1</h2>
+<h3>Input</h3>
+<pre>
+10 1
+5 3
+</pre>
+<h3>Output</h3>
+<pre>
+0 0 1 2 3 2 1 0 0 0
+</pre>
+<h2>Exemplo 2</h2>
+<h3>Input</h3>
+<pre>
+10 2
+5 3
+9 5
+</pre>
+<h3>Output</h3>
+<pre>
+0 0 1 2 4 4 4 4 5 4
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi041.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

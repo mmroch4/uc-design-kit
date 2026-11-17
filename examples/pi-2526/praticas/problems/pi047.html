@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI047] Duck, Duck, Out! · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI047 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI047] Duck, Duck, Out!</li></ol>
+    </nav>
+    <h1>[PI047] Duck, Duck, Out!</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<h2>The Problem</h2>
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi047a.jpg"/>
+<em><strong>"Duck, duck, boom, every word strikes doom, to the pig and to the hen, you're the one left out again!"</strong></em></p>
+<p>Who doesn’t remember playing elimination rhymes as a child? The idea is simple. The rhyme above has 20 words:</p>
+<pre>
+"Duck, duck, boom, every word strikes doom, to the pig and to the hen, you're the one left out again!"
+   1     2     3     4     5      6     7    8  9   10  11 12  13  14    15   16  17   18  19   20
+</pre>
+<p>Three kids — Paul, Rachel, and Charles — decide to play this game, standing in a circle in that order. Paul starts reciting the rhyme, pointing to one child per word. Once he reaches the last person, he continues from the beginning until the rhyme ends.</p>
+<p><img alt="" loading="lazy" src="pi047c.png"/><br/>
+<strong>Figure 1</strong> - Example with 3 children.</p>
+<p>In the first round, Paul is the one left out. Then he leaves the circle, and the next round starts with Rachel. In the second round, Rachel gets out, and poor Charles ends up losing.</p>
+<p>Charles isn’t happy about this. So, knowing you’re good with programming, he comes to you for help. For a given initial configuration of players and a rhyme, he wants to know if he’ll lose the game or not. But there's a catch: the rhyme isn't always the same. Sometimes it’s long, other times it's short (e.g., "Duck, duck, out you go" has only 7 words). Can you help him?</p>
+<h2>Input</h2>
+<p>The first line contains an integer <strong>N</strong> — the number of test cases.</p>
+<p>Each test case consists of two lines:</p>
+<ul>
+<li> The first line is the rhyme (up to 50 words, made of letters and spaces, no punctuation).</li>
+<li> The second line starts with an integer <strong>K</strong> (<strong>0 &lt; K &lt; 100</strong>), followed by <strong>K</strong> names (one-word names only), listing the children in order.</li>
+</ul>
+<p>You may assume the name <code>Charles</code> always appears among the players.
+Each word in the rhyme is separated by a space. Words contain only letters (uppercase or lowercase), and names are also space-separated.</p>
+<h2>Output</h2>
+<p>For each test case, print one of the following:</p>
+<ul>
+<li><code>Charles did not survive</code> – if Charles ends up being eliminated</li>
+<li><code>Charles survived (poor NAME!)</code> – if Charles survives, and <code>NAME</code> is the player who lost</li>
+</ul>
+<h2>Example Input/Output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>2
+Duck duck boom every word strikes doom to the pig and to the hen you're the one left out again
+3 Paul Rachel Charles
+Duck duck out you go
+4 Charles Fred Peter Edward
+</pre>
+</td>
+<td>
+<pre>
+Charles survived (poor Paul!)
+Charles did not survive</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>suggestion:</strong>You can start with this code.</p>
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define FALSE 0
+#define TRUE  1
+#define SKIP_EOL {while (getchar()!='\n') ;}
+
+int readAndCountWords() {
+  char ch= getchar();
+  int nwords = 0;
+  while (ch!='\n') {
+    while ((ch=getchar())!=' ' &amp;&amp; ch!='\n') ;
+    nwords++;
+    while (ch!='\n' &amp;&amp; (ch=getchar()==' '));
+  }
+  return nwords;
+}
+
+int main() {
+  int ncases, nwords, npersons, pos;
+  int i, j;
+
+  scanf("%d",&amp;ncases);
+  SKIP_EOL; // skip end_of_line
+
+  for (int c=0; c&lt;ncases; c++) {
+    nwords= readAndCountWords();
+    // read persons
+
+    // Do calculation
+
+}
+</pre>
+
+</section><section lang="pt">
+
+<h2>O problema</h2>
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi047a.jpg"/>
+<em><strong>"Pim, Pam, Pum, cada bola mata um, p'ra galinha e para o peru quem se livra és mesmo tu"</strong></em>
+</p><p>Quem não se lembra de ter feito este jogo quando era pequeno? A ideia é muito simples.
+A frase atrás descrita tem 19 palavras:
+
+</p><pre>
+"Pim, Pam, Pum, cada bola mata um, p'ra galinha e para o peru quem se livra és mesmo tu"
+  1    2     3    4   5    6   7    8      9    10 11  12 13   14  15  16   17  18   19
+</pre>
+<p>3 crianças resolveram jogar este jogo, o Paulo, a Raquel e o Carlos, que estão dispostas
+por esta ordem. O Paulo começa a dizer a frase, e em cada palavra vai apontando para as pessoas.
+Ao chegar ao fim da lista de pessoas, volta ao início, a ele mesmo, como exemplificado.
+
+</p><p><img alt="" loading="lazy" src="pi047b.jpg"/><br/>
+<strong>Figura 1</strong> - Exemplo do jogo do "Pim, Pam, Pum" com 3 crianças. 
+
+</p><p>Quem se livrava no início era o Paulo. Agora imagina que o jogo continuava. A pessoa que se livrou
+sai da lista, e a contagem recomeça na próxima pessoa (neste caso a Raquel). Quem se livrava a seguir era a
+Raquel e o Carlos, coitado, era o que não se livrava.
+
+</p><p>Descontente com isto, o Carlos, sabendo que és um bom programador, resolveu
+pedir-te ajuda. O que ele quer saber é, dada uma configuração inicial, se ele irá perder o jogo. O pior
+é que ele não sabe que frase vai ser usada. Por vezes e aquela frase comprida, outras vezes é uma mais pequena
+(como por exemplo, "Pim, Pam, Pum, quem se livra és tu", que neste caso teria 7 palavras). Podes ajudá-lo?
+
+</p><h2>Input</h2>
+<p>A primeira linha contém um número <strong>N</strong> indicando o número de casos a analisar-
+</p><p>De seguida vêm N casos, cada um definido por duas linhas:
+</p><ul>
+<li> Na primeira vez a frase que vai ser usada para a contagem (com não mais do que 50 palavras)
+  </li><li> Na segunda vem um número <strong>K</strong> (<strong>0&lt;K&lt;100</strong>), indicando o número de crianças que vão jogar o jogo,
+       logo seguido de <strong>K</strong> nomes, indicando o nome das crianças.
+</li></ul>
+<p>Podes assumir que um dos nomes (que são sempre formados por uma única palavra)
+será sempre <code>"Carlos"</code> e que a frase será <strong>apenas</strong> constituída
+por letras (maísculas ou minúsculas, mas sem acentos) e espaços (para efeitos de contagem, uma palavra é uma sequência
+de caracteres delimitada por espaços ou mudanças de linha).
+
+</p><h2>Output</h2>
+
+Para cada caso, vem uma linha de output:
+<ul>
+<li><code>"O Carlos nao se livrou"</code>, indicando que o Carlos perde o jogo
+</li><li><code>"O Carlos livrou-se (coitado do NOME!)"</code>, onde <code><strong>NOME</strong></code> indica a pessoa que perde o jogo.
+</li></ul>
+<h2>Exemplo de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>2
+Pim Pam Pum cada bola mata um pra galinha e para o peru quem se livra es mesmo tu
+3 Paulo Raquel Carlos
+Pim Pam Pum quem se livra es tu
+4 Fernando Eduardo Pedro Carlos
+</pre>
+</td>
+<td>
+<pre>O Carlos nao se livrou
+O Carlos livrou-se (coitado do Pedro!)</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>sugestão:</strong>Pode começar com o código seguinte.</p>
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define FALSE 0
+#define TRUE  1
+#define SKIP_EOL {while (getchar()!='\n') ;}
+
+int readAndCountWords() {
+  char ch= getchar();
+  int nwords = 0;
+  while (ch!='\n') {
+    while ((ch=getchar())!=' ' &amp;&amp; ch!='\n') ;
+    nwords++;
+    while (ch!='\n' &amp;&amp; (ch=getchar()==' '));
+  }
+  return nwords;
+}
+
+int main() {
+  int ncases, nwords, npersons, pos;
+  int i, j;
+
+  scanf("%d",&amp;ncases);
+  SKIP_EOL; // skip end_of_line
+
+  for (int c=0; c&lt;ncases; c++) {
+    nwords= readAndCountWords();
+    // read persons
+
+    // Do calculation
+
+}
+</pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi047.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

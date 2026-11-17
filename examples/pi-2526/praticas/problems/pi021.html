@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI021] Binary Search Tutorial · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI021 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI021] Binary Search Tutorial</li></ol>
+    </nav>
+    <h1>[PI021] Binary Search Tutorial</h1>
+    <div class="uc-content">
+<h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi021.png"/>
+</p>
+<p>Given an ordered sequence, you want to know if several other numbers belong to it.</p>
+<h2>
+Input
+</h2>
+<p>The first line of input has one integer <code>n</code> (<code>1 ≤ n ≤ 200'000</code>), corresponding to the length of the ordered sequence.</p>
+<p>The second line of input has one line with <code>n</code> integers, separated by spaces, ordered from smallest to largest
+(every integer will be at least 1 and at most 1'000'000'000)</p>
+<p>The third line of input has one integer <code>m</code> (<code>1 ≤ m ≤ 200'000</code>), corresponding to the quantity of numbers you want to know</p>
+<p>The fourth line of input has one line with <code>m</code> integers, separated by spaces, each at least 1 and at most 1'000'000'000.</p>
+<h2>
+Output
+</h2>
+<p>Print one line with <code>m</code> strings, <code>yes</code> if the corresponding value belongs to the sequence,
+<code>no</code> if the corresponding value does not belong to the sequence</p>
+<h2><a id="SECTION00022000000000000000">
+Example 1</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+3
+2 2 5
+3
+5 5 2
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+yes yes yes
+</pre>
+<h2><a id="SECTION00023000000000000000">
+Example 2</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+5
+1 2 2 3 6
+5
+5 2 10 7 9
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+no yes no no no
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi021.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI071] Sum of All Levels · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI071 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI071] Sum of All Levels</li></ol>
+    </nav>
+    <h1>[PI071] Sum of All Levels</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p>In this
+problem, you should only submit a file named <strong>pi071.c</strong> containing
+a line with <code>#include "binaryTree.h"</code> and the implementation of the
+functions <strong>sumLevels</strong> and <strong>sumTLevels</strong> as described below
+(a complete program is not required). Check code at the end and
+explanation on how to compile.
+</p><p>You may assume that on Mooshak you will have access to the binary tree
+implementation code (<a href="binaryTree.h"><code>binaryTree.h</code></a> and <a href="binaryTree.c"><code>binaryTree.c</code></a>) as
+provided in class.
+
+</p>
+<h2>Functions to Submit</h2>
+<ul>
+<li><strong><code>int *sumLevels(BTNode *n, int *size)</code></strong>
+<p>Recursive auxiliary function that returns a dynamically allocated
+    array where position <code>k</code> contains the sum of all node values at
+    depth <code>k</code> in the subtree rooted at <code>n</code>. Sets
+    <code>*size</code> to the number of levels. Returns <code>NULL</code> and sets
+    <code>*size = 0</code> for an empty subtree. The caller is responsible for
+    freeing the returned array.</p>
+</li>
+<li><strong><code>int *sumTLevels(BTree *t, int *size)</code></strong>
+<p>Wrapper function that calls <code>sumLevels</code> on the root of
+    tree <code>t</code> and returns the result.</p>
+</li>
+</ul>
+<p>The following figure illustrates a binary tree. For this tree the
+returned array should be <code>{6, 13, 40, 17}</code>:</p>
+<p><img alt="" loading="lazy" src="pi071.png"/></p>
+
+<h2>Input/Output Examples</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Call</th>
+<th scope="col">Result</th>
+</tr>
+<tr>
+<td>sumTLevels(<code>6 3 2 N 1 N N 5 N 7 N N 10 8 N 9 N N 25 N N</code>)</td>
+<td>{6,13,40,17}</td>
+</tr>
+<tr>
+<td>sumTLevels(<code>1 2 3 4 5 6 N N N N N N N</code>)</td>
+<td>{1,2,3,4,5,6}</td>
+</tr>
+<tr>
+<td>sumTLevels(<code>14 4 3 N N 9 7 5 N N N N 18 16 15 N N 17 N N 20 N N</code>)</td>
+<td>{14,22,48,39,5}</td>
+</tr>
+</table></div>
+
+<h2>How to compile locally</h2>
+<p>To compile locally you will need the following files:
+</p><ul>
+<li><a href="binaryTree.h"><code>binaryTree.h</code></a> and <a href="binaryTree.c"><code>binaryTree.c</code></a> — binary tree
+      implementation. The type <code>NodeInfo</code> is set to <code>int</code>.</li>
+<li><code>pi071.c</code> — your code with the required functions.</li>
+<li><a href="test071.c"><code>test071.c</code></a> — file with the <code>main()</code> function handling
+      input reading and output printing.</li>
+</ul>
+<p>To compile, run in the folder where the files are located:
+<code>gcc test071.c binaryTree.c pi071.c</code>, which will generate an
+executable <code>a.out</code>.</p>
+<p><strong>Test code</strong>, file: <a href="test071.c"><code>test071.c</code></a></p>
+<pre>// PI071 Testing
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "binaryTree.h"
+
+int main(void) {
+  int n;
+  scanf("%d", &amp;n);
+
+  for (int i = 0; i &lt; n; i++) {
+    BTree t;
+    readTree(&amp;t);
+
+    int size = 0;
+    int *sums = sumTLevels(&amp;t, &amp;size);
+
+    printf("sumLevels(t) = {");
+    for (int j = 0; j &lt; size; j++) {
+      if (j &gt; 0) printf(",");
+      printf("%d", sums[j]);
+    }
+    printf("}\n");
+
+    free(sums);
+    freeTree(t.root);
+  }
+
+  return 0;
+}
+</pre>
+
+</section><section lang="pt">
+
+<p>Neste problema
+deverá apenas submeter um ficheiro <strong>pi071.c</strong> contendo uma linha
+com <code>#include "binaryTree.h"</code> e a implementação das funções
+<strong>sumLevels</strong> e <strong>sumTLevels</strong> como a seguir descrito (não é
+necessário um programa completo). Veja o código no final, bem como como
+compilar.
+</p><p>Pode assumir que terá acesso no Mooshak ao código de implementação da
+árvore binária (<a href="binaryTree.h"><code>binaryTree.h</code></a> e <a href="binaryTree.c"><code>binaryTree.c</code></a>) como
+fornecido nas aulas.
+
+</p>
+<h2>Funções a submeter</h2>
+<ul>
+<li><strong><code>int *sumLevels(BTNode *n, int *size)</code></strong>
+<p>Função auxiliar recursiva que devolve um array dinamicamente
+    alocado onde a posição <code>k</code> contém a soma dos valores de todos
+    os nós à profundidade <code>k</code> na subárvore com raiz em <code>n</code>.
+    Define <code>*size</code> com o número de níveis. Devolve <code>NULL</code> e
+    define <code>*size = 0</code> para uma subárvore vazia. O chamador é
+    responsável por libertar o array devolvido.</p>
+</li>
+<li><strong><code>int *sumTLevels(BTree *t, int *size)</code></strong>
+<p>Função wrapper que chama <code>sumLevels</code> na raiz da árvore
+    <code>t</code> e devolve o resultado.</p>
+</li>
+</ul>
+<p>A figura seguinte ilustra uma árvore binária. Para esta árvore o
+array devolvido deve ser <code>{6, 13, 40, 17}</code>:</p>
+<p><img alt="" loading="lazy" src="pi071.png"/></p>
+
+<h2>Exemplos de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Chamada</th>
+<th scope="col">Resultado</th>
+</tr>
+<tr>
+<td>sumTLevels(<code>6 3 2 N 1 N N 5 N 7 N N 10 8 N 9 N N 25 N N</code>)</td>
+<td>{6,13,40,17}</td>
+</tr>
+<tr>
+<td>sumTLevels(<code>1 2 3 4 5 6 N N N N N N N</code>)</td>
+<td>{1,2,3,4,5,6}</td>
+</tr>
+<tr>
+<td>sumTLevels(<code>14 4 3 N N 9 7 5 N N N N 18 16 15 N N 17 N N 20 N N</code>)</td>
+<td>{14,22,48,39,5}</td>
+</tr>
+</table></div>
+
+<h2>Como compilar localmente</h2>
+<p>Para compilar localmente vai precisar de ter os seguintes ficheiros:
+</p><ul>
+<li><a href="binaryTree.h"><code>binaryTree.h</code></a> e <a href="binaryTree.c"><code>binaryTree.c</code></a> — implementação da
+      árvore binária. O tipo <code>NodeInfo</code> está configurado para
+      <code>int</code>.</li>
+<li><code>pi071.c</code> — o seu código com as funções pedidas.</li>
+<li><a href="test071.c"><code>test071.c</code></a> — ficheiro com a função <code>main()</code> que trata
+      da leitura e escrita.</li>
+</ul>
+<p>Para compilar execute na pasta onde estão os ficheiros:
+<code>gcc test071.c binaryTree.c pi071.c</code>, que vai gerar um executável
+<code>a.out</code>.</p>
+<p><strong>Código para testes</strong>, ficheiro: <a href="test071.c"><code>test071.c</code></a></p>
+<pre>// PI071 Testes
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "binaryTree.h"
+
+int main(void) {
+  int n;
+  scanf("%d", &amp;n);
+
+  for (int i = 0; i &lt; n; i++) {
+    BTree t;
+    readTree(&amp;t);
+
+    int size = 0;
+    int *sums = sumTLevels(&amp;t, &amp;size);
+
+    printf("sumLevels(t) = {");
+    for (int j = 0; j &lt; size; j++) {
+      if (j &gt; 0) printf(",");
+      printf("%d", sums[j]);
+    }
+    printf("}\n");
+
+    free(sums);
+    freeTree(t.root);
+  }
+
+  return 0;
+}
+</pre>
+
+<p>Algoritmos e Estruturas de Dados — Exercícios de Programação<br/>
+DCC/FCUP - Faculdade de Ciências da Universidade do Porto</p>
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi071.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

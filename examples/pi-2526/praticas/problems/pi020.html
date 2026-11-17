@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI020] License Plate · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI020 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI020] License Plate</li></ol>
+    </nav>
+    <h1>[PI020] License Plate</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi020.png"/>
+</p>
+<p>
+In your country, license plates are issued in a unique alphabetical order. 
+It started with the first car receiving the plate <code>a</code>, the second <code>b</code>, and so on until <code>z</code>.
+</p>
+<p>
+Once they reached <code>z</code>, they began issuing plates like <code>aa</code>, <code>ab</code>, ..., and so forth, continuing alphabetically just like counting in base-26 with lowercase letters.
+</p>
+<p>
+The sequence follows this logic: after <code>z</code> comes <code>aa</code>, then <code>ab</code>, and eventually <code>az</code>, <code>ba</code>, ..., until <code>zz</code>, after which the system continues to <code>aaa</code>, and so on.
+</p>
+<p>
+One day, as you're walking down the street, a car drives past you. Curious about how many cars have been registered so far, you glance at its license plate and start to wonder: 
+</p>
+<p>
+"How many license plates were issued before this one?"
+</p>
+<h2>Task</h2>
+<p>
+Given a license plate, determine how many cars have been assigned a license plate before (and including) this one.
+</p>
+<h2>
+Input
+</h2>
+<p>
+ou are given a single line containing a string of length between 1 and 6 characters, composed only of lowercase English letters.
+</p>
+<h2>
+Output
+</h2>
+<p>
+Print a single line with a number representing how many license plates have been issued, up to and including the given one.
+</p>
+<h2><a id="SECTION00022000000000000000">
+Example 1</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+a
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+1
+</pre>
+<h2>
+Example 2
+</h2>
+<h3>
+Input
+</h3>
+<pre>
+aa
+</pre>
+<h3>
+Output
+</h3>
+<pre>
+27
+</pre>
+<h2><a id="SECTION00023000000000000000">
+Example 3</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+z
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+26
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi020.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

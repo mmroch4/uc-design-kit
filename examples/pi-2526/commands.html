@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linux Commands Reference · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming 2025/26: Linux Commands Reference.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="materiais.html">Materials</a></li><li aria-current="page">Linux Commands Reference</li></ol>
+    </nav>
+    <h1>Linux Commands Reference</h1>
+    <div class="uc-content">
+<div class="uc-table"><table>
+<thead>
+<tr>
+<th scope="col">Command</th>
+<th scope="col">Descrption</th>
+<th scope="col">Example</th>
+<th scope="col">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><code>ls</code></td><td>List the files and folders in the current directory.</td><td><code>ls -l</code></td><td>List the files in detailed format.</td></tr>
+<tr><td><code>man</code></td><td>Show the manual for a command.</td><td><code>man ls</code></td><td>Show the manuel of the command <code>ls</code>.</td></tr>
+<tr><td><code>cd</code></td><td>Change to another directory.</td><td><code>cd /home/user</code></td><td>Go to the directory <code>/home/user</code>.</td></tr>
+<tr><td><code>pwd</code></td><td>Show the path for the currect directory.</td><td><code>pwd</code></td><td>Show the complete path of the current directory.</td></tr>
+<tr><td><code>mkdir</code></td><td>Create a new directory.</td><td><code>mkdir dir_docs</code></td><td>Create the directory <code>dir_docs</code>.</td></tr>
+<tr><td><code>rmdir</code></td><td>Remove a empty directory.</td><td><code>rmdir dir_docs</code></td><td>Remove <code>dir_docs</code>, if it is empty.</td></tr>
+<tr><td><code>rm</code></td><td>Remove files or folders.</td><td><code>rm -r folder</code></td><td>Remove a <code>folder</code> and all its content.</td></tr>
+<tr><td><code>cp</code></td><td>Copy files or folders.</td><td><code>cp file.txt backup/</code></td><td>Copy <code>file.txt</code> to the folder <code>backup/</code>.</td></tr>
+<tr><td><code>mv</code></td><td>Move or rename files and directories.</td><td><code>mv file.txt new_name.txt</code></td><td>Rename <code>file.txt</code> to <code>new_name.txt</code>.</td></tr>
+<tr><td><code>find</code></td><td>Search for files and directories on the system.</td><td><code>find /home -name "*.txt"</code></td><td>Search text files (<code>.txt</code>) in <code>/home</code>.</td></tr>
+<tr><td><code>grep</code></td><td>Search for text patterns within files.</td><td><code>grep "error" log.txt</code></td><td>Search the word "error" inside of <code>log.txt</code>.</td></tr>
+<tr><td><code>tar</code></td><td>Compress or extract files.</td><td><code>tar -cvf backup.tar folder/</code></td><td>Create a file <code>backup.tar</code> with the files of the <code>folder/</code>.</td></tr>
+<tr><td><code>zip</code> / <code>unzip</code></td><td>Compressing and decompressing ZIP files.</td><td><code>zip file.zip doc.txt</code></td><td>Compress <code>doc.txt</code> in <code>file.zip</code>.</td></tr>
+<tr><td><code>wget</code></td><td>Downloads files from the web.</td><td><code>wget http://site.com/file.zip</code></td><td>Download <code>file.zip</code> from specific site.</td></tr>
+<tr><td><code>curl</code></td><td>Data transfer via various protocols.</td><td><code>curl -O http://site.com/file.zip</code></td><td>Download the <code>file.zip</code> used <code>curl</code>.</td></tr>
+<tr><td><code>cat</code></td><td>Display the contents of a file.</td><td><code>cat text.txt</code></td><td>Display the contents of the file <code>text.txt</code>.</td></tr>
+<tr><td><code>less</code></td><td>View files page by page.</td><td><code>less text.txt</code></td><td>Allow you to browse the file <code>text.txt</code>.</td></tr>
+<tr><td><code>nano</code></td><td>Simple text editor in the terminal.</td><td><code>nano text.txt</code></td><td>Open/create <code>text.txt</code> to edition on <code>nano</code>.</td></tr>
+<tr><td><code>echo</code></td><td>Display messages in the terminal.</td><td><code>echo "Hello World!"</code></td><td>Display the message <code>"Hello World!"</code> in the terminal.</td></tr>
+<tr><td><code>exit</code></td><td>Exit the current terminal session.</td><td><code>exit</code></td><td>Close the terminal or end the SSH session.</td></tr>
+<tr><td><code>wc</code></td><td>Count lines, words, and characters in files.</td><td><code>wc -l file.txt</code></td><td>Count the number of lines in <code>file.txt</code>.</td></tr>
+<tr><td><code>head</code></td><td>Show the first few lines of a file.</td><td><code>head -n 5 file.txt</code></td><td>Show the first 5 lines of <code>file.txt</code>.</td></tr>
+<tr><td><code>tail</code></td><td>Show the last few lines of a file.</td><td><code>tail -n 8 file.txt</code></td><td>Show the last 8 lines of <code>file.txt</code>.</td></tr>
+<tr><td><code>touch</code></td><td>Create an empty file or updates the modification date.</td><td><code>touch new.txt</code></td><td>Create <code>new.txt</code> if it doesn't exist or updates its date.</td></tr>
+<tr><td><code>date</code></td><td>Display the current date and time.</td><td><code>date</code></td><td>Display the system date and time.</td></tr>
+<tr><td><code>uniq</code></td><td>Remove duplicate lines from a file.</td><td><code>sort lists.txt | uniq</code></td><td>Remove duplicates from the sorted list.</td></tr>
+<tr><td><code>cut</code></td><td>Extract specific parts of lines in files.</td><td><code>cut -d"," -f2 data.csv</code></td><td>Display only the ages from a file <code>dados.csv</code> organized as <code>Name,Age</code>.</td></tr>
+<tr><td><code>tr</code></td><td>Replace or remove characters in text.</td><td><code>echo "test" | tr 'e' 'a'</code></td><td>Replace <code>"e"</code> by <code>"a"</code> on word <code>"test"</code> (result: <em>tast</em>).</td></tr>
+</tbody>
+</table></div>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/commands.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

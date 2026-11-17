@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI011] Jogo do Galo · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Enunciado do problema PI011 de Programação Imperativa (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Localização">
+      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">[PI011] Jogo do Galo</li></ol>
+    </nav>
+    <h1>[PI011] Jogo do Galo</h1>
+    <div class="uc-content">
+<p><img alt="Exemplo de um
+tabuleiro do jogo do galo." class="uc-content__float" loading="lazy" src="pi011.jpg"/>
+</p><p>Quem não conhece o famoso jogo do galo? Neste problema é-lhe pedido que dado um tabuleiro de um jogo do galo,
+com algumas jogadas possivelmente já feitas, o analise e diga se algum dos jogadores ganhou. Para complicar
+um pouco as coisas, imagine uma generalização do jogo, sempre num tabuleiro quadrado, mas que pode ser de dimensão
+diferente de 3x3. Tal como no original, os jogadores jogam à vez e ganham se conseguirem preencher completamente
+uma linha, uma coluna ou uma diagonal.
+</p>
+<h2>
+Task
+</h2>
+<p>
+Foi-lhe dado um tabuleiro do jogo do galo pré-preenchido com algumas jogadas possivelmente já feitas.
+Sua tarefa é verificar o estado do jogo.
+</p>
+<h2>Input</h2>
+<p>Na primeira linha vem um número <strong>N</strong> (<code>1 &lt;= N &lt;= 101</code>), indicando a dimensão do tabuleiro (que é sempre quadrado).<br/>
+Seguem-se <strong>N</strong> Linhas, cada uma com <strong>N</strong> caracteres (<strong><code>X</code></strong>,
+<strong><code>O</code></strong> ou <strong><code>.</code></strong>) indicando o estado actual do jogo.<br/>
+Tal como esperado, <strong><code>X</code></strong> e <strong><code>O</code></strong> representam uma casa ocupada por um dos dois jogadores,
+e <strong><code>.</code></strong> representa uma casa vazia.<br/>
+Pode assumir que será sempre um estado de jogo válido (por exemplo, nunca acontecerá haver dois vencedores).
+
+</p><h2>Output</h2>
+
+O output deverá ser uma única linha indicando qual o estado do jogo:
+<ul>
+<li><strong><code>Ganhou o X</code></strong> - Caso o jogador X consiga ter preenchido uma linha, coluna, ou diagonal
+  </li><li><strong><code>Ganhou o O</code></strong> - Caso o jogador O consiga ter preenchido uma linha, coluna, ou diagonal
+  </li><li><strong><code>Empate</code></strong> - Nenhum dos jogadores ganhou, e o jogo já terminou
+  </li><li><strong><code>Jogo incompleto</code></strong> - Nenhum dos jogadores ganhou, mas o jogo ainda não terminou
+</li></ul>
+<h2>Exemplo de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col"> </th>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<th scope="col">Exemplo 1</th>
+<td>
+<pre>
+3
+...
+...
+...
+</pre>
+</td>
+<td>Jogo incompleto<br/> </td>
+</tr>
+<tr>
+<th scope="col">Exemplo 2</th>
+<td>
+<pre>
+4
+XXXX
+OOO.
+....
+....
+</pre>
+</td>
+<td>Ganhou o X<br/> </td>
+</tr>
+<tr>
+<th scope="col">Exemplo 3</th>
+<td>
+<pre>
+2
+XO
+O.
+</pre>
+</td>
+<td>Ganhou o O<br/> </td>
+</tr>
+<tr>
+<th scope="col">Exemplo 4</th>
+<td>
+<pre>
+3
+XOX
+OOX
+XXO
+</pre>
+</td>
+<td>Empate<br/> </td>
+</tr>
+</table></div>
+
+ <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
+    </div>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi011_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

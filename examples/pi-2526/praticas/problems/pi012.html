@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI012] Word Search · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI012 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI012] Word Search</li></ol>
+    </nav>
+    <h1>[PI012] Word Search</h1>
+    <div class="uc-content">
+<p>Everyone knows the "Word Search" puzzle, which basically consists of finding words in a grid of letters.</p>
+<p>A word search is essentially a grid of letters, always uppercase, and a word can be found only horizontally (from right to left or from left to right) or vertically (from top to bottom, or from bottom to top). For this problem, <strong>words cannot appear diagonally</strong>.</p>
+<p>Your task is to solve a word search puzzle.</p>
+<p>For example, imagine you had to search for the following words in the word search shown in the figure:
+
+</p><pre>SOPA
+LETRA
+EDA</pre>
+<img alt="" class="uc-content__float" loading="lazy" src="pi012.jpg"/>
+<p>The idea is that your program discovers where the words are. To show that you really found them, all the letters that do not belong to any word should be replaced with a dot, as illustrated in the figure. See the input and output example to clarify what you should do.</p>
+<h2>Input</h2>
+<p>An input file contains several test cases.</p>
+<p>The first line of each test case contains two numbers <code>LINS COLS</code>, indicating respectively
+the number of rows and columns of the word search (<code>1 ≤ LINS,COLS ≤ 100</code>).
+</p><p>The following <code>LINS</code> lines contain the grid, each with <code>COLS</code> uppercase letters,
+without spaces between them.</p>
+<p>Next comes <code>N</code> (<code>1 ≤ N ≤ 50</code>), the number of words to search for. The next
+<code>N</code> lines contain the words themselves, also represented only by uppercase letters (each word
+has a maximum length of 50 letters). It is guaranteed that each of these words appears in the grid
+exactly once (in one of the four valid directions).
+</p><p>A case with 0 rows and 0 columns signals the end of the input and should not be processed.
+
+</p><h2>Output</h2>
+<p>For each case, you should first print a line of output, <code>"Input #NUM"</code>, where
+<code>NUM</code> represents the case number, followed by the printing of the word search in the required
+format, with the words highlighted.
+
+</p><p>See the example to clarify how the output should be formatted.<br/>
+</p><h2>Examples input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>4 5
+SBCDA
+OFGHD
+PJKLE
+ARTEL
+3
+SOPA
+LETRA
+EDA
+8 10
+EABDFGHJNM
+SASDDFOCVB
+TXSCSFTCAQ
+EZVFACILSD
+AQWUHNUFSV
+PROBLEMADA
+HCVDASEFVB
+WMLFACIFSD
+5
+ESTE
+PROBLEMA
+FICA
+MUITO
+FACIL
+0 0
+</pre>
+</td>
+<td>
+<pre>Input #1
+S...A
+O...D
+P...E
+ARTEL
+Input #2
+E.........
+S.....O...
+T.....T...
+E..FACIL..
+......U...
+PROBLEMA..
+..........
+....ACIF..
+</pre></td>
+</tr>
+</table></div>
+
+ <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi012.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

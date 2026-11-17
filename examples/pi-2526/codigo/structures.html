@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Examples: Structures · Imperative Programming 2025/26</title>
+  <meta name="description" content="Imperative Programming (CC1003), example code from the lectures: Examples: Structures.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Código</a></li><li aria-current="page">Examples: Structures</li></ol>
+    </nav>
+    <h1>Examples: Structures</h1>
+    <div class="uc-content">
+<p>Defining structures data types and manipulating arrays of structures:</p>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+//********************************************
+// Contacts list: example of using structures
+// Abril 2025
+// Fernando Silva
+//********************************************
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAXCONTACTS  1000
+#define MAXNAME      100
+#define EOL          '\n'
+#define SKIPEOL {while (getchar()!='\n') ;}
+
+// new data types
+typedef struct {
+  char  *name;
+  int     tel;
+  char *email;
+} Contact;
+
+// Global variables
+Contact myContacts[MAXCONTACTS]; // array with my contacts list
+int nContacts;                    // number of contacts in myContacts list
+
+// prototype functions
+void printContact(char *msg, int index);
+Contact readContact();
+void inputMyContacts();
+void addContact(Contact c);
+char *readName();
+int searchTelephone(int t);
+
+int main() {
+  inputMyContacts();
+  int flag;
+  scanf("%d", &flag);
+  if (flag==0) { // search for contact given telephone
+    int tel;
+    scanf("%d",&tel);
+    int index= searchTelephone(tel);
+    if (index==-1)
+      printf("Telefone %d is not in my contacts\n", tel);
+    else
+      printContact("Contact found:",index);
+  } else if (flag==1) { // add new contact
+    Contact c= readContact();
+    addContact(c);
+    printf("%d\n",nContacts);
+  }
+
+}
+
+// print 1 contact
+void printContact(char *msg, int index) {
+  printf("%s\n", msg);
+  printf("Name: %s\n",myContacts[index].name);
+  printf("Tel: %d\n", myContacts[index].tel);
+  printf("Email: %s\n", myContacts[index].email);
+}
+
+// reads a name (line of characters) from standard input
+char *readName() {
+  char ch, aux[MAXNAME], *name;
+  int  ctr= 0;
+  while ((ch=getchar())!=EOL)
+    aux[ctr++]= ch;
+  aux[ctr]= '\0';
+  name= (char *) malloc(ctr+1);
+  strcpy(name, aux);
+  return name;
+}
+// read 1 contact
+Contact readContact() {
+  Contact c;
+  c.name= readName();
+  scanf("%d",&c.tel);
+  SKIPEOL;
+  c.email= readName();
+  return c;
+}
+// read a set of contacts
+void inputMyContacts() {
+  scanf("%d", &nContacts);
+  SKIPEOL;
+  for (int i= 0; i < nContacts; i++)
+    myContacts[i]= readContact();
+}
+//
+int searchTelephone(int t) {
+  for (int i= 0; i < nContacts; i++)
+    if (myContacts[i].tel==t)
+      return i;
+  return -1;
+}
+// add 1 new contact if possible
+void addContact(Contact c) {
+  if (nContacts<MAXCONTACTS) {
+    myContacts[nContacts]= c;
+    nContacts++;
+  }
+  else
+    printf("Contacts list is full!!!\n");
+}
+</script></uc-code>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/structures.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

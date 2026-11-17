@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula Prática 07 · Recursão, Ordenação e Estruturas · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), aula prática 7: Recursão, Ordenação e Estruturas">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="7">
+    <h1>Aula Prática 07 · Recursão, Ordenação e Estruturas</h1>
+    <p class="uc-small"><a href="aula07.html" hreflang="en">English version</a></p>
+    <div class="uc-content">
+<h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
+<p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
+</p><ul>
+<li><a href="problems/pi022.html">[PI022] Quadratic Sorting</a> (peso 30%) (exercício extra)</li>
+<li><a href="problems/pi024.html">[PI024] Odd Numbers Sorting</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi026.html">[PI026] Hanoi</a> (peso 20%) (exercício principal)</li>
+<li><a href="problems/pi027.html">[PI027] Bits</a> (peso 30%) (exercício extra)</li>
+<li><a href="problems/pi028.html">[PI028] Permutations</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi029.html">[PI029] O Cobrador de Impostos</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi030.html">[PI030] Estatísticas de Acesso à Universidade</a> (peso 30%) (exercício principal)</li>
+<li><a href="problems/pi032.html">[PI032] Triathlon</a> (peso 30%)(exercício extra)</li>
+</ul>
+<p><mark><strong>Prazo de submissão:</strong> <strong>25 de Abril</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
+<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+    obterem sugestões de como abordar um determinado problema, mas
+    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
+    solução. Esta é a melhor forma de ficarem competentes na
+    resolução destes problemas (ou
+    seja aprenderem)  e habituados a ultrapassar as
+    dificuldades que possam surgir. O mesmo se aplica ao uso do
+    ChatGPT ou outras LLMs. 
+    <mark>Evitem pedir a solução, peçam antes
+    sugestões de como abordar o problem com a indicação para não vos
+    ser dado o código da solução.</mark></strong><br/>
+</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
+Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
+Cada aula vale 10% da nota desta componente.<br/>  
+Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
+Para ter 100% bastará sempre resolver os exercícios principais.</p>
+
+<h3>Exercício 1) Ordenação</h3>
+<ol>
+<li>Escreva uma função <br/>
+<pre>int desordem(int arr[], int n);
+</pre><br/>
+      que conte quantos pares de valores em um vetor <code><strong>arr</strong></code> estão fora da ordem <em>crescente</em>, ou seja, quantos pares satisfazem <code><strong>arr[i] &gt; arr[i + 1]</strong></code>.<br/><br/>
+      Exemplo:
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+Input:  arr = {3,1,2,2,4,0}; n = 6
+Output: Existem 2 pares de valores fora de ordem! // porque 3 > 1 e 4 > 0
+</script></uc-code>
+<mark><strong>Desafio:</strong></mark> 
+      Quantas correções de "fora de ordem" seriam necessárias para que a sequência dada fique toda ordenada em ordem crescente? 
+</li>
+<li>Escreva um programa que leia uma sequência de inteiros positivos da entrada padrão, terminando com zero, ordene-os e imprima-os em ordem crescente. <br/>
+    O tamanho máximo da sequência é menor que 1000. Escolha um dos três algoritmos de ordenação apresentados na aula teórica para implementar.
+<br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- A função <code><strong>main</strong></code> do seu programa deve:
+  </p><ol type="a">
+<li>declarar uma variável indexada com tamanho máximo (por exemplo, 1000),</li>
+<li>ler valores da entrada padrão até encontrar o número <strong><code>0</code></strong>,</li>
+<li>chamar uma função de ordenação de sua escolha, e</li>
+<li>imprimir a sequência ordenada final.</li>
+</ol>
+</details> 
+</li>
+<li>Implementa um programa que peça ao utilizador para inserir <code><strong>n</strong></code> números e armazene os números pares num array e os números ímpares noutro, ambos em ordem crescente. <br/>Imprime separadamente os números pares e ímpares ordenados.
+<br/>Exemplo:
+<pre>
+<em>Input:</em>  Insira o tamanho: 14
+        Insira a sequência: 2 10 4 3 70 4 55 1 0 3 5 8 9 2
+
+<em>Output:</em> Números ímpares: 1 3 3 5 9 55
+        Números pares: 0 2 2 4 4 8 10 70
+</pre>
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi024.html">[PI024] Odd Numbers Sorting </a><br/>  
+      Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
+<br/><br/><details name="hint">
+<summary><em>Sugestão </em></summary>
+<p>- O problema é essencialmente ordenar um array, mas com uma noção diferente de "menor que". Em vez de comparar directamente os valores, tens de aplicar as regras:
+  </p><ol>
+<li>Se ambos são ímpares ou ambos são pares, o menor valor vem primeiro.</li>
+<li>Se têm paridades diferentes, o ímpar vem sempre primeiro.</li>
+</ol>
+<p>- Defina uma função auxiliar <code><strong>comparable(x, y)</strong></code> que devolve 1 se <code><strong>x</strong></code> deve vir antes de <code><strong>y</strong></code>, e 0 caso contrário.
+</p><p>- Use essa função no seu algoritmo de ordenação.
+      </p></details>
+</li>
+
+<li>Escreve um programa que, dado um conjunto de <code><strong>n</strong></code> números inteiros distintos, os ordene por ordem decrescente com base no número de 1's na sua representação binária. Se dois números tiverem o mesmo número de 1's, devem ser ordenados por ordem crescente do seu valor. <br/>O output deve consistir nos números ordenados segundo estas regras (um número por linha).
+<br/>Exemplo:
+<pre>
+<em>Input:</em>  Insira o tamanho: 8
+        Insira a sequência: 5 2 15 3 9 4 6 7
+
+<em>Output:</em> Números ordenados: 
+        15   // 1111 (quatro 1's)
+        7    // 0111 (três 1's)
+        3    // 0011 (dois 1's)
+        5    // 0101 (dois 1's)
+        6    // 0110 (dois 1's)
+        9    // 1001 (dois 1's)
+        2    // 0010 (um 1)
+        4    // 0100 (um 1)
+</pre>
+</li>
+<li>Escreve a função seguinte que ordene os caracteres de uma string pelos seus códigos.<br/>
+<pre>void sort(char str[]);
+</pre><br/>
+      Exemplo:
+<pre>
+<em>Input:</em>  Insira a string: ALGORITHM
+
+<em>Output:</em> String ordenada: AGILMOORT
+</pre>
+</li>
+</ol>
+
+<h3>Exercício 2) Ainda sobre Recursão</h3>
+<ol>
+<li><strong>O Espelho Encantado.</strong> O espelho encantado de um feiticeiro só pode refletir corretamente se uma palavra ou frase for invertida usando recursão mágica.<br/>
+  	Escreva uma função recursiva para reverter uma dada palavra/frase:<br/>
+<pre>void reverseString(char str[], int start, int end);
+</pre>
+<br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Pode trocar os caracteres entre <code><strong>start</strong></code> e <code><strong>end</strong></code> recursivamente. 
+      </p></details>
+<br/>
+      Exemplo:<br/><pre>
+<em>Input:</em>  Escreva uma palavra ou uma frase: magic
+<em>Output:</em> Invertida: cigam
+</pre></li>
+
+<li><strong>A Escada Misteriosa.</strong> Um viajante está a subir uma escadaria com <code><strong>n</strong></code> degraus. Ele pode subir 1 degrau ou 2 degraus de cada vez. De quantas maneiras diferentes ele pode chegar ao topo?<br/>
+	Escreva uma função recursiva que calcula o número de formas para alcançar o topo da escadaria com <code><strong>n</strong></code> degraus:<br/>
+<pre>int countWays(int n);
+</pre>
+<ul>
+<li><strong>Casos base:</strong><ul>
+<li>Se <code><strong>n = 0</strong></code>, retorna <code><strong>1</strong></code> (1 forma para ficar no chão).</li>
+<li>Se <code><strong>n &lt; 0</strong></code>, retorna <code><strong>0</strong></code> (não é possível alcançar degraus negativos).</li>
+</ul></li>
+
+<li><strong>Caso recursivo:</strong><ul>
+<li><code>countWays(n) = countWays(n-1) + countWays(n-2)</code></li>
+</ul></li>
+
+</ul>
+
+	Exemplo:<br/><pre>
+<em>Input:</em>  Escreva o número de degraus: 4
+<em>Output:</em> Formas de chegar ao topo: 5
+</pre></li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi026.html">[PI026] Hanoi</a><br/> 
+      A Torre de Hanói é um puzzle clássico. Este problema foi abordado na aula teórica.<br/>
+      Tem agora a oportunidade de o implementar e enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Recorra aos slide da <a href="../apontamentos/5_recursion.pdf">aula sobre recursão</a>.
+      </p></details> 
+</li>
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi028.html">[PI028] Permutations</a><br/> 
+      Dado um inteiro <code><strong>n</strong></code>, imprime todas as permutações dos números de <code><strong>1</strong></code> a <code><strong>n</strong></code>, cada uma numa linha, por ordem lexicográfica crescente.<br/>
+      Leia o enunciado do problema com atenção e tente enviar uma solução Accepted.
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Uma permutação de <code><strong>n</strong></code> elementos é construída escolhendo um elemento para a primeira posição, e depois preenchendo as restantes <code><strong>n-1</strong></code> posições com os elementos que sobram. Isso sugere uma abordagem recursiva.
+</p><p>- Pode implementar uma função <code><strong>solve(x)</strong></code> que decide qual o elemento a colocar na posição <code><strong>x</strong></code>, e depois chame <code><strong>solve(x+1)</strong></code> para as posições seguintes.
+</p><p>- O caso base é <code><strong>x == n</strong></code>: a permutação está completa, então pode imprimi-la.
+</p><p>- <em>Nota:</em> A ordem lexicográfica é garantida automaticamente se, em cada posição, experimentar os elementos por ordem crescente (de <code><strong>1</strong></code> a <code><strong>n</strong></code>). Como itera sempre do menor para o maior, as permutações geradas ficam automaticamente ordenadas.
+</p><p>- <em>Aenção:</em> Precisa de saber quais os elementos já colocados nas posições anteriores, para não os repetir. 
+  </p><ul>
+<li>Uma forma simples é manter um array <code><strong>visited[n]</strong></code>, em que <code><strong>visited[i] = 1</strong></code> significa que o elemento <code><strong>i</strong></code> já foi usado na permutação actual.</li>
+<li>O passo de desmarcar (<code><strong>visited[i] = 0</strong></code>) é essencial, este chama-se <em><strong>backtracking</strong></em> e permite reutilizar o elemento noutras permutações.</li>
+</ul>
+</details> 
+</li>
+<li><strong>O Espelho Mágico dos Subconjuntos.</strong> Um espelho mágico revela todos os subconjuntos possíveis de um determinado conjunto de elementos. No entanto, a única forma de ativar o espelho é através da recursão!<br/>
+	Escreva uma função recursiva para gerar todos os subconjuntos de um dado conjunto e imprima todos os subconjuntos (incluindo o conjunto vazio):<br/>
+<pre>void generateSubsets(int arr[], int index, int subset[], int subsetSize);
+</pre>
+
+      Exemplo:<br/><uc-code collapsible="" data-lang="c"><script type="text/plain">
+Input:  Escreva o conjunto: {1, 2, 3}
+Output: Subconjuntos possíveis:
+        {}
+        {1}
+        {2}
+        {3}
+        {1, 2}
+        {1, 3}
+        {2, 3}
+        {1, 2, 3}
+</script></uc-code></li>
+
+</ol>
+
+<h3>Exercício 3) Estruturas</h3>
+<ol>
+<li><h4>Estrutura <code>Ponto</code></h4>
+<p>Considere a seguinte estrutura apresentada nas aulas teóricas, que representa pontos em <math>
+<msup>
+<mi>ℝ</mi>
+<mn>2</mn>
+</msup>
+</math> 
+    (no plano): </p>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+typedef struct ponto {
+  double x, y;
+} Ponto;
+</script></uc-code>
+<p>Construa um programa que responda às seguintes instruções.</p>
+<ol type="a">
+<li>Escreva uma função que calcula a distância euclidiana entre dois pontos.<br/>
+<pre>double distancia(Ponto a, Ponto b);
+</pre>
+</li>
+<li>Escreva uma função que retorna <strong><code>1</code></strong> se dois pontos são iguais e retorna <strong><code>0</code></strong> caso contrário. <br/>
+<pre>int mesmo_ponto(Ponto a, Ponto b);
+</pre>
+<em>Nota:</em> Sendo que os pontos são definidos através de número vírgula flutuante com precisão finita, dois pontos são considerados iguais se a distância euclidiana entre eles é menor que 0.000001.
+</li>
+<li>Escreva um programa que lê uma lista de 10 pontos da entrada padrão (dados pelos valores <code><strong>x</strong></code> e <code><strong>y</strong></code>) e que imprime na saída padrão o par de pontos com distância maior entre eles.</li>
+<li>Defina uma nova estrutura denominada <strong><code>Rect</code></strong> para representar <em>rectângulos</em> com lados paralelos aos eixos em um sistema de coordenadas cartesianas.<br/>
+Represente os rectângulos mediante os pontos <strong>inferior esquerdo</strong> e <strong>superior direito</strong>, usando a estrutura <strong><code>Ponto</code></strong>.</li>
+<li>Escreva uma função que calcula a area de um rectângulo.<br/>
+<pre>double rect_area(Rect r);
+</pre>
+</li>
+<li>Escreva uma função que retorna <strong><code>1</code></strong> se o ponto <code><strong>p</strong></code> está dentro do rectângulo <code><strong>r</strong></code> e retorna <strong><code>0</code></strong> caso contrário.<br/>
+<pre>int ponto_dentro(Rect r, Ponto p);
+</pre>
+</li>
+<li>Escreva uma função que retorna <strong><code>1</code></strong> se o rectângulo <code><strong>r2</strong></code> está <strong>complemente</strong> contido dentro do rectângulo <code><strong>r1</strong></code> e <strong><code>0</code></strong> caso contrário.<br/>
+<pre>int rect_dentro(Rect r1, Rect r2);
+</pre>
+</li>
+</ol>
+</li>
+<li><h4>Vectores de Estruturas</h4>
+<p>Dada uma base de dados com informação sobre alunos e disciplinas de
+  cursos de uma faculdade, pretendemos consultá-la para obter
+  informações.  As estruturas de dados que vão ser usadas pelo
+  programa, obedecem à especificação seguinte.</p>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+#define MAX 11
+#define MAXNOME 100
+
+typedef struct aluno {
+  char nome[MAXNOME], codigo[MAX];
+  int disc[MAX], nd;
+} ALUNO;
+
+typedef struct disciplina {
+  char nome[MAXNOME];
+  int ano;
+} DISCIPLINA;
+
+// Variáveis globais
+int NDisc = 9;
+DISCIPLINA Disc[MAXDISC] = {{"Programacao Imperativa",1},
+                             {"Calculo Infinitesimal I",1},
+                             {"Programacao Estruturada",1},
+                             {"Topologia",4},
+                             {"Geometria Computacional",4},
+                             {"Probabilidades e Estatistica",2},
+                             {"Teoria de Numeros",3},
+                             {"Analise Infinitesimal",3},
+                             {"Logica",3}
+                           };
+
+int NAlunos = 6;
+ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
+                           {"Anabela Moreira", "2000020004",{6,2,3,7,8,9}, 6},
+                           {"Sonia Silva", "2000020005",{5,6,1,8,9},5},
+                           {"Joao Maria Peixoto", "2000018001",{3,4,1,5}, 4},
+                           {"Joao Mario Pereira","2004010005",{8,1,2,3,4,5,6},7},
+                           {"Maria Reis", "2000020050",{5,6,1,7,3,9},6}
+                          };
+</script></uc-code>
+<p>No exemplo, Programação Imperativa é a disciplina <code><strong>0</strong></code> e
+  Programação Estruturada a disciplina <code><strong>2</strong></code>. As disciplinas a que um
+  aluno está inscrito são identificadas pelos seus números de ordem no
+  array <code><strong>Disc</strong></code>. O código de um aluno é uma sequência de 10
+  dígitos: os quatro primeiros identificam o ano de inscrição, os três
+  seguintes o código do curso, e os três últimos identificam o
+  aluno.</p>
+<ol type="a">
+<li>Escreva uma função <br/>
+<pre>void procura(char *palavranome);
+</pre><br/>
+       para imprimir o código e nome dos alunos cujo nome contêm uma palavra dada por <code><strong>palavranome</strong></code>. Por exemplo, se a palavra fosse <code><strong>"Maria"</strong></code>, deveria imprimir:<br/>
+<pre>Alunos cujo nome inclui Maria
+
+2001018003	Mariana Matias
+2000018001	Joao Maria Peixoto
+2000020050	Maria Reis
+</pre>
+<p>Não deverá ser feita qualquer ordenação dos dados.  A menos que a
+    ordenação seja explicitamente solicitada, no output deverá ser
+    mantida a ordem de ocorrência dos dados nas estruturas de dados.
+    </p></li>
+<li> Escreva uma função que escreve na cadeia de carateres <code><strong>nome</strong></code> o
+    nome de um aluno dando o seu código (a função retorna 0 se não
+    existir, e 1 caso contrário).<br/>
+<pre>int codigo2Aluno(char *codigo, char *nome);
+</pre>
+</li>
+<li> Escreva uma função 
+      que imprime na saída padrão a lista de disciplinas a que um aluno
+      está inscrito, sendo dado o nome do aluno (e retorna o número de
+      disciplinas a que está inscrito).<br/>
+<pre>int disciplinas_de_Aluno(char *nome);
+</pre>
+</li>
+<li> Escreva uma função que guarda no vetor <code><strong>indices</strong></code> os índices
+      (das posições em <code><strong>Alunos</strong></code>) dos alunos que estão inscritos a
+      uma disciplina, dando o nome da disciplina (retorna o número de
+      alunos nessas condições).<br/>
+<pre>int alunos_de_disciplina(char *disciplina, int *indices);
+</pre>
+</li>
+<li> Escreva uma função que
+      retorna o número médio de disciplinas em que os alunos dum
+      dado curso estão inscritos.<br/>
+<pre>int numero_medio(char *curso);
+</pre>
+</li>
+<li> Escreva uma função que guarda no vetor <code><strong>indices</strong></code> os índices das
+      posições (em <code><strong>Alunos</strong></code>) dos alunos dum dado curso que estão
+      inscritos a mais disciplinas do que o número médio a que se
+      encontram inscritos os alunos desse curso e que retorne o número
+      de alunos nessas condições.<br/>
+<pre>int muitas_disciplinas(char *curso, int *indices);
+</pre>
+</li>
+<li> Escreva uma função que
+  retorna o número máximo de disciplinas a que os alunos que entraram
+  num dado curso num dado ano estão inscritos. A sequência de caracteres
+  dada por <code><strong>cursoano</strong></code> foi obtida por concatenação do ano de
+  entrada com o código do curso (dados), ou seja, se fosse ”2006” e
+  ”018”, <code><strong>cursoano</strong></code> apontaria ”2006018”.<br/>
+<pre>int numero_maximo(char *cursoano);
+</pre>
+</li>
+<li> Escreva uma função  que retorna o número de disciplinas dum dado ano a que um dado aluno está  inscrito.  Assume-se que <code><strong>posaluno</strong></code> contém o
+  índice da posição do aluno em <code><strong>Alunos</strong></code>, sendo uma posição válida.<br/>
+<pre>int numero_disc(int posaluno, int ano);
+</pre>
+</li>
+<li> Escreva  uma  função  que  verifica  se  um  dado  aluno  está inscrito a disciplinas de vários anos.  A função retorna um valor qualquer diferente de zero em caso afirmativo, e 0 (zero) caso contrário. Assume-se que posaluno contém o éíndice da posição do aluno em <code><strong>Alunos</strong></code>, sendo uma posição válida.<br/>
+<pre>int varios_anos(int  posaluno);
+</pre>
+</li>
+</ol>
+
+</li><li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi029.html">[PI029] O Cobrador de Impostos</a><br/> 
+      Agora que já treinaste estruturas leia o enunciado do problema PI029 e tente enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Cada empresa tem 5 campos, cada um numa linha separada. Nota que o nome da empresa e a área de actividade são strings que podem ter espaços — por isso não podes usar <code><strong>scanf("%s", ...)</strong></code> para os ler. Usa <code><strong>fgets</strong></code> ou uma leitura carácter a carácter até ao fim da linha.
+</p><p>- O código de actividade é um inteiro entre 1 e 100. Isso permite usar um array act[101] inicializado a zero, em que <code><em>act[i]</em></code> acumula o total de rendimentos de todas as empresas com código <code><strong>i</strong></code>.
+</p><p>- Para o <code><strong>flag == 0</strong></code>, basta contar quantas posições do array são diferentes de zero.
+</p><p>- Para o <code><strong>flag == 1</strong></code>, o enunciado pede os resultados por ordem crescente de código. Como o array <code><strong>act</strong></code> está indexado pelo próprio código, basta percorrê-lo de 1 a 100 e imprimir as entradas não nulas, ie., a ordem já é crescente automaticamente.
+</p><p>- Usar uma <code><strong>struct</strong></code> para organizar a informação de cada empresa!
+      </p></details> 
+</li>
+
+<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
+<a href="problems/pi030.html">[PI030] Estatísticas de Acesso à Universidade</a><br/> 
+      Leia o enunciado do problema e tente enviar uma solução Accepted. 
+        <br/><br/><details name="hint">
+<summary><em>Sugestão</em></summary>
+<p>- Precisas de dois vectores:
+  </p><ul>
+<li>Um com todos os candidatos (necessário para o <code><strong>flag == 1</strong></code>, onde tens de imprimir pela ordem de leitura).</li>
+<li>Um com as escolas, indexado pelo código (1 a 300), onde acumulas o número de candidatos e a soma das notas.</li>
+</ul>
+<p>- Cada candidato tem 5 linhas: um inteiro, uma string, uma string, um inteiro e um inteiro. O problema é que após ler um inteiro com <code><strong>scanf</strong></code>, o <code><strong>\n</strong></code> fica no buffer e a leitura seguinte da string apanha uma linha vazia. Tens de consumir esse <code><strong>\n</strong></code> antes de ler a string.
+</p><p>- Como o código da escola é um inteiro entre 1 e 300, podes usar esse valor directamente como índice do array de escolas. 
+</p><p>- 
+      </p></details> 
+</li>
+<li><h4>Estrutura <code>Data</code></h4>
+<p>Considere a seguinte estrutura apresentada nas aulas teóricas, que representa datas: </p>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+typedef struct data {
+  int dia, mes, ano;
+} Data;
+</script></uc-code>
+<p>Construa um programa que responda às seguintes instruções.</p>
+<ol type="a">
+<li>Escreva um programa que lê um conjunto de datas da entrada padrão. A introdução das datas é terminada quando for inserido o valor <strong><code>-1</code></strong> para o dia e sabe-se que são introduzidas no máximo 10 datas. As datas devem ser armazenadas num array.</li>
+<li>Escreva uma função que compare duas datas. 
+<pre>int comparar(Data d1, Data d2);
+</pre><br/>
+A função deve retornar <strong><code>0</code></strong> se as datas forem iguais, <strong><code>-1</code></strong> se a data <code><strong>d1</strong></code> for anterior à data <code><strong>d2</strong></code> e <strong><code>1</code></strong> se a data <code><strong>d1</strong></code> for posterior à data <code><strong>d2</strong></code>.</li>
+<li>Escreva uma função que calcula a diferença entre duas datas (em dias, meses e anos).<br/>
+<pre>Data diff(Data d1, Data d2);
+</pre><br/>
+O resultados da função deve ser representado com uma variável do tipo <strong><code>Data</code></strong>.</li>
+<li>Escreva uma função que ordena o conjunto de datas lido por ordem decrescente.<br/>
+<pre>void ordena_datas(Dat datas[], int size);
+</pre>
+</li>
+<li>Escreva uma função que retorna a menor data presente no conjunto de datas.<br/>
+<pre>Data menor_data(Data datas[], int size);
+</pre>
+</li>
+<li>Escreva uma função que imprime na saída padrão todas as datas do conjunto de datas que correspondem ao ano <code>ano</code> passado como parâmetro à função.<br/>
+<pre>void datas_ano(Data datas[], int size, int ano);
+</pre>
+</li>
+</ol>
+</li>
+<li><h4>Estrutura <code>Robo</code></h4>
+<p>Considere a seguinte estrutura que representa as posições e movimentos de um robô: </p>
+<uc-code collapsible="" data-lang="c"><script type="text/plain">
+typedef enum movimento {Norte, Oeste, Sul, Este} Movimento;
+
+typedef struct posicao {
+  int x, y;
+} Posicao;
+</script></uc-code>
+<p>Construa um programa que responda às seguintes instruções.</p>
+<ol type="a">
+<li>Defina uma função que, dada uma posição inicial (<code><strong>inicio</strong></code>) e um array com <code><strong>n</strong></code> movimentos (<code><strong>mov</strong></code>), calcula a posição final do robô depois de efectuar essa sequência de movimentos.<br/>
+<pre>Posicao posFinal(Posicao inicio, Movimento mov[], int n);
+</pre>
+</li>
+<li>Defina uma função que, dadas as posições inicial (<code><strong>inicio</strong></code>) e final (<code><strong>fim</strong></code>) do robô, preenche o array <code><strong>mov</strong></code> com os movimentos suficientes para que o robô passe de uma posição para a outra.<br/>
+<pre>int caminho(Posicao inicio, Posicao fim, Movimento mov[], int n);
+</pre><br/>
+A função deverá preencher no máximo <code><strong>n</strong></code> elementos do array <code><strong>mov</strong></code> e retornar o número de elementos preenchidos. Se não for possível atingir a posição final com <code><strong>n</strong></code> movimentos, a função deverá retornar <strong><code>-1</code></strong>.
+</li>
+<li>Defina uma função que, dado um array com <code><strong>n</strong></code> posições, determina o índice da posição que está mais perto da origem.<br/>
+<pre>int maisCentral(Posicao pos[], int n);
+</pre>
+<em>Nota:</em> As coordenadas de cada ponto são números inteiros.</li>
+<li>Defina a função que, dada uma posição e um array com <code><strong>n</strong></code> posições, calcula quantas dessas posições são adjacentes à posição dada.<br/>
+<pre>int vizinhos(Posicao p, Posicao pos[], int n);
+</pre>
+</li>
+</ol>
+</li>
+</ol>
+    </div>
+    </uc-guide>
+    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07_pt.html">site original</a>.</p>
+  </uc-page>
+</body>
+</html>

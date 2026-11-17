@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI035] Contact-Management · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI035 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI035] Contact-Management</li></ol>
+    </nav>
+    <h1>[PI035] Contact-Management</h1>
+    <div class="uc-content">
+<p>
+<img alt="" class="uc-content__float" loading="lazy" src="pi035.png"/>
+</p>
+<p>After getting tired of constantly losing contact details of friends
+and colleagues,  you decided to build your own simple contact manager
+in C. You want the system to handle basic tasks like finding contacts
+born before a certain year or sorting them alphabetically. You want to start by storing contact information in a structure containing a name, email, date of birth (as an integer in the format <code>YYYYMMDD</code>), and a phone number.</p>
+<h2><a id="SECTION00021000000000000000">
+Task</a>
+</h2>
+<p>You want to be able to read from the standard input all contacts
+that you have and want to structure and manage. You are given the
+number of contacts to be read, an integer <code>n</code> (<code>1 &lt; n  ≤ 1000</code>). Each contact is characterized as follows:
+
+</p><ul>
+<li> Name (a single word, up to 100 characters)
+
+  </li><li> Email (a single word, up to 30 characters)
+
+  </li><li> Date of birth (as an integer YYYYMMDD, e.g., 19980512)
+
+  </li><li> Phone (an integer)
+</li></ul>
+After the list of contacts, you are given a flag that defines a
+different task for you to solve:
+
+<ul>
+<li> flag=0, then you are also given a month (value from 01 to 12) and want to list all
+  contacts that have birth dates in the same month.
+  </li><li> flag=1, then print the contacts list in alphabetical order of contact names. 
+</li></ul>
+<h2>
+Input
+</h2>
+<p>The first line of input contains an integer <code>n</code> (<code>1 ≤ n ≤
+1000</code>) — the number of contacts. </p>
+<p>The next n x 4 lines contain the contacts data in the order defined
+previously</p>
+<p>Then it follows an integer, the <code>flag</code>. If it is:
+</p><ul>
+<li> 0 - then an integer <code>m</code> is given with the value of a
+  month (1 ≤ m ≤ 12).
+  </li><li> 1 - nothing else follows.
+</li></ul>
+<h2>
+Output
+</h2>
+<p>If <code>flag=0</code>, output all contacts whose birthday is in the same
+  month as the one given in input. Just provide the name and phone,
+  both in same line.</p>
+<p> If <code>flag=1</code>, we output all contacts sorted alphabetically
+  by the name of each contact.
+
+  </p><h3>Given code:</h3>
+<p>Use this code as a starting point and complete the missing parts. If
+  you decide, you can build your own code from scratch.</p>
+<pre>// Libraries
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+// Constants
+#define MAXCONTACTS  1000
+#define MAXNAME      100
+#define EOL          '\n'
+#define SKIPEOL {while (getchar()!='\n') ;}
+
+// new data types
+typedef struct {
+  // to be implemented
+  // define the structure
+  // pay attention of functions already given
+} Contact;
+
+// Global variables
+Contact myContacts[MAXCONTACTS]; // array with my contacts list
+int     nContacts;               // number of contacts in myContacts list
+
+// prototype functions
+void printContact(int);
+Contact readContact();
+void inputMyContacts();
+void printContactsWithBirth(int);
+char *readName();
+void sortContacts();
+
+int main() {
+  inputMyContacts();
+  int flag;
+  scanf("%d", &amp;flag);
+  if (flag==0) { 
+    int month;
+    scanf("%d",&amp;month);
+    printContactsWithBirth(month); // to be implemented
+  } else if (flag==1) { // sort
+    sortContacts();                // to be implemented
+    for (int i=0; i&lt;nContacts; i++)
+      printContact(i);             // to be implemented
+  }
+}
+
+// print 1 contact
+void printContact(int index) {
+  // to be implemented
+}
+
+// reads a name (line of characters) from standard input
+char *readName() {
+  char ch, aux[MAXNAME], *name;
+  int  ctr= 0;
+  while ((ch=getchar())!=EOL)
+    aux[ctr++]= ch;
+  aux[ctr]= '\0';
+  name= (char *) malloc(ctr+1);
+  strcpy(name, aux);
+  return name;
+}
+// read 1 contact
+Contact readContact() {
+  Contact c;
+  c.name= readName();
+  c.email= readName();
+  scanf("%d %d",&amp;c.birth, &amp;c.phone);
+  SKIPEOL;
+  return c;
+}
+// read a set of contacts
+void inputMyContacts() {
+  scanf("%d", &amp;nContacts);
+  SKIPEOL;
+  for (int i= 0; i &lt; nContacts; i++) 
+    myContacts[i]= readContact();
+}
+// 
+void printContactsWithBirth(int month) {
+  // to be implemented
+}
+//
+void sortContacts() {
+  // to be implemented
+}
+</pre>
+<h2><a id="SECTION00022000000000000000">
+Example 1</a>
+</h2>
+<h3><a id="SECTION00022100000000000000">
+Input</a>
+</h3>
+<pre>
+5
+Joao Maria
+jmaria@nodomain.pt
+19900304
+934567899
+Maria Joao
+mjoao@nodomain.pt
+20001112
+957634567
+Francisco Silva
+xicos@nodomain.pt
+20030320
+967676767
+Ana Feliz
+afeliz@nodomain.pt
+20051125
+987587761
+Ricardo Coracao de Leao
+rleao@nodomain.pt
+20050316
+919191911
+0
+11
+</pre>
+<h3><a id="SECTION00022200000000000000">
+Output</a>
+</h3>
+<pre>
+Maria Joao 957634567
+Ana Feliz 987587761
+</pre>
+<h2><a id="SECTION00023000000000000000">Example 2</a>
+</h2>
+<h3><a id="SECTION00023100000000000000">
+Input</a>
+</h3>
+<pre>
+5
+Joao Maria
+jmaria@nodomain.pt
+19900304
+934567899
+Maria Joao
+mjoao@nodomain.pt
+20001112
+957634567
+Francisco Silva
+xicos@nodomain.pt
+20030320
+967676767
+Ana Feliz
+afeliz@nodomain.pt
+20051125
+987587761
+Ricardo Coracao de Leao
+rleao@nodomain.pt
+20050316
+919191911
+1
+</pre>
+<h3><a id="SECTION00023200000000000000">
+Output</a>
+</h3>
+<pre>
+Ana Feliz
+afeliz@nodomain.pt
+20051125
+987587761
+Francisco Silva
+xicos@nodomain.pt
+20030320
+967676767
+Joao Maria
+jmaria@nodomain.pt
+19900304
+934567899
+Maria Joao
+mjoao@nodomain.pt
+20001112
+957634567
+Ricardo Coracao de Leao
+rleao@nodomain.pt
+20050316
+919191911
+</pre>
+<br/>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi035.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

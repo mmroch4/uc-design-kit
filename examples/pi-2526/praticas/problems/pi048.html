@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PI048] Between Brackets · Imperative Programming 2025/26</title>
+  <meta name="description" content="Statement of problem PI048 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../course.js"></script>
+  <script src="../../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="materials" search="noindex">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI048] Between Brackets</li></ol>
+    </nav>
+    <h1>[PI048] Between Brackets</h1>
+    <div class="uc-content">
+<section lang="en">
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi048.jpg"/>
+Joanna was doing a math exercise when she came across the following expression:
+</p><pre>( 1 + ( 2 + 3 * [ 4 + 5 * ( 6 * ( 7 ) ) ] ) )</pre>
+<p>"So many brackets!" she thought. And before even starting the problem, another thought came to mind: 
+"What if the teacher made a mistake and didn’t place the brackets correctly? Then it’s not even worth solving."
+Joanna is quite the procrastinator.</p>
+<p>Since Joanna trusts you, she’s asking for your help: write a
+program that checks whether an expression has well-formed brackets so she can confidently get to work.</p>
+<p>Your task is to build a bracket validator. It must determine if the brackets in a given mathematical expression
+are well-formed and, if not, report the first position where an error occurs. You don’t need to worry about the actual
+mathematics — just the brackets.</p>
+<h2>Input</h2>
+<p>The first line contains an integer <strong>N</strong>, the number of expressions to analyze.</p>
+<p>The following <strong>N</strong> lines contain mathematical expressions with:</p>
+<ul>
+<li>Digits, representing integer numbers</li>
+<li>Operators: <strong>+</strong>, <strong>-</strong>, <strong>*</strong>, or <strong>/</strong></li>
+<li>Round and square brackets: <strong>(</strong>, <strong>)</strong>, <strong>[</strong>, and <strong>]</strong></li>
+<li>Spaces between all elements of the expression</li>
+</ul>
+<p>You may assume the expressions are reasonably sized. Every component is separated by spaces,
+and there are no characters other than the ones described above.</p>
+<h2>Output</h2>
+<p>For each expression, print a single line with one of the following
+messages (in Portuguese):</p>
+<ul>
+<li><code>Expressao bem formada</code> (<em>Well-formed expression</em>) – if all brackets are matched and properly nested</li>
+<li><code>erro na posicao <em>POS</em></code> (<em>Error at position POS</em>) – if a mismatched closing bracket is found at character position <em>POS</em></li>
+<li><code>Ficam parenteses por fechar</code> (<em>Unclosed brackets remain</em>) – if there are unmatched opening brackets by the end of the line</li>
+</ul>
+<p>Note: the position refers to the character index in the original line (starting at 0). For example, in the line <code>( 1 + 2 )</code>, 
+the character <code>(</code> is at position 0, <code>+</code> is at position 4, and <code>)</code> is at position 8.</p>
+<p>All non-bracket characters can be ignored — for this problem, only brackets matter.</p>
+<h2>Example Input/Output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>5
+( 1 )
+( 1 + 2 ) )
+[ ( ] )
+( 1 + ( 2 )
+( 1 + ( 2 + 3 * ( 4 + 5 * ( 6 * ( 7 ) ) ) ) )</pre>
+</td>
+<td>
+<pre>Expressao bem formada
+Erro na posicao 10
+Erro na posicao 4
+Ficam parenteses por fechar
+Expressao bem formada</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>Suggestion:</strong> Use this code to handle the input and just implement the <code>verify()</code>
+function and/or other functions that you may find necessary. Submit the full program.</p>
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX 200
+#define SKIPEOL {while (getchar()!='\n') ;}
+
+void verify(char *line);
+
+int main() {	
+  int ncases;
+  char line[MAX];
+
+  scanf("%d",&amp;ncases);
+  SKIPEOL;	
+  for (int c=0; c&lt;ncases; c++) {
+    fgets(line,sizeof(line),stdin);
+    verify(line);
+  }
+}
+</pre>
+
+</section><section lang="pt">
+
+<h2>O problema</h2>
+<p><img alt="" class="uc-content__float" loading="lazy" src="pi048.jpg"/>A
+Joana estava a fazer um exercício de matemática quando se deparou com a seguinte expressão:
+</p><pre>( 1 + ( 2 + 3 * [ 4 + 5 * ( 6 * ( 7 ) ) ] ) )</pre>
+<p>"Tantos parênteses!", pensou ela. E antes de começar a fazer exercício pensou também: "E
+se o professor pensou mal antes de começar a fazer o exercício e não colocou bem os
+parênteses. Se assim for nem vale a pena fazer o exerício". É tão preguiçosa esta Joana.
+
+</p><p>Como a Joana acredita em ti, tens de tentar fazer um programa que indique que a expressão
+matemática está mesmo bem formada, para que ela tenha vontade de fazer o exercício.
+
+</p><p>A tua tarefa é portanto fazer um analisador de expressões que ligue apenas aos parênteses.
+Tens de conseguir dizer se os parênteses estão bem formados, e caso contrário, indicar
+qual a posição onde foi encontrado o primeiro erro. E não é preciso explicar quando uma
+expressão com parênteses está bem formada, pois não? 
+
+</p><h2>Input</h2>
+<p>A primeira linha contém um número <strong>N</strong>, indicando o número de expressões a analisar.
+</p><p>As seguintes <strong>N</strong> linhas definem expressões matemáticas contendo:
+</p><ul>
+<li> Dígitos, representando números inteiros
+  </li><li> Caracteres, representando operações: <strong>+</strong>, <strong>-</strong>, <strong>*</strong> ou <strong>/</strong>
+</li><li> Parênteses curvos ou rectos: <strong>(</strong>, <strong>)</strong>, <strong>[</strong> ou <strong>]</strong>
+</li><li> Espaços separando as várias partes da expressão
+</li></ul>
+<p>Não podes assumir nenhum tamanho máximo para a expressão, mas é garantido que existem
+espaços a separar todas as componentes da expressão.
+
+</p><h2>Output</h2>
+<p>Uma linha para cada expressão, indicando <strong><code>Expressao bem formada</code></strong> caso todos
+os parenteses estejam bem emparelhados, <strong><code>Erro na posicao <em>POS</em></code></strong>,
+caso seja descoberto um parênteses que não poderia aparecer naquele sítio (onde <strong>POS</strong> indica a posição na linha, começando a contar de zero,
+desse mesmo parênteses que está incorrecto) ou <strong><code>Ficam parenteses por fechar</code></strong> caso chegando ao fim da expressão
+fiquem ainda parênteses por fechar.
+
+</p><p>Note-se que por posição entende-se o número de caracteres até chegar ao
+sítio em causa. Por exemplo, na linha "<code>( 1 + 2 )</code>", o <code>(</code> está na posicao 0, o <code>+</code> na posição
+4 e o <code>)</code> na posição 8.  
+
+</p><p>Lembra-te que podes ignorar todo o conteúdo da expressão que não sejam parenteses, pois para este
+problema em particular, é irrelevante.
+
+</p><h2>Exemplo de input/output</h2>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Input</th>
+<th scope="col">Output</th>
+</tr>
+<tr>
+<td>
+<pre>5
+( 1 )
+( 1 + 2 ) )
+[ ( ] )
+( 1 + ( 2 )
+( 1 + ( 2 + 3 * ( 4 + 5 * ( 6 * ( 7 ) ) ) ) )</pre>
+</td>
+<td>
+<pre>Expressao bem formada
+Erro na posicao 10
+Erro na posicao 4
+Ficam parenteses por fechar
+Expressao bem formada
+<pre></pre></pre></td>
+</tr>
+</table></div>
+<p><strong>Sugestão:</strong> Use o código seguinte para a leitura e implemente
+apenas a função <code>verify()</code> e outras que considere
+necessárias. Submeta o programa completo.</p>
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX 200
+#define SKIPEOL {while (getchar()!='\n') ;}
+
+void verify(char *line);
+
+int main() {	
+  int ncases;
+  char line[MAX];
+
+  scanf("%d",&amp;ncases);
+  SKIPEOL;	
+  for (int c=0; c&lt;ncases; c++) {
+    fgets(line,sizeof(line),stdin);
+    verify(line);
+  }
+}
+  </pre>
+
+</section>
+    </div>
+    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi048.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>
