@@ -43,7 +43,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
-| `.uc-footer`, `__text`, `__updated` | O rodapé, o texto à esquerda e a data de atualização. |
+| `.uc-footer`, `__text`, `__updated`, `__source` | O rodapé, o texto à esquerda, a data de atualização e a nota de origem (numa linha própria). |
 | `.uc-skip-link` | O link "Saltar para o conteúdo", visível só com o foco do teclado. |
 
 ### [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md)
@@ -338,9 +338,9 @@ As classes que se escrevem no HTML para dar forma ao conteúdo. Cada página de 
 
 | Classes | Página |
 | --- | --- |
-| `uc-section`, `uc-stack`, `uc-grid`, `uc-split` | [Blocos: layout](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md) |
-| `uc-card`, `uc-card--accent`, `uc-callout`, `uc-callout--warning`, `uc-links`, `uc-shortcuts`, `uc-checklist`, `uc-bullets` | [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md) |
-| `uc-button`, `uc-button--primary`, `uc-button--sm`, `uc-tag` e as suas variantes, `uc-table`, `uc-copy-block`, `uc-copy-block__button`, `uc-mono`, `uc-muted`, `uc-small`, `uc-visually-hidden` | [Blocos: elementos](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md) |
+| `uc-section`, `uc-stack`, `uc-grid`, `uc-split`, `uc-page-header`, `uc-eyebrow`, `uc-crumbs` | [Blocos: layout](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md) |
+| `uc-card`, `uc-card--accent`, `uc-callout`, `uc-callout--warning`, `uc-links`, `uc-links--grid`, `uc-links--inline`, `uc-shortcuts`, `uc-checklist`, `uc-bullets`, `uc-steps`, `uc-tags`, `uc-facts`, `uc-details` | [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md) |
+| `uc-button`, `uc-button--primary`, `uc-button--sm`, `uc-tag` e as suas variantes, `uc-table`, `uc-table--fit`, `uc-num`, `uc-samples`, `uc-samples__label`, `uc-copy-block`, `uc-copy-block__button`, `uc-mono`, `uc-muted`, `uc-small`, `uc-visually-hidden` | [Blocos: elementos](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md) |
 | `uc-lead`, `uc-prose`, `uc-content`, `uc-content__float` | [Tipografia](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tipografia.md) |
 
 ## Internas

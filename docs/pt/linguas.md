@@ -68,6 +68,22 @@ pages: [
 
 Cada ficheiro declara a sua língua com `<html lang="pt">` ou `<html lang="en">` e o mesmo `<uc-page current="about">`. As duas formas misturam-se: páginas curtas com `lang` e páginas longas em ficheiros separados.
 
+### Páginas que não estão no menu
+
+Os guiões, os enunciados e as outras páginas fora de `pages` dizem qual é a sua tradução no `<head>`, com um `<link rel="alternate">` por língua. O botão de língua do cabeçalho passa a abrir esse ficheiro, e já não é preciso uma ligação "English version" no texto:
+
+`praticas/aula05_pt.html`:
+
+```html
+<html lang="pt">
+<head>
+  …
+  <link rel="alternate" hreflang="en" href="aula05.html">
+</head>
+```
+
+O ficheiro em inglês faz o mesmo ao contrário (`hreflang="pt" href="aula05_pt.html"`). Os motores de pesquisa também leem estas ligações.
+
 ## Acrescentar uma língua
 
 O kit traz os textos da interface em português (`pt`) e inglês (`en`). Para outra língua, dá-se ao kit o dicionário dessa língua num script local, carregado depois do kit:

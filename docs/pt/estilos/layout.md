@@ -144,6 +144,54 @@ A pré-visualização é mais estreita do que 960 px, por isso mostra as colunas
 
 Foi pensado para dois filhos. Quando empilha, a segunda coluna fica por baixo, por isso o que importa mais vai primeiro no HTML. O ponto de quebra é o da janela, não o do contentor, e não se muda com um token.
 
+## `uc-page-header`
+
+O cabeçalho de uma página: o caminho de navegação, uma etiqueta pequena, o `<h1>` e a introdução, com pouco espaço entre eles. As secções da página ficam a 48 px umas das outras, por isso o título e a introdução precisam de um contentor próprio; este substitui um `uc-stack` com `style="--uc-stack-gap: …"`. Vai num `<header>` ou num `<div>`, como primeiro filho do `<uc-page>`.
+
+Exemplo (caminho, etiqueta, título e introdução), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/page-header.html):
+
+```html
+<header class="uc-page-header">
+  <nav class="uc-crumbs" aria-label="Localização">
+    <ol>
+      <li><a href="../../pt/estilos/layout.html">Materiais</a></li>
+      <li aria-current="page">Problemas</li>
+    </ol>
+  </nav>
+  <p class="uc-eyebrow">Aula 5 · Mooshak</p>
+  <h1>Problemas da semana</h1>
+  <p class="uc-prose">Os problemas para submeter no Mooshak, com o prazo e o peso de cada um.</p>
+</header>
+```
+
+| Elemento | Efeito |
+| --- | --- |
+| `.uc-page-header` | Coluna com 12 px entre os filhos. |
+| `nav.uc-crumbs` | Opcional, primeiro. Ver [uc-crumbs](#crumbs). |
+| `.uc-eyebrow` | Opcional, por cima do título. |
+| `h1` | O único título de nível 1 da página. |
+| `p.uc-prose` ou `p.uc-lead` | A introdução; com `lang`, uma por língua. |
+
+### `uc-eyebrow`
+
+Etiqueta pequena, em maiúsculas e cinzenta, por cima de um título: "Ficha da unidade curricular · CC1003", "Aula prática 5". Também serve por cima de um `<h2>` ou dentro de um cartão. É texto decorativo do título: o que for importante tem de estar também no título ou na introdução.
+
+### `uc-crumbs`
+
+O caminho de navegação das páginas que não estão no menu (enunciados, páginas de código, ajudas, testes), com o aspeto do caminho que o [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md) gera nos guiões. É um `<nav>` com `aria-label` e uma lista ordenada; o último elemento é a página atual, sem ligação e com `aria-current="page"`. As barras entre os elementos são decorativas.
+
+```html
+<nav class="uc-crumbs" aria-label="Localização">
+  <ol>
+    <li><a href="../materiais.html">Materiais</a></li>
+    <li><a href="index.html">Problemas</a></li>
+    <li aria-current="page">[PI013] Jogo da Vida</li>
+  </ol>
+</nav>
+```
+
+Num site bilingue, o texto de cada elemento leva as duas línguas (`<span lang="pt">…</span><span lang="en">…</span>`). Dentro de um `uc-page-header` o caminho fica junto ao título; sozinho, ficaria a 48 px dele.
+
 ## Ver também
 
 - [Blocos: superfícies e listas](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md): cartões, caixas e listas para pôr dentro destes blocos.

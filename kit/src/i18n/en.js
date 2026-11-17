@@ -59,7 +59,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     schedule: "Schedule and team",
     about: "About the course",
   },
-  footer: { updated: "Updated {date}" },
+  footer: { updated: "Updated {date}", source: "Content by {author}, from the {link}.", sourceAuthor: "Content by {author}.", sourceLink: "original website" },
   editions: {
     other: "Other years",
     notice: "This page is from the {edition} edition.",

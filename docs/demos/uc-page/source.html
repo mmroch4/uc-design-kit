@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-page: nota de origem · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script>
+    // In a real site this field is in course.js.
+    UC_COURSE.source = { author: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/" };
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/horarios.html">
+    <h1>Horários</h1>
+    <p>Conteúdo copiado de outro site: o rodapé diz de quem é e liga à página original.</p>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>

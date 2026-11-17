@@ -51,8 +51,16 @@
     if (UC.course.languages.length > 1) updateVisibilityStyle(code);
   }
 
-  /** The href of the current page in `code`, when pages have one file per language. */
+  /**
+   * The href of the current page in `code`, when pages have one file per language:
+   * a <link rel="alternate" hreflang="…"> in the page's head (any page), else the
+   * page's href in course.js (pages in the navigation).
+   */
   function pageHrefFor(code) {
+    const link = Array.from(document.querySelectorAll('link[rel~="alternate"][hreflang]')).find(
+      (item) => item.getAttribute("hreflang") === code && item.getAttribute("href"),
+    );
+    if (link) return link.getAttribute("href");
     const current = UC.internal.currentPage && UC.internal.currentPage();
     if (!current || typeof current.href !== "object") return null;
     const target = current.href[code];

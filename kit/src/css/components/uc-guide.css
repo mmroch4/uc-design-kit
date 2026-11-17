@@ -7,9 +7,9 @@
   container-name: uc-guide;
 }
 
-/* Breadcrumbs */
+/* Breadcrumbs (the same look for a teacher's <nav class="uc-crumbs">, docs/api.md section 4) */
 :where(.uc-guide__crumbs) { margin-bottom: var(--uc-space-4); }
-:where(.uc-guide__crumbs-list) {
+:where(.uc-guide__crumbs-list, .uc-crumbs > ol) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -20,22 +20,22 @@
   color: var(--uc-color-text-muted);
   font-size: var(--uc-font-size-md);
 }
-:where(.uc-guide__crumb) { display: inline-flex; align-items: center; gap: 6px; margin: 0; }
-:where(.uc-guide__crumb + .uc-guide__crumb)::before {
+:where(.uc-guide__crumb, .uc-crumbs > ol > li) { display: inline-flex; align-items: center; gap: 6px; margin: 0; }
+:where(.uc-guide__crumb + .uc-guide__crumb, .uc-crumbs > ol > li + li)::before {
   content: "/";
   content: "/" / "";
   color: var(--uc-color-text-subtle);
 }
-:where(.uc-guide__crumb a) {
+:where(.uc-guide__crumb a, .uc-crumbs a) {
   display: inline-flex;
   align-items: center;
   min-height: 32px;
   color: var(--uc-color-text-muted);
   text-decoration: none;
 }
-:where(.uc-guide__crumb a:hover) { color: var(--uc-color-accent); text-decoration: underline; }
-:where(.uc-guide__crumb a:focus-visible) { outline: var(--uc-focus-ring); outline-offset: 2px; }
-:where(.uc-guide__crumb [aria-current="page"]) { color: var(--uc-color-text); }
+:where(.uc-guide__crumb a:hover, .uc-crumbs a:hover) { color: var(--uc-color-accent); text-decoration: underline; }
+:where(.uc-guide__crumb a:focus-visible, .uc-crumbs a:focus-visible) { outline: var(--uc-focus-ring); outline-offset: 2px; }
+:where(.uc-guide__crumb [aria-current="page"], .uc-crumbs [aria-current="page"]) { color: var(--uc-color-text); }
 
 /* Layout: one column by default; the aside joins as a right-hand column on wide containers. */
 :where(.uc-guide__layout) {

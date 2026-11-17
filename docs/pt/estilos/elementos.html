@@ -220,17 +220,18 @@
 
         <h2 id="tag"><code>uc-tag</code></h2>
         <p>Uma etiqueta pequena, em linha com o texto, para classificar: tipo de aula, estado, novidade.</p>
-        <!-- docs:demo src="../../demos/blocks/tag.html" title="as cinco variantes de etiqueta" height="72" -->
+        <!-- docs:demo src="../../demos/blocks/tag.html" title="as seis variantes de etiqueta" height="72" -->
         <div class="docs-demo" id="demo-blocks-tag">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/blocks/tag.html" title="Demonstração: as cinco variantes de etiqueta" loading="lazy" style="height: 72px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/blocks/tag.html" title="Demonstração: as seis variantes de etiqueta" loading="lazy" style="height: 72px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;span class=&quot;uc-tag&quot;&gt;Teórica&lt;/span&gt;
 &lt;span class=&quot;uc-tag uc-tag--accent&quot;&gt;Esta semana&lt;/span&gt;
 &lt;span class=&quot;uc-tag uc-tag--warning&quot;&gt;Avaliação&lt;/span&gt;
 &lt;span class=&quot;uc-tag uc-tag--success&quot;&gt;Entregue&lt;/span&gt;
-&lt;span class=&quot;uc-tag uc-tag--muted&quot;&gt;Opcional&lt;/span&gt;</code></pre></uc-code>
+&lt;span class=&quot;uc-tag uc-tag--muted&quot;&gt;Opcional&lt;/span&gt;
+&lt;span class=&quot;uc-tag uc-tag--danger&quot;&gt;Wrong Answer&lt;/span&gt;</code></pre></uc-code>
           </div>
           <a class="docs-demo__open" href="../../demos/blocks/tag.html">Abrir demo</a>
         </div>
@@ -249,10 +250,11 @@
               <tr><td><code>uc-tag--warning</code></td><td><code>--uc-color-warning-bg</code>, texto <code>--uc-color-warning-text</code></td><td>Avaliação, "Novo", obrigatório.</td></tr>
               <tr><td><code>uc-tag--success</code></td><td><code>--uc-color-success-bg</code>, texto <code>--uc-color-success-text</code></td><td>Feito, entregue, certo.</td></tr>
               <tr><td><code>uc-tag--muted</code></td><td>Sem fundo, contorno <code>--uc-color-border</code>, texto <code>--uc-color-text-muted</code></td><td>Opcional, secundário.</td></tr>
+              <tr><td><code>uc-tag--danger</code></td><td><code>--uc-color-danger-bg</code>, texto <code>--uc-color-danger-text</code></td><td>Erro, falhou ("Wrong Answer", "Fora de prazo").</td></tr>
             </tbody>
           </table>
         </div>
-        <p>Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar. <code>--muted</code> tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.</p>
+        <p>Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar, e "Wrong Answer" igual a quem não distingue o vermelho. <code>--muted</code> tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.</p>
 
         <h2 id="table"><code>uc-table</code></h2>
         <p>Vai num <code>&lt;div&gt;</code> à volta de uma <code>&lt;table&gt;</code>: dá-lhe borda, cabeçalho e, quando a tabela não cabe, deslocamento horizontal dentro da caixa, sem empurrar a página.</p>
@@ -323,6 +325,31 @@
           </table>
         </div>
         <p>O mesmo comportamento de teclado aplica-se às tabelas que os componentes geram (<a href="../componentes/uc-deadlines.html"><code>&lt;uc-deadlines view="table"&gt;</code></a>, <a href="../componentes/uc-team.html"><code>&lt;uc-team view="table"&gt;</code></a>) e aos <code>&lt;pre&gt;</code> largos dentro de <code>uc-content</code>.</p>
+
+        <h3 id="table-fit"><code>uc-table--fit</code> e <code>uc-num</code></h3>
+        <p>Uma tabela curta de números (pontos por exercício, pesos) fica estranha esticada a toda a largura. Com <code>uc-table--fit</code> no contentor, a tabela fica só com a largura do conteúdo (e continua a deslizar se não couber). <code>uc-num</code> numa célula (<code>&lt;th&gt;</code> ou <code>&lt;td&gt;</code>) alinha-a à direita, com algarismos da mesma largura, para as colunas de números se lerem de cima a baixo.</p>
+        <!-- docs:demo src="../../demos/blocks/table-fit.html" title="tabela estreita com uma coluna de números" height="220" -->
+        <div class="docs-demo" id="demo-blocks-table-fit">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/table-fit.html" title="Demonstração: tabela estreita com uma coluna de números" loading="lazy" style="height: 220px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;div class=&quot;uc-table uc-table--fit&quot;&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Exercício&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;uc-num&quot;&gt;Pontos&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Ciclos e vetores&lt;/td&gt;&lt;td class=&quot;uc-num&quot;&gt;20&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Cadeias de carateres&lt;/td&gt;&lt;td class=&quot;uc-num&quot;&gt;15&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Recursão&lt;/td&gt;&lt;td class=&quot;uc-num&quot;&gt;5&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/table-fit.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
 
         <h3 id="table-sortable"><code>table[data-sortable]</code></h3>
         <p>Com <code>data-sortable</code> na <code>&lt;table&gt;</code>, os títulos das colunas passam a botões que ordenam a tabela: um clique ordena por ordem crescente, o seguinte por decrescente. Serve para classificações e listas longas que cada aluno quer ver por outra ordem.</p>
@@ -406,6 +433,44 @@
           </table>
         </div>
         <p>O <code>&lt;pre&gt;</code> não tem fundo próprio fora de <code>uc-content</code>; a demonstração usa <code>uc-content</code> para lhe dar caixa. Dentro de um <a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a> o atributo é ignorado, porque esse componente já tem o seu botão. Sem JavaScript, o bloco mostra-se sem botão.</p>
+
+        <h2 id="samples"><code>uc-samples</code></h2>
+        <p>Os exemplos de entrada e saída de um problema, lado a lado, que passam a ficar um por cima do outro no telemóvel. Cada coluna é um <code>&lt;div&gt;</code> com uma etiqueta (<code>uc-samples__label</code>) e um <a href="#pre-data-copy"><code>&lt;pre data-copy&gt;</code></a>. Substitui a tabela de duas colunas dos enunciados antigos, que no telemóvel fica apertada.</p>
+        <!-- docs:demo src="../../demos/blocks/samples.html" title="entrada e saída de um exemplo" height="170" -->
+        <div class="docs-demo" id="demo-blocks-samples">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/samples.html" title="Demonstração: entrada e saída de um exemplo" loading="lazy" style="height: 170px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;div class=&quot;uc-samples&quot;&gt;
+      &lt;div&gt;
+        &lt;p class=&quot;uc-samples__label&quot;&gt;Input&lt;/p&gt;
+        &lt;pre data-copy=&quot;Input&quot;&gt;3
+1 2 3&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p class=&quot;uc-samples__label&quot;&gt;Output&lt;/p&gt;
+        &lt;pre data-copy=&quot;Output&quot;&gt;6&lt;/pre&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/samples.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Estrutura de uc-samples</caption>
+            <thead>
+              <tr><th scope="col">Elemento</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-samples</code></td><td>Grelha de colunas com pelo menos <code>--uc-samples-min</code> (220 px); uma só no telemóvel.</td></tr>
+              <tr><td><code>.uc-samples &gt; div</code></td><td>Uma coluna: a etiqueta e o bloco, que estica até à altura da coluna vizinha.</td></tr>
+              <tr><td><code>.uc-samples__label</code></td><td>"Input", "Output", "Explicação": pequena, em maiúsculas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Vários exemplos fazem-se com um <code>uc-samples</code> por exemplo, cada um com o seu título (<code>&lt;h3&gt;Exemplo 2&lt;/h3&gt;</code>) se precisar. Com três colunas (entrada, saída e explicação), a grelha põe as que couberem lado a lado.</p>
 
         <h2 id="data-auth"><code>a[data-auth]</code></h2>
         <p>Marca um link que pede autenticação na U.Porto (pautas, folhas de presenças, o SIGARRA). O kit acrescenta um cadeado depois do texto e, para os leitores de ecrã, "(Requer autenticação)". Com um valor, diz em que sistema: <code>data-auth="SIGARRA"</code> lê-se "(Requer autenticação: SIGARRA)".</p>
@@ -531,8 +596,10 @@
           <li><a href="#table">uc-table</a></li>
           <li class="docs-toc__sub"><a href="#table-min">Largura mínima</a></li>
           <li class="docs-toc__sub"><a href="#table-caption">Legenda</a></li>
+          <li class="docs-toc__sub"><a href="#table-fit">uc-table--fit e uc-num</a></li>
           <li class="docs-toc__sub"><a href="#table-sortable">table[data-sortable]</a></li>
           <li><a href="#pre-data-copy">&lt;pre data-copy&gt;</a></li>
+          <li><a href="#samples">uc-samples</a></li>
           <li><a href="#data-auth">a[data-auth]</a></li>
           <li><a href="#utilitarios">Utilitários de texto</a></li>
           <li class="docs-toc__sub"><a href="#muted">uc-muted</a></li>
