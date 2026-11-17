@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-toposort · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-toposort.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-toposort predict>
+      <pre data-input>
+# precedências entre unidades curriculares
+P1 P2
+P1 ED
+MD ED
+P2 POO
+ED Alg
+POO ES
+Alg ES
+      </pre>
+      <p>Uma ordem possível: P1, MD, P2, ED, POO, Alg, ES.</p>
+    </uc-widget-toposort>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

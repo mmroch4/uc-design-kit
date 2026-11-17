@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-mst · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-mst.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-mst predict>
+      <pre data-input>
+A B 7
+A D 5
+B C 8
+B D 9
+B E 7
+C E 5
+D E 15
+D F 6
+E F 8
+E G 9
+F G 11
+A @ 0,0
+B @ 2,0
+C @ 4,0
+D @ 1,1.5
+E @ 3,1.5
+F @ 1,3
+G @ 3,3
+      </pre>
+      <p>Árvore de cobertura mínima: A–D 5, C–E 5, D–F 6, A–B 7, B–E 7, E–G 9; peso total 39.</p>
+    </uc-widget-mst>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

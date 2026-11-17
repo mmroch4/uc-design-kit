@@ -1,0 +1,60 @@
+## algorithm=kahn · input {"text":"Prog1 Prog2\nProg1 EDados\nMD EDados\nProg2 POO\nEDados Algo\nPOO ES\nAlgo ES"}
+  1. Topological sort (Kahn) of a directed graph with 7 vertices and 7 arcs.
+  2. Beside each vertex, its in-degree. The ones with in-degree 0 join the queue: Prog1, MD.
+  3. Prog1 leaves the queue and goes to the output: Prog1.
+  4. Prog1 → Prog2: the in-degree of Prog2 drops to 0; Prog2 joins the queue.
+  5. Prog1 → EDados: the in-degree of EDados drops to 1.
+  6. MD leaves the queue and goes to the output: Prog1 MD.
+  7. MD → EDados: the in-degree of EDados drops to 0; EDados joins the queue.
+  8. Prog2 leaves the queue and goes to the output: Prog1 MD Prog2.
+  9. Prog2 → POO: the in-degree of POO drops to 0; POO joins the queue.
+ 10. EDados leaves the queue and goes to the output: Prog1 MD Prog2 EDados.
+ 11. EDados → Algo: the in-degree of Algo drops to 0; Algo joins the queue.
+ 12. POO leaves the queue and goes to the output: Prog1 MD Prog2 EDados POO.
+ 13. POO → ES: the in-degree of ES drops to 1.
+ 14. Algo leaves the queue and goes to the output: Prog1 MD Prog2 EDados POO Algo.
+ 15. Algo → ES: the in-degree of ES drops to 0; ES joins the queue.
+ 16. ES leaves the queue and goes to the output: Prog1 MD Prog2 EDados POO Algo ES.
+ 17. Topological order: Prog1 MD Prog2 EDados POO Algo ES.
+
+## algorithm=dfs · input {"text":"Prog1 Prog2\nProg1 EDados\nMD EDados\nProg2 POO\nEDados Algo\nPOO ES\nAlgo ES"}
+  1. Topological sort by DFS of a directed graph with 7 vertices and 7 arcs.
+  2. Prog1 is not visited yet: new search from Prog1, which goes on the stack.
+  3. Prog1 → Prog2: Prog2 is not visited yet; visit Prog2, which goes on the stack.
+  4. Prog2 → POO: POO is not visited yet; visit POO, which goes on the stack.
+  5. POO → ES: ES is not visited yet; visit ES, which goes on the stack.
+  6. ES finishes and goes to the front of the order: ES.
+  7. POO finishes and goes to the front of the order: POO ES.
+  8. Prog2 finishes and goes to the front of the order: Prog2 POO ES.
+  9. Prog1 → EDados: EDados is not visited yet; visit EDados, which goes on the stack.
+ 10. EDados → Algo: Algo is not visited yet; visit Algo, which goes on the stack.
+ 11. Algo → ES: ES is already finished, nothing to do.
+ 12. Algo finishes and goes to the front of the order: Algo Prog2 POO ES.
+ 13. EDados finishes and goes to the front of the order: EDados Algo Prog2 POO ES.
+ 14. Prog1 finishes and goes to the front of the order: Prog1 EDados Algo Prog2 POO ES.
+ 15. MD is not visited yet: new search from MD, which goes on the stack.
+ 16. MD → EDados: EDados is already finished, nothing to do.
+ 17. MD finishes and goes to the front of the order: MD Prog1 EDados Algo Prog2 POO ES.
+ 18. Topological order: MD Prog1 EDados Algo Prog2 POO ES.
+
+## algorithm=kahn · input {"text":"A B\nB C\nC D\nD B\nA E"}
+  1. Topological sort (Kahn) of a directed graph with 5 vertices and 5 arcs.
+  2. Beside each vertex, its in-degree. The ones with in-degree 0 join the queue: A.
+  3. A leaves the queue and goes to the output: A.
+  4. A → B: the in-degree of B drops to 1.
+  5. A → E: the in-degree of E drops to 0; E joins the queue.
+  6. E leaves the queue and goes to the output: A E.
+  7. The queue is empty, but some vertices have in-degree > 0 (B, C, D): there is a cycle (B → C → D → B) and no topological order. Partial output: A E.
+
+## algorithm=dfs · input {"text":"A B\nB C\nC D\nD B\nA E"}
+  1. Topological sort by DFS of a directed graph with 5 vertices and 5 arcs.
+  2. A is not visited yet: new search from A, which goes on the stack.
+  3. A → B: B is not visited yet; visit B, which goes on the stack.
+  4. B → C: C is not visited yet; visit C, which goes on the stack.
+  5. C → D: D is not visited yet; visit D, which goes on the stack.
+  6. D → B: B is on the stack, so there is a cycle (B → C → D → B); no topological order.
+
+## algorithm=dfs · input {"text":"A B\nC B\nA A"}
+  1. Topological sort by DFS of a directed graph with 3 vertices and 3 arcs.
+  2. A is not visited yet: new search from A, which goes on the stack.
+  3. A → A: A is on the stack, so there is a cycle (A → A); no topological order.

@@ -1,0 +1,56 @@
+## algorithm=kruskal · input {"text":"A B 4\nA C 1\nB C 2\nB D 5\nC D 8\nD E 3\nC E 9","directed":false,"source":"A"}
+  1. Kruskal num grafo com 5 vértices e 7 arestas.
+  2. Cada vértice fica num conjunto só seu; ao lado, entre parênteses retos, o representante do conjunto.
+  3. Ordena as arestas por peso: A–C 1, B–C 2, D–E 3, A–B 4, B–D 5, C–D 8, C–E 9.
+  4. Aresta seguinte: A–C (peso 1). find(A) = A, find(C) = C.
+  5. A–C entra na árvore: o conjunto [C] junta-se a [A]. Peso total 1.
+  6. Aresta seguinte: B–C (peso 2). find(B) = B, find(C) = A.
+  7. B–C entra na árvore: o conjunto [B] junta-se a [A]. Peso total 3.
+  8. Aresta seguinte: D–E (peso 3). find(D) = D, find(E) = E.
+  9. D–E entra na árvore: o conjunto [E] junta-se a [D]. Peso total 6.
+ 10. Aresta seguinte: A–B (peso 4). find(A) = A, find(B) = A.
+ 11. A e B já estão no mesmo conjunto: A–B formaria um ciclo, fica de fora.
+ 12. Aresta seguinte: B–D (peso 5). find(B) = A, find(D) = D.
+ 13. B–D entra na árvore: o conjunto [D] junta-se a [A]. Peso total 11.
+ 14. A árvore já tem 4 arestas (|V| − 1): parar.
+ 15. Árvore de cobertura mínima: A–C 1, B–C 2, D–E 3, B–D 5. Peso total 11.
+
+## algorithm=prim · input {"text":"A B 4\nA C 1\nB C 2\nB D 5\nC D 8\nD E 3\nC E 9","directed":false,"source":"A"}
+  1. Prim a partir de A, num grafo com 5 vértices e 7 arestas.
+  2. Começa em A: A entra na árvore.
+  3. Entram na fila as arestas de A para fora da árvore: A–B 4, A–C 1.
+  4. Sai da fila A–C (peso 1): C entra na árvore. Peso total 1.
+  5. Entram na fila as arestas de C para fora da árvore: C–B 2, C–D 8, C–E 9.
+  6. Sai da fila C–B (peso 2): B entra na árvore. Peso total 3.
+  7. Entram na fila as arestas de B para fora da árvore: B–D 5.
+  8. Sai da fila A–B (peso 4): B já está na árvore, fica de fora.
+  9. Sai da fila B–D (peso 5): D entra na árvore. Peso total 8.
+ 10. Entram na fila as arestas de D para fora da árvore: D–E 3.
+ 11. Sai da fila D–E (peso 3): E entra na árvore. Peso total 11.
+ 12. Árvore de cobertura mínima: A–C 1, B–C 2, B–D 5, D–E 3. Peso total 11.
+
+## algorithm=kruskal · input {"text":"A B 2\nC D 1\nB A 3\nA A 1\nE","directed":false,"source":"A"}
+  1. Kruskal num grafo com 5 vértices e 4 arestas.
+  2. Cada vértice fica num conjunto só seu; ao lado, entre parênteses retos, o representante do conjunto.
+  3. Ordena as arestas por peso: C–D 1, A–A 1, A–B 2, B–A 3.
+  4. Aresta seguinte: C–D (peso 1). find(C) = C, find(D) = D.
+  5. C–D entra na árvore: o conjunto [D] junta-se a [C]. Peso total 1.
+  6. Aresta seguinte: A–A (peso 1). find(A) = A, find(A) = A.
+  7. A–A liga A a si próprio: formaria um ciclo, fica de fora.
+  8. Aresta seguinte: A–B (peso 2). find(A) = A, find(B) = B.
+  9. A–B entra na árvore: o conjunto [B] junta-se a [A]. Peso total 3.
+ 10. Aresta seguinte: B–A (peso 3). find(B) = A, find(A) = A.
+ 11. B e A já estão no mesmo conjunto: B–A formaria um ciclo, fica de fora.
+ 12. O grafo tem 3 componentes: floresta de cobertura mínima C–D 1, A–B 2. Peso total 3.
+
+## algorithm=prim · input {"text":"A B 2\nC D 1\nB A 3\nA A 1\nE","directed":false,"source":"A"}
+  1. Prim a partir de A, num grafo com 5 vértices e 4 arestas.
+  2. Começa em A: A entra na árvore.
+  3. Entram na fila as arestas de A para fora da árvore: A–B 2, A–B 3.
+  4. Sai da fila A–B (peso 2): B entra na árvore. Peso total 2.
+  5. Sai da fila A–B (peso 3): B já está na árvore, fica de fora.
+  6. A fila está vazia, mas há vértices fora da árvore: recomeça em C, que entra na árvore.
+  7. Entram na fila as arestas de C para fora da árvore: C–D 1.
+  8. Sai da fila C–D (peso 1): D entra na árvore. Peso total 3.
+  9. A fila está vazia, mas há vértices fora da árvore: recomeça em E, que entra na árvore.
+ 10. O grafo tem 3 componentes: floresta de cobertura mínima A–B 2, C–D 1. Peso total 3.

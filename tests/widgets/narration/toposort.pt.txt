@@ -1,0 +1,60 @@
+## algorithm=kahn · input {"text":"Prog1 Prog2\nProg1 EDados\nMD EDados\nProg2 POO\nEDados Algo\nPOO ES\nAlgo ES"}
+  1. Ordenação topológica (Kahn) de um grafo dirigido com 7 vértices e 7 arcos.
+  2. Ao lado de cada vértice, o grau de entrada. Entram na fila os de grau 0: Prog1, MD.
+  3. Sai da fila Prog1 e vai para a saída: Prog1.
+  4. Prog1 → Prog2: o grau de entrada de Prog2 passa a 0; Prog2 entra na fila.
+  5. Prog1 → EDados: o grau de entrada de EDados passa a 1.
+  6. Sai da fila MD e vai para a saída: Prog1 MD.
+  7. MD → EDados: o grau de entrada de EDados passa a 0; EDados entra na fila.
+  8. Sai da fila Prog2 e vai para a saída: Prog1 MD Prog2.
+  9. Prog2 → POO: o grau de entrada de POO passa a 0; POO entra na fila.
+ 10. Sai da fila EDados e vai para a saída: Prog1 MD Prog2 EDados.
+ 11. EDados → Algo: o grau de entrada de Algo passa a 0; Algo entra na fila.
+ 12. Sai da fila POO e vai para a saída: Prog1 MD Prog2 EDados POO.
+ 13. POO → ES: o grau de entrada de ES passa a 1.
+ 14. Sai da fila Algo e vai para a saída: Prog1 MD Prog2 EDados POO Algo.
+ 15. Algo → ES: o grau de entrada de ES passa a 0; ES entra na fila.
+ 16. Sai da fila ES e vai para a saída: Prog1 MD Prog2 EDados POO Algo ES.
+ 17. Ordem topológica: Prog1 MD Prog2 EDados POO Algo ES.
+
+## algorithm=dfs · input {"text":"Prog1 Prog2\nProg1 EDados\nMD EDados\nProg2 POO\nEDados Algo\nPOO ES\nAlgo ES"}
+  1. Ordenação topológica por DFS de um grafo dirigido com 7 vértices e 7 arcos.
+  2. Prog1 ainda não foi visitado: nova pesquisa a partir de Prog1, que entra na pilha.
+  3. Prog1 → Prog2: Prog2 ainda não foi visitado; visita Prog2, que entra na pilha.
+  4. Prog2 → POO: POO ainda não foi visitado; visita POO, que entra na pilha.
+  5. POO → ES: ES ainda não foi visitado; visita ES, que entra na pilha.
+  6. ES termina e vai para o início da ordem: ES.
+  7. POO termina e vai para o início da ordem: POO ES.
+  8. Prog2 termina e vai para o início da ordem: Prog2 POO ES.
+  9. Prog1 → EDados: EDados ainda não foi visitado; visita EDados, que entra na pilha.
+ 10. EDados → Algo: Algo ainda não foi visitado; visita Algo, que entra na pilha.
+ 11. Algo → ES: ES já terminou, nada a fazer.
+ 12. Algo termina e vai para o início da ordem: Algo Prog2 POO ES.
+ 13. EDados termina e vai para o início da ordem: EDados Algo Prog2 POO ES.
+ 14. Prog1 termina e vai para o início da ordem: Prog1 EDados Algo Prog2 POO ES.
+ 15. MD ainda não foi visitado: nova pesquisa a partir de MD, que entra na pilha.
+ 16. MD → EDados: EDados já terminou, nada a fazer.
+ 17. MD termina e vai para o início da ordem: MD Prog1 EDados Algo Prog2 POO ES.
+ 18. Ordem topológica: MD Prog1 EDados Algo Prog2 POO ES.
+
+## algorithm=kahn · input {"text":"A B\nB C\nC D\nD B\nA E"}
+  1. Ordenação topológica (Kahn) de um grafo dirigido com 5 vértices e 5 arcos.
+  2. Ao lado de cada vértice, o grau de entrada. Entram na fila os de grau 0: A.
+  3. Sai da fila A e vai para a saída: A.
+  4. A → B: o grau de entrada de B passa a 1.
+  5. A → E: o grau de entrada de E passa a 0; E entra na fila.
+  6. Sai da fila E e vai para a saída: A E.
+  7. A fila esvaziou, mas há vértices com grau de entrada > 0 (B, C, D): há um ciclo (B → C → D → B) e não há ordem topológica. Saída parcial: A E.
+
+## algorithm=dfs · input {"text":"A B\nB C\nC D\nD B\nA E"}
+  1. Ordenação topológica por DFS de um grafo dirigido com 5 vértices e 5 arcos.
+  2. A ainda não foi visitado: nova pesquisa a partir de A, que entra na pilha.
+  3. A → B: B ainda não foi visitado; visita B, que entra na pilha.
+  4. B → C: C ainda não foi visitado; visita C, que entra na pilha.
+  5. C → D: D ainda não foi visitado; visita D, que entra na pilha.
+  6. D → B: B está na pilha, por isso há um ciclo (B → C → D → B); não há ordem topológica.
+
+## algorithm=dfs · input {"text":"A B\nC B\nA A"}
+  1. Ordenação topológica por DFS de um grafo dirigido com 3 vértices e 3 arcos.
+  2. A ainda não foi visitado: nova pesquisa a partir de A, que entra na pilha.
+  3. A → A: A está na pilha, por isso há um ciclo (A → A); não há ordem topológica.

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-toposort · UC Design Kit</title>
+  <meta name="description" content="Documentação do widget uc-widget-toposort do UC Design Kit: ordenação topológica pelo algoritmo de Kahn e por DFS, com deteção de ciclos, passo a passo.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../exemplos/index.html">Exemplos</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../exemplos/index.html">Exemplos</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../manter.html">Manter o site</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="../componentes/uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="../componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="../componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="../componentes/uc-problems.html"><code>uc-problems</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Widgets</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="index.html">Catálogo</a></li>
+          <li><a href="usar.html">Usar widgets</a></li>
+          <li><a href="uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+          <li><a href="uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
+          <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
+          <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
+          <li><a href="uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
+          <li><a href="uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../exemplos/index.html">Visão geral</a></li>
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/pc.html">PC 2026/27</a></li>
+          <li><a href="../exemplos/ip.html">IP 2025/26</a></li>
+          <li><a href="../exemplos/pi.html">PI 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-7">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-7">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Widgets</p>
+          <h1><code>&lt;uc-widget-toposort&gt;</code></h1>
+          <p class="docs-lead">Ordenação topológica de um grafo dirigido: o algoritmo de Kahn, com os graus de entrada e a fila, e a ordenação por DFS, com a pilha de chamadas; os dois detetam ciclos.</p>
+        </header>
+        <!-- docs:demo src="../../demos/uc-widget-toposort/basic.html" title="Kahn nas precedências entre unidades curriculares, com previsões" height="820" -->
+        <div class="docs-demo" id="demo-uc-widget-toposort-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-toposort/basic.html" title="Demonstração: Kahn nas precedências entre unidades curriculares, com previsões" loading="lazy" style="height: 820px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;uc-widget-toposort predict&gt;
+      &lt;pre data-input&gt;
+# precedências entre unidades curriculares
+P1 P2
+P1 ED
+MD ED
+P2 POO
+ED Alg
+POO ES
+Alg ES
+      &lt;/pre&gt;
+      &lt;p&gt;Uma ordem possível: P1, MD, P2, ED, POO, Alg, ES.&lt;/p&gt;
+    &lt;/uc-widget-toposort&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-toposort/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Ao lado de cada vértice está o seu grau de entrada (quantos arcos lhe chegam). A fila começa com os vértices de grau 0, pela ordem da entrada. Cada vértice que sai da fila vai para a saída e "apaga" os seus arcos: o grau de entrada de cada vizinho desce um, e um vizinho que chegue a 0 entra na fila. Se a fila esvaziar antes de todos os vértices estarem na saída, os que ficaram estão num ciclo ou dependem de um: o widget marca um desses ciclos, diz quais são os seus vértices e mostra a saída parcial.</p>
+        <h2 id="utilizacao">Utilização</h2>
+        <uc-code lang="html" no-download><pre><code>&lt;script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-toposort.js" defer&gt;&lt;/script&gt;
+
+&lt;uc-widget-toposort edges="P1 P2; P1 ED; MD ED; P2 POO"&gt;
+  &lt;p&gt;Uma ordem possível: P1, MD, P2, ED, POO.&lt;/p&gt;
+&lt;/uc-widget-toposort&gt;</code></pre></uc-code>
+        <h2 id="grafo">Escrever o grafo</h2>
+        <p>Como nos outros widgets de grafos: uma linha por arco dentro de <code>&lt;pre data-input&gt;</code> (<code>U V</code> quer dizer "U antes de V"), uma linha só com um nome para um vértice isolado, <code>U @ X,Y</code> para fixar uma posição e <code>#</code> para comentários; ou o atributo <code>edges</code> com as mesmas linhas separadas por <code>;</code>. Até 10 vértices e 20 arcos. O grafo é <strong>sempre dirigido</strong>, com ou sem o atributo <code>directed</code>, e não há origem (<code>source</code> não se usa). Pesos, se os escrever, aparecem no desenho mas não contam.</p>
+        <p>Use nomes curtos (até três ou quatro caracteres, como <code>P1</code>, <code>MD</code>, <code>POO</code>): os vértices são círculos pequenos. A ordem das linhas decide a ordem pela qual se veem os vértices e os arcos de cada vértice, e por isso qual das ordens topológicas possíveis se obtém.</p>
+        <h2 id="dfs">Ordenação por DFS</h2>
+        <!-- docs:demo src="../../demos/uc-widget-toposort/dfs.html" title="DFS num grafo com um ciclo, editável" height="820" -->
+        <div class="docs-demo" id="demo-uc-widget-toposort-dfs">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-toposort/dfs.html" title="Demonstração: DFS num grafo com um ciclo, editável" loading="lazy" style="height: 820px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-widget-toposort algorithm=&quot;dfs&quot; algorithms=&quot;dfs kahn&quot;
+    edges=&quot;A B; A C; B D; C D; D E; E C&quot; editable predict&gt;
+  &lt;p&gt;Não há ordem topológica: C → D → E → C é um ciclo. Sem o arco E C, uma ordem é A, C, B, D, E.&lt;/p&gt;
+&lt;/uc-widget-toposort&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-toposort/dfs.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p><code>algorithm="dfs"</code> faz uma pesquisa em profundidade recursiva a partir de cada vértice ainda não visitado, pela ordem da entrada. Um vértice na pilha de chamadas fica "visitado" (o que está a ser explorado fica "atual"); quando todos os seus arcos foram vistos, termina e vai para o <strong>início</strong> da ordem, que se vai construindo no painel. Um arco para um vértice que ainda está na pilha fecha um ciclo: esse arco fica marcado como "trocado", o ciclo é nomeado (por exemplo <code>C → D → E → C</code>) e o algoritmo para. Experimente apagar o arco <code>E C</code> no campo editável. Com <code>algorithms="dfs kahn"</code> aparecem os dois botões.</p>
+        <h2 id="previsao">Perguntas de previsão</h2>
+        <p>Com <code>predict</code>: no Kahn, em cada arco, "P1 → ED: o grau de entrada de ED passa a 0?" (Sim / Não); na DFS, em cada arco, "A → B: em que situação está B?" (Ainda não visitado / Na pilha / Já terminou), que distingue os arcos da árvore, os arcos para vértices terminados e os que fecham um ciclo.</p>
+        <h2 id="atributos">Atributos</h2>
+        <p>Além dos <a href="usar.html#atributos-comuns">atributos comuns</a>:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-widget-toposort</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>edges</code></td><td>linhas separadas por <code>;</code></td><td>ausente</td><td>O grafo, em vez do <code>&lt;pre data-input&gt;</code>.</td></tr>
+              <tr><td><code>algorithm</code></td><td><code>kahn</code>, <code>dfs</code></td><td><code>kahn</code></td><td>O algoritmo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 id="linhas">Linhas do pseudocódigo</h2>
+        <p>Os identificadores para marcar as linhas de um <code>&lt;pre data-pseudocode&gt;</code> próprio (ver <a href="usar.html#pseudocodigo">Pseudocódigo próprio</a>):</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Identificadores de linha</caption>
+            <thead>
+              <tr><th scope="col">Algoritmo</th><th scope="col">Linhas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>kahn</code></td><td><code>init</code>, <code>pop</code>, <code>dec</code>, <code>push</code>, <code>cycle</code></td></tr>
+              <tr><td><code>dfs</code></td><td><code>root</code>, <code>enter</code>, <code>arc</code>, <code>back</code>, <code>down</code>, <code>done</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o widget faz</h3>
+            <p>Uma frase por passo com o arco e o que muda ("P1 → ED: o grau de entrada de ED passa a 1."); o grafo e os graus de entrada descritos em palavras; estados com cor, espessura, tracejado e sinal; fila (ou pilha de chamadas) e saída no painel; "Vista em texto" com uma tabela vértice, grau de entrada (ou situação na DFS) e estado.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Escrever dentro do elemento uma ordem topológica (ou o ciclo, se houver) e manter os nomes dos vértices curtos.</p>
+          </div>
+        </div>
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Aparece o texto escrito dentro do elemento e o <code>&lt;pre data-pseudocode&gt;</code>, se houver. O <code>&lt;pre data-input&gt;</code> não aparece: escreva o resultado num parágrafo.</p>
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-widget-graph.html"><code>&lt;uc-widget-graph&gt;</code></a>: a DFS e a BFS sozinhas, a partir de uma origem.</li>
+          <li><a href="uc-widget-stack-queue.html"><code>&lt;uc-widget-stack-queue&gt;</code></a>: a fila e a pilha por dentro.</li>
+          <li><a href="usar.html">Usar widgets</a> e o <a href="index.html">Catálogo</a>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/uc-widget-toposort.html">Editar esta página no GitHub</a> · <a href="uc-widget-toposort.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#grafo">Escrever o grafo</a></li>
+          <li><a href="#dfs">Ordenação por DFS</a></li>
+          <li><a href="#previsao">Perguntas de previsão</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#linhas">Linhas do pseudocódigo</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>
