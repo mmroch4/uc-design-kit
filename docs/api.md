@@ -1305,13 +1305,24 @@ one file per widget type after the kit:
 ```
 
 The widget file loads `uc-widget-core.js` and `uc-widget.css` from its own
-folder. Widgets: `<uc-widget-sort>` (`values`, `algorithm` = `bubble`
-`selection` `insertion` `merge` `quick` `counting`, `pivot` = `last` `first`
-`middle` `random`, `bars`). The catalogue is `widgets/v1/catalog.json`.
+folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
+
+| Element | Own attributes | `algorithm` |
+| --- | --- | --- |
+| `<uc-widget-sort>` | `values`, `pivot` = `last` `first` `middle` `random`, `bars` | `bubble` `selection` `insertion` `merge` `quick` `counting` |
+| `<uc-widget-search>` | `values`, `target` (binary searches need sorted values) | `linear` `binary` `lower` |
+| `<uc-widget-bst>` | `values` (≤ 15), `ops` = `insert v; remove v; search v; min; max` | `operations` `preorder` `inorder` `postorder` `levelorder` |
+| `<uc-widget-list>` | `values` (≤ 10), `ops` = `add-first v; add-last v; insert k v; remove-first; remove-last; remove v; search v; reverse` | `singly` |
+| `<uc-widget-stack-queue>` | `values`, `ops` = `push v; pop; peek` / `enqueue v; dequeue; peek`, `impl` = `array` `list`, `capacity` (1–16, default 8) | `stack` `queue` |
+| `<uc-widget-recursion>` | `n` (factorial ≤ 8, fibonacci ≤ 6, hanoi 1–4) | `factorial` `fibonacci` `hanoi` |
+
+With `ops`, `values` builds the structure without steps and the operations
+are the demo; without `ops`, inserting / adding each value is the demo.
 
 | Common attribute | Values | Default |
 | --- | --- | --- |
 | `algorithm` | a name from the widget's list | the first |
+| `algorithms` | names from the list: toggle buttons to switch algorithm | absent |
 | `speed` | ms, 200–5000 | `900` |
 | `controls` | `full`, `compact` | `full` |
 | `editable` | boolean | absent |
@@ -1332,8 +1343,11 @@ folder. Widgets: `<uc-widget-sort>` (`values`, `algorithm` = `bubble`
 | `uc:widgetpredict` | `{ widget, step, correct, right, asked }` | Every predict answer. |
 
 A step (the unit the player moves through) is plain JSON: `{ state, marks,
-pointers, line, say: [i18n key, params], stats, aux, predict }`; marks are
-`current`, `compared`, `swapped`, `visited`, `done`.
+pointers, line, say: [i18n key, params], stats, aux, predict, code }`; marks
+are `current`, `compared`, `swapped`, `visited`, `done`. `code` names the
+pseudocode block of the step (an operation such as `insert`); without it the
+block is the algorithm's. A teacher's `<pre data-pseudocode
+data-algorithm="…">` matches either.
 
 | `UC.widgets` property | Description |
 | --- | --- |
@@ -1341,6 +1355,7 @@ pointers, line, say: [i18n key, params], stats, aux, predict }`; marks are
 | `Widget` | Base class (extends `UC.Element`); a widget defines `parse()`, `steps(input, emit)`, `draw(step, svg)` and optionally `describe`, `table`, `panel`, `pseudocode`, `serialize`. |
 | `register(name, Class)` | Defines the element (`UC.define`). |
 | `svg.array(svg, values, { marks, pointers, bars })` | Draws an array. |
+| `svg.tree(svg, root, { children, binary, key, label, note, marks, pointers, empty })` | Draws a binary (in-order layout, default `[node.l, node.r]`) or n-ary tree; nodes kept by key and moved. |
 | `parse.values`, `parse.ops`, `parse.graph` | Input parsers; throw `InputError(key, params)`. |
 | `random(seed)` | Seeded generator: `int(min, max)`, `pick`, `shuffle`. |
 | `MAX_STEPS`, `STATES`, `InputError`, `TooManySteps` | Limits and error types. |

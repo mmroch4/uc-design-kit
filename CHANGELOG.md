@@ -23,6 +23,17 @@ released yet; contract `docs/plan/widgets-api.md`).
 - Documentation: "Widgets" group (Catálogo, Usar widgets, uc-widget-sort),
   `docs/api.md` 7.2, `template/AGENTS.md`; tests in `tests/widgets/`
   (`npm run test:widgets`).
+- Phase W2 (experimental): `<uc-widget-search>` (linear, binary, lower
+  bound), `<uc-widget-bst>` (insert, remove, search, min, max; pre-, in-,
+  post- and level-order traversals), `<uc-widget-list>` (singly linked list,
+  including reverse), `<uc-widget-stack-queue>` (stack and queue, in an array
+  with a circular queue or in a linked list), `<uc-widget-recursion>`
+  (factorial, Fibonacci, Towers of Hanoi). Core: `svg.tree`, the common
+  attribute `algorithms` (toggle buttons), per-operation pseudocode
+  (`step.code`); `svg.list` is bundled into the two widgets that use it.
+  Small arrays and trees are no longer drawn larger than 1:1.
+- The EDados example's lab guide 10 uses `<uc-widget-bst>`; the extension
+  `extensions/uc-bst-traversal.js` stays as the custom component tutorial.
 
 ### Changed
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).

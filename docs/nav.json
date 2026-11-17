@@ -74,7 +74,12 @@
           "pages": [
             { "title": "Catálogo", "path": "pt/widgets/index.html" },
             { "title": "Usar widgets", "path": "pt/widgets/usar.html" },
-            { "title": "uc-widget-sort", "path": "pt/widgets/uc-widget-sort.html", "code": true }
+            { "title": "uc-widget-sort", "path": "pt/widgets/uc-widget-sort.html", "code": true },
+            { "title": "uc-widget-search", "path": "pt/widgets/uc-widget-search.html", "code": true },
+            { "title": "uc-widget-bst", "path": "pt/widgets/uc-widget-bst.html", "code": true },
+            { "title": "uc-widget-list", "path": "pt/widgets/uc-widget-list.html", "code": true },
+            { "title": "uc-widget-stack-queue", "path": "pt/widgets/uc-widget-stack-queue.html", "code": true },
+            { "title": "uc-widget-recursion", "path": "pt/widgets/uc-widget-recursion.html", "code": true }
           ]
         },
         {

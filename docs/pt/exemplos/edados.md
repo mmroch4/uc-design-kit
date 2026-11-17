@@ -36,7 +36,7 @@ O site completo de Estruturas de Dados (CC1007, DCC/FCUP), refeito com o kit a p
 | [`materiais.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/materiais.html) | — | Tabela de slides com botões PT/EN (`uc-button--sm`), `uc-links`, cartões da bibliografia. |
 | [`horarios.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/horarios.html) | `<uc-team view="table">` | Cartões das turmas, `uc-tag`, `uc-table`. |
 | [`sobre.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/sobre.html) | — | Programa numerado, `uc-bullets`, `uc-tag`. |
-| [`guioes/aula01–12.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) | `<uc-guide>`, `<uc-exercise>`, `<uc-code>`, `<uc-question>` | Dicas e soluções (`uc-hint`, `uc-solution`), código que corre na página com testes; a aula 10 usa o componente próprio `<uc-bst-traversal>`. |
+| [`guioes/aula01–12.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula10.html) | `<uc-guide>`, `<uc-exercise>`, `<uc-code>`, `<uc-question>` | Dicas e soluções (`uc-hint`, `uc-solution`), código que corre na página com testes; a aula 10 usa o widget [`<uc-widget-bst>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) para os percursos. |
 | [`guioes/teste-pratico-*.html`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/teste-pratico-1.html) | `<uc-guide>`, `<uc-exercise>` | Os enunciados dos testes práticos de anos anteriores. |
 | [`problemas/`](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/problemas/index.html) | — | 65 enunciados migrados dentro de `uc-content`, com `<pre data-copy>` na maioria dos exemplos de entrada e saída. |
 | `codigo/` | `<uc-code collapsible>` | Uma página por aula com o código das teóricas e os ficheiros `.java` para descarregar. |
@@ -63,7 +63,7 @@ O exemplo usa quatro dos cinco [níveis de personalização](https://uc-design-k
 | --- | --- |
 | 0: `course.js` | A cor de destaque, as páginas e as plataformas. |
 | 2: CSS livre | O [`theme.css`](https://github.com/mmroch4/uc-design-kit/blob/main/examples/edados-2526/theme.css) tem estilos próprios por página (fórmula da avaliação, programa numerado, navegação entre guiões), escritos só com tokens, por isso mudam de cor com `accentColor`. |
-| 3: componentes próprios | [`extensions/uc-bst-traversal.js`](https://github.com/mmroch4/uc-design-kit/tree/main/examples/edados-2526/extensions): uma demonstração interativa dos percursos numa árvore binária, na aula 10. Ver [o caso real do nível 3](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/componentes.md#caso-real). |
+| 3: componentes próprios | [`extensions/uc-bst-traversal.js`](https://github.com/mmroch4/uc-design-kit/tree/main/examples/edados-2526/extensions): uma demonstração interativa dos percursos numa árvore binária, guardada como exemplo de componente próprio (a aula 10 passou a usar o widget `<uc-widget-bst>`). Ver [o caso real do nível 3](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/componentes.md#caso-real). |
 | 4: HTML livre | Os enunciados, as páginas de ajuda e o código das aulas: HTML do site antigo dentro de `<uc-page>` (ver [abaixo](#migracao)). |
 
 Há mais sobre estas escolhas em [Personalizar: o caso real](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/index.md#caso-real).

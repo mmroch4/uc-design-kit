@@ -1,0 +1,20 @@
+{
+  "name": "uc-widget-recursion",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 1,
+  "title": { "pt": "Recursão", "en": "Recursion" },
+  "summary": {
+    "pt": "Árvore de chamadas e pilha de chamadas do fatorial, de Fibonacci e das Torres de Hanói.",
+    "en": "Call tree and call stack of factorial, Fibonacci and the Towers of Hanoi."
+  },
+  "page": "docs/pt/widgets/uc-widget-recursion.html",
+  "algorithms": ["factorial", "fibonacci", "hanoi"],
+  "courses": ["IP", "PI", "EDados"],
+  "attributes": ["n", "algorithm"],
+  "predict": true,
+  "test": {
+    "input": { "n": 3 },
+    "options": [{ "algorithm": "fibonacci", "input": { "n": 4 } }]
+  }
+}

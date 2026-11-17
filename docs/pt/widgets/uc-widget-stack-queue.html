@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-stack-queue · UC Design Kit</title>
+  <meta name="description" content="Documentação do widget uc-widget-stack-queue do UC Design Kit: pilha e fila, em vetor (fila circular) ou em lista ligada.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../exemplos/index.html">Exemplos</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../exemplos/index.html">Exemplos</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../manter.html">Manter o site</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="../componentes/uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="../componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="../componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="../componentes/uc-problems.html"><code>uc-problems</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Widgets</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="index.html">Catálogo</a></li>
+          <li><a href="usar.html">Usar widgets</a></li>
+          <li><a href="uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="uc-widget-stack-queue.html" aria-current="page"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../exemplos/index.html">Visão geral</a></li>
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/pc.html">PC 2026/27</a></li>
+          <li><a href="../exemplos/ip.html">IP 2025/26</a></li>
+          <li><a href="../exemplos/pi.html">PI 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-7">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-7">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Widgets</p>
+          <h1><code>&lt;uc-widget-stack-queue&gt;</code></h1>
+          <p class="docs-lead">Pilha (push, pop, peek) e fila (enqueue, dequeue, peek), em vetor de capacidade fixa (a fila é um vetor circular, com <code>front</code> e <code>back</code> a dar a volta) ou em lista ligada.</p>
+        </header>
+        <!-- docs:demo src="../../demos/uc-widget-stack-queue/basic.html" title="fila circular de capacidade 4" height="520" -->
+        <div class="docs-demo" id="demo-uc-widget-stack-queue-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-stack-queue/basic.html" title="Demonstração: fila circular de capacidade 4" loading="lazy" style="height: 520px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-widget-stack-queue algorithm=&quot;queue&quot; capacity=&quot;4&quot; values=&quot;3 8 5&quot;
+                       ops=&quot;dequeue; enqueue 1; enqueue 9; enqueue 7; dequeue&quot;&gt;
+  &lt;p&gt;Fila circular de capacidade 4 com 3 8 5. Sai 3, entram 1 e 9 (o 9 vai para a
+    posição 0), 7 não cabe, sai 8. Fica 5 1 9.&lt;/p&gt;
+&lt;/uc-widget-stack-queue&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-stack-queue/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Num vetor cheio, <code>push</code> e <code>enqueue</code> dão overflow e não mudam nada; numa estrutura vazia, <code>pop</code>, <code>dequeue</code> e <code>peek</code> dão underflow.</p>
+        <h2 id="utilizacao">Utilização</h2>
+        <p><code>algorithm</code> escolhe a estrutura (<code>stack</code> ou <code>queue</code>) e <code>impl</code> a implementação. <code>values</code> são os elementos iniciais (do fundo para o topo, ou da frente para o fim) e <code>ops</code> as operações; sem <code>ops</code>, cada valor entra passo a passo.</p>
+        <uc-code lang="html" no-download><pre><code>&lt;script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-stack-queue.js" defer&gt;&lt;/script&gt;
+
+&lt;uc-widget-stack-queue algorithm="stack" capacity="5" ops="push 4; push 7; pop; push 2"&gt;
+  &lt;p&gt;Pilha: push 4, push 7, pop devolve 7, push 2. Fica 4 2 (2 no topo).&lt;/p&gt;
+&lt;/uc-widget-stack-queue&gt;</code></pre></uc-code>
+        <h2 id="lista">Em lista ligada</h2>
+        <!-- docs:demo src="../../demos/uc-widget-stack-queue/list.html" title="pilha em lista ligada, com operações editáveis" height="600" -->
+        <div class="docs-demo" id="demo-uc-widget-stack-queue-list">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-stack-queue/list.html" title="Demonstração: pilha em lista ligada, com operações editáveis" loading="lazy" style="height: 600px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-widget-stack-queue algorithm=&quot;stack&quot; impl=&quot;list&quot; values=&quot;3 8&quot; ops=&quot;push 5; pop; peek; pop; pop; pop&quot; editable&gt;
+  &lt;p&gt;Pilha 3 8 (8 no topo). push 5, pop devolve 5, peek devolve 8, depois saem 8 e 3
+    e o último pop encontra a pilha vazia.&lt;/p&gt;
+&lt;/uc-widget-stack-queue&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-stack-queue/list.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Com <code>impl="list"</code> a pilha guarda o topo no primeiro nó (<code>top</code>) e a fila guarda <code>front</code> e <code>back</code>; os nós são desenhados como em <a href="uc-widget-list.html"><code>&lt;uc-widget-list&gt;</code></a>. Não há perguntas de previsão neste widget.</p>
+        <h2 id="atributos">Atributos</h2>
+        <p>Além dos <a href="usar.html#atributos-comuns">atributos comuns</a>:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-widget-stack-queue</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>algorithm</code></td><td><code>stack</code>, <code>queue</code></td><td><code>stack</code></td><td>A estrutura.</td></tr>
+              <tr><td><code>impl</code></td><td><code>array</code>, <code>list</code></td><td><code>array</code></td><td>A implementação.</td></tr>
+              <tr><td><code>capacity</code></td><td>inteiro de 1 a 16</td><td><code>8</code></td><td>O tamanho do vetor (só em <code>array</code>). Em lista, até 10 nós.</td></tr>
+              <tr><td><code>values</code></td><td>inteiros</td><td>vazio</td><td>Os elementos iniciais.</td></tr>
+              <tr><td><code>ops</code></td><td>operações separadas por <code>;</code></td><td>ausente</td><td><code>push v</code>, <code>pop</code>, <code>peek</code> (pilha); <code>enqueue v</code>, <code>dequeue</code>, <code>peek</code> (fila).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Com <code>editable</code>, o aluno escreve as suas próprias operações.</p>
+        <h2 id="linhas">Linhas do pseudocódigo</h2>
+        <p>Os identificadores para marcar as linhas de um <code>&lt;pre data-pseudocode&gt;</code> próprio (ver <a href="usar.html#pseudocodigo">Pseudocódigo próprio</a>); o bloco é a estrutura e a implementação (<code>data-algorithm="queue-array"</code>):</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Identificadores de linha</caption>
+            <thead>
+              <tr><th scope="col">Bloco</th><th scope="col">Linhas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>stack-array</code>, <code>queue-array</code></td><td><code>full</code>, <code>write</code>, <code>empty</code>, <code>read</code>, <code>move</code></td></tr>
+              <tr><td><code>stack-list</code>, <code>queue-list</code></td><td><code>new</code>, <code>link</code>, <code>empty</code>, <code>read</code>, <code>move</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 id="painel">Painel de estado</h2>
+        <p>O número de elementos.</p>
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o widget faz</h3>
+            <p>Uma frase por passo ("Escreve 9 na posição 0: o fim deu a volta ao vetor; back = 0."); a estrutura descrita em palavras, do fundo para o topo ou da frente para o fim; "Vista em texto" com a tabela posição, valor e estado.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Escrever dentro do elemento o conteúdo final e o que cada operação devolveu, e manter a capacidade pequena (4 a 8) para mostrar o overflow e a volta do vetor circular.</p>
+          </div>
+        </div>
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Aparece o texto escrito dentro do elemento e o <code>&lt;pre data-pseudocode&gt;</code>, se houver.</p>
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="usar.html">Usar widgets</a>: importar, teclado, previsões, versões.</li>
+          <li><a href="index.html">Catálogo</a> dos widgets.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-list.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-widget-list</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-widget-recursion.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-widget-recursion</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/uc-widget-stack-queue.html">Editar esta página no GitHub</a> · <a href="uc-widget-stack-queue.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#lista">Em lista ligada</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#linhas">Linhas do pseudocódigo</a></li>
+          <li><a href="#painel">Painel de estado</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

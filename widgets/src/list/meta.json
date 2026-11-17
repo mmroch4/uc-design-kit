@@ -1,0 +1,20 @@
+{
+  "name": "uc-widget-list",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 1,
+  "title": { "pt": "Lista ligada", "en": "Linked list" },
+  "summary": {
+    "pt": "Lista ligada simples: adicionar no início e no fim, inserir, remover, procurar e inverter, ponteiro a ponteiro.",
+    "en": "Singly linked list: add at the front and the end, insert, remove, search and reverse, pointer by pointer."
+  },
+  "page": "docs/pt/widgets/uc-widget-list.html",
+  "algorithms": ["singly"],
+  "courses": ["EDados", "PI"],
+  "attributes": ["values", "ops"],
+  "predict": true,
+  "test": {
+    "input": { "values": [3, 8, 5], "ops": [{ "verb": "add-first", "args": ["1"] }, { "verb": "add-last", "args": ["9"] }, { "verb": "insert", "args": ["2", "4"] }, { "verb": "search", "args": ["5"] }, { "verb": "remove", "args": ["8"] }, { "verb": "remove-first", "args": [] }, { "verb": "remove-last", "args": [] }, { "verb": "reverse", "args": [] }] },
+    "options": [{ "algorithm": "singly", "input": { "values": [4, 2, 7], "ops": null } }]
+  }
+}

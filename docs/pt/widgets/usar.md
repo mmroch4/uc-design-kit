@@ -42,6 +42,7 @@ Todos os widgets aceitam estes atributos; os próprios de cada um estão na sua 
 | Atributo | Valores | Por omissão | Efeito |
 | --- | --- | --- | --- |
 | `algorithm` | um nome da lista do widget | o primeiro | Que algoritmo da família corre. |
+| `algorithms` | nomes da lista do widget, separados por espaços | ausente | Botões por cima do desenho para o estudante trocar de algoritmo (por exemplo os quatro percursos de `<uc-widget-bst>`). Começa em `algorithm`. |
 | `speed` | milissegundos, 200 a 5000 | `900` | Tempo entre passos ao reproduzir. |
 | `controls` | `full`, `compact` | `full` | `compact`: só Recuar, Passo e o contador. |
 | `editable` | booleano | ausente | O estudante muda os dados e corre outra vez. |
@@ -83,13 +84,15 @@ Cada algoritmo traz pseudocódigo em português e inglês, com a linha atual des
 </uc-widget-sort>
 ```
 
+Nos widgets de operações (`<uc-widget-bst>`, `<uc-widget-list>`, `<uc-widget-stack-queue>`) o pseudocódigo muda com a operação em curso; `data-algorithm` recebe então o nome do bloco que a página do widget indica (`data-algorithm="insert"`, `data-algorithm="queue-array"`). Uma linha pode ter vários identificadores (`data-line="left right"`).
+
 Em páginas bilingues, um `<pre>` com `lang="pt"` e outro com `lang="en"`; a legenda bilingue escreve-se num `<template data-caption>` com um `<span lang>` por língua.
 
 ## Previsões e edição
 
 Com `predict`, ao avançar para um passo com pergunta (vai trocar? qual é escrito primeiro?), o desenho fica parado e aparecem as opções. A resposta mostra "Certo." ou "Ainda não:" com a explicação, e a linha "Previsões certas: 3 de 4" conta as respostas. Nada fica guardado nem é enviado.
 
-Com `editable`, por baixo do leitor aparece um campo com os dados, "Correr" e "Repor". Dados inválidos deixam a execução anterior e mostram o erro junto ao campo.
+Com `editable`, por baixo do leitor aparece um campo com os dados (nos widgets de operações, as operações; na pesquisa, os valores e o alvo depois de `:`), "Correr" e "Repor". Dados inválidos deixam a execução anterior e mostram o erro junto ao campo.
 
 ## Versões e uso offline
 
