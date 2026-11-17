@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC010] Concert Tickets · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC010 (Concert Tickets) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC010</li></ol>
+    </nav>
+    <h1>[PC010] Concert Tickets</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://cses.fi/problemset/task/1091">CSES problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc010.png"/>There are \(n\) concert tickets available, each with a certain price. Then, \(m\) customers arrive, one after another.</p>
+<p>Each customer announces the maximum price they are willing to pay for a ticket, and after this, they will get a ticket with the nearest possible price such that it does not exceed the maximum price.</p>
+<h2>Input</h2>
+<p>The first input line contains integers \(n\) and \(m\): the number of tickets and the number of customers.</p>
+<p>The next line contains \(n\) integers \(h_1,h_2,\ldots,h_n\): the price of each ticket.</p>
+<p>The last line contains \(m\) integers \(t_1,t_2,\ldots,t_m\)​: the maximum price for each customer in the order they arrive.</p>
+<h2>Output</h2>
+<p>Print, for each customer, a line with the price that they will pay for their ticket. After this, the ticket cannot be purchased again.</p>
+<p>If a customer cannot get any ticket, print -1.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n,m \cdot 10^5 \)
+  </li><li>\( 1 \leq h_i, t_i \leq 10^9 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">5 3
+5 3 7 8 5
+4 8 3</pre></td><td><pre data-copy="Output">3
+8
+-1</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc010.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc010.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

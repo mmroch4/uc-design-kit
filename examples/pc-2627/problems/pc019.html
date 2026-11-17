@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC019] Light Switching · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC019 (Light Switching) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC019</li></ol>
+    </nav>
+    <h1>[PC019] Light Switching</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/LITE/">SPOJ problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc019.png"/>
+Farmer John tries to keep the cows sharp by letting them play with intellectual toys. One of the larger toys is the lights in the barn.  Each of the \(n\) cow stalls conveniently numbered  \(1 \ldots n\) has a colorful light above it.</p>
+<p>At the beginning of the evening, all the lights are off. The cows control the lights with a set of \(n\) pushbutton switches that toggle the lights; pushing switch \(i\) changes the state of light \(i\) from off to on or from on to off.</p>
+<p>The cows read and execute a list of \(m\) operations expressed as one of two integers: \(0\) or \(1\).</p>
+<p>The first kind of operation (denoted by a \(0\) command) includes two subsequent integers \(s_i\) and \(e_i\) that indicate a starting switch and ending switch. They execute the operation by pushing each pushbutton from \(s_i\) through \(e_i\) inclusive exactly once.</p>
+<p>The second kind of operation (denoted by a \(1\) command) asks the cows to count how many lights are on in the range given by two integers \(s_i\) and \(e_i\) which specify the inclusive range in which the cows should count the number of lights that are on.</p>
+<p>Help Farmer John ensure the cows are getting the correct answer by processing the list and producing the proper counts.</p>
+<h2>Input</h2>
+<p>Line \(1\): Two space-separated integers: \(n\) and \(m\).</p>
+<p>Lines \(2\) to \(M+1\): Each line represents an operation with three space-separated integers: operation (\(0\) or \(1\)), \(s_i\), and \(e_i\).</p>
+<h2>Output</h2>
+
+Lines \(1\) to \(m\): For each output query, print the count as an integer by itself on a single line.
+
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n, m \leq 10^5 \)
+  </li><li>\( 1 \leq s_i \leq e_i \leq n \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4 5
+0 1 2
+0 2 4
+1 2 3
+0 2 4
+1 1 4</pre></td><td><pre data-copy="Output">1
+2</pre></td></tr></table></div>
+<ul>
+<li>Initially all lights are 4 lights off: [off, off, off, off]
+  </li><li>0 1 2 changes lights to [on, on, off, off]
+  </li><li>0 2 4 changes lights to [on, off, on, on]
+  </li><li>1 2 3 considers sequence [off, on] with 1 light turned on
+  </li><li>0 2 4 changes lights to [on, on, off, off]
+  </li><li>1 1 5 considers sequence [on, on off, off] with 2 lights turned on
+
+</li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc019.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc019.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

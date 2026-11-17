@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weekly Problems #07 · Competitive Programming 2026/27</title>
+  <meta name="description" content="Weekly problem set #07 of Competitive Programming (CC3032): Dynamic Programming II (partitions, games, dags, counting, search).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="../problems/index.html">Problems</a></li><li aria-current="page">Weekly Problems #07</li></ol>
+    </nav>
+    <h1>Weekly Problems #07</h1>
+    <p class="uc-lead">Dynamic Programming II (partitions, games, dags, counting, search) · Class: <a href="../classes/week07.html">Week #07</a></p>
+    <div class="uc-content">
+<p>This is one of 10 weekly problem sets. Each one is worth 10% of the grade of the <strong>"Submitted Implementation"</strong> evaluation criteria.</p>
+<ul>
+<li><strong>Date of publication:</strong> 16/11/2026
+  </li><li><strong>Date of delivery (deadline):</strong> 23h59m of <strong>30/11/2026</strong> (-4% for each extra day)
+  </li><li><strong>Topics:</strong>  Dynamic Programming II (partitions, games, dags, counting, search)
+</li></ul>
+
+<h2>Proposed problems (5)</h2>
+<ul>
+<li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC033]</a> - <a href="../problems/pc033.html">Football Teams</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>
+          - We need to use DP to count<br/><br/>
+          - A DP state needs to know where  we are. What variables do we need to obey the restrictions of the problem?
+        </p>
+</details>
+
+</li><li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC034]</a> - <a href="../problems/pc034.html">Bridge Building</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>- First use BFS or DFS to find out what cells belong to each bank<br/><br/>
+           - Then calculate for each column what would the bridge length be to connect north and south<br/><br/>
+           - At this point the problems becomes an almost "direct" partition DP problem :)<br/><br/>
+           - The DP state could be something like (column_last_bridge, number_bridges_left)
+         </p>
+</details>
+
+</li><li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC035]</a> - <a href="../problems/pc035.html">Chomp</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>- This is DP on a game, right?<br/><br/>
+          - We can win if there is at least a move that goes to a losing position<br/><br/>
+          - We lose if all our moves go to losing positions<br/><br/>
+          - How can the board be represented in an efficient way to save both memory and runtime?
+      </p></details>
+
+</li><li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC036]</a> - <a href="../problems/pc036.html">Rock-Me-Not</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>- Bitmasks, anyone? </p>
+</details>
+
+</li><li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC037]</a> - <a href="../problems/pc037.html">This is the way</a><br/>
+<i><span class="uc-muted">(tested in C++, Java and Python)</span></i>
+<details name="hint">
+<summary>Hints</summary>
+<p>- Are you up for a <a href="https://usaco.guide/gold/digit-dp?lang=java">digit DP</a>? :)<br/><br/>
+</p>
+</details>
+
+</li></ul>
+
+<h2>About the delivery</h2>
+<ul>
+<li>I will automatically catch your submissions from Codeforces (as well as in Mooshak).
+    </li><li>At the end of the semester you will need to send all your submitted code to me.
+    </li><li>You can chat and discuss the problems among yourselves, but you should do your own implementation (simply copying code from other or from an LLM is considered a severe break of the code of conduct).
+    </li><li>The final code submitted to should include comments with the temporal and spatial complexity, as well as a small explanation of your algorithmic idea. You should also refer any helps you got (including referencing any sources you have consulted).
+  </li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/ps07.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/ps07.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

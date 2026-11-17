@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC029] String to Palindrome · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC029 (String to Palindrome) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC029</li></ol>
+    </nav>
+    <h1>[PC029] String to Palindrome</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://onlinejudge.org/external/107/10739.pdf">UVA Online Judge Problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc029.png"/>
+In this problem you are asked to convert a string into a palindrome with minimum number of operations.</p>
+<p>The operations are described below:</p>
+<p>Here you'd have the ultimate freedom. You are allowed to:</p>
+<ul>
+<li>Add any character at any position
+  </li><li>Remove any character from any position
+  </li><li>Replace any character at any position with another character
+</li></ul>
+<p>Every operation you do on the string would count for a unit cost. You'd have to keep that as low
+as possible.&lt;7p&gt;
+
+</p><p>For example, to convert "abccda" you would need at least two operations if we allowed you only to add characters. But when you have the option to replace any character you can do it with only one operation. We hope you’d be able to use this feature to your advantage.</p>
+<h2>Input</h2>
+<p>The input file contains several test cases. The first line of the input gives you the number of test cases,
+  \(t\).</p>
+<p>Then \(t\) test cases will follow, each with a string \(s\)in one line. The string contains only lower case letters.</p>
+<h2>Output</h2>
+<p>For each test case print a line with he minimum number of characters needed to turn the given string into a palindrome.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq t \leq 10 \)
+  </li><li>\( 1 \leq |s| \leq 1\,000 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">6
+tanbirahmed
+shahriarmanzoor
+monirulhasan
+syedmonowarhossain
+sadrulhabibchowdhury
+mohammadsajjadhossain</pre></td><td><pre data-copy="Output">5
+7
+6
+8
+8
+8</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc029.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc029.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

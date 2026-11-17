@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC020] Census · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC020 (Census) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC020</li></ol>
+    </nav>
+    <h1>[PC020] Census</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://onlinejudge.org/external/112/11297.pdf">UVA Online Judge Problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc020.png"/>
+This year, there have been many problems with population calculations, since in some cities, there
+are many emigrants, or the population growth is very high. Every year the ACM (for Association
+for Counting Members) conducts a census in each region. The country is divided into \(n^2\) regions,
+consisting of an \(n \times n\) grid of regions. Your task is to find the least, and the greatest population in
+some set of regions. Since in a single year there is no significant change in the populations, the ACM
+modifies the population counts by some number of inhabitants.</p>
+<h2>Input</h2>
+<p>In the first line you will find the integer \(n.\).  The following \(n\) lines will each contain the \(n\) integers, representing the initial population of city \(c[y,x]\). In the following line is the number \(q\), followed by \(q\) lines with queries, each one being of one of the following two types::</p>
+<ul>
+<li>\(\text{q} \, y_1 \, x_1 \, y_2 \, x_2\) which represents the coordinates of the upper left and lower right of where you must calculate the maximum and minimum value of population.</li>
+<li>\(\text{c} \, y \, x \, v\) indicating a change of the population of city \(c[y, x]\) to value \(v\).
+</li></ul>
+<h2>Output</h2>
+<p>For each query \(q \, y_1 \, x_1 \, y_2 \, x_2\) print in a single line the greatest and least amount of current population in that region, separated by a single space.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n \leq 500 \)
+  </li><li>\( 1 \leq q \leq 40\,000 \)
+  </li><li>\( 0 \leq c[i,j], v \leq 10^6\)
+  </li><li>\( 1 \leq y_1 \leq y_2 \leq n\)
+  </li><li>\( 1 \leq x_1 \leq x_2 \leq n\)
+  </li><li>\( 1 \leq x, y \leq n\)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">5
+1 2 3 4 5
+0 9 2 1 3
+0 2 3 4 1
+0 1 2 4 5
+8 5 3 1 4
+4
+q 1 1 2 3
+c 2 3 10
+q 1 1 5 5
+q 1 2 2 2</pre></td><td><pre data-copy="Output">9 0
+10 0
+9 2</pre></td></tr></table></div>
+<ul>
+<li> Query 1 (1 1 2 3) corresponds to the following region (max=9, min=0):
+<pre>
+<span class="hl">1 2 3</span> 4 5
+<span class="hl">0 9 2</span> 1 3
+0 2 3 4 1
+0 1 2 4 5
+8 5 3 1 4
+</pre>
+</li><li> Query 2 (1 1 5 5) corresponds to the following region (max=10, min=0):
+<pre>
+<span class="hl">1  2 3 4 5</span>
+<span class="hl">0  9 2 1 3</span>
+<span class="hl">0 10 3 4 1</span>
+<span class="hl">0  1 2 4 5</span>
+<span class="hl">8  5 3 1 4</span>
+</pre>
+</li><li> Query 3 (1 2 2 2) corresponds to the following region (max=10, min=0):
+<pre>
+1 <span class="hl"> 2</span> 3 4 5
+0 <span class="hl"> 9</span> 2 1 3
+0 10 3 4 1
+0  1 2 4 5
+8  5 3 1 4
+</pre>
+</li></ul>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc020.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc020.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC033] Football Teams · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC033 (Football Teams) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC033</li></ol>
+    </nav>
+    <h1>[PC033] Football Teams</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is from <a href="https://www.dcc.fc.up.pt/~pribeiro/miup2015/">MIUP'2015</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc033.png"/>
+Alice and Bob are playing football with their \(N\) friends and now they have to pick their teams by choosing players among their classmates. They will take turns and each time one of them will choose one or more of the remaining players. We can represent the order of their choices as a sequence of letters \(A\) (for Alice) and \(B\) (for Bob).</p>
+<p>The two kids want to form teams of the same size, which means that a sequence should have the same exactly \(N/2\) \(A\)’s and \(N/2\) \(B\)’s. Being a gentleman, Bob will let Alice choose first, which means all valid sequences will start with an ’A’. Furthermore, at any given time in the process, Bob cannot have more players chosen than Alice, meaning that in any prefix of the sequence there will always be at least as many \(A\)’s as \(B\)’s. In order to make everything a little more balanced, they’ve also decided that they cannot choose more than \(K\) players consecutively.</p>
+<p>The following are some examples of invalid sequences for 10 friends (\(N=10\)) and no more than 3 consecutive choices from the same kid (\(K=3\)):
+
+</p><p>
+<code>ABBABABABA</code> - invalid, because the prefix <code>ABB</code> has more \(B\)’s than \(A\)’s<br/>
+<code>AAABBBAABA</code> - invalid, because there are 6 \(A\)’s and only \(4\) B’s<br/>
+<code>ABAAAABBBB</code> - invalid, because there are 4 consecutive \(A\)’s (and also 4 consecutive \(B\)’s)<br/>
+</p>
+<p>For the same scenario (\(N=10, K=3\)), these are examples of valid choices:</p>
+<pre>
+ABABABABAB
+AABABBAABB
+AAABBABBAB
+AAABBBAABB
+</pre>
+<p>Note there are even more possible orders of choice. In fact, there are 34 different sequences representing valid choices for the case of \(N=10, K=3\).</p>
+<p>Now, if only they could know how many different ways are there for any possible case, they would be the heroes of their class... Can you help them?</p>
+<h2>Task</h2>
+<p>Given the number \(N\) of friends and the number \(K\) of maximum consecutive choices from the same kid, your task is to count in how many ways can the order of choices occur, that is, to count the number of different sequences representing valid scenarios as described before.</p>
+<h2>Input</h2>
+<p>The first line contains an integer \(T\), the number of test cases to follow. Each of the following lines describes one case in the form \(N_i K_i\), indicating respectively the number of friends and the maximum number of consecutive choices.</p>
+<h2>Output</h2>
+<p>The output should contain exactly \(T\) lines, each one giving the number of ways \(W_i\) in which the order of choices can occur for the respective case, as described before.</p>
+<h2>Constraints</h2>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>\( 1 \leq T \leq 100 \)</td><td>Number of test cases</td>
+</tr>
+<tr>
+<td>\( 2 \leq N_i \leq 100 \)</td><td>Number of friends (always an even number)</td>
+</tr>
+<tr>
+<td>\( 1 \leq K_i \leq N/2 \)</td><td>Number of consecutive choices from the same friend</td>
+</tr>
+<tr>
+<td>\( 1 \leq W_i \leq 10^{18} \)</td><td>Number of different orders of choice respecting the conditions </td>
+</tr>
+</table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">6
+10 3
+10 4
+8 2
+12 6
+20 5
+24 10</pre></td><td><pre data-copy="Output">34
+41
+8
+132
+15107
+207990</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc033.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc033.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

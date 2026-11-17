@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC034] Bridge Building · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC034 (Bridge Building) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC034</li></ol>
+    </nav>
+    <h1>[PC034] Bridge Building</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is from <strong>CPUP'2006</strong>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc034.png"/>
+<i>Against the city's gleaming spires,<br/>
+Above the ships that ply the stream,<br/>
+A bridge of haunting beauty stands -<br/>
+Fulfillment of an artist's dream<br/>
+(D. B. Steinman)</i></p>
+<p>Algorithm city is crossed by the beautiful Complexity River. Up
+until now, the only possible way to travel from one bank (margin) of the river
+to the other is by boat. This is very negative for the city economics
+and therefore the mayor has decided to build a series of bridges to
+connect the two parts of the city, lying on different banks of the river.
+
+</p><p>He has a fixed number of bridges to build, but in order to save the
+maximum amount of money he wishes to build the bridges has short as possible.
+However, since he wants to really help the citizens, the bridges must not be
+to close together, in order to have them splitted all over the city.
+
+</p><p>The mayor has asked for your help, and has given
+you the map of the part of city with that is near the river. To simplify,
+this map can be seen as a grid of chars. <strong>'#'</strong> means a piece of
+terrain and <strong>'.'</strong> means water. So, for example, a map could be something
+like:
+
+</p><pre class="center">####################
+..######........##..
+....##..............
+....................
+....................
+.................#..
+..######........##..
+####################</pre>
+<p class="center">
+<strong>Figure 1</strong> - An example of a valid map
+</p>
+<p>You can be sure that the map will always have
+terrain-only on the first and last rows, and that those pieces of 
+terrain correspond
+to different banks. There will be no islands in the river, and all terrain
+will either be connected to the north or south bank. We consider a piece
+of terrain to be connected to another if they are adjacent, that is,
+if they are next to each other horizontally or vertically (but not
+diagonally). You can also be sure that on the same column of the grid map,
+there will never be a south piece of the bank above a north
+one. However, small lakes (that do not belong to the river) can exist 
+inside banks, as exemplified in figure 2.
+
+</p><pre class="center">###############
+.#..#.......#..
+.####......##..
+.####..........
+.#........##...
+..........#....
+###############</pre>
+<p class="center">
+<strong>Figure 2</strong> - Another example of a valid map
+</p>
+<p>The Algorithm City mayor is very old fashioned and has decided that the
+bridges to build must only be built in the north-south direction (vertically,
+in the grid). So, for example, imagine that the mayor would like to build
+3 bridges, that must be separated at least by 4 positions, on the map of
+the figure 1. A solution that would minimize the length of the bridges
+would be the one in figure 3, where <strong>'B'</strong> represents a bridge.
+
+</p><pre class="center">####################
+..######........##..
+..<strong>B</strong>.##.<strong>B</strong>.........<strong>B</strong>..
+..<strong>B</strong>....<strong>B</strong>.........<strong>B</strong>..
+..<strong>B</strong>....<strong>B</strong>.........<strong>B</strong>..
+..<strong>B</strong>....<strong>B</strong>.........#..
+..######........##..
+####################</pre>
+<p class="center">
+<strong>Figure 3</strong> - A solution for the map of figure 1
+</p>
+<p>Note that the first two bridges in the solution are exactly separated by
+4 spaces as required, and could not be more close. If we measure the length
+of the bridges built by squares in the grid, we can say that the total
+length used was 11 (4+4+3). Any other way of building the bridges in this map
+would give more total length and therefore would be worse.</p>
+<h2>The Problem</h2>
+<p>Given a grid map as specified above, a number of bridges to build and the minimum space (on columns) that should separate the bridges, your task is to calculate the best positions to build the bridges in order to minimize their total length, and print the total length of the bridges in that best arrangement. </p>
+<h2>Input</h2>
+<p> The first line of input contains two integers, \(R\) and \(C\), representing respectively the numbers of rows and the number of columns of the grid map.</p>
+<p>Then comes a line with two integers, \(B\) and \(S\), where \(B\) represents the number of bridges to build and \(S\) the minimum space (in columns) that should separate bridges.</p>
+<p>After that come exactly \(R\) lines, each one with \(C\) chars, that represent the map. This map obeys to the rules described above and only has '#' or '.'.</p>
+<h2>Output</h2>
+<p>The output should contain a single line, with an integer representing the total length of bridges to build in the solution that minimizes this same total, as described above.</p>
+<p>There will always be a way to build the bridges. </p>
+<h2>Constraints</h2>
+<div class="uc-table"><table role="presentation">
+<tr>
+<td>\( 5 \leq R,C \leq 1\,000 \)</td><td>Number of rows and columns of the map</td>
+</tr>
+<tr>
+<td>\( 1 \leq B \leq 100 \)</td><td>Number of bridges</td>
+</tr>
+<tr>
+<td>\( 1 \leq S \leq 100 \)</td><td>Minimum separation between bridges</td>
+</tr>
+</table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 1</th><th scope="col">Example Output 1</th></tr><tr><td><pre data-copy="Input">8 20
+3 4
+####################
+..######........##..
+....##..............
+....................
+....................
+.................#..
+..######........##..
+####################</pre></td><td><pre data-copy="Output">11</pre></td></tr></table></div>
+
+<div class="uc-table"><table><tr><th scope="col">Example Input 2</th><th scope="col">Example Output 2</th></tr><tr><td><pre data-copy="Input">7 15
+2 8
+###############
+.#..#.......#..
+.####......##..
+.####..........
+.#........##...
+..........#....
+###############</pre></td><td><pre data-copy="Output">2</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc034.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc034.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

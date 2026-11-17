@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC014] Building Construction · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC014 (Building Construction) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC014</li></ol>
+    </nav>
+    <h1>[PC014] Building Construction</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://www.spoj.com/problems/KOPC12A/">SPOJ problem</a> (but with harder constraints).</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc014.png" width="350"/>
+Given \(N\) buildings of height \(h_1, h_2, h_3, \ldots, h_n\), the objective is to make every building have equal height. This can be done by removing bricks from a building or adding some bricks to a building. Removing a brick or adding a brick is done at certain cost which will be given along with the heights of the buildings. Find the minimal cost at which you can make the buildings look beautiful by re-constructing the buildings such that the \(N\) buildings satisfy.</p>
+<p>\(h_1 = h_2 = h_3 = \ldots = h_n = k\) (and \(k\) can be any number)</p>
+<p>For convenience, all buildings are considered to be vertical piles of bricks, which are of same dimensions.</p>
+<h2>Input</h2>
+<p>The first line of input contains an integer \(T\) which denotes number of test cases. This will be followed by \(3 \times T\) lines, 3 lines per test case.</p>
+<p>The first line of each test case contains an integer \(N\) and the  second line contains \(N\) integers which denote the heights of the buildings \(h_1, h_2, h_3, \ldots, h_n\) and the third line contains \(N\) integers \(c_1, c_2, c_3, \ldots, c_n\) which denote the cost of adding or removing one unit of brick from the corresponding building.
+
+</p><h2>Output</h2>
+<p>The output must contain T lines each line corresponding to a testcase, indicating the respective minimal cost.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq T \leq 15 \)
+  </li><li>\( 1 \leq N \leq 100\,000 \)
+  </li><li>\( 1 \leq h_i \leq 10\,000 \)
+  </li><li>\( 1 \leq c_i \leq 10\,000 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">2
+3
+1 2 3
+10 100 1000
+3
+1 3 2
+10 100 100</pre></td><td><pre data-copy="Output">120
+110</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc014.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc014.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

@@ -6,11 +6,13 @@ Conteúdo do autor, fora da licença MIT: ver `NOTICE.md`.
 
 ## Estado
 
-Primeira fase: as páginas que os estudantes abrem todas as semanas, a partir do
-conteúdo recolhido a 16 nov 2026. As subpáginas (aulas, problem sets, contest e
-enunciados) não foram copiadas porque o servidor do DCC deixou de responder a
-partir das 23:30 de 16 nov (bloqueio por excesso de pedidos). Por agora, ligam
-para o site original com endereço absoluto.
+Migração completa a partir da cópia do site descarregada a 17 nov 2026 (11:03–11:11,
+um pedido de cada vez, com pausas de 1,5–4,5 s). Primeira fase (PR #41): páginas
+principais. Segunda fase: aulas, problem sets, contest, enunciados, materiais e
+imagens, todos locais com links relativos. As subpáginas foram convertidas com um
+script (BeautifulSoup): conteúdo entre o cabeçalho e o rodapé do original, HTML
+corrigido (listas por fechar, `<font>`, estilos inline), exemplos dos enunciados
+em `uc-table` com `pre[data-copy]`, fórmulas com MathJax (cdnjs) como no original.
 
 ## Inventário
 
@@ -23,10 +25,14 @@ para o site original com endereço absoluto.
 | `#oj`, `#material`, `#others` | `materials.html` | Cartões dos juízes e livros, listas de links |
 | `#lists` | `rankings.html` | Só links para o original (dados de estudantes) |
 | `problems.html` | `problems/index.html` | Tabelas por problem set; enunciados ligam ao original |
-| `weekNN.html` (6) | — | **Por copiar**: link para o original |
-| `psNN.html` (6) | — | **Por copiar**: link para o original |
-| `contest1.html` | — | **Por copiar**: link para o original |
-| `problems/pcNNN.html` (31) e imagens | — | **Por copiar**: link para o original |
+| `week01–07.html` | `classes/week01–07.html` | Convertidas; título, migalhas e ligação ao problem set |
+| `ps01–07.html` | `problem-sets/ps01–07.html` | Convertidas; prazos passaram ao `course.js` (`kind: "submission"`) |
+| `contest1.html` | `contest1.html` | Convertida; resultados (submissions/) ficam no original |
+| `problems/pc001–037.html` + 42 imagens | `problems/pcNNN.html`, `problems/images/` | Convertidas; exemplos em `uc-table`, MathJax |
+| `material/*` (pdf, cpp, c, java, txt) | `material/` | Cópia local (28 ficheiros) |
+| `meme_*.jpg` (15) | `images/memes/` | Cópia local, com texto alternativo |
+| `material/*.html` (bigo_table, prefixsums, segtree_array, segtree_ptr, fenwick_trees_four_patterns) | — | **Fora**: não descarregadas; ligam para o original |
+| `week08–12`, `ps08–10` | — | Ainda não existem no original (404 a 17 nov) |
 | `submissions/*` | — | **Fora**: listas e rankings com dados de estudantes |
 | `style2627.css`, `pc2627.png`, `discord.png` | — | Fora: estilo antigo e logótipo |
 
@@ -49,5 +55,4 @@ para o site original com endereço absoluto.
   numa segunda (14 dez). A semana 8 aparece como "No class listed".
 - Datas do 3.º contest, da criação de problemas e da apresentação de código
   (só "Jan ?": ficaram com o mês, `2027-01`).
-- Prazos dos problem sets (estão nas páginas `psNN.html`, ainda por ler).
-- Número de problem sets: a avaliação fala em 10, a página inicial lista 6.
+- Número de problem sets: a avaliação fala em 10, o site tem 7 publicados (até 17 nov).

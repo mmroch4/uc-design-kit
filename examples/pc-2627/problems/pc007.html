@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC007] Lemmings Battle · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC007 (Lemmings Battle) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC007</li></ol>
+    </nav>
+    <h1>[PC007] Lemmings Battle</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This is a Mooshak version of a <a href="https://onlinejudge.org/external/9/978.pdf">UVA Online Judge problem</a> that was orginally used on CPUP (<i>Concurso de Programação da Universidade do Porto</i>).</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc007.png"/>Oh no... more lemmings!! And in Lemmings Planet a huge battle
+is being fought between the two great rival races: the green lem-
+mings and the blue lemmings. Everybody was now assigned to bat-
+tle and they will fight until one of the races completely dissapears:
+  the Deadly War has begun!</p>
+<p>978 Lemmings Battle!
+Oh no... more lemmings!! And in Lemmings Planet a huge battle
+is being fought between the two great rival races: the green lem-
+mings and the blue lemmings. Everybody was now assigned to bat-
+tle and they will fight until one of the races completely dissapears:
+the Deadly War has begun!
+Every single lemming has a power measure that describes its
+ability to fight. When two single lemmings fight with each one, the
+lemming with more power survives and the other one dies. However,
+the power of the living lemming gets smaller after the fight, exactly
+in the value of the power of the lemming that died. For example, if
+we have a green lemming with power 50 and a blue lemming with
+power 40, the blue one dies and the green one survives, but having
+only power 10 after the battle (50-40=10). If two lemmings have the
+  same power when they fight, both of them die.</p>
+<p>In the fight between the two races, there are a certain number of battlefields. Each race assigns one
+lemming for each battlefield, starting with the most powerful. So for example, if a race has 5 lemmings
+with power 50 50 40 40 30 and we have 3 battlefields, then a lemming with power 50 will be assigned
+to battlefield 1, another with 50 power will be assigned to battlefield 2 and last a lemming with power
+  40 will go to battlefield 3. The other race will do the same.</p>
+<p>The Deadly War is processed by having each race send its best soldiers as described to the battle-
+fields, making a battle round. Then, all battles process at the same time, and some of the lemmings
+will emerge victorious (but with less power) and some of them will die. The surviving ones will return
+to their race’s army and then a new round will begin, with each race sending again its best remaining
+soldiers to the battlefields. If at some point a race does not have enough soldiers to fill all battlefields,
+  then only the ones with soldiers from both races will have a fight.</p>
+<p>The Deadly War ends when one of the races has no more lemmings or when both of them disappear
+at the same time. For example, imagine a war with 2 battlefields and a green army with powers 20
+10 and a blue army with powers 10 10 15. The first round will have 20 vs 15 in battlefield 1 and 10
+vs 10 in battlefield 2. After these battles, green race will still have a power 5 lemming (that won on
+battlefield 1) and blue race will have one with power 10 (that did not fight). The ones in battlefield 2
+died, since they both had the same power. Afer that comes a second round, and only battlefield 1 will
+have a fight, being 5 vs 10. The blue lemming wins, killing the last green soldier and giving the victory
+  do the blue race!</p>
+<p>But in the real battle, will victory be green or blue?</p>
+<p><br/>Given the number of battefields and the armies of both races, your task is to discover which race
+will win the Deadly War and show the power of the surviving soldiers.</p>
+<h2>Input</h2>
+<p>The first line of input contains a single number \(N\), representing the number of test cases that follow (\(1 \leq N \leq 100\)).</p>
+Each test case starts with a line with three space-separated integers, \(B\), \(SG\) and \(SB\), representing
+respectively the number of battlefields available, the number of lemmings in the green army and the
+number of lemmings in the blue army (\(1 \leq B, SG, SB \leq 100\,000\)).
+
+<p>Than follow exactly SG lines, each one with an integer indicating the power of one single lemming
+of the green army, followed by SB lines, each one with an integer indicating the power of one single
+  lemming of the blue army. This power is a positive integer smaller than 101.</p>
+<p>The lemmings in each army do not need to come in any particular order.</p>
+<h2>Output</h2>
+<p>For each test case you should print:</p>
+<ul>
+<li> <code>'green and blue died'</code> if both races died in the same round
+</li><li> <code>'green wins'</code> if the green army won the Deadly War, followed by one line for each surviving soldier (in descending order)
+</li><li> <code>'blue wins'</code> if the blue army won the Deadly War, followed by one line for each surviving soldier (in descending order)
+</li></ul>
+<p>There should also be a blank line beetween test cases.</p>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">3
+5 1 1
+10
+10
+2 2 3
+20
+10
+10
+10
+15
+3 5 5
+50
+40
+30
+40
+50
+50
+30
+30
+20
+60</pre></td><td><pre data-copy="Output">green and blue died
+
+blue wins
+5
+
+green wins
+10
+10</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc007.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc007.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

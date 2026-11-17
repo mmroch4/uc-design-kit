@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[PC021] Maximum Sum · Competitive Programming 2026/27</title>
+  <meta name="description" content="Statement of problem PC021 (Maximum Sum) of Competitive Programming (CC3032), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">PC021</li></ol>
+    </nav>
+    <h1>[PC021] Maximum Sum</h1>
+    <div class="uc-content">
+<p class="uc-small uc-muted">This problem is a Mooshak version of a <a href="https://onlinejudge.org/external/1/108.pdf">UVA Online Judge Problem</a>.</p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="images/pc021.png"/>
+A problem that is simple to solve in one dimension is often much more difficult to solve in more than
+one dimension. Consider satisfying a boolean expression in conjunctive normal form in which each
+conjunct consists of exactly 3 disjuncts. This problem (3-SAT) is NP-complete. The problem 2-SAT
+is solved quite efficiently, however. In contrast, some problems belong to the same complexity class
+  regardless of the dimensionality of the problem.</p>
+<p>Given a 2-dimensional array of positive and negative integers, find the sub-rectangle with the largest
+sum. The sum of a rectangle is the sum of all the elements in that rectangle. In this problem the sub-
+rectangle with the largest sum is referred to as the maximal sub-rectangle.</p>
+<p>A sub-rectangle is any contiguous sub-array of size 1 × 1 or greater located within the whole array.
+  As an example, the maximal sub-rectangle of the array:</p>
+<pre>
+ 0 −2 −7  0
+ 9  2 −6  2
+−4  1 −4  1
+−1  8  0 −2
+  </pre>
+<p>is in the lower-left-hand corner:</p>
+<pre>
+ 9 2
+−4 1
+−1 8
+</pre>
+<p>and has the sum of 15.</p>
+<h2>Input</h2>
+<p>The input consists of an \(N \times N\) array of integers.
+
+</p><p>The input begins with a single positive integer \(N\) on a line by itself indicating the size of the square two dimensional array. This is followed by
+\(N\) lines describing the matrix, each with \(N\) integers \(x_{ij}\) with the contents of each cell.</p>
+<h2>Output</h2>
+<p>The output is the sum of the maximal sub-rectangle.</p>
+<h2>Constraints</h2>
+<ul>
+<li>\( 1 \leq n \leq 300 \)
+  </li><li>\( -100 \leq x_{ij} \leq 100 \)
+</li></ul>
+<div class="uc-table"><table><tr><th scope="col">Example Input</th><th scope="col">Example Output</th></tr><tr><td><pre data-copy="Input">4
+0 -2 -7 0
+9 2 -6 2
+-4 1 -4 1
+-1 8 0 -2</pre></td><td><pre data-copy="Output">15</pre></td></tr></table></div>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc021.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/problems/pc021.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>

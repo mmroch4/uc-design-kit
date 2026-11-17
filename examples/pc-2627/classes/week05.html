@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week #05 · Competitive Programming 2026/27</title>
+  <meta name="description" content="Class #05 of Competitive Programming (CC3032): Cumulative sums and fenwick trees (BITs).">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #05</li></ol>
+    </nav>
+    <h1>Week #05</h1>
+    <p class="uc-lead">Cumulative sums and fenwick trees (BITs) · Problems: <a href="../problem-sets/ps05.html">Weekly Problems #05</a></p>
+    <div class="uc-content">
+<h2>Main learning outcomes for this class</h2>
+<ol>
+<li><strong>Cumulative Sums:</strong>
+<ul>
+<li>I know the concept of <strong>cumulative sums</strong> (<i>"prefix sums"</i>)
+          </li><li>I know the <strong>inclusion-exclusion</strong> principle and how to extend cumulative sums to <strong>more than one dimension</strong>
+</li></ul>
+</li><li><strong>Fenwick Trees (Binary Indexed Trees, a.k.a. BITs):</strong>
+<ul>
+<li>I know the <strong>concept of a BIT</strong>, the way nodes store cumulative sums and its (simple) implementation
+          </li><li>I know how to answer several types of <strong>queries</strong> related with sums, such as:
+	          <ul>
+<li><strong>single updates, range queries</strong> [rangea(a,b) using bit(b)-bit(a-1)]
+	            </li><li><strong>range updates, single queries</strong> [update(a,b,v) using update(a,v) and update(b+1,-v)]
+	            </li><li><strong>range update, range queries</strong> [using two BITs]
+	          </li></ul>
+</li><li>I understand how to adapt to <strong>more dimensions</strong>, and in particular to the case of <strong>2D</strong> (a BIT of BITs)
+        </li></ul>
+</li><li><strong>Maximum Subarray Problem:</strong>
+<ul>
+<li>I know the problem of determining <strong>maximum sum of a contiguous subsequence</strong>
+</li><li>I know <strong>Kadane's Algorithm</strong> to solve this problem in linear time
+        </li></ul>
+</li></ol>
+
+<h2>Study Material</h2>
+<ul>
+<li><strong>Video Lecture</strong> (my own video from the Topics in Advanced Algorithms course):
+        <ul>
+<li><a href="https://www.youtube.com/watch?v=ZRTcFHVhydE">1D Problems II (cumulative sums and fenwick trees) [YouTube]</a>
+</li></ul>
+</li><li><strong>Cumulative sums</strong><ul>
+<li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/material/prefixsums.html">Portuguese Olympiads Training</a> (small translated section)
+        </li><li>Section 9.1 the <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
+      </li></ul></li>
+
+<li><strong>BITs</strong><ul>
+<li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/binary-indexed-trees/">Binary Indexed Trees</a> (Tutorial do TopCoder)</li>
+<li><a href="https://cp-algorithms.com/data_structures/fenwick.html">Fenwick Tree</a> (E-Maxx Algorithms)</li>
+<li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/material/fenwick_trees_four_patterns.html">Fenwick Trees: four powerful patterns</a> (a guide by an LLM)</li>
+<li><a href="http://zobayer.blogspot.com/2013/11/various-usage-of-bit.html">Various Usages of BITs</a> (blog post)</li>
+<li><a href="http://bitdevu.blogspot.com/">Binary Indexed Trees with some Solved Examples</a> (blog post)</li>
+<li>Section 9.2 and 22.3 of the <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
+        </li><li>Fenwick, P. M. (1994). <a href="https://web.archive.org/web/20210413002729/https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.14.8917&amp;rep=rep1&amp;type=pdf">A new data structure for cumulative frequency tables</a>. Software: Practice and Experience, 24(3), 327-336.
+        </li><li>Dima, M., &amp; Ceterchi, R. (2015). <a href="https://ioinformatics.org/journal/v9_2015_39_44.pdf">Efficient range minimum queries using binary indexed trees</a>. Olympiad in Informatics, 9(1), 39-44.
+      </li></ul></li>
+
+<li><strong>Kadane's Algorithm</strong><ul>
+<li><a href="http://en.wikipedia.org/wiki/Maximum_subarray_problem">Maximum Sub Array Problem</a> (Wikipedia)</li>
+<li>Section 2.4 the <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
+      </li></ul></li>
+
+</ul>
+
+<h2>Initiation/Reinforcement Problems</h2>
+<p>Here are some (easy) problem suggestions if you want to more directly test your knowledge on the topics of this class:</p>
+<ul>
+<li><a href="https://uva.onlinejudge.org/external/103/10324.pdf">[UVA 10324] Zeros and Ones</a> (testing range query on a cumulative sums array)
+      </li><li><a href="https://uva.onlinejudge.org/external/8/836.pdf">[UVA 836] Largest Submatrix</a> (testing cumulative sums for 2D - O(n<sup>4</sup> still passes))
+      </li><li><a href="https://uva.onlinejudge.org/external/107/10755.pdf">[UVA 10755] Garbage Heap</a> (testing cumulative sums for 3D)
+      </li><li><a href="https://uva.onlinejudge.org/external/5/507.pdf">[UVA 507] Jill Rides Again</a> (testing Kadane's Algorithm)
+    </li></ul>
+<p>Here is also a problem to directly test your implementation of a 2D bit:
+
+  </p><ul>
+<li> <a href="https://mooshak.dcc.fc.up.pt/~pc/">[Mooshak PC024]</a> - <a href="../problems/pc024.html">Matrix Summation</a>
+</li></ul>
+
+<h2>I want my memes!</h2>
+<details class="meme" name="meme">
+<summary>😁 Which data structure?</summary>
+<p><img alt="Meme: Which data structure?" loading="lazy" src="../images/memes/meme_sumquery.jpg" width="400"/></p>
+</details>
+
+<details class="meme" name="meme">
+<summary>😁 BIT Implementation</summary>
+<p><img alt="Meme: BIT Implementation" loading="lazy" src="../images/memes/meme_bitimplementation.jpg" width="400"/></p>
+</details>
+    </div>
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week05.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week05.html</a> to demonstrate the UC Design Kit.</p>
+  </uc-page>
+</body>
+</html>
