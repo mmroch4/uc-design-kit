@@ -107,6 +107,31 @@ window.UC_COURSE = {
 };
 ```
 
+**Values only.** The maintenance script `uc-site.py` (shipped with the
+template, see the teacher guide "Manter o site") reads `course.js` without
+running it, so the file may hold only: comments; exactly one
+`window.UC_COURSE = <value>;`; before it, optional constants
+`const NAME = <value>;` (`let`/`var` accepted); values (objects with quoted or
+unquoted keys, arrays, strings with `'`, `"` or `` ` ``, numbers, `true`,
+`false`, `null`, trailing commas); a constant used as a value, strings joined
+with `+`, and `${NAME}` inside a template string. Functions, `new Date()`,
+method calls, spread, computed keys and other assignments are errors that
+`uc-site.py` reports with their line. The browser itself is unaffected.
+
+**`uc-site.py`** (Python 3.8+, standard library only, in the site folder):
+`python3 uc-site.py [check|index] [--site DIR] [--fix-permissions] [--quiet]
+[--lang pt|en] [--version]`. It checks `course.js` (readable, `title`, every
+`pages` file exists, valid dates, unique deadline ids, local `url` and links in
+HTML texts), local `href`/`src`/`srcset` targets (exact case; a folder needs
+its `index.html`; external, fragment-only and outside-the-folder references are
+skipped), that every page with `<uc-page>` loads `uc-kit.css`, `course.js` and
+`uc-kit.js`, duplicate `id`s, `lang` values outside `languages` (2+ languages),
+`<img>` without `alt`, a missing `<h1>` (`<uc-hero>` counts), skipped heading
+levels, read permissions for the web server and pages nothing links to. One
+line per problem (`ERROR`/`WARNING`/`INFO`, file and line); exit status `0` no
+errors, `1` errors, `2` wrong usage. It never changes `course.js` or the
+pages; from v1.2.0 it also writes the site search index.
+
 ### 2.1 Types
 
 | Type | Definition |

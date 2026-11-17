@@ -49,6 +49,7 @@
           <li><a href="linguas.html">Línguas</a></li>
           <li><a href="novo-ano.html">Novo ano letivo</a></li>
           <li><a href="publicar.html" aria-current="page">Publicar</a></li>
+          <li><a href="manter.html">Manter o site</a></li>
           <li><a href="llm.html">Usar com uma LLM</a></li>
           <li><a href="migrar.html">Migrar um site existente</a></li>
         </ul>
@@ -140,6 +141,7 @@
           <li>A consola do browser não mostra avisos <code>[uc-kit]</code>.</li>
           <li>Os links são relativos e com <code>.html</code> (ver <a href="estrutura.html#links">Links e ficheiros</a>).</li>
           <li>O <code>updated</code> do <code>course.js</code> tem a data de hoje.</li>
+          <li><code>python3 uc-site.py</code> termina sem erros (ver <a href="manter.html">Manter o site</a>).</li>
           <li>Os links externos funcionam (ver <a href="#links-partidos">Links partidos</a>).</li>
         </ul>
 
@@ -155,7 +157,7 @@ scp -r 2627 utilizador@servidor:public_html/aulas/minha-uc/</code></pre></uc-cod
 rsync -av --delete 2627/ utilizador@servidor:public_html/aulas/minha-uc/2627/</code></pre></uc-code>
         <p>A barra no fim de <code>2627/</code> importa: copia o conteúdo da pasta para dentro da pasta de destino, em vez de criar <code>2627/2627</code>. Quem preferir uma interface gráfica pode usar um cliente SFTP (FileZilla, Cyberduck, WinSCP) com os mesmos dados.</p>
         <h3 id="dcc-permissoes">Permissões</h3>
-        <p>O servidor web só mostra ficheiros que todos podem ler. Se uma página der "Forbidden" (erro 403), dá-se permissão de leitura a tudo e de passagem às pastas:</p>
+        <p>O servidor web só mostra ficheiros que todos podem ler. Se uma página der "Forbidden" (erro 403), <code>python3 uc-site.py --fix-permissions</code> corrige as do site (ver <a href="manter.html#permissoes">Manter o site</a>); sem Python, dá-se permissão de leitura a tudo e de passagem às pastas:</p>
         <uc-code lang="bash" no-download><pre><code>ssh utilizador@servidor "chmod -R a+rX ~/public_html/aulas/minha-uc"</code></pre></uc-code>
         <p>A pasta pessoal e a <code>public_html</code> também precisam de permissão de passagem (<code>chmod a+x ~ ~/public_html</code>). Ficheiros que não devem ser públicos (enunciados de testes por sair, notas) não se põem na pasta, porque tudo o que lá está pode ser descarregado por quem souber o endereço.</p>
 
@@ -214,9 +216,9 @@ git add . && git commit -m "Site 2026/27" && git push</code></pre></uc-code>
             <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
             <span class="docs-pager__title">Novo ano letivo</span>
           </a>
-          <a class="docs-pager__link docs-pager__link--next" href="llm.html" rel="next">
+          <a class="docs-pager__link docs-pager__link--next" href="manter.html" rel="next">
             <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="docs-pager__title">Usar com uma LLM</span>
+            <span class="docs-pager__title">Manter o site</span>
           </a>
         </nav>
         <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/publicar.html">Editar esta página no GitHub</a> · <a href="publicar.md" type="text/markdown">Ver esta página em Markdown</a></p>

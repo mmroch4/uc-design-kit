@@ -1,0 +1,41 @@
+name: Site script
+
+# Tests of template/uc-site.py, the maintenance script teachers run on the
+# server (search plan, phases S2 and S3). It must work on Python 3.8 (the
+# oldest version the script supports) and on a current Python, with the
+# standard library only.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-script-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  python:
+    name: uc-site.py (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    # Python 3.8 is no longer in the runner images: use the official image.
+    container: python:${{ matrix.python }}-slim
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.8", "3"]
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 --version
+      - name: Unit tests
+        run: python3 -W error -m unittest discover -s tests/site-script -v
+      - name: The examples and the template have no errors
+        run: |
+          for site in examples/*/ template/; do
+            if [ -f "$site/course.js" ]; then
+              python3 -W error template/uc-site.py check --site "$site" --quiet || exit 1
+            fi
+          done

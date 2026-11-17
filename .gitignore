@@ -6,3 +6,5 @@ tests/screenshots/
 *.log
 scripts/.*
 .claude/worktrees/
+__pycache__/
+*.pyc

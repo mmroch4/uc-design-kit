@@ -31,6 +31,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [Línguas](https://uc-design-kit.miguelrocha.dev/docs/pt/linguas.md): Sites com uma ou mais línguas no UC Design Kit: conteúdo bilingue na mesma página, um ficheiro por língua e acrescentar uma língua.
 - [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md): Lista de verificação para criar o site do ano seguinte a partir da pasta do ano anterior, e ligar os anos com o editions.js.
 - [Publicar](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md): Publicar um site feito com o UC Design Kit no servidor do departamento (~/public_html), no GitHub Pages ou no Cloudflare Pages; versão do kit, links partidos, data de atualização e cache.
+- [Manter o site](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md): Verificar um site feito com o UC Design Kit com o script uc-site.py: links e imagens, course.js, ids, acessibilidade e permissões no servidor.
 - [Usar com uma LLM](https://uc-design-kit.miguelrocha.dev/docs/pt/llm.md): Construir o site de uma cadeira com um assistente de IA: a documentação em texto (llms.txt, llms-full.txt), um pedido inicial pronto a copiar e as regras do kit.
 - [Migrar um site existente](https://uc-design-kit.miguelrocha.dev/docs/pt/migrar.md): Passar o site antigo de uma cadeira para o kit com um assistente de programação (Claude Code, Codex): o pedido pronto a colar, o ficheiro AGENTS.md e o que rever.
 

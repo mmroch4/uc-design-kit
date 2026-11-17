@@ -30,6 +30,7 @@ mv uc-template 2627
 | `sobre.html` | Objetivos, programa, horário em tabela e equipa. |
 | `theme.css` | Estilos próprios, vazio com um exemplo comentado. |
 | `README.txt` | Estes passos, em resumo. |
+| `uc-site.py` | Verifica o site depois de cada alteração: `python3 uc-site.py`. Ver [Manter o site](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md). |
 | `AGENTS.md` | As regras do kit para assistentes de programação (Claude Code, Codex). Ver [O ficheiro AGENTS.md](https://uc-design-kit.miguelrocha.dev/docs/pt/migrar.md#agents). |
 
 ## 2. Abrir no browser
@@ -118,6 +119,8 @@ Antes de publicar, vale a pena percorrer o site com três verificações rápida
 - **Datas.** Com `?today=` num dia de cada mês do semestre, a semana certa abre e "Esta semana" mostra os prazos certos.
 - **Telemóvel.** No modo de dispositivo das ferramentas do browser (Ctrl+Shift+M), a navegação passa a um menu e as tabelas deslizam na horizontal.
 - **Consola.** Sem avisos `[uc-kit]`.
+
+Os links e imagens partidos, os erros no `course.js` e as permissões encontram-se de uma vez com `python3 uc-site.py` na pasta do site (ver [Manter o site](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md)).
 
 ## 6. Publicar
 

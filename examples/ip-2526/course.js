@@ -65,7 +65,7 @@ window.UC_COURSE = {
       title: "2nd Practical Test",
       date: "2025-12-17",
       kind: "assessment",
-      url: "practical/test2.html",
+      url: "https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/test2.html",
     },
     {
       id: "exam",
