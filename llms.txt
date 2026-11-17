@@ -2,7 +2,7 @@
 
 > A small, dependency-free kit of web components (`<uc-page>`, `<uc-weeks>`, `<uc-deadlines>`…) and CSS for university course ("unidade curricular") websites. Static HTML, CSS and JavaScript: no build step, works from `file://`. Content is written in HTML; the values that change every year (dates, team, deadlines, notices) live in one `course.js` file. The documentation is in European Portuguese; code, element and attribute names are in English.
 
-To build or edit a course site, read the rules below, then the pages you need. Everything in one file: https://uc-design-kit.miguelrocha.dev/llms-full.txt. The contract (English): https://uc-design-kit.miguelrocha.dev/docs/api.md is mirrored at the end of llms-full.txt. A starter site: https://uc-design-kit.miguelrocha.dev/docs/downloads/uc-template.zip. Complete real sites: https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html (Portuguese), https://uc-design-kit.miguelrocha.dev/examples/pc-2627/index.html and https://uc-design-kit.miguelrocha.dev/examples/ip-2526/index.html (English); what each page uses: https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/index.html.
+To build or edit a course site, read the rules below, then the pages you need. Everything in one file: https://uc-design-kit.miguelrocha.dev/llms-full.txt. The contract (English): https://uc-design-kit.miguelrocha.dev/docs/api.md is mirrored at the end of llms-full.txt. A starter site: https://uc-design-kit.miguelrocha.dev/docs/downloads/uc-template.zip. Complete real sites: https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html (Portuguese), https://uc-design-kit.miguelrocha.dev/examples/pc-2627/index.html and https://uc-design-kit.miguelrocha.dev/examples/ip-2526/index.html (English), https://uc-design-kit.miguelrocha.dev/examples/pi-2526/index.html (Portuguese and English); what each page uses: https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/index.html.
 
 
 ## Regras
@@ -94,6 +94,7 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [EDados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): O site de Estruturas de Dados (DCC/FCUP) feito com o kit: capturas, componentes usados em cada página, course.js e personalização.
 - [PC 2026/27](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md): O site de Competitive Programming (DCC/FCUP) feito com o kit: capturas, componentes usados em cada página, course.js e migração.
 - [IP 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/ip.md): O site de Introduction to Programming (DCC/FCUP) feito com o kit: capturas, componentes usados em cada página, course.js e migração.
+- [PI 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pi.md): O site de Programação Imperativa (DCC/FCUP), bilingue, feito com o kit: capturas, componentes usados em cada página, course.js e migração.
 - [Padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md): Página inicial, semanas, avaliação, horários, sumários, materiais, guião com exercícios e enunciado de problema, prontos a copiar.
 
 ## Referência
@@ -111,3 +112,4 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [Exemplo completo: Estruturas de Dados 2025/26](https://github.com/mmroch4/uc-design-kit/tree/main/examples/edados-2526): source of a real course site (Portuguese).
 - [Exemplo completo: Competitive Programming 2026/27](https://github.com/mmroch4/uc-design-kit/tree/main/examples/pc-2627): source of a real course site (English), weekly problem sets and contests.
 - [Exemplo completo: Introduction to Programming 2025/26](https://github.com/mmroch4/uc-design-kit/tree/main/examples/ip-2526): source of a real course site (English), practical classes and many problems.
+- [Exemplo completo: Programação Imperativa 2025/26](https://github.com/mmroch4/uc-design-kit/tree/main/examples/pi-2526): source of a real bilingual course site (Portuguese and English), timetable, grade calculator and practical tests.

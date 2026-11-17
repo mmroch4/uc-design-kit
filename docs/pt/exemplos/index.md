@@ -2,7 +2,7 @@
 
 Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/index.html
 
-Sites reais de unidades curriculares do DCC/FCUP, refeitos com o kit a partir dos sites originais. Cada um mostra uma forma diferente de organizar uma cadeira: guiões com código executável, problem sets semanais com concursos, ou aulas práticas com centenas de problemas.
+Sites reais de unidades curriculares do DCC/FCUP, refeitos com o kit a partir dos sites originais. Cada um mostra uma forma diferente de organizar uma cadeira: guiões com código executável, problem sets semanais com concursos, aulas práticas com centenas de problemas, ou um site em duas línguas.
 
 > O conteúdo destes exemplos é dos docentes de cada cadeira e foi copiado dos sites originais só para demonstrar o kit. Não está abrangido pela licença MIT: cada pasta tem um `NOTICE.md`. Use-os como referência de estrutura, não como conteúdo a copiar.
 
@@ -11,17 +11,18 @@ Sites reais de unidades curriculares do DCC/FCUP, refeitos com o kit a partir do
 - [**Estruturas de Dados 2025/26**: Em português. Guiões com código Java que corre no browser, testes práticos, 65 enunciados e o código das aulas. Usa um componente próprio.](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md)
 - [**Competitive Programming 2026/27**: Só em inglês. Uma aula por semana com um problem set e prazo, concursos presenciais, avaliação com várias componentes e 52 problemas de vários juízes.](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md)
 - [**Introduction to Programming 2025/26**: Só em inglês. Teóricas com sumários, onze aulas práticas, dois testes, 107 problemas no Mooshak com filtros e marcação de resolvidos.](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/ip.md)
+- [**Programação Imperativa 2025/26**: Em português e inglês. Horários por turma, simulador de nota, testes práticos com turnos, guiões nas duas línguas e 112 problemas no Mooshak.](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pi.md)
 
 ## O que cada um mostra
 
-|   | EDados | PC | IP |
-| --- | --- | --- | --- |
-| Línguas | PT | EN | EN |
-| Semanas | `<uc-weeks>`, 12 semanas, e `<uc-summaries>` | `<uc-weeks>`, 11 aulas à terça, duas interrupções | `<uc-weeks>`, 13 semanas, e `<uc-summaries>` para as teóricas |
-| Aulas práticas | `<uc-guide>` com `<uc-code>` executável | Páginas migradas em `uc-content` | `<uc-guide>` com `<uc-exercise>` |
-| Problemas | `<uc-problems>` e 65 enunciados migrados | `<uc-problems>` com filtro por juiz | `<uc-problems>` com filtro por tipo |
-| Avaliação | Blocos CSS e `<uc-deadlines>` | `<uc-grading>` com subcomponentes e simulador | `<uc-grading>` e `<uc-assessment-info>` |
-| Personalização | Níveis 0, 2, 3 e 4 | Níveis 0, 2 e 4 | Níveis 0, 2 e 4 |
+|   | EDados | PC | IP | PI |
+| --- | --- | --- | --- | --- |
+| Línguas | PT | EN | EN | PT e EN |
+| Semanas | `<uc-weeks>`, 12 semanas, e `<uc-summaries>` | `<uc-weeks>`, 11 aulas à terça, duas interrupções | `<uc-weeks>`, 13 semanas, e `<uc-summaries>` para as teóricas | `<uc-weeks>`, 13 semanas, `<uc-summaries>` e `<uc-timetable>` |
+| Aulas práticas | `<uc-guide>` com `<uc-code>` executável | Páginas migradas em `uc-content` | `<uc-guide>` com `<uc-exercise>` | `<uc-guide>` em PT e EN, convertidos por script |
+| Problemas | `<uc-problems>` e 65 enunciados migrados | `<uc-problems>` com filtro por juiz | `<uc-problems>` com filtro por tipo | `<uc-problems track>` com peso e prazo por aula |
+| Avaliação | Blocos CSS e `<uc-deadlines>` | `<uc-grading>` com subcomponentes e simulador | `<uc-grading>` e `<uc-assessment-info>` | `<uc-grading calculator>` e testes com turnos |
+| Personalização | Níveis 0, 2, 3 e 4 | Níveis 0, 2 e 4 | Níveis 0, 2 e 4 | Níveis 0, 2 e 4 |
 
 ## Ver também
 
