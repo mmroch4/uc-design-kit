@@ -137,7 +137,9 @@ async function findPages() {
   }
   pages.push("examples/edados-2526/guioes/aula10.html");
   // The widget test page (several widgets, predict, editable, bilingual).
-  pages.push("tests/pages/uc-widget-sort.html", "tests/pages/uc-widget-w2.html", "tests/pages/uc-widget-w3.html", "tests/pages/uc-widget-w4.html");
+  pages.push("tests/pages/uc-widget-sort.html", "tests/pages/uc-widget-w2.html", "tests/pages/uc-widget-w3.html", "tests/pages/uc-widget-w4.html", "tests/pages/uc-widget-w5.html");
+  // A teacher's own widget built from widgets/template/ (the "Criar um widget" guide).
+  pages.push("docs/demos/widgets-criar/basic.html");
   // The header search button (a site with search on and an index).
   pages.push("tests/pages/search/index.html");
   // The one CSS-block demo with behaviour (sortable headers).
@@ -743,7 +745,8 @@ async function checkWidgets(browser, origin, relative, axeSource) {
   const problems = [];
   const { context, page } = await open(browser, origin, relative);
   const found = await page.evaluate(() => {
-    const widgets = Array.from(document.querySelectorAll("*")).filter((node) => node.localName.startsWith("uc-widget-"));
+    // Catalogue widgets, and teachers' own ones (any element built on UC.widgets.Widget gets .uc-widget).
+    const widgets = Array.from(document.querySelectorAll("*")).filter((node) => node.localName.startsWith("uc-widget-") || node.classList.contains("uc-widget"));
     widgets.forEach((widget) => widget.go && widget.go(0)); // builds the ones still off screen
     return widgets.filter((widget) => widget.total > 0).length;
   });
@@ -818,7 +821,7 @@ async function checkWidgets(browser, origin, relative, axeSource) {
   {
     const { context: noJs, page: plain } = await open(browser, origin, relative, { javaScriptEnabled: false });
     const empty = await plain.evaluate(() =>
-      Array.from(document.querySelectorAll("*")).filter((node) => node.localName.startsWith("uc-widget-") && !node.innerText.trim()).length,
+      Array.from(document.querySelectorAll("*")).filter((node) => /^[a-z]+-widget-/.test(node.localName) && !node.innerText.trim()).length,
     );
     if (empty) problems.push(`[widget] no-js: ${empty} widget(s) without fallback text`);
     await noJs.close();

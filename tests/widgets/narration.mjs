@@ -22,7 +22,7 @@ export async function narrations() {
       const blocks = optionSets(widget.meta).map((set) => {
         const { input, options } = splitInput(widget.meta, set);
         const { steps } = collect(widget.algorithm.run, input, { ...options, random: random(1) });
-        const lines = steps.map((step, i) => `${String(i + 1).padStart(3)}. ${format(widget.dictionaries[lang], step.say)}`);
+        const lines = steps.map((step, i) => `${String(i + 1).padStart(3)}. ${format(widget.dictionaries[lang], step.say, lang)}`);
         return [`## ${describeOptions(options)} · input ${JSON.stringify(input)}`, ...lines].join("\n");
       });
       files[`${widget.id}.${lang}.txt`] = `${blocks.join("\n\n")}\n`;

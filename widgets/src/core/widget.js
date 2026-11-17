@@ -7,7 +7,7 @@
  * language switch, events and the element methods of section 15.
  */
 import { el, icon } from "./dom.js";
-import { collect, random, MAX_STEPS } from "./engine.js";
+import { collect, random, decimals, MAX_STEPS } from "./engine.js";
 
 const COMMON = ["algorithm", "algorithms", "speed", "controls", "editable", "predict", "start", "seed", "caption"];
 const SPEED = { min: 200, max: 5000, fallback: 900 };
@@ -57,7 +57,8 @@ function byLanguage(nodes, lang) {
 
 export function createWidget(UC) {
   /** The sentence of a [key, params] pair. */
-  const say = (pair) => (pair ? UC.t(pair[0], pair[1]) : "");
+  const local = (text) => decimals(text, UC.lang);
+  const say = (pair) => (pair ? local(UC.t(pair[0], pair[1])) : "");
 
   class Widget extends UC.Element {
     static id = "";
@@ -327,7 +328,11 @@ export function createWidget(UC) {
       this.fallback.hidden = true;
       this.errorNote.hidden = true;
       if (this.inputNode) this.inputNode.hidden = true;
-      if (this.field) this.field.value = this.serialize(input);
+      if (this.field) {
+        this.field.value = this.serialize(input);
+        this.fieldError.hidden = true; // a rebuild (attribute change) clears an old field error
+        this.field.removeAttribute("aria-invalid");
+      }
       this.refresh();
     }
 
@@ -575,7 +580,7 @@ export function createWidget(UC) {
       if (!step) return;
       if (this.currentBlock() !== this.codeBlock) this.renderCode(this.currentBlock());
       this.draw(step, this.svg);
-      this.svg.setAttribute("aria-label", this.describe(step));
+      this.svg.setAttribute("aria-label", local(this.describe(step)));
       this.sayLine.textContent = say(step.say);
       const lines = new Set([].concat(step.line || []));
       for (const node of this.codeLines) {
@@ -622,7 +627,7 @@ export function createWidget(UC) {
       const id = this.constructor.id;
       const rows = [];
       for (const [key, value] of Object.entries(step.stats || {})) {
-        rows.push(el("div", { class: "uc-widget__stat" }, el("dt", {}, UC.t(`widget.core.stat.${key}`)), el("dd", { class: "uc-mono" }, String(value))));
+        rows.push(el("div", { class: "uc-widget__stat" }, el("dt", {}, UC.t(`widget.core.stat.${key}`)), el("dd", { class: "uc-mono" }, local(value))));
       }
       for (const [key, value] of Object.entries(step.aux || {})) {
         const core = ["output", "stack", "queue"].includes(key);
@@ -637,7 +642,7 @@ export function createWidget(UC) {
               )
             : UC.t(key === "output" ? "widget.core.nothingYet" : "widget.core.empty");
         } else {
-          content = value === null || value === undefined ? "—" : String(value);
+          content = value === null || value === undefined ? "—" : local(value);
         }
         rows.push(el("div", { class: "uc-widget__aux" }, el("dt", {}, UC.t(core ? `widget.core.${key}` : `widget.${id}.aux.${key}`)), el("dd", { class: "uc-mono" }, content)));
       }
@@ -675,7 +680,7 @@ export function createWidget(UC) {
             {},
             el("caption", {}, `${UC.t("widget.core.state")} · ${UC.t("widget.core.counter", { n: this.index + 1, total: this.stepList.length })}`),
             el("thead", {}, el("tr", {}, data.head.map((cell) => el("th", { scope: "col" }, cell)))),
-            el("tbody", {}, data.rows.map((row) => el("tr", {}, row.map((cell) => el("td", {}, String(cell)))))),
+            el("tbody", {}, data.rows.map((row) => el("tr", {}, row.map((cell) => el("td", {}, local(cell)))))),
           ),
         );
       }

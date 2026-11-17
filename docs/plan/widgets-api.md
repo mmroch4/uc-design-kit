@@ -1318,3 +1318,114 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
    with a halo) serves every widget that bundles `svg.graph`, since all
    `<name>.css` go into the one `uc-widget.css`.
 
+
+## 25. Refinements made in phase W5
+
+1. **Decimals in the page language** (core): `engine.js` exports
+   `decimals(text, lang)` ("2.3" → "2,3" in pt, from
+   `(1.5).toLocaleString(lang)`); the core applies it to the narration, the
+   predict texts, the state panel, the text-view table and the SVG's label.
+   Algorithms keep formatting numbers with a point. Fixes the W4 limitation
+   of the complexity widget (and the hash load factor). Core 11.0 KB gzip.
+2. **`svg.grid` stays bundled**, although hash, dp, backtracking and trace
+   use it (rule 16.3). Measured: moving it into the core takes the core to
+   11.6 KB, leaving 0.4 KB; the 1.1 KB of headroom was kept for fixes, as W4
+   did for `svg.graph`.
+3. **`uc-widget-union-find`**: elements are `0 … n − 1` (`n` 1–16, default
+   8), so the parent array's indexes are the elements; `ops` verbs `union a
+   b`, `find a`, `connected a b` (`widget.union-find.error.arg` for a wrong
+   count or element). Algorithms `compression` (union by size + path
+   compression), `size`, `naive` (`parent[find(a)] = find(b)`). Union by
+   size puts the smaller root under the larger; on a tie the root of `b`
+   goes under the root of `a`. Drawing: the parent array (`svg.array`)
+   above the forest, which is one n-ary `svg.tree` under a hidden root (the
+   root node and its edges are removed after drawing and the viewBox
+   cropped), so every node slides when it moves. Root notes are the set's
+   size. Pseudocode blocks per operation and variant: `find`,
+   `find-compression`, `union`, `union-size`, `connected`. Aux `sets` and
+   `height`. Predict: which root ends up on top (size variants) and
+   `connected`'s answer.
+4. **`uc-widget-trace`** (5.4 fixed): the JSON is `{ view, code, graph,
+   directed, rowHeads, colHeads, steps }`; a step is `{ state, marks,
+   pointers, line, say, vars, predict }`. `state` per view: array = list,
+   tree = `{ v, l, r }` or `{ v, children }` with optional `id` (mark key)
+   and `note`, graph = notes by vertex (the graph is the `graph` field,
+   built with `model()`), grid = list of rows. A step without `state`
+   keeps the previous one; when the first step has marks or a question, a
+   plain "Estado inicial." step is put before it. Sentences (`say`, the
+   predict texts) are a string or `{ pt, en }`, played through one key
+   `widget.trace.text` whose dictionaries are `"{pt}"` and `"{en}"`. Errors
+   name the step (`widget.trace.error.*`). `vars` are shown by a custom
+   `panel()`. An algorithm whose pseudocode comes with its input exports
+   `lineIds(input)`; the step validator uses it.
+5. **Teachers' own widgets** (16.1): `widgets/template/my-widget-gcd.js`
+   is a complete widget in one plain script (no build), defined with the
+   same queue as the bootstrap (`UC.widgets.__queue`, or at once if the
+   core is there); the page loads `uc-widget-core.js` before it. Own names
+   use the course's prefix, never `uc-widget-`. `check-a11y` checks any
+   element with `.uc-widget`, and the guide's demo page
+   (`docs/demos/widgets-criar/`). The catalogue checklist is in the guide
+   and in `widgets/template/README.md`.
+6. **Test helpers**: `format(dictionary, pair, lang)` applies `decimals`;
+   `loadWidgets()` gives each widget an `input(metaForm)` (its fixture).
+7. **`uc-widget-mst`**: `kruskal` (default) and `prim`, attributes `edges`
+   (or `<pre data-input>`) and `source` (Prim's start). `directed` is an
+   input error (`widget.mst.error.directed`, checked in `algorithm.js`);
+   unweighted = weight 1; a disconnected graph gives a spanning forest
+   (`endForest`). Kruskal: stable sort (input order on ties), union by size
+   (v's set under u's on a tie), vertex notes `[rep]`, two steps per edge
+   (`check`, then `union` or `cycle`; a loop has its own sentence), stops
+   at |V| − 1 edges (so the pseudocode is the textbook one; a forest
+   examines every edge). Prim: lazy, queue of edges as aux `pq`
+   (`u–v w`, u in the tree, ties by insertion order), restarts at the first
+   vertex outside the tree when the queue empties. Line ids: kruskal `init
+   sort stop check union cycle`, prim `init restart skip add push`. Predict
+   "A–B (peso 3) entra na árvore?". Aux `edges`/`pq` and `weight`; counter
+   `edges`. Result `{ edges, weight }`. Parallel undirected edges overlap
+   in `svg.graph` (only opposite arcs are bent).
+8. **`uc-widget-toposort`**: `kahn` (default) and `dfs`, attribute `edges`,
+   always directed (the model is built with directed = true), no source.
+   Kahn: notes are in-degrees, core aux `queue` and `output`; predict per
+   arc "o grau de entrada de v passa a 0?"; vertices left over → a real
+   cycle is found by walking back along their arcs and named. DFS: core
+   aux `stack` and `output` (finished vertices prepended); an arc to a
+   vertex on the stack is `swapped` and stops the run; predict per arc with
+   three options (not visited / on the stack / finished). Line ids: kahn
+   `init pop dec push cycle`, dfs `root enter arc back down done`. Result
+   `{ order, cycle }`. No layered layout (`layout()` unchanged).
+9. **`uc-widget-dp`**: algorithms `lcs` (default), `edit-distance`,
+   `knapsack`, `coins` (minimum number of coins); the `problem` attribute
+   (an input attribute) is read before `algorithm`, the `algorithms`
+   toggle's choice still wins. Data: `a`, `b` (1–8 characters; defaults
+   ABCBDAB/BDCABA, GATO/PATOS), `weights`/`values` (1–8 items) and
+   `capacity` (1–8), `coins` (1–6 distinct, used ascending) and `amount`
+   (**1–8**, not 10: the 9-column limit of 5.5). The editable field edits a
+   pseudo-attribute `data`: `a b`, `weights : values : capacity` or
+   `coins : amount`. State `{ t }` (null = not filled, "∞" = impossible);
+   one step for the base cells, one per cell (cell current, the cells read
+   compared), then one per path cell (done) and the reconstruction in the
+   end sentence. Aux `lcs`, `ops`, `items`/`taken`, `coins`/`used`. Line
+   ids: lcs `base match max back take up left`; edit-distance `base same
+   min back keep sub del ins`; knapsack `base skip max back take leave`;
+   coins `base none min back use`. Predict "Quanto vale dp[i][j]?" on the
+   last row (coins: every cell), three consecutive options whose position
+   varies with the cell; never on ∞.
+10. **`uc-widget-backtracking`**: `queens` (default; `n` 1–8, `all`),
+    `subsets` (`values` 1–4 positive integers, optional `target`, also
+    written `values="3 1 4 2 : 5"`), `permutations` (`values` 1–3 distinct
+    tokens). Queens: board on `svg.grid` with "Q"; one step per try (a cut
+    marks the tried cell compared and the first attacking queen swapped),
+    one per removal; aux `stack`, `output`, `cuts`; predict on every try
+    after row 0. First solution n = 8 is 983 steps; `all` stays under the
+    cap only for n ≤ 6. Subsets/permutations: n-ary `svg.tree` of `{ id,
+    label, kids }` keyed by the decision path; subsets label "+v"/"−v"
+    (take first), cuts compared (over the target when taking, unreachable
+    when leaving), leaves done; permutations try only unused elements (no
+    cuts). Sets are written "{ 1, 3 }" (spaces: "{1}" reads as a
+    placeholder). Line ids: queens `solution cut place remove`, subsets
+    `cut leaf take leave`, permutations `leaf place`. Without a target, 4
+    values give 31 nodes (wider than the stage on phones).
+11. **Grid widgets** set the drawing's minimum width to 240 px (not
+    `svg.grid`'s 300), so 9 columns fit 320 px.
+12. **Core fix**: a rebuild (attribute change) clears an old editable
+    field error.

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Widgets da vaga 3 (W5) · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-mst.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-union-find.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-toposort.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-dp.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-backtracking.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-trace.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Widgets da fase W5 (teste)</span>
+      <span lang="en">Phase W5 widgets (test)</span>
+    </h1>
+
+    <h2><span lang="pt">Árvore mínima de suporte</span><span lang="en">Minimum spanning tree</span></h2>
+    <uc-widget-mst id="mst" algorithms="kruskal prim" predict editable edges="A B 4; A C 1; B C 2; B D 5; C D 8; D E 3; F G 1">
+      <p>Floresta mínima: A–C 1, B–C 2, D–E 3, B–D 5 e F–G 1, peso 12.</p>
+    </uc-widget-mst>
+    <uc-widget-mst directed edges="A B 1"><p>Entrada inválida: grafo dirigido.</p></uc-widget-mst>
+
+    <h2>Union-find</h2>
+    <uc-widget-union-find n="6" algorithms="naive size compression" predict editable ops="union 0 1; union 1 2; union 3 4; union 4 2; find 3; connected 5 0">
+      <p>Conjuntos {0 1 2 3 4} e {5}.</p>
+    </uc-widget-union-find>
+    <uc-widget-union-find n="3" ops="find 7"><p>Entrada inválida: elemento 7.</p></uc-widget-union-find>
+
+    <h2><span lang="pt">Ordenação topológica</span><span lang="en">Topological sort</span></h2>
+    <uc-widget-toposort algorithms="kahn dfs" predict edges="A B; A C; B D; C D; D E"><p>Ordem: A B C D E.</p></uc-widget-toposort>
+    <uc-widget-toposort algorithm="dfs" start="end" controls="compact" edges="A B; B C; C A; C D"><p>Ciclo A → B → C → A.</p></uc-widget-toposort>
+
+    <h2><span lang="pt">Programação dinâmica</span><span lang="en">Dynamic programming</span></h2>
+    <uc-widget-dp algorithms="lcs edit-distance" a="ABCB" b="BDCAB" predict><p>LCS de ABCB e BDCAB: BCB, comprimento 3.</p></uc-widget-dp>
+    <uc-widget-dp problem="coins" coins="1 3 4" amount="6" editable start="end"><p>6 = 3 + 3: duas moedas.</p></uc-widget-dp>
+    <uc-widget-dp problem="knapsack" weights="1 2" values="3"><p>Entrada inválida: pesos e valores em número diferente.</p></uc-widget-dp>
+
+    <h2>Backtracking</h2>
+    <uc-widget-backtracking n="4" predict><p>Primeira solução das 4 rainhas: colunas 1 3 0 2.</p></uc-widget-backtracking>
+    <uc-widget-backtracking algorithm="subsets" values="3 1 4 2" target="5" predict editable><p>Subconjuntos com soma 5: {3, 2}, {1, 4}.</p></uc-widget-backtracking>
+
+    <h2><span lang="pt">Traço próprio</span><span lang="en">Own trace</span></h2>
+    <uc-widget-trace predict editable>
+      <template data-caption><span lang="pt">Troca</span><span lang="en">Swap</span></template>
+      <script type="application/json" data-input>
+{ "code": ["swap|t = a[0]; a[0] = a[1]; a[1] = t"],
+  "steps": [
+    { "state": [3, 8], "say": { "pt": "O vetor 3 8.", "en": "The array 3 8." } },
+    { "state": [8, 3], "marks": { "0": "swapped", "1": "swapped" }, "line": "swap", "vars": { "t": 3 },
+      "say": { "pt": "Troca a[0] com a[1].", "en": "Swap a[0] and a[1]." },
+      "predict": { "ask": { "pt": "Que valor fica em a[0]?", "en": "Which value ends up in a[0]?" }, "options": ["3", "8"], "answer": 1 } }
+  ] }
+      </script>
+      <p>Troca: 3 8 passa a 8 3.</p>
+    </uc-widget-trace>
+    <uc-widget-trace>
+      <script type="application/json" data-input>{ "steps": [{ "state": [1], "marks": { "0": "red" }, "say": "x" }] }</script>
+      <p>Entrada inválida: estado desconhecido.</p>
+    </uc-widget-trace>
+  </uc-page>
+</body>
+</html>

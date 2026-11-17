@@ -1,0 +1,36 @@
+{
+  "name": "uc-widget-union-find",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 3,
+  "title": { "pt": "Union-find", "en": "Union-find" },
+  "summary": {
+    "pt": "Conjuntos disjuntos com união por tamanho e compressão de caminhos, ou sem elas, com o vetor parent e a floresta.",
+    "en": "Disjoint sets with union by size and path compression, or without them, with the parent array and the forest."
+  },
+  "page": "docs/pt/widgets/uc-widget-union-find.html",
+  "algorithms": ["compression", "size", "naive"],
+  "courses": ["PC", "EDados"],
+  "attributes": ["n", "ops", "algorithm", "algorithms"],
+  "predict": true,
+  "test": {
+    "input": { "n": 8, "ops": null },
+    "options": [
+      {
+        "algorithm": "compression",
+        "input": {
+          "n": 6,
+          "ops": [
+            { "verb": "union", "args": ["0", "1"] },
+            { "verb": "union", "args": ["1", "2"] },
+            { "verb": "union", "args": ["3", "4"] },
+            { "verb": "union", "args": ["4", "2"] },
+            { "verb": "find", "args": ["3"] },
+            { "verb": "union", "args": ["0", "4"] },
+            { "verb": "connected", "args": ["5", "0"] }
+          ]
+        }
+      }
+    ]
+  }
+}

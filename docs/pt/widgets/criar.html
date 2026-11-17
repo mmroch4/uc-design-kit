@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar um widget · UC Design Kit</title>
+  <meta name="description" content="Como criar um widget próprio do UC Design Kit para um algoritmo que não está no catálogo, e como o propor ao catálogo.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../exemplos/index.html">Exemplos</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../exemplos/index.html">Exemplos</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../manter.html">Manter o site</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="../componentes/uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="../componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="../componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="../componentes/uc-problems.html"><code>uc-problems</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Widgets</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="index.html">Catálogo</a></li>
+          <li><a href="usar.html">Usar widgets</a></li>
+          <li><a href="uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+          <li><a href="uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
+          <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
+          <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
+          <li><a href="uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
+          <li><a href="uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="uc-widget-union-find.html"><code>uc-widget-union-find</code></a></li>
+          <li><a href="uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="uc-widget-trace.html"><code>uc-widget-trace</code></a></li>
+          <li><a href="criar.html" aria-current="page">Criar um widget</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../exemplos/index.html">Visão geral</a></li>
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/pc.html">PC 2026/27</a></li>
+          <li><a href="../exemplos/ip.html">IP 2025/26</a></li>
+          <li><a href="../exemplos/pi.html">PI 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-7">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-7">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Widgets</p>
+          <h1>Criar um widget</h1>
+          <p class="docs-lead">Um widget próprio num ficheiro JavaScript, com o mesmo leitor, narração e acessibilidade dos widgets do catálogo, e a lista para o propor ao catálogo.</p>
+        </header>
+        <p>Há três caminhos para pôr numa página um algoritmo que não está no <a href="index.html">catálogo</a>, do mais simples ao mais completo:</p>
+        <ol>
+          <li><strong>Escrever os passos</strong> com <a href="uc-widget-trace.html"><code>&lt;uc-widget-trace&gt;</code></a>: o estado, os destaques e a frase de cada passo em JSON. Não é preciso programar; serve quando a entrada é fixa (uma execução mostrada na aula).</li>
+          <li><strong>Escrever o algoritmo</strong> num widget próprio, um ficheiro JavaScript ao lado das páginas: o widget calcula os passos para qualquer entrada, aceita <code>editable</code> e <code>predict</code>, e tem o mesmo leitor, teclado, narração e vista em texto do catálogo. É o que esta página explica.</li>
+          <li><strong>Propor o widget ao catálogo</strong>, para outras cadeiras o usarem: ver <a href="#catalogo">Propor um widget ao catálogo</a>.</li>
+        </ol>
+        <!-- docs:demo src="../../demos/widgets-criar/basic.html" title="Um widget próprio: o algoritmo de Euclides" height="560" -->
+        <div class="docs-demo" id="demo-widgets-criar-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/widgets-criar/basic.html" title="Demonstração: Um widget próprio: o algoritmo de Euclides" loading="lazy" style="height: 560px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;my-widget-gcd a=&quot;48&quot; b=&quot;18&quot; predict&gt;
+  &lt;p&gt;mdc(48, 18): 48 mod 18 = 12, 18 mod 12 = 6, 12 mod 6 = 0. O máximo divisor comum é 6.&lt;/p&gt;
+&lt;/my-widget-gcd&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/widgets-criar/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <h2 id="modelo">O modelo</h2>
+        <p>O ficheiro <a href="https://github.com/mmroch4/uc-design-kit/blob/main/widgets/template/my-widget-gcd.js"><code>widgets/template/my-widget-gcd.js</code></a> é um widget completo num só ficheiro, sem passo de compilação: o elemento <code>&lt;my-widget-gcd&gt;</code> da demonstração acima. Para fazer o seu:</p>
+        <ol>
+          <li>Copie o ficheiro para junto das páginas (por exemplo <code>extensions/</code>, como os outros ficheiros próprios da cadeira).</li>
+          <li>Mude o nome do elemento: com um hífen e o prefixo da cadeira (<code>edados-widget-kmp</code>). Os nomes <code>uc-widget-…</code> são do catálogo.</li>
+          <li>Mude as quatro partes marcadas no ficheiro: os textos, <code>run()</code>, <code>parse()</code> e <code>draw()</code>.</li>
+          <li>Na página, depois do kit, carregue o núcleo dos widgets e o seu ficheiro:</li>
+        </ol>
+        <uc-code lang="html" no-download><pre><code>&lt;script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-core.js" defer&gt;&lt;/script&gt;
+&lt;script src="extensions/my-widget-gcd.js" defer&gt;&lt;/script&gt;
+
+&lt;my-widget-gcd a="48" b="18" predict&gt;
+  &lt;p&gt;mdc(48, 18): 48 mod 18 = 12, 18 mod 12 = 6, 12 mod 6 = 0. O mdc é 6.&lt;/p&gt;
+&lt;/my-widget-gcd&gt;</code></pre></uc-code>
+        <p>O texto dentro do elemento aparece sem JavaScript, enquanto o widget não é construído e quando a entrada tem um erro, como em todos os widgets.</p>
+        <h2 id="como-funciona">Como funciona</h2>
+        <p>O algoritmo corre uma vez e devolve a lista de todos os passos; o leitor só escolhe qual mostrar. Por isso recuar, saltar e as perguntas de previsão funcionam sem código extra. Um widget é uma classe que estende <code>UC.widgets.Widget</code> e diz só o que lhe é próprio:</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">O que um widget declara</caption>
+            <thead>
+              <tr><th scope="col">Membro</th><th scope="col">Obrigatório</th><th scope="col">O que faz</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>static id</code></td><td>sim</td><td>O nome dos textos: <code>widget.&lt;id&gt;.*</code>.</td></tr>
+              <tr><td><code>static algorithms</code></td><td>sim</td><td>Os algoritmos (o primeiro é o de omissão; o atributo <code>algorithm</code> escolhe).</td></tr>
+              <tr><td><code>static inputAttributes</code></td><td>não</td><td>Os atributos da entrada; mudá-los reconstrói o widget. O primeiro é o que <code>editable</code> edita.</td></tr>
+              <tr><td><code>parse()</code></td><td>sim</td><td>Lê os atributos e devolve a entrada; para uma entrada errada, <code>throw new UC.widgets.InputError("widget.&lt;id&gt;.error.x")</code>.</td></tr>
+              <tr><td><code>steps(input, emit)</code></td><td>sim</td><td>Corre o algoritmo, chamando <code>emit(passo)</code> em cada passo.</td></tr>
+              <tr><td><code>draw(step, svg)</code></td><td>sim</td><td>Desenha um passo no <code>&lt;svg&gt;</code>.</td></tr>
+              <tr><td><code>describe(step)</code></td><td>não</td><td>O desenho em palavras (o nome acessível do <code>&lt;svg&gt;</code>).</td></tr>
+              <tr><td><code>table(step)</code></td><td>não</td><td>A tabela da vista em texto: <code>{ head: [...], rows: [[...]] }</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>No fim, <code>UC.widgets.register("my-widget-gcd", Classe)</code>. O resto (leitor, teclado, narração, pseudocódigo, painel, vista em texto, previsões, edição, erros, línguas, eventos) vem do núcleo.</p>
+        <h2 id="passo">Um passo</h2>
+        <p>Um passo é um objeto simples, sem funções:</p>
+        <uc-code lang="js" no-download><pre><code>emit({
+  state: { a: 18, b: 12 },               // o estado completo depois deste passo
+  marks: { 0: "swapped", 1: "current" }, // destaques: current, compared, swapped, visited, done
+  pointers: { a: "0", b: "1" },          // etiquetas por baixo das células
+  line: "divide",                        // a linha do pseudocódigo
+  say: ["widget.gcd.divide", { a: 48, b: 18, r: 12 }], // a frase: uma chave e os valores
+  predict: { ask: ["widget.gcd.ask", { a: 48, b: 18 }], options: [...], answer: 1 },
+});</code></pre></uc-code>
+        <ul>
+          <li>O primeiro passo não tem destaques; o último é o resultado.</li>
+          <li>A frase é uma chave e os seus valores, nunca o texto pronto, para que a troca de língua funcione. Escreva cada frase em português e em inglês com <code>UC.addTranslations</code>, como no modelo; a frase começa pela ação e dá os valores ("48 mod 18 = 12: (a, b) passa a (18, 12).").</li>
+          <li>O pseudocódigo é uma lista de linhas <code>"id|texto"</code> em <code>widget.&lt;id&gt;.code.&lt;algoritmo&gt;</code>; <code>line</code> destaca a linha com esse id. As linhas que nunca se destacam começam por <code>|</code>.</li>
+          <li><code>run()</code> deve ser pura: sem tocar na página e sem <code>Math.random</code>. A mesma entrada dá sempre os mesmos passos. Para entradas aleatórias, use <code>this.random</code> (com a semente do atributo <code>seed</code>) em <code>parse()</code>.</li>
+          <li>Até 2000 passos; acima disso o widget mostra uma nota de erro.</li>
+        </ul>
+        <h2 id="desenho">Desenhar</h2>
+        <p>O núcleo traz duas primitivas que desenham os estados com cor, contorno e sinal (nunca só cor): <code>UC.widgets.svg.array(svg, valores, { marks, pointers })</code>, uma fila de células com os índices por baixo, e <code>UC.widgets.svg.tree(svg, raiz, { children, key, label, note, marks, binary })</code>, uma árvore binária (por omissão, nós <code>{ v, l, r }</code>) ou n-ária (<code>binary: false</code>). Ambas mantêm os elementos entre passos, por isso as mudanças animam. Para grafos e tabelas, o caminho mais simples é o <a href="uc-widget-trace.html"><code>&lt;uc-widget-trace&gt;</code></a>; um widget próprio pode também desenhar SVG à mão com <code>UC.widgets.util.svgEl</code>.</p>
+        <h2 id="regras">Regras para um bom widget</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>Correto e legível</h3>
+            <p>Teste o algoritmo contra uma versão simples com várias entradas antes de o pôr na página: uma animação errada ensina o algoritmo errado. Entradas pequenas (até 16 células ou 15 nós) para que os números se leiam num telemóvel.</p>
+          </div>
+          <div class="uc-card">
+            <h3>Acessível</h3>
+            <p>Uma frase com os valores em cada passo, <code>describe()</code> com a estrutura em palavras e <code>table()</code> para a vista em texto. Escreva o resultado dentro do elemento, para quem não tem JavaScript.</p>
+          </div>
+        </div>
+        <h2 id="catalogo">Propor um widget ao catálogo</h2>
+        <p>Um widget do catálogo vive em <code>widgets/src/&lt;nome&gt;/</code>, em módulos ES, e é compilado por <code>npm run build</code> para <code>widgets/v1/uc-widget-&lt;nome&gt;.js</code>. O contrato completo é <a href="https://github.com/mmroch4/uc-design-kit/blob/main/docs/plan/widgets-api.md"><code>docs/plan/widgets-api.md</code></a>. Lista para o pedido de integração (pull request):</p>
+        <ol>
+          <li><code>algorithm.js</code> puro, com <code>ALGORITHMS</code> e <code>run(input, options, emit)</code>; o primeiro passo sem destaques, o último com o resultado.</li>
+          <li><code>i18n.js</code> com todas as frases e o pseudocódigo em português e em inglês, as mesmas chaves e os mesmos ids de linha.</li>
+          <li><code>widget.js</code> com <code>parse()</code>, <code>steps()</code>, <code>draw()</code>, <code>describe()</code> e <code>table()</code>.</li>
+          <li><code>meta.json</code> com a entrada do catálogo (<code>status: "experimental"</code> no início) e uma entrada de teste.</li>
+          <li><code>tests/widgets/&lt;nome&gt;.test.mjs</code>: 200 entradas aleatórias de uma semente fixa e os casos extremos, contra uma implementação de referência.</li>
+          <li>As frases geradas por <code>node tests/widgets/narration.mjs --update</code>, lidas com atenção.</li>
+          <li>Uma página <code>docs/pt/widgets/uc-widget-&lt;nome&gt;.html</code>, duas demonstrações em <code>docs/demos/uc-widget-&lt;nome&gt;/</code> e a entrada em <code>docs/nav.json</code>.</li>
+          <li>No máximo 8 KB gzip (<code>npm run build</code> mostra o tamanho); o núcleo não muda sem medir (12 KB).</li>
+          <li><code>npm test</code> sem erros: algoritmos, validador de passos, frases, axe com o percurso pelo teclado, sem deslocamento horizontal a 320 px.</li>
+        </ol>
+        <p>A mesma lista está em <a href="https://github.com/mmroch4/uc-design-kit/blob/main/widgets/template/README.md"><code>widgets/template/README.md</code></a>; ver também <a href="../referencia/contribuir.html">Contribuir</a>.</p>
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-widget-trace.html"><code>&lt;uc-widget-trace&gt;</code></a>: os passos em JSON, sem programar.</li>
+          <li><a href="usar.html">Usar widgets</a>: atributos comuns, eventos e pseudocódigo próprio.</li>
+          <li><a href="../referencia/api-js.html">API JavaScript</a>: <code>UC.widgets</code>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-trace.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-widget-trace</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="../estilos/index.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Princípios de design</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/criar.html">Editar esta página no GitHub</a> · <a href="criar.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#modelo">O modelo</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#passo">Um passo</a></li>
+          <li><a href="#desenho">Desenhar</a></li>
+          <li><a href="#regras">Regras para um bom widget</a></li>
+          <li><a href="#catalogo">Propor um widget ao catálogo</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

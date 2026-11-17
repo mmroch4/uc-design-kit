@@ -42,6 +42,22 @@ export function collect(run, input, options = {}) {
   return { steps, result };
 }
 
+/**
+ * Decimals in a sentence written with the language's mark: "2.3" → "2,3" in
+ * pt. Algorithms format numbers with a point (they are pure, no language);
+ * the core applies this to narration, the state panel, the text table and
+ * the SVG's label.
+ */
+export function decimals(text, lang) {
+  let mark = ".";
+  try {
+    mark = (1.5).toLocaleString(lang).charAt(1);
+  } catch {
+    // unknown language tag: keep the point
+  }
+  return mark === "." ? String(text) : String(text).replace(/(\d)\.(\d)/g, `$1${mark}$2`);
+}
+
 /** Deep copy of plain data (the step format is JSON). */
 export function clone(value) {
   return value === undefined ? undefined : JSON.parse(JSON.stringify(value));

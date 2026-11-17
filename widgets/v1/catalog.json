@@ -31,6 +31,41 @@
       "gzip": 6512
     },
     {
+      "name": "uc-widget-backtracking",
+      "file": "uc-widget-backtracking.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Backtracking",
+        "en": "Backtracking"
+      },
+      "summary": {
+        "pt": "N rainhas, subconjuntos, permutações, com a árvore de pesquisa e os cortes.",
+        "en": "N queens, subsets, permutations, with the search tree and the cuts."
+      },
+      "page": "docs/pt/widgets/uc-widget-backtracking.html",
+      "algorithms": [
+        "queens",
+        "subsets",
+        "permutations"
+      ],
+      "courses": [
+        "PC",
+        "PI"
+      ],
+      "attributes": [
+        "n",
+        "all",
+        "values",
+        "target",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 6379
+    },
+    {
       "name": "uc-widget-bst",
       "file": "uc-widget-bst.js",
       "status": "experimental",
@@ -62,7 +97,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 5637
+      "gzip": 5636
     },
     {
       "name": "uc-widget-complexity",
@@ -98,6 +133,45 @@
       ],
       "predict": true,
       "gzip": 4906
+    },
+    {
+      "name": "uc-widget-dp",
+      "file": "uc-widget-dp.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Programação dinâmica",
+        "en": "Dynamic programming"
+      },
+      "summary": {
+        "pt": "Tabela de programação dinâmica: mochila, LCS, distância de edição, trocos, com o caminho de reconstrução.",
+        "en": "Dynamic programming table: knapsack, LCS, edit distance, coin change, with the reconstruction path."
+      },
+      "page": "docs/pt/widgets/uc-widget-dp.html",
+      "algorithms": [
+        "lcs",
+        "edit-distance",
+        "knapsack",
+        "coins"
+      ],
+      "courses": [
+        "PC"
+      ],
+      "attributes": [
+        "problem",
+        "a",
+        "b",
+        "weights",
+        "values",
+        "capacity",
+        "coins",
+        "amount",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 7724
     },
     {
       "name": "uc-widget-graph",
@@ -198,7 +272,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 4795
+      "gzip": 4794
     },
     {
       "name": "uc-widget-list",
@@ -227,7 +301,39 @@
         "ops"
       ],
       "predict": true,
-      "gzip": 6111
+      "gzip": 6112
+    },
+    {
+      "name": "uc-widget-mst",
+      "file": "uc-widget-mst.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Árvore de cobertura mínima",
+        "en": "Minimum spanning tree"
+      },
+      "summary": {
+        "pt": "Kruskal e Prim.",
+        "en": "Kruskal and Prim."
+      },
+      "page": "docs/pt/widgets/uc-widget-mst.html",
+      "algorithms": [
+        "kruskal",
+        "prim"
+      ],
+      "courses": [
+        "PC",
+        "EDados"
+      ],
+      "attributes": [
+        "edges",
+        "source",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 7123
     },
     {
       "name": "uc-widget-recursion",
@@ -293,7 +399,7 @@
         "algorithm"
       ],
       "predict": true,
-      "gzip": 3244
+      "gzip": 3243
     },
     {
       "name": "uc-widget-shortest-path",
@@ -326,7 +432,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7050
+      "gzip": 7053
     },
     {
       "name": "uc-widget-sort",
@@ -363,7 +469,7 @@
         "bars"
       ],
       "predict": true,
-      "gzip": 5355
+      "gzip": 5354
     },
     {
       "name": "uc-widget-stack-queue",
@@ -397,6 +503,102 @@
       ],
       "predict": false,
       "gzip": 5810
+    },
+    {
+      "name": "uc-widget-toposort",
+      "file": "uc-widget-toposort.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Ordenação topológica",
+        "en": "Topological sort"
+      },
+      "summary": {
+        "pt": "Kahn e DFS, com deteção de ciclos.",
+        "en": "Kahn and DFS, with cycle detection."
+      },
+      "page": "docs/pt/widgets/uc-widget-toposort.html",
+      "algorithms": [
+        "kahn",
+        "dfs"
+      ],
+      "courses": [
+        "PC",
+        "EDados"
+      ],
+      "attributes": [
+        "edges",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 6825
+    },
+    {
+      "name": "uc-widget-trace",
+      "file": "uc-widget-trace.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Traço de um algoritmo",
+        "en": "Algorithm trace"
+      },
+      "summary": {
+        "pt": "Os passos do seu próprio algoritmo, escritos em JSON, reproduzidos com o desenho de vetor, árvore, grafo ou tabela.",
+        "en": "The steps of your own algorithm, written as JSON, played with an array, tree, graph or table drawing."
+      },
+      "page": "docs/pt/widgets/uc-widget-trace.html",
+      "algorithms": [
+        "trace"
+      ],
+      "courses": [
+        "IP",
+        "EDados",
+        "PI",
+        "PC"
+      ],
+      "attributes": [
+        "caption",
+        "controls",
+        "predict"
+      ],
+      "predict": true,
+      "gzip": 7234
+    },
+    {
+      "name": "uc-widget-union-find",
+      "file": "uc-widget-union-find.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Union-find",
+        "en": "Union-find"
+      },
+      "summary": {
+        "pt": "Conjuntos disjuntos com união por tamanho e compressão de caminhos, ou sem elas, com o vetor parent e a floresta.",
+        "en": "Disjoint sets with union by size and path compression, or without them, with the parent array and the forest."
+      },
+      "page": "docs/pt/widgets/uc-widget-union-find.html",
+      "algorithms": [
+        "compression",
+        "size",
+        "naive"
+      ],
+      "courses": [
+        "PC",
+        "EDados"
+      ],
+      "attributes": [
+        "n",
+        "ops",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 4647
     }
   ]
 }

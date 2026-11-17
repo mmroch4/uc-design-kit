@@ -1,0 +1,229 @@
+## algorithm=queens · input {"n":4,"all":false,"values":[1,2,3],"target":null}
+  1. 4 rainhas num tabuleiro 4 × 4, uma por linha, sem duas na mesma coluna ou diagonal. Para na primeira solução.
+  2. (0, 0) está livre: põe uma rainha.
+  3. (1, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+  4. (1, 1) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+  5. (1, 2) está livre: põe uma rainha.
+  6. (2, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+  7. (2, 1) é atacada pela rainha de (1, 2), na mesma diagonal: corte.
+  8. (2, 2) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+  9. (2, 3) é atacada pela rainha de (1, 2), na mesma diagonal: corte.
+ 10. Volta à linha 1: tira a rainha de (1, 2).
+ 11. (1, 3) está livre: põe uma rainha.
+ 12. (2, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+ 13. (2, 1) está livre: põe uma rainha.
+ 14. (3, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+ 15. (3, 1) é atacada pela rainha de (1, 3), na mesma diagonal: corte.
+ 16. (3, 2) é atacada pela rainha de (2, 1), na mesma diagonal: corte.
+ 17. (3, 3) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+ 18. Volta à linha 2: tira a rainha de (2, 1).
+ 19. (2, 2) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+ 20. (2, 3) é atacada pela rainha de (1, 3), na mesma coluna: corte.
+ 21. Volta à linha 1: tira a rainha de (1, 3).
+ 22. Volta à linha 0: tira a rainha de (0, 0).
+ 23. (0, 1) está livre: põe uma rainha.
+ 24. (1, 0) é atacada pela rainha de (0, 1), na mesma diagonal: corte.
+ 25. (1, 1) é atacada pela rainha de (0, 1), na mesma coluna: corte.
+ 26. (1, 2) é atacada pela rainha de (0, 1), na mesma diagonal: corte.
+ 27. (1, 3) está livre: põe uma rainha.
+ 28. (2, 0) está livre: põe uma rainha.
+ 29. (3, 0) é atacada pela rainha de (2, 0), na mesma coluna: corte.
+ 30. (3, 1) é atacada pela rainha de (0, 1), na mesma coluna: corte.
+ 31. (3, 2) está livre: põe uma rainha.
+ 32. Primeira solução: colunas 1 3 0 2, linha a linha. Cortes: 18.
+
+## algorithm=subsets · input {"n":4,"all":false,"values":[1,2,3],"target":null}
+  1. Subconjuntos de 1 2 3: em cada nível, leva (+) ou deixa (−) um valor.
+  2. Leva 1: { 1 }, soma 1.
+  3. Leva 2: { 1, 2 }, soma 3.
+  4. Leva 3: subconjunto { 1, 2, 3 }, soma 6.
+  5. Deixa 3: subconjunto { 1, 2 }, soma 3.
+  6. Deixa 2: { 1 }, soma 1.
+  7. Leva 3: subconjunto { 1, 3 }, soma 4.
+  8. Deixa 3: subconjunto { 1 }, soma 1.
+  9. Deixa 1: { }, soma 0.
+ 10. Leva 2: { 2 }, soma 2.
+ 11. Leva 3: subconjunto { 2, 3 }, soma 5.
+ 12. Deixa 3: subconjunto { 2 }, soma 2.
+ 13. Deixa 2: { }, soma 0.
+ 14. Leva 3: subconjunto { 3 }, soma 3.
+ 15. Deixa 3: subconjunto { }, soma 0.
+ 16. Subconjuntos (8): { 1, 2, 3 }; { 1, 2 }; { 1, 3 }; { 1 }; { 2, 3 }; { 2 }; { 3 }; { }.
+
+## algorithm=permutations · input {"n":4,"all":false,"values":[1,2,3],"target":null}
+  1. Permutações de 1 2 3: em cada nível põe um elemento ainda não usado. Só se tentam esses, por isso não há cortes.
+  2. Põe 1: 1.
+  3. Põe 2: 1 2.
+  4. Põe 3: permutação 1 2 3.
+  5. Põe 3: 1 3.
+  6. Põe 2: permutação 1 3 2.
+  7. Põe 2: 2.
+  8. Põe 1: 2 1.
+  9. Põe 3: permutação 2 1 3.
+ 10. Põe 3: 2 3.
+ 11. Põe 1: permutação 2 3 1.
+ 12. Põe 3: 3.
+ 13. Põe 1: 3 1.
+ 14. Põe 2: permutação 3 1 2.
+ 15. Põe 2: 3 2.
+ 16. Põe 1: permutação 3 2 1.
+ 17. Permutações (6): 1 2 3; 1 3 2; 2 1 3; 2 3 1; 3 1 2; 3 2 1.
+
+## algorithm=queens · input {"n":4,"all":true}
+  1. 4 rainhas num tabuleiro 4 × 4, uma por linha, sem duas na mesma coluna ou diagonal. Procura todas as soluções.
+  2. (0, 0) está livre: põe uma rainha.
+  3. (1, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+  4. (1, 1) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+  5. (1, 2) está livre: põe uma rainha.
+  6. (2, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+  7. (2, 1) é atacada pela rainha de (1, 2), na mesma diagonal: corte.
+  8. (2, 2) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+  9. (2, 3) é atacada pela rainha de (1, 2), na mesma diagonal: corte.
+ 10. Volta à linha 1: tira a rainha de (1, 2).
+ 11. (1, 3) está livre: põe uma rainha.
+ 12. (2, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+ 13. (2, 1) está livre: põe uma rainha.
+ 14. (3, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+ 15. (3, 1) é atacada pela rainha de (1, 3), na mesma diagonal: corte.
+ 16. (3, 2) é atacada pela rainha de (2, 1), na mesma diagonal: corte.
+ 17. (3, 3) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+ 18. Volta à linha 2: tira a rainha de (2, 1).
+ 19. (2, 2) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+ 20. (2, 3) é atacada pela rainha de (1, 3), na mesma coluna: corte.
+ 21. Volta à linha 1: tira a rainha de (1, 3).
+ 22. Volta à linha 0: tira a rainha de (0, 0).
+ 23. (0, 1) está livre: põe uma rainha.
+ 24. (1, 0) é atacada pela rainha de (0, 1), na mesma diagonal: corte.
+ 25. (1, 1) é atacada pela rainha de (0, 1), na mesma coluna: corte.
+ 26. (1, 2) é atacada pela rainha de (0, 1), na mesma diagonal: corte.
+ 27. (1, 3) está livre: põe uma rainha.
+ 28. (2, 0) está livre: põe uma rainha.
+ 29. (3, 0) é atacada pela rainha de (2, 0), na mesma coluna: corte.
+ 30. (3, 1) é atacada pela rainha de (0, 1), na mesma coluna: corte.
+ 31. (3, 2) está livre: põe uma rainha.
+ 32. Solução 1: colunas 1 3 0 2, linha a linha.
+ 33. Volta à linha 3: tira a rainha de (3, 2).
+ 34. (3, 3) é atacada pela rainha de (1, 3), na mesma coluna: corte.
+ 35. Volta à linha 2: tira a rainha de (2, 0).
+ 36. (2, 1) é atacada pela rainha de (0, 1), na mesma coluna: corte.
+ 37. (2, 2) é atacada pela rainha de (1, 3), na mesma diagonal: corte.
+ 38. (2, 3) é atacada pela rainha de (0, 1), na mesma diagonal: corte.
+ 39. Volta à linha 1: tira a rainha de (1, 3).
+ 40. Volta à linha 0: tira a rainha de (0, 1).
+ 41. (0, 2) está livre: põe uma rainha.
+ 42. (1, 0) está livre: põe uma rainha.
+ 43. (2, 0) é atacada pela rainha de (0, 2), na mesma diagonal: corte.
+ 44. (2, 1) é atacada pela rainha de (1, 0), na mesma diagonal: corte.
+ 45. (2, 2) é atacada pela rainha de (0, 2), na mesma coluna: corte.
+ 46. (2, 3) está livre: põe uma rainha.
+ 47. (3, 0) é atacada pela rainha de (1, 0), na mesma coluna: corte.
+ 48. (3, 1) está livre: põe uma rainha.
+ 49. Solução 2: colunas 2 0 3 1, linha a linha.
+ 50. Volta à linha 3: tira a rainha de (3, 1).
+ 51. (3, 2) é atacada pela rainha de (0, 2), na mesma coluna: corte.
+ 52. (3, 3) é atacada pela rainha de (2, 3), na mesma coluna: corte.
+ 53. Volta à linha 2: tira a rainha de (2, 3).
+ 54. Volta à linha 1: tira a rainha de (1, 0).
+ 55. (1, 1) é atacada pela rainha de (0, 2), na mesma diagonal: corte.
+ 56. (1, 2) é atacada pela rainha de (0, 2), na mesma coluna: corte.
+ 57. (1, 3) é atacada pela rainha de (0, 2), na mesma diagonal: corte.
+ 58. Volta à linha 0: tira a rainha de (0, 2).
+ 59. (0, 3) está livre: põe uma rainha.
+ 60. (1, 0) está livre: põe uma rainha.
+ 61. (2, 0) é atacada pela rainha de (1, 0), na mesma coluna: corte.
+ 62. (2, 1) é atacada pela rainha de (0, 3), na mesma diagonal: corte.
+ 63. (2, 2) está livre: põe uma rainha.
+ 64. (3, 0) é atacada pela rainha de (0, 3), na mesma diagonal: corte.
+ 65. (3, 1) é atacada pela rainha de (2, 2), na mesma diagonal: corte.
+ 66. (3, 2) é atacada pela rainha de (1, 0), na mesma diagonal: corte.
+ 67. (3, 3) é atacada pela rainha de (0, 3), na mesma coluna: corte.
+ 68. Volta à linha 2: tira a rainha de (2, 2).
+ 69. (2, 3) é atacada pela rainha de (0, 3), na mesma coluna: corte.
+ 70. Volta à linha 1: tira a rainha de (1, 0).
+ 71. (1, 1) está livre: põe uma rainha.
+ 72. (2, 0) é atacada pela rainha de (1, 1), na mesma diagonal: corte.
+ 73. (2, 1) é atacada pela rainha de (0, 3), na mesma diagonal: corte.
+ 74. (2, 2) é atacada pela rainha de (1, 1), na mesma diagonal: corte.
+ 75. (2, 3) é atacada pela rainha de (0, 3), na mesma coluna: corte.
+ 76. Volta à linha 1: tira a rainha de (1, 1).
+ 77. (1, 2) é atacada pela rainha de (0, 3), na mesma diagonal: corte.
+ 78. (1, 3) é atacada pela rainha de (0, 3), na mesma coluna: corte.
+ 79. Volta à linha 0: tira a rainha de (0, 3).
+ 80. Soluções com 4 rainhas: 2. Cortes: 44.
+
+## algorithm=queens · input {"n":3,"all":false}
+  1. 3 rainhas num tabuleiro 3 × 3, uma por linha, sem duas na mesma coluna ou diagonal. Para na primeira solução.
+  2. (0, 0) está livre: põe uma rainha.
+  3. (1, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+  4. (1, 1) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+  5. (1, 2) está livre: põe uma rainha.
+  6. (2, 0) é atacada pela rainha de (0, 0), na mesma coluna: corte.
+  7. (2, 1) é atacada pela rainha de (1, 2), na mesma diagonal: corte.
+  8. (2, 2) é atacada pela rainha de (0, 0), na mesma diagonal: corte.
+  9. Volta à linha 1: tira a rainha de (1, 2).
+ 10. Volta à linha 0: tira a rainha de (0, 0).
+ 11. (0, 1) está livre: põe uma rainha.
+ 12. (1, 0) é atacada pela rainha de (0, 1), na mesma diagonal: corte.
+ 13. (1, 1) é atacada pela rainha de (0, 1), na mesma coluna: corte.
+ 14. (1, 2) é atacada pela rainha de (0, 1), na mesma diagonal: corte.
+ 15. Volta à linha 0: tira a rainha de (0, 1).
+ 16. (0, 2) está livre: põe uma rainha.
+ 17. (1, 0) está livre: põe uma rainha.
+ 18. (2, 0) é atacada pela rainha de (0, 2), na mesma diagonal: corte.
+ 19. (2, 1) é atacada pela rainha de (1, 0), na mesma diagonal: corte.
+ 20. (2, 2) é atacada pela rainha de (0, 2), na mesma coluna: corte.
+ 21. Volta à linha 1: tira a rainha de (1, 0).
+ 22. (1, 1) é atacada pela rainha de (0, 2), na mesma diagonal: corte.
+ 23. (1, 2) é atacada pela rainha de (0, 2), na mesma coluna: corte.
+ 24. Volta à linha 0: tira a rainha de (0, 2).
+ 25. Não há solução com 3 rainhas. Cortes: 13.
+
+## algorithm=subsets · input {"values":[3,1,4,2],"target":5}
+  1. Subconjuntos de 3 1 4 2 com soma 5: leva (+) ou deixa (−) cada valor e corta os ramos sem saída.
+  2. Leva 3: { 3 }, soma 3.
+  3. Leva 1: { 3, 1 }, soma 4.
+  4. Leva 4: a soma 8 passa de 5, corte.
+  5. Deixa 4: { 3, 1 }, soma 4.
+  6. Leva 2: a soma 6 passa de 5, corte.
+  7. Deixa 2: soma 4 e restam 0, não chega a 5: corte.
+  8. Deixa 1: { 3 }, soma 3.
+  9. Leva 4: a soma 7 passa de 5, corte.
+ 10. Deixa 4: { 3 }, soma 3.
+ 11. Leva 2: subconjunto { 3, 2 }, soma 5.
+ 12. Deixa 2: soma 3 e restam 0, não chega a 5: corte.
+ 13. Deixa 3: { }, soma 0.
+ 14. Leva 1: { 1 }, soma 1.
+ 15. Leva 4: { 1, 4 }, soma 5.
+ 16. Leva 2: a soma 7 passa de 5, corte.
+ 17. Deixa 2: subconjunto { 1, 4 }, soma 5.
+ 18. Deixa 4: soma 1 e restam 2, não chega a 5: corte.
+ 19. Deixa 1: { }, soma 0.
+ 20. Leva 4: { 4 }, soma 4.
+ 21. Leva 2: a soma 6 passa de 5, corte.
+ 22. Deixa 2: soma 4 e restam 0, não chega a 5: corte.
+ 23. Deixa 4: soma 0 e restam 2, não chega a 5: corte.
+ 24. Subconjuntos com soma 5: { 3, 2 }; { 1, 4 }. Cortes: 10.
+
+## algorithm=subsets · input {"values":[1,2],"target":9}
+  1. Subconjuntos de 1 2 com soma 9: leva (+) ou deixa (−) cada valor e corta os ramos sem saída.
+  2. A soma de todos os valores é 3, menos do que 9: não há solução.
+  3. Nenhum subconjunto tem soma 9. Cortes: 1.
+
+## algorithm=permutations · input {"values":["A","B","C"]}
+  1. Permutações de A B C: em cada nível põe um elemento ainda não usado. Só se tentam esses, por isso não há cortes.
+  2. Põe A: A.
+  3. Põe B: A B.
+  4. Põe C: permutação A B C.
+  5. Põe C: A C.
+  6. Põe B: permutação A C B.
+  7. Põe B: B.
+  8. Põe A: B A.
+  9. Põe C: permutação B A C.
+ 10. Põe C: B C.
+ 11. Põe A: permutação B C A.
+ 12. Põe C: C.
+ 13. Põe A: C A.
+ 14. Põe B: permutação C A B.
+ 15. Põe B: C B.
+ 16. Põe A: permutação C B A.
+ 17. Permutações (6): A B C; A C B; B A C; B C A; C A B; C B A.

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-toposort · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-toposort.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-toposort algorithm="dfs" algorithms="dfs kahn"
+        edges="A B; A C; B D; C D; D E; E C" editable predict>
+      <p>Não há ordem topológica: C → D → E → C é um ciclo. Sem o arco E C, uma ordem é A, C, B, D, E.</p>
+    </uc-widget-toposort>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

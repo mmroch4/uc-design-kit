@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar um widget · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-core.js" defer></script>
+  <script src="../../../widgets/template/my-widget-gcd.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <my-widget-gcd a="48" b="18" predict>
+      <p>mdc(48, 18): 48 mod 18 = 12, 18 mod 12 = 6, 12 mod 6 = 0. O máximo divisor comum é 6.</p>
+    </my-widget-gcd>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>

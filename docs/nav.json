@@ -85,7 +85,14 @@
             { "title": "uc-widget-hash", "path": "pt/widgets/uc-widget-hash.html", "code": true },
             { "title": "uc-widget-graph", "path": "pt/widgets/uc-widget-graph.html", "code": true },
             { "title": "uc-widget-shortest-path", "path": "pt/widgets/uc-widget-shortest-path.html", "code": true },
-            { "title": "uc-widget-complexity", "path": "pt/widgets/uc-widget-complexity.html", "code": true }
+            { "title": "uc-widget-complexity", "path": "pt/widgets/uc-widget-complexity.html", "code": true },
+            { "title": "uc-widget-mst", "path": "pt/widgets/uc-widget-mst.html", "code": true },
+            { "title": "uc-widget-union-find", "path": "pt/widgets/uc-widget-union-find.html", "code": true },
+            { "title": "uc-widget-toposort", "path": "pt/widgets/uc-widget-toposort.html", "code": true },
+            { "title": "uc-widget-dp", "path": "pt/widgets/uc-widget-dp.html", "code": true },
+            { "title": "uc-widget-backtracking", "path": "pt/widgets/uc-widget-backtracking.html", "code": true },
+            { "title": "uc-widget-trace", "path": "pt/widgets/uc-widget-trace.html", "code": true },
+            { "title": "Criar um widget", "path": "pt/widgets/criar.html" }
           ]
         },
         {

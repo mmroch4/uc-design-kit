@@ -31,14 +31,14 @@
  30. 4 ≠ 11: segue para o próximo da lista.
  31. Fim da lista: 11 ainda não está na tabela.
  32. 11 entra no fim da lista da posição 4.
- 33. Fator de carga 0.86 > 0.75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
+ 33. Fator de carga 0,86 > 0,75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
  34. h(15) = 15 mod 14 = 1: 15 fica na posição 1.
  35. h(8) = 8 mod 14 = 8: 8 fica na posição 8.
  36. h(22) = 22 mod 14 = 8: 22 fica na posição 8.
  37. h(29) = 29 mod 14 = 1: 29 fica na posição 1.
  38. h(4) = 4 mod 14 = 4: 4 fica na posição 4.
  39. h(11) = 11 mod 14 = 11: 11 fica na posição 11.
- 40. Fim: 6 chaves em 14 posições, fator de carga 0.43.
+ 40. Fim: 6 chaves em 14 posições, fator de carga 0,43.
 
 ## algorithm=linear · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
   1. Tabela vazia com 7 posições.
@@ -75,14 +75,14 @@
  32. Tentativa 1: a posição 5 tem 29; tenta a seguinte, 6.
  33. Tentativa 2: a posição 6 está vazia: 11 não está na tabela e pode ficar aqui.
  34. 11 fica na posição 6.
- 35. Fator de carga 0.86 > 0.75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
+ 35. Fator de carga 0,86 > 0,75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
  36. h(15) = 15 mod 14 = 1: 15 fica na posição 1.
  37. h(8) = 8 mod 14 = 8: 8 fica na posição 8.
  38. h(22) = 22 mod 14 = 8: 22 fica na posição 9.
  39. h(4) = 4 mod 14 = 4: 4 fica na posição 4.
  40. h(29) = 29 mod 14 = 1: 29 fica na posição 2.
  41. h(11) = 11 mod 14 = 11: 11 fica na posição 11.
- 42. Fim: 6 chaves em 14 posições, fator de carga 0.43.
+ 42. Fim: 6 chaves em 14 posições, fator de carga 0,43.
 
 ## algorithm=quadratic · input {"values":[15,8,22,4,29,11],"ops":null,"size":7,"maxLoad":0.75}
   1. Tabela vazia com 7 posições.
@@ -119,14 +119,14 @@
  32. Tentativa 2: a posição 1 tem 15; a próxima tentativa é a posição 6.
  33. Tentativa 3: a posição 6 está vazia: 11 não está na tabela e pode ficar aqui.
  34. 11 fica na posição 6.
- 35. Fator de carga 0.86 > 0.75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
+ 35. Fator de carga 0,86 > 0,75: a tabela cresce de 7 para 14 posições e as chaves voltam a entrar.
  36. h(15) = 15 mod 14 = 1: 15 fica na posição 1.
  37. h(8) = 8 mod 14 = 8: 8 fica na posição 8.
  38. h(29) = 29 mod 14 = 1: 29 fica na posição 2.
  39. h(4) = 4 mod 14 = 4: 4 fica na posição 4.
  40. h(22) = 22 mod 14 = 8: 22 fica na posição 9.
  41. h(11) = 11 mod 14 = 11: 11 fica na posição 11.
- 42. Fim: 6 chaves em 14 posições, fator de carga 0.43.
+ 42. Fim: 6 chaves em 14 posições, fator de carga 0,43.
 
 ## algorithm=linear · input {"values":[10,17,3],"ops":[{"verb":"insert","args":["24"]},{"verb":"remove","args":["17"]},{"verb":"search","args":["24"]},{"verb":"insert","args":["31"]},{"verb":"remove","args":["5"]},{"verb":"insert","args":["10"]}],"size":7,"maxLoad":null}
   1. Tabela com 7 posições e 3 chaves.
@@ -165,7 +165,7 @@
  34. h(10) = 10 mod 7 = 3: começa na posição 3.
  35. Tentativa 0: a posição 3 tem 10: encontrado.
  36. 10 já está na tabela: não se insere outra vez.
- 37. Fim: 4 chaves em 7 posições, fator de carga 0.57.
+ 37. Fim: 4 chaves em 7 posições, fator de carga 0,57.
 
 ## algorithm=chaining · input {"values":["ana","rui","eva"],"ops":[{"verb":"insert","args":["ivo"]},{"verb":"search","args":["eva"]},{"verb":"remove","args":["rui"]},{"verb":"search","args":["rui"]}],"size":5,"maxLoad":null}
   1. Tabela com 5 posições e 3 chaves.
@@ -186,7 +186,7 @@
  16. h(rui) = 336 mod 5 = 1: vai à lista da posição 1.
  17. eva ≠ rui: segue para o próximo da lista.
  18. rui não está na tabela.
- 19. Fim: 3 chaves em 5 posições, fator de carga 0.6.
+ 19. Fim: 3 chaves em 5 posições, fator de carga 0,6.
 
 ## algorithm=quadratic · input {"values":[],"ops":[{"verb":"insert","args":["1"]},{"verb":"insert","args":["5"]},{"verb":"insert","args":["9"]},{"verb":"insert","args":["13"]}],"size":4,"maxLoad":1}
   1. Tabela vazia com 4 posições.
@@ -215,4 +215,4 @@
  24. Tentativa 3: a posição 2 tem 5; a próxima tentativa é a posição 1.
  25. Já se tentaram 4 posições sem encontrar 13 nem um lugar vazio.
  26. Não há lugar para 13.
- 27. Fim: 2 chaves em 4 posições, fator de carga 0.5.
+ 27. Fim: 2 chaves em 4 posições, fator de carga 0,5.

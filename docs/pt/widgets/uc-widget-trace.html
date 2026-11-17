@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-trace · UC Design Kit</title>
+  <meta name="description" content="Documentação do widget uc-widget-trace do UC Design Kit: os passos de um algoritmo próprio, escritos em JSON, com desenho de vetor, árvore, grafo ou tabela.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../exemplos/index.html">Exemplos</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../exemplos/index.html">Exemplos</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../manter.html">Manter o site</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="../componentes/uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="../componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="../componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="../componentes/uc-problems.html"><code>uc-problems</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Widgets</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="index.html">Catálogo</a></li>
+          <li><a href="usar.html">Usar widgets</a></li>
+          <li><a href="uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+          <li><a href="uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
+          <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
+          <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
+          <li><a href="uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
+          <li><a href="uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="uc-widget-union-find.html"><code>uc-widget-union-find</code></a></li>
+          <li><a href="uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="uc-widget-trace.html" aria-current="page"><code>uc-widget-trace</code></a></li>
+          <li><a href="criar.html">Criar um widget</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../exemplos/index.html">Visão geral</a></li>
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/pc.html">PC 2026/27</a></li>
+          <li><a href="../exemplos/ip.html">IP 2025/26</a></li>
+          <li><a href="../exemplos/pi.html">PI 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-7">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-7">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Widgets</p>
+          <h1><code>&lt;uc-widget-trace&gt;</code></h1>
+          <p class="docs-lead">Os passos do seu próprio algoritmo, escritos em JSON, reproduzidos com o desenho de um vetor, de uma árvore, de um grafo ou de uma tabela.</p>
+        </header>
+        <!-- docs:demo src="../../demos/uc-widget-trace/basic.html" title="O máximo de um vetor, com pseudocódigo, variáveis e previsões" height="620" -->
+        <div class="docs-demo" id="demo-uc-widget-trace-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-trace/basic.html" title="Demonstração: O máximo de um vetor, com pseudocódigo, variáveis e previsões" loading="lazy" style="height: 620px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;uc-widget-trace caption=&quot;Máximo de um vetor&quot; predict&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;array&quot;,
+  &quot;code&quot;: {
+    &quot;pt&quot;: [&quot;start|m = a[0]&quot;, &quot;loop|para i de 1 a n − 1:&quot;, &quot;test|  se a[i] &gt; m:&quot;, &quot;take|    m = a[i]&quot;, &quot;end|devolver m&quot;],
+    &quot;en&quot;: [&quot;start|m = a[0]&quot;, &quot;loop|for i from 1 to n − 1:&quot;, &quot;test|  if a[i] &gt; m:&quot;, &quot;take|    m = a[i]&quot;, &quot;end|return m&quot;]
+  },
+  &quot;steps&quot;: [
+    { &quot;state&quot;: [4, 7, 2, 9, 5], &quot;say&quot;: { &quot;pt&quot;: &quot;Procurar o máximo de 4 7 2 9 5.&quot;, &quot;en&quot;: &quot;Find the maximum of 4 7 2 9 5.&quot; } },
+    { &quot;marks&quot;: { &quot;0&quot;: &quot;current&quot; }, &quot;line&quot;: &quot;start&quot;, &quot;vars&quot;: { &quot;m&quot;: 4 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;m começa com a[0] = 4.&quot;, &quot;en&quot;: &quot;m starts as a[0] = 4.&quot; } },
+    { &quot;marks&quot;: { &quot;1&quot;: &quot;current&quot;, &quot;0&quot;: &quot;visited&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;1&quot; }, &quot;line&quot;: [&quot;test&quot;, &quot;take&quot;], &quot;vars&quot;: { &quot;i&quot;: 1, &quot;m&quot;: 7 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[1] = 7 &gt; 4: m passa a 7.&quot;, &quot;en&quot;: &quot;a[1] = 7 &gt; 4: m becomes 7.&quot; },
+      &quot;predict&quot;: { &quot;ask&quot;: { &quot;pt&quot;: &quot;a[1] = 7 é maior do que m = 4?&quot;, &quot;en&quot;: &quot;Is a[1] = 7 larger than m = 4?&quot; }, &quot;options&quot;: [{ &quot;pt&quot;: &quot;Sim&quot;, &quot;en&quot;: &quot;Yes&quot; }, { &quot;pt&quot;: &quot;Não&quot;, &quot;en&quot;: &quot;No&quot; }], &quot;answer&quot;: 0 } },
+    { &quot;marks&quot;: { &quot;2&quot;: &quot;compared&quot;, &quot;1&quot;: &quot;current&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;2&quot; }, &quot;line&quot;: &quot;test&quot;, &quot;vars&quot;: { &quot;i&quot;: 2, &quot;m&quot;: 7 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[2] = 2 não é maior do que 7.&quot;, &quot;en&quot;: &quot;a[2] = 2 is not larger than 7.&quot; } },
+    { &quot;marks&quot;: { &quot;3&quot;: &quot;current&quot;, &quot;1&quot;: &quot;visited&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;3&quot; }, &quot;line&quot;: [&quot;test&quot;, &quot;take&quot;], &quot;vars&quot;: { &quot;i&quot;: 3, &quot;m&quot;: 9 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[3] = 9 &gt; 7: m passa a 9.&quot;, &quot;en&quot;: &quot;a[3] = 9 &gt; 7: m becomes 9.&quot; },
+      &quot;predict&quot;: { &quot;ask&quot;: { &quot;pt&quot;: &quot;a[3] = 9 é maior do que m = 7?&quot;, &quot;en&quot;: &quot;Is a[3] = 9 larger than m = 7?&quot; }, &quot;options&quot;: [{ &quot;pt&quot;: &quot;Sim&quot;, &quot;en&quot;: &quot;Yes&quot; }, { &quot;pt&quot;: &quot;Não&quot;, &quot;en&quot;: &quot;No&quot; }], &quot;answer&quot;: 0 } },
+    { &quot;marks&quot;: { &quot;4&quot;: &quot;compared&quot;, &quot;3&quot;: &quot;current&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;4&quot; }, &quot;line&quot;: &quot;test&quot;, &quot;vars&quot;: { &quot;i&quot;: 4, &quot;m&quot;: 9 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[4] = 5 não é maior do que 9.&quot;, &quot;en&quot;: &quot;a[4] = 5 is not larger than 9.&quot; } },
+    { &quot;marks&quot;: { &quot;3&quot;: &quot;done&quot; }, &quot;line&quot;: &quot;end&quot;, &quot;vars&quot;: { &quot;m&quot;: 9 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;O máximo é 9, na posição 3.&quot;, &quot;en&quot;: &quot;The maximum is 9, at index 3.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;Máximo de 4 7 2 9 5: m = 4, 7, 7, 9, 9. O máximo é 9.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-trace/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Para um algoritmo que não está no catálogo, ou para mostrar uma execução tal como foi feita na aula, escreve os passos em JSON dentro do elemento e o widget reprodu-los com o mesmo leitor, narração, vista em texto e modo de previsão dos outros widgets. Não é preciso programar: cada passo diz o estado da estrutura, o que destacar e a frase a ler.</p>
+        <h2 id="utilizacao">Utilização</h2>
+        <uc-code lang="html" no-download><pre><code>&lt;script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-trace.js" defer&gt;&lt;/script&gt;
+
+&lt;uc-widget-trace caption="Troca de dois elementos"&gt;
+  &lt;script type="application/json" data-input&gt;
+{
+  "steps": [
+    { "state": [3, 8], "say": "O vetor 3 8." },
+    { "state": [8, 3], "marks": { "0": "swapped", "1": "swapped" }, "say": "Troca a[0] com a[1]." }
+  ]
+}
+  &lt;/script&gt;
+  &lt;p&gt;Troca de 3 com 8: o vetor fica 8 3.&lt;/p&gt;
+&lt;/uc-widget-trace&gt;</code></pre></uc-code>
+        <p>O JSON vai num <code>&lt;script type="application/json" data-input&gt;</code>, que o navegador não mostra; o texto escrito à parte (o parágrafo) é o que aparece sem JavaScript ou se o JSON tiver um erro. Um erro no JSON mostra uma nota com o número do passo e o que falta.</p>
+        <h2 id="formato">O formato dos passos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do JSON de uc-widget-trace</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Onde</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>view</code></td><td>topo</td><td>O desenho: <code>array</code> (por omissão), <code>tree</code>, <code>graph</code> ou <code>grid</code>.</td></tr>
+              <tr><td><code>code</code></td><td>topo</td><td>O pseudocódigo, uma lista de linhas <code>"id|texto"</code> (as linhas que nunca se destacam começam por <code>|</code>), ou <code>{ "pt": [...], "en": [...] }</code>.</td></tr>
+              <tr><td><code>graph</code>, <code>directed</code></td><td>topo, vista <code>graph</code></td><td>O grafo, com as linhas de <a href="uc-widget-graph.html#grafo">Escrever o grafo</a> separadas por <code>;</code> (<code>"A B 4; A C 1"</code>), e se é dirigido.</td></tr>
+              <tr><td><code>rowHeads</code>, <code>colHeads</code></td><td>topo, vista <code>grid</code></td><td>Os cabeçalhos das linhas e das colunas da tabela (opcionais).</td></tr>
+              <tr><td><code>steps</code></td><td>topo</td><td>A lista de passos (pelo menos um, até 2000).</td></tr>
+              <tr><td><code>state</code></td><td>passo</td><td>O estado da estrutura (tabela seguinte). Um passo sem <code>state</code> mantém o do passo anterior.</td></tr>
+              <tr><td><code>marks</code></td><td>passo</td><td>O que destacar: <code>{ "id": "estado" }</code>, com os estados <code>current</code>, <code>compared</code>, <code>swapped</code>, <code>visited</code> e <code>done</code> (ver <a href="usar.html">Usar widgets</a>).</td></tr>
+              <tr><td><code>pointers</code></td><td>passo</td><td>Etiquetas por baixo das células (vetor) ou ao lado dos nós (árvore): <code>{ "i": "2", "j": "3" }</code>.</td></tr>
+              <tr><td><code>line</code></td><td>passo</td><td>O id da linha do pseudocódigo a destacar, ou uma lista de ids.</td></tr>
+              <tr><td><code>say</code></td><td>passo</td><td>A frase do passo (obrigatória): um texto, ou <code>{ "pt": "…", "en": "…" }</code> numa página bilingue. Uma língua que falte usa a outra.</td></tr>
+              <tr><td><code>vars</code></td><td>passo</td><td>Variáveis a mostrar no painel: <code>{ "i": 2, "m": 7 }</code>.</td></tr>
+              <tr><td><code>predict</code></td><td>passo</td><td>Uma pergunta antes deste passo, com <code>predict</code> no elemento: <code>{ "ask": "…", "options": ["Sim", "Não"], "answer": 0 }</code> (2 a 4 opções; <code>answer</code> é o índice da certa, a partir de 0; textos simples ou por língua).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Se o primeiro passo tiver destaques ou uma pergunta, o widget junta antes dele um passo "Estado inicial." sem destaques.</p>
+        <h2 id="vistas">As quatro vistas</h2>
+        <!-- docs:demo src="../../demos/uc-widget-trace/views.html" title="Árvore, tabela e grafo" height="1500" -->
+        <div class="docs-demo" id="demo-uc-widget-trace-views">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-trace/views.html" title="Demonstração: Árvore, tabela e grafo" loading="lazy" style="height: 1500px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;uc-widget-trace caption=&quot;Avaliar uma árvore de expressão&quot; controls=&quot;compact&quot;&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;tree&quot;,
+  &quot;steps&quot;: [
+    { &quot;state&quot;: { &quot;id&quot;: &quot;r&quot;, &quot;v&quot;: &quot;×&quot;, &quot;l&quot;: { &quot;id&quot;: &quot;s&quot;, &quot;v&quot;: &quot;+&quot;, &quot;l&quot;: { &quot;v&quot;: 2 }, &quot;r&quot;: { &quot;v&quot;: 3 } }, &quot;r&quot;: { &quot;v&quot;: 4 } },
+      &quot;say&quot;: &quot;(2 + 3) × 4&quot; },
+    { &quot;marks&quot;: { &quot;2&quot;: &quot;visited&quot;, &quot;3&quot;: &quot;visited&quot;, &quot;s&quot;: &quot;current&quot; },
+      &quot;state&quot;: { &quot;id&quot;: &quot;r&quot;, &quot;v&quot;: &quot;×&quot;, &quot;l&quot;: { &quot;id&quot;: &quot;s&quot;, &quot;v&quot;: &quot;+&quot;, &quot;note&quot;: &quot;= 5&quot;, &quot;l&quot;: { &quot;v&quot;: 2 }, &quot;r&quot;: { &quot;v&quot;: 3 } }, &quot;r&quot;: { &quot;v&quot;: 4 } },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;2 + 3 = 5.&quot;, &quot;en&quot;: &quot;2 + 3 = 5.&quot; } },
+    { &quot;marks&quot;: { &quot;s&quot;: &quot;done&quot;, &quot;4&quot;: &quot;visited&quot;, &quot;r&quot;: &quot;current&quot; },
+      &quot;state&quot;: { &quot;id&quot;: &quot;r&quot;, &quot;v&quot;: &quot;×&quot;, &quot;note&quot;: &quot;= 20&quot;, &quot;l&quot;: { &quot;id&quot;: &quot;s&quot;, &quot;v&quot;: &quot;+&quot;, &quot;note&quot;: &quot;= 5&quot;, &quot;l&quot;: { &quot;v&quot;: 2 }, &quot;r&quot;: { &quot;v&quot;: 3 } }, &quot;r&quot;: { &quot;v&quot;: 4 } },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;5 × 4 = 20: o valor da expressão.&quot;, &quot;en&quot;: &quot;5 × 4 = 20: the value of the expression.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;(2 + 3) × 4 = 20.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;
+
+    &lt;uc-widget-trace caption=&quot;Triângulo de Pascal&quot; controls=&quot;compact&quot;&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;grid&quot;,
+  &quot;rowHeads&quot;: [&quot;n=0&quot;, &quot;n=1&quot;, &quot;n=2&quot;, &quot;n=3&quot;],
+  &quot;steps&quot;: [
+    { &quot;state&quot;: [[1], [1, 1], [1, null, 1], [1, null, null, 1]], &quot;say&quot;: { &quot;pt&quot;: &quot;As pontas valem 1.&quot;, &quot;en&quot;: &quot;The edges are 1.&quot; } },
+    { &quot;state&quot;: [[1], [1, 1], [1, 2, 1], [1, null, null, 1]], &quot;marks&quot;: { &quot;2,1&quot;: &quot;current&quot;, &quot;1,0&quot;: &quot;compared&quot;, &quot;1,1&quot;: &quot;compared&quot; },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;C(2,1) = 1 + 1 = 2.&quot;, &quot;en&quot;: &quot;C(2,1) = 1 + 1 = 2.&quot; } },
+    { &quot;state&quot;: [[1], [1, 1], [1, 2, 1], [1, 3, null, 1]], &quot;marks&quot;: { &quot;3,1&quot;: &quot;current&quot;, &quot;2,0&quot;: &quot;compared&quot;, &quot;2,1&quot;: &quot;compared&quot; },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;C(3,1) = 1 + 2 = 3.&quot;, &quot;en&quot;: &quot;C(3,1) = 1 + 2 = 3.&quot; } },
+    { &quot;state&quot;: [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]], &quot;marks&quot;: { &quot;3,2&quot;: &quot;current&quot;, &quot;2,1&quot;: &quot;compared&quot;, &quot;2,2&quot;: &quot;compared&quot; },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;C(3,2) = 2 + 1 = 3.&quot;, &quot;en&quot;: &quot;C(3,2) = 2 + 1 = 3.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;Triângulo de Pascal até n = 3: 1; 1 1; 1 2 1; 1 3 3 1.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;
+
+    &lt;uc-widget-trace caption=&quot;Coloração gulosa&quot; controls=&quot;compact&quot;&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;graph&quot;,
+  &quot;graph&quot;: &quot;A B; A C; B C; C D&quot;,
+  &quot;steps&quot;: [
+    { &quot;state&quot;: {}, &quot;say&quot;: { &quot;pt&quot;: &quot;Dar a cada vértice a menor cor que os vizinhos não usam.&quot;, &quot;en&quot;: &quot;Give each vertex the smallest colour its neighbours do not use.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot; }, &quot;marks&quot;: { &quot;A&quot;: &quot;current&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;A: cor 1.&quot;, &quot;en&quot;: &quot;A: colour 1.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot;, &quot;B&quot;: &quot;2&quot; }, &quot;marks&quot;: { &quot;B&quot;: &quot;current&quot;, &quot;A&quot;: &quot;compared&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;B é vizinho de A (cor 1): cor 2.&quot;, &quot;en&quot;: &quot;B is a neighbour of A (colour 1): colour 2.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot;, &quot;B&quot;: &quot;2&quot;, &quot;C&quot;: &quot;3&quot; }, &quot;marks&quot;: { &quot;C&quot;: &quot;current&quot;, &quot;A&quot;: &quot;compared&quot;, &quot;B&quot;: &quot;compared&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;C é vizinho de A e de B: cor 3.&quot;, &quot;en&quot;: &quot;C is a neighbour of A and B: colour 3.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot;, &quot;B&quot;: &quot;2&quot;, &quot;C&quot;: &quot;3&quot;, &quot;D&quot;: &quot;1&quot; }, &quot;marks&quot;: { &quot;A&quot;: &quot;done&quot;, &quot;B&quot;: &quot;done&quot;, &quot;C&quot;: &quot;done&quot;, &quot;D&quot;: &quot;done&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;D só é vizinho de C: cor 1. Três cores.&quot;, &quot;en&quot;: &quot;D is only a neighbour of C: colour 1. Three colours.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;Coloração gulosa: A 1, B 2, C 3, D 1.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-trace/views.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">O estado em cada vista</caption>
+            <thead>
+              <tr><th scope="col"><code>view</code></th><th scope="col"><code>state</code></th><th scope="col">Ids de <code>marks</code></th><th scope="col">Limite</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>array</code></td><td>Uma lista de valores; <code>null</code> é uma célula vazia: <code>[4, null, 9]</code>.</td><td>O índice: <code>"0"</code>, <code>"1"</code>, …</td><td>16 células</td></tr>
+              <tr><td><code>tree</code></td><td>Um nó <code>{ "v": 5, "l": {…}, "r": {…} }</code> (binária) ou <code>{ "v": 5, "children": [ … ] }</code>; cada nó pode ter <code>"id"</code> (por omissão, o valor) e <code>"note"</code> (escrita ao lado). <code>null</code> é a árvore vazia.</td><td>O <code>id</code> do nó, ou o valor.</td><td>15 nós</td></tr>
+              <tr><td><code>graph</code></td><td>As notas ao lado dos vértices: <code>{ "A": "0", "B": "4" }</code> (o grafo é o do campo <code>graph</code>).</td><td>O nome do vértice; uma aresta é <code>"A-B"</code> como escrita.</td><td>10 vértices, 20 arestas</td></tr>
+              <tr><td><code>grid</code></td><td>Uma lista de linhas: <code>[[1], [1, 1], [1, 2, 1]]</code>.</td><td><code>"linha,coluna"</code>: <code>"2,1"</code>.</td><td>9 × 9</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 id="atributos">Atributos</h2>
+        <p>Só os <a href="usar.html#atributos-comuns">atributos comuns</a>; <code>caption</code> dá o título (por omissão "Execução passo a passo"). Com <code>editable</code>, o campo de edição recebe o JSON numa linha; para passos longos, é mais prático editar a página.</p>
+        <h2 id="pseudocodigo">Pseudocódigo</h2>
+        <p>O campo <code>code</code> dá o pseudocódigo por omissão; um <code>&lt;pre data-pseudocode&gt;</code> com <code>&lt;span data-line="id"&gt;</code> dentro do elemento substitui-o pelo código da linguagem da cadeira, com os mesmos ids (ver <a href="usar.html#pseudocodigo">Pseudocódigo próprio</a>). Um <code>line</code> que não exista em <code>code</code> é um erro, para que uma gralha não passe despercebida.</p>
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o widget faz</h3>
+            <p>Lê a frase de cada passo; descreve a estrutura em palavras (os valores do vetor, os nós da árvore com os filhos, as linhas da tabela, as arestas e as notas do grafo); estados com cor, espessura, tracejado e sinal; "Vista em texto" com todas as frases e uma tabela do estado.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Frases que digam o que acontece com os valores ("a[3] = 9 &gt; 7: m passa a 9."), não só "agora este"; os destaques dão a ideia a quem vê, a frase dá-a a todos. Escrever também o resultado num parágrafo dentro do elemento.</p>
+          </div>
+        </div>
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Aparece o texto escrito dentro do elemento. O JSON não aparece.</p>
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="criar.html">Criar um widget</a>: quando o algoritmo deve ser calculado (a entrada muda), e não escrito passo a passo.</li>
+          <li><a href="usar.html">Usar widgets</a> e o <a href="index.html">Catálogo</a>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-backtracking.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-widget-backtracking</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="criar.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Criar um widget</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/uc-widget-trace.html">Editar esta página no GitHub</a> · <a href="uc-widget-trace.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#formato">O formato dos passos</a></li>
+          <li><a href="#vistas">As quatro vistas</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#pseudocodigo">Pseudocódigo</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

@@ -132,4 +132,5 @@ Cada passo tem uma frase, visível por baixo do desenho e anunciada aos leitores
 
 - [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md) dos widgets.
 - [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md): um widget dentro de um guião ocupa a largura da coluna.
+- [Criar um widget](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/criar.md): um algoritmo que não está no catálogo, num widget próprio ou com os passos escritos em JSON ([`<uc-widget-trace>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-trace.md)).
 - [API JavaScript](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/api-js.md), para criar componentes próprios.

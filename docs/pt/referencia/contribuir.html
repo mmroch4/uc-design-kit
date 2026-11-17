@@ -98,6 +98,13 @@
           <li><a href="../widgets/uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
           <li><a href="../widgets/uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
           <li><a href="../widgets/uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="../widgets/uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="../widgets/uc-widget-union-find.html"><code>uc-widget-union-find</code></a></li>
+          <li><a href="../widgets/uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="../widgets/uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="../widgets/uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="../widgets/uc-widget-trace.html"><code>uc-widget-trace</code></a></li>
+          <li><a href="../widgets/criar.html">Criar um widget</a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -218,6 +225,8 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pr
           <li>Acrescentar a página ao <code>docs/nav.json</code> (com <code>"component"</code>), à visão geral dos componentes, e um bloco <code>docs:classes</code> em <a href="classes.html">Classes CSS estáveis</a>.</li>
           <li><code>npm run build</code> e <code>npm test</code>. O <code>check-docs</code> falha enquanto faltar a página, um atributo ou uma classe.</li>
         </ol>
+        <h3 id="widget-novo">Um widget novo</h3>
+        <p>Os widgets de algoritmos (<code>widgets/src/&lt;nome&gt;/</code>) têm a sua própria lista: algoritmo puro testado contra uma referência, frases em português e em inglês, página e duas demonstrações, no máximo 8 KB. Está em <a href="../widgets/criar.html#catalogo">Criar um widget</a> e em <code>widgets/template/README.md</code>.</p>
         <h3 id="outras-alteracoes">Outras alterações</h3>
         <ul>
           <li>Um atributo, campo do <code>course.js</code>, token ou membro da API novo: primeiro no <code>api.md</code>, depois na tabela da página correspondente. O teste diz qual.</li>
@@ -271,6 +280,7 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pr
           <li><a href="#construir-e-testar">Construir e testar</a></li>
           <li><a href="#documentar">Documentar uma alteração</a></li>
           <li class="docs-toc__sub"><a href="#componente-novo">Um componente novo</a></li>
+          <li class="docs-toc__sub"><a href="#widget-novo">Um widget novo</a></li>
           <li class="docs-toc__sub"><a href="#outras-alteracoes">Outras alterações</a></li>
           <li><a href="#pull-requests">Pull requests</a></li>
           <li><a href="#lancar">Lançar uma versão</a></li>
