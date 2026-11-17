@@ -60,6 +60,7 @@
           <li><a href="componentes/index.html">Visão geral</a></li>
           <li><a href="componentes/uc-page.html"><code>uc-page</code></a></li>
           <li><a href="componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="componentes/uc-search.html"><code>uc-search</code></a></li>
           <li><a href="componentes/uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
           <li><a href="componentes/uc-date.html"><code>uc-date</code></a></li>
@@ -215,7 +216,7 @@ INFO   codigo/Velho.html    nenhuma página liga para este ficheiro
               <tr><td>O <code>course.js</code> lê-se (<a href="course-js.html#so-valores">só valores</a>); tem <code>title</code>; cada página de <code>pages</code> existe; as datas são válidas (<code>AAAA-MM-DD</code>, e também <code>AAAA-MM</code> ou <code>null</code> nos prazos); os <code>id</code> dos prazos não se repetem; os links dentro dos avisos e os <code>url</code> locais existem</td><td>erro</td></tr>
               <tr><td>Links (<code>href</code>) e ficheiros (<code>src</code>, <code>srcset</code>) locais existem, com as mesmas maiúsculas e minúsculas; um link para uma pasta precisa do <code>index.html</code> dessa pasta. Links externos (<code>https:</code>, <code>mailto:</code>…), âncoras (<code>#</code>) e caminhos fora da pasta do site não são verificados</td><td>erro</td></tr>
               <tr><td>Cada página com <code>&lt;uc-page&gt;</code> carrega <code>uc-kit.css</code>, <code>course.js</code> e <code>uc-kit.js</code>. Páginas antigas sem o kit (copiadas tal como estavam) não precisam</td><td>erro</td></tr>
-              <tr><td><code>id</code> repetido numa página; num site com duas línguas, <code>lang</code> com uma língua que o site não tem</td><td>erro</td></tr>
+              <tr><td><code>id</code> repetido numa página; num site com duas línguas, <code>lang</code> com uma língua que o site não tem (o <code>lang</code> de um <code>&lt;uc-code&gt;</code> é a linguagem de programação e não conta)</td><td>erro</td></tr>
               <tr><td>Falta <code>semester.start</code> (as semanas ficam sem datas); prazo sem <code>id</code> ou sem <code>title</code>, ou com um <code>kind</code> desconhecido</td><td>aviso</td></tr>
               <tr><td>Imagem sem <code>alt</code> (<code>alt=""</code> numa imagem decorativa está certo); página sem <code>&lt;h1&gt;</code> (o <code>&lt;uc-hero&gt;</code> conta como <code>&lt;h1&gt;</code>); títulos que saltam um nível (<code>h2</code> → <code>h4</code>)</td><td>aviso</td></tr>
               <tr><td>Link com caminho absoluto (<code>/~utilizador/…</code>), que deixa de funcionar quando a pasta muda de sítio</td><td>aviso</td></tr>

@@ -71,7 +71,7 @@ O script termina com o código `0` quando não há erros (mesmo que haja avisos)
 | O `course.js` lê-se ([só valores](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#so-valores)); tem `title`; cada página de `pages` existe; as datas são válidas (`AAAA-MM-DD`, e também `AAAA-MM` ou `null` nos prazos); os `id` dos prazos não se repetem; os links dentro dos avisos e os `url` locais existem | erro |
 | Links (`href`) e ficheiros (`src`, `srcset`) locais existem, com as mesmas maiúsculas e minúsculas; um link para uma pasta precisa do `index.html` dessa pasta. Links externos (`https:`, `mailto:`…), âncoras (`#`) e caminhos fora da pasta do site não são verificados | erro |
 | Cada página com `<uc-page>` carrega `uc-kit.css`, `course.js` e `uc-kit.js`. Páginas antigas sem o kit (copiadas tal como estavam) não precisam | erro |
-| `id` repetido numa página; num site com duas línguas, `lang` com uma língua que o site não tem | erro |
+| `id` repetido numa página; num site com duas línguas, `lang` com uma língua que o site não tem (o `lang` de um `<uc-code>` é a linguagem de programação e não conta) | erro |
 | Falta `semester.start` (as semanas ficam sem datas); prazo sem `id` ou sem `title`, ou com um `kind` desconhecido | aviso |
 | Imagem sem `alt` (`alt=""` numa imagem decorativa está certo); página sem `<h1>` (o `<uc-hero>` conta como `<h1>`); títulos que saltam um nível (`h2` → `h4`) | aviso |
 | Link com caminho absoluto (`/~utilizador/…`), que deixa de funcionar quando a pasta muda de sítio | aviso |

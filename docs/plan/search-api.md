@@ -35,6 +35,7 @@ Contents:
 14. [Decisions taken in phase S2](#14-decisions-taken-in-phase-s2)
 15. [Decisions taken in phase S3](#15-decisions-taken-in-phase-s3)
 16. [Decisions taken in phase S1](#16-decisions-taken-in-phase-s1)
+17. [Decisions taken in phase S4](#17-decisions-taken-in-phase-s4)
 
 ---
 
@@ -700,3 +701,78 @@ refined sections 6 to 8 as follows.
     `search: true` (decision 4), so S5 must either generate its
     `search-index.js` or let `check-pages` accept a 404 for the index `HEAD`.
 
+
+## 17. Decisions taken in phase S4
+
+Phase S4 replaced the `uc-search.js` placeholder with `kit/src/search/`
+(`strings.js`, `engine.js`, `results.js`, `dialog.js`, `element.js`) and
+`kit/src/css/components/uc-search.css` (inside `uc-kit.css`), and refined
+sections 7 to 10 as follows.
+
+1. **Loader ↔ dialog interface.** `UC.search.open()` starts the index
+   download, loads `uc-search.js` and then calls
+   `UC.internal.searchUI.open({ load, query, opener })`, where `load()`
+   returns the (memoised) index promise. So the dialog opens as soon as the
+   5 KB engine is there and shows "A carregar…" while the index (up to
+   ~75 KB gzipped) arrives, and "Tentar de novo" calls `load()` again. While
+   `uc-search.js` itself loads the header button has `aria-busy="true"`; if
+   it fails, `search.failed` (the only new string in `uc-kit.js`, with
+   `search.button`) is announced in the shared live region. No dialog shell
+   in `uc-kit.js` (budget).
+2. **Strings** of 8.5 live in `uc-search.js` and are added with the new
+   `UC.internal.addDefaults(lang, dict)`, which never overrides a string the
+   site set and does not re-render. There is no plural syntax in `i18n.js`:
+   `search.count` ("{n} resultados") plus `search.countOne`. Extra key:
+   `search.keys` (footer hint, `aria-hidden`).
+3. **Query terms.** Words of the query that pass the index's word rule (4.5:
+   3+ letters or a digit, no stop word) are required; stop words and 1–2
+   letter words only add a fifth of their points. A query made only of
+   those ("ar", "com") requires them all, so the first letters typed already
+   give results.
+4. **Typo** (decision 5) is checked against the word's prefix of the term's
+   length: one substitution or one swap of neighbours. Insertions and
+   deletions are not matched.
+5. **Points per term:** section title 30 (typo 15), page title 20 (10),
+   text 5 (2); intro sections use the page title as their title and get +1,
+   so the page itself comes before its sections. At most 5 results per page
+   and 50 in all (the dialog) or `limit` (`<uc-search>`, default 10).
+6. **Group label:** `<pages[] label of g> · <t>` when they differ, else
+   `t`. Runtime groups "Prazos" and "Avisos". Deadlines link to `url`, else
+   to the `assessment` page, else `home`; notices to their first link (it is
+   relative to `course.js`), else `home`. Notices dated after today are left
+   out, as `<uc-notices>` hides them. `<uc-search scope>` skips both groups.
+7. **Options are links** (`<a role="option" tabindex="-1" href>`), so
+   Ctrl/⌘/middle-click opens a new tab. Keys on the field: ↑ ↓ (wrap),
+   Page Up/Down (5), Enter. Esc closes the dialog (native `cancel`) or clears
+   `<uc-search>`. A click on an option keeps focus in the field until it
+   navigates.
+8. **Result on the same page:** `history.pushState` of the hash (when it
+   changes), open every `<details>` ancestor, `anchors.revisitHash()`
+   (scroll + flash), `tabindex="-1"` when needed and focus on the target; the
+   dialog then does not give focus back to the opener.
+9. **Status.** The dialog has its own `role="status"` line (the page's live
+   region is inert behind a modal dialog): the count is visually hidden,
+   "A carregar…", the failure and "Sem resultados para «…»." are shown.
+   `<uc-search>` shows those in `.uc-search__message` and announces the count
+   through `UC.internal.announce` 700 ms after typing stops.
+10. **`<uc-search>` loading.** `uc-kit.js` loads `uc-search.js` on
+    `uc:searchready` when the page has a `<uc-search>`; the element is
+    defined there, so before (and without an index) it is an empty unknown
+    element. Its index downloads on the first focus or input.
+11. **Tests.** `check-search.mjs`: `words.json` cases and the stop-word list,
+    engine (prefix, typo, required terms, ranking, language, scope, limit,
+    runtime entries, highlight), dialog (loading, groups, arrows, Enter to
+    another page and on the same page, Esc, backdrop, retry, engine failure,
+    English strings, index date) and `<uc-search>`. `check-a11y.mjs`: a
+    search check on pages whose site has an index (modal, combobox/listbox,
+    44 px options, axe with the dialog open and with `<uc-search>` results,
+    320 px) and two snapshots, `tests/pages/search/dialog.aria.yml` and
+    `uc-search.aria.yml`; snapshots may now have a `prepare` step.
+12. **Docs.** New page `docs/pt/componentes/uc-search.html` (demos in
+    `docs/demos/uc-search/`, with a small index of demo pages made by
+    `uc-site.py index`), `uc-page.html#pesquisa` describes the dialog,
+    `docs/api.md` 3.1 (`Search dialog`, `<uc-search>`) and 6. Every page
+    still says "1.2.0, em preparação"; S5 removes that.
+13. **`uc-site.py`:** `lang` on `<uc-code>` is the programming language and
+    is no longer checked against the site's languages (found by the PI
+    migration, which used `data-lang` as a work-around).

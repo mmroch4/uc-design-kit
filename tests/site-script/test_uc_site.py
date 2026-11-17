@@ -424,6 +424,11 @@ class PageCheckTest(SiteTestCase):
         self.assertProblem("lang.unknown", "error", lang="fr")
         self.assertEqual(self.keys().count("lang.unknown"), 1)
 
+    def test_uc_code_lang_is_a_programming_language(self):
+        self.write("course.js", COURSE.replace('languages: ["pt"]', 'languages: ["pt", "en"]'))
+        self.write("semanas.html", page('<h1>Semanas</h1>\n<uc-code lang="c" filename="a.c">int main;</uc-code>\n<uc-code lang="java"></uc-code>'))
+        self.assertNotIn("lang.unknown", self.keys())
+
     def test_lang_on_single_language_site_is_free(self):
         self.write("semanas.html", page('<h1>Semanas</h1>\n<p><span lang="en">weeks</span></p>'))
         self.assertEqual(self.problems(), [])

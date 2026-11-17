@@ -60,6 +60,7 @@
           <li><a href="index.html">Visão geral</a></li>
           <li><a href="uc-page.html" aria-current="page"><code>uc-page</code></a></li>
           <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-search.html"><code>uc-search</code></a></li>
           <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
           <li><a href="uc-date.html"><code>uc-date</code></a></li>
@@ -343,12 +344,19 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
         <p>O script <a href="../manter.html"><code>uc-site.py</code></a> segue a mesma regra, por isso os resultados da pesquisa apontam para a secção certa.</p>
 
         <h2 id="pesquisa">Pesquisa no site</h2>
-        <p>Em preparação para a versão 1.2.0: ainda não se deve ligar num site real, porque a janela de resultados chega na fase seguinte. Com <code>search: true</code> no <code>course.js</code> e o ficheiro <code>search-index.js</code> criado pelo <code>uc-site.py</code>, o cabeçalho mostra o botão <strong>Pesquisar</strong> antes do botão de língua, com os atalhos <kbd>Ctrl</kbd> <kbd>K</kbd>, <kbd>⌘</kbd> <kbd>K</kbd> e <kbd>/</kbd>.</p>
+        <p>Versão 1.2.0, em preparação. Com <code>search: true</code> no <code>course.js</code> e o ficheiro <code>search-index.js</code> criado pelo <code>uc-site.py</code>, o cabeçalho mostra o botão <strong>Pesquisar</strong> antes do botão de língua, com os atalhos <kbd>Ctrl</kbd> <kbd>K</kbd>, <kbd>⌘</kbd> <kbd>K</kbd> e <kbd>/</kbd>.</p>
         <ul>
           <li>O kit pergunta ao servidor se o índice existe uma vez por visita, quando o browser está desocupado. Enquanto espera, guarda o lugar do botão para nada saltar; se o índice não existir, o botão não aparece.</li>
           <li>Sem <code>search</code> no <code>course.js</code> nada disto acontece e não há nenhum pedido a mais.</li>
           <li>Nos ecrãs estreitos só aparece a lupa, com o mesmo nome acessível.</li>
         </ul>
+        <p>O botão abre uma janela por cima da página. Só então o browser descarrega a pesquisa (<code>uc-search.js</code>, cerca de 5 KB) e o índice; enquanto chegam, a janela diz «A carregar…», e se falharem mostra «Tentar de novo».</p>
+        <ul>
+          <li>Os resultados aparecem enquanto se escreve, agrupados por página (por exemplo «Semanas · Guião 9»), com as palavras encontradas destacadas. Os prazos e os avisos do <code>course.js</code> também são pesquisados, sempre atualizados, nos grupos «Prazos» e «Avisos».</li>
+          <li>As setas escolhem um resultado, <kbd>Enter</kbd> abre-o e <kbd>Esc</kbd> fecha a janela e devolve o foco ao botão. Um resultado na mesma página abre a semana ou o exercício que o esconde, desloca a página, destaca-o e leva lá o foco.</li>
+          <li>O rodapé da janela mostra a data do índice («Índice de 20 nov 2025»). Se o <code>course.js</code> foi atualizado depois, o kit deixa um aviso na consola do browser para quem mantém o site: é altura de correr o <code>uc-site.py</code> outra vez.</li>
+        </ul>
+        <p>As regras da pesquisa (acentos, uma letra trocada, ordem dos resultados) estão em <a href="uc-search.html#como-pesquisa"><code>&lt;uc-search&gt;</code></a>, o campo de pesquisa para pôr dentro de uma página.</p>
 
         <h2 id="personalizar">Personalizar</h2>
         <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>; para mudar só cores, cantos ou letra em todo o site bastam os <a href="../estilos/tokens.html">tokens</a>.</p>

@@ -48,7 +48,11 @@
     "core/bootstrap.js"
   ],
   "search": [
-    "search/ui.js"
+    "search/strings.js",
+    "search/engine.js",
+    "search/results.js",
+    "search/dialog.js",
+    "search/element.js"
   ],
   "css": [
     "css/base/fonts.css",
@@ -76,6 +80,7 @@
     "css/components/uc-materials.css",
     "css/components/uc-problems.css",
     "css/components/uc-code.css",
-    "css/components/uc-question.css"
+    "css/components/uc-question.css",
+    "css/components/uc-search.css"
   ]
 }

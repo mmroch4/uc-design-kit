@@ -63,6 +63,18 @@ released yet; contract `docs/plan/widgets-api.md`).
   `uc:searchready` event and the new `uc-search.js` (loaded on open, 6 KB
   budget; the dialog comes in phase S4). Sites without `search` make no new
   request. Browser checks in `scripts/check-search.mjs`.
+- The search dialog and `<uc-search>` (search phase S4, v1.2.0 in progress):
+  `uc-search.js` (5 KB gzipped) now holds the engine (folded prefix
+  matching, one typo from 5 letters, section title > page title > text,
+  grouped by page, language filter), the modal dialog of the header button
+  ("A carregar…", "Tentar de novo", index date, results on the same page
+  open their `<details>` and take focus) and the new `<uc-search>` element
+  (`scope`, `label`, `placeholder`, `limit`), loaded only on sites with an
+  index. Deadlines and notices of `course.js` are searched at runtime.
+  Combobox + listbox with arrows, Enter and Esc; checked by `check-search`,
+  `check-a11y` and two new accessibility-tree snapshots. Fix:
+  `uc-site.py check` no longer reports the `lang` of `<uc-code>` (the
+  programming language, `lang="c"`) as a language the site does not have.
 - `<uc-timetable>` (blocks phase 1): the weekly classes from the new
   `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
   grouped by weekday (`view="days"`), with a saved "My class" choice per type
