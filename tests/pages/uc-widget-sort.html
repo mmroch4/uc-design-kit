@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-sort · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-sort.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Widget de ordenação (teste)</span>
+      <span lang="en">Sorting widget (test)</span>
+    </h1>
+
+    <h2>
+      <span lang="pt">Previsões, edição, código e legenda próprios</span>
+      <span lang="en">Predictions, editing, own code and caption</span>
+    </h2>
+    <uc-widget-sort id="main" values="5 2 9 1" algorithm="insertion" predict editable>
+      <template data-caption><span lang="pt">Inserção em Java</span><span lang="en">Insertion in Java</span></template>
+      <pre data-pseudocode lang="pt"><code>for (int i = 1; i &lt; n; i++) {
+<span data-line="take">  int x = a[i];</span>      // tira x
+  int j = i - 1;
+<span data-line="compare">  while (j &gt;= 0 &amp;&amp; a[j] &gt; x) {</span>
+<span data-line="shift">    a[j + 1] = a[j]; j--;</span>
+  }
+<span data-line="insert">  a[j + 1] = x;</span>
+}</code></pre>
+      <pre data-pseudocode lang="en"><code>for (int i = 1; i &lt; n; i++) {
+<span data-line="take">  int x = a[i];</span>      // take x
+  int j = i - 1;
+<span data-line="compare">  while (j &gt;= 0 &amp;&amp; a[j] &gt; x) {</span>
+<span data-line="shift">    a[j + 1] = a[j]; j--;</span>
+  }
+<span data-line="insert">  a[j + 1] = x;</span>
+}</code></pre>
+      <p lang="pt">Inserção de 5 2 9 1: 2 5 9 1, 2 5 9 1, 1 2 5 9.</p>
+      <p lang="en">Insertion of 5 2 9 1: 2 5 9 1, 2 5 9 1, 1 2 5 9.</p>
+    </uc-widget-sort>
+
+    <h2>
+      <span lang="pt">Os outros algoritmos</span>
+      <span lang="en">The other algorithms</span>
+    </h2>
+    <uc-widget-sort values="6 3 8 1 5" algorithm="bubble" bars><p>Bubble sort: 1 3 5 6 8.</p></uc-widget-sort>
+    <uc-widget-sort values="6 3 8 1 5" algorithm="selection" controls="compact"><p>Selection sort: 1 3 5 6 8.</p></uc-widget-sort>
+    <uc-widget-sort values="6 3 8 1 5 2" algorithm="merge" start="end"><p>Merge sort: 1 2 3 5 6 8.</p></uc-widget-sort>
+    <uc-widget-sort values="6 3 8 1 5 2" algorithm="quick" pivot="middle" predict><p>Quicksort: 1 2 3 5 6 8.</p></uc-widget-sort>
+    <uc-widget-sort values="random 10 1..9" seed="7" algorithm="counting"><p>Counting sort de 10 valores.</p></uc-widget-sort>
+
+    <h2>
+      <span lang="pt">Entrada inválida</span>
+      <span lang="en">Invalid input</span>
+    </h2>
+    <uc-widget-sort id="invalid" values="5 x 3"><p>Texto alternativo do professor.</p></uc-widget-sort>
+  </uc-page>
+</body>
+</html>

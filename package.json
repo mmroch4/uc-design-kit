@@ -1,6 +1,6 @@
 {
   "name": "uc-design-kit",
-  "version": "1.0.0-dev",
+  "version": "1.1.0-dev",
   "private": true,
   "description": "Maintainer tooling for the UC Design Kit. Teachers never need this.",
   "license": "MIT",
@@ -9,7 +9,8 @@
     "build:check": "node scripts/build.mjs --check",
     "snapshot": "node scripts/snapshot.mjs",
     "pretest": "node scripts/build.mjs",
-    "test": "node scripts/check-docs.mjs --strict && node scripts/check-a11y.mjs && node scripts/check-pages.mjs",
+    "test": "node --test tests/widgets/*.test.mjs && node scripts/check-docs.mjs --strict && node scripts/check-a11y.mjs && node scripts/check-pages.mjs",
+    "test:widgets": "node --test tests/widgets/*.test.mjs",
     "test:docs": "node scripts/check-docs.mjs",
     "test:update-screenshots": "node scripts/build.mjs && node scripts/check-pages.mjs --screenshots",
     "test:a11y": "node scripts/build.mjs && node scripts/check-a11y.mjs",

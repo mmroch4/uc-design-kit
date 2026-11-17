@@ -1106,3 +1106,46 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
 12. **Version check** accepts pre-release suffixes (`1.1.0-dev`), since the
     kit on `main` is not released yet; widgets 1.0.0 is released after kit
     1.1.0 (W6).
+
+## 21. Refinements made in phase W1
+
+1. **Kit version**: `UC.version` (and `package.json`) is `1.1.0-dev`, so the
+   core's version check passes on `main`.
+2. **The bootstrap is a module** (`widgets/src/bootstrap.js` exports
+   `boot(name, define)`); the build bundles a small entry that calls it before
+   the widget runs, instead of prepending text. Same behaviour as 2.3. It also
+   treats a `<script src=".../uc-widget-core.js">` written by the page as the
+   preload (no second copy).
+3. **Fewer core files than 2.1**: the player, keyboard, narration, pseudocode,
+   panels, text view, predict and editable live in `core/widget.js`; helpers in
+   `core/dom.js`, parsers in `core/parse.js`. The split can change freely.
+4. **Errors are recognised by name** (`error.name === "InputError"`), because
+   each widget file bundles its own copy of `engine.js` with the algorithm.
+5. **Empty cells**: `null` in an array state is an empty cell. Insertion sort
+   takes `x` out, merge sort takes both halves out (`aux.left`/`aux.right`),
+   counting sort empties the array and rewrites it from `aux.count`. So the
+   array plus the held values are always the input (the multiset test of 18.3).
+6. **svg.array animates states, not moves**: cells are kept per index and
+   their colours change with a transition; values do not slide. Bars
+   (`bars` attribute of the sort widget, new) are at least 28 units tall so the
+   value fits inside.
+7. **New core keys**: `counterShort`, `scrubber`, `announce`, `steps`,
+   `result`, `state`, `hole`, `value`, `stateName.*`, `column.*`,
+   `error.notInteger`, `error.random`, `error.verb`, `error.line`,
+   `error.weight`. `stat.*` and `state.*` of 14.3 are `stat.*` and
+   `stateName.*` (`state` is the text-view caption).
+8. **Counter numbers from 1**: "Passo 1 de 31" is step index 0; `total` is
+   the number of steps. Narration announces "Passo n de total. <sentence>".
+9. **Text view** has no scroll box (a scrollable list would need a tab stop).
+10. **Predict feedback** is shown under the player (`.uc-widget__feedback`)
+    and announced; focus returns to Step (Back at the last step).
+11. **meta.json `test`**: the fixed input and extra option sets the step
+    validator and the narration snapshots use (`input`, `options`).
+12. **Catalogue cards** are written by `build-widgets.mjs` between
+    `<!-- widgets:catalog -->` markers (the `docs:` prefix belongs to
+    `docs.mjs`). Widget pages are nav entries without `component`.
+13. **CI**: the Node widget tests run in shard 2 (`npm run test:widgets`);
+    the browser checks of 18.3 item 4 are `checkWidgets` in
+    `scripts/check-a11y.mjs`, on every page with a widget.
+14. **Counting sort** refuses inputs with more than 100 distinct possible
+    values (`widget.sort.error.range`).

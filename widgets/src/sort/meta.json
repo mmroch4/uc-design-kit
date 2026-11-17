@@ -1,0 +1,20 @@
+{
+  "name": "uc-widget-sort",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 1,
+  "title": { "pt": "Ordenação", "en": "Sorting" },
+  "summary": {
+    "pt": "Bolha, seleção, inserção, merge sort, quicksort e counting sort, passo a passo.",
+    "en": "Bubble, selection, insertion, merge sort, quicksort and counting sort, step by step."
+  },
+  "page": "docs/pt/widgets/uc-widget-sort.html",
+  "algorithms": ["bubble", "selection", "insertion", "merge", "quick", "counting"],
+  "courses": ["IP", "EDados", "PI"],
+  "attributes": ["values", "algorithm", "pivot", "bars"],
+  "predict": true,
+  "test": {
+    "input": [5, 2, 9, 1, 7, 3],
+    "options": [{ "algorithm": "quick", "pivot": "first" }, { "algorithm": "quick", "pivot": "middle" }, { "algorithm": "quick", "pivot": "random" }]
+  }
+}

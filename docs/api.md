@@ -1184,6 +1184,62 @@ Reject the Promise only when the code could not be run at all (network,
 timeout); compilation and runtime errors resolve with `ok: false` and the
 message in `stderr`.
 
+### 7.2 Widgets (`UC.widgets`)
+
+The algorithm widget library is separate from the kit: files in
+`widgets/v1/`, its own semver (widgets 1.0.0 needs kit 1.1+), outside the
+kit's size budget. Full contract: `docs/plan/widgets-api.md`. A page loads
+one file per widget type after the kit:
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-sort.js" defer></script>
+<uc-widget-sort values="5 2 9 1 7 3" algorithm="insertion"><p>Fallback text.</p></uc-widget-sort>
+```
+
+The widget file loads `uc-widget-core.js` and `uc-widget.css` from its own
+folder. Widgets: `<uc-widget-sort>` (`values`, `algorithm` = `bubble`
+`selection` `insertion` `merge` `quick` `counting`, `pivot` = `last` `first`
+`middle` `random`, `bars`). The catalogue is `widgets/v1/catalog.json`.
+
+| Common attribute | Values | Default |
+| --- | --- | --- |
+| `algorithm` | a name from the widget's list | the first |
+| `speed` | ms, 200–5000 | `900` |
+| `controls` | `full`, `compact` | `full` |
+| `editable` | boolean | absent |
+| `predict` | boolean | absent |
+| `start` | `0`, a step number, `end` | `0` |
+| `seed` | integer (for `values="random N [MIN..MAX]"`) | `1` |
+| `caption` | text (or `<template data-caption>` with `<span lang>`) | the algorithm's name |
+
+| Widget element member | Description |
+| --- | --- |
+| `go(n)`, `next()`, `back()`, `play()`, `pause()`, `reset()` | Move the demo (`go("end")` allowed). |
+| `step`, `total`, `result` | Current index, number of steps, the algorithm's result (read only). |
+
+| Widget event | `detail` | When |
+| --- | --- | --- |
+| `uc:widgetstep` | `{ widget, step, total }` | Every change of step. |
+| `uc:widgetdone` | `{ widget, total }` | The last step reached moving forward. |
+| `uc:widgetpredict` | `{ widget, step, correct, right, asked }` | Every predict answer. |
+
+A step (the unit the player moves through) is plain JSON: `{ state, marks,
+pointers, line, say: [i18n key, params], stats, aux, predict }`; marks are
+`current`, `compared`, `swapped`, `visited`, `done`.
+
+| `UC.widgets` property | Description |
+| --- | --- |
+| `version` | Library version. |
+| `Widget` | Base class (extends `UC.Element`); a widget defines `parse()`, `steps(input, emit)`, `draw(step, svg)` and optionally `describe`, `table`, `panel`, `pseudocode`, `serialize`. |
+| `register(name, Class)` | Defines the element (`UC.define`). |
+| `svg.array(svg, values, { marks, pointers, bars })` | Draws an array. |
+| `parse.values`, `parse.ops`, `parse.graph` | Input parsers; throw `InputError(key, params)`. |
+| `random(seed)` | Seeded generator: `int(min, max)`, `pick`, `shuffle`. |
+| `MAX_STEPS`, `STATES`, `InputError`, `TooManySteps` | Limits and error types. |
+
+Strings are `widget.core.*` and `widget.<name>.*`, added with
+`UC.addTranslations`, so a page can override any of them.
+
 ## 8. Customisation levels
 
 | Level | How | Example |

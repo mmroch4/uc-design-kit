@@ -68,6 +68,14 @@
           ]
         },
         {
+          "title": "Widgets",
+          "pages": [
+            { "title": "Catálogo", "path": "pt/widgets/index.html" },
+            { "title": "Usar widgets", "path": "pt/widgets/usar.html" },
+            { "title": "uc-widget-sort", "path": "pt/widgets/uc-widget-sort.html", "code": true }
+          ]
+        },
+        {
           "title": "Estilos",
           "pages": [
             { "title": "Princípios de design", "path": "pt/estilos/index.html" },

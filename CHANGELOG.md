@@ -6,6 +6,27 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Widgets
+
+The algorithm widget library (`widgets/v1/`, own version, widgets 1.0.0 not
+released yet; contract `docs/plan/widgets-api.md`).
+
+- Core (phase W1): `uc-widget-core.js` and `uc-widget.css`, loaded by each
+  widget file from its own folder; `UC.widgets` (`Widget`, `register`,
+  `svg.array`, `parse`, `random`); step engine, player (Play, Back, Step,
+  Reset, scrubber), keyboard, pseudocode panel (or the teacher's own code with
+  `data-line`), state panel, narration with a live region, "Vista em texto",
+  `predict`, `editable`, error notes, events `uc:widgetstep`,
+  `uc:widgetdone`, `uc:widgetpredict`; `widgets/v1/catalog.json`.
+- `<uc-widget-sort>` (experimental): bubble, selection, insertion, merge,
+  quick (`pivot`) and counting sort, `bars`.
+- Documentation: "Widgets" group (Catálogo, Usar widgets, uc-widget-sort),
+  `docs/api.md` 7.2, `template/AGENTS.md`; tests in `tests/widgets/`
+  (`npm run test:widgets`).
+
+### Changed
+- The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
+
 ### Added
 - `uc-site.py` in the template (search phase S2): the site maintenance
   script, Python 3.8+ with the standard library only. `python3 uc-site.py
