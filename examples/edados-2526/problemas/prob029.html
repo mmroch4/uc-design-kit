@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED029</li></ol>
-    </nav>
-    <h1>[ED029] Confusão no Aeroporto</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob029.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED029</li></ol>
+      </nav>
+      <h1>[ED029] Confusão no Aeroporto</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED029</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
       Pode assumir que no Mooshak terá acesso às classes de listas, pilhas e filas como dadas nas aulas (ou seja, não precisa de as incluir no código submetido).
@@ -36,7 +38,7 @@
 
       </p><p>Por exemplo, imagina o seguinte cenário. Tens quatro aviões que querem descolar e três que querem aterrar:
 
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td><strong>Avião para descolar</strong></td>
       <td><strong>Minuto previsto</strong></td>
@@ -92,14 +94,10 @@
       </p><p>Não devem existir linhas em branco a separar os diferentes casos.
 
       </p><h2>Exemplo de input e output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">2
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">2
 1 1
 TAP2345 1
 IB2541 1
@@ -111,9 +109,10 @@ LEVANTA4 4
 ATERRA1 1
 ATERRA2 2
 ATERRA3 3</pre>
-      </td>
-      <td>
-      <pre data-copy="Output">1 1
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">1 1
 TAP2345 1
 IB2541 0
 4 3
@@ -124,13 +123,11 @@ LEVANTA4 3
 ATERRA1 0
 ATERRA2 1
 ATERRA3 2</pre>
-      </td>
-      </tr>
-      </table></div>
+        </div>
+      </div>
 
       <p>Última actualização: <strong>10:34, 08/10/2004</strong></p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob029.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob029.html</a>.</p>
   </uc-page>
 </body>
 </html>

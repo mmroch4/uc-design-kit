@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED301</li></ol>
-    </nav>
-    <h1>[ED301] Triagem de Manchester</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob301.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED301</li></ol>
+      </nav>
+      <h1>[ED301] Triagem de Manchester</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter um programa
       completo e poderá fazer uso da API do Java. Use o esqueleto de código dado que tem a estrutura
@@ -59,7 +61,7 @@
       Figura com as cores da triagem de Manchester:
 
       <img alt="" class="uc-content__float" height="186" loading="lazy" src="imagens/301.png" width="687"/></p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Cor</th> <th scope="col">Situação</th>
       </tr>
@@ -153,81 +155,71 @@
       </strong></p>
       <h2>Exemplos</h2>
       <h2>
-      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
-
-      <tr>
-      <th scope="col"><p>Input</p> </th>
-      <th scope="col"> <p>Output</p></th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">0
+      </h2><div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">0
 2
 MiguelCoimbra Laranja 0 20
 RitaRibeiro Verde 0 5
 FernandoSilva Amarelo 5 15</pre>
-      </td>
-      <td> <pre data-copy="Output">Laranja 1
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">Laranja 1
 Amarelo 1
-Verde 1</pre> </td>
-      </tr>
-      </table></div>
+Verde 1</pre>
+        </div>
+      </div>
       <h2>
-      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
-
-      <tr>
-      <th scope="col"><p>Input</p> </th>
-      <th scope="col"> <p>Output</p></th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">1
+      </h2><div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">1
 1
 MiguelCoimbra Laranja 0 20
 RitaRibeiro Verde 0 5
 FernandoSilva Amarelo 5 15</pre>
-      </td>
-      <td> <pre data-copy="Output">---------------------------
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">---------------------------
 Lista dos doentes atendidos
 ---------------------------
 MiguelCoimbra 0 0 20
 FernandoSilva 5 15 35
 RitaRibeiro 0 35 40
 ---------------------------
-Tempo medio de espera: 16.7</pre> </td>
-      </tr>
-      </table></div>
+Tempo medio de espera: 16.7</pre>
+        </div>
+      </div>
       <h2>
-      </h2><div class="uc-table" style="--uc-table-min: 0"><table>
-
-      <tr>
-      <th scope="col"><p>Input</p> </th>
-      <th scope="col"> <p>Output</p></th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">2
+      </h2><div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">2
 2
 MiguelCoimbra Laranja 0 20
 RitaRibeiro Verde 0 5
 FernandoSilva Amarelo 5 15</pre>
-      </td>
-      <td> <pre data-copy="Output">-----------------------
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">-----------------------
 Equipa NDoentes MediaTA
 -----------------------
      0        1    20.0
      1        2    10.0
 ---------------------------
-Tempo medio de espera: 0.0</pre> </td>
-      </tr>
-      </table></div>
+Tempo medio de espera: 0.0</pre>
+        </div>
+      </div>
       <h3>Referência:</h3>
 
       1. “Protocolo da Triagem de Manchester”, Link: <code>https://www.grupoportuguestriagem.pt/grupo-portugues-triagem/protocolo-triagem-manchester/</code> (consultado em Abril 2012)
 
       <p><strong>Estruturas de Dados (CC1007), DCC-FCUP</strong></p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob301.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob301.html</a>.</p>
   </uc-page>
 </body>
 </html>

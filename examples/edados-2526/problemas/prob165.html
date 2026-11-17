@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED165</li></ol>
-    </nav>
-    <h1>[ED165] Somas</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob165.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED165</li></ol>
+      </nav>
+      <h1>[ED165] Somas</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshak, deverá submeter uma classe <strong>ED165</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
       Pode assumir que no Mooshak terá acesso às classes de árvores binárias de pesquisa (ou seja, não precisa de incluir a classe <strong>BSTree</strong> no código submetido).
@@ -40,13 +42,18 @@
 
       O output deve ser constituído por <strong>P</strong> linhas, uma por cada pergunta, no formato <strong>X<sub>i</sub>: sim</strong> se o X<sub>i</sub> puder ser formado como soma de dois números do conjunto dado, ou <strong>X<sub>i</sub>: nao</strong> caso contrário.
 
-      <h2>Exemplo de input</h2>
-      <pre data-copy="Input">4
+      <h2>Exemplo de input e output</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">4
 10 6 2 8
 10
 4 8 2 5 21 10 16 3 12 15</pre>
-      <h2>Exemplo de output</h2>
-      <pre data-copy="Output">4: sim
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">4: sim
 8: sim
 2: nao
 5: nao
@@ -56,8 +63,8 @@
 3: nao
 12: sim
 15: nao</pre>
-    </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob165.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob165.html</a>.</p>
+        </div>
+      </div></div>
   </uc-page>
 </body>
 </html>

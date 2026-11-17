@@ -55,7 +55,7 @@
           <p>Neste exercício, para compilar o código de árvores binárias de pesquisa irá necessitar das classes (e interfaces) <code>DNode</code>, <code>DoublyLinkedList</code>, <code>LinkedListQueue</code>, <code>LinkedListStack</code>, <code>MyQueue</code>, <code>MyStack</code> abordadas na <a href="aula07.html">aula prática 7</a>.</p>
         </div>
 
-        <p class="aula-label">Nó da árvore binária de pesquisa</p>
+        <p class="uc-eyebrow">Nó da árvore binária de pesquisa</p>
         <uc-code lang="java" filename="BSTNode.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -90,7 +90,7 @@ public class BSTNode<T extends Comparable<? super T>> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Árvore binária de pesquisa</p>
+        <p class="uc-eyebrow">Árvore binária de pesquisa</p>
         <uc-code lang="java" filename="BSTree.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -300,7 +300,7 @@ public class BSTree<T extends Comparable<? super T>> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Exemplo de teste das árvores binárias de pesquisa</p>
+        <p class="uc-eyebrow">Exemplo de teste das árvores binárias de pesquisa</p>
         <uc-code lang="java" filename="TestBSTree.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -349,7 +349,7 @@ $ java TestBSTree
             </script>
           </uc-code>
           <p>Espreite e acompanhe a implementação do método <code>insert</code> da classe <code>BSTree</code>. Relembre que numa árvore binária de pesquisa, para um qualquer nó, todos os elementos da subárvore esquerda são menores e todos os elementos da subárvore direita são maiores. Para o ajudar a compreender, a imagem seguinte mostra o conteúdo da árvore após cada inserção (em cada passo o elemento inserido está indicado a amarelo):</p>
-          <p><img src="../imagens/bst_insert.png" width="1342" height="681" style="max-width:100%;height:auto" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
+          <p><img src="../imagens/bst_insert.png" width="1342" height="681" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
           <ul class="uc-bullets">
             <li>Depois da remoção de 14, que número ficou na raiz? Acompanhe a implementação do método <code>remove</code> da classe <code>BSTree</code> para verificar como isto é feito.</li>
           </ul>
@@ -410,7 +410,7 @@ $ java TestBSTree
         <p class="uc-prose">Verifique o código seguinte que implementa um dicionário de pares (chave,valor) usando árvores binárias de pesquisa (ex. métodos: <code>put</code>, <code>get</code> e <code>keys</code>).</p>
         <p class="uc-prose">Espreite a classe <code>BSTMapNode</code> para ver como o nó está implementado; note que o tipo <em>K</em> (a chave) é <em>comparável</em>, mas o tipo <em>V</em> (o valor) não.</p>
 
-        <p class="aula-label">Nó da árvore</p>
+        <p class="uc-eyebrow">Nó da árvore</p>
         <uc-code lang="java" filename="BSTMapNode.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -450,7 +450,7 @@ public class BSTMapNode<K extends Comparable<? super K>, V> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Dicionário</p>
+        <p class="uc-eyebrow">Dicionário</p>
         <uc-code lang="java" filename="BSTMap.java">
           <script type="text/plain">
 // -----------------------------------------------------------
@@ -579,7 +579,7 @@ public class BSTMap<K extends Comparable<? super K>,V> {
           </script>
         </uc-code>
 
-        <p class="aula-label">Exemplo de teste dos dicionários</p>
+        <p class="uc-eyebrow">Exemplo de teste dos dicionários</p>
         <uc-code lang="java" filename="TestBSTMap.java">
           <script type="text/plain">
 // -----------------------------------------------------------

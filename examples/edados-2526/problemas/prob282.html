@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED282</li></ol>
-    </nav>
-    <h1>[ED282] Black Friday</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob282.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED282</li></ol>
+      </nav>
+      <h1>[ED282] Black Friday</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED282</strong> contendo um programa completo para resolver o problema (ou seja, com o método main). Pode assumir que no Mooshak terá acesso a todas as classes base dadas de listas, pilhas e filas dadas nas aulas (não precisa de as incluir na submissão). 
       </p></div>
@@ -34,7 +36,7 @@
 
       <h2>Dia 1</h2>
       <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 0 / no total = 0)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>pedro<br/>6</td>
       <td>miguel<br/>8</td>
@@ -44,7 +46,7 @@
       </table></div>
       <p>O vendedor começa por atender o <em>pedro</em>, que é movido para o final da fila com menos 3 televisões para comprar:</p>
       <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 3 / no total = 3)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>miguel<br/>8</td>
       <td>helder<br/>10</td>
@@ -54,7 +56,7 @@
       </table></div>
       <p>Vende 3 televisões a <em>miguel</em>, que é movido para o final da fila com menos 3 televisões para comprar:</p>
       <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 6 / no total = 6)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>helder<br/>10</td>
       <td>maria<br/>2</td>
@@ -64,7 +66,7 @@
       </table></div>
       <p>Vende 3 televisões a <em>helder</em>, que é movido para o final da fila com menos 3 televisões para comprar:</p>
       <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 9 / no total = 9)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>maria<br/>2</td>
       <td>pedro<br/>3</td>
@@ -74,7 +76,7 @@
       </table></div>
       <p>Vende 2 televisões a <em>maria</em>, que tendo obtido tudo o que queria sai da fila:</p>
       <p><strong>Dia 1 | Quantidade de TVs vendidas (no dia = 11 / no total = 11)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>pedro<br/>3</td>
       <td>miguel<br/>5</td>
@@ -85,7 +87,7 @@
 
       <h2>Dia 2</h2>
       <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 0 / no total = 11)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>pedro<br/>3</td>
       <td>miguel<br/>5</td>
@@ -94,7 +96,7 @@
       </table></div>
       <p>O vendedor atende o <em>pedro</em>, resultando em:</p>
       <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 3 / no total = 14)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>miguel<br/>5</td>
       <td>helder<br/>7</td>
@@ -102,7 +104,7 @@
       </table></div>
       <p>O vendedor atende o <em>miguel</em>, resultando em:</p>
       <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 6 / no total = 17)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>helder<br/>7</td>
       <td>miguel<br/>2</td>
@@ -110,7 +112,7 @@
       </table></div>
       <p>O vendedor atende o <em>helder</em>, resultando em:</p>
       <p><strong>Dia 2 | Quantidade de TVs vendidas (no dia = 9 / no total = 20)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>miguel<br/>2</td>
       <td>helder<br/>4</td>
@@ -120,7 +122,7 @@
 
       <h2>Dia 3</h2>
       <p><strong>Dia 3 | Quantidade de TVs vendidas (no dia = 0 / no total = 20)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>miguel<br/>2</td>
       <td>helder<br/>4</td>
@@ -128,14 +130,14 @@
       </table></div>
       <p>O vendedor atende o <em>miguel</em>, resultando em:</p>
       <p><strong>Dia 3 | Quantidade de TVs vendidas (no dia = 2 / no total = 22)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>helder<br/>4</td>
       </tr>
       </table></div>
       <p>O vendedor atende o <em>helder</em>, resultando em:</p>
       <p><strong>Dia 3 | Quantidade de TVs vendidas (no dia = 5 / no total = 25)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>helder<br/>1</td>
       </tr>
@@ -144,7 +146,7 @@
 
       <h2>Dia 4</h2>
       <p><strong>Dia 4 | Quantidade de TVs vendidas (no dia = 0 / no total = 25)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>helder<br/>1</td>
       </tr>
@@ -171,28 +173,27 @@ helder 4 1 26</pre>
       <h2>Output</h2>
       <p>O output deve conter <strong>N</strong> linhas, descrevendo os clientes, pela ordem em que cada uma das suas últimas dúvidas foram sendo esclarecidas, no formato <code>NOME_CLIENTE DIA TVS_DIA TVS_TOTAL</code>, como foi atrás escrito.</p>
       <h2>Exemplo de input e output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td><pre data-copy="Input">3
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">3
 4
 pedro 6
 miguel 8
 helder 10
-maria 2</pre></td>
-      <td><pre data-copy="Output">maria 1 11 11
+maria 2</pre>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">maria 1 11 11
 pedro 2 3 14
 miguel 3 2 22
-helder 4 1 26</pre></td>
-      </tr>
-      </table></div>
+helder 4 1 26</pre>
+        </div>
+      </div>
 
       <p><strong>Teste Prático de Estruturas de Dados (CC1007)</strong></p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob282.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob282.html</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED121</li></ol>
-    </nav>
-    <h1>[ED121] Palíndromos</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob121.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED121</li></ol>
+      </nav>
+      <h1>[ED121] Palíndromos</h1>
+    </header>
     <div class="uc-content">
       <h2>O problema</h2>
       <p>
@@ -52,14 +54,10 @@ Anotaram a data da maratona</pre>
       </li><li><strong>nao</strong>, caso contrário
       </li></ul>
       <h2>Exemplo de input e output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">10
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">10
 reviver
 ana
 abca
@@ -70,9 +68,10 @@ Socorram Marrocos
 A base do teto desaba
 o bolo d lobo
 Madam, I'm Adam</pre>
-      </td>
-      <td>
-      <pre data-copy="Output">10
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">10
 sim
 sim
 nao
@@ -83,11 +82,9 @@ sim
 sim
 nao
 sim</pre>
-      </td>
-      </tr>
-      </table></div>
+        </div>
+      </div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob121.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob121.html</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -152,6 +152,8 @@ window.UC_COURSE = {
     { date: "2025-09-16", text: "As aulas teóricas e práticas começam a 16 de setembro." },
   ],
 
+  // Nota de origem no rodapé: as páginas migradas têm <uc-page source="…"> com o endereço original.
+  source: { author: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/" },
   footer: "© 2025 Fernando Silva · DCC, Faculdade de Ciências da Universidade do Porto",
   updated: "2025-11-27",
   // Demonstração: congela "hoje" no estado do design aprovado (semana 10).

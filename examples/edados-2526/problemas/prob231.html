@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED231</li></ol>
-    </nav>
-    <h1>[ED231] Estatísticas Epidemiológicas</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob231.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED231</li></ol>
+      </nav>
+      <h1>[ED231] Estatísticas Epidemiológicas</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Neste problema deverá submeter uma classe <strong>ED231</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).</p></div>
 
@@ -36,48 +38,47 @@
       </p><p><strong>Se a flag for 3</strong> <em>(30%)</em>, deve imprimir um pequeno <strong>gráfico de barras indicando o total de casos confirmados por dia</strong>. A cada coluna do gráfico corresponde um dia <em>i</em>, e a altura da barra corresponde ao número de casos nesse dia <em>C<sub>i</sub></em>. A barra deve ser desenhada usando carateres '#', onde cada '#' corresponde a 100 casos, ou seja, o número de '#' no dia <em>i</em> corresponde a <em>C<sub>(i)</sub> / 100</em>. Os espaços em branco no gráfico devem ser representados pelo carater '.', e não devem ser imprimidas mais linhas do que o necessário (tantas linhas quantas as necessárias para conter a maior barra, sendo garantida que existe pelo menos um dia com pelo menos 100 casos). Verifiquem o exemplo de input para confirmar se perceberam o pedido.
 
       </p><h2>Exemplo de input e output para Flag 1</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">8
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">8
 2 4 8 14 19 25 28 29
 1</pre>
-      </td><td>
-      <pre data-copy="Output">1 6</pre>
-      </td>
-      <td>
-      Os aumentos são de +2, +4, +6, +5, +6, +3, +1.<br/>
-      O menor aumento corresponde a +1; o maior aumento corresponde a +6.
-      </td>
-      </tr></table></div>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">1 6</pre>
+        </div>
+      </div>
+      <p>Os aumentos são de +2, +4, +6, +5, +6, +3, +1.<br/>
+      O menor aumento corresponde a +1; o maior aumento corresponde a +6.</p>
       <h2>Exemplo de input e output para Flag 2</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">11
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">11
 100 105 110 116 121 128 140 141 146 150 153
 2</pre>
-      </td><td>
-      <pre data-copy="Output">3 4</pre>
-      </td>
-      <td>
-      As subidas percentuais diárias são: 5.00%, 4.76%, 5.45%, 4.31%, 5.79%, 9.38%, 0.71%, 3.55%, 2.74%, 2.00%<br/>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">3 4</pre>
+        </div>
+      </div>
+      <p>As subidas percentuais diárias são: 5.00%, 4.76%, 5.45%, 4.31%, 5.79%, 9.38%, 0.71%, 3.55%, 2.74%, 2.00%<br/>
       As subidas inferiores ou iguais a 5% estão indicadas a verde. Um período de baixa propagação é uma sequência de dias a verde.<br/>
-      Existem 3 periodos de dias consecutivos a verde, de tamanhos 2, 1 e 4.
-      </td>
-      </tr></table></div>
+      Existem 3 periodos de dias consecutivos a verde, de tamanhos 2, 1 e 4.</p>
       <h2>Exemplo de input e output para Flag 3</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Explicação</th></tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">8
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">8
 42 100 202 299 407 603 1045 1320
 3</pre>
-      </td><td>
-      <pre data-copy="Output">.......#
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">.......#
 .......#
 .......#
 ......##
@@ -90,15 +91,12 @@
 ....####
 ..######
 .#######</pre>
-      </td>
-      <td>
-      O gráfico 8 colunas (8 dias) e 13 linhas (a altura da maior barra é de 13, correspondendo ao dia com 1320).<br/>
+        </div>
+      </div>
+      <p>O gráfico 8 colunas (8 dias) e 13 linhas (a altura da maior barra é de 13, correspondendo ao dia com 1320).<br/>
       A altura de cada barra é o valor desse dia a dividir por 100.<br/>
-      Os '.' correspondem a espaços no gráfico sem barra.
-      </td>
-      </tr></table></div>
+      Os '.' correspondem a espaços no gráfico sem barra.</p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob231.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob231.html</a>.</p>
   </uc-page>
 </body>
 </html>

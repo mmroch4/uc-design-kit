@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED164</li></ol>
-    </nav>
-    <h1>[ED164] Quantas palavras?</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob164.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED164</li></ol>
+      </nav>
+      <h1>[ED164] Quantas palavras?</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Se submeter no Mooshak, deverá submeter uma classe <strong>ED164</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
       Pode assumir que no Mooshak terá acesso às classes de árvores binárias de pesquisa (ou seja, não precisa de incluir a classe <strong>BSTree</strong> no código submetido).
@@ -34,8 +36,11 @@
 
       O output deve ser constituído por um unico inteiro indicando quantas palavras diferentes existem.
 
-      <h2>Exemplo de input</h2>
-      <pre data-copy="Input">15
+      <h2>Exemplo de input e output</h2>
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">15
 fernando
 pedro
 luis
@@ -51,10 +56,12 @@ pedro
 fabio
 joao
 fernando</pre>
-      <h2>Exemplo de output</h2>
-      <pre data-copy="Output">8</pre>
-    </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob164.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob164.html</a>.</p>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">8</pre>
+        </div>
+      </div></div>
   </uc-page>
 </body>
 </html>

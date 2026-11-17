@@ -12,11 +12,11 @@
 </head>
 <body>
   <uc-page current="about">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
-      <p class="uc-mono uc-muted" style="font-size: var(--uc-font-size-sm)">Ficha da unidade curricular · CC1007</p>
+    <header class="uc-page-header">
+      <p class="uc-eyebrow">Ficha da unidade curricular · CC1007</p>
       <h1>Sobre a UC</h1>
       <p class="uc-prose uc-lead">Reforçar as competências de programação dos estudantes, com ênfase no desenho e implementação das principais estruturas de dados e respetivos algoritmos. A metodologia de ensino-aprendizagem adotada é orientada a objetos com recurso à linguagem Java. Serão introduzidas noções fundamentais de eficiência e de análise de complexidade de algoritmos.</p>
-    </div>
+    </header>
 
     <section class="uc-section" aria-labelledby="objetivos">
       <h2 id="objetivos">Objetivos e competências</h2>
@@ -33,28 +33,49 @@
 
     <section class="uc-section" aria-labelledby="programa">
       <h2 id="programa">Programa</h2>
-      <ol class="program">
-        <li><span class="program__n" aria-hidden="true">01</span><div><h3>A linguagem Java</h3><p>Classes, objetos, atributos e métodos; tipos primitivos, Strings, wrappers, arrays e tipos enumerados; expressões, operadores e instruções de controlo de fluxo; Input/Output e a classe Scanner; pacotes e biblioteca padrão do Java; princípios de desenvolvimento de software, estilo e documentação.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">02</span><div><h3>Princípios da programação orientada a objetos</h3><p>Herança e padrões de reutilização, hierarquia de classes, polimorfismo, interfaces e Tipos Abstratos de Dados (TADs), uso de genéricos e iteradores.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">03</span><div><h3>Noções básicas de análise de algoritmos</h3><p>Análise assintótica; principais classes de complexidade e sua comparação; exemplos.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">04</span><div><h3>Técnicas de desenho de algoritmos</h3><p>Programação estruturada; recursividade; pesquisa exaustiva e backtracking; dividir para conquistar.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">05</span><div><h3>Estruturas de dados fundamentais</h3><p>Vetores e matrizes; listas ligadas simples, circulares e duplamente ligadas; árvores binárias, árvores de pesquisa e heaps.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">06</span><div><h3>Tipos Abstratos de Dados e respetivas implementações</h3><p>Sequências, pilhas, filas e deques; contentores associativos (conjuntos e dicionários); filas de prioridade.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">07</span><div><h3>Métodos de ordenação e pesquisa</h3><p>Algoritmos de ordenação e de pesquisa.</p></div></li>
+      <ol class="uc-steps">
+        <li>
+          <h3>A linguagem Java</h3>
+          <p>Classes, objetos, atributos e métodos; tipos primitivos, Strings, wrappers, arrays e tipos enumerados; expressões, operadores e instruções de controlo de fluxo; Input/Output e a classe Scanner; pacotes e biblioteca padrão do Java; princípios de desenvolvimento de software, estilo e documentação.</p>
+        </li>
+        <li>
+          <h3>Princípios da programação orientada a objetos</h3>
+          <p>Herança e padrões de reutilização, hierarquia de classes, polimorfismo, interfaces e Tipos Abstratos de Dados (TADs), uso de genéricos e iteradores.</p>
+        </li>
+        <li>
+          <h3>Noções básicas de análise de algoritmos</h3>
+          <p>Análise assintótica; principais classes de complexidade e sua comparação; exemplos.</p>
+        </li>
+        <li>
+          <h3>Técnicas de desenho de algoritmos</h3>
+          <p>Programação estruturada; recursividade; pesquisa exaustiva e backtracking; dividir para conquistar.</p>
+        </li>
+        <li>
+          <h3>Estruturas de dados fundamentais</h3>
+          <p>Vetores e matrizes; listas ligadas simples, circulares e duplamente ligadas; árvores binárias, árvores de pesquisa e heaps.</p>
+        </li>
+        <li>
+          <h3>Tipos Abstratos de Dados e respetivas implementações</h3>
+          <p>Sequências, pilhas, filas e deques; contentores associativos (conjuntos e dicionários); filas de prioridade.</p>
+        </li>
+        <li>
+          <h3>Métodos de ordenação e pesquisa</h3>
+          <p>Algoritmos de ordenação e de pesquisa.</p>
+        </li>
       </ol>
     </section>
 
     <section class="uc-section" aria-labelledby="metodos">
       <h2 id="metodos">Métodos de ensino</h2>
       <div class="uc-grid" style="--uc-grid-min: 280px">
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Aulas teóricas</h3>
-          <p class="uc-muted desc">Exposição estruturada dos conceitos fundamentais de programação orientada a objetos, estruturas de dados e análise de algoritmos, suportada por apresentações em slides, exemplos de programação em Java e discussão de casos práticos. Promove-se a participação ativa dos estudantes através da resolução interativa de exercícios e da análise comparativa de diferentes soluções.</p>
+          <p class="uc-muted uc-small">Exposição estruturada dos conceitos fundamentais de programação orientada a objetos, estruturas de dados e análise de algoritmos, suportada por apresentações em slides, exemplos de programação em Java e discussão de casos práticos. Promove-se a participação ativa dos estudantes através da resolução interativa de exercícios e da análise comparativa de diferentes soluções.</p>
         </div>
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Aulas laboratoriais</h3>
-          <p class="uc-muted desc">As aulas práticas serão usadas para apoio aos estudantes nas dúvidas concretas que apresentem sobre a resolução dos exercícios propostos. As aulas envolverão:</p>
-          <ul class="uc-bullets uc-muted desc">
+          <p class="uc-muted uc-small">As aulas práticas serão usadas para apoio aos estudantes nas dúvidas concretas que apresentem sobre a resolução dos exercícios propostos. As aulas envolverão:</p>
+          <ul class="uc-bullets uc-muted uc-small">
             <li>o uso da linguagem de programação Java;</li>
             <li>a resolução de exercícios propostos para treino de programação;</li>
             <li>a resolução de exercícios propostos para efeitos de avaliação;</li>
@@ -62,17 +83,17 @@
           </ul>
         </div>
       </div>
-      <p class="uc-muted desc">Bibliografia e regras de avaliação: <a href="materiais.html#biblio">Materiais</a> · <a href="avaliacao.html">Avaliação</a></p>
+      <p class="uc-muted uc-small">Bibliografia e regras de avaliação: <a href="materiais.html#biblio">Materiais</a> · <a href="avaliacao.html">Avaliação</a></p>
     </section>
 
     <section class="uc-section" aria-labelledby="cursos">
       <h2 id="cursos">Cursos</h2>
       <p class="uc-prose">Estruturas de Dados (CC1007) é uma unidade curricular obrigatória do 2.º ano, 1.º semestre, dos seguintes cursos da <a href="https://www.fc.up.pt">Faculdade de Ciências da Universidade do Porto</a>. É também obrigatória para a Formação Complementar (Minor) em Informática.</p>
-      <ul class="tags">
-        <li class="uc-tag">Licenciatura em Ciência de Computadores</li>
-        <li class="uc-tag">Licenciatura em Inteligência Artificial e Ciência de Dados</li>
-        <li class="uc-tag">Licenciatura em Bioinformática</li>
-        <li class="uc-tag">Formação Complementar (Minor) em Informática</li>
+      <ul class="uc-tags">
+        <li>Licenciatura em Ciência de Computadores</li>
+        <li>Licenciatura em Inteligência Artificial e Ciência de Dados</li>
+        <li>Licenciatura em Bioinformática</li>
+        <li>Formação Complementar (Minor) em Informática</li>
       </ul>
     </section>
   </uc-page>

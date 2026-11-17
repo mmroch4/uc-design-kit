@@ -208,7 +208,7 @@ System.out.println(maxSoFar);
           <p>Se soubermos o valor de <var>best</var>(<var>i</var>), como calcular o valor de <var>best</var>(<var>i</var>+1)?</p>
           <ul class="uc-bullets">
             <li>Se <var>best</var>(<var>i</var>) for positivo, então <var>best</var>(<var>i</var>+1) = <var>best</var>(<var>i</var>) + <code>v[i+1]</code>: como os subarrays têm de ser contíguos, se aproveitarmos algo "de trás", terá de ser o melhor possível a terminar na posição anterior. Por exemplo, para o array [4, −2, 1, 5]:
-              <div class="uc-table" style="--uc-table-min: 0">
+              <div class="uc-table uc-table--fit">
                 <table>
                   <caption class="uc-visually-hidden">best(i) para o array [4, −2, 1, 5]</caption>
                   <tbody>
@@ -221,7 +221,7 @@ System.out.println(maxSoFar);
               <p><var>best</var>(2) = 3, obtido com o subarray [4, −2, 1]. <var>best</var>(3) = <var>best</var>(2) + <code>v[3]</code> = 3 + 5 = 8, obtido com o subarray [4, −2, 1, 5] (estendeu-se o subarray anterior).</p>
             </li>
             <li>Se <var>best</var>(<var>i</var>) for negativo, então <var>best</var>(<var>i</var>+1) = <code>v[i+1]</code>, pois o que está "para trás" só pode fazer diminuir a soma do subarray a terminar na posição <var>i</var>+1. Por exemplo, para o array [−5, 2, −3, 4]:
-              <div class="uc-table" style="--uc-table-min: 0">
+              <div class="uc-table uc-table--fit">
                 <table>
                   <caption class="uc-visually-hidden">best(i) para o array [−5, 2, −3, 4]</caption>
                   <tbody>

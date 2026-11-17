@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED237</li></ol>
-    </nav>
-    <h1>[ED237] Round-Robin</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob237.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED237</li></ol>
+      </nav>
+      <h1>[ED237] Round-Robin</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning">Neste problema deverá submeter uma classe <strong>ED237</strong> contendo um programa completo para resolver o problema (ou seja, com o método main).<br/>
       Pode assumir que no Mooshak <strong>terá acesso a todas as classes base dadas listas, pilhas e filas</strong> (não precisa de as incluir na submissão).
@@ -31,7 +33,7 @@
       </li></ol>
       <p>Imagine por exemplo que <em>T=5</em> e que tinha a seguinte fila, onde o número indica o tempo restante. O processador iria passar por 7 iterações antes de terminar:</p>
       <p><strong>Tempo actual: 0 segundos (0 iterações do processador)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>emacs<br/>9</td>
       <td>firefox<br/>3</td>
@@ -41,7 +43,7 @@
       </table></div>
       <p>O processador começa por executar <em>emacs</em> durante 5 segundos. Ficam ainda a faltar 4 segundos e esse processo é agora colocado no final da fila:</p>
       <p><strong>Tempo actual: 5 segundos (1 iteração do processador)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>firefox<br/>3</td>
       <td>bash<br/>12</td>
@@ -51,7 +53,7 @@
       </table></div>
       <p>Como <em>firefox</em> tem menos tempo do que 5 segundos, é executado durante os 3 segundos que precisa e termina. O algoritmo continua a ser executado até terminarem todos os processos:</p>
       <p><strong>Tempo actual: 8 segundos (2 iterações do processador)</strong> [termina "firefox"]
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>bash<br/>12</td>
       <td>dia<br/>5</td>
@@ -59,7 +61,7 @@
       </tr>
       </table></div>
       <p><strong>Tempo actual: 13 segundos (3 iterações do processador)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>dia<br/>5</td>
       <td>emacs<br/>4</td>
@@ -67,20 +69,20 @@
       </tr>
       </table></div>
       <p><strong>Tempo actual: 18 segundos (4 iterações do processador)</strong> [termina "dia"]
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>emacs<br/>4</td>
       <td>bash<br/>7</td>
       </tr>
       </table></div>
       <p><strong>Tempo actual: 22 segundos (5 iterações do processador)</strong> [termina "emacs"]
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>bash<br/>7</td>
       </tr>
       </table></div>
       <p><strong>Tempo actual: 27 segundos (6 iterações do processador)</strong>
-      </p><div class="uc-table" style="--uc-table-min: 0"><table>
+      </p><div class="uc-table uc-table--fit"><table>
       <tr>
       <td>bash<br/>2</td>
       </tr>
@@ -107,26 +109,25 @@ bash 29 7</pre>
       <p>O output deve conter <strong>N</strong> linhas, descrevendo os processos pela ordem em que foram terminando no formato <code>NOME_PROCESSO TEMPO_TERMINAÇÃO NUM_ITERAÇÕES</code>.
 
       </p><h2>Exemplo de input e output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td><pre data-copy="Input">5
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">5
 4
 emacs 9
 firefox 3
 bash 12
-dia 5</pre></td>
-      <td><pre data-copy="Output">firefox 8 2
+dia 5</pre>
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">firefox 8 2
 dia 18 4
 emacs 22 5
-bash 29 7</pre></td>
-      </tr>
-      </table></div>
+bash 29 7</pre>
+        </div>
+      </div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob237.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob237.html</a>.</p>
   </uc-page>
 </body>
 </html>

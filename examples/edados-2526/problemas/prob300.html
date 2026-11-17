@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED300</li></ol>
-    </nav>
-    <h1>[ED300] Hiérarquias de Nós</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob300.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED300</li></ol>
+      </nav>
+      <h1>[ED300] Hiérarquias de Nós</h1>
+    </header>
     <div class="uc-content">
       1;95;0c
 
@@ -66,33 +68,28 @@
 
       </p><h2>Exemplos de input e output</h2>
       <p>Os exemplos correspondem às árvores da figura.</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">2
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">2
 20 10 4 2 N N 7 N N 6 12 N N 18 N N 25 22 N N 30 N N
 5
 21 10 4 2 N N 7 N N 6 12 N N N 25 22 N N N
 5</pre>
-      </td>
-      <td>
-      <pre data-copy="Output">Case 1:
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">Case 1:
 Num Nodes with Grand Parente multiple of 5= 8
 Case 2:
 Num Nodes with Grand Parente multiple of 5= 3</pre>
-      </td>
-      </tr>
-      </table></div>
+        </div>
+      </div>
       <p>Nota: o valor "5" no output corresponde ao valor de "k" dado no
       input.</p>
 
       <p><strong>Estruturas de Dados (CC1007), DCC-FCUP</strong></p>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob300.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob300.html</a>.</p>
   </uc-page>
 </body>
 </html>

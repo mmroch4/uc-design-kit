@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED015</li></ol>
-    </nav>
-    <h1>[ED015] Sopa de Letras</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob015.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED015</li></ol>
+      </nav>
+      <h1>[ED015] Sopa de Letras</h1>
+    </header>
     <div class="uc-content">
       <h2>O problema</h2>
       <p>Todos conhecem o puzzle da "Sopa de Letras", que consiste basicamente em encontrar palavras, num
@@ -55,14 +57,10 @@ EDA</pre>
       com as palavras destacadas.
 
       </p><p>Vê o exemplo para clarificar a maneira como deve ser feito o output.</p><h2>Exemplo de input e output</h2>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
-      <tr>
-      <th scope="col">Input</th>
-      <th scope="col">Output</th>
-      </tr>
-      <tr>
-      <td>
-      <pre data-copy="Input">4 5
+      <div class="uc-samples">
+        <div>
+          <p class="uc-samples__label">Input</p>
+          <pre data-copy="Input">4 5
 SBCDA
 OFGHD
 PJKLE
@@ -87,9 +85,10 @@ FICA
 MUITO
 FACIL
 0 0</pre>
-      </td>
-      <td>
-      <pre data-copy="Output">Input #1
+        </div>
+        <div>
+          <p class="uc-samples__label">Output</p>
+          <pre data-copy="Output">Input #1
 S...A
 O...D
 P...E
@@ -102,11 +101,10 @@ E..FACIL..
 ......U...
 PROBLEMA..
 ..........
-....ACIF..</pre></td>
-      </tr>
-      </table></div>
+....ACIF..</pre>
+        </div>
+      </div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob015.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob015.html</a>.</p>
   </uc-page>
 </body>
 </html>

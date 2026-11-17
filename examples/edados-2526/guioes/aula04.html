@@ -47,7 +47,7 @@
 
         <uc-exercise id="jogo-do-galo" title="Jogo do Galo" open>
           <p>Resolve o problema <a href="../problemas/prob004.html">[ED004] Jogo do Galo</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
-          <p class="aula-label">Dicas e notas</p>
+          <p class="uc-eyebrow">Dicas e notas</p>
           <ul class="uc-bullets">
             <li>Podes começar por criar uma solução adaptada para as colunas, linhas e diagonais e verificar que a tua solução está correta.</li>
             <li>Cria os teus casos de teste e testa se a tua solução está correta.</li>
@@ -58,7 +58,7 @@
 
         <uc-exercise id="jogo-da-vida" title="Jogo da Vida">
           <p>Resolve o problema <a href="../problemas/prob088.html">[ED088] Jogo da Vida</a>. Podes também submeter a tua solução no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
-          <p class="aula-label">Dicas e notas</p>
+          <p class="uc-eyebrow">Dicas e notas</p>
           <ul class="uc-bullets">
             <li>O <a href="https://pt.wikipedia.org/wiki/Jogo_da_vida">Jogo da Vida</a> é talvez o mais conhecido autómato celular e foi criado para simular a vida através de regras simples.</li>
             <li>O objetivo principal é que submetas um código adequado e estruturado.</li>
@@ -139,7 +139,7 @@
               }
             </script>
           </uc-code>
-          <p class="aula-label">Passos sugeridos</p>
+          <p class="uc-eyebrow">Passos sugeridos</p>
           <ol class="uc-bullets">
             <li>Começa por completar o método <code>write()</code> da classe <code>Game</code>, que deve escrever a matriz <code>m[][]</code> na saída padrão. Chama <code>g.write()</code> no método <code>main</code> para testar se o que fizeste está a funcionar. <strong>Sempre que implementares novos métodos, testa o seu funcionamento individual!</strong></li>
             <li>Implementa o método <code>int countAlive(int y, int x)</code>. Este método deve percorrer as oito células vizinhas da posição <em>(y,x)</em> e contar quantas são iguais a <code>ALIVE</code> (ou seja, iguais a <code>'O'</code>). Não te esqueças de testar depois de implementar!</li>
@@ -150,12 +150,12 @@
 
         <uc-exercise id="sopa-de-letras" title="Sopa de Letras">
           <p>Neste exercício a ideia é tentares <strong>resolver o problema de forma organizada e estruturada</strong> sozinho. O problema é o <a href="../problemas/prob015.html">[ED015] Sopa de Letras</a>, também disponível no <a href="https://mooshak.dcc.fc.up.pt/~edados/">Mooshak</a>.</p>
-          <p class="aula-label">Antes de começar a escrever código</p>
+          <p class="uc-eyebrow">Antes de começar a escrever código</p>
           <ul class="uc-bullets">
             <li>Lê todo o enunciado com atenção e percebe as tarefas e as restrições (limites do input).</li>
             <li>Pensa em como vais organizar o código: como dividir as tarefas em blocos pequenos? Que classes usar? Onde guardar os dados? Que métodos criar?</li>
           </ul>
-          <p class="aula-label">Durante a implementação</p>
+          <p class="uc-eyebrow">Durante a implementação</p>
           <ul class="uc-bullets">
             <li>Cria métodos: <strong>não faças tudo no <code>main</code></strong>.</li>
             <li>Escreve <strong>código para humanos</strong> (a melhor documentação é um código bem escrito).</li>
@@ -176,7 +176,7 @@
 
         <uc-exercise id="tartaruga-grafica" title="O Mundo da Tartaruga… gráfico!">
           <p>Se já fizeste todos os outros exercícios e quiseres brincar um pouco com interfaces gráficas no seguimento do problema anterior, podes usar um TAD de desenho chamado StdDraw, implementado por docentes da Universidade de Princeton. Começa por descarregar o ficheiro <a href="../downloads/StdDraw.java">StdDraw.java</a>, compila-o e executa-o. Deves ver uma janela como a que se segue:</p>
-          <p><img src="../imagens/stddraw.png" alt="Janela do StdDraw com as figuras de exemplo desenhadas pelo método main." style="max-width: 100%; height: auto"></p>
+          <p><img src="../imagens/stddraw.png" alt="Janela do StdDraw com as figuras de exemplo desenhadas pelo método main."></p>
           <p>Espreita o método <code>main</code> para ver como as imagens da janela foram geradas. Como referência, podes consultar a <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdDraw.html">documentação da classe StdDraw</a>.</p>
           <p>A ideia deste exercício é criar uma classe para <a href="https://en.wikipedia.org/wiki/Turtle_graphics" lang="en">Turtle Graphics</a>, um termo que designa um tipo de criação de desenhos usando um "cursor" que vai "andando" por um plano. Desenhas num plano cartesiano (com tamanho dado na construção do objeto) e tens um "cursor", a tartaruga, com uma posição e orientação, que pode andar na direção atual e tem um lápis que pode estar levantado ou pousado.</p>
           <ol class="uc-bullets">

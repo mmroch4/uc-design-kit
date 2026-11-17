@@ -11,11 +11,13 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
-      <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED233</li></ol>
-    </nav>
-    <h1>[ED233] Árvores na Terra dos Dados</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob233.html">
+    <header class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Localização">
+        <ol><li><a href="index.html">Problemas</a></li><li aria-current="page">ED233</li></ol>
+      </nav>
+      <h1>[ED233] Árvores na Terra dos Dados</h1>
+    </header>
     <div class="uc-content">
       <div class="uc-callout uc-callout--warning"><p>Neste problema deverá apenas submeter uma classe <strong>BTree&lt;T&gt;</strong> (e não um programa completo).
       </p></div>
@@ -53,7 +55,7 @@
       </li></ul>
       <h2>Exemplos de input e output para o método <em>internal</em></h2>
       <p>Os 3 primeiros exemplos correspondem às três árvores da figura.</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
       <th scope="col">Valor devolvido por <em>t.internal()</em></th>
@@ -81,7 +83,7 @@
       </table></div>
       <h2>Exemplos de input e output para o método <em>cut</em></h2>
       <p>A árvore em todos os exemplos corresponde à árvore da figura.</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
       <th scope="col">  Chamada   </th>
@@ -120,7 +122,7 @@
       </table></div>
       <h2>Exemplos de input e output para o método <em>maxLevel</em></h2>
       <p>Os 4 primeiros exemplos correspondem às quatro árvores da figura.</p>
-      <div class="uc-table" style="--uc-table-min: 0"><table>
+      <div class="uc-table uc-table--fit"><table>
       <tr>
       <th scope="col">Árvore <em>t</em> em <em>preorder</em></th>
       <th scope="col">Array devolvido por <em>t.maxLevel()</em></th>
@@ -147,7 +149,6 @@
       </tr>
       </table></div>
     </div>
-    <p class="uc-small uc-muted source-note">Conteúdo de <a href="https://www.dcc.fc.up.pt/~fds/">Fernando Silva</a> (DCC/FCUP), migrado de <a href="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob233.html">dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob233.html</a>.</p>
   </uc-page>
 </body>
 </html>
