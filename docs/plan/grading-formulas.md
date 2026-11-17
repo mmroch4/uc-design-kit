@@ -1,7 +1,8 @@
 # Plano: avaliação configurável com várias fórmulas (`<uc-grading>`)
 
-Estado: **proposta, à espera de aprovação do Miguel.** Nada disto está
-implementado.
+Estado: **aprovado pelo Miguel a 17 nov 2026, 15:25**, com a opção recomendada
+em cada decisão (D6 fica para o professor). O contrato de implementação é
+[`grading-api.md`](grading-api.md) (fase G0).
 
 Pedido (17 nov 2026): o método e a fórmula de avaliação mudam de cadeira para
 cadeira, e há cadeiras com mais do que uma fórmula. Exemplo: EDados 2026/27,
