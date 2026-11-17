@@ -121,6 +121,23 @@ Exemplo (três ligações com descrição), [demonstração ao vivo](https://uc-
 
 A descrição fica fora da ligação: o nome da ligação deve fazer sentido sozinho. O formato e o tamanho de ficheiros (PDF, ZIP) cabem bem na descrição.
 
+### `uc-links--grid`
+
+Para listas longas (juízes online, outras cadeiras, recursos externos), a variante `uc-links--grid` põe as ligações em colunas. Cada coluna tem pelo menos `--uc-links-min` (260 px); no telemóvel fica uma só. Vários grupos fazem-se com um `<h3>` antes de cada lista, como de costume.
+
+Exemplo (seis ligações em três colunas), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/links-grid.html):
+
+```html
+<ul class="uc-links uc-links--grid">
+  <li><a href="https://codeforces.com/">Codeforces</a><span>Concursos semanais</span></li>
+  <li><a href="https://open.kattis.com/">Kattis</a><span>Arquivo de problemas</span></li>
+  <li><a href="https://atcoder.jp/">AtCoder</a><span>Concursos ao fim de semana</span></li>
+  <li><a href="https://cses.fi/problemset/">CSES Problem Set</a><span>Lista clássica por temas</span></li>
+  <li><a href="https://usaco.guide/">USACO Guide</a><span>Guia de estudo</span></li>
+  <li><a href="https://cp-algorithms.com/">cp-algorithms</a><span>Algoritmos explicados</span></li>
+</ul>
+```
+
 ## `uc-shortcuts`
 
 Atalhos grandes, em grelha, para as páginas mais visitadas. Cada um tem pelo menos 48 px de altura e uma seta no fim.

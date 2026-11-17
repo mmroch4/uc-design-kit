@@ -69,4 +69,8 @@ window.UC_COURSE = {
 
   footer: "© 2026 Nome do Regente · Departamento, Faculdade",
   updated: "2026-09-14",
+
+  // Outros anos: com um editions.js na pasta acima desta (lista de todas as
+  // edições), o cabeçalho mostra "Outros anos". Tirar o // quando existir.
+  // editions: "../editions.js",
 };

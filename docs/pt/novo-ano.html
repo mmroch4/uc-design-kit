@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Novo ano letivo · UC Design Kit</title>
-  <meta name="description" content="Lista de verificação para criar o site do ano seguinte a partir da pasta do ano anterior.">
+  <meta name="description" content="Lista de verificação para criar o site do ano seguinte a partir da pasta do ano anterior, e ligar os anos com o editions.js.">
   <link rel="icon" href="../../favicon.ico">
   <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../assets/docs.css">
@@ -136,21 +136,30 @@
 
         <h2 id="copiar">1. Copiar a pasta</h2>
         <uc-code lang="bash" no-download><pre><code>cp -r 2526 2627</code></pre></uc-code>
-        <p>A pasta do ano anterior fica como está, para os alunos que a consultam. Um link "Anos anteriores" na página <code>sobre.html</code> do ano novo ajuda a encontrá-la.</p>
+        <p>A pasta do ano anterior fica como está, para os alunos que a consultam. O ficheiro <code>editions.js</code> (passo seguinte) liga os anos entre si.</p>
 
-        <h2 id="course-js">2. Rever o course.js</h2>
+        <h2 id="outros-anos">2. Acrescentar o ano ao editions.js</h2>
+        <p>Na pasta da cadeira, acima das pastas dos anos, fica um <code>editions.js</code> com a lista de todas as edições, da mais recente para a mais antiga. Acrescenta-se o ano novo no início:</p>
+        <uc-code lang="js" filename="editions.js" no-download><pre><code>window.UC_EDITIONS = [
+  { label: "2026/27", href: "2627/" },   // nova: passa a ser a atual
+  { label: "2025/26", href: "2526/" },
+  { label: "2024/25", href: "2425/" },
+];</code></pre></uc-code>
+        <p>Cada <code>course.js</code> aponta para ele com <code>editions: "../editions.js"</code> (a cópia da pasta já o traz). A partir daí o botão "Outros anos" aparece no cabeçalho de todos os anos, e os anos anteriores mostram no topo "Esta página é da edição 2025/26. Ver a edição atual (2026/27)", sem se mexer nas pastas deles. O <code>label</code> tem de ser igual ao <code>edition</code> do <code>course.js</code> desse ano. Na primeira vez, cria-se o ficheiro e acrescenta-se o campo <code>editions</code> aos <code>course.js</code> que já existam (ver <a href="course-js.html#edicoes">Edições</a>).</p>
+
+        <h2 id="course-js">3. Rever o course.js</h2>
         <ul class="uc-checklist">
-          <li><strong><code>edition</code></strong>: <code>"2026/27"</code>.</li>
+          <li><strong><code>edition</code></strong>: <code>"2026/27"</code>, o mesmo texto do <code>label</code> no <code>editions.js</code>.</li>
           <li><strong><code>semester.start</code></strong>: o primeiro dia de aulas do novo calendário escolar. É a mudança que move todas as semanas.</li>
           <li><strong><code>semester.weeks</code> e <code>semester.breaks</code></strong>: número de semanas e interrupções (semanas de estudo, feriados prolongados).</li>
           <li><strong><code>deadlines</code></strong>: todas as datas. Os prazos ainda sem dia podem ficar com <code>"AAAA-MM"</code> ou <code>null</code> e serem completados durante o semestre.</li>
           <li><strong><code>notices</code></strong>: apagar os avisos do ano anterior, deixando a lista vazia ou um aviso de boas-vindas.</li>
           <li><strong><code>team</code></strong>: quem dá aulas e as turmas de cada um.</li>
-          <li><strong><code>footer</code> e <code>updated</code></strong>: o ano do rodapé e a data de atualização.</li>
+          <li><strong><code>footer</code> e <code>updated</code></strong>: o ano do rodapé e a data de atualização. As páginas com <code>&lt;uc-page updated="…"&gt;</code> têm a sua própria data; com <code>updated="auto"</code> não há nada a mudar.</li>
           <li><strong><code>today</code></strong>: não deve existir; se ficou de testes, apagar a linha.</li>
         </ul>
 
-        <h2 id="paginas">3. Rever as páginas</h2>
+        <h2 id="paginas">4. Rever as páginas</h2>
         <p>O HTML tem poucas datas, porque as do calendário vêm do <code>course.js</code>. As que existem (horários, "aulas a partir de…", sumários) encontram-se com uma pesquisa pelo ano anterior:</p>
         <uc-code lang="bash" no-download><pre><code>cd 2627
 grep -rn "2025\|2026" --include="*.html" .</code></pre></uc-code>
@@ -161,12 +170,12 @@ grep -rn "2025\|2026" --include="*.html" .</code></pre></uc-code>
           <li><strong>Links absolutos.</strong> Um link para <code>…/2526/…</code> dentro da pasta nova aponta para o ano anterior; os links relativos não têm esse problema.</li>
         </ul>
 
-        <h2 id="kit">4. Versão do kit</h2>
+        <h2 id="kit">5. Versão do kit</h2>
         <p>Com <code>kit/v1/</code> nos endereços não há nada a fazer: o site usa sempre a versão 1 mais recente. Se o site fixou uma versão exata (<code>kit/v1.0.0/</code>), o início do ano é a altura certa para passar à mais recente, trocando o número nos três endereços do <code>&lt;head&gt;</code> de cada página:</p>
         <uc-code lang="bash" no-download><pre><code>grep -rl "kit/v1.0.0/" --include="*.html" . | xargs sed -i "s#kit/v1.0.0/#kit/v1.2.0/#g"</code></pre></uc-code>
         <p>Ver <a href="publicar.html#versao">Versão do kit</a>. Em macOS, <code>sed -i ""</code> em vez de <code>sed -i</code>.</p>
 
-        <h2 id="verificar">5. Verificar e publicar</h2>
+        <h2 id="verificar">6. Verificar e publicar</h2>
         <p>Abre-se o site com <code>?today=</code> num dia da primeira semana, por exemplo <code>index.html?today=2026-09-16</code>, e confirma-se que a semana 1 é a atual e que os prazos são os do ano novo. Depois publica-se a pasta como no ano anterior (ver <a href="publicar.html">Publicar</a>).</p>
       </article>
       <!-- docs:pager -->
@@ -191,10 +200,11 @@ grep -rn "2025\|2026" --include="*.html" .</code></pre></uc-code>
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
           <li><a href="#copiar">1. Copiar a pasta</a></li>
-          <li><a href="#course-js">2. Rever o course.js</a></li>
-          <li><a href="#paginas">3. Rever as páginas</a></li>
-          <li><a href="#kit">4. Versão do kit</a></li>
-          <li><a href="#verificar">5. Verificar e publicar</a></li>
+          <li><a href="#outros-anos">2. Acrescentar o ano ao editions.js</a></li>
+          <li><a href="#course-js">3. Rever o course.js</a></li>
+          <li><a href="#paginas">4. Rever as páginas</a></li>
+          <li><a href="#kit">5. Versão do kit</a></li>
+          <li><a href="#verificar">6. Verificar e publicar</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->

@@ -10,6 +10,7 @@ O site é uma pasta de ficheiros estáticos, sem passo de compilação: publica-
 - A consola do browser não mostra avisos `[uc-kit]`.
 - Os links são relativos e com `.html` (ver [Links e ficheiros](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#links)).
 - O `updated` do `course.js` tem a data de hoje.
+- Os links externos funcionam (ver [Links partidos](#links-partidos)).
 
 ## Servidor do departamento (~/public_html)
 
@@ -79,6 +80,16 @@ As páginas carregam o kit de `https://uc-design-kit.miguelrocha.dev/kit/v1/`. H
 | `kit/v1.0.0/` | Uma versão exata, que nunca muda. O browser guarda-a durante um ano sem voltar a perguntar, por isso as visitas seguintes são as mais rápidas. | Para ter o mesmo kit durante todo o semestre. Atualiza-se no início do ano (ver [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#kit)). |
 
 Para fixar a versão troca-se `v1` pelo número nos três endereços do `<head>` (o `preload` da letra, o CSS e o JavaScript). As versões publicadas e o que mudou em cada uma estão no [CHANGELOG](https://github.com/mmroch4/uc-design-kit/blob/main/CHANGELOG.md).
+
+## Links partidos
+
+Os links para fora do site (enunciados noutros servidores, juízes online, outras cadeiras) deixam de funcionar sem aviso. O [W3C Link Checker](https://validator.w3.org/checklink) verifica-os sem instalar nada: indica-se o endereço do site publicado, marca-se "Check linked documents recursively" com profundidade 1 ou 2, e ele lista os links que respondem com erro. Os links com `data-auth` (pautas, SIGARRA) aparecem como erro de autenticação, o que é normal.
+
+O repositório do kit verifica uma vez por semana os links externos dos exemplos e da documentação e abre uma *issue* com os que falharem.
+
+## Data de atualização
+
+O rodapé diz "Atualizado a …" com o `updated` do `course.js`. Uma página com `<uc-page updated="auto">` mostra a data do próprio ficheiro, que o servidor envia no cabeçalho `Last-Modified`. O servidor do DCC e o GitHub Pages enviam-no; se o servidor não o enviar, a página não mostra data. Com `rsync -a` a data é a da última alteração no computador, não a da cópia.
 
 ## Cache
 

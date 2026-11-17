@@ -52,6 +52,23 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 - `id` and `hidden` on `platforms` entries: `<uc-problems data-judge>` finds a
   platform by `id` (or by label), and `hidden: true` keeps it out of the
   navigation.
+- `table[data-sortable]` (blocks phase 5): header buttons sort the table by
+  numbers (decimal comma), dates (`<time datetime>`) or text in the active
+  language, with `aria-sort` and an announcement; `data-sort-default`,
+  `data-no-sort`, `data-sort` and `data-sort-fixed` (totals).
+- `uc-links--grid` and the local token `--uc-links-min`: long link lists in
+  columns.
+- `<uc-page updated>`: a page's own date in the footer, or `auto` (the
+  file's `Last-Modified`, never "today").
+- Editions: `editions` in `course.js` points to a shared `editions.js`
+  (`window.UC_EDITIONS`) above the year folders; `<uc-page>` shows "Outros
+  anos" in the header and, on older editions, a notice linking to the current
+  one. The template has the line, commented out.
+- `scripts/check-links.mjs` and the weekly workflow `links.yml`: the external
+  links of the examples, template and docs, with one `broken-links` issue.
+- Documentation: patterns "Horários e equipa", "Sumários" and "Materiais", the
+  assessment pattern with `<uc-grading>` and `<uc-assessment-info>`; editions in
+  "Novo ano letivo"; broken links and page dates in "Publicar".
 - Internal pieces for the new blocks: one shared live region
   (`<pre data-copy>` and `<uc-code>` now use it), course-scoped storage keys
   (`uc:<course>:…`), the filter bar (`uc-filters`), page enhancements run

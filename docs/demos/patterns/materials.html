@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padrão: materiais · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page>
+    <h1>Materiais</h1>
+    <uc-materials heading="Aulas teóricas">
+      <ol>
+        <li><time datetime="2025-09-15">15 set</time> Introdução e primeiros programas
+          <a href="#" data-type="slides">Diapositivos</a> · <a href="https://colab.research.google.com/">Notebook</a></li>
+        <li><time datetime="2025-10-06">6 out</time> Listas e fatias
+          <a href="#" data-type="pdf">PDF</a> · <a href="https://github.com/">Exemplos</a></li>
+        <li><time datetime="2025-10-20">20 out</time> Complexidade
+          <a href="#" data-type="pdf">PDF</a> · <a href="https://www.youtube.com/">Aula gravada</a></li>
+        <li>Revisões para o teste</li>
+        <li><time datetime="2025-11-10">10 nov</time> Ordenação
+          <a href="#" data-type="pdf">PDF</a> · <a href="#" data-type="archive">Código</a></li>
+        <li><time datetime="2025-11-24">24 nov</time> Dicionários
+          <a href="#" data-type="pdf">PDF</a> · <a href="#" data-type="code">Exemplo</a></li>
+      </ol>
+    </uc-materials>
+    <section class="uc-section" aria-labelledby="recursos">
+      <h2 id="recursos">Outros recursos</h2>
+      <ul class="uc-links uc-links--grid">
+        <li><a href="https://docs.python.org/pt-br/3/tutorial/">Tutorial de Python</a><span>Documentação oficial</span></li>
+        <li><a href="https://pythontutor.com/">Python Tutor</a><span>Ver a execução passo a passo</span></li>
+        <li><a href="https://cses.fi/problemset/">CSES Problem Set</a><span>Problemas para treinar</span></li>
+        <li><a href="https://example.org/pautas" data-auth="SIGARRA">Pautas</a><span>Notas oficiais</span></li>
+      </ul>
+    </section>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>

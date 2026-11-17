@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padrão: sumários · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page>
+    <h1>Sumários</h1>
+    <uc-summaries search>
+      <ol start="13">
+        <li><time datetime="2025-10-20">20 out</time> <strong>Listas e fatias</strong>
+          <p>Índices, fatias e cópia de listas. Listas de listas.</p></li>
+        <li><time datetime="2025-10-22">22 out</time> <strong>Complexidade e notação O</strong>
+          <p>Contar operações; melhor e pior caso; crescimento das funções.</p></li>
+        <li><time datetime="2025-11-03">3 nov</time> <strong>Recursão</strong>
+          <p>Caso base e chamada recursiva. A pilha de chamadas.</p></li>
+        <li><time datetime="2025-11-05">5 nov</time> <strong>Recursão em listas</strong>
+          <p>Soma, máximo e inversão de uma lista, de forma recursiva.</p></li>
+        <li><time datetime="2025-11-10">10 nov</time> <strong>Ordenação por seleção e por inserção</strong>
+          <p>Invariantes de ciclo e número de comparações.</p></li>
+        <li><time datetime="2025-11-12">12 nov</time> <strong>Pesquisa binária</strong>
+          <p>Pesquisa num vetor ordenado; análise da complexidade.</p></li>
+        <li><time datetime="2025-11-17">17 nov</time> <strong>Ordenação por fusão</strong>
+          <p>Dividir para conquistar; a função de fusão.</p></li>
+        <li><time datetime="2025-11-19">19 nov</time> <strong>Quicksort</strong>
+          <p>Escolha do pivô, partição e caso médio.</p></li>
+        <li><time datetime="2025-11-24">24 nov</time> <strong>Dicionários</strong>
+          <p>Tabelas de dispersão: chaves, colisões e custo médio.</p></li>
+        <li><time datetime="2025-11-26">26 nov</time> <strong>Conjuntos e dicionários na prática</strong>
+          <p>Contar palavras de um texto; agrupar por chave.</p></li>
+        <li><time datetime="2025-12-01">1 dez</time> <strong>Árvores binárias</strong>
+          <p>Nós, altura e percursos em profundidade.</p></li>
+        <li><time datetime="2025-12-03">3 dez</time> <strong>Revisões para o teste</strong></li>
+      </ol>
+    </uc-summaries>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>

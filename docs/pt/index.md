@@ -93,11 +93,13 @@ Normalmente as páginas ficam dentro de um [`<uc-page>`](https://uc-design-kit.m
 | Datas e avisos | [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md), [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md), [`<uc-date>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-date.md) |
 | Calendário | [`<uc-weeks>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md), [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md), [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md), [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md) |
 | Pessoas | [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md) |
+| Horário e avaliação | [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md), [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md) (fórmula, pesos e simulador da nota), [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md) (data, turnos e sala de uma prova) |
+| Aulas e materiais | [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md), [`<uc-materials>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md), [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md) (séries de problemas com filtros e "Resolvido") |
 | Guiões e código | [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md), [`<uc-exercise>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md), [`<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) (realce, edição e execução com testes), [`<uc-question>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-question.md) |
 
 A [visão geral dos componentes](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md) mostra-os todos com uma miniatura e uma linha sobre cada um.
 
-Além dos componentes há blocos só de CSS (cartões, tabelas, botões, chamadas, grelhas) e tokens de design (cores, letra, espaços) que se mudam num `theme.css`.
+Além dos componentes há blocos só de CSS (cartões, tabelas ordenáveis, listas de ligações em colunas, botões, chamadas, grelhas) e tokens de design (cores, letra, espaços) que se mudam num `theme.css`. Um `editions.js` partilhado liga os sites dos vários anos da mesma cadeira.
 
 ## Quando não usar
 

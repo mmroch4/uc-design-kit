@@ -40,6 +40,48 @@
     return (id && UC.course.pages.find((page) => page.id === id)) || detectCurrentPage();
   };
 
+  /**
+   * Editions (docs/api.md 2.10): window.UC_EDITIONS from the file named by
+   * UC_COURSE.editions, loaded once with an injected <script> (works from
+   * file://). Links are resolved against that file. Calls `done` when ready.
+   */
+  let editions = null;
+  const waiting = [];
+  function loadEditions(done) {
+    const file = UC.course.editions;
+    if (!file) return;
+    if (editions) return done();
+    waiting.push(done);
+    if (waiting.length > 1) return;
+    const src = UC.internal.resolvePageHref(file);
+    const ready = () => {
+      const list = window.UC_EDITIONS;
+      if (!Array.isArray(list)) return console.warn(`[uc-kit] ${file} does not define window.UC_EDITIONS`);
+      // Relative hrefs are relative to editions.js: prefix them with its folder.
+      const folder = src.replace(/[^/]*$/, "");
+      const resolve = (href) => (/^([a-z][a-z0-9+.-]*:|\/|#)/i.test(href) ? href : folder + href);
+      editions = list.filter((entry) => entry && entry.label && entry.href).map((entry) => ({ label: String(entry.label), href: resolve(String(entry.href)) }));
+      waiting.splice(0).forEach((callback) => callback());
+    };
+    if (window.UC_EDITIONS) return ready();
+    const script = h("script", { src });
+    script.addEventListener("load", ready);
+    script.addEventListener("error", () => console.warn(`[uc-kit] could not load the editions file ${src}`));
+    document.head.append(script);
+  }
+
+  /**
+   * The date of `updated="auto"`: document.lastModified, but only when the
+   * server sent Last-Modified (browsers report "now" otherwise, so a value
+   * within 5 s of the page load counts as missing) or the page is a file.
+   */
+  function lastModified() {
+    const modified = new Date(document.lastModified);
+    if (Number.isNaN(modified.getTime())) return null;
+    const loaded = (performance && performance.timeOrigin) || Date.now();
+    return window.location.protocol === "file:" || loaded - modified.getTime() > 5000 ? UC.internal.toISO(modified) : null;
+  }
+
   class UCPage extends UC.Element {
     setup() {
       this.classList.add("uc-page");
@@ -49,12 +91,23 @@
       this.navOpen = false;
       this.mediaQuery = window.matchMedia ? window.matchMedia(MOBILE_QUERY) : null;
       this.onKeydown = (event) => {
-        if (event.key === "Escape" && this.navOpen) {
+        if (event.key === "Escape" && this.editionsOpen) {
+          this.setEditionsOpen(false);
+          this.querySelector(".uc-page__editions > button")?.focus();
+        } else if (event.key === "Escape" && this.navOpen) {
           this.setNavOpen(false);
           this.querySelector(".uc-nav-toggle")?.focus();
         }
       };
       this.addEventListener("keydown", this.onKeydown);
+      // The editions menu closes when focus or a click leaves it.
+      const closeOutside = (event) => {
+        if (this.editionsOpen && !(event.target instanceof Node && event.target.closest && event.target.closest(".uc-page__editions"))) this.setEditionsOpen(false);
+      };
+      document.addEventListener("click", closeOutside);
+      this.addEventListener("focusin", closeOutside);
+      // After the first render, so the header exists when the list arrives.
+      queueMicrotask(() => loadEditions(() => this.renderEditions()));
     }
 
     render() {
@@ -77,6 +130,7 @@
         this.renderFooter(),
       );
       this.setNavOpen(this.navOpen);
+      if (editions) this.renderEditions();
       if (restoreFocus) this.querySelector(".uc-lang-switch__button")?.focus();
     }
 
@@ -223,16 +277,70 @@
             { class: "uc-footer__text" },
             [this.text(course.title), course.institution ? this.text(course.institution.name) : null].filter(Boolean).join(" · "),
           );
-      const updated = course.updated
+      const own = this.getAttribute("updated");
+      const date = own === "auto" ? lastModified() : own || course.updated;
+      const updated = date
         ? h(
             "span",
             { class: "uc-footer__updated" },
             UC.internal.tNodes("footer.updated", {
-              date: h("time", { datetime: course.updated }, UC.formatDate(course.updated, "medium")),
+              date: h("time", { datetime: date }, UC.formatDate(date, "medium")),
             }),
           )
         : null;
       return h("footer", { class: "uc-footer" }, h("div", { class: "uc-footer__inner" }, left, updated));
+    }
+
+    /**
+     * "Other years" next to the edition in the header, and on an older
+     * edition a notice at the top of <main> linking to the current one.
+     */
+    renderEditions() {
+      this.querySelectorAll(".uc-page__editions, .uc-page__edition-notice").forEach((node) => node.remove());
+      if (!this.querySelector(".uc-brand")) return;
+      this.editionsOpen = false;
+      const edition = this.course.edition;
+      const others = editions.filter((entry) => entry.label !== edition);
+      const brand = this.querySelector(".uc-brand");
+      if (others.length && brand) {
+        const menuId = uid("uc-editions");
+        brand.after(
+          h(
+            "div",
+            { class: "uc-page__editions" },
+            h(
+              "button",
+              { type: "button", class: "uc-page__editions-button", "aria-expanded": "false", "aria-controls": menuId, onClick: () => this.setEditionsOpen(!this.editionsOpen) },
+              this.t("editions.other"),
+              icon("chevronDown"),
+            ),
+            h(
+              "ul",
+              { class: "uc-page__editions-menu", id: menuId, hidden: true },
+              others.map((entry) => h("li", {}, h("a", { href: entry.href }, entry.label))),
+            ),
+          ),
+        );
+      }
+      const current = editions[0];
+      if (current && edition && current.label !== edition && editions.some((entry) => entry.label === edition)) {
+        this.main.prepend(
+          h(
+            "p",
+            { class: "uc-callout uc-page__edition-notice" },
+            `${this.t("editions.notice", { edition })} `,
+            h("a", { href: current.href }, this.t("editions.current", { edition: current.label })),
+          ),
+        );
+      }
+    }
+
+    setEditionsOpen(open) {
+      const box = this.querySelector(".uc-page__editions");
+      this.editionsOpen = Boolean(box) && open;
+      if (!box) return;
+      box.querySelector("button").setAttribute("aria-expanded", String(this.editionsOpen));
+      box.querySelector("ul").hidden = !this.editionsOpen;
     }
 
     setNavOpen(open) {

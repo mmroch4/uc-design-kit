@@ -37,6 +37,10 @@
  *     aria-pressed and keeps focus, the count is announced, only matching
  *     problems stay; "Resolvido" is 44 px tall, named after the problem and
  *     kept after a reload
+ *   - sortable tables: the header buttons are 44 px tall, Enter sorts,
+ *     flips aria-sort, keeps focus and announces the order
+ *   - "Outros anos" of <uc-page>: Enter opens the list (aria-expanded),
+ *     Escape closes it and gives focus back to the button
  *
  * Accessibility-tree snapshots (Playwright ariaSnapshot) of the blocks' test
  * pages, stored next to them (tests/pages/*.aria.yml), fail the check when a
@@ -91,9 +95,11 @@ const ARIA_SNAPSHOTS = [
   { page: "tests/pages/uc-materials.html", selector: "#main", file: "tests/pages/uc-materials.aria.yml" },
   { page: "tests/pages/uc-problems.html", selector: "#series", file: "tests/pages/uc-problems.aria.yml" },
   { page: "tests/pages/uc-weeks-compact.html", selector: "#compact .uc-weeks__table", file: "tests/pages/uc-weeks-compact.aria.yml" },
+  { page: "tests/pages/extras.html", selector: "#ranking-table", file: "tests/pages/sortable-table.aria.yml" },
+  { page: "tests/pages/editions/2425/index.html", selector: "uc-page", file: "tests/pages/editions.aria.yml" },
 ];
 
-/** Component demos, the EDados example (top level and one lab guide) and the template. */
+/** Component demos, the sortable table demo, the EDados example (top level and one lab guide) and the template. */
 async function findPages() {
   const pages = [];
   const demos = path.join(ROOT, "docs", "demos");
@@ -109,6 +115,8 @@ async function findPages() {
     }
   }
   pages.push("examples/edados-2526/guioes/aula10.html");
+  // The one CSS-block demo with behaviour (sortable headers).
+  pages.push("docs/demos/blocks/table-sortable.html");
   return pages.sort();
 }
 
@@ -378,6 +386,7 @@ async function checkBehaviour(browser, origin, relative) {
   problems.push(...(await checkGradingCalculator(browser, origin, relative)));
   problems.push(...(await checkSummariesSearch(browser, origin, relative)));
   problems.push(...(await checkProblems(browser, origin, relative)));
+  problems.push(...(await checkSortableAndEditions(browser, origin, relative)));
 
   if (relative.includes("uc-page") || relative.startsWith("examples/")) {
     const phone = await open(browser, origin, relative, { viewport: { width: 390, height: 844 } });
@@ -548,6 +557,43 @@ async function checkProblems(browser, origin, relative) {
     await page.waitForTimeout(300);
     const kept = await page.evaluate(() => Array.from(document.querySelectorAll(".uc-problems__solved input")).some((input) => input.checked));
     if (!kept) problems.push("problems: 'Resolvido' was not kept after a reload");
+  }
+  await context.close();
+  return problems;
+}
+
+/** Sortable table headers and the "Outros anos" disclosure, on pages that have them. */
+async function checkSortableAndEditions(browser, origin, relative) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  const sort = await firstVisible(page, ".uc-sort-button");
+  if (sort) {
+    const box = await sort.boundingBox();
+    if (box && box.height < 44) problems.push(`sortable table: a header button is ${Math.round(box.height)}px tall (44px minimum)`);
+    const state = () => sort.evaluate((node) => node.closest("th").getAttribute("aria-sort"));
+    await sort.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(150);
+    const first = await state();
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(150);
+    const second = await state();
+    if (!first || !second || first === second) problems.push(`sortable table: aria-sort went ${first} then ${second}`);
+    if (!(await focusedMatches(page, ".uc-sort-button"))) problems.push("sortable table: the header button lost focus");
+    if (!/Ordenado por|Sorted by/.test(await liveText(page))) problems.push("sortable table: the new order is not announced");
+  }
+  const editions = await firstVisible(page, ".uc-page__editions-button");
+  if (editions) {
+    await editions.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(100);
+    const opened = await editions.getAttribute("aria-expanded");
+    const shown = await page.locator(".uc-page__editions-menu a").first().isVisible();
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(100);
+    const closed = await editions.getAttribute("aria-expanded");
+    if (opened !== "true" || !shown || closed !== "false") problems.push(`editions: aria-expanded went ${opened} then ${closed} (list shown: ${shown})`);
+    if (!(await focusedMatches(page, ".uc-page__editions-button"))) problems.push("editions: Escape did not return focus to the button");
   }
   await context.close();
   return problems;

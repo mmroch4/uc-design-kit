@@ -142,7 +142,8 @@ window.UC_COURSE = {
 | `deadlines` | `Deadline[]` | no | `[]` | See 2.5. |
 | `notices` | `Notice[]` | no | `[]` | See 2.6. |
 | `footer` | `HTMLText` | no | course title + institution | Footer left side. |
-| `updated` | `ISODate` | no | — | "Last updated" in the footer. |
+| `updated` | `ISODate` | no | — | "Last updated" in the footer. One page can show its own date with `<uc-page updated>` (3.1). |
+| `editions` | URL | no | — | Address of the shared editions file, relative to `course.js`, usually `"../editions.js"`. See 2.9. |
 | `today` | `ISODate` | no | the real date | Freezes "today" (demos, screenshots). The query string `?today=YYYY-MM-DD` overrides it. |
 | `runner` | object | no | Codapi + browser | Where `<uc-code run>` executes code. See 7.1. |
 
@@ -283,6 +284,41 @@ platforms: [
 ],
 ```
 
+### 2.9 Editions file (`editions.js`)
+
+One file in the course folder, **above** the year folders, shared by every
+edition. Each year's `course.js` points to it with `editions`:
+
+```
+EDados/
+  editions.js      ← window.UC_EDITIONS
+  2425/course.js   ← editions: "../editions.js"
+  2526/course.js   ← editions: "../editions.js"
+```
+
+```js
+window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },        // first = current edition
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];
+```
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `label` | string | Required. Compared with `edition` of `course.js` to find the edition of the current page. |
+| `href` | URL | Required. Relative to `editions.js`. |
+
+When `editions` is set, the kit loads the file with an injected `<script>`
+(it works from `file://`; a missing file logs one warning). Then `<uc-page>`
+shows an "Outros anos" button next to the brand in the header, with a list of
+the other editions (a disclosure: `aria-expanded`, Esc closes it and returns
+focus), and, on an edition that is not the first of the list, a notice at the
+top of `<main>`: "Esta página é da edição 2024/25. Ver a edição atual
+(2025/26)." Because the file lives outside the year folders, adding a year
+updates the older sites without editing them. Sites without `editions` are
+unchanged.
+
 ## 3. Components
 
 All components are custom elements in the **light DOM**: their content is part
@@ -319,6 +355,12 @@ with JavaScript disabled it is shown at once.
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
 | `layout` | `sidebar` \| `full` | `sidebar` | `full` hides the navigation (single-page sites, guides). |
+| `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
+
+With `editions` in `course.js` (2.9), the header also has "Outros anos" and
+older editions show a notice at the top of `<main>`. Stable classes:
+`uc-page__editions`, `uc-page__editions-button`, `uc-page__editions-menu`,
+`uc-page__edition-notice` (a `uc-callout`).
 
 #### `<uc-hero>`
 
@@ -901,6 +943,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-tag` | Small badge. Variants: `uc-tag--accent`, `uc-tag--warning`, `uc-tag--success`, `uc-tag--muted`. |
 | `uc-table` | Put on a wrapper `<div>` around a `<table>`: horizontal scroll, borders, header style. While the table overflows, the kit makes the wrapper focusable (`tabindex="0"`, `role="region"`, labelled by the `<caption>`) so it can be scrolled with the keyboard. Set `--uc-table-min` (default `560px`) to change the minimum table width. |
 | `uc-links` | A `<ul>` of links with a secondary description in a `<span>`. |
+| `uc-links--grid` | Variant of `uc-links` in columns, for long lists (judges, other courses). Column width from `--uc-links-min` (default `260px`); one column on phones. Group several lists with `<h3>` headings as usual. |
 | `uc-shortcuts` | A `<nav>` or `<ul>` of large link buttons (quick access). |
 | `uc-callout` | Soft grey panel; `uc-callout--warning` for amber. |
 | `uc-checklist` | A `<ul>` with check icons. The kit adds `role="list"` to `uc-links`, `uc-shortcuts` and `uc-checklist` lists, which Safari would otherwise not announce as lists. |
@@ -913,6 +956,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-content` | Wrapper for plain HTML written without kit classes (pasted from an older site or an editor): spacing for headings, paragraphs, lists, tables, `<pre>` and images. `<img class="uc-content__float">` floats right on wide screens. |
 | `<pre data-copy>` | Adds a copy button to the top-right corner of a preformatted block (for example the input and output of a problem's examples). The value names what is copied in the button's accessible label: `data-copy="Input"` reads "Copiar Input"; an empty value reads "Copiar". Works anywhere on the page, not only inside `uc-content`, with the same box (background, padding, rounded corners). |
 | `a[data-auth]` | Link that needs a login. The kit adds a decorative lock icon (`uc-auth-icon`, `aria-hidden="true"`) after the text and a visually hidden "(Requer autenticação)" (`uc-auth-label`); with a value it names the system: `data-auth="SIGARRA"` → "(Requer autenticação: SIGARRA)". Works in page HTML, in `HTMLText` from `course.js` and inside components. Without JavaScript it is a normal link. |
+| `table[data-sortable]` | Inside `.uc-table`. The header cells of the `<thead>` become buttons (`uc-sort-button`, 44 px tall) and the sorted column has `aria-sort`. A cell sorts by its `data-sort` attribute, else its `<time datetime>`, else its text: numbers (decimal comma or dot, optional `%`) and ISO dates numerically, text in the active language with numbers inside compared as numbers ("PL2" before "PL10"); empty cells go last. Rows of the first `<tbody>` move; rows with `data-sort-fixed` (totals) stay last. `data-sort-default="asc"` or `"desc"` on a `<th>` sorts on load; `data-no-sort` on a `<th>` leaves that column out. Each sort is announced ("Ordenado por Pontos, decrescente"). Works in tables written by components too. Without JavaScript the table keeps its written order. |
 | `uc-muted`, `uc-mono`, `uc-small` | Text utilities. |
 | `uc-visually-hidden` | Hidden visually, available to screen readers. |
 
@@ -975,6 +1019,7 @@ fallback, so they can be set on `:root` for the whole site or on one element
 | `--uc-timetable-time-width` | `7.5rem` | Time column of `<uc-timetable view="days">`. |
 | `--uc-grading-bar-height` | `12px` | Height of the proportions bar of `<uc-grading>`. |
 | `--uc-summaries-date-width` | `10rem` | Date column of `<uc-summaries>` on wide screens. |
+| `--uc-links-min` | `260px` | Column width of `uc-links--grid`. |
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the
