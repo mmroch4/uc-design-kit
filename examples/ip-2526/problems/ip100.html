@@ -17,12 +17,12 @@
     </nav>
     <h1>[IP100] Hawkins Threat Simulator</h1>
     <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 20th</span></strong><br/>
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p10" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
 <strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
     </div>
     <div class="uc-content">
-<p class="uc-callout"><strong>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</strong></p>
+<div class="uc-callout uc-callout--warning"><p>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</p></div>
 <p class="c-blue"><strong>(you are expected to read the class instructions, that will help you build a solution with structured programming and incremental development)</strong></p>
 
 <p><img alt="" class="uc-content__float" loading="lazy" src="ip100.png"/>
@@ -32,16 +32,12 @@ Max Mayfield has always loved video games and she’s been thinking about how th
 <div class="uc-table"><table>
 <tr>
 <td><img alt="" loading="lazy" src="ip100_bombs.png"/></td>
-<td>   </td>
 <td><img alt="" loading="lazy" src="ip100_unknown.png"/></td>
-<td>   </td>
 <td><img alt="" loading="lazy" src="ip100_firstmove.png"/></td>
 </tr>
 <tr>
 <td>The (initially secret)<br/>position of the bombs</td>
-<td></td>
 <td>Initial grid (Max doesn't<br/>know where the bombs are)</td>
-<td></td>
 <td>What Max sees<br/>after a first move<br/>on the yellow cell</td>
 </tr>
 </table></div>
@@ -83,21 +79,17 @@ Max Mayfield has always loved video games and she’s been thinking about how th
 <div class="uc-table"><table>
 <tr>
 <td>1 ≤ <em>R,C</em> ≤ 100</td>
-<td>     </td>
 <td>dimensions of the grid</td>
 </tr>
 <tr>
 <td>1 ≤ <em>y</em> ≤ R</td>
-<td>     </td>
 <td>y coordinate (row) of first move</td>
 </tr>
 <tr>
 <td>1 ≤ <em>x</em> ≤ R</td>
-<td>     </td>
 <td>x coordinate (column) of first move</td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <th scope="col">Example Input 1</th>
@@ -134,7 +126,6 @@ B.B....B.
 </td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <th scope="col">Example Input 2</th>
@@ -171,7 +162,6 @@ B.B....B.
 </td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <th scope="col">Example Input 3</th>
@@ -208,7 +198,6 @@ B.B....B.
 </td>
 </tr>
 </table></div>
-<br/>
     </div>
 
     <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html</a>.</p>

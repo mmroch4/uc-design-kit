@@ -12,9 +12,6 @@ the authors. Grades, room and shift allocations, and the other evaluation
 documents (which hold student data or need authentication) were not copied: the
 pages link to the original site.
 
-The xkcd comic on the home page is “Code Quality” by Randall Munroe
-(<https://xkcd.com/1513/>), licensed CC BY-NC 2.5.
-
 ---
 
 O conteúdo de `examples/ip-2526/` é de Pedro Ribeiro e Bernardo Portela (DCC/FCUP),

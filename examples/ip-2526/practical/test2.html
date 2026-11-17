@@ -30,53 +30,58 @@
         <dt>Environment</dt><dd>Linux, with Python available at the command line and the usual editors and IDEs. You have access to documentation (a local copy of the <a href="https://docs.python.org/3/">Python docs</a>) and to a local copy of the lecture notebooks (a static HTML version).</dd>
         <dt>Scoring</dt><dd>Worth 4 points out of 20 (20% of your grade). See the <a href="../assessment.html#grades">calculation formula of the final grade</a>.</dd>
       </dl>
-      <p class="uc-prose">You will have 6 small exercises in Mooshak worth 20% + 20% + 20% + 20% + 10% + 10%. In each exercise there might be partial scoring (e.g. passes some tests, fails on others).</p>
+      <!-- uc-grading: the weights of the exercises of this test; the bar and the table are generated. -->
+      <uc-grading scale="100" heading="How the test is graded" heading-level="3">
+        <ul>
+          <li data-code="E1"><data value="0.2">20%</data> Dictionaries and sets <span><a href="#exercise-1">Goals and training problems</a></span></li>
+          <li data-code="E2"><data value="0.2">20%</data> Exceptions <span><a href="#exercise-2">Goals and training problems</a></span></li>
+          <li data-code="E3"><data value="0.2">20%</data> Advanced strings <span><a href="#exercise-3">Goals and training problems</a></span></li>
+          <li data-code="E4"><data value="0.2">20%</data> Efficiency <span><a href="#exercise-4">Goals and training problems</a></span></li>
+          <li data-code="E5"><data value="0.1">10%</data> Recursion <span><a href="#exercise-5">Goals and training problems</a></span></li>
+          <li data-code="E6"><data value="0.1">10%</data> Structured Programming <span><a href="#exercise-6">Goals and training problems</a></span></li>
+        </ul>
+      </uc-grading>
+      <p class="uc-prose">In each exercise there might be partial scoring (e.g. passes some tests, fails on others).</p>
       <p class="uc-prose">When submitting, you will know the score you got on all tests. Your grade on a problem is the grade of your best submission on that problem (the one with the highest score), and you can submit as many times as you want (with 60 seconds between submissions).</p>
     </section>
 
     <section class="uc-section" aria-labelledby="goals">
       <h2 id="goals">Specific goals for each exercise and training problems</h2>
       <div class="uc-grid" style="--uc-grid-min: 300px">
-        <div class="uc-card test-ex">
-          <p class="test-ex__head"><span class="uc-mono">Exercise 1</span> <strong>20%</strong></p>
-          <h3>Dictionaries and sets</h3>
-          <p class="uc-muted desc">Something at the level of the dictionary main exercises of <a href="class07.html">practical class #07 (dictionaries and sets)</a>, where you will implement a function and will need to used dictionaries and/or sets.</p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip067.html">IP067</a> <a class="uc-tag" href="../problems/ip068.html">IP068</a> <a class="uc-tag" href="../problems/ip069.html">IP069</a> <a class="uc-tag" href="../problems/ip070.html">IP070</a> <a class="uc-tag" href="../problems/ip071.html">IP071</a> <a class="uc-tag" href="../problems/ip072.html">IP072</a> <a class="uc-tag" href="../problems/ip073.html">IP073</a> <a class="uc-tag" href="../problems/ip074.html">IP074</a></p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip075.html">IP075</a> <a class="uc-tag" href="../problems/ip076.html">IP076</a> <a class="uc-tag" href="../problems/ip077.html">IP077</a></p>
+        <div class="uc-card uc-stack" id="exercise-1">
+          <h3>Exercise 1 · Dictionaries and sets</h3>
+          <p class="uc-muted uc-small">Something at the level of the dictionary main exercises of <a href="class07.html">practical class #07 (dictionaries and sets)</a>, where you will implement a function and will need to used dictionaries and/or sets.</p>
+          <p class="uc-small"><span class="uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip067.html">IP067</a> <a class="uc-tag" href="../problems/ip068.html">IP068</a> <a class="uc-tag" href="../problems/ip069.html">IP069</a> <a class="uc-tag" href="../problems/ip070.html">IP070</a> <a class="uc-tag" href="../problems/ip071.html">IP071</a> <a class="uc-tag" href="../problems/ip072.html">IP072</a> <a class="uc-tag" href="../problems/ip073.html">IP073</a> <a class="uc-tag" href="../problems/ip074.html">IP074</a></p>
+          <p class="uc-small"><span class="uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip075.html">IP075</a> <a class="uc-tag" href="../problems/ip076.html">IP076</a> <a class="uc-tag" href="../problems/ip077.html">IP077</a></p>
         </div>
-        <div class="uc-card test-ex">
-          <p class="test-ex__head"><span class="uc-mono">Exercise 2</span> <strong>20%</strong></p>
-          <h3>Exceptions</h3>
-          <p class="uc-muted desc">Something at the level of the main exercises of <a href="class11.html">practical class #11 (exceptions)</a>, where you will implement a function and will need to handle exceptions.</p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip102.html">IP102</a> <a class="uc-tag" href="../problems/ip103.html">IP103</a> <a class="uc-tag" href="../problems/ip104.html">IP104</a> <a class="uc-tag" href="../problems/ip105.html">IP105</a></p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip106.html">IP106</a></p>
+        <div class="uc-card uc-stack" id="exercise-2">
+          <h3>Exercise 2 · Exceptions</h3>
+          <p class="uc-muted uc-small">Something at the level of the main exercises of <a href="class11.html">practical class #11 (exceptions)</a>, where you will implement a function and will need to handle exceptions.</p>
+          <p class="uc-small"><span class="uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip102.html">IP102</a> <a class="uc-tag" href="../problems/ip103.html">IP103</a> <a class="uc-tag" href="../problems/ip104.html">IP104</a> <a class="uc-tag" href="../problems/ip105.html">IP105</a></p>
+          <p class="uc-small"><span class="uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip106.html">IP106</a></p>
         </div>
-        <div class="uc-card test-ex">
-          <p class="test-ex__head"><span class="uc-mono">Exercise 3</span> <strong>20%</strong></p>
-          <h3>Advanced strings</h3>
-          <p class="uc-muted desc">Something at the level of the main exercises of <a href="class08.html">practical class #08 (advanced strings)</a>, writing a function that receives input from the arguments and will need to handle strings.</p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip079.html">IP079</a> <a class="uc-tag" href="../problems/ip080.html">IP080</a> <a class="uc-tag" href="../problems/ip081.html">IP081</a> <a class="uc-tag" href="../problems/ip082.html">IP082</a> <a class="uc-tag" href="../problems/ip083.html">IP083</a></p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip084.html">IP084</a> <a class="uc-tag" href="../problems/ip085.html">IP085</a> <a class="uc-tag" href="../problems/ip086.html">IP086</a> <a class="uc-tag" href="../problems/ip087.html">IP087</a></p>
+        <div class="uc-card uc-stack" id="exercise-3">
+          <h3>Exercise 3 · Advanced strings</h3>
+          <p class="uc-muted uc-small">Something at the level of the main exercises of <a href="class08.html">practical class #08 (advanced strings)</a>, writing a function that receives input from the arguments and will need to handle strings.</p>
+          <p class="uc-small"><span class="uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip079.html">IP079</a> <a class="uc-tag" href="../problems/ip080.html">IP080</a> <a class="uc-tag" href="../problems/ip081.html">IP081</a> <a class="uc-tag" href="../problems/ip082.html">IP082</a> <a class="uc-tag" href="../problems/ip083.html">IP083</a></p>
+          <p class="uc-small"><span class="uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip084.html">IP084</a> <a class="uc-tag" href="../problems/ip085.html">IP085</a> <a class="uc-tag" href="../problems/ip086.html">IP086</a> <a class="uc-tag" href="../problems/ip087.html">IP087</a></p>
         </div>
-        <div class="uc-card test-ex">
-          <p class="test-ex__head"><span class="uc-mono">Exercise 4</span> <strong>20%</strong></p>
-          <h3>Efficiency</h3>
-          <p class="uc-muted desc">Something at the level of the set main exercises of <a href="class06.html">practical class #06 (correction and efficiency)</a>, where you will implement a function. To obtain full score your code will need to be efficient and you should be aware of the algorithmic techniques discussed in practical class #06 (namely sliding windows and prefix sums).</p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip059.html">IP059</a> <a class="uc-tag" href="../problems/ip060.html">IP060</a> <a class="uc-tag" href="../problems/ip061.html">IP061</a> <a class="uc-tag" href="../problems/ip062.html">IP062</a></p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip063.html">IP063</a> <a class="uc-tag" href="../problems/ip064.html">IP064</a></p>
+        <div class="uc-card uc-stack" id="exercise-4">
+          <h3>Exercise 4 · Efficiency</h3>
+          <p class="uc-muted uc-small">Something at the level of the set main exercises of <a href="class06.html">practical class #06 (correction and efficiency)</a>, where you will implement a function. To obtain full score your code will need to be efficient and you should be aware of the algorithmic techniques discussed in practical class #06 (namely sliding windows and prefix sums).</p>
+          <p class="uc-small"><span class="uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip059.html">IP059</a> <a class="uc-tag" href="../problems/ip060.html">IP060</a> <a class="uc-tag" href="../problems/ip061.html">IP061</a> <a class="uc-tag" href="../problems/ip062.html">IP062</a></p>
+          <p class="uc-small"><span class="uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip063.html">IP063</a> <a class="uc-tag" href="../problems/ip064.html">IP064</a></p>
         </div>
-        <div class="uc-card test-ex">
-          <p class="test-ex__head"><span class="uc-mono">Exercise 5</span> <strong>10%</strong></p>
-          <h3>Recursion</h3>
-          <p class="uc-muted desc">Something at the level of the main exercises of <a href="class09.html">practical class #09 (recursion)</a>, writing a function that receives input from the arguments. The problem will be suited to a recursive solution (but if you can make it withouth recursion, we will also accept it). You will not be able to use the module <em>itertools</em>.</p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip089.html">IP089</a> <a class="uc-tag" href="../problems/ip090.html">IP090</a> <a class="uc-tag" href="../problems/ip091.html">IP091</a> <a class="uc-tag" href="../problems/ip092.html">IP092</a></p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip093.html">IP093</a> <a class="uc-tag" href="../problems/ip094.html">IP094</a> <a class="uc-tag" href="../problems/ip095.html">IP095</a></p>
+        <div class="uc-card uc-stack" id="exercise-5">
+          <h3>Exercise 5 · Recursion</h3>
+          <p class="uc-muted uc-small">Something at the level of the main exercises of <a href="class09.html">practical class #09 (recursion)</a>, writing a function that receives input from the arguments. The problem will be suited to a recursive solution (but if you can make it withouth recursion, we will also accept it). You will not be able to use the module <em>itertools</em>.</p>
+          <p class="uc-small"><span class="uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip089.html">IP089</a> <a class="uc-tag" href="../problems/ip090.html">IP090</a> <a class="uc-tag" href="../problems/ip091.html">IP091</a> <a class="uc-tag" href="../problems/ip092.html">IP092</a></p>
+          <p class="uc-small"><span class="uc-muted">And also:</span> <a class="uc-tag" href="../problems/ip093.html">IP093</a> <a class="uc-tag" href="../problems/ip094.html">IP094</a> <a class="uc-tag" href="../problems/ip095.html">IP095</a></p>
         </div>
-        <div class="uc-card test-ex">
-          <p class="test-ex__head"><span class="uc-mono">Exercise 6</span> <strong>10%</strong></p>
-          <h3>Structured Programming</h3>
-          <p class="uc-muted desc">Something at the level of the the main or extra exercises of <a href="class10.html">practical class #10 (structured programming and incremental development)</a>, writing a program that reads from the standard input and writes to the standard output. The problem will have several subtasks and will be suited a decomposition of the code into smaller functions.</p>
-          <p class="test-ex__train"><span class="uc-small uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip097.html">IP097</a> <a class="uc-tag" href="../problems/ip098.html">IP098</a> <a class="uc-tag" href="../problems/ip099.html">IP099</a> <a class="uc-tag" href="../problems/ip100.html">IP100</a></p>
+        <div class="uc-card uc-stack" id="exercise-6">
+          <h3>Exercise 6 · Structured Programming</h3>
+          <p class="uc-muted uc-small">Something at the level of the the main or extra exercises of <a href="class10.html">practical class #10 (structured programming and incremental development)</a>, writing a program that reads from the standard input and writes to the standard output. The problem will have several subtasks and will be suited a decomposition of the code into smaller functions.</p>
+          <p class="uc-small"><span class="uc-muted">Training problems:</span> <a class="uc-tag" href="../problems/ip097.html">IP097</a> <a class="uc-tag" href="../problems/ip098.html">IP098</a> <a class="uc-tag" href="../problems/ip099.html">IP099</a> <a class="uc-tag" href="../problems/ip100.html">IP100</a></p>
         </div>
       </div>
     </section>

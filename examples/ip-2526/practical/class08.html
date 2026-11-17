@@ -23,33 +23,28 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip079.html">[IP079] Ancient Texts</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip080.html">[IP080] Keyword Occurrences</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip081.html">[IP081] The Art of Storytelling</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip082.html">[IP082] Secret Message</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip083.html">[IP083] Mixed Up Columns</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip084.html">[IP084] Intercepted Messages</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip085.html">[IP085] A Girl has no Name</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip086.html">[IP086] Night's Watch</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip087.html">[IP087] Three-Eyed Raven</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip088.html">[IP088] Dracarys!</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p08" format="long"></uc-date> (December 6th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p08">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip079.html">Ancient Texts</a> <code>IP079</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip080.html">Keyword Occurrences</a> <code>IP080</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip081.html">The Art of Storytelling</a> <code>IP081</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip082.html">Secret Message</a> <code>IP082</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip083.html">Mixed Up Columns</a> <code>IP083</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip084.html">Intercepted Messages</a> <code>IP084</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip085.html">A Girl has no Name</a> <code>IP085</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip086.html">Night's Watch</a> <code>IP086</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip087.html">Three-Eyed Raven</a> <code>IP087</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip088.html">Dracarys!</a> <code>IP088</code> <data value="20">20%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore function definition and function calling</li>
           <li>Understand the strings and how to create them</li>
           <li>Know how to go from a character to an integer code and vice-versa</li>
@@ -57,8 +52,8 @@
           <li>Know how to use a multitude of string methods</li>
           <li>Know how to use string formatting</li>
           <li>Gain experience with some algorithmic patterns</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lecture <a href="../materials.html#lectures">T15: More (on) Strings</a>.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lecture <a href="../materials.html#lectures">T15: More (on) Strings</a>.</p></div>
       </section>
       <div class="uc-prose">
 <p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Game_of_Thrones">Game of Thrones</a>.</p>

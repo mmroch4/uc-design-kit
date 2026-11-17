@@ -17,12 +17,12 @@
     </nav>
     <h1>[IP099] Messages from the Upside Down</h1>
     <div class="uc-callout uc-small problem-context">
-<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 20th</span></strong><br/>
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong>submit until 23:59 of <uc-date deadline="p10" format="long"></uc-date></strong><br/>
 <em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
 <strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
     </div>
     <div class="uc-content">
-<p class="uc-callout"><strong>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</strong></p>
+<div class="uc-callout uc-callout--warning"><p>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</p></div>
 <p class="c-blue"><strong>(you are expected to read the class instructions, that will help you build a solution with structured programming and incremental development)</strong></p>
 
 <p><img alt="" class="uc-content__float" loading="lazy" src="ip099.png"/>
@@ -41,7 +41,7 @@
 <li><code>W<sub>i</sub>: NOT FOUND</code> if the word <em>W<sub>i</sub></em> does not appear in the grid.</li>
 <li><code>W<sub>i</sub>: X Y DIR</code> if the word <em>W<sub>i</sub></em> appears, starting on cell <em>(X,Y)</em> and in direction DIR, where DIR is one of the eight possible directions: N, S, E, W, NE, NW, SE or SW (as depicted on the compass rose below).</li>
 </ul>
-<p><img alt="" class="meme-img" loading="lazy" src="ip099_dirs.png"/></p>
+<p><img alt="" loading="lazy" src="ip099_dirs.png"/></p>
 <p>After the list of words, you should output the cleaned version of the grid as explained before (see the example output for clarification).</p>
 <p>The same letter might be used by different words, but it is guaranteed that a word appears at most once on the grid.</p>
 <h2>Constraints</h2>
@@ -49,21 +49,17 @@
 <div class="uc-table"><table>
 <tr>
 <td>0 ≤ <em>R,C</em> ≤ 50</td>
-<td>     </td>
 <td>dimensions of the grid</td>
 </tr>
 <tr>
 <td>1 ≤ <em>N</em> ≤ 50</td>
-<td>     </td>
 <td>number of words</td>
 </tr>
 <tr>
 <td>1 ≤ <em>|W<sub>i</sub>|</em> ≤ 50</td>
-<td>     </td>
 <td>size of each word</td>
 </tr>
 </table></div>
-<br/>
 <div class="uc-table"><table>
 <tr>
 <th scope="col">Example Input</th>
@@ -104,7 +100,6 @@ N......
 </td>
 </tr>
 </table></div>
-<br/>
     </div>
 
     <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip099.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip099.html</a>.</p>

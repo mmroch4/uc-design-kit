@@ -24,36 +24,31 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip001.html">[IP001] Hello there.</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip002.html">[IP002] Bond, James Bond!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip003.html">[IP003] Check Please</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="../problems/ip004.html">[IP004] Circle Math</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="../problems/ip005.html">[IP005] Time Goes By</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip006.html">[IP006] Fast and Furious</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="../problems/ip007.html">[IP007] Microwave Oven</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p01" format="long"></uc-date> (October 11th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p01">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip001.html">Hello there.</a> <code>IP001</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip002.html">Bond, James Bond!</a> <code>IP002</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip003.html">Check Please</a> <code>IP003</code> <data value="30">30%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip004.html">Circle Math</a> <code>IP004</code> <data value="30">30%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip005.html">Time Goes By</a> <code>IP005</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip006.html">Fast and Furious</a> <code>IP006</code> <data value="20">20%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip007.html">Microwave Oven</a> <code>IP007</code> <data value="30">30%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore the IDLE IDE and the Python interpreter for your first Python programs</li>
           <li>Manipulate simple data and algebraic expressions</li>
           <li>Handle Input and Output</li>
           <li>Debug simple programs</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise the lecture <a href="../materials.html#lectures">T02: The basics</a>.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise the lecture <a href="../materials.html#lectures">T02: The basics</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="exercises">
         <h2 id="exercises">Exercises</h2>

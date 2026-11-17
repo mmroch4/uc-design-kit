@@ -4,30 +4,19 @@
  * Each block says which page uses it.
  */
 
-/* index.html */
-.quick-classes { display: flex; flex-wrap: wrap; gap: var(--uc-space-2) var(--uc-space-3); margin: 0; font-family: var(--uc-font-mono); }
-
-/* assessment.html */
-.desc { font-size: var(--uc-font-size-body-sm); }
-
 /* about.html: syllabus as a numbered list 01, 02, … */
 .program { list-style: none; margin: 0; padding: 0; max-width: 760px; }
 .program > li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--uc-space-4); margin: 0; padding: var(--uc-space-3) 0; border-top: 1px solid var(--uc-color-border); }
 .program > li:first-child { border-top: 0; }
 .program__n { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
 .program p { margin: 0; color: var(--uc-color-text-secondary); }
-.tags { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); list-style: none; margin: 0; padding: 0; }
-.tags > li { margin: 0; }
 
 /* materials.html */
 .book { --uc-card-padding: var(--uc-space-5); display: flex; flex-direction: column; gap: 6px; }
 .book__title { font-weight: 600; }
 
-/* practical/class*.html: problem lists with weight and type */
+/* practical/class*.html: the line above the title (until uc-guide shows the week's dates) */
 .class-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3); margin: 0; font-size: var(--uc-font-size-sm); }
-.problems { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--uc-space-2); }
-.problems > li { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--uc-space-2) var(--uc-space-3); margin: 0; }
-.problems .uc-tag { font-family: var(--uc-font-mono); }
 
 /* problems/, practical/, exam.html: pages migrated from the original site */
 .crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: var(--uc-font-size-md); color: var(--uc-color-text-muted); }
@@ -35,36 +24,21 @@
 .crumbs li + li::before { content: "/"; margin-right: 6px; color: var(--uc-color-text-subtle); }
 .crumbs a { color: var(--uc-color-text-muted); text-decoration: none; }
 .crumbs a:hover { color: var(--uc-color-accent); text-decoration: underline; }
-.problem-list { columns: 2 300px; column-gap: var(--uc-space-8); margin: 0; padding: 0; list-style: none; }
-.problem-list > li { break-inside: avoid; margin: 0 0 var(--uc-space-2); }
-.problem-list .uc-mono { color: var(--uc-color-text-muted); margin-right: var(--uc-space-2); }
 .source-note { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
 
-/* practical/test1.html, practical/test2.html: one card per test exercise */
-.test-ex { display: flex; flex-direction: column; gap: var(--uc-space-2); }
-.test-ex__head { display: flex; justify-content: space-between; margin: 0; color: var(--uc-color-accent); }
-.test-ex h3 { font-size: 1rem; margin: 0; }
-.test-ex__train { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0; }
-.test-ex__train a.uc-tag { font-family: var(--uc-font-mono); text-decoration: none; }
+/* practical/test1.html, practical/test2.html: rules of the test */
 .test-rules { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--uc-space-2) var(--uc-space-6); margin: 0; max-width: 760px; }
 .test-rules dt { font-weight: 600; }
 .test-rules dd { margin: 0; color: var(--uc-color-text-secondary); }
 @media (max-width: 560px) { .test-rules { grid-template-columns: 1fr; } .test-rules dd { margin-bottom: var(--uc-space-2); } }
 
-/* index.html: the xkcd comic */
-.xkcd { margin: 0; display: flex; flex-direction: column; align-items: flex-end; gap: var(--uc-space-2); }
-.xkcd img { max-width: 100%; height: auto; }
-
 /* problems/ and practical/: colours of the original statements, with enough contrast */
 .c-red { color: #B42318; }
 .c-green { color: #1E6B34; }
 .c-blue { color: #1F4FB4; }
-.c-magenta { color: #8B008B; }
 .b { font-weight: 600; }
 .hl-ok { background: #DDFFDD; }
 .hl-bad { background: #FFDDDD; }
-.meme-img { max-height: 400px; width: auto; }
 .problem-context p { margin: 0; }
-code.function { background: var(--uc-color-accent-soft); }
 /* problems/: long MathJax formulas scroll instead of widening the page on a phone */
 .uc-content mjx-container[display="true"] { max-width: 100%; overflow-x: auto; overflow-y: hidden; }

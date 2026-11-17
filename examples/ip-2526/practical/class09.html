@@ -26,38 +26,33 @@
       <section class="uc-section" aria-labelledby="submission">
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
-        <ul class="problems">
-          <li><a href="../problems/ip089.html">[IP089] Dataset Confusion</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip090.html">[IP090] Binary Communication</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip091.html">[IP091] Planetary Weekends</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip092.html">[IP092] Intergalatic Shopping</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
-          <li><a href="../problems/ip093.html">[IP093] Delivery Route</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="../problems/ip094.html">[IP094] Eccentric Numbers</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="../problems/ip095.html">[IP095] Dinner Trouble</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="../problems/ip096.html">[IP096] Chess Puzzle</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
-        </ul>
-        <p><strong>Deadline for submission:</strong> <uc-date deadline="p09" format="long"></uc-date> (December 13th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
-        <div class="uc-callout">
-          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
-          <ul class="uc-bullets">
-            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
-            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
-            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
-            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
-          </ul>
-        </div>
+        <uc-problems track>
+          <section data-deadline="p09">
+            <ul>
+              <li data-judge="mooshak"><a href="../problems/ip089.html">Dataset Confusion</a> <code>IP089</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip090.html">Binary Communication</a> <code>IP090</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip091.html">Planetary Weekends</a> <code>IP091</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak"><a href="../problems/ip092.html">Intergalatic Shopping</a> <code>IP092</code> <data value="25">25%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip093.html">Delivery Route</a> <code>IP093</code> <data value="30">30%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip094.html">Eccentric Numbers</a> <code>IP094</code> <data value="30">30%</data></li>
+              <li data-judge="mooshak" data-type="extra"><a href="../problems/ip095.html">Dinner Trouble</a> <code>IP095</code> <data value="30">30%</data></li>
+              <li data-judge="mooshak" data-type="challenge"><a href="../problems/ip096.html">Chess Puzzle</a> <code>IP096</code> <data value="30">30%</data></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <div class="uc-callout"><p>Submit on <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>. Any direct help from colleagues or LLMs must be acknowledged in the comments of your code. How these submissions count towards your grade: <a href="../assessment.html#exercises">exercises during classes</a>.</p></div>
       </section>
       <section class="uc-section" aria-labelledby="skills">
         <h2 id="skills">Skills</h2>
         <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
-        <ol>
+        <ul class="uc-checklist">
           <li>Explore function definition and function calling</li>
           <li>Understand the the concept of recursion and of divide-and-conquer</li>
           <li>Have an idea on how to reduce a problem to smaller instances of the same problem in order to solve it with recursion</li>
           <li>Know how to design simple recursive functions and understand the usage of a base case</li>
           <li>Have the experience of seing multiple examples of recursive functions</li>
-        </ol>
-        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+        </ul>
+        <div class="uc-callout"><p>If you feel stuck, go back and revise lectures.</p></div>
       </section>
       <div class="uc-prose">
 <p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Futurama">Futurama</a>.</p>
