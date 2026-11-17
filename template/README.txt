@@ -27,7 +27,8 @@ Ficheiros
   semanas.html    calendário semana a semana
   avaliacao.html  regras e datas de avaliação
   sobre.html      objetivos, programa e equipa
-  uc-site.py      verifica o site (python3 uc-site.py; precisa de Python 3.8+)
+  uc-site.py      verifica o site e, com search: true no course.js, gera o
+                  índice da pesquisa (python3 uc-site.py; precisa de Python 3.8+)
   AGENTS.md       instruções para assistentes de IA (Claude Code, Codex…)
 
 Migrar um site antigo com um assistente de IA:

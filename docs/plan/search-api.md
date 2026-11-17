@@ -14,8 +14,8 @@ change `docs/api.md` or the kit: each phase copies its sections from here into
   (section 13) and in its handoff note, so later phases see it.
 - Everything is **additive**: a v1.0/v1.1 site without `search` in
   `course.js` looks and behaves exactly as before and makes **no new request**.
-- Measurements and the prototype behind them: section 12 and
-  [`search-prototype.py`](search-prototype.py) (throwaway, deleted in S3).
+- Measurements: section 12 (the S0 prototype behind them was deleted in S3;
+  `template/uc-site.py` now implements sections 4 to 6).
 
 Contents:
 
@@ -32,6 +32,8 @@ Contents:
 11. [Size, tests and phases](#11-size-tests-and-phases)
 12. [Measurements (S0)](#12-measurements-s0)
 13. [Decisions taken in phase S0](#13-decisions-taken-in-phase-s0)
+14. [Decisions taken in phase S2](#14-decisions-taken-in-phase-s2)
+15. [Decisions taken in phase S3](#15-decisions-taken-in-phase-s3)
 
 ---
 
@@ -469,7 +471,7 @@ snapshots and keyboard tests. Targets 44 px; `<mark>` contrast checked.
 
 | Phase | Builds | Main files | Starts after |
 | --- | --- | --- | --- |
-| S0 | This contract, measurements, prototype | `docs/plan/search-api.md`, `search-phase-0-handoff.md`, `search-prototype.py` | — |
+| S0 | This contract, measurements, prototype | `docs/plan/search-api.md`, `search-phase-0-handoff.md`, `search-prototype.py` (deleted in S3) | — |
 | S2 | `uc-site.py`: `course.js` reader, checks, commands, output; tests; `template/AGENTS.md`, `template/README.txt`, first version of `docs/pt/manter.html`, `course-js.html` values-only rule | `template/uc-site.py`, `tests/site-script/` | S0 |
 | S3 | Extractor and index writer; `tests/search/slugs.json`; examples' indexes from `build.mjs`; `estrutura.html`; `manter.html` completed; delete the prototype | `template/uc-site.py`, `scripts/build.mjs` (only the call) | S2 |
 | S1 | `core/anchors.js`, `core/search-loader.js` (detection, button, shortcuts, `UC.search`), `search` in `config.js`, `uc-guide.js` uses anchors, `uc-search.js` budget | `kit/src/core/*`, `uc-page.js`, `build.mjs`, `manifest.json` | blocks phase 5 and S3 |
@@ -575,3 +577,60 @@ section 3 as follows.
 10. The first run found one real error: `examples/ip-2526/course.js` linked
     the second practical test to `practical/test2.html`, which was never
     migrated. It now points to the original site, as `MIGRACAO.md` says.
+
+## 15. Decisions taken in phase S3
+
+Phase S3 wrote the extractor and the index writer in `template/uc-site.py`
+(`PageIndexer`, `page_entries`, `build_index`, `index_source`,
+`write_index`) and refined sections 4 to 6 as follows.
+
+1. **Path order** is the sorted list of site paths (`aulas/c.html` before
+   `index.html`), not the folder walk order.
+2. **Item sections end with their element.** `<uc-week>`, `<uc-exercise>`,
+   `<uc-question>`, `<li id>` and `<article id>` hold the text inside them;
+   text after the element goes back to the section it interrupted. An
+   `<h2>`/`<h3>` inside an item starts its own section as usual.
+3. **Item titles.** `title` / `title-<lang>` on weeks, exercises and
+   questions are the section title (and, like any `lang` text, give a
+   bilingual page one entry per language). For `<li id>` and `<article id>`
+   the title is the text of the first `<h2>`–`<h6>` or `<a>` inside, which then
+   stays out of the excerpt.
+4. **Language text** follows `core/language.js` exactly: only elements inside
+   `<body>` (the `<html lang>` of every page is not language text), `lang`
+   equal to a site language or starting with it plus `-` (`en-GB`), and not
+   elements with `data-uc-keep-lang`.
+5. **Headings outside `<uc-page>`** (old pages copied as they were) get no
+   automatic id, because the kit does not run there: they are sections with
+   `i: ""`, so the result links to the page.
+6. **Page title fallback** (no `<h1>`, e.g. `<uc-hero>` pages): the
+   `<title>` up to the first ` · `, the same for every language. On PI the
+   English home entry is titled "Início". S4 may label results by `g` with the
+   kit's page names instead.
+7. **Accents** are removed as in JavaScript: NFD, then U+0300–U+036F only
+   (not every Unicode combining mark), so `slugify` matches `uc-guide.js`
+   byte for byte. Words with a digit are kept at any length (`1`, `h2`), as in
+   the docs index.
+8. **Build tools.** `index --stdout` prints the index instead of writing it
+   (messages go to stderr). `SOURCE_DATE_EPOCH` fixes `generated`.
+   `scripts/example-indexes.mjs` (called by `build.mjs`) runs the script on
+   every example whose `course.js` has `search` and compares the output
+   without `generated`, so an unchanged index is never rewritten and
+   `build:check` fails only when the pages changed. No example has `search`
+   yet (S5 turns it on); `python3` is only needed then.
+9. **Failures.** An index path outside the site folder is refused, and a
+   write that fails (permissions, disk) is printed even with `--quiet` and
+   gives exit status `1`. The size warning above 500 KB is a line after the
+   summary, not a problem in the report.
+10. **Shared cases:** `tests/search/slugs.json` (contract section 6 plus
+    weeks, ignored regions, templates, region languages) and
+    `tests/search/words.json` (`stopWords` and `cases` for section 4.5). The
+    Python tests run both; S1 (slugs) and S4 (words) run them in the kit.
+
+Measurements on `main` after S3 (the same machine as section 12):
+
+| Example | HTML files | Entries | Sections | Index |
+| --- | --- | --- | --- | --- |
+| `edados-2526` | 116 | 116 | 685 | 290.1 KB |
+| `ip-2526` | 9 | 9 | 75 | 33.2 KB |
+| `pc-2627` | 58 | 58 | 250 | 106.4 KB (problem statements added in PR 48) |
+| `pi-2526` (pt + en) | 7 | 12 | 84 | 38.3 KB |

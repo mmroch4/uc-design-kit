@@ -139,6 +139,8 @@
         <p>Este é o esqueleto típico, a partir do modelo. Só o <code>course.js</code> e as páginas são obrigatórios; o resto cresce com a cadeira.</p>
         <uc-code lang="text" no-download><pre><code>2627/
 ├── course.js            configuração do ano
+├── uc-site.py           verifica o site e gera o índice (ver Manter o site)
+├── search-index.js      índice da pesquisa, gerado pelo uc-site.py (só com search: true)
 ├── theme.css            estilos próprios (opcional)
 ├── index.html           página inicial
 ├── semanas.html
@@ -152,6 +154,7 @@
 ├── codigo/              ficheiros .java, .py…
 └── extensions/          componentes próprios (opcional)
     └── uc-bst-traversal.js</code></pre></uc-code>
+        <p>O <code>search-index.js</code> não se edita: o <a href="manter.html#indice"><code>uc-site.py</code></a> reescreve-o depois de cada alteração. Pastas cujo nome começa por <code>_</code> (por exemplo <code>_rascunhos/</code>) ficam fora da pesquisa.</p>
         <p>O kit não se copia para a pasta: é carregado de um endereço fixo, igual para todas as cadeiras. Assim a pasta só tem o conteúdo da cadeira, e as correções do kit chegam a todos os sites sem ninguém mexer neles.</p>
 
         <h2 id="head">O &lt;head&gt; de cada página</h2>

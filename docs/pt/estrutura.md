@@ -11,6 +11,8 @@ Este é o esqueleto típico, a partir do modelo. Só o `course.js` e as páginas
 ```text
 2627/
 ├── course.js            configuração do ano
+├── uc-site.py           verifica o site e gera o índice (ver Manter o site)
+├── search-index.js      índice da pesquisa, gerado pelo uc-site.py (só com search: true)
 ├── theme.css            estilos próprios (opcional)
 ├── index.html           página inicial
 ├── semanas.html
@@ -25,6 +27,8 @@ Este é o esqueleto típico, a partir do modelo. Só o `course.js` e as páginas
 └── extensions/          componentes próprios (opcional)
     └── uc-bst-traversal.js
 ```
+
+O `search-index.js` não se edita: o [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md#indice) reescreve-o depois de cada alteração. Pastas cujo nome começa por `_` (por exemplo `_rascunhos/`) ficam fora da pesquisa.
 
 O kit não se copia para a pasta: é carregado de um endereço fixo, igual para todas as cadeiras. Assim a pasta só tem o conteúdo da cadeira, e as correções do kit chegam a todos os sites sem ninguém mexer neles.
 
