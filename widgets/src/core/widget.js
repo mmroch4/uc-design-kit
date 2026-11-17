@@ -328,7 +328,11 @@ export function createWidget(UC) {
       this.fallback.hidden = true;
       this.errorNote.hidden = true;
       if (this.inputNode) this.inputNode.hidden = true;
-      if (this.field) this.field.value = this.serialize(input);
+      if (this.field) {
+        this.field.value = this.serialize(input);
+        this.fieldError.hidden = true; // a rebuild (attribute change) clears an old field error
+        this.field.removeAttribute("aria-invalid");
+      }
       this.refresh();
     }
 

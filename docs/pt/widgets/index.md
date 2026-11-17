@@ -17,6 +17,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 2 EDados
 
   Algoritmos: `operations` · 6.4 KB gzip
+- [Backtracking](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-backtracking.md) `<uc-widget-backtracking>`
+
+  N rainhas, subconjuntos, permutações, com a árvore de pesquisa e os cortes.
+
+  Experimental Vaga 3 PC PI
+
+  Algoritmos: `queens`, `subsets`, `permutations` · 6.2 KB gzip
 - [Árvore binária de pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-bst.md) `<uc-widget-bst>`
 
   Inserir, remover, procurar, mínimo e máximo numa árvore binária de pesquisa, e os percursos pré-ordem, em-ordem, pós-ordem e em largura.
@@ -31,6 +38,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 2 IP PI EDados PC
 
   Algoritmos: `growth` · 4.8 KB gzip
+- [Programação dinâmica](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-dp.md) `<uc-widget-dp>`
+
+  Tabela de programação dinâmica: mochila, LCS, distância de edição, trocos, com o caminho de reconstrução.
+
+  Experimental Vaga 3 PC
+
+  Algoritmos: `lcs`, `edit-distance`, `knapsack`, `coins` · 7.5 KB gzip
 - [Pesquisa em grafos](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-graph.md) `<uc-widget-graph>`
 
   BFS com a fila e as distâncias, DFS com a pilha de chamadas e a ordem de visita, componentes conexas; grafos dirigidos ou não.
@@ -59,6 +73,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 EDados PI
 
   Algoritmos: `singly` · 6.0 KB gzip
+- [Árvore de cobertura mínima](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-mst.md) `<uc-widget-mst>`
+
+  Kruskal e Prim.
+
+  Experimental Vaga 3 PC EDados
+
+  Algoritmos: `kruskal`, `prim` · 7.0 KB gzip
 - [Recursão](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-recursion.md) `<uc-widget-recursion>`
 
   Árvore de chamadas e pilha de chamadas do fatorial, de Fibonacci e das Torres de Hanói.
@@ -94,6 +115,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 EDados PI
 
   Algoritmos: `stack`, `queue` · 5.7 KB gzip
+- [Ordenação topológica](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-toposort.md) `<uc-widget-toposort>`
+
+  Kahn e DFS, com deteção de ciclos.
+
+  Experimental Vaga 3 PC EDados
+
+  Algoritmos: `kahn`, `dfs` · 6.7 KB gzip
 - [Traço de um algoritmo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-trace.md) `<uc-widget-trace>`
 
   Os passos do seu próprio algoritmo, escritos em JSON, reproduzidos com o desenho de vetor, árvore, grafo ou tabela.

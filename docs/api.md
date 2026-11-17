@@ -1325,8 +1325,16 @@ folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
 | `<uc-widget-complexity>` | `functions` (≤ 8 of `1 log sqrt n nlogn n2 n3 2n fact`), `max` (2–32, default 16), `scale` = `linear` `log`, `for` (id of a widget to measure), `measure` (its counter), `points` (`n:count …`) | `growth` |
 | `<uc-widget-mst>` | as `<uc-widget-graph>`, undirected only (`directed` is an error), `source` (Prim's start); a disconnected graph gives a spanning forest | `kruskal` `prim` |
 | `<uc-widget-toposort>` | as `<uc-widget-graph>`, always directed, no `source`; a cycle is found and named | `kahn` `dfs` |
+| `<uc-widget-dp>` | `problem` (= the algorithm, read first), `a` `b` (1–8 characters), `weights` `values` (1–8 items) `capacity` (1–8), `coins` (1–6 distinct) `amount` (1–8) | `lcs` `edit-distance` `knapsack` `coins` |
+| `<uc-widget-backtracking>` | `n` (queens, 1–8, default 4), `all` (every solution; use n ≤ 6), `values` (subsets: 1–4 positive integers; permutations: 1–3 distinct tokens), `target` (subsets with that sum, also `values="3 1 4 : 5"`) | `queens` `subsets` `permutations` |
 | `<uc-widget-union-find>` | `n` (1–16 elements, 0 … n − 1, default 8), `ops` = `union a b; find a; connected a b` (default: neighbours, then pairs of sets, a find and a connected) | `compression` `size` `naive` |
 | `<uc-widget-trace>` | the steps as JSON in `<script type="application/json" data-input>`: `view` = `array` `tree` `graph` `grid`, `code`, `graph`/`directed` (graph view), `rowHeads`/`colHeads` (grid view), `steps` = `[{ state, marks, pointers, line, say, vars, predict }]` (`say` a string or `{ pt, en }`; a step without `state` keeps the previous one) | `trace` |
+
+A teacher's own widget (no build step) starts from
+`widgets/template/my-widget-gcd.js`: a class extending `UC.widgets.Widget`
+with `parse()`, `steps()`, `draw()`, registered with
+`UC.widgets.register("my-widget-x", …)`; the page loads
+`uc-widget-core.js` before it. Guide: `docs/pt/widgets/criar.html`.
 
 With `ops`, `values` builds the structure without steps and the operations
 are the demo; without `ops`, inserting / adding each value is the demo.

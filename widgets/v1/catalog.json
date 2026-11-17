@@ -31,6 +31,41 @@
       "gzip": 6512
     },
     {
+      "name": "uc-widget-backtracking",
+      "file": "uc-widget-backtracking.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Backtracking",
+        "en": "Backtracking"
+      },
+      "summary": {
+        "pt": "N rainhas, subconjuntos, permutações, com a árvore de pesquisa e os cortes.",
+        "en": "N queens, subsets, permutations, with the search tree and the cuts."
+      },
+      "page": "docs/pt/widgets/uc-widget-backtracking.html",
+      "algorithms": [
+        "queens",
+        "subsets",
+        "permutations"
+      ],
+      "courses": [
+        "PC",
+        "PI"
+      ],
+      "attributes": [
+        "n",
+        "all",
+        "values",
+        "target",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 6379
+    },
+    {
       "name": "uc-widget-bst",
       "file": "uc-widget-bst.js",
       "status": "experimental",
@@ -98,6 +133,45 @@
       ],
       "predict": true,
       "gzip": 4906
+    },
+    {
+      "name": "uc-widget-dp",
+      "file": "uc-widget-dp.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Programação dinâmica",
+        "en": "Dynamic programming"
+      },
+      "summary": {
+        "pt": "Tabela de programação dinâmica: mochila, LCS, distância de edição, trocos, com o caminho de reconstrução.",
+        "en": "Dynamic programming table: knapsack, LCS, edit distance, coin change, with the reconstruction path."
+      },
+      "page": "docs/pt/widgets/uc-widget-dp.html",
+      "algorithms": [
+        "lcs",
+        "edit-distance",
+        "knapsack",
+        "coins"
+      ],
+      "courses": [
+        "PC"
+      ],
+      "attributes": [
+        "problem",
+        "a",
+        "b",
+        "weights",
+        "values",
+        "capacity",
+        "coins",
+        "amount",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 7724
     },
     {
       "name": "uc-widget-graph",
@@ -228,6 +302,38 @@
       ],
       "predict": true,
       "gzip": 6112
+    },
+    {
+      "name": "uc-widget-mst",
+      "file": "uc-widget-mst.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Árvore de cobertura mínima",
+        "en": "Minimum spanning tree"
+      },
+      "summary": {
+        "pt": "Kruskal e Prim.",
+        "en": "Kruskal and Prim."
+      },
+      "page": "docs/pt/widgets/uc-widget-mst.html",
+      "algorithms": [
+        "kruskal",
+        "prim"
+      ],
+      "courses": [
+        "PC",
+        "EDados"
+      ],
+      "attributes": [
+        "edges",
+        "source",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 7123
     },
     {
       "name": "uc-widget-recursion",
@@ -397,6 +503,37 @@
       ],
       "predict": false,
       "gzip": 5810
+    },
+    {
+      "name": "uc-widget-toposort",
+      "file": "uc-widget-toposort.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 3,
+      "title": {
+        "pt": "Ordenação topológica",
+        "en": "Topological sort"
+      },
+      "summary": {
+        "pt": "Kahn e DFS, com deteção de ciclos.",
+        "en": "Kahn and DFS, with cycle detection."
+      },
+      "page": "docs/pt/widgets/uc-widget-toposort.html",
+      "algorithms": [
+        "kahn",
+        "dfs"
+      ],
+      "courses": [
+        "PC",
+        "EDados"
+      ],
+      "attributes": [
+        "edges",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 6825
     },
     {
       "name": "uc-widget-trace",

@@ -54,6 +54,10 @@ A documentação é HTML escrito à mão, com partes geradas entre marcadores `<
 4. Acrescentar a página ao `docs/nav.json` (com `"component"`), à visão geral dos componentes, e um bloco `docs:classes` em [Classes CSS estáveis](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/classes.md).
 5. `npm run build` e `npm test`. O `check-docs` falha enquanto faltar a página, um atributo ou uma classe.
 
+### Um widget novo
+
+Os widgets de algoritmos (`widgets/src/<nome>/`) têm a sua própria lista: algoritmo puro testado contra uma referência, frases em português e em inglês, página e duas demonstrações, no máximo 8 KB. Está em [Criar um widget](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/criar.md#catalogo) e em `widgets/template/README.md`.
+
 ### Outras alterações
 
 - Um atributo, campo do `course.js`, token ou membro da API novo: primeiro no `api.md`, depois na tabela da página correspondente. O teste diz qual.

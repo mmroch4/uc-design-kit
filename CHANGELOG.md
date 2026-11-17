@@ -51,6 +51,18 @@ released yet; contract `docs/plan/widgets-api.md`).
   component) is bundled into the graph widgets and `svg.plot` into the
   complexity widget. Core: `uc:widgetdone` carries `stats` and `input`; new
   counters `edges` and `relaxations`.
+- Phase W5 (experimental): `<uc-widget-mst>` (Kruskal with union-find,
+  lazy Prim; spanning forests), `<uc-widget-union-find>` (union by size and
+  path compression, or without them; the parent array and the forest),
+  `<uc-widget-toposort>` (Kahn and DFS, naming a cycle when there is one),
+  `<uc-widget-dp>` (LCS, edit distance, 0/1 knapsack, coin change, with the
+  reconstruction path), `<uc-widget-backtracking>` (N queens, subsets with a
+  target sum and their cuts, permutations), `<uc-widget-trace>` (the
+  teacher's own steps in JSON, with array, tree, graph or grid drawings).
+  "Criar um widget" guide, `widgets/template/` (a widget of one's own in one
+  plain script, and the catalogue checklist). Core: decimals in the page
+  language ("2,3" in Portuguese) in narration, panel, text view and labels;
+  a rebuild clears an old field error.
 
 ### Changed
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).

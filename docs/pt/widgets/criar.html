@@ -96,8 +96,15 @@
           <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
           <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
           <li><a href="uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
-          <li><a href="uc-widget-shortest-path.html" aria-current="page"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
           <li><a href="uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="uc-widget-union-find.html"><code>uc-widget-union-find</code></a></li>
+          <li><a href="uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="uc-widget-trace.html"><code>uc-widget-trace</code></a></li>
+          <li><a href="criar.html" aria-current="page">Criar um widget</a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -165,6 +172,17 @@
           <li><strong>Propor o widget ao catálogo</strong>, para outras cadeiras o usarem: ver <a href="#catalogo">Propor um widget ao catálogo</a>.</li>
         </ol>
         <!-- docs:demo src="../../demos/widgets-criar/basic.html" title="Um widget próprio: o algoritmo de Euclides" height="560" -->
+        <div class="docs-demo" id="demo-widgets-criar-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/widgets-criar/basic.html" title="Demonstração: Um widget próprio: o algoritmo de Euclides" loading="lazy" style="height: 560px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;my-widget-gcd a=&quot;48&quot; b=&quot;18&quot; predict&gt;
+  &lt;p&gt;mdc(48, 18): 48 mod 18 = 12, 18 mod 12 = 6, 12 mod 6 = 0. O máximo divisor comum é 6.&lt;/p&gt;
+&lt;/my-widget-gcd&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/widgets-criar/basic.html">Abrir demo</a>
+        </div>
         <!-- /docs:demo -->
         <h2 id="modelo">O modelo</h2>
         <p>O ficheiro <a href="https://github.com/mmroch4/uc-design-kit/blob/main/widgets/template/my-widget-gcd.js"><code>widgets/template/my-widget-gcd.js</code></a> é um widget completo num só ficheiro, sem passo de compilação: o elemento <code>&lt;my-widget-gcd&gt;</code> da demonstração acima. Para fazer o seu:</p>
@@ -256,16 +274,16 @@
       <!-- docs:pager -->
       <footer class="docs-footer">
         <nav class="docs-pager" aria-label="Anterior / Seguinte">
-          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-graph.html" rel="prev">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-trace.html" rel="prev">
             <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
-            <span class="docs-pager__title"><code>uc-widget-graph</code></span>
+            <span class="docs-pager__title"><code>uc-widget-trace</code></span>
           </a>
-          <a class="docs-pager__link docs-pager__link--next" href="uc-widget-complexity.html" rel="next">
+          <a class="docs-pager__link docs-pager__link--next" href="../estilos/index.html" rel="next">
             <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="docs-pager__title"><code>uc-widget-complexity</code></span>
+            <span class="docs-pager__title">Princípios de design</span>
           </a>
         </nav>
-        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/criar.html">Editar esta página no GitHub</a> · <a href="uc-widget-shortest-path.md" type="text/markdown">Ver esta página em Markdown</a></p>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/criar.html">Editar esta página no GitHub</a> · <a href="criar.md" type="text/markdown">Ver esta página em Markdown</a></p>
       </footer>
       <!-- /docs:pager -->
     </main>
@@ -274,13 +292,12 @@
       <nav class="docs-toc" aria-labelledby="docs-toc-title">
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
-          <li><a href="#utilizacao">Utilização</a></li>
-          <li><a href="#grafo">Escrever o grafo</a></li>
-          <li><a href="#bellman-ford">Bellman-Ford e pesos negativos</a></li>
-          <li><a href="#atributos">Atributos</a></li>
-          <li><a href="#linhas">Linhas do pseudocódigo</a></li>
-          <li><a href="#acessibilidade">Acessibilidade</a></li>
-          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#modelo">O modelo</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#passo">Um passo</a></li>
+          <li><a href="#desenho">Desenhar</a></li>
+          <li><a href="#regras">Regras para um bom widget</a></li>
+          <li><a href="#catalogo">Propor um widget ao catálogo</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>

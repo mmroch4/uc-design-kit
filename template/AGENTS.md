@@ -53,13 +53,18 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
 13. Para mostrar um algoritmo ou uma estrutura de dados passo a passo
     (ordenação, pesquisa, árvore binária de pesquisa, lista ligada, pilha e
     fila, recursão, heap, árvore AVL, tabela de dispersão, BFS e DFS,
-    caminhos mais curtos, crescimento de funções…), usar um widget
+    caminhos mais curtos, crescimento de funções, árvores mínimas de
+    suporte, union-find, ordenação topológica, programação dinâmica,
+    backtracking…), usar um widget
     da biblioteca em vez de escrever um componente: uma linha
     `<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-sort.js" defer></script>`
     depois do kit e o elemento (`<uc-widget-sort values="5 2 9 1" algorithm="insertion">`)
     com, lá dentro, um texto com o resultado para quem não tem JavaScript.
     Os widgets existentes estão no catálogo
     (https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.html).
+    Para um algoritmo que não está no catálogo: `<uc-widget-trace>` com os
+    passos escritos em JSON, ou um widget próprio a partir de
+    `widgets/template/my-widget-gcd.js` (guia «Criar um widget»).
 14. Pesquisa: com `search: true` no `course.js` o cabeçalho tem o botão
     «Pesquisar» sobre o `search-index.js`. Para pesquisar só numa parte do
     site, dentro de uma página, `<uc-search scope="problemas/">` (o caminho é

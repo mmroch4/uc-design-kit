@@ -77,6 +77,13 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [uc-widget-graph](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-graph.md): Documentação do widget uc-widget-graph do UC Design Kit: BFS, DFS e componentes conexas passo a passo, em grafos dirigidos ou não.
 - [uc-widget-shortest-path](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-shortest-path.md): Documentação do widget uc-widget-shortest-path do UC Design Kit: Dijkstra com a fila de prioridade e Bellman-Ford com ciclos negativos, passo a passo.
 - [uc-widget-complexity](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-complexity.md): Documentação do widget uc-widget-complexity do UC Design Kit: funções de crescimento lado a lado e contagens reais de outro widget.
+- [uc-widget-mst](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-mst.md): Documentação do widget uc-widget-mst do UC Design Kit: árvore de cobertura mínima pelos algoritmos de Kruskal e de Prim, passo a passo.
+- [uc-widget-union-find](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-union-find.md): Documentação do widget uc-widget-union-find do UC Design Kit: conjuntos disjuntos com união por tamanho e compressão de caminhos, passo a passo.
+- [uc-widget-toposort](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-toposort.md): Documentação do widget uc-widget-toposort do UC Design Kit: ordenação topológica pelo algoritmo de Kahn e por DFS, com deteção de ciclos, passo a passo.
+- [uc-widget-dp](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-dp.md): Documentação do widget uc-widget-dp do UC Design Kit: tabelas de programação dinâmica (LCS, distância de edição, mochila, troco) célula a célula, com o caminho de reconstrução.
+- [uc-widget-backtracking](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-backtracking.md): Documentação do widget uc-widget-backtracking do UC Design Kit: N rainhas, subconjuntos com soma alvo e permutações, com a árvore de pesquisa e os cortes.
+- [uc-widget-trace](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-trace.md): Documentação do widget uc-widget-trace do UC Design Kit: os passos de um algoritmo próprio, escritos em JSON, com desenho de vetor, árvore, grafo ou tabela.
+- [Criar um widget](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/criar.md): Como criar um widget próprio do UC Design Kit para um algoritmo que não está no catálogo, e como o propor ao catálogo.
 
 ## Estilos
 

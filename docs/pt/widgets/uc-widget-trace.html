@@ -96,8 +96,15 @@
           <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
           <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
           <li><a href="uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
-          <li><a href="uc-widget-shortest-path.html" aria-current="page"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
           <li><a href="uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="uc-widget-union-find.html"><code>uc-widget-union-find</code></a></li>
+          <li><a href="uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="uc-widget-trace.html" aria-current="page"><code>uc-widget-trace</code></a></li>
+          <li><a href="criar.html">Criar um widget</a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -159,6 +166,43 @@
           <p class="docs-lead">Os passos do seu próprio algoritmo, escritos em JSON, reproduzidos com o desenho de um vetor, de uma árvore, de um grafo ou de uma tabela.</p>
         </header>
         <!-- docs:demo src="../../demos/uc-widget-trace/basic.html" title="O máximo de um vetor, com pseudocódigo, variáveis e previsões" height="620" -->
+        <div class="docs-demo" id="demo-uc-widget-trace-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-trace/basic.html" title="Demonstração: O máximo de um vetor, com pseudocódigo, variáveis e previsões" loading="lazy" style="height: 620px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;uc-widget-trace caption=&quot;Máximo de um vetor&quot; predict&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;array&quot;,
+  &quot;code&quot;: {
+    &quot;pt&quot;: [&quot;start|m = a[0]&quot;, &quot;loop|para i de 1 a n − 1:&quot;, &quot;test|  se a[i] &gt; m:&quot;, &quot;take|    m = a[i]&quot;, &quot;end|devolver m&quot;],
+    &quot;en&quot;: [&quot;start|m = a[0]&quot;, &quot;loop|for i from 1 to n − 1:&quot;, &quot;test|  if a[i] &gt; m:&quot;, &quot;take|    m = a[i]&quot;, &quot;end|return m&quot;]
+  },
+  &quot;steps&quot;: [
+    { &quot;state&quot;: [4, 7, 2, 9, 5], &quot;say&quot;: { &quot;pt&quot;: &quot;Procurar o máximo de 4 7 2 9 5.&quot;, &quot;en&quot;: &quot;Find the maximum of 4 7 2 9 5.&quot; } },
+    { &quot;marks&quot;: { &quot;0&quot;: &quot;current&quot; }, &quot;line&quot;: &quot;start&quot;, &quot;vars&quot;: { &quot;m&quot;: 4 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;m começa com a[0] = 4.&quot;, &quot;en&quot;: &quot;m starts as a[0] = 4.&quot; } },
+    { &quot;marks&quot;: { &quot;1&quot;: &quot;current&quot;, &quot;0&quot;: &quot;visited&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;1&quot; }, &quot;line&quot;: [&quot;test&quot;, &quot;take&quot;], &quot;vars&quot;: { &quot;i&quot;: 1, &quot;m&quot;: 7 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[1] = 7 &gt; 4: m passa a 7.&quot;, &quot;en&quot;: &quot;a[1] = 7 &gt; 4: m becomes 7.&quot; },
+      &quot;predict&quot;: { &quot;ask&quot;: { &quot;pt&quot;: &quot;a[1] = 7 é maior do que m = 4?&quot;, &quot;en&quot;: &quot;Is a[1] = 7 larger than m = 4?&quot; }, &quot;options&quot;: [{ &quot;pt&quot;: &quot;Sim&quot;, &quot;en&quot;: &quot;Yes&quot; }, { &quot;pt&quot;: &quot;Não&quot;, &quot;en&quot;: &quot;No&quot; }], &quot;answer&quot;: 0 } },
+    { &quot;marks&quot;: { &quot;2&quot;: &quot;compared&quot;, &quot;1&quot;: &quot;current&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;2&quot; }, &quot;line&quot;: &quot;test&quot;, &quot;vars&quot;: { &quot;i&quot;: 2, &quot;m&quot;: 7 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[2] = 2 não é maior do que 7.&quot;, &quot;en&quot;: &quot;a[2] = 2 is not larger than 7.&quot; } },
+    { &quot;marks&quot;: { &quot;3&quot;: &quot;current&quot;, &quot;1&quot;: &quot;visited&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;3&quot; }, &quot;line&quot;: [&quot;test&quot;, &quot;take&quot;], &quot;vars&quot;: { &quot;i&quot;: 3, &quot;m&quot;: 9 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[3] = 9 &gt; 7: m passa a 9.&quot;, &quot;en&quot;: &quot;a[3] = 9 &gt; 7: m becomes 9.&quot; },
+      &quot;predict&quot;: { &quot;ask&quot;: { &quot;pt&quot;: &quot;a[3] = 9 é maior do que m = 7?&quot;, &quot;en&quot;: &quot;Is a[3] = 9 larger than m = 7?&quot; }, &quot;options&quot;: [{ &quot;pt&quot;: &quot;Sim&quot;, &quot;en&quot;: &quot;Yes&quot; }, { &quot;pt&quot;: &quot;Não&quot;, &quot;en&quot;: &quot;No&quot; }], &quot;answer&quot;: 0 } },
+    { &quot;marks&quot;: { &quot;4&quot;: &quot;compared&quot;, &quot;3&quot;: &quot;current&quot; }, &quot;pointers&quot;: { &quot;i&quot;: &quot;4&quot; }, &quot;line&quot;: &quot;test&quot;, &quot;vars&quot;: { &quot;i&quot;: 4, &quot;m&quot;: 9 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;a[4] = 5 não é maior do que 9.&quot;, &quot;en&quot;: &quot;a[4] = 5 is not larger than 9.&quot; } },
+    { &quot;marks&quot;: { &quot;3&quot;: &quot;done&quot; }, &quot;line&quot;: &quot;end&quot;, &quot;vars&quot;: { &quot;m&quot;: 9 },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;O máximo é 9, na posição 3.&quot;, &quot;en&quot;: &quot;The maximum is 9, at index 3.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;Máximo de 4 7 2 9 5: m = 4, 7, 7, 9, 9. O máximo é 9.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-trace/basic.html">Abrir demo</a>
+        </div>
         <!-- /docs:demo -->
         <p>Para um algoritmo que não está no catálogo, ou para mostrar uma execução tal como foi feita na aula, escreve os passos em JSON dentro do elemento e o widget reprodu-los com o mesmo leitor, narração, vista em texto e modo de previsão dos outros widgets. Não é preciso programar: cada passo diz o estado da estrutura, o que destacar e a frase a ler.</p>
         <h2 id="utilizacao">Utilização</h2>
@@ -202,6 +246,68 @@
         <p>Se o primeiro passo tiver destaques ou uma pergunta, o widget junta antes dele um passo "Estado inicial." sem destaques.</p>
         <h2 id="vistas">As quatro vistas</h2>
         <!-- docs:demo src="../../demos/uc-widget-trace/views.html" title="Árvore, tabela e grafo" height="1500" -->
+        <div class="docs-demo" id="demo-uc-widget-trace-views">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-trace/views.html" title="Demonstração: Árvore, tabela e grafo" loading="lazy" style="height: 1500px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>    &lt;uc-widget-trace caption=&quot;Avaliar uma árvore de expressão&quot; controls=&quot;compact&quot;&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;tree&quot;,
+  &quot;steps&quot;: [
+    { &quot;state&quot;: { &quot;id&quot;: &quot;r&quot;, &quot;v&quot;: &quot;×&quot;, &quot;l&quot;: { &quot;id&quot;: &quot;s&quot;, &quot;v&quot;: &quot;+&quot;, &quot;l&quot;: { &quot;v&quot;: 2 }, &quot;r&quot;: { &quot;v&quot;: 3 } }, &quot;r&quot;: { &quot;v&quot;: 4 } },
+      &quot;say&quot;: &quot;(2 + 3) × 4&quot; },
+    { &quot;marks&quot;: { &quot;2&quot;: &quot;visited&quot;, &quot;3&quot;: &quot;visited&quot;, &quot;s&quot;: &quot;current&quot; },
+      &quot;state&quot;: { &quot;id&quot;: &quot;r&quot;, &quot;v&quot;: &quot;×&quot;, &quot;l&quot;: { &quot;id&quot;: &quot;s&quot;, &quot;v&quot;: &quot;+&quot;, &quot;note&quot;: &quot;= 5&quot;, &quot;l&quot;: { &quot;v&quot;: 2 }, &quot;r&quot;: { &quot;v&quot;: 3 } }, &quot;r&quot;: { &quot;v&quot;: 4 } },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;2 + 3 = 5.&quot;, &quot;en&quot;: &quot;2 + 3 = 5.&quot; } },
+    { &quot;marks&quot;: { &quot;s&quot;: &quot;done&quot;, &quot;4&quot;: &quot;visited&quot;, &quot;r&quot;: &quot;current&quot; },
+      &quot;state&quot;: { &quot;id&quot;: &quot;r&quot;, &quot;v&quot;: &quot;×&quot;, &quot;note&quot;: &quot;= 20&quot;, &quot;l&quot;: { &quot;id&quot;: &quot;s&quot;, &quot;v&quot;: &quot;+&quot;, &quot;note&quot;: &quot;= 5&quot;, &quot;l&quot;: { &quot;v&quot;: 2 }, &quot;r&quot;: { &quot;v&quot;: 3 } }, &quot;r&quot;: { &quot;v&quot;: 4 } },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;5 × 4 = 20: o valor da expressão.&quot;, &quot;en&quot;: &quot;5 × 4 = 20: the value of the expression.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;(2 + 3) × 4 = 20.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;
+
+    &lt;uc-widget-trace caption=&quot;Triângulo de Pascal&quot; controls=&quot;compact&quot;&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;grid&quot;,
+  &quot;rowHeads&quot;: [&quot;n=0&quot;, &quot;n=1&quot;, &quot;n=2&quot;, &quot;n=3&quot;],
+  &quot;steps&quot;: [
+    { &quot;state&quot;: [[1], [1, 1], [1, null, 1], [1, null, null, 1]], &quot;say&quot;: { &quot;pt&quot;: &quot;As pontas valem 1.&quot;, &quot;en&quot;: &quot;The edges are 1.&quot; } },
+    { &quot;state&quot;: [[1], [1, 1], [1, 2, 1], [1, null, null, 1]], &quot;marks&quot;: { &quot;2,1&quot;: &quot;current&quot;, &quot;1,0&quot;: &quot;compared&quot;, &quot;1,1&quot;: &quot;compared&quot; },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;C(2,1) = 1 + 1 = 2.&quot;, &quot;en&quot;: &quot;C(2,1) = 1 + 1 = 2.&quot; } },
+    { &quot;state&quot;: [[1], [1, 1], [1, 2, 1], [1, 3, null, 1]], &quot;marks&quot;: { &quot;3,1&quot;: &quot;current&quot;, &quot;2,0&quot;: &quot;compared&quot;, &quot;2,1&quot;: &quot;compared&quot; },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;C(3,1) = 1 + 2 = 3.&quot;, &quot;en&quot;: &quot;C(3,1) = 1 + 2 = 3.&quot; } },
+    { &quot;state&quot;: [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]], &quot;marks&quot;: { &quot;3,2&quot;: &quot;current&quot;, &quot;2,1&quot;: &quot;compared&quot;, &quot;2,2&quot;: &quot;compared&quot; },
+      &quot;say&quot;: { &quot;pt&quot;: &quot;C(3,2) = 2 + 1 = 3.&quot;, &quot;en&quot;: &quot;C(3,2) = 2 + 1 = 3.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;Triângulo de Pascal até n = 3: 1; 1 1; 1 2 1; 1 3 3 1.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;
+
+    &lt;uc-widget-trace caption=&quot;Coloração gulosa&quot; controls=&quot;compact&quot;&gt;
+      &lt;script type=&quot;application/json&quot; data-input&gt;
+{
+  &quot;view&quot;: &quot;graph&quot;,
+  &quot;graph&quot;: &quot;A B; A C; B C; C D&quot;,
+  &quot;steps&quot;: [
+    { &quot;state&quot;: {}, &quot;say&quot;: { &quot;pt&quot;: &quot;Dar a cada vértice a menor cor que os vizinhos não usam.&quot;, &quot;en&quot;: &quot;Give each vertex the smallest colour its neighbours do not use.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot; }, &quot;marks&quot;: { &quot;A&quot;: &quot;current&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;A: cor 1.&quot;, &quot;en&quot;: &quot;A: colour 1.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot;, &quot;B&quot;: &quot;2&quot; }, &quot;marks&quot;: { &quot;B&quot;: &quot;current&quot;, &quot;A&quot;: &quot;compared&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;B é vizinho de A (cor 1): cor 2.&quot;, &quot;en&quot;: &quot;B is a neighbour of A (colour 1): colour 2.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot;, &quot;B&quot;: &quot;2&quot;, &quot;C&quot;: &quot;3&quot; }, &quot;marks&quot;: { &quot;C&quot;: &quot;current&quot;, &quot;A&quot;: &quot;compared&quot;, &quot;B&quot;: &quot;compared&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;C é vizinho de A e de B: cor 3.&quot;, &quot;en&quot;: &quot;C is a neighbour of A and B: colour 3.&quot; } },
+    { &quot;state&quot;: { &quot;A&quot;: &quot;1&quot;, &quot;B&quot;: &quot;2&quot;, &quot;C&quot;: &quot;3&quot;, &quot;D&quot;: &quot;1&quot; }, &quot;marks&quot;: { &quot;A&quot;: &quot;done&quot;, &quot;B&quot;: &quot;done&quot;, &quot;C&quot;: &quot;done&quot;, &quot;D&quot;: &quot;done&quot; }, &quot;say&quot;: { &quot;pt&quot;: &quot;D só é vizinho de C: cor 1. Três cores.&quot;, &quot;en&quot;: &quot;D is only a neighbour of C: colour 1. Three colours.&quot; } }
+  ]
+}
+      &lt;/script&gt;
+      &lt;p&gt;Coloração gulosa: A 1, B 2, C 3, D 1.&lt;/p&gt;
+    &lt;/uc-widget-trace&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-trace/views.html">Abrir demo</a>
+        </div>
         <!-- /docs:demo -->
         <div class="uc-table">
           <table>
@@ -243,16 +349,16 @@
       <!-- docs:pager -->
       <footer class="docs-footer">
         <nav class="docs-pager" aria-label="Anterior / Seguinte">
-          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-graph.html" rel="prev">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-backtracking.html" rel="prev">
             <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
-            <span class="docs-pager__title"><code>uc-widget-graph</code></span>
+            <span class="docs-pager__title"><code>uc-widget-backtracking</code></span>
           </a>
-          <a class="docs-pager__link docs-pager__link--next" href="uc-widget-complexity.html" rel="next">
+          <a class="docs-pager__link docs-pager__link--next" href="criar.html" rel="next">
             <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="docs-pager__title"><code>uc-widget-complexity</code></span>
+            <span class="docs-pager__title">Criar um widget</span>
           </a>
         </nav>
-        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/uc-widget-trace.html">Editar esta página no GitHub</a> · <a href="uc-widget-shortest-path.md" type="text/markdown">Ver esta página em Markdown</a></p>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/uc-widget-trace.html">Editar esta página no GitHub</a> · <a href="uc-widget-trace.md" type="text/markdown">Ver esta página em Markdown</a></p>
       </footer>
       <!-- /docs:pager -->
     </main>
@@ -262,10 +368,10 @@
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
           <li><a href="#utilizacao">Utilização</a></li>
-          <li><a href="#grafo">Escrever o grafo</a></li>
-          <li><a href="#bellman-ford">Bellman-Ford e pesos negativos</a></li>
+          <li><a href="#formato">O formato dos passos</a></li>
+          <li><a href="#vistas">As quatro vistas</a></li>
           <li><a href="#atributos">Atributos</a></li>
-          <li><a href="#linhas">Linhas do pseudocódigo</a></li>
+          <li><a href="#pseudocodigo">Pseudocódigo</a></li>
           <li><a href="#acessibilidade">Acessibilidade</a></li>
           <li><a href="#sem-javascript">Sem JavaScript</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>

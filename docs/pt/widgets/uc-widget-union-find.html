@@ -96,8 +96,15 @@
           <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
           <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
           <li><a href="uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
-          <li><a href="uc-widget-shortest-path.html" aria-current="page"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
           <li><a href="uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="uc-widget-union-find.html" aria-current="page"><code>uc-widget-union-find</code></a></li>
+          <li><a href="uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="uc-widget-trace.html"><code>uc-widget-trace</code></a></li>
+          <li><a href="criar.html">Criar um widget</a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -159,6 +166,18 @@
           <p class="docs-lead">Conjuntos disjuntos (union-find): o vetor parent e a floresta, com união por tamanho e compressão de caminhos ou sem elas, operação a operação.</p>
         </header>
         <!-- docs:demo src="../../demos/uc-widget-union-find/basic.html" title="União por tamanho e compressão de caminhos, com previsões" height="760" -->
+        <div class="docs-demo" id="demo-uc-widget-union-find-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-union-find/basic.html" title="Demonstração: União por tamanho e compressão de caminhos, com previsões" loading="lazy" style="height: 760px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-widget-union-find n=&quot;8&quot; predict&gt;
+  &lt;p&gt;Uniões 0-1, 2-3, 4-5, 6-7, depois 0-2 e 4-6, por fim 0-4: um só conjunto com raiz 0.
+     find(7) sobe 7 → 6 → 4 → 0 e a compressão liga 7 e 6 diretamente a 0.&lt;/p&gt;
+&lt;/uc-widget-union-find&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-union-find/basic.html">Abrir demo</a>
+        </div>
         <!-- /docs:demo -->
         <p>Por cima, o vetor <code>parent</code> (o elemento <code>i</code> aponta para <code>parent[i]</code>; uma raiz aponta para si própria); por baixo, a floresta que esse vetor representa, uma árvore por conjunto. Ao lado de cada raiz está o tamanho do conjunto. Cada <code>find</code> sobe passo a passo até à raiz e, com compressão, liga depois cada nó do caminho diretamente à raiz; cada <code>union</code> faz dois <code>find</code> e liga uma raiz à outra. O painel mostra quantos conjuntos há e a altura da árvore mais alta.</p>
         <h2 id="utilizacao">Utilização</h2>
@@ -185,6 +204,19 @@
         <p>Sem <code>ops</code>, o widget junta os vizinhos (0-1, 2-3, …), depois os pares de conjuntos (0-2, 4-6, …), até ficar um só conjunto, e termina com <code>find</code> do último elemento e <code>connected 1 n−1</code>.</p>
         <h2 id="variantes">Com e sem heurísticas</h2>
         <!-- docs:demo src="../../demos/uc-widget-union-find/compare.html" title="Uma cadeia de uniões nas três variantes, editável" height="760" -->
+        <div class="docs-demo" id="demo-uc-widget-union-find-compare">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-union-find/compare.html" title="Demonstração: Uma cadeia de uniões nas três variantes, editável" loading="lazy" style="height: 760px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-widget-union-find n=&quot;6&quot; algorithms=&quot;naive size compression&quot;
+    ops=&quot;union 0 1; union 1 2; union 2 3; union 3 4; union 4 5; find 0; find 0&quot; editable&gt;
+  &lt;p&gt;Uma cadeia de uniões: sem heurísticas a árvore fica com altura 5 (uma lista);
+     com união por tamanho fica com altura 1.&lt;/p&gt;
+&lt;/uc-widget-union-find&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-union-find/compare.html">Abrir demo</a>
+        </div>
         <!-- /docs:demo -->
         <p><code>algorithm</code> escolhe a variante: <code>compression</code> (união por tamanho e compressão de caminhos, a que se usa), <code>size</code> (só união por tamanho) e <code>naive</code> (<code>parent[find(a)] = find(b)</code>, sem compressão). Com <code>algorithms="naive size compression"</code> o aluno troca de variante com os botões e compara a altura das árvores na mesma sequência de operações. Na união por tamanho, a raiz do conjunto menor fica debaixo da do maior; com tamanhos iguais, a raiz de <code>b</code> fica debaixo da de <code>a</code>.</p>
         <p>Perguntas de previsão: na união por tamanho, "Que raiz fica por cima: 0 (tamanho 2) ou 3 (tamanho 1)?"; em <code>connected</code>, "0 e 2 estão no mesmo conjunto?" (Sim / Não).</p>
@@ -243,16 +275,16 @@
       <!-- docs:pager -->
       <footer class="docs-footer">
         <nav class="docs-pager" aria-label="Anterior / Seguinte">
-          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-graph.html" rel="prev">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-widget-mst.html" rel="prev">
             <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
-            <span class="docs-pager__title"><code>uc-widget-graph</code></span>
+            <span class="docs-pager__title"><code>uc-widget-mst</code></span>
           </a>
-          <a class="docs-pager__link docs-pager__link--next" href="uc-widget-complexity.html" rel="next">
+          <a class="docs-pager__link docs-pager__link--next" href="uc-widget-toposort.html" rel="next">
             <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="docs-pager__title"><code>uc-widget-complexity</code></span>
+            <span class="docs-pager__title"><code>uc-widget-toposort</code></span>
           </a>
         </nav>
-        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/uc-widget-union-find.html">Editar esta página no GitHub</a> · <a href="uc-widget-shortest-path.md" type="text/markdown">Ver esta página em Markdown</a></p>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/widgets/uc-widget-union-find.html">Editar esta página no GitHub</a> · <a href="uc-widget-union-find.md" type="text/markdown">Ver esta página em Markdown</a></p>
       </footer>
       <!-- /docs:pager -->
     </main>
@@ -262,8 +294,8 @@
         <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
         <ul class="docs-toc__list">
           <li><a href="#utilizacao">Utilização</a></li>
-          <li><a href="#grafo">Escrever o grafo</a></li>
-          <li><a href="#bellman-ford">Bellman-Ford e pesos negativos</a></li>
+          <li><a href="#operacoes">Operações</a></li>
+          <li><a href="#variantes">Com e sem heurísticas</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#linhas">Linhas do pseudocódigo</a></li>
           <li><a href="#acessibilidade">Acessibilidade</a></li>

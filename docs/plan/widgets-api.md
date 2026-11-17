@@ -1393,3 +1393,39 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
    three options (not visited / on the stack / finished). Line ids: kahn
    `init pop dec push cycle`, dfs `root enter arc back down done`. Result
    `{ order, cycle }`. No layered layout (`layout()` unchanged).
+9. **`uc-widget-dp`**: algorithms `lcs` (default), `edit-distance`,
+   `knapsack`, `coins` (minimum number of coins); the `problem` attribute
+   (an input attribute) is read before `algorithm`, the `algorithms`
+   toggle's choice still wins. Data: `a`, `b` (1–8 characters; defaults
+   ABCBDAB/BDCABA, GATO/PATOS), `weights`/`values` (1–8 items) and
+   `capacity` (1–8), `coins` (1–6 distinct, used ascending) and `amount`
+   (**1–8**, not 10: the 9-column limit of 5.5). The editable field edits a
+   pseudo-attribute `data`: `a b`, `weights : values : capacity` or
+   `coins : amount`. State `{ t }` (null = not filled, "∞" = impossible);
+   one step for the base cells, one per cell (cell current, the cells read
+   compared), then one per path cell (done) and the reconstruction in the
+   end sentence. Aux `lcs`, `ops`, `items`/`taken`, `coins`/`used`. Line
+   ids: lcs `base match max back take up left`; edit-distance `base same
+   min back keep sub del ins`; knapsack `base skip max back take leave`;
+   coins `base none min back use`. Predict "Quanto vale dp[i][j]?" on the
+   last row (coins: every cell), three consecutive options whose position
+   varies with the cell; never on ∞.
+10. **`uc-widget-backtracking`**: `queens` (default; `n` 1–8, `all`),
+    `subsets` (`values` 1–4 positive integers, optional `target`, also
+    written `values="3 1 4 2 : 5"`), `permutations` (`values` 1–3 distinct
+    tokens). Queens: board on `svg.grid` with "Q"; one step per try (a cut
+    marks the tried cell compared and the first attacking queen swapped),
+    one per removal; aux `stack`, `output`, `cuts`; predict on every try
+    after row 0. First solution n = 8 is 983 steps; `all` stays under the
+    cap only for n ≤ 6. Subsets/permutations: n-ary `svg.tree` of `{ id,
+    label, kids }` keyed by the decision path; subsets label "+v"/"−v"
+    (take first), cuts compared (over the target when taking, unreachable
+    when leaving), leaves done; permutations try only unused elements (no
+    cuts). Sets are written "{ 1, 3 }" (spaces: "{1}" reads as a
+    placeholder). Line ids: queens `solution cut place remove`, subsets
+    `cut leaf take leave`, permutations `leaf place`. Without a target, 4
+    values give 31 nodes (wider than the stage on phones).
+11. **Grid widgets** set the drawing's minimum width to 240 px (not
+    `svg.grid`'s 300), so 9 columns fit 320 px.
+12. **Core fix**: a rebuild (attribute change) clears an old editable
+    field error.
