@@ -22,8 +22,10 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
    os scripts próprios com `defer`.
 3. Uma página é um `<uc-page>` com todo o conteúdo dentro e um único `<h1>`.
 4. O que muda todos os anos vai para o `course.js` (`semester`, `team`,
-   `deadlines`, `notices`, `pages`), com datas em ISO (`AAAA-MM-DD`). As datas
-   das semanas nunca se escrevem: cada `<uc-week>` só leva `n` e `title`.
+   `schedule`, `deadlines`, `notices`, `pages`), com datas em ISO
+   (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: cada `<uc-week>` só
+   leva `n` e `title`. O horário e o atendimento nunca são tabelas escritas à
+   mão: `schedule` e `team[].officeHours`, mostrados por `<uc-timetable>`.
 5. Só o que está documentado. Nada de elementos, atributos, campos ou classes
    `uc-…` inventados. Um comportamento que o kit não tem vai para um componente
    próprio em `extensions/`, com `UC.define`.
@@ -33,7 +35,9 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
 8. Acessível: texto alternativo nas imagens, títulos sem saltar níveis, texto
    de ligação que diga para onde vai, tabelas com cabeçalhos.
 9. Sem dados de estudantes: notas, números, nomes em listas de turnos ou
-   presenças ficam fora do site público.
+   presenças ficam fora do site público. Um link para uma página que pede
+   login (pautas, SIGARRA) leva `data-auth` (ou `data-auth="SIGARRA"`), sem
+   imagem de cadeado: o kit acrescenta-a.
 10. Se faltar uma informação, escrever `<!-- TODO: … -->` em vez de a inventar.
 
 ## Migrar um site antigo
@@ -52,7 +56,8 @@ Quando o professor pede para passar um site existente para esta pasta:
    dados de estudantes; links externos que já não funcionam. Esperar pela
    resposta.
 4. **`course.js` primeiro**: código, título, edição, `semester` (início, fim,
-   interrupções), `team`, `deadlines`, `notices`, `pages`.
+   interrupções), `team` (com `officeHours`), `schedule`, `deadlines`,
+   `notices`, `pages`.
 5. **Reescrever com componentes** só as páginas que os estudantes usam todas
    as semanas:
    - página inicial → `index.html` (`uc-hero`, `uc-this-week`, `uc-notices`,
@@ -60,6 +65,8 @@ Quando o professor pede para passar um site existente para esta pasta:
    - calendário, sumários, planeamento → `semanas.html` (`uc-weeks` com uma
      `uc-week` por semana; os prazos do `course.js` aparecem sozinhos na
      semana certa);
+   - horários e atendimento → `uc-timetable` (uma entrada de `schedule` por
+     aula semanal; os docentes vêm de `team[].classes`) e `uc-team`;
    - avaliação → `avaliacao.html`;
    - guiões de aula → `uc-guide` com `uc-exercise`; código → `uc-code`.
 6. **O resto** (enunciados, páginas de ajuda, textos longos) vai quase como

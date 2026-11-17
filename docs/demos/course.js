@@ -36,10 +36,35 @@ window.UC_COURSE = {
   ],
 
   team: [
-    { name: "Ana Ribeiro", role: "coordinator", email: "ana.ribeiro@example.org", classes: ["T1"], office: "Gab. 2.14" },
-    { name: "Bruno Matos", role: "lecturer", classes: ["T2", "TP1"], office: "Gab. 2.09" },
+    {
+      name: "Ana Ribeiro",
+      role: "coordinator",
+      email: "ana.ribeiro@example.org",
+      classes: ["T1"],
+      office: "Gab. 2.14",
+      officeHours: [{ day: 2, start: "11:00", end: "12:30" }],
+    },
+    {
+      name: "Bruno Matos",
+      role: "lecturer",
+      classes: ["T2", "TP1"],
+      office: "Gab. 2.09",
+      officeHours: [{ day: 4, start: "16:00", end: "17:00", room: "Sala 1.12", note: { pt: "Marcar por email", en: "Book by email" } }],
+    },
     { name: "Carla Nunes", role: "assistant", classes: ["PL1", "PL3"] },
     { name: "Diogo Teixeira", role: "assistant", classes: ["PL2", "PL4"] },
+  ],
+
+  schedule: [
+    { type: "lecture", class: "T1", day: 1, start: "10:00", end: "11:30", room: "Anf. 1" },
+    { type: "lecture", class: "T1", day: 3, start: "10:00", end: "11:30", room: "Anf. 1" },
+    { type: "lecture", class: "T2", day: 2, start: "14:00", end: "15:30", room: "Anf. 2" },
+    { type: "lecture", class: "T2", day: 4, start: "14:00", end: "15:30", room: "Anf. 2" },
+    { type: "tutorial", class: "TP1", day: 5, start: "09:00", end: "10:30", room: "Sala 1.12" },
+    { type: "lab", class: "PL1", day: 2, start: "16:00", end: "18:00", room: "Lab 1" },
+    { type: "lab", class: "PL2", day: 3, start: "14:00", end: "16:00", room: "Lab 2" },
+    { type: "lab", class: "PL3", day: 4, start: "16:00", end: "18:00", room: "Lab 1" },
+    { type: "lab", class: "PL4", day: 5, start: "11:00", end: "13:00", room: "Lab 2", note: { pt: "Só nas semanas ímpares", en: "Odd weeks only" } },
   ],
 
   deadlines: [

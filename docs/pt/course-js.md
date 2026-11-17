@@ -38,6 +38,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `LocalizedText` | Um texto igual em todas as línguas, ou um objeto com um texto por língua. Se faltar uma língua usa-se a primeira de `languages`. | `"Exame"` `{ pt: "Exame", en: "Exam" }` |
 | `ISODate` | `"AAAA-MM-DD"`, com zeros. Um prazo aceita ainda `"AAAA-MM"` (só o mês) e `null` (a marcar). | `"2025-09-15"` |
 | `Time` | `"HH:MM"`, 24 horas. | `"09:30"` |
+| `Weekday` | Dia da semana em número: `1` = segunda-feira … `7` = domingo (como em `semester.teachingDays`). | `2` (terça-feira) |
 | `HTMLText` | Um `LocalizedText` que pode ter HTML simples (links, `<strong>`, `<em>`, `<code>`). É inserido como HTML: as aspas dentro do texto escrevem-se `\"`. | `"Ver <a href=\"avaliacao.html\">regras</a>"` |
 
 ## Campos
@@ -78,11 +79,13 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `pages`lista | Recomendado | `["home"]` | Páginas da navegação, por ordem. Ver [Páginas](#paginas). |
 | `platforms``{ label, url }[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação. A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
 
-### Equipa, prazos e avisos
+### Equipa, horário, prazos e avisos
 
 | Campo e tipo | Necessário | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `team`lista | Opcional | `[]` | Equipa docente, mostrada por [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md). Ver [Equipa](#equipa). |
+| `schedule`lista | Opcional | `[]` | Aulas semanais, mostradas por [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md). Ver [Horário](#horario). |
+| `scheduleTypes`objeto | Opcional | — | Nomes de tipos de aula próprios, ou outros nomes para os do kit: `{ seminar: { pt: "Seminários", en: "Seminars" } }`. |
 | `deadlines`lista | Opcional | `[]` | Prazos, testes e exames: aparecem na página inicial, na semana certa e na avaliação. Ver [Prazos](#prazos). |
 | `notices`lista | Opcional | `[]` | Avisos de [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md). Ver [Avisos](#avisos). |
 
@@ -130,7 +133,8 @@ Os identificadores do kit já têm ficheiro e nome:
 ```js
 team: [
   { name: "Ana Silva", url: "https://example.org/~ana", role: "coordinator",
-    classes: ["T1", "T2"], office: "Gab. 1.25" },
+    classes: ["T1", "T2"], office: "Gab. 1.25",
+    officeHours: [{ day: 2, start: "16:00", end: "18:00" }] },
   { name: "Rui Costa", email: "rui@example.org", role: "assistant", classes: ["PL1", "PL3"] },
   { name: "Inês Rocha", role: { pt: "Monitora", en: "Teaching assistant" } },
 ],
@@ -144,6 +148,35 @@ team: [
 | `role` | `"coordinator"`, `"lecturer"`, `"assistant"` ou `LocalizedText` | Os três papéis do kit são traduzidos (Regente, Docente, Práticas); qualquer outro texto aparece como está. |
 | `classes` | lista de textos | Turmas, por exemplo `["PL1", "PL5"]`. |
 | `office` | texto | Gabinete, por exemplo `"Gab. 1.25"`. |
+| `officeHours` | lista | Atendimento semanal, uma entrada por horário: `{ day, start, end, room?, note? }`, com `day` um `Weekday` e as horas em `Time`. Sem `room`, usa-se `office`. Aparece nos cartões de [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md) e em [`<uc-timetable type="office-hours">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md#atendimento). |
+
+## Horário
+
+Uma entrada por aula semanal. Uma turma com duas aulas por semana tem duas entradas, que [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md) junta numa linha ("3.ª e 5.ª").
+
+`course.js`:
+
+```js
+schedule: [
+  { type: "lecture", class: "T1", day: 2, start: "14:00", end: "15:00", room: "FC4 0.41" },
+  { type: "lecture", class: "T1", day: 4, start: "14:00", end: "15:00", room: "FC4 0.41" },
+  { type: "lab", class: "PL2", day: 2, start: "16:00", end: "18:00", room: "FC6 1.65" },
+  { type: "lab", class: "PL7", day: 2, start: "16:00", end: "18:00", room: "FC6 0.08",
+    staff: "Eduardo Marques", note: "Só nas semanas ímpares" },
+],
+```
+
+| Campo | Tipo | Descrição |
+| --- | --- | --- |
+| `type` | `"lecture"`, `"lab"`, `"tutorial"` ou texto | Obrigatório. Os três tipos do kit são traduzidos (Teóricas, Práticas laboratoriais, Teórico-práticas); outro texto é um tipo próprio, com o nome dado em `scheduleTypes` ou tal como está escrito. |
+| `class` | texto | Obrigatório. A turma, por exemplo `"T1"` ou `"PL2"`. |
+| `day` | `Weekday` | Obrigatório. O dia da semana, de `1` (segunda) a `7` (domingo). |
+| `start`, `end` | `Time` | Obrigatórios. Início e fim da aula. |
+| `room` | `HTMLText` | A sala; pode ser um link (planta, reserva). |
+| `staff` | texto ou lista de textos | Os docentes, com os nomes escritos como em `team`. Sem este campo, são as pessoas da equipa cujo `classes` inclui a turma, por isso normalmente não é preciso. |
+| `note` | `HTMLText` | Uma nota curta, por exemplo "Só nas semanas ímpares". |
+
+Uma entrada a que falte `type`, `class`, `day`, `start` ou `end` não aparece, e a consola diz qual é.
 
 ## Prazos
 

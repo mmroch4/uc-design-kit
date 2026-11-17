@@ -7,6 +7,20 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `<uc-timetable>` (blocks phase 1): the weekly classes from the new
+  `schedule` and `scheduleTypes` fields of `course.js`, one table per type or
+  grouped by weekday (`view="days"`), with a saved "My class" choice per type
+  (`class-filter`, event `uc:classchange`) and the team's office hours.
+- `officeHours` on team members, shown on `<uc-team>` cards and as an extra
+  column of its table.
+- `a[data-auth]`: links that need a login get a lock icon and a hidden
+  "(Requer autenticação)" text, in page HTML, `HTMLText` and components.
+- `UC.formatTime`, `UC.formatDuration`, `UC.weekdayName`.
+- Internal pieces for the new blocks: one shared live region
+  (`<pre data-copy>` and `<uc-code>` now use it), course-scoped storage keys
+  (`uc:<course>:…`), the filter bar (`uc-filters`), page enhancements run
+  after each component render. `scripts/build.mjs` fails above 37 KB gzipped
+  for `uc-kit.js` and prints its size.
 - Accessibility (WCAG 2.1 AA audit): `heading-level` on `<uc-notices>`,
   `<uc-deadlines>`, `<uc-team>` and `<uc-this-week>` (2–6, default 2; the
   heading looks the same at any level); a check mark on the right answers of a

@@ -67,6 +67,7 @@
           <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
           <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
           <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
           <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
@@ -353,6 +354,31 @@
               <tr><td><code>.uc-team__contact</code></td><td>O gabinete e o e-mail.</td></tr>
               <tr><td><code>.uc-team__table</code></td><td>O contentor da tabela (também <code>uc-table</code>).</td></tr>
               <tr><td><code>.uc-team__person</code>, <code>__classes</code></td><td>As células do nome e das turmas, na tabela.</td></tr>
+              <tr><td><code>.uc-team__hours</code>, <code>__hours-title</code>, <code>__hours-list</code></td><td>O atendimento: o bloco no cartão (ou a célula, na tabela), o título "Atendimento" e a lista de horários.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-timetable"><a href="../componentes/uc-timetable.html"><code>&lt;uc-timetable&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-timetable.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-timetable&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-timetable</code></td><td>O componente (o próprio <code>&lt;uc-timetable&gt;</code>).</td></tr>
+              <tr><td><code>.uc-timetable__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-timetable__filters</code></td><td>A barra "A minha turma" (também <code>uc-filters</code>).</td></tr>
+              <tr><td><code>.uc-filters</code>, <code>__group</code>, <code>__label</code>, <code>__select</code>, <code>__button</code></td><td>A barra de filtros, igual em todos os blocos que filtram: cada grupo, o seu rótulo, a lista e os botões.</td></tr>
+              <tr><td><code>.uc-timetable__table</code></td><td>O contentor de cada tabela (também <code>uc-table</code>), com <code>data-type</code> igual ao tipo.</td></tr>
+              <tr><td><code>.uc-timetable__days</code>, <code>__room</code></td><td>Na tabela: as células dos dias e da sala, que não partem a linha.</td></tr>
+              <tr><td><code>.uc-timetable__time</code></td><td>As horas ("14:00–15:00").</td></tr>
+              <tr><td><code>.uc-timetable__note</code></td><td>A nota de uma aula ou de um atendimento.</td></tr>
+              <tr><td><code>.uc-timetable__day</code>, <code>__day-heading</code></td><td>Na vista <code>days</code>: cada dia e o seu título.</td></tr>
+              <tr><td><code>.uc-timetable__list</code>, <code>__item</code>, <code>__details</code></td><td>Na vista <code>days</code>: a lista do dia, cada aula e o texto depois da hora.</td></tr>
             </tbody>
           </table>
         </div>
@@ -539,6 +565,7 @@
           <li class="docs-toc__sub"><a href="#uc-event">&lt;uc-event&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-this-week">&lt;uc-this-week&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-team">&lt;uc-team&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-timetable">&lt;uc-timetable&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-guide">&lt;uc-guide&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-exercise">&lt;uc-exercise&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-code">&lt;uc-code&gt;</a></li>

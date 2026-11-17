@@ -11,6 +11,10 @@
     "core/language.js",
     "core/dom.js",
     "core/clipboard.js",
+    "core/announce.js",
+    "core/storage.js",
+    "core/time.js",
+    "core/filters.js",
     "core/element.js",
     "core/runners.js",
     "components/uc-page.js",
@@ -25,11 +29,13 @@
     "components/uc-exercise.js",
     "components/uc-guide.js",
     "components/uc-team.js",
+    "components/uc-timetable.js",
     "components/uc-code.js",
     "components/uc-question.js",
     "core/tables.js",
     "core/lists.js",
     "core/copy-blocks.js",
+    "core/auth-links.js",
     "core/bootstrap.js"
   ],
   "css": [
@@ -38,6 +44,7 @@
     "css/base/reset.css",
     "css/base/typography.css",
     "css/base/blocks.css",
+    "css/base/shared.css",
     "css/components/uc-page.css",
     "css/components/uc-hero.css",
     "css/components/uc-notices.css",
@@ -50,6 +57,7 @@
     "css/components/uc-exercise.css",
     "css/components/uc-guide.css",
     "css/components/uc-team.css",
+    "css/components/uc-timetable.css",
     "css/components/uc-code.css",
     "css/components/uc-question.css"
   ]

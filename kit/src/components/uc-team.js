@@ -6,7 +6,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid } = UC.internal;
+  const { h, uid, dayNode, timeRangeNode, parseTime } = UC.internal;
   const BUILTIN_ROLES = ["coordinator", "lecturer", "assistant"];
 
   /** Translated label of a member's role (built-in id or LocalizedText). */
@@ -40,6 +40,34 @@
     if (!parts.length) return null;
     const separated = parts.flatMap((part, index) => (index ? [" · ", part] : [part]));
     return h("span", { class: className }, separated);
+  }
+
+  /** A member's valid office hours, in day and time order. */
+  function officeHours(member) {
+    return (Array.isArray(member.officeHours) ? member.officeHours : [])
+      .filter((slot) => slot && Number(slot.day) >= 1 && Number(slot.day) <= 7 && parseTime(slot.start) && parseTime(slot.end))
+      .sort((a, b) => a.day - b.day || UC.internal.minutesOf(a.start) - UC.internal.minutesOf(b.start));
+  }
+
+  /** "3.ª 16:00–18:00 · Gab. 1.25 · Marcar por email": one line per office-hours slot. */
+  function hoursList(member) {
+    return h(
+      "ul",
+      { class: "uc-team__hours-list" },
+      officeHours(member).map((slot) => {
+        const room = UC.text(slot.room) || member.office;
+        const note = UC.text(slot.note);
+        return h(
+          "li",
+          {},
+          dayNode(Number(slot.day)),
+          " ",
+          timeRangeNode(slot.start, slot.end),
+          room ? [" · ", h("span", { html: room })] : null,
+          note ? [" · ", h("span", { html: note })] : null,
+        );
+      }),
+    );
   }
 
   class UCTeam extends UC.Element {
@@ -109,6 +137,9 @@
             nameNode(member, "uc-team__name"),
             details ? h("span", { class: "uc-team__role" }, details) : null,
             contactNode(member, "uc-team__contact"),
+            officeHours(member).length
+              ? h("div", { class: "uc-team__hours" }, h("span", { class: "uc-team__hours-title" }, this.t("team.officeHours")), hoursList(member))
+              : null,
           );
         }),
       );
@@ -116,13 +147,14 @@
 
     renderTable(members) {
       const column = (key) => h("th", { scope: "col" }, this.t(`team.column.${key}`));
+      const withHours = members.some((member) => officeHours(member).length);
       return h(
         "div",
         { class: "uc-team__table uc-table" },
         h(
           "table",
           {},
-          h("thead", {}, h("tr", {}, column("name"), column("role"), column("classes"))),
+          h("thead", {}, h("tr", {}, column("name"), column("role"), column("classes"), withHours ? column("officeHours") : null)),
           h(
             "tbody",
             {},
@@ -133,6 +165,7 @@
                 h("td", { class: "uc-team__person" }, nameNode(member, "uc-team__name"), contactNode(member, "uc-team__contact")),
                 h("td", {}, roleLabel(member.role)),
                 h("td", { class: "uc-team__classes uc-mono" }, classList(member)),
+                withHours ? h("td", { class: "uc-team__hours" }, hoursList(member)) : null,
               ),
             ),
           ),

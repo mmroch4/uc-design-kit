@@ -11,24 +11,11 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, copyText } = UC.internal;
+  const { h, icon, copyText, announce } = UC.internal;
 
   const SELECTOR = "pre[data-copy]";
   const RESET_MS = 2000;
   const enhanced = new WeakSet();
-  let liveRegion = null;
-
-  function announce(message) {
-    if (!liveRegion) {
-      liveRegion = h("div", { class: "uc-visually-hidden", role: "status", "aria-live": "polite" });
-      document.body.appendChild(liveRegion);
-    }
-    liveRegion.textContent = "";
-    // A fresh text node after clearing makes screen readers repeat the message.
-    setTimeout(() => {
-      liveRegion.textContent = message;
-    }, 50);
-  }
 
   /** The button's accessible name: data-copy="..." names what is copied ("Input"). */
   function labelFor(pre) {

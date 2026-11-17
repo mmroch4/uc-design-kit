@@ -11,6 +11,29 @@
   "use strict";
   if (UC.__duplicate) return;
 
+  /**
+   * Page-wide enhancements (links that need a login, wide tables…) register
+   * here; they run on every component render, so content a component writes
+   * gets them too. Each enhancer must be idempotent.
+   */
+  const enhancers = [];
+  UC.internal.registerEnhancer = (enhancer) => enhancers.push(enhancer);
+  UC.internal.enhance = function enhance(root) {
+    for (const enhancer of enhancers) {
+      try {
+        enhancer(root);
+      } catch (error) {
+        console.error("[uc-kit] page enhancement failed", error);
+      }
+    }
+  };
+
+  /** Renders a kit element and enhances what it wrote. */
+  function renderAndEnhance(element) {
+    element.render();
+    UC.internal.enhance(element);
+  }
+
   /** Connected kit elements, so they can be re-rendered when translations arrive. */
   const connected = new Set();
   let rerenderQueued = false;
@@ -25,7 +48,7 @@
     rerenderQueued = true;
     queueMicrotask(() => {
       rerenderQueued = false;
-      connected.forEach((element) => element.render());
+      connected.forEach(renderAndEnhance);
     });
   };
 
@@ -37,10 +60,10 @@
         this.setup();
       }
       if (!this.__ucLanguageListener) {
-        this.__ucLanguageListener = () => this.render();
+        this.__ucLanguageListener = () => renderAndEnhance(this);
         document.addEventListener("uc:languagechange", this.__ucLanguageListener);
       }
-      this.render();
+      renderAndEnhance(this);
     }
 
     disconnectedCallback() {

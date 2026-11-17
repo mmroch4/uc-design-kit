@@ -114,6 +114,7 @@ window.UC_COURSE = {
 | `LocalizedText` | A string (same in every language) or an object `{ [languageCode]: string }`. Missing languages fall back to the first language in `languages`, then to any available value. |
 | `ISODate` | `"YYYY-MM-DD"`. A deadline may also use `"YYYY-MM"` (month known, day not) or `null` (to be scheduled). |
 | `Time` | `"HH:MM"`, 24-hour. |
+| `Weekday` | ISO weekday number: `1` = Monday … `7` = Sunday (as `semester.teachingDays`). |
 | `HTMLText` | A `LocalizedText` whose values may contain inline HTML (links, `<strong>`, `<em>`, `<code>`). It is written by the teacher and inserted as HTML. |
 
 ### 2.2 Fields
@@ -135,6 +136,8 @@ window.UC_COURSE = {
 | `pages` | `(PageId \| Page)[]` | no | `["home"]` | Navigation, in order. See 2.3. |
 | `platforms` | `{ label, url }[]` | no | `[]` | External links listed under "Platforms" in the navigation. |
 | `team` | `TeamMember[]` | no | `[]` | See 2.4. |
+| `schedule` | `ScheduleEntry[]` | no | `[]` | Weekly classes. See 2.7. Read by `<uc-timetable>`. |
+| `scheduleTypes` | `{ [type]: LocalizedText }` | no | — | Labels for custom schedule types, or to rename built-in ones, e.g. `{ seminar: { pt: "Seminários", en: "Seminars" } }`. |
 | `deadlines` | `Deadline[]` | no | `[]` | See 2.5. |
 | `notices` | `Notice[]` | no | `[]` | See 2.6. |
 | `footer` | `HTMLText` | no | course title + institution | Footer left side. |
@@ -186,6 +189,20 @@ scheme (`https:`, `mailto:`), `/` or `#` are used as written.
 | `role` | `"coordinator"` \| `"lecturer"` \| `"assistant"` \| `LocalizedText` | Built-in roles are translated. |
 | `classes` | string[] | Class codes, e.g. `["PL1", "PL5"]`. |
 | `office` | string | e.g. `"Gab. 1.25"`. |
+| `officeHours` | `OfficeHours[]` | Weekly office hours. Shown by `<uc-team>` and by `<uc-timetable type="office-hours">`. |
+
+`OfficeHours`: `{ day: Weekday, start: Time, end: Time, room?: HTMLText, note?: HTMLText }`.
+When `room` is missing, the member's `office` is used.
+
+```js
+team: [
+  { name: "Fernando Silva", role: "coordinator", classes: ["T1", "T2"], office: "Gab. 1.25",
+    officeHours: [
+      { day: 2, start: "16:00", end: "18:00" },
+      { day: 4, start: "16:30", end: "18:00", note: { pt: "Hora a confirmar" } },
+    ] },
+],
+```
 
 ### 2.5 Deadline
 
@@ -209,6 +226,30 @@ scheme (`https:`, `mailto:`), `/` or `#` are used as written.
 | `text` | `HTMLText` | Required. One line. |
 | `details` | `HTMLText` | Optional second line. |
 
+### 2.7 Schedule entry
+
+```js
+schedule: [
+  { type: "lecture", class: "T1", day: 2, start: "14:00", end: "15:00", room: "FC4 0.41" },
+  { type: "lecture", class: "T1", day: 4, start: "14:00", end: "15:00", room: "FC4 0.41" },
+  { type: "lab", class: "PL2", day: 2, start: "16:00", end: "18:00", room: "FC6 1.65" },
+  { type: "lab", class: "PL7", day: 2, start: "16:00", end: "18:00", room: "FC6 0.08", staff: "Eduardo Marques" },
+],
+```
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `type` | `"lecture"` \| `"lab"` \| `"tutorial"` \| string | Required. Built-in types are translated (Teóricas / Práticas laboratoriais / Teórico-práticas); any other string is a custom type, labelled by `scheduleTypes`, or shown as written. |
+| `class` | string | Required. Class code, e.g. `"T1"`, `"PL2"`. |
+| `day` | `Weekday` | Required. |
+| `start`, `end` | `Time` | Required. |
+| `room` | `HTMLText` | Optional. May be a link (room map). |
+| `staff` | string \| string[] | Optional. Names as in `team[].name`. When missing, the teachers are the `team` members whose `classes` include `class`, so the data is not written twice. |
+| `note` | `HTMLText` | Optional, e.g. "Só nas semanas ímpares". |
+
+An entry without `type`, `class`, `day`, `start` or `end` is skipped with one
+console warning.
+
 ## 3. Components
 
 All components are custom elements in the **light DOM**: their content is part
@@ -223,6 +264,11 @@ Common behaviour:
 - Attributes are lowercase, kebab-case. Boolean attributes are present/absent.
 - Teacher-written children are never discarded; components wrap or decorate them.
 - Generated text comes from the i18n dictionaries.
+- Choices a component saves in the browser use `localStorage` keys that
+  include the course, `uc:<course>:<feature>[:<detail>]`, because every course
+  on one server shares one origin. `<course>` is `code`, or the path of the
+  folder that holds `course.js`. Storage may be blocked; the component then
+  works and only forgets the choice.
 
 ### 3.1 Page shell
 
@@ -364,7 +410,7 @@ returns. Outside the semester it shows the next relevant date.
 | `kind` | space-separated kinds | all kinds; use it to avoid repeating a deadline the week's rows already mention |
 | `heading-level` | `2`–`6` | `2` |
 
-### 3.4 People
+### 3.4 People and timetable
 
 #### `<uc-team>`
 
@@ -381,6 +427,47 @@ Renders `UC_COURSE.team`.
 `data-role` (accessibility checkers would flag it otherwise). Write `role` in
 the HTML as documented; in custom CSS select `uc-team[data-role]`. When no
 member matches, the element is hidden.
+
+Members with `officeHours` show "Atendimento" / "Office hours" on their card,
+one line per slot ("3.ª 16:00–18:00 · Gab. 1.25"). The table view adds an
+"Office hours" column only when some member has `officeHours`.
+
+#### `<uc-timetable>`
+
+Renders `UC_COURSE.schedule` and, for `office-hours`, the team's
+`officeHours`.
+
+```html
+<uc-timetable class-filter></uc-timetable>
+<uc-timetable type="office-hours" heading="Atendimento"></uc-timetable>
+```
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `view` | `table` \| `days` | `table` | `table`: one table per type. `days`: one group per weekday, all types mixed, in time order. |
+| `type` | space-separated types | all types in `schedule`, then `office-hours` if any member has office hours | Built-in: `lecture`, `lab`, `tutorial`, `office-hours`; or a custom type. Order of tables: the order given here, else lecture, tutorial, lab, custom types (first appearance), office-hours. |
+| `class-filter` | boolean | absent | One "My class" `<select>` per type that has two or more classes. The choice is saved (`uc:<course>:class:<type>`), shared by every `<uc-timetable>` of the course and announced. |
+| `heading` | text \| `none` | localised "Horário" / "Timetable" | |
+| `heading-level` | `2`–`6` | `2` | Day headings of the `days` view are one level below. |
+
+- **Table view.** Each table has a `<caption>` with the type's plural label
+  ("Teóricas", "Práticas laboratoriais", "Atendimento"). Columns: Class
+  (`<th scope="row">`), Day, Time, Room, Teacher, and Notes only when an entry
+  of that type has a `note`. Office hours: Teacher (`<th scope="row">`), Day,
+  Time, Room, Notes.
+- **Merging.** Entries with the same type, class, start, end, room, staff and
+  note become one row with the days joined ("3.ª e 5.ª"). Rows are sorted by
+  first day, then start time, then class code.
+- **Days** are abbreviated ("3.ª", "Tue") with the full name for screen
+  readers; times are `<time>` elements ("14:00–15:00"). Teachers are links
+  when the member has a `url`.
+- **Days view.** One heading per weekday that has entries (Monday first), with
+  a list: "14:00–15:00 · T1 · Teóricas · FC4 0.41 · Fernando Silva".
+- **Filter.** Choosing a class hides the other rows of that type; "Todas"
+  shows all. Office hours are never filtered. The choice is announced ("A
+  mostrar a turma PL2") and fires `uc:classchange`.
+- With nothing to show, the element is hidden. Without JavaScript only the
+  teacher's children show: link the official timetable there.
 
 ### 3.5 Lab guides
 
@@ -515,6 +602,7 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-prose` | Readable text column (max 720px, secondary colour). |
 | `uc-content` | Wrapper for plain HTML written without kit classes (pasted from an older site or an editor): spacing for headings, paragraphs, lists, tables, `<pre>` and images. `<img class="uc-content__float">` floats right on wide screens. |
 | `<pre data-copy>` | Adds a copy button to the top-right corner of a preformatted block (for example the input and output of a problem's examples). The value names what is copied in the button's accessible label: `data-copy="Input"` reads "Copiar Input"; an empty value reads "Copiar". Works anywhere on the page, not only inside `uc-content`, with the same box (background, padding, rounded corners). |
+| `a[data-auth]` | Link that needs a login. The kit adds a decorative lock icon (`uc-auth-icon`, `aria-hidden="true"`) after the text and a visually hidden "(Requer autenticação)" (`uc-auth-label`); with a value it names the system: `data-auth="SIGARRA"` → "(Requer autenticação: SIGARRA)". Works in page HTML, in `HTMLText` from `course.js` and inside components. Without JavaScript it is a normal link. |
 | `uc-muted`, `uc-mono`, `uc-small` | Text utilities. |
 | `uc-visually-hidden` | Hidden visually, available to screen readers. |
 
@@ -574,6 +662,7 @@ fallback, so they can be set on `:root` for the whole site or on one element
 | `--uc-guide-gap` | `48px` | Space between the blocks of a `<uc-guide>`. |
 | `--uc-notices-date-width` | `64px` | Date column of `<uc-notices>`. |
 | `--uc-deadlines-date-width` | `5.25rem` | Date column of `<uc-deadlines>` in the list view. |
+| `--uc-timetable-time-width` | `7.5rem` | Time column of `<uc-timetable view="days">`. |
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the
@@ -617,6 +706,9 @@ system font and skips downloading Inter, if a course prefers.
 | `UC.formatDateRange(start, end, format?)` | Formats a range, e.g. "25–28 nov"; with `format` `medium` adds the year. |
 | `UC.weekOf(date)` | `{ n, start, end }` or `null` outside the semester. |
 | `UC.weekDates(n)` | `{ n, start, end }` for week `n`, or `null`. |
+| `UC.formatTime(time, end?)` | "14:00" or "14:00–15:00" (24-hour in every language). |
+| `UC.formatDuration(minutes)` | "2 h", "1 h 45 min", "45 min". |
+| `UC.weekdayName(day, format?)` | `Weekday` → "terça-feira" (`long`) or "3.ª" / "Tue" (`short`, default). |
 | `UC.Element` | Base class for components (see below). |
 | `UC.define(name, class)` | Registers a component once (safe to call twice). |
 | `UC.addTranslations(lang, dict)` | Adds or overrides interface strings. |
@@ -639,6 +731,7 @@ Events on `document`:
 | `uc:ready` | Configuration loaded and built-in components defined. Fires while the kit script runs: scripts loaded after it (extensions with `defer`) find `window.UC` ready and do not need it. |
 | `uc:languagechange` | After the active language changes. `event.detail.lang`. |
 | `uc:exercisechange` | Bubbles from a `<uc-exercise>` when it is marked done or not done. |
+| `uc:classchange` | On `document`, when "My class" of a `<uc-timetable>` changes. `event.detail = { type, class }` (`class` is `""` for all). |
 
 ### 7.1 Code runners
 

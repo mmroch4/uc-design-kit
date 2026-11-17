@@ -1,0 +1,44 @@
+/* Pieces shared by several blocks: the filter bar and links that need a login. */
+
+/* Filter bar (UC.internal.filterBar): toggle-button groups and labelled selects. */
+:where(.uc-filters) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--uc-space-3) var(--uc-space-5);
+}
+:where(.uc-filters__group) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--uc-space-2);
+}
+:where(.uc-filters__group:has(> select)) { flex-direction: column; align-items: stretch; gap: var(--uc-space-1); }
+:where(.uc-filters__label) {
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-sm);
+  font-weight: 600;
+}
+:where(.uc-filters__select) {
+  min-height: var(--uc-target-min);
+  max-width: 100%;
+  padding: 0 var(--uc-space-8) 0 var(--uc-space-3);
+  border: 1px solid var(--uc-color-text-subtle);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface);
+  font-size: var(--uc-font-size-md);
+}
+:where(.uc-filters__button[aria-pressed="true"]) {
+  border-color: var(--uc-color-accent);
+  background: var(--uc-color-accent-soft);
+  color: var(--uc-color-accent);
+}
+
+/* a[data-auth]: the lock follows the text; the hidden label says why. */
+:where(.uc-auth-icon) {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.25em;
+  vertical-align: -0.1em;
+}

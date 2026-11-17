@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-timetable · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    /* Page-specific schedule (EDados-like) and office hours. */
+    window.UC_COURSE.scheduleTypes = { seminar: { pt: "Seminários", en: "Seminars" } };
+    window.UC_COURSE.team = [
+      { name: "Fernando Silva", url: "https://www.dcc.fc.up.pt/~fds", role: "coordinator", classes: ["T1", "T2"], office: "Gab. 1.25",
+        officeHours: [
+          { day: 4, start: "16:30", end: "18:00", note: { pt: "Hora a confirmar", en: "Time to be confirmed" } },
+          { day: 2, start: "16:00", end: "18:00" },
+        ] },
+      { name: "Eduardo R. B. Marques", url: "https://www.dcc.fc.up.pt/~edrdo/", role: "assistant", classes: ["PL1", "PL7"] },
+      { name: "Joana Leite", role: "assistant", classes: ["PL2", "PL3"],
+        officeHours: [{ day: 3, start: "10:00", end: "11:00", room: "Sala 1.31" }] },
+    ];
+    window.UC_COURSE.schedule = [
+      // T1 runs twice a week: one merged row "3.ª e 5.ª". Teachers come from team[].classes.
+      { type: "lecture", class: "T1", day: 4, start: "14:00", end: "15:00", room: "FC4 0.41" },
+      { type: "lecture", class: "T1", day: 2, start: "14:00", end: "15:00", room: "FC4 0.41" },
+      { type: "lecture", class: "T2", day: 3, start: "9:00", end: "10:00", room: "FC4 0.41" },
+      { type: "lab", class: "PL1", day: 2, start: "16:00", end: "18:00", room: "FC6 1.65" },
+      { type: "lab", class: "PL2", day: 3, start: "14:00", end: "16:00", room: { pt: "<a href=\"#salas\" data-auth=\"SIGARRA\">FC6 1.60</a>", en: "<a href=\"#rooms\" data-auth=\"SIGARRA\">FC6 1.60</a>" } },
+      { type: "lab", class: "PL3", day: 5, start: "11:00", end: "13:00", room: "FC6 1.60", note: { pt: "Só nas semanas ímpares", en: "Odd weeks only" } },
+      // Explicit staff (an array, one name not in the team).
+      { type: "lab", class: "PL7", day: 2, start: "16:00", end: "18:00", room: "FC6 0.08", staff: ["Eduardo R. B. Marques", "Convidado Externo"] },
+      // Custom types: labelled by scheduleTypes, or shown as written.
+      { type: "seminar", class: "S1", day: 5, start: "15:00", end: "16:00", room: "Anf. 2", staff: "Fernando Silva" },
+      { type: "workshop", class: "W1", day: 1, start: "18:00", end: "19:30", room: "Lab 3" },
+      // Invalid: no end. Warned once and skipped.
+      { type: "lab", class: "PL9", day: 2, start: "16:00" },
+    ];
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="schedule">
+    <h1>
+      <span lang="pt">Horário (teste)</span>
+      <span lang="en">Timetable (test)</span>
+    </h1>
+
+    <!-- Every type, with the class filter. Teacher text stays below. -->
+    <uc-timetable id="all" class-filter>
+      <p class="uc-muted">
+        <span lang="pt">Salas no <a href="#sigarra" data-auth="SIGARRA">SIGARRA</a> e nas <a href="#pautas" data-auth>pautas</a>.</span>
+        <span lang="en">Rooms on <a href="#sigarra" data-auth="SIGARRA">SIGARRA</a> and in the <a href="#pautas" data-auth>grade sheets</a>.</span>
+      </p>
+    </uc-timetable>
+
+    <!-- A second instance shares the "My class" choice. -->
+    <uc-timetable id="labs" type="lab" class-filter heading="Práticas"></uc-timetable>
+
+    <!-- Days view, lectures and office hours. -->
+    <uc-timetable id="days" view="days" type="lecture office-hours" heading="Por dia" heading-level="2"></uc-timetable>
+
+    <!-- Office hours only, the member's office as fallback room. -->
+    <uc-timetable id="office" type="office-hours" heading="Atendimento"></uc-timetable>
+
+    <!-- A type nobody has: the element hides itself. -->
+    <uc-timetable id="empty" type="tutorial"></uc-timetable>
+
+    <!-- The team with office hours: a line per slot on cards and an extra column in the table. -->
+    <uc-team></uc-team>
+    <uc-team view="table" heading="Equipa (tabela)"></uc-team>
+  </uc-page>
+  <script>
+    document.addEventListener("uc:ready", () => {
+      requestAnimationFrame(() => {
+        const fail = (message) => console.error(`uc-timetable: ${message}`);
+        const all = document.getElementById("all");
+        const lectures = all.querySelector('.uc-timetable__table[data-type="lecture"]');
+        const t1 = Array.from(lectures.querySelectorAll("tbody tr")).find((row) => row.dataset.class === "T1");
+        const shown = t1 && Array.from(t1.cells[1].querySelectorAll("[aria-hidden]"), (node) => node.textContent).join(" ");
+        if (shown !== "3.ª 5.ª" && shown !== "Tue Thu") fail(`T1 should be one row on Tuesday and Thursday, got "${shown}"`);
+        if (!t1 || !/terça-feira e quinta-feira|Tuesday and Thursday/.test(t1.cells[1].textContent.replace(/3\.ª|5\.ª|Tue|Thu/g, ""))) fail("days have their full names for screen readers");
+        if (!t1 || !/Fernando Silva/.test(t1.textContent)) fail("T1 teachers should come from team[].classes");
+        const order = Array.from(all.querySelectorAll(".uc-timetable__table")).map((table) => table.dataset.type).join(" ");
+        if (order !== "lecture lab seminar workshop office-hours") fail(`table order is "${order}"`);
+        if (!/Seminários|Seminars/.test(all.querySelector('[data-type="seminar"] caption').textContent)) fail("seminar caption should come from scheduleTypes");
+        if (all.querySelector('[data-type="workshop"] caption').textContent !== "workshop") fail("a custom type without a label is shown as written");
+        if (all.querySelector('tr[data-class="PL9"]')) fail("an entry without end must be skipped");
+        const pl7 = all.querySelector('tr[data-class="PL7"]');
+        if (!pl7 || !/Eduardo R\. B\. Marques, Convidado Externo/.test(pl7.textContent)) fail("explicit staff array");
+        if (!pl7.querySelector('a[href="https://www.dcc.fc.up.pt/~edrdo/"]')) fail("staff in the team link to their page");
+        if (all.querySelectorAll(".uc-timetable__filters select").length !== 2) fail("one select per type with two or more classes (lectures, labs)");
+        const office = document.getElementById("office");
+        const rows = office.querySelectorAll("tbody tr");
+        if (rows.length !== 3) fail(`office hours: ${rows.length} rows, expected 3`);
+        if (!/Gab\. 1\.25/.test(rows[0].textContent)) fail("office hours fall back to the member's office");
+        if (!document.getElementById("empty").hidden) fail("a timetable with nothing to show is hidden");
+        const auth = all.querySelectorAll("a[data-auth] .uc-auth-label");
+        if (auth.length < 3) fail("links with data-auth get a hidden label (page HTML and HTMLText)");
+        const days = document.getElementById("days");
+        if (days.querySelectorAll(".uc-timetable__day-heading")[0].localName !== "h3") fail("day headings are one level below the heading");
+      });
+    });
+  </script>
+</body>
+</html>

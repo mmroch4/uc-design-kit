@@ -65,6 +65,9 @@
     }
   }
 
+  // Components call it on what they render (UC.internal.enhance), before the observer below sees it.
+  UC.internal.registerEnhancer(watch);
+
   function start() {
     watch(document);
     // Components render their tables after the page loads (uc-deadlines, uc-team).
