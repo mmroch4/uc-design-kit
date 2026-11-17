@@ -1,0 +1,24 @@
+{
+  "name": "uc-widget-shortest-path",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 2,
+  "title": { "pt": "Caminhos mais curtos", "en": "Shortest paths" },
+  "summary": {
+    "pt": "Dijkstra com a fila de prioridade visível e Bellman-Ford por rondas, com deteção de ciclos negativos.",
+    "en": "Dijkstra with its priority queue in view and Bellman-Ford round by round, with negative cycle detection."
+  },
+  "page": "docs/pt/widgets/uc-widget-shortest-path.html",
+  "algorithms": ["dijkstra", "bellman-ford"],
+  "courses": ["EDados", "PC"],
+  "attributes": ["edges", "directed", "source", "algorithm", "algorithms"],
+  "predict": true,
+  "test": {
+    "input": { "text": "A B 4\nA C 1\nC B 2\nB D 5\nC D 8\nE", "directed": true, "source": "A" },
+    "options": [
+      { "algorithm": "dijkstra", "input": { "text": "S A 7\nS B 2\nB A 3\nA C 1\nB C 8", "directed": false, "source": "S" } },
+      { "algorithm": "bellman-ford", "input": { "text": "A B 4\nA C 5\nC B -3\nB D 2", "directed": true, "source": "A" } },
+      { "algorithm": "bellman-ford", "input": { "text": "A B 1\nB C -2\nC B 1\nC D 3", "directed": true, "source": "A" } }
+    ]
+  }
+}

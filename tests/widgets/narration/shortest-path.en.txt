@@ -1,0 +1,103 @@
+## algorithm=dijkstra · input {"text":"A B 4\nA C 1\nC B 2\nB D 5\nC D 8\nE","directed":true,"source":"A"}
+  1. Dijkstra from A, in a graph with 5 vertices and 5 edges.
+  2. dist[A] = 0; the other vertices stay at ∞.
+  3. A leaves the queue with distance 0: it is the final distance of A.
+  4. A → B (weight 4): 0 + 4 = 4 < ∞; dist[B] = 4, parent[B] = A.
+  5. B joins the queue with distance 4.
+  6. A → C (weight 1): 0 + 1 = 1 < ∞; dist[C] = 1, parent[C] = A.
+  7. C joins the queue with distance 1.
+  8. C leaves the queue with distance 1: it is the final distance of C.
+  9. C → B (weight 2): 1 + 2 = 3 < 4; dist[B] = 3, parent[B] = C.
+ 10. B joins the queue with distance 3.
+ 11. C → D (weight 8): 1 + 8 = 9 < ∞; dist[D] = 9, parent[D] = C.
+ 12. D joins the queue with distance 9.
+ 13. B leaves the queue with distance 3: it is the final distance of B.
+ 14. B → D (weight 5): 3 + 5 = 8 < 9; dist[D] = 8, parent[D] = B.
+ 15. D joins the queue with distance 8.
+ 16. The pair B:4 leaves the queue, out of date (dist[B] = 3): skip it.
+ 17. D leaves the queue with distance 8: it is the final distance of D.
+ 18. The pair D:9 leaves the queue, out of date (dist[D] = 8): skip it.
+ 19. Distances from A: A 0, B 3, C 1, D 8. Unreachable: E.
+
+## algorithm=bellman-ford · input {"text":"A B 4\nA C 1\nC B 2\nB D 5\nC D 8\nE","directed":true,"source":"A"}
+  1. Bellman-Ford from A, in a graph with 5 vertices and 5 edges.
+  2. dist[A] = 0; the other vertices stay at ∞.
+  3. Round 1 of 4: relax every edge.
+  4. A → B (weight 4): 0 + 4 = 4 < ∞; dist[B] = 4, parent[B] = A.
+  5. A → C (weight 1): 0 + 1 = 1 < ∞; dist[C] = 1, parent[C] = A.
+  6. C → B (weight 2): 1 + 2 = 3 < 4; dist[B] = 3, parent[B] = C.
+  7. B → D (weight 5): 3 + 5 = 8 < ∞; dist[D] = 8, parent[D] = B.
+  8. C → D (weight 8): 1 + 8 = 9 does not improve dist[D] = 8.
+  9. Round 2 of 4: relax every edge.
+ 10. A → B (weight 4): 0 + 4 = 4 does not improve dist[B] = 3.
+ 11. A → C (weight 1): 0 + 1 = 1 does not improve dist[C] = 1.
+ 12. C → B (weight 2): 1 + 2 = 3 does not improve dist[B] = 3.
+ 13. B → D (weight 5): 3 + 5 = 8 does not improve dist[D] = 8.
+ 14. C → D (weight 8): 1 + 8 = 9 does not improve dist[D] = 8.
+ 15. Nothing changed in round 2: the distances are final.
+ 16. One more pass over every edge, looking for a negative cycle.
+ 17. Distances from A: A 0, B 3, C 1, D 8. Unreachable: E.
+
+## algorithm=dijkstra · input {"text":"S A 7\nS B 2\nB A 3\nA C 1\nB C 8","directed":false,"source":"S"}
+  1. Dijkstra from S, in a graph with 4 vertices and 5 edges.
+  2. dist[S] = 0; the other vertices stay at ∞.
+  3. S leaves the queue with distance 0: it is the final distance of S.
+  4. S – A (weight 7): 0 + 7 = 7 < ∞; dist[A] = 7, parent[A] = S.
+  5. A joins the queue with distance 7.
+  6. S – B (weight 2): 0 + 2 = 2 < ∞; dist[B] = 2, parent[B] = S.
+  7. B joins the queue with distance 2.
+  8. B leaves the queue with distance 2: it is the final distance of B.
+  9. B – S: S already has its final distance.
+ 10. B – A (weight 3): 2 + 3 = 5 < 7; dist[A] = 5, parent[A] = B.
+ 11. A joins the queue with distance 5.
+ 12. B – C (weight 8): 2 + 8 = 10 < ∞; dist[C] = 10, parent[C] = B.
+ 13. C joins the queue with distance 10.
+ 14. A leaves the queue with distance 5: it is the final distance of A.
+ 15. A – S: S already has its final distance.
+ 16. A – B: B already has its final distance.
+ 17. A – C (weight 1): 5 + 1 = 6 < 10; dist[C] = 6, parent[C] = A.
+ 18. C joins the queue with distance 6.
+ 19. C leaves the queue with distance 6: it is the final distance of C.
+ 20. C – A: A already has its final distance.
+ 21. C – B: B already has its final distance.
+ 22. The pair A:7 leaves the queue, out of date (dist[A] = 5): skip it.
+ 23. The pair C:10 leaves the queue, out of date (dist[C] = 6): skip it.
+ 24. Distances from S: S 0, A 5, B 2, C 6.
+
+## algorithm=bellman-ford · input {"text":"A B 4\nA C 5\nC B -3\nB D 2","directed":true,"source":"A"}
+  1. Bellman-Ford from A, in a graph with 4 vertices and 4 edges.
+  2. dist[A] = 0; the other vertices stay at ∞.
+  3. Round 1 of 3: relax every edge.
+  4. A → B (weight 4): 0 + 4 = 4 < ∞; dist[B] = 4, parent[B] = A.
+  5. A → C (weight 5): 0 + 5 = 5 < ∞; dist[C] = 5, parent[C] = A.
+  6. C → B (weight -3): 5 + (-3) = 2 < 4; dist[B] = 2, parent[B] = C.
+  7. B → D (weight 2): 2 + 2 = 4 < ∞; dist[D] = 4, parent[D] = B.
+  8. Round 2 of 3: relax every edge.
+  9. A → B (weight 4): 0 + 4 = 4 does not improve dist[B] = 2.
+ 10. A → C (weight 5): 0 + 5 = 5 does not improve dist[C] = 5.
+ 11. C → B (weight -3): 5 + (-3) = 2 does not improve dist[B] = 2.
+ 12. B → D (weight 2): 2 + 2 = 4 does not improve dist[D] = 4.
+ 13. Nothing changed in round 2: the distances are final.
+ 14. One more pass over every edge, looking for a negative cycle.
+ 15. Distances from A: A 0, B 2, C 5, D 4.
+
+## algorithm=bellman-ford · input {"text":"A B 1\nB C -2\nC B 1\nC D 3","directed":true,"source":"A"}
+  1. Bellman-Ford from A, in a graph with 4 vertices and 4 edges.
+  2. dist[A] = 0; the other vertices stay at ∞.
+  3. Round 1 of 3: relax every edge.
+  4. A → B (weight 1): 0 + 1 = 1 < ∞; dist[B] = 1, parent[B] = A.
+  5. B → C (weight -2): 1 + (-2) = -1 < ∞; dist[C] = -1, parent[C] = B.
+  6. C → B (weight 1): -1 + 1 = 0 < 1; dist[B] = 0, parent[B] = C.
+  7. C → D (weight 3): -1 + 3 = 2 < ∞; dist[D] = 2, parent[D] = C.
+  8. Round 2 of 3: relax every edge.
+  9. A → B (weight 1): 0 + 1 = 1 does not improve dist[B] = 0.
+ 10. B → C (weight -2): 0 + (-2) = -2 < -1; dist[C] = -2, parent[C] = B.
+ 11. C → B (weight 1): -2 + 1 = -1 < 0; dist[B] = -1, parent[B] = C.
+ 12. C → D (weight 3): -2 + 3 = 1 < 2; dist[D] = 1, parent[D] = C.
+ 13. Round 3 of 3: relax every edge.
+ 14. A → B (weight 1): 0 + 1 = 1 does not improve dist[B] = -1.
+ 15. B → C (weight -2): -1 + (-2) = -3 < -2; dist[C] = -3, parent[C] = B.
+ 16. C → B (weight 1): -3 + 1 = -2 < -1; dist[B] = -2, parent[B] = C.
+ 17. C → D (weight 3): -3 + 3 = 0 < 1; dist[D] = 0, parent[D] = C.
+ 18. One more pass over every edge, looking for a negative cycle.
+ 19. B → C (weight -2) still improves dist[C]: there is a negative-weight cycle, the distances are not defined.

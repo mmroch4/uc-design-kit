@@ -559,7 +559,9 @@ export function createWidget(UC) {
       if (announce) this.announce();
       this.dispatchEvent(new CustomEvent("uc:widgetstep", { bubbles: true, detail: { widget: this.localName, step: this.index, total: this.stepList.length } }));
       if (forward && this.index === last && previous !== last) {
-        this.dispatchEvent(new CustomEvent("uc:widgetdone", { bubbles: true, detail: { widget: this.localName, total: this.stepList.length } }));
+        // stats and input: what <uc-widget-complexity for> plots (24.6).
+        const detail = { widget: this.localName, total: this.stepList.length, stats: this.stepList[last].stats || {}, input: this.input };
+        this.dispatchEvent(new CustomEvent("uc:widgetdone", { bubbles: true, detail }));
       }
     }
 

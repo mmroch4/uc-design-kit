@@ -1,0 +1,12 @@
+/* svg.plot (complexity): axes, curves told apart by dash and state, the n rule, measured points. */
+:where(.uc-widget__axes) path { stroke: var(--uc-color-text-muted); stroke-width: 1.5; }
+:where(.uc-widget__axes) .uc-widget__grid { stroke: var(--uc-color-border); stroke-width: 1; }
+:where(.uc-widget__tick, .uc-widget__series) { font: 13px var(--uc-font-mono); fill: var(--uc-color-text-secondary); }
+:where(.uc-widget__series) { font-weight: 600; fill: var(--uc-color-text); }
+:where(.uc-widget__curve) path { stroke: var(--uc-color-text); stroke-width: 2; }
+:where(.uc-widget__curve.is-swapped) path { stroke: var(--uc-widget-swapped, #6d28d9); stroke-width: 3.5; }
+:where(.uc-widget__curve.is-swapped) text { fill: var(--uc-widget-swapped, #6d28d9); }
+:where(.uc-widget__guide) { stroke: var(--uc-widget-current, var(--uc-color-accent)); stroke-dasharray: 4 3; stroke-width: 1.5; }
+:where(.uc-widget__dot) { fill: var(--uc-widget-current, var(--uc-color-accent)); stroke: var(--uc-color-surface); stroke-width: 2; }
+:where(.uc-widget__dot.is-swapped) { fill: var(--uc-widget-swapped, #6d28d9); }
+:where(.uc-widget__measure) { fill: var(--uc-widget-done, #15803d); stroke: var(--uc-color-surface); stroke-width: 1.5; }

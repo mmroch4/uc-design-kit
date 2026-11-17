@@ -1,0 +1,65 @@
+{
+  "name": "uc-widget-graph",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 2,
+  "title": {
+    "pt": "Pesquisa em grafos",
+    "en": "Graph search"
+  },
+  "summary": {
+    "pt": "BFS com a fila e as distâncias, DFS com a pilha de chamadas e a ordem de visita, componentes conexas; grafos dirigidos ou não.",
+    "en": "BFS with its queue and distances, DFS with its call stack and visit order, connected components; directed or undirected graphs."
+  },
+  "page": "docs/pt/widgets/uc-widget-graph.html",
+  "algorithms": [
+    "bfs",
+    "dfs",
+    "components"
+  ],
+  "courses": [
+    "EDados",
+    "PC"
+  ],
+  "attributes": [
+    "edges",
+    "directed",
+    "source",
+    "algorithm",
+    "algorithms"
+  ],
+  "predict": true,
+  "test": {
+    "input": {
+      "text": "A B\nA C\nB D\nC D\nD E\nF G",
+      "directed": false,
+      "source": "A"
+    },
+    "options": [
+      {
+        "algorithm": "bfs",
+        "input": {
+          "text": "A B\nB C\nC A\nC D\nE",
+          "directed": true,
+          "source": "A"
+        }
+      },
+      {
+        "algorithm": "dfs",
+        "input": {
+          "text": "1 2\n1 3\n2 4\n3 4\n4 1",
+          "directed": true,
+          "source": "1"
+        }
+      },
+      {
+        "algorithm": "components",
+        "input": {
+          "text": "A B\nC B\nD E",
+          "directed": true,
+          "source": null
+        }
+      }
+    ]
+  }
+}

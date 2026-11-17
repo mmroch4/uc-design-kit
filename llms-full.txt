@@ -5698,6 +5698,20 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 EDados
 
   Algoritmos: `operations`, `preorder`, `inorder`, `postorder`, `levelorder` · 5.5 KB gzip
+- [Complexidade](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-complexity.md) `<uc-widget-complexity>`
+
+  Funções de crescimento (1, log n, n, n log n, n², 2ⁿ…) lado a lado à medida que n cresce, com as contagens reais de outro widget da página.
+
+  Experimental Vaga 2 IP PI EDados PC
+
+  Algoritmos: `growth` · 4.8 KB gzip
+- [Pesquisa em grafos](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-graph.md) `<uc-widget-graph>`
+
+  BFS com a fila e as distâncias, DFS com a pilha de chamadas e a ordem de visita, componentes conexas; grafos dirigidos ou não.
+
+  Experimental Vaga 2 EDados PC
+
+  Algoritmos: `bfs`, `dfs`, `components` · 7.1 KB gzip
 - [Tabela de dispersão](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-hash.md) `<uc-widget-hash>`
 
   Tabela de dispersão com encadeamento, sondagem linear ou quadrática: inserir, procurar, remover, fator de carga e crescimento da tabela.
@@ -5733,6 +5747,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 IP EDados PI PC
 
   Algoritmos: `linear`, `binary`, `lower` · 3.2 KB gzip
+- [Caminhos mais curtos](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-shortest-path.md) `<uc-widget-shortest-path>`
+
+  Dijkstra com a fila de prioridade visível e Bellman-Ford por rondas, com deteção de ciclos negativos.
+
+  Experimental Vaga 2 EDados PC
+
+  Algoritmos: `dijkstra`, `bellman-ford` · 6.9 KB gzip
 - [Ordenação](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-sort.md) `<uc-widget-sort>`
 
   Bolha, seleção, inserção, merge sort, quicksort e counting sort, passo a passo.
@@ -5750,9 +5771,8 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
 
 ## Planeados
 
-Os restantes chegam por vagas, todos com o mesmo leitor, as mesmas teclas e a mesma vista em texto:
+Os restantes chegam na próxima vaga, com o mesmo leitor, as mesmas teclas e a mesma vista em texto:
 
-- **Vaga 2:** BFS e DFS, caminhos mais curtos (Dijkstra, Bellman-Ford), complexidade.
 - **Vaga 3:** árvores de cobertura mínima, union-find, ordenação topológica, programação dinâmica, backtracking e um widget de traço com os passos do professor.
 
 ## Ver também
@@ -5866,7 +5886,7 @@ A biblioteca tem versões próprias, independentes do kit. `widgets/v1/` recebe 
 
 ## Eventos e métodos
 
-Os widgets lançam `uc:widgetstep` (cada mudança de passo), `uc:widgetdone` (chegou ao fim a avançar) e `uc:widgetpredict` (cada resposta). Têm os métodos `go(n)`, `next()`, `back()`, `play()`, `pause()`, `reset()` e as propriedades `step`, `total` e `result`. Por exemplo, mostrar uma pergunta do guião quando a demonstração acaba:
+Os widgets lançam `uc:widgetstep` (cada mudança de passo), `uc:widgetdone` (chegou ao fim a avançar; traz os contadores do último passo em `stats` e a entrada em `input`, que o [`<uc-widget-complexity>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-complexity.md) usa para medir) e `uc:widgetpredict` (cada resposta). Têm os métodos `go(n)`, `next()`, `back()`, `play()`, `pause()`, `reset()` e as propriedades `step`, `total` e `result`. Por exemplo, mostrar uma pergunta do guião quando a demonstração acaba:
 
 ```js
 document.querySelector("#demo").addEventListener("uc:widgetdone", () => {
@@ -6801,6 +6821,307 @@ Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houve
 
 - [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md): importar, teclado, previsões, versões.
 - [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md) dos widgets.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-graph.md -->
+
+# `<uc-widget-graph>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-graph.html
+
+Pesquisa em largura (BFS) com a fila e as distâncias, pesquisa em profundidade (DFS) com a pilha de chamadas, e componentes conexas, num grafo dirigido ou não.
+
+Exemplo (BFS, DFS e componentes, com botões e previsões), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-graph/basic.html):
+
+```html
+    <uc-widget-graph source="A" algorithms="bfs dfs components" predict>
+      <pre data-input>
+A B
+A C
+B D
+C D
+D E
+F G
+      </pre>
+      <p>BFS a partir de A: A 0, B 1, C 1, D 2, E 3; F e G ficam a ∞.
+        DFS: A B D C E. Duas componentes: {A, B, C, D, E} e {F, G}.</p>
+    </uc-widget-graph>
+```
+
+Cada vértice tem ao lado a sua anotação: a distância na BFS (∞ até ser descoberto), o número de visita na DFS, a componente nas componentes conexas. As arestas da árvore de pesquisa ficam marcadas; no fim, a árvore e os vértices alcançados ficam com ✓.
+
+## Utilização
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-graph.js" defer></script>
+
+<uc-widget-graph source="A" algorithm="dfs" edges="A B; A C; B C; C D">
+  <p>DFS a partir de A: A B C D.</p>
+</uc-widget-graph>
+```
+
+## Escrever o grafo
+
+Uma linha por aresta dentro de `<pre data-input>`: `U V`, ou `U V P` com um peso inteiro. Uma linha só com um nome declara um vértice isolado; `U @ X,Y` fixa a posição de U numa grelha (se todos os vértices tiverem posição, o desenho segue-as); `#` começa um comentário. Para grafos pequenos, o atributo `edges` aceita as mesmas linhas separadas por `;` (`edges="A B 4; A C 1"`) e tem prioridade sobre o `<pre>`.
+
+Sem posições, o desenho é automático: cada componente conexa é desenhada à parte (com um algoritmo de forças, ou num círculo quando este tiver menos cruzamentos) e as componentes ficam lado a lado. O desenho não muda entre passos. Até 10 vértices e 20 arestas. Com `directed` as arestas são arcos (setas); os vizinhos de cada vértice são visitados pela ordem em que os vértices aparecem na entrada, por isso a ordem das linhas decide a ordem da pesquisa.
+
+## Algoritmos
+
+| `algorithm` | O que mostra |
+| --- | --- |
+| `bfs` | Pesquisa em largura a partir de `source`: a fila no painel, a distância de cada vértice, a ordem de visita. Pergunta de previsão: "Que vértice sai da fila a seguir?". |
+| `dfs` | Pesquisa em profundidade recursiva a partir de `source`: a pilha de chamadas no painel, o número de visita de cada vértice, o regresso a cada vértice. Pergunta: "Que vértice é visitado a seguir?". |
+| `components` | Componentes conexas, uma BFS por componente nova (num grafo dirigido os arcos contam nos dois sentidos). Pergunta: "Que vértice começa a componente seguinte?". |
+
+## Grafo dirigido com posições
+
+Exemplo (DFS num grafo dirigido, com posições e editável), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-graph/directed.html):
+
+```html
+<uc-widget-graph algorithm="dfs" directed source="1"
+    edges="1 2; 1 3; 2 4; 3 4; 4 1; 1 @ 0,0; 2 @ 2,0; 3 @ 0,2; 4 @ 2,2" editable>
+  <p>DFS a partir de 1 num grafo dirigido: visita 1, 2, 4 e depois 3.</p>
+</uc-widget-graph>
+```
+
+Com `editable`, o aluno muda as arestas (numa linha, separadas por `;`) e corre de novo.
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `source` | nome de um vértice | o primeiro vértice | Onde começam a BFS e a DFS. |
+| `directed` | booleano | ausente | Arcos em vez de arestas. |
+| `edges` | linhas separadas por `;` | ausente | O grafo, em vez do `<pre data-input>`. |
+| `algorithm` | `bfs`, `dfs`, `components` | `bfs` | O algoritmo. |
+
+## Linhas do pseudocódigo
+
+Os identificadores para marcar as linhas de um `<pre data-pseudocode>` próprio (ver [Pseudocódigo próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#pseudocodigo)), com `data-algorithm` igual ao algoritmo:
+
+| Algoritmo | Linhas |
+| --- | --- |
+| `bfs` | `init`, `pop`, `check`, `visit` |
+| `dfs` | `visit`, `check`, `down`, `back`, `end` |
+| `components` | `new`, `visit`, `close` |
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo ("A – B: B é novo; dist[B] = 1 e entra na fila."); o grafo descrito em palavras, com as arestas e as anotações; estados com cor, espessura, tracejado e sinal (• descoberto, ✓ terminado); "Vista em texto" com uma tabela vértice, anotação, pai e estado.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento o resultado (as distâncias, a ordem de visita, as componentes) e manter o grafo pequeno, até 7 ou 8 vértices, para que se leia num telemóvel.
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver. O `<pre data-input>` não aparece: escreva o resultado num parágrafo.
+
+## Ver também
+
+- [`<uc-widget-shortest-path>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-shortest-path.md): Dijkstra e Bellman-Ford, com a mesma entrada.
+- [`<uc-widget-stack-queue>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-stack-queue.md): a pilha e a fila por si.
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md) e o [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md).
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-shortest-path.md -->
+
+# `<uc-widget-shortest-path>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-shortest-path.html
+
+Caminhos mais curtos a partir de uma origem: o Dijkstra com a fila de prioridade à vista e o Bellman-Ford ronda a ronda, com deteção de ciclos negativos.
+
+Exemplo (Dijkstra com a fila de prioridade e previsões), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-shortest-path/basic.html):
+
+```html
+    <uc-widget-shortest-path source="A" directed predict>
+      <pre data-input>
+A B 4
+A C 1
+C B 2
+B D 5
+C D 8
+E
+      </pre>
+      <p>Distâncias a partir de A: B 3, C 1, D 8; E inacessível.</p>
+    </uc-widget-shortest-path>
+```
+
+A distância provisória de cada vértice está ao lado dele (∞ até haver caminho); a fila de prioridade aparece no painel como pares vértice:distância, a menor primeiro. É a versão com remoção preguiçosa: quando uma distância melhora entra um par novo, e o par antigo é ignorado quando sai da fila. No fim fica marcada a árvore dos caminhos mais curtos.
+
+## Utilização
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-shortest-path.js" defer></script>
+
+<uc-widget-shortest-path source="S" edges="S A 7; S B 2; B A 3; A C 1; B C 8">
+  <p>Distâncias a partir de S: A 5, B 2, C 6.</p>
+</uc-widget-shortest-path>
+```
+
+## Escrever o grafo
+
+Uma linha por aresta dentro de `<pre data-input>`: `U V`, ou `U V P` com um peso inteiro (um grafo sem pesos tem peso 1 em todas as arestas). Uma linha só com um nome declara um vértice isolado; `U @ X,Y` fixa a posição de U numa grelha (se todos os vértices tiverem posição, o desenho segue-as); `#` começa um comentário. Para grafos pequenos, o atributo `edges` aceita as mesmas linhas separadas por `;` (`edges="A B 4; A C 1"`) e tem prioridade sobre o `<pre>`.
+
+Sem posições, o desenho é automático: cada componente conexa é desenhada à parte (com um algoritmo de forças, ou num círculo quando este tiver menos cruzamentos) e as componentes ficam lado a lado. O desenho não muda entre passos. Até 10 vértices e 20 arestas. Com `directed` as arestas são arcos (setas); os vizinhos de cada vértice são visitados pela ordem em que os vértices aparecem na entrada, por isso a ordem das linhas decide a ordem da pesquisa.
+
+## Bellman-Ford e pesos negativos
+
+Exemplo (Bellman-Ford com um arco negativo, editável), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-shortest-path/bellman-ford.html):
+
+```html
+<uc-widget-shortest-path algorithm="bellman-ford" directed source="A"
+    edges="A B 4; A C 5; C B -3; B D 2" editable>
+  <p>Com o arco negativo C → B, as distâncias a partir de A são B 2, C 5, D 4.</p>
+</uc-widget-shortest-path>
+```
+
+`algorithm="bellman-ford"` faz |V| − 1 rondas sobre todas as arestas, pela ordem da entrada (nos dois sentidos se o grafo não for dirigido), e para mais cedo quando uma ronda não muda nada; depois faz mais uma passagem e, se alguma aresta ainda melhorar uma distância, anuncia um ciclo de peso negativo alcançável a partir da origem. O Dijkstra recusa pesos negativos com uma nota de erro que sugere o Bellman-Ford. Num grafo não dirigido, uma aresta de peso negativo já é um ciclo negativo (vai e volta).
+
+Perguntas de previsão: no Dijkstra, "Que vértice sai da fila a seguir com a sua distância final?" e, nos dois algoritmos, "A → B (peso 4) melhora dist[B] = 5?" (Sim / Não), quando a distância já não é ∞.
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `source` | nome de um vértice | o primeiro vértice | A origem. |
+| `directed` | booleano | ausente | Arcos em vez de arestas. |
+| `edges` | linhas separadas por `;` | ausente | O grafo, em vez do `<pre data-input>`. |
+| `algorithm` | `dijkstra`, `bellman-ford` | `dijkstra` | O algoritmo. |
+
+## Linhas do pseudocódigo
+
+Os identificadores para marcar as linhas de um `<pre data-pseudocode>` próprio (ver [Pseudocódigo próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#pseudocodigo)):
+
+| Algoritmo | Linhas |
+| --- | --- |
+| `dijkstra` | `init`, `pop`, `stale`, `edge`, `relax`, `update`, `push` |
+| `bellman-ford` | `init`, `round`, `relax`, `update`, `stop`, `check`, `cycle` |
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo com a conta da relaxação ("C → B (peso 2): 1 + 2 = 3 < 4; dist[B] = 3, pai[B] = C."); o grafo e as distâncias descritos em palavras; estados com cor, espessura, tracejado e sinal; contadores de arestas vistas e de relaxações; "Vista em texto" com uma tabela vértice, distância, pai e estado.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento as distâncias finais (ou o ciclo negativo) e escolher pesos pequenos, de um ou dois algarismos, para que as contas se leiam.
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver. O `<pre data-input>` não aparece: escreva o resultado num parágrafo.
+
+## Ver também
+
+- [`<uc-widget-graph>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-graph.md): BFS (os caminhos mais curtos sem pesos), DFS e componentes.
+- [`<uc-widget-heap>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-heap.md): o heap que costuma estar por trás da fila de prioridade.
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md) e o [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md).
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-complexity.md -->
+
+# `<uc-widget-complexity>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-complexity.html
+
+As funções de crescimento (1, log n, n, n log n, n², 2ⁿ…) lado a lado à medida que n cresce, com as contagens reais de outro widget da página.
+
+Exemplo (as funções de crescimento de n = 1 a 12, com previsões), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-complexity/basic.html):
+
+```html
+<uc-widget-complexity max="12" predict>
+  <p>Para n = 12: 1 &lt; log n &lt; n &lt; n log n &lt; n² &lt; 2ⁿ.
+    2ⁿ passa à frente de n² em n = 5.</p>
+</uc-widget-complexity>
+```
+
+Cada passo aumenta n em 1: as curvas crescem até n, um ponto marca o valor de cada função e o painel lista os valores. Quando duas funções trocam de ordem (2ⁿ passa à frente de n² em n = 5), as duas ficam destacadas e a frase diz qual passou qual; com `predict`, antes desse passo o aluno escolhe qual é maior. O último passo ordena as funções para o maior n. As curvas distinguem-se pelo tracejado e pelo nome no fim de cada uma, não só pela cor; em escala linear, uma curva que sai pelo topo leva "↑".
+
+## Utilização
+
+```html
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1/uc-widget-complexity.js" defer></script>
+
+<uc-widget-complexity functions="n nlogn n2" max="20">
+  <p>Para n = 20: n = 20, n log n ≈ 86, n² = 400.</p>
+</uc-widget-complexity>
+```
+
+| Nome em `functions` | Função |
+| --- | --- |
+| `1` | 1 |
+| `log` | log n (base 2) |
+| `sqrt` | √n |
+| `n` | n |
+| `nlogn` | n log n |
+| `n2` | n² |
+| `n3` | n³ |
+| `2n` | 2ⁿ |
+| `fact` | n! |
+
+Em escala linear (a omissão) a altura do gráfico é a da maior função polinomial em `max`: as exponenciais saem pelo topo, que é o que se quer mostrar. `scale="log"` usa um eixo logarítmico (potências de 10), onde todas cabem.
+
+## Medir outro widget
+
+Exemplo (comparações reais da ordenação por inserção sobre n, n log n e n²), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-complexity/measure.html):
+
+```html
+<uc-widget-sort id="insercao" values="5 2 9 1 7 3 8 6" algorithm="insertion" editable controls="compact">
+  <p>Ordenação por inserção de 5 2 9 1 7 3 8 6.</p>
+</uc-widget-sort>
+<uc-widget-complexity functions="n nlogn n2" max="16" for="insercao" points="4:6">
+  <p>Comparações da ordenação por inserção comparadas com n, n log n e n².</p>
+</uc-widget-complexity>
+```
+
+Com `for="id"`, sempre que o widget com esse `id` chega ao último passo (evento `uc:widgetdone`), o seu contador entra no gráfico como um ponto ■ em n = tamanho da entrada (o número de valores; num grafo, vértices + arestas). `measure` escolhe o contador (`comparisons`, `swaps`, `writes`, `probes`, `edges`, `relaxations`); sem ele, conta o primeiro. Com `editable` no outro widget, o aluno experimenta entradas de vários tamanhos e vê os pontos acompanharem (ou não) cada curva. `points="4:6 8:28"` junta pontos escritos à mão. Os pontos desenham-se por cima dos passos e entram na vista em texto.
+
+## Atributos
+
+Além dos [atributos comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#atributos-comuns):
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `functions` | nomes separados por espaços (até 8) | `1 log n nlogn n2 2n` | As funções a comparar. |
+| `max` | inteiro de 2 a 32 | `16` | O maior n. |
+| `scale` | `linear`, `log` | `linear` | A escala do eixo vertical. |
+| `for` | `id` de outro widget | ausente | O widget cujas contagens são medidas. |
+| `measure` | nome de um contador | o primeiro do outro widget | O contador medido. |
+| `points` | pares `n:valor` | ausente | Pontos medidos escritos à mão. |
+
+Com `editable`, o aluno muda as funções. Este widget não tem pseudocódigo.
+
+## Acessibilidade
+
+### O que o widget faz
+
+Uma frase por passo com os valores de todas as funções ("n = 5: … 2ⁿ passa à frente de n²."); o gráfico descrito em palavras, com os pontos medidos; curvas distintas por tracejado e nome, não só pela cor; os pontos novos anunciados ("Novo ponto medido: n = 8, 17 (Comparações)."); "Vista em texto" com a tabela função e valor em n.
+
+### O que cabe a quem escreve
+
+Escrever dentro do elemento a conclusão (a ordem das funções, o ponto onde uma passa a outra) e, ao medir outro widget, dizer na página qual contador se mede e que o aluno deve chegar ao fim da demonstração.
+
+## Sem JavaScript
+
+Aparece o texto escrito dentro do elemento e o `<pre data-pseudocode>`, se houver. O `<pre data-input>` não aparece: escreva o resultado num parágrafo.
+
+## Ver também
+
+- [`<uc-widget-sort>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-sort.md) e [`<uc-widget-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-search.md): os contadores mais usados para medir.
+- [Eventos](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md#eventos): `uc:widgetdone` traz `stats` e `input`.
+- [Usar widgets](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/usar.md) e o [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md).
 
 ---
 
@@ -12544,6 +12865,9 @@ folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
 | `<uc-widget-heap>` | `values` (≤ 15), `ops` = `insert v; extract; peek`, `kind` = `max` `min` | `operations` `heapify` `heapsort` |
 | `<uc-widget-avl>` | `values` (≤ 15), `ops` = `insert v; remove v; search v` | `operations` |
 | `<uc-widget-hash>` | `values` (integers or words, ≤ 16), `ops` = `insert k; remove k; search k`, `size` (1–16, default 7), `max-load` (default `0.75`, or `none`) | `chaining` `linear` `quadratic` |
+| `<uc-widget-graph>` | graph in `<pre data-input>` (`U V [W]` per line, `U` alone, `U @ X,Y`, `#` comments) or `edges="A B; A C"`, `directed`, `source` (default: the first vertex); ≤ 10 vertices, 20 edges | `bfs` `dfs` `components` |
+| `<uc-widget-shortest-path>` | as `<uc-widget-graph>`, integer weights (negative only for Bellman-Ford; unweighted = 1) | `dijkstra` `bellman-ford` |
+| `<uc-widget-complexity>` | `functions` (≤ 8 of `1 log sqrt n nlogn n2 n3 2n fact`), `max` (2–32, default 16), `scale` = `linear` `log`, `for` (id of a widget to measure), `measure` (its counter), `points` (`n:count …`) | `growth` |
 
 With `ops`, `values` builds the structure without steps and the operations
 are the demo; without `ops`, inserting / adding each value is the demo.
@@ -12568,7 +12892,7 @@ are the demo; without `ops`, inserting / adding each value is the demo.
 | Widget event | `detail` | When |
 | --- | --- | --- |
 | `uc:widgetstep` | `{ widget, step, total }` | Every change of step. |
-| `uc:widgetdone` | `{ widget, total }` | The last step reached moving forward. |
+| `uc:widgetdone` | `{ widget, total, stats, input }` | The last step reached moving forward (`stats`: the last step's counters; `input`: the parsed input). |
 | `uc:widgetpredict` | `{ widget, step, correct, right, asked }` | Every predict answer. |
 
 A step (the unit the player moves through) is plain JSON: `{ state, marks,

@@ -82,7 +82,10 @@
             { "title": "uc-widget-recursion", "path": "pt/widgets/uc-widget-recursion.html", "code": true },
             { "title": "uc-widget-heap", "path": "pt/widgets/uc-widget-heap.html", "code": true },
             { "title": "uc-widget-avl", "path": "pt/widgets/uc-widget-avl.html", "code": true },
-            { "title": "uc-widget-hash", "path": "pt/widgets/uc-widget-hash.html", "code": true }
+            { "title": "uc-widget-hash", "path": "pt/widgets/uc-widget-hash.html", "code": true },
+            { "title": "uc-widget-graph", "path": "pt/widgets/uc-widget-graph.html", "code": true },
+            { "title": "uc-widget-shortest-path", "path": "pt/widgets/uc-widget-shortest-path.html", "code": true },
+            { "title": "uc-widget-complexity", "path": "pt/widgets/uc-widget-complexity.html", "code": true }
           ]
         },
         {

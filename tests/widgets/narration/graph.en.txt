@@ -1,0 +1,108 @@
+## algorithm=bfs · input {"text":"A B\nA C\nB D\nC D\nD E\nF G","directed":false,"source":"A"}
+  1. BFS from A, in a graph with 7 vertices and 6 edges.
+  2. dist[A] = 0; A joins the queue. The other vertices stay at ∞.
+  3. A leaves the queue (distance 0).
+  4. A – B: B is new; dist[B] = 1 and it joins the queue.
+  5. A – C: C is new; dist[C] = 1 and it joins the queue.
+  6. B leaves the queue (distance 1).
+  7. B – A: A was already discovered (distance 0).
+  8. B – D: D is new; dist[D] = 2 and it joins the queue.
+  9. C leaves the queue (distance 1).
+ 10. C – A: A was already discovered (distance 0).
+ 11. C – D: D was already discovered (distance 2).
+ 12. D leaves the queue (distance 2).
+ 13. D – B: B was already discovered (distance 1).
+ 14. D – C: C was already discovered (distance 1).
+ 15. D – E: E is new; dist[E] = 3 and it joins the queue.
+ 16. E leaves the queue (distance 3).
+ 17. E – D: D was already discovered (distance 2).
+ 18. BFS done. Distances: A 0, B 1, C 1, D 2, E 3. No path from the source: F, G.
+
+## algorithm=dfs · input {"text":"A B\nA C\nB D\nC D\nD E\nF G","directed":false,"source":"A"}
+  1. DFS from A, in a graph with 7 vertices and 6 edges.
+  2. Visit A (visit no. 1).
+  3. A – B: B is not visited yet; go down to B.
+  4. Visit B (visit no. 2).
+  5. B – A: A was already visited.
+  6. B – D: D is not visited yet; go down to D.
+  7. Visit D (visit no. 3).
+  8. D – B: B was already visited.
+  9. D – C: C is not visited yet; go down to C.
+ 10. Visit C (visit no. 4).
+ 11. C – A: A was already visited.
+ 12. C – D: D was already visited.
+ 13. C has no more neighbours: done, it leaves the stack.
+ 14. Back to D, after C.
+ 15. D – E: E is not visited yet; go down to E.
+ 16. Visit E (visit no. 5).
+ 17. E – D: D was already visited.
+ 18. E has no more neighbours: done, it leaves the stack.
+ 19. Back to D, after E.
+ 20. D has no more neighbours: done, it leaves the stack.
+ 21. Back to B, after D.
+ 22. B has no more neighbours: done, it leaves the stack.
+ 23. Back to A, after B.
+ 24. A – C: C was already visited.
+ 25. A has no more neighbours: done, it leaves the stack.
+ 26. DFS done. Visit order: A B D C E. Not reached: F, G.
+
+## algorithm=components · input {"text":"A B\nA C\nB D\nC D\nD E\nF G","directed":false,"source":"A"}
+  1. Connected components of a graph with 7 vertices and 6 edges.
+  2. A has no component yet: component 1 starts.
+  3. Neighbours of A with no component: B, C; they join component 1.
+  4. Neighbours of B with no component: D; they join component 1.
+  5. C has no new neighbours.
+  6. Neighbours of D with no component: E; they join component 1.
+  7. E has no new neighbours.
+  8. Component 1: A, B, C, D, E.
+  9. F has no component yet: component 2 starts.
+ 10. Neighbours of F with no component: G; they join component 2.
+ 11. G has no new neighbours.
+ 12. Component 2: F, G.
+ 13. 2 components: {A, B, C, D, E} {F, G}.
+
+## algorithm=bfs · input {"text":"A B\nB C\nC A\nC D\nE","directed":true,"source":"A"}
+  1. BFS from A, in a directed graph with 5 vertices and 4 arcs.
+  2. dist[A] = 0; A joins the queue. The other vertices stay at ∞.
+  3. A leaves the queue (distance 0).
+  4. A → B: B is new; dist[B] = 1 and it joins the queue.
+  5. B leaves the queue (distance 1).
+  6. B → C: C is new; dist[C] = 2 and it joins the queue.
+  7. C leaves the queue (distance 2).
+  8. C → A: A was already discovered (distance 0).
+  9. C → D: D is new; dist[D] = 3 and it joins the queue.
+ 10. D leaves the queue (distance 3).
+ 11. BFS done. Distances: A 0, B 1, C 2, D 3. No path from the source: E.
+
+## algorithm=dfs · input {"text":"1 2\n1 3\n2 4\n3 4\n4 1","directed":true,"source":"1"}
+  1. DFS from 1, in a directed graph with 4 vertices and 5 arcs.
+  2. Visit 1 (visit no. 1).
+  3. 1 → 2: 2 is not visited yet; go down to 2.
+  4. Visit 2 (visit no. 2).
+  5. 2 → 4: 4 is not visited yet; go down to 4.
+  6. Visit 4 (visit no. 3).
+  7. 4 → 1: 1 was already visited.
+  8. 4 has no more neighbours: done, it leaves the stack.
+  9. Back to 2, after 4.
+ 10. 2 has no more neighbours: done, it leaves the stack.
+ 11. Back to 1, after 2.
+ 12. 1 → 3: 3 is not visited yet; go down to 3.
+ 13. Visit 3 (visit no. 4).
+ 14. 3 → 4: 4 was already visited.
+ 15. 3 has no more neighbours: done, it leaves the stack.
+ 16. Back to 1, after 3.
+ 17. 1 has no more neighbours: done, it leaves the stack.
+ 18. DFS done. Visit order: 1 2 4 3.
+
+## algorithm=components · input {"text":"A B\nC B\nD E","directed":true,"source":null}
+  1. Connected components of a directed graph with 5 vertices: arcs count both ways.
+  2. A has no component yet: component 1 starts.
+  3. Neighbours of A with no component: B; they join component 1.
+  4. Neighbours of B with no component: C; they join component 1.
+  5. C has no new neighbours.
+  6. Component 1: A, B, C.
+  7. D has no component yet: component 2 starts.
+  8. Neighbours of D with no component: E; they join component 2.
+  9. E has no new neighbours.
+ 10. Component 2: D, E.
+ 11. 2 components: {A, B, C} {D, E}.

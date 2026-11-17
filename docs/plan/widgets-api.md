@@ -44,6 +44,8 @@ Contents:
 20. [Decisions taken in phase W0](#20-decisions-taken-in-phase-w0)
 21. [Refinements made in phase W1](#21-refinements-made-in-phase-w1)
 22. [Refinements made in phase W2](#22-refinements-made-in-phase-w2)
+23. [Refinements made in phase W3](#23-refinements-made-in-phase-w3)
+24. [Refinements made in phase W4](#24-refinements-made-in-phase-w4)
 
 ---
 
@@ -1253,3 +1255,66 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
 9. **New per-widget keys only** (no core keys): `widget.heap.*`,
    `widget.avl.*`, `widget.hash.*`. Aux keys `size` (heap) and `load` (hash);
    the hash uses the core `stat.probes`.
+
+## 24. Refinements made in phase W4
+
+1. **`svg.graph` is bundled, not in the core**, although five widgets will
+   use it (rule 16.3). Measured: about 2.1 KB gzip with the layout, and the
+   core had 1.1 KB left (10.9 of 12). Keeping the 12 KB budget was preferred
+   to raising it: the graph widgets stay under 8 KB each (graph 7.1,
+   shortest-path 6.9), and a page with two graph widgets downloads the
+   primitive twice (≈ 2 KB). The primitive lives in
+   `widgets/src/core/svg/graph.js`; W5's mst, union-find and toposort import
+   it the same way. Signature `graph(svg, g, { marks, notes })`: `g` is
+   `model()` (item 2); notes are drawn beside the vertices (a distance, a
+   visit number, a component); marks are keyed by vertex name and edge id.
+   No pointers.
+2. **Graph model** (`widgets/src/graph/model.js`, pure): `model(parsed,
+   directed)` gives every edge an id, `"A-B"` as written (a repeated pair
+   gets `"A-B'2"`), weight 1 when unweighted, and adjacency lists in the
+   order the vertices first appear in the input (that order is the order of
+   the search, documented on the pages). `source(graph, name, id)` and
+   `choices(…)` (options of a "which vertex next?" question) are shared.
+   `widgets/src/graph/element.js` reads the input in the browser,
+   `shared-i18n.js` holds the strings every graph widget spreads into its
+   own namespace (so each loads alone and the step validator sees them).
+3. **`edges` attribute**: the graph can also be written in an attribute,
+   lines separated by `;` (`edges="A B 4; A C 1"`); it wins over the
+   `<pre data-input>` and is what the editable field edits (one line).
+4. **Automatic layout**: written positions when every vertex has one;
+   otherwise each connected component is laid out alone (force-directed from
+   a circle, 240 deterministic rounds; the circle itself when it has fewer
+   crossings) and the components are put side by side in rows about 6 units
+   wide. With some positions written, those vertices stay and the rest are
+   placed by forces around them. Scaled so that no two vertices are closer
+   than 84 px; computed once per graph (the svg keeps it), so nothing moves
+   between steps.
+5. **Test fixtures**: a widget whose input is awkward in JSON gives a
+   `fixture.js` (`input(fixture)` → run()'s input); `tests/widgets/
+   helpers.mjs` applies it to `meta.json`'s `test` inputs. Graph fixtures are
+   `{ text, directed, source }`. Not bundled into the widget.
+6. **`uc:widgetdone` detail** gains `stats` (the last step's counters) and
+   `input` (the parsed input): what `<uc-widget-complexity for>` plots. New
+   core counters `stat.edges` ("Arestas vistas") and `stat.relaxations`.
+7. **Widget choices**: graph algorithms `bfs`, `dfs` (recursive, the call
+   stack in the panel), `components` (one BFS per component; arcs count both
+   ways in a directed graph). Shortest-path `dijkstra` with lazy deletion
+   (stale pairs are skipped when they leave the queue; the queue is the aux
+   `pq`, smallest first, as chips) and `bellman-ford` (|V| − 1 rounds in
+   input order, both ways when undirected, early stop, a check pass for a
+   negative cycle reachable from the source). Dijkstra refuses negative
+   weights (`widget.shortest-path.error.negative`). Complexity has one
+   algorithm, `growth`: one step per n, an "overtake" when two functions
+   change strict order (both marked `swapped`, with a predict question),
+   functions `1 log sqrt n nlogn n2 n3 2n fact` written the same in every
+   language; no pseudocode (the panel hides itself).
+8. **`svg.plot(svg, series, { xmax, ymax, log, guide, dots, yLabel })`**,
+   bundled into complexity only. Lines differ by dash pattern and carry
+   their name at the end (never colour alone); in linear scale the height
+   is the largest polynomial at `max`, so exponentials leave the top and
+   are named with "↑". Measured points (squares) are drawn over the steps
+   and listed in the text view; they are not part of the steps.
+9. **CSS per widget folder is shared**: `graph/graph.css` (weights, notes
+   with a halo) serves every widget that bundles `svg.graph`, since all
+   `<name>.css` go into the one `uc-widget.css`.
+

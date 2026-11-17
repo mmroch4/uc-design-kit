@@ -1,0 +1,22 @@
+{
+  "name": "uc-widget-complexity",
+  "status": "experimental",
+  "since": "1.0.0",
+  "wave": 2,
+  "title": { "pt": "Complexidade", "en": "Complexity" },
+  "summary": {
+    "pt": "Funções de crescimento (1, log n, n, n log n, n², 2ⁿ…) lado a lado à medida que n cresce, com as contagens reais de outro widget da página.",
+    "en": "Growth functions (1, log n, n, n log n, n², 2ⁿ…) side by side as n grows, with the real counts of another widget on the page."
+  },
+  "page": "docs/pt/widgets/uc-widget-complexity.html",
+  "algorithms": ["growth"],
+  "courses": ["IP", "PI", "EDados", "PC"],
+  "attributes": ["functions", "max", "scale", "for", "measure", "points"],
+  "predict": true,
+  "test": {
+    "input": { "functions": ["1", "log", "n", "nlogn", "n2", "2n"], "max": 8 },
+    "options": [
+      { "algorithm": "growth", "input": { "functions": ["sqrt", "n", "n3", "2n", "fact"], "max": 12 } }
+    ]
+  }
+}

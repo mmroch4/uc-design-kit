@@ -1,0 +1,103 @@
+## algorithm=dijkstra · input {"text":"A B 4\nA C 1\nC B 2\nB D 5\nC D 8\nE","directed":true,"source":"A"}
+  1. Dijkstra a partir de A, num grafo com 5 vértices e 5 arestas.
+  2. dist[A] = 0; os outros vértices ficam a ∞.
+  3. Sai da fila A com distância 0: é a distância final de A.
+  4. A → B (peso 4): 0 + 4 = 4 < ∞; dist[B] = 4, pai[B] = A.
+  5. B entra na fila com distância 4.
+  6. A → C (peso 1): 0 + 1 = 1 < ∞; dist[C] = 1, pai[C] = A.
+  7. C entra na fila com distância 1.
+  8. Sai da fila C com distância 1: é a distância final de C.
+  9. C → B (peso 2): 1 + 2 = 3 < 4; dist[B] = 3, pai[B] = C.
+ 10. B entra na fila com distância 3.
+ 11. C → D (peso 8): 1 + 8 = 9 < ∞; dist[D] = 9, pai[D] = C.
+ 12. D entra na fila com distância 9.
+ 13. Sai da fila B com distância 3: é a distância final de B.
+ 14. B → D (peso 5): 3 + 5 = 8 < 9; dist[D] = 8, pai[D] = B.
+ 15. D entra na fila com distância 8.
+ 16. Sai da fila o par B:4, já ultrapassado (dist[B] = 3): ignorar.
+ 17. Sai da fila D com distância 8: é a distância final de D.
+ 18. Sai da fila o par D:9, já ultrapassado (dist[D] = 8): ignorar.
+ 19. Distâncias a partir de A: A 0, B 3, C 1, D 8. Inacessíveis: E.
+
+## algorithm=bellman-ford · input {"text":"A B 4\nA C 1\nC B 2\nB D 5\nC D 8\nE","directed":true,"source":"A"}
+  1. Bellman-Ford a partir de A, num grafo com 5 vértices e 5 arestas.
+  2. dist[A] = 0; os outros vértices ficam a ∞.
+  3. Ronda 1 de 4: relaxar todas as arestas.
+  4. A → B (peso 4): 0 + 4 = 4 < ∞; dist[B] = 4, pai[B] = A.
+  5. A → C (peso 1): 0 + 1 = 1 < ∞; dist[C] = 1, pai[C] = A.
+  6. C → B (peso 2): 1 + 2 = 3 < 4; dist[B] = 3, pai[B] = C.
+  7. B → D (peso 5): 3 + 5 = 8 < ∞; dist[D] = 8, pai[D] = B.
+  8. C → D (peso 8): 1 + 8 = 9 não melhora dist[D] = 8.
+  9. Ronda 2 de 4: relaxar todas as arestas.
+ 10. A → B (peso 4): 0 + 4 = 4 não melhora dist[B] = 3.
+ 11. A → C (peso 1): 0 + 1 = 1 não melhora dist[C] = 1.
+ 12. C → B (peso 2): 1 + 2 = 3 não melhora dist[B] = 3.
+ 13. B → D (peso 5): 3 + 5 = 8 não melhora dist[D] = 8.
+ 14. C → D (peso 8): 1 + 8 = 9 não melhora dist[D] = 8.
+ 15. Nada mudou na ronda 2: as distâncias são finais.
+ 16. Mais uma passagem por todas as arestas, à procura de um ciclo negativo.
+ 17. Distâncias a partir de A: A 0, B 3, C 1, D 8. Inacessíveis: E.
+
+## algorithm=dijkstra · input {"text":"S A 7\nS B 2\nB A 3\nA C 1\nB C 8","directed":false,"source":"S"}
+  1. Dijkstra a partir de S, num grafo com 4 vértices e 5 arestas.
+  2. dist[S] = 0; os outros vértices ficam a ∞.
+  3. Sai da fila S com distância 0: é a distância final de S.
+  4. S – A (peso 7): 0 + 7 = 7 < ∞; dist[A] = 7, pai[A] = S.
+  5. A entra na fila com distância 7.
+  6. S – B (peso 2): 0 + 2 = 2 < ∞; dist[B] = 2, pai[B] = S.
+  7. B entra na fila com distância 2.
+  8. Sai da fila B com distância 2: é a distância final de B.
+  9. B – S: S já tem a distância final.
+ 10. B – A (peso 3): 2 + 3 = 5 < 7; dist[A] = 5, pai[A] = B.
+ 11. A entra na fila com distância 5.
+ 12. B – C (peso 8): 2 + 8 = 10 < ∞; dist[C] = 10, pai[C] = B.
+ 13. C entra na fila com distância 10.
+ 14. Sai da fila A com distância 5: é a distância final de A.
+ 15. A – S: S já tem a distância final.
+ 16. A – B: B já tem a distância final.
+ 17. A – C (peso 1): 5 + 1 = 6 < 10; dist[C] = 6, pai[C] = A.
+ 18. C entra na fila com distância 6.
+ 19. Sai da fila C com distância 6: é a distância final de C.
+ 20. C – A: A já tem a distância final.
+ 21. C – B: B já tem a distância final.
+ 22. Sai da fila o par A:7, já ultrapassado (dist[A] = 5): ignorar.
+ 23. Sai da fila o par C:10, já ultrapassado (dist[C] = 6): ignorar.
+ 24. Distâncias a partir de S: S 0, A 5, B 2, C 6.
+
+## algorithm=bellman-ford · input {"text":"A B 4\nA C 5\nC B -3\nB D 2","directed":true,"source":"A"}
+  1. Bellman-Ford a partir de A, num grafo com 4 vértices e 4 arestas.
+  2. dist[A] = 0; os outros vértices ficam a ∞.
+  3. Ronda 1 de 3: relaxar todas as arestas.
+  4. A → B (peso 4): 0 + 4 = 4 < ∞; dist[B] = 4, pai[B] = A.
+  5. A → C (peso 5): 0 + 5 = 5 < ∞; dist[C] = 5, pai[C] = A.
+  6. C → B (peso -3): 5 + (-3) = 2 < 4; dist[B] = 2, pai[B] = C.
+  7. B → D (peso 2): 2 + 2 = 4 < ∞; dist[D] = 4, pai[D] = B.
+  8. Ronda 2 de 3: relaxar todas as arestas.
+  9. A → B (peso 4): 0 + 4 = 4 não melhora dist[B] = 2.
+ 10. A → C (peso 5): 0 + 5 = 5 não melhora dist[C] = 5.
+ 11. C → B (peso -3): 5 + (-3) = 2 não melhora dist[B] = 2.
+ 12. B → D (peso 2): 2 + 2 = 4 não melhora dist[D] = 4.
+ 13. Nada mudou na ronda 2: as distâncias são finais.
+ 14. Mais uma passagem por todas as arestas, à procura de um ciclo negativo.
+ 15. Distâncias a partir de A: A 0, B 2, C 5, D 4.
+
+## algorithm=bellman-ford · input {"text":"A B 1\nB C -2\nC B 1\nC D 3","directed":true,"source":"A"}
+  1. Bellman-Ford a partir de A, num grafo com 4 vértices e 4 arestas.
+  2. dist[A] = 0; os outros vértices ficam a ∞.
+  3. Ronda 1 de 3: relaxar todas as arestas.
+  4. A → B (peso 1): 0 + 1 = 1 < ∞; dist[B] = 1, pai[B] = A.
+  5. B → C (peso -2): 1 + (-2) = -1 < ∞; dist[C] = -1, pai[C] = B.
+  6. C → B (peso 1): -1 + 1 = 0 < 1; dist[B] = 0, pai[B] = C.
+  7. C → D (peso 3): -1 + 3 = 2 < ∞; dist[D] = 2, pai[D] = C.
+  8. Ronda 2 de 3: relaxar todas as arestas.
+  9. A → B (peso 1): 0 + 1 = 1 não melhora dist[B] = 0.
+ 10. B → C (peso -2): 0 + (-2) = -2 < -1; dist[C] = -2, pai[C] = B.
+ 11. C → B (peso 1): -2 + 1 = -1 < 0; dist[B] = -1, pai[B] = C.
+ 12. C → D (peso 3): -2 + 3 = 1 < 2; dist[D] = 1, pai[D] = C.
+ 13. Ronda 3 de 3: relaxar todas as arestas.
+ 14. A → B (peso 1): 0 + 1 = 1 não melhora dist[B] = -1.
+ 15. B → C (peso -2): -1 + (-2) = -3 < -2; dist[C] = -3, pai[C] = B.
+ 16. C → B (peso 1): -3 + 1 = -2 < -1; dist[B] = -2, pai[B] = C.
+ 17. C → D (peso 3): -3 + 3 = 0 < 1; dist[D] = 0, pai[D] = C.
+ 18. Mais uma passagem por todas as arestas, à procura de um ciclo negativo.
+ 19. B → C (peso -2) ainda melhora dist[C]: há um ciclo de peso negativo, as distâncias não estão definidas.

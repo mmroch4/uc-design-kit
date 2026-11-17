@@ -1320,6 +1320,9 @@ folder. The catalogue is `widgets/v1/catalog.json`. Widgets:
 | `<uc-widget-heap>` | `values` (≤ 15), `ops` = `insert v; extract; peek`, `kind` = `max` `min` | `operations` `heapify` `heapsort` |
 | `<uc-widget-avl>` | `values` (≤ 15), `ops` = `insert v; remove v; search v` | `operations` |
 | `<uc-widget-hash>` | `values` (integers or words, ≤ 16), `ops` = `insert k; remove k; search k`, `size` (1–16, default 7), `max-load` (default `0.75`, or `none`) | `chaining` `linear` `quadratic` |
+| `<uc-widget-graph>` | graph in `<pre data-input>` (`U V [W]` per line, `U` alone, `U @ X,Y`, `#` comments) or `edges="A B; A C"`, `directed`, `source` (default: the first vertex); ≤ 10 vertices, 20 edges | `bfs` `dfs` `components` |
+| `<uc-widget-shortest-path>` | as `<uc-widget-graph>`, integer weights (negative only for Bellman-Ford; unweighted = 1) | `dijkstra` `bellman-ford` |
+| `<uc-widget-complexity>` | `functions` (≤ 8 of `1 log sqrt n nlogn n2 n3 2n fact`), `max` (2–32, default 16), `scale` = `linear` `log`, `for` (id of a widget to measure), `measure` (its counter), `points` (`n:count …`) | `growth` |
 
 With `ops`, `values` builds the structure without steps and the operations
 are the demo; without `ops`, inserting / adding each value is the demo.
@@ -1344,7 +1347,7 @@ are the demo; without `ops`, inserting / adding each value is the demo.
 | Widget event | `detail` | When |
 | --- | --- | --- |
 | `uc:widgetstep` | `{ widget, step, total }` | Every change of step. |
-| `uc:widgetdone` | `{ widget, total }` | The last step reached moving forward. |
+| `uc:widgetdone` | `{ widget, total, stats, input }` | The last step reached moving forward (`stats`: the last step's counters; `input`: the parsed input). |
 | `uc:widgetpredict` | `{ widget, step, correct, right, asked }` | Every predict answer. |
 
 A step (the unit the player moves through) is plain JSON: `{ state, marks,
