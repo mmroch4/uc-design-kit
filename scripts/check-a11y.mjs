@@ -28,11 +28,19 @@
  *   - "Mark as done" flips aria-pressed and keeps focus
  *   - the phone menu opens, closes with Escape and gives focus back
  *   - the language switch updates <html lang> and keeps focus on the switch
+ *   - links with data-auth have a hidden "requires login" text and a decorative lock
+ *   - "My class" of <uc-timetable>: keeps focus, announces the class, hides the
+ *     other classes, is followed by the other timetables and survives a reload
+ *
+ * Accessibility-tree snapshots (Playwright ariaSnapshot) of the blocks' test
+ * pages, stored next to them (tests/pages/*.aria.yml), fail the check when a
+ * role, name or state text changes. After an intended change, run
+ * `node scripts/check-a11y.mjs --update-snapshots` and review the diff.
  *
  * Usage: node scripts/check-a11y.mjs [filter ...]
  */
 import { createServer } from "node:http";
-import { readFile, readdir, stat } from "node:fs/promises";
+import { readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -58,6 +66,15 @@ const MIME_TYPES = {
   ".java": "text/plain; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
 };
+
+/**
+ * Accessibility-tree snapshots: one block of one test page, at TODAY.
+ * Add a line per new block (docs/plan/blocks-api.md 11.4).
+ */
+const ARIA_SNAPSHOTS = [
+  { page: "tests/pages/uc-timetable.html", selector: "#all", file: "tests/pages/uc-timetable.aria.yml" },
+  { page: "tests/pages/uc-timetable.html", selector: "#days", file: "tests/pages/uc-timetable-days.aria.yml" },
+];
 
 /** Component demos, the EDados example (top level and one lab guide) and the template. */
 async function findPages() {
@@ -323,7 +340,24 @@ async function checkBehaviour(browser, origin, relative) {
     if (lang !== target) problems.push(`language switch: <html lang> is "${lang}", expected "${target}"`);
     if (!(await focusedMatches(page, ".uc-lang-switch__button"))) problems.push("language switch: focus was lost");
   }
+
+  // a[data-auth]: the need to log in is text, the lock is decoration.
+  const auth = await page.evaluate(() =>
+    Array.from(document.querySelectorAll("a[data-auth]"))
+      .filter((link) => !link.closest("[hidden]"))
+      .map((link) => ({
+        label: (link.querySelector(".uc-auth-label") || {}).textContent || "",
+        icon: Boolean(link.querySelector("svg.uc-auth-icon[aria-hidden='true']")),
+        count: link.querySelectorAll(".uc-auth-label").length,
+      })),
+  );
+  for (const link of auth) {
+    if (!/autenticação|login/i.test(link.label) || link.count !== 1) problems.push(`data-auth: a link has ${link.count} hidden labels ("${link.label.trim()}")`);
+    if (!link.icon) problems.push("data-auth: the lock icon is missing or not aria-hidden");
+  }
   await context.close();
+
+  problems.push(...(await checkClassFilter(browser, origin, relative)));
 
   if (relative.includes("uc-page") || relative.startsWith("examples/")) {
     const phone = await open(browser, origin, relative, { viewport: { width: 390, height: 844 } });
@@ -340,6 +374,46 @@ async function checkBehaviour(browser, origin, relative) {
     }
     await phone.context.close();
   }
+  return problems;
+}
+
+/** "My class" of <uc-timetable class-filter>, on pages that have one. */
+async function checkClassFilter(browser, origin, relative) {
+  const problems = [];
+  const { context, page } = await open(browser, origin, relative);
+  const select = await firstVisible(page, ".uc-timetable__filters select");
+  if (!select) {
+    await context.close();
+    return problems;
+  }
+  const choice = await select.evaluate((node) => node.options[node.options.length - 1].value);
+  const label = await select.evaluate((node) => (node.labels[0] ? node.labels[0].textContent.trim() : ""));
+  if (!label) problems.push("class filter: the select has no visible <label>");
+  const box = await select.boundingBox();
+  if (box && box.height < 44) problems.push(`class filter: the select is ${Math.round(box.height)}px tall (44px minimum)`);
+  await select.focus();
+  // A closed select changes value with the arrow keys; End picks the last class.
+  await page.keyboard.press("End");
+  await page.waitForTimeout(250);
+  const value = await select.evaluate((node) => node.value);
+  if (value !== choice) problems.push(`class filter: End did not choose the last class (value "${value}")`);
+  if (!(await focusedMatches(page, ".uc-timetable__filters select"))) problems.push("class filter: the select lost focus");
+  if (!(await liveText(page)).includes(choice)) problems.push(`class filter: "${choice}" was not announced`);
+  const state = await page.evaluate((code) => {
+    const rows = Array.from(document.querySelectorAll("uc-timetable [data-class][data-type]"));
+    const filtered = rows.filter((row) => row.closest("uc-timetable").querySelector(".uc-timetable__filters"));
+    return {
+      wrong: filtered.filter((row) => !row.hidden && row.dataset.class !== code && rows.some((other) => other.dataset.type === row.dataset.type && other.dataset.class === code)).length,
+      shown: filtered.filter((row) => !row.hidden && row.dataset.class === code).length,
+    };
+  }, choice);
+  if (state.wrong) problems.push(`class filter: ${state.wrong} rows of other classes are still shown`);
+  if (!state.shown) problems.push(`class filter: no row of ${choice} is shown`);
+  await page.reload({ waitUntil: "load" });
+  await page.waitForTimeout(300);
+  const kept = await page.evaluate(() => document.querySelector(".uc-timetable__filters select")?.value);
+  if (kept !== choice) problems.push(`class filter: the choice was not kept after a reload ("${kept}")`);
+  await context.close();
   return problems;
 }
 
@@ -361,7 +435,39 @@ async function checkPage(browser, origin, relative, axeSource) {
   return [...new Set(problems)];
 }
 
+/** Compares (or, with --update-snapshots, writes) the accessibility-tree snapshots. */
+async function checkAriaSnapshots(browser, origin, update, filters) {
+  let failed = 0;
+  for (const { page: relative, selector, file } of ARIA_SNAPSHOTS) {
+    if (filters.length && !filters.some((filter) => relative.includes(filter))) continue;
+    const { context, page } = await open(browser, origin, relative);
+    const actual = `${await page.locator(selector).first().ariaSnapshot()}\n`;
+    await context.close();
+    const target = path.join(ROOT, file);
+    const expected = await readFile(target, "utf8").catch(() => null);
+    if (update || expected === null) {
+      await writeFile(target, actual);
+      console.log(`${expected === null ? "new " : "upd "} ${file}`);
+    } else if (expected !== actual) {
+      failed += 1;
+      console.log(`FAIL ${file} (accessibility tree of ${relative} ${selector} changed)`);
+      const a = expected.split("\n");
+      const b = actual.split("\n");
+      for (let i = 0, shown = 0; i < Math.max(a.length, b.length) && shown < 8; i += 1) {
+        if (a[i] === b[i]) continue;
+        shown += 1;
+        console.log(`       - ${a[i] ?? ""}\n       + ${b[i] ?? ""}`);
+      }
+      console.log("       Run node scripts/check-a11y.mjs --update-snapshots if the change is intended.");
+    } else {
+      console.log(`ok   ${file}`);
+    }
+  }
+  return failed;
+}
+
 async function main() {
+  const update = process.argv.includes("--update-snapshots");
   const filters = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
   const pages = (await findPages()).filter((page) => !filters.length || filters.some((filter) => page.includes(filter)));
   const axeSource = await readFile(require.resolve("axe-core/axe.min.js"), "utf8");
@@ -369,6 +475,7 @@ async function main() {
   const origin = `http://127.0.0.1:${server.address().port}`;
   const browser = await chromium.launch();
   let failed = 0;
+  let snapshotsFailed = 0;
   try {
     for (const relative of pages) {
       const problems = await checkPage(browser, origin, relative, axeSource);
@@ -376,12 +483,14 @@ async function main() {
       problems.forEach((problem) => console.log(`       ✗ ${problem}`));
       if (problems.length) failed += 1;
     }
+    snapshotsFailed = await checkAriaSnapshots(browser, origin, update, filters);
   } finally {
     await browser.close();
     server.close();
   }
   console.log(`\n${pages.length - failed}/${pages.length} pages passed the accessibility checks.`);
-  process.exitCode = failed ? 1 : 0;
+  if (snapshotsFailed) console.log(`${snapshotsFailed} accessibility-tree snapshot(s) changed.`);
+  process.exitCode = failed || snapshotsFailed ? 1 : 0;
 }
 
 main().catch((error) => {

@@ -37,6 +37,9 @@ Estes são os membros públicos. Os nomes e o comportamento descritos aqui não 
 | `UC.formatDateRange(start, end, format?)` | texto | Formata um intervalo, "24–30 nov" ou "30 set–3 out"; com `format` `"medium"` acrescenta o ano, "24–30 nov 2025". |
 | `UC.weekOf(date)` | objeto ou `null` | A semana letiva que contém `date` (por omissão, hoje): `{ n, start, end }`. `null` fora do semestre e nas interrupções. |
 | `UC.weekDates(n)` | objeto ou `null` | As datas da semana `n`: `{ n, start, end }`, ou `null` se não existe. |
+| `UC.formatTime(time, end?)` | texto | Uma hora ou um intervalo: `"14:00"` ou `"14:00–15:00"`, em 24 horas em todas as línguas. |
+| `UC.formatDuration(minutes)` | texto | Uma duração em minutos escrita como `"2 h"`, `"1 h 45 min"` ou `"45 min"`. |
+| `UC.weekdayName(day, format?)` | texto | O nome do dia da semana `day` (`1` = segunda … `7` = domingo): abreviado por omissão (`"3.ª"`, `"Tue"`) ou por extenso com `"long"` (`"terça-feira"`). |
 | `UC.Element` | classe | Classe base dos componentes. Ver [`UC.Element`](#uc-element). |
 | `UC.define(name, class)` | nada | Regista um componente uma só vez: uma segunda chamada com o mesmo nome é ignorada, sem erro. |
 | `UC.addTranslations(lang, dict)` | nada | Acrescenta ou substitui textos da interface de uma língua. Se for a língua ativa, os componentes já desenhados voltam a ser desenhados. |
@@ -126,6 +129,7 @@ Todos são `CustomEvent` e chegam ao `document`.
 | --- | --- | --- |
 | `uc:ready` | A configuração foi lida e os componentes do kit estão definidos. Uma vez por página; o `<html>` recebe a classe `uc-ready` ao mesmo tempo. | `{ version }` |
 | `uc:languagechange` | Depois de a língua ativa mudar na mesma página (não quando a mudança navega para outro ficheiro). | `{ lang }` |
+| `uc:classchange` | Um estudante escolheu "A minha turma" num `<uc-timetable>`. Dispara no `document`; os outros horários da página seguem a escolha. | `{ type, class }` (`class` vazio = todas) |
 | `uc:exercisechange` | Um `<uc-exercise>` foi marcado como feito ou por fazer. Dispara no exercício e sobe até ao `document`. | `{ id, done }` |
 
 ```js

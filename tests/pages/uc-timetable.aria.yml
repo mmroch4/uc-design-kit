@@ -1,0 +1,193 @@
+- region "Horário":
+  - heading "Horário" [level=2]
+  - text: A minha turma (Teóricas)
+  - combobox "A minha turma (Teóricas)":
+    - option "Todas" [selected]
+    - option "T1"
+    - option "T2"
+  - text: A minha turma (Práticas laboratoriais)
+  - combobox "A minha turma (Práticas laboratoriais)":
+    - option "Todas" [selected]
+    - option "PL1"
+    - option "PL2"
+    - option "PL3"
+    - option "PL7"
+  - table "Teóricas":
+    - caption: Teóricas
+    - rowgroup:
+      - row "Turma Dia Hora Sala Docente":
+        - columnheader "Turma"
+        - columnheader "Dia"
+        - columnheader "Hora"
+        - columnheader "Sala"
+        - columnheader "Docente"
+    - rowgroup:
+      - row "T1 terça-feira e quinta-feira 14:00–15:00 FC4 0.41 Fernando Silva":
+        - rowheader "T1"
+        - cell "terça-feira e quinta-feira"
+        - cell "14:00–15:00":
+          - time: 14:00
+          - text: –
+          - time: 15:00
+        - cell "FC4 0.41"
+        - cell "Fernando Silva":
+          - link "Fernando Silva":
+            - /url: https://www.dcc.fc.up.pt/~fds
+      - row "T2 quarta-feira 09:00–10:00 FC4 0.41 Fernando Silva":
+        - rowheader "T2"
+        - cell "quarta-feira"
+        - cell "09:00–10:00":
+          - time: 09:00
+          - text: –
+          - time: 10:00
+        - cell "FC4 0.41"
+        - cell "Fernando Silva":
+          - link "Fernando Silva":
+            - /url: https://www.dcc.fc.up.pt/~fds
+  - table "Práticas laboratoriais":
+    - caption: Práticas laboratoriais
+    - rowgroup:
+      - row "Turma Dia Hora Sala Docente Notas":
+        - columnheader "Turma"
+        - columnheader "Dia"
+        - columnheader "Hora"
+        - columnheader "Sala"
+        - columnheader "Docente"
+        - columnheader "Notas"
+    - rowgroup:
+      - row "PL1 terça-feira 16:00–18:00 FC6 1.65 Eduardo R. B. Marques":
+        - rowheader "PL1"
+        - cell "terça-feira"
+        - cell "16:00–18:00":
+          - time: 16:00
+          - text: –
+          - time: 18:00
+        - cell "FC6 1.65"
+        - cell "Eduardo R. B. Marques":
+          - link "Eduardo R. B. Marques":
+            - /url: https://www.dcc.fc.up.pt/~edrdo/
+        - cell
+      - row "PL7 terça-feira 16:00–18:00 FC6 0.08 Eduardo R. B. Marques, Convidado Externo":
+        - rowheader "PL7"
+        - cell "terça-feira"
+        - cell "16:00–18:00":
+          - time: 16:00
+          - text: –
+          - time: 18:00
+        - cell "FC6 0.08"
+        - cell "Eduardo R. B. Marques, Convidado Externo":
+          - link "Eduardo R. B. Marques":
+            - /url: https://www.dcc.fc.up.pt/~edrdo/
+          - text: ", Convidado Externo"
+        - cell
+      - 'row "PL2 quarta-feira 14:00–16:00 FC6 1.60 (Requer autenticação: SIGARRA) Joana Leite"':
+        - rowheader "PL2"
+        - cell "quarta-feira"
+        - cell "14:00–16:00":
+          - time: 14:00
+          - text: –
+          - time: 16:00
+        - 'cell "FC6 1.60 (Requer autenticação: SIGARRA)"':
+          - 'link "FC6 1.60 (Requer autenticação: SIGARRA)"':
+            - /url: "#salas"
+        - cell "Joana Leite"
+        - cell
+      - row "PL3 sexta-feira 11:00–13:00 FC6 1.60 Joana Leite Só nas semanas ímpares":
+        - rowheader "PL3"
+        - cell "sexta-feira"
+        - cell "11:00–13:00":
+          - time: 11:00
+          - text: –
+          - time: 13:00
+        - cell "FC6 1.60"
+        - cell "Joana Leite"
+        - cell "Só nas semanas ímpares"
+  - table "Seminários":
+    - caption: Seminários
+    - rowgroup:
+      - row "Turma Dia Hora Sala Docente":
+        - columnheader "Turma"
+        - columnheader "Dia"
+        - columnheader "Hora"
+        - columnheader "Sala"
+        - columnheader "Docente"
+    - rowgroup:
+      - row "S1 sexta-feira 15:00–16:00 Anf. 2 Fernando Silva":
+        - rowheader "S1"
+        - cell "sexta-feira"
+        - cell "15:00–16:00":
+          - time: 15:00
+          - text: –
+          - time: 16:00
+        - cell "Anf. 2"
+        - cell "Fernando Silva":
+          - link "Fernando Silva":
+            - /url: https://www.dcc.fc.up.pt/~fds
+  - table "workshop":
+    - caption: workshop
+    - rowgroup:
+      - row "Turma Dia Hora Sala Docente":
+        - columnheader "Turma"
+        - columnheader "Dia"
+        - columnheader "Hora"
+        - columnheader "Sala"
+        - columnheader "Docente"
+    - rowgroup:
+      - row "W1 segunda-feira 18:00–19:30 Lab 3":
+        - rowheader "W1"
+        - cell "segunda-feira"
+        - cell "18:00–19:30":
+          - time: 18:00
+          - text: –
+          - time: 19:30
+        - cell "Lab 3"
+        - cell
+  - table "Atendimento":
+    - caption: Atendimento
+    - rowgroup:
+      - row "Docente Dia Hora Sala Notas":
+        - columnheader "Docente"
+        - columnheader "Dia"
+        - columnheader "Hora"
+        - columnheader "Sala"
+        - columnheader "Notas"
+    - rowgroup:
+      - row "Fernando Silva terça-feira 16:00–18:00 Gab. 1.25":
+        - rowheader "Fernando Silva":
+          - link "Fernando Silva":
+            - /url: https://www.dcc.fc.up.pt/~fds
+        - cell "terça-feira"
+        - cell "16:00–18:00":
+          - time: 16:00
+          - text: –
+          - time: 18:00
+        - cell "Gab. 1.25"
+        - cell
+      - row "Joana Leite quarta-feira 10:00–11:00 Sala 1.31":
+        - rowheader "Joana Leite"
+        - cell "quarta-feira"
+        - cell "10:00–11:00":
+          - time: 10:00
+          - text: –
+          - time: 11:00
+        - cell "Sala 1.31"
+        - cell
+      - row "Fernando Silva quinta-feira 16:30–18:00 Gab. 1.25 Hora a confirmar":
+        - rowheader "Fernando Silva":
+          - link "Fernando Silva":
+            - /url: https://www.dcc.fc.up.pt/~fds
+        - cell "quinta-feira"
+        - cell "16:30–18:00":
+          - time: 16:30
+          - text: –
+          - time: 18:00
+        - cell "Gab. 1.25"
+        - cell "Hora a confirmar"
+  - paragraph:
+    - text: Salas no
+    - 'link "SIGARRA (Requer autenticação: SIGARRA)"':
+      - /url: "#sigarra"
+    - text: e nas
+    - link "pautas (Requer autenticação)":
+      - /url: "#pautas"
+    - text: .

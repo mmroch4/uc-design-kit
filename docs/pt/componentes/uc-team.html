@@ -67,6 +67,7 @@
           <li><a href="uc-event.html"><code>uc-event</code></a></li>
           <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
           <li><a href="uc-team.html" aria-current="page"><code>uc-team</code></a></li>
+          <li><a href="uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
           <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="uc-code.html"><code>uc-code</code></a></li>
@@ -125,14 +126,14 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Componentes · Pessoas</p>
           <h1><code>&lt;uc-team&gt;</code></h1>
-          <p class="docs-lead">A equipa docente, escrita uma vez no <code>course.js</code> e mostrada em cartões ou numa tabela: nome, função, turmas, gabinete e e-mail. Pode mostrar só uma parte da equipa, filtrada pela função.</p>
+          <p class="docs-lead">A equipa docente, escrita uma vez no <code>course.js</code> e mostrada em cartões ou numa tabela: nome, função, turmas, gabinete, e-mail e atendimento. Pode mostrar só uma parte da equipa, filtrada pela função.</p>
           <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
 
-        <!-- docs:demo src="../../demos/uc-team/basic.html" title="equipa de quatro pessoas em cartões" height="309" -->
+        <!-- docs:demo src="../../demos/uc-team/basic.html" title="equipa de quatro pessoas em cartões" height="362" -->
         <div class="docs-demo" id="demo-uc-team-basic">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-team/basic.html" title="Demonstração: equipa de quatro pessoas em cartões" loading="lazy" style="height: 309px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-team/basic.html" title="Demonstração: equipa de quatro pessoas em cartões" loading="lazy" style="height: 362px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;uc-team&gt;&lt;/uc-team&gt;</code></pre></uc-code>
@@ -163,10 +164,10 @@
 
         <h3 id="tabela">Tabela</h3>
         <p>Com <code>view="table"</code>, a equipa aparece numa tabela com as colunas Nome, Função e Turmas; o gabinete e o e-mail ficam por baixo do nome. Ocupa menos espaço com muitas pessoas, por exemplo numa página de horários.</p>
-        <!-- docs:demo src="../../demos/uc-team/table.html" title="equipa numa tabela" height="376" -->
+        <!-- docs:demo src="../../demos/uc-team/table.html" title="equipa numa tabela" height="440" -->
         <div class="docs-demo" id="demo-uc-team-table">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-team/table.html" title="Demonstração: equipa numa tabela" loading="lazy" style="height: 376px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-team/table.html" title="Demonstração: equipa numa tabela" loading="lazy" style="height: 440px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;uc-team view=&quot;table&quot;&gt;&lt;/uc-team&gt;</code></pre></uc-code>
@@ -192,10 +193,10 @@
 
         <h3 id="sem-titulo">Sem título próprio</h3>
         <p>Com <code>heading="none"</code>, o componente não gera título. Serve para pôr a equipa dentro de uma secção que já tem o seu, como "Contactos". O título gerado é sempre um <code>&lt;h2&gt;</code>; noutro nível, usa-se esta forma com o título escrito à mão.</p>
-        <!-- docs:demo src="../../demos/uc-team/heading.html" title="regente e docente dentro da secção Contactos" height="196" -->
+        <!-- docs:demo src="../../demos/uc-team/heading.html" title="regente e docente dentro da secção Contactos" height="249" -->
         <div class="docs-demo" id="demo-uc-team-heading">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-team/heading.html" title="Demonstração: regente e docente dentro da secção Contactos" loading="lazy" style="height: 196px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-team/heading.html" title="Demonstração: regente e docente dentro da secção Contactos" loading="lazy" style="height: 249px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;section class=&quot;uc-section&quot; aria-labelledby=&quot;contacts&quot;&gt;
@@ -207,12 +208,17 @@
         </div>
         <!-- /docs:demo -->
 
+        <h3 id="atendimento">Atendimento</h3>
+        <p>Uma pessoa com <code>officeHours</code> no <code>course.js</code> mostra "Atendimento" no cartão, com uma linha por horário ("3.ª 11:00–12:30 · Gab. 2.14"). Sem sala, usa-se o gabinete. Na tabela aparece uma coluna Atendimento, só quando alguém o tem. Para uma tabela só do atendimento, usa-se <a href="uc-timetable.html#atendimento"><code>&lt;uc-timetable type="office-hours"&gt;</code></a>.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>{ name: "Bruno Matos", role: "lecturer", office: "Gab. 2.09",
+  officeHours: [{ day: 4, start: "16:00", end: "17:00", room: "Sala 1.12", note: "Marcar por email" }] },</code></pre></uc-code>
+
         <h3 id="texto-por-baixo">Texto por baixo</h3>
         <p>O que estiver escrito dentro do <code>&lt;uc-team&gt;</code> aparece a seguir à lista ou à tabela, na mesma secção. Útil para o horário de atendimento ou para dizer como marcar uma reunião.</p>
-        <!-- docs:demo src="../../demos/uc-team/children.html" title="tabela da equipa com uma nota sobre o atendimento" height="413" -->
+        <!-- docs:demo src="../../demos/uc-team/children.html" title="tabela da equipa com uma nota sobre o atendimento" height="477" -->
         <div class="docs-demo" id="demo-uc-team-children">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-team/children.html" title="Demonstração: tabela da equipa com uma nota sobre o atendimento" loading="lazy" style="height: 413px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-team/children.html" title="Demonstração: tabela da equipa com uma nota sobre o atendimento" loading="lazy" style="height: 477px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;uc-team view=&quot;table&quot;&gt;
@@ -240,7 +246,7 @@
         </div>
 
         <h2 id="configuracao">Configuração usada</h2>
-        <p>O componente lê só <a href="../course-js.html#equipa"><code>team</code></a>: a lista das pessoas, com <code>name</code>, <code>role</code>, <code>classes</code>, <code>office</code>, <code>email</code> e <code>url</code>. Os campos de cada pessoa estão descritos em <a href="../course-js.html#equipa">O ficheiro course.js</a>.</p>
+        <p>O componente lê só <a href="../course-js.html#equipa"><code>team</code></a>: a lista das pessoas, com <code>name</code>, <code>role</code>, <code>classes</code>, <code>office</code>, <code>email</code>, <code>url</code> e <code>officeHours</code>. Os campos de cada pessoa estão descritos em <a href="../course-js.html#equipa">O ficheiro course.js</a>.</p>
         <div class="uc-table">
           <table>
             <caption class="uc-visually-hidden">Campos do course.js lidos por uc-team</caption>
@@ -278,6 +284,7 @@
               <tr><td><code>.uc-team__contact</code></td><td>O gabinete e o e-mail.</td></tr>
               <tr><td><code>.uc-team__table</code></td><td>O contentor da tabela (também <code>uc-table</code>).</td></tr>
               <tr><td><code>.uc-team__person</code>, <code>__classes</code></td><td>As células do nome e das turmas, na tabela.</td></tr>
+              <tr><td><code>.uc-team__hours</code>, <code>__hours-title</code>, <code>__hours-list</code></td><td>O atendimento: o bloco no cartão (ou a célula, na tabela), o título "Atendimento" e a lista de horários.</td></tr>
             </tbody>
           </table>
         </div>
@@ -306,6 +313,7 @@ uc-team[data-role="assistant"] .uc-team__name { font-weight: 400; }</code></pre>
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
           <li><a href="../course-js.html#equipa">O ficheiro course.js</a>: os campos de cada pessoa da equipa.</li>
+          <li><a href="uc-timetable.html"><code>&lt;uc-timetable&gt;</code></a>: o horário das aulas e uma tabela só do atendimento.</li>
           <li><a href="uc-page.html"><code>&lt;uc-page&gt;</code></a>: a página onde a equipa aparece; a página <code>schedule</code> chama-se "Horários e equipa".</li>
           <li>Uso real: <a href="../../../examples/edados-2526/index.html">a equipa em cartões na página inicial de Estruturas de Dados 2025/26</a> e <a href="../../../examples/edados-2526/horarios.html">em tabela na página de horários</a>.</li>
         </ul>
@@ -317,9 +325,9 @@ uc-team[data-role="assistant"] .uc-team__name { font-weight: 400; }</code></pre>
             <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
             <span class="docs-pager__title"><code>uc-this-week</code></span>
           </a>
-          <a class="docs-pager__link docs-pager__link--next" href="uc-guide.html" rel="next">
+          <a class="docs-pager__link docs-pager__link--next" href="uc-timetable.html" rel="next">
             <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="docs-pager__title"><code>uc-guide</code></span>
+            <span class="docs-pager__title"><code>uc-timetable</code></span>
           </a>
         </nav>
         <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-team.html">Editar esta página no GitHub</a> · <a href="uc-team.md" type="text/markdown">Ver esta página em Markdown</a></p>
@@ -336,6 +344,7 @@ uc-team[data-role="assistant"] .uc-team__name { font-weight: 400; }</code></pre>
           <li class="docs-toc__sub"><a href="#tabela">Tabela</a></li>
           <li class="docs-toc__sub"><a href="#filtrar-por-funcao">Filtrar por função</a></li>
           <li class="docs-toc__sub"><a href="#sem-titulo">Sem título próprio</a></li>
+          <li class="docs-toc__sub"><a href="#atendimento">Atendimento</a></li>
           <li class="docs-toc__sub"><a href="#texto-por-baixo">Texto por baixo</a></li>
           <li><a href="#atributos">Atributos</a></li>
           <li><a href="#configuracao">Configuração usada</a></li>

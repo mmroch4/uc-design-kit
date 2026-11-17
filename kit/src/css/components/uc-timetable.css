@@ -1,0 +1,54 @@
+/* <uc-timetable> — weekly classes and office hours, as tables or by weekday. */
+:where(uc-timetable) { display: block; }
+:where(.uc-timetable__section) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-4);
+}
+/* The heading looks the same whatever its level (heading-level only changes the outline). */
+:where(.uc-timetable__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }
+
+/* Table view: one table per type, the caption names the type. */
+:where(.uc-timetable__table) { --uc-table-min: 560px; }
+:where(.uc-timetable__table caption) {
+  padding: var(--uc-space-3) var(--uc-space-4);
+  border-bottom: 1px solid var(--uc-color-border);
+  font-weight: 600;
+  text-align: left;
+}
+:where(.uc-timetable__table tbody th) {
+  background: transparent;
+  color: var(--uc-color-text);
+  font-size: inherit;
+  font-weight: 600;
+}
+:where(.uc-timetable__days, .uc-timetable__room) { white-space: nowrap; }
+:where(.uc-timetable__time) { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-md); white-space: nowrap; }
+/* Notes wrap first, so rooms and teachers keep their line. */
+:where(td.uc-timetable__note) { width: 1%; min-width: 10rem; }
+:where(.uc-timetable__note) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+
+/* Days view: one group per weekday, a time column and the details. */
+:where(.uc-timetable__day) { display: flex; flex-direction: column; gap: var(--uc-space-2); }
+:where(.uc-timetable__day-heading) { font-size: var(--uc-font-size-lg); font-weight: 600; }
+:where(.uc-timetable__list) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--uc-color-border);
+}
+:where(.uc-timetable__item) {
+  display: grid;
+  grid-template-columns: var(--uc-timetable-time-width, 7.5rem) minmax(0, 1fr);
+  gap: var(--uc-space-3);
+  padding: var(--uc-space-3) 0;
+  border-bottom: 1px solid var(--uc-color-border);
+}
+:where(.uc-timetable__item[hidden], .uc-timetable__day[hidden], .uc-timetable__table tr[hidden]) { display: none; }
+:where(.uc-timetable__details) { overflow-wrap: anywhere; }
+:where(.uc-timetable__details .uc-timetable__note) { display: block; }
+@media (max-width: 760px) {
+  :where(.uc-timetable__item) { grid-template-columns: minmax(0, 1fr); gap: var(--uc-space-1); }
+}
+
+:where(.uc-timetable__table tbody tr:last-child th) { border-bottom: 0; }

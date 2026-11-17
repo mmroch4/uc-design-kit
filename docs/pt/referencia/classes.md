@@ -148,6 +148,22 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-team__contact` | O gabinete e o e-mail. |
 | `.uc-team__table` | O contentor da tabela (também `uc-table`). |
 | `.uc-team__person`, `__classes` | As células do nome e das turmas, na tabela. |
+| `.uc-team__hours`, `__hours-title`, `__hours-list` | O atendimento: o bloco no cartão (ou a célula, na tabela), o título "Atendimento" e a lista de horários. |
+
+### [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-timetable` | O componente (o próprio `<uc-timetable>`). |
+| `.uc-timetable__section`, `__heading` | A secção e o seu título. |
+| `.uc-timetable__filters` | A barra "A minha turma" (também `uc-filters`). |
+| `.uc-filters`, `__group`, `__label`, `__select`, `__button` | A barra de filtros, igual em todos os blocos que filtram: cada grupo, o seu rótulo, a lista e os botões. |
+| `.uc-timetable__table` | O contentor de cada tabela (também `uc-table`), com `data-type` igual ao tipo. |
+| `.uc-timetable__days`, `__room` | Na tabela: as células dos dias e da sala, que não partem a linha. |
+| `.uc-timetable__time` | As horas ("14:00–15:00"). |
+| `.uc-timetable__note` | A nota de uma aula ou de um atendimento. |
+| `.uc-timetable__day`, `__day-heading` | Na vista `days`: cada dia e o seu título. |
+| `.uc-timetable__list`, `__item`, `__details` | Na vista `days`: a lista do dia, cada aula e o texto depois da hora. |
 
 ### [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md)
 

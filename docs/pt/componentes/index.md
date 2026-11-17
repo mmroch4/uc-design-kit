@@ -32,9 +32,10 @@ As semanas do semestre com datas calculadas.
 
 ## Pessoas
 
-Quem dá a cadeira.
+Quem dá a cadeira, e quando.
 
-- [**`<uc-team>`**: A equipa docente em cartões ou numa tabela, com turmas e contactos.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md)
+- [**`<uc-team>`**: A equipa docente em cartões ou numa tabela, com turmas, contactos e atendimento.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md)
+- [**`<uc-timetable>`**: O horário semanal por tipo de aula ou por dia, com A minha turma e o atendimento.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md)
 
 ## Guiões e código
 

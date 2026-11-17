@@ -1,0 +1,49 @@
+- region "Por dia":
+  - heading "Por dia" [level=2]
+  - heading "terça-feira" [level=3]
+  - list:
+    - listitem:
+      - time: 14:00
+      - text: –
+      - time: 15:00
+      - text: T1 · Teóricas · FC4 0.41 ·
+      - link "Fernando Silva":
+        - /url: https://www.dcc.fc.up.pt/~fds
+    - listitem:
+      - time: 16:00
+      - text: –
+      - time: 18:00
+      - text: Atendimento · Gab. 1.25 ·
+      - link "Fernando Silva":
+        - /url: https://www.dcc.fc.up.pt/~fds
+  - heading "quarta-feira" [level=3]
+  - list:
+    - listitem:
+      - time: 09:00
+      - text: –
+      - time: 10:00
+      - text: T2 · Teóricas · FC4 0.41 ·
+      - link "Fernando Silva":
+        - /url: https://www.dcc.fc.up.pt/~fds
+    - listitem:
+      - time: 10:00
+      - text: –
+      - time: 11:00
+      - text: Atendimento · Sala 1.31 · Joana Leite
+  - heading "quinta-feira" [level=3]
+  - list:
+    - listitem:
+      - time: 14:00
+      - text: –
+      - time: 15:00
+      - text: T1 · Teóricas · FC4 0.41 ·
+      - link "Fernando Silva":
+        - /url: https://www.dcc.fc.up.pt/~fds
+    - listitem:
+      - time: 16:30
+      - text: –
+      - time: 18:00
+      - text: Atendimento · Gab. 1.25 ·
+      - link "Fernando Silva":
+        - /url: https://www.dcc.fc.up.pt/~fds
+      - text: Hora a confirmar

@@ -15,11 +15,15 @@
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
  * they were created, because browsers cache them for a year.
  *
+ * It fails when uc-kit.js is over its size budget (37 KB gzipped) and
+ * prints the size on every run.
+ *
  * Usage: node scripts/build.mjs [--check]
  *   --check  exits with an error when kit/v1, a documentation page or the
  *            template zip is out of date, or a release was modified (used in CI).
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { gzipSync } from "node:zlib";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { transform } from "esbuild";
@@ -31,6 +35,8 @@ import { buildLlms } from "./llms.mjs";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(KIT, "src");
 const OUT = path.join(KIT, "v1");
+/** Size budget of uc-kit.js, gzipped (docs/plan/blocks-api.md 1.5). */
+const JS_BUDGET_GZIP = 37 * 1024;
 
 /* ---------- source maps for the concatenation ---------- */
 
@@ -131,6 +137,14 @@ async function main() {
       await writeFile(target, content);
       console.log(`wrote kit/v1/${name} (${(content.length / 1024).toFixed(1)} KB)`);
     }
+  }
+  const gzipped = gzipSync(outputs["uc-kit.js"], { level: 9 }).length;
+  const budget = `uc-kit.js: ${(gzipped / 1024).toFixed(1)} KB gzipped (budget ${JS_BUDGET_GZIP / 1024} KB)`;
+  if (gzipped > JS_BUDGET_GZIP) {
+    console.error(`${budget}: over budget. Make the new code smaller or raise the budget in docs/plan/blocks-api.md 1.5 first.`);
+    failed = true;
+  } else {
+    console.log(budget);
   }
   if ((await buildDocs({ check })) > 0) failed = true;
   if ((await buildSearchIndex({ check })) > 0) failed = true;

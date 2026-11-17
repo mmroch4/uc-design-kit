@@ -320,14 +320,13 @@
       if (focusedAction) this.header.querySelector(`[data-action="${focusedAction}"]`)?.focus();
     }
 
-    /** Builds the persistent parts once: body, live region, hidden source. */
+    /** Builds the persistent parts once: body and hidden source. */
     build() {
       this.classList.add("uc-code");
       this.classList.toggle("uc-code--editable", this.editable);
       this.header = h("div", { class: "uc-code__header" });
       this.output = h("code", { class: "uc-code__code" });
       this.pre = h("pre", { class: "uc-code__pre" }, this.output);
-      this.status = h("span", { class: "uc-visually-hidden", "aria-live": "polite" });
 
       if (this.editable) {
         this.pre.setAttribute("aria-hidden", "true");
@@ -359,7 +358,7 @@
 
       this.showPlain();
       this.results = h("div", { class: "uc-code__results", hidden: true });
-      this.prepend(this.header, this.body, this.results, this.status);
+      this.prepend(this.header, this.body, this.results);
       // The authored source is kept in the DOM, hidden, so nothing is lost.
       if (this.source.matches("pre")) this.source.hidden = true;
       this.highlight();
@@ -677,15 +676,11 @@
     setCopied(copied) {
       this.copied = copied;
       this.render();
-      if (!copied) this.status.textContent = "";
     }
 
+    /** Announces through the page's shared live region (core/announce.js). */
     announce(message) {
-      this.status.textContent = "";
-      // A fresh text node after clearing makes screen readers repeat the message.
-      setTimeout(() => {
-        this.status.textContent = message;
-      }, 50);
+      UC.internal.announce(message);
     }
   }
 

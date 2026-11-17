@@ -152,6 +152,28 @@ O valor do atributo nomeia o que se copia no nome acessível do botão: `data-co
 
 O `<pre>` não tem fundo próprio fora de `uc-content`; a demonstração usa `uc-content` para lhe dar caixa. Dentro de um [`<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) o atributo é ignorado, porque esse componente já tem o seu botão. Sem JavaScript, o bloco mostra-se sem botão.
 
+## `a[data-auth]`
+
+Marca um link que pede autenticação na U.Porto (pautas, folhas de presenças, o SIGARRA). O kit acrescenta um cadeado depois do texto e, para os leitores de ecrã, "(Requer autenticação)". Com um valor, diz em que sistema: `data-auth="SIGARRA"` lê-se "(Requer autenticação: SIGARRA)".
+
+Exemplo (dois links que pedem autenticação), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/auth.html):
+
+```html
+<ul class="uc-links">
+  <li><a href="https://example.org/pautas/teste1.pdf" data-auth>Notas do 1.º teste</a>
+    <span>Só para estudantes inscritos</span></li>
+  <li><a href="https://example.org/sigarra/turmas" data-auth="SIGARRA">Distribuição por turmas</a>
+    <span>No SIGARRA</span></li>
+</ul>
+```
+
+Funciona em qualquer parte da página, no HTML dos campos do `course.js` (avisos, notas dos prazos, salas do horário) e dentro dos componentes. O cadeado é decorativo (`aria-hidden="true"`); o texto escondido muda com a língua da página. Sem JavaScript, o link é um link normal, sem cadeado.
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-auth-icon` | O cadeado, um `<svg>` depois do texto. |
+| `.uc-auth-label` | O texto escondido "(Requer autenticação)". |
+
 ## Utilitários de texto
 
 Três classes de uma só propriedade, para usar em qualquer elemento de texto.

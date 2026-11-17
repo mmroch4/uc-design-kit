@@ -55,6 +55,9 @@
 :where(.uc-tag--muted) { background: transparent; box-shadow: inset 0 0 0 1px var(--uc-color-border); color: var(--uc-color-text-muted); font-weight: 500; }
 
 :where(.uc-table) {
+  /* Positioned, so visually hidden text inside the table scrolls with it
+     instead of widening the page (WCAG 1.4.10). */
+  position: relative;
   overflow-x: auto;
   border: 1px solid var(--uc-color-border);
   border-radius: var(--uc-radius-lg);

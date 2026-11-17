@@ -998,3 +998,42 @@ here).
     formatting; everything else stays in `UC.internal`.
 12. **`<uc-problems heading>` defaults to `none`**, since problem pages already
     have their own `<h1>`.
+
+## 14. Changes made in phase 1
+
+Phase 1 implemented sections 2.1 (`schedule`, `scheduleTypes`), 2.2
+(`Weekday`), 2.4, 2.7, 3.1, 4.3, 5.2, the `--uc-timetable-time-width` token,
+7.1 (`UC.formatTime`, `UC.formatDuration`, `UC.weekdayName`, `uc:classchange`)
+and the helpers of 7.2 except `deadlineStatus`. They are now in `docs/api.md`.
+Refinements made while coding:
+
+1. **`announce(text, delay = 50)`.** The shared live region writes the text
+   50 ms after clearing (the last call wins), not after a fixed 300 ms: the
+   copy buttons must confirm at once. Callers that announce while the reader
+   types (search in phase 3, the calculator in phase 2) pass `300`.
+2. **`<uc-timetable heading-level>`** (2–6, default 2), like the other
+   components with a heading; the weekday headings of `view="days"` are one
+   level below.
+3. **Merging also compares `note`**, so two classes with different notes stay
+   on separate rows.
+4. **New strings:** `common.and` ("e" / "and", joins days: "3.ª e 5.ª"),
+   `timetable.showingAll` ("A mostrar todas as turmas (Teóricas)", announced
+   when "Todas" is chosen) and `team.column.officeHours`.
+5. **More stable classes** than 3.1 listed: `uc-timetable__section`,
+   `__heading`, `__days`, `__room` (cells that do not wrap), `__day-heading`,
+   `__list`, `__details`; filter bar `uc-filters__label` and
+   `uc-filters__select`; on `<uc-team>`, `uc-team__hours`, `__hours-title`,
+   `__hours-list`. `uc-timetable__table` carries `data-type`.
+6. **Filter buttons are full-size `uc-button`s** (44 px), not `uc-button--sm`
+   (32 px), to meet the target size of 1.4 / 2.5.5.
+7. **`.uc-table` is `position: relative`**, so visually hidden text inside a
+   table (the full weekday names) scrolls with it instead of widening the
+   page at 320 px.
+8. **`deadlineStatus` was not extracted** in phase 1 (no phase 1 block uses
+   it). Phase 2 extracts it from `uc-deadlines.js`.
+9. **Size.** `uc-kit.js` was 28.2 KB gzipped at the start of phase 1 (PR #35
+   included) and is 32.1 KB after it: phase 1 used 3.9 KB of the 8.8 KB
+   left. Phases 2–5 have 4.9 KB for five blocks and the extras, which is
+   tight; each phase should check the number the build prints and keep
+   strings and helpers shared.
+

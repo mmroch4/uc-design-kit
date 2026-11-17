@@ -6,8 +6,27 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     switchLanguage: "Switch to {language}",
     external: "(external site)",
     requiresLogin: "Requires login",
+    requiresLoginAt: "Requires login: {system}",
     scrollableTable: "Horizontally scrollable table",
     scrollableText: "Horizontally scrollable text",
+  },
+  common: {
+    all: "All",
+    and: "and",
+    showing: "{shown} of {total}",
+  },
+  weekdays: {
+    long: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    short: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  },
+  duration: { hours: "{h} h", minutes: "{m} min", both: "{h} h {m} min" },
+  timetable: {
+    heading: "Timetable",
+    type: { lecture: "Lectures", lab: "Labs", tutorial: "Tutorials", officeHours: "Office hours" },
+    column: { class: "Class", day: "Day", time: "Time", room: "Room", staff: "Teacher", notes: "Notes" },
+    myClass: "My class ({type})",
+    showing: "Showing class {class}",
+    showingAll: "Showing every class ({type})",
   },
   nav: {
     label: "Course sections",
@@ -51,7 +70,8 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   },
   team: {
     heading: "Teaching team",
-    column: { name: "Name", role: "Role", classes: "Classes" },
+    column: { name: "Name", role: "Role", classes: "Classes", officeHours: "Office hours" },
+    officeHours: "Office hours",
     roles: { coordinator: "Coordinator", lecturer: "Lecturer", assistant: "Lab classes" },
   },
   guide: {

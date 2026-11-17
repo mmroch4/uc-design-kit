@@ -6,8 +6,27 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     switchLanguage: "Mudar para {language}",
     external: "(site externo)",
     requiresLogin: "Requer autenticação",
+    requiresLoginAt: "Requer autenticação: {system}",
     scrollableTable: "Tabela com deslocamento horizontal",
     scrollableText: "Texto com deslocamento horizontal",
+  },
+  common: {
+    all: "Todas",
+    and: "e",
+    showing: "{shown} de {total}",
+  },
+  weekdays: {
+    long: ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"],
+    short: ["2.ª", "3.ª", "4.ª", "5.ª", "6.ª", "sáb.", "dom."],
+  },
+  duration: { hours: "{h} h", minutes: "{m} min", both: "{h} h {m} min" },
+  timetable: {
+    heading: "Horário",
+    type: { lecture: "Teóricas", lab: "Práticas laboratoriais", tutorial: "Teórico-práticas", officeHours: "Atendimento" },
+    column: { class: "Turma", day: "Dia", time: "Hora", room: "Sala", staff: "Docente", notes: "Notas" },
+    myClass: "A minha turma ({type})",
+    showing: "A mostrar a turma {class}",
+    showingAll: "A mostrar todas as turmas ({type})",
   },
   nav: {
     label: "Secções da cadeira",
@@ -51,7 +70,8 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
   },
   team: {
     heading: "Equipa docente",
-    column: { name: "Nome", role: "Função", classes: "Turmas" },
+    column: { name: "Nome", role: "Função", classes: "Turmas", officeHours: "Atendimento" },
+    officeHours: "Atendimento",
     roles: { coordinator: "Regente", lecturer: "Docente", assistant: "Práticas" },
   },
   guide: {

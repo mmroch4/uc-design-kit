@@ -2,7 +2,7 @@
 
 Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.html
 
-A equipa docente, escrita uma vez no `course.js` e mostrada em cartões ou numa tabela: nome, função, turmas, gabinete e e-mail. Pode mostrar só uma parte da equipa, filtrada pela função.
+A equipa docente, escrita uma vez no `course.js` e mostrada em cartões ou numa tabela: nome, função, turmas, gabinete, e-mail e atendimento. Pode mostrar só uma parte da equipa, filtrada pela função.
 
 Exemplo (equipa de quatro pessoas em cartões), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-team/basic.html):
 
@@ -79,6 +79,17 @@ Exemplo (regente e docente dentro da secção Contactos), [demonstração ao viv
 </section>
 ```
 
+### Atendimento
+
+Uma pessoa com `officeHours` no `course.js` mostra "Atendimento" no cartão, com uma linha por horário ("3.ª 11:00–12:30 · Gab. 2.14"). Sem sala, usa-se o gabinete. Na tabela aparece uma coluna Atendimento, só quando alguém o tem. Para uma tabela só do atendimento, usa-se [`<uc-timetable type="office-hours">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md#atendimento).
+
+`course.js`:
+
+```js
+{ name: "Bruno Matos", role: "lecturer", office: "Gab. 2.09",
+  officeHours: [{ day: 4, start: "16:00", end: "17:00", room: "Sala 1.12", note: "Marcar por email" }] },
+```
+
 ### Texto por baixo
 
 O que estiver escrito dentro do `<uc-team>` aparece a seguir à lista ou à tabela, na mesma secção. Útil para o horário de atendimento ou para dizer como marcar uma reunião.
@@ -102,7 +113,7 @@ Exemplo (tabela da equipa com uma nota sobre o atendimento), [demonstração ao 
 
 ## Configuração usada
 
-O componente lê só [`team`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#equipa): a lista das pessoas, com `name`, `role`, `classes`, `office`, `email` e `url`. Os campos de cada pessoa estão descritos em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#equipa).
+O componente lê só [`team`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#equipa): a lista das pessoas, com `name`, `role`, `classes`, `office`, `email`, `url` e `officeHours`. Os campos de cada pessoa estão descritos em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#equipa).
 
 | Campo | Para quê |
 | --- | --- |
@@ -131,6 +142,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-team__contact` | O gabinete e o e-mail. |
 | `.uc-team__table` | O contentor da tabela (também `uc-table`). |
 | `.uc-team__person`, `__classes` | As células do nome e das turmas, na tabela. |
+| `.uc-team__hours`, `__hours-title`, `__hours-list` | O atendimento: o bloco no cartão (ou a célula, na tabela), o título "Atendimento" e a lista de horários. |
 
 `theme.css`:
 
@@ -161,5 +173,6 @@ A equipa está no `course.js`, por isso sem o kit não aparece nada além do con
 ## Ver também
 
 - [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#equipa): os campos de cada pessoa da equipa.
+- [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md): o horário das aulas e uma tabela só do atendimento.
 - [`<uc-page>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md): a página onde a equipa aparece; a página `schedule` chama-se "Horários e equipa".
 - Uso real: [a equipa em cartões na página inicial de Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html) e [em tabela na página de horários](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/horarios.html).

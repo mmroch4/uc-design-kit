@@ -130,6 +130,7 @@ Não estão definidos em `:root`: o kit lê-os com um valor de recurso. Definem-
 | `--uc-guide-gap` | `48px` | Espaço entre os blocos de `<uc-guide>`. |
 | `--uc-notices-date-width` | `64px` | Coluna da data em `<uc-notices>`. |
 | `--uc-deadlines-date-width` | `5.25rem` | Coluna da data de `<uc-deadlines>` em lista. |
+| `--uc-timetable-time-width` | `7.5rem` | Coluna das horas de `<uc-timetable view="days">`. |
 
 ```html
 <div class="uc-grid" style="--uc-grid-min: 160px">

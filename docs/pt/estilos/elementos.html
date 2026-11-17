@@ -67,6 +67,7 @@
           <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
           <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
           <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
           <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
@@ -320,6 +321,38 @@
         </div>
         <p>O <code>&lt;pre&gt;</code> não tem fundo próprio fora de <code>uc-content</code>; a demonstração usa <code>uc-content</code> para lhe dar caixa. Dentro de um <a href="../componentes/uc-code.html"><code>&lt;uc-code&gt;</code></a> o atributo é ignorado, porque esse componente já tem o seu botão. Sem JavaScript, o bloco mostra-se sem botão.</p>
 
+        <h2 id="data-auth"><code>a[data-auth]</code></h2>
+        <p>Marca um link que pede autenticação na U.Porto (pautas, folhas de presenças, o SIGARRA). O kit acrescenta um cadeado depois do texto e, para os leitores de ecrã, "(Requer autenticação)". Com um valor, diz em que sistema: <code>data-auth="SIGARRA"</code> lê-se "(Requer autenticação: SIGARRA)".</p>
+        <!-- docs:demo src="../../demos/blocks/auth.html" title="dois links que pedem autenticação" height="197" -->
+        <div class="docs-demo" id="demo-blocks-auth">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/auth.html" title="Demonstração: dois links que pedem autenticação" loading="lazy" style="height: 197px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;ul class=&quot;uc-links&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;https://example.org/pautas/teste1.pdf&quot; data-auth&gt;Notas do 1.º teste&lt;/a&gt;
+    &lt;span&gt;Só para estudantes inscritos&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://example.org/sigarra/turmas&quot; data-auth=&quot;SIGARRA&quot;&gt;Distribuição por turmas&lt;/a&gt;
+    &lt;span&gt;No SIGARRA&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/auth.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Funciona em qualquer parte da página, no HTML dos campos do <code>course.js</code> (avisos, notas dos prazos, salas do horário) e dentro dos componentes. O cadeado é decorativo (<code>aria-hidden="true"</code>); o texto escondido muda com a língua da página. Sem JavaScript, o link é um link normal, sem cadeado.</p>
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes de a data-auth</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-auth-icon</code></td><td>O cadeado, um <code>&lt;svg&gt;</code> depois do texto.</td></tr>
+              <tr><td><code>.uc-auth-label</code></td><td>O texto escondido "(Requer autenticação)".</td></tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2 id="utilitarios">Utilitários de texto</h2>
         <p>Três classes de uma só propriedade, para usar em qualquer elemento de texto.</p>
         <!-- docs:demo src="../../demos/blocks/text-utilities.html" title="texto secundário, monoespaçado e pequeno" height="154" -->
@@ -413,6 +446,7 @@
           <li class="docs-toc__sub"><a href="#table-min">Largura mínima</a></li>
           <li class="docs-toc__sub"><a href="#table-caption">Legenda</a></li>
           <li><a href="#pre-data-copy">&lt;pre data-copy&gt;</a></li>
+          <li><a href="#data-auth">a[data-auth]</a></li>
           <li><a href="#utilitarios">Utilitários de texto</a></li>
           <li class="docs-toc__sub"><a href="#muted">uc-muted</a></li>
           <li class="docs-toc__sub"><a href="#mono">uc-mono</a></li>

@@ -67,6 +67,7 @@
           <li><a href="componentes/uc-event.html"><code>uc-event</code></a></li>
           <li><a href="componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
           <li><a href="componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="componentes/uc-guide.html"><code>uc-guide</code></a></li>
           <li><a href="componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="componentes/uc-code.html"><code>uc-code</code></a></li>
@@ -159,6 +160,7 @@
               <tr><td><code>LocalizedText</code></td><td>Um texto igual em todas as línguas, ou um objeto com um texto por língua. Se faltar uma língua usa-se a primeira de <code>languages</code>.</td><td><code>"Exame"</code><br><code>{ pt: "Exame", en: "Exam" }</code></td></tr>
               <tr><td><code>ISODate</code></td><td><code>"AAAA-MM-DD"</code>, com zeros. Um prazo aceita ainda <code>"AAAA-MM"</code> (só o mês) e <code>null</code> (a marcar).</td><td><code>"2025-09-15"</code></td></tr>
               <tr><td><code>Time</code></td><td><code>"HH:MM"</code>, 24 horas.</td><td><code>"09:30"</code></td></tr>
+              <tr><td><code>Weekday</code></td><td>Dia da semana em número: <code>1</code> = segunda-feira … <code>7</code> = domingo (como em <code>semester.teachingDays</code>).</td><td><code>2</code> (terça-feira)</td></tr>
               <tr><td><code>HTMLText</code></td><td>Um <code>LocalizedText</code> que pode ter HTML simples (links, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>). É inserido como HTML: as aspas dentro do texto escrevem-se <code>\"</code>.</td><td><code>"Ver &lt;a href=\"avaliacao.html\"&gt;regras&lt;/a&gt;"</code></td></tr>
             </tbody>
           </table>
@@ -229,7 +231,7 @@
           </table>
         </div>
 
-        <h3 id="campos-conteudo">Equipa, prazos e avisos</h3>
+        <h3 id="campos-conteudo">Equipa, horário, prazos e avisos</h3>
         <div class="uc-table docs-fields">
           <table>
             <caption class="uc-visually-hidden">Campos de conteúdo</caption>
@@ -238,6 +240,8 @@
             </thead>
             <tbody>
               <tr><td><code>team</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Equipa docente, mostrada por <a href="componentes/uc-team.html"><code>&lt;uc-team&gt;</code></a>. Ver <a href="#equipa">Equipa</a>.</td></tr>
+              <tr><td><code>schedule</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Aulas semanais, mostradas por <a href="componentes/uc-timetable.html"><code>&lt;uc-timetable&gt;</code></a>. Ver <a href="#horario">Horário</a>.</td></tr>
+              <tr><td><code>scheduleTypes</code><span class="docs-type">objeto</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>Nomes de tipos de aula próprios, ou outros nomes para os do kit: <code>{ seminar: { pt: "Seminários", en: "Seminars" } }</code>.</td></tr>
               <tr><td><code>deadlines</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Prazos, testes e exames: aparecem na página inicial, na semana certa e na avaliação. Ver <a href="#prazos">Prazos</a>.</td></tr>
               <tr><td><code>notices</code><span class="docs-type">lista</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>[]</code></td><td>Avisos de <a href="componentes/uc-notices.html"><code>&lt;uc-notices&gt;</code></a>. Ver <a href="#avisos">Avisos</a>.</td></tr>
             </tbody>
@@ -292,7 +296,8 @@
         <h2 id="equipa">Equipa</h2>
         <uc-code lang="js" filename="course.js" no-download><pre><code>team: [
   { name: "Ana Silva", url: "https://example.org/~ana", role: "coordinator",
-    classes: ["T1", "T2"], office: "Gab. 1.25" },
+    classes: ["T1", "T2"], office: "Gab. 1.25",
+    officeHours: [{ day: 2, start: "16:00", end: "18:00" }] },
   { name: "Rui Costa", email: "rui@example.org", role: "assistant", classes: ["PL1", "PL3"] },
   { name: "Inês Rocha", role: { pt: "Monitora", en: "Teaching assistant" } },
 ],</code></pre></uc-code>
@@ -309,9 +314,38 @@
               <tr><td><code>role</code></td><td><code>"coordinator"</code>, <code>"lecturer"</code>, <code>"assistant"</code> ou <code>LocalizedText</code></td><td>Os três papéis do kit são traduzidos (Regente, Docente, Práticas); qualquer outro texto aparece como está.</td></tr>
               <tr><td><code>classes</code></td><td>lista de textos</td><td>Turmas, por exemplo <code>["PL1", "PL5"]</code>.</td></tr>
               <tr><td><code>office</code></td><td>texto</td><td>Gabinete, por exemplo <code>"Gab. 1.25"</code>.</td></tr>
+              <tr><td><code>officeHours</code></td><td>lista</td><td>Atendimento semanal, uma entrada por horário: <code>{ day, start, end, room?, note? }</code>, com <code>day</code> um <code>Weekday</code> e as horas em <code>Time</code>. Sem <code>room</code>, usa-se <code>office</code>. Aparece nos cartões de <a href="componentes/uc-team.html"><code>&lt;uc-team&gt;</code></a> e em <a href="componentes/uc-timetable.html#atendimento"><code>&lt;uc-timetable type="office-hours"&gt;</code></a>.</td></tr>
             </tbody>
           </table>
         </div>
+
+        <h2 id="horario">Horário</h2>
+        <p>Uma entrada por aula semanal. Uma turma com duas aulas por semana tem duas entradas, que <a href="componentes/uc-timetable.html"><code>&lt;uc-timetable&gt;</code></a> junta numa linha ("3.ª e 5.ª").</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>schedule: [
+  { type: "lecture", class: "T1", day: 2, start: "14:00", end: "15:00", room: "FC4 0.41" },
+  { type: "lecture", class: "T1", day: 4, start: "14:00", end: "15:00", room: "FC4 0.41" },
+  { type: "lab", class: "PL2", day: 2, start: "16:00", end: "18:00", room: "FC6 1.65" },
+  { type: "lab", class: "PL7", day: 2, start: "16:00", end: "18:00", room: "FC6 0.08",
+    staff: "Eduardo Marques", note: "Só nas semanas ímpares" },
+],</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos de uma aula do horário</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>type</code></td><td><code>"lecture"</code>, <code>"lab"</code>, <code>"tutorial"</code> ou texto</td><td>Obrigatório. Os três tipos do kit são traduzidos (Teóricas, Práticas laboratoriais, Teórico-práticas); outro texto é um tipo próprio, com o nome dado em <code>scheduleTypes</code> ou tal como está escrito.</td></tr>
+              <tr><td><code>class</code></td><td>texto</td><td>Obrigatório. A turma, por exemplo <code>"T1"</code> ou <code>"PL2"</code>.</td></tr>
+              <tr><td><code>day</code></td><td><code>Weekday</code></td><td>Obrigatório. O dia da semana, de <code>1</code> (segunda) a <code>7</code> (domingo).</td></tr>
+              <tr><td><code>start</code>, <code>end</code></td><td><code>Time</code></td><td>Obrigatórios. Início e fim da aula.</td></tr>
+              <tr><td><code>room</code></td><td><code>HTMLText</code></td><td>A sala; pode ser um link (planta, reserva).</td></tr>
+              <tr><td><code>staff</code></td><td>texto ou lista de textos</td><td>Os docentes, com os nomes escritos como em <code>team</code>. Sem este campo, são as pessoas da equipa cujo <code>classes</code> inclui a turma, por isso normalmente não é preciso.</td></tr>
+              <tr><td><code>note</code></td><td><code>HTMLText</code></td><td>Uma nota curta, por exemplo "Só nas semanas ímpares".</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Uma entrada a que falte <code>type</code>, <code>class</code>, <code>day</code>, <code>start</code> ou <code>end</code> não aparece, e a consola diz qual é.</p>
 
         <h2 id="prazos">Prazos</h2>
         <p>Um prazo escreve-se uma vez e aparece onde fizer falta: na lista de próximas datas, dentro da semana em que cai, no cartão "Esta semana" e na tabela da avaliação.</p>
@@ -416,10 +450,11 @@
           <li class="docs-toc__sub"><a href="#campos-linguas">Línguas</a></li>
           <li class="docs-toc__sub"><a href="#campos-semestre">Semestre</a></li>
           <li class="docs-toc__sub"><a href="#campos-navegacao">Navegação</a></li>
-          <li class="docs-toc__sub"><a href="#campos-conteudo">Equipa, prazos e avisos</a></li>
+          <li class="docs-toc__sub"><a href="#campos-conteudo">Equipa, horário, prazos e avisos</a></li>
           <li class="docs-toc__sub"><a href="#campos-avancado">Avançado</a></li>
           <li><a href="#paginas">Páginas</a></li>
           <li><a href="#equipa">Equipa</a></li>
+          <li><a href="#horario">Horário</a></li>
           <li><a href="#prazos">Prazos</a></li>
           <li><a href="#avisos">Avisos</a></li>
           <li><a href="#erros-comuns">Erros comuns</a></li>

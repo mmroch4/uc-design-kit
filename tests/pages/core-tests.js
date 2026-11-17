@@ -85,6 +85,43 @@
     }
   });
 
+  /* Blocks phase 1: times, weekdays, storage keys, search text, list items. */
+  const inLang = (lang, fn) => {
+    const saved = UC.lang;
+    UC.lang = lang;
+    try {
+      return fn();
+    } finally {
+      UC.lang = saved;
+    }
+  };
+  test("formatTime pads and joins a range", () => equal([UC.formatTime("9:00"), UC.formatTime("14:00", "15:30"), UC.formatTime("x")], ["09:00", "14:00–15:30", "x"]));
+  test("formatDuration (pt and en)", () =>
+    equal([UC.formatDuration(120), UC.formatDuration(105), UC.formatDuration(45), UC.formatDuration(0), inLang("en", () => UC.formatDuration(90))], ["2 h", "1 h 45 min", "45 min", "", "1 h 30 min"]));
+  test("weekdayName short, long, out of range", () =>
+    equal([inLang("pt", () => UC.weekdayName(2)), inLang("pt", () => UC.weekdayName(7, "long")), inLang("en", () => UC.weekdayName(1)), UC.weekdayName(0)], ["3.ª", "domingo", "Mon", ""]));
+  test("storage keys include the course code", () => equal(UC.internal.storage.key("class", "lab"), "uc:CC1007:class:lab"));
+  test("storage round trip", () => {
+    UC.internal.storage.set("test", "x", "1");
+    const value = UC.internal.storage.get("test", "x");
+    UC.internal.storage.remove("test", "x");
+    equal([value, UC.internal.storage.get("test", "x")], ["1", null]);
+  });
+  test("normalise ignores case and accents", () => equal(UC.internal.normalise("  Árvores Binárias "), "arvores binarias"));
+  test("firstTime skips nested lists and times without datetime", () => {
+    const list = document.createElement("ul");
+    list.innerHTML = '<li><time>hoje</time> Tópico <ul><li><time datetime="2025-10-01">1 out</time></li></ul> <time datetime="2025-11-18">18 nov</time></li>';
+    const found = UC.internal.firstTime(list.firstElementChild);
+    equal(found && UC.internal.toISO(found.date), "2025-11-18");
+  });
+  test("localiseTime keeps the teacher's text", () => {
+    const time = document.createElement("time");
+    time.setAttribute("datetime", "2025-11-18");
+    time.textContent = "18/11";
+    UC.internal.localiseTime(time, "long");
+    equal([time.textContent, time.getAttribute("data-uc-text")], [inLang(UC.lang, () => UC.formatDate("2025-11-18", "long")), "18/11"]);
+  });
+
   const summary = document.createElement("p");
   summary.textContent = failures ? `${failures} failing` : "All tests passed.";
   results.after(summary);

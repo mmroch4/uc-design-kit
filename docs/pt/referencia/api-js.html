@@ -67,6 +67,7 @@
           <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
           <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
           <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
           <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
@@ -159,6 +160,9 @@
               <tr><td><code>UC.formatDateRange(start, end, format?)</code></td><td>texto</td><td>Formata um intervalo, "24–30 nov" ou "30 set–3 out"; com <code>format</code> <code>"medium"</code> acrescenta o ano, "24–30 nov 2025".</td></tr>
               <tr><td><code>UC.weekOf(date)</code></td><td>objeto ou <code>null</code></td><td>A semana letiva que contém <code>date</code> (por omissão, hoje): <code>{ n, start, end }</code>. <code>null</code> fora do semestre e nas interrupções.</td></tr>
               <tr><td><code>UC.weekDates(n)</code></td><td>objeto ou <code>null</code></td><td>As datas da semana <code>n</code>: <code>{ n, start, end }</code>, ou <code>null</code> se não existe.</td></tr>
+              <tr><td><code>UC.formatTime(time, end?)</code></td><td>texto</td><td>Uma hora ou um intervalo: <code>"14:00"</code> ou <code>"14:00–15:00"</code>, em 24 horas em todas as línguas.</td></tr>
+              <tr><td><code>UC.formatDuration(minutes)</code></td><td>texto</td><td>Uma duração em minutos escrita como <code>"2 h"</code>, <code>"1 h 45 min"</code> ou <code>"45 min"</code>.</td></tr>
+              <tr><td><code>UC.weekdayName(day, format?)</code></td><td>texto</td><td>O nome do dia da semana <code>day</code> (<code>1</code> = segunda … <code>7</code> = domingo): abreviado por omissão (<code>"3.ª"</code>, <code>"Tue"</code>) ou por extenso com <code>"long"</code> (<code>"terça-feira"</code>).</td></tr>
               <tr><td><code>UC.Element</code></td><td>classe</td><td>Classe base dos componentes. Ver <a href="#uc-element"><code>UC.Element</code></a>.</td></tr>
               <tr><td><code>UC.define(name, class)</code></td><td>nada</td><td>Regista um componente uma só vez: uma segunda chamada com o mesmo nome é ignorada, sem erro.</td></tr>
               <tr><td><code>UC.addTranslations(lang, dict)</code></td><td>nada</td><td>Acrescenta ou substitui textos da interface de uma língua. Se for a língua ativa, os componentes já desenhados voltam a ser desenhados.</td></tr>
@@ -250,6 +254,7 @@ UC.weekOf("2025-12-25");     // null: after week 12</code></pre></uc-code>
             <tbody>
               <tr><td><code>uc:ready</code></td><td>A configuração foi lida e os componentes do kit estão definidos. Uma vez por página; o <code>&lt;html&gt;</code> recebe a classe <code>uc-ready</code> ao mesmo tempo.</td><td><code>{ version }</code></td></tr>
               <tr><td><code>uc:languagechange</code></td><td>Depois de a língua ativa mudar na mesma página (não quando a mudança navega para outro ficheiro).</td><td><code>{ lang }</code></td></tr>
+              <tr><td><code>uc:classchange</code></td><td>Um estudante escolheu "A minha turma" num <code>&lt;uc-timetable&gt;</code>. Dispara no <code>document</code>; os outros horários da página seguem a escolha.</td><td><code>{ type, class }</code> (<code>class</code> vazio = todas)</td></tr>
               <tr><td><code>uc:exercisechange</code></td><td>Um <code>&lt;uc-exercise&gt;</code> foi marcado como feito ou por fazer. Dispara no exercício e sobe até ao <code>document</code>.</td><td><code>{ id, done }</code></td></tr>
             </tbody>
           </table>

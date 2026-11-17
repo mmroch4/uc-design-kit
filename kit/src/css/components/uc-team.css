@@ -27,5 +27,10 @@
 :where(.uc-team__person .uc-team__name) { font-weight: 500; }
 :where(.uc-team__classes) { font-size: var(--uc-font-size-md); }
 
+/* Office hours (officeHours in course.js), on cards and in the table. */
+:where(.uc-team__hours) { margin-top: var(--uc-space-2); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+:where(.uc-team__hours-title) { display: block; color: var(--uc-color-text-secondary); font-weight: 600; }
+:where(.uc-team__hours-list) { list-style: none; margin: 0; padding: 0; }
+
 /* The heading looks the same whatever its level (heading-level only changes the outline). */
 :where(.uc-team__heading) { font-size: var(--uc-font-size-h2); font-weight: 600; }
