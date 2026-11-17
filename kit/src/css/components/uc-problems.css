@@ -79,3 +79,26 @@
   :where(uc-problems[cards] .uc-problems__item) { grid-template-areas: "body body" "tags tags" "langs langs" "hints solved"; }
   :where(uc-problems[cards] .uc-problems__tags) { justify-content: flex-start; }
 }
+
+/* <uc-problem>: header of one problem statement. */
+:where(uc-problem) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uc-space-3) var(--uc-space-4);
+  padding: var(--uc-space-4) var(--uc-space-5);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+}
+:where(.uc-problem__meta, .uc-problem__actions) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--uc-space-2) var(--uc-space-4);
+}
+:where(.uc-problem__deadline) { color: var(--uc-color-text-secondary); font-size: var(--uc-font-size-md); }
+:where(a.uc-problem__judge:hover) { box-shadow: inset 0 0 0 1px var(--uc-color-accent); color: var(--uc-color-accent); }
+:where(.uc-problem--solved) { border-color: var(--uc-color-success-text); }
+:where(.uc-problem--solved .uc-problems__solved) { color: var(--uc-color-success-text); }

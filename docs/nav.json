@@ -66,7 +66,8 @@
             { "title": "uc-grading", "path": "pt/componentes/uc-grading.html", "code": true, "component": "uc-grading" },
             { "title": "uc-assessment-info", "path": "pt/componentes/uc-assessment-info.html", "code": true, "component": "uc-assessment-info" },
             { "title": "uc-materials", "path": "pt/componentes/uc-materials.html", "code": true, "component": "uc-materials" },
-            { "title": "uc-problems", "path": "pt/componentes/uc-problems.html", "code": true, "component": "uc-problems" }
+            { "title": "uc-problems", "path": "pt/componentes/uc-problems.html", "code": true, "component": "uc-problems" },
+            { "title": "uc-problem", "path": "pt/componentes/uc-problem.html", "code": true, "component": "uc-problem" }
           ]
         },
         {
