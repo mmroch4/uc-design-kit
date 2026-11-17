@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #07 · Dictionaries and Sets · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #07 of Introduction to Programming 2025/26: Dictionaries and Sets. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="8">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #07</span>
+          <span class="uc-mono uc-muted">10/11 to 14/11</span>
+        </p>
+        <h1>Class #07 · Dictionaries and Sets</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip067.html">[IP067] Price Increase</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
+          <li><a href="../problems/ip068.html">[IP068] Dish Renaming</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
+          <li><a href="../problems/ip069.html">[IP069] Reversed Menu</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
+          <li><a href="../problems/ip070.html">[IP070] A New Translation</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 13%</span></li>
+          <li><a href="../problems/ip071.html">[IP071] High Price</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip072.html">[IP072] Price Diversity</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip073.html">[IP073] Items Removal</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip074.html">[IP074] Coin Change</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip075.html">[IP075] Restaurant Inventory</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
+          <li><a href="../problems/ip076.html">[IP076] Super Reversed Menu</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
+          <li><a href="../problems/ip077.html">[IP077] Allowed Digits</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 15%</span></li>
+          <li><a href="../problems/ip078.html">[IP078] Saving Coins</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p07" format="long"></uc-date> (November 29th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore function definition and function calling</li>
+          <li>Understand the concept of dictionaries and how you can use them in Python</li>
+          <li>Know how to traverse, insert, remove and modify elements in dictionaries</li>
+          <li>Understand the concept of sets and how you can use them in Python</li>
+          <li>Know how to traverse, insert and remove elements in sets</li>
+          <li>Gain experience with some algorithmic patterns</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lecture <a href="../materials.html#lectures">T10: Sets and T14: Dictionaries</a>.</strong></p>
+      </section>
+      <div class="uc-prose">
+<p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Bob%27s_Burgers">Bob's Burgers</a>.</p>
+<p><img alt="" loading="lazy" src="bobsburgers.png"/></p>
+      </div>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="working-with-dictionaries" title="1) Working with dictionaries" open>
+<p>The first set of problems will give you the basics about dictionaries.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip067.html">[IP067] Price Increase</a> <em>(changing a value in the dictionary)</em>
+</li><li><a href="../problems/ip068.html">[IP068] Dish Renaming</a> <em>(removing and adding new keys)</em>
+</li><li><a href="../problems/ip069.html">[IP069] Reversed Menu</a> <em>(traversing and creating a dictionary)</em>
+</li><li><a href="../problems/ip070.html">[IP070] A New Translation</a> <em>(traversing and creating a dictionary)</em>
+</li><li><a href="../problems/ip071.html">[IP071] High Price</a> <em>(dictionaries and lists)</em>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="working-with-sets" title="2) Working with sets">
+<p>The second set of problems will give you the basics about dictionaries.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip072.html">[IP072] Price Diversity</a> <em>(creating a set from a dictionary)</em>
+</li><li><a href="../problems/ip073.html">[IP073] Items Removal</a> <em>(removing elements from a set, careful with traversing while changing)</em>
+</li><li><a href="../problems/ip074.html">[IP074] Coin Change</a> <em>(creating and and updating a set)</em>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="extra" title="3) Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p>Loved the main exercises and want extra problems? Here are more exercises to sharpen your skills.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip075.html">[IP075] Restaurant Inventory</a> <em>(frequency count)</em>
+</li><li><a href="../problems/ip076.html">[IP076] Super Reversed Menu</a> <em>(inverting a dictionary)</em>
+</li><li><a href="../problems/ip077.html">[IP077] Allowed Digits</a> <em>(digits and set operations)</em>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="4) Challenge exercise">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>You've done it! You've tackled every taskfrom the Bob's Burgers series 🍔✨. You've navigated the menu, mastered the recipes, and have shown that you have the creativity and skills of the Belcher family! Now one challenge remains...</p>
+<p>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip078.html">[IP078] Saving Coins</a>
+</li></ol>
+<p>Happy coding! 😊</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class07.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class07.html</a>.</p>
+  </uc-page>
+</body>
+</html>

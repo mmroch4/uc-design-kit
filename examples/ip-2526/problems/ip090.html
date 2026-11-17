@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP090] Binary Communication · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP090 (Binary Communication) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP090</li></ol>
+    </nav>
+    <h1>[IP090] Binary Communication</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 13th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class09.html">class #09 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="c-blue"><strong>(in this class you are expected to write a solution that uses recursion - mooshak will not force it, but that should be your goal; don't use <em>itertools</em>)</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip090.png"/>
+Bender finds himself in a peculiar situation. Due to a temporary glitch in his processing core, he can now only communicate in binary.  But there's a catch - his circuits can handle only a limited number of 1's in a message at a time. To avoid overheating, Bender needs your help to generate all possible binary strings of lengths ranging from <em>a</em> to <em>b</em>, inclusive, while ensuring that no string has more than <em>k</em> 1's.</p>
+<p>He refuses to write this program himself because he's busy bending things and drinking oil, so it’s up to you to save the day! Help Bender generate his new vocabulary of binary strings.</p>
+<h2>The Problem</h2>
+<p>Write a function <code>binary(a, b, k)</code> that returns a list containing all possible binary strings of lengths between <em>a</em> and <em>b</em>, inclusive, with at most <em>k</em> 1's. Each string should consist only of the characters '0' and '1'.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>a</em> ≤ <em>b</em>  ≤ 10</td>
+<td>     </td>
+<td>range to consider</td>
+</tr>
+<tr>
+<td>0 ≤ <em>k</em>  ≤ 10</td>
+<td>     </td>
+<td>maximum number of 1's</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+output = binary(1, 2, 3)
+print(sorted(output))
+
+print()
+
+output = binary(2, 4, 2)
+print("output is of type", type(output))
+print("output has size:", len(output))
+for x in sorted(output): print(x)
+</pre>
+</td>
+<td>
+<pre data-copy="">
+['0', '00', '01', '1', '10', '11']
+
+output is of type &lt;class 'list'&gt;
+output has size: 22
+00
+000
+0000
+0001
+001
+0010
+0011
+01
+010
+0100
+0101
+011
+0110
+10
+100
+1000
+1001
+101
+1010
+11
+110
+1100
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip090.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip090.html</a>.</p>
+  </uc-page>
+</body>
+</html>

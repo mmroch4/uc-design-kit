@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP102] Neo's Error Awakening · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP102 (Neo&#x27;s Error Awakening) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP102</li></ol>
+    </nav>
+    <h1>[IP102] Neo's Error Awakening</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of January 3rd</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class11.html">class #11 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip102.png"/>
+Neo has just begun his training aboard the Nebuchadnezzar. Morpheus sits across from him, a faint smile on his face.
+<br/>"Neo," he begins, "you've taken the red pill and awakened to the truth, but the Matrix is not 
+just a world of code: it's a world of errors."
+<br/>"Errors?" Neo asks.
+<br/>"Yes," Morpheus replies. "Errors are glitches in the system. Unchecked, they can crash 
+your programs or, in the Matrix, your mind."
+</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>division(a,b)</code> that,
+  that given two numbers <em>a</em> and <em>b</em> returns the string <code>"a/b = (a/b)"</code> (note that you don't need to round: just return the result of <code>a/b</code> as a string in the respective position).</p>
+<p>If one of the arguments is not a number in the function call, the function should catch that as an exception and return the string <code>"Error: Unsupported type(s) for division!"</code>". Additionally, even if both arguments are numbers, if <em>b</em> is zero, the function should catch the respective exception and return the string <code>"Error: Division by 0!"</code>. No other error types will occur.
+</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>-1000 ≤ <em>a</em>, <em>b</em> ≤ 1000</td>
+<td>     </td>
+<td>Numbers <em>a</em> and <em>b</em> </td>
+</tr>
+<tr>
+<td><em>a</em> and/or <em>b</em> can be non numbers</td>
+<td>     </td>
+<td>This scenario will raise an exception</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(division(10, 2))
+print(division("10", 2))
+print(division(10, [1,2]))
+print(division("10", 0))
+print(division(10, 0))
+print(division(10, 0.0))
+print(division(10.0, 2.0))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+10/2 = 5.0
+Error: Unsupported type(s) for division!
+Error: Unsupported type(s) for division!
+Error: Unsupported type(s) for division!
+Error: Division by 0!
+Error: Division by 0!
+10.0/2.0 = 5.0
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip102.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip102.html</a>.</p>
+  </uc-page>
+</body>
+</html>

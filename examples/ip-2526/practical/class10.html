@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #10 · Structured Programming and Incremental Development · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #10 of Introduction to Programming 2025/26: Structured Programming and Incremental Development. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="11">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #10</span>
+          <span class="uc-mono uc-muted">01/12 to 05/12</span>
+        </p>
+        <h1>Class #10 · Structured Programming and Incremental Development</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip097.html">[IP097] Stranger Cells</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 50%</span></li>
+          <li><a href="../problems/ip098.html">[IP098] Shifting Patterns</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 50%</span></li>
+          <li><a href="../problems/ip099.html">[IP099] Messages from the Upside Down</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 50%</span></li>
+          <li><a href="../problems/ip100.html">[IP100] Hawkins Threat Simulator</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 50%</span></li>
+          <li><a href="../problems/ip101.html">[IP101] Dark Resonance</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 50%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p10" format="long"></uc-date> (December 20th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Read and understand more complex problems statements</li>
+          <li>Gain experience on thinking on a problem and how to organize your code and divide a task into simpler blocks</li>
+          <li>Gain experience on developing your program incrementally and testing every block independently</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+      </section>
+      <div class="uc-prose">
+<p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Stranger_Things">Stranger Things</a>.</p>
+<p><img alt="" loading="lazy" src="st.png"/></p>
+      </div>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="elementary-cellular-automaton" title="1) Elementary Cellular Automaton" open>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip097.html">[IP097] Stranger Cells</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>By the end of this part of the class you will be submitting the problem at hand, but for now let's approach it differently and on a more structured way (resist to urge to just go directly to Mooshak and stick with the strategy given here).
+  
+  </p><ol type="a">
+<li><strong>Understanding the problem</strong>
+<p>Seems simple enough, but it is of upmost importance! Start by reading the problem carefully: <a href="../problems/ip097.html">[IP097] Stranger Cells</a> (you cannot solve a problem you do not understand it completely first)</p>
+<p>Try to really understand everything and what is the concept of a cellular automaton. Here are some useful links to complement the problem statement:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cellular_automaton">Cellular automaton</a> on Wikipedia
+        </li><li><a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton">Elementary Cellular Automaton</a> on Wikipedia
+        </li><li><a href="https://en.wikipedia.org/wiki/Wolfram_code">Wolfram code</a> on Wikipedia
+        </li><li>Online Simulators:
+          <ul>
+<li><a href="https://elife-asu.github.io/wss-modules/modules/1-1d-cellular-automata/">1D Elementary Cellular Automata</a>
+</li><li><a href="https://devinacker.github.io/celldemo/">Elementary cellular automaton simulator</a> (devinacker)
+          </li></ul>
+</li></ul>
+<br/>
+</li><li><strong>Structuring the Code:</strong>
+<p>You can of course divide the problem as you want (and/or you can try again afterwards with your own approach or variation), but for now we propose you follow a specific organization of the code into different functions.</p>
+<p>You can use as a start the following "skeleton" code with all functions already with their headers made (but still missing the code: all of them are with the pass instruction so that the code compiles):</p>
+<ul>
+<li><a class="shell" href="ip097_skeleton.py">ip097_skeleton.py</a> (<a href="ip097_skeleton.html">see in html</a>)
+        </li></ul>
+<p>The code is structured in the following way:
+        </p><ul>
+<li>The <code>read()</code> function will read the input (and store it on <a href="https://realpython.com/python-use-global-variable-in-function/">global variables</a>)
+          </li><li>The <code>simulate()</code> function will simulate the automaton and generate and output the <em>K</em> next generations:
+            <ul>
+<li><code>simulate()</code> should iterate over each generation and call <code>create()</code> to generate the next generation
+              </li><li><code>create()</code> should iterate over each position and call <code>calculate()</code> to generate each char
+              </li><li><code>calculate()</code> should use <code>str_to_number()</code> to convert a triplet of chars to a number that can be called on the rule
+              </li><li>The rule can be converted on an array of 8 bits using <code>rule_to_8bits()</code>
+</li></ul>
+</li></ul>
+<p>We know that for now this is a bit <em>"too much"</em>, but it serves to give you a brief overview of what you will be doing next.</p>
+</li><li><strong>Reading the input</strong>
+<p>Let's start by implementing the <code>read()</code> function. You should start by putting the input examples on files (e.g. <a class="terminal" href="ip097_input01.txt">ip097_input01.txt</a> and <a class="terminal" href="ip097_input02.txt">ip097_input02.txt</a>) so that you can easily call them afterwards to test your code.</p>
+<p>To get you started we will give you the code for this one:</p>
+<uc-code lang="python"><pre><code>def read():
+    global r, k, line
+    r, k = map(int, input().split())
+    line = input()</code></pre></uc-code>
+<p>If you put this code, not only will the input be read to variables <code>r</code>, <code>k</code> and <code>line</code>, but they will also be available outside of the function. You could as well return the 3 values (e.g. as a tuple) but here we want to also show how you could have a global variable that does not need to be passed around all the functions - and in this case this is the global data of the problem.</p>
+<p>Don't forget to test that you are reading correctly. To do that, put the following code outside of all functions (in the bottom), right after you call <code>read()</code>:</p>
+<uc-code lang="python"><pre><code>print(f'{r=}, {k=}, {line=}')</code></pre></uc-code>
+<p>If you call your program and feed it with the input (<code>python ip097_skeleton.py &lt; ip097_input01.txt</code>) you should be able to see the following output, signaling it it is correct:</p>
+<pre>r=128, k=5, line='#############'</pre>
+<p>Don't forget to also do that with the second example input to see if everything seems ok</p>
+</li><li><strong>Converting an integer rule to its individual bits:</strong>
+<p>Let's start implementing the small functions, beginning with <code>rule_to_8bits</code>.</p>
+<p>This should convert the integer representing a rule to its individual bits (that we will use afterwards). When called with the following tester code:</p>
+<uc-code lang="python"><pre><code>print(f'{rule_to_8bits(30)=}')
+print(f'{rule_to_8bits(128)=}')
+print(f'{rule_to_8bits(42)=}')</code></pre></uc-code>
+<p>It should produce the following output (notice they come reversed in relation to the table in the problem statement - this is not a problem, as we will see):</p>
+<pre>
+rule_to_8bits(30)=[0, 1, 1, 1, 1, 0, 0, 0]
+rule_to_8bits(128)=[0, 0, 0, 0, 0, 0, 0, 1]
+rule_to_8bits(42)=[0, 1, 0, 1, 0, 1, 0, 0]
+</pre>
+</li><li><strong>Converting a char triplet:</strong>
+<p>Now let's proceed with <code>str_to_number</code>.</p>
+<p>This function should convert a triplet of chars '.' and '#' and return a number representing the positoin of the triplet if interpreted as a binary string (with zero being '.' and one being '#'). Test the code with:
+        
+            </p><uc-code lang="python"><pre><code>print(f'{str_to_number("...")=}')
+print(f'{str_to_number("..#")=}')
+print(f'{str_to_number(".#.")=}')
+print(f'{str_to_number(".##")=}')
+print(f'{str_to_number("#..")=}')
+print(f'{str_to_number("#.#")=}')
+print(f'{str_to_number("##.")=}')
+print(f'{str_to_number("###")=}')</code></pre></uc-code>
+<p>Which should produce (notice how they correspond to the position in the table of the problem statement... and to the positions of the bits we produced with <code>rule_to_8bits</code>):</p>
+<pre>
+str_to_number("...")=0
+str_to_number("..#")=1
+str_to_number(".#.")=2
+str_to_number(".##")=3
+str_to_number("#..")=4
+str_to_number("#.#")=5
+str_to_number("##.")=6
+str_to_number("###")=7
+</pre>
+</li><li><strong>Generating a new character:</strong>
+<p>Now <code>calculate</code> should be "a piece of cake" given the past two functions, right?</p>
+<p>Here is example tester code:</p>
+<uc-code lang="python"><pre><code>rules = rule_to_8bits(30)
+print(f'{calculate(rules, "...")=}')
+print(f'{calculate(rules, "..#")=}')
+print(f'{calculate(rules, ".#.")=}')
+print(f'{calculate(rules, ".##")=}')
+print(f'{calculate(rules, "#..")=}')
+print(f'{calculate(rules, "#.#")=}')
+print(f'{calculate(rules, "##.")=}')
+print(f'{calculate(rules, "###")=}')</code></pre></uc-code>
+<p>And the expected output:</p>
+<pre>
+calculate(rules, "...")='.'
+calculate(rules, "..#")='#'
+calculate(rules, ".#.")='#'
+calculate(rules, ".##")='#'
+calculate(rules, "#..")='#'
+calculate(rules, "#.#")='.'
+calculate(rules, "##.")='.'
+calculate(rules, "###")='.'
+</pre>
+<p>To help you here is a possible implementation assuming you did the previous functions as expected:</p>
+<uc-code lang="python"><pre><code>def calculate(rules, triplet):    
+    if rules[str_to_number(triplet)] == 1: return "#"
+    return '.'</code></pre></uc-code>
+</li><li><strong>Generating a new line:</strong>
+<p>Now onto generating a new line with function <code>create</code>. You just need to traverse the current line and generate a new line for each triplet. How to deal with the special case of the first and last character of the line not having a the entire triplet? Here are two options:
+
+        </p><ul>
+<li>Use <em>sentinels</em>: add to each line a '.' at the start and at the end: this means that now every "main" character will always have some character to the left or to the right
+          </li><li>Treat the first and last char differently and add manually a '.' to the start or end of the triplet
+        </li></ul>
+<p>Can you implement and test this function by yourself?</p>
+</li><li><strong>Producing all <em>k</em> generations</strong>
+<p>After all of your previous work with short functions only one piece of the puzzle is now missing...</p>
+<p>Implement the <code>simulate</code> that can simply iterate <em>k</em> times and keep calling <code>create</code> to produce the new line given the previous line.</p>
+<p>Don't forget to test!</p>
+</li><li><strong>Submitting to Mooshak</strong>
+<p>After testing everything, now is the time to submit and get your deserved <strong><span class="c-green">Accepted</span></strong>.</p>
+<p>If you get a <strong><span class="c-red">Wrong Answer</span></strong> or another error, you can use the details of the submission to fetch a case where your code fails and use it to debug your code.</p>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="a-2d-cellular-automaton" title="2) A 2D Cellular Automaton">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip098.html">[IP098] Shifting Patterns</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>Can you try to organize the code yourself? Try first to think on how to do it and use structured programming to divide the task into small simple blocks that you can incrementally develop and test.</p>
+<p>Here are some online simulators for the game of life, if you want to try it:</p>
+<ul>
+<li><a href="https://playgameoflife.com/">Conway’s Game of Life</a>
+</li><li><a href="https://conwaylife.com/">ConwayLife.com</a>
+</li></ul>
+<p>If you are stuck or want to see a possible approach, the hints sections provides a possible code organization.</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- As before, divide into reading and solving
+  </p><p>- We suggest you convert to a list of lists (our usual matrix representation) while reading (and you can also use that format for the output)
+  </p><p>- For solving, simulate all generations by calling a simpler function that produces just one generation
+  </p><p>- To produce a new generation iterate over all the cells and use a helper function to count the number of neighbor cells to decide the state of any new cell
+  </p><p>- Use a helper function to print the list of lists as a "normal" output of matrix of chars
+</p></details>
+        </uc-exercise>
+        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p><strong>3) Word Search</strong>
+</p><p>
+    For this exercise you will be solving the problem <a href="../problems/ip099.html">[IP099] Messages from the Upside Down</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>Can you try to organize the code yourself? And can you generalize so that you don't end up repeating code for all the eight directions? Try first to think on how to do it and use structured programming to divide the task into small simple blocks that you can incrementally develop and test.</p>
+<p>If you are stuck or want to see a possible approach, the hints sections provides a possible code organization and generalization.</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- As before, divide into reading and solving
+  </p><p>- We suggest you convert to a list of lists (our usual matrix representation) while reading (and you can also use that format for the output)
+  </p><p>- For solving, try each cell as a possible start for each word
+  </p><p>- To test a word on a given position, iterate through all its characters and keep track of the current cell position to see if it is a match
+  </p><p>- To generalize, use increments that define what a direction is, as shown in the lectures. For instance:
+
+    </p><ul>
+<li>north can be defined as incrementing -1 to the current y, incrementing 0 to the current x and as the string "N"
+      </li><li>northeast can be defined as incrementing -1 to the current y, incrementing +1 to the current x and as the string "NW"
+      </li><li>...
+    </li></ul>
+<p>You can just initialize one or more variables that encapsulate all the eight directions!
+  </p><p>- Be careful to not test positions outside of the grid
+  </p><p>- Initialize an "empty" output grid just with dots and each time you discover a word, you can just add it to the output using the same generalized direction idea.
+</p></details>
+
+<p><strong>4) The Minesweeper Game</strong>
+</p><p>
+    For this exercise you will be solving the problem <a href="../problems/ip100.html">[IP100] Hawkins Threat Simulator</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>You know the game, right? 😎 Here is an <a href="https://minesweeper.online/">online version</a></p>
+<p>Can you think about the problem by yourself and think on how to divide the code?</p>
+<p>For the "recursive propagation" part have a look at the <a href="../materials.html#lectures">recursion notebook</a> (there is a section explaining <strong>flood fill</strong>)
+
+</p><p><strong><span class="c-red">IMPORTANT NOTE:</span></strong> you might hit the <strong>maximum recursion depth</strong> (which is only 1000 by default, on Python). You can increment it on your code by adding the following:</p>
+<uc-code lang="python"><pre><code>import sys
+
+# set maximum recursion depth to 100 000
+# (can you see why this is enough for this problem?)
+sys.setrecursionlimit(100000)</code></pre></uc-code>
+
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- On each cell, like in game of life, count the bomb in neighbor cells and act accordingly:</p>
+<ul>
+<li>It it is a bomb, just reveal it
+  </li><li>It if has neighbor bombs, just reveal the number of bombs
+  </li><li>If it is empty and has no neighbor bomb, reveal a '.' and recursivelly call again the same function of all neighbor cells
+  </li><li>You can do better than 8 recursive calls on the recursive part, using two cycles to go through all neighbors
+</li></ul>
+</details>
+
+<p><strong>5) Advent of Code</strong>
+</p><p>If you want more exercises, have a look at <a href="https://adventofcode.com/">Advent of Code 2025</a> for more daily day in December! 🎄 [more about the <a href="https://en.wikipedia.org/wiki/Advent_of_Code">Advent of Code</a> on Wikipedia]</p>
+<p><a href="https://adventofcode.com/2025"><img alt="" loading="lazy" src="advent.png"/></a></p>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="5) Challenge exercise">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>For the last exercise, the proposal is to do one of the (easier) problems of <a href="https://swerc.eu/2024/">SWERC'2024</a>, an international programming competition that takes place every year.</p>
+<p>Because it is a challenge, we will not give hints beforehand, but if you get stuck contact @PedroRibeiro at Discord. This is an exercise on efficiency, as a naive solution will get a <strong><span class="c-red">Time Limit Exceeded</span></strong> (Mooshak will give 2 seconds to your code and it needs to be able to solve the 200 thousand case in that amount of time - for instance the following naive solution will fail: cycle through all towers and for each of them do another cycle over all towers to search which one is taller and closer)
+
+</p><p>
+  For this exercise you will be solving the problem <a href="../problems/ip101.html">[IP101] Dark Resonance</a><br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+<p>Happy coding! 😊</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class10.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class10.html</a>.</p>
+  </uc-page>
+</body>
+</html>

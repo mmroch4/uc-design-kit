@@ -50,3 +50,21 @@
 .test-rules dt { font-weight: 600; }
 .test-rules dd { margin: 0; color: var(--uc-color-text-secondary); }
 @media (max-width: 560px) { .test-rules { grid-template-columns: 1fr; } .test-rules dd { margin-bottom: var(--uc-space-2); } }
+
+/* index.html: the xkcd comic */
+.xkcd { margin: 0; display: flex; flex-direction: column; align-items: flex-end; gap: var(--uc-space-2); }
+.xkcd img { max-width: 100%; height: auto; }
+
+/* problems/ and practical/: colours of the original statements, with enough contrast */
+.c-red { color: #B42318; }
+.c-green { color: #1E6B34; }
+.c-blue { color: #1F4FB4; }
+.c-magenta { color: #8B008B; }
+.b { font-weight: 600; }
+.hl-ok { background: #DDFFDD; }
+.hl-bad { background: #FFDDDD; }
+.meme-img { max-height: 400px; width: auto; }
+.problem-context p { margin: 0; }
+code.function { background: var(--uc-color-accent-soft); }
+/* problems/: long MathJax formulas scroll instead of widening the page on a phone */
+.uc-content mjx-container[display="true"] { max-width: 100%; overflow-x: auto; overflow-y: hidden; }

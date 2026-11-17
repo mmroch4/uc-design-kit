@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP043] Word evolution · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP043 (Word evolution) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP043</li></ol>
+    </nav>
+    <h1>[IP043] Word evolution</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 1st</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class04.html">class #04 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip043.png" width="300"/>
+Just when you thought the adventures in Wonderland couldn’t get any more curious, the White Rabbit scurried into view, his pocket watch clutched tightly in his hands. He looked frantic, glancing around as if he were late for an important date.</p>
+<p>"Oh dear! Oh dear!" he exclaimed, pausing just long enough to catch his breath. “You wouldn’t believe what I’ve just stumbled upon while looking at this confounded clock. I’ve discovered how words evolve! Fascinating creatures, those little words. But I’m late, I’m late! I need to understand this better, and you — yes, you — might just help me!"</p>
+<h2>The Problem</h2>
+<p>Write a function <code>evolve(initial, n)</code> that given a string <em>initial</em> (made up of just letters 'A' and 'B') and an integer <em>n</em>, prints exactly <em>n+1</em> lines showing first the initial string and then the next <em>n</em> generations of the string according to the following rules:</p>
+<ul>
+<li>Any 'A' becomes 'AB'
+  </li><li>Any 'B' becomes 'A'
+</li></ul>
+<p>For instance, if we start with "A" and ask for <em>n=4</em> generations, the following happens:</p>
+<pre>
+n=0:               A        initial
+                  / \
+n=1:             A   B      the initial single A spawned into AB by rule (A → AB), rule (B → A) couldn't be applied
+                /|    \
+n=2:           A B     A    former string AB with all rules applied, A spawned into AB again, former B turned into A
+              /| |     |\
+n=3:         A B A     A B  note all A's producing a copy of themselves in the first place, then a B, which turns ...
+            /| | |\   /| |
+n=4:       A B A A B A B A  ... into an A one generation later, starting to repeat then
+</pre>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ |initial| ≤ 5</td>
+<td>     </td>
+<td>size of initial string</td>
+</tr>
+<tr>
+<td>1 ≤ n ≤ 15</td>
+<td>     </td>
+<td>number of generations</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+evolve("A", 4)
+print("---------------")
+evolve("ABBA", 3)
+print("---------------")
+</pre>
+</td>
+<td>
+<pre data-copy="">
+A
+AB
+ABA
+ABAAB
+ABAABABA
+---------------
+ABBA
+ABAAAB
+ABAABABABA
+ABAABABAABAABAAB
+---------------
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip043.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip043.html</a>.</p>
+  </uc-page>
+</body>
+</html>

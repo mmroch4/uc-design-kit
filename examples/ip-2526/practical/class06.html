@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #06 · Correction and Efficiency · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #06 of Introduction to Programming 2025/26: Correction and Efficiency. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="7">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #06</span>
+          <span class="uc-mono uc-muted">03/11 to 07/11</span>
+        </p>
+        <h1>Class #06 · Correction and Efficiency</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip059.html">[IP059] Cinnamon Jumping Game</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip060.html">[IP060] Experimental Stability</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip061.html">[IP061] Wallet Watcher</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip062.html">[IP062] Rocket Pair Protocol</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip063.html">[IP063] Neural Activity</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip064.html">[IP064] Comic Dilemma</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip065.html">[IP065] Bacterial Cultures</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip066.html">[IP066] Alphabetical Obsession</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 25%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p06" format="long"></uc-date> (November 22nd; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore the notion of correctness in algorithms</li>
+          <li>Understand some of the most common errors of beginner coders</li>
+          <li>Explore the notion of efficiency in algorithms</li>
+          <li>Learn some new algorithmic techniques such as sliding windows and prefix sums</li>
+          <li>Gain insight into the efficiency of some Python data structures such as sets</li>
+          <li>Work on your problem solving skills</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+      </section>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="about-correction" title="1) About Correction" open>
+<p>The first set of exercises will be a bit different from usual. We will give some wrong code and will ask you to point out what is wrong and correct it, to expose you to some <strong>common types of errors</strong>. Some of these pieces of code are actual answers from students who thought their code was correct... but it wasn't 😺 </p>
+<p>We know that Python allows other types of solutions for some of the exercises, but for the sake of understanding, try to just do a minimal change to the code to make it correct and keep the core ideas of the algorithms in there.
+  
+  </p><p>You should first try to solve by yourself but afterwards you can (and should) check the answer provided.</p>
+<ol type="a">
+<li> The following function should <strong>write all integers between \(a\) and \(b\), inclusive.</strong>
+<p>The coder had the following idea: <em>"I just need to iterate between \(a\) and \(b\) and print the values"</em>
+</p><p>Can you see what is wrong? Can you guess what a call to <code>all_numbers(2,6)</code> would output? How can you correct it?</p>
+<uc-code lang="python"><pre><code>def all_numbers(a, b):
+    for i in range(a, b):
+        print(i)</code></pre></uc-code>
+<details class="uc-hint">
+<summary>Answer</summary>
+<p>- The range instruction goes from \(a\) to \(b-1\). It should be <code>range(a, b <strong>+ 1</strong>)</code><br/>
+    - This is known as an <strong>"off-by-one"</strong> error
+</p></details>
+<br/> 
+
+    </li><li>The following function should <strong>return <em>True</em> if the given string is a palindrome and <em>False</em> otherwise</strong>. A palindrome is a word that reads the same backwards or forwards. For instance <em>"abba"</em> and <em>"madam"</em> are palindromes.
+
+      <p>The coder had the following idea: <em>"I just need to compare the first with the last character, the second with the penultimate, etc. If any of these pairs are different, then I can safely return False. If every pair I compared the same, I have a palindrome!"</em>
+</p><p>Can you see what is wrong? Can you guess what a call to <code>palindrome("abba")</code> would result in? How can you correct it?</p>
+<uc-code lang="python"><pre><code>def palindrome(s):
+    for i in range(len(s)):
+        if s[i] != s[len(s) - i]:
+            return False
+    return True
+      </code></pre></uc-code>
+<details class="uc-hint">
+<summary>Answer</summary>
+<p>- If the string \(s\) has length \(n\), this is comparing \(s[0]\) with \(s[n]\), \(s[1]\) with \(s[n-1]\), \(s[2]\) with \(s[n-2]\), etc.<br/>
+- The problem is that the positions of the string are \(0, 1, 2, \ldots, n-1\), so position \(n\) does not exist and this would result in a <code>IndexError: string index out of range</code><br/>
+- We should actually compare \(s[0]\) with \(s[n-1]\), \(s[1]\) with \(s[n-2]\), \(s[2]\) with \(s[n-3]\), etc<br/>
+- We can correct by changing the comparison line to <code>if s[i] != s[len(s) - i <strong>- 1</strong>]:</code><br/>
+- This is again an example of an <strong>"off-by-one"</strong> error<br/>
+- We could also only traverse to half of the length of the string (can you see why?) but as it is, the function would still work (only doing double the amount of actual comparisons needed)
+</p></details>
+<br/> 
+
+    </li><li>The following function should <strong>return the amount of even numbers in a given list</strong>.
+
+      <p>The coder had the following idea: <em>"I just need to keep a variable with the amount of even numbers already seen, iterate the list and increment each time I see another even number, returning the amount in the end."</em>
+</p><p>Can you see what is wrong? Can you guess what a call to <code>count_even([1,2,3,4,5,6,7])</code> would produce? How can you correct it?</p>
+<uc-code lang="python"><pre><code>def count_even(lst):
+    for x in lst:
+        if x % 2 == 0:
+            count += 1
+    return count</code></pre></uc-code>
+<details class="uc-hint">
+<summary>Answer</summary>
+<p>- The call would result in a <code>UnboundLocalError: local variable 'count' referenced before assignment</code> since the \(count\) variable was not assigned before being used<br/>
+- We can correct by adding <code>count = 0</code> before the <code>for</code><br/>
+- This is an example of an <strong>initialization</strong> error<br/>
+</p></details>
+<br/> 
+
+    </li><li>The following function should <strong>return the maximum value of a list of integers</strong>.
+
+      <p>The coder had the following idea: <em>"I just need to keep a variable with current maximum, change it if a value bigger than the previous maximum exists, returning that maximum value in the end."</em>
+</p><p>What happens if the values in the list are all negative? Can you guess what a call to <code>mymax([-1, -2, -3, -1])</code> would return? How can you correct it?</p>
+<uc-code lang="python"><pre><code>def mymax(lst):
+    answer = 0
+    for x in lst:
+        if x &gt; answer:
+            answer = x
+    return answer</code></pre></uc-code>
+<details class="uc-hint">
+<summary>Answer</summary>
+<p>- Since \(answer\) is initialized to zero, this would be the value returned when all the elements are negative<br/>
+    - We can correct by adding changing that line to <code>answer = lst[0]</code>, as the first element is our first guess for the maximum<br/>
+    - You might ask: what if the list is empty? In that case, the maximum is not defined, and the statement would need to define what it wants for the empty list case<br/>
+    - If you know the range of the integer in the list is \([a,b]\), you could also initialize to any value smaller than \(a\) but notice that our previous solution is much more generic and would work also for finding other values (e.g. minimum) and/or when you don't even know the range beforehand<br/>
+- This is another example of an <strong>initialization</strong> error and one of the reasons why you should always pay attention to the limits of the variables given in the problem <br/>
+</p></details>
+<br/></li><li>The following function should <strong>execute a right shift on the given list</strong>, that is, rotate all the elements to the right (e.g. [2,4,6,8] should become [8,2,4,6]). It should <strong>not return anything, but actually change the list itself.</strong>
+<p>The coder had the following idea: <em>"I create a new list called answer, position all elements shifted to the right on it and then I just assign the new list to the old list."</em>
+</p><p>Can you guess what running this code would print? Why isn't the list changed outside the function? What is the error? How can you correct it?</p>
+<uc-code lang="python"><pre><code>def shift_right(lst):
+    answer = [lst[-1]]
+    for i in range(1, len(lst)):
+        answer.append(lst[i-1])
+    lst = answer
+    print("lst inside function:", lst)
+
+# Example usage
+lst = [2,4,6,8]
+shift_right(lst)
+print("lst outside function:", lst)</code></pre></uc-code>
+<details class="uc-hint">
+<summary>Answer</summary>
+<p>- \(answer\) does have the desired answer, but it is a new list<br/>
+    - \(lst\) is just a function local variable that "references"/"points" to the actual list<br/>
+    - The assignment instruction <code>lst = answer</code> does not copy the contents of \(answer\) to \(lst\), but simply points the local variable \(lst\) to the new list (keeping the old list intact)<br/>
+    - If we actually wanted to copy to the old list, instead of the assignment we could for instance empty the old list (<code>lst.clear()</code>) and then copy the contents (<code>lst.extend(answer)</code> would extend \(lst\) with all the elements of \(answer\)<br/>
+    - Note that this would actually need to iterate through all the elements one by one and "copy" them to the old list. We could have actually changed the list directly, as we will see on the next exercise.
+</p></details>
+<br/> 
+
+    </li><li>The function for this exercise has the same goal as the previous one, that is, <strong>execute a right shift on the given list</strong>, changing the list itself.
+
+      <p>Now the coder wants to directly change the list and has the following idea: <em>"I first store the last element (that I will later put on the first position) and then every element becomes the element that was on the previous position."</em>
+</p><p>Can you guess what running this code would print? What is the error? How can you correct it?</p>
+<uc-code lang="python"><pre><code>def shift_right(lst):
+    last = lst[-1]
+    for i in range(1, len(lst)):
+        lst[i] = lst[i-1]
+    lst[0] = last
+
+# Example usage
+lst = [2,4,6,8]
+shift_right(lst)
+print(lst)</code></pre></uc-code>
+<details class="uc-hint">
+<summary>Answer</summary>
+<p>- It would print <code>[8, 2, 2, 2]</code><br/>
+    - This is a problem with the <strong>order of operations</strong><br/>
+    - The first element would be copied to the second position; afterwards it would be copied to the third position and so on <br/>
+    - We can correct it by simply changing the order in which the assignments are made; for example, we could change the <code>for</code> to <code>for i in range(len(lst)-1, 0, -1):</code> to go from the back to the front
+</p></details>
+<br/> 
+
+    </li><li>The following function should <strong>return <em>True</em> if all the elements of the list are positive or <em>False</em> otherwise</strong>.
+
+      <p>The coder had the following idea: <em>"I iterate all the elements to check if the elements are positive and return True if the are or False otherwise."</em>
+</p><p>Can you think about what kind of lists would make this code fail? Can you correct it?</p>
+<uc-code lang="python"><pre><code>def all_positive(lst):
+    for x in lst:
+        if x&gt;0:
+            return True
+    return False</code></pre></uc-code>
+<details class="uc-hint">
+<summary>Answer</summary>
+<p>- This is a problem with <strong>logic</strong> of the algorithm<br/>
+    - Since the code returns as soon as it finds a positive number, it would return <em>True</em> for all lists with at least one positive number (even if the others are not)<br/>
+    - We can correct it by "inverting" the logic: if we find any non-positive number, we can safely return <em>False</em> and in the end, if nothing was non-positive, then it means everything is positive and therefore we can return <em>True</em>
+</p></details>
+<br/> 
+
+  </li></ol>
+<h4>Wrapping up:</h4>
+<p>There are of course many more possible errors in the correction, but this alerts you to some common mistakes when you are starting your journey on algorithms and coding:</p>
+<ul>
+<li><strong><em>off-by-one</em> errors</strong> are bugs in your algorithm when some number differs from its intended value by 1. For example, it can be because you forgot to reach the last element, or you go one element beyond the end of your data structure. Always be careful with the border cases and what happens with the first/last elements.
+  </li><li><strong>initialization errors</strong> are bugs in which you forget to initialize something, or initialize it wrongly. If you use any variables to contains some kind of answer that you keep changing, always think about what a suitable value should it have at the start and pay attention to the constraints that are given on the problem statement that limit the possible input values.
+  </li><li><strong>order of operation errors</strong> are bugs in which you need to take care in about the order in which you execute the instructions, because they affect the instructions that come afterwards.
+  </li><li><strong>logic errors</strong> are bugs in which your logic is mistaken. Maybe you have an <code>and</code> when you should have a <code>or</code> or vice-versa, or maybe you forgot about some detail.
+  </li><li>There are a myriad of ways in which your code might fail for some specific king of input, so <strong>always test your code</strong> and try to think about harder instances that could be <strong>counter-examples</strong> for your algorithm.
+  </li><li>Remember that in Python, function arguments are always <a href="https://docs.python.org/3/faq/programming.html#how-do-i-write-a-function-with-output-parameters-call-by-reference">"passed by assignment"</a>, so inside a function your local variables are references to the object passed. If the object is <em>mutable</em>, you can change its contents by interacting with it, but if you rebind the reference in the method, the outer scope will know nothing about it, and after you're done, the outer reference will still point at the original object.  
+</li></ul>
+        </uc-exercise>
+        <div class="uc-prose">
+<p>Now let's go back to a more "traditional" class with some exercises that you can submit on Mooshak (however with a bit more guidance from your side than usual).
+
+</p><p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/The_Big_Bang_Theory">The Big Bang Theory</a>.</p>
+<p><img alt="" loading="lazy" src="bbt.png" width="300"/></p>
+        </div>
+        <uc-exercise id="ok-you-have-correct-code-but-is-it-effic" title="2) Ok, you have correct code, but is it efficient?">
+<p>Start by carefully reading the following problem and make sure you fully understand what is asked:</p>
+<p>
+<a href="../problems/ip059.html">[IP059] Cinnamon Jumping Game</a>
+</p><p><strong>A first naive solution</strong></p>
+<p>At first glance, you can simply just simulate the jumping game, and a correct code could look like this:</p>
+<uc-code lang="python"><pre><code>def jump(k, a, b):
+    pos = 0
+    for i in range(k):
+        if i%2 == 0: pos += a
+        else: pos -= b
+    return pos</code></pre></uc-code>
+<p>This actually solves the example function calls and all "small" inputs. Save this code to a file and submit to Mooshak. You will get a... <span class="c-red b">Time Limit Exceeded</span>.
+
+      </p><p>What is the problem with this code? The execution time it takes depends on the \(k\), as we are doing a <code>for</code> cycle with \(k\) iterations. More than that, it takes time that is in <strong>linear</strong> proportion to \(k\), that is, if you double the number \(k\), you will need double the iterations and your code will roughly take double the execution time (you will later learn on other courses that this is a \(\mathcal{O}(k)\) algorithm, roughly meaning that it takes linear time on \(k\)). And in this problem \(k\) can be as large as \(10^9\), which is too high for this kind of solution...</p>
+<p><strong>A better efficient solution</strong></p>
+<p>So how can you solve this? Think a bit about the problem and try to think on a solution that <strong>does not depend on \(k\)</strong>. If you get stuck you can have a look at the hints below, that is hidden so it is not spoiling your joy in solving the problem ☺️.<br/>
+      After you solve, test your solution and get your deserved <span class="c-green b">Accepted</span> for a solution that takes constant time and does not depend on \(k\) (what you will learn later to be a \(\mathcal{O}(1)\) solution)</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Instead of doing \(+a -b\) for \(k/2\) times, you can simply multiply \(a-b\) by \(k/2\), right?<br/>
+    - You just need to be careful about \(k\) being odd or even, to that you know if the last iteration is on \(+a\) or \(-b\)
+</p></details>
+        </uc-exercise>
+        <uc-exercise id="now-for-something-algorithmically-more-i" title="3) Now for something algorithmically more interesting (sliding windows)">
+<p>Start by carefully reading the following problem and make sure you fully understand what is asked:</p>
+<p>
+<a href="../problems/ip060.html">[IP060] Experimental Stability</a>
+</p><p><strong>A first naive solution</strong></p>
+<p>Let's again think about a straight forward (naive) solution, that tries all possible sequences of size \(k\) and for each of them counts the number of positive values:</p>
+<uc-code lang="python"><pre><code>def stable(k, lst):
+    best = 0
+    for i in range(len(lst) - k + 1):
+        count = 0
+        for v in lst[i: i+k]:
+            if v &gt; 0:
+                count += 1
+        best = max(best, count)
+    return best</code></pre></uc-code>
+<p>Start by understanding the provided code:
+</p><ul>
+<li>The outer cycle goes through all possible "start" positions of a \(k\)-segment
+  </li><li>The inner cycle traverses one \(k\)-segment
+  </li><li>\(best\) represents the maximum number of positive values on a \(k\)-segment until now
+  </li><li>\(count\) represents the number of positive values on the current \(k\)-segment
+  </li><li>Why to we use <code>range(len(lst) - k + 1)</code>. Until what position can a \(segment\) start?
+  </li><li>What does the <code>best = max(best, count)</code> do? We could have also just used an <code>if</code>, right?
+</li></ul>
+<p>After you are sure you understood, you can save to file and submit to Mooshak. You will get a... <span class="c-red b">Time Limit Exceeded</span> (<span class="c-red b">TLE</span>), yet again 😇.
+
+</p><p>Why is this happening? Now it might not be so clear why we are getting (<span class="c-red b">TLE</span>)...</p>
+<p><strong>Measuring execution time</strong></p>
+<p>For the purposes of learning, we will do a more in-depth analysis. First, we will define a function to create random lists on demand on \(n\) integers on the range \([a,b]\):<br/>
+(you can remember about <strong>pseudo-randomness</strong> and the <strong>random</strong> library by looking at <a href="../materials.html#lectures">lecture T11</a>)</p>
+<uc-code lang="python"><pre><code>import random
+
+# generate a random list of n integers in the range [a,b]
+def random_list(n, a, b):
+    lst = []
+    for _ in range(n):
+        lst.append(random.randint(a,b))
+    return lst</code></pre></uc-code>
+<p>Try it a little bit to get a hang of how it works. Here are two example calls to generate 10 numbers between 1 and 9. Notice how each call will produce a different list:</p>
+<pre>
+&gt;&gt;&gt; random_list(10, 1, 9)
+[9, 5, 9, 9, 2, 1, 4, 6, 3, 5]
+&gt;&gt;&gt; random_list(10, 1, 9)
+[4, 2, 4, 8, 8, 4, 5, 5, 8, 5]
+</pre>
+<p>Now we can try to run our previous code on lists of different sizes and see how much time they take. We will experiment on fixing \(k = n/2\) and see how the execution time grows as we increase the size of the list, that we will call \(n\).</p>
+<p>Download the following python script: <a class="code" href="ip060_experiment.py">ip060_experiment.py</a></p>
+<p>Try to understand what it is doing and run it on your computer. You should get an output similar to:</p>
+<pre>
+n = 100, time = 0.000s 0.00x
+n = 200, time = 0.000s 3.80x
+n = 400, time = 0.002s 3.83x
+n = 800, time = 0.007s 3.93x
+n = 1600, time = 0.028s 4.01x
+n = 3200, time = 0.106s 3.80x
+n = 6400, time = 0.412s 3.89x
+n = 12800, time = 1.640s 3.98x
+n = 25600, time = 6.898s 4.21x
+n = 51200, time = 26.031s 3.77x
+</pre>
+<p>Roughly speaking, each time we double \(n\), the execution time grows <strong>4x</strong> and it not just the double! This means the execution time grows <strong>quadratically</strong> on \(n\) (later you will learn that this is a \(\mathcal{O}(n^2)\) algorithm).</p>
+<p>This is due to the fact that for this case (\(k=n/2\)) we have roughly \(n/2\) segments, each one of them with \(n/2\) elements... And so we have a first outer cycle going roughly for \(n/2\) iterations, and for each of them we have the inner cycle going for \(n/2\) iterations, so we need \((n/2)^2 = n^2/4\) iterations, which is precisely something that grows quadratically on \(n\)...</p>
+<p>This <strong>growth ratio as we increase the size input</strong> is precisely what algorithmic efficiency is all about. Even if you have a computer twice as fast, 10x times faster or even 100x times faster, it doesn't change <strong>the fundamental fact that the execution time will grow quadratically and inevitably, for a big enough input, your quadratic algorithm will be worse than an algorithm that for instance would depend just linearly on the size of the input</strong>.
+
+</p><p><strong>A better efficient solution</strong></p>
+<p>So yes, we need a linear time algorithm for this problem. Can you think about one? What do we change each time our considered sequence moves one position to the right? Do we really need to compute again "from scratch" the number of positive values in that sequence?</p>
+<p>Again, try to think a bit about the problem and think on a solution that just depend linearly on \(n\). We again provide hints if you need them, and even if you solve the problem by yourself, you should look at the afterwards.<br/>
+      After you solve, test your solution and get your deserved <span class="c-green b">Accepted</span> for an efficient solution.</p>
+<p>If you "plug in" your better solution to the previous experiment code, you should get something like the following, showcasing that the growth ratio of execution time has gone down to <strong>2x</strong> instead of <strong>4x</strong>:
+
+ </p><pre>
+n = 100, time = 0.000s 0.00x
+n = 200, time = 0.000s 1.62x
+n = 400, time = 0.000s 2.00x
+n = 800, time = 0.000s 2.03x
+n = 1600, time = 0.000s 2.05x
+n = 3200, time = 0.001s 2.00x
+n = 6400, time = 0.001s 2.04x
+n = 12800, time = 0.002s 1.99x
+n = 25600, time = 0.004s 2.00x
+n = 51200, time = 0.008s 2.00x
+</pre>
+ 
+ 
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Start by processing the initial segment of size \(k\), counting the number of positive values<br/>
+    - Now, to process the next segment, instead of counting again \(k\) elements, you just need to consider two values changes:<br/>
+        . You remove one element from the segment (the "old" first one); if it was positive, you can now decrement \(count\)<br/>
+        . You add one element to the segment (the "new" last one); if it is positive, you can now increment \(count\)<br/>
+</p><pre>
+<span class="hl-bad">....</span>.....
+.<span class="hl-bad">....</span>....
+..<span class="hl-bad">....</span>...
+...<span class="hl-bad">....</span>..
+....<span class="hl-bad">....</span>.
+.....<span class="hl-bad">....</span>
+</pre>
+
+    This technique is known as a <a href="https://www.geeksforgeeks.org/dsa/window-sliding-technique/">sliding window</a> and you use it whenever you have some king of "segment" moving through the data and you want to consider only what changes as you are moving it<br/>
+</details>
+        </uc-exercise>
+        <uc-exercise id="another-cool-algorithmic-technique-prefi" title="4) Another cool algorithmic technique (prefix sums)">
+<p>Start by carefully reading the following problem and make sure you fully understand what is asked:</p>
+<p>
+<a href="../problems/ip061.html">[IP061] Wallet Watcher</a>
+</p><p><strong>A first naive solution</strong></p>
+<p>Notice how here you are not asked just for a function, but you need a full program reading the input and writing the output.</p>
+<p>Again, at first glance you can just process each query by traversing all positions between \(a\) and \(b\) and a correct code could like this:</p>
+<uc-code lang="python"><pre><code>n = int(input())
+lst = list(map(int, input().split()))
+
+q = int(input())
+for _ in range(q):
+    a, b = map(int, input().split())
+    mysum = 0
+    for i in range(a-1, b):
+        mysum += lst[i]        
+    print(mysum)</code></pre></uc-code>
+<p>Understand the code and then test with the sample input. The code works and seems correct but if you submit to Mooshak you will get a... <span class="c-red b">Time Limit Exceeded</span>.
+
+      </p><p>What is the problem? For each query we might need to traverse the entire list, in the worst case we might need \(q \times n\) iterations to get the answer. But both \(n\) and \(q\) can go up to \(50\,000\) which is too high for such a naive solution...</p>
+<p>Don't be fooled to think that calling Python's sum function will change what is happening "behind the curtains". For instance, the previous code could have also be written in the following way:</p>
+<uc-code lang="python"><pre><code>n = int(input())
+lst = list(map(int, input().split()))
+
+q = int(input())
+for _ in range(q):
+    a, b = map(int, input().split())
+    mysum = sum(lst[a-1:b])
+    print(mysum)</code></pre></uc-code>
+<p>Now the inner cycle is reduced to an instruction (and really "optimized" one), but you are still fundamentally iterating through all positions of the (sub)list for each query, and the growth ratio of the execution time (remember that?) is still the same ⏱️</p>
+<p><strong>A better efficient solution</strong></p>
+<p>So how can you solve the problem?
+
+  </p><p>A very interesting concept is the one of <a href="http://en.wikipedia.org/wiki/Prefix_sum">"prefix sums"</a> (also known as cumulative sums).</p>
+<p>The prefix sums are the total sums up to the corresponding positions. For the example input:</p>
+<pre>
+<span class="uc-muted"><strong>    Position <em>i</em>:</strong>   0    1    2    3    4    5    6    7    8    9   10</span>
+<strong>  Array Values:</strong>      100  -50  200  300 -150  400 -300  100  200   50
+<span class="c-blue"><strong>    Prefix Sum:   0  100   50  250  550  400  800  500  600  800  850</strong></span>
+</pre>
+<p>If we have stored the prefix sums (which can be computed in linear time on the size of the list\), finding the sum of a given interval can now be done in constant time!<br/>
+For example, if \(psum[]\) stores the prefix sum, the sum between positions \(a\) and \(b\) is equal to \(psum[b] - psum[a-1]\). Can you see why?</p>
+<p>This technique can be used to help solve many problems more efficiently, including helping Penny. If the prefix sums are calculated right after reading the money operations, we can answer each query with a simple subtraction, and the entire code will have time proportional to \(n + q\) instead of \(n \times q\) which is a big change!</p>
+<p>Implement this idea using as a basis the previous code, test it and submit to get your well deserved <span class="c-green b">Accepted</span>! 😎
+
+</p>
+        </uc-exercise>
+        <uc-exercise id="one-last-rocket-journey-into-the-planet-" title="5) One last (rocket) journey into the planet of efficiency">
+<p>Start by carefully reading the following problem and make sure you fully understand what is asked:</p>
+<p>
+<a href="../problems/ip062.html">[IP062] Rocket Pair Protocol</a>
+</p><p><strong>A first naive solution</strong></p>
+<p>Back to functions, you are now seeing the pattern of first seeing a naive inefficient solution, and the improving it. How can we search for duplicates? Here is an example possible solution:</p>
+<uc-code lang="python"><pre><code>def rocket_pair(lst, x):
+    for a in lst:
+        for b in lst:
+            if a != b and a+b == x:
+                return True
+    return False</code></pre></uc-code>
+<p>We try all possible pairs \(a,b\) and check if they are different (avoiding using twice the same element - remember the elements are distinct) and if they sum to our desired target. As soon as we find one match, we can safely return \(True\). If no match is found, than the answer is \(False\).</p>
+<p>Seems like a solid approach, and if we are lucky to find the sum, we can even return "quickly", but in the worst case the answer is \(False\) and we still need to check all pairs.</p>
+<p>You could think on actually avoid trying twice each pair (as we test \(a,b\) and \(b,a\)), but that would only cut the time in two, not changing the growth ratio of the execution time, which grows <strong>quadratically</strong> on the size of the list, since we have a quadratic number of pairs. Because the size of the list can be \(50,000\) we are doomed to have a <span class="c-red b">Time Limit Exceeded</span> with this approach...</p>
+<p><strong>A better efficient solution</strong></p>
+<p>So how can you solve the problem?</p>
+<p>On the lectures (<a href="../materials.html#lectures">T10</a>) you already discussed the <code>set</code> data structure and you had a quick discussion on its efficiency (using <em>hash functions</em>) and how, <em>on average</em>, it provides constant time for adding an element, removing an element and checking if an element is on the set.</p>
+<p>How can we use this to solve our task? Try to come up with an algorithm in which one of the loops of the naive solution is essentially transformed into a set membership operation.</p>
+<p>If you get stuck you can have a look at the hints below 😉</p>
+<p>After you solve, test your solution and get your deserved <span class="c-green b">Accepted</span> for an efficient solution.</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Traverse all the items of the list and keep a set of all previous values (adding them one by one to the set)<br/>
+    - For each new value \(v\), before you add it to the set you only need to check if \(x-v\) exists on the set, since that implies that there is a pair that sums to \(x\)<br/>
+- This membership operation takes constant time on average, so your solution now only depends <strong>linearly</strong> on the size of the list 😎
+</p></details>
+        </uc-exercise>
+        <uc-exercise id="extra" title="6) Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p>Loved the main exercises and want more adventure in the universe of efficiency and Big Bang Theory? Here are more exercises to sharpen your skills.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip063.html">[IP063] Neural Activity</a> <em>(oh no, more sliding windows!)</em>
+</li><li><a href="../problems/ip064.html">[IP064] Comic Dilemma</a> <em>(hum... sets again?)</em>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="7) Challenge exercises">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>You've made your way Pasadena's finest minds, helping Raj, Leonard, Penny, Howard, Amy and Stuart. But no... two final bosses remain: the deceptively sweet yet terrifying Bernadette, and the ultimate challenge,  Sheldon Cooper, whose logic defies not only code, but the very laws of physics themselves!</p>
+<p><strong>Bazinga</strong>! Let's see if your Python can handle that. 🧠🐍</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip065.html">[IP065] Bacterial Cultures</a> <em>(2D prefix sums?)</em>
+</li><li><a href="../problems/ip066.html">[IP066] Alphabetical Obsession</a> <em>(advanced sliding windows?)</em>
+</li></ol>
+<p>Happy coding! 😊</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class06.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class06.html</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP100] Hawkins Threat Simulator · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP100 (Hawkins Threat Simulator) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP100</li></ol>
+    </nav>
+    <h1>[IP100] Hawkins Threat Simulator</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 20th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</strong></p>
+<p class="c-blue"><strong>(you are expected to read the class instructions, that will help you build a solution with structured programming and incremental development)</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip100.png"/>
+Max Mayfield has always loved video games and she’s been thinking about how they could help her deal with the real dangers around Hawkins. With rifts to the Upside Down appearing more frequently, she wants to train her instincts for spotting hidden threats, just like in her favorite games. While trying out new games at the Hawkins Arcade, she stumbles upon <a href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)"><strong>Minesweeper</strong></a>. At first, it seems like a simple puzzle, but Max quickly realizes it’s a perfect test for her skills: predicting where dangers lie, avoiding traps, and carefully uncovering safe areas, exactly the kind of thinking she’ll need if the Upside Down ever reaches her neighborhood again.</p>
+<p>Inspired, Max decides to create a Minesweeper simulator to sharpen her reflexes and strategy. In particular, she wants to see the result of the <strong>first move</strong> on a board: which safe zones open up and where potential dangers remain. Even for a skilled gamer like her, the logic can be tricky, so she turns to you for help. Your task is to simulate the Minesweeper board after Max’s first click, revealing the safe areas while keeping hidden threats concealed, just like preparing for a real encounter with the Upside Down.</p>
+<p>The figures below illustrate an example minesweeper game on a 9 by 9 grid:</p>
+<div class="uc-table"><table>
+<tr>
+<td><img alt="" loading="lazy" src="ip100_bombs.png"/></td>
+<td>   </td>
+<td><img alt="" loading="lazy" src="ip100_unknown.png"/></td>
+<td>   </td>
+<td><img alt="" loading="lazy" src="ip100_firstmove.png"/></td>
+</tr>
+<tr>
+<td>The (initially secret)<br/>position of the bombs</td>
+<td></td>
+<td>Initial grid (Max doesn't<br/>know where the bombs are)</td>
+<td></td>
+<td>What Max sees<br/>after a first move<br/>on the yellow cell</td>
+</tr>
+</table></div>
+<p>The Minesweeper rules:</p>
+<ol>
+<li><strong>Grid:</strong> The minefield is a rectangular grid where each cell is either:
+    <ul>
+<li>A bomb (<code>B</code>) representing a hidden trap, or
+      </li><li>An empty space (<code>.</code>) representing safe ground.
+    </li></ul>
+</li><li><strong>First Move:</strong>
+<ul>
+<li>Max makes the first move by choosing a cell <em>(y, x)</em> on the grid.
+      </li><li>If the cell contains a bomb (<code>B</code>), reveal only that cell (as it detonates).
+      </li><li>If the cell is empty (<code>.</code>), reveal the number of bombs in adjacent cells (horizontal, vertical, and diagonal).
+      </li><li>If the cell has no adjacent bombs, reveal all connected safe cells recursively, just like Max stealthily clearing an entire field of traps.
+    </li></ul>
+</li><li><strong>Output:</strong>
+<ul>
+<li>Revealed cells show:
+        <ul>
+<li>A bomb (<code>B</code>) if there was a bomb on that position, or
+          </li><li>The number of adjacent bombs (e.g., 1, 2, etc.), or
+          </li><li>An empty space (<code>.</code>) if there are no adjacent bombs.
+        </li></ul>
+</li><li>Unrevealed cells remain hidden and should be shown as <code>?</code>
+</li></ul>
+</li></ol>
+<h2>The Problem</h2>
+<p>Write a program that, given the location of the bombs and the coordinates of the first move, produces the output of that first move.</p>
+<h2>Input</h2>
+<p>The first line contains two positive integers: the number of rows <em>R</em> and columns <em>C</em> that determine the size of the grid.</p>
+<p>This is followed by <em>R</em> lines of characters representing the bombs location. Empty cells are represented by '.' and bomb cells by 'B'.</p>
+<p>The last line contains two positive integers: the coordinates <em>y</em> and <em>x</em> of the cell selected on the first move (<em>y</em> indicates the row, from 1 to <em>R</em>, where 1 is the top row; <em>x</em> indicates the column, from 1 to <em>C</em> where 1 is the leftmost row).</p>
+<h2>Output</h2>
+<p>You must print the output of the first move as previously described (check the example outputs).</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>R,C</em> ≤ 100</td>
+<td>     </td>
+<td>dimensions of the grid</td>
+</tr>
+<tr>
+<td>1 ≤ <em>y</em> ≤ R</td>
+<td>     </td>
+<td>y coordinate (row) of first move</td>
+</tr>
+<tr>
+<td>1 ≤ <em>x</em> ≤ R</td>
+<td>     </td>
+<td>x coordinate (column) of first move</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Input 1</th>
+<th scope="col">Example Output 1</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+9 9
+B.B....B.
+.........
+......B.B
+.........
+.......B.
+...B.....
+.........
+...B.....
+...B....B
+3 4
+</pre>
+</td>
+<td>
+<pre data-copy="">
+???1..1??
+1211.12??
+.....1???
+.....12??
+..111.1??
+..1?1.111
+..2?2....
+..2?2..11
+..2?2..1?
+</pre>
+</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Input 2</th>
+<th scope="col">Example Output 2</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+9 9
+B.B....B.
+.........
+......B.B
+.........
+.......B.
+...B.....
+.........
+...B.....
+...B....B
+1 3
+</pre>
+</td>
+<td>
+<pre data-copy="">
+??B??????
+?????????
+?????????
+?????????
+?????????
+?????????
+?????????
+?????????
+?????????
+</pre>
+</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Input 3</th>
+<th scope="col">Example Output 3</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+9 9
+B.B....B.
+.........
+......B.B
+.........
+.......B.
+...B.....
+.........
+...B.....
+...B....B
+1 4
+</pre>
+</td>
+<td>
+<pre data-copy="">
+???1?????
+?????????
+?????????
+?????????
+?????????
+?????????
+?????????
+?????????
+?????????
+</pre>
+</td>
+</tr>
+</table></div>
+<br/>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip100.html</a>.</p>
+  </uc-page>
+</body>
+</html>

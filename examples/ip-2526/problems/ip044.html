@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP044] Which one? · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP044 (Which one?) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP044</li></ol>
+    </nav>
+    <h1>[IP044] Which one?</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 1st</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class04.html">class #04 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip044.png" width="300"/>
+A soft yet commanding voice echoed from behind you: "Aha! I see you’ve been quite busy with the whimsical challenges of Wonderland," Alice said, brushing a strand of hair behind her ear. "But I have an ultimate challenge for you — a real test of your skills!"</p>
+<p>Alice took a step closer and continued, "You see, after observing all the transformations of words and how they evolve, I want to know a specific detail about these words. I want to find the n-th letter of the final transformed word in the White Rabbit’s word evolution game. But I need this to be speedier than a Cheshire Cat disappearing in a puff of smoke!"</p>
+<h2>The Problem</h2>
+<p>Write a function <code>whichone(n)</code> that given an integer <em>n</em>, returns the <em>n</em>-th letter (the one in position <em>n</em>) that appears on a word evolving from Mad Hatter's word game when starting with <em>initial="A"</em>. Recall the rules of the game:</p>
+<ul>
+<li>Any 'A' becomes 'AB'
+  </li><li>Any 'B' becomes 'A'
+</li></ul>
+<p>The first lines of the word are therefore:</p>
+<pre>
+A
+AB
+ABA
+ABAAB
+ABAABABA
+ABAABABAABAAB
+ABAABABAABAABABAABABA
+</pre>
+<p>You can see that the initial part of any generation is the same as the previous, so you really don't need to know the generation and knowing the position is enough, right?</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ n ≤ 10<sup>30</sup></td>
+<td>     </td>
+<td>position to discover</td>
+</tr>
+</table></div>
+<p class="uc-callout">NOTE: the limits are really high and you must have an <strong>efficient</strong> solution that can compute this very quickly.<br/>
+  A solution that simply tries to simulate the evolution and recreate the entire word up to <em>n</em> will most likely have <strong>Time Limit Exceeded</strong>.<br/>
+  Your program will need to be able to answer around five hundred queries in less than one second.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(whichone(1))
+print(whichone(2))
+print(whichone(3))
+print(whichone(4))
+print(whichone(5))
+print(whichone(10))
+print(whichone(16))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+A
+B
+A
+A
+B
+B
+A
+
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip044.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip044.html</a>.</p>
+  </uc-page>
+</body>
+</html>

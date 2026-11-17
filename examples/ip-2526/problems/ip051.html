@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP051] Just an Average Person · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP051 (Just an Average Person) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP051</li></ol>
+    </nav>
+    <h1>[IP051] Just an Average Person</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip051.png" width="150"/>
+Ned Flanders, Springfield's most cheerful and mild-mannered neighbor, has always considered himself an "average" guy, perfectly content to be somewhere right in the middle of things. Whether it’s in a conversation, in the community, or in his personal beliefs, Ned likes to think of himself as a balanced, fair-minded person. One evening, as he organizes a list of Bible study topics for his church group, he finds himself wondering: what would it be like to find the exact middle topic in his list? It's the most "Flanders" place to be, after all!</p>
+<p>But there’s a little twist. Sometimes his list has an even number of topics, and sometimes an odd number. In the case of an even list, Ned wants to find the two elements in the middle. For an odd-numbered list, he just needs the single, perfectly central element. This way, he can make sure his "average" choices are as balanced as possible.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>middle(lst)</code> that given a list <em>lst</em> of (unique) comparable items returns a list containing the central element, that is, the median, if the list has an odd length; or the two median elements, in increasing order, if the list has an even length.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|lst|</em> ≤ 100</td>
+<td>     </td>
+<td>Number of elements in list</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(middle(['StAndrew','StJames','StJohn','StPeter','StPhilip']))
+print(middle([1,2,3,4,5,6,7,8]))
+print(middle([1,9,3,5,7]))
+print(middle([8,4,6,2,12,10]))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+['StJohn']
+[4, 5]
+[5]
+[6, 8]
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip051.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip051.html</a>.</p>
+  </uc-page>
+</body>
+</html>

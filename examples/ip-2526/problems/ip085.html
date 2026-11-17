@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP085] A Girl has no Name · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP085 (A Girl has no Name) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP085</li></ol>
+    </nav>
+    <h1>[IP085] A Girl has no Name</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 6th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class08.html">class #08 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip085.png"/>
+  Arya Stark, training with the Faceless Men, has been given a challenge to prove her skills in analyzing texts. Her task is to extract the initial letters of all words from a given text, determine their frequency of appearance, and then create a (lowercase) string from these letters. The string should be sorted in descending order of frequency. If two letters have the same frequency, they should appear in alphabetical order.</p>
+<p>Imagine for instance the text is <em>"tark Lannister TaRgArYeN ARRYN tully"</em>. Regarding the initial letters, there are two <em>t</em>'s, one <em>a</em>, one <em>l</em> and one <em>s</em>. The desired string should there be "tals", as <em>t</em> is the most frequent and them come <em>a</em>, <em>l</em> and <em>s</em>, all with frequency one, but sorted alphabetically. </p>
+<h2>The Problem</h2>
+<p>Write a function <code>sort_initials(text)</code> that given a string <em>text</em>, returns a string made only by the lower case version of the initial letters of each word in the sentence (a word is a space separated sequence of chars). The letters should come in decreasing order of frequency and in case of a tie in increasing alphabetical order.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|text|</em>  ≤ 200</td>
+<td>     </td>
+<td>length of text</td>
+</tr>
+</table></div>
+<p>You can also be assured that the text will only be made by whitespace and upper and lowercase letters adn there will always exist at least one word.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(sort_initials("stark Lannister TaRgArYeN ARRYN tully"))
+print(sort_initials("a girl has no name in Braavos"))
+print(sort_initials("pedro Pedro PEDRO"))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+tals
+nabghi
+p
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip085.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip085.html</a>.</p>
+  </uc-page>
+</body>
+</html>

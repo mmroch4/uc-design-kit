@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP105] Trinity's Escape · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP105 (Trinity&#x27;s Escape) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP105</li></ol>
+    </nav>
+    <h1>[IP105] Trinity's Escape</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of January 3rd</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class11.html">class #11 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip105.png"/>
+The sound of gunfire echoes through the hallway as Trinity sprints through a narrow alley, her boots clattering on the floor. An Agent is hot on her heels.
+<br/>"Operator, I need an exit! Find me a booth, Tank, NOW!" she shouts.
+<br/>Tank's voice crackles back. 
+"I'm trying, Trinity, but most of the connections are not working! Something’s wrong..."
+</p>
+<p>The map of the current situation of Trinity in the alley is described by a string where <code>'T'</code> is Trinity's location, <code>'A'</code> is an agent location, <code>'B'</code> is a booth location and <code>'.'</code> is an empty place. The following string exemplifies one possible situation:</p>
+<pre>
+<strong>.B.A...B..T..A</strong>
+</pre>
+<p>The distance between two locations is simply the number of positions between the respective characters in the string. For instance, the distance from the blue agent (<span class="c-blue"><strong>A</strong></span>) to the red booth (<span class="c-red"><strong>B</strong></span>) is 2, while Trinity (<strong>T</strong>) is at a distance of 3 from the green booth  (<span class="c-green"><strong>B</strong></span>).
+
+</p><p>Trinity needs to reach any booth before an agent catches her, so she needs to find a booth that is closer to her than any agent. Can you help her?</p>
+<h2>The Problem</h2>
+<p>Write a function <code>find_exit(s)</code> that receives a string <code>s</code> containing the alley map as before described, always containing exactly one occurrence of <strong>T</strong> (Trinity) and zero or more occurrences of the characters 'B' (booths), 'A' (agents) and '.' (empty spaces). The function should do the following:</p>
+<ul>
+<li>Return the shortest distance of Trinity to a reachable booth, that is, one that is closer to Trinity than to any agent.</li>
+<li>If there is no booth on the map, it should generate an <code>Exception</code> with the description <code>"404 booth not found!"</code>.</li>
+<li>If for all booths there is at least one agent which is closer (or at the same distance) than Trinity, it should generate an <code>Exception</code> with the description <code>"No possible escape..."</code>.</li>
+</ul>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>2 ≤ <code>|map|</code> ≤ 100</td>
+<td>     </td>
+<td>Length of map string</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+maps = [".B.A...B..T..A",
+        ".B.B.T.B.B.",
+        "..A..T..A..",
+        "AB..T...B...AAAAA"]
+
+for s in maps:
+   try:
+      distance = find_exit(s)
+   except Exception as error:
+      print("Caught exception:", error)
+   else:
+      print(distance)
+</pre>
+</td>
+<td>
+<pre data-copy="">
+3
+2
+Caught exception: 404 booth not found!
+Caught exception: No possible escape...
+</pre>
+</td></tr>
+</table></div>
+<p><strong>Explanation of example function calls:</strong></p>
+<ul>
+<li>For the first string (<code>".B.A...B..T..A"</code>), the answer is 3 (Trinity has a booth at distance 3 that she can reach before any agent)
+  </li><li>For the second string (<code>".B.B.T.B.B."</code>), the answer is 2 (there are no agents and the closest booths are at distance 2)
+  </li><li>For the third string (<code>"..A..T..A.."</code>), an Exception <code>"404 booth not found!"</code> is generated (no booths on the map)
+  </li><li>For the fourth string (<code>"AB..T...B...AAAAA"</code>), an Exception <code>"No possible escape..."</code> is generated (no booth closer to Trinity than to any agent)
+</li></ul>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip105.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip105.html</a>.</p>
+  </uc-page>
+</body>
+</html>

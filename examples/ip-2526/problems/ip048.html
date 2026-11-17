@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP048] Drunken Lists · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP048 (Drunken Lists) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP048</li></ol>
+    </nav>
+    <h1>[IP048] Drunken Lists</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip048.png" width="180"/>
+ One late night at Moe's Tavern, Barney Gumble, Springfield’s most enthusiastic (and perpetually inebriated) patron, finds himself in a philosophical mood. He starts wondering about the world through his "drunken perspective". Everything seems a bit mixed up and jumbled, and, to him, that actually feels kind of... fun!</p>
+<p>As he stares at a list of drink specials Moe has written up on the wall, Barney thinks it would be hilarious if the list got "drunk" too - where every pair of items in it is swapped around, just like his wobbly view of the world. He laughs to himself, imagining a world where things are always out of order, and decides to create something to capture that feeling.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>swap_list(lst)</code> that given a list <em>lst</em> swaps all consecutive pairs of elements. For instance, [1,2,3,4] should become [2,1,4,3]. If the list as an odd number of elements, the last element should stay at its position, as it cannot swap with any other element.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>0 ≤ <em>|lst|</em> ≤ 100</td>
+<td>     </td>
+<td>Number of elements in list</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+lst1 = ['a','b','c','d','e','f']
+swap_list(lst1)
+print(lst1)
+lst2 = [1,2,3,4,5,6,7,8,9]
+swap_list(lst2)
+print(lst2)
+</pre>
+</td>
+<td>
+<pre data-copy="">
+['b', 'a', 'd', 'c', 'f', 'e']
+[2, 1, 4, 3, 6, 5, 8, 7, 9]
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip048.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip048.html</a>.</p>
+  </uc-page>
+</body>
+</html>

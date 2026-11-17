@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #02 · Conditionals and Program Flow · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #02 of Introduction to Programming 2025/26: Conditionals and Program Flow. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="3">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #02</span>
+          <span class="uc-mono uc-muted">29/09 to 03/10</span>
+        </p>
+        <h1>Class #02 · Conditionals and Program Flow</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip008.html">[IP008] Absolute-ly</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip009.html">[IP009] Best of 3</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip010.html">[IP010] Grading Papers</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip011.html">[IP011] Buy Me Flowers</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip012.html">[IP012] FizzBuzz</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip013.html">[IP013] Multiply Mayhem!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip014.html">[IP014] Odd Feelings</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip015.html">[IP015] Behold a Square</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip016.html">[IP016] Like the others?</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip017.html">[IP017] Sum me up!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip018.html">[IP018] More Circle Math</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip019.html">[IP019] I am root</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip020.html">[IP020] Perfection</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip021.html">[IP021] Pointy Business</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip022.html">[IP022] Spin me right round</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p02" format="long"></uc-date> (October 18th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore some math operators such as integer remainder (<code>%</code>) and integer division (<code>//</code>)</li>
+          <li>Explore the usage of boolean expressions (and operators such as <code>and</code>, <code>or</code>)</li>
+          <li>Explore the usage of of conditionals (such as <code>if</code>, <code>elif</code>, <code>else</code>)</li>
+          <li>Explore the usage of program flow cycle instructions (such as <code>for</code>, <code>while</code>, <code>range</code>)</li>
+          <li>Explore the creation of simple algorithms</li>
+          <li>Consolidate your knowledge of coding, debugging and problem solving</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lectures <a href="../materials.html#lectures">T02: The basics | T03: Conditionals | T04: Program Flow</a>.</strong></p>
+      </section>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="conditional-statements" title="1) Conditional Statements" open>
+<p>For this first batch of four problems you will mainly explore the usage of conditional statements (such as <code>if</code>, <code>elif</code> and <code>else</code>) and boolean expressions.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip008.html">[IP008] Absolute-ly</a>
+</li><li><a href="../problems/ip009.html">[IP009] Best of 3</a>
+</li><li><a href="../problems/ip010.html">[IP010] Grading Papers</a>
+</li><li><a href="../problems/ip011.html">[IP011] Buy Me Flowers</a>
+</li></ol>
+<p>We encourage you to speak with your colleagues and with your professors if you need help (including using Discord), but be aware that <strong>you should be trying to solve the exercises by yourself!</strong></p>
+<p>You get from a course what you invest on it and by actually trying to solve the problems you will learn a lot (including some of the things you will not get correct the first time, which will become lessons you will not forget).</p>
+<p>This course is all about <em>"putting your hands dirty"</em> in terms of actually coding, and if you rely on other's code (or tools such as ChatGPT) you will be most of all just fooling yourself... Try to do it and enjoy the rich and dynamic experience we prepared for you! 😊</p>
+<details class="uc-hint">
+<summary>😁 suprised pikachu...</summary>
+<p><img alt="Meme: suprised pikachu..." class="meme-img" loading="lazy" src="meme_pikachu.jpg"/></p>
+</details>
+        </uc-exercise>
+        <uc-exercise id="program-flow-and-cycle-instructions" title="2) Program Flow and Cycle Instructions">
+<p>For this second batch of four more problems you will now explore the usage of program flow instructions (such as <code>for</code>, <code>while</code> and <code>range</code>), combined with what you already know.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip012.html">[IP012] FizzBuzz</a>
+</li><li><a href="../problems/ip013.html">[IP013] Multiply Mayhem!</a>
+</li><li><a href="../problems/ip014.html">[IP014] Odd Feelings</a>
+</li><li><a href="../problems/ip015.html">[IP015] Behold a Square</a>
+</li></ol>
+<p>Again, try to do it it by yourself and revisit the lectures, seeking help and hints if you need help.</p>
+<details class="uc-hint">
+<summary>😅 no pain, no gain!</summary>
+<p><img alt="Meme: no pain, no gain!" loading="lazy" src="meme_coding.png" width="400"/></p>
+</details>
+        </uc-exercise>
+        <uc-exercise id="leveling-up" title="3) Leveling up">
+<p>We now propose two more problems which are still more than doable with what you already learned, but might be a bit more difficult from the point of view of the algorithm associated (so it is more about the <em>idea</em> that just the <em>code</em> and the syntax of Python).</p>
+<p>These problems include hints that are initially hidden so that they don't become spoilers if you want to try the problems by yourself first. If you get stuck, click the button to open the hint! 🦮</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip016.html">[IP016] Like the others?</a><details class="uc-hint">
+<summary>Hints</summary>
+<p>- Keep three variables while you are traversing the numbers:<br/>
+    . <code>cur</code> giving the size of the current stretch of identical numbers<br/>
+    . <code>best</code> with the best stretch length until now<br/>
+    . <code>last</code> with the last number seen</p>
+<p>- At the start, read the first number and assign <code>cur=1</code> and <code>best=1</code><br/>
+  (this is where you are AFTER reading the first number: on a stretch of length 1, which is also the best)</p>
+<p>- Each time you read a new number:<br/>
+    . if it is the same as the <code>last</code> number, increment <code>cur</code> (the current stretch grows)<br/>
+    . if it is different, than <code>cur=1</code> (you start a new stretch)</p>
+<p>- After this, before reading a new number, update the <code>last</code> number and verify if your <code>best</code> was improved
+      </p></details></li>
+
+<li><a href="../problems/ip017.html">[IP017] Sum me up!</a><details class="uc-hint">
+<summary>Hints</summary>
+<p>- To extract the last digit you only need to... check the remainder of dividing by 10 (<code>n % 10</code>)
+</p><p>- To remove the last digit and keep the other... divide the number by 10 (<code>n // 10</code>)
+</p><p>- You can now make a cycle where you repeatedly do this to keep extracting all the numbers until you reach zero:<br/>
+    Imagine for example that the number is 123. Then:<br/>
+    . 123 % 10 = <strong>3</strong>  and 123 // 10 = 12, leaving you with 12<br/>
+    . 12 % 10 = <strong>2</strong> and 12 // 10 = 1, leaving you with 1<br/>
+    . 1 % 10 = <strong>1</strong> and 1 // 10 = 0, leaving you with 0
+</p><p>- All that's left is to keep summing the last digits whyle you are traversing the number, right?
+
+ </p></details></li>
+
+</ol>
+
+<details class="uc-hint">
+<summary>⭐ Level Up!</summary>
+<p><img alt="Meme: Level Up!" loading="lazy" src="meme_levelup.png" width="400"/></p>
+</details>
+        </uc-exercise>
+        <uc-exercise id="extra" title="Extra exercise for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p>So you enjoyed the main exercises so much, that you want more problems to submit? Don't worry we've gor you covered! Here are some exercises to consolidade your knowledge and to show you are coding for more than simply your grade 😃</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip018.html">[IP018] More Circle Math</a>
+</li><li><a href="../problems/ip019.html">[IP019] I am root</a>
+</li><li><a href="../problems/ip020.html">[IP020] Perfection</a>
+</li><li><a href="../problems/ip021.html">[IP021] Pointy Business</a>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="Challenge exercise">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>So you want one more challenge? Here you go! It is not too hard, but if you can do it you are showing you truly mastered this part of the material!</p>
+<p>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip022.html">[IP022] Spin me right round</a>
+</li></ol>
+<p>Happy coding! 😊</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class02.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class02.html</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #08 · (Advanced) Strings · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #08 of Introduction to Programming 2025/26: (Advanced) Strings. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="9">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #08</span>
+          <span class="uc-mono uc-muted">17/11 to 21/11</span>
+        </p>
+        <h1>Class #08 · (Advanced) Strings</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip079.html">[IP079] Ancient Texts</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip080.html">[IP080] Keyword Occurrences</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip081.html">[IP081] The Art of Storytelling</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip082.html">[IP082] Secret Message</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip083.html">[IP083] Mixed Up Columns</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip084.html">[IP084] Intercepted Messages</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip085.html">[IP085] A Girl has no Name</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip086.html">[IP086] Night's Watch</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip087.html">[IP087] Three-Eyed Raven</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip088.html">[IP088] Dracarys!</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 20%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p08" format="long"></uc-date> (December 6th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore function definition and function calling</li>
+          <li>Understand the strings and how to create them</li>
+          <li>Know how to go from a character to an integer code and vice-versa</li>
+          <li>Know how to split and join strings</li>
+          <li>Know how to use a multitude of string methods</li>
+          <li>Know how to use string formatting</li>
+          <li>Gain experience with some algorithmic patterns</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lecture <a href="../materials.html#lectures">T15: More (on) Strings</a>.</strong></p>
+      </section>
+      <div class="uc-prose">
+<p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Game_of_Thrones">Game of Thrones</a>.</p>
+<p><img alt="" loading="lazy" src="gos.png" width="400"/></p>
+<p>Our suggestion is that you first try to solve on you own but if you have difficulties or after having Accepted, you should <strong>check the hints</strong> that are provided here.</p>
+      </div>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="a-first-problem-lower-and-upper-cases" title="1) A first problem: lower and upper cases" open>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip079.html">[IP079] Ancient Texts</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Use three variables to keep track of the three numbers you need to compute
+</p><p>- Just traverse all the strings in the list and use the <em>str.islower()</em> and <em>str.isupper()</em> to update the variables
+</p><p>- In the end just return a tuple with everything
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="finding-substrings" title="2) Finding substrings">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip080.html">[IP080] Keyword Occurrences</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Use <em>str.find()</em> to find the first ocurrence of the string
+</p><p>- Afterwards, keep checking for the next occurrence starting on... the position right after the last occurrence!
+</p><p>- Keep adding the positions to a list until you get a -1 (<em>"not found"</em>)
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="unique-words" title="3) Unique Words">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip081.html">[IP081] The Art of Storytelling</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Use <em>str.split()</em> to obtain a list of words
+</p><p>- Use a set to keep track of existing words
+</p><p>- Traverse the list of words and insert them all on the set (what happens to the repeated words?)
+</p><p>- In the end the result is just the number of elements of the set! [that you can obtain with <em>(len)</em>]
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="caesar-cipher" title="4) Caesar Cipher">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip082.html">[IP082] Secret Message</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Use <em>ord()</em> to convert each letter to its numeric form
+</p><p>- To make a shift of <em>k</em> you just need to add <em>k</em> and then use <em>chr()</em> to return to a letter
+</p><p>- Be careful with the "wrap-around" when the summation moves you beyonf the last letter (suggestion: use the % operator; can you see how?)
+</p><p>- Don't forget to only convert letters (in this problem you can use <em>str.islower()</em> to check
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="reading-a-csv" title="5) Reading a CSV">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip083.html">[IP083] Mixed Up Columns</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Use <em>str.split(",")</em> to split the CSV into a list
+</p><p>- You know how to swap two list values, right?
+</p><p>- Afterwards, just use <em>",".join()</em> to put the list back into a string
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p>Do you want to continue your adventure on the world of Westeros? Here are more exercises 🙂</p>
+<p><strong>6) Parsing and converting to numbers</strong></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip084.html">[IP084] Intercepted Messages</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- What if you convert any non digit to a space? How can you then obtain a list of the integers in string form?
+</p><p>- To convert a number you can simply use... <em>int()</em>
+</p></details>
+
+<p><strong>7) Sorting first letters</strong></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip085.html">[IP085] A Girl has no Name</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Use a map to track the frequency of all first letters
+</p><p>- In the end produce a list of tuples with the frequency and letters: since the normal sort will use increasing order, what should you store on each tuple an in what order? Do you remember something similar we did on the lectures?
+      </p></details>
+
+<p><strong>8) A neatly formatted table</strong></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip086.html">[IP086] Night's Watch</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Start by finding the maximum length of a string in the list
+</p><p>- With that length calculated, can you draw the first line?
+</p><p>- Now you can just cycle trough all columns and check whenever you need to change rows 😉
+      </p></details>
+
+<p><strong>9) Vigènere Cipher</strong></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip087.html">[IP087] Three-Eyed Raven</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- What about solving one problem on your own? 😁
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="10) Challenge exercise">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>Congratulations, brave solver of the <strong>Game of Strings</strong>! 🎉</p>
+<p>You have demonstrated the skill and the mind of a true Maester, solving each riddle from the cold North to the burning South. You have decrypted messages with the wisdom of Tyrion, transformed data with the precision of Jon Snow, and outsmarted even the cleverest traps set by Littlefinger himself. The Faceless Men, the Night's Watch, and even the Three-Eyed Raven would be impressed with your mastery!</p>
+<p>But beware, for one final challenge remains. 🐉🔥</p>
+<p>Daenerys Targaryen, the Mother of Dragons, is not easily satisfied. There is one last puzzle you must conquer, one final problem to prove your worth. Succeed, and you will earn the respect of the Seven Kingdoms. Fail, and you may find yourself facing the fiery wrath of Drogon...</p>
+<p>
+  For this exercise you will be solving the problem <a href="../problems/ip088.html">[IP088] Dracarys!</a><br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+<p>Happy coding! 😊</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class08.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class08.html</a>.</p>
+  </uc-page>
+</body>
+</html>

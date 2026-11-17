@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP057] Donut Path · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP057 (Donut Path) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP057</li></ol>
+    </nav>
+    <h1>[IP057] Donut Path</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip057.png" width="150"/>
+Homer Simpson, ever the lover of donuts and comfort, finds himself in an unusual situation at work. Mr. Burns, inspired by one of his bizarre ideas, has ordered Homer to organize the Springfield Nuclear Power Plant's inventory data in a "spiral path". Homer has no clue what that means, but he does know one thing: if he doesn’t figure it out, there might be trouble (and no donuts for a week!).</p>
+<p>Homer takes a deep breath, scratching his head as he looks at the matrix of numbers in front of him. He realizes he's staring at a grid of items that need to be inspected in a specific order. Normally, he'd go row by row or column by column, but Mr. Burns wants it arranged in a spiral, starting from the top left and winding inward like a donut shape. Homer isn’t thrilled with the task, but the thought of a perfectly spiraled donut gives him some motivation to dive in.</p>
+<h2>The Problem</h2>
+<p>Write a function <code>spiral_path(m)</code> that receives a rectangular matrix <em>m</em> given as a list of lists with <em>r</em> rows and <em>c</em> columns, and returns a list with the elements of the matrix in the order they are traversed as a spiral, starting from the top left. The image below explains the spiral (donut) path for the first example input:</p>
+<p><img alt="" loading="lazy" src="ip057_spiral.png" width="180"/></p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>r, c</em> ≤ 100</td>
+<td>     </td>
+<td>Number of rows and columns</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(spiral_path([[ 1, 2,  3, 4],
+                   [ 5, 6,  7, 8],
+                   [ 9, 10,11,12],
+                   [13,14, 15,16]]))
+
+print(spiral_path([[ 1, 2, 3, 4, 5, 6],
+                   [ 7, 8, 9,10,11,12],
+                   [13,14,15,16,17,18]]))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+[1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
+
+[1, 2, 3, 4, 5, 6, 12, 18, 17, 16, 15, 14, 13, 7, 8, 9, 10, 11]
+</pre>
+</td>
+</tr>
+</table></div>
+<p><em>(there are no empty lines printed; the example output is spaced just so that you can better understand it)</em></p>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip057.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip057.html</a>.</p>
+  </uc-page>
+</body>
+</html>

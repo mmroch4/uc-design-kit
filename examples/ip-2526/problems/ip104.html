@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP104] The Wisdom of the Oracle · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP104 (The Wisdom of the Oracle) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP104</li></ol>
+    </nav>
+    <h1>[IP104] The Wisdom of the Oracle</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of January 3rd</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class11.html">class #11 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip104.png"/>
+The scent of cookies fills the air as the Oracle greets them with a knowing smile.
+<br/>"Ah, Neo," she says, handing him a cookie. "You've learned to handle errors, but can you predict them?
+The Matrix is full of unpredictability, but with the right skills, you can foresee and account for future exceptions."
+<br/>Neo looks puzzled. "How?"
+<br/>The Oracle takes a seat and points to a scroll of code. 
+"Imagine a function \(f\) that accepts numbers. 
+For some, it works perfectly. For others, it fails.
+Your task is to count the failures within a given range. 
+This will teach you how to anticipate errors without letting them disrupt your process.
+It's like seeing into the future, Neo."
+
+</p><h2>The Problem</h2>
+<p>
+Write a function <code>future_exceptions(f, a, b)</code> 
+that receives a function <em>f</em> and two integers <em>a</em> and <em>b</em>. Consider that function <em>f</em> accepts an integer between <em>a</em> and <em>b</em> and may raise an exception when applied to an invalid integer. Your function <code>future_exceptions(f, a, b)</code> should try to apply <em>f</em> to all integers in the range \([a, b]\) and return the amount of exceptions caught.
+
+For instance:
+
+</p><ul>
+<li><code>future_exceptions(lambda x: 1/x, -5, 5)</code> should return <strong>1</strong> because it will raise <strong>1</strong> exception (when \(x = 0\))
+  </li><li><code>future_exceptions(lambda x: 1/(abs(x)-2), -5, 5)</code> should return <strong>2</strong> because it will raise <strong>2</strong> exception2 (when \(x = -2 \) and \(x = 2\))
+</li></ul>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td><em>f</em></td>
+<td>     </td>
+<td>A function that takes one integer</td>
+</tr>
+<tr>
+<td>-1000 ≤ <em>a</em> ≤ <em>b</em> ≤ 1000</td>
+<td>     </td>
+<td>Integers <em>a</em> and <em>b</em> that make up the interval  \([a, b]\)</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(future_exceptions(lambda x: 1/x, -5, 5))
+print(future_exceptions(lambda x: 1/(abs(x)-2), -5, 5))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+1
+2
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip104.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip104.html</a>.</p>
+  </uc-page>
+</body>
+</html>

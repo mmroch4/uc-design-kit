@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP101] Dark Resonance · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP101 (Dark Resonance) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP101</li></ol>
+    </nav>
+    <h1>[IP101] Dark Resonance</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 20th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</strong></p>
+<p class="c-blue"><strong>(because this is a challenge problem, a naive solution will most likely have a <em>Time Limit Exceeded result</em>)</strong></p>
+
+<p><span class="uc-muted"><em>(this problem is an adaptation from a SWERC'2024 problem)</em></span></p>
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip101.png"/>
+Steve, Robin, and Nancy discover that Vecna has been constructing a series of structures of different shapes in the Upside Down, all aligned in a long, unnerving formation, almost as if channeling power toward something hidden deeper in the other side. They form a line of \(N\) towers of different heights (no two towers have the same height), all spaced by one meter.</p>
+<p>Each individual tower’s <strong>dark resonance</strong>, a value that indicates how strongly a tower gathers power, depends on the <strong>distance to the closest tower that is taller</strong> (the closest taller tower can be on the left or on the right. For the tallest tower, this distance is undefined and should not be considered in the final sum). The three friends need to compute the <strong>sum</strong> of all these individual values, to understand how much energy is Vecna planning to gather.</p>
+<p>You are given a positive integer <em>N</em> corresponding to the number of towers, and an array \(H\) of \(N\) distinct non-negative integers corresponding to the heights of the towers. \(H_0\) is the height of the leftmost tower, \(H_1\) is the height of the tower to the right of \(H_0\), and so on. Finally, \(H_{N-1}\) is the height
+of the rightmost tower. Observe that the distance between any two towers, in meters, is the absolute
+  value of the difference of their respective indices in the array \(H\). Let \(p\) denote the index of the tallest tower in \(H\) and define, for every \(i\neq p\),
+
+</p><p>\(d(i) = \min |i − j|\), taken over every \(j\) such that \(H_j &gt; H_i\)</p><p>Note that \(d(p)\) is not defined. The "total dark resonance" is then given by
+  \(\displaystyle\sum^{N-1}_{i=0, i \neq p} d(i)\)
+        
+</p><h2>The Problem</h2>
+<p>Write a program that, given the number of towers \(N\) and the array of heights \(H\), computes the "the total dark resonance".</p>
+<h2>Input</h2>
+<p>The first line contains the integer \(N\). The second line contains the list of elements \(H_0, \ldots, H_{N−1}\) of the array \(H\) of heights, separated by single spaces.</p>
+<h2>Output</h2>
+<p>The output should contain one line with the total dark resonance of the structures.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>\(2 \leq N \leq 200\,000\)</td>
+<td>     </td>
+<td>Number of towers</td>
+</tr>
+<tr>
+<td>\(0 \leq H_i \leq 10^{18}\)</td>
+<td>     </td>
+<td>Height of each tower</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Input 1</th>
+<th scope="col">Example Output 1</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+5
+7 3 2 100 1
+</pre>
+</td>
+<td>
+<pre data-copy="">
+6
+</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>Explanation of Sample Input 1</strong></p>
+<ul>
+<li>Distance of the 1st tower to the closest taller tower (4th tower): 3
+  </li><li>Distance of the 2nd tower to the closest taller tower (1st tower): 1
+  </li><li>Distance of the 3rd tower to the closest taller tower (2nd or 4th tower): 1
+  </li><li>Distance of the 5th tower to the closest taller tower (4th tower): 1
+</li></ul>
+<p>The tallest tower (the 4th) is not considered. Hence, 3+1+1+1=6.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Input 2</th>
+<th scope="col">Example Output 2</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+8
+45 13 18 10 8 56 17 19
+</pre>
+</td>
+<td>
+<pre data-copy="">
+13
+</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>Explanation of Sample Input 2</strong></p>
+<ul>
+<li>Distance of the 1st tower to the closest taller tower (6th tower): 5
+</li><li>Distance of the 2nd tower to the closest taller tower (1st or 3rd tower): 1
+</li><li>Distance of the 3rd tower to the closest taller tower (1st tower): 2
+</li><li>Distance of the 4th tower to the closest taller tower (3rd tower): 1
+</li><li>Distance of the 5th tower to the closest taller tower (4th or 6th tower): 1
+</li><li>Distance of the 7th tower to the closest taller tower (6th or 8th tower): 1
+</li><li>Distance of the 8th tower to the closest taller tower (6th tower): 2
+</li></ul>
+<p>The tallest tower (the 6th) is not considered. Hence, 5+1+2+1+1+1+2=13.</p>
+<br/>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip101.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip101.html</a>.</p>
+  </uc-page>
+</body>
+</html>
