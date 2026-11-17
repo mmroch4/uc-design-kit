@@ -1318,3 +1318,53 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
    with a halo) serves every widget that bundles `svg.graph`, since all
    `<name>.css` go into the one `uc-widget.css`.
 
+
+## 25. Refinements made in phase W5
+
+1. **Decimals in the page language** (core): `engine.js` exports
+   `decimals(text, lang)` ("2.3" → "2,3" in pt, from
+   `(1.5).toLocaleString(lang)`); the core applies it to the narration, the
+   predict texts, the state panel, the text-view table and the SVG's label.
+   Algorithms keep formatting numbers with a point. Fixes the W4 limitation
+   of the complexity widget (and the hash load factor). Core 11.0 KB gzip.
+2. **`svg.grid` stays bundled**, although hash, dp, backtracking and trace
+   use it (rule 16.3). Measured: moving it into the core takes the core to
+   11.6 KB, leaving 0.4 KB; the 1.1 KB of headroom was kept for fixes, as W4
+   did for `svg.graph`.
+3. **`uc-widget-union-find`**: elements are `0 … n − 1` (`n` 1–16, default
+   8), so the parent array's indexes are the elements; `ops` verbs `union a
+   b`, `find a`, `connected a b` (`widget.union-find.error.arg` for a wrong
+   count or element). Algorithms `compression` (union by size + path
+   compression), `size`, `naive` (`parent[find(a)] = find(b)`). Union by
+   size puts the smaller root under the larger; on a tie the root of `b`
+   goes under the root of `a`. Drawing: the parent array (`svg.array`)
+   above the forest, which is one n-ary `svg.tree` under a hidden root (the
+   root node and its edges are removed after drawing and the viewBox
+   cropped), so every node slides when it moves. Root notes are the set's
+   size. Pseudocode blocks per operation and variant: `find`,
+   `find-compression`, `union`, `union-size`, `connected`. Aux `sets` and
+   `height`. Predict: which root ends up on top (size variants) and
+   `connected`'s answer.
+4. **`uc-widget-trace`** (5.4 fixed): the JSON is `{ view, code, graph,
+   directed, rowHeads, colHeads, steps }`; a step is `{ state, marks,
+   pointers, line, say, vars, predict }`. `state` per view: array = list,
+   tree = `{ v, l, r }` or `{ v, children }` with optional `id` (mark key)
+   and `note`, graph = notes by vertex (the graph is the `graph` field,
+   built with `model()`), grid = list of rows. A step without `state`
+   keeps the previous one; when the first step has marks or a question, a
+   plain "Estado inicial." step is put before it. Sentences (`say`, the
+   predict texts) are a string or `{ pt, en }`, played through one key
+   `widget.trace.text` whose dictionaries are `"{pt}"` and `"{en}"`. Errors
+   name the step (`widget.trace.error.*`). `vars` are shown by a custom
+   `panel()`. An algorithm whose pseudocode comes with its input exports
+   `lineIds(input)`; the step validator uses it.
+5. **Teachers' own widgets** (16.1): `widgets/template/my-widget-gcd.js`
+   is a complete widget in one plain script (no build), defined with the
+   same queue as the bootstrap (`UC.widgets.__queue`, or at once if the
+   core is there); the page loads `uc-widget-core.js` before it. Own names
+   use the course's prefix, never `uc-widget-`. `check-a11y` checks any
+   element with `.uc-widget`, and the guide's demo page
+   (`docs/demos/widgets-criar/`). The catalogue checklist is in the guide
+   and in `widgets/template/README.md`.
+6. **Test helpers**: `format(dictionary, pair, lang)` applies `decimals`;
+   `loadWidgets()` gives each widget an `input(metaForm)` (its fixture).
