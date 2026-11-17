@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-weeks compact · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    // A deadline dated inside the study week (27–31 Oct): it shows in the break row.
+    UC_COURSE.deadlines.push({ id: "mock", title: { pt: "Teste de treino", en: "Mock test" }, date: "2025-10-29", time: "10:00", kind: "assessment" });
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <h1><span lang="pt">Planeamento (teste)</span><span lang="en">Plan (test)</span></h1>
+
+    <!-- Compact view: week with href, deadlines in weeks and in the break, current row. -->
+    <uc-weeks id="compact" view="compact" kind="assessment exam">
+      <uc-week n="5" title="Listas ligadas" title-en="Linked lists"></uc-week>
+      <uc-week n="6" title="Pilhas e filas" title-en="Stacks and queues" href="#aula6"></uc-week>
+      <uc-week n="7" title="Complexidade algorítmica" title-en="Algorithmic complexity"></uc-week>
+      <uc-week n="8" title="Recursividade" title-en="Recursion">
+        <uc-event deadline="ap1"><a href="#">Enunciado</a></uc-event>
+      </uc-week>
+      <uc-week n="10" title="Árvores binárias de pesquisa" title-en="Binary search trees" href="#aula10"></uc-week>
+      <uc-week n="11" title="Filas de prioridade" title-en="Priority queues"></uc-week>
+    </uc-weeks>
+
+    <!-- Full view with href: "Página da aula" is the first line of the body. -->
+    <uc-weeks id="full" no-deadlines no-breaks>
+      <uc-week n="9" title="Árvores binárias" title-en="Binary trees" href="#aula9" open>
+        <p lang="pt">Conteúdo escrito pelo professor.</p>
+        <p lang="en">Content written by the teacher.</p>
+      </uc-week>
+    </uc-weeks>
+  </uc-page>
+</body>
+</html>

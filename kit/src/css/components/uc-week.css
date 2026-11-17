@@ -100,3 +100,6 @@
     box-shadow: calc(-1 * var(--uc-space-3)) 0 0 var(--uc-color-highlight), var(--uc-space-3) 0 0 var(--uc-color-highlight);
   }
 }
+
+/* href: link to the week's class page, first line of the body. */
+:where(.uc-week__page) { margin: 0; font-weight: 600; }

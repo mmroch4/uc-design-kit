@@ -23,12 +23,13 @@ O que muda durante o semestre, escrito uma vez no course.js.
 
 ## Calendário
 
-As semanas do semestre com datas calculadas.
+As semanas e as aulas do semestre, com datas calculadas.
 
 - [**`<uc-weeks>`**: Contentor das semanas: interrupções, prazos no fim e Ir para esta semana.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md)
 - [**`<uc-week>`**: Uma semana que abre e fecha, destacada quando é a atual.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md)
 - [**`<uc-event>`**: Uma avaliação ou prazo destacado dentro ou entre semanas.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md)
 - [**`<uc-this-week>`**: O cartão Esta semana da página inicial, com os prazos próximos.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md)
+- [**`<uc-summaries>`**: Os sumários das aulas com dia da semana, ligação à semana, interrupções, aulas previstas e pesquisa.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md)
 
 ## Pessoas
 

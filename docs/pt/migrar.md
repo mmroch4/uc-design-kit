@@ -67,7 +67,9 @@ Se o assistente não tiver acesso à Internet, descarregar antes o [`llms-full.t
 | --- | --- |
 | Datas do semestre, equipa, prazos, avisos, menu | `course.js`: `semester`, `team`, `deadlines`, `notices`, `pages` |
 | Página inicial | `index.html` com [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md), [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md), [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md), [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md) |
-| Calendário, sumários, planeamento | `semanas.html` com [`<uc-weeks>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md) e uma [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md) por semana, sem datas escritas |
+| Calendário, planeamento | `semanas.html` com [`<uc-weeks>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md) e uma [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md) por semana, sem datas escritas |
+| Planeamento com uma página por aula ("week06.html") | [`<uc-weeks view="compact">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md#vista-compacta) e `href` em cada `<uc-week>` |
+| Sumários das aulas, plano aula a aula (T01–T23) | A mesma lista numerada dentro de [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md), com a data de cada aula num `<time datetime>` no início do item |
 | Avaliação | `avaliacao.html`, com os prazos a vir do `course.js` |
 | Fórmula e pesos da nota ("Nota = 0,1 × A + …", "14 valores") | A mesma lista dentro de [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md), com o peso em `<data>` e `data-code`, `data-min` em cada item |
 | Página de um teste ou exame (data, turnos, salas, duração) | Os dados no prazo do `course.js` (`duration`, `location`, `shifts`) e [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md) no topo da página |

@@ -66,6 +66,7 @@
           <li><a href="uc-week.html"><code>uc-week</code></a></li>
           <li><a href="uc-event.html"><code>uc-event</code></a></li>
           <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-summaries.html"><code>uc-summaries</code></a></li>
           <li><a href="uc-team.html"><code>uc-team</code></a></li>
           <li><a href="uc-timetable.html"><code>uc-timetable</code></a></li>
           <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
@@ -213,6 +214,31 @@
 };</code></pre></uc-code>
 
         <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="vista-compacta">Vista compacta</h3>
+        <p>Com <code>view="compact"</code>, as mesmas <code>&lt;uc-week&gt;</code> aparecem numa só tabela, uma linha por semana: número, datas, tema e estado ("Dada", "Esta semana", "Prevista"). O tema é uma ligação quando a semana tem <code>href</code> (a página dessa aula) e, por baixo, ficam os prazos dessa semana, numa linha pequena cada um. As interrupções são linhas que ocupam a tabela toda. É o formato de um planeamento: semanas com pouco conteúdo, cada uma com a sua página.</p>
+        <!-- docs:demo src="../../demos/uc-weeks/compact.html" title="planeamento das semanas numa tabela" height="665" -->
+        <div class="docs-demo" id="demo-uc-weeks-compact">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-weeks/compact.html" title="Demonstração: planeamento das semanas numa tabela" loading="lazy" style="height: 665px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-weeks view=&quot;compact&quot;&gt;
+  &lt;uc-week n=&quot;5&quot; title=&quot;Listas e cadeias de caracteres&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Listas e cadeias de caracteres&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;6&quot; title=&quot;Complexidade e notação O&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Complexidade e notação O&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;7&quot; title=&quot;Recursão&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Recursão&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;8&quot; title=&quot;Ordenação simples: seleção e inserção&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Ordenação simples: seleção e inserção&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;9&quot; title=&quot;Ordenação por fusão e quicksort&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Ordenação por fusão e quicksort&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;10&quot; title=&quot;Dicionários e conjuntos&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Dicionários e conjuntos&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;11&quot; title=&quot;Árvores binárias&quot;&gt;&lt;p&gt;Árvores binárias&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;12&quot; title=&quot;Revisões&quot;&gt;&lt;p&gt;Revisões&lt;/p&gt;&lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-weeks/compact.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>A semana atual fica destacada e marcada com <code>aria-current="date"</code>, em vez do botão "Ir para esta semana", e cada linha recebe o <code>id="week-&lt;n&gt;"</code>, por isso as ligações <code>semanas.html#week-10</code> continuam a funcionar. O conteúdo escrito dentro de cada <code>&lt;uc-week&gt;</code> fica escondido, mas continua na página, e o <a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a> lê-o como antes. Para um plano com duas aulas por semana, use <a href="uc-summaries.html"><code>&lt;uc-summaries&gt;</code></a> com as datas futuras.</p>
+        <p>Sem JavaScript, os títulos das semanas (atributos) não se veem: escreva dentro de cada <code>&lt;uc-week&gt;</code> pelo menos uma linha com o tema, ou a ligação para a página da aula, como na demonstração.</p>
 
         <h3 id="interrupcoes">Interrupções</h3>
         <p>Cada interrupção de <code>semester.breaks</code> aparece logo a seguir à semana que a antecede, com as datas, o nome e "sem aulas". A numeração das semanas salta a interrupção: a semana 7 começa a 3 de novembro.</p>
@@ -403,6 +429,7 @@
               <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
             </thead>
             <tbody>
+              <tr><td><code>view</code></td><td><code>full</code> ou <code>compact</code></td><td><code>full</code></td><td>Com <code>compact</code>, mostra as semanas numa tabela, uma linha por semana (<a href="#vista-compacta">vista compacta</a>).</td></tr>
               <tr><td><code>no-breaks</code></td><td>booleano</td><td>ausente</td><td>Não mostra as interrupções de <code>semester.breaks</code>.</td></tr>
               <tr><td><code>no-deadlines</code></td><td>booleano</td><td>ausente</td><td>Não acrescenta prazos do <code>course.js</code>, nem dentro das semanas nem fora delas.</td></tr>
               <tr><td><code>kind</code></td><td>tipos separados por espaços</td><td>todos</td><td>Só acrescenta prazos destes tipos, por exemplo <code>kind="assessment exam"</code>.</td></tr>
@@ -455,6 +482,11 @@
               <tr><td><code>.uc-weeks__go</code></td><td>O botão "Ir para esta semana" (também <code>.uc-button</code> e <code>.uc-button--primary</code>).</td></tr>
               <tr><td><code>.uc-weeks__break</code></td><td>O aviso de uma interrupção.</td></tr>
               <tr><td><code>.uc-weeks__break-date</code></td><td>As datas da interrupção.</td></tr>
+              <tr><td><code>.uc-weeks__compact</code>, <code>__table</code></td><td>Vista compacta: a caixa da tabela e a tabela.</td></tr>
+              <tr><td><code>.uc-weeks__row</code>, <code>--past</code>, <code>--current</code>, <code>--future</code></td><td>Vista compacta: a linha de uma semana e o seu estado.</td></tr>
+              <tr><td><code>.uc-weeks__dates</code>, <code>__topic</code>, <code>__status</code></td><td>Vista compacta: as células das datas, do tema e do estado.</td></tr>
+              <tr><td><code>.uc-weeks__deadlines</code></td><td>Vista compacta: a lista dos prazos por baixo do tema.</td></tr>
+              <tr><td><code>.uc-weeks__break-row</code></td><td>Vista compacta: a linha de uma interrupção.</td></tr>
             </tbody>
           </table>
         </div>
@@ -485,6 +517,7 @@
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
           <li><a href="uc-week.html"><code>&lt;uc-week&gt;</code></a>: cada semana, com datas, estado e prazos.</li>
+          <li><a href="uc-summaries.html"><code>&lt;uc-summaries&gt;</code></a>: os sumários das aulas, com ligação para a semana de cada uma.</li>
           <li><a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>: um prazo ou avaliação escrito à mão, dentro de uma semana ou entre semanas.</li>
           <li><a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>: o cartão da página inicial que lê a semana atual desta página.</li>
           <li><a href="../course-js.html#prazos">Prazos no course.js</a>: os campos de cada prazo.</li>
@@ -514,6 +547,7 @@
         <ul class="docs-toc__list">
           <li><a href="#utilizacao">Utilização</a></li>
           <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#vista-compacta">Vista compacta</a></li>
           <li class="docs-toc__sub"><a href="#interrupcoes">Interrupções</a></li>
           <li class="docs-toc__sub"><a href="#sem-interrupcoes">Sem interrupções</a></li>
           <li class="docs-toc__sub"><a href="#prazo-numa-interrupcao">Prazo durante uma interrupção</a></li>

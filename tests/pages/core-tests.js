@@ -202,6 +202,64 @@
     equal(edados.weights[0].replace(/\s/g, " "), "14 valores · 70%");
   });
 
+  test("findMatches ignores case and accents and maps back to the text", () => {
+    const text = "Árvores binárias; ÁRVORES";
+    const ranges = UC.internal.findMatches(text, UC.internal.normalise("arvores"));
+    equal(ranges.map(([start, end]) => text.slice(start, end)), ["Árvores", "ÁRVORES"]);
+    equal(UC.internal.findMatches("Notação O", "cao o"), [[4, 9]]);
+    equal(UC.internal.findMatches("abc", ""), []);
+  });
+  test("uc-summaries: numbers, week links, states and breaks", () => {
+    const host = document.createElement("div");
+    host.hidden = true;
+    host.innerHTML =
+      '<uc-summaries order="desc"><ol start="3">' +
+      '<li><time datetime="2025-10-24">24 out</time> A</li>' +
+      '<li><time datetime="2025-11-04">4 nov</time> B</li>' +
+      '<li>C</li>' +
+      '<li><time datetime="2025-12-02">2 dez</time> D</li>' +
+      "</ol></uc-summaries>";
+    document.body.append(host);
+    const element = host.firstElementChild;
+    const rows = Array.from(element.querySelectorAll("li"), (item) =>
+      item.classList.contains("uc-summaries__break")
+        ? "break"
+        : [item.value, (item.querySelector(".uc-summaries__week") || {}).textContent || "", (item.querySelector(".uc-summaries__state") || {}).textContent || ""].join("|"),
+    );
+    const date = element.querySelector("time").getAttribute("data-uc-text");
+    host.remove();
+    equal(
+      inLang("pt", () => rows),
+      ["6|Semana 11|Prevista", "5||", "4|Semana 7|Última aula", "break", "3|Semana 6|"],
+    );
+    equal(date, "2 dez");
+  });
+  test("uc-weeks compact: one row per week, break row, current row", () => {
+    const host = document.createElement("div");
+    host.hidden = true;
+    host.innerHTML = '<uc-weeks view="compact" no-deadlines><uc-week n="6" title="Seis"></uc-week><uc-week n="7" title="Sete" href="w7.html"></uc-week><uc-week n="10" title="Dez"></uc-week></uc-weeks>';
+    document.body.append(host);
+    const rows = Array.from(host.querySelectorAll(".uc-weeks__table tbody tr"), (row) => [row.id, row.getAttribute("aria-current") || "", Array.from(row.cells, (cell) => cell.textContent.trim()).join(" ")]);
+    const weeksHidden = Array.from(host.querySelectorAll("uc-week"), (week) => week.hidden && !week.id);
+    const link = host.querySelector(".uc-weeks__topic a").getAttribute("href");
+    host.remove();
+    equal(weeksHidden, [true, true, true]);
+    equal(link, "w7.html");
+    equal(rows.map((row) => row[0]), ["week-6", "", "week-7", "week-10"]);
+    equal(rows[3][1], "date");
+    equal(rows.map((row) => row[2]).slice(1, 3), ["27–31 out · Atividades FCUP II, sem aulas", "7 4–7 nov Sete Dada"]);
+  });
+  test("uc-week href: class page link first in the body", () => {
+    const host = document.createElement("div");
+    host.hidden = true;
+    host.innerHTML = '<uc-weeks no-deadlines no-breaks><uc-week n="3" title="Três" href="w3.html"><p>Corpo</p></uc-week></uc-weeks>';
+    document.body.append(host);
+    const first = host.querySelector(".uc-week__body").firstElementChild;
+    const result = [first.className, first.querySelector("a").getAttribute("href"), host.querySelector("uc-week").id];
+    host.remove();
+    equal(result, ["uc-week__page", "w3.html", "week-3"]);
+  });
+
   const summary = document.createElement("p");
   summary.textContent = failures ? `${failures} failing` : "All tests passed.";
   results.after(summary);

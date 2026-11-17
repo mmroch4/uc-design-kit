@@ -1,13 +1,15 @@
 /**
  * <uc-weeks> — container for <uc-week> elements. Adds a "Go to this week"
  * link, inserts the semester breaks between weeks and appends the deadlines
- * that fall after the last week. See docs/api.md, section 3.3.
+ * that fall after the last week. With view="compact" the same weeks are
+ * shown as one table, one row per week. See docs/api.md, section 3.3.
  */
 (function (UC) {
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, addDays, toISO } = UC.internal;
+  const { h, addDays, toISO, weekSpan, weekStateOf } = UC.internal;
+  const STATUS = { past: "done", current: "current", future: "planned" };
   const WEEK_HASH = /^#week-(\d+)$/;
 
   /** The first <uc-week> child whose number is greater than `n`, or null. */
@@ -88,7 +90,14 @@
       const calendar = UC.internal.calendar();
       const showDeadlines = !this.hasAttribute("no-deadlines");
       const written = UC.internal.writtenEventIds(this);
+      const compact = this.getAttribute("view") === "compact";
+      weeks.forEach((week) => (week.hidden = compact));
 
+      if (compact) {
+        this.renderTable(weeks, calendar.breaks, showDeadlines);
+        if (showDeadlines) this.renderTrailingDeadlines(calendar, written);
+        return;
+      }
       this.renderGoToLink(weeks);
       if (!this.hasAttribute("no-breaks")) this.renderBreaks(weeks, calendar.breaks, showDeadlines ? written : null);
       if (showDeadlines) this.renderTrailingDeadlines(calendar, written);
@@ -146,6 +155,108 @@
         }
         if (previous) lastAfter.set(item.afterWeek, anchor);
       });
+    }
+
+    /** Deadlines of the listed kinds dated in [from, to), written by hand or not. */
+    deadlinesIn(from, to) {
+      const kinds = (this.getAttribute("kind") || "").split(/\s+/).filter(Boolean);
+      return UC.internal.deadlinesBetween(from, to).filter((deadline) => !kinds.length || kinds.includes(deadline.kind));
+    }
+
+    /** Small lines under a row's topic: "Teste · quinta-feira, 4 dez, 14:00". */
+    deadlineLines(from, to) {
+      const deadlines = this.deadlinesIn(from, to);
+      if (!deadlines.length) return null;
+      return h(
+        "ul",
+        { class: "uc-weeks__deadlines" },
+        deadlines.map((deadline) =>
+          h(
+            "li",
+            {},
+            h("strong", {}, this.text(deadline.title)),
+            " · ",
+            h("time", { datetime: toISO(deadline.parsed.date) }, UC.internal.withTime(UC.formatDate(deadline.parsed.date, "weekday"), UC.internal.deadlineTimes(deadline))),
+          ),
+        ),
+      );
+    }
+
+    /** view="compact": one table row per week, breaks as full-width rows. */
+    renderTable(weeks, breaks, showDeadlines) {
+      const columns = ["week", "dates", "topic", "status"];
+      const rows = [];
+      const breakRows = new Map();
+      mergeBreaks(this.hasAttribute("no-breaks") ? [] : breaks).forEach((item) => {
+        const label = item.label ? this.text(item.label) : "";
+        const row = h(
+          "tr",
+          { class: "uc-weeks__break-row" },
+          h(
+            "td",
+            { colspan: columns.length },
+            h("time", { class: "uc-weeks__break-date", datetime: toISO(item.start) }, UC.formatDateRange(item.start, item.end)),
+            " · ",
+            label ? `${label}, ${this.t("weeks.noClasses")}` : this.t("weeks.noClasses"),
+            showDeadlines ? this.deadlineLines(item.from, item.to) : null,
+          ),
+        );
+        if (!breakRows.has(item.afterWeek)) breakRows.set(item.afterWeek, []);
+        breakRows.get(item.afterWeek).push(row);
+      });
+      const placed = new Set();
+      const placeBreaks = (upTo) =>
+        breakRows.forEach((list, after) => {
+          if (after <= upTo && !placed.has(after)) {
+            placed.add(after);
+            rows.push(...list);
+          }
+        });
+
+      weeks.forEach((week) => {
+        const n = week.getAttribute("n");
+        placeBreaks(Number(n) - 1);
+        const span = weekSpan(week);
+        const state = weekStateOf(span);
+        const title = typeof week.weekTitle === "string" ? week.weekTitle : week.getAttribute(`title-${UC.lang}`) || week.getAttribute("title") || "";
+        const href = week.getAttribute("href");
+        rows.push(
+          h(
+            "tr",
+            {
+              id: n !== null ? `week-${n}` : null,
+              class: state ? `uc-weeks__row uc-weeks__row--${state}` : "uc-weeks__row",
+              "aria-current": state === "current" ? "date" : null,
+            },
+            h("th", { scope: "row" }, n),
+            h("td", { class: "uc-weeks__dates" }, span ? h("time", { datetime: toISO(span.start) }, UC.formatDateRange(span.start, span.end)) : ""),
+            h(
+              "td",
+              { class: "uc-weeks__topic" },
+              href ? h("a", { href }, title) : title,
+              showDeadlines && span ? this.deadlineLines(span.from, span.to) : null,
+            ),
+            h("td", { class: "uc-weeks__status" }, state ? h("span", { class: state === "current" ? "uc-tag uc-tag--accent" : null }, this.t(`weeks.status.${STATUS[state]}`)) : ""),
+          ),
+        );
+      });
+      placeBreaks(Infinity);
+
+      this.prepend(
+        this.track(
+          h(
+            "div",
+            { class: "uc-table uc-weeks__compact" },
+            h(
+              "table",
+              { class: "uc-weeks__table" },
+              h("caption", { class: "uc-visually-hidden" }, this.t("weeks.compactCaption")),
+              h("thead", {}, h("tr", {}, columns.map((column) => h("th", { scope: "col" }, this.t(`weeks.column.${column}`))))),
+              h("tbody", {}, rows),
+            ),
+          ),
+        ),
+      );
     }
 
     /** Deadlines after the last teaching week (day or month precision), appended at the end. */

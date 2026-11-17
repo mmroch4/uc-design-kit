@@ -371,9 +371,22 @@ after the last week.
 
 | Attribute | Values | Default |
 | --- | --- | --- |
+| `view` | `full` \| `compact` | `full` |
 | `no-breaks` | boolean | breaks are inserted |
 | `no-deadlines` | boolean | deadlines are shown inside their week |
 | `kind` | space-separated kinds | all kinds; e.g. `kind="assessment exam"` leaves quizzes to the weeks' own rows |
+
+`view="compact"` renders the same `<uc-week>` children as one table (caption
+"Planeamento das semanas", visually hidden) with the columns Week
+(`<th scope="row">`), Dates ("16–19 set"), Topic (the week's title, a link when
+the week has `href`; below it, the week's deadlines of the listed `kind`s as
+small lines, written by hand or not, unless `no-deadlines`) and Status
+("Dada", "Esta semana", "Prevista"). Breaks are rows with one cell spanning
+the table, followed by the deadlines dated in them. The current row has
+`aria-current="date"` and replaces the "Go to this week" link. Each row takes
+the `id="week-<n>"` of its week, so `#week-<n>` links keep working; the
+`<uc-week>` elements stay in the DOM, hidden. Deadlines after the last week
+are appended after the table, as in the full view.
 
 #### `<uc-week>`
 
@@ -387,6 +400,7 @@ future weeks are dimmed. Deadlines dated inside the week appear as events.
 | `title` | text | Required. Shown in the summary row. |
 | `title-<lang>` | text | Title in another language, used when that language is active, e.g. `title-en="Binary search trees"`. |
 | `start`, `end` | `ISODate` | Override the computed dates. |
+| `href` | URL | Page of that week's class, relative to the page. In the full view a "Página da aula" link is the first line of the body (links are not allowed inside `<summary>`); in the compact view the title links to it. |
 | `open` | boolean | Force open. |
 
 Children are free HTML. A `<dl>` directly inside is styled as label/value rows
@@ -413,6 +427,54 @@ A highlighted item inside or between weeks (assessments, exams).
 | `date` | `ISODate` | When not using `deadline`. |
 
 Children (free HTML) are appended after the generated content.
+
+#### `<uc-summaries>`
+
+Decorates the numbered list of lecture summaries written by the teacher: date
+with weekday, link to the matching week, breaks between items, states and
+search.
+
+```html
+<uc-summaries search>
+  <ol>
+    <li><time datetime="2025-09-16">16 set</time> <strong>Apresentação; Introdução ao Java</strong>
+      <p>Considerações gerais sobre o programa…</p></li>
+  </ol>
+</uc-summaries>
+```
+
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `search` | boolean | no search field |
+| `order` | `asc` \| `desc` | `asc`; `desc` shows the most recent lecture first (numbers stay) |
+| `no-breaks` | boolean | breaks are inserted |
+| `no-weeks` | boolean | items link to their week |
+| `heading` | text \| `none` | localised "Sumários" / "Lecture summaries" |
+| `heading-level` | `2`–`6` | `2` |
+
+- **Items** are the `<li>` of the first `<ol>`/`<ul>` child. An item's date is
+  its first `<time datetime="YYYY-MM-DD">` that is not inside a nested list;
+  it is shown with the weekday in the active language ("terça-feira, 16 set")
+  in a date column (`--uc-summaries-date-width`), and the teacher's text is
+  kept in `data-uc-text` (what shows without JavaScript). Each item keeps its
+  number: `value` (and a visible number) from its position among the items
+  of the active language, counted from the `<ol>`'s `start`.
+- **Week link.** "Semana 7", to the `weeks` page of `pages` with `#week-7`
+  (`UC.weekOf(date)`). None when there is no `weeks` page or the date is
+  outside the semester.
+- **Breaks.** Between two dated items that straddle a break of
+  `semester.breaks`, an item without number (`uc-summaries__break`):
+  "Interrupção: Semana de estudo (27–31 out)". Hidden while searching.
+- **States** (text tags): the most recent item dated today or earlier gets
+  "Última aula"; items dated after today get "Prevista" and are dimmed, so the
+  list also serves as a lecture plan.
+- **Search** (`search`): `<input type="search">` with the visible label
+  "Pesquisar nos sumários". It ignores case and accents, looks only at the
+  text of the active language, highlights matches with `<mark>`, keeps focus
+  in the field and announces "5 de 24 sumários" (or "Nenhum sumário
+  encontrado.", also shown under the list). Esc clears it.
+- Items without a `<time>` are shown as written, without week or state.
+  Elements after the list stay after it.
 
 #### `<uc-this-week>`
 
@@ -790,6 +852,7 @@ fallback, so they can be set on `:root` for the whole site or on one element
 | `--uc-deadlines-date-width` | `5.25rem` | Date column of `<uc-deadlines>` in the list view. |
 | `--uc-timetable-time-width` | `7.5rem` | Time column of `<uc-timetable view="days">`. |
 | `--uc-grading-bar-height` | `12px` | Height of the proportions bar of `<uc-grading>`. |
+| `--uc-summaries-date-width` | `10rem` | Date column of `<uc-summaries>` on wide screens. |
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the

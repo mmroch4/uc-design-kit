@@ -17,3 +17,22 @@
   color: var(--uc-color-text-muted);
   font-size: var(--uc-font-size-body-sm);
 }
+
+/* view="compact": one table row per week. */
+:where(.uc-weeks__table) { width: 100%; }
+:where(.uc-weeks__table th[scope="row"]) { font-family: var(--uc-font-mono); font-weight: 500; }
+:where(.uc-weeks__dates) { white-space: nowrap; font-family: var(--uc-font-mono); font-size: var(--uc-font-size-sm); }
+:where(.uc-weeks__topic) { font-weight: 500; }
+:where(.uc-weeks__deadlines) {
+  margin: var(--uc-space-1) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-md);
+  font-weight: 400;
+}
+:where(.uc-weeks__status) { white-space: nowrap; }
+:where(.uc-weeks__row--current > th, .uc-weeks__row--current > td) { background: var(--uc-color-highlight); }
+:where(.uc-weeks__row--future th, .uc-weeks__row--future td) { color: var(--uc-color-text-muted); }
+:where(.uc-weeks__row:target) { outline: 2px solid var(--uc-color-accent); outline-offset: -2px; }
+:where(.uc-weeks__break-row td) { background: var(--uc-color-surface-muted); color: var(--uc-color-text-muted); font-size: var(--uc-font-size-body-sm); }

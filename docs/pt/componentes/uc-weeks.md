@@ -93,6 +93,29 @@ window.UC_COURSE = {
 
 ## Exemplos
 
+### Vista compacta
+
+Com `view="compact"`, as mesmas `<uc-week>` aparecem numa só tabela, uma linha por semana: número, datas, tema e estado ("Dada", "Esta semana", "Prevista"). O tema é uma ligação quando a semana tem `href` (a página dessa aula) e, por baixo, ficam os prazos dessa semana, numa linha pequena cada um. As interrupções são linhas que ocupam a tabela toda. É o formato de um planeamento: semanas com pouco conteúdo, cada uma com a sua página.
+
+Exemplo (planeamento das semanas numa tabela), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-weeks/compact.html):
+
+```html
+<uc-weeks view="compact">
+  <uc-week n="5" title="Listas e cadeias de caracteres" href="#"><p><a href="#">Listas e cadeias de caracteres</a></p></uc-week>
+  <uc-week n="6" title="Complexidade e notação O" href="#"><p><a href="#">Complexidade e notação O</a></p></uc-week>
+  <uc-week n="7" title="Recursão" href="#"><p><a href="#">Recursão</a></p></uc-week>
+  <uc-week n="8" title="Ordenação simples: seleção e inserção" href="#"><p><a href="#">Ordenação simples: seleção e inserção</a></p></uc-week>
+  <uc-week n="9" title="Ordenação por fusão e quicksort" href="#"><p><a href="#">Ordenação por fusão e quicksort</a></p></uc-week>
+  <uc-week n="10" title="Dicionários e conjuntos" href="#"><p><a href="#">Dicionários e conjuntos</a></p></uc-week>
+  <uc-week n="11" title="Árvores binárias"><p>Árvores binárias</p></uc-week>
+  <uc-week n="12" title="Revisões"><p>Revisões</p></uc-week>
+</uc-weeks>
+```
+
+A semana atual fica destacada e marcada com `aria-current="date"`, em vez do botão "Ir para esta semana", e cada linha recebe o `id="week-<n>"`, por isso as ligações `semanas.html#week-10` continuam a funcionar. O conteúdo escrito dentro de cada `<uc-week>` fica escondido, mas continua na página, e o [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md) lê-o como antes. Para um plano com duas aulas por semana, use [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md) com as datas futuras.
+
+Sem JavaScript, os títulos das semanas (atributos) não se veem: escreva dentro de cada `<uc-week>` pelo menos uma linha com o tema, ou a ligação para a página da aula, como na demonstração.
+
 ### Interrupções
 
 Cada interrupção de `semester.breaks` aparece logo a seguir à semana que a antecede, com as datas, o nome e "sem aulas". A numeração das semanas salta a interrupção: a semana 7 começa a 3 de novembro.
@@ -265,6 +288,7 @@ Exemplo (semanas sem prazos), [demonstração ao vivo](https://uc-design-kit.mig
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
+| `view` | `full` ou `compact` | `full` | Com `compact`, mostra as semanas numa tabela, uma linha por semana ([vista compacta](#vista-compacta)). |
 | `no-breaks` | booleano | ausente | Não mostra as interrupções de `semester.breaks`. |
 | `no-deadlines` | booleano | ausente | Não acrescenta prazos do `course.js`, nem dentro das semanas nem fora delas. |
 | `kind` | tipos separados por espaços | todos | Só acrescenta prazos destes tipos, por exemplo `kind="assessment exam"`. |
@@ -306,6 +330,11 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. Os
 | `.uc-weeks__go` | O botão "Ir para esta semana" (também `.uc-button` e `.uc-button--primary`). |
 | `.uc-weeks__break` | O aviso de uma interrupção. |
 | `.uc-weeks__break-date` | As datas da interrupção. |
+| `.uc-weeks__compact`, `__table` | Vista compacta: a caixa da tabela e a tabela. |
+| `.uc-weeks__row`, `--past`, `--current`, `--future` | Vista compacta: a linha de uma semana e o seu estado. |
+| `.uc-weeks__dates`, `__topic`, `__status` | Vista compacta: as células das datas, do tema e do estado. |
+| `.uc-weeks__deadlines` | Vista compacta: a lista dos prazos por baixo do tema. |
+| `.uc-weeks__break-row` | Vista compacta: a linha de uma interrupção. |
 
 `theme.css`:
 
@@ -337,6 +366,7 @@ O conteúdo de cada semana continua visível, por ordem. O botão, as interrupç
 ## Ver também
 
 - [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md): cada semana, com datas, estado e prazos.
+- [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md): os sumários das aulas, com ligação para a semana de cada uma.
 - [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md): um prazo ou avaliação escrito à mão, dentro de uma semana ou entre semanas.
 - [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md): o cartão da página inicial que lê a semana atual desta página.
 - [Prazos no course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos): os campos de cada prazo.

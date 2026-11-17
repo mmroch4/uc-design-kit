@@ -3,6 +3,7 @@
  * Dates come from the teaching calendar (or the `start`/`end` overrides); the
  * current week is open and highlighted, future weeks are dimmed, and
  * deadlines dated inside the week (Monday to Sunday) appear as events.
+ * With `href`, the body starts with a link to the week's class page.
  * See docs/api.md, section 3.3.
  */
 (function (UC) {
@@ -37,7 +38,7 @@
 
   class UCWeek extends UC.Element {
     static get observedAttributes() {
-      return ["n", "title", "start", "end"];
+      return ["n", "title", "start", "end", "href"];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -51,6 +52,7 @@
       this.summary = h("summary", { class: "uc-week__summary" });
       this.body = h("div", { class: "uc-week__body" });
       this.body.append(...Array.from(this.childNodes));
+      this.pageLink = null;
       this.details = h("details", { class: "uc-week__details" }, this.summary, this.body);
       this.generatedEvents = [];
       this.initialised = false;
@@ -91,7 +93,9 @@
     render() {
       const n = this.getAttribute("n");
       if (n === null) console.warn("[uc-kit] <uc-week> needs an n attribute");
-      if (n !== null) this.id = `week-${n}`;
+      // In <uc-weeks view="compact"> the week is hidden and its table row takes the #week-<n> id.
+      if (n !== null && !this.inCompactView) this.id = `week-${n}`;
+      else if (this.id === `week-${n}`) this.removeAttribute("id");
 
       const span = weekSpan(this);
       const state = stateOf(span);
@@ -104,7 +108,21 @@
       }
 
       this.renderSummary(n, span, state);
+      this.renderPageLink();
       this.renderEvents(span);
+    }
+
+    get inCompactView() {
+      const container = this.closest("uc-weeks");
+      return Boolean(container && container.getAttribute("view") === "compact");
+    }
+
+    /** "Página da aula" as the first line of the body (links are not allowed inside <summary>). */
+    renderPageLink() {
+      if (this.pageLink) this.pageLink.remove();
+      const href = this.getAttribute("href");
+      this.pageLink = href ? h("p", { class: "uc-week__page" }, h("a", { href }, this.t("weeks.classPage"))) : null;
+      if (this.pageLink) this.body.prepend(this.pageLink);
     }
 
     renderSummary(n, span, state) {
@@ -143,5 +161,6 @@
     }
   }
 
+  Object.assign(UC.internal, { weekSpan, weekStateOf: stateOf });
   UC.define("uc-week", UCWeek);
 })(window.UC);

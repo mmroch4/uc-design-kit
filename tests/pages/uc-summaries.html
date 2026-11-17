@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-summaries · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    // A weekend break (no teaching days, so the calendar keeps its weeks) right after the
+    // study week: two breaks between the same two summaries.
+    UC_COURSE.semester.breaks.push({ start: "2025-11-01", end: "2025-11-02", label: { pt: "Fim de semana prolongado", en: "Long weekend" } });
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <h1><span lang="pt">Sumários (teste)</span><span lang="en">Lecture summaries (test)</span></h1>
+
+    <!-- Search, two breaks after the same item, an item without <time>, PT/EN items, future items. -->
+    <uc-summaries id="main" search>
+      <ol>
+        <li><time datetime="2025-09-16">16 set</time> <strong>Apresentação; Introdução ao Java</strong>
+          <p>Programa, bibliografia, funcionamento e avaliação. História do Java.</p></li>
+        <li><time datetime="2025-09-19">19 set</time> <strong>Tipos básicos e operadores</strong>
+          <p>Conversão entre tipos, operadores e precedência, ciclos e execução condicional.</p></li>
+        <li><time datetime="2025-10-24">24 out</time> <strong>Pilhas e filas</strong>
+          <p>Implementação com <code>array</code> e com listas ligadas.</p></li>
+        <li><time datetime="2025-11-04">4 nov</time> — <strong>Complexidade algorítmica</strong>
+          <p>Notação <em>O</em>, análise do pior caso.</p></li>
+        <li><strong>Aula de dúvidas</strong> (sem data)</li>
+        <li lang="pt"><time datetime="2025-11-25">25 nov</time> <strong>Árvores binárias de pesquisa</strong></li>
+        <li lang="en"><time datetime="2025-11-25">25 Nov</time> <strong>Binary search trees</strong></li>
+        <li><time datetime="2025-11-28">28 nov</time> <strong>Dicionários</strong>
+          <ul><li><time datetime="2025-12-30">não é a data</time> lista interna</li></ul></li>
+        <li><time datetime="2025-12-02">2 dez</time> <strong>Filas de prioridade e heaps</strong></li>
+      </ol>
+      <p class="uc-muted">Texto do docente depois da lista.</p>
+    </uc-summaries>
+
+    <!-- Most recent first, without week links and without heading; numbers start at 19. -->
+    <uc-summaries id="desc" order="desc" no-weeks heading="none">
+      <ol start="19">
+        <li><time datetime="2025-10-21">21 out</time> Pilhas.</li>
+        <li><time datetime="2025-11-07">7 nov</time> Filas.</li>
+        <li><time datetime="2025-11-11">11 nov</time> Recursividade.</li>
+      </ol>
+    </uc-summaries>
+
+    <!-- No breaks; an unordered list (no numbers); custom heading level. -->
+    <uc-summaries id="plain" no-breaks heading="Sumários sem interrupções" heading-level="3">
+      <ul>
+        <li><time datetime="2025-10-21">21 out</time> Pilhas.</li>
+        <li><time datetime="2025-11-04">4 nov</time> Filas.</li>
+      </ul>
+    </uc-summaries>
+  </uc-page>
+</body>
+</html>

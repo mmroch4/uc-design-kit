@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-summaries · UC Design Kit</title>
+  <meta name="description" content="Documentação do componente uc-summaries do UC Design Kit: os sumários das aulas com dia da semana, ligação à semana, interrupções, aulas previstas e pesquisa.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/kit-config.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="Pesquisar na documentação" data-empty="Sem resultados." data-close="Fechar" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../../../examples/edados-2526/index.html">Exemplo</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../../../examples/edados-2526/index.html">Exemplo</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-summaries.html" aria-current="page"><code>uc-summaries</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Componentes · Calendário</p>
+          <h1><code>&lt;uc-summaries&gt;</code></h1>
+          <p class="docs-lead">Os sumários das aulas, a partir da lista numerada que o professor já escreve: cada aula com o dia da semana, a ligação para a sua semana, as interrupções do semestre no sítio certo, a última aula dada e as aulas previstas. Com <code>search</code>, uma pesquisa que ignora maiúsculas e acentos.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o HTML</span></p>
+        </header>
+        <!-- docs:demo src="../../demos/uc-summaries/basic.html" title="doze sumários com pesquisa, uma interrupção e duas aulas previstas" height="1401" -->
+        <div class="docs-demo" id="demo-uc-summaries-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-summaries/basic.html" title="Demonstração: doze sumários com pesquisa, uma interrupção e duas aulas previstas" loading="lazy" style="height: 1401px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-summaries search&gt;
+  &lt;ol start=&quot;13&quot;&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-10-20&quot;&gt;20 out&lt;/time&gt; &lt;strong&gt;Listas e fatias&lt;/strong&gt;
+      &lt;p&gt;Índices, fatias e cópia de listas. Listas de listas.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-10-22&quot;&gt;22 out&lt;/time&gt; &lt;strong&gt;Complexidade e notação O&lt;/strong&gt;
+      &lt;p&gt;Contar operações; melhor e pior caso; crescimento das funções.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-03&quot;&gt;3 nov&lt;/time&gt; &lt;strong&gt;Recursão&lt;/strong&gt;
+      &lt;p&gt;Caso base e chamada recursiva. A pilha de chamadas.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-05&quot;&gt;5 nov&lt;/time&gt; &lt;strong&gt;Recursão em listas&lt;/strong&gt;
+      &lt;p&gt;Soma, máximo e inversão de uma lista, de forma recursiva.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-10&quot;&gt;10 nov&lt;/time&gt; &lt;strong&gt;Ordenação por seleção e por inserção&lt;/strong&gt;
+      &lt;p&gt;Invariantes de ciclo e número de comparações.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-12&quot;&gt;12 nov&lt;/time&gt; &lt;strong&gt;Pesquisa binária&lt;/strong&gt;
+      &lt;p&gt;Pesquisa num vetor ordenado; análise da complexidade.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-17&quot;&gt;17 nov&lt;/time&gt; &lt;strong&gt;Ordenação por fusão&lt;/strong&gt;
+      &lt;p&gt;Dividir para conquistar; a função de fusão.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-19&quot;&gt;19 nov&lt;/time&gt; &lt;strong&gt;Quicksort&lt;/strong&gt;
+      &lt;p&gt;Escolha do pivô, partição e caso médio.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-24&quot;&gt;24 nov&lt;/time&gt; &lt;strong&gt;Dicionários&lt;/strong&gt;
+      &lt;p&gt;Tabelas de dispersão: chaves, colisões e custo médio.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-26&quot;&gt;26 nov&lt;/time&gt; &lt;strong&gt;Conjuntos e dicionários na prática&lt;/strong&gt;
+      &lt;p&gt;Contar palavras de um texto; agrupar por chave.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-12-01&quot;&gt;1 dez&lt;/time&gt; &lt;strong&gt;Árvores binárias&lt;/strong&gt;
+      &lt;p&gt;Nós, altura e percursos em profundidade.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-12-03&quot;&gt;3 dez&lt;/time&gt; &lt;strong&gt;Revisões para o teste&lt;/strong&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/uc-summaries&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-summaries/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Na demonstração, hoje é 27 de novembro: a aula de 26 de novembro é a "Última aula", as duas de dezembro são "Previstas" e a semana de estudo aparece entre 22 de outubro e 3 de novembro. Ao escrever "arvores" na pesquisa, ficam só os sumários que falam de árvores.</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>Escreve-se a lista dos sumários dentro do elemento, um <code>&lt;li&gt;</code> por aula. A data de cada aula é o primeiro <code>&lt;time datetime="AAAA-MM-DD"&gt;</code> do item; o resto do item é texto livre (título, parágrafos, ligações, código). Sem JavaScript, a lista aparece tal como está escrita.</p>
+        <uc-code lang="html" filename="sumarios.html" no-download><pre><code>&lt;uc-summaries search&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;time datetime="2025-09-16"&gt;16 set&lt;/time&gt; &lt;strong&gt;Apresentação; Introdução ao Java&lt;/strong&gt;
+      &lt;p&gt;Programa, bibliografia, funcionamento e avaliação.&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime="2025-09-19"&gt;19 set&lt;/time&gt; &lt;strong&gt;Tipos básicos e operadores&lt;/strong&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/uc-summaries&gt;</code></pre></uc-code>
+        <p>Com JavaScript, cada item ganha:</p>
+        <ul>
+          <li><strong>A data com o dia da semana</strong> ("terça-feira, 16 set"), na língua ativa, numa coluna à esquerda. A data vem do <code>datetime</code>; o texto escrito ("16 set") só se vê sem JavaScript, por isso um site bilingue escreve cada data uma vez.</li>
+          <li><strong>A ligação para a semana</strong> ("Semana 7"), que abre a página <code>weeks</code> do <code>course.js</code> em <code>#week-7</code>. Não aparece quando não há página <code>weeks</code> ou a data está fora do semestre.</li>
+          <li><strong>O estado</strong>: a aula mais recente até hoje leva "Última aula"; as aulas depois de hoje levam "Prevista" e ficam mais claras. A mesma lista serve, por isso, de plano das aulas, com as datas futuras já escritas.</li>
+        </ul>
+        <p>O número de cada aula é a sua posição na lista (ou a partir de <code>start</code> no <code>&lt;ol&gt;</code>) e não muda com as interrupções nem com <code>order="desc"</code>. Os itens sem <code>&lt;time&gt;</code> aparecem como foram escritos, sem semana nem estado.</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+        <h3 id="interrupcoes">Interrupções</h3>
+        <p>Entre duas aulas que ficam de um lado e do outro de uma interrupção de <code>semester.breaks</code> aparece uma linha sem número: "Interrupção: Semana de estudo (27–31 out)". Duas interrupções seguidas dão duas linhas. Com <code>no-breaks</code> não aparecem; durante uma pesquisa ficam escondidas.</p>
+
+        <h3 id="pesquisa">Pesquisa</h3>
+        <p>Com <code>search</code>, aparece um campo "Pesquisar nos sumários" por cima da lista. A pesquisa ignora maiúsculas e acentos ("arvores" encontra "Árvores"), realça o que encontrou e anuncia quantos sumários ficaram ("2 de 12 sumários"). Esc limpa o campo. Num site bilingue, só se procura no texto da língua ativa.</p>
+
+        <h3 id="mais-recentes">Mais recentes primeiro</h3>
+        <p>Com <code>order="desc"</code>, a aula mais recente fica no topo e os números mantêm-se. Esta demonstração tem também um título próprio e não liga às semanas (<code>no-weeks</code>).</p>
+        <!-- docs:demo src="../../demos/uc-summaries/desc.html" title="sumários do mais recente para o mais antigo, com título próprio" height="388" -->
+        <div class="docs-demo" id="demo-uc-summaries-desc">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-summaries/desc.html" title="Demonstração: sumários do mais recente para o mais antigo, com título próprio" loading="lazy" style="height: 388px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-summaries order=&quot;desc&quot; no-weeks heading=&quot;Últimas aulas&quot;&gt;
+  &lt;ol start=&quot;19&quot;&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-19&quot;&gt;19 nov&lt;/time&gt; &lt;strong&gt;Quicksort&lt;/strong&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-24&quot;&gt;24 nov&lt;/time&gt; &lt;strong&gt;Dicionários&lt;/strong&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-11-26&quot;&gt;26 nov&lt;/time&gt; &lt;strong&gt;Conjuntos e dicionários na prática&lt;/strong&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;time datetime=&quot;2025-12-01&quot;&gt;1 dez&lt;/time&gt; &lt;strong&gt;Árvores binárias&lt;/strong&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/uc-summaries&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-summaries/desc.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h3 id="bilingue">Sumários em duas línguas</h3>
+        <p>Um item pode ter <code>lang</code>, como qualquer elemento: só os itens da língua ativa contam para a numeração, para a "Última aula" e para a pesquisa. Também se pode traduzir dentro do item, com <code>&lt;span lang="pt"&gt;</code> e <code>&lt;span lang="en"&gt;</code>; a data, essa, escreve-se uma vez.</p>
+        <uc-code lang="html" no-download><pre><code>&lt;li&gt;&lt;time datetime="2025-11-25"&gt;25 nov&lt;/time&gt;
+  &lt;strong lang="pt"&gt;Árvores binárias de pesquisa&lt;/strong&gt;
+  &lt;strong lang="en"&gt;Binary search trees&lt;/strong&gt;&lt;/li&gt;</code></pre></uc-code>
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-summaries</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>search</code></td><td>booleano</td><td>ausente</td><td>Acrescenta o campo de pesquisa.</td></tr>
+              <tr><td><code>order</code></td><td><code>asc</code> ou <code>desc</code></td><td><code>asc</code></td><td>Com <code>desc</code>, a aula mais recente aparece primeiro; os números não mudam.</td></tr>
+              <tr><td><code>no-breaks</code></td><td>booleano</td><td>ausente</td><td>Não mostra as interrupções.</td></tr>
+              <tr><td><code>no-weeks</code></td><td>booleano</td><td>ausente</td><td>Não liga cada aula à sua semana.</td></tr>
+              <tr><td><code>heading</code></td><td>texto ou <code>none</code></td><td>"Sumários"</td><td>Título da secção. Com <code>none</code>, não há título visível.</td></tr>
+              <tr><td><code>heading-level</code></td><td><code>2</code> a <code>6</code></td><td><code>2</code></td><td>Nível do título gerado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js usados por uc-summaries</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>semester</code></td><td>A semana de cada aula ("Semana 7") e as interrupções entre aulas (<a href="../course-js.html#campos-semestre">semestre</a>).</td></tr>
+              <tr><td><code>pages</code></td><td>A página <code>weeks</code>, destino das ligações "Semana 7" (<a href="../course-js.html#paginas">páginas</a>).</td></tr>
+              <tr><td><code>today</code></td><td>Fixar o dia de hoje, que decide a "Última aula" e as "Previstas"; <code>?today=AAAA-MM-DD</code> no endereço tem prioridade (<a href="../course-js.html#campos-avancado">avançado</a>).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-summaries</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-summaries</code></td><td>O componente (o próprio <code>&lt;uc-summaries&gt;</code>).</td></tr>
+              <tr><td><code>.uc-summaries__section</code>, <code>__heading</code></td><td>A secção e o seu título.</td></tr>
+              <tr><td><code>.uc-summaries__search</code></td><td>O parágrafo com o rótulo e o campo de pesquisa.</td></tr>
+              <tr><td><code>.uc-summaries__list</code></td><td>A lista escrita pelo professor.</td></tr>
+              <tr><td><code>.uc-summaries__item</code>, <code>--last</code>, <code>--planned</code></td><td>Cada aula; a última dada e as previstas.</td></tr>
+              <tr><td><code>.uc-summaries__aside</code>, <code>__body</code></td><td>A coluna da data e o resto do item.</td></tr>
+              <tr><td><code>.uc-summaries__number</code></td><td>O número da aula.</td></tr>
+              <tr><td><code>.uc-summaries__date</code></td><td>A data (o <code>&lt;time&gt;</code> do professor).</td></tr>
+              <tr><td><code>.uc-summaries__week</code></td><td>A ligação "Semana 7".</td></tr>
+              <tr><td><code>.uc-summaries__state</code></td><td>As etiquetas "Última aula" e "Prevista".</td></tr>
+              <tr><td><code>.uc-summaries__break</code></td><td>A linha de uma interrupção.</td></tr>
+              <tr><td><code>.uc-summaries__mark</code></td><td>O texto realçado pela pesquisa.</td></tr>
+              <tr><td><code>.uc-summaries__empty</code></td><td>A linha "Nenhum sumário encontrado."</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Coluna da data mais larga, para datas em inglês com o ano. */
+uc-summaries { --uc-summaries-date-width: 12rem; }</code></pre></uc-code>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>A lista continua a ser uma lista, com as datas em <code>&lt;time&gt;</code>. Os estados são texto ("Última aula", "Prevista"), não só cor, e as aulas previstas ficam mais claras sem perder contraste. O campo de pesquisa tem rótulo visível, filtrar não lhe tira o foco e o número de resultados é anunciado quando se para de escrever.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Pôr o <code>datetime</code> em todas as datas e começar cada item pelo título da aula, num <code>&lt;strong&gt;</code>, para que a lista se leia bem também sem JavaScript.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Aparece a lista numerada tal como foi escrita, com as datas como texto. Não há dia da semana, semanas, estados, interrupções nem pesquisa.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a>: as semanas do semestre, também numa vista compacta.</li>
+          <li><a href="uc-week.html"><code>&lt;uc-week&gt;</code></a>: o destino das ligações "Semana 7".</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-this-week.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-this-week</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-team.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-team</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-summaries.html">Editar esta página no GitHub</a> · <a href="uc-summaries.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#interrupcoes">Interrupções</a></li>
+          <li class="docs-toc__sub"><a href="#pesquisa">Pesquisa</a></li>
+          <li class="docs-toc__sub"><a href="#mais-recentes">Mais recentes primeiro</a></li>
+          <li class="docs-toc__sub"><a href="#bilingue">Sumários em duas línguas</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

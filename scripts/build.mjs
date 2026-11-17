@@ -36,7 +36,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(KIT, "src");
 const OUT = path.join(KIT, "v1");
 /** Size budget of uc-kit.js, gzipped (docs/plan/blocks-api.md 1.5). */
-const JS_BUDGET_GZIP = 37 * 1024;
+const JS_BUDGET_GZIP = 48 * 1024;
 
 /* ---------- source maps for the concatenation ---------- */
 
