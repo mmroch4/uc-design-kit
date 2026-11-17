@@ -131,7 +131,7 @@ window.UC_COURSE = {
     {
       id: "contest3",
       title: "3rd Contest",
-      // TODO: the original site says "Jan ?"; only the month is known.
+      // Date not announced yet ("Jan ?" on the original): only the month is known.
       date: "2027-01",
       kind: "assessment",
       note: "Format to be defined · 40% of CE",
@@ -139,7 +139,7 @@ window.UC_COURSE = {
     {
       id: "problem-creation",
       title: "Problem creation (PC)",
-      // TODO: the original site says "deadline: Jan ?".
+      // Date not announced yet ("deadline: Jan ?" on the original).
       date: "2027-01",
       kind: "submission",
       note: "Statement, solution, editorial, inputs/outputs and generator",
@@ -148,7 +148,7 @@ window.UC_COURSE = {
     {
       id: "code-presentation",
       title: "Code presentation (CQ)",
-      // TODO: the original site says "deadline: Jan ?".
+      // Date not announced yet ("deadline: Jan ?" on the original).
       date: "2027-01",
       kind: "assessment",
       note: "Discuss the code you submitted with the professor",

@@ -49,10 +49,13 @@ em `uc-table` com `pre[data-copy]`, fórmulas com MathJax (cdnjs) como no origin
   "more than than", parêntese por fechar, "Prim+Kruskall" → "Prim and Kruskal",
   "ssc" → "scc", "Singapura" → "Singapore".
 
-## TODO para o professor confirmar
+## Esclarecimentos (confirmados pelo Miguel, 17 nov 2026)
 
-- Calendário: não há aula a 10 nov e há duas (#08 e #09) a 24 nov; a #10 está
-  numa segunda (14 dez). A semana 8 aparece como "No class listed".
-- Datas do 3.º contest, da criação de problemas e da apresentação de código
-  (só "Jan ?": ficaram com o mês, `2027-01`).
-- Número de problem sets: a avaliação fala em 10, o site tem 7 publicados (até 17 nov).
+- 10 nov: não houve aula porque a faculdade fechou de forma inesperada devido ao
+  mau tempo (semana 8, "No class (faculty closed)").
+- A aula #09 (24 nov) e a #10 (segunda, 14 dez) são reposições das terças que
+  são feriado (1 e 8 dez).
+- O 3.º contest, a criação de problemas e a apresentação de código ainda não têm
+  data: ficam com o mês (`2027-01`) até serem anunciadas.
+- São 10 problem sets; a 17 nov estavam publicados 7. Ao publicar um novo, criar
+  `problem-sets/psNN.html` e acrescentar o prazo ao `course.js`.
