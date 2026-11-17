@@ -144,7 +144,7 @@ Um enunciado curto que se entenda lido em voz alta (é o nome do grupo), opçõe
 
 ## Sem JavaScript
 
-Se o kit não carregar, aparecem o enunciado, a lista de opções e a explicação como HTML normal, sem forma de responder. A explicação fica visível desde o início, por isso, se ela der a resposta, o aluno vê-a logo.
+Se o kit não carregar, aparecem o enunciado e a lista de opções como HTML normal, sem forma de responder. A explicação fica escondida, porque daria a resposta.
 
 ## Ver também
 

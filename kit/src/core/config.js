@@ -71,8 +71,17 @@
     return page;
   }
 
-  function normalizeDeadline(entry, index) {
-    const deadline = { kind: "other", links: [], ...entry };
+  /** Resolves `url` (and `links[].url`) of a course.js entry against course.js. */
+  function withUrl(entry, resolve) {
+    if (!entry || typeof entry !== "object") return entry;
+    const out = { ...entry };
+    if (out.url) out.url = resolveHref(out.url, resolve);
+    if (Array.isArray(out.links)) out.links = out.links.map((link) => withUrl(link, resolve));
+    return out;
+  }
+
+  function normalizeDeadline(entry, index, resolve) {
+    const deadline = { kind: "other", links: [], ...withUrl(entry, resolve) };
     if (!deadline.id) warn(`deadlines[${index}] has no id`);
     if (!deadline.title) warn(`deadlines[${index}] ("${deadline.id}") has no title`);
     if (!DEADLINE_KINDS.includes(deadline.kind)) {
@@ -102,7 +111,8 @@
     const semester = raw.semester || {};
     const teachingDays = asArray(semester.teachingDays).length === 2 ? semester.teachingDays : [1, 5];
 
-    const deadlines = asArray(raw.deadlines).map(normalizeDeadline);
+    const resolve = pageHrefResolver();
+    const deadlines = asArray(raw.deadlines).map((entry, index) => normalizeDeadline(entry, index, resolve));
     deadlines.sort((a, b) => {
       const da = a.parsed.date;
       const db = b.parsed.date;
@@ -115,7 +125,6 @@
     const notices = asArray(raw.notices).map(normalizeNotice);
     notices.sort((a, b) => (b.parsedDate || 0) - (a.parsedDate || 0));
 
-    const resolve = pageHrefResolver();
     return Object.freeze({
       ...raw,
       languages,
@@ -127,11 +136,12 @@
         breaks: asArray(semester.breaks),
       },
       pages: (asArray(raw.pages).length ? raw.pages : ["home"]).map((entry, index) => normalizePage(entry, index, resolve)),
-      platforms: asArray(raw.platforms),
-      team: asArray(raw.team),
+      institution: withUrl(raw.institution, resolve),
+      platforms: asArray(raw.platforms).map((entry) => withUrl(entry, resolve)),
+      team: asArray(raw.team).map((entry) => withUrl(entry, resolve)),
       deadlines,
       notices,
-      logo: raw.logo === undefined ? "default" : raw.logo,
+      logo: raw.logo === undefined ? "default" : raw.logo && typeof raw.logo === "string" && raw.logo !== "default" ? resolve(raw.logo) : raw.logo,
     });
   }
 
@@ -180,4 +190,20 @@
   UC.internal.builtinPages = BUILTIN_PAGES;
   // Resolves an href written relative to course.js (as page hrefs are) for this page.
   UC.internal.resolvePageHref = pageHrefResolver();
+
+  /**
+   * HTMLText from course.js (notices, notes, footer) is written relative to
+   * course.js too: rewrites the relative href/src inside `root` for this page.
+   */
+  UC.internal.resolveCourseLinks = function (root) {
+    root.querySelectorAll("[href], [src]").forEach((node) => {
+      ["href", "src"].forEach((name) => {
+        const value = node.getAttribute(name);
+        if (value !== null) {
+          const resolved = UC.internal.resolvePageHref(value);
+          if (resolved !== value) node.setAttribute(name, resolved);
+        }
+      });
+    });
+  };
 })(window.UC);

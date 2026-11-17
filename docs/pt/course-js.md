@@ -52,7 +52,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `edition`texto | Recomendado | — | Ano letivo ao lado do título, por exemplo `"2025/26"`. |
 | `institution``{ name, url? }` | Opcional | — | Departamento ou faculdade, no cabeçalho. |
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
-| `logo`URL ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho, relativa à página; `null` esconde-a. |
+| `logo`URL ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho, relativa ao `course.js`; `null` esconde-a. |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
 | `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. |
 

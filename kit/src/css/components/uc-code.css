@@ -255,5 +255,5 @@
   line-height: 1.6;
   white-space: pre;
 }
-:where(.uc-code__results-output--stderr) { color: var(--uc-color-danger-text); }
+:where(.uc-code__results-output--stderr) { background: var(--uc-color-danger-bg); color: var(--uc-color-danger-text); }
 :where(.uc-code__run[aria-disabled="true"]) { opacity: 0.7; cursor: progress; }

@@ -131,7 +131,7 @@ window.UC_COURSE = {
 | `semester.start` | `ISODate` | for week features | — | First day of classes; week 1 is the calendar week containing it. |
 | `semester.weeks` | number | no | `14` | Number of teaching weeks (breaks not counted). |
 | `semester.teachingDays` | `[from, to]` | no | `[1, 5]` | ISO weekdays with classes (1 = Monday … 7 = Sunday). Week ranges are shown with these days, e.g. `[2, 5]` → "25–28 nov". |
-| `semester.breaks` | `{ start, end, label }[]` | no | `[]` | Weeks without classes. Weeks are numbered skipping them. |
+| `semester.breaks` | `{ start, end, label }[]` | no | `[]` | Weeks without classes. Weeks are numbered skipping them. A calendar week that has any teaching day inside a break is a break week as a whole. |
 | `pages` | `(PageId \| Page)[]` | no | `["home"]` | Navigation, in order. See 2.3. |
 | `platforms` | `{ label, url }[]` | no | `[]` | External links listed under "Platforms" in the navigation. |
 | `team` | `TeamMember[]` | no | `[]` | See 2.4. |
@@ -171,6 +171,11 @@ Relative `href`s are relative to `course.js`, not to the page. A page in a
 subfolder (e.g. `guioes/aula10.html` loading `../course.js`) therefore gets
 navigation and breadcrumb links such as `../semanas.html` automatically.
 
+The same holds for every other URL in `course.js` (`logo`, `institution.url`,
+`platforms[].url`, team and deadline `url`, deadline `links`) and for links
+and images inside `HTMLText` (notices, notes, footer). URLs that start with a
+scheme (`https:`, `mailto:`), `/` or `#` are used as written.
+
 ### 2.4 Team member
 
 | Field | Type | Notes |
@@ -191,7 +196,7 @@ navigation and breadcrumb links such as `../semanas.html` automatically.
 | `date` | `ISODate` \| `"YYYY-MM"` \| `null` | `null` = to be scheduled. |
 | `time` | `Time` | Start time. |
 | `end` | `ISODate` | For multi-day items (e.g. a quiz open for a week). |
-| `kind` | `"assessment"` \| `"exam"` \| `"quiz"` \| `"submission"` \| `"other"` | Drives the badge and filtering. |
+| `kind` | `"assessment"` \| `"exam"` \| `"quiz"` \| `"submission"` \| `"other"` | Drives the badge of `<uc-event>`, the `data-kind` attribute of `<uc-deadlines>` items and rows, and filtering. |
 | `note` | `HTMLText` | Short secondary line (shifts, rooms…). |
 | `url` | URL | Main link (information page). |
 | `links` | `{ label, url }[]` | Extra links (results, shifts…). |
@@ -213,6 +218,8 @@ is still readable (unstyled by the component).
 Common behaviour:
 
 - Every component re-renders on language change.
+- Attributes are read when the element is connected. Changing one later does
+  not re-render the element; to change it from a script, replace the element.
 - Attributes are lowercase, kebab-case. Boolean attributes are present/absent.
 - Teacher-written children are never discarded; components wrap or decorate them.
 - Generated text comes from the i18n dictionaries.
@@ -262,7 +269,7 @@ Lists `UC_COURSE.deadlines`.
 
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
-| `view` | `list` \| `table` | `list` | `table` adds status and links columns. |
+| `view` | `list` \| `table` | `list` | `table` has columns for title, date, time, details (note and links) and status. |
 | `filter` | `upcoming` \| `past` \| `all` | `upcoming` (list), `all` (table) | |
 | `kind` | space-separated kinds | all | e.g. `kind="assessment exam"`. |
 | `per-kind` | number | none | At most this many items of each kind, e.g. `per-kind="1"` shows only the next quiz. |
@@ -275,7 +282,7 @@ upcoming), *Scheduled* (later), *To be scheduled* (`date: null` or month only).
 A deadline with an `end` date counts as upcoming until it ends and is shown as
 a range. Children written inside the element are kept below the list. In
 the list view the time goes at the start of the note line ("21:00 · Mooshak");
-the table view shows dates with the year.
+the table view shows dates and ranges with the year.
 
 #### `<uc-date>`
 
@@ -324,9 +331,10 @@ The element gets `id="week-<n>"` for deep links; opening the page with
 (so browsers do not show it as a tooltip); the title is therefore only visible
 with JavaScript, while the children stay readable without it.
 
-`<uc-weeks>` does not repeat a deadline that already has a hand-written
-`<uc-event deadline="…">`, and places deadlines that fall in a break right
-after the break.
+A deadline that already has a hand-written `<uc-event deadline="…">` in any
+week of the `<uc-weeks>` is not repeated. `<uc-weeks>` places deadlines that
+fall in a break right after the break. Deadlines with a month only
+(`"2026-01"`) appear in no week: they are listed by `<uc-deadlines>`.
 
 #### `<uc-event>`
 
@@ -432,7 +440,9 @@ or for an unknown language, the code stays readable as plain text. `lang="java"`
 is not a valid language tag, so after upgrade the element moves it to
 `data-lang`; in custom CSS select `uc-code[data-lang="java"]`.
 
-**Running code.** With `run` (no value) the block gets a "Run" button. The
+**Running code.** With `run` (no value) the block gets a "Run" button, unless
+the runner configured for the language says it cannot run it (`html`, `css`,
+`text`, `json`… with the built-in runners; a console warning says so). The
 code is sent to the runner configured for its language (7.1) and the output
 and errors are shown under the code. Two optional children turn it into a
 small automatic check:
@@ -496,15 +506,15 @@ Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
 | `uc-links` | A `<ul>` of links with a secondary description in a `<span>`. |
 | `uc-shortcuts` | A `<nav>` or `<ul>` of large link buttons (quick access). |
 | `uc-callout` | Soft grey panel; `uc-callout--warning` for amber. |
-| `uc-checklist` | A `<ul>` with check icons. |
+| `uc-checklist` | A `<ul>` with check icons. The kit adds `role="list"` to `uc-links`, `uc-shortcuts` and `uc-checklist` lists, which Safari would otherwise not announce as lists. |
 | `uc-split` | Two columns (main + narrower side) that stack below 960px. |
-| `uc-section` | Vertical spacing between page sections. |
+| `uc-section` | A page section: spaces its own children (heading, text, blocks) evenly. |
 | `uc-bullets` | A `<ul>` with simple bullets and comfortable spacing. |
 | `uc-button` | Link or button styled as a button; `uc-button--primary` filled, `uc-button--sm` compact (tables, toolbars). |
 | `uc-lead` | Larger intro paragraph. |
 | `uc-prose` | Readable text column (max 720px, secondary colour). |
 | `uc-content` | Wrapper for plain HTML written without kit classes (pasted from an older site or an editor): spacing for headings, paragraphs, lists, tables, `<pre>` and images. `<img class="uc-content__float">` floats right on wide screens. |
-| `<pre data-copy>` | Adds a copy button to the top-right corner of a preformatted block (for example the input and output of a problem's examples). The value names what is copied in the button's accessible label: `data-copy="Input"` reads "Copiar Input"; an empty value reads "Copiar". Works anywhere on the page, not only inside `uc-content`. |
+| `<pre data-copy>` | Adds a copy button to the top-right corner of a preformatted block (for example the input and output of a problem's examples). The value names what is copied in the button's accessible label: `data-copy="Input"` reads "Copiar Input"; an empty value reads "Copiar". Works anywhere on the page, not only inside `uc-content`, with the same box (background, padding, rounded corners). |
 | `uc-muted`, `uc-mono`, `uc-small` | Text utilities. |
 | `uc-visually-hidden` | Hidden visually, available to screen readers. |
 
@@ -522,7 +532,7 @@ Defined on `:root` in `uc-kit.css`. Override them in `theme.css`.
 | `--uc-color-text` | `#18181B` | Body text. |
 | `--uc-color-text-secondary` | `#3F3F46` | Secondary paragraphs. |
 | `--uc-color-text-muted` | `#52525B` | Metadata, labels. |
-| `--uc-color-text-subtle` | `#71717A` | Navigation group labels. |
+| `--uc-color-text-subtle` | `#6E6E77` | Navigation group labels. |
 | `--uc-color-border` | `#E4E4E7` | Borders and rules. |
 | `--uc-color-surface` | `#FFFFFF` | Page background. |
 | `--uc-color-surface-muted` | `#F4F4F5` | Tags, callouts, hover. |
@@ -577,7 +587,8 @@ system font and skips downloading Inter, if a course prefers.
   (`localStorage` key `uc:lang`), `<html lang>`, first of `languages`.
 - **In-place bilingual content:** any element with a `lang` attribute whose
   value is a configured language but not the active one is hidden. Untagged
-  content is always visible.
+  content is always visible. `data-uc-keep-lang` on an element with `lang`
+  keeps it visible in every language (a quotation, a term in the original).
 
   ```html
   <p lang="pt">As aulas começam a 16 de setembro.</p>
@@ -600,11 +611,12 @@ system font and skips downloading Inter, if a course prefers.
 | `UC.lang` | Active language code. |
 | `UC.setLanguage(code)` | Switches language. |
 | `UC.t(key, params?)` | Translates an interface string. |
-| `UC.text(localizedText)` | Resolves a `LocalizedText` in the active language. |
+| `UC.text(localizedText, lang?)` | Resolves a `LocalizedText` in the active language, or in `lang`. |
 | `UC.today()` | "Today" as a `Date` at local midnight (honours `today`). |
 | `UC.formatDate(isoOrDate, format?)` | Formats like `<uc-date>`. |
+| `UC.formatDateRange(start, end, format?)` | Formats a range, e.g. "25–28 nov"; with `format` `medium` adds the year. |
 | `UC.weekOf(date)` | `{ n, start, end }` or `null` outside the semester. |
-| `UC.weekDates(n)` | `{ start, end }` for week `n`. |
+| `UC.weekDates(n)` | `{ n, start, end }` for week `n`, or `null`. |
 | `UC.Element` | Base class for components (see below). |
 | `UC.define(name, class)` | Registers a component once (safe to call twice). |
 | `UC.addTranslations(lang, dict)` | Adds or overrides interface strings. |
@@ -624,7 +636,7 @@ Events on `document`:
 
 | Event | When |
 | --- | --- |
-| `uc:ready` | Configuration loaded and built-in components defined. |
+| `uc:ready` | Configuration loaded and built-in components defined. Fires while the kit script runs: scripts loaded after it (extensions with `defer`) find `window.UC` ready and do not need it. |
 | `uc:languagechange` | After the active language changes. `event.detail.lang`. |
 | `uc:exercisechange` | Bubbles from a `<uc-exercise>` when it is marked done or not done. |
 
@@ -667,6 +679,10 @@ UC.registerRunner("judge0", {
 });
 // course.js: runner: { provider: "judge0", judge0: { url: "…" } }
 ```
+
+A runner may also have `supports(language)`, returning `false` for languages
+it cannot run; `<uc-code run>` then shows no "Run" button for them. Without
+it, every language is assumed to run.
 
 Reject the Promise only when the code could not be run at all (network,
 timeout); compilation and runtime errors resolve with `ok: false` and the

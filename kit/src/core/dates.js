@@ -92,18 +92,25 @@
     return fill(UC.t(`dates.format.${key}`), parts(parsed.date));
   };
 
-  /** Formats a date range, e.g. "25–28 nov" or "30 set–3 out". */
-  UC.formatDateRange = function formatDateRange(start, end) {
+  /**
+   * Formats a date range, e.g. "25–28 nov" or "30 set–3 out".
+   * With format "medium" the year is added: "25–28 nov 2025",
+   * or "30 dez 2025–3 jan 2026" across years.
+   */
+  UC.formatDateRange = function formatDateRange(start, end, format) {
     const a = parseDay(start);
     const b = parseDay(end);
-    if (!a || !b) return UC.formatDate(a || b);
-    if (diffDays(a, b) === 0) return UC.formatDate(a);
+    if (!a || !b) return UC.formatDate(a || b, format);
+    if (diffDays(a, b) === 0) return UC.formatDate(a, format);
+    const withYear = format === "medium";
+    if (withYear && a.getFullYear() !== b.getFullYear()) return `${UC.formatDate(a, "medium")}–${UC.formatDate(b, "medium")}`;
     const pa = parts(a);
     const pb = parts(b);
-    if (a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()) {
-      return fill(UC.t("dates.format.rangeSameMonth"), { d1: pa.d, d2: pb.d, m: pa.m });
-    }
-    return fill(UC.t("dates.format.rangeOtherMonth"), { d1: pa.d, m1: pa.m, d2: pb.d, m2: pb.m });
+    const range =
+      a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()
+        ? fill(UC.t("dates.format.rangeSameMonth"), { d1: pa.d, d2: pb.d, m: pa.m })
+        : fill(UC.t("dates.format.rangeOtherMonth"), { d1: pa.d, m1: pa.m, d2: pb.d, m2: pb.m });
+    return withYear ? `${range} ${pb.y}` : range;
   };
 
   /** Appends a time to an already formatted date. */

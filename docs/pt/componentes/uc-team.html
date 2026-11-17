@@ -259,7 +259,7 @@
           <li>No HTML, escreve-se <code>role</code>, como nos exemplos.</li>
           <li>Num <code>theme.css</code>, seleciona-se <code>uc-team[data-role]</code> (por exemplo <code>uc-team[data-role="assistant"]</code>), porque <code>role</code> já não existe na página.</li>
         </ul>
-        <p>Quando nenhuma pessoa corresponde ao filtro, ou <code>team</code> está vazio, o componente fica escondido (atributo <code>hidden</code>), sem título. Se tiver conteúdo escrito dentro, mostra o título e esse conteúdo.</p>
+        <p>Quando nenhuma pessoa corresponde ao filtro <code>role</code>, o componente fica escondido (atributo <code>hidden</code>), mesmo com conteúdo escrito dentro, porque esse conteúdo pertence à lista filtrada. Sem filtro e com <code>team</code> vazio, fica escondido só se não tiver conteúdo escrito dentro; se tiver, mostra o título e esse conteúdo.</p>
 
         <h2 id="personalizar">Personalizar</h2>
         <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em <a href="../personalizar/css.html">Nível 2: CSS livre</a>; para mudar só cores, cantos ou letra em todo o site bastam os <a href="../estilos/tokens.html">tokens</a>.</p>

@@ -271,7 +271,7 @@
             </tbody>
           </table>
         </div>
-        <p>Sem a página <code>weeks</code> em <code>pages</code>, o cartão não tem a ligação "Ver semana" (e, sem <code>source</code>, não lê nenhuma página). Os <code>url</code> e <code>links</code> dos prazos são relativos à página que mostra o cartão, não ao <code>course.js</code>.</p>
+        <p>Sem a página <code>weeks</code> em <code>pages</code>, o cartão não tem a ligação "Ver semana" (e, sem <code>source</code>, não lê nenhuma página). Os <code>url</code> e <code>links</code> dos prazos são relativos ao <code>course.js</code>, como os <code>href</code> das páginas.</p>
 
         <h2 id="pagina-de-semanas">A página de semanas: HTTP e <code>file://</code></h2>
         <p>O título e as linhas da semana atual não estão no <code>course.js</code>: estão na página de semanas, escritos uma só vez. Quando o site é servido por HTTP ou HTTPS (publicado, ou com um servidor local), o cartão pede essa página, procura a <code>&lt;uc-week n="10"&gt;</code> e copia o título (o <code>title-&lt;lang&gt;</code> da língua ativa, se existir) e as linhas do <code>&lt;dl&gt;</code>: cada <code>&lt;dt&gt;</code> passa a etiqueta e os seus <code>&lt;dd&gt;</code> o valor. Grupos <code>&lt;div&gt;</code> dentro do <code>&lt;dl&gt;</code> também servem, e um <code>lang</code> num <code>&lt;dt&gt;</code> ou <code>&lt;dd&gt;</code> mantém-se, por isso o conteúdo bilingue funciona.</p>

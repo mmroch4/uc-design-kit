@@ -12,7 +12,7 @@
 :where(.uc-weeks__break) {
   margin: var(--uc-space-2) 0;
   padding: 14px var(--uc-space-5);
-  border-radius: 10px;
+  border-radius: min(var(--uc-radius-lg), calc(var(--uc-radius-md) + 2px));
   background: var(--uc-color-surface-muted);
   color: var(--uc-color-text-muted);
   font-size: var(--uc-font-size-body-sm);

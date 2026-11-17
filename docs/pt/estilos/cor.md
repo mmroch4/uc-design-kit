@@ -17,7 +17,7 @@ Quatro tons de texto, do mais forte ao mais discreto, uma cor de borda e três s
 - Texto `--uc-color-text` #18181B
 - Texto secundário `--uc-color-text-secondary` #3F3F46
 - Texto discreto `--uc-color-text-muted` #52525B
-- Texto subtil `--uc-color-text-subtle` #71717A
+- Texto subtil `--uc-color-text-subtle` #6E6E77
 - Borda `--uc-color-border` #E4E4E7
 - Superfície `--uc-color-surface` #FFFFFF
 - Superfície cinzenta `--uc-color-surface-muted` #F4F4F5

@@ -419,7 +419,9 @@
         actions.push(this.button("download", "download", this.t("code.download"), () => downloadText(this.code, this.downloadName())));
       }
       if (this.editable) actions.push(this.button("reset", "reset", this.t("code.reset"), () => this.onReset()));
-      if (this.runMode === "execute") {
+      if (this.runMode === "execute" && !UC.internal.canRun(this.language)) {
+        warnOnce(`no runner can run "${this.language}": the Run button is not shown`);
+      } else if (this.runMode === "execute") {
         const label = this.t(this.running ? "code.running" : this.tests.length ? "code.runTests" : "code.run");
         const button = h(
           "button",

@@ -28,6 +28,7 @@
     "components/uc-code.js",
     "components/uc-question.js",
     "core/tables.js",
+    "core/lists.js",
     "core/copy-blocks.js",
     "core/bootstrap.js"
   ],

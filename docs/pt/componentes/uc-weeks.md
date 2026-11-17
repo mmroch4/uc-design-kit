@@ -291,7 +291,7 @@ Campos do `course.js` que o componente lê. Sem `semester.start` não há semana
 - **Prazos depois da última semana** (`semester.weeks`), com dia ou só mês (`"2026-01"`): no fim, pela ordem do `course.js`.
 - **Não aparecem**: prazos sem data (`null`), prazos anteriores à semana 1 e prazos só com mês que caiam durante o semestre.
 
-Um prazo que o professor já escreveu como `<uc-event deadline="…">` não é repetido. Para os prazos depois das interrupções e do fim, o `<uc-event>` pode estar em qualquer sítio dentro do `<uc-weeks>`; para os de uma semana, tem de estar dentro dessa semana. Ver [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md).
+Um prazo que o professor já escreveu como `<uc-event deadline="…">` não é repetido. O `<uc-event>` pode estar em qualquer sítio dentro do `<uc-weeks>`, por exemplo na semana anterior ao prazo, para o anunciar mais cedo. Ver [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md).
 
 Os elementos acrescentados têm o atributo `data-uc-generated` e são refeitos quando a língua muda.
 

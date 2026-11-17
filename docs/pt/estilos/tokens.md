@@ -42,7 +42,7 @@ Ver [Cor](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/cor.md) para as 
 | `--uc-color-text` | `#18181B` | Texto principal e títulos. |
 | `--uc-color-text-secondary` | `#3F3F46` | Parágrafos: `uc-lead`, `uc-prose`, `uc-content`, texto das semanas. |
 | `--uc-color-text-muted` | `#52525B` | Metadados, datas, cabeçalhos de tabela, `uc-muted`. |
-| `--uc-color-text-subtle` | `#71717A` | Rótulos de grupo da navegação, semanas futuras, ícones discretos. Só sobre fundo branco. |
+| `--uc-color-text-subtle` | `#6E6E77` | Rótulos de grupo da navegação, semanas futuras, ícones discretos. Só sobre fundo branco. |
 | `--uc-color-border` | `#E4E4E7` | Bordas de cartões, tabelas, semanas e linhas. |
 | `--uc-color-surface` | `#FFFFFF` | Fundo da página e dos cartões. |
 | `--uc-color-surface-muted` | `#F4F4F5` | Etiquetas, `uc-callout`, `code` no texto, fundos ao passar o rato. |

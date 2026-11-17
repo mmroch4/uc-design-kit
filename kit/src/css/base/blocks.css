@@ -51,7 +51,8 @@
 :where(.uc-tag--accent) { background: var(--uc-color-accent-soft); color: var(--uc-color-accent); }
 :where(.uc-tag--warning) { background: var(--uc-color-warning-bg); color: var(--uc-color-warning-text); }
 :where(.uc-tag--success) { background: var(--uc-color-success-bg); color: var(--uc-color-success-text); }
-:where(.uc-tag--muted) { background: var(--uc-color-surface-muted); color: var(--uc-color-text-secondary); }
+/* Quieter than the plain tag: outline only, for secondary labels ("Optional"). */
+:where(.uc-tag--muted) { background: transparent; box-shadow: inset 0 0 0 1px var(--uc-color-border); color: var(--uc-color-text-muted); font-weight: 500; }
 
 :where(.uc-table) {
   overflow-x: auto;
@@ -103,7 +104,7 @@
   min-height: 48px;
   padding: 0 var(--uc-space-4);
   border: 1px solid var(--uc-color-border);
-  border-radius: 10px;
+  border-radius: min(var(--uc-radius-lg), calc(var(--uc-radius-md) + 2px));
   color: var(--uc-color-text);
   font-weight: 500;
   text-decoration: none;
@@ -242,7 +243,7 @@
 :where(.uc-content :is(ul, ol)) { padding-left: 1.5em; }
 :where(.uc-content li + li) { margin-top: var(--uc-space-1); }
 :where(.uc-content li > :is(ul, ol)) { margin-top: var(--uc-space-1); }
-:where(.uc-content pre) {
+:where(.uc-content pre, .uc-copy-block > pre) {
   padding: var(--uc-space-3) var(--uc-space-4);
   border-radius: var(--uc-radius-md);
   background: var(--uc-color-surface-muted);

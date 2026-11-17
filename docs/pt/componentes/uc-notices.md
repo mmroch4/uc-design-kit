@@ -38,7 +38,7 @@ window.UC_COURSE = {
 };
 ```
 
-A ordem no ficheiro não importa: o kit ordena os avisos por data. O texto pode ter HTML simples (ligações, `<strong>`, `<code>`). As ligações dentro dos avisos são relativas à página que os mostra, não ao `course.js`; como os avisos costumam estar na página inicial, na raiz do site, isso raramente faz diferença (ver [Páginas em subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas)).
+A ordem no ficheiro não importa: o kit ordena os avisos por data. O texto pode ter HTML simples (ligações, `<strong>`, `<code>`). As ligações e imagens dentro dos avisos são relativas ao `course.js`, como os `href` das páginas, por isso funcionam em qualquer página do site (ver [Páginas em subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas)).
 
 ## Exemplos
 

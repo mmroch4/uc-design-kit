@@ -170,7 +170,7 @@
 logo: null,         // no image, only the course name</code></pre></uc-code>
         <ul>
           <li><strong>Tamanho.</strong> A imagem é mostrada com 28 × 28 px. Uma imagem quadrada em SVG fica nítida em qualquer ecrã; em PNG, convém ter pelo menos 56 × 56 px.</li>
-          <li><strong>Caminho.</strong> Ao contrário dos <code>href</code> das páginas, o caminho do logótipo é relativo à página que o mostra. Num site com páginas em subpastas (<code>guioes/aula10.html</code>), <code>"logo.svg"</code> deixa de ser encontrado nessas páginas; um endereço absoluto (<code>"https://…/logo.svg"</code>) funciona em todas.</li>
+          <li><strong>Caminho.</strong> Como os <code>href</code> das páginas, o caminho do logótipo é relativo ao <code>course.js</code>: <code>"logo.svg"</code> ao lado do <code>course.js</code> aparece também nas páginas em subpastas (<code>guioes/aula10.html</code>).</li>
           <li><strong>Texto alternativo.</strong> Fica vazio, porque o nome do curso está mesmo ao lado. A imagem deve ter contraste suficiente com o fundo branco.</li>
         </ul>
         <p>Ver <a href="../course-js.html#campos-curso">Curso</a> e, para o cabeçalho completo, <a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a>.</p>

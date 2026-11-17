@@ -435,7 +435,7 @@
           <li><strong>Prazos depois da última semana</strong> (<code>semester.weeks</code>), com dia ou só mês (<code>"2026-01"</code>): no fim, pela ordem do <code>course.js</code>.</li>
           <li><strong>Não aparecem</strong>: prazos sem data (<code>null</code>), prazos anteriores à semana 1 e prazos só com mês que caiam durante o semestre.</li>
         </ul>
-        <p>Um prazo que o professor já escreveu como <code>&lt;uc-event deadline="…"&gt;</code> não é repetido. Para os prazos depois das interrupções e do fim, o <code>&lt;uc-event&gt;</code> pode estar em qualquer sítio dentro do <code>&lt;uc-weeks&gt;</code>; para os de uma semana, tem de estar dentro dessa semana. Ver <a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>.</p>
+        <p>Um prazo que o professor já escreveu como <code>&lt;uc-event deadline="…"&gt;</code> não é repetido. O <code>&lt;uc-event&gt;</code> pode estar em qualquer sítio dentro do <code>&lt;uc-weeks&gt;</code>, por exemplo na semana anterior ao prazo, para o anunciar mais cedo. Ver <a href="uc-event.html"><code>&lt;uc-event&gt;</code></a>.</p>
         <p>Os elementos acrescentados têm o atributo <code>data-uc-generated</code> e são refeitos quando a língua muda.</p>
 
         <h2 id="personalizar">Personalizar</h2>

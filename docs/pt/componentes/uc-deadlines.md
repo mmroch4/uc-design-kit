@@ -37,7 +37,7 @@ window.UC_COURSE = {
 };
 ```
 
-A ordem no ficheiro não importa: o kit ordena os prazos por data e põe no fim os que ainda não têm data. O `url` de um prazo transforma o título numa ligação e `links` acrescenta ligações por baixo. Tal como as ligações dentro dos avisos, estes endereços são relativos à página que mostra o prazo, não ao `course.js` (ver [Páginas em subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas)).
+A ordem no ficheiro não importa: o kit ordena os prazos por data e põe no fim os que ainda não têm data. O `url` de um prazo transforma o título numa ligação e `links` acrescenta ligações por baixo. Tal como os `href` das páginas, estes endereços são relativos ao `course.js` e funcionam em qualquer página do site (ver [Páginas em subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas)).
 
 ## Exemplos
 
@@ -144,7 +144,7 @@ O estado conta só com os prazos que aparecem: numa tabela com `kind="assessment
 Um prazo passa quando acaba o seu último dia:
 
 - **Um dia** (`"2025-12-10"`): conta como próximo até ao fim desse dia, seja qual for a hora.
-- **Vários dias** (com `end`): conta como próximo até ao fim de `end` e mostra-se como intervalo, "24–30 nov".
+- **Vários dias** (com `end`): conta como próximo até ao fim de `end` e mostra-se como intervalo: "24–30 nov" na lista, "24–30 nov 2025" na tabela.
 - **Só o mês** (`"2026-01"`): mostra-se "janeiro 2026" e conta como próximo até ao fim do mês.
 - **Sem data** (`null`): mostra-se "Por marcar", fica no fim e nunca passa.
 
