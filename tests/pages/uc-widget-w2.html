@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Widgets da vaga 1 (W2) · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-search.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-bst.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-list.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-stack-queue.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-recursion.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Widgets da fase W2 (teste)</span>
+      <span lang="en">Phase W2 widgets (test)</span>
+    </h1>
+
+    <h2><span lang="pt">Árvore: operações com previsões</span><span lang="en">Tree: operations with predictions</span></h2>
+    <uc-widget-bst id="bst" values="50 30 70 20 40 60 80" ops="insert 45; search 60; remove 30; remove 20; min" predict>
+      <p>Depois das operações, a árvore em ordem é 40 45 50 60 70 80.</p>
+    </uc-widget-bst>
+
+    <h2><span lang="pt">Árvore: percursos</span><span lang="en">Tree: traversals</span></h2>
+    <uc-widget-bst id="traversal" values="5 3 8 1 4 7 9" algorithm="inorder" algorithms="preorder inorder postorder levelorder">
+      <pre data-pseudocode data-algorithm="inorder"><code>void inorder(Node n) {
+  if (n == null) return;
+<span data-line="left">  inorder(n.left);</span>
+<span data-line="print">  System.out.print(n.value + " ");</span>
+<span data-line="right">  inorder(n.right);</span>
+}</code></pre>
+      <p>Em-ordem: 1 3 4 5 7 8 9.</p>
+    </uc-widget-bst>
+
+    <h2><span lang="pt">Pesquisa</span><span lang="en">Search</span></h2>
+    <uc-widget-search id="search" values="1 3 4 7 8 9 12 15" target="9" algorithm="binary" editable>
+      <p>Pesquisa binária de 9: meio 7, depois 9, encontrado na posição 5.</p>
+    </uc-widget-search>
+    <uc-widget-search values="4 8 1 9 3" target="9" algorithm="linear" controls="compact"><p>Pesquisa linear de 9: posição 3.</p></uc-widget-search>
+    <uc-widget-search values="1 2 2 2 5 8" target="2" algorithm="lower" start="end"><p>Primeira posição ≥ 2: 1.</p></uc-widget-search>
+
+    <h2><span lang="pt">Lista ligada</span><span lang="en">Linked list</span></h2>
+    <uc-widget-list id="list" values="3 8 5" ops="add-first 1; insert 2 4; remove 8; reverse" editable>
+      <p>No fim a lista é 5 → 4 → 3 → 1.</p>
+    </uc-widget-list>
+
+    <h2><span lang="pt">Pilha e fila</span><span lang="en">Stack and queue</span></h2>
+    <uc-widget-stack-queue id="queue" algorithm="queue" capacity="4" values="3 8 5" ops="dequeue; enqueue 1; enqueue 9; enqueue 7; dequeue">
+      <p>No fim a fila é 5 1 9 (da frente para o fim).</p>
+    </uc-widget-stack-queue>
+    <uc-widget-stack-queue algorithm="stack" impl="list" values="3 8" ops="push 5; pop; peek"><p>No fim a pilha é 3 8.</p></uc-widget-stack-queue>
+
+    <h2><span lang="pt">Recursão</span><span lang="en">Recursion</span></h2>
+    <uc-widget-recursion id="fib" algorithm="fibonacci" n="4" predict><p>fib(4) = 3, com 9 chamadas.</p></uc-widget-recursion>
+    <uc-widget-recursion algorithm="hanoi" n="3"><p>Hanói com 3 discos: 7 movimentos.</p></uc-widget-recursion>
+    <uc-widget-recursion algorithm="factorial" n="9"><p>Entrada inválida: fact(9) não cabe.</p></uc-widget-recursion>
+  </uc-page>
+</body>
+</html>

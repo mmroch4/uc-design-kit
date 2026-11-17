@@ -28,11 +28,12 @@ export function array(svg, values, { marks = {}, pointers = {}, bars = false } =
   const width = Math.max(n * (W + GAP) - GAP, W) + 2 * PAD;
   svg.setAttribute("viewBox", `0 0 ${width} ${pointerY + 6}`);
   svg.style.minWidth = `${Math.max(n, 4) * 30}px`;
+  svg.style.maxWidth = `${width * 1.25}px`; // small arrays are not blown up
 
   // Groups are rebuilt only when the size or the view changes.
-  const key = `${n}:${bars}`;
-  if (svg.__ucArray !== key) {
-    svg.__ucArray = key;
+  const key = `array:${n}:${bars}`;
+  if (svg.__ucKind !== key) {
+    svg.__ucKind = key;
     svg.replaceChildren();
     svg.__ucCells = values.map((_, i) => {
       const g = svgEl("g", { transform: `translate(${PAD + i * (W + GAP)} 0)` });

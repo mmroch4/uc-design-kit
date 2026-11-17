@@ -41,7 +41,9 @@ export const strings = {
     },
     yes: "Sim",
     no: "Não",
-    edit: { label: "Valores", run: "Correr", restore: "Repor" },
+    edit: { label: "Valores", ops: "Operações", run: "Correr", restore: "Repor" },
+    algorithm: "Algoritmo",
+    tree: { empty: "árvore vazia" },
     error: {
       input: "Não consegui ler os dados: {detail}",
       tooLarge: "Demasiados elementos para desenhar (máximo {max}).",
@@ -91,7 +93,9 @@ export const strings = {
     },
     yes: "Yes",
     no: "No",
-    edit: { label: "Values", run: "Run", restore: "Restore" },
+    edit: { label: "Values", ops: "Operations", run: "Run", restore: "Restore" },
+    algorithm: "Algorithm",
+    tree: { empty: "empty tree" },
     error: {
       input: "Could not read the input: {detail}",
       tooLarge: "Too many elements to draw (maximum {max}).",

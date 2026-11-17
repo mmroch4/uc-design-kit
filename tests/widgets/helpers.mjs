@@ -43,6 +43,11 @@ export function optionSets(meta) {
   return [...meta.algorithms.map((algorithm) => ({ algorithm })), ...(meta.test?.options || [])];
 }
 
+/** The options and input of one option set (an option set may bring its own `input`). */
+export function splitInput(meta, { input, ...options }) {
+  return { input: input ?? meta.test.input, options };
+}
+
 /** UC.t for a [key, params] pair in one dictionary. */
 export function format(dictionary, pair) {
   const [key, params = {}] = pair;
@@ -51,4 +56,4 @@ export function format(dictionary, pair) {
   return value.replace(/\{(\w+)\}/g, (match, name) => (name in params ? String(params[name]) : match));
 }
 
-export const describeOptions = (options) => Object.entries(options).map(([k, v]) => `${k}=${v}`).join(" ");
+export const describeOptions = (options) => Object.entries(options).filter(([k]) => k !== "input").map(([k, v]) => `${k}=${v}`).join(" ");

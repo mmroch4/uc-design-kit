@@ -1,0 +1,81 @@
+## algorithm=stack · input {"values":[4,7,1],"ops":null,"impl":"array","capacity":4}
+  1. Empty stack, in an array of capacity 4.
+  2. push(4): put 4 on top.
+  3. Write 4 at index 0; top = 0.
+  4. push(7): put 7 on top.
+  5. Write 7 at index 1; top = 1.
+  6. push(1): put 1 on top.
+  7. Write 1 at index 2; top = 2.
+  8. Done: the stack has 3 item(s), bottom to top: 4 7 1.
+
+## algorithm=queue · input {"values":[4,7,1],"ops":null,"impl":"array","capacity":4}
+  1. Empty queue, in an array of capacity 4.
+  2. enqueue(4): put 4 at the back of the queue.
+  3. Write 4 at index 0; back = 0.
+  4. enqueue(7): put 7 at the back of the queue.
+  5. Write 7 at index 1; back = 1.
+  6. enqueue(1): put 1 at the back of the queue.
+  7. Write 1 at index 2; back = 2.
+  8. Done: the queue has 3 item(s), front to back: 4 7 1.
+
+## algorithm=stack · input {"values":[3,8],"ops":[{"verb":"push","args":["5"]},{"verb":"peek","args":[]},{"verb":"pop","args":[]},{"verb":"pop","args":[]},{"verb":"pop","args":[]},{"verb":"pop","args":[]}],"impl":"array","capacity":4}
+  1. Stack with 2 item(s) in an array of capacity 4.
+  2. push(5): put 5 on top.
+  3. Write 5 at index 2; top = 2.
+  4. peek(): look at the top without taking it.
+  5. The top is 5.
+  6. pop(): take the top item.
+  7. The top is 5.
+  8. 5 leaves index 2; the top goes down one place.
+  9. pop(): take the top item.
+ 10. The top is 8.
+ 11. 8 leaves index 1; the top goes down one place.
+ 12. pop(): take the top item.
+ 13. The top is 3.
+ 14. 3 leaves index 0; the top goes down one place.
+ 15. pop(): take the top item.
+ 16. The stack is empty: there is no top. Underflow.
+ 17. Done: it is empty.
+
+## algorithm=queue · input {"values":[3,8,5],"ops":[{"verb":"dequeue","args":[]},{"verb":"enqueue","args":["1"]},{"verb":"enqueue","args":["9"]},{"verb":"enqueue","args":["7"]},{"verb":"dequeue","args":[]}],"impl":"array","capacity":4}
+  1. Queue with 3 item(s) in an array of capacity 4.
+  2. dequeue(): take the front item.
+  3. The front is 3.
+  4. 3 leaves index 0; front moves on one place.
+  5. enqueue(1): put 1 at the back of the queue.
+  6. Write 1 at index 3; back = 3.
+  7. enqueue(9): put 9 at the back of the queue.
+  8. Write 9 at index 0: the back wrapped around the array; back = 0.
+  9. enqueue(7): put 7 at the back of the queue.
+ 10. The array is full (capacity 4): 7 does not fit. Overflow.
+ 11. dequeue(): take the front item.
+ 12. The front is 8.
+ 13. 8 leaves index 1; front moves on one place.
+ 14. Done: the queue has 3 item(s), front to back: 5 1 9.
+
+## algorithm=stack · input {"values":[3,8],"ops":[{"verb":"push","args":["5"]},{"verb":"pop","args":[]},{"verb":"peek","args":[]}],"impl":"list","capacity":8}
+  1. Stack with 2 item(s) in a linked list.
+  2. push(5): put 5 on top.
+  3. Create a new node with 5.
+  4. node.next = top; top = node: 5 goes on top of 8.
+  5. pop(): take the top item.
+  6. The top is 5.
+  7. top = top.next: 5 leaves the stack.
+  8. peek(): look at the top without taking it.
+  9. The top is 8.
+ 10. Done: the stack has 2 item(s), bottom to top: 3 8.
+
+## algorithm=queue · input {"values":[3],"ops":[{"verb":"enqueue","args":["1"]},{"verb":"dequeue","args":[]},{"verb":"dequeue","args":[]},{"verb":"dequeue","args":[]}],"impl":"list","capacity":8}
+  1. Queue with 1 item(s) in a linked list.
+  2. enqueue(1): put 1 at the back of the queue.
+  3. Create a new node with 1.
+  4. back.next = node; back = node: 1 goes after 3.
+  5. dequeue(): take the front item.
+  6. The front is 3.
+  7. front = front.next: 3 leaves the queue.
+  8. dequeue(): take the front item.
+  9. The front is 1.
+ 10. front = front.next: 1 leaves the queue.
+ 11. dequeue(): take the front item.
+ 12. The queue is empty: there is no front. Underflow.
+ 13. Done: it is empty.

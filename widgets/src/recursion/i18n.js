@@ -1,0 +1,88 @@
+/**
+ * Strings of <uc-widget-recursion>, `widget.recursion.*`, and its default
+ * pseudocode ("<line id>|<text>", the same ids in every language).
+ */
+export const strings = {
+  pt: {
+    caption: { factorial: "Fatorial recursivo", fibonacci: "Fibonacci recursivo", hanoi: "Torres de Hanói" },
+    describe: "Árvore de chamadas: {calls}.",
+    returns: "{call} devolve {value}",
+    open: "{call} ainda a correr",
+    aux: { pegs: "Postes" },
+    column: { call: "Chamada", value: "Devolve" },
+    edit: "n",
+    start: {
+      factorial: "Calcula fact({n}) = {n}!, com recursão.",
+      fibonacci: "Calcula fib({n}), com duas chamadas recursivas por passo.",
+      hanoi: "Move {n} discos do poste A para o poste C, com o poste B como auxiliar.",
+    },
+    call: "Chama {call}.",
+    factBase: "fact({k}): caso base, devolve 1.",
+    factReturn: "fact({k}) = {k} × fact({k} - 1) = {k} × {r} = {value}.",
+    fibBase: "fib({k}): caso base, devolve {k}.",
+    fibReturn: "fib({k}) = fib({k} - 1) + fib({k} - 2) = {a} + {b} = {value}.",
+    hanoiBase: "Um só disco: move o disco {disk} de {from} para {to}.",
+    hanoiMove: "Move o disco {disk} de {from} para {to}.",
+    hanoiReturn: "{k} discos passaram de {from} para {to} em {moves} movimentos.",
+    end: {
+      factorial: "fact({n}) = {value}, com {calls} chamadas.",
+      fibonacci: "fib({n}) = {value}, com {calls} chamadas (muitas repetidas).",
+      hanoi: "Feito: {value} movimentos (2^{n} - 1) e {calls} chamadas.",
+    },
+    predict: { value: "Quanto devolve {call}?" },
+    error: { n: "n tem de ser um número inteiro ≥ {min}." },
+    code: {
+      factorial: ["|fact(n):", "base|  se n ≤ 1: devolver 1", "call|  r = fact(n - 1)", "return|  devolver n × r"],
+      fibonacci: ["|fib(n):", "base|  se n ≤ 1: devolver n", "left|  a = fib(n - 1)", "right|  b = fib(n - 2)", "return|  devolver a + b"],
+      hanoi: [
+        "|h(n, origem, destino, aux):",
+        "base|  se n == 1: mover origem → destino; voltar",
+        "left|  h(n - 1, origem, aux, destino)",
+        "move|  mover origem → destino",
+        "right|  h(n - 1, aux, destino, origem)",
+        "return|  voltar",
+      ],
+    },
+  },
+  en: {
+    caption: { factorial: "Recursive factorial", fibonacci: "Recursive Fibonacci", hanoi: "Towers of Hanoi" },
+    describe: "Call tree: {calls}.",
+    returns: "{call} returns {value}",
+    open: "{call} still running",
+    aux: { pegs: "Pegs" },
+    column: { call: "Call", value: "Returns" },
+    edit: "n",
+    start: {
+      factorial: "Compute fact({n}) = {n}!, recursively.",
+      fibonacci: "Compute fib({n}), with two recursive calls each time.",
+      hanoi: "Move {n} disks from peg A to peg C, using peg B.",
+    },
+    call: "Call {call}.",
+    factBase: "fact({k}): base case, return 1.",
+    factReturn: "fact({k}) = {k} × fact({k} - 1) = {k} × {r} = {value}.",
+    fibBase: "fib({k}): base case, return {k}.",
+    fibReturn: "fib({k}) = fib({k} - 1) + fib({k} - 2) = {a} + {b} = {value}.",
+    hanoiBase: "One disk: move disk {disk} from {from} to {to}.",
+    hanoiMove: "Move disk {disk} from {from} to {to}.",
+    hanoiReturn: "{k} disks went from {from} to {to} in {moves} moves.",
+    end: {
+      factorial: "fact({n}) = {value}, with {calls} calls.",
+      fibonacci: "fib({n}) = {value}, with {calls} calls (many repeated).",
+      hanoi: "Done: {value} moves (2^{n} - 1) and {calls} calls.",
+    },
+    predict: { value: "What does {call} return?" },
+    error: { n: "n must be an integer ≥ {min}." },
+    code: {
+      factorial: ["|fact(n):", "base|  if n ≤ 1: return 1", "call|  r = fact(n - 1)", "return|  return n × r"],
+      fibonacci: ["|fib(n):", "base|  if n ≤ 1: return n", "left|  a = fib(n - 1)", "right|  b = fib(n - 2)", "return|  return a + b"],
+      hanoi: [
+        "|h(n, from, to, via):",
+        "base|  if n == 1: move from → to; return",
+        "left|  h(n - 1, from, via, to)",
+        "move|  move from → to",
+        "right|  h(n - 1, via, to, from)",
+        "return|  return",
+      ],
+    },
+  },
+};

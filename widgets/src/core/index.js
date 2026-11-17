@@ -8,6 +8,7 @@ import { VERSION, KIT_MIN } from "./version.js";
 import { MAX_STEPS, STATES, InputError, TooManySteps, random, clone, range } from "./engine.js";
 import * as parse from "./parse.js";
 import { array } from "./svg/array.js";
+import { tree } from "./svg/tree.js";
 import { el, svgEl } from "./dom.js";
 import { strings } from "./i18n.js";
 import { createWidget } from "./widget.js";
@@ -53,7 +54,7 @@ function older(version, minimum) {
     random,
     parse,
     util: { clone, range, el, svgEl },
-    svg: { array },
+    svg: { array, tree },
     Widget: createWidget(UC),
     /** UC.define plus the catalogue rule for names (16.1). */
     register(name, Class) {

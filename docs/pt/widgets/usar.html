@@ -86,6 +86,11 @@
           <li><a href="index.html">Catálogo</a></li>
           <li><a href="usar.html" aria-current="page">Usar widgets</a></li>
           <li><a href="uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -174,6 +179,7 @@
             </thead>
             <tbody>
               <tr><td><code>algorithm</code></td><td>um nome da lista do widget</td><td>o primeiro</td><td>Que algoritmo da família corre.</td></tr>
+              <tr><td><code>algorithms</code></td><td>nomes da lista do widget, separados por espaços</td><td>ausente</td><td>Botões por cima do desenho para o estudante trocar de algoritmo (por exemplo os quatro percursos de <code>&lt;uc-widget-bst&gt;</code>). Começa em <code>algorithm</code>.</td></tr>
               <tr><td><code>speed</code></td><td>milissegundos, 200 a 5000</td><td><code>900</code></td><td>Tempo entre passos ao reproduzir.</td></tr>
               <tr><td><code>controls</code></td><td><code>full</code>, <code>compact</code></td><td><code>full</code></td><td><code>compact</code>: só Recuar, Passo e o contador.</td></tr>
               <tr><td><code>editable</code></td><td>booleano</td><td>ausente</td><td>O estudante muda os dados e corre outra vez.</td></tr>
@@ -215,10 +221,11 @@
 }&lt;/code&gt;&lt;/pre&gt;
   &lt;p&gt;…texto sem JavaScript…&lt;/p&gt;
 &lt;/uc-widget-sort&gt;</code></pre></uc-code>
+        <p>Nos widgets de operações (<code>&lt;uc-widget-bst&gt;</code>, <code>&lt;uc-widget-list&gt;</code>, <code>&lt;uc-widget-stack-queue&gt;</code>) o pseudocódigo muda com a operação em curso; <code>data-algorithm</code> recebe então o nome do bloco que a página do widget indica (<code>data-algorithm="insert"</code>, <code>data-algorithm="queue-array"</code>). Uma linha pode ter vários identificadores (<code>data-line="left right"</code>).</p>
         <p>Em páginas bilingues, um <code>&lt;pre&gt;</code> com <code>lang="pt"</code> e outro com <code>lang="en"</code>; a legenda bilingue escreve-se num <code>&lt;template data-caption&gt;</code> com um <code>&lt;span lang&gt;</code> por língua.</p>
         <h2 id="previsoes">Previsões e edição</h2>
         <p>Com <code>predict</code>, ao avançar para um passo com pergunta (vai trocar? qual é escrito primeiro?), o desenho fica parado e aparecem as opções. A resposta mostra "Certo." ou "Ainda não:" com a explicação, e a linha "Previsões certas: 3 de 4" conta as respostas. Nada fica guardado nem é enviado.</p>
-        <p>Com <code>editable</code>, por baixo do leitor aparece um campo com os dados, "Correr" e "Repor". Dados inválidos deixam a execução anterior e mostram o erro junto ao campo.</p>
+        <p>Com <code>editable</code>, por baixo do leitor aparece um campo com os dados (nos widgets de operações, as operações; na pesquisa, os valores e o alvo depois de <code>:</code>), "Correr" e "Repor". Dados inválidos deixam a execução anterior e mostram o erro junto ao campo.</p>
         <h2 id="versoes">Versões e uso offline</h2>
         <p>A biblioteca tem versões próprias, independentes do kit. <code>widgets/v1/</code> recebe só mudanças compatíveis (widgets, atributos e textos novos); quando sair a 1.0.0, <code>widgets/v1.0.0/</code> fica congelada para quem quiser fixar a versão. Para usar sem rede, copia-se a pasta <code>widgets/v1/</code> inteira para junto do site e usa-se um caminho relativo: os ficheiros encontram-se uns aos outros na mesma pasta, também a partir de <code>file://</code>.</p>
         <h2 id="eventos">Eventos e métodos</h2>
