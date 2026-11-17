@@ -12,7 +12,7 @@ A moldura de cada página e o título do curso.
 
 - [**`<uc-page>`**: Cabeçalho, navegação entre páginas, rodapé e seletor de língua, tudo a partir do course.js.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md)
 - [**`<uc-hero>`**: Código, título e descrição do curso no topo da página inicial.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md)
-- [**`<uc-search>`**: Um campo de pesquisa no meio da página, sobre o índice do site (versão 1.2.0).](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
+- [**`<uc-search>`**: Um campo de pesquisa no meio da página, sobre o índice do site.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
 
 ## Datas e avisos
 

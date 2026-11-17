@@ -4,12 +4,14 @@ All notable changes to the kit are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and the kit uses [Semantic Versioning](https://semver.org/).
 
-## Widgets [1.0.0] - not released yet
+## [Unreleased]
 
-The algorithm widget library (`widgets/v1/`) has its own versions; contract
-`docs/plan/widgets-api.md`. Release 1.0.0 is prepared but not cut: it needs
-kit 1.1.0 released first (steps in `docs/deployment.md`, "Widget library
-releases").
+## Widgets [1.0.0] - 2026-11-17
+
+The algorithm widget library (`widgets/v1/`, frozen as `widgets/v1.0.0/`)
+has its own versions; contract `docs/plan/widgets-api.md`. Its first release
+ships together with kit 1.0.0, under the same tag `v1.0.0`, and needs kit
+1.0 or later.
 
 ### Added
 - 18 widgets, all `stable`: sort, search, bst, list, stack-queue, recursion
@@ -79,10 +81,13 @@ releases").
 - The EDados, IP and PC examples use widgets in their lab guides (see the
   kit notes below).
 
-## [Unreleased]
+## [1.0.0] - 2026-11-17
+
+First release of the kit, frozen as `kit/v1.0.0/` (tag `v1.0.0`). It
+collects all the work so far; earlier plans that mentioned 1.1.0 or 1.2.0
+refer to this release.
 
 ### Changed
-- The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
 - Examples: the EDados lab guides 6, 7, 8, 9, 11 and 12, the IP practical
   classes 6 and 9 and the PC weeks 2, 3, 6 and 7 show their algorithms with
   widgets (list, stack and queue, complexity, backtracking, bst, heap,
@@ -126,7 +131,7 @@ releases").
   the same rule as `uc-site.py`, so any section can be linked. After start-up
   the kit scrolls again to the `#hash` target and highlights it for 2 s
   (`.uc-target-flash`). `<uc-guide>` uses the same ids.
-- Search foundations in the kit (search phase S1, v1.2.0): the
+- Search foundations in the kit (search phase S1): the
   `search` field of `course.js` (`UC.course.search`), one `HEAD` per visit at
   idle for the index (`sessionStorage`, 5 s timeout; the index script over
   `file://`), the header button "Pesquisar" with `Ctrl K`, `⌘K` and `/`,
@@ -134,7 +139,7 @@ releases").
   `uc:searchready` event and the new `uc-search.js` (loaded on open, 6 KB
   budget; the dialog comes in phase S4). Sites without `search` make no new
   request. Browser checks in `scripts/check-search.mjs`.
-- The search dialog and `<uc-search>` (search phase S4, v1.2.0):
+- The search dialog and `<uc-search>` (search phase S4):
   `uc-search.js` (5 KB gzipped) now holds the engine (folded prefix
   matching, one typo from 5 letters, section title > page title > text,
   grouped by page, language filter), the modal dialog of the header button
@@ -150,7 +155,7 @@ releases").
   true` in `template/course.js` and in the four examples, each with its
   `search-index.js` (the template's is rewritten by the first run of
   `uc-site.py`); `<uc-search scope="problems/">` on the PC problems page; the
-  PI problem statements are back in its index. `uc-site.py` is `1.2.0` and
+  PI problem statements are back in its index. `uc-site.py` is `1.0.0` and
   warns above 1 MB instead of 500 KB. Teacher guide: index date and console
   warnings (`manter`), search on Cloudflare and optional Apache compression
   (`publicar`), run the script after copying a year (`novo-ano`) or

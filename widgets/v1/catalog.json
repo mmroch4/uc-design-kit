@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0-dev",
-  "kit": ">=1.1",
+  "version": "1.0.0",
+  "kit": ">=1.0",
   "widgets": [
     {
       "name": "uc-widget-avl",
@@ -28,7 +28,7 @@
         "ops"
       ],
       "predict": true,
-      "gzip": 6512
+      "gzip": 6509
     },
     {
       "name": "uc-widget-backtracking",
@@ -63,7 +63,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 6379
+      "gzip": 6375
     },
     {
       "name": "uc-widget-bst",
@@ -97,7 +97,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 5636
+      "gzip": 5633
     },
     {
       "name": "uc-widget-complexity",
@@ -132,7 +132,7 @@
         "points"
       ],
       "predict": true,
-      "gzip": 4906
+      "gzip": 4903
     },
     {
       "name": "uc-widget-dp",
@@ -171,7 +171,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7724
+      "gzip": 7721
     },
     {
       "name": "uc-widget-graph",
@@ -205,7 +205,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7255
+      "gzip": 7252
     },
     {
       "name": "uc-widget-hash",
@@ -239,7 +239,7 @@
         "algorithms"
       ],
       "predict": false,
-      "gzip": 6639
+      "gzip": 6636
     },
     {
       "name": "uc-widget-heap",
@@ -272,7 +272,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 4794
+      "gzip": 4791
     },
     {
       "name": "uc-widget-list",
@@ -301,7 +301,7 @@
         "ops"
       ],
       "predict": true,
-      "gzip": 6112
+      "gzip": 6109
     },
     {
       "name": "uc-widget-mst",
@@ -333,7 +333,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7123
+      "gzip": 7120
     },
     {
       "name": "uc-widget-recursion",
@@ -365,7 +365,7 @@
         "algorithm"
       ],
       "predict": true,
-      "gzip": 3226
+      "gzip": 3223
     },
     {
       "name": "uc-widget-search",
@@ -399,7 +399,7 @@
         "algorithm"
       ],
       "predict": true,
-      "gzip": 3243
+      "gzip": 3240
     },
     {
       "name": "uc-widget-shortest-path",
@@ -432,7 +432,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7053
+      "gzip": 7050
     },
     {
       "name": "uc-widget-sort",
@@ -469,7 +469,7 @@
         "bars"
       ],
       "predict": true,
-      "gzip": 5354
+      "gzip": 5351
     },
     {
       "name": "uc-widget-stack-queue",
@@ -502,7 +502,7 @@
         "capacity"
       ],
       "predict": false,
-      "gzip": 5810
+      "gzip": 5807
     },
     {
       "name": "uc-widget-toposort",
@@ -533,7 +533,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 6825
+      "gzip": 6822
     },
     {
       "name": "uc-widget-trace",
@@ -565,7 +565,7 @@
         "predict"
       ],
       "predict": true,
-      "gzip": 7234
+      "gzip": 7231
     },
     {
       "name": "uc-widget-union-find",
@@ -598,7 +598,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 4647
+      "gzip": 4643
     }
   ]
 }

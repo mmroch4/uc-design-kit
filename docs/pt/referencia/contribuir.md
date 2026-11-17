@@ -80,7 +80,7 @@ Os widgets de algoritmos (`widgets/src/<nome>/`) têm a sua própria lista: algo
 
 ### Lançar uma versão dos widgets
 
-Os widgets (`widgets/v1/`) têm versões próprias e só se lançam depois de uma versão do kit que satisfaça `KIT_MIN` (a 1.0.0 dos widgets precisa do kit 1.1.0).
+Os widgets (`widgets/v1/`) têm versões próprias e só se lançam depois de uma versão do kit que satisfaça `KIT_MIN` (a 1.0.0 dos widgets precisa do kit 1.0.0). A versão 1.0.0 do kit e a dos widgets saíram juntas, com a etiqueta `v1.0.0`.
 
 1. Todos os `meta.json` com `"status": "stable"` (o snapshot recusa-se sem isso). Mudar `VERSION` em `widgets/src/core/version.js` e passar as notas de *Widgets* para `## Widgets [X.Y.Z]` no `CHANGELOG.md`.
 2. `npm run build` e depois `npm run snapshot:widgets`, que copia `widgets/v1/` para `widgets/vX.Y.Z/` e escreve o seu `SHA256SUMS`.

@@ -86,7 +86,8 @@ backwards compatible (see `docs/api.md`, section 9).
 
 The widgets (`widgets/v1/`) have their own versions (`docs/plan/widgets-api.md`
 2.2). A widgets release needs a kit release that satisfies `KIT_MIN` first
-(widgets 1.0.0 needs kit 1.1.0).
+(widgets 1.0.0 needs kit 1.0.0). Kit 1.0.0 and widgets 1.0.0 were released
+together under the tag `v1.0.0`.
 
 1. Every widget's `meta.json` has `"status": "stable"` (the snapshot refuses
    otherwise). Set `VERSION` in `widgets/src/core/version.js` (e.g. `1.0.0`)

@@ -5,7 +5,7 @@ uc-site.py: maintenance script for a course site made with the UC Design Kit.
 
 Run it in the site folder (next to course.js) after every change:
 
-    python3 uc-site.py            check the site (and, from kit 1.2.0, write
+    python3 uc-site.py            check the site (and write
                                   the search index when course.js has search)
     python3 uc-site.py check      check only, write nothing
     python3 uc-site.py index      write the search index only
@@ -30,7 +30,7 @@ from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from urllib.parse import unquote
 
-VERSION = "1.2.0"
+VERSION = "1.0.0"
 SCRIPT_NAME = "uc-site.py"
 DEFAULT_INDEX = "search-index.js"
 
@@ -1235,7 +1235,7 @@ def check_site(site, report, command, fix_permissions=False):
 
 
 # ---------------------------------------------------------------------------
-# Search index (kit 1.2.0; docs/plan/search-api.md sections 4 to 6)
+# Search index (docs/plan/search-api.md sections 4 to 6)
 # ---------------------------------------------------------------------------
 
 INDEX_FORMAT = 1
