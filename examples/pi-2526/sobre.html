@@ -11,9 +11,9 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="about">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
-      <p class="uc-mono uc-muted" style="font-size: var(--uc-font-size-sm)">Ficha da unidade curricular · CC1003</p>
+  <uc-page current="about" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_pt.html">
+    <div class="uc-page-header">
+      <p class="uc-eyebrow">Ficha da unidade curricular · CC1003</p>
       <h1>Sobre a UC</h1>
       <p class="uc-prose uc-lead">Introduzir os conceitos fundamentais de programação imperativa enfatizando a noção de algoritmo e de modularidade, tendo por base a linguagem de programação C. Será dada ênfase à resolução prática de problemas, algoritmos básicos de contagem, pesquisa e ordenação, e à qualidade de escrita de código.</p>
     </div>
@@ -35,53 +35,52 @@
 
     <section class="uc-section" aria-labelledby="programa">
       <h2 id="programa">Programa</h2>
-      <ol class="program">
-        <li><span class="program__n" aria-hidden="true">01</span><div><p>Introdução à linguagem C: contextualização histórica, características da linguagem, vantagens e desvantagens, perigos e cuidados na sua utilização.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">02</span><div><p>Fundamentos da linguagem C: estrutura sintática de programas, diretivas, declarações, expressões, compilação e execução.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">03</span><div><p>Tipos básicos (inteiros, vírgula flutuante, carateres). Controlo de fluxo. Ciclos. Definição de funções. Entrada e saída formatada.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">04</span><div><p>Algoritmos numéricos e semi-numéricos elementares.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">05</span><div><p>Variáveis indexadas. Algoritmos fundamentais: contagem, pesquisa e ordenação. Cadeias de carateres.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">06</span><div><p>Organização de programas: ficheiros de cabeçalho (<em>header files</em>) e bibliotecas padrão.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">07</span><div><p>Deteção e correção de erros. Utilização de um <em>debugger</em> e de asserções.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">08</span><div><p>Introdução ao modelo de memória da linguagem C. Programação com apontadores. Utilização de apontadores para processamento de cadeias e variáveis indexadas.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">09</span><div><p>Recursividade. Resolução de problemas simples usando algoritmos iterativos e recursivos.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">10</span><div><p>Definição de novos tipos de dados (<code>struct</code>, <code>union</code>).</p></div></li>
-        <li><span class="program__n" aria-hidden="true">11</span><div><p>Leitura e escrita de ficheiros.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">12</span><div><p>Estruturas de dados elementares (listas ligadas, árvores).</p></div></li>
+      <ol class="uc-steps">
+        <li>Introdução à linguagem C: contextualização histórica, características da linguagem, vantagens e desvantagens, perigos e cuidados na sua utilização.</li>
+        <li>Fundamentos da linguagem C: estrutura sintática de programas, diretivas, declarações, expressões, compilação e execução.</li>
+        <li>Tipos básicos (inteiros, vírgula flutuante, carateres). Controlo de fluxo. Ciclos. Definição de funções. Entrada e saída formatada.</li>
+        <li>Algoritmos numéricos e semi-numéricos elementares.</li>
+        <li>Variáveis indexadas. Algoritmos fundamentais: contagem, pesquisa e ordenação. Cadeias de carateres.</li>
+        <li>Organização de programas: ficheiros de cabeçalho (<em>header files</em>) e bibliotecas padrão.</li>
+        <li>Deteção e correção de erros. Utilização de um <em>debugger</em> e de asserções.</li>
+        <li>Introdução ao modelo de memória da linguagem C. Programação com apontadores. Utilização de apontadores para processamento de cadeias e variáveis indexadas.</li>
+        <li>Recursividade. Resolução de problemas simples usando algoritmos iterativos e recursivos.</li>
+        <li>Definição de novos tipos de dados (<code>struct</code>, <code>union</code>).</li>
+        <li>Leitura e escrita de ficheiros.</li>
+        <li>Estruturas de dados elementares (listas ligadas, árvores).</li>
       </ol>
     </section>
 
     <section class="uc-section" aria-labelledby="metodos">
       <h2 id="metodos">Métodos de ensino</h2>
       <div class="uc-grid" style="--uc-grid-min: 260px">
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Aulas teóricas</h3>
-          <p class="uc-muted desc">Exposição estruturada dos conceitos fundamentais, suportada por apresentações em slides, com recurso a exemplos ilustrativos de programação e à resolução interativa de exercícios, promovendo a participação ativa dos estudantes.</p>
+          <p class="uc-muted uc-small">Exposição estruturada dos conceitos fundamentais, suportada por apresentações em slides, com recurso a exemplos ilustrativos de programação e à resolução interativa de exercícios, promovendo a participação ativa dos estudantes.</p>
         </div>
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Aulas laboratoriais</h3>
-          <p class="uc-muted desc">Aplicação prática em computador através da resolução de problemas de programação, com utilização de ferramentas de desenvolvimento (editores, debuggers, sistemas de compilação e de testes automáticos) como suporte à deteção e correção de erros, incentivando a autonomia e o pensamento crítico.</p>
+          <p class="uc-muted uc-small">Aplicação prática em computador através da resolução de problemas de programação, com utilização de ferramentas de desenvolvimento (editores, debuggers, sistemas de compilação e de testes automáticos) como suporte à deteção e correção de erros, incentivando a autonomia e o pensamento crítico.</p>
         </div>
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Avaliação e prática contínua</h3>
-          <p class="uc-muted desc">Utilização de sistemas de avaliação automática (por exemplo, o Mooshak), que permitem treino regular, feedback imediato e monitorização contínua da aprendizagem, de forma coerente com uma abordagem pedagógica centrada no desenvolvimento de competências práticas.</p>
+          <p class="uc-muted uc-small">Utilização de sistemas de avaliação automática (por exemplo, o Mooshak), que permitem treino regular, feedback imediato e monitorização contínua da aprendizagem, de forma coerente com uma abordagem pedagógica centrada no desenvolvimento de competências práticas.</p>
         </div>
       </div>
       <p class="uc-prose">As aulas laboratoriais envolvem o uso da linguagem de programação C, a resolução de exercícios propostos para treino de programação e a resolução de exercícios propostos para efeitos de avaliação.</p>
-      <p class="uc-muted desc">Bibliografia e regras de avaliação: <a href="materiais.html#biblio">Materiais</a> · <a href="avaliacao.html">Avaliação</a></p>
+      <p class="uc-muted uc-small">Bibliografia e regras de avaliação: <a href="materiais.html#biblio">Materiais</a> · <a href="avaliacao.html">Avaliação</a></p>
     </section>
 
     <section class="uc-section" aria-labelledby="cursos">
       <h2 id="cursos">Cursos</h2>
       <p class="uc-prose">Programação Imperativa (CC1003) é uma unidade curricular obrigatória do 1.º ano, 2.º semestre, dos seguintes cursos da <a href="https://www.fc.up.pt">Faculdade de Ciências da Universidade do Porto</a>. É também obrigatória para a Formação Complementar (Minor) em Informática.</p>
-      <ul class="tags">
-        <li class="uc-tag">Licenciatura em Ciência de Computadores</li>
-        <li class="uc-tag">Licenciatura em Inteligência Artificial e Ciência de Dados</li>
-        <li class="uc-tag">Formação Complementar (Minor) em Informática</li>
+      <ul class="uc-tags">
+        <li>Licenciatura em Ciência de Computadores</li>
+        <li>Licenciatura em Inteligência Artificial e Ciência de Dados</li>
+        <li>Formação Complementar (Minor) em Informática</li>
       </ul>
     </section>
 
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado da <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_pt.html">ficha da UC no site original</a>.</p>
   </uc-page>
 </body>
 </html>

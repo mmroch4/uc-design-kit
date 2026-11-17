@@ -11,8 +11,8 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="schedule">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+  <uc-page current="schedule" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/horarios.html">
+    <div class="uc-page-header">
       <h1><span lang="pt">Horários e equipa</span><span lang="en">Schedule and team</span></h1>
       <p class="uc-prose" lang="pt">Aulas a partir de 18 de fevereiro de 2026. As teóricas são no edifício FC1 e as práticas no FC6 (DCC).</p>
       <p class="uc-prose" lang="en">Classes start on 18 February 2026. Lectures are in building FC1 and lab classes in FC6 (DCC).</p>
@@ -29,14 +29,12 @@
     <!-- Atendimento a estudantes: editar em course.js (team[].officeHours). -->
     <h2><span lang="pt">Atendimento a estudantes</span><span lang="en">Office hours</span></h2>
     <uc-timetable type="office-hours" heading="none"></uc-timetable>
-    <p class="uc-muted desc" lang="pt">Avisar o docente previamente.</p>
-    <p class="uc-muted desc" lang="en">Please notify the lecturer in advance.</p>
+    <p class="uc-muted uc-small" lang="pt">Avisar o docente previamente.</p>
+    <p class="uc-muted uc-small" lang="en">Please notify the lecturer in advance.</p>
 
     <!-- Equipa docente: editar em course.js (team). -->
     <uc-team view="table"></uc-team>
 
-    <p class="uc-muted uc-small source-note" lang="pt">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/horarios.html">site original</a>.</p>
-    <p class="uc-muted uc-small source-note" lang="en">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/horarios_en.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

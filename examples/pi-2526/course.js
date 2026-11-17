@@ -332,6 +332,11 @@ window.UC_COURSE = {
     },
   ],
 
+  source: {
+    author: { pt: "Fernando Silva e Vanessa Silva (DCC/FCUP)", en: "Fernando Silva and Vanessa Silva (DCC/FCUP)" },
+    url: "https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/",
+  },
+
   footer: "© 2026 Fernando Silva · DCC, Faculdade de Ciências da Universidade do Porto",
   updated: "2026-02-16",
   // Demonstração: congela "hoje" na semana 7, antes da Avaliação Prática 1.

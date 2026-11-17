@@ -11,8 +11,8 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Localização">
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/ajuda.html">
+    <nav class="uc-crumbs" aria-label="Localização">
       <ol><li><a href="../materiais.html">Materiais</a></li><li aria-current="page">Ajuda sobre o Mooshak</li></ol>
     </nav>
     <h1>Ajuda sobre o Mooshak</h1>
@@ -21,27 +21,27 @@
 <ul>
 <li>Enviar uma proposta de solução para um problema (submissão), recebendo uma resposta automatizada.
   </li><li>Ver o enunciado dos problemas
-  </li><li>Fazer perguntas aos professores (no caso de Estruturas de Dados devem fazer as perguntas no Slack)
-  </li><li>Ver todas as submissõs efectuadas, código submetido e resultados detalhados da submissão
+  </li><li>Fazer perguntas aos professores
+  </li><li>Ver todas as submissões efetuadas, código submetido e resultados detalhados da submissão
   </li><li>Ver a classificação de todos os estudantes
   </li><li>Ver uma ajuda sobre o sistema
 </li></ul>
 
 <h2>Como enviar uma proposta de solução?</h2>
 <ul>
-<li>Criar um ficheiro com a extensão <code>.java</code> com o mesmo nome
-  da classe principal (a que contém o <code>main</code> a executar)
+<li>Criar um ficheiro com a extensão <code>.c</code> com o programa
+  completo (incluindo a função <code>main</code>)
   </li><li>Fazer o código para resolver o problema :-)
   </li><li>Usando a interface, escolher o ficheiro com o código
   (<em>Browse</em>) e enviá-lo (<em>Submit</em>)
   </li><li>Deve sempre enviar o código ainda não compilado (o
-  ficheiro <code>.java</code> e não o <code>.class</code>)
+  ficheiro <code>.c</code> e não o executável)
   </li><li>Todos os dados são sempre lidos do <code>stdin</code> e o output do
   programa é sempre para o <code>stdout</code>
 </li></ul>
 
 <h2>O que significam as respostas automáticas dadas pelo Mooshak?</h2>
-<p>Nesta unidade curricular receber como feedback uma tabela contendo os resultados em cada um dos testes feitos ao seu programa, sendo que alguns testes são públicos (ou seja, se falharem ganham acesso ao caso de teste em si, sabendo qual o input e o output esperado).</p>
+<p>Nesta unidade curricular recebe como feedback uma tabela contendo os resultados em cada um dos testes feitos ao seu programa, sendo que alguns testes são públicos (ou seja, se falharem ganham acesso ao caso de teste em si, sabendo qual o input e o output esperado).</p>
 <div class="uc-table"><table>
 <tr>
 <th scope="col">Resposta</th>
@@ -97,11 +97,10 @@
 </tr>
 <tr>
 <td><strong>Invalid Function</strong></td>
-<td>Foi usada uma função do Java não permitida ou outro erro não designado</td>
+<td>Foi usada uma função não permitida ou houve outro erro não designado</td>
 </tr>
 </table></div>
     </div>
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/ajuda.html">site original</a>.</p>
   </uc-page>
 </body>
 </html>

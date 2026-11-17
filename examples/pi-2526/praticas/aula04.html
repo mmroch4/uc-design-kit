@@ -5,41 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 04 · Arrays and Strings · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 4: Arrays and Strings">
+  <link rel="alternate" hreflang="pt" href="aula04_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="4">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula04.html">
+    <uc-guide week="4" week-label prev="aula03.html" next="aula05.html">
     <h1>Practical Class 04 · Arrays and Strings</h1>
-    <p class="uc-small"><a href="aula04_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi006.html">[PI006] Satellite Distance</a> (weight 20%) (main exercise)</li>
-<li><a href="problems/pi007.html">[PI007] Special Shuffle</a> (weight 30%) (extra exercise)</li>
-<li><a href="problems/pi008.html">[PI008] Hiking Day</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi009.html">[PI009] Pascal Line</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi010.html">[PI010] Collection Sorting</a> (weight 20%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula04">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi006.html">Satellite Distance</a> <code>PI006</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi007.html">Special Shuffle</a> <code>PI007</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi008.html">Hiking Day</a> <code>PI008</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi009.html">Pascal Line</a> <code>PI009</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi010.html">Collection Sorting</a> <code>PI010</code> <data value="20">20 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>March 24</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3> Exercise 1) Manipulating Arrays</h3>
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Manipulating Arrays">
 <p>Before starting the exercises, test the following code examples from the theoretical lesson on arrays. Make sure you <strong>compile</strong>, <strong>run</strong> and <strong>understand</strong> what is happening.</p>
 <ul>
 <li><code><a href="../codigo/write_binary.c">write_binary.c</a></code> - simple usage of an array to write binary digits
@@ -49,17 +59,16 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
 <ol>
 <li>The goal os this exercise is to count, in a sequence of read
         integer values (all of them between <math><mo>0</mo></math> and <math><mo>150</mo></math>), the number of values in the ranges <math><mo>0</mo></math> and <math><mo>5</mo></math>, the number of values in the ranges <math><mo>5</mo></math> and <math><mo>10</mo></math>, ..., the number of values in the ranges <math><mo>145</mo></math> and <math><mo>150</mo></math> (<strong>where the lower bound is excluded and the upper bound is included</strong>). Write a program that prints these counts. 
-<br/><details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- use an array of counters <code>c[0], c[1], ..., c[29]</code>, where <code>c[i]</code> counts the values of <code>x</code> such that
 <code>5*i &lt; x &lt;= 5*(i+1)</code>.
       </p></details>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi006.html">[PI006] Satellite Distance</a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi006.html">[PI006] Satellite Distance</a><br/>  
       Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
-<br/><br/><details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- read the two arrays.
 </p><p>- iterate through both at the same time (same index <code>i</code>).
 </p><p>- compute the absolute difference between <code>a[i]</code> and <code>b[i]</code>.
@@ -89,22 +98,20 @@ count = count_biggers(a, 10, 2);    // the function should return 6
 range(a, 5, 3, 2);    // a[] will contain {3, 5, 7, 9, 11}
 </pre>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi008.html">[PI008] Hiking Day</a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi008.html">[PI008] Hiking Day</a><br/>  
       Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
-<br/><br/><details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- read the array.
 </p><p>- calculate <code>|a[i] - a[i-1]|</code> for all <code>i</code> (including the link <code>a[n-1]</code> -&gt; <code>a[0]</code>).
 </p><p>- find the index where this difference is maximum.
 </p><p>- print the array starting from the element after that index, going around circularly. To do this, you can start from index <code>k</code>, and use <code>i % n</code> to "wrap around".
       </p></details>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi009.html">[PI009] Pascal Line</a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi009.html">[PI009] Pascal Line</a><br/>  
       Read the problem statement and try to submit an Accepted solution. <strong>Don’t forget to test it on your computer first!</strong>
-<br/><br/><details name="hint">
-<summary><em>Hints</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hints</summary>
 <p>- Pascal's triangle has a simple property: each element is the sum of the two elements directly above it. 
 </p><p>- Row 1 is just 1. 
 </p><p>- Each subsequent row is built from the previous one.
@@ -161,8 +168,8 @@ By performing a large number of experiments, the relative frequency of duplicate
 The number of students <math><mi>n</mi></math> and the number of experiments should be easily modifiable (for example, using <em>macros</em>).
 </li>
 </ol>
-
-<h3> Exercise 2) Working with Strings</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Working with Strings">
 <p>Now test the following code example from the theoretical lesson on string manipulation. Make sure you <strong>compile</strong>, <strong>run</strong> and <strong>understand</strong> what is happening.</p>
 <ul>
 <li><code><a href="../codigo/reverse_string.c">reverse_string.c</a></code> - simple program that reverses a string
@@ -250,9 +257,10 @@ printf("%s", str);   // should print "BA"
       </li></ul>
 Assume that a string is represented by a character array terminated by the null character (<code><strong>'\0'</strong></code>).
 </li></ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula04.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

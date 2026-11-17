@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI049] Lakes and Bulldozers</li></ol>
-    </nav>
-    <h1>[PI049] Lakes and Bulldozers</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi049.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI049] Lakes and Bulldozers</li></ol>
+      </nav>
+      <h1>Lakes and Bulldozers</h1>
+      <uc-problem code="PI049" judge="mooshak" deadline="aula10" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -104,9 +107,11 @@ There are <strong>3 lakes</strong>: water areas that are not connected to each o
 
 ---
 
-<h3>Example Input 1</h3>
-<pre>
-3 4
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 4
 ...#
 ..#.
 .#.#
@@ -114,15 +119,20 @@ There are <strong>3 lakes</strong>: water areas that are not connected to each o
 R 1
 C 4
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3
 2
 1
 </pre>
-<h2>Example Input 2</h2>
-<pre>
-3 3
+</div>
+</div>
+<h2>Example 2</h2>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3
 ###
 ###
 ###
@@ -131,13 +141,16 @@ R 1
 R 3
 C 1
 </pre>
-<h3>Example Output2</h3>
-<pre>
-0
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0
 1
 2
 1
 </pre>
+</div>
+</div>
 
 </section><section lang="pt">
 
@@ -194,9 +207,11 @@ Existem <strong>3 lagos</strong>: zonas de água que não estão conectadas entr
 . # . #
 </pre>
 <p>Agora dois lagos ficaram conectados, e há <strong>2 lagos</strong>.</p>
-<h3>Example Input 1</h3>
-<pre>
-3 4
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 4
 ...#
 ..#.
 .#.#
@@ -204,15 +219,20 @@ Existem <strong>3 lagos</strong>: zonas de água que não estão conectadas entr
 R 1
 C 4
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3
 2
 1
 </pre>
-<h2>Example Input 2</h2>
-<pre>
-3 3
+</div>
+</div>
+<h2>Example 2</h2>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3
 ###
 ###
 ###
@@ -221,17 +241,19 @@ R 1
 R 3
 C 1
 </pre>
-<h3>Example Output2</h3>
-<pre>
-0
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0
 1
 2
 1
 </pre>
+</div>
+</div>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi049.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

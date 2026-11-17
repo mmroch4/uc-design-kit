@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-recursion.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/recursion.html">
+    <nav class="uc-crumbs" aria-label="Breadcrumb">
       <ol><li><a href="index.html">Código</a></li><li aria-current="page">Recursive function examples</li></ol>
     </nav>
     <h1>Recursive function examples</h1>
@@ -107,6 +108,9 @@ int main() {
 </script></uc-code>
 <h2>Tower of Hanoi</h2>
 <p>Problem of moving N discs from tower A to tower C using B as intermediate.</p>
+<uc-widget-recursion algorithm="hanoi" n="3">
+<p>Moving 3 discs takes 7 moves: the call tree has one call per move.</p>
+</uc-widget-recursion>
 <uc-code collapsible="" data-lang="c"><script type="text/plain">
 /******************************************
  * Problem: Towers of Hanoi
@@ -204,7 +208,6 @@ int main() {
 }
 </script></uc-code>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/recursion.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

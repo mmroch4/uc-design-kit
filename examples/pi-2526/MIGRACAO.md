@@ -69,6 +69,22 @@ passadas a relativas.
 - Programa: o PT tem 12 pontos e o EN 11 (falta "Algoritmos numéricos e
   semi-numéricos elementares"). Ficou como no original, em cada língua.
 
+## Curadoria com o kit (17 nov 2026)
+
+O HTML feito à mão foi trocado pelos componentes e blocos do kit:
+
+- **Nota de origem**: a frase no fim das 112 páginas e as linhas "Copyright © DCC" deram lugar a `source` no `course.js` e a `<uc-page source="…">` (o URL de cada página no site original), mostrados no rodapé.
+- **Migalhas e cabeçalhos**: `nav.uc-crumbs`, `div.uc-page-header` e `p.uc-eyebrow`, sem `style=`.
+- **Línguas**: os links "English version" / "Versão em português" passaram a `<link rel="alternate" hreflang>` no `<head>`; o botão de língua abre o outro ficheiro (guiões e os enunciados PI011, PI013, PI014).
+- **Guiões**: um `<uc-exercise>` por "Exercício N)", dicas em `details.uc-hint`, a lista de submissão em `<uc-problems track>` com o prazo do `course.js` (`data-deadline="aulaNN"`), o parágrafo sobre ajuda e LLMs num `uc-callout`, o logótipo do Mooshak como etiqueta, e `<uc-guide week-label prev next>` (semana por cima do título, ligações para os guiões vizinhos).
+- **Enunciados**: `<uc-problem code judge deadline track>` por baixo do título (selo do Mooshak, prazo, Submeter, Resolvido partilhado com as listas) e os exemplos de entrada e saída em `uc-samples` com `pre data-copy`. As tabelas de chamadas de funções (PI053–057, PI070–072) ficaram tabelas.
+- **Semanas**: os sumários deixaram de estar repetidos em cada semana; ficou uma ligação para `sumarios.html#aula-N`.
+- **Testes práticos**: sem a data, os turnos e a duração repetidos (já estão no `<uc-assessment-info>`); informações num `dl.uc-facts`; problemas de treino em `<uc-problems track>`.
+- **Código**: `codigo/index.html` em `<uc-materials>`; widgets nas páginas de ordenação (`uc-widget-sort`), recursão (`uc-widget-recursion`, Hanói), lista ligada (`uc-widget-list`), pilha e filas (`uc-widget-stack-queue`).
+- **Sobre, materiais, avaliação**: `ol.uc-steps`, `ul.uc-tags`, livros em `uc-card` com `uc-tag`, cartões de progresso em `uc-links--grid`.
+- **theme.css**: de 87 linhas para uma regra; as outras já não eram usadas.
+- **Erros do original corrigidos**: "weigth", "Ouput", "Exercício" nos guiões em inglês, gralhas em PT (genuíno, problema, valor, produzindo…), a página de ajuda do Mooshak que falava de Java e de Estruturas de Dados. Ficheiros sem uso apagados (mooshak.gif, en.png, pt.png, duas imagens em `images/`). `contacts.c` e `thanoi.c` não existiam no original e saíram da lista de código.
+
 ## A confirmar com os docentes
 
 - As datas das interrupções e as horas das avaliações práticas (ver acima).

@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI008] Hiking Day</li></ol>
-    </nav>
-    <h1>[PI008] Hiking Day</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi008.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI008] Hiking Day</li></ol>
+      </nav>
+      <h1>Hiking Day</h1>
+      <uc-problem code="PI008" judge="mooshak" deadline="aula04" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi008.png"/>
@@ -85,19 +88,19 @@ Print one line with <code>n</code> numbers corresponding to the hike with minima
 <h2><a id="SECTION00022000000000000000">
 Example 1</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-<pre>
-4
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">4
 1 10 5 4
 </pre>
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-10 5 4 1
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">10 5 4 1
 </pre>
+</div>
+</div>
 <h3>
 Explanation
 </h3>
@@ -128,22 +131,21 @@ Threfore, the hike with minimum cost is <code>10 5 4 1</code>.
 </p><h2><a id="SECTION00023000000000000000">
 Example 2</a>
 </h2>
-<h3><a id="SECTION00023100000000000000">
-Input</a>
-</h3>
-<pre>
-5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 352 830 867 745 830
 </pre>
-<h3><a id="SECTION00023200000000000000">
-Output</a>
-</h3>
-<pre>
-352 830 867 745 830
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">352 830 867 745 830
 </pre>
+</div>
+</div>
 <br/>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi008.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

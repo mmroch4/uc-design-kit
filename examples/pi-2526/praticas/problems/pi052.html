@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI052] Reverse Polish Notation</li></ol>
-    </nav>
-    <h1>[PI052] Reverse Polish Notation</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi052.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI052] Reverse Polish Notation</li></ol>
+      </nav>
+      <h1>Reverse Polish Notation</h1>
+      <uc-problem code="PI052" judge="mooshak" deadline="aula10" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -87,31 +90,28 @@ which became very popular due to its ease of implementation using stacks, is kno
 <li><code><strong>Expressao Incorreta</strong> (<em>Incorrect Expression</em></code>, if the expression is malformed (e.g., stack underflow, leftover items, or division by zero).</li>
 </ul>
 <h2>Exemplo de input/output</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input</th>
-<th scope="col">Output</th>
-</tr>
-<tr>
-<td>
-<pre>6
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">6
 1 1 +
 3 4 5 + *
 3 4 5 * +
 1 +
 1 1 1 +
 2 3 8 2 / - 1 + *</pre>
-</td>
-<td>
-<pre>2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2
 27
 23
 Expressao Incorreta
 Expressao Incorreta
 0<pre>
-	   </pre></pre></td>
-</tr>
-</table></div>
+	   </pre>
+</div>
+</div>
 
 </section><section lang="pt">
 
@@ -186,35 +186,31 @@ inteiros, e que só aparecem os quatro tipos básicos de operações atrás cita
 ou <code><strong>Expressao Incorreta</strong></code>, caso contrário.
 
 </p><h2>Exemplo de input/output</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input</th>
-<th scope="col">Output</th>
-</tr>
-<tr>
-<td>
-<pre>6
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">6
 1 1 +
 3 4 5 + *
 3 4 5 * +
 1 +
 1 1 1 +
 2 3 8 2 / - 1 + *</pre>
-</td>
-<td>
-<pre>2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2
 27
 23
 Expressao Incorreta
 Expressao Incorreta
 0<pre>
-	   </pre></pre></td>
-</tr>
-</table></div>
+	   </pre>
+</div>
+</div>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi052.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

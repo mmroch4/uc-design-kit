@@ -5,42 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 09 · Recursion, Sorting and Arrays · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 9: Recursion, Sorting and Arrays">
+  <link rel="alternate" hreflang="pt" href="aula09_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="9">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09.html">
+    <uc-guide week="9" week-label prev="aula08.html" next="aula10.html">
     <h1>Practical Class 09 · Recursion, Sorting and Arrays</h1>
-    <p class="uc-small"><a href="aula09_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi043.html">[PI043] Eval</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi044.html">[PI044] Beyblade Arena</a> (weight 20%) (extra exercise)</li>
-<li><a href="problems/pi045.html">[PI045] Connect Four in Two</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi046.html">[PI046] Largest Microbe Colony</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi047.html">[PI047] Pim, Pam, Pum!</a> (weight 20%) (extra exercise)</li>
-<li><a href="problems/pi048.html">[PI048] Between Brackets</a> (weight 20%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula09">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi043.html">Eval</a> <code>PI043</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi044.html">Beyblade Arena</a> <code>PI044</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi045.html">Connect Four in Two</a> <code>PI045</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi046.html">Largest Microbe Colony</a> <code>PI046</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi047.html">Pim, Pam, Pum!</a> <code>PI047</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi048.html">Between Brackets</a> <code>PI048</code> <data value="20">20 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>May 23</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3>Exercise 1) Recursion and Sorting</h3>
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Recursion and Sorting">
 <ol>
 <li>Consider the following recursive function:<br/>
 <uc-code collapsible="" data-lang="c"><script type="text/plain">
@@ -66,19 +76,15 @@ Start by manually tracing the execution of the function for the following values
 </pre>
 </li>
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi045.html">[PI045] Connect Four in Two</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi045.html">[PI045] Connect Four in Two</a><br/> 
 
   Given a <em>Connect Four</em> board, determine whether the first player can win immediately or force a win on their second move — that is, reach a position where, regardless of what the second player does, the first player wins on the next turn.
 
   <br/>
   Read the problem statement carefully and try to submit an Accepted solution.
 
-  <br/>
-<details name="hint">
-<summary><em>Hint - Think recursively with backtracking</em></summary>
+  <details class="uc-hint" name="hint">
+<summary>Hint - Think recursively with backtracking</summary>
 <p>- The problem has a natural game-tree structure: the first player chooses a column, the second responds, and then the first plays again. You can explore this tree recursively, trying all possible moves and checking whether there exists a sequence in which the first player wins.</p>
 <p>- The maximum depth is 3 (<em>move A, move B, move A</em>), so the tree is small.</p>
 <p>- To explore the game tree without copying the entire board at each move, use backtracking. This allows you to try all possibilities and revert the board to its original state after each attempt.</p>
@@ -107,10 +113,7 @@ Re-write the function <br/>
 from the theoretical lecture to implement this modification in the <em>Quicksort</em> program.
     </li>
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi046.html">[PI046] Largest Microbe Colony</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi046.html">[PI046] Largest Microbe Colony</a><br/> 
 
   Given a 2D grid representing a Petri dish, where <code><strong>#</strong></code> is a microbe and <code><strong>.</strong></code> is an empty cell, determine the size of the largest microbe colony. <br/>
   A colony is a group of <code><strong>#</strong></code> cells connected horizontally, vertically, or diagonally.
@@ -162,22 +165,18 @@ Input:  products = {{pasta, 3.2, 500}, {peanuts, 5.4, 700}, {cookies, 4.2, 600},
 Output: res = {{pasta, 3.2, 500}, {cookies, 4.2, 600}, {milka, 5.4, 600}}
 </script></uc-code>
 </li></ol>
-
-<h3>Exercise 2) Manipulation of Arrays</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Manipulation of Arrays">
 <ol>
 <li>
-<a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi043.html">[PI043] Eval</a><br/> 
+<span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi043.html">[PI043] Eval</a><br/> 
 
   Given an arithmetic expression with integers, additions (<code><strong>+</strong></code>) and multiplications (<code><strong>*</strong></code>), compute its result respecting operator precedence: multiplications are evaluated before additions.
 
   <br/>
   Read the problem statement carefully and try to submit an Accepted solution. <strong>Don't forget to test it first on your computer!</strong>
-<br/>
-<details name="hint">
-<summary><em>Hint - Do not evaluate from left to right</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint - Do not evaluate from left to right</summary>
 <p>- If you simply evaluate from left to right, <code>5 + 2 * 3</code> would give <code>(5 + 2) * 3 = 21</code> instead of <code>5 + (2 * 3) = 11</code>. You must ensure that all multiplications are performed before additions!</p>
 <p>- A natural strategy is to do it in two steps: first multiply, then add. That is:</p>
 <ol>
@@ -188,8 +187,8 @@ Output: res = {{pasta, 3.2, 500}, {cookies, 4.2, 600}, {milka, 5.4, 600}}
 <p>- <em><strong>Note:</strong></em> Don't forget any remaining elements or special cases (empty arrays)!</p>
 </details>
 
-<details name="hint">
-<summary><em>Hint #2</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint #2</summary>
 <p>- With <code>n</code> numbers, the expression has <code>2n - 1</code> tokens in total (numbers and operators alternating). You can read everything into an array, storing the numbers as they are and the operators as values indicating <code>+</code> or <code>*</code> (for example, <code>0</code> for addition and <code>1</code> for multiplication).</p>
 <p>- To build the terms, you can traverse the token array. Keep an accumulator for the current term (start with the first number). Each time you encounter an operator:</p>
 <ol>
@@ -478,9 +477,10 @@ int main() {
 </script></uc-code>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

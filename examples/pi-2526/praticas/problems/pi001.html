@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI001] The Even Collector&#x27;s Quest</li></ol>
-    </nav>
-    <h1>[PI001] The Even Collector&#x27;s Quest</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi001.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI001] The Even Collector&#x27;s Quest</li></ol>
+      </nav>
+      <h1>The Even Collector&#x27;s Quest</h1>
+      <uc-problem code="PI001" judge="mooshak" deadline="aula03" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p><img alt="" class="uc-content__float" loading="lazy" src="pi001.png"/> In a distant kingdom, the wise mathematician Ada is on a quest to find patterns in numbers. She has discovered that even numbers hold a special power, and she needs your help to compute their total magic.</p>
 <p>Given a number <code>n</code>, Ada wants to find the sum of all even numbers between <code>1</code> and <code>n</code>, inclusive. Your task is to write a program that helps Ada quickly determine this sum so she can continue her mathematical explorations.</p>
@@ -26,32 +29,27 @@
 between <code>1</code> and <code>n</code> (inclusive).
 </p>
 <h2>Input/Output Examples</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 1</th>
-<th scope="col">Output 1</th>
-</tr>
-<tr>
-<td>
-<pre>20</pre>
-</td>
-<td><pre>110</pre></td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 2</th>
-<th scope="col">Output 2</th>
-</tr>
-<tr>
-<td>
-<pre>5</pre>
-</td>
-<td><pre>6</pre></td>
-</tr>
-</table></div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 1</p>
+<pre data-copy="Input 1">20</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 1</p>
+<pre data-copy="Output 1">110</pre>
+</div>
+</div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 2</p>
+<pre data-copy="Input 2">5</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 2</p>
+<pre data-copy="Output 2">6</pre>
+</div>
+</div>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi001.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

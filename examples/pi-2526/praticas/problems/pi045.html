@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI045] Connect Four in Two</li></ol>
-    </nav>
-    <h1>[PI045] Connect Four in Two</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi045.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI045] Connect Four in Two</li></ol>
+      </nav>
+      <h1>Connect Four in Two</h1>
+      <uc-problem code="PI045" judge="mooshak" deadline="aula09" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -47,9 +50,11 @@ representing the Connect Four board configuration. The bottom row of the board i
 </ul>
 <h2>Output</h2>
 <p>For each test case, print a single line containing either <code>Yes</code> or <code>No</code>, indicating whether the first player can force a win in at most two moves.</p>
-<h3>Example Input 1</h3>
-<pre>
-2
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 .......
 .......
 .......
@@ -63,11 +68,14 @@ BA..A..
 BAA.B..
 BBB.AA.
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-Yes
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Yes
 No
 </pre>
+</div>
+</div>
 <h3>Explanation</h3>
 <p>In the first testcase, the first player can win by putting a piece in the fourth column.
 No matter what the second player does, they can't block the first and the last column at the
@@ -105,9 +113,11 @@ fourth column, blocking any chances of the first player winning in the next move
 </ul>
 <h2>Output</h2>
 <p>Para cada caso de teste, imprima uma linha contendo <code>Yes</code> ou <code>No</code>, indicando se o primeiro jogador pode forçar a vitória em no máximo duas jogadas.</p>
-<h3>Example Input 1</h3>
-<pre>
-2
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 .......
 .......
 .......
@@ -121,11 +131,14 @@ BA..A..
 BAA.B..
 BBB.AA.
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-Yes
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Yes
 No
 </pre>
+</div>
+</div>
 <h3>Explicação</h3>
 <p>No primeiro caso de teste, o primeiro jogador pode vencer colocando uma peça na quarta coluna.
 Independentemente do que o segundo jogador faça, ele não conseguirá bloquear a primeira e a última coluna ao mesmo tempo, o que significa que o primeiro jogador pode vencer em duas jogadas.</p>
@@ -133,7 +146,6 @@ Independentemente do que o segundo jogador faça, ele não conseguirá bloquear 
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi045.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

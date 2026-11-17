@@ -5,41 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 03 · Mooshak, Characters and Functions · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 3: Mooshak, Characters and Functions">
+  <link rel="alternate" hreflang="pt" href="aula03_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="3">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula03.html">
+    <uc-guide week="3" week-label prev="aula02.html" next="aula04.html">
     <h1>Practical Class 03 · Mooshak, Characters and Functions</h1>
-    <p class="uc-small"><a href="aula03_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi001.html">[PI001] The Even Collector's Quest</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi002.html">[PI002] The Chessboard Challenge</a> (weight 20%) (extra exercise)</li>
-<li><a href="problems/pi003.html">[PI003] The Slanted Fortress</a> (weight 30%) (main exercise)</li>
-<li><a href="problems/pi004.html">[PI004] The Triangular Code of the Guardians</a> (weight 40%) (main exercise)</li>
-<li><a href="problems/pi005.html">[PI005] Triangle Validator</a> (weight 20%) (extra exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula03">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi001.html">The Even Collector's Quest</a> <code>PI001</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi002.html">The Chessboard Challenge</a> <code>PI002</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi003.html">The Slanted Fortress</a> <code>PI003</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi004.html">The Triangular Code of the Guardians</a> <code>PI004</code> <data value="40">40 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi005.html">Triangle Validator</a> <code>PI005</code> <data value="20">20 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>March 17</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3>Exercise 1) Processing Characters</h3>
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Processing Characters">
 <ol>
 <li>Write a program that repeatedly reads characters until it encounters a newline (<code><strong>'/n'</strong></code>) and counts the total number of lowercase letters (<em>note:</em> consider only ASCII letters, without accents).<br/>
 	Example:
@@ -83,8 +93,8 @@ To achieve 100%, it will always be sufficient to solve the main exercises.</p>
             - Punctuation: 5
   </pre>
 </li></ol>
-
-<h3>Exercise 2) Creating Functions</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Creating Functions">
 <ol>
 <li>Rewrite the program that solves the previous exercise (which counts the frequency of characters) so that the program uses the following auxiliary functions, which you must also implement:
 <ul>
@@ -148,8 +158,9 @@ Note that, is this form, we do not use exponentiation, and therefore the program
     <em>Output:</em> 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47
   </pre>
 </li></ol>
-
-<h3>Exercise 3) ANSI Escape Codes</h3> <p>ANSI escape codes are a standard to control several options for the output of terminal emulators like cursor location, color, font styling, etc.
+</uc-exercise>
+<uc-exercise id="exercicio-3" title="ANSI Escape Codes">
+ <p>ANSI escape codes are a standard to control several options for the output of terminal emulators like cursor location, color, font styling, etc.
 
     </p><p>When writing the escape code, instead of printing it as text, the terminal interprets it as a control sequence and changes according to the instructions given.
 
@@ -212,9 +223,10 @@ int main() {
 <p>The final result of your program should be similar to the one illustrated below:
         </p><p><img alt="" loading="lazy" src="images/pi-ball.gif"/><br/>
 </p></li></ul>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula03.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

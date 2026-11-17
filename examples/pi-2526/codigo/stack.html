@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-stack-queue.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/stack.html">
+    <nav class="uc-crumbs" aria-label="Breadcrumb">
       <ol><li><a href="index.html">Código</a></li><li aria-current="page">Stack (array based)</li></ol>
     </nav>
     <h1>Stack (array based)</h1>
@@ -20,6 +21,10 @@
 <p>This implementation is for an array based stack. It needs to be adjusted to deal with larger number of
 nodes. <code>NodeInfo</code> depends on the type of values we store in the
 queue, thus adjust accordingly.</p>
+<h2>See it run</h2>
+<uc-widget-stack-queue algorithm="stack" impl="array" values="3 8" ops="push 5; pop; peek; pop; pop">
+<p>A stack with 3 and 8: push 5, then pop, peek and pop until it is empty.</p>
+</uc-widget-stack-queue>
 <h2>stack.h</h2>
 <uc-code collapsible="" data-lang="c" filename="stack.h"><script type="text/plain">
 // -------------------------------------------------
@@ -101,7 +106,6 @@ NodeInfo top(Stack *s) {
 }
 </script></uc-code>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/stack.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

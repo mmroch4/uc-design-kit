@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI047] Duck, Duck, Out!</li></ol>
-    </nav>
-    <h1>[PI047] Duck, Duck, Out!</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi047.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI047] Duck, Duck, Out!</li></ol>
+      </nav>
+      <h1>Duck, Duck, Out!</h1>
+      <uc-problem code="PI047" judge="mooshak" deadline="aula09" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -48,27 +51,22 @@ Each word in the rhyme is separated by a space. Words contain only letters (uppe
 <li><code>Charles survived (poor NAME!)</code> – if Charles survives, and <code>NAME</code> is the player who lost</li>
 </ul>
 <h2>Example Input/Output</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input</th>
-<th scope="col">Output</th>
-</tr>
-<tr>
-<td>
-<pre>2
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 Duck duck boom every word strikes doom to the pig and to the hen you're the one left out again
 3 Paul Rachel Charles
 Duck duck out you go
 4 Charles Fred Peter Edward
 </pre>
-</td>
-<td>
-<pre>
-Charles survived (poor Paul!)
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Charles survived (poor Paul!)
 Charles did not survive</pre>
-</td>
-</tr>
-</table></div>
+</div>
+</div>
 <p><strong>suggestion:</strong>You can start with this code.</p>
 <pre>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -153,26 +151,22 @@ Para cada caso, vem uma linha de output:
 </li><li><code>"O Carlos livrou-se (coitado do NOME!)"</code>, onde <code><strong>NOME</strong></code> indica a pessoa que perde o jogo.
 </li></ul>
 <h2>Exemplo de input/output</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input</th>
-<th scope="col">Output</th>
-</tr>
-<tr>
-<td>
-<pre>2
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 Pim Pam Pum cada bola mata um pra galinha e para o peru quem se livra es mesmo tu
 3 Paulo Raquel Carlos
 Pim Pam Pum quem se livra es tu
 4 Fernando Eduardo Pedro Carlos
 </pre>
-</td>
-<td>
-<pre>O Carlos nao se livrou
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">O Carlos nao se livrou
 O Carlos livrou-se (coitado do Pedro!)</pre>
-</td>
-</tr>
-</table></div>
+</div>
+</div>
 <p><strong>sugestão:</strong>Pode começar com o código seguinte.</p>
 <pre>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -210,7 +204,6 @@ int main() {
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi047.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI055] Lake Reflection</li></ol>
-    </nav>
-    <h1>[PI055] Lake Reflection</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi055.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI055] Lake Reflection</li></ol>
+      </nav>
+      <h1>Lake Reflection</h1>
+      <uc-problem code="PI055" judge="mooshak" deadline="aula11" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -44,28 +47,38 @@ character is either <code>#</code> (representing land) or <code>.</code>
 (representing water). </p>
 <h2>Output</h2>
 <p> Print a single integer — the number of distinct lakes on the map. </p>
-<h3>Example Input 1</h3>
-<pre>
-3 4
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 4
 ...#
 ..#.
 .#.#
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-3 3
+</div>
+</div>
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3
 ###
 ###
 ###
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-0
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0
 </pre>
+</div>
+</div>
 
 </section><section lang="pt">
 
@@ -102,32 +115,41 @@ As <code>n</code> linhas seguintes contêm cada uma <code>m</code> caracteres. C
 <p>
 Imprime um único inteiro — o número de lagos distintos no mapa.
 </p>
-<h3>Example Input 1</h3>
-<pre>
-3 4
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 4
 ...#
 ..#.
 .#.#
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-3 3
+</div>
+</div>
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3
 ###
 ###
 ###
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-0
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0
 </pre>
+</div>
+</div>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi055.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

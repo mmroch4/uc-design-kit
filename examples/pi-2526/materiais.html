@@ -11,18 +11,16 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos.html">
+    <div class="uc-page-header">
       <h1><span lang="pt">Materiais</span><span lang="en">Materials</span></h1>
       <p class="uc-prose" lang="pt">Slides das teóricas, guiões, problemas e código das aulas, documentação de C, Mooshak, bibliografia e sítios para praticar.</p>
       <p class="uc-prose" lang="en">Lecture slides, lab guides, problems and code, C documentation, Mooshak, bibliography and places to practise.</p>
     </div>
 
     <section class="uc-section" aria-labelledby="slides">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--uc-space-3); flex-wrap: wrap">
-        <h2 id="slides"><span lang="pt">Slides das teóricas</span><span lang="en">Lecture slides</span></h2>
-        <span class="uc-muted uc-small"><span lang="pt">PDF em inglês</span><span lang="en">PDF in English</span></span>
-      </div>
+      <h2 id="slides"><span lang="pt">Slides das teóricas</span><span lang="en">Lecture slides</span></h2>
+      <p class="uc-muted uc-small"><span lang="pt">PDF em inglês.</span><span lang="en">PDF in English.</span></p>
       <!-- Slides: um <li> por capítulo; a data é a da última atualização (<time>).
            Os PDF estão em apontamentos/. O kit junta o tipo, "Atualizado a" e "Novo". -->
       <uc-materials heading="none">
@@ -145,31 +143,29 @@
     <section class="uc-section" aria-labelledby="biblio">
       <h2 id="biblio"><span lang="pt">Bibliografia</span><span lang="en">Bibliography</span></h2>
       <div class="uc-grid" style="--uc-grid-min: 280px">
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main"><span lang="pt">Principal</span><span lang="en">Primary</span></span>
-          <span class="book__title">C Programming: A Modern Approach</span>
-          <span class="uc-muted uc-small">K. N. King · <span lang="pt">2.ª ed.</span><span lang="en">2nd ed.</span>, 2008</span>
+        <div class="uc-card">
+          <p><span class="uc-tag uc-tag--accent"><span lang="pt">Principal</span><span lang="en">Primary</span></span></p>
+          <h3>C Programming: A Modern Approach</h3>
+          <p class="uc-muted uc-small">K. N. King · <span lang="pt">2.ª ed.</span><span lang="en">2nd ed.</span>, 2008</p>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind book__kind--main"><span lang="pt">Principal</span><span lang="en">Primary</span></span>
-          <span class="book__title">The C Programming Language</span>
-          <span class="uc-muted uc-small">Brian Kernighan <span lang="pt">e</span><span lang="en">and</span> Dennis Ritchie · <span lang="pt">2.ª ed.</span><span lang="en">2nd ed.</span>, Pearson, 1988</span>
+        <div class="uc-card">
+          <p><span class="uc-tag uc-tag--accent"><span lang="pt">Principal</span><span lang="en">Primary</span></span></p>
+          <h3>The C Programming Language</h3>
+          <p class="uc-muted uc-small">Brian Kernighan <span lang="pt">e</span><span lang="en">and</span> Dennis Ritchie · <span lang="pt">2.ª ed.</span><span lang="en">2nd ed.</span>, Pearson, 1988</p>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind"><span lang="pt">Recomendado</span><span lang="en">Recommended</span></span>
-          <span class="book__title">Introduction to Algorithms</span>
-          <span class="uc-muted uc-small">Cormen, Leiserson, Rivest <span lang="pt">e</span><span lang="en">and</span> Stein · <span lang="pt">4.ª ed.</span><span lang="en">4th ed.</span>, MIT Press, 2022</span>
+        <div class="uc-card">
+          <p><span class="uc-tag uc-tag--muted"><span lang="pt">Recomendado</span><span lang="en">Recommended</span></span></p>
+          <h3>Introduction to Algorithms</h3>
+          <p class="uc-muted uc-small">Cormen, Leiserson, Rivest <span lang="pt">e</span><span lang="en">and</span> Stein · <span lang="pt">4.ª ed.</span><span lang="en">4th ed.</span>, MIT Press, 2022</p>
         </div>
-        <div class="uc-card book">
-          <span class="book__kind"><span lang="pt">Recomendado</span><span lang="en">Recommended</span></span>
-          <span class="book__title">Algorithms</span>
-          <span class="uc-muted uc-small">Robert Sedgewick <span lang="pt">e</span><span lang="en">and</span> Kevin Wayne · <span lang="pt">4.ª ed.</span><span lang="en">4th ed.</span>, Addison-Wesley, 2011</span>
+        <div class="uc-card">
+          <p><span class="uc-tag uc-tag--muted"><span lang="pt">Recomendado</span><span lang="en">Recommended</span></span></p>
+          <h3>Algorithms</h3>
+          <p class="uc-muted uc-small">Robert Sedgewick <span lang="pt">e</span><span lang="en">and</span> Kevin Wayne · <span lang="pt">4.ª ed.</span><span lang="en">4th ed.</span>, Addison-Wesley, 2011</p>
         </div>
       </div>
     </section>
 
-    <p class="uc-muted uc-small source-note" lang="pt">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos.html">site original</a>.</p>
-    <p class="uc-muted uc-small source-note" lang="en">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/slides.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

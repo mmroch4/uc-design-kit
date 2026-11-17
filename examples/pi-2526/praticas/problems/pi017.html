@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI017] Sed</li></ol>
-    </nav>
-    <h1>[PI017] Sed</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi017.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI017] Sed</li></ol>
+      </nav>
+      <h1>Sed</h1>
+      <uc-problem code="PI017" judge="mooshak" deadline="aula06" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi017.png"/>
@@ -48,17 +51,16 @@ Input
 </li><li> The following <code>2C</code> lines contain the pairs of strings <code>s</code> and <code>t</code>, one pair every two lines. String <code>t</code> may be empty.
 </li></ul>
 <h2>
-Ouput
+Output
 </h2>
 <p>Print the final version of the string after applying all the changes.</p>
 <h2><a id="SECTION00022000000000000000">
 Example 1</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-<pre>
-hello world
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">hello world
 4
 ll
 o
@@ -69,17 +71,17 @@ o w
 rld
 dbye
 </pre>
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-goodbye
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">goodbye
 </pre>
+</div>
+</div>
 <br/>
 
 <br/>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi017.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

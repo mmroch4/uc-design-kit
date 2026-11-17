@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI023] Racing</li></ol>
-    </nav>
-    <h1>[PI023] Racing</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi023.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI023] Racing</li></ol>
+      </nav>
+      <h1>Racing</h1>
+      <uc-problem code="PI023" judge="mooshak" deadline="aula06" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi023.png"/>
@@ -48,7 +51,7 @@ Input
 1,000,000,000), representing the skill level of each driver.
 </li></ul>
 <h2>
-Ouput
+Output
 </h2>
 
 Print one line with <code>m</code> integers separated by spaces.
@@ -59,21 +62,21 @@ If a driver can’t drive any car, print 0 instead.
 <h2><a id="SECTION00022000000000000000">
 Example 1</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-<pre>
-3
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3
 3 5 6
 4
 1 4 5 7
 </pre>
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-0 3 5 6
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0 3 5 6
 </pre>
+</div>
+</div>
 <h3>
 Explanation
 </h3>
@@ -93,25 +96,24 @@ the list (3, 5, and 6). The hardest is 6. The output is 6
 <h2><a id="SECTION00023000000000000000">
 Example 2</a>
 </h2>
-<h3><a id="SECTION00023100000000000000">
-Input</a>
-</h3>
-<pre>
-3
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3
 2 2 2
 4
 4 2 2 1
 </pre>
-<h3><a id="SECTION00023200000000000000">
-Output</a>
-</h3>
-<pre>
-2 2 2 0
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2 2 2 0
 </pre>
+</div>
+</div>
 
 </li></ul>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi023.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

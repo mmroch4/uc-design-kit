@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI041] Rock Site</li></ol>
-    </nav>
-    <h1>[PI041] Rock Site</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi041.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI041] Rock Site</li></ol>
+      </nav>
+      <h1>Rock Site</h1>
+      <uc-problem code="PI041" judge="mooshak" deadline="aula08" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -55,31 +58,37 @@ all the trucks have dumped their loads.</p>
 <p>The first line contains two integers <code>N</code> and <code>M</code> (<code>1  ≤ N, M  ≤ 100'000</code>) — the number of sections and the number of trucks.</p>
 <p>The next M <code>M</code> lines each contain two integers <code>X</code> and <code>S</code> (<code>1 ≤ X ≤ N, 1 ≤ S ≤
 5</code>) — the dumping section and the size of the truck.</p>
-<h2>Ouput</h2>
+<h2>Output</h2>
 <p>Print a single line with <code>N</code> integers, separated by spaces, representing the number of rocks in each section from 1 <code>1</code> to <code>N</code> after all trucks have dumped their rocks.</p>
 <h2>Example 1</h2>
-<h3>Input</h3>
-<pre>
-10 1
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">10 1
 5 3
 </pre>
-<h3>
-Output
-</h3>
-<pre>
-0 0 1 2 3 2 1 0 0 0
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0 0 1 2 3 2 1 0 0 0
 </pre>
+</div>
+</div>
 <h2>Example 2</h2>
-<h3>Input</h3>
-<pre>
-10 2
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">10 2
 5 3
 9 5
 </pre>
-<h3>Output</h3>
-<pre>
-0 0 1 2 4 4 4 4 5 4
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0 0 1 2 4 4 4 4 5 4
 </pre>
+</div>
+</div>
 
 </section><section lang="pt">
 
@@ -117,30 +126,37 @@ para um conjunto de obras em curso, e hoje é dia de entrega de pedras.</p>
 <h2>Output</h2>
 <p>Imprime uma única linha com <code>N</code> inteiros, separados por espaços, representando o número de pedras em cada secção, da <code>1</code> à <code>N</code>, depois de todos os despejos.</p>
 <h2>Exemplo 1</h2>
-<h3>Input</h3>
-<pre>
-10 1
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">10 1
 5 3
 </pre>
-<h3>Output</h3>
-<pre>
-0 0 1 2 3 2 1 0 0 0
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0 0 1 2 3 2 1 0 0 0
 </pre>
+</div>
+</div>
 <h2>Exemplo 2</h2>
-<h3>Input</h3>
-<pre>
-10 2
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">10 2
 5 3
 9 5
 </pre>
-<h3>Output</h3>
-<pre>
-0 0 1 2 4 4 4 4 5 4
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">0 0 1 2 4 4 4 4 5 4
 </pre>
+</div>
+</div>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi041.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

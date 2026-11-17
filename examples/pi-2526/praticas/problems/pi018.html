@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI018] Palindrome Fix</li></ol>
-    </nav>
-    <h1>[PI018] Palindrome Fix</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi018.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI018] Palindrome Fix</li></ol>
+      </nav>
+      <h1>Palindrome Fix</h1>
+      <uc-problem code="PI018" judge="mooshak" deadline="aula06" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi018.png"/>
@@ -45,7 +48,7 @@ Input
 The input consists of a single line containing a non-empty string of lowercase letters (alphabetical characters). The string's length is between 1 and 100,000 characters.
 </p>
 <h2>
-Ouput
+Output
 </h2>
 
 If the string is a palindrome, output a line with<br/>
@@ -57,36 +60,35 @@ where <code>x</code> is the minimum number changes needed to make it a palindrom
 <h2><a id="SECTION00022000000000000000">
 Example 1</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-<pre>
-madam
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">madam
 </pre>
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-Inspection passed
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Inspection passed
 </pre>
+</div>
+</div>
 <h2><a id="SECTION00023000000000000000">
 Example 2</a>
 </h2>
-<h3><a id="SECTION00023100000000000000">
-Input</a>
-</h3>
-<pre>
-xoxo
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">xoxo
 </pre>
-<h3><a id="SECTION00023200000000000000">
-Output</a>
-</h3>
-<pre>
-Oh boy, this needs a fix. You have to change at least 2 characters
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Oh boy, this needs a fix. You have to change at least 2 characters
 </pre>
+</div>
+</div>
 <br/>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi018.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

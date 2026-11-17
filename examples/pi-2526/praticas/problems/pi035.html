@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI035] Contact-Management</li></ol>
-    </nav>
-    <h1>[PI035] Contact-Management</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi035.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI035] Contact-Management</li></ol>
+      </nav>
+      <h1>Contact-Management</h1>
+      <uc-problem code="PI035" judge="mooshak" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi035.png"/>
@@ -161,11 +164,10 @@ void sortContacts() {
 <h2><a id="SECTION00022000000000000000">
 Example 1</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-<pre>
-5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 Joao Maria
 jmaria@nodomain.pt
 19900304
@@ -189,20 +191,20 @@ rleao@nodomain.pt
 0
 11
 </pre>
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-Maria Joao 957634567
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Maria Joao 957634567
 Ana Feliz 987587761
 </pre>
+</div>
+</div>
 <h2><a id="SECTION00023000000000000000">Example 2</a>
 </h2>
-<h3><a id="SECTION00023100000000000000">
-Input</a>
-</h3>
-<pre>
-5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 Joao Maria
 jmaria@nodomain.pt
 19900304
@@ -225,11 +227,10 @@ rleao@nodomain.pt
 919191911
 1
 </pre>
-<h3><a id="SECTION00023200000000000000">
-Output</a>
-</h3>
-<pre>
-Ana Feliz
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Ana Feliz
 afeliz@nodomain.pt
 20051125
 987587761
@@ -250,9 +251,10 @@ rleao@nodomain.pt
 20050316
 919191911
 </pre>
+</div>
+</div>
 <br/>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi035.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

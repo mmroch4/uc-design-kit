@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI043] Eval</li></ol>
-    </nav>
-    <h1>[PI043] Eval</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi043.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI043] Eval</li></ol>
+      </nav>
+      <h1>Eval</h1>
+      <uc-problem code="PI043" judge="mooshak" deadline="aula09" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -36,30 +39,45 @@ separated by operators (<code>+</code> or <code>*</code>). Each token (number or
 </p>
 <h2>Output</h2>
 <p>Print a single line with the result of evaluating the expression according to operator precedence.</p>
-<h3>Example Input 1</h3>
-<pre>
-5 + 2 * 3
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5 + 2 * 3
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-11
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">11
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-2
+</div>
+</div>
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2
 </pre>
-<h3>Example Input 3</h3>
-<pre>
-1 + 2 + 3
+</div>
+</div>
+<h3>Example 3</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">1 + 2 + 3
 </pre>
-<h3>Example Output 3</h3>
-<pre>
-6
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">6
 </pre>
+</div>
+</div>
 
 </section><section lang="pt">
 
@@ -78,34 +96,48 @@ a multiplicação tem precedência sobre a adição.</p>
 separados por operadores (<code>+</code> ou <code>*</code>). Cada elemento (número ou operador) está separado por um único espaço.</p>
 <h2>Output</h2>
 <p>Escreva uma única linha com o resultado da avaliação da expressão de acordo com a precedência dos operadores.</p>
-<h3>Example Input 1</h3>
-<pre>
-5 + 2 * 3
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5 + 2 * 3
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-11
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">11
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-2
+</div>
+</div>
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2
 </pre>
-<h3>Example Input 3</h3>
-<pre>
-1 + 2 + 3
+</div>
+</div>
+<h3>Example 3</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">1 + 2 + 3
 </pre>
-<h3>Example Output 3</h3>
-<pre>
-6
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">6
 </pre>
+</div>
+</div>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi043.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

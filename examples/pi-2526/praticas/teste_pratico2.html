@@ -11,75 +11,57 @@
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="assessment">
-    <nav class="crumbs" aria-label="Localização">
+  <uc-page current="assessment" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">
+    <nav class="uc-crumbs" aria-label="Localização">
       <ol><li><a href="../avaliacao.html">Avaliação</a></li><li aria-current="page">Avaliação Prática 2</li></ol>
     </nav>
     <h1>Avaliação Prática 2</h1>
     <uc-assessment-info deadline="ap2" calendar heading="none">
     <noscript><p>27 de maio de 2026, turnos às 14:10 e às 16:10.</p></noscript>
     <div class="uc-content">
-<h2>Informações Gerais</h2>
+<h2>Informações gerais</h2>
+<dl class="uc-facts">
+  <dt>Local</dt>
+  <dd>Laboratórios: <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69108">L1 (FC6 1.55)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69045">L2 (FC6 1.57)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69183">L3 (FC6 1.63)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69064">L4 (FC6 1.65)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69101">L8 (FC6 0.08), </a><a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69035">L10 (FC6 1.82), e </a><a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69149">L11 (FC6 1.84) </a>.</dd>
+  <dt>Método</dt>
+  <dd>O teste será presencial (nos laboratórios do DCC, que têm Linux e os editores habituais) e irão ter acesso a computador, documentação do C (man pages), algum código base (pilhas, filas e listas) disponível na página de entrada do Mooshak (premir o botão de 'home' no browser para aceder ao código) e irão submeter no Mooshak, sendo que poderão ver alguns casos de teste quando falham, tal como nas aulas práticas.</dd>
+  <dt>Pontuação</dt>
+  <dd><p>Este teste vale 2.5 valores.</p><p>Em cada exercício podem existir cotações parciais (ex: passa nalguns testes, falha noutros). Só em casos muito excecionais a pontuação será diferente da atribuída pelo Mooshak. Podem acontecer casos onde recebem mais pontos do que o Mooshak atribuiu (ex: está tudo certo e falta apenas um ponto e vírgula :)) ou menos pontos (ex: não fizeram o pedido ou tentaram fazer "batota"). Se tentarem genuinamente fazer os problemas não vão ter nenhum "problema".</p></dd>
+</dl>
+
+<h2>Objetivos de cada exercício e problemas de treino</h2>
+<p>Os exercícios versam sobre alguns destes tópicos:</p>
 <ul>
-<li><strong>Data:</strong> 27 de maio de 2026
-  </li><li><strong>Hora:</strong> Turno 1 (14:10-16:05) e Turno 2 (16:10 - 18:05)
-  </li><li><strong>Atribuições:</strong> [ vêr atribuição de
-  turno e laboratório ]
-  </li><li><strong>Local:</strong> Laboratórios: <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69108">L1
-  (FC6 1.55)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69045">L2
-  (FC6 1.57)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69183">L3
-  (FC6 1.63)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69064">L4
-  (FC6 1.65)</a>, <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69101">L8
-  (FC6 0.08), </a><a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69035">L10
-  (FC6 1.82), e </a><a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69149">L11
-  (FC6 1.84)
-  </a>. 
-  </li><li><strong>Duração:</strong> 2 horas
-  </li><li><strong>Método:</strong> o teste será presencial (nos laboratórios do DCC,
-  que têm Linux e os editores habituais) e irão ter acesso a
-  computador, documentação do C (man pages), algum código base
-  (pilhas, filas e listas)) disponível na página de entrada do Mooshak
-(premir o botão de 'home' no browser para aceder ao código) e irão submeter no Mooshak, sendo que poderão ver alguns casos de teste quando falham, tal como nas aulas práticas.
-  </li><li><strong>Pontuação:</strong> este teste vale 2.5 valores.<br/>
-    Em cada exercício podem existir cotações parciais (ex: passa nalguns testes, falha noutros). Só em casos muito excepcionais a pontuação será diferente da atribuida pelo Mooshak. Podem acontecer casos onde recebem mais pontos do que o Mooshak atribuiu (ex: está tudo certo e falta apenas um ponto e vírgula :)) ou menos pontos (ex: não fizeram o pedido ou tentaram fazer "batota"). Se tentarem genuinamente fazer os problemas não vão ter nenhum "problema".
-</li></ul>
-
-<h2>Objectivos específicos para cada exercício e problemas de treino</h2>
-<p>Os exercícios versarão sobre alguns dos tópicos seguintes:
-
-</p><ul>
-<li>Ordenação, recursão, flood-Fill, permutações
-  </li><li>Listas, Pilhas e Filas com ou sem alocação dinâmica de memória
-</li></ul>
-<p>Como sugestão de treino para esta avaliação, tenham como
-referência a lista seguinte de problemas (quase todos do problemset 8
-e 9:
-
-</p><ol>
-<li><ul>
-<li><strong>Recursão, arrays, etc.:</strong>
-<a href="problems/pi038.html">[PI038]</a>
-<a href="problems/pi039.html">[PI039]</a>
-<a href="problems/pi042.html">[PI042]</a>
-<a href="problems/pi046.html">[PI046]</a>
-<a href="problems/pi049.html">[PI049]</a>
-<a href="problems/pi055.html">[PI055]</a>
-</li></ul><ul>
-<li><strong>Listas, Pilhas e Filas:</strong>
-<a href="problems/pi047.html">[PI047]</a>
-<a href="problems/pi048.html">[PI048]</a>
-<a href="problems/pi051.html">[PI051]</a>
-<a href="problems/pi052.html">[PI052]</a>
-<a href="problems/pi053.html">[PI053]</a>
-<a href="problems/pi054.html">[PI054]</a>
-<a href="problems/pi056.html">[PI056]</a>
-<a href="problems/pi057.html">[PI057]</a>
-</li></ul><br/></li>
-
-</ol>
+<li>Ordenação, recursão, flood fill, permutações</li>
+<li>Listas, Pilhas e Filas com ou sem alocação dinâmica de memória</li>
+</ul>
+<p>Para treinar, os problemas seguintes (quase todos das aulas 8 e 9):</p>
+<h3>Recursão, arrays, etc</h3>
+<uc-problems track>
+<ul>
+<li data-judge="mooshak"><a href="problems/pi038.html">Merge Sorted Arrays</a> <code>PI038</code></li>
+<li data-judge="mooshak"><a href="problems/pi039.html">Shifting Numbers</a> <code>PI039</code></li>
+<li data-judge="mooshak"><a href="problems/pi042.html">Pizza Quest</a> <code>PI042</code></li>
+<li data-judge="mooshak"><a href="problems/pi046.html">Largest Microbe Colony</a> <code>PI046</code></li>
+<li data-judge="mooshak"><a href="problems/pi049.html">Lakes and Bulldozers</a> <code>PI049</code></li>
+<li data-judge="mooshak"><a href="problems/pi055.html">Lake Reflection</a> <code>PI055</code></li>
+</ul>
+</uc-problems>
+<h3>Listas, Pilhas e Filas</h3>
+<uc-problems track>
+<ul>
+<li data-judge="mooshak"><a href="problems/pi047.html">Duck, Duck, Out!</a> <code>PI047</code></li>
+<li data-judge="mooshak"><a href="problems/pi048.html">Between Brackets</a> <code>PI048</code></li>
+<li data-judge="mooshak"><a href="problems/pi051.html">Clinic Chaos</a> <code>PI051</code></li>
+<li data-judge="mooshak"><a href="problems/pi052.html">Reverse Polish Notation</a> <code>PI052</code></li>
+<li data-judge="mooshak"><a href="problems/pi053.html">Duplicating Elements</a> <code>PI053</code></li>
+<li data-judge="mooshak"><a href="problems/pi054.html">Removing All Occurrences of an Element</a> <code>PI054</code></li>
+<li data-judge="mooshak"><a href="problems/pi056.html">Well-Balanced Expressions</a> <code>PI056</code></li>
+<li data-judge="mooshak"><a href="problems/pi057.html">Two Queues</a> <code>PI057</code></li>
+</ul>
+</uc-problems>
     </div>
     </uc-assessment-info>
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">site original</a>.</p>
   </uc-page>
 </body>
 </html>

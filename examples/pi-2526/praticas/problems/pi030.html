@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI030] Estatísticas de Acesso à Universidade</li></ol>
-    </nav>
-    <h1>[PI030] Estatísticas de Acesso à Universidade</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi030.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI030] Estatísticas de Acesso à Universidade</li></ol>
+      </nav>
+      <h1>Estatísticas de Acesso à Universidade</h1>
+      <uc-problem code="PI030" judge="mooshak" deadline="aula07" track></uc-problem>
+    </div>
     <div class="uc-content">
 <h2>O problema</h2>
 <p>
@@ -66,16 +69,10 @@ C, <code>math.h</code>). A listagem deverá estar ordenada por ordem decrescente
   numa forma de distinguir se é a primeira vez que a escola tem
   um candidato.
 </li></ul>
-<div class="uc-table"><table>
-<col/> <col/>
-<tr>
-<th scope="col"><p>Input</p> </th>
-<th scope="col"> <p>Output</p></th>
-</tr>
-<tr>
-<td>
-<pre>
-5 2
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5 2
 10082693
 Manuel Joaquim Alves
 Faculdade de Ciencias da Universidade do Porto
@@ -102,24 +99,19 @@ Faculdade de Arquitectura da Universidade do Porto
 129
 170
 </pre>
-</td>
-<td> <pre>
-Faculdade de Medicina da Universidade do Porto 2 190
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">Faculdade de Medicina da Universidade do Porto 2 190
 Faculdade de Arquitectura da Universidade do Porto 1 170
 Faculdade de Ciências da Universidade do Porto 2 150
-</pre> </td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<col/> <col/>
-<tr>
-<th scope="col"><p>Input</p> </th>
-<th scope="col"> <p>Output</p></th>
-</tr>
-<tr>
-<td>
-<pre>
-5 1
+</pre>
+</div>
+</div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5 1
 10082693
 Manuel Joaquim Alves
 Faculdade de Ciencias da Universidade do Porto
@@ -146,24 +138,19 @@ Faculdade de Arquitectura da Universidade do Porto
 129
 170
 </pre>
-</td>
-<td> <pre>
-190
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">190
 Maria Manuela Freitas
 Jorge Rocha Brito
-</pre> </td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<col/> <col/>
-<tr>
-<th scope="col"><p>Input</p> </th>
-<th scope="col"> <p>Output</p></th>
-</tr>
-<tr>
-<td>
-<pre>
-5 0
+</pre>
+</div>
+</div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5 0
 10082693
 Manuel Joaquim alves
 Faculdade de Ciencias da Universidade do Porto
@@ -190,14 +177,14 @@ Faculdade de Arquitectura da Universidade do Porto
 129
 170
 </pre>
-</td>
-<td> <pre>
-3
-</pre> </td>
-</tr>
-</table></div>
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3
+</pre>
+</div>
+</div>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi030.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

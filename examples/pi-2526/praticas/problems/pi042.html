@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI042] Pizza Quest</li></ol>
-    </nav>
-    <h1>[PI042] Pizza Quest</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi042.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI042] Pizza Quest</li></ol>
+      </nav>
+      <h1>Pizza Quest</h1>
+      <uc-problem code="PI042" judge="mooshak" deadline="aula08" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -53,9 +56,11 @@
   </li><li> <code>no</code>, if there's no path to it
 </li></ul>
 <br/>
-<h2>Example Input 1</h2>
-<pre>
-2
+<h2>Example 1</h2>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 5 10
 ..#.......
 ###...#...
@@ -68,11 +73,14 @@ J..#
 .#..
 #..P
 </pre>
-<h2>Example Output 1</h2>
-<pre>
-yes
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">yes
 no
 </pre>
+</div>
+</div>
 <p>On the first case Julie can reach all the positions in green, which
 include reaching the pizza (hence, the answer is "yes"):</p>
 <pre>
@@ -129,9 +137,11 @@ no way to reach the pizza (hence, the answer is "no"):
   </li><li> <code>no</code>, se não há caminho até ela
 </li></ul>
 <br/>
-<h2>Exemplo de Entrada 1</h2>
-<pre>
-2
+<h2>Exemplo 1</h2>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Entrada</p>
+<pre data-copy="Entrada">2
 5 10
 ..#.......
 ###...#...
@@ -144,11 +154,14 @@ J..#
 .#..
 #..P
 </pre>
-<h2>Exemplo de Saída 1</h2>
-<pre>
-yes
+</div>
+<div>
+<p class="uc-samples__label">Saída</p>
+<pre data-copy="Saída">yes
 no
 </pre>
+</div>
+</div>
 <p>No primeiro caso, Julie consegue alcançar todas as posições em verde, incluindo a pizza (portanto, a resposta é "yes"):</p>
 <pre>
 ..#<mark>.......</mark>
@@ -167,7 +180,6 @@ no
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi042.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

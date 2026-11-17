@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI015] Anagrams</li></ol>
-    </nav>
-    <h1>[PI015] Anagrams</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi015.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI015] Anagrams</li></ol>
+      </nav>
+      <h1>Anagrams</h1>
+      <uc-problem code="PI015" judge="mooshak" deadline="aula05" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p><strong>Anagram:</strong>
 <em>do Gr. aná, para cima, para trás + grámma, letra<br/>
@@ -49,14 +52,10 @@ In this case, there are three anagram classes. Each anagram class is represented
 <p>The output between two cases should always be separated by a blank line.</p>
 <p>See the example to clarify how the output should be formatted.<br/>
 </p><h2>Examples input/output</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input</th>
-<th scope="col">Output</th>
-</tr>
-<tr>
-<td>
-<pre>5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5
 maca
 lima
 cama
@@ -71,9 +70,10 @@ teste
 0
 
 </pre>
-</td>
-<td>
-<pre>#1
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">#1
 cama: 2
 lima: 2
 texto: 1
@@ -83,13 +83,11 @@ caras: 3
 
 #3
 teste: 1
-</pre></td>
-</tr>
-</table></div>
+</pre>
+</div>
+</div>
 
- <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi015.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

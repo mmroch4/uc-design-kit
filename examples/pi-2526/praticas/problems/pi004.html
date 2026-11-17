@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI004] The Triangular Code of the Guardians</li></ol>
-    </nav>
-    <h1>[PI004] The Triangular Code of the Guardians</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi004.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI004] The Triangular Code of the Guardians</li></ol>
+      </nav>
+      <h1>The Triangular Code of the Guardians</h1>
+      <uc-problem code="PI004" judge="mooshak" deadline="aula03" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p><img alt="" class="uc-content__float" loading="lazy" src="pi004.png"/> In the ancient land of Trigonia, the sacred temple is adorned with triangular symbols that hold deep mystical significance. However, the temple’s guardian is unsure how to carve the patterns correctly—should they be aligned by height or by width?</p>
 <p>You, as the royal architect, have been summoned to create a precise blueprint for the temple's triangular designs. Given a number <code>n</code> and a mode <code>k</code>, your task is to generate the correct triangular pattern based on the guardian’s request.</p>
@@ -34,36 +37,27 @@ You are given two integers:
 <h2>Output</h2>
 <p>A grid representing the requested triangle pattern.</p>
 <h2>Input/Output Examples</h2>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 1</th>
-<th scope="col">Output 1</th>
-</tr>
-<tr>
-<td>
-<pre>3 0</pre>
-</td>
-<td>
-<pre>
-__#__
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 1</p>
+<pre data-copy="Input 1">3 0</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 1</p>
+<pre data-copy="Output 1">__#__
 _###_
 #####
 </pre>
-</td>
-</tr>
-</table></div>
-<div class="uc-table"><table>
-<tr>
-<th scope="col">Input 2</th>
-<th scope="col">Output 2</th>
-</tr>
-<tr>
-<td>
-<pre>5 1</pre>
-</td>
-<td>
-<pre>
-#____
+</div>
+</div>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input 2</p>
+<pre data-copy="Input 2">5 1</pre>
+</div>
+<div>
+<p class="uc-samples__label">Output 2</p>
+<pre data-copy="Output 2">#____
 ##___
 ###__
 ####_
@@ -73,11 +67,9 @@ _###_
 ##___
 #____
 </pre>
-</td>
-</tr>
-</table></div>
+</div>
+</div>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi004.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

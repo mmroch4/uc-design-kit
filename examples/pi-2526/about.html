@@ -11,9 +11,9 @@
   <script src="../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="about">
-    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
-      <p class="uc-mono uc-muted" style="font-size: var(--uc-font-size-sm)">Course description · CC1003</p>
+  <uc-page current="about" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_en.html">
+    <div class="uc-page-header">
+      <p class="uc-eyebrow">Course description · CC1003</p>
       <h1>About the course</h1>
       <p class="uc-prose uc-lead">The course introduces the fundamental concepts of imperative programming, emphasizing algorithms and modularity, using the C programming language. Focus is placed on practical problem solving, the implementation of basic algorithms for counting, searching, and sorting, and the clarity and quality of code.</p>
     </div>
@@ -35,52 +35,51 @@
 
     <section class="uc-section" aria-labelledby="syllabus">
       <h2 id="syllabus">Syllabus</h2>
-      <ol class="program">
-        <li><span class="program__n" aria-hidden="true">01</span><div><p>Introduction to the C programming language: brief historical context, characteristics, advantages and disadvantages, risks, and precautions in its use.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">02</span><div><p>Fundamentals of the C language: syntactic structure of programs, directives, declarations, expressions, compilation and execution.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">03</span><div><p>Basic types (integers, floating point, characters). Control constructs, loops, function definition, formatted input and output.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">04</span><div><p>Indexed variables. Fundamental algorithms: counting, searching, and sorting. Processing character strings.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">05</span><div><p>Program organization: header files and standard libraries.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">06</span><div><p>Error detection and prevention. Use of debuggers and assertions.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">07</span><div><p>Introduction to the C memory model. Programming with pointers. Use of pointers for processing strings and indexed variables.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">08</span><div><p>Recursion. Solving simple problems using iterative and recursive algorithms.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">09</span><div><p>Definition of new data types (<code>struct</code>, <code>union</code>).</p></div></li>
-        <li><span class="program__n" aria-hidden="true">10</span><div><p>File operations: reading and writing.</p></div></li>
-        <li><span class="program__n" aria-hidden="true">11</span><div><p>Basic data structures: linked lists and trees.</p></div></li>
+      <ol class="uc-steps">
+        <li>Introduction to the C programming language: brief historical context, characteristics, advantages and disadvantages, risks, and precautions in its use.</li>
+        <li>Fundamentals of the C language: syntactic structure of programs, directives, declarations, expressions, compilation and execution.</li>
+        <li>Basic types (integers, floating point, characters). Control constructs, loops, function definition, formatted input and output.</li>
+        <li>Indexed variables. Fundamental algorithms: counting, searching, and sorting. Processing character strings.</li>
+        <li>Program organization: header files and standard libraries.</li>
+        <li>Error detection and prevention. Use of debuggers and assertions.</li>
+        <li>Introduction to the C memory model. Programming with pointers. Use of pointers for processing strings and indexed variables.</li>
+        <li>Recursion. Solving simple problems using iterative and recursive algorithms.</li>
+        <li>Definition of new data types (<code>struct</code>, <code>union</code>).</li>
+        <li>File operations: reading and writing.</li>
+        <li>Basic data structures: linked lists and trees.</li>
       </ol>
     </section>
 
     <section class="uc-section" aria-labelledby="methods">
       <h2 id="methods">Teaching methods</h2>
       <div class="uc-grid" style="--uc-grid-min: 260px">
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Lectures</h3>
-          <p class="uc-muted desc">Structured presentation of fundamental concepts, supported by slide presentations, with illustrative programming examples and the interactive resolution of exercises, fostering active student participation.</p>
+          <p class="uc-muted uc-small">Structured presentation of fundamental concepts, supported by slide presentations, with illustrative programming examples and the interactive resolution of exercises, fostering active student participation.</p>
         </div>
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Laboratory classes</h3>
-          <p class="uc-muted desc">Hands-on practice on the computer through the resolution of programming problems, using development tools (editors, debuggers, compilation systems, and automatic testing systems) to support error detection and correction, encouraging autonomy and critical thinking.</p>
+          <p class="uc-muted uc-small">Hands-on practice on the computer through the resolution of programming problems, using development tools (editors, debuggers, compilation systems, and automatic testing systems) to support error detection and correction, encouraging autonomy and critical thinking.</p>
         </div>
-        <div class="uc-card method">
+        <div class="uc-card">
           <h3>Continuous practice and assessment</h3>
-          <p class="uc-muted desc">Use of automatic grading systems (e.g., Mooshak), which enable regular practice, immediate feedback, and continuous monitoring of learning, consistent with a pedagogical approach focused on the development of practical skills.</p>
+          <p class="uc-muted uc-small">Use of automatic grading systems (e.g., Mooshak), which enable regular practice, immediate feedback, and continuous monitoring of learning, consistent with a pedagogical approach focused on the development of practical skills.</p>
         </div>
       </div>
       <p class="uc-prose">Classes involve the use of the C programming language, solving exercises designed to practice programming skills, and solving exercises intended for assessment purposes.</p>
-      <p class="uc-muted desc">Bibliography and assessment rules: <a href="materiais.html#biblio">Materials</a> · <a href="avaliacao.html">Assessment</a></p>
+      <p class="uc-muted uc-small">Bibliography and assessment rules: <a href="materiais.html#biblio">Materials</a> · <a href="avaliacao.html">Assessment</a></p>
     </section>
 
     <section class="uc-section" aria-labelledby="degrees">
       <h2 id="degrees">Degrees</h2>
       <p class="uc-prose">Imperative Programming (CC1003) is a mandatory course for the 1st year, 2nd semester, of the following degrees offered by the <a href="https://www.fc.up.pt">Faculty of Sciences of the University of Porto</a>. It is also mandatory for the Minor in Informatics.</p>
-      <ul class="tags">
-        <li class="uc-tag">Bachelor in Computer Science</li>
-        <li class="uc-tag">Bachelor in Artificial Intelligence and Data Science</li>
-        <li class="uc-tag">Minor in Informatics</li>
+      <ul class="uc-tags">
+        <li>Bachelor in Computer Science</li>
+        <li>Bachelor in Artificial Intelligence and Data Science</li>
+        <li>Minor in Informatics</li>
       </ul>
     </section>
 
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_en.html">course description on the original website</a>.</p>
   </uc-page>
 </body>
 </html>

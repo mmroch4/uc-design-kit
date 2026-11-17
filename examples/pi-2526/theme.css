@@ -1,86 +1,9 @@
 /*
  * Programação Imperativa 2025/26: estilos próprios do site (nível 2 de personalização).
- * Só usa os tokens --uc-* do kit, por isso muda de cor com accentColor.
- * Cada bloco indica a página onde é usado. Base: examples/edados-2526/theme.css.
+ * Tudo o resto vem dos componentes e dos blocos do kit (uc-page-header, uc-crumbs,
+ * uc-samples, uc-steps, uc-tags, uc-facts…): antes de acrescentar uma regra aqui,
+ * ver se o kit já tem um bloco para isso.
  */
-
-/* avaliacao.html */
-.desc { font-size: var(--uc-font-size-body-sm); }
-/* Fórmula e cartões das componentes da nota. */
-.formula { font-family: var(--uc-font-mono); font-size: var(--uc-font-size-h3); font-weight: 500; }
-.formula span { font-size: var(--uc-font-size-body-sm); font-weight: 400; color: var(--uc-color-text-muted); }
-.component { --uc-card-padding: var(--uc-space-6); }
-.component__head { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.75rem; }
-.component__letter { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.component__weight { font-weight: 700; }
-.component__name, .progress__title { font-weight: 600; }
-.progress { --uc-card-padding: var(--uc-space-5); gap: var(--uc-space-1); }
-.progress__title { display: flex; align-items: center; gap: var(--uc-space-2); color: var(--uc-color-accent); }
-
-/* horarios.html */
-.class-card { gap: var(--uc-space-1); }
-.class-card__code { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.class-card__time { font-weight: 600; }
-.office { flex-direction: row; flex-wrap: wrap; gap: var(--uc-space-6); align-items: flex-start; }
-.office > :first-child { flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px; }
-.office > :last-child { flex: 2 1 280px; display: flex; flex-direction: column; gap: 6px; font-size: var(--uc-font-size-body-sm); }
-.office__line { display: flex; align-items: center; gap: var(--uc-space-2); flex-wrap: wrap; }
-#praticas-table td { vertical-align: middle; }
-#praticas-table td:first-child { font-weight: 500; }
-
-/* materiais.html */
-/* Botões PT/EN da tabela de slides (uc-button uc-button--sm). */
-.pdf-links { display: flex; gap: var(--uc-space-2); }
-#slides-table td { vertical-align: middle; }
-/* Cartões da bibliografia. */
-.book { --uc-card-padding: var(--uc-space-5); gap: 6px; }
-.book__kind { font-size: var(--uc-font-size-xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--uc-color-text-muted); }
-.book__kind--main { color: var(--uc-color-accent); }
-.book__title { font-weight: 600; }
-.links-grid h2 { font-size: var(--uc-font-size-h3); }
-
-/* sobre.html */
-/* Programa: lista numerada 01, 02, … */
-.program { list-style: none; margin: 0; padding: 0; max-width: 760px; }
-.program > li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--uc-space-4); margin: 0; padding: var(--uc-space-4) 0; border-top: 1px solid var(--uc-color-border); }
-.program > li:first-child { border-top: 0; }
-.program__n { font-family: var(--uc-font-mono); font-weight: 500; color: var(--uc-color-accent); }
-.program h3 { font-size: 1rem; }
-.program p { margin: 0; }
-.method { --uc-card-padding: var(--uc-space-6); }
-.method h3 { font-size: 1rem; }
-.tags { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); list-style: none; margin: 0; padding: 0; }
-.tags > li { margin: 0; }
-
-/* guioes/aula*.html */
-.aula-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--uc-space-3); margin: 0; font-size: var(--uc-font-size-sm); }
-.aula-label {
-  margin: 0 0 var(--uc-space-2);
-  font-size: var(--uc-font-size-xs);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--uc-color-text-subtle);
-}
-.aula-actions { display: flex; flex-wrap: wrap; gap: var(--uc-space-2); margin: 0; }
-.aula-pager { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
-.aula-pager > .uc-card { display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: var(--uc-color-text); }
-.aula-pager > .uc-card span { font-size: var(--uc-font-size-sm); }
-.aula-pager__next { text-align: right; background: var(--uc-color-surface-sunken); color: var(--uc-color-text-muted); }
-
-/* problemas/, codigo/, guioes/ajuda e aula01-*: páginas migradas do site original */
-.crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: var(--uc-font-size-md); color: var(--uc-color-text-muted); }
-.crumbs li { margin: 0; }
-.crumbs li + li::before { content: "/"; margin-right: 6px; color: var(--uc-color-text-subtle); }
-.crumbs a { color: var(--uc-color-text-muted); text-decoration: none; }
-.crumbs a:hover { color: var(--uc-color-accent); text-decoration: underline; }
-.problem-list { columns: 2 300px; column-gap: var(--uc-space-8); margin: 0; padding: 0; list-style: none; }
-.problem-list > li { break-inside: avoid; margin: 0 0 var(--uc-space-2); }
-.problem-list .uc-mono { color: var(--uc-color-text-muted); margin-right: var(--uc-space-2); }
-.code-list { display: flex; flex-direction: column; gap: var(--uc-space-4); max-width: 760px; margin: 0; padding: 0; list-style: none; }
-.code-list > li { margin: 0; }
-.code-list .uc-small a { margin-right: var(--uc-space-2); }
-.source-note { padding-top: var(--uc-space-6); border-top: 1px solid var(--uc-color-border); }
 
 /* Guiões e enunciados: o texto pré-formatado parte as linhas longas em vez de criar
    uma área com deslocamento horizontal (que precisaria de foco pelo teclado). */

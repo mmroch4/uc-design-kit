@@ -5,39 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical Class 11 · Stacks and Queues, Complexity and I/O Files · Imperative Programming 2025/26</title>
   <meta name="description" content="Imperative Programming (CC1003), lab class 11: Stacks and Queues, Complexity and I/O Files">
+  <link rel="alternate" hreflang="pt" href="aula11_pt.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="11">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11.html">
+    <uc-guide week="11" week-label prev="aula10.html" next="aula12.html">
     <h1>Practical Class 11 · Stacks and Queues, Complexity and I/O Files</h1>
-    <p class="uc-small"><a href="aula11_pt.html" hreflang="pt">Versão em português</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercises for Submission</h2>
 <p>For the purpose of the <a href="../avaliacao.html#avaliacao">grade assigned to the resolution of exercises throughout the semester</a>, the exercises you can submit from this class are the following exercises, which are part of the set of exercises from the last two practical classes:<br/>
-</p><ul>
-<li><a href="problems/pi055.html">[PI055] Lake Reflection</a> (weigth 30%) (main exercise)</li>
-<li><a href="problems/pi056.html">[PI056] Well Balanced Expression</a> (weigth 30%) (main exercise)</li>
-<li><a href="problems/pi057.html">[PI057] Two Queues</a> (weigth 40%) (main exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula11">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi055.html">Lake Reflection</a> <code>PI055</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi056.html">Well Balanced Expression</a> <code>PI056</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi057.html">Two Queues</a> <code>PI057</code> <data value="40">40 %</data></li>
 </ul>
-<p><mark><strong>Submission deadline:</strong> <strong>June 15</strong> (submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>)</mark></p>
-<p><strong>You are encouraged to talk with the instructors and other
+</section>
+</uc-problems>
+<p>Submit on the <a href="https://mooshak.dcc.fc.up.pt/~pi/">Imperative Programming Mooshak</a>.</p>
+<div class="uc-callout">
+<p>You are encouraged to talk with the instructors and other
   colleagues to ask for ideas on how to solve a problem, but you also
   need to make an effort to code your solution. That is the way to become competent at programming and problem
   solving, and also to become prepared for the pratical evaluations. The same is
-  valid for ChatGPT or other LLMs. <mark>You may
+  valid for ChatGPT or other LLMs. <strong>You may
   ask for suggestions on how you could solve a given problem, but also
-    ask it to avoid giving you the code solution.</mark></strong><br/>
-</p><p>After the deadline, the problems will remain available on Mooshak, but
-    submissions will no longer count toward your grade.<br/>
-Each class accounts for 10% of the grade for this component.<br/>  
-For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.<br/>  
-To achieve 100%, it will always be sufficient to solve the main exercises.</p>
+  ask it to avoid giving you the code solution.</strong></p>
+</div>
+<ul>
+<li>After the deadline, the problems will remain available on Mooshak, but
+    submissions will no longer count toward your grade.</li>
+<li>Each class accounts for 10% of the grade for this component.</li>
+<li>For a problem to count, you must pass all the tests (i.e., get <em>accepted</em>). Even if you solve all the problems, the maximum score per class is 100%.</li>
+<li>To achieve 100%, it will always be sufficient to solve the main exercises.</li>
+</ul>
 
-<h3>Exercício 1) Stacks and Queues with <code><strong>LinkedList</strong></code></h3>
+<h2>Exercises</h2>
+<uc-exercise id="exercicio-1" title="Stacks and Queues with LinkedList">
 <p>In this class you are expected to use the same <code><strong>LinkedList</strong></code> structure from Exercise 1 of the previous class (<a href="aula10.html">Pratical Class #10</a>), recall that a stack follows a <strong>LIFO</strong> (Last In, First Out) policy and a queue follows a <strong>FIFO</strong> (First In, First Out) policy.<br/>
 </p><p>This exercise also introduces the use of header files (<code><strong>.h</strong></code>) to separate the interface of a data structure from its implementation. Consider the following organization:
 
@@ -92,10 +102,7 @@ Output: Not balanced
 </script></uc-code>
 
 <ul>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi056.html">[PI056] Well-Balanced Expressions</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi056.html">[PI056] Well-Balanced Expressions</a><br/> 
   You can now read the statement of problem PI056 carefully and try to submit an Accepted solution. You only need to adapt your solution.
 </li></ul><br/>
 </li>
@@ -109,8 +116,8 @@ Output: Not balanced
 <li><code><strong>EXIT</strong></code> — ends the program</li>
 </ul>
 
-<details name="hint">
-<summary><em>Hint</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Hint</summary>
 <p>- use two separate queues, one for each priority level.
   </p></details>
 <br/>Example:
@@ -128,17 +135,13 @@ Output: Not balanced
   </pre>
 
 <ul>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/">
-<img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/>
-</a>
-<a href="problems/pi057.html">[PI057] Two Queues</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi057.html">[PI057] Two Queues</a><br/> 
   You can now read the statement of problem PI057 carefully and try to submit an Accepted solution. You only need to adapt your solution.
 </li></ul>
 </li>
 </ol>
-
-<h3>Exercise 2) Complexity Analysis</h3>
-
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Complexity Analysis">
 The following questions are based on the brief introduction to complexity and efficiency covered in the theoretical lectures.
 <br/>
 <ol>
@@ -170,8 +173,8 @@ int mystery(int n) {
 </ul>
 </li>
 </ol>
-
-<h3>Exercise 3) Reading and Writing Files</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-3" title="Reading and Writing Files">
 <ol>
 <li>Write a simple program that reads a given number of lines from the <strong>standard input</strong> and writes those lines to a <strong>text file</strong>. Example:
 <pre>
@@ -232,9 +235,10 @@ The function should return <code><strong>NULL</strong></code> if the student's i
 </ol>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

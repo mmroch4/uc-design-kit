@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>[PI013] Game of Life · Imperative Programming 2025/26</title>
   <meta name="description" content="Statement of problem PI013 of Imperative Programming (CC1003), DCC/FCUP.">
+  <link rel="alternate" hreflang="pt" href="pi013_pt.html">
   <link rel="stylesheet" href="../../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../theme.css">
   <script src="../../course.js"></script>
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI013] Game of Life</li></ol>
-    </nav>
-    <h1>[PI013] Game of Life</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi013.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI013] Game of Life</li></ol>
+      </nav>
+      <h1>Game of Life</h1>
+      <uc-problem code="PI013" judge="mooshak" deadline="aula05" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 The Game of Life (also called Life) is a cellular automaton proposed in 1970 by the British mathematician John Horton Conway. In reality, it is a simulation rather than a game with players. It takes place on an infinite grid, where each cell may be occupied by an organism or not. 
@@ -42,31 +46,29 @@ In this problem, we will consider the grid to be finite and that the cells surro
 <p>You should print the state of the game after <strong>I</strong> iterations, that is, print the matrix representing the game grid with dead cells marked as '.' and alive cells as 'O'.
 </p>
 <h2>Example input/output</h2>
-<div class="uc-table"><table>
-<tr><th scope="col">Input</th><th scope="col">Output</th></tr>
-<tr><td>
-<pre>
-5 5 5
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">5 5 5
 .....
 .....
 .OOO.
 .....
 .....
 </pre>
-</td>
-<td>
-<pre>
-.....
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">.....
 ..O..
 ..O..
 ..O..
 .....
-</pre></td></tr>
-</table></div>
+</pre>
+</div>
+</div>
 
- <p>Copyright © DCC, Faculdade de Ciências da Universidade do Porto </p>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi013.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI028] Permutations Portal</li></ol>
-    </nav>
-    <h1>[PI028] Permutations Portal</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi028.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI028] Permutations Portal</li></ol>
+      </nav>
+      <h1>Permutations Portal</h1>
+      <uc-problem code="PI028" judge="mooshak" deadline="aula07" track></uc-problem>
+    </div>
     <div class="uc-content">
 <p>
 <img alt="" class="uc-content__float" loading="lazy" src="pi028.png"/>
@@ -37,7 +40,7 @@ Input
 </h2>
 <p>You're given a line with a single integer <code>n</code> (<code>1 &lt;= n &lt;= 8</code>).</p>
 <h2>
-Ouput
+Output
 </h2>
 <p>Print <code>n!</code> lines. Each line contains one permutation of the
 numbers <code>1</code> to <code>n</code>, as <code>n</code> space-separated
@@ -45,57 +48,56 @@ integers. Permutations must be listed in <strong>increasing lexicographic order<
 <h2>
 Example 1
 </h2>
-<h3>
-Input
-</h3>
-<pre>
-3
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3
 </pre>
-<h3>
-Output
-</h3>
-<pre>
-1 2 3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">1 2 3
 1 3 2
 2 1 3
 2 3 1
 3 1 2
 3 2 1
 </pre>
+</div>
+</div>
 <h2><a id="SECTION00022000000000000000">
 Example 2</a>
 </h2>
-<h3><a id="SECTION00022100000000000000">
-Input</a>
-</h3>
-<pre>
-1
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">1
 </pre>
-<h3><a id="SECTION00022200000000000000">
-Output</a>
-</h3>
-<pre>
-1
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">1
 </pre>
+</div>
+</div>
 <h2><a id="SECTION00023000000000000000">
 Example 3</a>
 </h2>
-<h3><a id="SECTION00023100000000000000">
-Input</a>
-</h3>
-<pre>
-2
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">2
 </pre>
-<h3><a id="SECTION00023200000000000000">
-Output</a>
-</h3>
-<pre>
-1 2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">1 2
 2 1
 </pre>
+</div>
+</div>
 <br/>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi028.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

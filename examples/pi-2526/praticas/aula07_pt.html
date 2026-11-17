@@ -5,48 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aula Prática 07 · Recursão, Ordenação e Estruturas · Programação Imperativa 2025/26</title>
   <meta name="description" content="Programação Imperativa (CC1003), aula prática 7: Recursão, Ordenação e Estruturas">
+  <link rel="alternate" hreflang="en" href="aula07.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="7">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07_pt.html">
+    <uc-guide week="7" week-label prev="aula06_pt.html" next="aula08_pt.html">
     <h1>Aula Prática 07 · Recursão, Ordenação e Estruturas</h1>
-    <p class="uc-small"><a href="aula07.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
 <p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
-</p><ul>
-<li><a href="problems/pi022.html">[PI022] Quadratic Sorting</a> (peso 30%) (exercício extra)</li>
-<li><a href="problems/pi024.html">[PI024] Odd Numbers Sorting</a> (peso 30%) (exercício principal)</li>
-<li><a href="problems/pi026.html">[PI026] Hanoi</a> (peso 20%) (exercício principal)</li>
-<li><a href="problems/pi027.html">[PI027] Bits</a> (peso 30%) (exercício extra)</li>
-<li><a href="problems/pi028.html">[PI028] Permutations</a> (peso 30%) (exercício principal)</li>
-<li><a href="problems/pi029.html">[PI029] O Cobrador de Impostos</a> (peso 30%) (exercício principal)</li>
-<li><a href="problems/pi030.html">[PI030] Estatísticas de Acesso à Universidade</a> (peso 30%) (exercício principal)</li>
-<li><a href="problems/pi032.html">[PI032] Triathlon</a> (peso 30%)(exercício extra)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula07">
+<ul>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi022.html">Quadratic Sorting</a> <code>PI022</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi024.html">Odd Numbers Sorting</a> <code>PI024</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi026.html">Hanoi</a> <code>PI026</code> <data value="20">20 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi027.html">Bits</a> <code>PI027</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi028.html">Permutations</a> <code>PI028</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi029.html">O Cobrador de Impostos</a> <code>PI029</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi030.html">Estatísticas de Acesso à Universidade</a> <code>PI030</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak" data-type="extra"><a href="problems/pi032.html">Triathlon</a> <code>PI032</code> <data value="30">30 %</data></li>
 </ul>
-<p><mark><strong>Prazo de submissão:</strong> <strong>25 de Abril</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
-<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
-    obterem sugestões de como abordar um determinado problema, mas
-    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
-    solução. Esta é a melhor forma de ficarem competentes na
-    resolução destes problemas (ou
-    seja aprenderem)  e habituados a ultrapassar as
-    dificuldades que possam surgir. O mesmo se aplica ao uso do
-    ChatGPT ou outras LLMs. 
-    <mark>Evitem pedir a solução, peçam antes
-    sugestões de como abordar o problem com a indicação para não vos
-    ser dado o código da solução.</mark></strong><br/>
-</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
-Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
-Cada aula vale 10% da nota desta componente.<br/>  
-Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
-Para ter 100% bastará sempre resolver os exercícios principais.</p>
+</section>
+</uc-problems>
+<p>Submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>.</p>
+<div class="uc-callout">
+<p>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+  obterem sugestões de como abordar um determinado problema, mas
+  façam um esforço genuíno para depois codificarem e porem a funcionar a vossa
+  solução. Esta é a melhor forma de ficarem competentes na
+  resolução destes problemas (ou
+  seja aprenderem)  e habituados a ultrapassar as
+  dificuldades que possam surgir. O mesmo se aplica ao uso do
+  ChatGPT ou outras LLMs.
+  <strong>Evitem pedir a solução, peçam antes
+  sugestões de como abordar o problema com a indicação para não vos
+  ser dado o código da solução.</strong></p>
+</div>
+<ul>
+<li>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</li>
+<li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+<li>Cada aula vale 10% da nota desta componente.</li>
+<li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+<li>Para ter 100% bastará sempre resolver os exercícios principais.</li>
+</ul>
 
-<h3>Exercício 1) Ordenação</h3>
+<h2>Exercícios</h2>
+<uc-exercise id="exercicio-1" title="Ordenação">
 <ol>
 <li>Escreva uma função <br/>
 <pre>int desordem(int arr[], int n);
@@ -62,8 +72,8 @@ Output: Existem 2 pares de valores fora de ordem! // porque 3 > 1 e 4 > 0
 </li>
 <li>Escreva um programa que leia uma sequência de inteiros positivos da entrada padrão, terminando com zero, ordene-os e imprima-os em ordem crescente. <br/>
     O tamanho máximo da sequência é menor que 1000. Escolha um dos três algoritmos de ordenação apresentados na aula teórica para implementar.
-<br/><details name="hint">
-<summary><em>Sugestão</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- A função <code><strong>main</strong></code> do seu programa deve:
   </p><ol type="a">
 <li>declarar uma variável indexada com tamanho máximo (por exemplo, 1000),</li>
@@ -83,11 +93,10 @@ Output: Existem 2 pares de valores fora de ordem! // porque 3 > 1 e 4 > 0
         Números pares: 0 2 2 4 4 8 10 70
 </pre>
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi024.html">[PI024] Odd Numbers Sorting </a><br/>  
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi024.html">[PI024] Odd Numbers Sorting </a><br/>  
       Leia o enunciado do problema e tente enviar uma solução Accepted. <strong>Não se esqueça de testar primeiro no seu computador!</strong>
-<br/><br/><details name="hint">
-<summary><em>Sugestão </em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- O problema é essencialmente ordenar um array, mas com uma noção diferente de "menor que". Em vez de comparar directamente os valores, tens de aplicar as regras:
   </p><ol>
 <li>Se ambos são ímpares ou ambos são pares, o menor valor vem primeiro.</li>
@@ -126,15 +135,15 @@ Output: Existem 2 pares de valores fora de ordem! // porque 3 > 1 e 4 > 0
 </pre>
 </li>
 </ol>
-
-<h3>Exercício 2) Ainda sobre Recursão</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Ainda sobre Recursão">
 <ol>
 <li><strong>O Espelho Encantado.</strong> O espelho encantado de um feiticeiro só pode refletir corretamente se uma palavra ou frase for invertida usando recursão mágica.<br/>
   	Escreva uma função recursiva para reverter uma dada palavra/frase:<br/>
 <pre>void reverseString(char str[], int start, int end);
 </pre>
-<br/><details name="hint">
-<summary><em>Sugestão</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Pode trocar os caracteres entre <code><strong>start</strong></code> e <code><strong>end</strong></code> recursivamente. 
       </p></details>
 <br/>
@@ -164,21 +173,19 @@ Output: Existem 2 pares de valores fora de ordem! // porque 3 > 1 e 4 > 0
 <em>Output:</em> Formas de chegar ao topo: 5
 </pre></li>
 
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi026.html">[PI026] Hanoi</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi026.html">[PI026] Hanoi</a><br/> 
       A Torre de Hanói é um puzzle clássico. Este problema foi abordado na aula teórica.<br/>
       Tem agora a oportunidade de o implementar e enviar uma solução Accepted. 
-        <br/><br/><details name="hint">
-<summary><em>Sugestão</em></summary>
+        <details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Recorra aos slide da <a href="../apontamentos/5_recursion.pdf">aula sobre recursão</a>.
       </p></details> 
 </li>
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi028.html">[PI028] Permutations</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi028.html">[PI028] Permutations</a><br/> 
       Dado um inteiro <code><strong>n</strong></code>, imprime todas as permutações dos números de <code><strong>1</strong></code> a <code><strong>n</strong></code>, cada uma numa linha, por ordem lexicográfica crescente.<br/>
       Leia o enunciado do problema com atenção e tente enviar uma solução Accepted.
-        <br/><br/><details name="hint">
-<summary><em>Sugestão</em></summary>
+        <details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Uma permutação de <code><strong>n</strong></code> elementos é construída escolhendo um elemento para a primeira posição, e depois preenchendo as restantes <code><strong>n-1</strong></code> posições com os elementos que sobram. Isso sugere uma abordagem recursiva.
 </p><p>- Pode implementar uma função <code><strong>solve(x)</strong></code> que decide qual o elemento a colocar na posição <code><strong>x</strong></code>, e depois chame <code><strong>solve(x+1)</strong></code> para as posições seguintes.
 </p><p>- O caso base é <code><strong>x == n</strong></code>: a permutação está completa, então pode imprimi-la.
@@ -209,8 +216,8 @@ Output: Subconjuntos possíveis:
 </script></uc-code></li>
 
 </ol>
-
-<h3>Exercício 3) Estruturas</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-3" title="Estruturas">
 <ol>
 <li><h4>Estrutura <code>Ponto</code></h4>
 <p>Considere a seguinte estrutura apresentada nas aulas teóricas, que representa pontos em <math>
@@ -370,11 +377,10 @@ ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
 </li>
 </ol>
 
-</li><li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi029.html">[PI029] O Cobrador de Impostos</a><br/> 
+</li><li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi029.html">[PI029] O Cobrador de Impostos</a><br/> 
       Agora que já treinaste estruturas leia o enunciado do problema PI029 e tente enviar uma solução Accepted. 
-        <br/><br/><details name="hint">
-<summary><em>Sugestão</em></summary>
+        <details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Cada empresa tem 5 campos, cada um numa linha separada. Nota que o nome da empresa e a área de actividade são strings que podem ter espaços — por isso não podes usar <code><strong>scanf("%s", ...)</strong></code> para os ler. Usa <code><strong>fgets</strong></code> ou uma leitura carácter a carácter até ao fim da linha.
 </p><p>- O código de actividade é um inteiro entre 1 e 100. Isso permite usar um array act[101] inicializado a zero, em que <code><em>act[i]</em></code> acumula o total de rendimentos de todas as empresas com código <code><strong>i</strong></code>.
 </p><p>- Para o <code><strong>flag == 0</strong></code>, basta contar quantas posições do array são diferentes de zero.
@@ -383,11 +389,10 @@ ALUNO Alunos[MAXALUNOS] = {{"Mariana Matias","2001018003", {2,1,9,5,3,7}, 6},
       </p></details> 
 </li>
 
-<li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a>
-<a href="problems/pi030.html">[PI030] Estatísticas de Acesso à Universidade</a><br/> 
+<li><span class="uc-tag uc-tag--muted">Mooshak</span> <a href="problems/pi030.html">[PI030] Estatísticas de Acesso à Universidade</a><br/> 
       Leia o enunciado do problema e tente enviar uma solução Accepted. 
-        <br/><br/><details name="hint">
-<summary><em>Sugestão</em></summary>
+        <details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- Precisas de dois vectores:
   </p><ul>
 <li>Um com todos os candidatos (necessário para o <code><strong>flag == 1</strong></code>, onde tens de imprimir pela ordem de leitura).</li>
@@ -461,9 +466,10 @@ A função deverá preencher no máximo <code><strong>n</strong></code> elemento
 </ol>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07_pt.html">site original</a>.</p>
   </uc-page>
 </body>
 </html>

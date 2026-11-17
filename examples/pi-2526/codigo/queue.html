@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-stack-queue.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/queue.html">
+    <nav class="uc-crumbs" aria-label="Breadcrumb">
       <ol><li><a href="index.html">Código</a></li><li aria-current="page">Queue with dynamic memory</li></ol>
     </nav>
     <h1>Queue with dynamic memory</h1>
@@ -21,6 +22,10 @@
 a cursor to last node to make addLast() operation efficient. We also
 modified <code>removeFirst()</code> and <code>first()</code> to return
 directly a <code>NodeInfo</code>.</p>
+<h2>See it run</h2>
+<uc-widget-stack-queue algorithm="queue" impl="list" values="3 8" ops="enqueue 5; dequeue; peek; dequeue; dequeue">
+<p>A queue with 3 and 8: enqueue 5, then dequeue until it is empty.</p>
+</uc-widget-stack-queue>
 <h2>queue.h</h2>
 <uc-code collapsible="" data-lang="c" filename="queue.h"><script type="text/plain">
 // Programação Imperativa (CC1003)
@@ -133,7 +138,6 @@ void printQueue(Queue *q) {
 }
 </script></uc-code>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/queue.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>

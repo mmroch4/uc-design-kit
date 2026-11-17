@@ -5,45 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aula Prática 11 · Pilhas e Filas, Complexidade e Ficheiros I/O · Programação Imperativa 2025/26</title>
   <meta name="description" content="Programação Imperativa (CC1003), aula prática 11: Pilhas e Filas, Complexidade e Ficheiros I/O">
+  <link rel="alternate" hreflang="en" href="aula11.html">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="weeks">
-    <uc-guide week="11">
+  <uc-page current="weeks" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11_pt.html">
+    <uc-guide week="11" week-label prev="aula10_pt.html" next="aula12_pt.html">
     <h1>Aula Prática 11 · Pilhas e Filas, Complexidade e Ficheiros I/O</h1>
-    <p class="uc-small"><a href="aula11.html" hreflang="en">English version</a></p>
     <div class="uc-content">
 <p><a href="aula11.html">Version in English</a><br/>
 </p>
 <h2><strong>Mooshak:</strong> Exercícios para Submissão</h2>
 <p>Para efeitos de <a href="../avaliacao.html#avaliacao">nota atribuída à resolução de exercícios ao longo do semestre</a>, os exercícios que pode submeter desta aula são os seguintes exercícios, que fazem parte do conjunto de exercícios das últimas duas aulas práticas:<br/>
-</p><ul>
-<li><a href="problems/pi055.html">[PI055] Lake Reflection</a> (peso 30%) (main exercise)</li>
-<li><a href="problems/pi056.html">[PI056] Well Balanced Expression</a> (peso 30%) (main exercise)</li>
-<li><a href="problems/pi057.html">[PI057] Two Queues</a> (peso 40%) (main exercise)</li>
+</p>
+<uc-problems track>
+<section data-deadline="aula11">
+<ul>
+<li data-judge="mooshak"><a href="problems/pi055.html">Lake Reflection</a> <code>PI055</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi056.html">Well Balanced Expression</a> <code>PI056</code> <data value="30">30 %</data></li>
+<li data-judge="mooshak"><a href="problems/pi057.html">Two Queues</a> <code>PI057</code> <data value="40">40 %</data></li>
 </ul>
-<p><mark><strong>Prazo de submissão:</strong> <strong>15 de Junho</strong> (submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>)</mark></p>
-<p><strong>Caso encontrem dificuldades, falem com os docentes e outros colegas para
-    obterem sugestões de como abordar um determinado problema, mas
-    façam um esforço genuino para depois codificarem e porem a funcionar a vossa
-    solução. Esta é a melhor forma de ficarem competentes na
-    resolução destes problemas (ou
-    seja aprenderem)  e habituados a ultrapassar as
-    dificuldades que possam surgir. O mesmo se aplica ao uso do
-    ChatGPT ou outras LLMs. 
-    <mark>Evitem pedir a solução, peçam antes
-    sugestões de como abordar o problem com a indicação para não vos
-    ser dado o código da solução.</mark></strong><br/>
-</p><p>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.<br/>  
-Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.<br/>  
-Cada aula vale 10% da nota desta componente.<br/>  
-Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.<br/>  
-Para ter 100% bastará sempre resolver os exercícios principais.</p>
+</section>
+</uc-problems>
+<p>Submeter no <a href="https://mooshak.dcc.fc.up.pt/~pi/">Mooshak de Programação Imperativa</a>.</p>
+<div class="uc-callout">
+<p>Caso encontrem dificuldades, falem com os docentes e outros colegas para
+  obterem sugestões de como abordar um determinado problema, mas
+  façam um esforço genuíno para depois codificarem e porem a funcionar a vossa
+  solução. Esta é a melhor forma de ficarem competentes na
+  resolução destes problemas (ou
+  seja aprenderem)  e habituados a ultrapassar as
+  dificuldades que possam surgir. O mesmo se aplica ao uso do
+  ChatGPT ou outras LLMs.
+  <strong>Evitem pedir a solução, peçam antes
+  sugestões de como abordar o problema com a indicação para não vos
+  ser dado o código da solução.</strong></p>
+</div>
+<ul>
+<li>No entanto, qualquer ajuda mais direta que tenham recebido de outros colegas deve ser reconhecida nos comentários do programa que submetem.</li>
+<li>Depois do prazo os problemas continuarão disponíveis no Mooshak, mas as submissões não contarão para a sua nota.</li>
+<li>Cada aula vale 10% da nota desta componente.</li>
+<li>Para um problema contar tem de acertar todos os testes (ou seja, ter <em>accepted</em>). Mesmo que resolva todos os problemas, o máximo numa aula é de 100%.</li>
+<li>Para ter 100% bastará sempre resolver os exercícios principais.</li>
+</ul>
 
-<h3>Exercício 1) Pilhas e Filas com <code>LinkedList</code></h3>
+<h2>Exercícios</h2>
+<uc-exercise id="exercicio-1" title="Pilhas e Filas com LinkedList">
 <p>Nesta aula espera-se que utilize a mesma estrutura <code><strong>LinkedList</strong></code> do Exercício 1 da aula anterior (<a href="aula10_pt.html">Aula Prática #10</a>), recordando que uma pilha segue uma política  <strong>LIFO</strong> (<em>Last In, First Out</em>) e uma fila segue uma política <strong>FIFO</strong> (<em>First In, First Out</em>).<br/>
 </p><p>Este exercício introduz também a utilização de <em>header files</em> (<code><strong>.h</strong></code>) para separar a interface de uma estrutura de dados da sua implementação. Considera a seguinte organização:
 
@@ -97,7 +107,7 @@ Input:  Expression: {[(])}
 Output: Not balanced
 </script></uc-code>
 
-</li><li><ul><li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a><br/><a href="problems/pi056.html">[PI056] Well-Balanced Expressions</a><br/> 
+</li><li><ul><li><span class="uc-tag uc-tag--muted">Mooshak</span> <br/><a href="problems/pi056.html">[PI056] Well-Balanced Expressions</a><br/> 
       Agora pode ler o enunciado do problema PI056 com atenção e tente enviar uma solução Accepted. Apenas precisa de adaptar a sua solução.      
   </li>
 </ul><br/>
@@ -112,8 +122,8 @@ O programa deverá ler comandos da entrada padrão:
 <li><code><strong>EXIT</strong></code> — termina o programa</li>
 </ul>
 
-<details name="hint">
-<summary><em>Sugestão</em></summary>
+<details class="uc-hint" name="hint">
+<summary>Sugestão</summary>
 <p>- utiliza duas filas separadas, uma para cada nível de prioridade.</p>
 </details>
 <br/>Exemplo:
@@ -130,15 +140,14 @@ O programa deverá ler comandos da entrada padrão:
 
 </pre>
 
-</li><li><ul><li><a href="https://mooshak.dcc.fc.up.pt/~pi/"><img alt="Mooshak" loading="lazy" src="images/mooshak.gif"/></a><br/><a href="problems/pi057.html">[PI057] Two Queues</a><br/> 
+</li><li><ul><li><span class="uc-tag uc-tag--muted">Mooshak</span> <br/><a href="problems/pi057.html">[PI057] Two Queues</a><br/> 
       Agora pode ler o enunciado do problema PI057 com atenção e tente enviar uma solução Accepted. 
   </li>
 </ul>
 </li>
 </ol>
-
-<h3>Exercício 2) Análise de Complexidade</h3>
-
+</uc-exercise>
+<uc-exercise id="exercicio-2" title="Análise de Complexidade">
 As questões seguintes baseiam-se na breve introdução à complexidade e eficiência abordada nas aulas teóricas. <br/>
 <ol>
 <li>Considera a seguinte função em C:<br/>
@@ -169,8 +178,8 @@ int mystery(int n) {
 </ul>
 </li>
 </ol>
-
-<h3>Exercício 3) Leitura e Escrita de Ficheiros</h3>
+</uc-exercise>
+<uc-exercise id="exercicio-3" title="Leitura e Escrita de Ficheiros">
 <ol>
 <li>Escreva um programa simples que lê um dado número de linhas da <strong>entrada padrão</strong> e escreve tais linhas num <strong>ficheiro de texto</strong>. Exemplo:
 <pre>
@@ -229,9 +238,10 @@ A função deve retornar <code><strong>NULL</strong></code> se a informação de
 </ol>
 </li>
 </ol>
+</uc-exercise>
+
     </div>
     </uc-guide>
-    <p class="uc-muted uc-small source-note">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11_pt.html">site original</a>.</p>
   </uc-page>
 </body>
 </html>

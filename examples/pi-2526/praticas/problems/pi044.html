@@ -11,11 +11,14 @@
   <script src="../../../../kit/v1/uc-kit.js" defer></script>
 </head>
 <body>
-  <uc-page current="materials">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI044] Beyblade Arena</li></ol>
-    </nav>
-    <h1>[PI044] Beyblade Arena</h1>
+  <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi044.html">
+    <div class="uc-page-header">
+      <nav class="uc-crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="index.html">Problems</a></li><li aria-current="page">[PI044] Beyblade Arena</li></ol>
+      </nav>
+      <h1>Beyblade Arena</h1>
+      <uc-problem code="PI044" judge="mooshak" deadline="aula09" track></uc-problem>
+    </div>
     <div class="uc-content">
 <section lang="en">
 
@@ -39,41 +42,61 @@ arena.</p>
 <p>Constraints: <code>1 ≤ n, m ≤ 100,000</code>; <code>1 ≤ x ≤ n</code>; <code>1 ≤ y ≤ m</code>; <code>1 ≤ k ≤ 1,000,000,000</code>.</p>
 <h2>Output</h2>
 <p>Print a single line with two integers, the final coordinates <code>x</code> and <code>y</code> of the beyblade after <code>k</code> moves.</p>
-<h3>Example Input 1</h3>
-<pre>
-3 3 2 2 1
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 2 2 1
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-3 3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3 3
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-3 3 2 2 2
+</div>
+</div>
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 2 2 2
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-2 2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2 2
 </pre>
-<h3>Example Input 3</h3>
-<pre>
-3 3 2 2 3
+</div>
+</div>
+<h3>Example 3</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 2 2 3
 </pre>
-<h3>Example Output 3</h3>
-<pre>
-1 1
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">1 1
 </pre>
+</div>
+</div>
 <h3>Explanation:</h3>
 <p>The beyblade spins along the path (2, 2), (3, 3), (2, 2), (1, 1), at which point it loops and goes back to the beginning.</p>
 <p>After 3 moves, it ends in position (1, 1)</p>
-<h3>Example Input 4</h3>
-<pre>
-3 3 1 2 3
+<h3>Example 4</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 1 2 3
 </pre>
-<h3>Example Output 4</h3>
-<pre>
-2 1
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2 1
 </pre>
+</div>
+</div>
 <h3>Explanation</h3>
 <p>The beyblade spins along the path (1, 2), (2, 3), (3, 2), (2, 1), at which point it loops and goes back to the beginning.</p>
 <p>After 3 moves, it is in position (2, 1).</p>
@@ -96,48 +119,67 @@ arena.</p>
 <p>Restrições: <code>1 ≤ n, m ≤ 100.000</code>; <code>1 ≤ x ≤ n</code>; <code>1 ≤ y ≤ m</code>; <code>1 ≤ k ≤ 1.000.000.000</code>.</p>
 <h2>Output</h2>
 <p>Imprima uma única linha com dois inteiros, as coordenadas finais <code>x</code> e <code>y</code> da beyblade após <code>k</code> movimentos.</p>
-<h3>Example Input 1</h3>
-<pre>
-3 3 2 2 1
+<h3>Example 1</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 2 2 1
 </pre>
-<h3>Example Output 1</h3>
-<pre>
-3 3
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">3 3
 </pre>
-<h3>Example Input 2</h3>
-<pre>
-3 3 2 2 2
+</div>
+</div>
+<h3>Example 2</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 2 2 2
 </pre>
-<h3>Example Output 2</h3>
-<pre>
-2 2
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2 2
 </pre>
-<h3>Example Input 3</h3>
-<pre>
-3 3 2 2 3
+</div>
+</div>
+<h3>Example 3</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 2 2 3
 </pre>
-<h3>Example Output 3</h3>
-<pre>
-1 1
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">1 1
 </pre>
+</div>
+</div>
 <h3>Explicação:</h3>
 <p>A beyblade gira ao longo do percurso (2, 2), (3, 3), (2, 2), (1, 1), a partir do qual entra num ciclo e volta ao início.</p>
 <p>Após 3 movimentos, termina na posição (1, 1).</p>
-<h3>Example Input 4</h3>
-<pre>
-3 3 1 2 3
+<h3>Example 4</h3>
+<div class="uc-samples">
+<div>
+<p class="uc-samples__label">Input</p>
+<pre data-copy="Input">3 3 1 2 3
 </pre>
-<h3>Example Output 4</h3>
-<pre>
-2 1
+</div>
+<div>
+<p class="uc-samples__label">Output</p>
+<pre data-copy="Output">2 1
 </pre>
+</div>
+</div>
 <h3>Explicação</h3>
 <p>A beyblade gira ao longo do percurso (1, 2), (2, 3), (3, 2), (2, 1), a partir do qual entra num ciclo e volta ao início.</p>
 <p>Após 3 movimentos, está na posição (2, 1).</p>
 
 </section>
     </div>
-    <p class="uc-muted uc-small source-note">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/pi044.html">original website</a>.</p>
   </uc-page>
 </body>
 </html>
