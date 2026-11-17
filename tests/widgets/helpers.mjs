@@ -27,7 +27,10 @@ export async function loadWidgets() {
   for (const id of await widgetNames()) {
     const folder = path.join(ROOT, "widgets", "src", id);
     const meta = JSON.parse(await readFile(path.join(folder, "meta.json"), "utf8"));
-    const algorithm = await import(pathToFileURL(path.join(folder, "algorithm.js")).href);
+    const module = await import(pathToFileURL(path.join(folder, "algorithm.js")).href);
+    // A widget whose inputs are hard to write as JSON (graphs) gives a fixture.js that turns meta.json's form into run()'s.
+    const fixture = await import(pathToFileURL(path.join(folder, "fixture.js")).href).catch((error) => (error.code === "ERR_MODULE_NOT_FOUND" ? null : Promise.reject(error)));
+    const algorithm = fixture ? { ...module, run: (input, options, emit) => module.run(fixture.input(input, id), options, emit) } : module;
     const { strings } = await import(pathToFileURL(path.join(folder, "i18n.js")).href);
     const dictionaries = {};
     for (const lang of LANGUAGES) {

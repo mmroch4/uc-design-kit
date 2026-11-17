@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Widgets da vaga 2 (W4) · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-graph.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-shortest-path.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-complexity.js" defer></script>
+  <script src="../../widgets/v1/uc-widget-sort.js" defer></script>
+</head>
+<body>
+  <uc-page current="about" layout="full">
+    <h1>
+      <span lang="pt">Widgets da fase W4 (teste)</span>
+      <span lang="en">Phase W4 widgets (test)</span>
+    </h1>
+
+    <h2><span lang="pt">BFS com previsões</span><span lang="en">BFS with predictions</span></h2>
+    <uc-widget-graph id="bfs" source="A" algorithms="bfs dfs components" predict editable>
+      <pre data-input>
+A B
+A C
+B D
+C D
+D E
+F G
+      </pre>
+      <p>BFS a partir de A: A 0, B 1, C 1, D 2, E 3; F e G inacessíveis.</p>
+    </uc-widget-graph>
+
+    <h2><span lang="pt">DFS num grafo dirigido com posições</span><span lang="en">DFS on a directed graph with positions</span></h2>
+    <uc-widget-graph id="dfs" algorithm="dfs" directed source="1" edges="1 2; 1 3; 2 4; 3 4; 4 1; 1 @ 0,0; 2 @ 2,0; 3 @ 0,2; 4 @ 2,2">
+      <p>Ordem de visita: 1 2 4 3.</p>
+    </uc-widget-graph>
+
+    <h2><span lang="pt">Componentes</span><span lang="en">Components</span></h2>
+    <uc-widget-graph algorithm="components" controls="compact" start="end" edges="A B; B C; C A; D E; F; G H; H I">
+      <p>Quatro componentes: {A, B, C}, {D, E}, {F}, {G, H, I}.</p>
+    </uc-widget-graph>
+    <uc-widget-graph source="Z" edges="A B"><p>Entrada inválida: a origem Z não existe.</p></uc-widget-graph>
+
+    <h2><span lang="pt">Dijkstra</span><span lang="en">Dijkstra</span></h2>
+    <uc-widget-shortest-path id="dijkstra" source="A" directed algorithms="dijkstra bellman-ford" predict editable>
+      <pre data-input>
+A B 4
+A C 1
+C B 2      # comentário
+B D 5
+C D 8
+E          # isolado
+      </pre>
+      <p>Distâncias a partir de A: B 3, C 1, D 8; E inacessível.</p>
+    </uc-widget-shortest-path>
+    <uc-widget-shortest-path algorithm="bellman-ford" directed start="end" edges="A B 1; B C -2; C B 1; C D 3"><p>Ciclo negativo B → C → B.</p></uc-widget-shortest-path>
+    <uc-widget-shortest-path edges="A B -1"><p>Entrada inválida para o Dijkstra: peso negativo.</p></uc-widget-shortest-path>
+
+    <h2><span lang="pt">Complexidade</span><span lang="en">Complexity</span></h2>
+    <uc-widget-complexity id="growth" max="12" predict editable>
+      <p>Para n = 12: 1 &lt; log n &lt; n &lt; n log n &lt; n² &lt; 2ⁿ.</p>
+    </uc-widget-complexity>
+    <uc-widget-complexity functions="n nlogn n2" max="16" for="sorter" points="4:6 8:28" scale="log">
+      <p>Comparações da ordenação por inserção, medidas.</p>
+    </uc-widget-complexity>
+    <uc-widget-sort id="sorter" values="5 2 9 1 7 3 8 6" algorithm="insertion" editable controls="compact"><p>Ordenação por inserção.</p></uc-widget-sort>
+  </uc-page>
+</body>
+</html>

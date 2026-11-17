@@ -41,6 +41,16 @@ released yet; contract `docs/plan/widgets-api.md`).
   quadratic probing; tombstones, load factor and the table doubling; integer
   or word keys). `svg.grid` is bundled into `<uc-widget-hash>`; the core is
   unchanged.
+- Phase W4 (experimental): `<uc-widget-graph>` (BFS with its queue and
+  distances, recursive DFS with its call stack, connected components;
+  directed or not), `<uc-widget-shortest-path>` (Dijkstra with its priority
+  queue, Bellman-Ford with negative cycle detection),
+  `<uc-widget-complexity>` (growth functions as n grows, with measured
+  counts of another widget via `for`). Graph input in `<pre data-input>` or
+  the new `edges` attribute; `svg.graph` (automatic layout per connected
+  component) is bundled into the graph widgets and `svg.plot` into the
+  complexity widget. Core: `uc:widgetdone` carries `stats` and `input`; new
+  counters `edges` and `relaxations`.
 
 ### Changed
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).

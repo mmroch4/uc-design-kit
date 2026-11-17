@@ -24,6 +24,20 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 EDados
 
   Algoritmos: `operations`, `preorder`, `inorder`, `postorder`, `levelorder` · 5.5 KB gzip
+- [Complexidade](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-complexity.md) `<uc-widget-complexity>`
+
+  Funções de crescimento (1, log n, n, n log n, n², 2ⁿ…) lado a lado à medida que n cresce, com as contagens reais de outro widget da página.
+
+  Experimental Vaga 2 IP PI EDados PC
+
+  Algoritmos: `growth` · 4.8 KB gzip
+- [Pesquisa em grafos](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-graph.md) `<uc-widget-graph>`
+
+  BFS com a fila e as distâncias, DFS com a pilha de chamadas e a ordem de visita, componentes conexas; grafos dirigidos ou não.
+
+  Experimental Vaga 2 EDados PC
+
+  Algoritmos: `bfs`, `dfs`, `components` · 7.1 KB gzip
 - [Tabela de dispersão](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-hash.md) `<uc-widget-hash>`
 
   Tabela de dispersão com encadeamento, sondagem linear ou quadrática: inserir, procurar, remover, fator de carga e crescimento da tabela.
@@ -59,6 +73,13 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
   Experimental Vaga 1 IP EDados PI PC
 
   Algoritmos: `linear`, `binary`, `lower` · 3.2 KB gzip
+- [Caminhos mais curtos](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-shortest-path.md) `<uc-widget-shortest-path>`
+
+  Dijkstra com a fila de prioridade visível e Bellman-Ford por rondas, com deteção de ciclos negativos.
+
+  Experimental Vaga 2 EDados PC
+
+  Algoritmos: `dijkstra`, `bellman-ford` · 6.9 KB gzip
 - [Ordenação](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-sort.md) `<uc-widget-sort>`
 
   Bolha, seleção, inserção, merge sort, quicksort e counting sort, passo a passo.
@@ -76,9 +97,8 @@ Gerado a partir de `widgets/v1/catalog.json`. "Experimental" quer dizer que o wi
 
 ## Planeados
 
-Os restantes chegam por vagas, todos com o mesmo leitor, as mesmas teclas e a mesma vista em texto:
+Os restantes chegam na próxima vaga, com o mesmo leitor, as mesmas teclas e a mesma vista em texto:
 
-- **Vaga 2:** BFS e DFS, caminhos mais curtos (Dijkstra, Bellman-Ford), complexidade.
 - **Vaga 3:** árvores de cobertura mínima, union-find, ordenação topológica, programação dinâmica, backtracking e um widget de traço com os passos do professor.
 
 ## Ver também

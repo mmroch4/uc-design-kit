@@ -65,6 +65,75 @@
       "gzip": 5637
     },
     {
+      "name": "uc-widget-complexity",
+      "file": "uc-widget-complexity.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 2,
+      "title": {
+        "pt": "Complexidade",
+        "en": "Complexity"
+      },
+      "summary": {
+        "pt": "Funções de crescimento (1, log n, n, n log n, n², 2ⁿ…) lado a lado à medida que n cresce, com as contagens reais de outro widget da página.",
+        "en": "Growth functions (1, log n, n, n log n, n², 2ⁿ…) side by side as n grows, with the real counts of another widget on the page."
+      },
+      "page": "docs/pt/widgets/uc-widget-complexity.html",
+      "algorithms": [
+        "growth"
+      ],
+      "courses": [
+        "IP",
+        "PI",
+        "EDados",
+        "PC"
+      ],
+      "attributes": [
+        "functions",
+        "max",
+        "scale",
+        "for",
+        "measure",
+        "points"
+      ],
+      "predict": true,
+      "gzip": 4906
+    },
+    {
+      "name": "uc-widget-graph",
+      "file": "uc-widget-graph.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 2,
+      "title": {
+        "pt": "Pesquisa em grafos",
+        "en": "Graph search"
+      },
+      "summary": {
+        "pt": "BFS com a fila e as distâncias, DFS com a pilha de chamadas e a ordem de visita, componentes conexas; grafos dirigidos ou não.",
+        "en": "BFS with its queue and distances, DFS with its call stack and visit order, connected components; directed or undirected graphs."
+      },
+      "page": "docs/pt/widgets/uc-widget-graph.html",
+      "algorithms": [
+        "bfs",
+        "dfs",
+        "components"
+      ],
+      "courses": [
+        "EDados",
+        "PC"
+      ],
+      "attributes": [
+        "edges",
+        "directed",
+        "source",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 7255
+    },
+    {
       "name": "uc-widget-hash",
       "file": "uc-widget-hash.js",
       "status": "experimental",
@@ -225,6 +294,39 @@
       ],
       "predict": true,
       "gzip": 3244
+    },
+    {
+      "name": "uc-widget-shortest-path",
+      "file": "uc-widget-shortest-path.js",
+      "status": "experimental",
+      "since": "1.0.0",
+      "wave": 2,
+      "title": {
+        "pt": "Caminhos mais curtos",
+        "en": "Shortest paths"
+      },
+      "summary": {
+        "pt": "Dijkstra com a fila de prioridade visível e Bellman-Ford por rondas, com deteção de ciclos negativos.",
+        "en": "Dijkstra with its priority queue in view and Bellman-Ford round by round, with negative cycle detection."
+      },
+      "page": "docs/pt/widgets/uc-widget-shortest-path.html",
+      "algorithms": [
+        "dijkstra",
+        "bellman-ford"
+      ],
+      "courses": [
+        "EDados",
+        "PC"
+      ],
+      "attributes": [
+        "edges",
+        "directed",
+        "source",
+        "algorithm",
+        "algorithms"
+      ],
+      "predict": true,
+      "gzip": 7050
     },
     {
       "name": "uc-widget-sort",

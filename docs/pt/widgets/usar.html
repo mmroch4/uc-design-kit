@@ -95,6 +95,9 @@
           <li><a href="uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
           <li><a href="uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
           <li><a href="uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
+          <li><a href="uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
+          <li><a href="uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -233,7 +236,7 @@
         <h2 id="versoes">Versões e uso offline</h2>
         <p>A biblioteca tem versões próprias, independentes do kit. <code>widgets/v1/</code> recebe só mudanças compatíveis (widgets, atributos e textos novos); quando sair a 1.0.0, <code>widgets/v1.0.0/</code> fica congelada para quem quiser fixar a versão. Para usar sem rede, copia-se a pasta <code>widgets/v1/</code> inteira para junto do site e usa-se um caminho relativo: os ficheiros encontram-se uns aos outros na mesma pasta, também a partir de <code>file://</code>.</p>
         <h2 id="eventos">Eventos e métodos</h2>
-        <p>Os widgets lançam <code>uc:widgetstep</code> (cada mudança de passo), <code>uc:widgetdone</code> (chegou ao fim a avançar) e <code>uc:widgetpredict</code> (cada resposta). Têm os métodos <code>go(n)</code>, <code>next()</code>, <code>back()</code>, <code>play()</code>, <code>pause()</code>, <code>reset()</code> e as propriedades <code>step</code>, <code>total</code> e <code>result</code>. Por exemplo, mostrar uma pergunta do guião quando a demonstração acaba:</p>
+        <p>Os widgets lançam <code>uc:widgetstep</code> (cada mudança de passo), <code>uc:widgetdone</code> (chegou ao fim a avançar; traz os contadores do último passo em <code>stats</code> e a entrada em <code>input</code>, que o <a href="uc-widget-complexity.html"><code>&lt;uc-widget-complexity&gt;</code></a> usa para medir) e <code>uc:widgetpredict</code> (cada resposta). Têm os métodos <code>go(n)</code>, <code>next()</code>, <code>back()</code>, <code>play()</code>, <code>pause()</code>, <code>reset()</code> e as propriedades <code>step</code>, <code>total</code> e <code>result</code>. Por exemplo, mostrar uma pergunta do guião quando a demonstração acaba:</p>
         <uc-code lang="js" no-download><pre><code>document.querySelector("#demo").addEventListener("uc:widgetdone", () =&gt; {
   document.querySelector("#q3").hidden = false;
 });</code></pre></uc-code>

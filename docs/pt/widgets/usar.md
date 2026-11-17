@@ -100,7 +100,7 @@ A biblioteca tem versões próprias, independentes do kit. `widgets/v1/` recebe 
 
 ## Eventos e métodos
 
-Os widgets lançam `uc:widgetstep` (cada mudança de passo), `uc:widgetdone` (chegou ao fim a avançar) e `uc:widgetpredict` (cada resposta). Têm os métodos `go(n)`, `next()`, `back()`, `play()`, `pause()`, `reset()` e as propriedades `step`, `total` e `result`. Por exemplo, mostrar uma pergunta do guião quando a demonstração acaba:
+Os widgets lançam `uc:widgetstep` (cada mudança de passo), `uc:widgetdone` (chegou ao fim a avançar; traz os contadores do último passo em `stats` e a entrada em `input`, que o [`<uc-widget-complexity>`](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-complexity.md) usa para medir) e `uc:widgetpredict` (cada resposta). Têm os métodos `go(n)`, `next()`, `back()`, `play()`, `pause()`, `reset()` e as propriedades `step`, `total` e `result`. Por exemplo, mostrar uma pergunta do guião quando a demonstração acaba:
 
 ```js
 document.querySelector("#demo").addEventListener("uc:widgetdone", () => {

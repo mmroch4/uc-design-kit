@@ -1,0 +1,6 @@
+/* svg.graph (graph widgets): weights on a surface patch, notes with a halo, vertices as circles. */
+:where(.uc-widget__weight) { font: 600 14px var(--uc-font-mono); fill: var(--uc-color-text); }
+:where(.uc-widget__weight-box) { fill: var(--uc-color-surface); stroke: var(--uc-color-border); }
+:where(.uc-widget__item) circle { transition: fill var(--uc-widget-duration, 200ms), stroke var(--uc-widget-duration, 200ms); }
+:where(.uc-widget__item) .uc-widget__note { paint-order: stroke; stroke: var(--uc-color-surface); stroke-width: 4px; }
+:where(.uc-widget__edge) path:first-child { fill: none; }

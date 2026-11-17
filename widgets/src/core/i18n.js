@@ -30,7 +30,7 @@ export const strings = {
     empty: "Vazia.",
     hole: "vazio",
     value: "{v}",
-    stat: { comparisons: "Comparações", swaps: "Trocas", writes: "Escritas", probes: "Sondagens" },
+    stat: { comparisons: "Comparações", swaps: "Trocas", writes: "Escritas", probes: "Sondagens", edges: "Arestas vistas", relaxations: "Relaxações" },
     stateName: { default: "—", current: "atual", compared: "comparado", swapped: "trocado", visited: "visitado", done: "terminado" },
     column: { index: "Posição", value: "Valor", state: "Estado" },
     predict: {
@@ -82,7 +82,7 @@ export const strings = {
     empty: "Empty.",
     hole: "empty",
     value: "{v}",
-    stat: { comparisons: "Comparisons", swaps: "Swaps", writes: "Writes", probes: "Probes" },
+    stat: { comparisons: "Comparisons", swaps: "Swaps", writes: "Writes", probes: "Probes", edges: "Edges examined", relaxations: "Relaxations" },
     stateName: { default: "—", current: "current", compared: "compared", swapped: "swapped", visited: "visited", done: "done" },
     column: { index: "Index", value: "Value", state: "State" },
     predict: {

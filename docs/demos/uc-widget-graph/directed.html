@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-widget-graph · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-graph.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- demo:start -->
+    <uc-widget-graph algorithm="dfs" directed source="1"
+        edges="1 2; 1 3; 2 4; 3 4; 4 1; 1 @ 0,0; 2 @ 2,0; 3 @ 0,2; 4 @ 2,2" editable>
+      <p>DFS a partir de 1 num grafo dirigido: visita 1, 2, 4 e depois 3.</p>
+    </uc-widget-graph>
+    <!-- demo:end -->
+  </main>
+</body>
+</html>
