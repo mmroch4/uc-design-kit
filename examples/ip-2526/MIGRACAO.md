@@ -110,6 +110,7 @@ regras dos testes em `uc-facts`; livros como `a.uc-card`; veredictos do Mooshak 
 / `uc-tag--danger`; nota de origem em `source` no `course.js` e `source="…"` em cada `<uc-page>`
 (sai o parágrafo de cada página). O `theme.css` ficou só com as cores dos enunciados.
 
-Fica para a parte 2 do kit: datas da semana no `uc-guide` (hoje escritas no `uc-eyebrow`), caminho
-dos testes e do exame a partir de Assessment no `uc-guide`, `kind` dos exercícios e `<uc-problem>`
-para o cabeçalho dos enunciados.
+Terceira parte, com a parte 2 do kit (PR #83): guiões com `week-label` (semana e datas calculadas,
+em vez das datas escritas) e `prev`/`next`; exercícios extra e desafio com `kind`; cada enunciado
+tem `<uc-problem code judge deadline track>` por baixo do título (prazo, "Submit on Mooshak" e
+"Resolvido" partilhado com as listas), e a caixa de contexto ficou só com a ligação à aula.
