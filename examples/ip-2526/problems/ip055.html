@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP055] Church Members · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP055 (Church Members) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP055</li></ol>
+    </nav>
+    <h1>[IP055] Church Members</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip055.png" width="150"/>
+</p><p>Reverend Timothy Lovejoy, the steadfast and somewhat weary minister of the First Church of Springfield, finds himself in the midst of planning a community outreach event aimed at bringing together his congregation and promoting goodwill throughout Springfield. As he prepares for this important occasion, he decides that it would be fitting to recognize and highlight the different members of his church.</p>
+<p>To kick off the event, Reverend Lovejoy thinks it would be a great idea to create a special presentation that features the names of church members. However, he wants to do something a bit unique: he plans to sort the names in decreasing order based on the length of each name. After all, he thinks, names can be quite telling, and it would add a humorous twist to the event. The longer names could be seen as those of devoted parishioners, while the shorter ones might represent the newcomers or those who haven’t been as involved in church activities.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>sort_strings(lst)</code> that given a list <em>lst</em> of strings, sorts it in decreasing order of length (and in case of a tie by the increasing lexicographical order, that ist, if <em>a</em> and <em>b</em> are two strings with the same length and in python <em>a&lt;b</em> then <em>a</em> should come before than <em>b</em>. Note that the function should change the list itself (and not return a new list) and that repeated strings mut be kept on the list.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|lst|</em> ≤ 100</td>
+<td>     </td>
+<td>Length of list</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+lst1 = ["forty","two","is","the","meaning","of","life"]
+sort_strings(lst1)
+print(lst1)
+lst2 = ["to","be","or","not","to","be","that","is","the","question"]
+sort_strings(lst2)
+print(lst2)
+</pre>
+</td>
+<td>
+<pre data-copy="">
+['meaning', 'forty', 'life', 'the', 'two', 'is', 'of']
+['question', 'that', 'not', 'the', 'be', 'be', 'is', 'or', 'to', 'to']
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip055.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip055.html</a>.</p>
+  </uc-page>
+</body>
+</html>

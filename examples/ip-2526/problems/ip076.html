@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP076] Super Reversed Menu · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP076 (Super Reversed Menu) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP076</li></ol>
+    </nav>
+    <h1>[IP076] Super Reversed Menu</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 29th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class07.html">class #07 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip076.png" width="100"/>
+Like Jimmy Pesto Jr, aunt Gayle Genarro, Bob's sister-in-law, wants to analyze the menu in a new way. Instead of looking up items by their names, she wants to know which menu items share the same price. She has the menu in dictionary where the keys are menu items and the values are their prices. Gayle wants to reverse this dictionary so that the prices are the keys, and the values are sets containing the names of the items that have that price.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>super_swap(menu)</code> that given a dictionary <em>menu</em> with string keys representing menu items and integer values representing prices, returns a new reverse dictionary where the new keys are the values and their new values are sets of the keys that had that value.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|ingredients|</em> ≤ 100</td>
+<td>     </td>
+<td>number of items in the menu</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+menu = {"donut":100, "burger":400, "soda":150, "pizza":400, "juice":150}
+new_menu = super_swap(menu)
+convert = [(k, type(v), sorted(list(v))) for (k,v) in new_menu.items()]
+print(sorted(convert))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+[(100, &lt;class 'set'&gt;, ['donut']), (150, &lt;class 'set'&gt;, ['juice', 'soda']), (400, &lt;class 'set'&gt;, ['burger', 'pizza'])]
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip076.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip076.html</a>.</p>
+  </uc-page>
+</body>
+</html>

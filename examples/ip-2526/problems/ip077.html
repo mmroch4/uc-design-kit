@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP077] Allowed Digits · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP077 (Allowed Digits) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP077</li></ol>
+    </nav>
+    <h1>[IP077] Allowed Digits</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 29th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class07.html">class #07 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip077.png" width="130"/>
+Theodore "Teddy" loves puzzles and wants to know how many numbers between two given integers <em>a</em> and <em>b</em> are composed only of digits from a specific set of allowed digits. For instance, if the allowed digits are {4,7,8} and we are looking for integers in the range [445, 747], then there are 10 integers fulfilling the requirements: 447, 448, 474, 477, 478, 484, 487, 488, 744 and 747.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>possible(digits, a, b)</code> that given a string set of <em>digits</em> and two positive integers <em>a</em> and <em>b</em>, returns the number of integers between <em>a</em> and <em>b</em> that use only digits from the set <em>digits</em>.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>a</em> ≤ <em>b</em> ≤ 10 000</td>
+<td>     </td>
+<td>range of the interval to consider</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(possible("478",445,747))
+print(possible("123",445,747))
+print(possible("0264",1, 100))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+10
+0
+15
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip077.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip077.html</a>.</p>
+  </uc-page>
+</body>
+</html>

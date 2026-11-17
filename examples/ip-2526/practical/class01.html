@@ -25,13 +25,13 @@
         <h2 id="submission">Exercises for submission</h2>
         <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
         <ul class="problems">
-          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip001.html">[IP001] Hello there.</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip002.html">[IP002] Bond, James Bond!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip003.html">[IP003] Check Please</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip004.html">[IP004] Circle Math</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip005.html">[IP005] Time Goes By</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip006.html">[IP006] Fast and Furious</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
-          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip007.html">[IP007] Microwave Oven</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="../problems/ip001.html">[IP001] Hello there.</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip002.html">[IP002] Bond, James Bond!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip003.html">[IP003] Check Please</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="../problems/ip004.html">[IP004] Circle Math</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="../problems/ip005.html">[IP005] Time Goes By</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip006.html">[IP006] Fast and Furious</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip007.html">[IP007] Microwave Oven</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
         </ul>
         <p><strong>Deadline for submission:</strong> <uc-date deadline="p01" format="long"></uc-date> (October 11th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
         <div class="uc-callout">
@@ -86,7 +86,7 @@
           <p>On this course we will use Mooshak to automatically evaluate your Python code.</p>
           <p>For all your submissions you can see the detailed result obtained in each of the test cases. It is also possible to access any public tests for which your program did not receive the <em>Accepted</em> verdict: click the result of your submission, which appears underlined in the listing.</p>
           <p>To access the system use your login (with the word “up”) and the password sent to your institutional email (message sent on the 21st of September with the title “[IP] Mooshak password - login”). If you have trouble accessing it, send a message on Discord to @PedroRibeiro or ask your practical class professor.</p>
-          <p>In this problem the goal is to make your first submissions in Mooshak, all for <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip001.html">[IP001] Hello there.</a>. The problem statement will also be available inside Mooshak. Always start by carefully reading the problem statement given!</p>
+          <p>In this problem the goal is to make your first submissions in Mooshak, all for <a href="../problems/ip001.html">[IP001] Hello there.</a>. The problem statement will also be available inside Mooshak. Always start by carefully reading the problem statement given!</p>
           <ul class="uc-bullets">
             <li>Start by submitting an <strong>Accepted</strong> in Mooshak. Create a file called for instance <code>ip001.py</code>, write the code and test it in your computer. Is it doing what you expected?</li>
             <li>After a correct submission you should now experiment with some common errors to see the behaviour of Mooshak in these cases:
@@ -95,12 +95,13 @@
                 <li>Try to get a <strong>Wrong Answer</strong>: for instance, change the output to produce a different message than what was requested.</li>
               </ul>
             </li>
-            <li>After having these errors your list of submissions should show one line per submission; the number to the left of the result is the number of correct tests.</li>
+            <li>After having these errors your list of submissions should show one line per submission, like in the picture below; the number to the left of the result is the number of correct tests.</li>
           </ul>
-          <!-- TODO: the original page shows two screenshots of Mooshak's listing here; add them when the images are downloaded. -->
+          <p><img src="mooshak_subs.png" loading="lazy" alt="Mooshak's list of submissions for problem 001: 1 Accepted, 0 Compile Time Error and 0 Wrong Answer, one per line."></p>
+          <!-- The original also linked a screenshot of the detailed result of a Runtime Error (detailed_rte.png), which no longer exists on the original site. -->
         </uc-exercise>
         <uc-exercise id="first-input" title="2) Reading my first input" mooshak="IP002">
-          <p>For this exercise you will be solving the problem <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip002.html">[IP002] Bond, James Bond!</a>.</p>
+          <p>For this exercise you will be solving the problem <a href="../problems/ip002.html">[IP002] Bond, James Bond!</a>.</p>
           <ul class="uc-bullets">
             <li>Read the problem, code and submit an Accepted solution. Don't forget to test first on your computer!</li>
             <li>After a correct submission experiment with another type of error, by adding one more instruction to read something from the input (e.g. read three lines of input).</li>
@@ -125,20 +126,20 @@
         <uc-exercise id="training" title="3) Training with Mooshak">
           <p>Read the statements, code and submit Accepted solutions to all of the following problems. Don't forget to test first on your computer!</p>
           <ul class="uc-bullets">
-            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip003.html">[IP003] Check Please</a></li>
-            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip004.html">[IP004] Circle Math</a></li>
+            <li><a href="../problems/ip003.html">[IP003] Check Please</a></li>
+            <li><a href="../problems/ip004.html">[IP004] Circle Math</a></li>
           </ul>
         </uc-exercise>
         <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
           <p><span class="uc-tag uc-tag--accent">extra</span> IP Mooshak classes will usually include at least one extra exercise that you can use if you want to keep testing your knowledge of the material. For this class we propose problems for which you only need what you learned in lecture #02, The Basics.</p>
           <ul class="uc-bullets">
-            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip005.html">[IP005] Time Goes By</a></li>
-            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip006.html">[IP006] Fast and Furious</a></li>
+            <li><a href="../problems/ip005.html">[IP005] Time Goes By</a></li>
+            <li><a href="../problems/ip006.html">[IP006] Fast and Furious</a></li>
           </ul>
         </uc-exercise>
         <uc-exercise id="challenge" title="Challenge exercise" mooshak="IP007">
           <p><span class="uc-tag uc-tag--warning">challenge</span> IP Mooshak classes will usually include one challenge exercise, which can be much harder than the previous ones and might even need knowledge that was not given explicitly in the course. However, since this is the first challenge, it is almost of the same difficulty as the previous exercises.</p>
-          <p>Solve and submit the problem <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip007.html">[IP007] Microwave Oven</a>.</p>
+          <p>Solve and submit the problem <a href="../problems/ip007.html">[IP007] Microwave Oven</a>.</p>
         </uc-exercise>
       </section>
 

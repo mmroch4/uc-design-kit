@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP099] Messages from the Upside Down · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP099 (Messages from the Upside Down) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP099</li></ol>
+    </nav>
+    <h1>[IP099] Messages from the Upside Down</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 20th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without couting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class10.html">class #10 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</strong></p>
+<p class="c-blue"><strong>(you are expected to read the class instructions, that will help you build a solution with structured programming and incremental development)</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip099.png"/>
+  Ever vigilant and determined to protect her family, Joyce Byers has recreated her wall of Christmas lights and letters, hoping to communicate with the Upside Down. Each light flickers seemingly at random, but Joyce notices that some sequences of letters form meaningful words, hinting at locations, objects, or warnings from the other world.</p>
+<p>To make sense of the messages, Joyce decides to carefully scan the wall, which contains a <strong>grid of uppercase letters</strong>. She has a list of words and wants to check if they appear on the grid. Words can appear <strong>horizontally</strong>, <strong>vertically</strong>, or <strong>diagonally</strong> (in any direction) and they might overlap. Your task is to help her look for the words and produce a cleaned version of the wall where only the letters that are part of a word remain visible, and replace all others with dots ('.'). </p>
+<p>The following figure illustrates an example grid and three words (DUSTIN, MIKE and STEVE), ending in the cleaned version:</p>
+<p><img alt="" loading="lazy" src="ip099_example.png"/>
+</p><h2>The Problem</h2>
+<p>Write a program that given a word grid and a list of words, reports if each word appears or not, and in case it appears, reports its starting coordinate and direction. Moreover, it should produce a cleaned version of the grid, replacing all letters that do not appear on a word with a dot.</p>
+<h2>Input</h2>
+<p>The first line contains two positive integers: the number of rows <em>R</em> and columns <em>C</em> that determine the size of the grid. This is followed by <em>R</em> lines, each with <em>C</em> uppercase letters, representing the letter grid.</p>
+<p>The following line contains an integer <em>N</em>, the number of words to look for. <em>N</em> lines follow, each with a <em>W<sub>i</sub></em> word of uppercase letters to look for.</p>
+<h2>Output</h2>
+<p>The first <em>N</em> lines should correspond to the list of words. The <em>i</em>-th line should contain</p>
+<ul>
+<li><code>W<sub>i</sub>: NOT FOUND</code> if the word <em>W<sub>i</sub></em> does not appear in the grid.</li>
+<li><code>W<sub>i</sub>: X Y DIR</code> if the word <em>W<sub>i</sub></em> appears, starting on cell <em>(X,Y)</em> and in direction DIR, where DIR is one of the eight possible directions: N, S, E, W, NE, NW, SE or SW (as depicted on the compass rose below).</li>
+</ul>
+<p><img alt="" class="meme-img" loading="lazy" src="ip099_dirs.png"/></p>
+<p>After the list of words, you should output the cleaned version of the grid as explained before (see the example output for clarification).</p>
+<p>The same letter might be used by different words, but it is guaranteed that a word appears at most once on the grid.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>0 ≤ <em>R,C</em> ≤ 50</td>
+<td>     </td>
+<td>dimensions of the grid</td>
+</tr>
+<tr>
+<td>1 ≤ <em>N</em> ≤ 50</td>
+<td>     </td>
+<td>number of words</td>
+</tr>
+<tr>
+<td>1 ≤ <em>|W<sub>i</sub>|</em> ≤ 50</td>
+<td>     </td>
+<td>size of each word</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Input</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+6 7
+DXLOWIL
+UWEVETS
+SINKATT
+TLIKLMS
+IMICDEU
+NMQRSTD
+5
+MIKE
+WILL
+DUSTIN
+STEVE
+JONATHAN
+</pre>
+</td>
+<td>
+<pre data-copy="">
+MIKE: 2 5 NE
+WILL: NOT FOUND
+DUSTIN: 1 1 S
+STEVE: 7 2 W
+JONATHAN: NOT FOUND
+D......
+U.EVETS
+S..K...
+T.I....
+IM.....
+N......
+</pre>
+</td>
+</tr>
+</table></div>
+<br/>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip099.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip099.html</a>.</p>
+  </uc-page>
+</body>
+</html>

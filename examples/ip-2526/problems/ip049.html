@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP049] Rotating Toys · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP049 (Rotating Toys) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP049</li></ol>
+    </nav>
+    <h1>[IP049] Rotating Toys</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip049.png" width="150"/>
+Maggie Simpson, the silent but observant baby of the Simpson family, is having an especially playful day. She's surrounded by her favorite toys: her pacifier, a teddy bear, a toy train, a building block, and her beloved stuffed rabbit. Maggie lines them up in a row on the floor, delighting in the colorful sequence. But after a few minutes, she gets an idea - she wants to see what the row of toys would look like if each toy moved one spot over, with the last one coming around to the front.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>rotate(lst, dir)</code> that given a list <em>lst</em> rotates it to the right (if <em>dir</em> is"right") or to the left (if <em>dir</em> is "left").</p>
+<p>A rotation to the right means shifting all elements one position to the right (with the last element coming to the front). For instance, the list [1,2,3,4] rotated to the right becomes [4,1,2,3].</p>
+<p>A rotation to the left means shifting all elements one position to the left (with the first element going to the back). For instance, the list [1,2,3,4] rotated to the left becomes [2,3,4,1].</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>0 ≤ <em>|lst|</em> ≤ 100</td>
+<td>     </td>
+<td>Number of elements in list</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+lst = ["pacifier", "teddy", "train", "block", "rabbit"]
+rotate(lst, "right")
+print(lst)
+rotate(lst, "right")
+print(lst)
+rotate(lst, "left")
+print(lst)
+empty = []
+rotate(empty, "left")
+print(empty)
+</pre>
+</td>
+<td>
+<pre data-copy="">
+['rabbit', 'pacifier', 'teddy', 'train', 'block']
+['block', 'rabbit', 'pacifier', 'teddy', 'train']
+['rabbit', 'pacifier', 'teddy', 'train', 'block']
+[]
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip049.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip049.html</a>.</p>
+  </uc-page>
+</body>
+</html>

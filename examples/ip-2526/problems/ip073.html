@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP073] Items Removal · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP073 (Items Removal) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP073</li></ol>
+    </nav>
+    <h1>[IP073] Items Removal</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 29th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class07.html">class #07 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip073.png" width="110"/>
+Regular-Sized Rudy, a frequent visitor to Bob's Burgers, has a peculiar dislike for menu items that start with the letter "B" or "S". He wants to filter these out from a set of available menu items. The menu items are given as a set of strings, where each string represents the name of a dish. He needs your help to remove from the menu any items starting with a certain letter.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>remove(x, menu)</code> that given a lowercase letter <em>x</em> and a set of lowercase strings representing menu items, removes from the set all items that start with the letter <em>x</em>.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|menu|</em> ≤ 100</td>
+<td>     </td>
+<td>number of items in the menu</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+menu = {"banana", "juice", "burger", "coffee", "tea"}
+remove("b", menu)
+print(type(menu))
+print(sorted(list(menu)))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+&lt;class 'set'&gt;
+['coffee', 'juice', 'tea']
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip073.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip073.html</a>.</p>
+  </uc-page>
+</body>
+</html>

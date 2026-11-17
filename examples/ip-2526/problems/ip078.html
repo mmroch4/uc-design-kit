@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP078] Saving Coins · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP078 (Saving Coins) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP078</li></ol>
+    </nav>
+    <h1>[IP078] Saving Coins</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 29th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class07.html">class #07 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip078.png" width="130"/>
+Peter Pescadero, a frugal kid who loves saving money, is trying to pay an exact amount using the least number of coins possible. Given a set of coin denominations and a target amount, Peter wants to find the minimum number of coins needed to make that exact amount. Can you help him?</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>minimum_coins(coins, k)</code> that given <em>coins</em>, an integer set of coin denominations and <em>k</em>, a positive amount, returns the minimum amount of coins that you need to use to make quantity <em>k</em>. In case the quantity is not achievable with the coins you have, return -1. You may assume you have an infinite supply of all coins.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|coins|</em> ≤ 50</td>
+<td>     </td>
+<td>number of coin denominations</td>
+</tr>
+<tr>
+<td>1 ≤ <em>k</em> ≤ 10 000</td>
+<td>     </td>
+<td>quantity to consider</td>
+</tr>
+</table></div>
+<p class="uc-callout">NOTE: an inneficient solution will most likely have <strong>Time Limit Exceeded</strong>.<br/>
+This is a challenge exercise and is substantially harder than the other and might need algorithmic topics we have not yet spoken on the class.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(minimum_coins({1,5,7}, 11))
+print(minimum_coins({1,5,10}, 10))
+print(minimum_coins({3,6}, 10))
+print(minimum_coins({1}, 42))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+3
+1
+-1
+42
+</pre>
+</td>
+</tr>
+</table></div>
+<p>Explanation of sample input:</p>
+<ul>
+<li>The minimum number of {1,5,7} coins to make 11 is 3 coins: 5+5+1
+  </li><li>The minimum number of {1,5,10} coins to make 10 is 1 coins: 10
+  </li><li>There is no way to make 10 using only coins 3 and 6
+  </li><li>The minimum number of {1} coins to make 42 is 42 coins: 42 coins of 1
+</li></ul>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip078.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip078.html</a>.</p>
+  </uc-page>
+</body>
+</html>

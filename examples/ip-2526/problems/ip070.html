@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP070] A New Translation · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP070 (A New Translation) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP070</li></ol>
+    </nav>
+    <h1>[IP070] A New Translation</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 29th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class07.html">class #07 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip070.png" width="180"/>
+Jimmy Pesto Sr., the owner of Jimmy Pesto's Pizzeria, wants to make his menu accessible to a wider audience by translating it into a different language. To achieve this, he decides to use two dictionaries: one that maps menu items to their current translations and another that provides translations of these terms into a new language. By combining these dictionaries, he aims to create a final dictionary with the translated menu items in the new language.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>compose(f, g)</code> that given two dictionaries of <em>f</em> and <em>g</em> returns a new dictionary <em>h</em> that is the result of composing <em>f</em> with <em>g</em>, that is, <em>h(k) = g(f(k))</em>. The new dictionary should contain all keys <em>k</em> that exist in <em>f</em> such that <em>f(k)</em> also exists as a key in <em>g</em>. </p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|f|, |g|</em> ≤ 100</td>
+<td>     </td>
+<td>number of keys on both <em>f</em> and <em>g</em></td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+f = {"coffee":"cafe", "milk":"leite", "tea":"cha", "juice":"sumo"}
+g = {"leite":"leche", "sumo":"zumo"}
+h = compose(f,g)
+print(sorted(list(h.items())))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+[('juice', 'zumo'), ('milk', 'leche')]
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip070.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip070.html</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP096] Chess Puzzle · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP096 (Chess Puzzle) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP096</li></ol>
+    </nav>
+    <h1>[IP096] Chess Puzzle</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 13th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class09.html">class #09 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="c-blue"><strong>(in this class you are expected to write a solution that uses recursion - mooshak will not force it, but that should be your goal; don't use <em>itertools</em>)</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip096.png"/>
+Dr. Zoidberg has been given an intriguing puzzle to solve. He's been tasked with placing exactly <em>C</em> queens on a chessboard with <em>R</em> rows and <em>C</em> columns. He needs to know all the possible ways to place these queens on the board, such that no two queens can attack each other.</p>
+<p>As a reminder, queens in chess can move any number of squares vertically, horizontally, or diagonally. Therefore, Zoidberg must ensure that no two queens are placed in the same row, the same column, or the same diagonal.</p>
+<p>Zoidberg needs your help to determine all the valid arrangements of placing the queens on the chessboard.</p>
+<h2>The Problem</h2>
+<p>Write a function <code>queens(rows, cols)</code> that generates all possible valid arrangements of <em>cols</em> queens on a chess board of <em>rows</em> by <em>columns</em> such no queen can attack each other. The function should return a list of all arrangements. Each arrangement should be given as a list of integers indicating the rows of the queens, with the position in the list indicating the column. Rows start at 1.</p>
+<p>For instance, the following valid arrangement on a 8 by 8 board would be represented by [1,7,4,6,8,2,5,3].</p>
+<p><img alt="" loading="lazy" src="ip096_board.png"/></p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>cols</em> ≤ rows  ≤ 10</td>
+<td>     </td>
+<td>number of rows and columns</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+output = queens(4, 4)
+print(sorted(output))
+
+print()
+
+output = queens(6, 5)
+print("output is of type", type(output))
+print("output has size:", len(output))
+for x in sorted(output): print(x)
+</pre>
+</td>
+<td>
+<pre data-copy="">
+[[2, 4, 1, 3], [3, 1, 4, 2]]
+
+output is of type &lt;class 'list'&gt;
+output has size: 40
+[1, 3, 5, 2, 4]
+[1, 4, 2, 5, 3]
+[1, 5, 2, 6, 3]
+[2, 4, 1, 3, 5]
+[2, 4, 6, 1, 3]
+[2, 4, 6, 1, 5]
+[2, 4, 6, 3, 5]
+[2, 5, 1, 6, 4]
+[2, 5, 3, 1, 4]
+[2, 5, 3, 6, 4]
+[2, 6, 1, 3, 5]
+[2, 6, 3, 1, 4]
+[3, 1, 4, 2, 5]
+[3, 1, 6, 2, 5]
+[3, 1, 6, 4, 2]
+[3, 5, 2, 4, 1]
+[3, 5, 2, 4, 6]
+[3, 6, 2, 5, 1]
+[3, 6, 4, 1, 5]
+[3, 6, 4, 2, 5]
+[4, 1, 3, 5, 2]
+[4, 1, 3, 6, 2]
+[4, 1, 5, 2, 6]
+[4, 2, 5, 3, 1]
+[4, 2, 5, 3, 6]
+[4, 6, 1, 3, 5]
+[4, 6, 1, 5, 2]
+[4, 6, 3, 5, 2]
+[5, 1, 4, 6, 3]
+[5, 1, 6, 4, 2]
+[5, 2, 4, 1, 3]
+[5, 2, 4, 6, 3]
+[5, 2, 6, 1, 3]
+[5, 3, 1, 4, 2]
+[5, 3, 1, 6, 2]
+[5, 3, 1, 6, 4]
+[5, 3, 6, 4, 2]
+[6, 2, 5, 1, 4]
+[6, 3, 5, 2, 4]
+[6, 4, 2, 5, 3]
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip096.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip096.html</a>.</p>
+  </uc-page>
+</body>
+</html>

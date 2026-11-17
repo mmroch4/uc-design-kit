@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP062] Rocket Pair Protocol · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP062 (Rocket Pair Protocol) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP062</li></ol>
+    </nav>
+    <h1>[IP062] Rocket Pair Protocol</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 22nd</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class06.html">class #06 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip062.png" width="230"/>
+Howard Wolowitz, aerospace engineer (and the only one in the group who’s actually been to space, as he reminds everyone), is working on a safety system for one of NASA's rocket modules.</p>
+<p>Each module has a list of <em>n</em> distinct integer codes, representing energy calibration levels of its control thrusters.</p>
+<p>To ensure flight stability, NASA’s algorithm requires that <strong>at least one pair of thruster codes adds up exactly to a target value <em>x</em></strong>. This value represents a desired combined thrust output.</p>
+<p>If no such pair exists, the system issues a warning (and Howard has to explain it to Sheldon, which is somehow worse than explaining it to NASA...). Can you help Howard in finding this pair?</p>
+<h2>The Problem</h2>
+<p>Write a function <code>rocket_pair(lst, x)</code> that receives a list <em>lst</em> of distinct positive integers and an integer <em>x</em>, returning <em>True</em> if the value <em>x</em> can be obtained by summing a pair of values from <em>lst</em> or <em>False</em> otherwise.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|lst|</em> ≤ 50 000</td>
+<td>     </td>
+<td>Number of elements in the list</td>
+</tr>
+<tr>
+<td>1 ≤ <em>lst[i]</em> ≤ 10<sup>9</sup></td>
+<td>     </td>
+<td>Values in the list</td>
+</tr>
+<tr>
+<td>1 ≤ <em>x</em> ≤ 2 × 10<sup>9</sup></td>
+<td>     </td>
+<td>Target pair value</td>
+</tr>
+</table></div>
+<p class="uc-callout">NOTE: the limits are high and you must have an <strong>efficient</strong> solution.<br/>
+  If your code simply goes through all possible pairs one by one, it will result in a <strong>Time Limit Exceeded</strong>.
+</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(rocket_pair([14, 7, 20, 5, 9], 14))
+print(rocket_pair([10, 3, 8, 12], 25))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+True
+False
+</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>Explanation of the first example</strong>
+</p><p>5 + 9 = 14, perfect balance for the module!</p>
+<p><strong>Explanation of the second example</strong>
+</p><p>No two thruster codes produce a total output of 25.</p>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip062.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip062.html</a>.</p>
+  </uc-page>
+</body>
+</html>

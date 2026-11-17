@@ -6,30 +6,32 @@ Bernardo Portela, DCC/FCUP). Só em inglês, por isso o exemplo também é só e
 
 ## Estado
 
-**Migração parcial.** O conteúdo foi recolhido do browser antes de o servidor do DCC
-começar a recusar ligações (16–17 nov 2026, por excesso de pedidos de várias
-migrações em paralelo). As páginas que não foi possível descarregar ligam ao site
-original com endereço absoluto, como manda o processo de migração; quando o servidor
-voltar a responder, basta convertê-las e trocar os links para caminhos relativos.
+**Migração completa** (17 nov 2026). Uma primeira parte foi recolhida do browser
+(16–17 nov), antes de o servidor do DCC começar a recusar ligações por excesso de
+pedidos. O resto foi descarregado a 17 nov com `wget` no portátil do Miguel, devagar
+(pausas de 2 s entre pedidos) e sem a pasta `evaluation/`: 285 ficheiros, ~15 MB.
+As páginas que só existiam no original passaram a caminhos relativos.
 
 ## Inventário
 
 | Página antiga | Destino | Tratamento | Estado |
 | --- | --- | --- | --- |
-| `index.html` | `index.html` | Reescrita com componentes (`uc-hero`, `uc-this-week`, `uc-notices`, `uc-deadlines`, `uc-team`) | Feita |
+| `index.html` | `index.html` | Reescrita com componentes (`uc-hero`, `uc-this-week`, `uc-notices`, `uc-deadlines`, `uc-team`); xkcd 1513 em `images/` | Feita |
 | `info.html` | `about.html` | Reescrita (objetivos, competências, programa) | Feita |
 | `plan.html` | `weeks.html` | Reescrita com `uc-weeks` (13 semanas + Atividades FCUP) | Feita (ver nota) |
 | `evaluation.html` | `assessment.html` | Reescrita; datas em `course.js` | Feita |
 | `material.html` | `materials.html` | Reescrita; notebooks continuam no Google Colab | Feita |
 | `exam.html` | `exam.html` | Copiada dentro de `uc-content` | Feita |
-| `practical/test1.html` | `practical/test1.html` | Reescrita (um cartão por exercício) | Feita |
-| `practical/class01.html` | `practical/class01.html` | Reescrita com `uc-guide` e `uc-exercise` | Feita |
-| `practical/class05.html` | `practical/class05.html` | Reescrita com `uc-guide` e `uc-exercise` | Feita |
-| `practical/class02–04.html`, `class06–11.html` | — | Link para o original | **Por descarregar** |
-| `practical/test2.html` | — | Link para o original | **Por descarregar** |
-| `problems/ipNNN.html` (enunciados) | — | Link para o original | **Por descarregar** |
-| `images/*` (ilustração do cabeçalho, ícones, xkcd, capturas do Mooshak) | — | De fora; `TODO` em `index.html` e `class01.html` | **Por descarregar** |
-| `evaluation/*` (notas, salas, turnos, exames anteriores) | — | De fora: dados de estudantes e acesso autenticado; link para o original | Fica de fora |
+| `practical/test1.html`, `test2.html` | iguais | Reescritas (`uc-assessment-info` e um cartão por exercício) | Feita |
+| `practical/class01.html` … `class11.html` | iguais | `uc-guide` com `uc-exercise`; 01 e 05 escritas à mão, as outras convertidas por script a partir do HTML original | Feita |
+| `practical/mooshak_help.html` | igual | Copiada dentro de `uc-content` | Feita |
+| `practical/ip097_skeleton.html` | igual | Código num `uc-code` (a partir do `.py`) | Feita |
+| `practical/*.png`, `*.jpg`, `*.py`, `*.txt` | iguais | Copiados tal como estão (memes, capturas do Mooshak, código e inputs de exemplo) | Feita |
+| `problems/index.html` | igual | Reescrita com `uc-problems` (filtros, "Resolvido", prazo de cada aula) | Feita |
+| `problems/ipNNN.html` (107) e `xmas.html` | iguais | Copiados dentro de `uc-content`, com as imagens; MathJax do cdnjs nos que usam fórmulas | Feita |
+| `images/*` | `images/` | Copiadas; só o xkcd é usado (os ícones da página inicial deram lugar aos componentes) | Feita |
+| `practical/practical.css`, `style.css`, `exam.css`, `latexit.js` | — | De fora: o estilo vem do kit; `latexit.js` já não existia no original (404) | Fica de fora |
+| `evaluation/*` (notas, salas, turnos, exames anteriores) | — | De fora: dados de estudantes e acesso autenticado; link para o original com `data-auth` | Fica de fora |
 
 ## Decisões e notas
 
@@ -39,8 +41,16 @@ voltar a responder, basta convertê-las e trocar os links para caminhos relativo
   datas das aulas práticas indicadas nos guiões (P01: 22–26 set; P05: 20–24 out).
   Confirmar com os docentes.
 - **Pausa de 27 a 31 de outubro** (Atividades FCUP), a mesma do exemplo de EDados.
-- **Prazos de submissão.** Só são conhecidos os das aulas 1 (11 out) e 5 (8 nov).
-  Os das outras aulas estão nos guiões por descarregar (`TODO` em `course.js`).
+- **Prazos de submissão.** Os 11 prazos (`p01`–`p11`) e o do desafio de Natal (`xmas`,
+  31 jan 2026) vêm dos guiões e dos enunciados. Todos às 23:59.
+- **Conversão automática.** As aulas 02–04 e 06–11 e os enunciados foram convertidos
+  por script: cores antigas passaram a classes com contraste suficiente (`.c-red`,
+  `.c-green`, `.hl-ok`… no `theme.css`), o código colorido do hilite.me passou a
+  `uc-code`, os memes ficaram em `<details class="uc-hint">` com texto alternativo e os
+  ícones do Mooshak (`mooshak.gif`) saíram. O texto não foi revisto à mão: as gralhas
+  do original ficam (por exemplo “suprised”, “whyle”).
+- **Links partidos no original**: `practical/detailed_rte.png` (captura citada na aula 1)
+  e `latexit.js` já davam 404 no site original.
 - **Equipa.** Os papéis de cada docente (regente, teóricas, práticas) não são claros no
   original: Pedro Ribeiro e Bernardo Portela aparecem como `lecturer`, os restantes
   como `assistant`, sem turmas.
@@ -54,12 +64,7 @@ voltar a responder, basta convertê-las e trocar os links para caminhos relativo
 - **Discord**: o link original (`discord.com/app/` sem `https://`) estava partido;
   corrigido.
 
-## Por fazer quando o servidor responder
+## Por confirmar com os docentes
 
-1. Descarregar o site (sem `evaluation/`): `wget -r -np -nH --cut-dirs=3 -p --wait=2 …`.
-2. Converter `class02–04`, `class06–11` e `test2` com o mesmo modelo de `class01`/`class05`.
-3. Copiar `problems/ipNNN.html` para `problems/` dentro de `uc-content`, com imagens,
-   e criar `problems/index.html`.
-4. Trocar os links absolutos `…/ip2526/practical/…` e `…/ip2526/problems/…` por
-   relativos, e acrescentar os prazos em falta a `course.js`.
-5. Copiar as imagens (xkcd na página inicial, capturas do Mooshak em `class01`).
+- O calendário reconstruído em `weeks.html` (ver acima).
+- Os papéis da equipa em `course.js`.

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #09 · Recursion · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #09 of Introduction to Programming 2025/26: Recursion. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="10">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #09</span>
+          <span class="uc-mono uc-muted">24/11 to 28/11</span>
+        </p>
+        <h1>Class #09 · Recursion</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip089.html">[IP089] Dataset Confusion</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip090.html">[IP090] Binary Communication</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip091.html">[IP091] Planetary Weekends</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip092.html">[IP092] Intergalatic Shopping</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip093.html">[IP093] Delivery Route</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="../problems/ip094.html">[IP094] Eccentric Numbers</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="../problems/ip095.html">[IP095] Dinner Trouble</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="../problems/ip096.html">[IP096] Chess Puzzle</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p09" format="long"></uc-date> (December 13th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore function definition and function calling</li>
+          <li>Understand the the concept of recursion and of divide-and-conquer</li>
+          <li>Have an idea on how to reduce a problem to smaller instances of the same problem in order to solve it with recursion</li>
+          <li>Know how to design simple recursive functions and understand the usage of a base case</li>
+          <li>Have the experience of seing multiple examples of recursive functions</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+      </section>
+      <div class="uc-prose">
+<p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Futurama">Futurama</a>.</p>
+<p><img alt="" loading="lazy" src="futurama.png" width="200"/></p>
+      </div>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="recursion-examples" title="1) Recursion examples" open>
+<p>Make sure you understand the following recursive definitions of list summation given in the lecture, demonstrating two very common patterns:
+
+  </p><ol type="a">
+<li><em>Dividing the problem into 1st element and the rest:</em>
+<uc-code lang="python"><pre><code># A first recursive definition of mysum
+# Notice the use of slicing to extract everything but the 1st element
+def mysum_v3(lst):
+  # print(f"mysum_v3({lst})")       # uncomment to see the calls
+  if len(lst) == 1: return lst[0]   # base case
+  return lst[0] + mysum_v3(lst[1:]) # recursive case
+
+print(mysum_v3([1,2,3,4]))</code></pre></uc-code>
+<p>Here is the recursive tree showing the calls being made in this first recursive function:</p>
+<p><img alt="" loading="lazy" src="mysum_v3.png"/></p>
+</li><li><em>Dividing the problem into two halves:</em>
+<uc-code lang="python"><pre><code># Recursive definition of mysum splitting into two halfs
+def mysum_v5(lst):
+  # print(f"mysum_v5({lst})")     # uncomment to see the calls
+  if len(lst) == 1: return lst[0] # base case
+  middle = len(lst) // 2          # integer division
+  return mysum_v5(lst[:middle]) + mysum_v5(lst[middle:]) # recursive case
+
+print(mysum_v5([1,2,3,4]))</code></pre></uc-code>
+<p>Here is the recursive tree showing the calls being made in this second recursive function:</p>
+<p><img alt="" loading="lazy" src="mysum_v5.png"/></p>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="my-first-recursion" title="2) My first recursion">
+<p>Implement a <strong>recursive</strong> method <code>palindrome(word)</code> that given a string <em>word</em> constituted by lower case letters, returns <em>True</em> if the word is a palindrome and <em>False</em> if it isn't.</p>
+<p>How can you divide the problem into simpler tasks and into one or more smaller instances of the same problem?</p>
+<p>Test your method in your computer (and after testing you can even try to submit to <a href="../problems/ip034.html">[IP034]</a> which was available on class #04 (of course on that time you did it differently, right?)</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Compare the first letter with the last: if they are different, you can return <em>false</em>
+</p><p>- If they are the same, continue with the rest of the word (everything except the first and last character)
+</p><p>- Stop when the problem is simple enough (what is the base case here?)
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="a-recursive-mooshak-problem" title="3) A recursive mooshak problem">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip089.html">[IP089] Dataset Confusion</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>For this problem you should first see the flatten example code that was given in the lecture. Read it carefully and understand how it works:</p>
+<uc-code lang="python"><pre><code># recursive function
+def flatten(lst):
+  if not isinstance(lst, list): return [lst] # base case 1: not a list
+  if len(lst) == 0: return []                # base case 2: empty list
+  return flatten(lst[0]) + flatten(lst[1:])  # recursive cals
+
+print(flatten([[[[4,1],7]],3,[[2]],[5,6],[[42],[40]],[[[[[[[10]]]]]]]]))</code></pre></uc-code>
+<p>After understanding, you are ready to adapt/extend it to the problem at hand!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- How to use <em>isinstance</em> to detect if it is an <em>int</em>? When you detect it, just return its value
+</p><p>- Tuples, like lists, are sequences, so we can use indexing and splicing
+</p><p>- You can still use + to combine, but instead of concatenating you will be... summing
+</p><p>- The base case now should not return []... but zero, which is the neutral element of the sum operation
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="generating-strings" title="4) Generating strings">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip090.html">[IP090] Binary Communication</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>For this problem you should first see the AB strings generation example code that was given in the lecture. Read it carefully and understand how it works (the lecture includes a recursive tree):</p>
+<uc-code lang="python"><pre><code># recursive function
+# k: remaining size to generate
+# cur: current string being built
+def gen_v2_rec(k, cur):
+  if k == 0: return [cur]         # base case
+  l1 = gen_v2_rec(k-1, cur + "A") # recursive case 1
+  l2 = gen_v2_rec(k-1, cur + "B") # recursive case 2
+  return l1 + l2                  # combine both results
+
+# main function that calls auxiliary recursive function
+def gen_v2(k):
+  return gen_v2_rec(k, "")
+
+print(gen_v2(3)) # all strings of size 3 with As and Bs</code></pre></uc-code>
+<p>After understanding, you are ready to adapt/extend it to the problem at hand!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Instead of As and Bs... you will have 0s and 1s
+</p><p>- On the lecture it also shown how to limit the number of a certain character (e.g. using an extra parameter to indicate the amount left)
+</p><p>- How to generate more than one size? You can either do it separately and then concatenate or just generate all at once by always adding to the result when you are within the desired size range
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="generating-sequences-of-planets" title="5) Generating sequences of planets">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip091.html">[IP091] Planetary Weekends</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>This is almost like the last problem. Can you see the resemblance? This like a generalization that is easier in one sense (no limitation on the number of occurrences of one planet) but harder on another sense (since we now don't simple use two characters to form sequences, but a list of planets).</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- The code is very similar but instead of going to the '0' and '1' recursive case, you now need to traverse the list and do a recursive case for each element
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="generating-quantities-with-coins" title="6) Generating quantities with coins">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip092.html">[IP092] Intergalatic Shopping</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>This problem has similarities with <a href="../problems/ip074.html">[IP074]</a>, but here we have a generalization (and we can only use each coin once).</p>
+<p>Its essence, we need to generate all the possible subsets of coins, and subset generation was directly given in the lecture. See the code and try to understand it:</p>
+<uc-code lang="python"><pre><code># recursive function
+# lst: elements that we still can add to the current subset
+# cur: current subset being built
+def subsets_rec(lst, cur):
+  if len(lst) == 0: return [cur]            # base case
+  l1 = subsets_rec(lst[1:], cur + [lst[0]]) # recursive case 1: add 1st element
+  l2 = subsets_rec(lst[1:], cur)            # recursive case 2: don't add it
+  return l1 + l2                            # combine recursive cases
+
+# main function that calls auxiliary recursive function
+def subsets(lst):
+  return subsets_rec(lst, [])
+
+print(subsets([1,2,3])) # generate all subsets of [1,2,3]</code></pre></uc-code>
+<p>Here is the recursive tree (with the method name simplified to <em>ss</em>) showing the calls being made in this recursive function:</p>
+<p><img alt="" loading="lazy" src="subsets.png"/></p>
+<p>After understanding it, you are ready to implement this method.</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- It's essentially the same problem, but here you need to keep track of the sum (e.g. add another parameter to the function)
+</p><p>- On the base case you can add the sum to a set, so that you just save unique quantities
+</p><p>- Another (slightly less eficient) would be to simply generate the subsets and then process them (i.e., sum them)
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p>Do you want to continue your adventure on the world of Futurama? Here are more exercises 🙂</p>
+<p><strong>7) A <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">TSP</a> brute force approach</strong></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip093.html">[IP093] Delivery Route</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Essentially the problem asks for the permutations. Can you generate them recursively?
+      </p></details>
+
+<p><strong>8) Generating numbers</strong></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip094.html">[IP094] Eccentric Numbers</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- This problem is similar to another one you did in this class, right?
+</p><p>- If you want to keep the "current" number, how to add a digit? If the number is <em>n</em>, to add a digit <em>d</em> you only need to create a new number <em>n*10 + i</em> (e.g. n=25, d=3, new number = 25*10 +3 = 253)
+      </p></details>
+
+<p><strong>9) Generating with constrainsts</strong></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip095.html">[IP095] Dinner Trouble</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<details class="uc-hint">
+<summary>Hints</summary>
+<p>- Can you do one totally by yourself? 😁
+      </p></details>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="10) Challenge exercise">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>Congratulations! 🎉 You've successfully tackled all the problems with precision and creativity. Your journey through these challenges has been nothing short of impressive - like a true coding master navigating planet Recursion and Python! 🚀🐍</p>
+<p>Now, the final frontier awaits: Dr. Zoidberg's queen-placement conundrum. It’s a chessboard-sized (classic) challenge, a test of strategy, recursion, and a touch of elegance. But with your skills and determination, this is just another puzzle waiting to be solved. 💡♟️</p>
+<p>So go forth, conquer Zoidberg’s problem, and show that your brilliance shines even in the farthest reaches of logic. Good luck, and as Zoidberg might say: <em>"Hooray for you!"</em></p>
+<p>
+  For this exercise you will be solving the problem <a href="../problems/ip096.html">[IP096] Chess Puzzle </a><br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+<p>Happy coding! 😊</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class09.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class09.html</a>.</p>
+  </uc-page>
+</body>
+</html>

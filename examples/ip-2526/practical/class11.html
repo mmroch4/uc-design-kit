@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #11 · Exceptions · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #11 of Introduction to Programming 2025/26: Exceptions. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="12">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #11</span>
+          <span class="uc-mono uc-muted">08/12 to 12/12</span>
+        </p>
+        <h1>Class #11 · Exceptions</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip102.html">[IP102] Neo's Error Awakening</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip103.html">[IP103] A Glitch in the Matrix</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip104.html">[IP104] The Wisdom of the Oracle</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip105.html">[IP105] Trinity's Escape</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip106.html">[IP106] Cypher's Betrayal</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 25%</span></li>
+          <li><a href="../problems/ip107.html">[IP107] Hello, Mr. Anderson</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 25%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p11" format="long"></uc-date> (January 3rd; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Understand exceptions and learn to identify, catch, raise and handle different types of runtime errors</li>
+          <li>Antecipate and prevent exceptions, writing defensive code that avoids crashes before they happen</li>
+          <li>Debug more complex workflows, involving unpredictable inputs</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lectures.</strong></p>
+      </section>
+      <div class="uc-prose">
+<p>This week's theme for the exercises is <a href="https://pt.wikipedia.org/wiki/Matrix">The Matrix</a>.</p>
+<p><img alt="" loading="lazy" src="matrix.png"/></p>
+      </div>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="neo-s-error-awakening" title="1) Neo&#x27;s Error Awakening" open>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip102.html">[IP102] Neo's Error Awakening</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>In this simple exercise, you'll have to specifically catch two common types of errors, <code>ZeroDivisionError</code> and <code>TypeError</code>.<br/> Take a look at <a href="../materials.html#lectures">T21: Exceptions</a> and try to define the proper blocks to catch these exceptions.</p>
+        </uc-exercise>
+        <uc-exercise id="a-glitch-in-the-matrix" title="2) A Glitch in the Matrix">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip103.html">[IP103] A Glitch in the Matrix</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>Imagine that you don't really know the exception that might be raised in your code. How can you capture <strong>any</strong> exception?<br/> Can you revisit <a href="../materials.html#lectures">T21: Exceptions</a> and find out what <code>except Exception as error:</code> does?<br/> How about <code>type(error).__name__</code>?</p>
+        </uc-exercise>
+        <uc-exercise id="the-wisdom-of-the-oracle" title="3) The Wisdom of the Oracle">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip104.html">[IP104] The Wisdom of the Oracle</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>Now you'll have a function that receives a function as input! What happens when you try to call a function that raises an error?<br/> Can you wrap this function call in a <code>try</code> block? And if it raises an error... incrementing a counter? 😉</p>
+        </uc-exercise>
+        <uc-exercise id="trinity-s-escape" title="4) Trinity&#x27;s Escape">
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip105.html">[IP105] Trinity's Escape</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>Take a look at <a href="../materials.html#lectures">T21: Exceptions</a> to find how to raise an <code>Exception</code> with a customized text message.</p>
+<p>Can you find the positions of Trinity, the agents and the booths? Can you compute the distance between a pair of positions? Can you use that to solve the problem? 😎
+</p>
+        </uc-exercise>
+        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p><strong>5) Cypher's Betrayal</strong> <span class="c-blue">[extra]</span></p>
+<p>
+    For this exercise you will be solving the problem <a href="../problems/ip106.html">[IP106] Cypher's Betrayal</a>.<br/>
+    Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution. Don't forget to test first on your computer!</p>
+<p>You do remember that <code>input()</code> reads one line of the standard input, right?</p>
+<p>Evaluate each string <em>line</em> using <code>eval(line)</code> and catch any exception.</p>
+<p>You can use a map to keep the frequencies (using the type name as the key and the frequency as the value).</p>
+<p>How can you sorted based on frequency? You already did <a href="../problems/ip085.html">similar problems</a>, right? 😉</p>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="6) Hello, Mr. Anderson">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>You're finally facing the wrath of Agent Smith! Good luck!</p>
+<p>
+  For this exercise you will be solving the problem <a href="../problems/ip107.html">[IP107] Hello, Mr. Anderson</a><br/>
+  Read the statement, code and try to submit an <span class="c-green">Accepted</span> solution to the following problem. Don't forget to test first on your computer!</p>
+<p>Happy coding! 😊</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class11.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class11.html</a>.</p>
+  </uc-page>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP035] Odd vs even · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP035 (Odd vs even) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP035</li></ol>
+    </nav>
+    <h1>[IP035] Odd vs even</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 1st</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class04.html">class #04 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip035.png" width="300"/>
+After the palindromic task, Tweedledum and Tweedledee, who are never satisfied without a bit of argument, found themselves in a new heated debate. This time, the subject was numbers: <strong>odd vs even</strong>.</p>
+<p>Tweedledum, pacing around with a smug expression, said, "Odd numbers are far more interesting! They have that unique, irregular charm—just like Wonderland itself. Look at numbers like 1, 3, 5... they stand alone, unpaired, and mysterious. Odd numbers are just... better!</p>
+<p>Tweedledee, ever the more practical one, raised his finger and countered, "Nonsense! Even numbers are clearly superior. They are perfectly balanced, divisible by 2, and represent harmony. Look at 2, 4, 6... there's symmetry, order, and balance. Even numbers make things neat and tidy!"</p>
+<p>The argument grew louder, and soon, they decided that it was time to settle this debate. But they needed someone to do it—a neutral party. They turned to you, their bright student of Python, for assistance. Buy you certainly like all the numbers and devised a clever way of keeping both satisfied...</p>
+<h2>The Problem</h2>
+<p>Write a function <code>odd_even(tup)</code> that given a tuple <em>tup</em> returns a new tuple that has first all the values that were on odd positions, in the same order as they were originally, and then the values that were in even positions, also in the same order.</p>
+<p>Consider for instance a tuple (<span class="c-red">1</span>,<span class="c-blue">2</span>,<span class="c-red">3</span>,<span class="c-blue">4</span>,<span class="c-red">5</span>,<span class="c-blue">6</span>,<span class="c-red">7</span>,<span class="c-blue">8</span>,<span class="c-red">9</span>), in which number <em>i</em> is in the <em>i</em>-th position, with <span class="c-red">red</span> for the odd position values and <span class="c-blue">blue</span> for the even ones. In this case the desired answer is the tuple (<span class="c-red">1</span>,<span class="c-red">3</span>,<span class="c-red">5</span>,<span class="c-red">7</span>,<span class="c-red">9</span>,<span class="c-blue">2</span>,<span class="c-blue">4</span>,<span class="c-blue">6</span>,<span class="c-blue">8</span>), with the odd positioned elements coming before, followed by the even ones.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ |tup| ≤ 100</td>
+<td>     </td>
+<td>size of the input tuple</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(odd_even( (1,2,3,4,5,6,7,8) ))
+print(odd_even( ("a","b","c","d","e","f") ))
+print(odd_even( ("hello", 42, "oh no", 2.0, 14) ))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+(1, 3, 5, 7, 2, 4, 6, 8)
+('a', 'c', 'e', 'b', 'd', 'f')
+('hello', 'oh no', 14, 42, 2.0)
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip035.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip035.html</a>.</p>
+  </uc-page>
+</body>
+</html>

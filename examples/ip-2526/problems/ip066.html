@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP066] Alphabetical Obsession · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP066 (Alphabetical Obsession) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP066</li></ol>
+    </nav>
+    <h1>[IP066] Alphabetical Obsession</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 22nd</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class06.html">class #06 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip066.png" width="215"/>
+Sheldon Cooper has developed a new obsession: he only wants to read text segments that are <em>"letter-controlled"</em>. In any piece of text he examines, there can be <strong>at most <em>k</em> different letters</strong>. Everything else, such as digits, punctuation or spaces, doesn't bother him, but letters are sacred, and too many distinct ones make him anxious.</p>
+<p>One day, Sheldon found a long string of text on the whiteboard in the university cafeteria. He wants to figure out <strong>the longest contiguous segment</strong> he can read without exceeding his distinct-letter limit, but he needs your help.</p>
+<h2>The Problem</h2>
+<p>Write a function <code>letters(k, str)</code> that receives a receives an integer <em>k</em> and a string <em>str</em> and returns the length of the largest substring (a contiguous sequence of characters from the original string) that contains at most <strong>k</strong> different letters.</p>
+<p>All letters in the string are guaranteed to be in lowercase. Non-letter characters count towards the length to be computed, but do not count as letters towards the limit of at most <em>k</em> distinct letters.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>k</em> ≤ 26</td>
+<td>     </td>
+<td>Number of different letters allowed</td>
+</tr>
+<tr>
+<td>1 ≤ <em>|str|</em> ≤ 200 000</td>
+<td>     </td>
+<td>Length of initial string</td>
+</tr>
+</table></div>
+<p class="uc-callout">NOTE: the limits are high and you must have an <strong>efficient</strong> solution.<br/>
+  If your code checks all possible segments and iterates in each one through all characters one by one, it will result in a <strong>Time Limit Exceeded</strong>.
+</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(letters(2, "sheldon cooper"))
+print(letters(6, "introduction to programming"))
+print(letters(4, "ip|cc1024|dcc|fcup"))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+4
+11
+15
+</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>Explanation of the first example</strong>
+</p><p>The largest substring is " coo" with length=4 and 2 distinct letters (<em>c</em> and <em>o</em>)</p>
+<p><strong>Explanation of the second example</strong>
+</p><p>The largest substring is "tion to pro" with length=11 and 6 distinct letters (<em>t</em>, <em>i</em>, <em>o</em>, <em>n</em>, <em>p</em> and <em>r</em>)</p>
+<p><strong>Explanation of the third example</strong>
+</p><p>The largest substring is "p|cc1024|dcc|fc" with length=15 and 4 distinct letters (<em>p</em>, <em>c</em>, <em>d</em>  and <em>f</em>)</p>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip066.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip066.html</a>.</p>
+  </uc-page>
+</body>
+</html>

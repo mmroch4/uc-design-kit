@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP106] Cypher's Betrayal · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP106 (Cypher&#x27;s Betrayal) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP106</li></ol>
+    </nav>
+    <h1>[IP106] Cypher's Betrayal</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of January 3rd</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class11.html">class #11 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should read from the standard input using functions such as input() and you should write to the standard output using functions such as print()</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip106.png"/>
+
+"Cypher, you've made the right decision. Your desire to return to the Matrix... to a world free from the suffering of reality... is understandable. All we need is for you to sabotage their mission. The rest will fall into place."
+<br/>"You’re right, Smith.", Cypher says. "This glitch will be perfect."
+<br/>Cypher pulls out a device from his pocket: a small chip that he's planted inside the Nebuchadnezzar. 
+<br/>"This little friend is doing to create errors in their code", Cypher grins.
+<br/>"I see.", Smith nods. "So, you’re hoping to confuse them, halt their progress. A simple trick, really. But it will buy us time. I will make sure the agents are in position to capture them while they are occupied with this... glitch."
+<br/>Cypher nods, a smug look crossing his face. He’s convinced that this simple flaw will be enough to bring down the crew. But little does he know, Neo is catching these glitches...
+
+</p><h2>The Problem</h2>
+<p>
+Cypher has done his part. The glitch is in place. Now, it's up to you to help Neo find the errors in the code!</p>
+<p>Write a program that reads a bunch of Python expressions and finds what expressions contain errors, how many times each error type appears, and prints a list of the types of errors that appear, sorted in decreasing order of frequency (and in case of a tie in increasing order of name).</p>
+<p>You should use the <a href="https://docs.python.org/3/library/functions.html#eval">eval()</a> function to evaluate Python expressions (and you already know how to extract an error type and its name, right?)</p>
+<h2>Input</h2>
+<p>The first line of input contains an integer <strong>N</strong>, the number of Python expressions to evaluate. The following <strong>N</strong> lines each contain an expression.</p>
+<h2>Output</h2>
+<p>The output should contain as many lines as error types, in the format <code>FREQUENCY ERROR_TYPE</code>. The errors should come in decreasing order of frequency and in case of a tie in increasing alphabeteical order of the error type name.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>N</em> ≤ 100</td>
+<td>     </td>
+<td>Number of lines to process</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Input</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+16
+1 / 0
+1 % 0
+1 + 2
+[1, 2, 3]
+2 + 3 + 4 +
+[1, 2
+3, 4]
+AgentSmith
+int("[]")
+int("is this real life?")
+{"a":2}["a"]
+{"a":2}["b"]
+[4,5,6][0]
+[4,5,6][8]
+open("smith.txt")
+[0]*(2**100)
+</pre>
+</td>
+<td>
+<pre data-copy="">
+3 SyntaxError
+2 ValueError
+2 ZeroDivisionError
+1 FileNotFoundError
+1 IndexError
+1 KeyError
+1 NameError
+1 OverflowError
+</pre>
+</td>
+</tr>
+</table></div>
+<p><strong>Explanation of example input:</strong></p>
+<ul>
+<li><code>"1 / 0"</code> creates a <span class="c-red"><strong>ZeroDivisionError</strong></span> error: <em>"division by zero"</em>
+</li><li><code>"1 % 0"</code> creates a <span class="c-red"><strong>ZeroDivisionError</strong></span> error: <em>"integer division or modulo by zero"</em>
+</li><li><code>"1 + 2"</code> is a <span class="c-green"><strong>valid expression</strong></span>
+</li><li><code>"[1, 2, 3]"</code> is a <span class="c-green"><strong>valid expression</strong></span>
+</li><li><code>"2 + 3 + 4 +"</code> creates a <span class="c-red"><strong>SyntaxError</strong></span> error: <em>"unexpected EOF while parsing (<string>, line 1)"</string></em>
+</li><li><code>"[1, 2"</code> creates a <span class="c-red"><strong>SyntaxError</strong></span> error: <em>"unexpected EOF while parsing (<string>, line 1)"</string></em>
+</li><li><code>"3, 4]"</code> creates a <span class="c-red"><strong>SyntaxError</strong></span> error: <em>"unmatched ']' (<string>, line 1)"</string></em>
+</li><li><code>"AgentSmith"</code> creates a <span class="c-red"><strong>NameError</strong></span> error: <em>"name 'AgentSmith' is not defined"</em>
+</li><li><code>"int("[]")"</code> creates a <span class="c-red"><strong>ValueError</strong></span> error: <em>"invalid literal for int() with base 10: '[]'"</em>
+</li><li><code>"int("is this real life?")"</code> creates a <span class="c-red"><strong>ValueError</strong></span> error: <em>"invalid literal for int() with base 10: 'is this real life?'"</em>
+</li><li><code>"{"a":2}["a"]"</code> is a <span class="c-green"><strong>valid expression</strong></span>
+</li><li><code>"{"a":2}["b"]"</code> creates a <span class="c-red"><strong>KeyError</strong></span> error: <em>"'b'"</em>
+</li><li><code>"[4,5,6][0]"</code> is a <span class="c-green"><strong>valid expression</strong></span>
+</li><li><code>"[4,5,6][8]"</code> creates a <span class="c-red"><strong>IndexError</strong></span> error: <em>"list index out of range"</em>
+</li><li><code>"open("smith.txt")"</code> creates a <span class="c-red"><strong>FileNotFoundError</strong></span> error: <em>"[Errno 2] No such file or directory: 'smith.txt'"</em>
+</li><li><code>"[0]*(2**100)"</code> creates a <span class="c-red"><strong>OverflowError</strong></span> error: <em>"cannot fit 'int' into an index-sized integer"</em>
+</li></ul>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip106.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip106.html</a>.</p>
+  </uc-page>
+</body>
+</html>

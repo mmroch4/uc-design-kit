@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP052] Messy Matrix · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP052 (Messy Matrix) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP052</li></ol>
+    </nav>
+    <h1>[IP052] Messy Matrix</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip052.png" width="130"/>
+Patty Bouvier, Marge’s gruff, chain-smoking sister, is usually too busy working at the DMV or binge-watching her favorite soap operas to dabble in anything tech-related. But one day, her boss hands her a data project: sorting a complicated DMV seating chart that’s been printed as a grid. The chart is a messy matrix of DMV employee numbers, arranged in rows and columns that doesn’t make much sense to anyone except her boss. Patty is unimpressed. She thinks: <em>"Why can't this just be one simple list so I can get on with my day?"</em></p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>matrix_to_list(m)</code> that given a matrix <em>m</em> given as a list of lists with <em>r</em> rows and <em>c</em> columns, returns a new list with all the elements of the matrix, first with the elements from the first row, then the second row, and so on.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>r, c</em> ≤ 100</td>
+<td>     </td>
+<td>Number of rows and columns</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(matrix_to_list([ [1,2,3], [4,5,6], [7,8,9] ]))
+print(matrix_to_list([ [9,8,7,6,5], [4,3,2,1,0] ]))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip052.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip052.html</a>.</p>
+  </uc-page>
+</body>
+</html>

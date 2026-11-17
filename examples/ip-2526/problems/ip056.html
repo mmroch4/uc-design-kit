@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP056] Eeny, Meeny, Miny, Moe · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP056 (Eeny, Meeny, Miny, Moe) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP056</li></ol>
+    </nav>
+    <h1>[IP056] Eeny, Meeny, Miny, Moe</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip056.png" width="150"/>
+Milhouse Van Houten, Springfield Elementary's most optimistic and often anxious student, is hanging out with his friends during recess. It's a sunny day, and the kids are gathered on the playground, deciding which games to play. As they throw around ideas, Nelson Muntz, the school’s resident bully, shows up and starts eyeing Milhouse with that mischievous glint in his eye.</p>
+<p>Fearing he might become Nelson's next target, Milhouse panics and decides he needs to take control of the situation. The group decides to play a classic game of "Eeny Meeny Miny Moe" to determine who will be "it" for their next game of tag. However, Milhouse knows that if he ends up being chosen, he might have to face the wrath of Nelson.</p>
+<p>Milhouse quickly realizes he can use the game to his advantage by trying to ensure he doesn't get picked. To do this, he wants to track the order in which the kids are eliminated during the game, so he can calculate whether he might get stuck in the "it" position when it's his turn.</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>eeny_meeny(lst, k)</code> that given a list <em>lst</em> of strings and an integer <em>k</em>, plays <a href="https://en.wikipedia.org/wiki/Eeny,_meeny,_miny,_moe">Eeny, meeny, miny, moe</a>, a <a href="https://en.wikipedia.org/wiki/Counting-out_game">counting-out game</a> (the equivalent in Portugal would be "Pim Pam Pum").
+
+</p><p>The game works by putting the children in circular fashion, starting with the first element of the list and then eliminating every <em>k</em>-th child of the game, continuing with the next remaining child. You should return a list containing the names of the children in the order they go out of the game.</p>
+<p>The following figure illustrates the first example input with <em>lst=["Milhouse","Bart","Jessica","Nikki","Terri"]</em> and <em>K=10</em>. The blue numbers indicating the counting, and every time we reach 10 we remove a child from the game.
+
+</p><p><img alt="" loading="lazy" src="ip056_image.png" width="900"/></p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|lst|</em> ≤ 100</td>
+<td>     </td>
+<td>Length of list</td>
+</tr>
+<tr>
+<td>1 ≤ <em>k</em> ≤ 100</td>
+<td>     </td>
+<td>Elimination factor</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(eeny_meeny(["Milhouse","Bart","Jessica","Nikki","Terri"], 10))
+print(eeny_meeny(["PedroR","Miriam","Alberto","Tadeu","Francesco","PedroM"], 3))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+['Terri', 'Bart', 'Jessica', 'Milhouse', 'Nikki']
+['Alberto', 'PedroM', 'Tadeu', 'Miriam', 'Francesco', 'PedroR']
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip056.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip056.html</a>.</p>
+  </uc-page>
+</body>
+</html>

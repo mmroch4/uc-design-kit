@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP050] Duplicated Reports · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP050 (Duplicated Reports) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP050</li></ol>
+    </nav>
+    <h1>[IP050] Duplicated Reports</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of November 8th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class05.html">class #05 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+<p class="uc-callout"><strong>The name of the .py source file you submit to Mooshak should NOT start with a digit (you will get an error if you submit it like that).</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip050.png" width="150"/>
+Principal Seymour Skinner is going through a daunting pile of student reports in his office at Springfield Elementary. It’s the end of the semester, and he’s supposed to review each student’s work before final grades go out. But as he flips through the stack, he starts to notice something strange - several students seem to have accidentally (or lazily) submitted duplicate copies of their reports. Bart, of course, is the worst offender, having submitted the same science project on “How to Catch a Frog” no less than five times.</p>
+<p>Skinner sighs, knowing he doesn't have time to read all these variations. What he really wants to see are the reports that students only submitted once - the ones he can trust as the student's intended final submission. Can you help him keep only the unique reports?</p>
+<h2>The Problem</h2>
+<p>
+  Write a function <code>unique(lst)</code> that given a list <em>lst</em> returns a new list containing only the unique elements, that is, those that appear only once in <em>lst</em>.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>0 ≤ <em>|lst|</em> ≤ 100</td>
+<td>     </td>
+<td>Number of elements in list</td>
+</tr>
+</table></div>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(unique(["bart","lewis","bart", "martin", "bart", "nelson","martin"]))
+print(unique(['a','b','c','d']))
+print(unique([True, False, True, False]))
+print(unique(['f', 'o', 'r', 't', 'y', 't', 'w', 'o']))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+['lewis', 'nelson']
+['a', 'b', 'c', 'd']
+[]
+['f', 'r', 'y', 'w']
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip050.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip050.html</a>.</p>
+  </uc-page>
+</body>
+</html>

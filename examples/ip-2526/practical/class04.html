@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #04 · Tuples and Strings · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class #04 of Introduction to Programming 2025/26: Tuples and Strings. Exercises for submission on Mooshak, skills and guided exercises.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="5">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #04</span>
+          <span class="uc-mono uc-muted">13/10 to 17/10</span>
+        </p>
+        <h1>Class #04 · Tuples and Strings</h1>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="../problems/ip033.html">[IP033] The first and the last</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip034.html">[IP034] Palindromic task</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip035.html">[IP035] Odd vs even</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip036.html">[IP036] Double the trouble</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 10%</span></li>
+          <li><a href="../problems/ip037.html">[IP037] Word clean up</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip038.html">[IP038] The extremes</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip039.html">[IP039] Important letters</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip040.html">[IP040] Searching for the treasure</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip041.html">[IP041] A needle in a haystack</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 12%</span></li>
+          <li><a href="../problems/ip042.html">[IP042] Swapping everything</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="../problems/ip043.html">[IP043] Word evolution</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="../problems/ip044.html">[IP044] Which one?</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p04" format="long"></uc-date> (November 1st; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore function definition and function calling</li>
+          <li>Explore the notion of iterables and sequences, and in particular of tuples and strings</li>
+          <li>Practice the usage of the index operator and of slicing</li>
+          <li>Explore the flexibility and general power of "for in" cycles</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise lectures <a href="../materials.html#lectures">T02: The basics | T03: Conditionals | T04: Program Flow | | T05: Functions | T06: More Functions | T07: Tuples and Lists</a>.</strong></p>
+      </section>
+      <div class="uc-prose">
+<p>This week's theme for the exercises is <a href="https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland">Alice in Wonderland</a>.</p>
+<p><img alt="" loading="lazy" src="alice.png" width="270"/></p>
+      </div>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="slicing-your-way" title="1) Slicing your way" open>
+<p>The first set of problems is all about the concept of slicing (see <a href="../materials.html#lectures">T07</a>). Can you master it? 😇
+
+  </p><p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip033.html">[IP033] The first and the last</a>
+</li><li><a href="../problems/ip034.html">[IP034] Palindromic task </a>
+</li><li><a href="../problems/ip035.html">[IP035] Odd vs even </a>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="iterables-and-sequences" title="2) Iterables and Sequences">
+<p>Tuples and Strings are immutable iterables and sequences (see <a href="../materials.html#lectures">T08</a>) so you can traverse them with a <code>for in</code> cycle and do other things such as checking the length, checking is something is contained, indexing, slicing, concatenating, multiplying, etc.</p>
+<p>A very useful pattern for iterating is the following:</p>
+<pre>
+initialize a result variable to be an initial value
+loop
+   update the result based on current value(s)
+return the result
+</pre>
+<p>Just to give a few examples:</p>
+<ul>
+<li>If you want to build a tuple or string, start with an empty one and keep adding (concatenating) as you iterate    
+  </li><li>If you want to count, start with a counter on zero and keep incrementing as you iterate
+  </li><li>If you want to find the min/max start with the first element and keep changing as you iterate
+</li></ul>
+<p>Have you seen this pattern on previous problems? Can you use it (or variants of it) on problems just as these ones?
+
+  </p><p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip036.html">[IP036] Double the trouble</a>
+</li><li><a href="../problems/ip037.html">[IP037] Word clean up</a>
+</li><li><a href="../problems/ip038.html">[IP038] The extremes</a>
+</li><li><a href="../problems/ip039.html">[IP039] Important letters</a>
+</li><li><a href="../problems/ip040.html">[IP040] Searching for the treasure</a>
+</li><li><a href="../problems/ip041.html">[IP041] A needle in a haystack</a>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="extra" title="3) Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span></p>
+<p>Loved the main exercises and want mode adventure in Wonderland? Here are more exercises to meet more characters. These extra problems are here to help you sharpen your skills and reward those that are coding for the love of learning.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to all of the following problems. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip042.html">[IP042] Swapping everything</a>
+</li><li><a href="../problems/ip043.html">[IP043] Word evolution</a>
+</li></ol>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="3) Challenge exercise">
+          <p><span class="uc-tag uc-tag--warning">challenge</span></p>
+<p>You almost conquered Wonderland, but there is still one last hurdle. Can you help Alice on the ultimate challenge of this class?</p>
+<p>This challenge is of <strong>algorithmic nature</strong>, so you need and <strong>efficient solution</strong> and not just a correct (but more "brute force") approach if you don't want to face a <strong>Time Limit Exceeded</strong>. Can you think how you can take advantage of the patterns that form?</p>
+<p>This exercise is more challenging and not so trivial or immediate, so give yourself some time to think about it before looking for help.</p>
+<p>
+    Read the statements, code and try to submit <span class="c-green">Accepted</span> solutions to the following problem. Don't forget to test first on your computer!</p>
+<ol type="a">
+<li><a href="../problems/ip044.html">[IP044] Which one?</a>
+</li></ol>
+<p>Happy coding! 🧙</p>
+        </uc-exercise>
+      </section>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class04.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class04.html</a>.</p>
+  </uc-page>
+</body>
+</html>

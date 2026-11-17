@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP088] Dracarys! · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP088 (Dracarys!) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP088</li></ol>
+    </nav>
+    <h1>[IP088] Dracarys!</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 6th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class08.html">class #08 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip088.png"/>
+  Daenerys Targaryen, the Mother of Dragons, has tasked you with a perilous challenge. She wants to know how many occurrences of the letter 'A' appear between two given positions of the <a href="ip043.html">White Rabbit</a> game. She will only spare you from the wrath of her dragons if you can solve this puzzle efficiently. Failure to do so will result in her commanding Drogon to unleash <strong>Dracarys</strong> upon you.</p>
+
+Recall the rules of the game. You start with an 'A' and then:
+
+<ul>
+<li>Any 'A' becomes 'AB'
+  </li><li>Any 'B' becomes 'A'
+</li></ul>
+<p>The first lines of the game are:</p>
+<pre>
+A
+AB
+ABA
+ABAAB
+ABAABABA
+ABAABABAABAAB
+ABAABABAABAABABAABABA
+</pre>
+<h2>The Problem</h2>
+<p>Write a function <code>count_range(a,b)</code> that given two integers <em>a</em> and <em>b</em>, returns the number of 'A's that appear between positions <em>[a,b]</em> (inclusive) on the word game.</p>
+<p>For instance, count_range(3,10) should return 5:</p>
+<p>AB<strong><span class="hl-ok">A</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-ok">A</span><span class="hl-bad">B</span></strong>AABABAABABA</p>
+<p>And count_range(2,19) should return 11:</p>
+<p>A<strong><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span><span class="hl-ok">A</span><span class="hl-bad">B</span><span class="hl-ok">A</span></strong>BA</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ a ≤ b ≤ 10<sup>30</sup></td>
+<td>     </td>
+<td>positions of the range</td>
+</tr>
+</table></div>
+<p class="uc-callout">NOTE: the limits are really high and you must have an <strong>efficient</strong> solution that can compute this very quickly.
+ Your program will need to be able to answer around five hundred queries in less than one second.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(count_range(3,10))
+print(count_range(2,19))
+print(count_range(42,297))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+5
+11
+159
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip088.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip088.html</a>.</p>
+  </uc-page>
+</body>
+</html>

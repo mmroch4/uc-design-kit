@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IP082] Secret Message · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Statement of problem IP082 (Secret Message) of Introduction to Programming 2025/26 (CC1024), DCC/FCUP.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="problems">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="index.html">Problems</a></li><li aria-current="page">IP082</li></ol>
+    </nav>
+    <h1>[IP082] Secret Message</h1>
+    <div class="uc-callout uc-small problem-context">
+<p>In what concerns the continuous evaluation solving exercises grade during the semester, you should <strong><span class="c-green">submit until 23:59 of December 6th</span></strong><br/>
+<em>(this exercise will still be available for submission after that deadline, but without counting towards your grade)</em><br/>
+<strong>[to understand the context of this problem, you should read the <a href="../practical/class08.html">class #08 exercise sheet</a>]</strong></p>
+    </div>
+    <div class="uc-content">
+<p class="uc-callout"><strong>In this problem you should submit a function as described. Inside the function do not print anything that was not asked!</strong></p>
+
+<p><img alt="" class="uc-content__float" loading="lazy" src="ip082.png"/>
+  Jaime Lannister, the famous knight of the Kingsguard, needs to send a secret message to his army stationed at the battlefront. To ensure that the message remains confidential if intercepted, Jaime decides to use the <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar cipher</a>, a simple encryption technique. In a Caesar cipher, each letter in the plaintext is shifted a fixed number <em>k</em> of places down the alphabet.</p>
+<p>Imagine for instance that <em>k=10</em>. Then the following letter substitions would occur (with each letter becoming the letter 10 positions to the left in the alphabet, wrapping around):</p>
+<pre>
+<strong>old letter:</strong> abcdefghijklmnopqrstuvwxyz
+<strong>new letter:</strong> klmnopqrstuvwxyzabcdefghij
+</pre>
+<p>For example, with his <em>k</em>, "attack" would become "kddkmu".</p>
+<h2>The Problem</h2>
+<p>Write a function <code>caesar_cipher(text, k)</code> that given a string <em>text</em>, returns a string that is equivalent to the text with all (lowercase) letters shifted to the right by <em>k</em> positions, as previously explained. Non-alphabetic characters (e.g., digits, punctuation, spaces) should remain unchanged.</p>
+<h2>Constraints</h2>
+<p>The following limits are guaranteed in all the test cases that will be given to your program:</p>
+<div class="uc-table"><table>
+<tr>
+<td>1 ≤ <em>|text|</em>  ≤ 200</td>
+<td>     </td>
+<td>length of text</td>
+</tr>
+<tr>
+<td>1 ≤ <em>k</em>  ≤ 25</td>
+<td>     </td>
+<td>number of positions to shift</td>
+</tr>
+</table></div>
+<p>You can also be assured that all letters in the word are in lowercase.</p>
+<br/>
+<div class="uc-table"><table>
+<tr>
+<th scope="col">Example Function Calls</th>
+<th scope="col">Example Output</th>
+</tr>
+<tr>
+<td>
+<pre data-copy="">
+print(caesar_cipher("attack the starks", 10))
+print(caesar_cipher("winteriscoming", 23))
+print(caesar_cipher("tfkqbofpzljfkd", 3))
+</pre>
+</td>
+<td>
+<pre data-copy="">
+kddkmu dro cdkbuc
+tfkqbofpzljfkd
+winteriscoming
+</pre>
+</td>
+</tr>
+</table></div>
+    </div>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip082.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip082.html</a>.</p>
+  </uc-page>
+</body>
+</html>

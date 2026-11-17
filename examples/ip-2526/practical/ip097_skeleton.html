@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IP097 skeleton code · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Example skeleton code for problem IP097 (Stranger Cells), showing the use of global variables.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol><li><a href="../weeks.html">Weeks</a></li><li aria-current="page">IP097 skeleton</li></ol>
+    </nav>
+    <h1>[IP097] Example skeleton code</h1>
+    <p class="uc-prose">Skeleton code for <a href="../problems/ip097.html">[IP097] Stranger Cells</a>, used in <a href="class10.html">practical class #10</a>. It shows how to use global variables.</p>
+    <uc-code lang="python" filename="ip097_skeleton.py"><pre><code># [IP097] Stranger Cells
+# Example skeleton code for student
+# (exemplifying the usage of global variables)
+
+# read the input and change the following global variables
+# - r: integer rule
+# - k: number of iterations
+# - line: the initial generation
+def read():
+    global r, k, line
+    # TO DO
+    pass
+
+# return a list of the 8 bits of rule r
+def rule_to_8bits(r):
+    # TO DO
+    pass
+
+# return the number that represented a triplet (string of 3 chars)
+def str_to_number(triplet):
+    # TO DO
+    pass
+
+# return a new character (# or .) according to the current triplet
+# - rules: the set of rules as a list of 8 bits
+# - triplet: a string with 3 chars - LEFT CENTER RIGHT
+def calculate(rule, triplet):    
+    # TO DO
+    pass
+
+# generate and return a new line:
+# - rules: the set of rules as a list of 8 bits
+# - line: the current line from which to generate the next one
+def create(rule, line):
+    # TO DO
+    pass
+
+# simulate the game
+# cycle trough the number of generations and for each one:
+# - create the new generation (calling create)
+# - update and print the current line
+def simulate():
+    # TO DO
+    pass
+
+# Main code: read the input and the simulate the automaton
+read()
+simulate()</code></pre></uc-code>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/ip097_skeleton.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/ip097_skeleton.html</a>.</p>
+  </uc-page>
+</body>
+</html>
