@@ -7,7 +7,9 @@
 :where(.uc-materials__list) { margin: 0; padding: 0; list-style: none; counter-reset: uc-materials; }
 :where(.uc-materials__item) {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  /* The title keeps at least 12rem: an item with many links wraps its buttons
+     instead of squeezing the title to one letter per line. */
+  grid-template-columns: minmax(min(12rem, 100%), 1fr) auto;
   grid-template-areas: "main links" "meta links";
   align-items: center;
   gap: var(--uc-space-1) var(--uc-space-5);

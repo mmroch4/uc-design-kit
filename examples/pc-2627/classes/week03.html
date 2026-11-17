@@ -14,91 +14,103 @@
 </head>
 <body>
   <uc-page current="weeks">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <ol><li><a href="../classes.html">Classes</a></li><li aria-current="page">Week #03</li></ol>
-    </nav>
-    <h1>Week #03</h1>
-    <p class="uc-lead">Sorting, binary search, ternary search, bisection · Problems: <a href="../problem-sets/ps03.html">Weekly Problems #03</a></p>
-    <div class="uc-content">
-<h2>Main learning outcomes for this class</h2>
-<ol>
-<li><strong>Sorting:</strong>
-<ul>
-<li>I know <strong>how to sort using the libraries</strong> of my language (wether they are numbers or more complicated structures) and I know the <strong>complexity</strong> of those sorting algorithms.
-      </li><li>I know some non comparative sorting algorithms such as <strong>counting sort</strong> and <strong>radix sort</strong> that allow one to sort in time better than \(\mathcal{O}(n \log n)\).
-    </li></ul>
-</li><li><strong>Binary Search and variants:</strong>
-<ul>
-<li>I know what <strong>binary search</strong> is and its <strong>complexity</strong>.
-      </li><li>I know how to call binary search using the <strong>libraries</strong> of my language.
-      </li><li>I know how to <strong>manually implement binary search</strong>.
-      </li><li>I understand the concept of <strong>binary search the answer</strong>.
-      </li><li>I understand the concept of <strong>bisection</strong>.
-      </li><li>I understand the concept of <strong>ternary search</strong>.
-    </li></ul>
-</li></ol>
+    <uc-guide week="3">
+      <h1>Class #03 · Sorting, binary search, ternary search, bisection</h1>
+      <!-- Deadline of this class's problem set: from course.js (deadlines, id "ps03"). -->
+      <uc-event deadline="ps03"></uc-event>
 
-<h2>Study Material</h2>
-<ul>
-<li><strong>Slides made for class</strong> : <a href="../material/sorting_binarysearch.pdf">Sorting, Binary Search and Variants</a>
-<ul>
-</ul>
-</li><li><strong>Sorting: Example code:</strong>
-<ul>
-<li><a href="../material/sort.c">sort.c</a> | <a href="../material/sort.cpp">sort.cpp</a> | <a href="../material/sort_vector.cpp">sort_vector.cpp</a> |  <a href="../material/Sort.java">Sort.java</a>
-</li><li><a href="../material/customsort.c">customsort.c</a> | <a href="../material/customsort.cpp">customsort.cpp</a> | <a href="../material/customsort_lambda.cpp">customsort_lambda.cpp</a> | <a href="../material/CustomSort.java">CustomSort.java</a> | Example input: <a href="../material/persons.txt">persons.txt</a>
-</li></ul>
-</li><li><strong>Sorting, Binary Search and Variants</strong>
-<ul>
-<li>Library binary search on <a href="https://man7.org/linux/man-pages/man3/bsearch.3.html">C</a>, <a href="https://en.cppreference.com/w/cpp/algorithm/binary_search.html">C++</a> and <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Arrays.html">Java</a>
-</li><li>Lower bounds on <a href="https://en.cppreference.com/w/cpp/algorithm/lower_bound.html">C++</a> (also available on tree-based data structures such as <a href="https://en.cppreference.com/w/cpp/container/set.html">set</a>) or <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/TreeSet.html#ceiling(E)">Java</a> [you also have... <a href="https://en.cppreference.com/w/cpp/algorithm/upper_bound.html">upper_bound</a>]
-      </li><li>Chapter 3 of <a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a> book
-      </li><li>Section 3.3.1 of the <a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">Competitive Programming</a> book
-      </li><li><a href="https://en.wikipedia.org/wiki/Ternary_search">Wikipedia article about ternary search</a>
-</li><li><a href="http://wcipeg.com/wiki/Binary_search">Binary Search @ PEG Wiki</a>
-</li><li><a href="http://wcipeg.com/wiki/Ternary_search">Ternary Search @ PEG Wiki</a>
-</li><li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/binary-search">Binary Search @ Top Coder Tutorials</a>
-</li></ul>
-</li></ul>
+      <section class="uc-section" aria-labelledby="outcomes">
+        <h2 id="outcomes">Main learning outcomes for this class</h2>
+        <h3>Sorting</h3>
+        <ul class="uc-checklist">
+          <li>I know <strong>how to sort using the libraries</strong> of my language (whether they are numbers or more complicated structures) and I know the <strong>complexity</strong> of those sorting algorithms.</li>
+          <li>I know some non comparative sorting algorithms such as <strong>counting sort</strong> and <strong>radix sort</strong> that allow one to sort in time better than O(n log n).</li>
+        </ul>
+        <h3>Binary search and variants</h3>
+        <ul class="uc-checklist">
+          <li>I know what <strong>binary search</strong> is and its <strong>complexity</strong>.</li>
+          <li>I know how to call binary search using the <strong>libraries</strong> of my language.</li>
+          <li>I know how to <strong>manually implement binary search</strong>.</li>
+          <li>I understand the concept of <strong>binary search the answer</strong>.</li>
+          <li>I understand the concept of <strong>bisection</strong>.</li>
+          <li>I understand the concept of <strong>ternary search</strong>.</li>
+        </ul>
+      </section>
 
-<h2 id="step-by-step">See it step by step</h2>
-<p>Counting sort never compares two values: it counts how many times each value occurs and writes them back in order, in O(n + k) for values in a range of size k. Switch to merge sort or quicksort and compare the counters.</p>
-<!-- Widget <uc-widget-sort>: counting sort next to two comparison sorts -->
-<uc-widget-sort values="3 1 4 1 5 9 2 6" algorithm="counting" algorithms="merge quick counting" predict>
-  <p>Counting sort of 3 1 4 1 5 9 2 6: counts for 1 to 9 are 2 1 1 1 1 1 0 0 1, giving 1 1 2 3 4 5 6 9.</p>
-</uc-widget-sort>
+      <section class="uc-section" aria-labelledby="material">
+        <h2 id="material">Study material</h2>
+        <!-- <uc-materials>: material of this class (slides and code in ../material/), one item per group of files. -->
+        <uc-materials heading="none">
+          <ul>
+            <li>Slides made for class <a href="../material/sorting_binarysearch.pdf">Sorting, Binary Search and Variants</a></li>
+            <li>Sorting: example code <a href="../material/sort.c">sort.c</a> <a href="../material/sort.cpp">sort.cpp</a> <a href="../material/sort_vector.cpp">sort_vector.cpp</a> <a href="../material/Sort.java">Sort.java</a></li>
+            <li>Custom sorting: example code <a href="../material/customsort.c">customsort.c</a> <a href="../material/customsort.cpp">customsort.cpp</a> <a href="../material/customsort_lambda.cpp">customsort_lambda.cpp</a> <a href="../material/CustomSort.java">CustomSort.java</a> <a href="../material/persons.txt">persons.txt (example input)</a></li>
+          </ul>
+        </uc-materials>
+        <h3>Sorting, binary search and variants</h3>
+        <ul class="uc-links">
+          <li><a href="https://en.cppreference.com/w/cpp/algorithm/binary_search.html">Library binary search</a><span>In <a href="https://man7.org/linux/man-pages/man3/bsearch.3.html">C</a>, <a href="https://en.cppreference.com/w/cpp/algorithm/binary_search.html">C++</a> and <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Arrays.html">Java</a></span></li>
+          <li><a href="https://en.cppreference.com/w/cpp/algorithm/lower_bound.html">Lower bounds</a><span>In C++ (also on tree-based data structures such as <a href="https://en.cppreference.com/w/cpp/container/set.html">set</a>) or <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/TreeSet.html#ceiling(E)">Java</a> · you also have <a href="https://en.cppreference.com/w/cpp/algorithm/upper_bound.html">upper_bound</a></span></li>
+          <li><a href="https://cses.fi/book/book.pdf">Competitive Programmer's Handbook</a><span>Chapter 3</span></li>
+          <li><a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp2.pdf">Competitive Programming</a><span>Section 3.3.1</span></li>
+          <li><a href="https://en.wikipedia.org/wiki/Ternary_search">Ternary search</a><span>Wikipedia</span></li>
+          <li><a href="http://wcipeg.com/wiki/Binary_search">Binary Search</a><span>PEG Wiki · also <a href="http://wcipeg.com/wiki/Ternary_search">Ternary Search</a></span></li>
+          <li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/binary-search">Binary Search</a><span>TopCoder Tutorials</span></li>
+        </ul>
+      </section>
 
-<h2>(more) Problems to Submit</h2>
-<p>Besides the evaluation problems, here are some more suggestions:</p>
-<ul>
-<li> <a href="https://codeforces.com/problemset/problem/818/F">[CodeForces 818F]</a> - <a href="https://codeforces.com/problemset/problem/818/F">Level Generation</a> (consider this one a "mini"-challenge)
-  </li><li><a href="https://cses.fi/problemset/task/1085">[CSES 1085] - Array Division</a> can be directly solved implementing the strategy described in the slides
-  </li><li><a href="https://codeforces.com/problemset?tags=binary+search">CodeForces problemas tagged as "Binary Search"</a>
-</li><li><a href="https://codeforces.com/problemset?tags=ternary+search">CodeForces problemas tagged as "Ternary Search"</a>
-</li></ul>
+      <section class="uc-section" aria-labelledby="step-by-step">
+        <h2 id="step-by-step">See it step by step</h2>
+        <p class="uc-prose">Counting sort never compares two values: it counts how many times each value occurs and writes them back in order, in O(n + k) for values in a range of size k. Switch to merge sort or quicksort and compare the counters.</p>
+        <!-- Widget <uc-widget-sort>: counting sort next to two comparison sorts -->
+        <uc-widget-sort values="3 1 4 1 5 9 2 6" algorithm="counting" algorithms="merge quick counting" predict>
+          <p>Counting sort of 3 1 4 1 5 9 2 6: counts for 1 to 9 are 2 1 1 1 1 1 0 0 1, giving 1 1 2 3 4 5 6 9.</p>
+        </uc-widget-sort>
+      </section>
 
-<h2>I want my memes!</h2>
-<details class="meme" name="meme">
-<summary>😁 don't know what to do?</summary>
-<p><img alt="Meme: don't know what to do?" loading="lazy" src="../images/memes/meme_sort.jpg" width="400"/></p>
-</details>
+      <section class="uc-section" aria-labelledby="more-problems">
+        <h2 id="more-problems">(more) Problems to submit</h2>
+        <p class="uc-prose">Besides the evaluation problems, here are some more suggestions.</p>
+        <!-- Optional problems: also in the list of problems (data-type="extra"), so "Solved" is shared. -->
+        <uc-problems cards track>
+          <section>
+            <h3 class="uc-visually-hidden">More problems</h3>
+            <ul>
+              <li data-judge="codeforces" data-type="extra"><a href="https://codeforces.com/problemset/problem/818/F">Level Generation</a> <code>818F</code>
+                <details name="hint"><summary>Hint</summary><p>Consider this one a "mini"-challenge.</p></details></li>
+              <li data-judge="cses" data-type="extra"><a href="https://cses.fi/problemset/task/1085">Array Division</a> <code>1085</code>
+                <details name="hint"><summary>Hint</summary><p>It can be directly solved implementing the strategy described in the slides.</p></details></li>
+            </ul>
+          </section>
+        </uc-problems>
+        <ul class="uc-links">
+          <li><a href="https://codeforces.com/problemset?tags=binary+search">CodeForces problems tagged "Binary Search"</a></li>
+          <li><a href="https://codeforces.com/problemset?tags=ternary+search">CodeForces problems tagged "Ternary Search"</a></li>
+        </ul>
+      </section>
 
-<details class="meme" name="meme">
-<summary>😁 log solution</summary>
-<p><img alt="Meme: log solution" loading="lazy" src="../images/memes/meme_logbsearch.jpg" width="400"/></p>
-</details>
+      <section class="uc-section" aria-labelledby="memes">
+        <h2 id="memes">I want my memes!</h2>
+        <details class="meme" name="meme">
+          <summary>😁 don't know what to do?</summary>
+          <p><img alt="Meme: don't know what to do?" loading="lazy" src="../images/memes/meme_sort.jpg" width="400"></p>
+        </details>
+        <details class="meme" name="meme">
+          <summary>😁 log solution</summary>
+          <p><img alt="Meme: log solution" loading="lazy" src="../images/memes/meme_logbsearch.jpg" width="400"></p>
+        </details>
+        <details class="meme" name="meme">
+          <summary>😁 so much binary search...</summary>
+          <p><img alt="Meme: so much binary search..." loading="lazy" src="../images/memes/meme_quaternary.jpg" width="400"></p>
+        </details>
+        <details class="meme" name="meme">
+          <summary>😁 swiss knife</summary>
+          <p><img alt="Meme: swiss knife" loading="lazy" src="../images/memes/meme_swissknife.jpg" width="500"></p>
+        </details>
+      </section>
 
-<details class="meme" name="meme">
-<summary>😁 so much binary search...</summary>
-<p><img alt="Meme: so much binary search..." loading="lazy" src="../images/memes/meme_quaternary.jpg" width="400"/></p>
-</details>
-
-<details class="meme" name="meme">
-<summary>😁 swiss knife</summary>
-<p><img alt="Meme: swiss knife" loading="lazy" src="../images/memes/meme_swissknife.jpg" width="500"/></p>
-</details>
-    </div>
-    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week03.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week03.html</a> to demonstrate the UC Design Kit.</p>
+      <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week03.html">www.dcc.fc.up.pt/~pribeiro/aulas/pc2627/week03.html</a> to demonstrate the UC Design Kit.</p>
+    </uc-guide>
   </uc-page>
 </body>
 </html>
