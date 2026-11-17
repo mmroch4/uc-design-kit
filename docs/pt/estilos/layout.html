@@ -352,6 +352,59 @@
         </div>
         <p>Foi pensado para dois filhos. Quando empilha, a segunda coluna fica por baixo, por isso o que importa mais vai primeiro no HTML. O ponto de quebra é o da janela, não o do contentor, e não se muda com um token.</p>
 
+        <h2 id="page-header"><code>uc-page-header</code></h2>
+        <p>O cabeçalho de uma página: o caminho de navegação, uma etiqueta pequena, o <code>&lt;h1&gt;</code> e a introdução, com pouco espaço entre eles. As secções da página ficam a 48 px umas das outras, por isso o título e a introdução precisam de um contentor próprio; este substitui um <code>uc-stack</code> com <code>style="--uc-stack-gap: …"</code>. Vai num <code>&lt;header&gt;</code> ou num <code>&lt;div&gt;</code>, como primeiro filho do <code>&lt;uc-page&gt;</code>.</p>
+        <!-- docs:demo src="../../demos/blocks/page-header.html" title="caminho, etiqueta, título e introdução" height="220" -->
+        <div class="docs-demo" id="demo-blocks-page-header">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/page-header.html" title="Demonstração: caminho, etiqueta, título e introdução" loading="lazy" style="height: 220px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;header class=&quot;uc-page-header&quot;&gt;
+  &lt;nav class=&quot;uc-crumbs&quot; aria-label=&quot;Localização&quot;&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;a href=&quot;../../pt/estilos/layout.html&quot;&gt;Materiais&lt;/a&gt;&lt;/li&gt;
+      &lt;li aria-current=&quot;page&quot;&gt;Problemas&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/nav&gt;
+  &lt;p class=&quot;uc-eyebrow&quot;&gt;Aula 5 · Mooshak&lt;/p&gt;
+  &lt;h1&gt;Problemas da semana&lt;/h1&gt;
+  &lt;p class=&quot;uc-prose&quot;&gt;Os problemas para submeter no Mooshak, com o prazo e o peso de cada um.&lt;/p&gt;
+&lt;/header&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/page-header.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Estrutura de uc-page-header</caption>
+            <thead>
+              <tr><th scope="col">Elemento</th><th scope="col">Efeito</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-page-header</code></td><td>Coluna com 12 px entre os filhos.</td></tr>
+              <tr><td><code>nav.uc-crumbs</code></td><td>Opcional, primeiro. Ver <a href="#crumbs">uc-crumbs</a>.</td></tr>
+              <tr><td><code>.uc-eyebrow</code></td><td>Opcional, por cima do título.</td></tr>
+              <tr><td><code>h1</code></td><td>O único título de nível 1 da página.</td></tr>
+              <tr><td><code>p.uc-prose</code> ou <code>p.uc-lead</code></td><td>A introdução; com <code>lang</code>, uma por língua.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="eyebrow"><code>uc-eyebrow</code></h3>
+        <p>Etiqueta pequena, em maiúsculas e cinzenta, por cima de um título: "Ficha da unidade curricular · CC1003", "Aula prática 5". Também serve por cima de um <code>&lt;h2&gt;</code> ou dentro de um cartão. É texto decorativo do título: o que for importante tem de estar também no título ou na introdução.</p>
+
+        <h3 id="crumbs"><code>uc-crumbs</code></h3>
+        <p>O caminho de navegação das páginas que não estão no menu (enunciados, páginas de código, ajudas, testes), com o aspeto do caminho que o <a href="../componentes/uc-guide.html"><code>&lt;uc-guide&gt;</code></a> gera nos guiões. É um <code>&lt;nav&gt;</code> com <code>aria-label</code> e uma lista ordenada; o último elemento é a página atual, sem ligação e com <code>aria-current="page"</code>. As barras entre os elementos são decorativas.</p>
+        <uc-code lang="html" no-download><pre><code>&lt;nav class="uc-crumbs" aria-label="Localização"&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href="../materiais.html"&gt;Materiais&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="index.html"&gt;Problemas&lt;/a&gt;&lt;/li&gt;
+    &lt;li aria-current="page"&gt;[PI013] Jogo da Vida&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre></uc-code>
+        <p>Num site bilingue, o texto de cada elemento leva as duas línguas (<code>&lt;span lang="pt"&gt;…&lt;/span&gt;&lt;span lang="en"&gt;…&lt;/span&gt;</code>). Dentro de um <code>uc-page-header</code> o caminho fica junto ao título; sozinho, ficaria a 48 px dele.</p>
+
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
           <li><a href="superficies.html">Blocos: superfícies e listas</a>: cartões, caixas e listas para pôr dentro destes blocos.</li>
@@ -386,6 +439,9 @@
           <li><a href="#grid">uc-grid</a></li>
           <li class="docs-toc__sub"><a href="#grid-min">Colunas mais estreitas</a></li>
           <li><a href="#split">uc-split</a></li>
+          <li><a href="#page-header">uc-page-header</a></li>
+          <li class="docs-toc__sub"><a href="#eyebrow">uc-eyebrow</a></li>
+          <li class="docs-toc__sub"><a href="#crumbs">uc-crumbs</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>

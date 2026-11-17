@@ -88,6 +88,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
 | `logo`URL, SVG, objeto ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho: um caminho relativo ao `course.js`, um `"<svg …>"` escrito no próprio campo ou `{ src, alt }`; `null` esconde-a. Ver [Logótipo](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#logotipo). |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
+| `source``{ author, url? }` | Opcional | — | De onde vem o conteúdo, num site copiado de outro: "Conteúdo de `author` (`HTMLText`), a partir do site original" no rodapé, com ligação a `url` ou ao [`source` da página](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#nota-de-origem). |
 | `updated``ISODate` | Opcional | — | "Atualizado a …" no rodapé. Muda-se à mão quando se publica. Uma página pode mostrar a sua própria data com [`<uc-page updated>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#data-da-pagina). |
 | `editions`URL | Opcional | — | Ficheiro com as edições da cadeira, relativo ao `course.js`, normalmente `"../editions.js"`. Ver [Edições](#edicoes). |
 

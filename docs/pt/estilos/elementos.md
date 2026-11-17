@@ -47,7 +47,7 @@ Uma ligação leva a outra página ou ficheiro; um `<button type="button">` faz 
 
 Uma etiqueta pequena, em linha com o texto, para classificar: tipo de aula, estado, novidade.
 
-Exemplo (as cinco variantes de etiqueta), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/tag.html):
+Exemplo (as seis variantes de etiqueta), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/tag.html):
 
 ```html
 <span class="uc-tag">Teórica</span>
@@ -55,6 +55,7 @@ Exemplo (as cinco variantes de etiqueta), [demonstração ao vivo](https://uc-de
 <span class="uc-tag uc-tag--warning">Avaliação</span>
 <span class="uc-tag uc-tag--success">Entregue</span>
 <span class="uc-tag uc-tag--muted">Opcional</span>
+<span class="uc-tag uc-tag--danger">Wrong Answer</span>
 ```
 
 ### Variantes
@@ -66,8 +67,9 @@ Exemplo (as cinco variantes de etiqueta), [demonstração ao vivo](https://uc-de
 | `uc-tag--warning` | `--uc-color-warning-bg`, texto `--uc-color-warning-text` | Avaliação, "Novo", obrigatório. |
 | `uc-tag--success` | `--uc-color-success-bg`, texto `--uc-color-success-text` | Feito, entregue, certo. |
 | `uc-tag--muted` | Sem fundo, contorno `--uc-color-border`, texto `--uc-color-text-muted` | Opcional, secundário. |
+| `uc-tag--danger` | `--uc-color-danger-bg`, texto `--uc-color-danger-text` | Erro, falhou ("Wrong Answer", "Fora de prazo"). |
 
-Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar. `--muted` tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.
+Todas as combinações por omissão têm contraste de pelo menos 4,5:1. O significado está no texto da etiqueta, não na cor: "Avaliação" lê-se igual a quem não distingue o âmbar, e "Wrong Answer" igual a quem não distingue o vermelho. `--muted` tem hoje o mesmo aspeto que a etiqueta sem variante; usa-se quando se quer dizer "secundário" no HTML.
 
 ## `uc-table`
 
@@ -126,6 +128,27 @@ Cada tabela deve ter um `<caption>` como primeiro filho: é o nome que os leitor
 | `uc-mono` | Numa célula, para códigos de turma, horas e salas que se comparam em coluna. |
 
 O mesmo comportamento de teclado aplica-se às tabelas que os componentes geram ([`<uc-deadlines view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md), [`<uc-team view="table">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md)) e aos `<pre>` largos dentro de `uc-content`.
+
+### `uc-table--fit` e `uc-num`
+
+Uma tabela curta de números (pontos por exercício, pesos) fica estranha esticada a toda a largura. Com `uc-table--fit` no contentor, a tabela fica só com a largura do conteúdo (e continua a deslizar se não couber). `uc-num` numa célula (`<th>` ou `<td>`) alinha-a à direita, com algarismos da mesma largura, para as colunas de números se lerem de cima a baixo.
+
+Exemplo (tabela estreita com uma coluna de números), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/table-fit.html):
+
+```html
+<div class="uc-table uc-table--fit">
+  <table>
+    <thead>
+      <tr><th scope="col">Exercício</th><th scope="col" class="uc-num">Pontos</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ciclos e vetores</td><td class="uc-num">20</td></tr>
+      <tr><td>Cadeias de carateres</td><td class="uc-num">15</td></tr>
+      <tr><td>Recursão</td><td class="uc-num">5</td></tr>
+    </tbody>
+  </table>
+</div>
+```
 
 ### `table[data-sortable]`
 
@@ -190,6 +213,34 @@ O valor do atributo nomeia o que se copia no nome acessível do botão: `data-co
 | `.uc-copy-block__button` | O botão (um `uc-button` de 32 px); `.is-copied` enquanto mostra o visto. |
 
 O `<pre>` não tem fundo próprio fora de `uc-content`; a demonstração usa `uc-content` para lhe dar caixa. Dentro de um [`<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) o atributo é ignorado, porque esse componente já tem o seu botão. Sem JavaScript, o bloco mostra-se sem botão.
+
+## `uc-samples`
+
+Os exemplos de entrada e saída de um problema, lado a lado, que passam a ficar um por cima do outro no telemóvel. Cada coluna é um `<div>` com uma etiqueta (`uc-samples__label`) e um [`<pre data-copy>`](#pre-data-copy). Substitui a tabela de duas colunas dos enunciados antigos, que no telemóvel fica apertada.
+
+Exemplo (entrada e saída de um exemplo), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/blocks/samples.html):
+
+```html
+    <div class="uc-samples">
+      <div>
+        <p class="uc-samples__label">Input</p>
+        <pre data-copy="Input">3
+1 2 3</pre>
+      </div>
+      <div>
+        <p class="uc-samples__label">Output</p>
+        <pre data-copy="Output">6</pre>
+      </div>
+    </div>
+```
+
+| Elemento | Efeito |
+| --- | --- |
+| `.uc-samples` | Grelha de colunas com pelo menos `--uc-samples-min` (220 px); uma só no telemóvel. |
+| `.uc-samples > div` | Uma coluna: a etiqueta e o bloco, que estica até à altura da coluna vizinha. |
+| `.uc-samples__label` | "Input", "Output", "Explicação": pequena, em maiúsculas. |
+
+Vários exemplos fazem-se com um `uc-samples` por exemplo, cada um com o seu título (`<h3>Exemplo 2</h3>`) se precisar. Com três colunas (entrada, saída e explicação), a grelha põe as que couberem lado a lado.
 
 ## `a[data-auth]`
 

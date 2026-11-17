@@ -194,6 +194,9 @@
   font-size: var(--uc-font-size-md);
 }
 
+/* "Conteúdo de …, a partir do site original" (course.js source): its own line. */
+:where(.uc-footer__source) { flex-basis: 100%; }
+
 /* Phones and small tablets: navigation collapses behind a toggle. */
 @media (max-width: 960px) {
   :where(.uc-shell) {

@@ -346,6 +346,25 @@
         </div>
         <!-- /docs:demo -->
 
+        <h3 id="links-inline"><code>uc-links--inline</code></h3>
+        <p>Ligações curtas na mesma linha, separadas por um ponto: juízes online, comunidades, as versões de um documento. Sem descrição (um <code>&lt;span&gt;</code> fica a seguir à ligação, na mesma linha). Para mais de seis ou sete ligações, <code>uc-links--grid</code> lê-se melhor.</p>
+        <!-- docs:demo src="../../demos/blocks/links-inline.html" title="quatro ligações numa linha" height="72" -->
+        <div class="docs-demo" id="demo-blocks-links-inline">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/links-inline.html" title="Demonstração: quatro ligações numa linha" loading="lazy" style="height: 72px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;ul class=&quot;uc-links uc-links--inline&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;https://codeforces.com/&quot;&gt;Codeforces&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://atcoder.jp/&quot;&gt;AtCoder&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://open.kattis.com/&quot;&gt;Kattis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cses.fi/&quot;&gt;CSES&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/links-inline.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
         <h2 id="shortcuts"><code>uc-shortcuts</code></h2>
         <p>Atalhos grandes, em grelha, para as páginas mais visitadas. Cada um tem pelo menos 48 px de altura e uma seta no fim.</p>
         <!-- docs:demo src="../../demos/blocks/shortcuts.html" title="três atalhos" height="96" -->
@@ -443,6 +462,93 @@
         </div>
         <p>Uma <code>&lt;ul&gt;</code> sem classe já tem marcadores e recuo; <code>uc-bullets</code> acrescenta o espaçamento e a cor do texto corrido, para regras e programas.</p>
 
+        <h2 id="steps"><code>uc-steps</code></h2>
+        <p>Uma lista numerada 01, 02, 03… com um título e um texto por item: o programa da cadeira, os passos de uma instalação. Vai num <code>&lt;ol&gt;</code>, que já diz a posição a quem usa leitor de ecrã; os números desenhados são decorativos.</p>
+        <!-- docs:demo src="../../demos/blocks/steps.html" title="três pontos do programa" height="280" -->
+        <div class="docs-demo" id="demo-blocks-steps">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/steps.html" title="Demonstração: três pontos do programa" loading="lazy" style="height: 280px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;ol class=&quot;uc-steps&quot;&gt;
+  &lt;li&gt;
+    &lt;h3&gt;Introdução à linguagem C&lt;/h3&gt;
+    &lt;p&gt;História, características, compilação e execução.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3&gt;Tipos básicos e controlo de fluxo&lt;/h3&gt;
+    &lt;p&gt;Inteiros, vírgula flutuante, carateres, ciclos e funções.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3&gt;Apontadores&lt;/h3&gt;
+    &lt;p&gt;Modelo de memória, vetores e cadeias de carateres.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/steps.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Cada <code>&lt;li&gt;</code> pode ter só um parágrafo, ou um título (<code>&lt;h3&gt;</code>, 16 px) e um parágrafo. Os itens ficam separados por uma linha.</p>
+
+        <h2 id="tags"><code>uc-tags</code></h2>
+        <p>Uma lista de etiquetas: cada <code>&lt;li&gt;</code> tem o aspeto de um <a href="elementos.html#tag"><code>uc-tag</code></a>, sem precisar de classe. Para os cursos a que a cadeira pertence, as linguagens de um teste, os temas de uma aula.</p>
+        <!-- docs:demo src="../../demos/blocks/tags.html" title="três cursos" height="100" -->
+        <div class="docs-demo" id="demo-blocks-tags">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/tags.html" title="Demonstração: três cursos" loading="lazy" style="height: 100px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;ul class=&quot;uc-tags&quot;&gt;
+  &lt;li&gt;Licenciatura em Ciência de Computadores&lt;/li&gt;
+  &lt;li&gt;Licenciatura em Inteligência Artificial e Ciência de Dados&lt;/li&gt;
+  &lt;li&gt;Minor em Informática&lt;/li&gt;
+&lt;/ul&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/tags.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Se cada item for um destino, com uma frase a explicar, <code>uc-links</code> é melhor escolha.</p>
+
+        <h2 id="facts"><code>uc-facts</code></h2>
+        <p>Pares de etiqueta e valor num <code>&lt;dl&gt;</code>: as regras de um teste, os dados de um trabalho. Tem o aspeto do <code>&lt;dl&gt;</code> de uma <a href="../componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a>: a etiqueta à esquerda, a cinzento, e o valor à direita; no telemóvel a etiqueta fica por cima.</p>
+        <!-- docs:demo src="../../demos/blocks/facts.html" title="três regras de um teste" height="170" -->
+        <div class="docs-demo" id="demo-blocks-facts">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/facts.html" title="Demonstração: três regras de um teste" loading="lazy" style="height: 170px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;dl class=&quot;uc-facts&quot;&gt;
+  &lt;dt&gt;Método&lt;/dt&gt;
+  &lt;dd&gt;Presencial, nos laboratórios do DCC, sem acesso à internet.&lt;/dd&gt;
+  &lt;dt&gt;Linguagem&lt;/dt&gt;
+  &lt;dd&gt;C (gcc 13)&lt;/dd&gt;
+  &lt;dt&gt;Pontuação&lt;/dt&gt;
+  &lt;dd&gt;2,5 valores; cada caso de teste conta.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/facts.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Cada par pode ir num <code>&lt;div&gt;</code> (<code>&lt;div&gt;&lt;dt&gt;…&lt;/dt&gt;&lt;dd&gt;…&lt;/dd&gt;&lt;/div&gt;</code>), por exemplo para lhe pôr um <code>lang</code>. Para a data, a hora e o local de uma prova, o <a href="../componentes/uc-assessment-info.html"><code>&lt;uc-assessment-info&gt;</code></a> lê-os do <code>course.js</code>.</p>
+
+        <h2 id="details"><code>uc-details</code></h2>
+        <p>Um <code>&lt;details&gt;</code> com o estilo do kit, em qualquer parte da página: um botão pequeno, da cor de destaque, que abre um painel suave. É o mesmo aspeto das dicas de <a href="../componentes/uc-problems.html"><code>&lt;uc-problems&gt;</code></a>. Para dicas e soluções de exercícios há <code>details.uc-hint</code> e <code>details.uc-solution</code> (ver <a href="../componentes/uc-exercise.html"><code>&lt;uc-exercise&gt;</code></a>), que também funcionam fora de um exercício.</p>
+        <!-- docs:demo src="../../demos/blocks/details.html" title="um bloco fechado" height="120" -->
+        <div class="docs-demo" id="demo-blocks-details">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/blocks/details.html" title="Demonstração: um bloco fechado" loading="lazy" style="height: 120px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;details class=&quot;uc-details&quot;&gt;
+  &lt;summary&gt;Ver a figura&lt;/summary&gt;
+  &lt;p&gt;O conteúdo só aparece quando se abre: uma figura, um exemplo longo, uma curiosidade.&lt;/p&gt;
+&lt;/details&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/blocks/details.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>O texto do <code>&lt;summary&gt;</code> diz o que se abre ("Ver a figura", "Exemplo completo"). As imagens dentro do painel ajustam-se à largura.</p>
+
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
           <li><a href="layout.html">Blocos: layout</a>: secções, pilhas e grelhas onde estes blocos se arrumam.</li>
@@ -478,9 +584,14 @@
           <li class="docs-toc__sub"><a href="#callout-warning">uc-callout--warning</a></li>
           <li><a href="#links">uc-links</a></li>
           <li class="docs-toc__sub"><a href="#links-grid">uc-links--grid</a></li>
+          <li class="docs-toc__sub"><a href="#links-inline">uc-links--inline</a></li>
           <li><a href="#shortcuts">uc-shortcuts</a></li>
           <li><a href="#checklist">uc-checklist</a></li>
           <li><a href="#bullets">uc-bullets</a></li>
+          <li><a href="#steps">uc-steps</a></li>
+          <li><a href="#tags">uc-tags</a></li>
+          <li><a href="#facts">uc-facts</a></li>
+          <li><a href="#details">uc-details</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>

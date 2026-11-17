@@ -59,7 +59,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     schedule: "Horários e equipa",
     about: "Sobre a UC",
   },
-  footer: { updated: "Atualizado a {date}" },
+  footer: { updated: "Atualizado a {date}", source: "Conteúdo de {author}, a partir do {link}.", sourceAuthor: "Conteúdo de {author}.", sourceLink: "site original" },
   editions: {
     other: "Outros anos",
     notice: "Esta página é da edição {edition}.",

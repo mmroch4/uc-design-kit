@@ -298,7 +298,17 @@
             }),
           )
         : null;
-      return h("footer", { class: "uc-footer" }, h("div", { class: "uc-footer__inner" }, left, updated));
+      return h("footer", { class: "uc-footer" }, h("div", { class: "uc-footer__inner" }, left, updated, this.renderSource()));
+    }
+
+    /** "Conteúdo de …, a partir do site original": course.js `source`, link from source= or source.url. */
+    renderSource() {
+      const source = this.course.source;
+      if (!source || typeof source !== "object" || !source.author) return null;
+      const url = this.getAttribute("source") || (source.url ? UC.internal.resolvePageHref(UC.text(source.url)) : "");
+      const author = h("span", { html: this.text(source.author) });
+      const link = url ? h("a", { href: url }, this.t("footer.sourceLink")) : null;
+      return h("p", { class: "uc-footer__source" }, UC.internal.tNodes(url ? "footer.source" : "footer.sourceAuthor", { author, link }));
     }
 
     /**

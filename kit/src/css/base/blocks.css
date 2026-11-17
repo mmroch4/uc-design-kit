@@ -289,3 +289,184 @@
   color: var(--uc-color-text-secondary);
 }
 :where(.uc-copy-block__button.is-copied) { border-color: var(--uc-color-success-text); color: var(--uc-color-success-text); }
+
+/*
+ * Page header: breadcrumbs, a small label, the <h1> and an introduction, with
+ * tight spacing (the page itself spaces its sections 48 px apart).
+ */
+:where(.uc-page-header) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uc-space-3);
+}
+/* Small uppercase label above a title ("Ficha da unidade curricular · CC1003"). */
+:where(.uc-eyebrow) {
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* <nav class="uc-crumbs" aria-label="…"><ol>…</ol></nav>: styled with the
+   breadcrumbs of <uc-guide> (components/uc-guide.css). */
+:where(.uc-crumbs) { display: block; }
+
+/*
+ * Sample input and output of a problem, side by side, stacked on phones:
+ * <div class="uc-samples"><div><p class="uc-samples__label">Input</p><pre data-copy>…</pre></div>…</div>
+ */
+:where(.uc-samples) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--uc-samples-min, 220px), 100%), 1fr));
+  gap: var(--uc-space-3) var(--uc-space-4);
+  max-width: 760px;
+}
+:where(.uc-samples > *) { display: flex; flex-direction: column; gap: var(--uc-space-1); min-width: 0; margin: 0; }
+:where(.uc-samples__label) {
+  margin: 0;
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+:where(.uc-samples pre) { margin: 0; flex: 1; }
+:where(.uc-samples .uc-copy-block) { flex: 1; display: flex; flex-direction: column; }
+
+/* Numbered list with a title and a text per item (a syllabus): 01, 02, … */
+:where(.uc-steps) {
+  max-width: 760px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: uc-step;
+}
+:where(.uc-steps > li) {
+  position: relative;
+  margin: 0;
+  padding: var(--uc-space-4) 0 var(--uc-space-4) 3.5rem;
+  border-top: 1px solid var(--uc-color-border);
+  counter-increment: uc-step;
+}
+:where(.uc-steps > li:first-child) { border-top: 0; }
+/* The list itself gives screen readers the position: the number is decorative. */
+:where(.uc-steps > li)::before {
+  content: counter(uc-step, decimal-leading-zero);
+  content: counter(uc-step, decimal-leading-zero) / "";
+  position: absolute;
+  top: var(--uc-space-4);
+  left: 0;
+  color: var(--uc-color-accent);
+  font-family: var(--uc-font-mono);
+  font-weight: 500;
+}
+:where(.uc-steps > li > * + *) { margin-top: var(--uc-space-1); }
+:where(.uc-steps h3, .uc-steps h4) { font-size: 1rem; }
+:where(.uc-steps p) { color: var(--uc-color-text-secondary); }
+
+/* A list of tags: each <li> looks like a .uc-tag. */
+:where(.uc-tags) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where(.uc-tags > li) {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 24px;
+  margin: 0;
+  padding: 0.25em var(--uc-space-2);
+  border-radius: var(--uc-radius-sm);
+  background: var(--uc-color-surface-muted);
+  color: var(--uc-color-text-secondary);
+  font-size: var(--uc-font-size-xs);
+  font-weight: 600;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+/* Errors and failed states ("Wrong Answer"). */
+:where(.uc-tag--danger) { background: var(--uc-color-danger-bg); color: var(--uc-color-danger-text); }
+
+/* Links in one line, separated by a dot (judges, communities). */
+:where(.uc-links--inline) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--uc-space-1) var(--uc-space-3);
+}
+:where(.uc-links--inline > li) { display: inline; padding: 0; border: 0; }
+:where(.uc-links--inline > li + li)::before {
+  content: "·";
+  content: "·" / "";
+  margin-right: var(--uc-space-3);
+  color: var(--uc-color-text-subtle);
+}
+
+/* Label and value rows: <dl class="uc-facts"> (the look of the <dl> of a week). */
+:where(.uc-facts) {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  gap: var(--uc-space-2) var(--uc-space-6);
+  max-width: 760px;
+  margin: 0;
+}
+:where(.uc-facts > div) { display: contents; }
+:where(.uc-facts dt) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); font-weight: 500; }
+:where(.uc-facts dd) { margin: 0; }
+@media (max-width: 480px) {
+  :where(.uc-facts) { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  :where(.uc-facts dd) { margin-bottom: var(--uc-space-2); }
+}
+
+/* A table only as wide as its content (short tables of numbers). */
+:where(.uc-table--fit) { --uc-table-min: 0px; width: fit-content; max-width: 100%; }
+/* A numeric cell: right-aligned, figures of equal width. */
+:where(.uc-num) { text-align: right; font-variant-numeric: tabular-nums; }
+:where(.uc-table th.uc-num, .uc-table td.uc-num) { text-align: right; }
+
+/* A disclosure anywhere in a page (also the hints of <uc-problems>): a small
+   link-coloured button that opens a soft panel. */
+:where(details.uc-details) { color: var(--uc-color-text-secondary); }
+:where(.uc-details > summary, .uc-problems__hints > summary) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uc-space-2);
+  min-height: var(--uc-target-min);
+  color: var(--uc-color-accent);
+  font-size: var(--uc-font-size-md);
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+:where(.uc-details > summary, .uc-problems__hints > summary)::-webkit-details-marker { display: none; }
+:where(.uc-details > summary, .uc-problems__hints > summary)::before {
+  content: "";
+  width: 0.45em;
+  height: 0.45em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s;
+}
+:where(.uc-details[open] > summary, .uc-problems__hints[open] > summary)::before { transform: rotate(45deg); }
+:where(.uc-details > summary:hover, .uc-problems__hints > summary:hover) { text-decoration: underline; }
+:where(.uc-details > summary:focus-visible) { outline: var(--uc-focus-ring); outline-offset: 2px; }
+:where(.uc-details > :not(summary), .uc-problems__hints > :not(summary)) {
+  margin: 0 0 var(--uc-space-2);
+  padding: var(--uc-space-3) var(--uc-space-4);
+  border-left: 3px solid var(--uc-color-accent);
+  border-radius: var(--uc-radius-sm);
+  background: var(--uc-color-surface-sunken);
+  color: var(--uc-color-text);
+  font-size: var(--uc-font-size-body-sm);
+}
+:where(.uc-details img) { max-width: 100%; height: auto; }
+@media (prefers-reduced-motion: reduce) {
+  :where(.uc-details > summary, .uc-problems__hints > summary)::before { transition: none; }
+}
