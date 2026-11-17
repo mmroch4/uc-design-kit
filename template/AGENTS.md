@@ -26,6 +26,8 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
    (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: cada `<uc-week>` só
    leva `n` e `title`. O horário e o atendimento nunca são tabelas escritas à
    mão: `schedule` e `team[].officeHours`, mostrados por `<uc-timetable>`.
+   Data, hora, turnos, duração e salas de uma prova vão no prazo
+   (`duration`, `location`, `shifts`) e mostram-se com `<uc-assessment-info>`.
 5. Só o que está documentado. Nada de elementos, atributos, campos ou classes
    `uc-…` inventados. Um comportamento que o kit não tem vai para um componente
    próprio em `extensions/`, com `UC.define`.
@@ -67,7 +69,10 @@ Quando o professor pede para passar um site existente para esta pasta:
      semana certa);
    - horários e atendimento → `uc-timetable` (uma entrada de `schedule` por
      aula semanal; os docentes vêm de `team[].classes`) e `uc-team`;
-   - avaliação → `avaliacao.html`;
+   - avaliação → `avaliacao.html`; a fórmula e os pesos da nota → a lista
+     dentro de `<uc-grading>` (peso em `<data>`, `data-code` em cada item);
+   - página de um teste ou exame → `<uc-assessment-info deadline="…">` no
+     topo, com o resto da página dentro;
    - guiões de aula → `uc-guide` com `uc-exercise`; código → `uc-code`.
 6. **O resto** (enunciados, páginas de ajuda, textos longos) vai quase como
    está, dentro de `<uc-page>` e de `<div class="uc-content">`, que dá forma a

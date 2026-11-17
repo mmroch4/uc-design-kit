@@ -52,6 +52,8 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [uc-exercise](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md): Documentação do componente uc-exercise do UC Design Kit: um exercício numerado com nível, dicas, solução, ligação ao Mooshak e marcação como feito.
 - [uc-code](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md): Documentação do componente uc-code do UC Design Kit: blocos de código com realce, cópia, edição e execução na página com testes.
 - [uc-question](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-question.md): Documentação do componente uc-question do UC Design Kit: uma pergunta de escolha múltipla com resposta imediata.
+- [uc-grading](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md): Documentação do componente uc-grading do UC Design Kit: a fórmula, os pesos, os mínimos e um simulador da nota, a partir da lista escrita pelo professor.
+- [uc-assessment-info](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md): Documentação do componente uc-assessment-info do UC Design Kit: o cartão de um teste ou exame com data, turnos, duração, local, estado e ficheiro de calendário.
 
 ## Estilos
 

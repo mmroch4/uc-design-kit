@@ -38,6 +38,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `LocalizedText` | Um texto igual em todas as línguas, ou um objeto com um texto por língua. Se faltar uma língua usa-se a primeira de `languages`. | `"Exame"` `{ pt: "Exame", en: "Exam" }` |
 | `ISODate` | `"AAAA-MM-DD"`, com zeros. Um prazo aceita ainda `"AAAA-MM"` (só o mês) e `null` (a marcar). | `"2025-09-15"` |
 | `Time` | `"HH:MM"`, 24 horas. | `"09:30"` |
+| `Minutes` | Um número inteiro de minutos. | `120` (duas horas) |
 | `Weekday` | Dia da semana em número: `1` = segunda-feira … `7` = domingo (como em `semester.teachingDays`). | `2` (terça-feira) |
 | `HTMLText` | Um `LocalizedText` que pode ter HTML simples (links, `<strong>`, `<em>`, `<code>`). É inserido como HTML: as aspas dentro do texto escrevem-se `\"`. | `"Ver <a href=\"avaliacao.html\">regras</a>"` |
 
@@ -190,7 +191,9 @@ deadlines: [
     note: "Pela plataforma de entregas", url: "trabalhos/t2.html" },
   { id: "quiz5", title: "Quiz 5", date: "2025-11-17", end: "2025-11-24", kind: "quiz" },
   { id: "teste", title: "Teste prático", date: "2025-12-10", time: "14:00", kind: "assessment",
-    links: [{ label: "Turnos", url: "avaliacao/turnos.pdf" }] },
+    duration: 105, location: "Laboratórios 1 e 2",
+    shifts: [{ time: "14:00" }, { time: "16:00", location: "Laboratório 1" }],
+    url: "teste.html", links: [{ label: "Enunciado de 2024/25", url: "avaliacao/teste-2425.pdf" }] },
   { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },   // dia por marcar
   { id: "recurso", title: "Exame de recurso", date: null, kind: "exam" },        // a marcar
 ],
@@ -207,6 +210,11 @@ deadlines: [
 | `note` | `HTMLText` | Linha secundária curta: turnos, salas, plataforma. |
 | `url` | URL | Página com mais informação; o título passa a link. |
 | `links` | `{ label, url }[]` | Links extra (resultados, turnos). |
+| `duration` | `Minutes` | Duração da prova. Com `time`, a hora de fim é calculada ("14:00–15:45"). |
+| `location` | `HTMLText` | Salas, ou um link para a distribuição por salas (pode levar [`data-auth`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md#data-auth)). |
+| `shifts` | `Shift[]` | Turnos, quando a mesma prova se faz mais de uma vez. Aparecem em vez de `time`, que continua a ser a hora do primeiro turno (para ordenar). |
+
+Cada turno (`Shift`) é `{ time, end, date, location, note }`, e só `time` é obrigatório. `end` é por omissão `time` mais `duration`; `date` é o dia do prazo (muda-se para uma prova feita em dois dias); `location` e `note` aparecem só junto a esse turno. Com turnos ou com `duration`, os componentes que mostram o prazo mostram também as horas ("14:00 e 16:00", "14:00–15:45"), e [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md) mostra tudo num cartão.
 
 ## Avisos
 

@@ -72,6 +72,8 @@
           <li><a href="componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="componentes/uc-code.html"><code>uc-code</code></a></li>
           <li><a href="componentes/uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="componentes/uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -160,6 +162,7 @@
               <tr><td><code>LocalizedText</code></td><td>Um texto igual em todas as línguas, ou um objeto com um texto por língua. Se faltar uma língua usa-se a primeira de <code>languages</code>.</td><td><code>"Exame"</code><br><code>{ pt: "Exame", en: "Exam" }</code></td></tr>
               <tr><td><code>ISODate</code></td><td><code>"AAAA-MM-DD"</code>, com zeros. Um prazo aceita ainda <code>"AAAA-MM"</code> (só o mês) e <code>null</code> (a marcar).</td><td><code>"2025-09-15"</code></td></tr>
               <tr><td><code>Time</code></td><td><code>"HH:MM"</code>, 24 horas.</td><td><code>"09:30"</code></td></tr>
+              <tr><td><code>Minutes</code></td><td>Um número inteiro de minutos.</td><td><code>120</code> (duas horas)</td></tr>
               <tr><td><code>Weekday</code></td><td>Dia da semana em número: <code>1</code> = segunda-feira … <code>7</code> = domingo (como em <code>semester.teachingDays</code>).</td><td><code>2</code> (terça-feira)</td></tr>
               <tr><td><code>HTMLText</code></td><td>Um <code>LocalizedText</code> que pode ter HTML simples (links, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>). É inserido como HTML: as aspas dentro do texto escrevem-se <code>\"</code>.</td><td><code>"Ver &lt;a href=\"avaliacao.html\"&gt;regras&lt;/a&gt;"</code></td></tr>
             </tbody>
@@ -354,7 +357,9 @@
     note: "Pela plataforma de entregas", url: "trabalhos/t2.html" },
   { id: "quiz5", title: "Quiz 5", date: "2025-11-17", end: "2025-11-24", kind: "quiz" },
   { id: "teste", title: "Teste prático", date: "2025-12-10", time: "14:00", kind: "assessment",
-    links: [{ label: "Turnos", url: "avaliacao/turnos.pdf" }] },
+    duration: 105, location: "Laboratórios 1 e 2",
+    shifts: [{ time: "14:00" }, { time: "16:00", location: "Laboratório 1" }],
+    url: "teste.html", links: [{ label: "Enunciado de 2024/25", url: "avaliacao/teste-2425.pdf" }] },
   { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },   // dia por marcar
   { id: "recurso", title: "Exame de recurso", date: null, kind: "exam" },        // a marcar
 ],</code></pre></uc-code>
@@ -374,9 +379,13 @@
               <tr><td><code>note</code></td><td><code>HTMLText</code></td><td>Linha secundária curta: turnos, salas, plataforma.</td></tr>
               <tr><td><code>url</code></td><td>URL</td><td>Página com mais informação; o título passa a link.</td></tr>
               <tr><td><code>links</code></td><td><code>{ label, url }[]</code></td><td>Links extra (resultados, turnos).</td></tr>
+              <tr><td><code>duration</code></td><td><code>Minutes</code></td><td>Duração da prova. Com <code>time</code>, a hora de fim é calculada ("14:00–15:45").</td></tr>
+              <tr><td><code>location</code></td><td><code>HTMLText</code></td><td>Salas, ou um link para a distribuição por salas (pode levar <a href="estilos/elementos.html#data-auth"><code>data-auth</code></a>).</td></tr>
+              <tr><td><code>shifts</code></td><td><code>Shift[]</code></td><td>Turnos, quando a mesma prova se faz mais de uma vez. Aparecem em vez de <code>time</code>, que continua a ser a hora do primeiro turno (para ordenar).</td></tr>
             </tbody>
           </table>
         </div>
+        <p>Cada turno (<code>Shift</code>) é <code>{ time, end, date, location, note }</code>, e só <code>time</code> é obrigatório. <code>end</code> é por omissão <code>time</code> mais <code>duration</code>; <code>date</code> é o dia do prazo (muda-se para uma prova feita em dois dias); <code>location</code> e <code>note</code> aparecem só junto a esse turno. Com turnos ou com <code>duration</code>, os componentes que mostram o prazo mostram também as horas ("14:00 e 16:00", "14:00–15:45"), e <a href="componentes/uc-assessment-info.html"><code>&lt;uc-assessment-info&gt;</code></a> mostra tudo num cartão.</p>
 
         <h2 id="avisos">Avisos</h2>
         <uc-code lang="js" filename="course.js" no-download><pre><code>notices: [

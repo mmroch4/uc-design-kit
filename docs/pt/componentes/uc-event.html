@@ -72,6 +72,8 @@
           <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
           <li><a href="uc-code.html"><code>uc-code</code></a></li>
           <li><a href="uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
         </ul>
       </div>
       <div class="docs-sidebar__group">
@@ -130,10 +132,10 @@
           <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
         </header>
 
-        <!-- docs:demo src="../../demos/uc-event/basic.html" title="o teste prático a partir do course.js" height="124" -->
+        <!-- docs:demo src="../../demos/uc-event/basic.html" title="o teste prático a partir do course.js" height="154" -->
         <div class="docs-demo" id="demo-uc-event-basic">
           <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
-            <iframe class="docs-demo__frame" src="../../demos/uc-event/basic.html" title="Demonstração: o teste prático a partir do course.js" loading="lazy" style="height: 124px"></iframe>
+            <iframe class="docs-demo__frame" src="../../demos/uc-event/basic.html" title="Demonstração: o teste prático a partir do course.js" loading="lazy" style="height: 154px"></iframe>
           </div>
           <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
             <uc-code lang="html" no-download><pre><code>&lt;uc-event deadline=&quot;teste&quot;&gt;
@@ -245,7 +247,7 @@
               <tr><th scope="col">Atributo</th><th scope="col">Tipo</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>deadline</code></td><td>identificador de prazo</td><td>—</td><td>O <code>id</code> de um prazo do <code>course.js</code>. Dá o tipo, o título, a data, a nota e as ligações; com ele, <code>kind</code> e <code>date</code> são ignorados.</td></tr>
+              <tr><td><code>deadline</code></td><td>identificador de prazo</td><td>—</td><td>O <code>id</code> de um prazo do <code>course.js</code>. Dá o tipo, o título, a data, a hora, o local, a nota e as ligações (com turnos, "14:00 e 16:00"; com <code>duration</code>, "14:00–15:45"); com ele, <code>kind</code> e <code>date</code> são ignorados.</td></tr>
               <tr><td><code>kind</code></td><td>tipo de prazo</td><td><code>other</code></td><td>Sem <code>deadline</code>: <code>assessment</code>, <code>exam</code>, <code>quiz</code>, <code>submission</code> ou <code>other</code>. Os dois primeiros têm a etiqueta a âmbar.</td></tr>
               <tr><td><code>date</code></td><td>data ISO</td><td>—</td><td>Sem <code>deadline</code>: o dia (<code>AAAA-MM-DD</code>) ou só o mês (<code>AAAA-MM</code>).</td></tr>
             </tbody>
@@ -261,7 +263,7 @@
               <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>deadlines</code></td><td>O prazo indicado em <code>deadline</code>: <code>title</code>, <code>date</code>, <code>time</code>, <code>end</code>, <code>kind</code>, <code>note</code>, <code>url</code> e <code>links</code> (<a href="../course-js.html#prazos">prazos</a>).</td></tr>
+              <tr><td><code>deadlines</code></td><td>O prazo indicado em <code>deadline</code>: <code>title</code>, <code>date</code>, <code>time</code>, <code>end</code>, <code>kind</code>, <code>duration</code>, <code>shifts</code>, <code>location</code>, <code>note</code>, <code>url</code> e <code>links</code> (<a href="../course-js.html#prazos">prazos</a>).</td></tr>
               <tr><td><code>today</code></td><td>Decidir se o evento já passou (classes <code>--past</code> e <code>--future</code>); <code>?today=AAAA-MM-DD</code> no endereço tem prioridade (<a href="../course-js.html#campos-avancado">avançado</a>).</td></tr>
             </tbody>
           </table>

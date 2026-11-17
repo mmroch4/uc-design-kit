@@ -110,7 +110,7 @@ Exemplo (exame escrito depois da semana 12), [demonstração ao vivo](https://uc
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
-| `deadline` | identificador de prazo | — | O `id` de um prazo do `course.js`. Dá o tipo, o título, a data, a nota e as ligações; com ele, `kind` e `date` são ignorados. |
+| `deadline` | identificador de prazo | — | O `id` de um prazo do `course.js`. Dá o tipo, o título, a data, a hora, o local, a nota e as ligações (com turnos, "14:00 e 16:00"; com `duration`, "14:00–15:45"); com ele, `kind` e `date` são ignorados. |
 | `kind` | tipo de prazo | `other` | Sem `deadline`: `assessment`, `exam`, `quiz`, `submission` ou `other`. Os dois primeiros têm a etiqueta a âmbar. |
 | `date` | data ISO | — | Sem `deadline`: o dia (`AAAA-MM-DD`) ou só o mês (`AAAA-MM`). |
 
@@ -120,7 +120,7 @@ Campos do `course.js` que o componente lê. Um evento escrito à mão (sem `dead
 
 | Campo | Para quê |
 | --- | --- |
-| `deadlines` | O prazo indicado em `deadline`: `title`, `date`, `time`, `end`, `kind`, `note`, `url` e `links` ([prazos](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos)). |
+| `deadlines` | O prazo indicado em `deadline`: `title`, `date`, `time`, `end`, `kind`, `duration`, `shifts`, `location`, `note`, `url` e `links` ([prazos](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos)). |
 | `today` | Decidir se o evento já passou (classes `--past` e `--future`); `?today=AAAA-MM-DD` no endereço tem prioridade ([avançado](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-avancado)). |
 
 Com `url`, o título passa a ser uma ligação. O `url` e os `links` de um prazo são relativos ao `course.js`, como os `href` das páginas, por isso funcionam também em páginas dentro de subpastas. Ver [Subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas).

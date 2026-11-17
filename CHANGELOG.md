@@ -15,6 +15,18 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   column of its table.
 - `a[data-auth]`: links that need a login get a lock icon and a hidden
   "(Requer autenticação)" text, in page HTML, `HTMLText` and components.
+- `<uc-grading>` (blocks phase 2): decorates the teacher's list of grade
+  components (weights in `<data>`, `data-code`, `data-scale`, `data-min`,
+  `data-bonus`, parts in a nested list) with a generated formula, a
+  proportions bar and a table of weights and minimums, and an optional grade
+  simulation (`calculator`, `pass`).
+- `<uc-assessment-info>` (blocks phase 2): the card of one exam or test from
+  its deadline (date, time or shifts, duration, location, status, links),
+  with an optional `.ics` download (`calendar`).
+- `duration`, `location` and `shifts` on deadlines. `<uc-event>`,
+  `<uc-deadlines>` and `<uc-this-week>` show the shift times ("14:30 e
+  16:30") or the range with the duration ("14:30–16:30"); `<uc-event>` and the
+  table of `<uc-deadlines>` also show the location.
 - `UC.formatTime`, `UC.formatDuration`, `UC.weekdayName`.
 - Internal pieces for the new blocks: one shared live region
   (`<pre data-copy>` and `<uc-code>` now use it), course-scoped storage keys

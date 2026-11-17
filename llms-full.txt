@@ -453,6 +453,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `LocalizedText` | Um texto igual em todas as línguas, ou um objeto com um texto por língua. Se faltar uma língua usa-se a primeira de `languages`. | `"Exame"` `{ pt: "Exame", en: "Exam" }` |
 | `ISODate` | `"AAAA-MM-DD"`, com zeros. Um prazo aceita ainda `"AAAA-MM"` (só o mês) e `null` (a marcar). | `"2025-09-15"` |
 | `Time` | `"HH:MM"`, 24 horas. | `"09:30"` |
+| `Minutes` | Um número inteiro de minutos. | `120` (duas horas) |
 | `Weekday` | Dia da semana em número: `1` = segunda-feira … `7` = domingo (como em `semester.teachingDays`). | `2` (terça-feira) |
 | `HTMLText` | Um `LocalizedText` que pode ter HTML simples (links, `<strong>`, `<em>`, `<code>`). É inserido como HTML: as aspas dentro do texto escrevem-se `\"`. | `"Ver <a href=\"avaliacao.html\">regras</a>"` |
 
@@ -605,7 +606,9 @@ deadlines: [
     note: "Pela plataforma de entregas", url: "trabalhos/t2.html" },
   { id: "quiz5", title: "Quiz 5", date: "2025-11-17", end: "2025-11-24", kind: "quiz" },
   { id: "teste", title: "Teste prático", date: "2025-12-10", time: "14:00", kind: "assessment",
-    links: [{ label: "Turnos", url: "avaliacao/turnos.pdf" }] },
+    duration: 105, location: "Laboratórios 1 e 2",
+    shifts: [{ time: "14:00" }, { time: "16:00", location: "Laboratório 1" }],
+    url: "teste.html", links: [{ label: "Enunciado de 2024/25", url: "avaliacao/teste-2425.pdf" }] },
   { id: "exame", title: "Exame, época normal", date: "2026-01", kind: "exam" },   // dia por marcar
   { id: "recurso", title: "Exame de recurso", date: null, kind: "exam" },        // a marcar
 ],
@@ -622,6 +625,11 @@ deadlines: [
 | `note` | `HTMLText` | Linha secundária curta: turnos, salas, plataforma. |
 | `url` | URL | Página com mais informação; o título passa a link. |
 | `links` | `{ label, url }[]` | Links extra (resultados, turnos). |
+| `duration` | `Minutes` | Duração da prova. Com `time`, a hora de fim é calculada ("14:00–15:45"). |
+| `location` | `HTMLText` | Salas, ou um link para a distribuição por salas (pode levar [`data-auth`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md#data-auth)). |
+| `shifts` | `Shift[]` | Turnos, quando a mesma prova se faz mais de uma vez. Aparecem em vez de `time`, que continua a ser a hora do primeiro turno (para ordenar). |
+
+Cada turno (`Shift`) é `{ time, end, date, location, note }`, e só `time` é obrigatório. `end` é por omissão `time` mais `duration`; `date` é o dia do prazo (muda-se para uma prova feita em dois dias); `location` e `note` aparecem só junto a esse turno. Com turnos ou com `duration`, os componentes que mostram o prazo mostram também as horas ("14:00 e 16:00", "14:00–15:45"), e [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md) mostra tudo num cartão.
 
 ## Avisos
 
@@ -1067,6 +1075,8 @@ Se o assistente não tiver acesso à Internet, descarregar antes o [`llms-full.t
 | Página inicial | `index.html` com [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md), [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md), [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md), [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md) |
 | Calendário, sumários, planeamento | `semanas.html` com [`<uc-weeks>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md) e uma [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md) por semana, sem datas escritas |
 | Avaliação | `avaliacao.html`, com os prazos a vir do `course.js` |
+| Fórmula e pesos da nota ("Nota = 0,1 × A + …", "14 valores") | A mesma lista dentro de [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md), com o peso em `<data>` e `data-code`, `data-min` em cada item |
+| Página de um teste ou exame (data, turnos, salas, duração) | Os dados no prazo do `course.js` (`duration`, `location`, `shifts`) e [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md) no topo da página |
 | Tabela de horários e atendimento | `schedule` e `team[].officeHours` no `course.js`, mostrados por [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md) e [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md) |
 | Links com cadeado ou "requer login" (pautas, SIGARRA) | `<a data-auth>` (ou `data-auth="SIGARRA"`), sem imagem de cadeado: o kit acrescenta-a, com texto para leitores de ecrã |
 | Guiões e fichas das aulas | [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md) com [`<uc-exercise>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md) e [`<uc-code>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md) |
@@ -1146,6 +1156,13 @@ Aulas práticas com exercícios, código executável e perguntas.
 - [**`<uc-exercise>`**: Exercício numerado com nível, dicas, solução e Marcar como feito.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md)
 - [**`<uc-code>`**: Código com realce, copiar e descarregar, edição e execução com testes.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-code.md)
 - [**`<uc-question>`**: Pergunta de escolha múltipla com resposta imediata e explicação.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-question.md)
+
+## Avaliação
+
+Como se calcula a nota e o que é preciso saber de cada prova.
+
+- [**`<uc-grading>`**: A fórmula, os pesos e os mínimos da nota, com um simulador opcional.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md)
+- [**`<uc-assessment-info>`**: O cartão de um teste ou exame: data, turnos, duração, local, estado e calendário.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md)
 
 ## Regras comuns
 
@@ -1704,7 +1721,7 @@ Exemplo (próximas datas do curso de demonstração), [demonstração ao vivo](h
 <uc-deadlines></uc-deadlines>
 ```
 
-A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Aparecem os prazos que ainda não passaram, por ordem de data: a entrega do trabalho 2, o teste prático e o exame, de que só se sabe o mês. A hora vai no início da linha de baixo, antes da nota.
+A demonstração usa um curso fictício em que hoje é 27 de novembro de 2025. Aparecem os prazos que ainda não passaram, por ordem de data: a entrega do trabalho 2, o teste prático e o exame, de que só se sabe o mês. A hora vai no início da linha de baixo, antes da nota; o teste prático tem dois turnos, por isso mostra "14:00 e 16:00".
 
 ## Utilização
 
@@ -1819,7 +1836,7 @@ Campos do `course.js` que o componente lê. Sem `deadlines`, mostra "Não há da
 
 | Campo | Para quê |
 | --- | --- |
-| [`deadlines`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos) | Os prazos: `id`, `title`, `date`, `time`, `end`, `kind`, `note`, `url` e `links`. |
+| [`deadlines`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos) | Os prazos: `id`, `title`, `date`, `time`, `end`, `kind`, `note`, `url` e `links`, e ainda `shifts` e `duration` (as horas) e `location` (na tabela, antes da nota). |
 | [`today`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-avancado) | Fixar o dia de hoje (demonstrações, capturas). O endereço `?today=AAAA-MM-DD` tem prioridade. |
 
 A referência completa dos campos está em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos).
@@ -2736,7 +2753,7 @@ Exemplo (exame escrito depois da semana 12), [demonstração ao vivo](https://uc
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
-| `deadline` | identificador de prazo | — | O `id` de um prazo do `course.js`. Dá o tipo, o título, a data, a nota e as ligações; com ele, `kind` e `date` são ignorados. |
+| `deadline` | identificador de prazo | — | O `id` de um prazo do `course.js`. Dá o tipo, o título, a data, a hora, o local, a nota e as ligações (com turnos, "14:00 e 16:00"; com `duration`, "14:00–15:45"); com ele, `kind` e `date` são ignorados. |
 | `kind` | tipo de prazo | `other` | Sem `deadline`: `assessment`, `exam`, `quiz`, `submission` ou `other`. Os dois primeiros têm a etiqueta a âmbar. |
 | `date` | data ISO | — | Sem `deadline`: o dia (`AAAA-MM-DD`) ou só o mês (`AAAA-MM`). |
 
@@ -2746,7 +2763,7 @@ Campos do `course.js` que o componente lê. Um evento escrito à mão (sem `dead
 
 | Campo | Para quê |
 | --- | --- |
-| `deadlines` | O prazo indicado em `deadline`: `title`, `date`, `time`, `end`, `kind`, `note`, `url` e `links` ([prazos](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos)). |
+| `deadlines` | O prazo indicado em `deadline`: `title`, `date`, `time`, `end`, `kind`, `duration`, `shifts`, `location`, `note`, `url` e `links` ([prazos](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos)). |
 | `today` | Decidir se o evento já passou (classes `--past` e `--future`); `?today=AAAA-MM-DD` no endereço tem prioridade ([avançado](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-avancado)). |
 
 Com `url`, o título passa a ser uma ligação. O `url` e os `links` de um prazo são relativos ao `course.js`, como os `href` das páginas, por isso funcionam também em páginas dentro de subpastas. Ver [Subpastas](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#subpastas).
@@ -4297,6 +4314,306 @@ Se o kit não carregar, aparecem o enunciado e a lista de opções como HTML nor
 
 ---
 
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md -->
+
+# `<uc-grading>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.html
+
+Como se calcula a nota, a partir da lista que o professor já escreve: uma fórmula gerada, uma barra com o peso de cada componente, uma tabela de pesos e mínimos e, se se quiser, um simulador da nota final.
+
+Exemplo (componentes da nota com partes e bónus), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-grading/basic.html):
+
+```html
+<uc-grading>
+  <ul>
+    <li data-code="Q"><data value="10">10 %</data> Quizzes semanais</li>
+    <li data-code="T"><data value="30">30 %</data> Trabalho prático
+      <ul>
+        <li data-code="T1"><data value="40">40 %</data> Primeira entrega</li>
+        <li data-code="T2"><data value="60">60 %</data> Entrega final e apresentação</li>
+      </ul>
+    </li>
+    <li data-code="E" data-min="8"><data value="60">60 %</data> Exame final. <span>Sem consulta.</span></li>
+    <li data-code="B" data-bonus="1">Desafios extra</li>
+  </ul>
+</uc-grading>
+```
+
+A demonstração tem quatro componentes: quizzes, um trabalho com duas entregas, o exame (com mínimo de 8) e um bónus até 1 valor. A fórmula e as percentagens são calculadas a partir dos pesos escritos na lista.
+
+## Utilização
+
+Escreve-se a lista das componentes dentro do elemento, um `<li>` por componente. O peso vai num `<data>`: o `value` é o número que o componente usa e o texto é o que se lê. Sem JavaScript, a lista aparece tal como está escrita.
+
+`avaliacao.html`:
+
+```html
+<uc-grading scale="20" pass="9.5" calculator>
+  <ul>
+    <li data-code="E" data-scale="14" data-min="4.9"><data value="14">14 valores</data> Exame final.
+      <span>Teórico-prático, sem consulta.</span></li>
+    <li data-code="AP" data-scale="5"><data value="5">5 valores</data> Avaliações práticas</li>
+    <li data-code="P" data-scale="1"><data value="1">1 valor</data> Exercícios das aulas práticas</li>
+  </ul>
+</uc-grading>
+```
+
+Os pesos são relativos entre si: `14/5/1`, `0,1/0,2/0,2/0,5` e `25%/50%/25%` dão o mesmo tipo de resultado, e não precisam de somar 1 nem 100. Aceita-se vírgula ou ponto decimal e um `%` no fim.
+
+Cada item pode ter estes atributos:
+
+| Atributo do item | Descrição |
+| --- | --- |
+| `data-code` | Nome curto usado na fórmula, na tabela e no simulador: `E`, `AP`, `T1`. |
+| `data-scale` | Escala em que a componente é classificada. Por omissão é a `scale` do elemento (numa parte, a da componente de cima). Com `data-scale="14"`, o exame é dado de 0 a 14 e entra na fórmula sem coeficiente. |
+| `data-min` | Nota mínima, na escala da própria componente ("4,9 em 14"). |
+| `data-bonus` | Faz do item um bónus, que não entra nos pesos: soma até este número de valores (`2`) ou esta percentagem da escala (`10%`). A nota final nunca passa da escala. Não precisa de `<data>`. |
+
+A tabela mostra o texto do item; o que estiver num `<span>` aparece em cinzento, como descrição, e fica fora do rótulo do simulador.
+
+## Exemplos
+
+### Simular a nota
+
+Com `calculator`, aparece um campo por componente. A nota final é calculada enquanto se escreve e o resultado diz se a simulação passa, com `pass` e os mínimos (`data-min`). Nada fica guardado, e uma nota explica que a nota oficial é a do SIGARRA.
+
+Exemplo (simulador da nota com mínimo no exame), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-grading/calculator.html):
+
+```html
+<uc-grading scale="20" pass="9.5" calculator>
+  <ul>
+    <li data-code="E" data-scale="14" data-min="4.9"><data value="14">14 valores</data> Exame final. <span>Teórico-prático, sem consulta.</span></li>
+    <li data-code="AP" data-scale="5"><data value="5">5 valores</data> Avaliações práticas</li>
+    <li data-code="P" data-scale="1"><data value="1">1 valor</data> Exercícios das aulas práticas</li>
+  </ul>
+</uc-grading>
+```
+
+Um valor fora da escala ("21") ou que não é um número mostra uma mensagem de erro junto ao campo e a nota não é calculada. Um bónus vazio conta como 0.
+
+### Componentes com partes
+
+Uma lista dentro de um item divide essa componente em partes, com pesos relativos a ela. Na demonstração do início, o trabalho (30 %) tem duas entregas de 40 % e 60 %, que a tabela mostra como "12 % (40 % de T)" e "18 % (60 % de T)". A nota da componente é a média pesada das partes.
+
+### Pesos decimais, sem fórmula
+
+Com pesos decimais todas as componentes têm a escala da nota final, e a fórmula seria "Nota = 0,1 × A + 0,2 × T1 + 0,2 × T2 + 0,5 × E". Com `no-formula` a fórmula não aparece; o texto escrito depois da lista fica por baixo da tabela.
+
+Exemplo (pesos decimais sem fórmula e com uma nota), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-grading/decimal.html):
+
+```html
+<uc-grading heading="Fórmula" no-formula>
+  <ol>
+    <li data-code="A"><data value="0,1">0,1</data> Atividades semanais</li>
+    <li data-code="T1"><data value="0,2">0,2</data> Teste 1</li>
+    <li data-code="T2"><data value="0,2">0,2</data> Teste 2</li>
+    <li data-code="E"><data value="0,5">0,5</data> Exame</li>
+  </ol>
+  <p class="uc-muted">O teste com nota mais baixa pode ser repetido na época de recurso.</p>
+</uc-grading>
+```
+
+## Atributos
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `scale` | número | `20` | Escala da nota final. |
+| `pass` | número | ausente | Nota para aprovar, na escala final. Usada pelo simulador. |
+| `calculator` | booleano | ausente | Acrescenta o simulador da nota. |
+| `no-formula` | booleano | ausente | Esconde a fórmula gerada. |
+| `heading` | texto ou `none` | "Como é calculada a nota" | Título da secção. Com `none`, não há título visível. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado. |
+
+## Configuração usada
+
+Nenhuma: tudo vem do HTML. Os textos gerados ("Como é calculada a nota", "Simular a nota", a nota sobre o SIGARRA) vêm dos dicionários do kit e podem ser mudados com [`UC.addTranslations`](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/api-js.md), por exemplo para outra instituição.
+
+## Personalizar
+
+Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em [Nível 2: CSS livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md).
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-grading` | O componente (o próprio `<uc-grading>`). |
+| `.uc-grading__section`, `__heading` | A secção e o seu título. |
+| `.uc-grading__formula` | A fórmula ("Nota = E + AP + P"). |
+| `.uc-grading__bar`, `__segment` | A barra das proporções e cada segmento (largura = peso). |
+| `.uc-grading__table` | A tabela das componentes. |
+| `.uc-grading__sub` | As linhas das partes de uma componente, recolhidas. |
+| `.uc-grading__calculator`, `__fields`, `__field`, `__error` | O simulador, os campos, cada campo e a sua mensagem de erro. |
+| `.uc-grading__result`, `__status` | A nota simulada e a linha do estado ("Aprovado nesta simulação"). |
+
+`theme.css`:
+
+```css
+/* Barra mais alta, com a cor de destaque mais suave. */
+uc-grading { --uc-grading-bar-height: 20px; }
+.uc-grading__segment { background: var(--uc-color-accent-soft); color: var(--uc-color-accent); }
+```
+
+## Acessibilidade
+
+### O que o componente faz
+
+A informação está numa tabela com legenda e cabeçalhos; a barra é decorativa e não é lida. No simulador, cada campo tem um rótulo visível com a escala, os erros são texto ligado ao campo (`aria-describedby`, `aria-invalid`) e o resultado é anunciado uma vez, quando se para de escrever.
+
+### O que cabe a quem escreve
+
+Dar a cada componente um `data-code` curto e um nome claro. Escrever o peso no `<data>` como se lê ("14 valores", "25 %"), porque é esse o texto sem JavaScript.
+
+## Sem JavaScript
+
+Aparece a lista tal como foi escrita, com os pesos dentro de cada item. Não há fórmula, tabela nem simulador.
+
+## Ver também
+
+- [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md): o cartão de cada teste ou exame.
+- [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md): todas as datas de avaliação numa tabela.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md -->
+
+# `<uc-assessment-info>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.html
+
+O cartão no topo da página de um teste ou exame: dia, horas ou turnos, duração, local, quanto falta e os links, tirados do prazo no `course.js`. Pode juntar um botão para guardar a prova no calendário.
+
+Exemplo (cartão do teste prático com turnos e calendário), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-assessment-info/basic.html):
+
+```html
+<uc-assessment-info deadline="teste" calendar>
+  <h2>Regras</h2>
+  <ul class="uc-bullets">
+    <li>Sem consulta; traz o cartão de estudante.</li>
+    <li>Matéria: semanas 1 a 10.</li>
+  </ul>
+</uc-assessment-info>
+```
+
+A demonstração mostra o teste prático do curso fictício: dois turnos (o segundo noutra sala), 1 h 45 min, as salas com um link que pede autenticação e o estado "Daqui a 13 dias". As regras escritas dentro do elemento ficam por baixo do cartão.
+
+## Utilização
+
+Põe-se o elemento no início da página da prova, com o `id` do prazo. O resto da página (regras, matéria, enunciados anteriores) escreve-se dentro dele.
+
+`teste1.html`:
+
+```html
+<uc-assessment-info deadline="t1" calendar>
+  <h2>Regras</h2>
+  <p>Sem consulta.</p>
+  <h2>Enunciados anteriores</h2>
+  <ul class="uc-links"><li><a href="…" data-auth>Teste 1 de 2024/25</a></li></ul>
+</uc-assessment-info>
+```
+
+Os dados vêm do [prazo](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos). Além de `date` e `time`, um prazo pode ter `duration` (minutos), `location` e `shifts` (turnos):
+
+`course.js`:
+
+```js
+{ id: "t1", title: "1.º teste", date: "2025-11-05", time: "14:30", kind: "assessment",
+  duration: 120,
+  location: "FC1 120, FC1 122 · <a href=\"evaluation/salas_t1.pdf\" data-auth>distribuição por salas</a>",
+  shifts: [{ time: "14:30" }, { time: "16:30", note: "Turmas PL5 a PL8" }],
+  url: "teste1.html" },
+```
+
+Estes campos servem também os outros componentes: [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md), [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md) e o cartão "Esta semana" mostram "14:30 e 16:30" para turnos e "14:30–16:30" com uma duração.
+
+## Exemplos
+
+### O que o cartão mostra
+
+- **Data**, por extenso e com o dia da semana; só o mês, ou "Por marcar", quando o dia ainda não se sabe.
+- **Hora** (com a hora de fim, se houver duração) ou **Turnos**, um por linha, com a sala e a nota de cada um e o dia quando é outro.
+- **Duração**, **Local** e **Estado**: "Daqui a 5 dias", "Amanhã", "Hoje", "A decorrer", "Realizado" ou "Por marcar".
+- **Ligações**: o `url` do prazo (se não for a própria página) e os `links`. A `note` do prazo aparece por baixo.
+
+### Data por marcar
+
+Um exame de que só se sabe o mês mostra o mês e "Por marcar", e não tem o botão do calendário.
+
+Exemplo (exame com o dia por marcar), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-assessment-info/unscheduled.html):
+
+```html
+<uc-assessment-info deadline="exame" heading-level="2"></uc-assessment-info>
+```
+
+### Adicionar ao calendário
+
+Com `calendar`, o botão descarrega um ficheiro `.ics` criado no browser (`<code>-<id>.ics`), com um evento por turno, a hora de Lisboa, o local e o endereço da página. Abre-se no Google Calendar, no Outlook ou no calendário do telemóvel. Uma prova sem hora fica como evento de dia inteiro.
+
+## Atributos
+
+| Atributo | Tipo | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `deadline` | `id` de um prazo | obrigatório | O prazo de onde vêm os dados. Com um `id` que não existe, só aparece o que está escrito dentro, e a consola avisa. |
+| `calendar` | booleano | ausente | Botão "Adicionar ao calendário" (ficheiro `.ics`). Não aparece quando o dia não está marcado. |
+| `heading` | texto ou `none` | o `title` do prazo | Título do cartão. Com `none`, não há título visível. |
+| `heading-level` | `2` a `6` | `2` | Nível do título gerado. |
+
+## Configuração usada
+
+| Campo | Para quê |
+| --- | --- |
+| [`deadlines`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos) | `title`, `date`, `end`, `time`, `duration`, `location`, `shifts`, `note`, `url` e `links` do prazo indicado. |
+| [`code`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos) | O nome do ficheiro `.ics`. |
+
+## Personalizar
+
+Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. O método está em [Nível 2: CSS livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md).
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-assessment-info` | O componente (o próprio `<uc-assessment-info>`). |
+| `.uc-assessment-info__card`, `__heading` | O cartão (também `uc-card`) e o seu título. |
+| `.uc-assessment-info__shifts` | A lista dos turnos. |
+| `.uc-assessment-info__status` | A etiqueta do estado ("Daqui a 5 dias"). |
+| `.uc-assessment-info__note` | A nota do prazo, por baixo da lista. |
+| `.uc-assessment-info__calendar` | O botão "Adicionar ao calendário". |
+
+`theme.css`:
+
+```css
+/* Cartão com o fundo de destaque. */
+.uc-assessment-info__card { background: var(--uc-color-highlight); }
+```
+
+## Acessibilidade
+
+### O que o componente faz
+
+O cartão é uma secção com título e uma lista de definições (`<dl>`); as datas e as horas são elementos `<time>`. O estado é texto, e a cor só o repete. O nome do botão diz o que descarrega ("Adicionar ao calendário, ficheiro .ics").
+
+### O que cabe a quem escreve
+
+Escrever as salas de forma curta e pôr `data-auth` nos links que pedem autenticação. Manter os títulos do que se escreve dentro um nível abaixo do título da página.
+
+## Sem JavaScript
+
+Os dados estão no `course.js`, por isso sem o kit só aparece o que está escrito dentro do elemento. Numa página de exame, convém escrever a data também num `<noscript>`:
+
+`exame.html`:
+
+```html
+<uc-assessment-info deadline="exame">
+  <noscript><p>Exame: 14 de janeiro de 2026, 14:00.</p></noscript>
+  …
+</uc-assessment-info>
+```
+
+## Ver também
+
+- [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#prazos): os campos de um prazo, incluindo os turnos.
+- [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md): como é calculada a nota.
+- [`<uc-event>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-event.md): a mesma prova dentro da semana em que cai.
+
+---
+
 <!-- https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/index.md -->
 
 # Princípios de design
@@ -4869,6 +5186,7 @@ Não estão definidos em `:root`: o kit lê-os com um valor de recurso. Definem-
 | `--uc-notices-date-width` | `64px` | Coluna da data em `<uc-notices>`. |
 | `--uc-deadlines-date-width` | `5.25rem` | Coluna da data de `<uc-deadlines>` em lista. |
 | `--uc-timetable-time-width` | `7.5rem` | Coluna das horas de `<uc-timetable view="days">`. |
+| `--uc-grading-bar-height` | `12px` | Altura da barra das proporções de `<uc-grading>`. |
 
 ```html
 <div class="uc-grid" style="--uc-grid-min: 160px">
@@ -7926,6 +8244,30 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-question__feedback`, `--none`, `--empty`, `--incorrect`, `--correct` | A zona da mensagem e o seu estado. |
 | `.uc-question__message`, `__explanation` | A mensagem e a explicação. |
 
+### [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-grading` | O componente (o próprio `<uc-grading>`). |
+| `.uc-grading__section`, `__heading` | A secção e o seu título. |
+| `.uc-grading__formula` | A fórmula ("Nota = E + AP + P"). |
+| `.uc-grading__bar`, `__segment` | A barra das proporções e cada segmento (largura = peso). |
+| `.uc-grading__table` | A tabela das componentes. |
+| `.uc-grading__sub` | As linhas das partes de uma componente, recolhidas. |
+| `.uc-grading__calculator`, `__fields`, `__field`, `__error` | O simulador, os campos, cada campo e a sua mensagem de erro. |
+| `.uc-grading__result`, `__status` | A nota simulada e a linha do estado ("Aprovado nesta simulação"). |
+
+### [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-assessment-info` | O componente (o próprio `<uc-assessment-info>`). |
+| `.uc-assessment-info__card`, `__heading` | O cartão (também `uc-card`) e o seu título. |
+| `.uc-assessment-info__shifts` | A lista dos turnos. |
+| `.uc-assessment-info__status` | A etiqueta do estado ("Daqui a 5 dias"). |
+| `.uc-assessment-info__note` | A nota do prazo, por baixo da lista. |
+| `.uc-assessment-info__calendar` | O botão "Adicionar ao calendário". |
+
 ## Blocos
 
 As classes que se escrevem no HTML para dar forma ao conteúdo. Cada página de blocos explica as variantes e os tokens locais.
@@ -8285,6 +8627,7 @@ window.UC_COURSE = {
 | `ISODate` | `"YYYY-MM-DD"`. A deadline may also use `"YYYY-MM"` (month known, day not) or `null` (to be scheduled). |
 | `Time` | `"HH:MM"`, 24-hour. |
 | `Weekday` | ISO weekday number: `1` = Monday … `7` = Sunday (as `semester.teachingDays`). |
+| `Minutes` | A whole number of minutes, e.g. `120` for two hours. |
 | `HTMLText` | A `LocalizedText` whose values may contain inline HTML (links, `<strong>`, `<em>`, `<code>`). It is written by the teacher and inserted as HTML. |
 
 ### 2.2 Fields
@@ -8387,6 +8730,22 @@ team: [
 | `note` | `HTMLText` | Short secondary line (shifts, rooms…). |
 | `url` | URL | Main link (information page). |
 | `links` | `{ label, url }[]` | Extra links (results, shifts…). |
+| `duration` | `Minutes` | Length of the assessment. With `time`, the end is computed ("14:30–16:30"). |
+| `location` | `HTMLText` | Rooms, or a link to the room allocation (may use `data-auth`). |
+| `shifts` | `Shift[]` | When the same assessment runs more than once. Shown instead of `time`; `time` stays the first shift's start, for sorting. |
+
+`Shift`: `{ time: Time, end?: Time, date?: ISODate, location?: HTMLText, note?: HTMLText }`.
+`end` defaults to `time` + `duration`; `date` to the deadline's `date` (set it
+for an assessment that runs on two days); a shift's `location` is shown next to
+that shift only (the deadline's `location` applies to all).
+
+```js
+{ id: "t1", title: { pt: "1.º teste", en: "Test 1" }, date: "2025-11-05", time: "14:30", kind: "assessment",
+  duration: 120,
+  location: { pt: "FC1 120, FC1 122 · <a href=\"evaluation/salas_t1.pdf\" data-auth>distribuição por salas</a>" },
+  shifts: [{ time: "14:30" }, { time: "16:30" }],
+  url: "test1.html" },
+```
 
 ### 2.6 Notice
 
@@ -8498,7 +8857,10 @@ upcoming), *Scheduled* (later), *To be scheduled* (`date: null` or month only).
 A deadline with an `end` date counts as upcoming until it ends and is shown as
 a range. Children written inside the element are kept below the list. In
 the list view the time goes at the start of the note line ("21:00 · Mooshak");
-the table view shows dates and ranges with the year.
+the table view shows dates and ranges with the year. A deadline with `shifts`
+shows their start times ("14:30 e 16:30"), and one with `duration` its range
+("14:30–16:30"), in both views; the table's details column shows `location`
+before `note`.
 
 #### `<uc-date>`
 
@@ -8558,7 +8920,7 @@ A highlighted item inside or between weeks (assessments, exams).
 
 | Attribute | Values | Notes |
 | --- | --- | --- |
-| `deadline` | deadline id | Takes title, date, note and links from the configuration. |
+| `deadline` | deadline id | Takes title, date, time, location, note and links from the configuration. The time reads "14:30 e 16:30" for shifts and "14:30–16:30" with a `duration`; the location goes before the note. |
 | `kind` | deadline kind | When not using `deadline`. |
 | `date` | `ISODate` | When not using `deadline`. |
 
@@ -8749,6 +9111,112 @@ A multiple-choice self-check question with immediate feedback.
 
 Attributes: `multiple` (boolean) allows more than one correct answer.
 
+### 3.6 Assessment
+
+#### `<uc-grading>`
+
+Decorates the teacher's list of grade components: a generated formula, a
+proportions bar, a table of weights and minimums and, optionally, a grade
+simulation. Each weight is written once, in a `<data>` element that shows
+without JavaScript.
+
+```html
+<uc-grading scale="20" pass="9.5" calculator>
+  <ul>
+    <li data-code="E" data-scale="14" data-min="4.9"><data value="14">14 valores</data> Exame final.
+      <span>Teórico-prático, sem consulta.</span></li>
+    <li data-code="AP" data-scale="5"><data value="5">5 valores</data> Avaliações práticas</li>
+    <li data-code="P" data-scale="1"><data value="1">1 valor</data> Exercícios das aulas práticas</li>
+  </ul>
+</uc-grading>
+```
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `scale` | number | `20` | Scale of the final grade. |
+| `pass` | number | absent | Pass mark, on `scale`. Used by the calculator. |
+| `calculator` | boolean | absent | Adds the grade simulation. |
+| `no-formula` | boolean | absent | Hides the generated formula. |
+| `heading` | text \| `none` | localised "Como é calculada a nota" / "How the grade is calculated" | |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading. |
+
+Item attributes, on the `<li>` of the first `<ul>`/`<ol>` child:
+
+| Item attribute | Values | Notes |
+| --- | --- | --- |
+| `data-code` | text | Short name used by the formula, the table and the calculator, e.g. `E`, `AP`, `T1`. |
+| `data-scale` | number | Scale in which this component is graded. Default: the element's `scale` (for parts: the parent's). |
+| `data-min` | number | Minimum on this component's own scale ("4,9 em 14"). |
+| `data-bonus` | number \| `N%` | A bonus item: not part of the weights; adds up to this many points on the final scale (`2`) or this share of it (`10%`). The final grade is capped at `scale`. Needs no `<data>`. |
+
+- **Weights.** The `value` of the item's `<data>` (a number; a trailing `%`
+  and a decimal comma are accepted). Weights are normalised among siblings,
+  so `0.1/0.2/0.2/0.5`, `14/5/1` and `25%/50%/25%` all work.
+- **Parts.** A `<ul>`/`<ol>` inside an item lists its parts, with weights
+  relative to the parent (contests 30/30/40 inside a 50 % component). The
+  parent's grade is the weighted mean of its parts, on the parent's scale.
+- **Rendering.** The teacher's list stays in the page but hidden; the element
+  shows, in order, the formula, the proportions bar (`aria-hidden`, one segment
+  per top-level component, labelled with its code) and a table (visually
+  hidden caption "Componentes da nota"; columns Component, Weight, Minimum).
+  The component cell is the code and a copy of the item without its `<data>`
+  and nested list. The weight cell is the teacher's `<data>` text and the
+  normalised share ("14 valores · 70 %"; a weight written as a percentage is
+  not repeated); parts are indented rows reading "15 % (30 % de CE)"; bonus
+  rows read "Bónus · até 2 valores". Other children follow the table.
+- **Formula.** Coefficients are on each top-level component's own scale and a
+  coefficient of 1 is omitted: "Nota = E + AP + P",
+  "Nota = 0,1 × A + 0,2 × T1 + 0,2 × T2 + 0,5 × E". Bonus items are added as
+  "+ B".
+- **Calculator.** A `<fieldset>` "Simular a nota" with one labelled field per
+  leaf component and per bonus item ("E: Exame final (0 a 14)"; the label
+  leaves out the item's `<span>` description). Comma or dot are accepted. A
+  value out of range shows an error linked with `aria-describedby` and sets
+  `aria-invalid`. An empty bonus counts as 0; any other empty field shows
+  "Preenche todas as componentes para ver a nota.". The result is an
+  `<output>` ("Nota final: 12,4 valores") with a state line ("Aprovado nesta
+  simulação", "Abaixo do mínimo em E (4,9 em 14)" or "Abaixo de 9,5"),
+  announced 300 ms after typing stops. A fixed note says the official grade is
+  the one published on SIGARRA. Nothing is saved.
+- Without JavaScript: the teacher's list with the weights as written.
+
+#### `<uc-assessment-info>`
+
+A summary card of one configured deadline, at the top of an exam or test page.
+The rest of the page (rules, syllabus, past papers) is written inside the
+element and stays below the card.
+
+```html
+<uc-assessment-info deadline="t1" calendar>
+  <h2>Regras</h2> …
+</uc-assessment-info>
+```
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `deadline` | deadline id | required | Date, time, duration, location, shifts, note and links come from it. |
+| `calendar` | boolean | absent | "Adicionar ao calendário" button that downloads an `.ics` file made in the browser. Not shown when the date is not a full day. |
+| `heading` | text \| `none` | the deadline's `title` | |
+| `heading-level` | `2`–`6` | `2` | Level of the generated heading. |
+
+- **Card.** A `<dl>` with the rows that have data, in this order: Date (long,
+  with the weekday: "quarta-feira, 5 de novembro de 2025"; a month or "Por
+  marcar" otherwise), Time ("14:30–16:30") or Shifts (one line per shift:
+  "14:30–16:30 · FC1 120 · note", with the shift's day when it differs),
+  Duration ("2 h"), Location, Status, Links (the deadline's `url`, unless it
+  is this page, and its `links`). The deadline's `note` follows the list.
+- **Status** (text in a tag): "Daqui a 5 dias", "Amanhã", "Hoje", "A decorrer"
+  (inside a multi-day deadline), "Realizado", "Por marcar". No status row
+  when the date is `null`.
+- **Calendar file.** `<code>-<id>.ics` (RFC 5545): one event per shift, times
+  in `Europe/Lisbon` (with its `VTIMEZONE`), `LOCATION` from the plain text of
+  the location, `URL` of the page; a deadline without a time becomes an
+  all-day event. The button's name says what it downloads ("Adicionar ao
+  calendário, ficheiro .ics").
+- **Unknown id.** One console warning; only the children are shown.
+- Without JavaScript: only the children. Write the date in a `<noscript>` on
+  exam pages.
+
 ## 4. CSS building blocks
 
 Layout pieces that need no behaviour are plain CSS classes, usable anywhere:
@@ -8833,6 +9301,7 @@ fallback, so they can be set on `:root` for the whole site or on one element
 | `--uc-notices-date-width` | `64px` | Date column of `<uc-notices>`. |
 | `--uc-deadlines-date-width` | `5.25rem` | Date column of `<uc-deadlines>` in the list view. |
 | `--uc-timetable-time-width` | `7.5rem` | Time column of `<uc-timetable view="days">`. |
+| `--uc-grading-bar-height` | `12px` | Height of the proportions bar of `<uc-grading>`. |
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the

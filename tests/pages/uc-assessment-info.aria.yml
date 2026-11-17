@@ -1,0 +1,44 @@
+- region "1.º teste":
+  - heading "1.º teste" [level=2]
+  - term: Data
+  - definition:
+    - time: quarta-feira, 3 de dezembro de 2025
+  - term: Turnos
+  - definition:
+    - list:
+      - listitem:
+        - time: 14:30
+        - text: –
+        - time: 16:30
+      - listitem:
+        - time: 16:30
+        - text: –
+        - time: 18:30
+        - text: · Turmas PL5 a PL8
+      - listitem:
+        - text: quinta-feira, 4 dez,
+        - time: 09:00
+        - text: –
+        - time: 10:45
+        - text: · FC6 1.65
+  - term: Duração
+  - definition: 2 h
+  - term: Local
+  - definition:
+    - text: FC1 120, FC1 122 ·
+    - link "distribuição por salas (Requer autenticação)":
+      - /url: "#salas"
+  - term: Estado
+  - definition: Daqui a 6 dias
+  - term: Ligações
+  - definition:
+    - link "Enunciado de 2024/25":
+      - /url: "#anterior"
+  - paragraph: Traz o cartão de estudante.
+  - button "Adicionar ao calendário, ficheiro .ics": Adicionar ao calendário
+- heading "Regras" [level=2]
+- paragraph:
+  - text: Sem consulta.
+  - 'link "Pautas (Requer autenticação: SIGARRA)"':
+    - /url: "#pautas"
+  - text: .
