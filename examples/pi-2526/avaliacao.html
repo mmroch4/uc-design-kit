@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avaliação · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Avaliação de Programação Imperativa 2025/26: como é calculada a nota, datas das provas, regras das avaliações práticas e frequência.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="assessment">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1><span lang="pt">Avaliação</span><span lang="en">Assessment</span></h1>
+      <p class="uc-prose" lang="pt">Avaliação distribuída com exame final. A nota final junta o exame escrito com duas componentes contínuas, feitas no Mooshak. Para aprovar precisas de pelo menos 4,9 valores no exame e de 9,5 valores no total.</p>
+      <p class="uc-prose" lang="en">Continuous assessment with a final exam. The final grade combines the written exam with two continuous components, done on Mooshak. To pass you need at least 4.9 in the exam and 9.5 overall.</p>
+    </div>
+
+    <section class="uc-section" aria-labelledby="formula">
+      <h2 id="formula"><span lang="pt">Como é calculada a nota</span><span lang="en">How the grade is calculated</span></h2>
+      <p class="formula" lang="pt">CF = 0,70 × EF + 0,25 × AP + 0,05 × RE <span>(0 a 20 valores)</span></p>
+      <p class="formula" lang="en">CF = 0.70 × EX + 0.25 × PA + 0.05 × WP <span>(0 to 20)</span></p>
+      <div class="uc-grid">
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter"><span lang="pt">EF</span><span lang="en">EX</span></span> <span class="component__weight">70%</span></p>
+          <p class="component__name" lang="pt">Exame final escrito</p>
+          <p class="component__name" lang="en">Written exam</p>
+          <p class="uc-muted desc" lang="pt">Questões sobre o programa da UC. Época normal ou de recurso.</p>
+          <p class="uc-muted desc" lang="en">Questions on the topics of the syllabus. Regular or resit period.</p>
+        </div>
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter"><span lang="pt">AP</span><span lang="en">PA</span></span> <span class="component__weight">25%</span></p>
+          <p class="component__name" lang="pt">Duas avaliações práticas</p>
+          <p class="component__name" lang="en">Two practical assessments</p>
+          <p class="uc-muted desc" lang="pt">Presenciais, em computador: problemas no Mooshak de dificuldade semelhante aos de treino.</p>
+          <p class="uc-muted desc" lang="en">In person, on the computer: Mooshak problems similar to the practice ones.</p>
+        </div>
+        <div class="uc-card component">
+          <p class="component__head"><span class="component__letter"><span lang="pt">RE</span><span lang="en">WP</span></span> <span class="component__weight">5%</span></p>
+          <p class="component__name" lang="pt">Resolução de exercícios</p>
+          <p class="component__name" lang="en">Weekly problems</p>
+          <p class="uc-muted desc" lang="pt">Componente remota: problemas semanais de treino propostos no Mooshak, das aulas 3 a 12.</p>
+          <p class="uc-muted desc" lang="en">Remote component: weekly problems proposed on Mooshak, from class 3 to 12.</p>
+        </div>
+      </div>
+      <div class="uc-callout">
+        <p><strong lang="pt">Para aprovar</strong><strong lang="en">To pass</strong></p>
+        <ul class="uc-bullets" lang="pt">
+          <li>Exame (EF) com pelo menos 4,9 valores, ou seja 35% de 14.</li>
+          <li>Classificação final (CF) com pelo menos 9,5 valores.</li>
+          <li>A componente contínua (AP e RE) conta em todas as épocas do ano letivo e não se pode repetir na época de recurso ou especial.</li>
+        </ul>
+        <ul class="uc-bullets" lang="en">
+          <li>Exam (EX) of at least 4.9, that is 35% of 14.</li>
+          <li>Final grade (CF) of at least 9.5 out of 20.</li>
+          <li>The continuous components (PA and WP) count in every exam period of the academic year and cannot be repeated in the resit or special period.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Datas das provas: editar em course.js (deadlines). O estado é calculado. -->
+    <uc-deadlines view="table" kind="assessment exam"></uc-deadlines>
+
+    <section class="uc-section" aria-labelledby="praticas">
+      <h2 id="praticas"><span lang="pt">Regras das avaliações práticas</span><span lang="en">Practical assessment rules</span></h2>
+      <ul class="uc-bullets" lang="pt">
+        <li>São fora das aulas práticas, em turnos de 90 minutos.</li>
+        <li>Os problemas são semelhantes aos das aulas práticas e de treino no Mooshak.</li>
+        <li>Vais ao turno que te for indicado. A troca de turno só é possível se pedida com pelo menos 48 horas de antecedência.</li>
+        <li>Faltar a uma avaliação corresponde a não a ter feito: 0 valores.</li>
+        <li>As soluções submetidas ao Mooshak são avaliadas parcelarmente: a nota é a soma das pontuações dos vários casos de teste.</li>
+      </ul>
+      <ul class="uc-bullets" lang="en">
+        <li>They take place outside the practical classes, in 90-minute sessions.</li>
+        <li>The problems are similar to those from the practical classes and the Mooshak practice.</li>
+        <li>You must attend the assigned session; requests to switch sessions must be made at least 48 hours in advance.</li>
+        <li>Failing to attend a test results in a zero grade.</li>
+        <li>Solutions submitted via Mooshak are graded with partial scores for the different test cases.</li>
+      </ul>
+      <p class="uc-small" lang="pt">Informação e treino: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">Avaliação Prática 1</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">Avaliação Prática 2</a></p>
+      <p class="uc-small" lang="en">Information and practice: <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico1.html">Practical evaluation 1</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/teste_pratico2.html">Practical evaluation 2</a></p>
+    </section>
+
+    <section class="uc-section" aria-labelledby="frequencia">
+      <h2 id="frequencia"><span lang="pt">Frequência</span><span lang="en">Attendance requirement</span></h2>
+      <p class="uc-prose" lang="pt">Perdem frequência os estudantes inscritos pela primeira vez na UC que não tenham assiduidade superior a 50% das aulas dadas.</p>
+      <p class="uc-prose" lang="en">Students enrolled for the first time in this course must attend more than 50% of the classes; otherwise, they lose their course attendance status.</p>
+    </section>
+
+    <section class="uc-section" aria-labelledby="progresso">
+      <h2 id="progresso"><span lang="pt">O teu progresso</span><span lang="en">Your progress</span></h2>
+      <p class="uc-muted desc" lang="pt">Só para estudantes inscritos. Estes documentos têm dados de alunos e ficam no site original; os que pedem autenticação estão assinalados com um cadeado.</p>
+      <p class="uc-muted desc" lang="en">For enrolled students only. These documents contain student data and stay on the original website; those that require authentication are marked with a lock.</p>
+      <div class="uc-grid" style="--uc-grid-min: 240px">
+        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/index.html">
+          <span class="progress__title"><span lang="pt">Exercícios no Mooshak</span><span lang="en">Mooshak exercises</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+          </span>
+          <span class="uc-muted uc-small"><span lang="pt">Estatísticas · atualizado a 13 mai 2026</span><span lang="en">Statistics · updated 13 May 2026</span></span>
+        </a>
+        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/Presencas_18Abril2026.pdf">
+          <span class="progress__title"><span lang="pt">Presenças nas práticas</span><span lang="en">Lab attendance</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Requer autenticação"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+          </span>
+          <span class="uc-muted uc-small"><span lang="pt">Até 18 abr 2026</span><span lang="en">Until 18 Apr 2026</span></span>
+        </a>
+        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/PI2526_aval1_22Abril.pdf">
+          <span class="progress__title"><span lang="pt">Resultados da Avaliação Prática 1</span><span lang="en">Results of practical evaluation 1</span></span>
+          <span class="uc-muted uc-small"><span lang="pt">22 abr 2026</span><span lang="en">22 Apr 2026</span></span>
+        </a>
+        <a class="uc-card progress" href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/evaluation/PI2526_avalprat_12jun2026.pdf">
+          <span class="progress__title"><span lang="pt">Avaliação prática: resultados finais</span><span lang="en">Practical evaluation: final results</span></span>
+          <span class="uc-muted uc-small"><span lang="pt">Pauta final · 12 jun 2026</span><span lang="en">Final list · 12 Jun 2026</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="uc-section" aria-labelledby="especiais">
+      <h2 id="especiais"><span lang="pt">Situações especiais</span><span lang="en">Special cases</span></h2>
+      <ul class="uc-bullets" lang="pt">
+        <li>A presença nas aulas é fortemente aconselhada a todos, mas a frequência das aulas práticas só é obrigatória para quem está inscrito pela primeira vez.</li>
+        <li>Melhoria de nota: quem já teve aprovação noutro ano letivo pode fazer só o exame, que passa a valer 20 valores.</li>
+      </ul>
+      <ul class="uc-bullets" lang="en">
+        <li>Attendance is strongly recommended for everyone, but attending practical classes is mandatory only for students enrolled for the first time.</li>
+        <li>Grade improvement: students who passed in a previous year may take only the exam, which is then graded out of 20.</li>
+      </ul>
+    </section>
+
+    <p class="uc-muted uc-small source-note" lang="pt">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), a partir da <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_pt.html">ficha da UC no site original</a>.</p>
+    <p class="uc-muted uc-small source-note" lang="en">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/ficha_en.html">course description on the original website</a>.</p>
+  </uc-page>
+</body>
+</html>

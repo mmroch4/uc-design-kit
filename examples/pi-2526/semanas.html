@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semanas · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Calendário semanal de Programação Imperativa 2025/26: aulas teóricas, slides, guiões das aulas práticas e sumários.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
+      <h1><span lang="pt">Semanas</span><span lang="en">Weeks</span></h1>
+      <p class="uc-prose" lang="pt">Tudo o que acontece em cada semana: aulas teóricas, slides, guião da aula prática e sumários. As aulas práticas vão de quarta a terça; o guião de cada aula aparece na semana em que começa.</p>
+      <p class="uc-prose" lang="en">Everything that happens each week: lectures, slides, lab guide and summaries. Lab classes run from Wednesday to Tuesday; each guide is listed in the week it starts.</p>
+    </div>
+
+    <!--
+      Uma <uc-week> por semana, com o título em inglês em title-en.
+      As datas são calculadas a partir de course.js (semester.start e breaks);
+      as avaliações práticas e os exames (deadlines) aparecem sozinhos na semana certa.
+    -->
+    <uc-weeks>
+        <uc-week n="1" title="Apresentação e introdução ao C" title-en="Course overview and introduction to C">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aula 1 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/0-funcionamento.pdf">0</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro.pdf">1a</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula01_pt.html">Aula 1: Introdução ao C</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lecture 1 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/0-funcionamento.pdf">0</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro.pdf">1a</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula01.html">Class 1: Introduction to C</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="1">
+              <li><span class="uc-muted">(19 fev)</span> Apresentação Considerações gerais sobre o programa, bibliografia, funcionamento das aulas e método de avaliação. Breve introdução dos capítulos da UC. Introdução ao C. Breve história da linguagem C. Um programa simples em C. A função main(). Fases de compilação. Diretivas de compilação. Comentários. A função printf(). Variáveis. Exemplos.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="1">
+              <li><span class="uc-muted">(19 Feb)</span> General considerations about the syllabus, bibliography, class structure, and assessment method. Brief introduction to the course chapters. Introduction to C – A brief history of the C language. A simple program in C. The main() function. Compilation phases. Compilation directives. Comments. The printf() function. Variables. Examples.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="2" title="Operadores, tipos básicos e controlo de fluxo" title-en="Operators, basic types and control flow">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 2 e 3 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro.pdf">1a</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro_part2.pdf">1b</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula02_pt.html">Aula 2: Introdução ao C (continuação)</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 2 and 3 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro.pdf">1a</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro_part2.pdf">1b</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula02.html">Class 2: Introduction to C (cont.)</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="2">
+              <li><span class="uc-muted">(24 fev)</span> Introdução ao C (cont.) A função scanf(). Exemplos. Atribuições. Operadores binários e unários. Precedência de operadores. Associatividade. Operadores de incremento e decremento. Tipos básicos de dados. Dimensão dos inteiros (unsigned, short e long). Constantes. Leitura e escrita de inteiros. Números em vírgula flutuante. Leitura e escrita. Conversão de tipos (type casting).</li>
+              <li><span class="uc-muted">(26 fev)</span> Introdução ao C (cont.): Operadores relacionais, lógicos, de bit. Instruções condicionais: if-else, switch-case e exemplos. Instruções de ciclo: while, do-while, e for. Desenho de tabuleiro de xadrez, instruções break e continue.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="2">
+              <li><span class="uc-muted">(24 Feb)</span> Introduction to C (cont.) – The scanf() function. Examples. Assignments. Binary and unary operators. Operator precedence. Associativity. Increment and decrement operators. Basic data types. Integer size (unsigned, short, and long). Constants. Reading and writing integers. Floating point numbers. Reading and writing. Type conversion (type casting).</li>
+              <li><span class="uc-muted">(26 Feb)</span> Introduction to C (cont.) – Relational, logical, and bitwise operators. Conditional statements: if-else, switch-case, and examples. Loop statements: while, do-while, and for. Chessboard drawing, break and continue statements.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="3" title="Caracteres, funções e arrays" title-en="Characters, functions and arrays">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 4 e 5 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro_part2.pdf">1b</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/2_strings_arrayarguments.pdf">2</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula03_pt.html">Aula 3: Mooshak, caracteres e funções</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 4 and 5 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/1_intro_part2.pdf">1b</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/2_strings_arrayarguments.pdf">2</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula03.html">Class 3: Mooshak, characters and functions</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="4">
+              <li><span class="uc-muted">(3 mar)</span> Introdução ao C (cont.): Dados do tipo char. Escrita e leitura de carateres, output da tabelas ASCII, leitura e escrita com getchar() e putchar(). Funções. A função isPrime(). Chamada de funções e passagem de argumentos. A instrução return. A função main(). Vetores (arrays): declaração, indexação, inicialização. Exemplos. Tipos primitivos de dados: integers, floats, doubles and characters. Qualificadores unsigned, short e long. Escrita de números em binário. Verificar se um número tem dígitos repetidos.</li>
+              <li><span class="uc-muted">(5 mar)</span> Arrays multidimensionais. Exemplo com baralho de cartas. Exemplo com geração de aleatórios. Adição de matrizes. Strings e funções com arrays como argumentos. String como vetor de carateres. leitura de strings (scanf() and gets()), escrita (printf() and puts()). Arrays como argumentos de funções. Função para remover duplicados de um array.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="4">
+              <li><span class="uc-muted">(3 Mar)</span> Introduction to C (cont.) – Char data type, character reading and writing, ASCII table output, reading and writing with getchar() and putchar(). Functions. The isPrime() function. Function calls and argument passing. The return statement. The main() function. Arrays (vectors): declaration, indexing, initialization. Examples. Primitive data types: integers, floats, doubles, and characters. Unsigned, short, and long qualifiers. Writing numbers in binary. Checking if a number has repeated digits.</li>
+              <li><span class="uc-muted">(5 Mar)</span> Multidimensional arrays. Example with a deck of cards. Example with random number generation. Matrix addition. Strings and functions with arrays as arguments – Strings as character arrays. Reading strings (scanf() vs gets()), writing (printf() and puts()). Arrays as function arguments – Function to remove duplicates from an array.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="4" title="Strings e apontadores" title-en="Strings and pointers">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 6 e 7 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/2_strings_arrayarguments.pdf">2</a>, <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/3_pointers.pdf">3</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/4_exercisesArrays.pdf">4</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula04_pt.html">Aula 4: Arrays e strings (I)</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 6 and 7 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/2_strings_arrayarguments.pdf">2</a>, <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/3_pointers.pdf">3</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/4_exercisesArrays.pdf">4</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula04.html">Class 4: Arrays and strings (I)</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="6">
+              <li><span class="uc-muted">(10 mar)</span> Função para verificar se um elemento ocorre num vetor, comprimento de uma string, inversão de uma string, cópia de uma string origem para destino, concatenação de strings, procura e comparação. Apontadores: organização da memória, noção de apontadores em C, declaração de um apontador, endereço de uma variável (operador &amp;), valor apontador por uma variável apontador (operador *), atribuição, apontadores como argumentos de funções, apontadores e arrays, funções que retornam apontadores. Revisão de algumas funções de manipulação de strings representadas por vetores de carateres mas agora trabalhadas com apontadores para carateres.</li>
+              <li><span class="uc-muted">(12 mar)</span> Apontadores: Acesso a matrizes multidimensionais. Exercícios sobre matrizes: 1) determinar algumas estatísticas relacionadas com os registo dos resultados obtidos por alunos em diferentes cursos (matriz com notas); 2) resposta a questões relacionadas com o registo anual de precipitação num conjunto de estações (matriz com valores de precipitação).</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="6">
+              <li><span class="uc-muted">(10 Mar)</span> Function to check if an element occurs in an array, string length, string reversal, copying a string from source to destination, string concatenation, searching, and comparison. Pointers – Memory organization, concept of pointers in C, pointer declaration, address of a variable (operator &amp;), dereferencing a pointer variable (operator *), assignment, pointers as function arguments, pointers and arrays, functions that return pointers. String manipulation using pointers – Revisiting some string manipulation functions previously represented as character arrays, now implemented using character pointers.</li>
+              <li><span class="uc-muted">(12 Mar)</span> Pointers – Accessing multidimensional arrays. Exercises on matrices - 1) determining some statistics related to the records of results obtained by students in different courses (matrix with grades); 2) solving questions related to annual precipitation records in a set of weather stations (matrix containing precipitation values).</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="5" title="Matrizes e recursividade" title-en="Matrices and recursion">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 8 e 9 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/4_exercisesArrays.pdf">4</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/5_recursion.pdf">5</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula05_pt.html">Aula 5: Arrays e strings (II) e apontadores</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 8 and 9 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/4_exercisesArrays.pdf">4</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/5_recursion.pdf">5</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula05.html">Class 5: Arrays and strings (II) and pointers</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="8">
+              <li><span class="uc-muted">(17 mar)</span> Exercícios sobre matrizes (continuação). Recursividade: introdução à recursão, recursão linear e binária, inversão recursiva dos elementos de um vector.</li>
+              <li><span class="uc-muted">(19 mar)</span> Recursividade: torres de hanoi, geração de permutações como exemplo de recursão com retrocesso (backtracking).</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="8">
+              <li><span class="uc-muted">(17 Mar)</span> Exercises on matrices (continuation). Recursion – Introduction to recursion, linear and binary recursion, recursive reversal of array elements.</li>
+              <li><span class="uc-muted">(19 Mar)</span> Recursion – Tower of Hanoi, generating permutations as an example of recursion with backtracking.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="6" title="Pesquisa, ordenação e estruturas" title-en="Searching, sorting and structures">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 10 e 11 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/6_searchAndsort.pdf">6</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/7_structures.pdf">7</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula06_pt.html">Aula 6: Strings, recursão e pesquisa</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 10 and 11 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/6_searchAndsort.pdf">6</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/7_structures.pdf">7</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula06.html">Class 6: Strings, recursion and searching</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="10">
+              <li><span class="uc-muted">(24 mar)</span> Pesquisa e ordenação. Pesquisa sequencial e binária. Ordenação pelo método de seleção de mínimo ou máximo, pelo método de inserção, método da bolha.</li>
+              <li><span class="uc-muted">(26 mar)</span> Estruturas de Dados em C. Definição e uso de struct. vetores de estruturas. Apontadores para estruturas. Unions e enumerations.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="10">
+              <li><span class="uc-muted">(24 Mar)</span> Search and sorting. Sequential and binary search. Sorting using the minimum or maximum selection method, insertion method, bubble sort method.</li>
+              <li><span class="uc-muted">(26 Mar)</span> Data Structures in C. Definition and use of struct. Arrays of structures. Pointers to structures. Unions and enumerations.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="7" title="Memória dinâmica" title-en="Dynamic memory">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 12 e 13 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/8_dynamicmemory.pdf">8</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/9_exercisesStrs.pdf">9</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula06_pt.html">Aula 6: Strings, recursão e pesquisa (cont.)</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07_pt.html">Aula 7: Recursão, ordenação e estruturas</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 12 and 13 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/8_dynamicmemory.pdf">8</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/9_exercisesStrs.pdf">9</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula06.html">Class 6: Strings, recursion and searching (cont.)</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula07.html">Class 7: Recursion, sorting and structures</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="12">
+              <li><span class="uc-muted">(14 abr)</span> Gestão dinâmica de memória. Funções de malloc(), sizeof(), calloc(), free(). Apontadores de apontadores.</li>
+              <li><span class="uc-muted">(16 abr)</span> Gestão dinâmica de memória (cont.). apontadores para funções. Resolução de exercícios: leitura e processamento de frases. Leitura de palavras.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="12">
+              <li><span class="uc-muted">(14 Apr)</span> Dynamic memory management. Functions malloc(), sizeof(), calloc(), free(). Pointers to pointers.</li>
+              <li><span class="uc-muted">(16 Apr)</span> Dynamic memory management (cont.) pointers to functions. Exercises: reading and processing of sentences. Reading words.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="8" title="Preparação da avaliação e debugging" title-en="Evaluation practice and debugging">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 14 e 15 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/9_exercisesStrs.pdf">9</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/10_debugging.pdf">10</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula08_pt.html">Aula 8: Estruturas e asserções</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 14 and 15 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/9_exercisesStrs.pdf">9</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/10_debugging.pdf">10</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula08.html">Class 8: Structures and assertions</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="14">
+              <li><span class="uc-muted">(21 abr)</span> Resolução de exercícios de preparação para a avaliação prática.</li>
+              <li><span class="uc-muted">(23 abr)</span> Debugging de programas. GDB e lldb. Uso de asserções como forma de programação defensiva para verificação de condições em programas.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="14">
+              <li><span class="uc-muted">(21 Apr)</span> Practice exercises for practical evaluation.</li>
+              <li><span class="uc-muted">(23 Apr)</span> Program debugging. GDB and lldb. Use of assertions as a form of defensive programming to verify conditions in programs.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="9" title="Recursividade, ordenação e pilhas" title-en="Recursion, sorting and stacks">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 16 e 17 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/11_recursividade2.pdf">11</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/12_lists.pdf">12</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09_pt.html">Aula 9: Recursão, ordenação e arrays</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 16 and 17 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/11_recursividade2.pdf">11</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/12_lists.pdf">12</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09.html">Class 9: Recursion, sorting and arrays</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="16">
+              <li><span class="uc-muted">(28 abr)</span> Recursividade e Ordenação. Algoritmo de "flood-fill" aplicado a problemas com representação em matrizes. Métodos de ordenação: merge-sort.</li>
+              <li><span class="uc-muted">(30 abr)</span> Ordenação (cont.): método quick-sort; ordenação com a função qsort(). Listas. Definição de pilhas e filas com memória estática. Implementação de pilhas com vetores. Funções de manipulação de pilhas: initStack(), isEmpty(), size(), push(), pop(), top().</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="16">
+              <li><span class="uc-muted">(28 Apr)</span> Recursion and Sorting. "Flood-fill" algorithm applied to problems with matrix representation. Sorting methods: merge sort.</li>
+              <li><span class="uc-muted">(30 Apr)</span> Recursion and Sorting:. Quick-sort method. Sorting with qsort(). Lists. Definition of stacks and queues with static memory. Implementation of stacks using arrays. Stack manipulation functions: initStack(), isEmpty(), size(), push(), pop(), top().</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="10" title="Filas e listas ligadas" title-en="Queues and linked lists">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 18 e 19 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/12_lists.pdf">12</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09_pt.html">Aula 9: Recursão, ordenação e arrays (cont.)</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula10_pt.html">Aula 10: Listas ligadas</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 18 and 19 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/12_lists.pdf">12</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula09.html">Class 9: Recursion, sorting and arrays (cont.)</a> · <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula10.html">Class 10: Linked lists</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="18">
+              <li><span class="uc-muted">(12 mai)</span> Listas (cont.) Implementação de filas com vetores circulares. Funções de manipulação de pilhas: initQueue(), isEmpty(), size(), removeFirst(), addLast(), first(). Definição de listas ligadas com alocação dinâmica de memória. Implementação em C, nomeadamente funções initList(), isEmpty(), size(), addFirst(), addlast(), removeFirst(), removeLast(), addAt(), removeAt(), indexOf().</li>
+              <li><span class="uc-muted">(14 mai)</span> Listas (cont.) Implementação de pilhas e filas com memória dinâmica. Resolução de exercícios sobre listas. Problema de gestão de aeroportos (Filas).</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="18">
+              <li><span class="uc-muted">(12 May)</span> Lists (cont.). Implementation of queues using circular arrays. Queue manipulation functions: initQueue(), isEmpty(), size(), removeFirst(), addLast(), first(). Definition of linked lists with dynamic memory allocation. Implementation in C, including functions initList(), isEmpty(), size(), addFirst(), addLast(), removeFirst(), removeLast(), addAt(), removeAt(), indexOf().</li>
+              <li><span class="uc-muted">(14 May)</span> Lists (cont.) Implementation of stacks and queues with dynamic memory. Solving exercises on lists. Airport management problem (Queues).</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="11" title="Complexidade e ficheiros" title-en="Complexity and files">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 20 e 21 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/13_complexity.pdf">13</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/14_files.pdf">14</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11_pt.html">Aula 11: Pilhas e filas, complexidade e ficheiros</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 20 and 21 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/13_complexity.pdf">13</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/14_files.pdf">14</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula11.html">Class 11: Stacks and queues, complexity and files</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="20">
+              <li><span class="uc-muted">(19 mai)</span> Breve introdução à complexidade e eficiência de algoritmos. Noção de eficiência, complexidade linear, quadrática exponencial e logarítmica.</li>
+              <li><span class="uc-muted">(21 mai)</span> Leitura e escrita em ficheiros. Abertura e fecho de ficheiros. Escrita e leitura de ficheiros de texto. Escrita e leitura de ficheiros binários. Passagem via argumentos da função main.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="20">
+              <li><span class="uc-muted">(19 May)</span> Brief introduction to algorithm complexity and efficiency. Concept of efficiency, linear, quadratic, exponential, and logarithmic complexity.</li>
+              <li><span class="uc-muted">(21 May)</span> Reading and writing to files. File opening and closing. Writing and reading text files. Writing and reading binary files. Passing via main function arguments.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="12" title="Módulos, Makefiles e árvores binárias" title-en="Modules, Makefiles and binary trees">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aulas 22 e 23 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/15_makefiles.pdf">15</a> e <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/16_trees.pdf">16</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula12_pt.html">Aula 12: Árvores binárias</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lectures 22 and 23 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/15_makefiles.pdf">15</a> and <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/16_trees.pdf">16</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula12.html">Class 12: Binary trees</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="22">
+              <li><span class="uc-muted">(26 mai)</span> Módulos e Makefiles. Resolução de exercícios de preparação para a avaliação prática.</li>
+              <li><span class="uc-muted">(28 mai)</span> Breve introdução às árvores binárias e árvores binárias de pesquisa. Conceitos e definição de estruturas de dados em C. Algumas funções: contar o número de nós da árvore, verificar se a árvore contém um determinado valor, pesquisa em profundidade, inserção de valores em árvores BST.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="22">
+              <li><span class="uc-muted">(26 May)</span> Modules and Makefiles. Solving the exercises from the practical evaluation.</li>
+              <li><span class="uc-muted">(28 May)</span> Brief introduction to binary trees and binary search trees. Concepts and definition of data structures in C. Some functions: count the number of nodes in the tree, check if the tree contains a given value, depth-first search, insertion of values in BSTs.</li>
+            </ol>
+          </details>
+        </uc-week>
+
+        <uc-week n="13" title="Exercícios sobre árvores binárias" title-en="Exercises on binary trees">
+          <dl>
+            <dt lang="pt">Teóricas</dt>
+            <dd lang="pt">Aula 24 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/16_trees.pdf">16</a></dd>
+            <dt lang="pt">Prática</dt>
+            <dd lang="pt"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula12_pt.html">Aula 12: Árvores binárias (cont.)</a></dd>
+            <dt lang="en">Lectures</dt>
+            <dd lang="en">Lecture 24 · slides <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/apontamentos/16_trees.pdf">16</a></dd>
+            <dt lang="en">Lab class</dt>
+            <dd lang="en"><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/aula12.html">Class 12: Binary trees (cont.)</a></dd>
+          </dl>
+          <details lang="pt">
+            <summary>Sumários</summary>
+            <ol start="24">
+              <li><span class="uc-muted">(2 jun)</span> Resolução de exercícios sobre árvores binárias.</li>
+            </ol>
+          </details>
+          <details lang="en">
+            <summary>Summaries</summary>
+            <ol start="24">
+              <li><span class="uc-muted">(2 Jun)</span> Solving the exercises about binary trees.</li>
+            </ol>
+          </details>
+        </uc-week>
+    </uc-weeks>
+
+    <p class="uc-muted uc-small source-note" lang="pt">Conteúdo de Fernando Silva e Vanessa Silva (DCC/FCUP), copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/sumarios.html">site original</a>.</p>
+    <p class="uc-muted uc-small source-note" lang="en">Content by Fernando Silva and Vanessa Silva (DCC/FCUP), copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/sumarios_en.html">original website</a>.</p>
+  </uc-page>
+</body>
+</html>

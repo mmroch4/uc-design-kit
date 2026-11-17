@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Início · Programação Imperativa 2025/26</title>
+  <meta name="description" content="Programação Imperativa (CC1003), DCC/FCUP, 2025/26: esta semana, avisos, datas de avaliação e equipa docente.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <!-- Código, título e descrição: vêm de course.js (code, title, tagline), nas duas línguas. -->
+    <uc-hero></uc-hero>
+
+    <!-- Cartão "Esta semana": datas calculadas; matéria lida de semanas.html. -->
+    <uc-this-week></uc-this-week>
+
+    <div class="uc-split">
+      <!-- Avisos: editar em course.js (notices). -->
+      <uc-notices></uc-notices>
+
+      <!-- Próximas datas: editar em course.js (deadlines). -->
+      <uc-deadlines per-kind="1">
+        <a href="avaliacao.html" lang="pt">Ver regras de avaliação</a>
+        <a href="avaliacao.html" lang="en">See the assessment rules</a>
+      </uc-deadlines>
+    </div>
+
+    <section class="uc-section" aria-labelledby="atalhos">
+      <h2 id="atalhos"><span lang="pt">Acesso rápido</span><span lang="en">Quick links</span></h2>
+      <ul class="uc-shortcuts" lang="pt">
+        <li><a href="materiais.html#slides">Slides das teóricas</a></li>
+        <li><a href="semanas.html">Guiões das práticas</a></li>
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/index.html">Problemas do Mooshak</a></li>
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/index.html">Código das teóricas</a></li>
+      </ul>
+      <ul class="uc-shortcuts" lang="en">
+        <li><a href="materiais.html#slides">Lecture slides</a></li>
+        <li><a href="semanas.html">Lab guides</a></li>
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/praticas/problems/index.html">Mooshak problems</a></li>
+        <li><a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/codigo/index.html">Lecture code</a></li>
+      </ul>
+    </section>
+
+    <!-- Equipa docente: editar em course.js (team). -->
+    <uc-team></uc-team>
+
+    <div class="source-note">
+      <p class="uc-muted uc-small" lang="pt">Unidade curricular obrigatória do 1.º ano, 2.º semestre, das licenciaturas em Ciência de Computadores e em Inteligência Artificial e Ciência de Dados da <a href="https://www.fc.up.pt">Faculdade de Ciências da Universidade do Porto</a>, e da Formação Complementar (Minor) em Informática. Conteúdo de Fernando Silva e Vanessa Silva, copiado do <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/">site original</a>.</p>
+      <p class="uc-muted uc-small" lang="en">Mandatory course for the 1st year, 2nd semester, of the Bachelors in Computer Science and in Artificial Intelligence and Data Science of the <a href="https://www.fc.up.pt">Faculty of Sciences of the University of Porto</a>, and for the Minor in Informatics. Content by Fernando Silva and Vanessa Silva, copied from the <a href="https://www.dcc.fc.up.pt/~fds/aulas/pi/2526/">original website</a>.</p>
+    </div>
+  </uc-page>
+</body>
+</html>
