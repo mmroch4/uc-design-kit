@@ -29,6 +29,8 @@
   const LEVELS = ["easy", "medium", "hard"];
   const LEVEL_TAGS = { easy: "uc-tag--muted", medium: "uc-tag--accent", hard: "uc-tag--warning" };
   const MOOSHAK_LABEL = "mooshak";
+  /** kind="extra" | "challenge": the same tags as the types of <uc-problems>; "main" shows none. */
+  const KIND_TAGS = { extra: "uc-tag--accent", challenge: "uc-tag--warning" };
 
   /* ---------- Helpers shared with <uc-guide> ---------- */
 
@@ -164,6 +166,8 @@
       if (LEVELS.includes(level)) {
         badges.push(h("span", { class: `uc-tag ${LEVEL_TAGS[level]} uc-exercise__level` }, this.t(`exercise.levels.${level}`)));
       }
+      const kind = this.getAttribute("kind");
+      if (KIND_TAGS[kind]) badges.push(h("span", { class: `uc-tag ${KIND_TAGS[kind]} uc-exercise__kind` }, this.t(`problems.types.${kind}`)));
       const code = this.getAttribute("mooshak");
       if (code) {
         const platform = mooshakPlatform();

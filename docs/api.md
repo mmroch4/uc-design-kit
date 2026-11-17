@@ -770,6 +770,9 @@ counting completed `<uc-exercise>` elements.
 | Attribute | Values | Notes |
 | --- | --- | --- |
 | `week` | number | Links back to `weeks.html#week-<n>`. |
+| `week-label` | boolean | With `week`: "Semana 6 · 20–24 out" (`uc-eyebrow uc-guide__week`) above the first visible `<h1>`, dates from `semester`. |
+| `parent` | page `id` | The first breadcrumb is that page of `pages` (e.g. `assessment` for an exam guide) instead of "Semanas", and there is no week crumb. |
+| `prev`, `next` | URL | "Guião anterior" / "Guião seguinte" links (`nav.uc-guide__pager`, `rel="prev"`/`"next"`) after the content. |
 | `no-toc` | boolean | Hides the table of contents. |
 
 #### `<uc-exercise>`
@@ -782,6 +785,7 @@ badges and a "Mark as done" toggle persisted in `localStorage`.
 | `id` | string | Required for persistence. |
 | `title` | text | Required. |
 | `level` | `easy` \| `medium` \| `hard` | Optional badge. |
+| `kind` | `main` \| `extra` \| `challenge` | Optional badge with the same texts as the types of `<uc-problems>` ("Extra", "Desafio"); `main` (default) shows none. |
 | `mooshak` | problem code | Optional badge in the summary, plus a "Submit on Mooshak" link to the platform's URL next to the toggle (links are not allowed inside `<summary>`). |
 | `open` | boolean | Start expanded. |
 
@@ -1181,6 +1185,31 @@ a list; a single `<ol>`/`<ul>` without sections is one series without a name.
   panel. A `<details>` with nothing but its `<summary>` is hidden.
 - **Unknown deadline id.** One console warning; no deadline line.
 - Without JavaScript: the teacher's sections, headings and lists.
+
+#### `<uc-problem>`
+
+The header of one problem statement: the judge seal with the code (a link to
+the platform's `url`), the deadline of its series, a "Submeter no …" button
+and, with `track`, the same "Resolvido" checkbox as `<uc-problems track>`.
+
+```html
+<h1>Soma dos dígitos</h1>
+<uc-problem code="PI013" judge="mooshak" deadline="aula05" track></uc-problem>
+```
+
+| Attribute | Values | Notes |
+| --- | --- | --- |
+| `code` | text | The problem code, shown in the judge seal. |
+| `judge` | platform `id` or label | As `data-judge` of `<uc-problems>` (2.8). With a platform `url`: the seal is a link and a primary "Submeter no Mooshak" button is added. |
+| `deadline` | deadline `id` | "Prazo: 12 out, 23:59" with its state, as a series of `<uc-problems>`. |
+| `track` | boolean | "Resolvido" checkbox, stored under `uc:<course>:solved:<judge>:<code>`, so it is shared with the same problem in any `<uc-problems track>`. |
+| `data-id` | text | Overrides the stored id. |
+
+- The element is written empty; whatever is inside is replaced.
+- A change fires the same bubbling `uc:problemchange` as `<uc-problems>`, and
+  the element follows changes made elsewhere on the page.
+- Unknown deadline id: one console warning, no deadline line.
+- Without JavaScript: nothing (the statement around it stays complete).
 
 ## 4. CSS building blocks
 

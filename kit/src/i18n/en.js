@@ -136,6 +136,9 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     onThisPage: "On this page",
     progress: "{done} of {total} exercises done",
     breadcrumb: "Breadcrumb",
+    prev: "Previous guide",
+    next: "Next guide",
+    pager: "Other guides",
   },
   exercise: {
     title: "Exercise {n}",

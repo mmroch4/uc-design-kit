@@ -67,6 +67,8 @@
 
       // Only the breadcrumbs are replaced: the layout (and the teacher content) never leaves the DOM.
       const crumbs = this.renderCrumbs();
+      this.renderWeekLabel();
+      this.renderPager();
       if (this.layout.parentNode !== this) this.replaceChildren(this.layout);
       if (this.crumbs) this.crumbs.remove();
       this.crumbs = crumbs;
@@ -81,14 +83,17 @@
     renderCrumbs() {
       const items = [];
       const week = number(this, "week", null);
-      const page = weeksPage();
+      // parent="assessment": the first crumb is that page of course.js (an exam guide), with no week.
+      const parentId = this.getAttribute("parent");
+      const parent = parentId && parentId !== "weeks" ? UC.course.pages.find((entry) => entry.id === parentId) || null : null;
+      const page = parent || weeksPage();
       const weeksHref = page ? UC.text(page.href) : UC.internal.resolvePageHref(UC.internal.builtinPages.weeks);
 
       if (page) {
-        const label = page.label ? UC.text(page.label) : this.t("pages.weeks");
+        const label = page.label ? UC.text(page.label) : this.t(`pages.${page.id}`);
         items.push(h("a", { href: weeksHref }, label));
       }
-      if (week !== null) {
+      if (week !== null && !parent) {
         items.push(h("a", { href: `${weeksHref}#week-${week}` }, this.t("weeks.week", { n: week })));
       }
       if (!items.length) return null;
@@ -101,6 +106,36 @@
         { class: "uc-guide__crumbs", "aria-label": this.t("guide.breadcrumb") },
         h("ol", { class: "uc-guide__crumbs-list" }, items.map((item) => h("li", { class: "uc-guide__crumb" }, item))),
       );
+    }
+
+    /** week-label: "Semana 6 · 20–24 out" above the guide's <h1>, from course.js. */
+    renderWeekLabel() {
+      if (this.weekLabel) this.weekLabel.remove();
+      this.weekLabel = null;
+      const week = number(this, "week", null);
+      if (week === null || !this.hasAttribute("week-label")) return;
+      const heading = Array.from(this.content.querySelectorAll("h1")).find((h1) => !UC.internal.isHiddenByLanguage(h1));
+      if (!heading) return;
+      const span = UC.weekDates(week);
+      this.weekLabel = h(
+        "p",
+        { class: "uc-eyebrow uc-guide__week" },
+        this.t("weeks.week", { n: week }),
+        span ? [" · ", h("time", { datetime: UC.internal.toISO(span.start) }, UC.formatDateRange(span.start, span.end))] : null,
+      );
+      heading.before(this.weekLabel);
+    }
+
+    /** prev / next: links to the previous and next guides after the content. */
+    renderPager() {
+      if (this.pager) this.pager.remove();
+      this.pager = null;
+      const links = ["prev", "next"]
+        .filter((name) => this.getAttribute(name))
+        .map((name) => h("a", { class: `uc-guide__pager-link uc-guide__pager-link--${name}`, href: this.getAttribute(name), rel: name }, this.t(`guide.${name}`)));
+      if (!links.length) return;
+      this.pager = h("nav", { class: "uc-guide__pager", "aria-label": this.t("guide.pager") }, links);
+      this.content.append(this.pager);
     }
 
     /** Text of the guide's first <h1> visible in the active language. */
