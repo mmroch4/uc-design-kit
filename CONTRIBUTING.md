@@ -32,7 +32,7 @@
 ## Workflow
 
 - Branch per milestone: `m<phase>.<n>-<short-name>`.
-- Run `npm test` before opening a pull request and attach the screenshots.
+- Run `npm test` before opening a pull request.
 - Update `CHANGELOG.md` under *Unreleased*.
 
 ## Tests
@@ -50,6 +50,14 @@ and `file://`, missing local files, horizontal scrolling at 360 px, axe-core
 WCAG 2.1 A/AA (serious and critical violations fail), and visible content with
 JavaScript disabled. Pages are loaded with `?today=2025-11-27` (override with
 `TEST_TODAY`) so date-dependent output is stable.
+
+`check-pages.mjs` and `check-a11y.mjs` check several pages at the same time
+(`--concurrency=n`, default: CPU count, at most 4) and can check one part of
+the pages (`--shard=i/n`; the environment variables `CHECK_CONCURRENCY` and
+`CHECK_SHARD` do the same). CI runs `build:check`, then the checks split in 4
+parallel jobs (`.github/workflows/check-pages.yml`); the required status
+`check` is green only when every job passed. Screenshots are taken only on
+`main` (artifacts `screenshots-1` to `screenshots-4`).
 
 ## Documentation
 

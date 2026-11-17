@@ -8,9 +8,24 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: check-pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  check:
+  # The browser checks, split in parallel shards: each one checks a quarter of
+  # the pages (scripts/check-runner.mjs), several pages at a time. Together the
+  # shards run every check of `npm test`. Screenshots only on main.
+  test:
+    name: test (${{ matrix.shard }}/4)
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    env:
+      CHECK_SHARD: ${{ matrix.shard }}/4
+      CHECK_CONCURRENCY: 6
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,11 +34,39 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:check
-      - run: npx playwright install --with-deps chromium
-      - run: npm test -- --screenshots
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - run: node scripts/build.mjs
+      - name: Documentation (no browser)
+        if: matrix.shard == 1
+        run: node scripts/check-docs.mjs --strict
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
         with:
-          name: screenshots
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Install Chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+      - name: Install Chromium system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+      - name: Accessibility checks
+        run: node scripts/check-a11y.mjs
+      - name: Page checks
+        if: success() || failure()
+        run: node scripts/check-pages.mjs ${{ github.event_name == 'push' && '--screenshots' || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always() && github.event_name == 'push'
+        with:
+          name: screenshots-${{ matrix.shard }}
           path: tests/screenshots/
           if-no-files-found: ignore
+
+  # The single required status: green only when every shard passed.
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    needs: test
+    if: always()
+    steps:
+      - run: test "${{ needs.test.result }}" = success

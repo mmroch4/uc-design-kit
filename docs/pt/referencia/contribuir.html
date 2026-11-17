@@ -179,7 +179,7 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pr
             </tbody>
           </table>
         </div>
-        <p>As páginas são verificadas com a data fixa de 27 de novembro de 2025 (<code>TEST_TODAY</code> muda-a). O GitHub Actions corre <code>build:check</code> e <code>npm test</code> em cada pull request; o Cloudflare Pages publica uma pré-visualização.</p>
+        <p>As páginas são verificadas com a data fixa de 27 de novembro de 2025 (<code>TEST_TODAY</code> muda-a). O GitHub Actions corre <code>build:check</code> e as verificações de <code>npm test</code> em cada pull request, divididas em 4 tarefas paralelas (<code>--shard=i/4</code>), cada uma a abrir várias páginas ao mesmo tempo (<code>--concurrency=n</code>); o estado obrigatório <code>check</code> só fica verde quando as quatro passam. As capturas de ecrã só se tiram em <code>main</code>. O Cloudflare Pages publica uma pré-visualização.</p>
 
         <h2 id="documentar">Documentar uma alteração</h2>
         <p>A documentação é HTML escrito à mão, com partes geradas entre marcadores <code>&lt;!-- docs:… --&gt;</code> (cabeçalho, barra lateral, "Nesta página", anterior/seguinte, demonstrações e tabelas de classes) que o <code>npm run build</code> preenche. Nunca se edita dentro desses marcadores.</p>
