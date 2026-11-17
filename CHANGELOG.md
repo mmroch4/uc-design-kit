@@ -28,6 +28,11 @@ released yet; contract `docs/plan/widgets-api.md`).
 - The source version of the kit is now `1.1.0-dev` (the widgets need kit 1.1).
 
 ### Added
+- `logo` in `course.js` also takes an inline SVG string (`"<svg …>"`, drawn
+  in the accent colour when it uses `currentColor`) and an object
+  `{ src | svg, alt }` whose `alt` (a `LocalizedText`) names the image for
+  screen readers. Without `alt` the logo stays decorative. `uc-site.py check`
+  checks `logo.src` and skips inline SVG.
 - `uc-site.py` in the template (search phase S2): the site maintenance
   script, Python 3.8+ with the standard library only. `python3 uc-site.py
   check` reads `course.js` without running it (values only, with constants),

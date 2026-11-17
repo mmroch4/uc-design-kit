@@ -310,7 +310,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><a href="../course-js.html#campos-curso"><code>title</code></a></td><td>Nome do curso no cabeçalho, com link para a página <code>home</code>.</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>edition</code></a></td><td>Ano letivo ao lado do nome, por exemplo "2025/26".</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>institution</code></a></td><td>Departamento ou faculdade à direita do cabeçalho, com link se tiver <code>url</code>.</td></tr>
-              <tr><td><a href="../course-js.html#campos-curso"><code>logo</code></a></td><td>Imagem antes do nome; sem ele aparece o ícone do kit e com <code>null</code> não aparece nenhuma.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>logo</code></a></td><td>Imagem ou SVG antes do nome; sem ele aparece o ícone do kit e com <code>null</code> não aparece nenhuma.</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>accentColor</code></a></td><td>Cor do item ativo, dos links e do ícone.</td></tr>
               <tr><td><a href="../course-js.html#campos-linguas"><code>languages</code></a></td><td>Com mais de uma língua, mostra o botão para mudar de língua.</td></tr>
               <tr><td><a href="../course-js.html#paginas"><code>pages</code></a></td><td>Itens da navegação, pela ordem escrita, e página de destino do nome do curso.</td></tr>
@@ -401,7 +401,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           </div>
           <div class="uc-card">
             <h3>O que cabe a quem escreve</h3>
-            <p>Um <code>&lt;h1&gt;</code> por página (o <code>&lt;uc-hero&gt;</code> já o tem), títulos seguintes por ordem e um <code>&lt;title&gt;</code> que distinga as páginas. Com <code>logo</code>, uma imagem com contraste suficiente; o texto alternativo fica vazio porque o nome do curso está ao lado.</p>
+            <p>Um <code>&lt;h1&gt;</code> por página (o <code>&lt;uc-hero&gt;</code> já o tem), títulos seguintes por ordem e um <code>&lt;title&gt;</code> que distinga as páginas. Com <code>logo</code>, uma imagem com contraste suficiente; o texto alternativo fica vazio porque o nome do curso está ao lado, a não ser que o <code>course.js</code> lhe dê um <code>alt</code>.</p>
           </div>
         </div>
 

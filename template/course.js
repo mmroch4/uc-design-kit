@@ -24,6 +24,10 @@ window.UC_COURSE = {
   // Cor de destaque (links, semana atual, botões). Contraste mínimo 4.5:1 com branco.
   accentColor: "#1D4ED8",
 
+  // Ícone antes do nome no cabeçalho: um ficheiro ("logo.svg", "logo.png"),
+  // um '<svg …>' ou null para nenhum. Sem este campo aparece o ícone do kit.
+  // logo: "logo.svg",
+
   // Semanas de aulas: a semana 1 é a que contém start. As interrupções não contam.
   semester: {
     start: "2026-09-14",

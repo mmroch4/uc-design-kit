@@ -110,6 +110,19 @@
     return { index, exclude: asArray(options.exclude).filter((entry) => typeof entry === "string") };
   }
 
+  /**
+   * `logo` (docs/api.md 2.2): "default" (built-in icon), null, or
+   * { src, svg, alt } from a URL, an inline "<svg…>" string or that object.
+   */
+  function normalizeLogo(value, resolve) {
+    if (value === undefined || value === "default") return "default";
+    if (!value) return null;
+    const logo = typeof value === "string" ? { [/^\s*</.test(value) ? "svg" : "src"]: value } : { ...value };
+    if (logo.src) logo.src = resolve(logo.src);
+    return logo.src || logo.svg ? logo : null;
+  }
+  UC.internal.normalizeLogo = normalizeLogo;
+
   function normalize(raw) {
     const htmlLang = (document.documentElement.getAttribute("lang") || "pt").trim();
     const languages = asArray(raw.languages).length ? raw.languages.slice() : [htmlLang];
@@ -150,7 +163,7 @@
       deadlines,
       notices,
       search: normalizeSearch(raw.search),
-      logo: raw.logo === undefined ? "default" : raw.logo && typeof raw.logo === "string" && raw.logo !== "default" ? resolve(raw.logo) : raw.logo,
+      logo: normalizeLogo(raw.logo, resolve),
     });
   }
 

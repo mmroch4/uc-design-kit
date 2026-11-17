@@ -293,6 +293,14 @@ class CourseCheckTest(SiteTestCase):
         self.write("course.js", COURSE.replace('pages: ["home",', 'pages: ["home", "notes",'))
         self.assertProblem("course.page_unknown", "error", id="notes")
 
+    def test_logo_forms(self):
+        self.write("logo.png", "")
+        for logo in ('"logo.png"', '{ src: "logo.png", alt: "DCC" }', "'<svg viewBox=\"0 0 1 1\"><path d=\"M0 0\"/></svg>'"):
+            self.write("course.js", COURSE.replace('updated:', "logo: " + logo + ",\n  updated:"))
+            self.assertEqual(self.problems(), [], logo)
+        self.write("course.js", COURSE.replace('updated:', 'logo: { src: "missing.svg" },\n  updated:'))
+        self.assertTrue([p for p in self.problems() if p.args.get("target") == "missing.svg"], self.problems())
+
     def test_invalid_dates(self):
         source = COURSE.replace('start: "2026-09-14"', 'start: "2026-02-30"')
         source = source.replace('date: "2026-10-23"', 'date: "23/10/2026"')

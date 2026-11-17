@@ -928,7 +928,8 @@ def check_course(course, site, report):
     # Every other local link in course.js: url, logo, and href/src in HTML texts.
     for value, line in course_strings(course):
         references = []
-        if value[1] in ("url", "logo") and isinstance(value[0], str):
+        # logo may be a path, { src, alt } or an inline "<svg…>" (no link).
+        if value[1] in ("url", "logo", "src") and not value[0].lstrip().startswith("<"):
             references.append(value[0])
         for match in HTML_LINK.finditer(value[0]):
             references.append(match.group(2) if match.group(2) is not None else match.group(3))

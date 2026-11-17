@@ -53,6 +53,14 @@
   test("formatDateRange medium across years", () => equal(UC.formatDateRange("2025-12-29", "2026-01-02", "medium"), "29 dez 2025–2 jan 2026"));
   test("canRun: markup languages have no Run button", () => equal(["html", "css", "text", "java", "py", "js"].map(UC.internal.canRun), [false, false, false, true, true, true]));
 
+  test("logo: default, hidden, URL, inline SVG, object", () => {
+    const logo = (value) => UC.internal.normalizeLogo(value, (href) => `../${href}`);
+    equal([logo(undefined), logo("default"), logo(null), logo(""), logo({ alt: "x" })], ["default", "default", null, null, null]);
+    equal(logo("logo.png"), { src: "../logo.png" });
+    equal(logo(' <svg viewBox="0 0 1 1"></svg>'), { svg: ' <svg viewBox="0 0 1 1"></svg>' });
+    equal(logo({ src: "a.svg", alt: { pt: "DCC" } }), { src: "../a.svg", alt: { pt: "DCC" } });
+  });
+
   test("text resolves active language", () => equal(UC.text({ pt: "Olá", en: "Hello" }), UC.lang === "en" ? "Hello" : "Olá"));
   test("text falls back to first language", () => equal(UC.text({ pt: "Só PT" }, "en"), "Só PT"));
   test("t interpolates", () => equal(UC.internal.tIn("en", "weeks.week", { n: 3 }), "Week 3"));

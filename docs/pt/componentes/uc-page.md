@@ -163,7 +163,7 @@ Campos do `course.js` que o componente lê. Só `title` é obrigatório; sem `pa
 | [`title`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Nome do curso no cabeçalho, com link para a página `home`. |
 | [`edition`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Ano letivo ao lado do nome, por exemplo "2025/26". |
 | [`institution`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Departamento ou faculdade à direita do cabeçalho, com link se tiver `url`. |
-| [`logo`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Imagem antes do nome; sem ele aparece o ícone do kit e com `null` não aparece nenhuma. |
+| [`logo`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Imagem ou SVG antes do nome; sem ele aparece o ícone do kit e com `null` não aparece nenhuma. |
 | [`accentColor`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Cor do item ativo, dos links e do ícone. |
 | [`languages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-linguas) | Com mais de uma língua, mostra o botão para mudar de língua. |
 | [`pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas) | Itens da navegação, pela ordem escrita, e página de destino do nome do curso. |
@@ -256,7 +256,7 @@ Gera os pontos de referência `<header>`, `<nav>`, `<main>` e `<footer>` e um li
 
 ### O que cabe a quem escreve
 
-Um `<h1>` por página (o `<uc-hero>` já o tem), títulos seguintes por ordem e um `<title>` que distinga as páginas. Com `logo`, uma imagem com contraste suficiente; o texto alternativo fica vazio porque o nome do curso está ao lado.
+Um `<h1>` por página (o `<uc-hero>` já o tem), títulos seguintes por ordem e um `<title>` que distinga as páginas. Com `logo`, uma imagem com contraste suficiente; o texto alternativo fica vazio porque o nome do curso está ao lado, a não ser que o `course.js` lhe dê um `alt`.
 
 ## Sem JavaScript
 

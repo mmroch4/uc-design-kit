@@ -184,13 +184,16 @@
         </div>
 
         <h2 id="logotipo">Logótipo</h2>
-        <p>O cabeçalho mostra, antes do nome do curso, um ícone de árvore do kit. O campo <code>logo</code> troca-o por uma imagem ou esconde-o:</p>
-        <uc-code lang="js" filename="course.js" no-download><pre><code>logo: "logo.svg",   // an image next to course.js
+        <p>O cabeçalho mostra, antes do nome do curso, um ícone de árvore do kit. O campo <code>logo</code> troca-o por uma imagem (PNG, JPG, SVG…), por um SVG escrito no próprio <code>course.js</code>, ou esconde-o:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>logo: "logo.svg",   // an image file next to course.js (png, jpg, svg, webp…)
+logo: '&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;rect x="3" y="3" width="18" height="18" rx="4"/&gt;&lt;path d="M8 12h8M12 8v8"/&gt;&lt;/svg&gt;',
+logo: { src: "dcc.png", alt: "DCC" },   // an image with its own text alternative
 logo: null,         // no image, only the course name</code></pre></uc-code>
         <ul>
-          <li><strong>Tamanho.</strong> A imagem é mostrada com 28 × 28 px. Uma imagem quadrada em SVG fica nítida em qualquer ecrã; em PNG, convém ter pelo menos 56 × 56 px.</li>
+          <li><strong>Tamanho.</strong> O logótipo é mostrado com 28 × 28 px, como o ícone do kit. Uma imagem quadrada em SVG fica nítida em qualquer ecrã; em PNG ou JPG, convém ter pelo menos 56 × 56 px.</li>
           <li><strong>Caminho.</strong> Como os <code>href</code> das páginas, o caminho do logótipo é relativo ao <code>course.js</code>: <code>"logo.svg"</code> ao lado do <code>course.js</code> aparece também nas páginas em subpastas (<code>guioes/aula10.html</code>).</li>
-          <li><strong>Texto alternativo.</strong> Fica vazio, porque o nome do curso está mesmo ao lado. A imagem deve ter contraste suficiente com o fundo branco.</li>
+          <li><strong>SVG no <code>course.js</code>.</strong> Um texto que começa por <code>&lt;</code> é desenhado como SVG, sem ficheiro à parte. Precisa de um <code>viewBox</code> para ocupar os 28 px. Com <code>currentColor</code> em <code>stroke</code> ou <code>fill</code>, fica na cor do curso (<code>accentColor</code>), como o ícone do kit. Fica entre plicas (<code>'…'</code>) para as aspas do SVG não terminarem o texto. A forma <code>{ svg: '&lt;svg …&gt;', alt: "…" }</code> também serve.</li>
+          <li><strong>Texto alternativo.</strong> Fica vazio, porque o nome do curso está mesmo ao lado e o leitor de ecrã não precisa de o ouvir duas vezes. Só quando o logótipo diz algo que o nome não diz (o símbolo de um departamento, por exemplo) se escreve <code>alt</code>, que pode ter uma versão por língua: <code>alt: { pt: "DCC", en: "DCC" }</code>. A imagem deve ter contraste suficiente com o fundo branco.</li>
         </ul>
         <p>Ver <a href="../course-js.html#campos-curso">Curso</a> e, para o cabeçalho completo, <a href="../componentes/uc-page.html"><code>&lt;uc-page&gt;</code></a>.</p>
 
