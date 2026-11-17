@@ -23,12 +23,16 @@
         <h1>Informações para o 2.º Teste Prático</h1>
       </div>
 
+      <!-- Resumo: data, turnos, duração, local e ligações vêm de course.js (deadlines, id "ap2").
+           calendar: botão para juntar os turnos ao calendário (.ics). -->
+      <uc-assessment-info deadline="ap2" calendar heading="Resumo">
+        <noscript><p>16 de dezembro de 2025, turnos das 14:00 e das 16:00, 1h50m.</p></noscript>
+      </uc-assessment-info>
+
       <!-- Informações gerais -->
       <section class="uc-section" aria-labelledby="gerais">
         <h2 id="gerais">Informações gerais</h2>
         <ul class="uc-bullets">
-          <li><strong>Data:</strong> 16 de dezembro de 2025</li>
-          <li><strong>Hora:</strong> Turnos (14:00 e 16:00)</li>
           <li><strong>Atribuições:</strong> turnos e laboratórios</li>
           <li><strong>Local:</strong> Laboratórios:
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69108">L1 (FC6 1.55)</a>,
@@ -38,7 +42,6 @@
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69101">L8 (FC6 0.08)</a>,
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69035">L10 (FC6 1.82)</a> e
             <a href="https://sigarra.up.pt/fcup/pt/instal_geral.espaco_view?pv_id=69149">L11 (FC6 1.84)</a>.</li>
-          <li><strong>Duração:</strong> 1h e 50min.</li>
           <li><strong>Método:</strong> o teste será presencial (nos laboratórios do DCC, que têm Linux e os editores habituais) e irão ter acesso a computador, documentação do Java, código base (essencialmente o que está na <a href="../codigo/index.html">lista de código exemplo</a>) disponível na página de entrada do Mooshak (premir o botão de 'home' no browser para aceder ao código) e irão submeter no Mooshak, sendo que poderão ver alguns casos de teste quando falham, tal como nas aulas práticas.</li>
           <li><strong>Pontuação:</strong> este teste vale 2.5 valores.<br>
             São 3 exercícios cotados com 30%+35%+35%.<br>
