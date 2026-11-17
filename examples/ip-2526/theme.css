@@ -6,9 +6,6 @@
 
 /* index.html */
 .quick-classes { display: flex; flex-wrap: wrap; gap: var(--uc-space-2) var(--uc-space-3); margin: 0; font-family: var(--uc-font-mono); }
-.xkcd { margin: 0; max-width: 760px; }
-.xkcd img { display: block; max-width: 100%; height: auto; border: 1px solid var(--uc-color-border); border-radius: var(--uc-radius-md); }
-.xkcd figcaption { margin-top: var(--uc-space-2); }
 
 /* assessment.html */
 .desc { font-size: var(--uc-font-size-body-sm); }
