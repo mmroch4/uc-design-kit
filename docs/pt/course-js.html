@@ -189,7 +189,8 @@
               <tr><td><code>accentColor</code><span class="docs-type">cor CSS</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td><code>"#1D4ED8"</code></td><td>Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco.</td></tr>
               <tr><td><code>logo</code><span class="docs-type">URL ou <code>null</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>ícone de árvore</td><td>Imagem no cabeçalho, relativa ao <code>course.js</code>; <code>null</code> esconde-a.</td></tr>
               <tr><td><code>footer</code><span class="docs-type"><code>HTMLText</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>título e instituição</td><td>Lado esquerdo do rodapé.</td></tr>
-              <tr><td><code>updated</code><span class="docs-type"><code>ISODate</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>"Atualizado a …" no rodapé. Muda-se à mão quando se publica.</td></tr>
+              <tr><td><code>updated</code><span class="docs-type"><code>ISODate</code></span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>"Atualizado a …" no rodapé. Muda-se à mão quando se publica. Uma página pode mostrar a sua própria data com <a href="componentes/uc-page.html#data-da-pagina"><code>&lt;uc-page updated&gt;</code></a>.</td></tr>
+              <tr><td><code>editions</code><span class="docs-type">URL</span></td><td><span class="uc-tag uc-tag--muted">Opcional</span></td><td>—</td><td>Ficheiro com as edições da cadeira, relativo ao <code>course.js</code>, normalmente <code>"../editions.js"</code>. Ver <a href="#edicoes">Edições</a>.</td></tr>
             </tbody>
           </table>
         </div>
@@ -432,6 +433,31 @@
           </table>
         </div>
 
+        <h2 id="edicoes">Edições</h2>
+        <p>Um ficheiro <code>editions.js</code> na pasta da cadeira, <strong>acima</strong> das pastas dos anos, lista todas as edições. O <code>course.js</code> de cada ano aponta para ele com <code>editions: "../editions.js"</code>, e <a href="componentes/uc-page.html#outros-anos"><code>&lt;uc-page&gt;</code></a> mostra o botão "Outros anos" e, nas edições antigas, um aviso com o link para a atual.</p>
+        <uc-code lang="text" no-download><pre><code>EDados/
+  editions.js      ← lista das edições (window.UC_EDITIONS)
+  2425/course.js   ← editions: "../editions.js"
+  2526/course.js   ← editions: "../editions.js"</code></pre></uc-code>
+        <uc-code lang="js" filename="editions.js" no-download><pre><code>window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },   // a primeira é a edição atual
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos de uma edição</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Tipo</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>label</code></td><td>texto</td><td>Obrigatório. Igual ao <code>edition</code> do <code>course.js</code> desse ano: é assim que o kit sabe em que edição está a página.</td></tr>
+              <tr><td><code>href</code></td><td>URL</td><td>Obrigatório. Relativo ao <code>editions.js</code> (<code>"2526/"</code>), ou um endereço completo para anos que estão noutro sítio.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O kit carrega o ficheiro sozinho, também a partir do disco. Se não o encontrar, escreve um aviso na consola e a página fica como sem <code>editions</code>. Como o ficheiro está fora das pastas dos anos, acrescentar um ano novo atualiza os sites anteriores sem lhes mexer (ver <a href="novo-ano.html#outros-anos">Novo ano letivo</a>).</p>
+
         <h2 id="erros-comuns">Erros comuns</h2>
         <p>O kit avisa na consola (F12) com mensagens começadas por <code>[uc-kit]</code>. Estes são os casos mais frequentes:</p>
         <div class="uc-table">
@@ -491,6 +517,7 @@
           <li><a href="#plataformas">Plataformas</a></li>
           <li><a href="#prazos">Prazos</a></li>
           <li><a href="#avisos">Avisos</a></li>
+          <li><a href="#edicoes">Edições</a></li>
           <li><a href="#erros-comuns">Erros comuns</a></li>
         </ul>
       </nav>

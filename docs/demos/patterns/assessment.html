@@ -20,24 +20,27 @@
   <uc-page current="assessment">
     <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
       <h1>Avaliação</h1>
-      <p class="uc-prose">A nota final soma duas componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total.</p>
+      <p class="uc-prose">A nota final soma quatro componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total e 8 no exame.</p>
     </div>
-    <section class="uc-section" aria-labelledby="componentes">
-      <h2 id="componentes">Componentes da nota</h2>
-      <div class="uc-grid">
-        <div class="uc-card">
-          <h3>Exame</h3>
-          <p><strong>60%</strong> · época normal ou recurso, sem consulta.</p>
-        </div>
-        <div class="uc-card">
-          <h3>Trabalho e teste</h3>
-          <p><strong>40%</strong> · 20% cada, ao longo do semestre.</p>
-        </div>
-      </div>
-      <div class="uc-callout">
-        <p><strong>Para aprovar:</strong> pelo menos 9,5 valores no total e 40% no exame.</p>
-      </div>
-    </section>
+    <uc-grading heading="Como é calculada a nota" calculator>
+      <ul>
+        <li data-code="Q"><data value="10">10 %</data> Quizzes semanais</li>
+        <li data-code="T"><data value="30">30 %</data> Trabalho prático
+          <ul>
+            <li data-code="T1"><data value="40">40 %</data> Primeira entrega</li>
+            <li data-code="T2"><data value="60">60 %</data> Entrega final e apresentação</li>
+          </ul>
+        </li>
+        <li data-code="E" data-min="8"><data value="60">60 %</data> Exame final. <span>Sem consulta.</span></li>
+        <li data-code="B" data-bonus="1">Desafios extra</li>
+      </ul>
+    </uc-grading>
+    <uc-assessment-info deadline="teste" calendar>
+      <ul class="uc-bullets">
+        <li>Sem consulta; traz o cartão de estudante.</li>
+        <li>Matéria: semanas 1 a 10.</li>
+      </ul>
+    </uc-assessment-info>
     <uc-deadlines view="table" heading="Datas"></uc-deadlines>
     <section class="uc-section" aria-labelledby="regras">
       <h2 id="regras">Regras</h2>

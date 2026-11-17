@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sortable tables, link grid and page date · test</title>
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <!-- updated overrides UC_COURSE.updated (2025-11-27) for this page only. -->
+  <uc-page current="home" updated="2025-11-20">
+    <section class="uc-section" aria-labelledby="ranking">
+      <h2 id="ranking">Classificação</h2>
+      <!-- Points sorted descending on load; the total row stays last; "Notas" cannot be sorted. -->
+      <div class="uc-table">
+        <table id="ranking-table" data-sortable>
+          <caption>Classificação do concurso 1</caption>
+          <thead>
+            <tr>
+              <th scope="col">Equipa</th>
+              <th scope="col">Turma</th>
+              <th scope="col" data-sort-default="desc">Pontos</th>
+              <th scope="col">Taxa</th>
+              <th scope="col">Última submissão</th>
+              <th scope="col" data-no-sort>Notas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Árvores</td><td>PL10</td><td>12,5</td><td>50 %</td><td><time datetime="2025-11-03">3 nov</time></td><td>—</td></tr>
+            <tr><td>arrays</td><td>PL2</td><td>7</td><td>100 %</td><td><time datetime="2025-10-28">28 out</time></td><td>—</td></tr>
+            <tr><td>Bits</td><td>PL1</td><td>12.75</td><td>5 %</td><td><time datetime="2025-11-12">12 nov</time></td><td>Fora do prazo</td></tr>
+            <tr><td>Grafos</td><td>PL2</td><td data-sort="-1">desistiu</td><td></td><td></td><td>—</td></tr>
+            <tr data-sort-fixed><td>Total</td><td></td><td>31,25</td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="uc-section" aria-labelledby="judges">
+      <h2 id="judges">Juízes online</h2>
+      <ul class="uc-links uc-links--grid">
+        <li><a href="https://codeforces.com/">Codeforces</a><span>Concursos semanais</span></li>
+        <li><a href="https://open.kattis.com/">Kattis</a><span>Arquivo de problemas</span></li>
+        <li><a href="https://atcoder.jp/">AtCoder</a><span>Concursos ao fim de semana</span></li>
+        <li><a href="https://cses.fi/problemset/">CSES</a><span>Lista clássica</span></li>
+        <li><a href="https://sigarra.up.pt/fcup/" data-auth="SIGARRA">Pautas</a><span>Notas oficiais</span></li>
+      </ul>
+    </section>
+  </uc-page>
+</body>
+</html>

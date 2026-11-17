@@ -2,7 +2,7 @@
 
 Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.html
 
-As cinco páginas que quase todas as cadeiras têm, montadas com o curso fictício das demonstrações. O separador Código mostra o conteúdo do `<body>` pronto a copiar; o `<head>` é sempre o mesmo, descrito em [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md).
+As páginas que quase todas as cadeiras têm, montadas com o curso fictício das demonstrações. O separador Código mostra o conteúdo do `<body>` pronto a copiar; o `<head>` é sempre o mesmo, descrito em [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md).
 
 As demonstrações têm a largura de um tablet, por isso a navegação do `<uc-page>` aparece como menu. Para ver uma página no tamanho real, use "Abrir demo". As três primeiras também estão no [modelo inicial](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md), com comentários.
 
@@ -85,7 +85,7 @@ Exemplo (página de semanas), [demonstração ao vivo](https://uc-design-kit.mig
 
 ## Avaliação
 
-Cartões para as componentes da nota, uma chamada para a regra que ninguém pode esquecer e a tabela de datas com o estado de cada prova.
+A fórmula da nota com os pesos e mínimos e um simulador, o cartão do teste com data, turnos, sala e estado, e a tabela de datas com o estado de cada prova.
 
 Exemplo (página de avaliação), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/assessment.html):
 
@@ -93,24 +93,27 @@ Exemplo (página de avaliação), [demonstração ao vivo](https://uc-design-kit
 <uc-page current="assessment">
   <div class="uc-stack" style="--uc-stack-gap: var(--uc-space-3)">
     <h1>Avaliação</h1>
-    <p class="uc-prose">A nota final soma duas componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total.</p>
+    <p class="uc-prose">A nota final soma quatro componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total e 8 no exame.</p>
   </div>
-  <section class="uc-section" aria-labelledby="componentes">
-    <h2 id="componentes">Componentes da nota</h2>
-    <div class="uc-grid">
-      <div class="uc-card">
-        <h3>Exame</h3>
-        <p><strong>60%</strong> · época normal ou recurso, sem consulta.</p>
-      </div>
-      <div class="uc-card">
-        <h3>Trabalho e teste</h3>
-        <p><strong>40%</strong> · 20% cada, ao longo do semestre.</p>
-      </div>
-    </div>
-    <div class="uc-callout">
-      <p><strong>Para aprovar:</strong> pelo menos 9,5 valores no total e 40% no exame.</p>
-    </div>
-  </section>
+  <uc-grading heading="Como é calculada a nota" calculator>
+    <ul>
+      <li data-code="Q"><data value="10">10 %</data> Quizzes semanais</li>
+      <li data-code="T"><data value="30">30 %</data> Trabalho prático
+        <ul>
+          <li data-code="T1"><data value="40">40 %</data> Primeira entrega</li>
+          <li data-code="T2"><data value="60">60 %</data> Entrega final e apresentação</li>
+        </ul>
+      </li>
+      <li data-code="E" data-min="8"><data value="60">60 %</data> Exame final. <span>Sem consulta.</span></li>
+      <li data-code="B" data-bonus="1">Desafios extra</li>
+    </ul>
+  </uc-grading>
+  <uc-assessment-info deadline="teste" calendar>
+    <ul class="uc-bullets">
+      <li>Sem consulta; traz o cartão de estudante.</li>
+      <li>Matéria: semanas 1 a 10.</li>
+    </ul>
+  </uc-assessment-info>
   <uc-deadlines view="table" heading="Datas"></uc-deadlines>
   <section class="uc-section" aria-labelledby="regras">
     <h2 id="regras">Regras</h2>
@@ -123,8 +126,109 @@ Exemplo (página de avaliação), [demonstração ao vivo](https://uc-design-kit
 </uc-page>
 ```
 
+- A lista de componentes é HTML normal: sem JavaScript lê-se como lista, com ele passa a fórmula, barra de proporções e tabela.
+- O cartão do teste lê a data, os turnos e a sala do `course.js` (o mesmo prazo que aparece na tabela e nas semanas); o que se escreve dentro dele fica por baixo.
 - A tabela de datas é a mesma informação da página inicial, noutra vista: `view="table"`.
-- Blocos: [`uc-grid`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md#grid), [`uc-card`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#card), [`uc-callout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#callout), [`uc-bullets`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#bullets).
+- Componentes: [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md), [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md), [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md). Blocos: [`uc-bullets`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#bullets).
+
+## Horários e equipa
+
+O horário semanal e a equipa com o atendimento, tudo a partir do `course.js` (`schedule` e `team`). Cada aluno escolhe a sua turma prática e a escolha fica guardada.
+
+Exemplo (página de horários e equipa), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/schedule.html):
+
+```html
+<uc-page>
+  <h1>Horários e equipa</h1>
+  <uc-timetable class-filter></uc-timetable>
+  <uc-team view="table" heading="Equipa"></uc-team>
+</uc-page>
+```
+
+- Mudar uma sala ou uma hora é mudar uma linha do `course.js`; a página não tem dados.
+- Componentes: [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md), [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md).
+
+## Sumários
+
+Uma lista numerada, um item por aula, com a data num `<time>`. O kit escreve o dia da semana, liga cada aula à sua semana, marca a última aula dada e as previstas, mostra as interrupções e acrescenta a pesquisa.
+
+Exemplo (página de sumários com pesquisa), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/summaries.html):
+
+```html
+<uc-page>
+  <h1>Sumários</h1>
+  <uc-summaries search>
+    <ol start="13">
+      <li><time datetime="2025-10-20">20 out</time> <strong>Listas e fatias</strong>
+        <p>Índices, fatias e cópia de listas. Listas de listas.</p></li>
+      <li><time datetime="2025-10-22">22 out</time> <strong>Complexidade e notação O</strong>
+        <p>Contar operações; melhor e pior caso; crescimento das funções.</p></li>
+      <li><time datetime="2025-11-03">3 nov</time> <strong>Recursão</strong>
+        <p>Caso base e chamada recursiva. A pilha de chamadas.</p></li>
+      <li><time datetime="2025-11-05">5 nov</time> <strong>Recursão em listas</strong>
+        <p>Soma, máximo e inversão de uma lista, de forma recursiva.</p></li>
+      <li><time datetime="2025-11-10">10 nov</time> <strong>Ordenação por seleção e por inserção</strong>
+        <p>Invariantes de ciclo e número de comparações.</p></li>
+      <li><time datetime="2025-11-12">12 nov</time> <strong>Pesquisa binária</strong>
+        <p>Pesquisa num vetor ordenado; análise da complexidade.</p></li>
+      <li><time datetime="2025-11-17">17 nov</time> <strong>Ordenação por fusão</strong>
+        <p>Dividir para conquistar; a função de fusão.</p></li>
+      <li><time datetime="2025-11-19">19 nov</time> <strong>Quicksort</strong>
+        <p>Escolha do pivô, partição e caso médio.</p></li>
+      <li><time datetime="2025-11-24">24 nov</time> <strong>Dicionários</strong>
+        <p>Tabelas de dispersão: chaves, colisões e custo médio.</p></li>
+      <li><time datetime="2025-11-26">26 nov</time> <strong>Conjuntos e dicionários na prática</strong>
+        <p>Contar palavras de um texto; agrupar por chave.</p></li>
+      <li><time datetime="2025-12-01">1 dez</time> <strong>Árvores binárias</strong>
+        <p>Nós, altura e percursos em profundidade.</p></li>
+      <li><time datetime="2025-12-03">3 dez</time> <strong>Revisões para o teste</strong></li>
+    </ol>
+  </uc-summaries>
+</uc-page>
+```
+
+- Os sumários das aulas futuras podem ficar escritos desde o início do semestre: aparecem como "Prevista".
+- Componentes: [`<uc-summaries>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-summaries.md).
+
+## Materiais
+
+Os materiais de cada aula como botões com o tipo (PDF, notebook, vídeo, código) e a data da última alteração, e os recursos externos em colunas.
+
+Exemplo (página de materiais e outros recursos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/patterns/materials.html):
+
+```html
+<uc-page>
+  <h1>Materiais</h1>
+  <uc-materials heading="Aulas teóricas">
+    <ol>
+      <li><time datetime="2025-09-15">15 set</time> Introdução e primeiros programas
+        <a href="#" data-type="slides">Diapositivos</a> · <a href="https://colab.research.google.com/">Notebook</a></li>
+      <li><time datetime="2025-10-06">6 out</time> Listas e fatias
+        <a href="#" data-type="pdf">PDF</a> · <a href="https://github.com/">Exemplos</a></li>
+      <li><time datetime="2025-10-20">20 out</time> Complexidade
+        <a href="#" data-type="pdf">PDF</a> · <a href="https://www.youtube.com/">Aula gravada</a></li>
+      <li>Revisões para o teste</li>
+      <li><time datetime="2025-11-10">10 nov</time> Ordenação
+        <a href="#" data-type="pdf">PDF</a> · <a href="#" data-type="archive">Código</a></li>
+      <li><time datetime="2025-11-24">24 nov</time> Dicionários
+        <a href="#" data-type="pdf">PDF</a> · <a href="#" data-type="code">Exemplo</a></li>
+    </ol>
+  </uc-materials>
+  <section class="uc-section" aria-labelledby="recursos">
+    <h2 id="recursos">Outros recursos</h2>
+    <ul class="uc-links uc-links--grid">
+      <li><a href="https://docs.python.org/pt-br/3/tutorial/">Tutorial de Python</a><span>Documentação oficial</span></li>
+      <li><a href="https://pythontutor.com/">Python Tutor</a><span>Ver a execução passo a passo</span></li>
+      <li><a href="https://cses.fi/problemset/">CSES Problem Set</a><span>Problemas para treinar</span></li>
+      <li><a href="https://example.org/pautas" data-auth="SIGARRA">Pautas</a><span>Notas oficiais</span></li>
+    </ul>
+  </section>
+</uc-page>
+```
+
+- O tipo de cada botão vem do endereço; `data-type` escolhe-o à mão.
+- `uc-links--grid` põe uma lista longa de ligações em colunas; no telemóvel fica numa só.
+- Componentes: [`<uc-materials>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md). Blocos: [`uc-links--grid`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#links-grid), [`a[data-auth]`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md#data-auth).
 
 ## Guião com exercícios
 
@@ -242,4 +346,5 @@ Exemplo (enunciado de problema), [demonstração ao vivo](https://uc-design-kit.
 ## Ver também
 
 - [Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): as mesmas páginas num site real.
+- [Materiais e problemas](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md#materiais-e-problemas): as listas de problemas com filtros e "Resolvido", para páginas de problemas.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md).

@@ -78,6 +78,12 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
     about: "About the course",
   },
   footer: { updated: "Updated {date}" },
+  editions: {
+    other: "Other years",
+    notice: "This page is from the {edition} edition.",
+    current: "See the current edition ({edition})",
+  },
+  sort: { announce: "Sorted by {column}, {direction}", asc: "ascending", desc: "descending" },
   notices: {
     heading: "Notices",
     earlier: "Earlier notices ({count})",

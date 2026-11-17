@@ -114,12 +114,44 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
 
 A escolha fica guardada no browser e vale para as outras páginas do site. Quando uma página tem um ficheiro por língua (`href` com um endereço por língua), o botão abre o outro ficheiro em vez de trocar o texto na mesma página. As duas formas estão em [Línguas](https://uc-design-kit.miguelrocha.dev/docs/pt/linguas.md#mesma-pagina).
 
+### Outros anos
+
+Com o campo [`editions`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes) no `course.js`, o cabeçalho ganha um botão "Outros anos" com a lista das outras edições da cadeira. Numa edição que não é a atual, aparece também um aviso no topo do conteúdo com o link para a edição atual. A lista fica num ficheiro `editions.js` partilhado, na pasta acima dos anos: acrescentar um ano novo atualiza os sites dos anos anteriores sem lhes mexer.
+
+Exemplo (página de uma edição antiga com a lista de outros anos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/editions.html):
+
+```html
+<uc-page updated="2025-07-15">
+  <uc-hero></uc-hero>
+  <p>Página da edição 2024/25: o aviso no topo leva à edição atual e "Outros anos", no cabeçalho, às restantes.</p>
+</uc-page>
+```
+
+A demonstração simula a edição 2024/25 e usa este ficheiro de edições:
+
+`editions.js`:
+
+```js
+window.UC_EDITIONS = [
+  { label: "2025/26", href: "2526/" },   // a primeira é a edição atual
+  { label: "2024/25", href: "2425/" },
+  { label: "2023/24", href: "https://www.dcc.fc.up.pt/~fds/aulas/EDados/2324/" },
+];
+```
+
+Como se organiza a pasta e o que muda em cada ano novo está em [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#outros-anos).
+
+### Data de atualização de uma página
+
+O rodapé mostra "Atualizado a …" com a data de `updated` do `course.js`, igual em todas as páginas. Uma página que muda mais vezes (sumários, problemas) pode mostrar a sua: `<uc-page updated="2025-11-20">`. Com `updated="auto"`, a data é a da última alteração do ficheiro, que o servidor indica no cabeçalho `Last-Modified`; se o servidor não a indicar, o rodapé fica sem data, em vez de mostrar a data de hoje. Aberta a partir do disco (`file://`), a página mostra a data do ficheiro.
+
 ## Atributos
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
 | `layout` | `sidebar` ou `full` | `sidebar` | Com `full`, a página não tem navegação e o conteúdo ocupa toda a largura. |
+| `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
 
 ## Configuração usada
 
@@ -136,7 +168,8 @@ Campos do `course.js` que o componente lê. Só `title` é obrigatório; sem `pa
 | [`pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas) | Itens da navegação, pela ordem escrita, e página de destino do nome do curso. |
 | [`platforms`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao) | Links externos no grupo "Plataformas", por baixo das páginas. |
 | [`footer`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Texto à esquerda do rodapé. Sem ele, o nome do curso e da instituição. |
-| [`updated`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | "Atualizado a …" à direita do rodapé. |
+| [`updated`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | "Atualizado a …" à direita do rodapé, quando a página não tem o seu `updated`. |
+| [`editions`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#edicoes) | Ficheiro com as edições da cadeira: botão "Outros anos" e aviso nas edições antigas. |
 
 A referência completa dos campos está em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao).
 
@@ -166,6 +199,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
 | `.uc-header__meta`, `.uc-header__institution` | O lado direito do cabeçalho e a instituição. |
 | `.uc-lang-switch`, `__button` | Os botões para mudar de língua. |
+| `.uc-page__editions`, `.uc-page__editions-button`, `.uc-page__editions-menu` | "Outros anos": o contentor, o botão e a lista de edições. |
+| `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
@@ -193,7 +228,7 @@ A largura da navegação é `--uc-sidebar-width` (216 px), a da página é `--uc
 
 ### O que o componente faz
 
-Gera os pontos de referência `<header>`, `<nav>`, `<main>` e `<footer>` e um link "Saltar para o conteúdo" como primeiro elemento focável. O item ativo tem `aria-current="page"`; o botão "Menu" indica com `aria-expanded` se está aberto e fecha com Escape. As plataformas externas são anunciadas como "(site externo)" e o botão de língua diz para que língua muda.
+Gera os pontos de referência `<header>`, `<nav>`, `<main>` e `<footer>` e um link "Saltar para o conteúdo" como primeiro elemento focável. O item ativo tem `aria-current="page"`; os botões "Menu" e "Outros anos" indicam com `aria-expanded` se estão abertos e fecham com Escape, devolvendo o foco ao botão. As plataformas externas são anunciadas como "(site externo)" e o botão de língua diz para que língua muda.
 
 ### O que cabe a quem escreve
 

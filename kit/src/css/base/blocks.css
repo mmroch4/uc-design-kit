@@ -89,6 +89,14 @@
 :where(.uc-links > li:first-child) { border-top: 0; }
 :where(.uc-links a) { font-weight: 500; }
 :where(.uc-links > li > span) { color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+/* Long lists of links in columns (judges, courses); column width from --uc-links-min. */
+:where(.uc-links--grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--uc-links-min, 260px), 100%), 1fr));
+  column-gap: var(--uc-space-6);
+}
+/* The number of columns is not known, so each link is separated below, not above. */
+:where(.uc-links--grid > li) { border-top: 0; border-bottom: 1px solid var(--uc-color-border); }
 
 :where(.uc-shortcuts) {
   display: grid;
