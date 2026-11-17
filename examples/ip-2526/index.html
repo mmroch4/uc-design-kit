@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Introduction to Programming (CC1024), DCC/FCUP, 2025/26: this week, news, upcoming tests and the teaching team.">
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="theme.css">
+  <script src="course.js"></script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <!-- Code, title and tagline come from course.js (code, title, tagline). -->
+    <uc-hero>
+      <p class="uc-small uc-muted">Bachelor in Computer Science (<a href="https://sigarra.up.pt/fcup/en/cur_geral.cur_view?pv_curso_id=885&amp;pv_ano_lectivo=2025">L:CC</a>) · Bachelor in Artificial Intelligence and Data Science (<a href="https://sigarra.up.pt/fcup/en/cur_geral.cur_view?pv_curso_id=23521&amp;pv_ano_lectivo=2025">L:IACD</a>)</p>
+    </uc-hero>
+
+    <!-- "This week": dates are computed; the week's rows are read from weeks.html. -->
+    <uc-this-week kind="assessment exam"></uc-this-week>
+
+    <div class="uc-split">
+      <!-- Notices: edit in course.js (notices). -->
+      <uc-notices limit="6"></uc-notices>
+
+      <!-- Upcoming dates: edit in course.js (deadlines). per-kind="1": only the next of each kind. -->
+      <uc-deadlines per-kind="1" heading="Upcoming dates">
+        <a href="assessment.html">How the final grade is calculated</a>
+      </uc-deadlines>
+    </div>
+
+    <section class="uc-section" aria-labelledby="resources">
+      <h2 id="resources">Main resources</h2>
+      <ul class="uc-shortcuts">
+        <li><a href="materials.html#lectures">Lecture notebooks</a></li>
+        <li><a href="materials.html#practical">Practical classes</a></li>
+        <li><a href="https://mooshak.dcc.fc.up.pt/~ip/">Mooshak: code submission</a></li>
+        <li><a href="https://discord.com/app/">Discord: talk to the professors</a></li>
+      </ul>
+      <p class="uc-small uc-muted">The invite to the course's Discord server was sent by email. Evaluation documents (grades, rooms, past exams) need the authentication sent by email.</p>
+    </section>
+
+    <section class="uc-section" aria-labelledby="quick">
+      <h2 id="quick">Quick links</h2>
+      <div class="uc-grid" style="--uc-grid-min: 240px">
+        <div class="uc-card">
+          <h3>Practical classes</h3>
+          <p class="quick-classes">
+            <a href="practical/class01.html">#01</a> <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class02.html">#02</a> <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class03.html">#03</a>
+            <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class04.html">#04</a> <a href="practical/class05.html">#05</a> <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class06.html">#06</a>
+            <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class07.html">#07</a> <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class08.html">#08</a> <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class09.html">#09</a>
+            <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class10.html">#10</a> <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class11.html">#11</a>
+          </p>
+        </div>
+        <div class="uc-card">
+          <h3>Python</h3>
+          <ul class="uc-bullets">
+            <li><a href="https://docs.python.org/3/reference/">Language reference</a></li>
+            <li><a href="https://docs.python.org/3/tutorial/">Tutorial</a></li>
+          </ul>
+        </div>
+        <div class="uc-card">
+          <h3>Mooshak</h3>
+          <ul class="uc-bullets">
+            <li><a href="https://mooshak.dcc.fc.up.pt/~ip/">Login</a></li>
+            <li><a href="https://mooshak.dcc.fc.up.pt/~ip/">Problem statements (in Mooshak)</a></li>
+            <li><a href="practical/class01.html#mooshak">How to submit</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: the original home page shows the xkcd comic “Code Quality” (images/xkcd_code_quality.png); copy it when the site can be downloaded. -->
+    <p class="uc-small uc-muted">Before you start: <a href="https://xkcd.com/1513/">xkcd 1513, “Code Quality”</a>.</p>
+
+    <!-- Teaching team: edit in course.js (team). -->
+    <uc-team heading="Teaching team"></uc-team>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/index.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/index.html</a>.</p>
+  </uc-page>
+</body>
+</html>

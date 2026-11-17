@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class #01 · First Programs · Introduction to Programming 2025/26</title>
+  <meta name="description" content="Practical class 1 of Introduction to Programming (CC1024): IDLE, first Python programs and first submissions to Mooshak.">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../theme.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <uc-guide week="2">
+      <div class="uc-stack">
+        <p class="class-meta">
+          <span class="uc-tag uc-tag--accent">Practical class #01</span>
+          <span class="uc-mono uc-muted">22/09 to 26/09</span>
+        </p>
+        <h1>Class #01 · First Programs</h1>
+        <p class="uc-prose">Your first Python programs, your first submissions to Mooshak, and how to read input.</p>
+      </div>
+      <section class="uc-section" aria-labelledby="submission">
+        <h2 id="submission">Exercises for submission</h2>
+        <p class="uc-prose">For the <a href="../assessment.html#exercises">“exercises during classes” component</a> of the grade, the exercises you can submit for this class are:</p>
+        <ul class="problems">
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip001.html">[IP001] Hello there.</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip002.html">[IP002] Bond, James Bond!</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip003.html">[IP003] Check Please</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip004.html">[IP004] Circle Math</a> <span class="uc-tag uc-tag--success">main</span> <span class="uc-small uc-muted">weight 30%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip005.html">[IP005] Time Goes By</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip006.html">[IP006] Fast and Furious</a> <span class="uc-tag uc-tag--accent">extra</span> <span class="uc-small uc-muted">weight 20%</span></li>
+          <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip007.html">[IP007] Microwave Oven</a> <span class="uc-tag uc-tag--warning">challenge</span> <span class="uc-small uc-muted">weight 30%</span></li>
+        </ul>
+        <p><strong>Deadline for submission:</strong> <uc-date deadline="p01" format="long"></uc-date> (October 11th; submit to <a href="https://mooshak.dcc.fc.up.pt/~ip/">IP's Mooshak</a>).</p>
+        <div class="uc-callout">
+          <p><strong>You are encouraged to talk to the professors and your colleagues if you encounter difficulties. However, any more direct help that you have received from other colleagues or LLMs should be acknowledged in the comments of the code you submit.</strong></p>
+          <ul class="uc-bullets">
+            <li>After the deadline the problems will still be available on Mooshak, but the submissions will not count towards your grade.</li>
+            <li>Each practical class is worth 10% of your final component for exercises during class. Since there will be 11 classes with submissions, you can achieve maximum grade even without doing all classes.</li>
+            <li>For a problem to count you must pass all tests (that is, to have an <em>Accepted</em>). Even if you solve all problems, the maximum on one class is 100%.</li>
+            <li>To obtain 100% it will always be enough to solve the main exercises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="uc-section" aria-labelledby="skills">
+        <h2 id="skills">Skills</h2>
+        <p class="uc-prose">With the exercises in this class you will develop the following skills:</p>
+        <ol>
+          <li>Explore the IDLE IDE and the Python interpreter for your first Python programs</li>
+          <li>Manipulate simple data and algebraic expressions</li>
+          <li>Handle Input and Output</li>
+          <li>Debug simple programs</li>
+        </ol>
+        <p><strong>If you feel stuck, go back and revise the lecture <a href="../materials.html#lectures">T02: The basics</a>.</strong></p>
+      </section>
+      <section class="uc-section" aria-labelledby="exercises">
+        <h2 id="exercises">Exercises</h2>
+        <uc-exercise id="setup" title="0) Setup of practical classes" open>
+          <p>The DCC labs will have Linux, which will be the operating system also used on the practical tests. Start by looking into useful applications (ask the teacher if you need any help).</p>
+          <ul class="uc-bullets">
+            <li><strong>Firefox/Chrome:</strong> web browsers</li>
+            <li><strong>IDLE:</strong> Python programming environment</li>
+          </ul>
+          <p>If you are on your own machine, go ahead and install <a href="https://www.python.org/downloads/">Python</a>. In classes, we will be using Python version ≥ 3.10 (any version from that value onwards will do just fine). IDLE will most probably be installed by default with a standard Python installation.</p>
+          <p>Perfect! Now it's time to create our first program. Follow the instructions below to set up a very, very basic Python environment:</p>
+          <ol>
+            <li>Open a terminal, and write <code>idle</code>. This should start the IDE.</li>
+            <li>Try out IDLE. This is its interpreter (you can identify it by the <code>&gt;&gt;&gt;</code> symbols just before the cursor). See if it is capable of doing some basic math.</li>
+            <li>Go to <strong>File › New File</strong>. This is where we will write scripts. Write <code>print("Hello World!")</code>. Notice how when you press Enter it does not run anything, but rather changes line? This is a good hint that you are writing a script.</li>
+            <li>Go to <strong>Run › Run Module</strong> (or just F5). This requires saving the file. Feel free to select the name of your first script. Notice how the file extension is <code>.py</code>? This means the machine can recognise it as a Python script.</li>
+            <li>Did it work? If so, great! Otherwise, check all the previous steps… Or immediately panic and beg the teacher for help. It's the first class, anyways ;)</li>
+          </ol>
+          <p>You are now ready to start programming!</p>
+          <details class="uc-hint">
+            <summary>Some notes</summary>
+            <ul class="uc-bullets">
+              <li>You can use other editors or IDEs if you want, such as VSCode, Emacs or Vim, but for this course IDLE is more than enough!</li>
+              <li>You can call the command <code>python</code> to access the interpreter on the command line.</li>
+              <li>You use the command <code>python file.py</code> to run a Python script that is saved on a file with the name <code>file.py</code>.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+        <uc-exercise id="mooshak" title="1) My first Mooshak submissions" mooshak="IP001">
+          <p>On this course we will use Mooshak to automatically evaluate your Python code.</p>
+          <p>For all your submissions you can see the detailed result obtained in each of the test cases. It is also possible to access any public tests for which your program did not receive the <em>Accepted</em> verdict: click the result of your submission, which appears underlined in the listing.</p>
+          <p>To access the system use your login (with the word “up”) and the password sent to your institutional email (message sent on the 21st of September with the title “[IP] Mooshak password - login”). If you have trouble accessing it, send a message on Discord to @PedroRibeiro or ask your practical class professor.</p>
+          <p>In this problem the goal is to make your first submissions in Mooshak, all for <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip001.html">[IP001] Hello there.</a>. The problem statement will also be available inside Mooshak. Always start by carefully reading the problem statement given!</p>
+          <ul class="uc-bullets">
+            <li>Start by submitting an <strong>Accepted</strong> in Mooshak. Create a file called for instance <code>ip001.py</code>, write the code and test it in your computer. Is it doing what you expected?</li>
+            <li>After a correct submission you should now experiment with some common errors to see the behaviour of Mooshak in these cases:
+              <ul class="uc-bullets">
+                <li>Try to get a <strong>Compile Time Error</strong>: for instance, write code that does not close an open parenthesis and resubmit.</li>
+                <li>Try to get a <strong>Wrong Answer</strong>: for instance, change the output to produce a different message than what was requested.</li>
+              </ul>
+            </li>
+            <li>After having these errors your list of submissions should show one line per submission; the number to the left of the result is the number of correct tests.</li>
+          </ul>
+          <!-- TODO: the original page shows two screenshots of Mooshak's listing here; add them when the images are downloaded. -->
+        </uc-exercise>
+        <uc-exercise id="first-input" title="2) Reading my first input" mooshak="IP002">
+          <p>For this exercise you will be solving the problem <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip002.html">[IP002] Bond, James Bond!</a>.</p>
+          <ul class="uc-bullets">
+            <li>Read the problem, code and submit an Accepted solution. Don't forget to test first on your computer!</li>
+            <li>After a correct submission experiment with another type of error, by adding one more instruction to read something from the input (e.g. read three lines of input).</li>
+            <li>Submit to Mooshak to see what happens and to discover your first <strong>Runtime Error</strong>.</li>
+            <li>If you click on the underlined result itself you can see a detailed table with the result of each test case, the first input where your program failed and the respective expected output (the observations report what error was obtained).</li>
+          </ul>
+          <details class="uc-hint">
+            <summary>More notes about Mooshak on this course</summary>
+            <ul class="uc-bullets">
+              <li>You can experiment on your own computer with the provided input examples to check the result (just copy and paste the inputs).</li>
+              <li>If you saved your Python script in a file named <code>ip002.py</code> and your input in a file named <code>input.txt</code>, you can also use redirection to feed your program with that input: <code>python ip002.py &lt; input.txt</code>.</li>
+              <li>All problem statements follow roughly the same format: the problem, the input, the output, the constraints, and at least one input example with its output.</li>
+              <li>You do not need to verify the constraints in your code. On the contrary, the constraints give you guarantees on the input: you can assume the test cases obey them (e.g. the word sizes will never be larger than 20).</li>
+              <li>All the lines of input and output should be terminated with the newline character (including the last line). Failure to do this can result in a <strong>Presentation Error</strong>.</li>
+              <li>You should only output what is given in the statement. Any extra output can make your code be marked as incorrect.</li>
+              <li>You can click on the submission number on the left of each listing row to recover your submitted code.</li>
+              <li>If you press <em>more…</em> you can see an interface for seeing submissions that allows you to select only a certain student, a certain problem, etc.</li>
+              <li>If you submit a file that is exactly the same as one that you already submitted, Mooshak will not accept it and reports a <strong>Duplicate submission</strong>.</li>
+            </ul>
+          </details>
+        </uc-exercise>
+        <uc-exercise id="training" title="3) Training with Mooshak">
+          <p>Read the statements, code and submit Accepted solutions to all of the following problems. Don't forget to test first on your computer!</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip003.html">[IP003] Check Please</a></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip004.html">[IP004] Circle Math</a></li>
+          </ul>
+        </uc-exercise>
+        <uc-exercise id="extra" title="Extra exercises for consolidating your knowledge">
+          <p><span class="uc-tag uc-tag--accent">extra</span> IP Mooshak classes will usually include at least one extra exercise that you can use if you want to keep testing your knowledge of the material. For this class we propose problems for which you only need what you learned in lecture #02, The Basics.</p>
+          <ul class="uc-bullets">
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip005.html">[IP005] Time Goes By</a></li>
+            <li><a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip006.html">[IP006] Fast and Furious</a></li>
+          </ul>
+        </uc-exercise>
+        <uc-exercise id="challenge" title="Challenge exercise" mooshak="IP007">
+          <p><span class="uc-tag uc-tag--warning">challenge</span> IP Mooshak classes will usually include one challenge exercise, which can be much harder than the previous ones and might even need knowledge that was not given explicitly in the course. However, since this is the first challenge, it is almost of the same difficulty as the previous exercises.</p>
+          <p>Solve and submit the problem <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/problems/ip007.html">[IP007] Microwave Oven</a>.</p>
+        </uc-exercise>
+      </section>
+
+      <p>Happy coding! 😊 If you finish everything and want more practice exercises, let us know on Discord: we have plenty more to give you 💻</p>
+    </uc-guide>
+
+    <p class="uc-small uc-muted source-note">Content by <a href="https://www.dcc.fc.up.pt/~pribeiro/">Pedro Ribeiro</a> and Bernardo Portela (DCC/FCUP), migrated from <a href="https://www.dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class01.html">dcc.fc.up.pt/~pribeiro/aulas/ip2526/practical/class01.html</a>.</p>
+  </uc-page>
+</body>
+</html>
