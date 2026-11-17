@@ -203,11 +203,19 @@ O script [`uc-site.py`](https://uc-design-kit.miguelrocha.dev/docs/pt/manter.md)
 
 ## Pesquisa no site
 
-Em preparação para a versão 1.2.0: ainda não se deve ligar num site real, porque a janela de resultados chega na fase seguinte. Com `search: true` no `course.js` e o ficheiro `search-index.js` criado pelo `uc-site.py`, o cabeçalho mostra o botão **Pesquisar** antes do botão de língua, com os atalhos `Ctrl` `K`, `⌘` `K` e `/`.
+Versão 1.2.0, em preparação. Com `search: true` no `course.js` e o ficheiro `search-index.js` criado pelo `uc-site.py`, o cabeçalho mostra o botão **Pesquisar** antes do botão de língua, com os atalhos `Ctrl` `K`, `⌘` `K` e `/`.
 
 - O kit pergunta ao servidor se o índice existe uma vez por visita, quando o browser está desocupado. Enquanto espera, guarda o lugar do botão para nada saltar; se o índice não existir, o botão não aparece.
 - Sem `search` no `course.js` nada disto acontece e não há nenhum pedido a mais.
 - Nos ecrãs estreitos só aparece a lupa, com o mesmo nome acessível.
+
+O botão abre uma janela por cima da página. Só então o browser descarrega a pesquisa (`uc-search.js`, cerca de 5 KB) e o índice; enquanto chegam, a janela diz «A carregar…», e se falharem mostra «Tentar de novo».
+
+- Os resultados aparecem enquanto se escreve, agrupados por página (por exemplo «Semanas · Guião 9»), com as palavras encontradas destacadas. Os prazos e os avisos do `course.js` também são pesquisados, sempre atualizados, nos grupos «Prazos» e «Avisos».
+- As setas escolhem um resultado, `Enter` abre-o e `Esc` fecha a janela e devolve o foco ao botão. Um resultado na mesma página abre a semana ou o exercício que o esconde, desloca a página, destaca-o e leva lá o foco.
+- O rodapé da janela mostra a data do índice («Índice de 20 nov 2025»). Se o `course.js` foi atualizado depois, o kit deixa um aviso na consola do browser para quem mantém o site: é altura de correr o `uc-site.py` outra vez.
+
+As regras da pesquisa (acentos, uma letra trocada, ordem dos resultados) estão em [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md#como-pesquisa), o campo de pesquisa para pôr dentro de uma página.
 
 ## Personalizar
 

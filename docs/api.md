@@ -442,10 +442,70 @@ index, once. Without `search` nothing of this runs and no request is made.
 Stable classes: `uc-search-button`, `uc-search-button--pending`,
 `uc-search-button__label`, `uc-search-button__hint`.
 
+**Search dialog** (v1.2.0, in progress). The button opens a modal
+`<dialog class="uc-search-dialog">`. While `uc-search.js` (about 5 KB
+gzipped) loads, the button has `aria-busy="true"`; if it cannot load,
+"Não foi possível carregar a pesquisa." is announced and the next press tries
+again. While the index downloads the dialog says "A carregar…"; if it fails,
+it shows the same message and a "Tentar de novo" button. Results appear as
+the visitor types, grouped by page (the label is the `pages[]` label of the
+page's `g` and the page title, "Semanas · Guião 9"), at most 5 per page and
+50 in all; `UC_COURSE.deadlines` and the notices already shown by
+`<uc-notices>` are searched at runtime, in the groups "Prazos" and "Avisos"
+(a deadline links to its `url`, else to the `assessment` page; a notice to
+its first link, else to `home`). The field is a `combobox` controlling a
+`listbox` (`aria-activedescendant`; ↑ ↓ Page Up/Down move, Enter opens, Esc
+closes and gives focus back to the opener), the count goes into a
+`role="status"` line, and the footer shows the index date
+(`generated`). A result on the current page sets `#hash`, opens the
+`<details>` around the target, scrolls, flashes it (`uc-target-flash`) and
+moves focus to it. Matching rules: `<uc-search>`. Stable classes: the
+`uc-search__*` classes of `<uc-search>` plus `uc-search-dialog`,
+`uc-search-dialog__bar`, `__close`, `__body`, `__footer`, `__date`, `__keys`.
+
 #### `<uc-hero>`
 
 Course heading block: code, title (as `<h1>`) and tagline from the
 configuration. Children, if any, are appended below the tagline.
+
+#### `<uc-search>`
+
+A search field with its results below it, inside a page (v1.2.0, in
+progress). It is defined in `uc-search.js`, which `uc-kit.js` loads when the
+site's index is known to exist (`uc:searchready`) and the page has a
+`<uc-search>`: without `search` in `course.js` or without the index file the
+element stays empty and nothing is downloaded. The index itself downloads
+the first time the field gets focus ("A carregar…", or "Tentar de novo" on a
+failure).
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `scope` | path prefix | — | Only index pages whose `p` starts with it, e.g. `problemas/`. Without it, deadlines and notices are searched too. |
+| `label` | text | `search.label` ("Pesquisar no site") | Visible label of the field. |
+| `placeholder` | text | `search.placeholder` | Placeholder of the field. |
+| `limit` | number | `10` | Most results shown. |
+
+Matching (shared with the dialog, docs/plan/search-api.md 9): the query is
+folded like the index words (lowercase, accents removed) and split into
+terms; every term of 3+ letters (or with a digit) that is not a stop word
+must be the start of a word of the section title, the page title or the
+text (stop words and 1–2 letter terms only add points; a query made only of
+them requires them all). From 5 letters, one substituted letter or two
+swapped neighbours also match, for fewer points. Points: section title >
+page title > text; ties keep the index order. Entries whose `l` is not the
+active language are skipped. Matched words are wrapped in
+`<mark class="uc-search__mark">` (built as DOM nodes, never HTML from the
+index).
+
+The field is a `combobox` with a visible `<label>`, controlling a `listbox`
+of options grouped by page (`aria-activedescendant`; ↑ ↓ Page Up/Down, Enter
+opens, Esc clears); the count is announced through the shared live region
+when typing pauses. Stable classes: `uc-search`, `uc-search__label`,
+`uc-search__field`, `uc-search__input`, `uc-search__results`,
+`uc-search__group`, `uc-search__group-label`, `uc-search__option`,
+`uc-search__title`, `uc-search__text`, `uc-search__mark`,
+`uc-search__message`, `uc-search__status`, `uc-search__retry`.
+
 
 ### 3.2 Dates, deadlines and notices
 
@@ -1113,7 +1173,12 @@ system font and skips downloading Inter, if a course prefers.
 ## 6. Languages
 
 - Interface strings live in `kit/src/i18n/<lang>.js` (`pt` and `en` in v1).
-  Adding a language means adding one dictionary file.
+  Adding a language means adding one dictionary file. The strings of the
+  site search (`search.label`, `search.placeholder`, `search.loading`,
+  `search.retry`, `search.empty`, `search.count`, `search.countOne`,
+  `search.close`, `search.indexDate`, `search.deadlines`, `search.notices`,
+  `search.keys`) come with `uc-search.js` (`kit/src/search/strings.js`) and
+  never replace a string the site already set with `UC.addTranslations`.
 - **Active language** is resolved in this order: `?lang=` query, saved choice
   (`localStorage` key `uc:lang`), `<html lang>`, first of `languages`.
 - **In-place bilingual content:** any element with a `lang` attribute whose

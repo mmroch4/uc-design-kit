@@ -48,6 +48,7 @@
             { "title": "Visão geral", "path": "pt/componentes/index.html" },
             { "title": "uc-page", "path": "pt/componentes/uc-page.html", "code": true, "component": "uc-page" },
             { "title": "uc-hero", "path": "pt/componentes/uc-hero.html", "code": true, "component": "uc-hero" },
+            { "title": "uc-search", "path": "pt/componentes/uc-search.html", "code": true, "component": "uc-search" },
             { "title": "uc-notices", "path": "pt/componentes/uc-notices.html", "code": true, "component": "uc-notices" },
             { "title": "uc-deadlines", "path": "pt/componentes/uc-deadlines.html", "code": true, "component": "uc-deadlines" },
             { "title": "uc-date", "path": "pt/componentes/uc-date.html", "code": true, "component": "uc-date" },

@@ -65,6 +65,7 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("en", {
   },
   search: {
     button: "Search",
+    failed: "Could not load the search.",
   },
   nav: {
     label: "Course sections",

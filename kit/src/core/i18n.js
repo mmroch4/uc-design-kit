@@ -30,6 +30,11 @@
     }
   };
 
+  /** Adds interface strings that are not defined yet (uc-search.js): what a site already set wins, and nothing re-renders. */
+  UC.internal.addDefaults = (lang, dictionary) => {
+    dictionaries[lang] = Object.assign(Object.create(null), flatten(dictionary, "", {}), dictionaries[lang]);
+  };
+
   function lookup(lang, key) {
     const base = lang.split("-")[0];
     for (const candidate of [lang, base, FALLBACK_LANGUAGE]) {

@@ -1,0 +1,11 @@
+- text: Pesquisar nos problemas
+- combobox "Pesquisar nos problemas" [expanded]: arvore
+- listbox:
+  - group "Altura de uma árvore":
+    - text: Altura de uma árvore
+    - option "Altura de uma árvore Calcula a altura de uma árvore binária." [selected]:
+      - text: Altura de uma
+      - mark: árvore
+      - text: Calcula a altura de uma
+      - mark: árvore
+      - text: binária.

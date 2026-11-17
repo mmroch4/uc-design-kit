@@ -55,6 +55,19 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
 
+### [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-search`, `__label`, `__field` | O próprio `<uc-search>`, o rótulo e o campo. |
+| `.uc-search__input` | O campo de pesquisa, aqui e na janela. |
+| `.uc-search__results`, `__group`, `__group-label` | A lista de resultados, cada grupo (uma página, os prazos, os avisos) e o seu título. |
+| `.uc-search__option`, `__title`, `__text` | Um resultado (uma ligação), o seu título e o excerto. |
+| `.uc-search__mark` | Uma palavra encontrada, destacada. |
+| `.uc-search__message`, `__status`, `__retry` | «A carregar…» ou «Sem resultados» (no campo), a mesma linha na janela, e o botão «Tentar de novo». |
+| `.uc-search-dialog`, `__bar`, `__close`, `__body` | A janela do botão «Pesquisar»: a barra com o campo, o botão «Fechar» e a zona dos resultados. |
+| `.uc-search-dialog__footer`, `__date`, `__keys` | O rodapé da janela: a data do índice e as teclas. |
+
 ### [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md)
 
 | Classe | Elemento |
