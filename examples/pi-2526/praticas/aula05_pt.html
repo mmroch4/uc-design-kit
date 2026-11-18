@@ -56,60 +56,86 @@
 <uc-exercise id="exercicio-1" title="Entendendo Apontadores">
 <ol>
 <li>Sejam <code><strong>i</strong></code> uma variável inteira e <code><strong>p</strong></code> e <code><strong>q</strong></code> apontadores para inteiros. Indique quais das seguintes atribuições são corretas. <br/>
-<ol type="a">
-<li><pre>p = i;
-</pre>
-</li><li><pre>*p = i;
-</pre>
-</li><li><pre>p = &amp;q;
-</pre>
-</li><li><pre>p = &amp;i;
-</pre>
-</li><li><pre>&amp;i = p;
-</pre>
-</li><li><pre>p = q;
-</pre>
-</li><li><pre>p = *q;
-</pre>
-</li><li><pre>*p = q;
-</pre>
-</li><li><pre>*p = *q;
-</pre>
-</li></ol>
+<uc-question multiple>
+<p>Que atribuições são corretas? (pode haver mais do que uma)</p>
+<ul>
+  <li><code>p = i;</code></li>
+  <li data-correct><code>*p = i;</code></li>
+  <li><code>p = &amp;q;</code></li>
+  <li data-correct><code>p = &amp;i;</code></li>
+  <li><code>&amp;i = p;</code></li>
+  <li data-correct><code>p = q;</code></li>
+  <li><code>p = *q;</code></li>
+  <li><code>*p = q;</code></li>
+  <li data-correct><code>*p = *q;</code></li>
+</ul>
+<p data-explanation>Os dois lados têm de ter o mesmo tipo: <code>p</code> e <code>q</code> são <code>int *</code>, <code>*p</code>, <code>*q</code> e <code>i</code> são <code>int</code>. <code>&amp;q</code> é <code>int **</code>, e <code>&amp;i</code> não pode estar à esquerda de uma atribuição.</p>
+</uc-question>
 </li>
 <li>Sejam <code><strong>i</strong></code> uma variável inteira e <code><strong>p</strong></code> um apontador para <code><strong>i</strong></code>. Indique quais das seguintes instruções de leitura e escrita são corretas.<br/>
-<ol type="a">
-<li><pre>printf(<mark>"%d"</mark>,i);
-</pre>
-</li><li><pre>scanf(<mark>"%d"</mark>,i);
-</pre>
-</li><li><pre>scanf(<mark>"%d"</mark>,&amp;i);
-</pre>
-</li><li><pre>printf(<mark>"%d"</mark>,p);
-</pre>
-</li><li><pre>printf(<mark>"%d"</mark>,*p);
-</pre>
-</li><li><pre>scanf(<mark>"%d"</mark>,p);
-</pre>
-</li><li><pre>printf(<mark>"%p"</mark>,p);
-</pre>
-</li><li><pre>printf(<mark>"%p"</mark>,i);
-</pre>
-</li><li><pre>printf(<mark>"%p"</mark>,*p);
-</pre>
-</li></ol>
+<uc-question multiple>
+<p>Que instruções são corretas? (pode haver mais do que uma)</p>
+<ul>
+  <li data-correct><code>printf("%d",i);</code></li>
+  <li><code>scanf("%d",i);</code></li>
+  <li data-correct><code>scanf("%d",&amp;i);</code></li>
+  <li><code>printf("%d",p);</code></li>
+  <li data-correct><code>printf("%d",*p);</code></li>
+  <li data-correct><code>scanf("%d",p);</code></li>
+  <li data-correct><code>printf("%p",p);</code></li>
+  <li><code>printf("%p",i);</code></li>
+  <li><code>printf("%p",*p);</code></li>
+</ul>
+<p data-explanation><code>%d</code> escreve um <code>int</code> (<code>i</code> ou <code>*p</code>) e lê para um endereço de <code>int</code> (<code>&amp;i</code> ou <code>p</code>); <code>%p</code> escreve um apontador (<code>p</code>). <code>scanf("%d",i)</code> passa um valor em vez de um endereço.</p>
+</uc-question>
 </li>
 <li>Suponha que as seguintes declarações estão em execução:<br/>
 <pre>int a[] = {5, 15, 34, 54, 14, 2, 52, 72}; 
 int *p = &amp;a[1], *q = &amp;a[5];
 </pre>
-<ol type="a">
-<li>Qual é o valor de <code><strong>*(p+3)</strong></code>?</li>
-<li>Qual é o valor de <code><strong>*(q-3)</strong></code>?</li>
-<li>Qual é o valor de <code><strong>q - p</strong></code>?</li>
-<li>A condição <code><strong>p &lt; q</strong></code> é verdadeira ou falsa?</li>
-<li>A condição <code><strong>*p &lt; *q</strong></code> é verdadeira ou falsa?</li>
-</ol>
+<uc-question>
+<p>Qual é o valor de <code>*(p+3)</code>?</p>
+<ul>
+  <li>54</li>
+  <li data-correct>14</li>
+  <li>2</li>
+</ul>
+<p data-explanation><code>p</code> aponta para <code>a[1]</code>, por isso <code>p+3</code> aponta para <code>a[4]</code>, que vale 14.</p>
+</uc-question>
+<uc-question>
+<p>Qual é o valor de <code>*(q-3)</code>?</p>
+<ul>
+  <li>15</li>
+  <li data-correct>34</li>
+  <li>54</li>
+</ul>
+<p data-explanation><code>q</code> aponta para <code>a[5]</code>, por isso <code>q-3</code> aponta para <code>a[2]</code>, que vale 34.</p>
+</uc-question>
+<uc-question>
+<p>Qual é o valor de <code>q - p</code>?</p>
+<ul>
+  <li data-correct>4</li>
+  <li>5</li>
+  <li>16</li>
+</ul>
+<p data-explanation>A diferença de dois apontadores para o mesmo array conta elementos, não bytes: 5 − 1 = 4.</p>
+</uc-question>
+<uc-question>
+<p>A condição <code>p &lt; q</code> é verdadeira ou falsa?</p>
+<ul>
+  <li data-correct>Verdadeira</li>
+  <li>Falsa</li>
+</ul>
+<p data-explanation><code>p</code> aponta para <code>a[1]</code> e <code>q</code> para <code>a[5]</code>, que está depois no array.</p>
+</uc-question>
+<uc-question>
+<p>A condição <code>*p &lt; *q</code> é verdadeira ou falsa?</p>
+<ul>
+  <li>Verdadeira</li>
+  <li data-correct>Falsa</li>
+</ul>
+<p data-explanation>Compara os valores: <code>*p</code> é 15 e <code>*q</code> é 2.</p>
+</uc-question>
 </li>
 <li>Suponha que <code><strong>high</strong></code>, <code><strong>low</strong></code> e <code><strong>middle</strong></code> são
 	todas variáveis apontadores do mesmo tipo, e que <code><strong>low</strong></code>

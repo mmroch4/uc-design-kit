@@ -82,6 +82,7 @@ O HTML feito à mão foi trocado pelos componentes e blocos do kit:
 - **Testes práticos**: sem a data, os turnos e a duração repetidos (já estão no `<uc-assessment-info>`); informações num `dl.uc-facts`; problemas de treino em `<uc-problems track>`.
 - **Código**: `codigo/index.html` em `<uc-materials>`; widgets nas páginas de ordenação (`uc-widget-sort`), recursão (`uc-widget-recursion`, Hanói), lista ligada (`uc-widget-list`), pilha e filas (`uc-widget-stack-queue`).
 - **Sobre, materiais, avaliação**: `ol.uc-steps`, `ul.uc-tags`, livros em `uc-card` com `uc-tag`, cartões de progresso em `uc-links--grid`.
+- **Perguntas de verificação** (18 nov): as perguntas 1.1 a 1.3 da aula 5 (atribuições com apontadores, `printf`/`scanf`, aritmética de apontadores) passaram a `<uc-question>`, com respostas e explicações escritas por nós (o original não as tinha). Nas aulas 2, 6 e 9 não há perguntas de escolha múltipla: são exercícios de simular, descrever ou programar.
 - **theme.css**: de 87 linhas para uma regra; as outras já não eram usadas.
 - **Erros do original corrigidos**: "weigth", "Ouput", "Exercício" nos guiões em inglês, gralhas em PT (genuíno, problema, valor, produzindo…), a página de ajuda do Mooshak que falava de Java e de Estruturas de Dados. Ficheiros sem uso apagados (mooshak.gif, en.png, pt.png, duas imagens em `images/`). `contacts.c` e `thanoi.c` não existiam no original e saíram da lista de código.
 
