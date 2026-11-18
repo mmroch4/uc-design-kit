@@ -809,6 +809,28 @@ async function checkWidgets(browser, origin, relative, axeSource) {
   }
   await context.close();
 
+  // controls="none" (8.3): a still figure of the last step, no player, not focusable, predict and editable ignored.
+  {
+    const { context: fresh, page: still } = await open(browser, origin, relative);
+    const issues = await still.evaluate(() =>
+      Array.from(document.querySelectorAll('.uc-widget[controls="none"]')).flatMap((widget) => {
+        widget.build();
+        const found = [];
+        const shown = (selector) => {
+          const node = widget.querySelector(selector);
+          return node && getComputedStyle(node).display !== "none" && !node.hidden;
+        };
+        if (widget.step !== widget.total - 1) found.push(`shows step ${widget.step + 1} of ${widget.total}, not the last`);
+        for (const part of [".uc-widget__player", ".uc-widget__say", ".uc-widget__side", ".uc-widget__predict", ".uc-widget__edit"]) if (shown(part)) found.push(`${part} is visible`);
+        if (widget.querySelector(".uc-widget__stage").hasAttribute("tabindex")) found.push("the stage is focusable");
+        if (!shown(".uc-widget__svg") || !widget.querySelector(".uc-widget__svg").getAttribute("aria-label")) found.push("the drawing or its description is missing");
+        return found.map((text) => `[widget] still #${widget.id || widget.localName}: ${text}`);
+      }),
+    );
+    problems.push(...issues);
+    await fresh.close();
+  }
+
   // Without JavaScript the teacher's fallback is there.
   {
     const { context: noJs, page: plain } = await open(browser, origin, relative, { javaScriptEnabled: false });

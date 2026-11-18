@@ -54,6 +54,9 @@
   margin-inline: auto;
 }
 :where(.uc-widget__side) { display: grid; gap: var(--uc-space-4); min-width: 0; }
+/* controls="none": a still figure, one column, no player, narration or side panel */
+:where(.uc-widget--still .uc-widget__body) { grid-template-columns: minmax(0, 1fr); }
+:where(.uc-widget--still) :where(.uc-widget__side, .uc-widget__player, .uc-widget__say, .uc-widget__score-box) { display: none; }
 :where(.uc-widget__heading) {
   margin: 0 0 var(--uc-space-2);
   color: var(--uc-color-text-secondary);

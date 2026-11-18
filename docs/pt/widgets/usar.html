@@ -196,10 +196,10 @@
               <tr><td><code>algorithm</code></td><td>um nome da lista do widget</td><td>o primeiro</td><td>Que algoritmo da família corre.</td></tr>
               <tr><td><code>algorithms</code></td><td>nomes da lista do widget, separados por espaços</td><td>ausente</td><td>Botões por cima do desenho para o estudante trocar de algoritmo (por exemplo os quatro percursos de <code>&lt;uc-widget-bst&gt;</code>). Começa em <code>algorithm</code>.</td></tr>
               <tr><td><code>speed</code></td><td>milissegundos, 200 a 5000</td><td><code>900</code></td><td>Tempo entre passos ao reproduzir.</td></tr>
-              <tr><td><code>controls</code></td><td><code>full</code>, <code>compact</code></td><td><code>full</code></td><td><code>compact</code>: só Recuar, Passo e o contador.</td></tr>
+              <tr><td><code>controls</code></td><td><code>full</code>, <code>compact</code>, <code>none</code></td><td><code>full</code></td><td><code>compact</code>: só Recuar, Passo e o contador. <code>none</code>: figura parada, sem controlos (ver <a href="#figura">Figura parada</a>).</td></tr>
               <tr><td><code>editable</code></td><td>booleano</td><td>ausente</td><td>O estudante muda os dados e corre outra vez.</td></tr>
               <tr><td><code>predict</code></td><td>booleano</td><td>ausente</td><td>Antes de alguns passos, o estudante escolhe o que acontece a seguir.</td></tr>
-              <tr><td><code>start</code></td><td><code>0</code>, um número de passo, <code>end</code></td><td><code>0</code></td><td>Passo mostrado ao construir. <code>end</code> mostra logo o resultado.</td></tr>
+              <tr><td><code>start</code></td><td><code>0</code>, um número de passo, <code>end</code></td><td><code>0</code> (<code>end</code> com <code>controls="none"</code>)</td><td>Passo mostrado ao construir. <code>end</code> mostra logo o resultado.</td></tr>
               <tr><td><code>seed</code></td><td>inteiro</td><td><code>1</code></td><td>Semente dos dados <code>random</code>: a mesma semente dá sempre os mesmos dados.</td></tr>
               <tr><td><code>caption</code></td><td>texto</td><td>o nome do algoritmo</td><td>Legenda visível e nome acessível do widget.</td></tr>
             </tbody>
@@ -207,6 +207,23 @@
         </div>
         <p>Um valor inválido de um destes atributos volta ao valor por omissão e deixa um aviso na consola. Dados inválidos (<code>values="5 x 3"</code>) mostram uma nota de erro por cima do texto do professor.</p>
         <p>Valores: inteiros separados por espaços ou vírgulas (<code>values="5 3 8 1"</code>), ou <code>values="random 8"</code> / <code>values="random 8 1..50"</code> para valores aleatórios, sempre os mesmos para a mesma <code>seed</code>.</p>
+        <h2 id="figura">Figura parada</h2>
+        <p>Com <code>controls="none"</code>, o widget passa a ser uma figura: desenha um só passo (o de <code>start</code>, por omissão o último) e mais nada. Não tem leitor, frase do passo, pseudocódigo nem painel de estado, e ignora <code>predict</code> e <code>editable</code>. Ficam a legenda, o desenho (com a descrição em texto para leitores de ecrã) e a vista em texto.</p>
+        <p>Serve para trocar uma imagem de uma estrutura de dados por um desenho que segue as cores da cadeira, imprime bem e muda quando os valores do texto mudam.</p>
+        <p>O último passo de alguns widgets marca tudo como terminado (a verde). Para desenhar só a estrutura, sem marcas, nos widgets que aceitam <code>ops</code>, use <code>ops="" start="0"</code>: <code>&lt;uc-widget-list controls="none" values="3 7 5" ops="" start="0"&gt;</code>.</p>
+        <!-- docs:demo src="../../demos/uc-widget-bst/still.html" title="uma árvore binária de pesquisa como figura parada" height="420" -->
+        <div class="docs-demo" id="demo-uc-widget-bst-still">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-widget-bst/still.html" title="Demonstração: uma árvore binária de pesquisa como figura parada" loading="lazy" style="height: 420px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-widget-bst controls=&quot;none&quot; values=&quot;14 4 18 3 9 16 20 7 15 17 5&quot; caption=&quot;A árvore depois das inserções&quot;&gt;
+  &lt;p&gt;Árvore binária de pesquisa com raiz 14, depois de inserir 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5.&lt;/p&gt;
+&lt;/uc-widget-bst&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-widget-bst/still.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
         <h2 id="leitor">Leitor e teclado</h2>
         <p>Cada widget tem Reproduzir/Pausar, Recuar, Passo, Reiniciar, uma barra para saltar para qualquer passo e o contador "Passo 4 de 17". Nunca começa a reproduzir sozinho e para quando sai do ecrã. Com o foco no widget:</p>
         <div class="uc-table">
@@ -292,6 +309,7 @@
           <li><a href="#importar">Importar</a></li>
           <li class="docs-toc__sub"><a href="#pre-carregar">Pré-carregar o núcleo</a></li>
           <li><a href="#atributos-comuns">Atributos comuns</a></li>
+          <li><a href="#figura">Figura parada</a></li>
           <li><a href="#leitor">Leitor e teclado</a></li>
           <li><a href="#pseudocodigo">Pseudocódigo próprio</a></li>
           <li><a href="#previsoes">Previsões e edição</a></li>

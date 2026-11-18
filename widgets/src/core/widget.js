@@ -136,8 +136,13 @@ export function createWidget(UC) {
 
     get compact() {
       const value = this.getAttribute("controls");
-      if (value && value !== "full" && value !== "compact") this.warn("controls");
+      if (value && value !== "full" && value !== "compact" && value !== "none") this.warn("controls");
       return value === "compact";
+    }
+
+    /** controls="none": a still figure of one step (default: the last), with no player (8.3). */
+    get still() {
+      return this.getAttribute("controls") === "none";
     }
 
     get seed() {
@@ -167,7 +172,7 @@ export function createWidget(UC) {
     }
 
     startIndex() {
-      const value = (this.getAttribute("start") || "0").trim();
+      const value = (this.getAttribute("start") || (this.still ? "end" : "0")).trim();
       if (value === "end") return this.stepList.length - 1;
       if (!/^\d+$/.test(value)) {
         this.warn("start");
@@ -222,7 +227,7 @@ export function createWidget(UC) {
 
     play() {
       this.build();
-      if (this.timer || this.stepList.length < 2) return;
+      if (this.timer || this.still || this.stepList.length < 2) return;
       if (this.index >= this.stepList.length - 1) this.show(0);
       this.timer = window.setInterval(() => {
         if (!this.forward(false) && !this.pending) this.pause(true);
@@ -369,16 +374,19 @@ export function createWidget(UC) {
       this.choices = this.offered.map((name) =>
         el("button", { type: "button", class: "uc-button uc-button--sm", "aria-pressed": "false", "data-algorithm": name, onClick: () => this.choose(name) }),
       );
-      this.choiceBox = el("div", { class: "uc-widget__choices", role: "group", hidden: !this.choices.length }, this.choices);
+      const still = this.still;
+      this.choiceBox = el("div", { class: "uc-widget__choices", role: "group", hidden: still || !this.choices.length }, this.choices);
       this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       this.svg.setAttribute("class", "uc-widget__svg");
       this.svg.setAttribute("role", "img");
       this.svg.setAttribute("focusable", "false");
-      this.stage = el("div", { class: "uc-widget__stage", tabindex: "0", role: "group", "aria-labelledby": id("caption"), "aria-describedby": id("say") }, this.svg);
+      this.stage = still
+        ? el("div", { class: "uc-widget__stage" }, this.svg)
+        : el("div", { class: "uc-widget__stage", tabindex: "0", role: "group", "aria-labelledby": id("caption"), "aria-describedby": id("say") }, this.svg);
       this.codeTitle = el("p", { class: "uc-widget__heading", id: id("code") });
       this.codeBox = el("div", { class: "uc-widget__code", role: "group", "aria-labelledby": id("code") }, this.codeTitle);
       this.panelBox = el("dl", { class: "uc-widget__panel" });
-      this.sayLine = el("p", { class: "uc-widget__say", id: id("say") });
+      this.sayLine = el("p", { class: "uc-widget__say", id: id("say"), hidden: still });
       this.predictBox = el("div", { class: "uc-widget__predict", hidden: true });
 
       this.backButton = button("back", () => this.back());
@@ -401,9 +409,9 @@ export function createWidget(UC) {
         controls.unshift(this.playButton);
         controls.push(this.resetButton, this.scrubber);
       }
-      this.player = el("div", { class: "uc-widget__player", role: "group" }, controls, this.counter);
+      this.player = el("div", { class: "uc-widget__player", role: "group", hidden: still }, controls, this.counter);
 
-      this.scoreLine = el("p", { class: "uc-widget__score", hidden: !this.hasAttribute("predict") });
+      this.scoreLine = el("p", { class: "uc-widget__score", hidden: still || !this.hasAttribute("predict") });
       this.feedback = el("p", { class: "uc-widget__feedback" });
       this.textButton = el("button", {
         type: "button",
@@ -413,10 +421,11 @@ export function createWidget(UC) {
         onClick: () => this.toggleText(),
       });
       this.tools = el("div", { class: "uc-widget__tools" }, this.textButton);
-      if (this.hasAttribute("editable")) this.tools.append(this.makeEditor(id));
+      if (this.hasAttribute("editable") && !still) this.tools.append(this.makeEditor(id));
       this.textBox = el("div", { class: "uc-widget__text", id: id("text"), hidden: true });
 
-      const side = el("div", { class: "uc-widget__side" }, this.codeBox, this.panelBox);
+      const side = el("div", { class: "uc-widget__side", hidden: still }, this.codeBox, this.panelBox);
+      if (still) this.classList.add("uc-widget--still");
       this.figure = el(
         "figure",
         { class: "uc-widget__figure", "aria-labelledby": id("caption") },
@@ -436,7 +445,7 @@ export function createWidget(UC) {
       this.codeBox.append(this.codeHolder);
       this.fallback.before(this.errorNote);
       this.append(this.figure, this.live);
-      this.addEventListener("keydown", (event) => this.onKey(event));
+      if (!still) this.addEventListener("keydown", (event) => this.onKey(event));
       document.addEventListener("visibilitychange", () => document.hidden && this.pause());
     }
 
@@ -707,7 +716,7 @@ export function createWidget(UC) {
 
     ask(n, focus) {
       const question = this.stepList[n] && this.stepList[n].predict;
-      if (!this.hasAttribute("predict") || !question || (focus && this.answered.has(n))) return false;
+      if (!this.hasAttribute("predict") || this.still || !question || (focus && this.answered.has(n))) return false;
       this.pause();
       this.pending = n;
       const options = question.options.map((option, i) =>

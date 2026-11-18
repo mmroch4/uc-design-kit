@@ -82,6 +82,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 - The phase plans and handoff notes in `docs/plan/` (history in git); the
   four design contracts moved to `docs/architecture/`.
 
+## Widgets [Unreleased]
+
+### Added
+- `controls="none"` on every widget: a still figure of one step (by default
+  the last), with no player, narration, side panel, `predict` or `editable`,
+  and a stage the keyboard skips. It replaces pictures of data structures
+  (docs/architecture/widgets-api.md 8.3).
+
 ## Widgets [1.0.0] - 2026-11-17
 
 The algorithm widget library (`widgets/v1/`, frozen as `widgets/v1.0.0/`)

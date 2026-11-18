@@ -340,8 +340,11 @@ class TestBSTree {
 $ java TestBSTree
             </script>
           </uc-code>
-          <p>Espreite e acompanhe a implementação do método <code>insert</code> da classe <code>BSTree</code>. Relembre que numa árvore binária de pesquisa, para um qualquer nó, todos os elementos da subárvore esquerda são menores e todos os elementos da subárvore direita são maiores. Para o ajudar a compreender, a imagem seguinte mostra o conteúdo da árvore após cada inserção (em cada passo o elemento inserido está indicado a amarelo):</p>
-          <p><img src="../imagens/bst_insert.png" width="1342" height="681" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
+          <p>Espreite e acompanhe a implementação do método <code>insert</code> da classe <code>BSTree</code>. Relembre que numa árvore binária de pesquisa, para um qualquer nó, todos os elementos da subárvore esquerda são menores e todos os elementos da subárvore direita são maiores. Para o ajudar a compreender, a demonstração seguinte insere os valores um a um e mostra o caminho que cada um percorre desde a raiz:</p>
+          <!-- Widget <uc-widget-bst> (widgets/v1/): as inserções de TestBSTree, passo a passo (substitui imagens/bst_insert.png) -->
+          <uc-widget-bst values="14 4 18 3 9 16 20 7 15 17 5" controls="compact" caption="Inserir 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5">
+            <p><img src="../imagens/bst_insert.png" width="1342" height="681" alt="Sequência de árvores binárias de pesquisa mostrando o estado da árvore após cada inserção dos valores 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5, com o elemento acabado de inserir destacado a amarelo."></p>
+          </uc-widget-bst>
           <ul class="uc-bullets">
             <li>Depois da remoção de 14, que número ficou na raiz? Acompanhe a implementação do método <code>remove</code> da classe <code>BSTree</code> para verificar como isto é feito.</li>
           </ul>

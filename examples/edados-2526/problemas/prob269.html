@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-list.js" defer></script>
 </head>
 <body>
   <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob269.html">
@@ -24,7 +25,10 @@
       </p></div>
 
       <h2>Código base</h2>
-      <p><img alt="" class="uc-content__float" height="100" loading="lazy" src="imagens/linkedlist.png" width="699"/>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (<a href="../codigo/lista_ligada_simples.html">ver código</a> | download de <a href="../codigo/Node.java">Node.Java</a> e <a href="../codigo/SinglyLinkedList.java">SinglyLinkedList.Java</a>), que representa uma lista ligada simples e tem disponíveis métodos para adicionar ou remover um elemento no início ou no final, devolver o tamanho, saber se a lista está vazia ou retornar representação em <em>string</em> para escrita (tal como dado nas aulas).</p>
+      <uc-widget-list controls="none" values="3 7 5" ops="" start="0" caption="Lista ligada simples">
+        <p>Lista ligada simples com três nós: cada nó guarda um valor e a referência para o seguinte; o último aponta para <code>null</code>.</p>
+      </uc-widget-list>
+      <p>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (<a href="../codigo/lista_ligada_simples.html">ver código</a> | download de <a href="../codigo/Node.java">Node.Java</a> e <a href="../codigo/SinglyLinkedList.java">SinglyLinkedList.Java</a>), que representa uma lista ligada simples e tem disponíveis métodos para adicionar ou remover um elemento no início ou no final, devolver o tamanho, saber se a lista está vazia ou retornar representação em <em>string</em> para escrita (tal como dado nas aulas).</p>
       <h2>Métodos a implementar</h2>
       <p>Deve acrescentar à classe dada os seguintes métodos (<strong>não modificando nenhum dos métodos já existentes no código base</strong>):
 

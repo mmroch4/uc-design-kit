@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../theme.css">
   <script src="../course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../../widgets/v1/uc-widget-list.js" defer></script>
 </head>
 <body>
   <uc-page current="materials" source="https://www.dcc.fc.up.pt/~fds/aulas/EDados/2526/praticas/problems/prob191.html">
@@ -20,8 +21,10 @@
       <uc-problem code="ED191" judge="mooshak" deadline="sub06" track></uc-problem>
     </header>
     <div class="uc-content">
-      <p><img alt="" height="100" loading="lazy" src="imagens/linkedlist.png" width="699"/>
-      </p><h2>Código base</h2>
+      <uc-widget-list controls="none" values="3 7 5" ops="" start="0" caption="Lista ligada simples">
+        <p>Lista ligada simples com três nós: cada nó guarda um valor e a referência para o seguinte; o último aponta para <code>null</code>.</p>
+      </uc-widget-list>
+      <h2>Código base</h2>
       <p>Use como base a classe <strong>SinglyLinkedList&lt;T&gt;</strong> (descrita
       no exercício 1 da aula prática 06 - não esquecer da
       classe <strong>Node</strong>) que implementa uma lista ligada simples e tem

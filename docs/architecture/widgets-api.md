@@ -187,10 +187,10 @@ Every widget accepts these; widget-specific attributes (`values`, `ops`,
 | --- | --- | --- | --- |
 | `algorithm` | a name from the widget's list | the widget's first | Which algorithm of the family runs (`bubble`, `insertion`, `binary`, `dijkstra`…). Widgets with one algorithm ignore it. |
 | `speed` | milliseconds, 200–5000 | `900` | Time between steps while playing. Clamped to the range. |
-| `controls` | `full`, `compact` | `full` | `compact`: only Back, Step and the step counter (for small inline demos). |
+| `controls` | `full`, `compact`, `none` | `full` | `compact`: only Back, Step and the step counter (for small inline demos). `none`: a still figure of one step, in place of a picture (8.3). |
 | `editable` | boolean | absent | The student can change the input and run again (section 12). |
 | `predict` | boolean | absent | Before some steps the student chooses what happens next (section 11). |
-| `start` | `0`, a step number, `end` | `0` | Step shown when the widget is built. `end` shows the result first (useful after a static explanation). |
+| `start` | `0`, a step number, `end` | `0` (`end` with `controls="none"`) | Step shown when the widget is built. `end` shows the result first (useful after a static explanation). |
 | `seed` | integer | `1` | Seed for `random` inputs (5.1). The same seed gives the same input and steps on every visit. |
 | `caption` | text | generated (`widget.<name>.caption`, e.g. "Ordenação por inserção") | Visible caption (`<figcaption>`) and accessible name of the widget. Bilingual pages give one `<span lang>` per language inside a `<template data-caption>` instead (14.2). |
 
@@ -534,6 +534,26 @@ The stage (`tabindex="0"`) is the place to press keys; the focus ring is
 `--uc-focus-ring`. Native controls keep their own keys (the range input moves
 with arrows by itself). Focus never moves on its own, except into the
 `predict` question (11) and back.
+
+### 8.3 Still figure (`controls="none"`)
+
+`controls="none"` turns a widget into a still figure: it draws one step (the
+`start` step, by default the last) and nothing else. There is no player, no
+narration line, no pseudocode or state panel and no algorithm buttons;
+`predict` and `editable` are ignored and the stage is not focusable, so the
+keyboard skips it. The caption, the drawing (with its text description as the
+accessible name, 10.2) and the text view stay. The element methods (15) still
+work, so a script can move the figure to another step.
+
+Use it in place of a picture of a data structure: the figure follows the
+course colours, prints well and never goes out of date with the values in the
+text. The last step of some widgets marks everything as done; to draw
+the bare structure, widgets with `ops` take `ops="" start="0"` (the structure of
+`values` before any operation).
+
+```html
+<uc-widget-bst controls="none" values="14 4 18 3 9 16 20 7 15 17 5"></uc-widget-bst>
+```
 
 ## 9. Pseudocode panel
 
