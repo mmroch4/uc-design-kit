@@ -44,16 +44,32 @@ Todos os widgets aceitam estes atributos; os próprios de cada um estão na sua 
 | `algorithm` | um nome da lista do widget | o primeiro | Que algoritmo da família corre. |
 | `algorithms` | nomes da lista do widget, separados por espaços | ausente | Botões por cima do desenho para o estudante trocar de algoritmo (por exemplo os quatro percursos de `<uc-widget-bst>`). Começa em `algorithm`. |
 | `speed` | milissegundos, 200 a 5000 | `900` | Tempo entre passos ao reproduzir. |
-| `controls` | `full`, `compact` | `full` | `compact`: só Recuar, Passo e o contador. |
+| `controls` | `full`, `compact`, `none` | `full` | `compact`: só Recuar, Passo e o contador. `none`: figura parada, sem controlos (ver [Figura parada](#figura)). |
 | `editable` | booleano | ausente | O estudante muda os dados e corre outra vez. |
 | `predict` | booleano | ausente | Antes de alguns passos, o estudante escolhe o que acontece a seguir. |
-| `start` | `0`, um número de passo, `end` | `0` | Passo mostrado ao construir. `end` mostra logo o resultado. |
+| `start` | `0`, um número de passo, `end` | `0` (`end` com `controls="none"`) | Passo mostrado ao construir. `end` mostra logo o resultado. |
 | `seed` | inteiro | `1` | Semente dos dados `random`: a mesma semente dá sempre os mesmos dados. |
 | `caption` | texto | o nome do algoritmo | Legenda visível e nome acessível do widget. |
 
 Um valor inválido de um destes atributos volta ao valor por omissão e deixa um aviso na consola. Dados inválidos (`values="5 x 3"`) mostram uma nota de erro por cima do texto do professor.
 
 Valores: inteiros separados por espaços ou vírgulas (`values="5 3 8 1"`), ou `values="random 8"` / `values="random 8 1..50"` para valores aleatórios, sempre os mesmos para a mesma `seed`.
+
+## Figura parada
+
+Com `controls="none"`, o widget passa a ser uma figura: desenha um só passo (o de `start`, por omissão o último) e mais nada. Não tem leitor, frase do passo, pseudocódigo nem painel de estado, e ignora `predict` e `editable`. Ficam a legenda, o desenho (com a descrição em texto para leitores de ecrã) e a vista em texto.
+
+Serve para trocar uma imagem de uma estrutura de dados por um desenho que segue as cores da cadeira, imprime bem e muda quando os valores do texto mudam.
+
+O último passo de alguns widgets marca tudo como terminado (a verde). Para desenhar só a estrutura, sem marcas, nos widgets que aceitam `ops`, use `ops="" start="0"`: `<uc-widget-list controls="none" values="3 7 5" ops="" start="0">`.
+
+Exemplo (uma árvore binária de pesquisa como figura parada), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-widget-bst/still.html):
+
+```html
+<uc-widget-bst controls="none" values="14 4 18 3 9 16 20 7 15 17 5" caption="A árvore depois das inserções">
+  <p>Árvore binária de pesquisa com raiz 14, depois de inserir 14, 4, 18, 3, 9, 16, 20, 7, 15, 17 e 5.</p>
+</uc-widget-bst>
+```
 
 ## Leitor e teclado
 
