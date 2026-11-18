@@ -52,60 +52,86 @@
 <uc-exercise id="exercicio-1" title="Understanding Pointers">
 <ol>
 <li>Let <code><strong>i</strong></code> be an integer variable and <code><strong>p</strong></code> and <code><strong>q</strong></code> be pointers to integers. Indicate which of the following assignments are legal.<br/>
-<ol type="a">
-<li><pre>p = i;
-</pre>
-</li><li><pre>*p = i;
-</pre>
-</li><li><pre>p = &amp;q;
-</pre>
-</li><li><pre>p = &amp;i;
-</pre>
-</li><li><pre>&amp;i = p;
-</pre>
-</li><li><pre>p = q;
-</pre>
-</li><li><pre>p = *q;
-</pre>
-</li><li><pre>*p = q;
-</pre>
-</li><li><pre>*p = *q;
-</pre>
-</li></ol>
+<uc-question multiple>
+<p>Which assignments are legal? (there may be more than one)</p>
+<ul>
+  <li><code>p = i;</code></li>
+  <li data-correct><code>*p = i;</code></li>
+  <li><code>p = &amp;q;</code></li>
+  <li data-correct><code>p = &amp;i;</code></li>
+  <li><code>&amp;i = p;</code></li>
+  <li data-correct><code>p = q;</code></li>
+  <li><code>p = *q;</code></li>
+  <li><code>*p = q;</code></li>
+  <li data-correct><code>*p = *q;</code></li>
+</ul>
+<p data-explanation>Both sides must have the same type: <code>p</code> and <code>q</code> are <code>int *</code>, while <code>*p</code>, <code>*q</code> and <code>i</code> are <code>int</code>. <code>&amp;q</code> is an <code>int **</code>, and <code>&amp;i</code> cannot be on the left of an assignment.</p>
+</uc-question>
 </li>
 <li>Let <code><strong>i</strong></code> be an integer variable and <code><strong>p</strong></code> a pointer to <code><strong>i</strong></code>. Indicate which of the following read and write instructions are correct.<br/>
-<ol type="a">
-<li><pre>printf(<mark>"%d"</mark>,i);
-</pre>
-</li><li><pre>scanf(<mark>"%d"</mark>,i);
-</pre>
-</li><li><pre>scanf(<mark>"%d"</mark>,&amp;i);
-</pre>
-</li><li><pre>printf(<mark>"%d"</mark>,p);
-</pre>
-</li><li><pre>printf(<mark>"%d"</mark>,*p);
-</pre>
-</li><li><pre>scanf(<mark>"%d"</mark>,p);
-</pre>
-</li><li><pre>printf(<mark>"%p"</mark>,p);
-</pre>
-</li><li><pre>printf(<mark>"%p"</mark>,i);
-</pre>
-</li><li><pre>printf(<mark>"%p"</mark>,*p);
-</pre>
-</li></ol>
+<uc-question multiple>
+<p>Which instructions are correct? (there may be more than one)</p>
+<ul>
+  <li data-correct><code>printf("%d",i);</code></li>
+  <li><code>scanf("%d",i);</code></li>
+  <li data-correct><code>scanf("%d",&amp;i);</code></li>
+  <li><code>printf("%d",p);</code></li>
+  <li data-correct><code>printf("%d",*p);</code></li>
+  <li data-correct><code>scanf("%d",p);</code></li>
+  <li data-correct><code>printf("%p",p);</code></li>
+  <li><code>printf("%p",i);</code></li>
+  <li><code>printf("%p",*p);</code></li>
+</ul>
+<p data-explanation><code>%d</code> prints an <code>int</code> (<code>i</code> or <code>*p</code>) and reads into the address of an <code>int</code> (<code>&amp;i</code> or <code>p</code>); <code>%p</code> prints a pointer (<code>p</code>). <code>scanf("%d",i)</code> passes a value instead of an address.</p>
+</uc-question>
 </li>
 <li>Suppose that the following declarations are in effect:<br/>
 <pre>int a[] = {5, 15, 34, 54, 14, 2, 52, 72}; 
 int *p = &amp;a[1], *q = &amp;a[5];
 </pre>
-<ol type="a">
-<li>What is the value of <code><strong>*(p+3)</strong></code>?</li>
-<li>What is the value of <code><strong>*(q-3)</strong></code>?</li>
-<li>What is the value of <code><strong>q - p</strong></code>?</li>
-<li>Is the condition <code><strong>p &lt; q</strong></code> true or false?</li>
-<li>Is the condition <code><strong>*p &lt; *q</strong></code> true or false?</li>
-</ol>
+<uc-question>
+<p>What is the value of <code>*(p+3)</code>?</p>
+<ul>
+  <li>54</li>
+  <li data-correct>14</li>
+  <li>2</li>
+</ul>
+<p data-explanation><code>p</code> points to <code>a[1]</code>, so <code>p+3</code> points to <code>a[4]</code>, which is 14.</p>
+</uc-question>
+<uc-question>
+<p>What is the value of <code>*(q-3)</code>?</p>
+<ul>
+  <li>15</li>
+  <li data-correct>34</li>
+  <li>54</li>
+</ul>
+<p data-explanation><code>q</code> points to <code>a[5]</code>, so <code>q-3</code> points to <code>a[2]</code>, which is 34.</p>
+</uc-question>
+<uc-question>
+<p>What is the value of <code>q - p</code>?</p>
+<ul>
+  <li data-correct>4</li>
+  <li>5</li>
+  <li>16</li>
+</ul>
+<p data-explanation>The difference of two pointers into the same array counts elements, not bytes: 5 − 1 = 4.</p>
+</uc-question>
+<uc-question>
+<p>Is the condition <code>p &lt; q</code> true or false?</p>
+<ul>
+  <li data-correct>True</li>
+  <li>False</li>
+</ul>
+<p data-explanation><code>p</code> points to <code>a[1]</code> and <code>q</code> to <code>a[5]</code>, which comes later in the array.</p>
+</uc-question>
+<uc-question>
+<p>Is the condition <code>*p &lt; *q</code> true or false?</p>
+<ul>
+  <li>True</li>
+  <li data-correct>False</li>
+</ul>
+<p data-explanation>It compares the values: <code>*p</code> is 15 and <code>*q</code> is 2.</p>
+</uc-question>
 </li>
 <li>Suppose that <code><strong>high</strong></code>, <code><strong>low</strong></code> and <code><strong>middle</strong></code> are all pointer variables of the same type, and that <code><strong>low</strong></code> and <code><strong>high</strong></code> point to elements of an array. Why is the following statement illegal, and how could it be fixed?<br/>
 <pre>middle = (low + high) / 2;
