@@ -21,40 +21,32 @@
  * --concurrency=n checks n pages at the same time (default: CPU count, max 4).
  * Set TEST_TODAY=YYYY-MM-DD to change the frozen date (default 2025-11-27).
  */
-import { readFile, mkdir } from "node:fs/promises";
-import { createRequire } from "node:module";
+import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { chromium } from "playwright";
-import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
-import { findPages } from "./page-list.mjs";
-import { ROOT, routePublicKit, startServer } from "./static-server.mjs";
+import { AXE_TAGS, injectAxe, loadAxe, waitForGrading, waitForReveal, withBrowser, withToday } from "./lib/browser.mjs";
+import { filterArgs, logShard, matchFilters, parseConcurrency, parseShard, reportPage, runPool, shardOf } from "./lib/runner.mjs";
+import { findPages } from "./lib/pages.mjs";
+import { ROOT, routePublicKit } from "./lib/server.mjs";
 
-const require = createRequire(import.meta.url);
 const SCREENSHOT_DIR = path.join(ROOT, "tests", "screenshots");
-const TODAY = process.env.TEST_TODAY || "2025-11-27";
 const VIEWPORTS = [
   { name: "desktop", width: 1280, height: 900 },
   { name: "phone", width: 390, height: 844 },
 ];
 const NARROW_WIDTH = 360;
-// Pages that load the kit from its public URL (the template, which must work
-// when opened from disk) are served the kit of this checkout instead, so the
-// check tests the code under review and needs no network.
-const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
 const BLOCKING_IMPACTS = new Set(["serious", "critical"]);
 
-/** A browser context whose requests to the public kit URL are answered from kit/ on disk. */
+/**
+ * A browser context whose requests to the public kit URL are answered from
+ * kit/ on disk: pages that load the kit from its public URL (the template,
+ * which must work when opened from disk) get the kit of this checkout, so the
+ * check tests the code under review and needs no network.
+ */
 async function newContext(browser, options) {
   const context = await browser.newContext(options);
   await routePublicKit(context);
   return context;
-}
-
-function withToday(url) {
-  const parsed = new URL(url);
-  parsed.searchParams.set("today", TODAY);
-  return parsed.toString();
 }
 
 /** Opens a page and records console errors, page errors and failed local requests. */
@@ -76,15 +68,8 @@ async function openPage(context, url, origin) {
     warnings.push(`request failed: ${request.url()} (${request.failure()?.errorText})`);
   });
   await page.goto(url, { waitUntil: "load" });
-  // Pages with <uc-page> stay hidden until the kit reveals them (.uc-visible on <html>).
-  const revealed = await page
-    .waitForFunction(() => !document.querySelector("uc-page") || document.documentElement.classList.contains("uc-visible"), null, { timeout: 3000 })
-    .then(() => true, () => false);
-  if (!revealed) problems.push("page was not revealed: <html> never got .uc-visible");
-  // <uc-grading> comes from uc-grading.js, loaded next to uc-kit.js (core/modules.js).
-  await page
-    .waitForFunction(() => !document.querySelector("uc-grading") || Boolean(customElements.get("uc-grading")), null, { timeout: 4000 })
-    .catch(() => problems.push("<uc-grading> was never defined: uc-grading.js did not load"));
+  if (!(await waitForReveal(page))) problems.push("page was not revealed: <html> never got .uc-visible");
+  if (!(await waitForGrading(page))) problems.push("<uc-grading> was never defined: uc-grading.js did not load");
   await page.waitForTimeout(300);
   return { page, problems, warnings };
 }
@@ -112,7 +97,7 @@ async function checkPage(browser, item, origin, axeSource, options) {
     }
 
     if (viewport.name === "desktop") {
-      await result.page.addScriptTag({ content: axeSource });
+      await injectAxe(result.page, axeSource);
       const axe = await result.page.evaluate(async (tags) => {
         // eslint-disable-next-line no-undef
         const report = await axe.run(document, { runOnly: { type: "tag", values: tags } });
@@ -199,47 +184,32 @@ async function checkPage(browser, item, origin, axeSource, options) {
 async function main() {
   const args = process.argv.slice(2);
   const options = { screenshots: args.includes("--screenshots") };
-  const filters = filterArgs(args);
   const shard = parseShard(args);
   const concurrency = parseConcurrency(args);
 
-  const matching = (await findPages()).filter(
-    (file) => filters.length === 0 || filters.some((filter) => file.includes(filter)),
-  );
+  const matching = matchFilters(await findPages(), filterArgs(args));
   const pages = shardOf(matching, shard);
   if (pages.length === 0) {
     console.log("No pages to check.");
     return;
   }
-  if (shard.total > 1) console.log(`Shard ${shard.index}/${shard.total}: ${pages.length} of ${matching.length} pages.`);
+  logShard(shard, pages.length, matching.length);
   if (options.screenshots) await mkdir(SCREENSHOT_DIR, { recursive: true });
 
-  const axeSource = await readFile(require.resolve("axe-core/axe.min.js"), "utf8");
-  const server = await startServer();
-  const origin = `http://127.0.0.1:${server.address().port}`;
-  const browser = await chromium.launch();
-
+  const axeSource = await loadAxe();
   let failed = 0;
-  try {
-    await runPool(
+  await withBrowser(({ browser, origin }) =>
+    runPool(
       pages,
       concurrency,
       (file) => checkPage(browser, file, origin, axeSource, options),
       (file, result) => {
         const relative = path.relative(ROOT, file).split(path.sep).join("/");
         const problems = result.error ? [`check crashed: ${result.error.stack || result.error}`] : result.problems;
-        const warnings = result.error ? [] : result.warnings;
-        const status = problems.length ? "FAIL" : "ok  ";
-        console.log(`${status} ${relative}`);
-        for (const problem of problems) console.log(`       ✗ ${problem}`);
-        for (const warning of warnings) console.log(`       ! ${warning}`);
-        if (problems.length) failed += 1;
+        if (reportPage(relative, problems, result.error ? [] : result.warnings)) failed += 1;
       },
-    );
-  } finally {
-    await browser.close();
-    server.close();
-  }
+    ),
+  );
 
   console.log(`\n${pages.length - failed}/${pages.length} pages passed.`);
   if (options.screenshots) console.log(`Screenshots in ${path.relative(ROOT, SCREENSHOT_DIR)}/`);

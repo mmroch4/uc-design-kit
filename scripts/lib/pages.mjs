@@ -6,8 +6,8 @@
  */
 import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
-import { WIDGETS, listReleases } from "./releases.mjs";
-import { ROOT } from "./static-server.mjs";
+import { WIDGETS, listReleases } from "../releases.mjs";
+import { ROOT } from "./server.mjs";
 
 const PAGE_DIRS = ["tests/pages", "examples", "template", "docs"];
 const IGNORED_DIRS = new Set(["node_modules", ".git", "screenshots"]);

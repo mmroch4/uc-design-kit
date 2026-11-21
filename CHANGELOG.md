@@ -22,6 +22,12 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `docs/assets/kit-config.js` became the generated `docs/assets/course.js`;
   the documentation's own search code (about 230 lines of `docs.js` and its
   dialog styles) is gone.
+- Maintainer scripts (no change for pages): what the checks and builds share
+  lives in `scripts/lib/` (local server, browser and page waits, pages,
+  shards and reports, size budgets and built outputs; every budget in one
+  place). `check-a11y.mjs` and `check-search.mjs` are split by theme into
+  `scripts/a11y/` and `scripts/search/`; the commands and their options are
+  the same.
 
 ### Fixed
 - `<uc-materials>`: an item with many links no longer squeezes its title to

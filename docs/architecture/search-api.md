@@ -456,7 +456,7 @@ snapshots and keyboard tests. Targets 44 px; `<mark>` contrast checked.
 | File | Budget (gzip) | Checked by |
 | --- | --- | --- |
 | `uc-kit.js` | 48 KB total (blocks-api 1.5); search adds about 1 KB (anchors, detection, button, shortcuts) | `build.mjs` |
-| `uc-search.js` (new, in `kit/v1/`) | 6 KB: engine, dialog, `<uc-search>` | `build.mjs`, new budget |
+| `uc-search.js` (new, in `kit/v1/`) | 6 KB: engine, dialog, `<uc-search>` | `build.mjs`, budget in `scripts/lib/budgets.mjs` |
 | `uc-search.css` | inside `uc-kit.css` (small: dialog and results) | — |
 
 ### 11.2 Tests

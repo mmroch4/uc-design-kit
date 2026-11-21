@@ -25,16 +25,15 @@
  * --check it fails when one of them says something else.
  *
  * It fails when uc-kit.js (48 KB gzipped), uc-grading.js (8 KB) or
- * uc-search.js (6 KB) is over its size budget and prints the sizes on every run.
+ * uc-search.js (6 KB) is over its size budget (scripts/lib/budgets.mjs) and
+ * prints the sizes on every run.
  *
  * Usage: node scripts/build.mjs [--check]
  *   --check  exits with an error when kit/v1, a documentation page or the
  *            template zip is out of date, or a release was modified (used in CI).
  */
-import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { gzipSync } from "node:zlib";
+import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { transform } from "esbuild";
 import { KIT, WIDGETS, listReleases, verifyRelease } from "./releases.mjs";
 import { buildDocs, buildSearchIndex } from "./docs.mjs";
@@ -42,16 +41,10 @@ import { buildTemplateZip } from "./template-zip.mjs";
 import { buildLlms } from "./llms.mjs";
 import { buildWidgets } from "./build-widgets.mjs";
 import { buildExampleIndexes } from "./example-indexes.mjs";
+import { KIT_BUDGETS, checkBudgets, writeOutputs } from "./lib/budgets.mjs";
+import { ROOT } from "./lib/server.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(KIT, "src");
-const OUT = path.join(KIT, "v1");
-/** Size budget of uc-kit.js, gzipped (docs/architecture/blocks-api.md 1.5). */
-const JS_BUDGET_GZIP = 48 * 1024;
-/** Size budget of uc-search.js, gzipped (docs/architecture/search-api.md 11.1). */
-const SEARCH_BUDGET_GZIP = 6 * 1024;
-/** Size budget of uc-grading.js, gzipped (docs/architecture/grading-api.md 2.3). */
-const GRADING_BUDGET_GZIP = 8 * 1024;
 
 /* ---------- one version ---------- */
 
@@ -180,34 +173,15 @@ async function main() {
     ...(await bundle(manifest.search, "js", "uc-search.js")),
     ...(await bundle(manifest.css, "css", "uc-kit.css")),
   };
-  await mkdir(OUT, { recursive: true });
   let failed = versionProblems > 0;
-  for (const [name, content] of Object.entries(outputs)) {
-    const target = path.join(OUT, name);
-    const previous = await readFile(target, "utf8").catch(() => "");
-    if (previous === content) continue;
-    if (check) {
-      console.error(`kit/v1/${name} is out of date. Run: npm run build`);
-      failed = true;
-    } else {
-      await writeFile(target, content);
-      console.log(`wrote kit/v1/${name} (${(content.length / 1024).toFixed(1)} KB)`);
-    }
-  }
-  for (const [name, limit, where] of [
-    ["uc-kit.js", JS_BUDGET_GZIP, "docs/architecture/blocks-api.md 1.5"],
-    ["uc-grading.js", GRADING_BUDGET_GZIP, "docs/architecture/grading-api.md 2.3"],
-    ["uc-search.js", SEARCH_BUDGET_GZIP, "docs/architecture/search-api.md 11.1"],
-  ]) {
-    const gzipped = gzipSync(outputs[name], { level: 9 }).length;
-    const budget = `${name}: ${(gzipped / 1024).toFixed(1)} KB gzipped (budget ${limit / 1024} KB)`;
-    if (gzipped > limit) {
-      console.error(`${budget}: over budget. Make the new code smaller or raise the budget in ${where} first.`);
-      failed = true;
-    } else {
-      console.log(budget);
-    }
-  }
+  if ((await writeOutputs(outputs, "kit/v1", { check })) > 0) failed = true;
+  const budgets = KIT_BUDGETS.map(({ name, budget, where }) => ({
+    name,
+    content: outputs[name],
+    budget,
+    advice: `Make the new code smaller or raise the budget in ${where} first.`,
+  }));
+  if (checkBudgets(budgets) > 0) failed = true;
   // Widgets first: they fill the catalogue page that the docs and llms steps read.
   if ((await buildWidgets({ check })) > 0) failed = true;
   if ((await buildDocs({ check })) > 0) failed = true;

@@ -1,6 +1,6 @@
 /**
  * The local web server and the public-kit route shared by the browser checks
- * (check-pages.mjs and check-a11y.mjs): pages are served from the repository
+ * (check-pages, check-a11y, check-dom, check-search): pages are served from the repository
  * over HTTP, and requests to the published kit are answered from kit/ on disk,
  * so a check never depends on the live site.
  */
@@ -9,7 +9,7 @@ import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 /** The kit's public URL, as the template and the examples load it. */
 export const PUBLIC_KIT = "https://uc-design-kit.miguelrocha.dev/kit/";

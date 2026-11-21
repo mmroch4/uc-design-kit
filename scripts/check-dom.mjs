@@ -2,7 +2,7 @@
 /**
  * "Nothing changed" check, the safety net of every refactoring.
  *
- * Opens every page that check-pages.mjs opens (scripts/page-list.mjs), at
+ * Opens every page that check-pages.mjs opens (scripts/lib/pages.mjs), at
  * 1280 x 900 with the frozen date, once the kit has rendered it, and records:
  *   - the rendered DOM (document.documentElement.outerHTML, normalised), and
  *   - the accessibility tree of <body> (Playwright ariaSnapshot),
@@ -33,25 +33,19 @@ import { createHash } from "node:crypto";
 import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { gzipSync } from "node:zlib";
-import { chromium } from "playwright";
-import { filterArgs, parseConcurrency, parseShard, runPool, shardOf } from "./check-runner.mjs";
-import { exists, findPages } from "./page-list.mjs";
-import { ROOT, routePublicKit, startServer } from "./static-server.mjs";
+import { gzipSize } from "./lib/budgets.mjs";
+import { TODAY, waitForGrading, waitForReveal, waitForSearchButton, withBrowser, withToday } from "./lib/browser.mjs";
+import { exists, findPages } from "./lib/pages.mjs";
+import { filterArgs, logShard, matchFilters, option, parseConcurrency, parseShard, runPool, shardOf } from "./lib/runner.mjs";
+import { ROOT, routePublicKit } from "./lib/server.mjs";
 
 const RECORD = path.join(ROOT, "tests", "dom-record.json");
-const TODAY = process.env.TEST_TODAY || "2025-11-27";
 const VIEWPORT = { width: 1280, height: 900 };
 /** Built folders whose .js and .css files must not grow (refactoring rule). */
 const BUILT_DIRS = ["kit/v1", "widgets/v1"];
 
 const sha = (text) => createHash("sha256").update(text).digest("hex").slice(0, 16);
 const toPosix = (file) => file.split(path.sep).join("/");
-
-function option(args, name) {
-  const arg = args.find((value) => value.startsWith(`--${name}=`));
-  return arg ? arg.slice(name.length + 3) : "";
-}
 
 /** "examples/x/index.html" or "tests/widgets/compat.html?release=v1.0.0", relative to root. */
 function pageKey(item, root) {
@@ -67,7 +61,7 @@ async function builtSizes(root = ROOT) {
     if (!(await exists(absolute))) continue;
     for (const name of (await readdir(absolute)).sort()) {
       if (!/\.(js|css)$/.test(name)) continue;
-      sizes[`${dir}/${name}`] = gzipSync(await readFile(path.join(absolute, name)), { level: 9 }).length;
+      sizes[`${dir}/${name}`] = gzipSize(await readFile(path.join(absolute, name)));
     }
   }
   return sizes;
@@ -145,15 +139,9 @@ async function capture(browser, key, origin, root) {
   const context = await newContext(browser, origin, root);
   try {
     const page = await context.newPage();
-    const url = new URL(`${origin}/${key}`);
-    url.searchParams.set("today", TODAY);
-    await page.goto(url.toString(), { waitUntil: "load" });
-    await page
-      .waitForFunction(() => !document.querySelector("uc-page") || document.documentElement.classList.contains("uc-visible"), null, { timeout: 3000 })
-      .catch(() => {});
-    await page
-      .waitForFunction(() => !document.querySelector("uc-grading") || Boolean(customElements.get("uc-grading")), null, { timeout: 4000 })
-      .catch(() => {});
+    await page.goto(withToday(`${origin}/${key}`), { waitUntil: "load" });
+    await waitForReveal(page);
+    await waitForGrading(page);
     if (key.startsWith("tests/widgets/compat.html")) {
       await page.waitForFunction(() => document.documentElement.dataset.compat, null, { timeout: 10000 }).catch(() => {});
     }
@@ -167,7 +155,7 @@ async function capture(browser, key, origin, root) {
       .catch(() => {});
     await page.waitForLoadState("networkidle").catch(() => {});
     // The header search button stays a hidden placeholder until the index answers.
-    await page.waitForFunction(() => !document.querySelector(".uc-search-button--pending"), null, { timeout: 3000 }).catch(() => {});
+    await waitForSearchButton(page, 3000);
     await page.waitForTimeout(300);
     // Let the last layout settle, so no resize observer runs after forgetLayout().
     await page.evaluate(() => document.fonts.ready.then(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
@@ -190,24 +178,20 @@ async function capture(browser, key, origin, root) {
 
 /** Renders `keys` from `root`; resolves with { key: { dom, aria } | { error } }. */
 async function renderAll(keys, root, concurrency, onPage = () => {}) {
-  const server = await startServer(root);
-  const origin = `http://127.0.0.1:${server.address().port}`;
-  const browser = await chromium.launch();
   const results = {};
-  try {
-    await runPool(
-      keys,
-      concurrency,
-      (key) => capture(browser, key, origin, root),
-      (key, result) => {
-        results[key] = result;
-        onPage(key, result);
-      },
-    );
-  } finally {
-    await browser.close();
-    server.close();
-  }
+  await withBrowser(
+    ({ browser, origin }) =>
+      runPool(
+        keys,
+        concurrency,
+        (key) => capture(browser, key, origin, root),
+        (key, result) => {
+          results[key] = result;
+          onPage(key, result);
+        },
+      ),
+    root,
+  );
   return results;
 }
 
@@ -266,10 +250,10 @@ async function main() {
   if (update && (filters.length || shard.total > 1)) throw new Error("--update rewrites the whole record: run it without filters or --shard");
 
   const all = (await findPages()).map((item) => pageKey(item, ROOT));
-  const matching = all.filter((key) => !filters.length || filters.some((filter) => key.includes(filter)));
+  const matching = matchFilters(all, filters);
   const keys = shardOf(matching, shard);
   const record = JSON.parse(await readFile(RECORD, "utf8").catch(() => '{"pages":{},"sizes":{}}'));
-  if (shard.total > 1) console.log(`Shard ${shard.index}/${shard.total}: ${keys.length} of ${matching.length} pages.`);
+  logShard(shard, keys.length, matching.length);
 
   const problems = [];
   const changed = [];

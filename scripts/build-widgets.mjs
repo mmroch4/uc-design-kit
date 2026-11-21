@@ -7,28 +7,21 @@
  *   catalog.json          every widgets/src/<name>/meta.json, with the gzip size
  *
  * Every file is minified with a source map (sources under ../src). It fails
- * when a file is over its gzip budget (18.2), prints every size, and with
+ * when a file is over its gzip budget (18.2, scripts/lib/budgets.mjs), prints every size, and with
  * --check reports out-of-date files instead of writing them. It also fills
  * the catalogue cards of the docs page (<!-- widgets:catalog --> markers).
  * Called by scripts/build.mjs; the kit build is not touched.
  */
-import { readFile, writeFile, mkdir, readdir, stat } from "node:fs/promises";
-import { gzipSync } from "node:zlib";
+import { readFile, writeFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { pathToFileURL } from "node:url";
 import { build } from "esbuild";
+import { KB, WIDGET_BUDGETS, checkBudgets, gzipSize, writeOutputs } from "./lib/budgets.mjs";
+import { ROOT } from "./lib/server.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(ROOT, "widgets", "src");
 const OUT = path.join(ROOT, "widgets", "v1");
 const CATALOG_PAGE = path.join(ROOT, "docs", "pt", "widgets", "index.html");
-const KB = 1024;
-/** Gzip budgets (docs/architecture/widgets-api.md 18.2). */
-export const BUDGETS = { core: 12 * KB, widget: 8 * KB, css: 4 * KB };
-
-const gzip = (text) => gzipSync(text, { level: 9 }).length;
-const kb = (bytes) => `${(bytes / KB).toFixed(1)} KB`;
-
 /** Widget folders: every widgets/src/<name>/ with a meta.json. */
 export async function widgetNames() {
   const names = [];
@@ -121,41 +114,17 @@ export async function buildWidgets({ check = false } = {}) {
       name: meta.name,
       file: `${meta.name}.js`,
       ...meta,
-      gzip: gzip(outputs[`${meta.name}.js`]),
+      gzip: gzipSize(outputs[`${meta.name}.js`]),
     })),
   };
   outputs["catalog.json"] = `${JSON.stringify(catalog, null, 2)}\n`;
 
-  let failed = 0;
-  await mkdir(OUT, { recursive: true });
-  for (const [name, content] of Object.entries(outputs)) {
-    const target = path.join(OUT, name);
-    const previous = await readFile(target, "utf8").catch(() => "");
-    if (previous === content) continue;
-    if (check) {
-      console.error(`widgets/v1/${name} is out of date. Run: npm run build`);
-      failed += 1;
-    } else {
-      await writeFile(target, content);
-      console.log(`wrote widgets/v1/${name} (${kb(content.length)})`);
-    }
-  }
-
-  const sizes = [
-    ["uc-widget-core.js", BUDGETS.core, "Make the core smaller or raise the budget in docs/architecture/widgets-api.md 18.2 first."],
-    ...metas.map((meta) => [`${meta.name}.js`, BUDGETS.widget, `Make ${meta.name} smaller (docs/architecture/widgets-api.md 18.2).`]),
-    ["uc-widget.css", BUDGETS.css, "Make the widget styles smaller (docs/architecture/widgets-api.md 18.2)."],
-  ];
-  for (const [name, budget, advice] of sizes) {
-    const size = gzip(outputs[name]);
-    const line = `${name}: ${kb(size)} gzipped (budget ${budget / KB} KB)`;
-    if (size > budget) {
-      console.error(`${line}: over budget. ${advice}`);
-      failed += 1;
-    } else {
-      console.log(line);
-    }
-  }
+  let failed = await writeOutputs(outputs, "widgets/v1", { check });
+  failed += checkBudgets([
+    { name: "uc-widget-core.js", budget: WIDGET_BUDGETS.core, advice: "Make the core smaller or raise the budget in docs/architecture/widgets-api.md 18.2 first." },
+    ...metas.map((meta) => ({ name: `${meta.name}.js`, budget: WIDGET_BUDGETS.widget, advice: `Make ${meta.name} smaller (docs/architecture/widgets-api.md 18.2).` })),
+    { name: "uc-widget.css", budget: WIDGET_BUDGETS.css, advice: "Make the widget styles smaller (docs/architecture/widgets-api.md 18.2)." },
+  ].map((item) => ({ ...item, content: outputs[item.name] })));
 
   const page = await readFile(CATALOG_PAGE, "utf8").catch(() => null);
   if (page !== null) {

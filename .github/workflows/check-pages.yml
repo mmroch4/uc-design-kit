@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   # The browser checks, split in parallel shards: each one checks a quarter of
-  # the pages (scripts/check-runner.mjs), several pages at a time. Together the
+  # the pages (scripts/lib/runner.mjs), several pages at a time. Together the
   # shards run every check of `npm test`. Screenshots only on main.
   test:
     name: test (${{ matrix.shard }}/4)
