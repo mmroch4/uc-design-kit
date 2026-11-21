@@ -2,24 +2,45 @@
  * Theme customiser (docs/pt/personalizar/tema.html). Loaded only by that page,
  * after docs.js (which turns the result block into "course.js / theme.css" tabs).
  *
- *   - controls: accent colour, corners, base font size, font, content width
- *   - preview: an iframe of the demo course (docs/demos/theme/), with the tokens
- *     set on its <html> (by postMessage) as the controls change and after each navigation
+ *   - controls: ready-made theme, accent colour, corners, base font size, font,
+ *     content width. A ready-made theme moves the controls it sets to its own
+ *     values (THEME_VALUES); the tokens written are the ones that differ from
+ *     the kit with that theme.
+ *   - preview: an iframe of the demo course (docs/demos/theme/), with the theme
+ *     and the tokens set on its <html> (by postMessage) as the controls change
+ *     and after each navigation
  *   - contrast of the accent against white and against its soft background
- *   - result: the accentColor line and a theme.css with only the changed tokens
- *   - state in the URL hash, e.g. #accent=0F766E&radius=4&size=16&font=system&width=1200
+ *   - result: the accentColor (and theme) lines and a theme.css with only the
+ *     changed tokens, or the complete starter file (docs/assets/theme-starter.js,
+ *     built from tokens.css) with those tokens uncommented
+ *   - state in the URL hash, e.g. #theme=compact&accent=0F766E&radius=4&size=16&font=system&width=1200&file=full
  */
 (function () {
   "use strict";
 
-  const DEFAULTS = { accent: "1D4ED8", radius: 12, size: 16, font: "inter", width: 1200 };
+  const DEFAULTS = { theme: "none", accent: "1D4ED8", radius: 12, size: 16, font: "inter", width: 1200, file: "changed" };
   const OPTIONS = {
+    theme: ["none", "compact", "serif", "high-contrast"],
     radius: [0, 4, 6, 8, 12],
     size: [15, 16, 17],
-    font: ["inter", "system"],
+    font: ["inter", "system", "serif"],
     width: [960, 1080, 1200, 1320],
+    file: ["changed", "full"],
   };
-  const SYSTEM_FONT = "system-ui, sans-serif";
+  /** The controls each ready-made theme sets (kit/src/themes/*.css). */
+  const THEME_VALUES = {
+    none: {},
+    compact: { radius: 8, size: 15 },
+    serif: { font: "serif" },
+    "high-contrast": { accent: "1E3A8A" },
+  };
+  const FONTS = {
+    inter: 'Inter, system-ui, -apple-system, "Segoe UI", sans-serif',
+    system: "system-ui, sans-serif",
+    serif: 'Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif',
+  };
+  /** The controls that are tokens (theme and file are not). */
+  const TOKEN_KEYS = ["accent", "radius", "size", "font", "width"];
   const MIN_CONTRAST = 4.5;
   // The soft accent background is the accent mixed with white (tokens.css: accent-soft).
   const SOFT_SHARE = 0.08;
@@ -89,26 +110,49 @@
       ["--uc-radius-md", px(radius.md)],
       ["--uc-radius-lg", px(radius.lg)],
       ["--uc-font-size-base", rootSize(values.size)],
-      ["--uc-font-sans", values.font === "system" ? SYSTEM_FONT : null],
+      ["--uc-font-sans", FONTS[values.font]],
       ["--uc-content-max", px(values.width)],
     ];
   }
 
-  /** The tokens whose value differs from the kit's. */
+  /** The controls of the kit with `theme` applied: what the page shows without a theme.css. */
+  function baseline(theme) {
+    return { ...DEFAULTS, ...THEME_VALUES[theme], theme };
+  }
+
+  /** The tokens whose value differs from the kit's with the chosen theme. */
   function changedTokens(values) {
-    const defaults = new Map(tokens(DEFAULTS));
+    const defaults = new Map(tokens(baseline(values.theme)));
     return tokens(values).filter(([name, value]) => value !== defaults.get(name));
   }
 
   /* ---------- generated files ---------- */
 
   function courseLine(values) {
-    return `accentColor: "#${values.accent}",`;
+    const accent = `accentColor: "#${values.accent}",`;
+    return values.theme === "none" ? accent : `${accent}\ntheme: "${values.theme}",`;
+  }
+
+  /**
+   * The starter theme.css (every token commented out) with the changed tokens
+   * uncommented; a token the starter does not list is added at the end of :root.
+   */
+  function fullThemeCss(changed) {
+    let css = window.UC_DOCS_THEME_STARTER || "";
+    const missing = [];
+    changed.forEach(([name, value]) => {
+      const line = new RegExp(`^(\\s*)/\\* ${name}: [^\\n]*; \\*/$`, "m");
+      if (line.test(css)) css = css.replace(line, `$1${name}: ${value};`);
+      else missing.push(`  ${name}: ${value};`);
+    });
+    if (missing.length) css = css.replace(/\n}\n/, `\n${missing.join("\n")}\n}\n`);
+    return css;
   }
 
   function themeCss(values) {
     const changed = changedTokens(values);
-    if (!changed.length) return "/* Os valores escolhidos são os do kit: não é preciso theme.css. */\n";
+    if (values.file === "full" && window.UC_DOCS_THEME_STARTER) return fullThemeCss(changed);
+    if (!changed.length) return "/* Os valores escolhidos são os do kit (e do tema pronto): não é preciso theme.css. */\n";
     const lines = ["/* theme.css: tokens escolhidos no personalizador de tema do UC Design Kit. */", ":root {"];
     changed.forEach(([name, value]) => {
       if (name === "--uc-color-accent") lines.push("  /* O accentColor do course.js, se existir, prevalece sobre esta linha. */");
@@ -122,28 +166,33 @@
 
   function readHash() {
     const params = new URLSearchParams(window.location.hash.slice(1));
-    const values = { ...DEFAULTS };
+    const theme = OPTIONS.theme.includes(params.get("theme")) ? params.get("theme") : DEFAULTS.theme;
+    const values = baseline(theme);
+    ["font", "file"].forEach((key) => {
+      if (OPTIONS[key].includes(params.get(key))) values[key] = params.get(key);
+    });
     const accent = normalizeHex(params.get("accent"));
     if (accent) values.accent = accent;
     ["radius", "size", "width"].forEach((key) => {
       const number = Number(params.get(key));
       if (params.has(key) && OPTIONS[key].includes(number)) values[key] = number;
     });
-    if (OPTIONS.font.includes(params.get("font"))) values.font = params.get("font");
     return values;
   }
 
   function hasStateInHash() {
-    return /(^|&)(accent|radius|size|font|width)=/.test(window.location.hash.slice(1));
+    return /(^|&)(theme|accent|radius|size|font|width|file)=/.test(window.location.hash.slice(1));
   }
 
   function writeHash(values) {
     const params = new URLSearchParams({
+      theme: values.theme,
       accent: values.accent,
       radius: values.radius,
       size: values.size,
       font: values.font,
       width: values.width,
+      file: values.file,
     });
     history.replaceState(null, "", `#${params}`);
   }
@@ -175,7 +224,7 @@
     const hex = $("docs-theme-hex");
     if (normalizeHex(hex.value) !== values.accent) hex.value = `#${values.accent}`;
     check("swatch", values.accent);
-    ["radius", "size", "font", "width"].forEach((key) => check(key, values[key]));
+    ["theme", "radius", "size", "font", "width", "file"].forEach((key) => check(key, values[key]));
   }
 
   /* ---------- contrast readout ---------- */
@@ -217,7 +266,10 @@
    */
   function applyToFrame(values) {
     const target = $("docs-theme-frame").contentWindow;
-    if (target) target.postMessage({ type: "uc-docs:theme", tokens: tokens(values) }, "*");
+    // Unchanged tokens are removed, so the theme's (or the kit's) value shows.
+    const changed = new Map(changedTokens(values));
+    const list = tokens(values).map(([name]) => [name, changed.has(name) ? changed.get(name) : null]);
+    if (target) target.postMessage({ type: "uc-docs:theme", theme: values.theme, tokens: list }, "*");
   }
 
   /** A preview page started (also after a link followed inside it): send the tokens, update "Página". */
@@ -344,10 +396,22 @@
     setState({ ...state, accent: hex });
   }
 
+  /** A new ready-made theme: every control still at the old theme's value moves to the new one's. */
+  function setTheme(theme) {
+    const before = baseline(state.theme);
+    const after = baseline(theme);
+    const values = { ...state, theme };
+    TOKEN_KEYS.forEach((key) => {
+      if (state[key] === before[key]) values[key] = after[key];
+    });
+    setState(values, { syncInputs: true });
+  }
+
   function onRadio(input) {
     if (input.name === "swatch") setState({ ...state, accent: input.value }, { syncInputs: true });
+    else if (input.name === "theme") setTheme(input.value);
     else if (input.name in OPTIONS) {
-      const value = input.name === "font" ? input.value : Number(input.value);
+      const value = ["font", "file"].includes(input.name) ? input.value : Number(input.value);
       setState({ ...state, [input.name]: value });
     }
   }
@@ -384,6 +448,8 @@
       }),
     );
     radios("device").forEach((input) => input.addEventListener("change", layoutPreview));
+    // "Ficheiro" is next to the result, outside the form.
+    radios("file").forEach((input) => input.addEventListener("change", () => onRadio(input)));
     window.addEventListener("message", onFrameReady);
     frame.addEventListener("load", () => applyToFrame(state));
 

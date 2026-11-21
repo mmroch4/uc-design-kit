@@ -32,7 +32,8 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
    `uc-…` inventados. Um comportamento que o kit não tem vai para um componente
    próprio em `extensions/`, com `UC.define`.
 6. Nunca editar nem copiar os ficheiros do kit; nunca usar `!important`.
-   Personalizar com `accentColor`, depois tokens `--uc-…` no `theme.css`.
+   Personalizar com `accentColor` e `theme` (tema pronto) no `course.js`,
+   depois tokens `--uc-…` no `theme.css`.
 7. Links relativos com o nome do ficheiro (`semanas.html`), nunca `/` no início.
 8. Acessível: texto alternativo nas imagens, títulos sem saltar níveis, texto
    de ligação que diga para onde vai, tabelas com cabeçalhos.

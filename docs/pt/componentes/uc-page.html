@@ -126,6 +126,7 @@
         <p class="docs-sidebar__title" id="docs-nav-5">Personalizar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
           <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/criar-tema.html">Criar um tema</a></li>
           <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
           <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
           <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
@@ -251,6 +252,23 @@
         </div>
         <!-- /docs:demo -->
 
+        <h3 id="navegacao-no-topo">Navegação no topo</h3>
+        <p><code>layout="top"</code> põe a navegação numa barra por baixo do cabeçalho, com as páginas e depois as plataformas, e deixa o conteúdo ocupar toda a largura. Serve para sites com poucas páginas ou com tabelas largas. Abaixo de 960 px, a barra dá lugar ao mesmo botão "Menu" da barra lateral. Para usar em todas as páginas, escreve-se <code>layout: "top"</code> no <a href="../course-js.html#campos-navegacao"><code>course.js</code></a>; o atributo de uma página ganha a esse valor.</p>
+        <!-- docs:demo src="../../demos/uc-page/top.html" title="página com a navegação numa barra no topo" height="380" -->
+        <div class="docs-demo" id="demo-uc-page-top">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/top.html" title="Demonstração: página com a navegação numa barra no topo" loading="lazy" style="height: 380px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page layout=&quot;top&quot; current=&quot;weeks&quot;&gt;
+  &lt;h1&gt;Semanas&lt;/h1&gt;
+  &lt;p&gt;Navegação numa barra por baixo do cabeçalho: o conteúdo ocupa toda a largura. Em ecrãs estreitos, a barra passa a ser o botão &quot;Menu&quot;.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/top.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
         <h3 id="mudar-de-lingua">Mudar de língua</h3>
         <p>Quando <code>languages</code> tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com <code>?lang=en</code>). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com <code>lang</code> mostra só a língua ativa.</p>
         <!-- docs:demo src="../../demos/uc-page/languages.html?lang=en" title="página em inglês com o botão para português" height="516" -->
@@ -332,7 +350,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
             </thead>
             <tbody>
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
-              <tr><td><code>layout</code></td><td><code>sidebar</code> ou <code>full</code></td><td><code>sidebar</code></td><td>Com <code>full</code>, a página não tem navegação e o conteúdo ocupa toda a largura.</td></tr>
+              <tr><td><code>layout</code></td><td><code>sidebar</code>, <code>top</code> ou <code>full</code></td><td><code>layout</code> do <code>course.js</code>, senão <code>sidebar</code></td><td>Com <code>top</code>, a navegação fica numa barra por baixo do cabeçalho; com <code>full</code>, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura.</td></tr>
               <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa. <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
               <tr><td><code>source</code></td><td>endereço</td><td><code>source.url</code> do <code>course.js</code></td><td>Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com <code>source</code> no <code>course.js</code>. Ver <a href="#nota-de-origem">Nota de origem</a>.</td></tr>
               <tr><td><code>updated</code></td><td>data <code>AAAA-MM-DD</code> ou <code>auto</code></td><td><code>updated</code> do <code>course.js</code></td><td>Data do rodapé só nesta página. <code>auto</code> usa a data do ficheiro que o servidor envia (<code>Last-Modified</code>); sem ela, não mostra data. Ver <a href="#data-da-pagina">Data de atualização de uma página</a>.</td></tr>
@@ -354,6 +372,8 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><a href="../course-js.html#campos-curso"><code>institution</code></a></td><td>Departamento ou faculdade à direita do cabeçalho, com link se tiver <code>url</code>.</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>logo</code></a></td><td>Imagem ou SVG antes do nome; sem ele aparece o ícone do kit e com <code>null</code> não aparece nenhuma.</td></tr>
               <tr><td><a href="../course-js.html#campos-curso"><code>accentColor</code></a></td><td>Cor do item ativo, dos links e do ícone.</td></tr>
+              <tr><td><a href="../course-js.html#campos-curso"><code>theme</code></a></td><td>Tema pronto do site (ver <a href="../personalizar/criar-tema.html#temas-prontos">Criar um tema</a>).</td></tr>
+              <tr><td><a href="../course-js.html#campos-navegacao"><code>layout</code></a></td><td>Disposição de todas as páginas, quando a página não tem o seu <code>layout</code>.</td></tr>
               <tr><td><a href="../course-js.html#campos-linguas"><code>languages</code></a></td><td>Com mais de uma língua, mostra o botão para mudar de língua.</td></tr>
               <tr><td><a href="../course-js.html#paginas"><code>pages</code></a></td><td>Itens da navegação, pela ordem escrita, e página de destino do nome do curso.</td></tr>
               <tr><td><a href="../course-js.html#campos-navegacao"><code>platforms</code></a></td><td>Links externos no grupo "Plataformas", por baixo das páginas.</td></tr>
@@ -413,7 +433,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>.uc-page</code>, <code>.uc-page--full</code></td><td>A página (o próprio <code>&lt;uc-page&gt;</code>) e a variante sem navegação.</td></tr>
+              <tr><td><code>.uc-page</code>, <code>.uc-page--full</code>, <code>.uc-page--top</code></td><td>A página (o próprio <code>&lt;uc-page&gt;</code>), a variante sem navegação e a variante com a navegação no topo.</td></tr>
               <tr><td><code>.uc-page--nav-open</code></td><td>A página com o menu aberto, em ecrãs estreitos.</td></tr>
               <tr><td><code>.uc-header</code>, <code>.uc-header__inner</code></td><td>O cabeçalho e a sua faixa centrada.</td></tr>
               <tr><td><code>.uc-brand</code>, <code>__logo</code>, <code>__title</code>, <code>__edition</code></td><td>O link com o logótipo, o nome do curso e o ano letivo.</td></tr>
@@ -425,6 +445,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>.uc-page__edition-notice</code></td><td>O aviso no topo de uma edição antiga (um <code>uc-callout</code>).</td></tr>
               <tr><td><code>.uc-shell</code></td><td>A grelha com a navegação e o conteúdo.</td></tr>
               <tr><td><code>.uc-sidebar</code>, <code>.uc-nav</code></td><td>A coluna da navegação e o <code>&lt;nav&gt;</code> dentro dela.</td></tr>
+              <tr><td><code>.uc-topnav</code></td><td>Com <code>layout="top"</code>, a faixa por baixo do cabeçalho que contém a <code>.uc-sidebar</code>.</td></tr>
               <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
               <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
               <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
@@ -492,6 +513,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           <li><a href="#exemplos">Exemplos</a></li>
           <li class="docs-toc__sub"><a href="#item-ativo">Item ativo escolhido</a></li>
           <li class="docs-toc__sub"><a href="#sem-navegacao">Sem navegação</a></li>
+          <li class="docs-toc__sub"><a href="#navegacao-no-topo">Navegação no topo</a></li>
           <li class="docs-toc__sub"><a href="#mudar-de-lingua">Mudar de língua</a></li>
           <li class="docs-toc__sub"><a href="#outros-anos">Outros anos</a></li>
           <li class="docs-toc__sub"><a href="#data-da-pagina">Data de atualização de uma página</a></li>

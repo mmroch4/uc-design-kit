@@ -1,0 +1,18 @@
+/*
+ * Ready-made theme "high-contrast" (docs/api.md 8.1): darker text, borders
+ * and status colours, a darker default accent and a thicker focus ring.
+ * accentColor in course.js still wins: choose one with at least 7:1 on white.
+ */
+:root {
+  --uc-color-accent: #1E3A8A;
+  --uc-color-text: #000000;
+  --uc-color-text-secondary: #18181B;
+  --uc-color-text-muted: #27272A;
+  --uc-color-text-subtle: #3F3F46;
+  --uc-color-border: #71717A;
+  --uc-color-warning-text: #78350F;
+  --uc-color-warning-border: #B45309;
+  --uc-color-success-text: #14532D;
+  --uc-color-danger-text: #7F1D1D;
+  --uc-focus-ring: 3px solid var(--uc-color-accent);
+}

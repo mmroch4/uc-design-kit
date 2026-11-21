@@ -40,6 +40,11 @@
   algorithms are tested in Node (`tests/widgets/`); they need the kit at run
   time and use only its public API, so `widgets/src/core/dom.js` keeps its own
   small `el()`.
+- Ready-made themes are `kit/src/themes/<name>.css`, built into
+  `kit/v1/themes/` by `scripts/themes.mjs`: only token values on `:root`,
+  never new token names. A new one is also added to `THEMES` in
+  `kit/src/core/themes.js` (the build checks it), to `docs/api.md` 8.1 and to
+  the guide "Criar um tema", with a test page in `tests/pages/themes/`.
 - Design contracts of the bigger parts (blocks, search, widgets, grading) are
   in `docs/architecture/`; code comments cite them by section.
 

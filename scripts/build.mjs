@@ -13,7 +13,9 @@
  * The examples whose course.js has `search` get their search-index.js from
  * template/uc-site.py (scripts/example-indexes.mjs).
  *
- * It builds the widget library into widgets/v1/ (scripts/build-widgets.mjs).
+ * It builds the widget library into widgets/v1/ (scripts/build-widgets.mjs),
+ * and the ready-made themes into kit/v1/themes/ with the starter theme.css
+ * (scripts/themes.mjs).
  *
  * It also verifies the frozen releases (kit/vX.Y.Z/, made by
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
@@ -41,6 +43,7 @@ import { buildTemplateZip } from "./template-zip.mjs";
 import { buildLlms } from "./llms.mjs";
 import { buildWidgets } from "./build-widgets.mjs";
 import { buildExampleIndexes } from "./example-indexes.mjs";
+import { buildThemes } from "./themes.mjs";
 import { KIT_BUDGETS, checkBudgets, writeOutputs } from "./lib/budgets.mjs";
 import { ROOT } from "./lib/server.mjs";
 
@@ -182,6 +185,8 @@ async function main() {
     advice: `Make the new code smaller or raise the budget in ${where} first.`,
   }));
   if (checkBudgets(budgets) > 0) failed = true;
+  // Before the template zip, which packs template/theme.css.
+  if ((await buildThemes({ check })) > 0) failed = true;
   // Widgets first: they fill the catalogue page that the docs and llms steps read.
   if ((await buildWidgets({ check })) > 0) failed = true;
   if ((await buildDocs({ check })) > 0) failed = true;

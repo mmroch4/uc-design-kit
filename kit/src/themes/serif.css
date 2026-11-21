@@ -1,0 +1,9 @@
+/*
+ * Ready-made theme "serif" (docs/api.md 8.1): body text in the system's serif
+ * font (no download), a little more line spacing. Code, dates and codes keep
+ * the monospaced font.
+ */
+:root {
+  --uc-font-sans: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --uc-line-height: 1.65;
+}

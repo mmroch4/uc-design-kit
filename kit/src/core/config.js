@@ -123,6 +123,14 @@
   }
   UC.internal.normalizeLogo = normalizeLogo;
 
+  /** `layout` (docs/api.md 2.2): the default <uc-page layout> of every page. */
+  function normalizeLayout(value) {
+    if (value === undefined || value === null) return null;
+    if (["sidebar", "top", "full"].includes(value)) return value;
+    warn(`unknown layout "${value}" (layouts: sidebar, top, full)`);
+    return null;
+  }
+
   function normalize(raw) {
     const htmlLang = (document.documentElement.getAttribute("lang") || "pt").trim();
     const languages = asArray(raw.languages).length ? raw.languages.slice() : [htmlLang];
@@ -164,6 +172,7 @@
       notices,
       search: normalizeSearch(raw.search),
       logo: normalizeLogo(raw.logo, resolve),
+      layout: normalizeLayout(raw.layout),
     });
   }
 

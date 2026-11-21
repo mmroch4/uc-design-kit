@@ -882,6 +882,7 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
 .docs-theme-result > h2 { margin-top: var(--uc-space-4); }
 .docs-theme-output { margin-top: var(--uc-space-4); }
 .docs-theme-output__note { margin: 0; padding: var(--uc-space-3) var(--uc-space-4) 0; color: var(--uc-color-text-muted); font-size: var(--uc-font-size-md); }
+.docs-theme-output .docs-theme-field--inline { margin: var(--uc-space-3) var(--uc-space-4) 0; }
 .docs-theme-code {
   margin: var(--uc-space-3) var(--uc-space-4) 0;
   padding: var(--uc-space-3) var(--uc-space-4);

@@ -15,6 +15,7 @@
     "core/announce.js",
     "core/anchors.js",
     "core/modules.js",
+    "core/themes.js",
     "core/search-loader.js",
     "core/time.js",
     "core/filters.js",

@@ -113,22 +113,21 @@
     render() {
       const current = UC.internal.currentPage();
       const restoreFocus = Boolean(document.activeElement && document.activeElement.closest && document.activeElement.closest(".uc-lang-switch"));
-      const fullLayout = this.getAttribute("layout") === "full";
-      this.classList.toggle("uc-page--full", fullLayout);
+      // The attribute wins over course.js `layout` (docs/api.md 3.1).
+      const layout = this.getAttribute("layout") || this.course.layout;
+      this.classList.toggle("uc-page--full", layout === "full");
+      this.classList.toggle("uc-page--top", layout === "top");
+      const navigation = layout === "full" ? null : this.renderNavigation(current);
+      const top = layout === "top";
 
-      const shell = h(
-        "div",
-        { class: "uc-shell" },
-        fullLayout ? null : this.renderNavigation(current),
-        this.main,
-      );
-
-      this.replaceChildren(
+      const parts = [
         h("a", { class: "uc-skip-link", href: "#uc-main" }, this.t("a11y.skipToContent")),
         this.renderHeader(),
-        shell,
+        top ? h("div", { class: "uc-topnav" }, navigation) : null,
+        h("div", { class: "uc-shell" }, top ? null : navigation, this.main),
         this.renderFooter(),
-      );
+      ];
+      this.replaceChildren(...parts.filter(Boolean));
       this.setNavOpen(this.navOpen);
       if (editions) this.renderEditions();
       if (restoreFocus) this.querySelector(".uc-lang-switch__button")?.focus();
