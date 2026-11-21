@@ -8,9 +8,7 @@
  */
 import { ALGORITHMS, run } from "./algorithm.js";
 import { strings } from "./i18n.js";
-import { readGraph, serializeGraph, edgeList } from "../graph/element.js";
-import { model } from "../graph/model.js";
-import { graph as drawGraph } from "../core/svg/graph.js";
+import { graphWidget } from "../graph/element.js";
 
 export default function define(UC) {
   UC.addTranslations("pt", { widget: { toposort: strings.pt } });
@@ -18,34 +16,9 @@ export default function define(UC) {
   const W = UC.widgets;
   const t = (key, params) => UC.t(`widget.toposort.${key}`, params);
 
-  class ToposortWidget extends W.Widget {
-    static id = "toposort";
+  class ToposortWidget extends graphWidget(W, "toposort", run, t, true) {
     static algorithms = ALGORITHMS;
     static inputAttributes = ["edges"];
-    static limits = { vertices: 10, edges: 20 };
-    static editLabel = "widget.toposort.edit";
-
-    parse() {
-      const { graph } = readGraph(this, W, "toposort");
-      return { graph: model(graph, true) };
-    }
-
-    steps(input, emit) {
-      return run(input, { algorithm: this.algorithm }, emit);
-    }
-
-    draw(step, svg) {
-      drawGraph(svg, this.input.graph, { marks: step.marks, notes: step.state.notes });
-    }
-
-    describe(step) {
-      const { graph } = this.input;
-      const notes = Object.entries(step.state.notes).filter(([, note]) => note !== "");
-      return (
-        t("describe", { kind: t("kind.directed"), n: graph.vertices.length, m: graph.edges.length, edges: edgeList(graph) }) +
-        (notes.length ? t("describeNotes", { notes: notes.map(([v, note]) => `${v} ${note}`).join(", ") }) : "")
-      );
-    }
 
     table(step) {
       const kahn = this.algorithm === "kahn";
@@ -59,10 +32,6 @@ export default function define(UC) {
           this.stateName(step.marks[v]),
         ]),
       };
-    }
-
-    serialize(input) {
-      return serializeGraph(input);
     }
   }
 

@@ -5,8 +5,7 @@
  */
 import { ALGORITHMS, VERBS, KINDS, MAX_ITEMS, parent, run } from "./algorithm.js";
 import { strings } from "./i18n.js";
-
-const GAP = 12; // between the array and the tree
+import { parts, stack } from "../core/svg/stack.js";
 
 export default function define(UC) {
   UC.addTranslations("pt", { widget: { heap: strings.pt } });
@@ -55,11 +54,7 @@ export default function define(UC) {
     /** The array on top and the tree of the heap part below, each in a nested <svg>. */
     draw(step, svg) {
       const { a, ids, n } = step.state;
-      if (svg.__ucKind !== "heap") {
-        svg.__ucKind = "heap";
-        svg.replaceChildren(W.util.svgEl("svg"), W.util.svgEl("svg"));
-      }
-      const [top, bottom] = svg.children;
+      const [top, bottom] = parts(svg, "heap", W.util.svgEl);
       const marks = {};
       for (const [i, state] of Object.entries(step.marks)) if (Number(i) < n) marks[ids[i]] = state;
       W.svg.array(top, a, { marks: step.marks, pointers: step.pointers });
@@ -69,18 +64,7 @@ export default function define(UC) {
         marks,
         empty: t("empty"),
       });
-      const box = (part) => part.getAttribute("viewBox").split(" ").map(Number);
-      const [, , aw, ah] = box(top);
-      const [, , tw, th] = box(bottom);
-      const width = Math.max(aw, tw);
-      const place = (part, w, h, y) => {
-        for (const [name, value] of Object.entries({ x: (width - w) / 2, y, width: w, height: h })) part.setAttribute(name, value);
-      };
-      place(top, aw, ah, 0);
-      place(bottom, tw, th, ah + GAP);
-      svg.setAttribute("viewBox", `0 0 ${width} ${ah + GAP + th}`);
-      svg.style.minWidth = top.style.minWidth;
-      svg.style.maxWidth = `${width}px`;
+      stack(svg, top, bottom);
     }
 
     describe(step) {

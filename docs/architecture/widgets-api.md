@@ -929,6 +929,7 @@ classes `uc-widget__item is-<state>`.
 | `svg.graph(svg, graph, opts)` | Vertices, edges/arcs, weights; manual positions or automatic layout | graph, shortest-path, mst, union-find, toposort | W4 |
 | `svg.grid(svg, rows, cols, cells, opts)` | Table of cells with row/column headers | dp, backtracking (board), hash (chaining) | W3–W5 |
 | `svg.plot(svg, series, opts)` | Line chart of growth functions | complexity | W4 |
+| `parts(svg, kind, svgEl)` + `stack(svg, top, bottom)` (`svg/stack.js`) | Two drawings one above the other (an array above a tree), centred | heap, union-find | — |
 
 Rule for size: a primitive lives in the core when **three or more** widgets
 use it; otherwise the widget imports it from `widgets/src/core/svg/` and
@@ -1297,7 +1298,10 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
    order the vertices first appear in the input (that order is the order of
    the search, documented on the pages). `source(graph, name, id)` and
    `choices(…)` (options of a "which vertex next?" question) are shared.
-   `widgets/src/graph/element.js` reads the input in the browser,
+   `widgets/src/graph/element.js` holds `graphWidget(W, id, run, t,
+   directed)`, the base class of graph, shortest-path, mst and toposort
+   (input, run, drawing, description, editable field; each adds its table),
+   and `edgeList` (also used by trace),
    `shared-i18n.js` holds the strings every graph widget spreads into its
    own namespace (so each loads alone and the step validator sees them).
 3. **`edges` attribute**: the graph can also be written in an attribute,

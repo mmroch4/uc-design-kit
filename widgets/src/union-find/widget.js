@@ -10,8 +10,8 @@
  */
 import { ALGORITHMS, VERBS, MAX_ITEMS, rootOf, run } from "./algorithm.js";
 import { strings } from "./i18n.js";
+import { parts, stack } from "../core/svg/stack.js";
 
-const GAP = 12; // between the array and the forest
 const HIDDEN = "__root";
 const LEVEL = 76; // svg.tree's distance between levels
 const TOP_EDGE = "68"; // y1 of the edges that leave svg.tree's root (TOP 28 + node height 40)
@@ -49,11 +49,7 @@ export default function define(UC) {
     /** The parent array on top and the forest below, each in a nested <svg>. */
     draw(step, svg) {
       const { parent, size } = step.state;
-      if (svg.__ucKind !== "union-find") {
-        svg.__ucKind = "union-find";
-        svg.replaceChildren(W.util.svgEl("svg"), W.util.svgEl("svg"));
-      }
-      const [top, bottom] = svg.children;
+      const [top, bottom] = parts(svg, "union-find", W.util.svgEl);
       W.svg.array(top, parent, { marks: step.marks });
       const node = (i) => ({ i, kids: parent.map((p, j) => j).filter((j) => j !== i && parent[j] === i).map(node) });
       const roots = parent.map((p, i) => i).filter((i) => parent[i] === i);
@@ -73,19 +69,8 @@ export default function define(UC) {
       bottom.__ucNodeMap.get(HIDDEN).style.display = "none";
       for (const line of bottom.querySelectorAll(".uc-widget__edges line")) if (line.getAttribute("y1") === TOP_EDGE) line.remove();
       const [, , tw, full] = bottom.getAttribute("viewBox").split(" ").map(Number);
-      const th = full - LEVEL;
-      bottom.setAttribute("viewBox", `0 ${LEVEL} ${tw} ${th}`);
-
-      const [, , aw, ah] = top.getAttribute("viewBox").split(" ").map(Number);
-      const width = Math.max(aw, tw);
-      const place = (part, w, h, y) => {
-        for (const [name, value] of Object.entries({ x: (width - w) / 2, y, width: w, height: h })) part.setAttribute(name, value);
-      };
-      place(top, aw, ah, 0);
-      place(bottom, tw, th, ah + GAP);
-      svg.setAttribute("viewBox", `0 0 ${width} ${ah + GAP + th}`);
-      svg.style.minWidth = top.style.minWidth;
-      svg.style.maxWidth = `${width}px`;
+      bottom.setAttribute("viewBox", `0 ${LEVEL} ${tw} ${full - LEVEL}`);
+      stack(svg, top, bottom);
     }
 
     /** "{0 1 3} {2}" grouped by root, smallest root first. */
