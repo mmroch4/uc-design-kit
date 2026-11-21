@@ -16,6 +16,12 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `core/exercises.js` and `core/language.js`, so no component depends on
   another being loaded first. Test pages and checks are named after what they
   test, not after plan phases.
+- The documentation's search is the kit's own: the same dialog, engine
+  (prefix matching with one typo, ranking) and shortcuts as a course site.
+  `docs/assets/search-index.js` is now in the kit's index format and
+  `docs/assets/kit-config.js` became the generated `docs/assets/course.js`;
+  the documentation's own search code (about 230 lines of `docs.js` and its
+  dialog styles) is gone.
 
 ### Fixed
 - `<uc-materials>`: an item with many links no longer squeezes its title to
