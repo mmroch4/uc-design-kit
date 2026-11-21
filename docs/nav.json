@@ -21,9 +21,7 @@
         "demo": "Demonstração",
         "skip": "Saltar para o conteúdo",
         "search": "Pesquisar",
-        "searchPlaceholder": "Pesquisar na documentação",
-        "searchEmpty": "Sem resultados.",
-        "searchClose": "Fechar",
+        "searchLabel": "Pesquisar na documentação",
         "markdown": "Ver esta página em Markdown"
       },
       "groups": [

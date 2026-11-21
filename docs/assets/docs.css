@@ -653,7 +653,8 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
 .landing code,
 .landing pre { font-variant-ligatures: none; }
 
-/* ---------- search (Ctrl K) ---------- */
+/* ---------- search (Ctrl K) ----------
+   Only the header button: the dialog is the kit's own (uc-search.css). */
 
 .docs-search-button {
   display: inline-flex;
@@ -675,8 +676,7 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
 .docs-search-button:hover { border-color: var(--uc-color-text-subtle); color: var(--uc-color-text); }
 .docs-search-button:not([hidden]) + .docs-header__nav { margin-left: 0; }
 .docs-search-button__label { flex: 1; text-align: left; }
-.docs-search-button__kbd,
-.docs-search__close kbd {
+.docs-search-button__kbd {
   padding: 1px 6px;
   border: 1px solid var(--uc-color-border);
   border-radius: var(--uc-radius-sm);
@@ -685,80 +685,6 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
   font-size: var(--uc-font-size-xs);
   color: var(--uc-color-text-muted);
 }
-
-.docs-search {
-  width: min(640px, calc(100vw - 2 * var(--uc-space-4)));
-  max-height: min(560px, calc(100vh - 2 * var(--uc-space-12)));
-  margin: var(--uc-space-12) auto auto;
-  padding: 0;
-  border: 1px solid var(--uc-color-border);
-  border-radius: var(--uc-radius-lg);
-  background: var(--uc-color-surface);
-  color: var(--uc-color-text);
-  box-shadow: 0 16px 48px rgb(24 24 27 / 0.18);
-  overflow: hidden;
-}
-.docs-search[open] { display: flex; flex-direction: column; }
-.docs-search::backdrop { background: rgb(24 24 27 / 0.3); }
-.docs-search__bar {
-  display: flex;
-  align-items: center;
-  gap: var(--uc-space-2);
-  padding: 0 var(--uc-space-2) 0 var(--uc-space-4);
-  border-bottom: 1px solid var(--uc-color-border);
-  color: var(--uc-color-text-muted);
-}
-.docs-search__input {
-  flex: 1;
-  min-width: 0;
-  min-height: 52px;
-  border: 0;
-  background: none;
-  font: inherit;
-  font-size: var(--uc-font-size-body);
-  color: var(--uc-color-text);
-}
-.docs-search__input:focus { outline: none; }
-.docs-search__bar:focus-within { box-shadow: inset 0 -2px 0 var(--uc-color-accent); }
-.docs-search__close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--uc-target-min);
-  min-height: var(--uc-target-min);
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-.docs-search__results { overflow-y: auto; padding: var(--uc-space-2); }
-.docs-search__results:empty { display: none; }
-.docs-search__group {
-  margin: var(--uc-space-3) var(--uc-space-2) var(--uc-space-1);
-  font-size: var(--uc-font-size-xs);
-  font-weight: 600;
-  color: var(--uc-color-text-subtle);
-}
-.docs-search__group:first-child { margin-top: var(--uc-space-1); }
-.docs-search__option {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: var(--uc-space-2) var(--uc-space-3);
-  border-radius: var(--uc-radius-md);
-  cursor: pointer;
-}
-.docs-search__option[aria-selected="true"] { background: var(--uc-color-accent-soft); }
-.docs-search__title { font-weight: 500; }
-.docs-search__option[aria-selected="true"] .docs-search__title { color: var(--uc-color-accent); }
-.docs-search__text {
-  overflow: hidden;
-  font-size: var(--uc-font-size-sm);
-  color: var(--uc-color-text-muted);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.docs-search__status { margin: 0; padding: 0 var(--uc-space-4); color: var(--uc-color-text-muted); }
-.docs-search__status:not(:empty) { padding: var(--uc-space-6) var(--uc-space-4); text-align: center; }
 
 @media (max-width: 960px) {
   .docs-search-button {
@@ -778,7 +704,6 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
     clip: rect(0 0 0 0);
     white-space: nowrap;
   }
-  .docs-search { margin-top: var(--uc-space-4); max-height: calc(100vh - 2 * var(--uc-space-4)); }
 }
 
 /* ---------- theme customiser ---------- */

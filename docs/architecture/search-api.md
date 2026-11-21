@@ -260,8 +260,10 @@ window.UC_SEARCH_INDEX = {"v":1,"generator":"uc-site.py 1.2.0","generated":"2026
 | `l` | Optional: the language of the entry. Absent = every language. |
 | `s[]` | Sections: `i` id (`""` for the intro), `h` title, `x` excerpt, `w` words. |
 
-The same keys as the docs index (`docs/assets/search-index.js`), minus the
-docs-only group label, plus `l` and the header. One page per line, so diffs
+The documentation uses the same format: `scripts/docs.mjs` writes
+`docs/assets/search-index.js` (its `g` are the sidebar groups, declared as
+`pages` in the generated `docs/assets/course.js`) and the documentation
+opens the kit's own dialog. One page per line, so diffs
 of the examples' indexes stay readable.
 
 ## 6. Automatic heading ids
@@ -417,8 +419,9 @@ matching function stay internal.
 
 ## 9. Matching, ranking and results
 
-Reuses the docs search (`docs/assets/docs.js`) and the kit's
-`UC.internal.normalise`/`UC.internal.findMatches`:
+`kit/src/search/engine.js`, shared by the course sites and the
+documentation (`scripts/docs.mjs` also folds the documentation's `w` with its
+`words`):
 
 - The query is folded like `w` and split into terms; **every** term must match.
 - A term matches a word when it is a **prefix** of the word.

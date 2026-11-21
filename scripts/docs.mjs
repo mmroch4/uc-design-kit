@@ -21,6 +21,7 @@
  */
 import { readFile, writeFile, readdir } from "node:fs/promises";
 import path from "node:path";
+import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -152,8 +153,8 @@ function header(ctx) {
       ? `    <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden>${ICONS.menu}<span class="uc-visually-hidden">${labels.menu}</span></button>`
       : null,
     `    <a class="docs-brand" href="${href(file, LANDING)}">${ICONS.logo}<span>UC Design Kit</span></a>`,
-    // Shown by docs.js, which also builds the dialog; without JavaScript there is no search.
-    `    <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" data-placeholder="${labels.searchPlaceholder}" data-empty="${labels.searchEmpty}" data-close="${labels.searchClose}" hidden>${ICONS.search}<span class="docs-search-button__label">${labels.search}</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>`,
+    // Shown by docs.js; the dialog is the kit's. Without JavaScript there is no search.
+    `    <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K /" data-label="${labels.searchLabel}" hidden>${ICONS.search}<span class="docs-search-button__label">${labels.search}</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>`,
     `    <nav class="docs-header__nav" aria-label="Principal">`,
     `      <a href="${href(file, docsHome)}"${inDocs ? ' aria-current="true"' : ""}>${labels.docs}</a>`,
     `      <a href="${href(file, examplesHome)}">${labels.example}</a>`,
@@ -387,12 +388,21 @@ export async function buildDocs({ check = false } = {}) {
 
 /* ---------- search index ---------- */
 
-const SEARCH_INDEX = path.join(DOCS, "assets", "search-index.js");
+// The documentation uses the kit's own search (docs/architecture/search-api.md):
+// docs/assets/course.js turns `search` on and names the groups, and
+// docs/assets/search-index.js is an index in the kit's format (section 5).
+const ASSETS = path.join(DOCS, "assets");
+const SEARCH_INDEX = path.join(ASSETS, "search-index.js");
+const DOCS_COURSE = path.join(ASSETS, "course.js");
 const EXCERPT_LENGTH = 140;
+const GENERATOR = "scripts/docs.mjs";
 
-/** Lowercase, without accents: "Secção" → "seccao". The same as normalize() in docs.js. */
-export function foldText(text) {
-  return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+/** The kit's search engine (kit/src/search/engine.js), run outside the browser for its `words`. */
+async function kitSearchEngine() {
+  const source = await readFile(path.join(ROOT, "kit", "src", "search", "engine.js"), "utf8");
+  const window = { UC: { internal: {} } };
+  vm.runInNewContext(source, { window });
+  return window.UC.internal.searchEngine;
 }
 
 /** Text of an article fragment: no tags, code samples, generated demos or table headers. */
@@ -406,34 +416,31 @@ function plainText(html) {
   );
 }
 
-// Frequent Portuguese words that never narrow a search; left out of the index.
-const STOP_WORDS = new Set(
-  ("que para com uma umas uns por pela pelo pelas pelos mais como nao sem sao ser foi sua seu suas seus " +
-    "das dos nas nos num numa este esta estes estas isto esse essa isso ela ele elas eles tem ter cada " +
-    "ainda tambem quando onde entre sobre depois antes so ja bem mas the and").split(" "),
-);
-
-/** Distinct folded words of a text (3 letters or more, or with a digit), in order. */
-function searchWords(text) {
-  const words = new Set();
-  for (const word of foldText(text).match(/[a-z0-9][a-z0-9_-]*/g) || []) {
-    if ((word.length >= 3 || /\d/.test(word)) && !STOP_WORDS.has(word)) words.add(word);
-  }
-  return Array.from(words).join(" ");
-}
-
 function excerpt(text) {
   if (text.length <= EXCERPT_LENGTH) return text;
   const cut = text.slice(0, EXCERPT_LENGTH);
   return `${cut.slice(0, cut.lastIndexOf(" ")).replace(/[,.;:]$/, "")}…`;
 }
 
+/** "Personalizar o aspeto" → "personalizar-o-aspeto": the id of a sidebar group in course.js. */
+function groupId(title) {
+  return title
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/** Path from docs/assets/ (the folder of course.js), as the kit's index and pages want it. */
+const fromAssets = (docsPath) => toPosix(path.relative(ASSETS, path.join(DOCS, docsPath)));
+
 /**
- * One entry per page: title, group, path (relative to docs/) and its sections
- * (the page intro, then every h2/h3 with an id) with an excerpt and the
- * words of the section. Headings and words are what the search matches.
+ * One entry per page: title, path, group (a page id of course.js), language
+ * and its sections (the page intro, then every h2/h3 with an id) with an
+ * excerpt and the words of the section, folded by the kit's own `words`.
  */
-export async function searchEntries(nav, lang) {
+async function searchEntries(nav, lang, words) {
   const entries = [];
   for (const page of navPages(nav, lang)) {
     const content = await readFile(path.join(DOCS, page.path), "utf8");
@@ -450,33 +457,66 @@ export async function searchEntries(nav, lang) {
         : part.replace(/<h1\b[\s\S]*?<\/h1>|<p class="docs-(?:eyebrow|badges|actions)"[\s\S]*?<\/p>/g, "");
       const text = plainText(body);
       const name = heading ? stripTags(heading[2]) : "";
-      sections.push({ i: heading ? heading[1] : "", h: name, x: excerpt(text), w: searchWords(`${name} ${text}`) });
+      sections.push({ i: heading ? heading[1] : "", h: name, x: excerpt(text), w: words(`${name} ${text}`).join(" ") });
     }
-    entries.push({ t: title, g: page.group, p: page.path, s: sections });
+    entries.push({ t: title, p: fromAssets(page.path), g: groupId(page.group), l: lang, s: sections });
   }
   return entries;
 }
 
+/** docs/assets/course.js: the kit's configuration for the documentation pages. */
+function docsCourse(nav) {
+  const pages = [];
+  for (const lang of Object.keys(nav.languages)) {
+    for (const group of nav.languages[lang].groups) {
+      const id = groupId(group.title);
+      if (!pages.some((page) => page.id === id)) pages.push({ id, label: group.title, href: fromAssets(group.pages[0].path) });
+    }
+  }
+  const config = { title: "UC Design Kit", languages: Object.keys(nav.languages), pages, search: { index: "search-index.js" } };
+  return (
+    "/*\n" +
+    " * Generated by scripts/docs.mjs (npm run build) from docs/nav.json. Do not edit.\n" +
+    " *\n" +
+    " * Kit configuration for the documentation site itself. The documentation\n" +
+    " * pages use the kit's styles, <uc-code> and its search, but not <uc-page>.\n" +
+    " * `pages` are the sidebar groups, which label the search results\n" +
+    " * (\"Começar · Introdução\"). The demos have their own docs/demos/course.js.\n" +
+    " */\n" +
+    `window.UC_COURSE = ${JSON.stringify(config, null, 2)};\n`
+  );
+}
+
+/** Writes `content` to `file` unless it is already there; with check, reports it instead. Returns 1 on a problem. */
+async function writeGenerated(file, content, check) {
+  const name = toPosix(path.relative(ROOT, file));
+  const previous = await readFile(file, "utf8").catch(() => "");
+  if (previous === content) return 0;
+  if (check) {
+    console.error(`${name} is out of date. Run: npm run build`);
+    return 1;
+  }
+  await writeFile(file, content);
+  console.log(`wrote ${name} (${(content.length / 1024).toFixed(1)} KB)`);
+  return 0;
+}
+
 /**
- * Writes docs/assets/search-index.js, read by the search dialog of docs.js.
- * It is a script (window.UC_DOCS_SEARCH = …) rather than JSON so that it also
- * loads from file://, where fetch() of a local file is blocked.
+ * Writes docs/assets/course.js and docs/assets/search-index.js. The index is
+ * a script (window.UC_SEARCH_INDEX = …) so that it also loads from file://.
+ * `generated` stays empty: the file only changes when the pages do, and the
+ * dialog shows no index date.
  */
 export async function buildSearchIndex({ check = false } = {}) {
   const nav = await loadNav();
-  const index = {};
-  for (const lang of Object.keys(nav.languages)) index[lang] = await searchEntries(nav, lang);
-  const body = JSON.stringify(index).replace(/\},\{"t"/g, '},\n{"t"');
-  const content =
+  const { words } = await kitSearchEngine();
+  const languages = Object.keys(nav.languages);
+  const pages = [];
+  for (const lang of languages) pages.push(...(await searchEntries(nav, lang, words)));
+  const header = { v: 1, generator: GENERATOR, generated: "", course: "", languages };
+  const body = JSON.stringify(header).slice(0, -1) + ',"pages":[\n' + pages.map((page) => JSON.stringify(page)).join(",\n") + "\n]}";
+  const index =
     "/* Generated by scripts/docs.mjs (npm run build) from the pages in docs/nav.json. Do not edit. */\n" +
-    `window.UC_DOCS_SEARCH = ${body};\n`;
-  const previous = await readFile(SEARCH_INDEX, "utf8").catch(() => "");
-  if (previous === content) return 0;
-  if (check) {
-    console.error("docs/assets/search-index.js is out of date. Run: npm run build");
-    return 1;
-  }
-  await writeFile(SEARCH_INDEX, content);
-  console.log(`wrote docs/assets/search-index.js (${(content.length / 1024).toFixed(1)} KB)`);
-  return 0;
+    `window.UC_SEARCH_INDEX = ${body};\n`;
+  return (await writeGenerated(DOCS_COURSE, docsCourse(nav), check)) + (await writeGenerated(SEARCH_INDEX, index, check));
 }

@@ -13,6 +13,7 @@
  *     search="off"), the shortcuts Ctrl K, ⌘K and "/", UC.search, the
  *     uc:searchready event, uc-search.js loaded on open, unknown index
  *     formats and the stale-index warnings
+ *   - the documentation's search: the kit's dialog over docs/assets/search-index.js
  *
  * The pages are made up here and served from a fake origin by Playwright, so
  * each check can choose how the server answers.
@@ -24,6 +25,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { chromium } from "playwright";
+import { startServer } from "./static-server.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "http://kit.test";
@@ -571,6 +573,45 @@ async function main() {
       if (!warnings.some((line) => line.includes("older than course.js (updated 2025-11-25)"))) throw new Error(`no stale warning in ${JSON.stringify(warnings)}`);
       if (!warnings.some((line) => line.includes('made for "OUTRA"'))) throw new Error(`no course warning in ${JSON.stringify(warnings)}`);
       await contextOld.context.close();
+    });
+
+    /* ---------- The documentation uses the kit's search (contract 5) ---------- */
+    await test("docs: the header button and '/' open the kit's dialog over docs/assets/search-index.js", async () => {
+      const server = await startServer();
+      const base = `http://127.0.0.1:${server.address().port}`;
+      const context = await browser.newContext();
+      try {
+        const tab = await context.newPage();
+        const errors = [];
+        tab.on("pageerror", (error) => errors.push(error.message));
+        await tab.goto(`${base}/docs/pt/componentes/uc-week.html`, { waitUntil: "load" });
+        await tab.waitForSelector(".docs-search-button:not([hidden])");
+        await tab.click(".docs-search-button");
+        await tab.waitForSelector(".uc-search-dialog[open]");
+        await tab.waitForFunction(() => document.querySelectorAll(".uc-search-dialog [role='option']").length === 0 && !/A carregar/.test(document.querySelector(".uc-search-dialog [role='status']").textContent));
+        equal(await tab.getAttribute(".uc-search-dialog input", "placeholder"), "Pesquisar na documentação", "placeholder");
+        await tab.fill(".uc-search-dialog input", "semanas");
+        await tab.waitForSelector(".uc-search-dialog [role='option']");
+        const groups = await tab.$$eval(".uc-search-dialog [role='group']", (list) => list.map((group) => group.getAttribute("aria-label") || group.querySelector("[id]").textContent));
+        if (!groups.some((label) => / · /.test(label))) throw new Error(`no "Group · Page" labels in ${JSON.stringify(groups.slice(0, 5))}`);
+        // Typo tolerance comes from the kit's engine: "semnaas" finds the same pages.
+        await tab.fill(".uc-search-dialog input", "semnaas");
+        await tab.waitForSelector(".uc-search-dialog [role='option']");
+        await tab.fill(".uc-search-dialog input", "componente uc-week");
+        await tab.waitForSelector(".uc-search-dialog [role='option']");
+        await tab.keyboard.press("Enter");
+        await tab.waitForURL(/\/docs\/pt\/componentes\/uc-week\.html/);
+        await tab.goto(`${base}/docs/pt/index.html`, { waitUntil: "load" });
+        await tab.waitForSelector(".docs-search-button:not([hidden])");
+        await tab.waitForFunction(() => UC.search && document.readyState === "complete");
+        await tab.waitForTimeout(1700); // the kit asks for the index when idle; "/" works once it knows
+        await tab.keyboard.press("/");
+        await tab.waitForSelector(".uc-search-dialog[open]");
+        equal(errors, [], "page errors");
+      } finally {
+        await context.close();
+        server.close();
+      }
     });
 
     /* ---------- file:// (contract 7.2, item 4) ---------- */
