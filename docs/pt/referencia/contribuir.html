@@ -200,7 +200,8 @@
 npm run build                   # kit/v1, generated docs parts, search index, template zip
 npm test                        # check-docs --strict, then check-pages
 npm test -- uc-week             # only the pages whose path contains "uc-week"
-npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pre></uc-code>
+npm run test:update-screenshots # also writes tests/screenshots/*.png
+npm run test:dom -- --update    # rewrites tests/dom-record.json (a change meant to alter pages)</code></pre></uc-code>
         <div class="uc-table">
           <table>
             <caption class="uc-visually-hidden">Verificações automáticas</caption>
@@ -211,6 +212,7 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png</code></pr
               <tr><td><code>build:check</code></td><td>O kit, as partes geradas da documentação, o índice de pesquisa e o zip do modelo correspondem às fontes; nenhuma versão congelada foi alterada.</td></tr>
               <tr><td><code>check-docs</code></td><td>Navegação, títulos, links e âncoras; e cobertura: cada componente, atributo, campo do <code>course.js</code>, bloco, token, membro e evento da API, runner incluído e classe que o kit gera está na página certa.</td></tr>
               <tr><td><code>check-pages</code></td><td>Em cada página (testes, exemplos, modelo, documentação e demonstrações): sem erros na consola por HTTP e em <code>file://</code>, sem ficheiros em falta, sem deslocamento horizontal a 360 px, sem violações graves do axe (WCAG 2.1 AA), conteúdo visível sem JavaScript.</td></tr>
+              <tr><td><code>check-dom</code></td><td>Nada mudou sem querer: o DOM depois de o kit o construir e a árvore de acessibilidade de cada página são iguais aos de <code>tests/dom-record.json</code>, e nenhum ficheiro de <code>kit/v1/</code> ou <code>widgets/v1/</code> ficou maior (gzip). Uma refatoração passa sem tocar no registo; uma alteração que muda páginas atualiza-o (<code>--update</code>) no mesmo pull request. <code>--against=origin/main</code> mostra as diferenças.</td></tr>
             </tbody>
           </table>
         </div>

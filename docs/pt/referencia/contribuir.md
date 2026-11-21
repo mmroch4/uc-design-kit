@@ -32,6 +32,7 @@ npm run build                   # kit/v1, generated docs parts, search index, te
 npm test                        # check-docs --strict, then check-pages
 npm test -- uc-week             # only the pages whose path contains "uc-week"
 npm run test:update-screenshots # also writes tests/screenshots/*.png
+npm run test:dom -- --update    # rewrites tests/dom-record.json (a change meant to alter pages)
 ```
 
 | Verificação | O que confirma |
@@ -39,6 +40,7 @@ npm run test:update-screenshots # also writes tests/screenshots/*.png
 | `build:check` | O kit, as partes geradas da documentação, o índice de pesquisa e o zip do modelo correspondem às fontes; nenhuma versão congelada foi alterada. |
 | `check-docs` | Navegação, títulos, links e âncoras; e cobertura: cada componente, atributo, campo do `course.js`, bloco, token, membro e evento da API, runner incluído e classe que o kit gera está na página certa. |
 | `check-pages` | Em cada página (testes, exemplos, modelo, documentação e demonstrações): sem erros na consola por HTTP e em `file://`, sem ficheiros em falta, sem deslocamento horizontal a 360 px, sem violações graves do axe (WCAG 2.1 AA), conteúdo visível sem JavaScript. |
+| `check-dom` | Nada mudou sem querer: o DOM depois de o kit o construir e a árvore de acessibilidade de cada página são iguais aos de `tests/dom-record.json`, e nenhum ficheiro de `kit/v1/` ou `widgets/v1/` ficou maior (gzip). Uma refatoração passa sem tocar no registo; uma alteração que muda páginas atualiza-o (`--update`) no mesmo pull request. `--against=origin/main` mostra as diferenças. |
 
 As páginas são verificadas com a data fixa de 27 de novembro de 2025 (`TEST_TODAY` muda-a). O GitHub Actions corre `build:check` e as verificações de `npm test` em cada pull request, divididas em 4 tarefas paralelas (`--shard=i/4`), cada uma a abrir várias páginas ao mesmo tempo (`--concurrency=n`); o estado obrigatório `check` só fica verde quando as quatro passam. As capturas de ecrã só se tiram em `main`. O Cloudflare Pages publica uma pré-visualização.
 

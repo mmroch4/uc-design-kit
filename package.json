@@ -10,11 +10,12 @@
     "snapshot": "node scripts/snapshot.mjs",
     "snapshot:widgets": "node scripts/snapshot.mjs --widgets",
     "pretest": "node scripts/build.mjs",
-    "test": "node --test tests/widgets/*.test.mjs && node scripts/check-docs.mjs --strict && node scripts/check-search.mjs && node scripts/check-a11y.mjs && node scripts/check-pages.mjs",
+    "test": "node --test tests/widgets/*.test.mjs && node scripts/check-docs.mjs --strict && node scripts/check-search.mjs && node scripts/check-a11y.mjs && node scripts/check-pages.mjs && node scripts/check-dom.mjs",
     "test:widgets": "node --test tests/widgets/*.test.mjs",
     "test:search": "node scripts/build.mjs && node scripts/check-search.mjs",
     "test:docs": "node scripts/check-docs.mjs",
     "test:update-screenshots": "node scripts/build.mjs && node scripts/check-pages.mjs --screenshots",
+    "test:dom": "node scripts/build.mjs && node scripts/check-dom.mjs",
     "test:a11y": "node scripts/build.mjs && node scripts/check-a11y.mjs",
     "test:site-script": "python3 -m unittest discover -s tests/site-script"
   },

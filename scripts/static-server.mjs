@@ -35,12 +35,12 @@ const MIME_TYPES = {
 /** The Content-Type for a file, by extension. */
 export const contentType = (file) => MIME_TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
 
-/** Serves the repository on a free port of 127.0.0.1; resolves with the listening server. */
-export function startServer() {
+/** Serves the repository (or another checkout: `root`) on a free port of 127.0.0.1; resolves with the listening server. */
+export function startServer(root = ROOT) {
   const server = createServer(async (request, response) => {
     const url = new URL(request.url, "http://localhost");
-    let file = path.join(ROOT, decodeURIComponent(url.pathname));
-    if (!file.startsWith(ROOT)) return response.writeHead(403).end();
+    let file = path.join(root, decodeURIComponent(url.pathname));
+    if (!file.startsWith(root)) return response.writeHead(403).end();
     try {
       if ((await stat(file)).isDirectory()) file = path.join(file, "index.html");
       response.writeHead(200, { "Content-Type": contentType(file) }).end(await readFile(file));
@@ -51,11 +51,11 @@ export function startServer() {
   return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve(server)));
 }
 
-/** Answers the context's requests to PUBLIC_KIT from kit/ on disk. */
-export async function routePublicKit(context) {
+/** Answers the context's requests to PUBLIC_KIT from kit/ on disk (of the repository, or of `root`). */
+export async function routePublicKit(context, root = ROOT) {
   await context.route(`${PUBLIC_KIT}**`, async (route) => {
-    const file = path.join(ROOT, decodeURIComponent(new URL(route.request().url()).pathname));
-    if (!file.startsWith(path.join(ROOT, "kit") + path.sep)) return route.fulfill({ status: 404 });
+    const file = path.join(root, decodeURIComponent(new URL(route.request().url()).pathname));
+    if (!file.startsWith(path.join(root, "kit") + path.sep)) return route.fulfill({ status: 404 });
     try {
       const body = await readFile(file);
       await route.fulfill({ status: 200, body, headers: { "Content-Type": contentType(file), "Access-Control-Allow-Origin": "*" } });
