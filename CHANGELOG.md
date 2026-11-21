@@ -11,6 +11,11 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   one letter per line; the title keeps at least 12rem and the buttons wrap.
 
 ### Added
+- `npm run test:dom` (`scripts/check-dom.mjs`, also in CI): the rendered DOM
+  and accessibility tree of every page, and the gzip size of every built file,
+  are compared with `tests/dom-record.json`, so a refactoring that changes a
+  page, or makes a file bigger, fails. `--update` rewrites the record,
+  `--against=REF` prints the diff of the changed pages.
 - Blocks for the patterns that the four example sites wrote by hand
   (curation of the examples): `uc-page-header` and `uc-eyebrow` for the top of
   a page without inline `style`, `uc-crumbs` (breadcrumbs outside

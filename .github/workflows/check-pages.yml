@@ -61,6 +61,9 @@ jobs:
       - name: Page checks
         if: success() || failure()
         run: node scripts/check-pages.mjs ${{ github.event_name == 'push' && '--screenshots' || '' }}
+      - name: Rendered DOM and accessibility tree against tests/dom-record.json
+        if: success() || failure()
+        run: node scripts/check-dom.mjs
       - uses: actions/upload-artifact@v4
         if: always() && github.event_name == 'push'
         with:

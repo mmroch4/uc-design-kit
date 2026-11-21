@@ -71,7 +71,21 @@ automatic heading ids against `tests/search/slugs.json` (the cases
 without `search`, one `HEAD` per visit, 404, timeout, `file://`), the header
 button, the shortcuts and `UC.search`. CI runs it in the second job.
 
-`check-pages.mjs` and `check-a11y.mjs` check several pages at the same time
+`scripts/check-dom.mjs` (`npm run test:dom`) is the "nothing changed" check:
+it renders every page that `check-pages.mjs` opens (1280 × 900, frozen date,
+no requests to other sites, every widget built) and compares a hash of the
+rendered DOM and of the accessibility tree of `<body>` with
+`tests/dom-record.json`. The record also keeps the gzip size of every built
+`.js` and `.css` of `kit/v1/` and `widgets/v1/`, and the check fails when one
+grows. A refactoring must pass it without touching the record. A change that
+is meant to alter pages (or to grow a file) runs `npm run test:dom -- --update`
+and commits the record in the same pull request, so its diff lists the pages
+that changed. To see what changed in a page:
+`node scripts/check-dom.mjs --against=origin/main <filter>` renders the
+changed pages at that commit too and prints a diff; `--save=DIR` writes every
+rendered DOM and tree to `DIR`.
+
+`check-pages.mjs`, `check-a11y.mjs` and `check-dom.mjs` check several pages at the same time
 (`--concurrency=n`, default: CPU count, at most 4) and can check one part of
 the pages (`--shard=i/n`; the environment variables `CHECK_CONCURRENCY` and
 `CHECK_SHARD` do the same). CI runs `build:check`, then the checks split in 4
