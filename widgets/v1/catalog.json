@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "kit": ">=1.0",
   "widgets": [
     {
@@ -365,7 +365,7 @@
         "algorithm"
       ],
       "predict": true,
-      "gzip": 3223
+      "gzip": 3222
     },
     {
       "name": "uc-widget-search",

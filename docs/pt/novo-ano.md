@@ -58,7 +58,7 @@ grep -rn "2025\|2026" --include="*.html" .
 Com `kit/v1/` nos endereços não há nada a fazer: o site usa sempre a versão 1 mais recente. Se o site fixou uma versão exata (`kit/v1.0.0/`), o início do ano é a altura certa para passar à mais recente, trocando o número nos três endereços do `<head>` de cada página:
 
 ```sh
-grep -rl "kit/v1.0.0/" --include="*.html" . | xargs sed -i "s#kit/v1.0.0/#kit/v1.2.0/#g"
+grep -rl "kit/v1.0.0/" --include="*.html" . | xargs sed -i "s#kit/v1.0.0/#kit/v1.1.0/#g"
 ```
 
 Ver [Versão do kit](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md#versao). Em macOS, `sed -i ""` em vez de `sed -i`.

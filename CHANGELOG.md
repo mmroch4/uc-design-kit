@@ -6,6 +6,11 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-21
+
+Frozen as `kit/v1.1.0/` and `widgets/v1.1.0/` (tag `v1.1.0`). From this
+release on the kit and the widgets share one version and one tag.
+
 ### Added
 - Ready-made themes in `kit/v1/themes/`: `compact`, `serif` and
   `high-contrast`. They only redefine tokens, and are chosen with a `<link>`
@@ -25,50 +30,6 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   materials and syllabus, questions and contacts), each with a preview, its
   code, a "Copiar código" button and a preview in every ready-made theme.
   Demos accept `?theme=` (#91).
-
-### Changed
-- One version for everything: `package.json`. `npm run build` writes it into
-  `kit/src/core/namespace.js` (`UC.version`), `widgets/src/core/version.js`
-  and `template/uc-site.py`, and `npm run build:check` fails when one of them
-  differs. The widgets share the kit's version and its `vX.Y.Z` tag.
-- Internal (no change for pages): the helpers that several blocks share moved
-  out of the components into `core/deadlines.js`, `core/weeks.js`,
-  `core/exercises.js` and `core/language.js`, so no component depends on
-  another being loaded first. Test pages and checks are named after what they
-  test, not after plan phases.
-- The documentation's search is the kit's own: the same dialog, engine
-  (prefix matching with one typo, ranking) and shortcuts as a course site.
-  `docs/assets/search-index.js` is now in the kit's index format and
-  `docs/assets/kit-config.js` became the generated `docs/assets/course.js`;
-  the documentation's own search code (about 230 lines of `docs.js` and its
-  dialog styles) is gone.
-- Maintainer scripts (no change for pages): what the checks and builds share
-  lives in `scripts/lib/` (local server, browser and page waits, pages,
-  shards and reports, size budgets and built outputs; every budget in one
-  place). `check-a11y.mjs` and `check-search.mjs` are split by theme into
-  `scripts/a11y/` and `scripts/search/`; the commands and their options are
-  the same.
-- Internal (no change for pages): long component functions are split into
-  small named ones (`<uc-grading>` render, `<uc-assessment-info>`, the compact
-  table of `<uc-weeks>`, the navigation of `<uc-page>`), and `<uc-code>` moved
-  to `kit/src/code/` split by concern: `highlight.js` (highlight.js loader and
-  languages), `editor.js` (editable mode), `run.js` (execution and tests) and
-  `element.js`. The generated heading (`heading`, `heading="none"`), the
-  external-link mark and file downloads are shared helpers in `core/dom.js`.
-  uc-kit.js and uc-grading.js are slightly smaller.
-- Internal (no change for pages): the graph widgets (graph, shortest-path,
-  mst, toposort) extend one base class, `graphWidget` in
-  `widgets/src/graph/element.js` (input, run, drawing, description, editable
-  field); heap and union-find share `widgets/src/core/svg/stack.js` (an array
-  above a tree); bst and avl share `widgets/src/bst/nodes.js`. Each widget file
-  still bundles what it uses: a few are up to 22 bytes larger gzipped, bst,
-  avl, graph and shortest-path slightly smaller.
-
-### Fixed
-- `<uc-materials>`: an item with many links no longer squeezes its title to
-  one letter per line; the title keeps at least 12rem and the buttons wrap.
-
-### Added
 - `npm run test:dom` (`scripts/check-dom.mjs`, also in CI): the rendered DOM
   and accessibility tree of every page, and the gzip size of every built file,
   are compared with `tests/dom-record.json`, so a refactoring that changes a
@@ -110,7 +71,6 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   cumprido", "não verificado" for text rules) and a pass or fail line naming
   the first rule that fails. New classes `.uc-grading__branches` and
   `.uc-grading__checks` (grading phase G3, `docs/architecture/grading-api.md` 9).
-
 - Guide for `<uc-grading>`: a new "Exemplos das cadeiras" section with three
   real methods written with formulas and rules (Estruturas de Dados 2026/27,
   Programação Imperativa 2025/26 with its literal formula, Competitive
@@ -118,12 +78,43 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `CF = (0.7*EF + 0.25*AP + 0.05*RE) / 5`, and the PC one lists the RFC rule
   (grading phase G4).
 
-### Fixed
-- `<uc-grading calculator>`: on a bilingual page, a field's label keeps the
-  component's name written in `<span lang="…">` (only the active language);
-  before, every `<span>` was dropped and the label read "E: (0 a 20)".
-
 ### Changed
+- One version for everything: `package.json`. `npm run build` writes it into
+  `kit/src/core/namespace.js` (`UC.version`), `widgets/src/core/version.js`
+  and `template/uc-site.py`, and `npm run build:check` fails when one of them
+  differs. The widgets share the kit's version and its `vX.Y.Z` tag.
+- Internal (no change for pages): the helpers that several blocks share moved
+  out of the components into `core/deadlines.js`, `core/weeks.js`,
+  `core/exercises.js` and `core/language.js`, so no component depends on
+  another being loaded first. Test pages and checks are named after what they
+  test, not after plan phases.
+- The documentation's search is the kit's own: the same dialog, engine
+  (prefix matching with one typo, ranking) and shortcuts as a course site.
+  `docs/assets/search-index.js` is now in the kit's index format and
+  `docs/assets/kit-config.js` became the generated `docs/assets/course.js`;
+  the documentation's own search code (about 230 lines of `docs.js` and its
+  dialog styles) is gone.
+- Maintainer scripts (no change for pages): what the checks and builds share
+  lives in `scripts/lib/` (local server, browser and page waits, pages,
+  shards and reports, size budgets and built outputs; every budget in one
+  place). `check-a11y.mjs` and `check-search.mjs` are split by theme into
+  `scripts/a11y/` and `scripts/search/`; the commands and their options are
+  the same.
+- Internal (no change for pages): long component functions are split into
+  small named ones (`<uc-grading>` render, `<uc-assessment-info>`, the compact
+  table of `<uc-weeks>`, the navigation of `<uc-page>`), and `<uc-code>` moved
+  to `kit/src/code/` split by concern: `highlight.js` (highlight.js loader and
+  languages), `editor.js` (editable mode), `run.js` (execution and tests) and
+  `element.js`. The generated heading (`heading`, `heading="none"`), the
+  external-link mark and file downloads are shared helpers in `core/dom.js`.
+  uc-kit.js and uc-grading.js are slightly smaller.
+- Internal (no change for pages): the graph widgets (graph, shortest-path,
+  mst, toposort) extend one base class, `graphWidget` in
+  `widgets/src/graph/element.js` (input, run, drawing, description, editable
+  field); heap and union-find share `widgets/src/core/svg/stack.js` (an array
+  above a tree); bst and avl share `widgets/src/bst/nodes.js`. Each widget file
+  still bundles what it uses: a few are up to 22 bytes larger gzipped, bst,
+  avl, graph and shortest-path slightly smaller.
 - `<uc-grading>` now lives in its own file, `kit/v1/uc-grading.js`, which
   `uc-kit.js` loads from its own folder only on pages that have a
   `<uc-grading>` (grading phase G1, `docs/architecture/grading-api.md` 2). Nothing
@@ -139,13 +130,22 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   their marks; choosing a language in one course no longer changes the
   others on the same server.
 
+### Fixed
+- `<uc-materials>`: an item with many links no longer squeezes its title to
+  one letter per line; the title keeps at least 12rem and the buttons wrap.
+- `<uc-grading calculator>`: on a bilingual page, a field's label keeps the
+  component's name written in `<span lang="…">` (only the active language);
+  before, every `<span>` was dropped and the label read "E: (0 a 20)".
+
 ### Removed
 - Two unused internal helpers, `UC.internal.hasLanguage` and
   `UC.internal.hasText`.
 - The phase plans and handoff notes in `docs/plan/` (history in git); the
   four design contracts moved to `docs/architecture/`.
 
-## Widgets [Unreleased]
+## Widgets [1.1.0] - 2026-11-21
+
+Released with kit 1.1.0, same tag `v1.1.0`; needs kit 1.0 or later.
 
 ### Added
 - `controls="none"` on every widget: a still figure of one step (by default
