@@ -2,9 +2,9 @@
  * svg.grid (docs/architecture/widgets-api.md 16.3): rows of cells, with an optional
  * header cell at the start of each row and optional column headers. With
  * `chain`, rows are lists: only the cells that exist are drawn, joined by
- * arrows from the header (a hash table with chaining). Bundled into
- * uc-widget-hash; dp and backtracking (W5) will import it too, and the core
- * takes it then if the budget allows (rule 16.3).
+ * arrows from the header (a hash table with chaining). Not in the core:
+ * bundled into each widget that imports it (hash, dp, backtracking, trace;
+ * rule 16.3).
  *
  *   rows       [[value, …], …]; `null` is an empty cell (not drawn in a chain)
  *   rowHeads   labels of the row header cells (ids "0", "1", …)

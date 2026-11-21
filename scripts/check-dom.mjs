@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * "Nothing changed" check (refactoring plan, phase R0).
+ * "Nothing changed" check, the safety net of every refactoring.
  *
  * Opens every page that check-pages.mjs opens (scripts/page-list.mjs), at
  * 1280 x 900 with the frozen date, once the kit has rendered it, and records:

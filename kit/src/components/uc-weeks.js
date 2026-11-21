@@ -8,7 +8,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, addDays, toISO, weekSpan, weekStateOf } = UC.internal;
+  const { h, addDays, toISO, weekSpan, weekStateOf, writtenEventIds, deadlinesBetween, createEvent } = UC.internal;
   const STATUS = { past: "done", current: "current", future: "planned" };
   const WEEK_HASH = /^#week-(\d+)$/;
 
@@ -89,7 +89,7 @@
       const weeks = this.weeks();
       const calendar = UC.internal.calendar();
       const showDeadlines = !this.hasAttribute("no-deadlines");
-      const written = UC.internal.writtenEventIds(this);
+      const written = writtenEventIds(this);
       const compact = this.getAttribute("view") === "compact";
       weeks.forEach((week) => (week.hidden = compact));
 
@@ -147,8 +147,8 @@
         // Deadlines dated during the break follow its panel.
         let anchor = panel;
         if (written) {
-          UC.internal.deadlinesBetween(item.from, item.to, written).forEach((deadline) => {
-            const event = this.track(UC.internal.createEvent(deadline.id));
+          deadlinesBetween(item.from, item.to, written).forEach((deadline) => {
+            const event = this.track(createEvent(deadline.id));
             anchor.after(event);
             anchor = event;
           });
@@ -160,7 +160,7 @@
     /** Deadlines of the listed kinds dated in [from, to), written by hand or not. */
     deadlinesIn(from, to) {
       const kinds = (this.getAttribute("kind") || "").split(/\s+/).filter(Boolean);
-      return UC.internal.deadlinesBetween(from, to).filter((deadline) => !kinds.length || kinds.includes(deadline.kind));
+      return deadlinesBetween(from, to).filter((deadline) => !kinds.length || kinds.includes(deadline.kind));
     }
 
     /** Small lines under a row's topic: "Teste · quinta-feira, 4 dez, 14:00". */
@@ -269,7 +269,7 @@
           const { precision, date } = deadline.parsed;
           return (precision === "day" || precision === "month") && date >= end && !written.has(deadline.id);
         })
-        .forEach((deadline) => this.append(this.track(UC.internal.createEvent(deadline.id))));
+        .forEach((deadline) => this.append(this.track(createEvent(deadline.id))));
     }
   }
 

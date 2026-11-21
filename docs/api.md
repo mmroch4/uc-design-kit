@@ -1444,7 +1444,7 @@ message in `stderr`.
 ### 7.2 Widgets (`UC.widgets`)
 
 The algorithm widget library is separate from the kit: files in
-`widgets/v1/`, its own semver (widgets 1.0.0 needs kit 1.0+), outside the
+`widgets/v1/`, the kit's version (needs kit 1.0+), outside the
 kit's size budget. Full contract: `docs/architecture/widgets-api.md`. A page loads
 one file per widget type after the kit:
 

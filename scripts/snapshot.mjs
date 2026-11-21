@@ -2,8 +2,8 @@
 /**
  * Freezes the current build of kit/v1 as kit/v<version>/, where <version> is
  * the "version" in package.json. Run it when releasing, after updating the
- * version (package.json and kit/src/core/namespace.js) and running
- * `npm run build`.
+ * version in package.json and running `npm run build` (which copies it into
+ * kit/src/core/namespace.js, widgets/src/core/version.js and uc-site.py).
  *
  * The release is served with `Cache-Control: immutable` for a year, so it is
  * never modified afterwards (`npm run build:check` enforces this). Course
@@ -11,8 +11,8 @@
  * behaviour during the semester; kit/v1/ keeps following the latest 1.x.
  *
  * With --widgets it freezes widgets/v1 as widgets/v<version>/ instead, where
- * <version> is VERSION in widgets/src/core/version.js (the library has its
- * own semver, docs/architecture/widgets-api.md 2.2). A widgets release needs a kit
+ * <version> is VERSION in widgets/src/core/version.js (the same version,
+ * written there by the build; docs/architecture/widgets-api.md 2.2). A widgets release needs a kit
  * release that satisfies KIT_MIN to exist first (kit/vX.Y.Z/).
  *
  * Usage: node scripts/snapshot.mjs [--widgets]
@@ -64,7 +64,7 @@ await cp(source, target, { recursive: true });
 await writeFile(path.join(target, CHECKSUMS), await checksums(target));
 console.log(`kit/${name} created. Commit it together with the version bump and tag ${name}.`);
 
-/** widgets/v1 → widgets/v<VERSION>/ (docs/architecture/widgets-api.md 2.2 and 19, phase W6). */
+/** widgets/v1 → widgets/v<VERSION>/ (docs/architecture/widgets-api.md 2.2 and 19). */
 async function snapshotWidgets() {
   const { VERSION, KIT_MIN } = await import(pathToFileURL(path.join(WIDGETS, "src", "core", "version.js")).href);
   const name = `v${VERSION}`;

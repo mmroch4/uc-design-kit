@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Checks of the site search foundations in uc-kit.js (docs/architecture/search-api.md
- * sections 6 to 8, phase S1), in a real browser:
+ * sections 6 to 8), in a real browser:
  *
  *   - automatic heading ids: every case of tests/search/slugs.json (shared
  *     with template/uc-site.py), with the kit loaded in <head> and with defer
@@ -128,7 +128,7 @@ const waitForButton = (tab, state) =>
     { timeout: 8000 },
   );
 
-/* ---------- Phase S4: engine, dialog, <uc-search> (contract 7.3, 8.2, 9, 10) ---------- */
+/* ---------- Search engine, dialog and <uc-search> (contract 7.3, 8.2, 9, 10) ---------- */
 
 /** An index with enough pages to rank, filter by language and scope. */
 const RICH_INDEX = (fields = {}) =>
@@ -144,7 +144,7 @@ const RICH_INDEX = (fields = {}) =>
     ...fields,
   });
 
-async function s4Checks(browser, searchCourse, shell) {
+async function searchDialogChecks(browser, searchCourse, shell) {
   const words = JSON.parse(await readFile(path.join(ROOT, "tests/search/words.json"), "utf8"));
   const course = {
     ...searchCourse,
@@ -546,7 +546,7 @@ async function main() {
       await context.close();
     });
 
-    await s4Checks(browser, searchCourse, shell);
+    await searchDialogChecks(browser, searchCourse, shell);
 
     await test("index: an unknown format removes the button; stale and foreign indexes warn", async () => {
       const course = { ...searchCourse, updated: "2025-11-25" };

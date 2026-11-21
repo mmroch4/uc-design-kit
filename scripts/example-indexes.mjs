@@ -1,6 +1,5 @@
 /**
- * Search indexes of the examples and of the template (search plan, phases S3
- * and S5).
+ * Search indexes of the examples and of the template.
  *
  * For each folder of examples/, and for template/, whose course.js turns
  * `search` on, runs the

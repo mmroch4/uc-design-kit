@@ -1123,7 +1123,7 @@ token and the phase 3 strings of section 8; they are now in `docs/api.md`
    `__heading`, `__list`, `__aside`, `__body`, `__number`, `__mark`,
    `__item--last`, `__item--planned`.
 9. **Internal helpers.** `UC.internal.weekSpan(weekElement)` and
-   `UC.internal.weekStateOf(span)` (from `uc-week.js`, used by the compact
+   `UC.internal.weekStateOf(span)` (from `core/weeks.js` since the refactoring, used by the compact
    view) and `UC.internal.findMatches(text, query)` (accent-insensitive match
    ranges, unit-tested).
 

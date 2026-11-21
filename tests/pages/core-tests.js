@@ -93,7 +93,7 @@
     }
   });
 
-  /* Blocks phase 1: times, weekdays, storage keys, search text, list items. */
+  /* Blocks: times, weekdays, storage keys, search text, list items. */
   const inLang = (lang, fn) => {
     const saved = UC.lang;
     UC.lang = lang;
@@ -153,7 +153,7 @@
     equal([time.textContent, time.getAttribute("data-uc-text")], [inLang(UC.lang, () => UC.formatDate("2025-11-18", "long")), "18/11"]);
   });
 
-  /* Blocks phase 2: deadline times, status, grading and calendar files. */
+  /* Blocks: deadline times, status, grading and calendar files. */
   const deadline = (fields) => ({ links: [], ...fields, parsed: UC.internal.parseDeadlineDate(fields.date), endDate: UC.internal.parseDay(fields.end) });
   test("deadlineTimes: shifts, duration, time", () =>
     equal(

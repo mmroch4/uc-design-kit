@@ -100,5 +100,33 @@
     return UC.course.languages.some((code) => code !== UC.lang && (lang === code || lang.startsWith(`${code}-`)));
   };
 
+  /**
+   * True when `element` is hidden by in-place bilingual content (it or an
+   * ancestor carries a lang attribute of another configured language).
+   */
+  function isHiddenByLanguage(element) {
+    const languages = UC.course.languages;
+    if (languages.length < 2) return false;
+    for (let node = element; node && node !== document.documentElement; node = node.parentElement) {
+      const lang = node.getAttribute("lang");
+      if (!lang || node.hasAttribute("data-uc-keep-lang")) continue;
+      const base = lang.split("-")[0];
+      if (base !== UC.lang && languages.includes(base)) return true;
+    }
+    return false;
+  }
+
+  /** Visible text of an element in the active language (other-language parts removed). */
+  function visibleText(element) {
+    const clone = element.cloneNode(true);
+    clone.querySelectorAll("[lang]").forEach((node) => {
+      const base = node.getAttribute("lang").split("-")[0];
+      if (base !== UC.lang && UC.course.languages.includes(base)) node.remove();
+    });
+    return clone.textContent.replace(/\s+/g, " ").trim();
+  }
+
+  Object.assign(UC.internal, { isHiddenByLanguage, visibleText });
+
   apply(resolve());
 })(window.UC);

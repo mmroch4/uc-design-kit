@@ -30,6 +30,7 @@ from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from urllib.parse import unquote
 
+# Written by the kit's build (scripts/build.mjs) from its package.json.
 VERSION = "1.0.0"
 SCRIPT_NAME = "uc-site.py"
 DEFAULT_INDEX = "search-index.js"

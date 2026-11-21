@@ -1,6 +1,6 @@
 /**
  * Frozen releases: kit/vX.Y.Z/ and widgets/vX.Y.Z/ folders made by
- * scripts/snapshot.mjs (the widget library has its own versions,
+ * scripts/snapshot.mjs (both carry package.json's version,
  * docs/architecture/widgets-api.md 2.2).
  *
  * A release is served with `Cache-Control: immutable` for a year (see

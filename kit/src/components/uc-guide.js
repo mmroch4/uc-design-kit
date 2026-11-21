@@ -21,7 +21,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, number, anchors } = UC.internal;
+  const { h, uid, number, anchors, isHiddenByLanguage, visibleText, exercisesIn, isExerciseDone } = UC.internal;
   const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
   /** A heading is "current" once its top passes this fraction of the viewport height. */
   const ACTIVE_LINE = 0.3;
@@ -54,11 +54,11 @@
     }
 
     render() {
-      this.headings = Array.from(this.content.querySelectorAll("h2")).filter((heading) => !UC.internal.isHiddenByLanguage(heading));
+      this.headings = Array.from(this.content.querySelectorAll("h2")).filter((heading) => !isHiddenByLanguage(heading));
       this.headings.forEach((heading) => {
         // Inside <uc-page> core/anchors.js already gave every <h2> an id; this
         // covers a guide used without <uc-page>.
-        if (!heading.id) heading.id = anchors.uniqueId(anchors.slugify(UC.internal.visibleText(heading)));
+        if (!heading.id) heading.id = anchors.uniqueId(anchors.slugify(visibleText(heading)));
       });
 
       this.progress = this.renderProgress();
@@ -114,7 +114,7 @@
       this.weekLabel = null;
       const week = number(this, "week", null);
       if (week === null || !this.hasAttribute("week-label")) return;
-      const heading = Array.from(this.content.querySelectorAll("h1")).find((h1) => !UC.internal.isHiddenByLanguage(h1));
+      const heading = Array.from(this.content.querySelectorAll("h1")).find((h1) => !isHiddenByLanguage(h1));
       if (!heading) return;
       const span = UC.weekDates(week);
       this.weekLabel = h(
@@ -140,8 +140,8 @@
 
     /** Text of the guide's first <h1> visible in the active language. */
     pageTitle() {
-      const heading = Array.from(this.content.querySelectorAll("h1")).find((h1) => !UC.internal.isHiddenByLanguage(h1));
-      return heading ? UC.internal.visibleText(heading) : "";
+      const heading = Array.from(this.content.querySelectorAll("h1")).find((h1) => !isHiddenByLanguage(h1));
+      return heading ? visibleText(heading) : "";
     }
 
     /* ---------- Progress ---------- */
@@ -157,9 +157,9 @@
 
     updateProgress() {
       if (!this.progress) return;
-      const exercises = UC.internal.exercisesIn(this);
+      const exercises = exercisesIn(this);
       const total = exercises.length;
-      const done = exercises.filter(UC.internal.isExerciseDone).length;
+      const done = exercises.filter(isExerciseDone).length;
       this.progress.hidden = total === 0;
       this.classList.toggle("uc-guide--no-aside", total === 0 && !this.toc);
       if (!total) return;
@@ -193,7 +193,7 @@
               h(
                 "a",
                 { class: "uc-guide__toc-link", href: `#${heading.id}`, onClick: (event) => this.goTo(event, heading) },
-                UC.internal.visibleText(heading),
+                visibleText(heading),
               ),
             ),
           ),

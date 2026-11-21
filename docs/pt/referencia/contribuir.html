@@ -247,18 +247,17 @@ npm run test:dom -- --update    # rewrites tests/dom-record.json (a change meant
 
         <h2 id="lancar">Lançar uma versão</h2>
         <ol>
-          <li>Mudar a versão em <code>package.json</code> e em <code>kit/src/core/namespace.js</code> (<code>UC.version</code>), e passar as notas de <em>Unreleased</em> para a nova versão no <code>CHANGELOG.md</code>.</li>
+          <li>Mudar a versão em <code>package.json</code>, a única fonte: o <code>npm run build</code> escreve-a em <code>kit/src/core/namespace.js</code> (<code>UC.version</code>), <code>widgets/src/core/version.js</code> e <code>template/uc-site.py</code>, e o <code>build:check</code> falha se divergirem. Passar as notas de <em>Unreleased</em> para a nova versão no <code>CHANGELOG.md</code>.</li>
           <li><code>npm run build</code> e depois <code>npm run snapshot</code>, que copia <code>kit/v1/</code> para <code>kit/vX.Y.Z/</code> e escreve o seu <code>SHA256SUMS</code>.</li>
           <li>Fundir em <code>main</code> (publicado automaticamente) e criar a etiqueta <code>vX.Y.Z</code>.</li>
           <li>Voltar a pôr a versão seguinte com <code>-dev</code>.</li>
         </ol>
         <h3 id="lancar-widgets">Lançar uma versão dos widgets</h3>
-        <p>Os widgets (<code>widgets/v1/</code>) têm versões próprias e só se lançam depois de uma versão do kit que satisfaça <code>KIT_MIN</code> (a 1.0.0 dos widgets precisa do kit 1.0.0). A versão 1.0.0 do kit e a dos widgets saíram juntas, com a etiqueta <code>v1.0.0</code>.</p>
+        <p>Os widgets (<code>widgets/v1/</code>) têm a versão do kit (vem do <code>package.json</code>) e saem com a mesma etiqueta <code>vX.Y.Z</code>. <code>KIT_MIN</code>, em <code>widgets/src/core/version.js</code>, é a versão mais antiga do kit com que funcionam.</p>
         <ol>
-          <li>Todos os <code>meta.json</code> com <code>"status": "stable"</code> (o snapshot recusa-se sem isso). Mudar <code>VERSION</code> em <code>widgets/src/core/version.js</code> e passar as notas de <em>Widgets</em> para <code>## Widgets [X.Y.Z]</code> no <code>CHANGELOG.md</code>.</li>
+          <li>Todos os <code>meta.json</code> com <code>"status": "stable"</code> (o snapshot recusa-se sem isso). Passar as notas de <em>Widgets</em> para <code>## Widgets [X.Y.Z]</code> no <code>CHANGELOG.md</code>.</li>
           <li><code>npm run build</code> e depois <code>npm run snapshot:widgets</code>, que copia <code>widgets/v1/</code> para <code>widgets/vX.Y.Z/</code> e escreve o seu <code>SHA256SUMS</code>.</li>
-          <li>Fundir em <code>main</code> e criar a etiqueta <code>widgets-vX.Y.Z</code>. A partir daí, a verificação abre <code>tests/widgets/compat.html</code> com <code>widgets/v1/</code> e com cada versão congelada.</li>
-          <li>Voltar a pôr a versão seguinte com <code>-dev</code>.</li>
+          <li>Fundir em <code>main</code> com a etiqueta <code>vX.Y.Z</code> do kit. A partir daí, a verificação abre <code>tests/widgets/compat.html</code> com <code>widgets/v1/</code> e com cada versão congelada.</li>
         </ol>
         <p>Os pormenores de publicação (cabeçalhos de cache, domínio, espelho no jsDelivr) estão em <a href="https://github.com/mmroch4/uc-design-kit/blob/main/docs/deployment.md">docs/deployment.md</a>.</p>
 

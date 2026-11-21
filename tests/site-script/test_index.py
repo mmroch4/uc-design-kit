@@ -1,6 +1,6 @@
 """
-Tests of the search index written by template/uc-site.py (search plan, phase
-S3): docs/architecture/search-api.md sections 4 (what goes in), 5 (file format) and
+Tests of the search index written by template/uc-site.py:
+docs/architecture/search-api.md sections 4 (what goes in), 5 (file format) and
 6 (automatic heading ids), and the shared cases in tests/search/.
 
     python3 -m unittest discover -s tests/site-script -v
