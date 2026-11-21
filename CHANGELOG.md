@@ -28,6 +28,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   place). `check-a11y.mjs` and `check-search.mjs` are split by theme into
   `scripts/a11y/` and `scripts/search/`; the commands and their options are
   the same.
+- Internal (no change for pages): long component functions are split into
+  small named ones (`<uc-grading>` render, `<uc-assessment-info>`, the compact
+  table of `<uc-weeks>`, the navigation of `<uc-page>`), and `<uc-code>` moved
+  to `kit/src/code/` split by concern: `highlight.js` (highlight.js loader and
+  languages), `editor.js` (editable mode), `run.js` (execution and tests) and
+  `element.js`. The generated heading (`heading`, `heading="none"`), the
+  external-link mark and file downloads are shared helpers in `core/dom.js`.
+  uc-kit.js and uc-grading.js are slightly smaller.
 
 ### Fixed
 - `<uc-materials>`: an item with many links no longer squeezes its title to

@@ -24,7 +24,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, isExternal, exercisesIn, readDone, writeDone } = UC.internal;
+  const { h, icon, externalMark, exercisesIn, readDone, writeDone } = UC.internal;
   const LEVELS = ["easy", "medium", "hard"];
   const LEVEL_TAGS = { easy: "uc-tag--muted", medium: "uc-tag--accent", hard: "uc-tag--warning" };
   const MOOSHAK_LABEL = "mooshak";
@@ -134,14 +134,12 @@
       const code = this.getAttribute("mooshak");
       const platform = code ? mooshakPlatform() : null;
       if (!platform) return null;
-      const external = isExternal(platform.url);
       return h(
         "a",
         { class: "uc-button uc-exercise__submit", href: platform.url },
         this.t("exercise.submitOn", { platform: UC.text(platform.label) }),
         h("span", { class: "uc-tag uc-tag--muted uc-mono" }, code),
-        external ? icon("external") : null,
-        external ? h("span", { class: "uc-visually-hidden" }, ` ${this.t("a11y.external")}`) : null,
+        externalMark(platform.url),
       );
     }
 

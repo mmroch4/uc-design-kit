@@ -8,7 +8,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, icon, flag, toISO, parseDay, parseTime, endTime, findDeadline, deadlineStatus } = UC.internal;
+  const { h, uid, icon, flag, heading, downloadFile, toISO, parseDay, parseTime, endTime, findDeadline, deadlineStatus } = UC.internal;
   const html = (value) => (value ? h("span", { html: UC.text(value) }) : null);
 
   /** True when `url` is this page (hash and query ignored). */
@@ -28,6 +28,25 @@
     return `${UC.weekdayName(((date.getDay() + 6) % 7) + 1, "long")}, ${UC.formatDate(date, "long")}`;
   }
 
+  /** The shifts: "14:00–16:00 · Room · note", with the weekday when a shift is on another day. */
+  function renderShifts(deadline, shifts) {
+    const day = deadline.parsed.date;
+    return h(
+      "ul",
+      { class: "uc-assessment-info__shifts" },
+      shifts.map((shift) => {
+        const date = parseDay(shift.date);
+        const parts = [
+          date && day && +date !== +day ? `${UC.formatDate(date, "weekday")}, ` : null,
+          UC.internal.timeRangeNode(shift.time, endTime(shift.time, shift.end, deadline.duration)),
+        ];
+        if (shift.location) parts.push(" · ", html(shift.location));
+        if (shift.note) parts.push(" · ", html(shift.note));
+        return h("li", {}, parts);
+      }),
+    );
+  }
+
   class UCAssessmentInfo extends UC.Element {
     setup() {
       this.classList.add("uc-assessment-info");
@@ -44,92 +63,67 @@
         this.replaceChildren(...this.extra);
         return;
       }
-      const label = this.getAttribute("heading");
-      const none = label !== null && label.trim().toLowerCase() === "none";
-      const heading = none ? null : h(UC.internal.headingTag(this), { class: "uc-assessment-info__heading", id: this.headingId }, label && label.trim() ? label : this.text(deadline.title));
-      const rows = [];
-      const row = (key, ...value) => rows.push(h("dt", {}, this.t(key)), h("dd", {}, value));
-
-      const { parsed } = deadline;
-      row(
-        "deadlines.column.date",
-        parsed.precision === "day" ? h("time", { datetime: toISO(parsed.date) }, longDate(deadline)) : longDate(deadline),
-      );
-
-      const shifts = (Array.isArray(deadline.shifts) ? deadline.shifts : []).filter((shift) => shift && parseTime(shift.time));
-      if (shifts.length) {
-        row(
-          "assessment.shifts",
-          h(
-            "ul",
-            { class: "uc-assessment-info__shifts" },
-            shifts.map((shift) => {
-              const date = parseDay(shift.date);
-              const parts = [
-                date && parsed.date && +date !== +parsed.date ? `${UC.formatDate(date, "weekday")}, ` : null,
-                UC.internal.timeRangeNode(shift.time, endTime(shift.time, shift.end, deadline.duration)),
-              ];
-              if (shift.location) parts.push(" · ", html(shift.location));
-              if (shift.note) parts.push(" · ", html(shift.note));
-              return h("li", {}, parts);
-            }),
-          ),
-        );
-      } else if (parseTime(deadline.time) && parsed.precision === "day") {
-        row("deadlines.column.time", UC.internal.timeRangeNode(deadline.time, endTime(deadline.time, null, deadline.duration)));
-      }
-      if (deadline.duration > 0) row("assessment.duration", UC.formatDuration(deadline.duration));
-      if (deadline.location) row("assessment.location", html(deadline.location));
-
-      const { status, days } = deadlineStatus(deadline, UC.today());
-      const statusText =
-        status === "upcoming" ? (days === 1 ? this.t("assessment.tomorrow") : this.t("assessment.inDays", { count: days })) : status === "toBeScheduled" ? this.t("deadlines.toBeScheduled") : this.t(`assessment.${status}`);
-      if (parsed.precision !== "none") {
-        const tone = status === "done" ? " uc-tag--success" : status === "toBeScheduled" ? "" : " uc-tag--warning";
-        row("deadlines.column.status", h("span", { class: `uc-tag uc-assessment-info__status${tone}` }, statusText));
-      }
-
-      const links = [];
-      if (deadline.url && !isThisPage(deadline.url)) links.push({ url: deadline.url, label: deadline.title });
-      links.push(...deadline.links);
-      if (links.length) row("assessment.links", links.map((link, index) => [index ? " · " : null, h("a", { href: link.url }, this.text(link.label))]));
-
-      const calendar =
-        flag(this, "calendar") && parsed.precision === "day"
-          ? h(
-              "button",
-              {
-                type: "button",
-                class: "uc-button uc-assessment-info__calendar",
-                "aria-label": `${this.t("assessment.calendar")}, ${this.t("assessment.calendarFile")}`,
-                onClick: () => this.download(deadline),
-              },
-              icon("download"),
-              this.t("assessment.calendar"),
-            )
-          : null;
-
+      const title = heading(this, "uc-assessment-info", this.text(deadline.title));
       this.replaceChildren(
         h(
           "section",
-          { class: "uc-card uc-assessment-info__card", "aria-labelledby": heading ? this.headingId : null },
-          heading,
-          h("dl", {}, rows),
+          { class: "uc-card uc-assessment-info__card", "aria-labelledby": title ? this.headingId : null },
+          title,
+          h("dl", {}, this.renderFacts(deadline)),
           deadline.note ? h("p", { class: "uc-assessment-info__note", html: this.text(deadline.note) }) : null,
-          calendar,
+          this.renderCalendarButton(deadline),
         ),
         ...this.extra,
       );
     }
 
-    download(deadline) {
-      const text = UC.internal.icsText(deadline, window.location.href.split("#")[0]);
-      const url = URL.createObjectURL(new Blob([text], { type: "text/calendar;charset=utf-8" }));
-      const link = h("a", { href: url, download: `${UC.course.code || "uc"}-${deadline.id}.ics`, hidden: true });
-      document.body.append(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    /** The <dt>/<dd> pairs: date, shifts or time, duration, location, status, links. */
+    renderFacts(deadline) {
+      const rows = [];
+      const row = (key, ...value) => rows.push(h("dt", {}, this.t(key)), h("dd", {}, value));
+      const { parsed } = deadline;
+      row(
+        "deadlines.column.date",
+        parsed.precision === "day" ? h("time", { datetime: toISO(parsed.date) }, longDate(deadline)) : longDate(deadline),
+      );
+      const shifts = (Array.isArray(deadline.shifts) ? deadline.shifts : []).filter((shift) => shift && parseTime(shift.time));
+      if (shifts.length) row("assessment.shifts", renderShifts(deadline, shifts));
+      else if (parseTime(deadline.time) && parsed.precision === "day") {
+        row("deadlines.column.time", UC.internal.timeRangeNode(deadline.time, endTime(deadline.time, null, deadline.duration)));
+      }
+      if (deadline.duration > 0) row("assessment.duration", UC.formatDuration(deadline.duration));
+      if (deadline.location) row("assessment.location", html(deadline.location));
+      if (parsed.precision !== "none") row("deadlines.column.status", this.renderStatus(deadline));
+      const links = [];
+      if (deadline.url && !isThisPage(deadline.url)) links.push({ url: deadline.url, label: deadline.title });
+      links.push(...deadline.links);
+      if (links.length) row("assessment.links", links.map((link, index) => [index ? " · " : null, h("a", { href: link.url }, this.text(link.label))]));
+      return rows;
+    }
+
+    /** "Amanhã", "Daqui a 3 dias", "Terminado"… as a tag (green once done). */
+    renderStatus(deadline) {
+      const { status, days } = deadlineStatus(deadline, UC.today());
+      const text =
+        status === "upcoming" ? (days === 1 ? this.t("assessment.tomorrow") : this.t("assessment.inDays", { count: days })) : status === "toBeScheduled" ? this.t("deadlines.toBeScheduled") : this.t(`assessment.${status}`);
+      const tone = status === "done" ? " uc-tag--success" : status === "toBeScheduled" ? "" : " uc-tag--warning";
+      return h("span", { class: `uc-tag uc-assessment-info__status${tone}` }, text);
+    }
+
+    /** The .ics download button (attribute `calendar`, dated deadlines only), or null. */
+    renderCalendarButton(deadline) {
+      if (!flag(this, "calendar") || deadline.parsed.precision !== "day") return null;
+      return h(
+        "button",
+        {
+          type: "button",
+          class: "uc-button uc-assessment-info__calendar",
+          "aria-label": `${this.t("assessment.calendar")}, ${this.t("assessment.calendarFile")}`,
+          onClick: () => downloadFile(UC.internal.icsText(deadline, window.location.href.split("#")[0]), `${UC.course.code || "uc"}-${deadline.id}.ics`, "text/calendar"),
+        },
+        icon("download"),
+        this.t("assessment.calendar"),
+      );
     }
   }
 

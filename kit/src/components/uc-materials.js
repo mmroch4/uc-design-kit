@@ -117,10 +117,7 @@
         item.meta.hidden = !item.meta.firstChild;
       });
 
-      const label = this.getAttribute("heading");
-      const none = label !== null && label.trim().toLowerCase() === "none";
-      const text = label && label.trim() && !none ? label : this.t("materials.heading");
-      const heading = none ? null : h(UC.internal.headingTag(this), { class: "uc-materials__heading", id: this.headingId }, text);
+      const heading = UC.internal.heading(this, "uc-materials", this.t("materials.heading"));
       this.replaceChildren(
         h(
           "section",

@@ -40,7 +40,7 @@
       const newDays = number(this, "new-days", DEFAULT_NEW_DAYS);
       const renderItem = (notice) => this.renderNotice(notice, today, newDays);
 
-      const heading = this.renderHeading();
+      const heading = UC.internal.heading(this, "uc-notices", this.t("notices.heading"));
       let body;
       if (!notices.length) {
         body = h("p", { class: "uc-notices__empty" }, this.t("notices.empty"));
@@ -61,13 +61,6 @@
         this.extra.length ? h("div", { class: "uc-notices__more" }, this.extra) : null,
       );
       this.replaceChildren(section);
-    }
-
-    renderHeading() {
-      const value = this.getAttribute("heading");
-      if (value !== null && value.trim().toLowerCase() === "none") return null;
-      const label = value !== null && value.trim() ? value : this.t("notices.heading");
-      return h(UC.internal.headingTag(this), { class: "uc-notices__heading", id: this.headingId }, label);
     }
 
     renderNotice(notice, today, newDays) {

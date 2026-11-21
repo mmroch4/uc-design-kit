@@ -257,7 +257,7 @@
   "docs/pt/referencia/api-js.html": {"dom":"041d0680b7e70617","aria":"3d11cee7a2d23053"},
   "docs/pt/referencia/browsers.html": {"dom":"07b34f916662e602","aria":"f49ebd07e2e9666e"},
   "docs/pt/referencia/classes.html": {"dom":"2731dabb486a2c04","aria":"b3906f43cab26f78"},
-  "docs/pt/referencia/contribuir.html": {"dom":"b039bb9a8b46056d","aria":"7e645d88b6829245"},
+  "docs/pt/referencia/contribuir.html": {"dom":"dfcc7a3300a1c75d","aria":"0483d3d5119989d5"},
   "docs/pt/referencia/runners.html": {"dom":"2e7884b2a7f11b89","aria":"2eda5523887742e0"},
   "docs/pt/referencia/versoes.html": {"dom":"467ac16f6fa9f1b4","aria":"cf54bd973317839f"},
   "docs/pt/widgets/criar.html": {"dom":"1700973af40fde2a","aria":"4d7d7c17472951dd"},
@@ -739,9 +739,9 @@
   "tests/widgets/compat.html?release=v1.0.0": {"dom":"23912c334b4bd935","aria":"06281294cee9adc9"}
  },
  "sizes": {
-  "kit/v1/uc-grading.js": 8038,
+  "kit/v1/uc-grading.js": 8025,
   "kit/v1/uc-kit.css": 12527,
-  "kit/v1/uc-kit.js": 46992,
+  "kit/v1/uc-kit.js": 46903,
   "kit/v1/uc-search.js": 5070,
   "widgets/v1/uc-widget-avl.js": 6509,
   "widgets/v1/uc-widget-backtracking.js": 6375,

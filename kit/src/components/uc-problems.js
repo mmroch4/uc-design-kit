@@ -207,11 +207,7 @@
       });
 
       const bar = flag(this, "filters") ? this.filterBar() : null;
-      const label = this.getAttribute("heading");
-      const heading =
-        label && label.trim() && label.trim().toLowerCase() !== "none"
-          ? h(UC.internal.headingTag(this), { class: "uc-problems__heading", id: this.headingId }, label)
-          : null;
+      const heading = UC.internal.heading(this, "uc-problems", null);
       this.empty.textContent = this.t("problems.none");
       this.replaceChildren(
         h(heading ? "section" : "div", { class: "uc-problems__section", "aria-labelledby": heading ? this.headingId : null }, heading, bar, this.content, this.empty),

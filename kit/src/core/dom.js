@@ -112,5 +112,30 @@
     return "h2";
   }
 
-  Object.assign(UC.internal, { h, append, fragment, icon, uid, isExternal, flag, number, headingTag });
+  /**
+   * A component's generated heading, or null: `heading="none"` hides it, a
+   * non-empty `heading` replaces `fallback`, and without either there is none.
+   * The heading gets the class `<block>__heading` and the id `element.headingId`.
+   */
+  function heading(element, block, fallback) {
+    const label = element.getAttribute("heading");
+    const text = label && label.trim() ? label : fallback;
+    if (!text || (label && label.trim().toLowerCase() === "none")) return null;
+    return h(headingTag(element), { class: `${block}__heading`, id: element.headingId }, text);
+  }
+
+  /** The "external link" icon and its hidden text, for a link to `url` on another site; null otherwise. */
+  const externalMark = (url) => (isExternal(url) ? [icon("external"), h("span", { class: "uc-visually-hidden" }, ` ${UC.t("a11y.external")}`)] : null);
+
+  /** Saves `text` as a file called `name` (a temporary link to a Blob). */
+  function downloadFile(text, name, type) {
+    const url = URL.createObjectURL(new Blob([text], { type: `${type};charset=utf-8` }));
+    const link = h("a", { href: url, download: name, hidden: true });
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  Object.assign(UC.internal, { h, append, fragment, icon, uid, isExternal, flag, number, headingTag, heading, externalMark, downloadFile });
 })(window.UC);

@@ -6,7 +6,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, uid, isExternal } = UC.internal;
+  const { h, icon, uid, externalMark } = UC.internal;
   const MOBILE_QUERY = "(max-width: 960px)";
 
   /** Resolves a page's href for the active language. */
@@ -205,11 +205,20 @@
       );
     }
 
+    /** The sidebar: the menu toggle (small screens) and the navigation (pages, then platforms). */
     renderNavigation(current) {
-      const course = this.course;
-      const currentLabel = current ? pageLabel(current) : "";
+      return h(
+        "div",
+        { class: "uc-sidebar" },
+        this.renderNavToggle(current),
+        h("nav", { class: "uc-nav", id: this.navId, "aria-label": this.t("nav.label") }, this.renderPageLinks(current), this.renderPlatformLinks()),
+      );
+    }
 
-      const toggle = h(
+    /** "Menu · <current page>" button that opens the navigation on small screens. */
+    renderNavToggle(current) {
+      const currentLabel = current ? pageLabel(current) : "";
+      return h(
         "button",
         {
           type: "button",
@@ -222,11 +231,14 @@
           currentLabel ? h("span", { class: "uc-nav-toggle__current" }, `· ${currentLabel}`) : null),
         h("span", { class: "uc-nav-toggle__chevron" }, icon("chevronDown")),
       );
+    }
 
-      const pages = h(
+    /** The configured pages; the current one is marked with aria-current. */
+    renderPageLinks(current) {
+      return h(
         "ul",
         { class: "uc-nav__list" },
-        course.pages.map((page) =>
+        this.course.pages.map((page) =>
           h(
             "li",
             {},
@@ -242,40 +254,21 @@
           ),
         ),
       );
+    }
 
-      let platforms = null;
-      const listed = course.platforms.filter((platform) => !platform.hidden);
-      if (listed.length) {
-        const labelId = `${this.navId}-platforms`;
-        platforms = [
-          h("p", { class: "uc-nav__group", id: labelId }, this.t("nav.platforms")),
-          h(
-            "ul",
-            { class: "uc-nav__list", "aria-labelledby": labelId },
-            listed.map((platform) => {
-              const external = isExternal(platform.url);
-              return h(
-                "li",
-                {},
-                h(
-                  "a",
-                  { class: "uc-nav__link", href: platform.url },
-                  this.text(platform.label),
-                  external ? icon("external") : null,
-                  external ? h("span", { class: "uc-visually-hidden" }, ` ${this.t("a11y.external")}`) : null,
-                ),
-              );
-            }),
-          ),
-        ];
-      }
-
-      return h(
-        "div",
-        { class: "uc-sidebar" },
-        toggle,
-        h("nav", { class: "uc-nav", id: this.navId, "aria-label": this.t("nav.label") }, pages, platforms),
-      );
+    /** The "Platforms" group (platforms not marked hidden), or null when there are none. */
+    renderPlatformLinks() {
+      const listed = this.course.platforms.filter((platform) => !platform.hidden);
+      if (!listed.length) return null;
+      const labelId = `${this.navId}-platforms`;
+      return [
+        h("p", { class: "uc-nav__group", id: labelId }, this.t("nav.platforms")),
+        h(
+          "ul",
+          { class: "uc-nav__list", "aria-labelledby": labelId },
+          listed.map((platform) => h("li", {}, h("a", { class: "uc-nav__link", href: platform.url }, this.text(platform.label), externalMark(platform.url)))),
+        ),
+      ];
     }
 
     renderFooter() {
