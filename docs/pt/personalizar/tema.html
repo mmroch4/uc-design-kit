@@ -12,6 +12,7 @@
   <script src="../../assets/course.js"></script>
   <script src="../../../kit/v1/uc-kit.js" defer></script>
   <script src="../../assets/docs.js" defer></script>
+  <script src="../../assets/theme-starter.js" defer></script>
   <script src="../../assets/theme-editor.js" defer></script>
 </head>
 <body class="docs docs-theme-page">
@@ -127,6 +128,7 @@
         <p class="docs-sidebar__title" id="docs-nav-5">Personalizar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
           <li><a href="index.html">Visão geral</a></li>
+          <li><a href="criar-tema.html">Criar um tema</a></li>
           <li><a href="course-js.html">Nível 0: course.js</a></li>
           <li><a href="tokens.html">Nível 1: tokens</a></li>
           <li><a href="css.html">Nível 2: CSS livre</a></li>
@@ -165,15 +167,25 @@
         <header class="docs-page-header">
           <p class="docs-eyebrow">Personalizar</p>
           <h1>Personalizador de tema</h1>
-          <p class="docs-lead">Escolher a cor de destaque, os cantos, o tamanho e o tipo de letra e a largura do conteúdo, ver o resultado no curso de demonstração e copiar o que se cola no <code>course.js</code> e no <code>theme.css</code>.</p>
+          <p class="docs-lead">Escolher um tema pronto, a cor de destaque, os cantos, o tamanho e o tipo de letra e a largura do conteúdo, ver o resultado no curso de demonstração e copiar o que se cola no <code>course.js</code> e no <code>theme.css</code>.</p>
         </header>
 
-        <p>Cada controlo muda um ou mais <a href="tokens.html">tokens</a> do kit; a pré-visualização é o curso fictício da documentação com esses tokens aplicados. A cor de destaque vai para o <a href="course-js.html"><code>course.js</code></a> (nível 0); o resto vai para o <code>theme.css</code> (nível 1), que só leva os valores diferentes dos do kit.</p>
+        <p>Cada controlo muda um ou mais <a href="tokens.html">tokens</a> do kit; a pré-visualização é o curso fictício da documentação com esses tokens aplicados. A cor de destaque e o tema pronto vão para o <a href="course-js.html"><code>course.js</code></a> (nível 0); o resto vai para o <code>theme.css</code> (nível 1), que leva os valores diferentes dos do kit com esse tema, sozinhos ou dentro do ficheiro completo. O guia <a href="criar-tema.html">Criar um tema</a> explica cada passo.</p>
 
         <p class="uc-callout docs-theme-nojs">O personalizador precisa de JavaScript. Sem ele, o <code>theme.css</code> escreve-se à mão: há um exemplo em <a href="#sem-javascript">Sem JavaScript</a>.</p>
 
         <div class="docs-theme" id="docs-theme" hidden>
           <form class="docs-theme-controls" id="docs-theme-form" aria-label="Opções do tema">
+            <fieldset class="docs-theme-field">
+              <legend>Tema pronto</legend>
+              <div class="docs-theme-options">
+                <label class="docs-theme-option"><input type="radio" name="theme" value="none" checked><span>Nenhum</span></label>
+                <label class="docs-theme-option"><input type="radio" name="theme" value="compact"><span>compact</span></label>
+                <label class="docs-theme-option"><input type="radio" name="theme" value="serif"><span>serif</span></label>
+                <label class="docs-theme-option"><input type="radio" name="theme" value="high-contrast"><span>high-contrast</span></label>
+              </div>
+            </fieldset>
+
             <fieldset class="docs-theme-field docs-theme-field--accent">
               <legend>Cor de destaque</legend>
               <div class="docs-theme-accent">
@@ -234,6 +246,7 @@
               <div class="docs-theme-options">
                 <label class="docs-theme-option"><input type="radio" name="font" value="inter" checked><span>Inter</span></label>
                 <label class="docs-theme-option"><input type="radio" name="font" value="system"><span>Do sistema</span></label>
+                <label class="docs-theme-option"><input type="radio" name="font" value="serif"><span>Com serifa</span></label>
               </div>
             </fieldset>
 
@@ -280,14 +293,21 @@
             <h2 id="resultado">Resultado</h2>
             <div class="docs-demo docs-theme-output">
               <div class="docs-demo__panel" data-label="course.js">
-                <p class="docs-theme-output__note">Nível 0: substitui a linha <code>accentColor</code> do <code>course.js</code>.</p>
+                <p class="docs-theme-output__note">Nível 0: substitui a linha <code>accentColor</code> do <code>course.js</code> (e acrescenta <code>theme</code>, com um tema pronto).</p>
                 <pre class="docs-theme-code"><code id="docs-theme-course"></code></pre>
                 <div class="docs-theme-actions">
                   <button class="uc-button uc-button--sm" type="button" data-copy="docs-theme-course">Copiar</button>
                 </div>
               </div>
               <div class="docs-demo__panel" data-label="theme.css">
-                <p class="docs-theme-output__note">Nível 1: só os tokens diferentes dos do kit. Fica ao lado do <code>course.js</code> e carrega-se depois do kit.</p>
+                <p class="docs-theme-output__note">Nível 1: os tokens diferentes dos do kit (com o tema pronto escolhido). Fica ao lado do <code>course.js</code> e carrega-se depois do kit.</p>
+                <fieldset class="docs-theme-field docs-theme-field--inline">
+                  <legend>Ficheiro</legend>
+                  <div class="docs-theme-options">
+                    <label class="docs-theme-option"><input type="radio" name="file" value="changed" checked><span>Só o que mudou</span></label>
+                    <label class="docs-theme-option"><input type="radio" name="file" value="full"><span>Ficheiro completo</span></label>
+                  </div>
+                </fieldset>
                 <pre class="docs-theme-code"><code id="docs-theme-css"></code></pre>
                 <div class="docs-theme-actions">
                   <button class="uc-button uc-button--sm" type="button" data-copy="docs-theme-css">Copiar</button>
@@ -306,10 +326,11 @@
               <tr><th scope="col">Controlo</th><th scope="col">Tokens</th><th scope="col">Onde se nota</th></tr>
             </thead>
             <tbody>
+              <tr><td>Tema pronto</td><td>Os do ficheiro do tema (ver <a href="criar-tema.html#temas-prontos">Temas prontos</a>)</td><td>Escolher um tema muda os controlos que ele define para os valores dele: <code>compact</code> põe os cantos a 8 e a letra a 15 px, <code>serif</code> a letra com serifa, <code>high-contrast</code> a cor <code>#1E3A8A</code>. Os outros controlos ficam como estavam.</td></tr>
               <tr><td>Cor de destaque</td><td><code>--uc-color-accent</code> (por omissão <code>#1D4ED8</code>)</td><td>Ligações, item ativo da navegação, botões principais, semana atual, anel de foco. As variantes <code>-strong</code>, <code>-soft</code> e <code>--uc-color-highlight</code> são calculadas a partir dela.</td></tr>
               <tr><td>Cantos</td><td><code>--uc-radius-sm</code>, <code>-md</code>, <code>-lg</code></td><td>Cartões, blocos de código e painéis (<code>-lg</code>); botões e navegação (<code>-md</code>); etiquetas e código em linha (<code>-sm</code>).</td></tr>
               <tr><td>Tamanho da letra</td><td><code>--uc-font-size-base</code> (100%, 16 px por omissão)</td><td>Toda a escala tipográfica, que está em <code>rem</code>. O personalizador escreve o valor em percentagem (17 px dá <code>106.25%</code>), para que quem aumentou a letra no navegador continue a vê-la maior.</td></tr>
-              <tr><td>Tipo de letra</td><td><code>--uc-font-sans</code> (Inter)</td><td>Todo o texto exceto código, datas e códigos, que usam <code>--uc-font-mono</code>. A letra do sistema dispensa o download da Inter.</td></tr>
+              <tr><td>Tipo de letra</td><td><code>--uc-font-sans</code> (Inter)</td><td>Todo o texto exceto código, datas e códigos, que usam <code>--uc-font-mono</code>. A letra do sistema e a letra com serifa (a do tema <code>serif</code>) dispensam o download da Inter.</td></tr>
               <tr><td>Largura do conteúdo</td><td><code>--uc-content-max</code> (1200 px)</td><td>Largura máxima do cabeçalho, da navegação e do conteúdo de <code>&lt;uc-page&gt;</code>. Só se nota em ecrãs mais largos do que o valor escolhido.</td></tr>
             </tbody>
           </table>
@@ -340,12 +361,12 @@
         <p>Abaixo de 4.5:1 aparece um aviso, também anunciado por leitores de ecrã. A página <a href="../estilos/cor.html">Cor</a> explica a paleta e as variantes calculadas.</p>
 
         <h2 id="aplicar">Aplicar o resultado</h2>
-        <p>O separador <strong>course.js</strong> dá a linha <code>accentColor</code>, que substitui a do <code>course.js</code> (ver <a href="course-js.html">Nível 0: course.js</a>). O separador <strong>theme.css</strong> dá o ficheiro com os tokens que mudaram (ver <a href="tokens.html">Nível 1: tokens</a>); "Descarregar theme.css" guarda-o pronto a pôr na pasta do site, no lugar do <code>theme.css</code> do modelo.</p>
+        <p>O separador <strong>course.js</strong> dá a linha <code>accentColor</code>, que substitui a do <code>course.js</code>, e com um tema pronto a linha <code>theme</code> (ver <a href="course-js.html">Nível 0: course.js</a>). O separador <strong>theme.css</strong> dá os tokens que mudaram em relação ao kit com esse tema (ver <a href="tokens.html">Nível 1: tokens</a>). Com <strong>Ficheiro completo</strong>, dá o <a href="criar-tema.html#theme-css"><code>theme.css</code> inicial</a> inteiro, com todos os tokens e só esses descomentados, para continuar a mudar à mão. "Descarregar theme.css" guarda o que estiver no separador, pronto a pôr na pasta do site no lugar do <code>theme.css</code> do modelo.</p>
         <p>O <code>theme.css</code> também inclui <code>--uc-color-accent</code> quando a cor muda, mas o <code>accentColor</code> do <code>course.js</code> prevalece sobre ele: o kit aplica-o diretamente no elemento <code>&lt;html&gt;</code>. Basta escolher um dos dois sítios; o modelo traz <code>accentColor</code> no <code>course.js</code>.</p>
 
         <h2 id="partilhar">Partilhar uma combinação</h2>
-        <p>O endereço da página guarda as escolhas depois de <code>#</code>, por isso pode ser copiado e enviado. Por exemplo, verde-azulado, cantos de 4 px, letra do sistema e conteúdo de 1080 px:</p>
-        <uc-code lang="text" no-download><pre><code>tema.html#accent=0F766E&amp;radius=4&amp;size=16&amp;font=system&amp;width=1080</code></pre></uc-code>
+        <p>O endereço da página guarda as escolhas depois de <code>#</code>, por isso pode ser copiado e enviado. Por exemplo, sem tema pronto, verde-azulado, cantos de 4 px, letra do sistema e conteúdo de 1080 px:</p>
+        <uc-code lang="text" no-download><pre><code>tema.html#theme=none&amp;accent=0F766E&amp;radius=4&amp;size=16&amp;font=system&amp;width=1080&amp;file=changed</code></pre></uc-code>
         <p>Valores fora das opções são ignorados. "Repor" volta aos valores do kit e limpa o endereço.</p>
 
         <h2 id="sem-javascript">Sem JavaScript</h2>

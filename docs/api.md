@@ -24,6 +24,7 @@ Every page loads, in this order:
   <title>Semanas · Estruturas de Dados</title>
   <link rel="preload" href="https://uc-design-kit.miguelrocha.dev/kit/v1/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="https://uc-design-kit.miguelrocha.dev/kit/v1/themes/compact.css">  <!-- optional, a ready-made theme (8.1) -->
   <link rel="stylesheet" href="theme.css">            <!-- optional, level 1-2 customisation -->
   <script src="course.js"></script>                    <!-- the course configuration -->
   <script src="https://uc-design-kit.miguelrocha.dev/kit/v1/uc-kit.js" defer></script>
@@ -165,6 +166,7 @@ pages, which the first run of the script replaces.
 | `Weekday` | ISO weekday number: `1` = Monday … `7` = Sunday (as `semester.teachingDays`). |
 | `Minutes` | A whole number of minutes, e.g. `120` for two hours. |
 | `HTMLText` | A `LocalizedText` whose values may contain inline HTML (links, `<strong>`, `<em>`, `<code>`). It is written by the teacher and inserted as HTML. |
+| `ThemeName` | The name of a ready-made theme in `kit/v1/themes/` (8.1): `"compact"`, `"serif"` or `"high-contrast"`. |
 
 ### 2.2 Fields
 
@@ -177,6 +179,8 @@ pages, which the first run of the script replaces.
 | `languages` | string[] | no | `[<html lang>]` | BCP 47 codes. First is the default. More than one enables the language switch. |
 | `institution` | `{ name, url? }` | no | — | Shown in the header. |
 | `accentColor` | CSS colour | no | `#1D4ED8` | Sets `--uc-color-accent`; soft and strong variants are derived. Must reach 4.5:1 contrast on white. |
+| `theme` | `ThemeName` \| `ThemeName[]` | no | — | Ready-made themes (8.1): `"compact"`, `"serif"`, `"high-contrast"`. The kit adds `kit/v1/themes/<name>.css` (next to `uc-kit.js`) right after the `uc-kit.css` link, in order, unless the page already links it, and shows the page once they loaded (within the 300 ms wait of 3.1). Unknown names are ignored with a console warning. |
+| `layout` | `"sidebar"` \| `"top"` \| `"full"` | no | `"sidebar"` | Default `layout` of every `<uc-page>` (3.1); a page's own attribute wins. Unknown values are ignored with a warning. Normalised to `UC.course.layout` (or `null`). |
 | `logo` | URL \| SVG string \| `{ src \| svg, alt? }` \| `null` | no | built-in tree icon | Header mark, shown 28 × 28 px. A string starting with `<` is inline SVG (it inherits the accent colour through `currentColor`; give it a `viewBox`). `alt` (`LocalizedText`) makes the mark an image with that name; without it the mark is decorative (`alt=""` / `aria-hidden`), since the course title is next to it. `null` hides it. |
 | `semester.start` | `ISODate` | for week features | — | First day of classes; week 1 is the calendar week containing it. |
 | `semester.weeks` | number | no | `14` | Number of teaching weeks (breaks not counted). |
@@ -410,7 +414,7 @@ with JavaScript disabled it is shown at once.
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
-| `layout` | `sidebar` \| `full` | `sidebar` | `full` hides the navigation (single-page sites, guides). |
+| `layout` | `sidebar` \| `top` \| `full` | `layout` of `course.js`, else `sidebar` | `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). |
 | `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
 | `source` | URL | `source.url` of `course.js` | Address of this page on the original site: the link of the footer line "Conteúdo de …, a partir do site original" (2.1, `source`). Ignored when `course.js` has no `source`. |
 | `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
@@ -1539,7 +1543,7 @@ Strings are `widget.core.*` and `widget.<name>.*`, added with
 
 | Level | How | Example |
 | --- | --- | --- |
-| 0 | `course.js` | `accentColor`, `logo`, `pages`, `languages`. |
+| 0 | `course.js` | `accentColor`, `theme`, `layout`, `logo`, `pages`, `languages`. |
 | 1 | Tokens in `theme.css` | `:root { --uc-color-accent: #0F766E; --uc-radius-lg: 4px; }` |
 | 2 | Any CSS in `theme.css` | `.uc-week__title { text-transform: uppercase; }` — classes listed in the component reference are stable. |
 | 3 | Own components | `UC.define("uc-my-widget", …)` in a local script. |
@@ -1547,6 +1551,34 @@ Strings are `widget.core.*` and `widget.<name>.*`, added with
 
 Kit CSS uses `:where()` so its selectors have zero specificity and any
 teacher rule wins.
+
+### 8.1 Ready-made themes
+
+`kit/v1/themes/<name>.css` are small style sheets that only redefine tokens
+(section 5) on `:root`, built from `kit/src/themes/` (minified, no source map).
+A page uses one with a `<link>` between `uc-kit.css` and `theme.css`, or with
+`theme` in `course.js` (2.2). Cascade order: `uc-kit.css`, the themes, the
+site's `theme.css`, then `accentColor` (inline on `<html>`).
+
+| Name | Changes |
+| --- | --- |
+| `compact` | Base size 93.75 %, line height 1.55, radii 4/6/8 px, spaces 5–12 smaller, sidebar 200 px, header 56 px. Touch targets stay 44 px. |
+| `serif` | `--uc-font-sans` is the system serif stack (Charter, Cambria, Georgia; nothing downloaded); line height 1.65. |
+| `high-contrast` | Black text, darker greys, borders `#71717A`, darker status colours, accent `#1E3A8A` (10:1 on white), 3 px focus ring. `accentColor` still wins. |
+
+Every theme passes the same WCAG 2.1 AA checks as the kit (test pages in
+`tests/pages/themes/`). The names are listed in `kit/src/core/themes.js`;
+the build fails when that list and the files differ. A new theme is a new
+file there: themes never change token names, only values.
+
+### 8.2 Starter `theme.css`
+
+`scripts/themes.mjs` writes `template/theme.css` (and the same file to
+`docs/downloads/theme.css` and, as `window.UC_DOCS_THEME_STARTER`, to
+`docs/assets/theme-starter.js` for the theme customiser) from
+`kit/src/css/base/tokens.css`: every token of section 5 commented out with
+the kit's value, under Portuguese group titles, followed by a place for level 2
+CSS. It changes nothing until a line is uncommented.
 
 ## 9. Versioning
 

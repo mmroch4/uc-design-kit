@@ -132,7 +132,8 @@
   margin: 0 auto;
   padding: var(--uc-space-8) var(--uc-gutter) 64px;
 }
-:where(.uc-page--full .uc-shell) { grid-template-columns: minmax(0, 1fr); }
+:where(.uc-page--full, .uc-page--top) :where(.uc-shell) { grid-template-columns: minmax(0, 1fr); }
+
 
 :where(.uc-sidebar) { position: sticky; top: var(--uc-space-6); }
 :where(.uc-nav__list) {
@@ -171,6 +172,23 @@
   text-transform: uppercase;
 }
 :where(.uc-nav-toggle) { display: none; }
+
+/* layout="top": the navigation is a bar under the header, the content takes the whole width. */
+:where(.uc-topnav) { border-bottom: 1px solid var(--uc-color-border); }
+:where(.uc-page--top .uc-sidebar) {
+  position: static;
+  max-width: var(--uc-content-max);
+  margin: 0 auto;
+  padding: var(--uc-space-1) var(--uc-gutter);
+}
+:where(.uc-page--top .uc-nav) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--uc-space-4);
+}
+:where(.uc-page--top .uc-nav__list) { flex-direction: row; flex-wrap: wrap; }
+:where(.uc-page--top .uc-nav__group) { margin: 0; }
 
 :where(.uc-main) {
   display: flex;
@@ -241,6 +259,13 @@
   }
   :where(.uc-page--nav-open .uc-nav) { display: block; }
   :where(.uc-nav__link) { min-height: 48px; font-size: 1rem; }
+  /* layout="top" on small screens: the same collapsible menu, above the content. */
+  :where(.uc-topnav) { border-bottom: 0; }
+  :where(.uc-page--top .uc-sidebar) { margin: var(--uc-space-6) var(--uc-gutter) 0; padding: 0; }
+  :where(.uc-page--top .uc-nav) { display: none; }
+  :where(.uc-page--top.uc-page--nav-open .uc-nav) { display: block; }
+  :where(.uc-page--top .uc-nav__list) { flex-direction: column; }
+  :where(.uc-page--top .uc-nav__group) { margin: var(--uc-space-5) 0 var(--uc-space-1); }
 }
 
 @media (max-width: 960px) {
@@ -262,7 +287,7 @@
 }
 
 @media print {
-  :where(.uc-sidebar, .uc-skip-link, .uc-lang-switch, .uc-search-button) { display: none; }
+  :where(.uc-sidebar, .uc-topnav, .uc-skip-link, .uc-lang-switch, .uc-search-button) { display: none; }
   :where(.uc-shell) { display: block; padding: 0; }
 }
 

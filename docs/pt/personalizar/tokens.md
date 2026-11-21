@@ -6,7 +6,7 @@ Os tokens são as variáveis CSS (`--uc-*`) de onde o kit tira cores, cantos, le
 
 ## Criar o theme.css
 
-O `theme.css` é um ficheiro na raiz da pasta do site, ao lado do `course.js`. O [modelo](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md) já o traz, vazio e com um exemplo comentado. Carrega-se no `<head>` de cada página **depois** do `uc-kit.css`:
+O `theme.css` é um ficheiro na raiz da pasta do site, ao lado do `course.js`. O [modelo](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md) já o traz, com todos os tokens comentados (ver [Criar um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#theme-css)). Carrega-se no `<head>` de cada página **depois** do `uc-kit.css`:
 
 `index.html`:
 
@@ -28,7 +28,7 @@ Nas páginas de subpastas, o caminho é `../theme.css` (ver [Páginas em subpast
 }
 ```
 
-Só se escreve o que muda; os outros tokens mantêm o valor do kit.
+Só se escreve o que muda; os outros tokens mantêm o valor do kit. Um [tema pronto](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos) (`theme` no `course.js`) é carregado antes do `theme.css`, por isso o `theme.css` ganha-lhe.
 
 ## Mudar as cores
 

@@ -6,7 +6,7 @@ O kit pode ser adaptado em cinco níveis, do mais simples (mudar um campo no `co
 
 ## Os cinco níveis
 
-1. 0 [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md)Cor, logótipo, páginas, línguas.
+1. 0 [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md)Cor, tema pronto, logótipo, páginas, línguas.
 2. 1 [Tokens no theme.css](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tokens.md)Cores, cantos, tipo de letra.
 3. 2 [CSS livre no theme.css](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md)Regras sobre as classes estáveis e classes próprias.
 4. 3 [Componentes próprios](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/componentes.md)Um elemento novo em `extensions/`.
@@ -33,6 +33,8 @@ Começa-se pelo nível mais baixo e só se sobe quando ele não chega. Um ajuste
 | Usar a cor da faculdade ou do departamento | [0: `accentColor`](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#cor) |
 | Mostrar o logótipo do curso, ou nenhum | [0: `logo`](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#logotipo) |
 | Uma página nova na navegação, ou outro nome para uma página | [0: `pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#paginas) |
+| Um aspeto diferente de uma vez: compacto, com serifa ou de alto contraste | [0: `theme`](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos) |
+| A navegação numa barra no topo em vez da barra lateral | [0: `layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#navegacao-no-topo) |
 | Cantos menos redondos, outro tipo de letra, outro verde para "certo" | [1: tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tokens.md) |
 | A semana atual com outro destaque, títulos noutro peso | [2: classes estáveis](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md) |
 | Cartões próprios (horários, componentes da nota) | [2: classes próprias com tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md#exemplo-classes-proprias) |
@@ -40,7 +42,7 @@ Começa-se pelo nível mais baixo e só se sobe quando ele não chega. Um ajuste
 | Executar código noutro serviço (Codapi próprio, Judge0) | [Execução de código](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/execucao.md) (níveis 0 e 3) |
 | Aproveitar páginas do site antigo | [4: HTML livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/html.md) |
 
-Para experimentar cores, cantos e letra sem escrever CSS, o [Personalizador de tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md) mostra o resultado e gera o `theme.css`.
+Para mudar o aspeto do site do princípio ao fim (cor, tema pronto, `theme.css` e contraste), o guia [Criar um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md) segue os passos por ordem. Para experimentar sem escrever CSS, o [Personalizador de tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md) mostra o resultado e gera o `theme.css`.
 
 ## O que o kit garante
 

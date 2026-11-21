@@ -87,6 +87,19 @@ Exemplo (página sem navegação), [demonstração ao vivo](https://uc-design-ki
 </uc-page>
 ```
 
+### Navegação no topo
+
+`layout="top"` põe a navegação numa barra por baixo do cabeçalho, com as páginas e depois as plataformas, e deixa o conteúdo ocupar toda a largura. Serve para sites com poucas páginas ou com tabelas largas. Abaixo de 960 px, a barra dá lugar ao mesmo botão "Menu" da barra lateral. Para usar em todas as páginas, escreve-se `layout: "top"` no [`course.js`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao); o atributo de uma página ganha a esse valor.
+
+Exemplo (página com a navegação numa barra no topo), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/top.html):
+
+```html
+<uc-page layout="top" current="weeks">
+  <h1>Semanas</h1>
+  <p>Navegação numa barra por baixo do cabeçalho: o conteúdo ocupa toda a largura. Em ecrãs estreitos, a barra passa a ser o botão "Menu".</p>
+</uc-page>
+```
+
 ### Mudar de língua
 
 Quando `languages` tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com `?lang=en`). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com `lang` mostra só a língua ativa.
@@ -172,7 +185,7 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar` ou `full` | `sidebar` | Com `full`, a página não tem navegação e o conteúdo ocupa toda a largura. |
+| `layout` | `sidebar`, `top` ou `full` | `layout` do `course.js`, senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
@@ -188,6 +201,8 @@ Campos do `course.js` que o componente lê. Só `title` é obrigatório; sem `pa
 | [`institution`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Departamento ou faculdade à direita do cabeçalho, com link se tiver `url`. |
 | [`logo`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Imagem ou SVG antes do nome; sem ele aparece o ícone do kit e com `null` não aparece nenhuma. |
 | [`accentColor`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Cor do item ativo, dos links e do ícone. |
+| [`theme`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-curso) | Tema pronto do site (ver [Criar um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos)). |
+| [`layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao) | Disposição de todas as páginas, quando a página não tem o seu `layout`. |
 | [`languages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-linguas) | Com mais de uma língua, mostra o botão para mudar de língua. |
 | [`pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas) | Itens da navegação, pela ordem escrita, e página de destino do nome do curso. |
 | [`platforms`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-navegacao) | Links externos no grupo "Plataformas", por baixo das páginas. |
@@ -247,7 +262,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 
 | Classe | Elemento |
 | --- | --- |
-| `.uc-page`, `.uc-page--full` | A página (o próprio `<uc-page>`) e a variante sem navegação. |
+| `.uc-page`, `.uc-page--full`, `.uc-page--top` | A página (o próprio `<uc-page>`), a variante sem navegação e a variante com a navegação no topo. |
 | `.uc-page--nav-open` | A página com o menu aberto, em ecrãs estreitos. |
 | `.uc-header`, `.uc-header__inner` | O cabeçalho e a sua faixa centrada. |
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
@@ -259,6 +274,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
+| `.uc-topnav` | Com `layout="top"`, a faixa por baixo do cabeçalho que contém a `.uc-sidebar`. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |

@@ -13,6 +13,9 @@
  *   <!-- docs:classes src="../componentes/uc-week.html" -->
  *     … <!-- /docs:classes -->                      a component's stable classes, copied
  *                                                   from its page's "Personalizar" table
+ *   <!-- docs:file src="../../../kit/src/themes/serif.css" lang="css" -->
+ *     … <!-- /docs:file -->                         a repository file shown as code
+ *                                                   (e.g. a ready-made theme)
  *
  * The code of a demo is the part of the demo file between <!-- demo:start -->
  * and <!-- demo:end -->, so the code shown is always the code that runs.
@@ -331,7 +334,16 @@ async function classes(ctx, attributes) {
   ].join("\n");
 }
 
-const GENERATORS = { header, sidebar, toc, pager, demo, classes };
+/** A file of the repository shown whole in a <uc-code> (filename = its name), so the page never drifts from it. */
+async function file(ctx, attributes) {
+  const name = toPosix(path.relative(ROOT, ctx.file));
+  if (!attributes.src || !attributes.lang) throw new Error(`${name}: docs:file needs src and lang`);
+  const source = path.resolve(path.dirname(ctx.file), attributes.src);
+  const text = (await readFile(source, "utf8")).trimEnd();
+  return `<uc-code lang="${escapeHtml(attributes.lang)}" filename="${escapeHtml(path.basename(source))}"><pre><code>${escapeHtml(text)}</code></pre></uc-code>`;
+}
+
+const GENERATORS = { header, sidebar, toc, pager, demo, classes, file };
 
 /* ---------- page filling ---------- */
 

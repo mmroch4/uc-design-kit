@@ -6,6 +6,21 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Ready-made themes in `kit/v1/themes/`: `compact`, `serif` and
+  `high-contrast`. They only redefine tokens, and are chosen with a `<link>`
+  after `uc-kit.css` or with `theme` in `course.js` (a name or a list); the
+  site's `theme.css` and `accentColor` still win (#92).
+- `<uc-page layout="top">`: the navigation in a bar under the header, the
+  content with the whole width; below 960 px it is the usual "Menu". New
+  `layout` field in `course.js` sets the layout of every page (#92).
+- `template/theme.css` lists every token, commented out with the kit's
+  value (also offered as `docs/downloads/theme.css`); built from
+  `tokens.css`, so it follows the kit.
+- Documentation: the guide "Criar um tema" (colour, ready-made themes,
+  starter `theme.css`, customiser, contrast). The theme customiser chooses a
+  ready-made theme and can export the complete `theme.css` (#93).
+
 ### Changed
 - One version for everything: `package.json`. `npm run build` writes it into
   `kit/src/core/namespace.js` (`UC.version`), `widgets/src/core/version.js`

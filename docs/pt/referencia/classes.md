@@ -28,7 +28,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 
 | Classe | Elemento |
 | --- | --- |
-| `.uc-page`, `.uc-page--full` | A página (o próprio `<uc-page>`) e a variante sem navegação. |
+| `.uc-page`, `.uc-page--full`, `.uc-page--top` | A página (o próprio `<uc-page>`), a variante sem navegação e a variante com a navegação no topo. |
 | `.uc-page--nav-open` | A página com o menu aberto, em ecrãs estreitos. |
 | `.uc-header`, `.uc-header__inner` | O cabeçalho e a sua faixa centrada. |
 | `.uc-brand`, `__logo`, `__title`, `__edition` | O link com o logótipo, o nome do curso e o ano letivo. |
@@ -40,6 +40,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-page__edition-notice` | O aviso no topo de uma edição antiga (um `uc-callout`). |
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
+| `.uc-topnav` | Com `layout="top"`, a faixa por baixo do cabeçalho que contém a `.uc-sidebar`. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |

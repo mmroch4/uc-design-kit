@@ -28,6 +28,15 @@ window.UC_COURSE = {
   // um '<svg …>' ou null para nenhum. Sem este campo aparece o ícone do kit.
   // logo: "logo.svg",
 
+  // Tema pronto (opcional): "compact", "serif" ou "high-contrast"; vários com
+  // ["compact", "serif"]. O theme.css do site continua a ganhar sobre o tema.
+  // theme: "compact",
+
+  // Navegação: "sidebar" (barra lateral, por omissão), "top" (barra por baixo
+  // do cabeçalho) ou "full" (sem navegação). Uma página pode mudar com
+  // <uc-page layout="…">.
+  // layout: "top",
+
   // Pesquisa no site: o botão «Pesquisar» aparece quando existe o search-index.js,
   // que o uc-site.py reescreve. Correr python3 uc-site.py depois de cada alteração.
   search: true,
