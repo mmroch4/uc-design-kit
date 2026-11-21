@@ -62,6 +62,16 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 - [uc-problems](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md): Documentação do componente uc-problems do UC Design Kit: listas de problemas por séries com juiz, tipo, prazo, filtros e Resolvido guardado no browser.
 - [uc-problem](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problem.md): Documentação do componente uc-problem do UC Design Kit: o cabeçalho de um enunciado, com o juiz e o código, o prazo, o botão de submeter e Resolvido.
 
+## Secções
+
+- [Galeria](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.md): Secções de página prontas a copiar: cabeçalhos, avisos, avaliação, horário, equipa, materiais, perguntas frequentes e contactos, com pré-visualização em cada tema.
+- [Cabeçalhos](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md): Cabeçalhos de página prontos a copiar: título simples, com localização e ações, e o da página inicial.
+- [Avisos e datas](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avisos.md): Secções de avisos e datas prontas a copiar: avisos com próximas datas, esta semana e um aviso fixo.
+- [Avaliação](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avaliacao.md): Secções de avaliação prontas a copiar: fórmula da nota, com simulador, cartão de prova e datas com regras.
+- [Horário e equipa](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/horario-equipa.md): Secções de horário, atendimento e equipa prontas a copiar.
+- [Materiais e programa](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/materiais.md): Secções de materiais prontas a copiar: lista de materiais, programa, bibliografia e ligações úteis.
+- [Perguntas e contactos](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/perguntas.md): Secções de perguntas frequentes e contactos prontas a copiar.
+
 ## Widgets
 
 - [Catálogo](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/index.md): Catálogo dos widgets de algoritmos do UC Design Kit: demonstrações passo a passo de algoritmos e estruturas de dados para usar nas páginas das cadeiras.

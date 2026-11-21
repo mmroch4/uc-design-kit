@@ -20,6 +20,11 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 - Documentation: the guide "Criar um tema" (colour, ready-made themes,
   starter `theme.css`, customiser, contrast). The theme customiser chooses a
   ready-made theme and can export the complete `theme.css` (#93).
+- Documentation: "Galeria de secções", 22 page sections ready to copy in six
+  groups (headers, notices and dates, assessment, timetable and team,
+  materials and syllabus, questions and contacts), each with a preview, its
+  code, a "Copiar código" button and a preview in every ready-made theme.
+  Demos accept `?theme=` (#91).
 
 ### Changed
 - One version for everything: `package.json`. `npm run build` writes it into
