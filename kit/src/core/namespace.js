@@ -12,6 +12,7 @@
   }
 
   global.UC = {
+    /** package.json's version, written here by scripts/build.mjs. */
     version: "1.0.0",
     /** Internal modules shared between kit files. Not part of the public API. */
     internal: {},

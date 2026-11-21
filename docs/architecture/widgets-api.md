@@ -95,8 +95,10 @@ primitive that the core does not ship (16.3).
 
 ### 2.2 URLs and versions
 
-- The library has its **own semver**, starting at **widgets 1.0.0** (W6),
-  independent of the kit. `UC.widgets.version` and `catalog.json` carry it.
+- The library shares the **kit's version**: `package.json` is the only source
+  and `npm run build` writes it into `widgets/src/core/version.js`
+  (`UC.widgets.version` and `catalog.json` carry it). Kit and widgets are
+  released together under one `vX.Y.Z` tag.
 - It **needs kit 1.1 or later**. The core compares `UC.version` (major.minor,
   ignoring a pre-release suffix such as `-dev`) and, if older, logs one
   `console.warn` and keeps going. Missing `window.UC` is an error (2.4).
@@ -1464,7 +1466,7 @@ Beyond the plan, W0 fixed these details (later phases add theirs here):
    and the absence of a kit release `kit/vX.Y.Z/` that satisfies `KIT_MIN`.
    The release gets a `SHA256SUMS`; `scripts/releases.mjs` takes a base
    folder and `npm run build:check` verifies `widgets/v*.*.*` like
-   `kit/v*.*.*`. Tag name: `widgets-vX.Y.Z` (the kit keeps `vX.Y.Z`).
+   `kit/v*.*.*`. Tag name: the kit's `vX.Y.Z` (one version for both since 1.0.0, section 2.2).
 3. **Compatibility page** (18.3 item 6): `tests/widgets/compat.html`. It
    loads the 18 widget files of `?release=<folder>` (default `v1`) after the
    kit, uses each widget with its 1.0.0 attributes and `ops` verbs, checks

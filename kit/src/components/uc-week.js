@@ -10,29 +10,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, parseDay, mondayOf, addDays, toISO } = UC.internal;
-
-  /**
-   * The week's displayed dates and its Monday-to-Sunday span, or null when
-   * there is no calendar and no override.
-   */
-  function weekSpan(element) {
-    const computed = UC.weekDates(element.getAttribute("n"));
-    const start = parseDay(element.getAttribute("start")) || (computed && computed.start);
-    const end = parseDay(element.getAttribute("end")) || (computed && computed.end) || start;
-    if (!start) return null;
-    const from = mondayOf(start);
-    const to = addDays(mondayOf(end < start ? start : end), 7);
-    return { start, end: end < start ? start : end, from, to };
-  }
-
-  function stateOf(span) {
-    if (!span) return null;
-    const today = UC.today();
-    if (today < span.from) return "future";
-    if (today >= span.to) return "past";
-    return "current";
-  }
+  const { h, icon, toISO, weekSpan, weekStateOf, writtenEventIds, deadlinesBetween, createEvent } = UC.internal;
 
   const STATES = ["past", "current", "future"];
 
@@ -98,7 +76,7 @@
       else if (this.id === `week-${n}`) this.removeAttribute("id");
 
       const span = weekSpan(this);
-      const state = stateOf(span);
+      const state = weekStateOf(span);
       STATES.forEach((name) => this.classList.toggle(`uc-week--${name}`, state === name));
 
       if (!this.initialised) {
@@ -152,15 +130,14 @@
       this.generatedEvents = [];
       if (!span || !this.showsDeadlines) return;
       // A deadline written by hand in any week of the list is not repeated here.
-      const written = UC.internal.writtenEventIds(this.closest("uc-weeks") || this.body);
-      UC.internal.deadlinesBetween(span.from, span.to, written).forEach((deadline) => {
-        const event = UC.internal.createEvent(deadline.id);
+      const written = writtenEventIds(this.closest("uc-weeks") || this.body);
+      deadlinesBetween(span.from, span.to, written).forEach((deadline) => {
+        const event = createEvent(deadline.id);
         this.generatedEvents.push(event);
         this.body.append(event);
       });
     }
   }
 
-  Object.assign(UC.internal, { weekSpan, weekStateOf: stateOf });
   UC.define("uc-week", UCWeek);
 })(window.UC);

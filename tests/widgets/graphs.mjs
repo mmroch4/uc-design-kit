@@ -1,4 +1,4 @@
-/** Random graphs for the graph widget tests (graph, shortest-path; W5's too). */
+/** Random graphs for the graph widget tests (graph, shortest-path, mst, toposort). */
 import { model } from "../../widgets/src/graph/model.js";
 
 /** A random graph: up to 10 vertices, up to 20 edges (5.5), sometimes disconnected. */

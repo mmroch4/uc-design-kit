@@ -6,6 +6,17 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- One version for everything: `package.json`. `npm run build` writes it into
+  `kit/src/core/namespace.js` (`UC.version`), `widgets/src/core/version.js`
+  and `template/uc-site.py`, and `npm run build:check` fails when one of them
+  differs. The widgets share the kit's version and its `vX.Y.Z` tag.
+- Internal (no change for pages): the helpers that several blocks share moved
+  out of the components into `core/deadlines.js`, `core/weeks.js`,
+  `core/exercises.js` and `core/language.js`, so no component depends on
+  another being loaded first. Test pages and checks are named after what they
+  test, not after plan phases.
+
 ### Fixed
 - `<uc-materials>`: an item with many links no longer squeezes its title to
   one letter per line; the title keeps at least 12rem and the buttons wrap.

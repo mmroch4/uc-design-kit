@@ -19,6 +19,11 @@
  * scripts/snapshot.mjs): their files must match the SHA256SUMS written when
  * they were created, because browsers cache them for a year.
  *
+ * The version has one source, "version" in package.json. The build writes it
+ * into kit/src/core/namespace.js (UC.version), widgets/src/core/version.js
+ * (VERSION) and template/uc-site.py (VERSION) before anything else; with
+ * --check it fails when one of them says something else.
+ *
  * It fails when uc-kit.js (48 KB gzipped), uc-grading.js (8 KB) or
  * uc-search.js (6 KB) is over its size budget and prints the sizes on every run.
  *
@@ -47,6 +52,43 @@ const JS_BUDGET_GZIP = 48 * 1024;
 const SEARCH_BUDGET_GZIP = 6 * 1024;
 /** Size budget of uc-grading.js, gzipped (docs/architecture/grading-api.md 2.3). */
 const GRADING_BUDGET_GZIP = 8 * 1024;
+
+/* ---------- one version ---------- */
+
+/** The files that repeat package.json's version, and the text that holds it. */
+const VERSION_COPIES = [
+  ["kit/src/core/namespace.js", /(\bversion: ")([^"]*)(")/],
+  ["widgets/src/core/version.js", /(\bexport const VERSION = ")([^"]*)(")/],
+  ["template/uc-site.py", /(^VERSION = ")([^"]*)(")/m],
+];
+
+/**
+ * Writes package.json's version into every copy (or, with `check`, reports the
+ * copies that differ). Returns the number of problems.
+ */
+async function syncVersion({ check = false } = {}) {
+  const { version } = JSON.parse(await readFile(path.join(ROOT, "package.json"), "utf8"));
+  let problems = 0;
+  for (const [file, pattern] of VERSION_COPIES) {
+    const target = path.join(ROOT, file);
+    const content = await readFile(target, "utf8");
+    const match = pattern.exec(content);
+    if (!match) {
+      console.error(`${file}: the version was not found (expected ${pattern}).`);
+      problems += 1;
+      continue;
+    }
+    if (match[2] === version) continue;
+    if (check) {
+      console.error(`${file} says version "${match[2]}", package.json says "${version}". Run: npm run build`);
+      problems += 1;
+    } else {
+      await writeFile(target, content.replace(pattern, `$1${version}$3`));
+      console.log(`wrote version ${version} into ${file}`);
+    }
+  }
+  return problems;
+}
 
 /* ---------- source maps for the concatenation ---------- */
 
@@ -129,6 +171,8 @@ async function bundle(names, kind, outName) {
 
 async function main() {
   const check = process.argv.includes("--check");
+  // First: the bundles, the widgets and the template zip read these copies.
+  const versionProblems = await syncVersion({ check });
   const manifest = JSON.parse(await readFile(path.join(SRC, "manifest.json"), "utf8"));
   const outputs = {
     ...(await bundle(manifest.js, "js", "uc-kit.js")),
@@ -137,7 +181,7 @@ async function main() {
     ...(await bundle(manifest.css, "css", "uc-kit.css")),
   };
   await mkdir(OUT, { recursive: true });
-  let failed = false;
+  let failed = versionProblems > 0;
   for (const [name, content] of Object.entries(outputs)) {
     const target = path.join(OUT, name);
     const previous = await readFile(target, "utf8").catch(() => "");

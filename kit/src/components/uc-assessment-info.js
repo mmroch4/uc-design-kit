@@ -8,7 +8,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, icon, flag, toISO, parseDay, parseTime, endTime } = UC.internal;
+  const { h, uid, icon, flag, toISO, parseDay, parseTime, endTime, findDeadline, deadlineStatus } = UC.internal;
   const html = (value) => (value ? h("span", { html: UC.text(value) }) : null);
 
   /** True when `url` is this page (hash and query ignored). */
@@ -37,7 +37,7 @@
 
     render() {
       const id = this.getAttribute("deadline");
-      const deadline = UC.internal.findDeadline(id);
+      const deadline = findDeadline(id);
       if (!deadline) {
         if (!this.warned) console.warn(`[uc-kit] <uc-assessment-info>: unknown deadline "${id}"`);
         this.warned = true;
@@ -81,7 +81,7 @@
       if (deadline.duration > 0) row("assessment.duration", UC.formatDuration(deadline.duration));
       if (deadline.location) row("assessment.location", html(deadline.location));
 
-      const { status, days } = UC.internal.deadlineStatus(deadline, UC.today());
+      const { status, days } = deadlineStatus(deadline, UC.today());
       const statusText =
         status === "upcoming" ? (days === 1 ? this.t("assessment.tomorrow") : this.t("assessment.inDays", { count: days })) : status === "toBeScheduled" ? this.t("deadlines.toBeScheduled") : this.t(`assessment.${status}`);
       if (parsed.precision !== "none") {

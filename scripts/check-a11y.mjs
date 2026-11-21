@@ -130,8 +130,8 @@ async function findPages() {
     }
   }
   pages.push("examples/edados-2526/guioes/aula10.html");
-  // The widget test page (several widgets, predict, editable, bilingual).
-  pages.push("tests/pages/uc-widget-sort.html", "tests/pages/uc-widget-w2.html", "tests/pages/uc-widget-w3.html", "tests/pages/uc-widget-w4.html", "tests/pages/uc-widget-w5.html");
+  // The widget test pages (several widgets each, predict, editable, bilingual).
+  pages.push("tests/pages/uc-widget-sort.html", "tests/pages/uc-widget-basics.html", "tests/pages/uc-widget-trees-hashing.html", "tests/pages/uc-widget-graphs.html", "tests/pages/uc-widget-design-techniques.html");
   // A teacher's own widget built from widgets/template/ (the "Criar um widget" guide).
   pages.push("docs/demos/widgets-criar/basic.html");
   // The header search button (a site with search on and an index).

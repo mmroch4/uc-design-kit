@@ -1,6 +1,6 @@
 /**
- * Strings every graph widget uses the same way (graph, shortest-path; W5's
- * graph widgets too). Each widget spreads them into its own namespace, so a
+ * Strings every graph widget uses the same way (graph, shortest-path, mst
+ * and toposort). Each widget spreads them into its own namespace, so a
  * page can load any one of them alone.
  */
 export const shared = {

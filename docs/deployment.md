@@ -72,8 +72,11 @@ a frozen release was modified.
 
 ## Releasing
 
-1. Set the version in `package.json` and in `kit/src/core/namespace.js`
-   (`UC.version`), and move the *Unreleased* notes in `CHANGELOG.md` under it.
+1. Set the version in `package.json`, its only source: `npm run build` writes
+   it into `kit/src/core/namespace.js` (`UC.version`),
+   `widgets/src/core/version.js` and `template/uc-site.py`, and
+   `npm run build:check` fails when they differ. Move the *Unreleased* notes in
+   `CHANGELOG.md` under it.
 2. `npm run build`, then `npm run snapshot`: copies `kit/v1/` to
    `kit/vX.Y.Z/` and writes its `SHA256SUMS`.
 3. Commit, merge to `main` (deployed automatically) and tag `vX.Y.Z`.
@@ -84,22 +87,19 @@ backwards compatible (see `docs/api.md`, section 9).
 
 ### Widget library releases
 
-The widgets (`widgets/v1/`) have their own versions (`docs/architecture/widgets-api.md`
-2.2). A widgets release needs a kit release that satisfies `KIT_MIN` first
-(widgets 1.0.0 needs kit 1.0.0). Kit 1.0.0 and widgets 1.0.0 were released
-together under the tag `v1.0.0`.
+The widgets (`widgets/v1/`) share the kit's version (from `package.json`,
+`docs/architecture/widgets-api.md` 2.2) and its `vX.Y.Z` tag. `KIT_MIN` in
+`widgets/src/core/version.js` is the oldest kit they work with.
 
 1. Every widget's `meta.json` has `"status": "stable"` (the snapshot refuses
-   otherwise). Set `VERSION` in `widgets/src/core/version.js` (e.g. `1.0.0`)
-   and move the *Widgets* notes in `CHANGELOG.md` under `## Widgets [X.Y.Z]`.
+   otherwise). Move the *Widgets* notes in `CHANGELOG.md` under `## Widgets [X.Y.Z]`.
 2. `npm run build`, then `npm run snapshot:widgets`: copies `widgets/v1/` to
    `widgets/vX.Y.Z/` and writes its `SHA256SUMS`. `npm run build:check`
    verifies the checksums of every release, kit and widgets.
-3. Commit, merge to `main` and tag `widgets-vX.Y.Z`. From then on the check
+3. Commit and merge to `main` with the kit's `vX.Y.Z` tag. From then on the check
    opens `tests/widgets/compat.html` against `widgets/v1/` and against every
    frozen release: the 1.0.0 attributes, `ops` verbs, methods and events must
    keep working.
-4. Set `VERSION` back to the next `-dev` version.
 
 ## Mirror on jsDelivr (fallback)
 

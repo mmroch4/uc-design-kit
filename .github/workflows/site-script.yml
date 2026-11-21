@@ -1,7 +1,7 @@
 name: Site script
 
 # Tests of template/uc-site.py, the maintenance script teachers run on the
-# server (search plan, phases S2 and S3). It must work on Python 3.8 (the
+# server (checks and search index). It must work on Python 3.8 (the
 # oldest version the script supports) and on a current Python, with the
 # standard library only.
 

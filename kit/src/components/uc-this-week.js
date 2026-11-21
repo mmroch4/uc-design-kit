@@ -9,7 +9,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, addDays, toISO } = UC.internal;
+  const { h, uid, addDays, toISO, deadlinesBetween, deadlineTime } = UC.internal;
   const UPCOMING_LIMIT = 3;
 
   /** Inline elements kept when copying rows from the weeks page, with their allowed attributes. */
@@ -155,7 +155,7 @@
 
       const items = [];
       if (week) items.push(...this.fetchedItems(week.n));
-      this.ofKinds(UC.internal.deadlinesBetween(monday, addDays(monday, 14))).forEach((deadline) => items.push(this.deadlineItem(deadline)));
+      this.ofKinds(deadlinesBetween(monday, addDays(monday, 14))).forEach((deadline) => items.push(this.deadlineItem(deadline)));
 
       return [
         this.heading("weeks.thisWeek", meta),
@@ -207,7 +207,7 @@
       const detail = h(
         "span",
         { class: "uc-this-week__detail" },
-        UC.internal.deadlineTime(deadline, "uc-this-week__date"),
+        deadlineTime(deadline, "uc-this-week__date"),
         deadline.note ? [" · ", h("span", { html: this.text(deadline.note) })] : null,
         deadline.links.map((link) => [" · ", h("a", { href: link.url }, this.text(link.label))]),
       );

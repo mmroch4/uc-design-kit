@@ -1,6 +1,6 @@
 /**
- * The graph model shared by the graph widgets (graph, shortest-path; mst,
- * union-find and toposort in W5). Pure: no DOM, no UC.
+ * The graph model shared by the graph widgets (graph, shortest-path, mst,
+ * toposort and trace). Pure: no DOM, no UC.
  *
  * model(parsed, directed) takes the output of UC.widgets.parse.graph (5.3)
  * and gives every edge a stable id (the element id used by marks: "A-B" as

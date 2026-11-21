@@ -1,6 +1,6 @@
 /**
- * What the graph widgets share in the browser (graph, shortest-path; W5's
- * graph widgets too): reading the input, writing it back for the editable
+ * What the graph widgets share in the browser (graph, shortest-path, mst,
+ * toposort and trace): reading the input, writing it back for the editable
  * field and describing the graph in words.
  *
  * The input is the `edges` attribute (lines separated by ";", handy for

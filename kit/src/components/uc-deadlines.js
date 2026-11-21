@@ -8,7 +8,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, uid, number, toISO, diffDays } = UC.internal;
+  const { h, uid, number, toISO, isUpcoming } = UC.internal;
   const VIEWS = ["list", "table"];
   const FILTERS = ["upcoming", "past", "all"];
   const TABLE_COLUMNS = ["item", "date", "time", "details", "status"];
@@ -18,38 +18,6 @@
     scheduled: "uc-tag",
     toBeScheduled: "uc-tag",
   };
-
-  /**
-   * The last day a deadline is still relevant, or null when it has no date.
-   * Month-precision dates last until the end of the month; multi-day items
-   * until their `end`.
-   */
-  function lastDay(deadline) {
-    const { precision, date } = deadline.parsed;
-    if (!date) return null;
-    if (precision === "month") return new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    return deadline.endDate && deadline.endDate > date ? deadline.endDate : date;
-  }
-
-  /** True while a deadline has not passed. Undated deadlines are always upcoming. */
-  function isUpcoming(deadline, today) {
-    const last = lastDay(deadline);
-    return !last || last >= today;
-  }
-
-  /**
-   * State of one deadline on `today`, for blocks that show a single deadline:
-   * { status: "upcoming" | "today" | "ongoing" | "done" | "toBeScheduled", days }
-   * where `days` counts from today to the first day (negative once it started).
-   */
-  function deadlineStatus(deadline, today) {
-    const { precision, date } = deadline.parsed;
-    const upcoming = isUpcoming(deadline, today);
-    if (precision !== "day") return { status: upcoming ? "toBeScheduled" : "done" };
-    const days = diffDays(date, today);
-    return { status: days > 0 ? "upcoming" : days === 0 ? "today" : upcoming ? "ongoing" : "done", days };
-  }
-  UC.internal.deadlineStatus = deadlineStatus;
 
   /** "2025-12-02", "2025-12-02T21:00" or "2026-01"; null when there is no date. */
   function datetimeOf(deadline, withTime) {
