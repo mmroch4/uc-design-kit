@@ -7,8 +7,7 @@
  */
 import { ALGORITHMS, run } from "./algorithm.js";
 import { strings } from "./i18n.js";
-import { readGraph, serializeGraph, edgeList } from "../graph/element.js";
-import { graph as drawGraph } from "../core/svg/graph.js";
+import { graphWidget } from "../graph/element.js";
 
 export default function define(UC) {
   UC.addTranslations("pt", { widget: { mst: strings.pt } });
@@ -16,35 +15,13 @@ export default function define(UC) {
   const W = UC.widgets;
   const t = (key, params) => UC.t(`widget.mst.${key}`, params);
 
-  class MstWidget extends W.Widget {
-    static id = "mst";
+  class MstWidget extends graphWidget(W, "mst", run, t) {
     static algorithms = ALGORITHMS;
-    static inputAttributes = ["edges", "directed", "source"];
-    static limits = { vertices: 10, edges: 20 };
-    static editLabel = "widget.mst.edit";
 
-    parse() {
-      return readGraph(this, W, "mst");
-    }
-
-    steps(input, emit) {
-      return run(input, { algorithm: this.algorithm }, emit);
-    }
-
-    draw(step, svg) {
-      drawGraph(svg, this.input.graph, { marks: step.marks, notes: step.state.notes });
-    }
-
+    /** The graph, the sets (the notes) and the edges in the tree so far. */
     describe(step) {
-      const { graph } = this.input;
-      const { notes, tree } = step.state;
-      const byId = Object.fromEntries(graph.edges.map((e) => [e.id, e]));
-      const sets = graph.vertices.filter((v) => notes[v]).map((v) => `${v} ${notes[v]}`);
-      return (
-        t("describe", { kind: t("kind.undirected"), n: graph.vertices.length, m: graph.edges.length, edges: edgeList(graph) }) +
-        (sets.length ? t("describeSets", { list: sets.join(", ") }) : "") +
-        (tree.length ? t("describeTree", { list: tree.map((id) => `${byId[id].from}–${byId[id].to} ${byId[id].weight}`).join(", ") }) : "")
-      );
+      const list = step.state.tree.map((id) => this.input.graph.edges.find((e) => e.id === id)).map((e) => `${e.from}–${e.to} ${e.weight}`);
+      return super.describe(step) + (list.length ? t("describeTree", { list: list.join(", ") }) : "");
     }
 
     table(step) {
@@ -57,10 +34,6 @@ export default function define(UC) {
           tree.includes(e.id) ? this.t("widget.core.yes") : rejected.includes(e.id) ? this.t("widget.core.no") : "—",
         ]),
       };
-    }
-
-    serialize(input) {
-      return serializeGraph(input);
     }
   }
 

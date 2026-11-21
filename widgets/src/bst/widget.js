@@ -5,21 +5,12 @@
  */
 import { ALGORITHMS, VERBS, MAX_NODES, run } from "./algorithm.js";
 import { strings } from "./i18n.js";
+import { nodes, childrenText } from "./nodes.js";
 
 export default function define(UC) {
   UC.addTranslations("pt", { widget: { bst: strings.pt } });
   UC.addTranslations("en", { widget: { bst: strings.en } });
   const W = UC.widgets;
-
-  /** Every node of a tree, in order. */
-  const nodes = (node, out = []) => {
-    if (node) {
-      nodes(node.l, out);
-      out.push(node);
-      nodes(node.r, out);
-    }
-    return out;
-  };
 
   class BstWidget extends W.Widget {
     static id = "bst";
@@ -46,15 +37,7 @@ export default function define(UC) {
       const root = step.state.root;
       if (!root) return this.t("widget.bst.startEmpty");
       const t = (key, params) => this.t(`widget.bst.${key}`, params);
-      const children = nodes(root)
-        .filter((node) => node.l || node.r)
-        .map((node) => {
-          const a = node.l && node.l.v;
-          const b = node.r && node.r.v;
-          const kids = node.l && node.r ? t("and", { a, b }) : node.l ? t("leftOnly", { a }) : t("rightOnly", { b });
-          return t("children", { v: node.v, kids });
-        });
-      return t("describe", { root: root.v, children: children.join(" ") });
+      return t("describe", { root: root.v, children: childrenText(root, t) });
     }
 
     table(step) {

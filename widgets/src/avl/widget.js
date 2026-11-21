@@ -5,6 +5,7 @@
  */
 import { ALGORITHMS, VERBS, MAX_NODES, factor, run } from "./algorithm.js";
 import { strings } from "./i18n.js";
+import { nodes, childrenText } from "../bst/nodes.js";
 
 export default function define(UC) {
   UC.addTranslations("pt", { widget: { avl: strings.pt } });
@@ -14,16 +15,6 @@ export default function define(UC) {
   const signed = (node) => {
     const f = factor(node);
     return f > 0 ? `+${f}` : String(f);
-  };
-
-  /** Every node of a tree, in order. */
-  const nodes = (node, out = []) => {
-    if (node) {
-      nodes(node.l, out);
-      out.push(node);
-      nodes(node.r, out);
-    }
-    return out;
   };
 
   class AvlWidget extends W.Widget {
@@ -50,15 +41,8 @@ export default function define(UC) {
     describe(step) {
       const root = step.state.root;
       if (!root) return t("startEmpty");
-      const children = nodes(root)
-        .filter((node) => node.l || node.r)
-        .map((node) => {
-          const a = node.l && node.l.v;
-          const b = node.r && node.r.v;
-          return t("children", { v: node.v, kids: node.l && node.r ? t("and", { a, b }) : node.l ? t("leftOnly", { a }) : t("rightOnly", { b }) });
-        });
       const factors = nodes(root).map((node) => `${node.v} ${signed(node)}`).join(", ");
-      return `${t("describe", { root: root.v, children: children.join(" ") })} ${t("factors", { list: factors })}`;
+      return `${t("describe", { root: root.v, children: childrenText(root, t) })} ${t("factors", { list: factors })}`;
     }
 
     table(step) {

@@ -36,6 +36,13 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `element.js`. The generated heading (`heading`, `heading="none"`), the
   external-link mark and file downloads are shared helpers in `core/dom.js`.
   uc-kit.js and uc-grading.js are slightly smaller.
+- Internal (no change for pages): the graph widgets (graph, shortest-path,
+  mst, toposort) extend one base class, `graphWidget` in
+  `widgets/src/graph/element.js` (input, run, drawing, description, editable
+  field); heap and union-find share `widgets/src/core/svg/stack.js` (an array
+  above a tree); bst and avl share `widgets/src/bst/nodes.js`. Each widget file
+  still bundles what it uses: a few are up to 22 bytes larger gzipped, bst,
+  avl, graph and shortest-path slightly smaller.
 
 ### Fixed
 - `<uc-materials>`: an item with many links no longer squeezes its title to

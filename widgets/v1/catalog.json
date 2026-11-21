@@ -28,7 +28,7 @@
         "ops"
       ],
       "predict": true,
-      "gzip": 6509
+      "gzip": 6494
     },
     {
       "name": "uc-widget-backtracking",
@@ -97,7 +97,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 5633
+      "gzip": 5621
     },
     {
       "name": "uc-widget-complexity",
@@ -205,7 +205,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7252
+      "gzip": 7242
     },
     {
       "name": "uc-widget-hash",
@@ -272,7 +272,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 4791
+      "gzip": 4805
     },
     {
       "name": "uc-widget-list",
@@ -333,7 +333,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7120
+      "gzip": 7142
     },
     {
       "name": "uc-widget-recursion",
@@ -432,7 +432,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7050
+      "gzip": 7047
     },
     {
       "name": "uc-widget-sort",
@@ -533,7 +533,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 6822
+      "gzip": 6838
     },
     {
       "name": "uc-widget-trace",
@@ -565,7 +565,7 @@
         "predict"
       ],
       "predict": true,
-      "gzip": 7231
+      "gzip": 7228
     },
     {
       "name": "uc-widget-union-find",
@@ -598,7 +598,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 4643
+      "gzip": 4661
     }
   ]
 }

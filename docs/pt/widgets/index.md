@@ -16,7 +16,7 @@ Gerado a partir de `widgets/v1/catalog.json`. "Estável" quer dizer que os atrib
 
   Estável Vaga 2 EDados
 
-  Algoritmos: `operations` · 6.4 KB gzip
+  Algoritmos: `operations` · 6.3 KB gzip
 - [Backtracking](https://uc-design-kit.miguelrocha.dev/docs/pt/widgets/uc-widget-backtracking.md) `<uc-widget-backtracking>`
 
   N rainhas, subconjuntos, permutações, com a árvore de pesquisa e os cortes.
@@ -135,7 +135,7 @@ Gerado a partir de `widgets/v1/catalog.json`. "Estável" quer dizer que os atrib
 
   Estável Vaga 3 PC EDados
 
-  Algoritmos: `compression`, `size`, `naive` · 4.5 KB gzip
+  Algoritmos: `compression`, `size`, `naive` · 4.6 KB gzip
 
 ## Lista de espera
 
