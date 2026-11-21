@@ -23,6 +23,11 @@ window.UC_COURSE = {
       "href": "../pt/componentes/index.html"
     },
     {
+      "id": "seccoes",
+      "label": "Secções",
+      "href": "../pt/seccoes/index.html"
+    },
+    {
       "id": "widgets",
       "label": "Widgets",
       "href": "../pt/widgets/index.html"

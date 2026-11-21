@@ -10,6 +10,8 @@
  *   <!-- docs:pager -->   … <!-- /docs:pager -->    previous / next and "edit on GitHub"
  *   <!-- docs:demo src="../../demos/x/y.html" title="…" height="240" -->
  *     … <!-- /docs:demo -->                         live demo (iframe) + its code
+ *                                                  (copy="true": a "Copiar código" button
+ *                                                  in the bar, as in the section gallery)
  *   <!-- docs:classes src="../componentes/uc-week.html" -->
  *     … <!-- /docs:classes -->                      a component's stable classes, copied
  *                                                   from its page's "Personalizar" table
@@ -291,9 +293,14 @@ async function demo(ctx, attributes) {
     `  <div class="docs-demo__panel docs-demo__panel--code" data-label="${labels.code}">`,
     `    <uc-code lang="html" no-download><pre><code>${escapeHtml(snippet)}</code></pre></uc-code>`,
     `  </div>`,
+    attributes.copy === "true"
+      ? `  <button class="docs-demo__copy" type="button" data-copied="${labels.copied}" hidden>${labels.copy}</button>`
+      : null,
     `  <a class="docs-demo__open" href="${escapeHtml(attributes.src)}">${labels.openDemo}</a>`,
     `</div>`,
-  ].join("\n");
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
 }
 
 /**

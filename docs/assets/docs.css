@@ -282,8 +282,9 @@
 }
 .docs-demo__bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--uc-space-4);
+  column-gap: var(--uc-space-4);
   padding: 0 var(--uc-space-4);
   border-bottom: 1px solid var(--uc-color-border);
 }
@@ -315,6 +316,44 @@
   font-size: var(--uc-font-size-sm);
 }
 .docs-demo__open:hover { color: var(--uc-color-text); }
+/* "Copiar código" (section gallery): pushes "Abrir demo" to its right. */
+.docs-demo__copy {
+  min-height: var(--uc-target-min);
+  margin-left: auto;
+  padding: 0 var(--uc-space-1);
+  border: 0;
+  background: none;
+  color: var(--uc-color-accent);
+  font-size: var(--uc-font-size-sm);
+  font-weight: 500;
+}
+.docs-demo__copy:hover { text-decoration: underline; }
+.docs-demo__copy + .uc-visually-hidden + .docs-demo__open { margin-left: 0; }
+
+/* Section gallery: "Tema das pré-visualizações" (shown by docs.js). */
+.docs-preview-theme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--uc-space-2) var(--uc-space-3);
+  margin-top: var(--uc-space-6);
+  padding: var(--uc-space-3) var(--uc-space-4);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  font-size: var(--uc-font-size-md);
+}
+.docs-preview-theme[hidden] { display: none; }
+.docs-preview-theme label { font-weight: 500; }
+.docs-preview-theme select {
+  min-height: var(--uc-target-min);
+  padding: 0 var(--uc-space-3);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface);
+  color: var(--uc-color-text);
+  font: inherit;
+}
+.docs-preview-theme p { margin: 0; color: var(--uc-color-text-muted); font-size: var(--uc-font-size-sm); }
 
 /* Without JavaScript: both panels, one under the other, each with its label. */
 html:not(.docs-js) .docs-demo__panel::before {

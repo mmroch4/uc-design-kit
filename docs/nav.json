@@ -18,6 +18,8 @@
         "preview": "Pré-visualização",
         "code": "Código",
         "openDemo": "Abrir demo",
+        "copy": "Copiar código",
+        "copied": "Código copiado",
         "demo": "Demonstração",
         "skip": "Saltar para o conteúdo",
         "search": "Pesquisar",
@@ -66,6 +68,18 @@
             { "title": "uc-materials", "path": "pt/componentes/uc-materials.html", "code": true, "component": "uc-materials" },
             { "title": "uc-problems", "path": "pt/componentes/uc-problems.html", "code": true, "component": "uc-problems" },
             { "title": "uc-problem", "path": "pt/componentes/uc-problem.html", "code": true, "component": "uc-problem" }
+          ]
+        },
+        {
+          "title": "Secções",
+          "pages": [
+            { "title": "Galeria", "path": "pt/seccoes/index.html" },
+            { "title": "Cabeçalhos", "path": "pt/seccoes/cabecalhos.html" },
+            { "title": "Avisos e datas", "path": "pt/seccoes/avisos.html" },
+            { "title": "Avaliação", "path": "pt/seccoes/avaliacao.html" },
+            { "title": "Horário e equipa", "path": "pt/seccoes/horario-equipa.html" },
+            { "title": "Materiais e programa", "path": "pt/seccoes/materiais.html" },
+            { "title": "Perguntas e contactos", "path": "pt/seccoes/perguntas.html" }
           ]
         },
         {

@@ -3,7 +3,9 @@
  * enhancement: without JavaScript the sidebar, "Nesta página", the demos and
  * their code are all still on the page (see docs.css, html:not(.docs-js)).
  *
- *   - demo blocks: "Pré-visualização / Código" tabs, iframe height from the demo
+ *   - demo blocks: "Pré-visualização / Código" tabs, iframe height from the demo,
+ *     the "Copiar código" button of the section gallery
+ *   - section gallery: the theme of the previews (.docs-preview-theme)
  *   - sliding menu for the sidebar on narrow screens
  *   - "Nesta página": highlights the section being read
  *   - search (Ctrl K, ⌘K or /): the kit's search dialog, over the index that
@@ -67,10 +69,113 @@
     const bar = document.createElement("div");
     bar.className = "docs-demo__bar";
     bar.append(tablist);
+    const copy = demo.querySelector(":scope > .docs-demo__copy");
+    if (copy) bar.append(setUpCopy(copy, demo));
     const open = demo.querySelector(":scope > .docs-demo__open");
     if (open) bar.append(open);
     demo.prepend(bar);
     select(0, false);
+  }
+
+  /* ---------- "Copiar código" (docs:demo copy="true") ---------- */
+
+  const COPY_RESET_MS = 2000;
+
+  /** The code shown in a demo's Código panel: <uc-code> keeps it in .code once upgraded. */
+  function demoCode(demo) {
+    const block = demo.querySelector(".docs-demo__panel--code uc-code");
+    if (!block) return "";
+    return typeof block.code === "string" ? block.code : (block.querySelector("pre") || block).textContent;
+  }
+
+  function writeClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    // file:// and old browsers: a hidden textarea and the copy command.
+    return new Promise((resolve, reject) => {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.append(area);
+      area.select();
+      const done = document.execCommand("copy");
+      area.remove();
+      if (done) resolve();
+      else reject(new Error("copy failed"));
+    });
+  }
+
+  /** Wires the button; its label turns into "Código copiado" for a moment, announced by a status region. */
+  function setUpCopy(button, demo) {
+    const label = button.textContent;
+    const status = document.createElement("span");
+    status.className = "uc-visually-hidden";
+    status.setAttribute("role", "status");
+    let timer = null;
+    button.hidden = false;
+    button.addEventListener("click", () => {
+      writeClipboard(demoCode(demo)).then(() => {
+        button.textContent = status.textContent = button.dataset.copied || label;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          button.textContent = label;
+          status.textContent = "";
+        }, COPY_RESET_MS);
+      }, () => {});
+    });
+    const wrapper = document.createDocumentFragment();
+    wrapper.append(button, status);
+    return wrapper;
+  }
+
+  /* ---------- section gallery: theme of the previews ---------- */
+
+  const THEME_KEY = "uc-docs:section-theme";
+
+  /** Adds ?theme=name to a demo URL (docs/demos/demo.js reads it), or removes it. */
+  function withTheme(url, theme) {
+    const target = new URL(url, location.href);
+    if (theme) target.searchParams.set("theme", theme);
+    else target.searchParams.delete("theme");
+    return target.href;
+  }
+
+  function setUpThemePicker() {
+    const picker = document.querySelector(".docs-preview-theme");
+    const select = picker && picker.querySelector("select");
+    if (!select) return;
+    picker.hidden = false;
+    const values = Array.from(select.options, (option) => option.value);
+
+    function apply(theme) {
+      document.querySelectorAll(".docs-demo").forEach((demo) => {
+        const frame = demo.querySelector(".docs-demo__frame");
+        const open = demo.querySelector(".docs-demo__open");
+        if (frame) frame.src = withTheme(frame.getAttribute("src"), theme);
+        if (open) open.href = withTheme(open.getAttribute("href"), theme);
+      });
+    }
+
+    let saved = "";
+    try {
+      saved = localStorage.getItem(THEME_KEY) || "";
+    } catch {
+      saved = "";
+    }
+    if (saved && values.includes(saved)) {
+      select.value = saved;
+      apply(saved);
+    }
+    select.addEventListener("change", () => {
+      apply(select.value);
+      try {
+        if (select.value) localStorage.setItem(THEME_KEY, select.value);
+        else localStorage.removeItem(THEME_KEY);
+      } catch {
+        // Private mode or blocked storage: the choice lasts for this page only.
+      }
+    });
   }
 
   /* ---------- demo heights (messages from docs/demos/demo.js) ---------- */
@@ -178,6 +283,7 @@
 
   function init() {
     document.querySelectorAll(".docs-demo").forEach(setUpDemo);
+    setUpThemePicker();
     setUpMenu();
     setUpToc();
     setUpSearch();

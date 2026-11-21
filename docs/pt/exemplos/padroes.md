@@ -345,6 +345,7 @@ Exemplo (enunciado de problema), [demonstração ao vivo](https://uc-design-kit.
 
 ## Ver também
 
+- [Galeria de secções](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.md): pedaços de página mais pequenos (fórmula da nota, horário, perguntas frequentes…), com várias variantes e cada tema.
 - [Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): as mesmas páginas num site real.
 - [Materiais e problemas](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md#materiais-e-problemas): as listas de problemas com filtros e "Resolvido", para páginas de problemas.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md).

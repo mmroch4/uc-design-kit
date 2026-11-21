@@ -142,7 +142,7 @@ Além dos componentes há blocos só de CSS (cartões, tabelas ordenáveis, list
 
 - Criar o primeiro site a partir do modelo: [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md), ou pedi-lo a um assistente de IA: [Usar com uma LLM](https://uc-design-kit.miguelrocha.dev/docs/pt/llm.md).
 - Ver um componente documentado por inteiro: [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md).
-- Explorar os [exemplos](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/index.md), sites reais feitos com o kit ([Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md), [Competitive Programming](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md), [Introduction to Programming](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/ip.md) e [Programação Imperativa](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pi.md), em duas línguas), ou copiar um dos [padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md).
+- Explorar os [exemplos](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/index.md), sites reais feitos com o kit ([Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md), [Competitive Programming](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md), [Introduction to Programming](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/ip.md) e [Programação Imperativa](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pi.md), em duas línguas), ou copiar um dos [padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md) ou uma secção da [galeria de secções](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.md).
 - Consultar todos os campos do `course.js` em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md), e, para estender o kit, a [API JavaScript](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/api-js.md). O contrato completo está no [docs/api.md](https://github.com/mmroch4/uc-design-kit/blob/main/docs/api.md).
 - Pesquisar em toda a documentação com `Ctrl K` (`⌘K` no Mac) ou `/`.
 
@@ -5975,6 +5975,598 @@ O elemento fica vazio. O enunciado à volta continua completo; só faltam o selo
 - [`<uc-problems>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-problems.md): a lista de problemas de uma série, com a mesma marca "Resolvido".
 - [`<uc-exercise>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md): um exercício de um guião, com `mooshak`.
 - [`.uc-samples`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/elementos.md#samples): os exemplos de entrada e saída de um enunciado.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.md -->
+
+# Galeria de secções
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.html
+
+Secções prontas a copiar para as páginas da sua cadeira, cada uma com pré-visualização, código e o aspeto em cada tema.
+
+Uma secção é um pedaço de página de tamanho médio, como a fórmula da nota ou as perguntas frequentes. Há 22 secções em seis grupos, todas feitas com os componentes e os blocos do kit e com o curso fictício das demonstrações.
+
+## Como usar
+
+1. Escolha a secção e veja-a no separador Pré-visualização. Com "Abrir demo" vê-a sozinha, no tamanho real.
+2. Carregue em "Copiar código" (ou copie do separador Código) e cole dentro do `<uc-page>` da sua página, no sítio onde a quer.
+3. Troque os textos. As secções que mostram dados do curso (avisos, datas, horário, equipa) leem-nos do `course.js`: escreva lá os seus.
+
+O código não traz o `<head>`, que é o mesmo em todas as páginas (ver [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md)). Para páginas inteiras, veja os [padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md).
+
+## Ver com outro tema
+
+Em cada página da galeria, "Tema das pré-visualizações" mostra as secções com um dos [temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). O código não muda: o tema escolhe-se uma vez para o site todo, com `theme` no `course.js`. A escolha fica guardada neste browser enquanto percorre a galeria.
+
+## Os grupos
+
+- [**Cabeçalhos**: Título e introdução, com localização e ações, página inicial.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md)
+- [**Avisos e datas**: Avisos e próximas datas, esta semana, com um aviso, aviso fixo.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avisos.md)
+- [**Avaliação**: Fórmula da nota, cartão de uma prova, datas e regras.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avaliacao.md)
+- [**Horário e equipa**: Horário, atendimento, equipa.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/horario-equipa.md)
+- [**Materiais e programa**: Lista de materiais, programa, bibliografia, ligações úteis.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/materiais.md)
+- [**Perguntas e contactos**: Perguntas frequentes, contactos.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/perguntas.md)
+
+## Ver também
+
+- [Padrões de página](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/padroes.md): páginas inteiras, do `<uc-page>` ao fim.
+- [Componentes](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md) e [blocos](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md): as peças de que as secções são feitas, com todos os atributos.
+- [Usar com uma LLM](https://uc-design-kit.miguelrocha.dev/docs/pt/llm.md): pedir a um assistente para adaptar uma secção.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md -->
+
+# Cabeçalhos
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.html
+
+O topo de uma página: o título e uma frase, com localização, etiquetas e botões quando a página precisa deles.
+
+Tema das pré-visualizações
+
+Padrão
+
+Compacto (compact)
+
+Com serifa (serif)
+
+Alto contraste (high-contrast)
+
+O código copiado é o mesmo em todos: o tema escolhe-se uma vez, no [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+## Título e introdução
+
+O cabeçalho da maioria das páginas: o `<h1>` e uma frase que diz para que serve a página.
+
+Exemplo (cabeçalho simples), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/header-simple.html):
+
+```html
+<header class="uc-page-header">
+  <h1>Avaliação</h1>
+  <p class="uc-prose">A nota final soma quatro componentes. Para aprovar é preciso ter pelo menos 9,5 valores no total e 8 no exame.</p>
+</header>
+```
+
+- `uc-page-header` afasta o título e a introdução 12 px; a página afasta as secções seguintes 48 px.
+- Blocos: [Blocos: layout](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/layout.md).
+
+## Com localização e ações
+
+Para páginas que não estão no menu, como um guião ou um enunciado: a localização leva de volta à lista, a etiqueta e os botões dizem o essencial logo no topo.
+
+Exemplo (cabeçalho com localização e ações), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/header-crumbs.html):
+
+```html
+<header class="uc-page-header">
+  <nav class="uc-crumbs" aria-label="Localização">
+    <ol>
+      <li><a href="#">Semanas</a></li>
+      <li aria-current="page">Guião 10</li>
+    </ol>
+  </nav>
+  <p class="uc-eyebrow">Semana 10 · Aula prática</p>
+  <h1>Recursividade sobre listas</h1>
+  <p class="uc-prose">Escrever funções recursivas que percorrem, filtram e invertem listas ligadas.</p>
+  <p><span class="uc-tag uc-tag--accent">Avaliado</span> <span class="uc-tag uc-tag--muted">2 horas</span></p>
+  <p><a class="uc-button uc-button--primary" href="#">Descarregar o código base</a> <a class="uc-button" href="#">Soluções da semana anterior</a></p>
+</header>
+```
+
+- Tire o que não precisar: a localização (`uc-crumbs`), o sobretítulo (`uc-eyebrow`), as etiquetas ou os botões.
+- `uc-button--primary` só na ação principal; as outras ficam com `uc-button`.
+
+## Página inicial
+
+O código, o nome e a frase da cadeira vêm do `course.js`; o que se escreve dentro aparece por baixo.
+
+Exemplo (cabeçalho da página inicial), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/header-hero.html):
+
+```html
+<uc-hero>
+  <p><a class="uc-button uc-button--primary" href="#">Começar pela semana 1</a> <a class="uc-button" href="#">Ficha da unidade curricular</a></p>
+</uc-hero>
+```
+
+- Componente: [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md).
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avisos.md -->
+
+# Avisos e datas
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avisos.html
+
+O que os alunos procuram primeiro: o que mudou, o que há esta semana e os próximos prazos.
+
+Tema das pré-visualizações
+
+Padrão
+
+Compacto (compact)
+
+Com serifa (serif)
+
+Alto contraste (high-contrast)
+
+O código copiado é o mesmo em todos: o tema escolhe-se uma vez, no [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+## Avisos e próximas datas
+
+As duas listas lado a lado nos ecrãs largos, uma por baixo da outra no telemóvel. Os avisos e as datas escrevem-se só no `course.js`.
+
+Exemplo (avisos e próximas datas), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/news-split.html):
+
+```html
+<div class="uc-split">
+  <uc-notices></uc-notices>
+  <uc-deadlines>
+    <a href="#">Regras de avaliação</a>
+  </uc-deadlines>
+</div>
+```
+
+- O conteúdo dentro de `<uc-deadlines>` aparece por baixo da lista: aqui, a ligação para as regras.
+- Componentes: [`<uc-notices>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-notices.md), [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md).
+
+## Esta semana, com um aviso
+
+Um aviso que não pode passar despercebido por cima do cartão da semana atual.
+
+Exemplo (esta semana com aviso), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/news-this-week.html):
+
+```html
+<div class="uc-stack">
+  <div class="uc-callout uc-callout--warning">
+    <h2>Mudança de sala</h2>
+    <p>A aula teórica de sexta-feira passa para o anfiteatro 2.</p>
+  </div>
+  <uc-this-week></uc-this-week>
+</div>
+```
+
+- Tire o aviso quando deixar de ser preciso; o cartão atualiza-se sozinho todas as semanas.
+- Componente: [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md); bloco `uc-callout--warning`.
+
+## Aviso fixo
+
+Para informação que fica semanas na página, como as inscrições nas turmas. A ligação com `data-auth` avisa que é preciso entrar no sistema.
+
+Exemplo (aviso fixo), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/news-banner.html):
+
+```html
+<div class="uc-callout">
+  <h2>Inscrição nas turmas práticas</h2>
+  <p>As inscrições abrem a 15 de setembro, às 10:00, no sistema de inscrições. Quem não se inscrever até dia 19 é colocado numa turma com vagas.</p>
+  <p><a class="uc-button uc-button--sm" href="#" data-auth="SIGARRA">Inscrever-me</a></p>
+</div>
+```
+
+- `uc-callout` é cinzento; `uc-callout--warning` é âmbar, para o que é urgente.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avaliacao.md -->
+
+# Avaliação
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avaliacao.html
+
+Como se calcula a nota, quando e onde são as provas e as regras, prontos a colar na página de avaliação.
+
+Tema das pré-visualizações
+
+Padrão
+
+Compacto (compact)
+
+Com serifa (serif)
+
+Alto contraste (high-contrast)
+
+O código copiado é o mesmo em todos: o tema escolhe-se uma vez, no [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+## Fórmula da nota
+
+Os pesos escrevem-se em `<data>`; o kit gera a fórmula e uma barra com as proporções.
+
+### Simples
+
+Exemplo (fórmula da nota), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/grading-simple.html):
+
+```html
+<uc-grading heading="Como é calculada a nota">
+  <ul>
+    <li data-code="T"><data value="40">40 %</data> Trabalhos práticos</li>
+    <li data-code="E" data-min="8"><data value="60">60 %</data> Exame final</li>
+  </ul>
+</uc-grading>
+```
+
+### Com simulador
+
+Exemplo (fórmula da nota com simulador), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/grading-calculator.html):
+
+```html
+<uc-grading heading="Como é calculada a nota" calculator>
+  <ul>
+    <li data-code="Q"><data value="10">10 %</data> Quizzes semanais</li>
+    <li data-code="T"><data value="30">30 %</data> Trabalho prático</li>
+    <li data-code="E" data-min="8"><data value="60">60 %</data> Exame final. <span>Sem consulta.</span></li>
+  </ul>
+</uc-grading>
+```
+
+- `data-min` marca a nota mínima de uma componente; `calculator` acrescenta o simulador.
+- Componente: [`<uc-grading>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-grading.md), que também aceita subcomponentes e várias fórmulas.
+
+## Cartão de uma prova
+
+A data, a duração, os turnos e as salas vêm do prazo `teste` do `course.js`; dentro escrevem-se as regras da prova.
+
+Exemplo (cartão de prova), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/assessment-card.html):
+
+```html
+<uc-assessment-info deadline="teste" calendar>
+  <ul class="uc-bullets">
+    <li>Sem consulta; traz o cartão de estudante.</li>
+    <li>Matéria: semanas 1 a 10.</li>
+  </ul>
+</uc-assessment-info>
+```
+
+- Mude `deadline="teste"` para o `id` do seu prazo.
+- Componente: [`<uc-assessment-info>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-assessment-info.md).
+
+## Datas e regras
+
+A tabela de todas as provas com o estado de cada uma, ao lado das regras gerais.
+
+Exemplo (datas e regras de avaliação), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/assessment-dates.html):
+
+```html
+<div class="uc-split">
+  <uc-deadlines view="table" heading="Datas"></uc-deadlines>
+  <section class="uc-section" aria-labelledby="regras">
+    <h2 id="regras">Regras</h2>
+    <ul class="uc-checklist">
+      <li>Os trabalhos são individuais.</li>
+      <li>Entregas fora do prazo não são aceites.</li>
+      <li>O recurso substitui apenas a nota do exame.</li>
+    </ul>
+  </section>
+</div>
+```
+
+- Componente: [`<uc-deadlines>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-deadlines.md) com `view="table"`; bloco `uc-checklist`.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/horario-equipa.md -->
+
+# Horário e equipa
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/horario-equipa.html
+
+Quando e onde são as aulas, quando há atendimento e quem dá a cadeira. Tudo vem do `course.js`: a secção só escolhe a forma.
+
+Tema das pré-visualizações
+
+Padrão
+
+Compacto (compact)
+
+Com serifa (serif)
+
+Alto contraste (high-contrast)
+
+O código copiado é o mesmo em todos: o tema escolhe-se uma vez, no [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+## Horário
+
+Uma tabela por tipo de aula, ou uma lista por dia da semana.
+
+### Por tipo de aula, com escolha de turma
+
+Exemplo (horário com escolha de turma), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/timetable-filter.html):
+
+```html
+<uc-timetable type="lecture lab" class-filter>
+  <p class="uc-muted">As salas podem mudar: confirma no <a href="https://example.org/sigarra" data-auth="SIGARRA">horário oficial</a>.</p>
+</uc-timetable>
+```
+
+### Por dia da semana
+
+Exemplo (horário por dia), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/timetable-days.html):
+
+```html
+<uc-timetable view="days" heading="Horário da semana">
+  <p class="uc-muted">Horário completo no <a href="https://example.org/sigarra" data-auth="SIGARRA">SIGARRA</a>.</p>
+</uc-timetable>
+```
+
+- Com `class-filter`, cada aluno escolhe a sua turma e a escolha fica guardada no browser.
+- O parágrafo de dentro aparece por baixo do horário e é o que fica sem JavaScript: ponha lá a ligação para o horário oficial.
+- Componente: [`<uc-timetable>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-timetable.md).
+
+## Atendimento
+
+As horas de atendimento de cada docente, com uma frase sobre o que fazer fora delas.
+
+Exemplo (atendimento), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/office-hours.html):
+
+```html
+<section class="uc-section" aria-labelledby="atendimento">
+  <h2 id="atendimento">Atendimento</h2>
+  <p class="uc-prose">Para dúvidas fora das aulas. Fora destas horas, escreve no fórum da UC.</p>
+  <uc-timetable type="office-hours" heading="none"></uc-timetable>
+</section>
+```
+
+- As horas escrevem-se em `officeHours` de cada docente da `team`; o cartão da equipa também as mostra.
+
+## Equipa
+
+Os docentes com o papel, as turmas e o contacto.
+
+### Em cartões
+
+Exemplo (equipa em cartões), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/team-cards.html):
+
+```html
+<uc-team>
+  <p class="uc-muted">Dúvidas sobre a matéria: no <a href="https://example.org/forum">fórum da UC</a>, para todos verem a resposta.</p>
+</uc-team>
+```
+
+### Em tabela
+
+Exemplo (equipa em tabela), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/team-table.html):
+
+```html
+<uc-team view="table" heading="Docentes">
+  <p class="uc-muted">Atendimento por marcação, por email.</p>
+</uc-team>
+```
+
+- `role="assistant"` mostra só um papel; útil para separar as práticas das teóricas.
+- Componente: [`<uc-team>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-team.md).
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/materiais.md -->
+
+# Materiais e programa
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/materiais.html
+
+Os slides e o código de cada aula, o programa da cadeira, a bibliografia e as ligações que os alunos usam todas as semanas.
+
+Tema das pré-visualizações
+
+Padrão
+
+Compacto (compact)
+
+Com serifa (serif)
+
+Alto contraste (high-contrast)
+
+O código copiado é o mesmo em todos: o tema escolhe-se uma vez, no [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+## Lista de materiais
+
+Uma linha por aula, com a data da última atualização: o kit transforma cada ligação num botão com o tipo do ficheiro e marca o que é novo.
+
+Exemplo (lista de materiais), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/materials-list.html):
+
+```html
+<uc-materials>
+  <ol>
+    <li><time datetime="2025-11-24">24 nov</time> Recursividade
+      <a href="#" data-type="pdf">Slides</a> <a href="#" data-type="archive">Código</a></li>
+    <li><time datetime="2025-11-17">17 nov</time> Pesquisa e ordenação
+      <a href="#" data-type="pdf">Slides</a> <a href="https://www.youtube.com/">Aula gravada</a></li>
+    <li>Revisões para o teste prático</li>
+  </ol>
+</uc-materials>
+```
+
+- O tipo vem do endereço (`.pdf`, `.zip`, YouTube…); `data-type` escolhe-o à mão.
+- Componente: [`<uc-materials>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-materials.md).
+
+## Programa
+
+Os temas da cadeira numerados, cada um com uma frase.
+
+Exemplo (programa), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/syllabus.html):
+
+```html
+<section class="uc-section" aria-labelledby="programa">
+  <h2 id="programa">Programa</h2>
+  <ol class="uc-steps">
+    <li>
+      <h3>Fundamentos</h3>
+      <p>Variáveis, tipos, expressões e controlo de fluxo.</p>
+    </li>
+    <li>
+      <h3>Funções e recursividade</h3>
+      <p>Decomposição de problemas, caso base e passo recursivo.</p>
+    </li>
+    <li>
+      <h3>Pesquisa e ordenação</h3>
+      <p>Pesquisa binária, algoritmos de ordenação e a sua complexidade.</p>
+    </li>
+  </ol>
+</section>
+```
+
+- Bloco `uc-steps`: os números 01, 02… são decorativos, a lista dá a posição.
+
+## Bibliografia
+
+Cada livro com os autores e a edição numa segunda linha.
+
+Exemplo (bibliografia), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/bibliography.html):
+
+```html
+<section class="uc-section" aria-labelledby="bibliografia">
+  <h2 id="bibliografia">Bibliografia</h2>
+  <ul class="uc-links">
+    <li><a href="#">Introduction to Algorithms</a><span>Cormen, Leiserson, Rivest e Stein · MIT Press, 4.ª edição</span></li>
+    <li><a href="#">Algorithms</a><span>Sedgewick e Wayne · Addison-Wesley, 4.ª edição</span></li>
+    <li><a href="#">Think Like a Programmer</a><span>Spraul · No Starch Press · leitura complementar</span></li>
+  </ul>
+</section>
+```
+
+- Bloco `uc-links`: o `<span>` depois da ligação é a descrição.
+
+## Ligações úteis
+
+As plataformas e páginas externas, em colunas.
+
+Exemplo (ligações úteis), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/links-grid.html):
+
+```html
+<section class="uc-section" aria-labelledby="ligacoes">
+  <h2 id="ligacoes">Ligações úteis</h2>
+  <ul class="uc-links uc-links--grid">
+    <li><a href="#">Plataforma de entregas</a><span>Submeter os trabalhos</span></li>
+    <li><a href="#">Fórum da UC</a><span>Dúvidas e avisos</span></li>
+    <li><a href="#">Documentação da linguagem</a><span>Referência oficial</span></li>
+    <li><a href="#">Exames anteriores</a><span>Com resolução</span></li>
+  </ul>
+</section>
+```
+
+- Bloco `uc-links--grid`; uma só coluna no telemóvel.
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/perguntas.md -->
+
+# Perguntas e contactos
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/perguntas.html
+
+As respostas às dúvidas de todos os semestres e a quem perguntar o resto.
+
+Tema das pré-visualizações
+
+Padrão
+
+Compacto (compact)
+
+Com serifa (serif)
+
+Alto contraste (high-contrast)
+
+O código copiado é o mesmo em todos: o tema escolhe-se uma vez, no [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+## Perguntas frequentes
+
+Cada pergunta abre a sua resposta, para a lista caber num ecrã.
+
+### Que abrem
+
+Exemplo (perguntas frequentes), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/faq-details.html):
+
+```html
+<section class="uc-section" aria-labelledby="perguntas">
+  <h2 id="perguntas">Perguntas frequentes</h2>
+  <details class="uc-details">
+    <summary>Posso mudar de turma prática?</summary>
+    <p>Sim, até ao fim da segunda semana, se houver vagas. Pede a troca no fórum da UC.</p>
+  </details>
+  <details class="uc-details">
+    <summary>Os trabalhos podem ser feitos em grupo?</summary>
+    <p>Não. Os trabalhos são individuais; podes discutir ideias, mas o código tem de ser teu.</p>
+  </details>
+  <details class="uc-details">
+    <summary>Tenho estatuto de trabalhador-estudante. O que muda?</summary>
+    <p>Ficas dispensado da presença nas aulas práticas. A avaliação é a mesma.</p>
+  </details>
+</section>
+```
+
+### Em cartões
+
+Exemplo (perguntas em cartões), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/faq-cards.html):
+
+```html
+<section class="uc-section" aria-labelledby="perguntas">
+  <h2 id="perguntas">Antes de perguntar</h2>
+  <div class="uc-grid" style="--uc-grid-min: 240px">
+    <div class="uc-card">
+      <h3>Onde entrego?</h3>
+      <p>Na plataforma de entregas, até às 23:59 do dia do prazo.</p>
+    </div>
+    <div class="uc-card">
+      <h3>Falto a uma aula. E agora?</h3>
+      <p>Os guiões e as soluções ficam na página da semana.</p>
+    </div>
+    <div class="uc-card">
+      <h3>Que linguagem usamos?</h3>
+      <p>Python 3.12, no computador do laboratório ou no teu.</p>
+    </div>
+  </div>
+</section>
+```
+
+- `details.uc-details` funciona sem JavaScript; os cartões servem para três a seis perguntas curtas.
+- Os cartões usam `--uc-grid-min` para a largura mínima de cada coluna.
+
+## Contactos
+
+Quem contactar para cada assunto, com uma nota sobre o tempo de resposta.
+
+Exemplo (contactos), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/contacts.html):
+
+```html
+<section class="uc-section" aria-labelledby="contactos">
+  <h2 id="contactos">Contactos</h2>
+  <div class="uc-split">
+    <dl class="uc-facts">
+      <dt>Coordenação</dt>
+      <dd><a href="mailto:ana.ribeiro@example.org">Ana Ribeiro</a>, Gab. 2.14</dd>
+      <dt>Dúvidas da matéria</dt>
+      <dd>No <a href="#">fórum da UC</a>, para todos verem a resposta.</dd>
+      <dt>Assuntos pessoais</dt>
+      <dd>Por email, com "[AP]" no assunto.</dd>
+    </dl>
+    <div class="uc-callout">
+      <p>Respondemos no fórum em dois dias úteis. Antes de perguntar, vê as perguntas frequentes.</p>
+    </div>
+  </div>
+</section>
+```
+
+- Bloco `uc-facts`: etiqueta à esquerda, valor à direita, empilhados no telemóvel.
 
 ---
 
@@ -12403,6 +12995,7 @@ Exemplo (enunciado de problema), [demonstração ao vivo](https://uc-design-kit.
 
 ## Ver também
 
+- [Galeria de secções](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.md): pedaços de página mais pequenos (fórmula da nota, horário, perguntas frequentes…), com várias variantes e cada tema.
 - [Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/edados.md): as mesmas páginas num site real.
 - [Materiais e problemas](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md#materiais-e-problemas): as listas de problemas com filtros e "Resolvido", para páginas de problemas.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md).
