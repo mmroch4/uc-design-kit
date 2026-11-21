@@ -85,6 +85,18 @@ that changed. To see what changed in a page:
 changed pages at that commit too and prints a diff; `--save=DIR` writes every
 rendered DOM and tree to `DIR`.
 
+The scripts share what they have in common through `scripts/lib/`:
+`server.mjs` (the local server and the public-kit route), `browser.mjs`
+(Chromium, the frozen date, waiting for the kit, axe-core), `pages.mjs` (the
+pages the browser checks open), `runner.mjs` (options, shards, the page pool
+and the "ok/FAIL" report) and `budgets.mjs` (every gzip budget and writing
+built files). The accessibility checks are split by theme in `scripts/a11y/`
+(`page`, `components`, `grading`, `search`, `widgets`, `snapshots`; a new
+block adds its accessibility-tree snapshot in `snapshots.mjs`) and the search
+checks in `scripts/search/` (`ids`, `detection`, `dialog`, `docs`, on the
+fake site of `harness.mjs`). A budget is raised in its contract first, then in
+`scripts/lib/budgets.mjs`.
+
 `check-pages.mjs`, `check-a11y.mjs` and `check-dom.mjs` check several pages at the same time
 (`--concurrency=n`, default: CPU count, at most 4) and can check one part of
 the pages (`--shard=i/n`; the environment variables `CHECK_CONCURRENCY` and

@@ -116,7 +116,7 @@ UC.internal.modulesReady()     // → Promise for every module the page needed a
 - The same loader serves later heavy blocks: adding one is one line in
   `MODULES`, one list in the manifest and one budget line in `build.mjs`.
 
-### 2.3 Budgets (gzip, `scripts/build.mjs`)
+### 2.3 Budgets (gzip, `scripts/lib/budgets.mjs`, checked by `scripts/build.mjs`)
 
 | File | Budget | Now | After |
 | --- | --- | --- | --- |

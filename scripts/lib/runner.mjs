@@ -1,6 +1,6 @@
 /**
- * Shared helpers of the browser checks (check-pages.mjs, check-a11y.mjs):
- * splitting the pages between parallel CI jobs (--shard=i/n) and checking
+ * Shared helpers of the browser checks (check-pages, check-a11y, check-dom):
+ * reading their options, splitting the pages between parallel CI jobs (--shard=i/n) and checking
  * several pages at the same time inside one job (--concurrency=n).
  *
  * Both options keep every check: a shard only chooses which pages this job
@@ -8,11 +8,11 @@
  */
 import os from "node:os";
 
-/** Reads --name=value (or the environment variable) from the command line. */
-function option(args, name, envName) {
+/** Reads --name=value (or the environment variable `envName`) from the command line; "" when absent. */
+export function option(args, name, envName) {
   const prefix = `--${name}=`;
   const arg = args.find((value) => value.startsWith(prefix));
-  return arg ? arg.slice(prefix.length) : process.env[envName] || "";
+  return arg ? arg.slice(prefix.length) : (envName && process.env[envName]) || "";
 }
 
 /** --shard=i/n (or CHECK_SHARD=i/n): this job checks the i-th of n parts, 1-based. */
@@ -81,4 +81,25 @@ export async function runPool(items, concurrency, task, report) {
   };
   await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
   flush();
+}
+
+/** Keeps the items whose text contains one of the filters (every item without filters). */
+export function matchFilters(items, filters, text = (item) => item) {
+  return items.filter((item) => !filters.length || filters.some((filter) => text(item).includes(filter)));
+}
+
+/**
+ * Prints one checked page as every browser check does: "ok" or "FAIL", then
+ * one line per problem (✗) and per warning (!). Returns whether it failed.
+ */
+export function reportPage(name, problems, warnings = []) {
+  console.log(`${problems.length ? "FAIL" : "ok  "} ${name}`);
+  for (const problem of problems) console.log(`       ✗ ${problem}`);
+  for (const warning of warnings) console.log(`       ! ${warning}`);
+  return problems.length > 0;
+}
+
+/** Prints which part of the pages this shard checks (nothing when there is one shard). */
+export function logShard(shard, count, of) {
+  if (shard.total > 1) console.log(`Shard ${shard.index}/${shard.total}: ${count} of ${of} pages.`);
 }
