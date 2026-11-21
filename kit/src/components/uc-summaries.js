@@ -173,11 +173,7 @@
       ordered.forEach((item) => this.list.append(item.element));
       if (!flag(this, "no-breaks")) this.renderBreaks(ordered, descending);
 
-      const label = this.getAttribute("heading");
-      const heading =
-        label !== null && label.trim().toLowerCase() === "none"
-          ? null
-          : h(UC.internal.headingTag(this), { class: "uc-summaries__heading", id: this.headingId }, label && label.trim() ? label : this.t("summaries.heading"));
+      const heading = UC.internal.heading(this, "uc-summaries", this.t("summaries.heading"));
       if (this.label) this.label.textContent = this.t("summaries.search");
       this.empty.textContent = this.t("summaries.none");
       this.replaceChildren(

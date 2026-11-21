@@ -110,7 +110,7 @@
       const view = this.view;
       this.classList.toggle("uc-deadlines--table", view === "table");
 
-      const heading = this.renderHeading();
+      const heading = UC.internal.heading(this, "uc-deadlines", this.t("deadlines.heading"));
       let body;
       if (!deadlines.length) body = h("p", { class: "uc-deadlines__empty" }, this.t("deadlines.empty"));
       else if (view === "table") body = this.renderTable(deadlines, statuses(deadlines, today));
@@ -125,13 +125,6 @@
           this.extra.length ? h("div", { class: "uc-deadlines__more" }, this.extra) : null,
         ),
       );
-    }
-
-    renderHeading() {
-      const value = this.getAttribute("heading");
-      if (value !== null && value.trim().toLowerCase() === "none") return null;
-      const label = value !== null && value.trim() ? value : this.t("deadlines.heading");
-      return h(UC.internal.headingTag(this), { class: "uc-deadlines__heading", id: this.headingId }, label);
     }
 
     renderTitle(deadline) {

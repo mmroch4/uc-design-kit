@@ -98,6 +98,91 @@
     return component.parts.reduce((sum, part) => sum + (part.bonus === null ? (part.share * gradeOf(part, values) * component.scale) / part.scale : 0), 0);
   }
 
+  /** Every component and part, in reading order. */
+  const flatten = (components) => components.flatMap((component) => [component, ...flatten(component.parts)]);
+
+  /** A function name of a formula ("max"), as an <abbr> when the language has a label for it. */
+  const fn = (type) => {
+    const label = UC.t(`grading.${type}`);
+    return label === type ? type : h("abbr", { title: UC.t(`grading.${type}Title`) }, label);
+  };
+
+  /** The formulas and rules of the lists, parsed (formula.js), or null (with a warning) when they do not parse. */
+  function readModel(components, all, formulaItems, ruleItems, result) {
+    try {
+      formulaItems.forEach((item, index) => codeOf(item) || grading.fail(`formula ${index + 1} has no <code>.`));
+      const model = grading.model({
+        components: components.map((component) => ({ code: component.code, bonus: component.bonus !== null })),
+        parts: all.filter((component) => component.parent).map((component) => component.code),
+        formulas: formulaItems.map((item) => codeOf(item).textContent),
+        rules: ruleItems.map((item) => (codeOf(item) ? codeOf(item).textContent : null)),
+        result,
+      });
+      model.ruleErrors.forEach((message) => message && warn(message));
+      return model;
+    } catch (error) {
+      warn(error.message);
+      return null;
+    }
+  }
+
+  /**
+   * The pass rules (7.4) as [{ rule, item }]: the shortcuts (data-min, then `pass`) first,
+   * then the written ones, without repeats. A written rule that does not parse has rule null.
+   */
+  function collectRules(model, all, ruleItems, pass) {
+    const rules = [];
+    const seen = new Set();
+    const add = (rule, item) => {
+      const key = rule && grading.printRule(rule).join("");
+      if (!seen.has(key) || !rule) rules.push({ rule, item }), seen.add(key);
+    };
+    const atLeast = (name, value) => ({ op: ">=", left: { type: "name", name }, right: { type: "number", value } });
+    all.forEach((component) => Number.isFinite(component.min) && add(atLeast(component.code, component.min)));
+    if (pass !== null) add(atLeast("RESULT", pass));
+    ruleItems.forEach((item, index) => add(model.rules[index], item));
+    return rules;
+  }
+
+  /** One line per formula ("Nota = max(…)", not with `hidden`), each followed by its description; named lines get an id in `ids`. */
+  function renderFormulas(formulas, formulaItems, ids, hidden) {
+    return formulas.map((item, index) => [
+      hidden ? null : h("p", { class: "uc-grading__formula", id: item.name && ids.set(item.name, uid("uc-grading-formula")).get(item.name) }, `${item.name || UC.t("grading.formula")} = `, grading.print(item.tree, fn)),
+      described(formulaItems[index]) && h("p", { class: "uc-grading__note" }, described(formulaItems[index])),
+    ]);
+  }
+
+  /** The proportions bar: one, or one per formula column with its label (`columns` null: the <data> weights). */
+  function renderBars(components, scale, columns, labels) {
+    const bar = (column) =>
+      h(
+        "div",
+        { class: "uc-grading__bar", "aria-hidden": "true" },
+        components.map((component) => {
+          const share = component.bonus === null && shareIn(component, column, scale);
+          return share > 0 && h("span", { class: "uc-grading__segment", style: `flex-grow: ${share}` }, component.code);
+        }),
+      );
+    if (!columns) return bar(null);
+    if (columns.length === 1) return bar(columns[0]);
+    return columns.length ? h("div", { class: "uc-grading__bars", "aria-hidden": "true" }, columns.map((column, index) => [h("span", { class: "uc-grading__bar-label" }, labels[index]), bar(column)])) : null;
+  }
+
+  /** "Regras" and the list of rules, each with its description; a rule that does not parse is shown as written. */
+  function renderRules(rules, alias) {
+    if (!rules.length) return null;
+    return [
+      h("p", {}, h("strong", {}, UC.t("grading.rules"))),
+      h(
+        "ul",
+        { class: "uc-grading__rules" },
+        rules.map(({ rule, item }) =>
+          h("li", {}, rule ? [h("span", { class: "uc-mono" }, grading.printRule(rule, fn, alias)), item && described(item) ? [" ", described(item)] : null] : Array.from(item.cloneNode(true).childNodes)),
+        ),
+      ),
+    ];
+  }
+
   class UCGrading extends UC.Element {
     setup() {
       this.classList.add("uc-grading");
@@ -114,69 +199,16 @@
       const scale = number(this, "scale", 20);
       const components = parse(this.list, scale, null, scale);
       this.list.hidden = true;
-      const label = this.getAttribute("heading");
-      const heading =
-        label !== null && label.trim().toLowerCase() === "none"
-          ? null
-          : h(UC.internal.headingTag(this), { class: "uc-grading__heading", id: this.headingId }, label && label.trim() ? label : this.t("grading.heading"));
-      const weighted = components.filter((component) => component.bonus === null);
-      // Every component and part, in reading order.
-      const all = [];
-      const walk = (list) => list.forEach((component) => all.push(component) && walk(component.parts));
-      walk(components);
-      const noFormula = flag(this, "no-formula");
+      const all = flatten(components);
       const formulaItems = itemsOf(this.formulasList);
       const ruleItems = itemsOf(this.rulesList);
-      let model = null;
-      if (this.formulasList || this.rulesList) {
-        try {
-          formulaItems.forEach((item, index) => codeOf(item) || grading.fail(`formula ${index + 1} has no <code>.`));
-          model = grading.model({
-            components: components.map((component) => ({ code: component.code, bonus: component.bonus !== null })),
-            parts: all.filter((component) => component.parent).map((component) => component.code),
-            formulas: formulaItems.map((item) => codeOf(item).textContent),
-            rules: ruleItems.map((item) => (codeOf(item) ? codeOf(item).textContent : null)),
-            result: this.getAttribute("result"),
-          });
-          model.ruleErrors.forEach((message) => message && warn(message));
-        } catch (error) {
-          warn(error.message);
-        }
-      }
+      const model = this.formulasList || this.rulesList ? readModel(components, all, formulaItems, ruleItems, this.getAttribute("result")) : null;
       // With formulas that do not parse, the teacher's lists stay as written (7.5).
       const fallback = Boolean(this.formulasList && !model);
       const formulas = model && model.result ? model.formulas : null;
       [this.formulasList, this.rulesList].forEach((list) => list && (list.hidden = !fallback));
 
-      const fn = (type) => {
-        const label = this.t(`grading.${type}`);
-        return label === type ? type : h("abbr", { title: this.t(`grading.${type}Title`) }, label);
-      };
-      const alias = { RESULT: (formulas && model.result.name) || this.t("grading.formula") };
-      const ids = new Map();
-      const formulaBlock = formulas
-        ? formulas.map((item, index) => [
-            noFormula ? null : h("p", { class: "uc-grading__formula", id: item.name && ids.set(item.name, uid("uc-grading-formula")).get(item.name) }, `${item.name || this.t("grading.formula")} = `, grading.print(item.tree, fn)),
-            described(formulaItems[index]) && h("p", { class: "uc-grading__note" }, described(formulaItems[index])),
-          ])
-        : fallback || noFormula
-          ? null
-          : h("p", { class: "uc-grading__formula" }, formula(components, scale));
-
-      // Rules (7.4): shortcuts (data-min, then pass) first, then the written ones, without repeats.
-      const rules = [];
-      const seen = new Set();
-      const add = (rule, item) => {
-        const key = rule && grading.printRule(rule).join("");
-        if (!seen.has(key) || !rule) rules.push({ rule, item }), seen.add(key);
-      };
-      const atLeast = (name, value) => ({ op: ">=", left: { type: "name", name }, right: { type: "number", value } });
-      if (model && !fallback) {
-        all.forEach((component) => Number.isFinite(component.min) && add(atLeast(component.code, component.min)));
-        const pass = number(this, "pass", null);
-        if (pass !== null) add(atLeast("RESULT", pass));
-        ruleItems.forEach((item, index) => add(model.rules[index], item));
-      }
+      const rules = model && !fallback ? collectRules(model, all, ruleItems, number(this, "pass", null)) : [];
       // The Minimum column also shows "CODE >= n" rules on a component (7.3).
       if (formulas)
         rules.forEach(({ rule }) => {
@@ -184,41 +216,24 @@
           if (component && !Number.isFinite(component.min)) component.min = rule.right.value;
         });
 
+      const alias = { RESULT: (formulas && model.result.name) || this.t("grading.formula") };
       const columns = formulas ? model.columns || [] : fallback ? [] : null;
-      const labelOf = (column, index) => column.name || (columns.length > 1 ? this.t("grading.formulaN", { n: index + 1 }) : this.t("grading.column.weight"));
+      const labels = (columns || []).map((column, index) => column.name || (columns.length > 1 ? this.t("grading.formulaN", { n: index + 1 }) : this.t("grading.column.weight")));
+      // Ids of the formula lines, which describe the table's column headers.
+      const ids = new Map();
       // With formulas, the calculator evaluates them and checks every rule (grading-api.md 9).
-      this.calc = formulas && { model, rules, all, fn, alias, labels: columns.map((column, index) => labelOf(column, index)) };
-      const bar = (column) =>
-        h(
-          "div",
-          { class: "uc-grading__bar", "aria-hidden": "true" },
-          weighted.map((component) => {
-            const share = shareIn(component, column, scale);
-            return share > 0 && h("span", { class: "uc-grading__segment", style: `flex-grow: ${share}` }, component.code);
-          }),
-        );
-      const bars = !columns ? bar(null) : columns.length === 1 ? bar(columns[0]) : columns.length ? h("div", { class: "uc-grading__bars", "aria-hidden": "true" }, columns.map((column, index) => [h("span", { class: "uc-grading__bar-label" }, labelOf(column, index)), bar(column)])) : null;
+      this.calc = formulas && { model, rules, all, alias, labels };
+      const heading = UC.internal.heading(this, "uc-grading", this.t("grading.heading"));
 
       this.replaceChildren(
         h(
           "section",
           { class: "uc-grading__section", "aria-labelledby": heading ? this.headingId : null },
           heading,
-          formulaBlock,
-          bars,
-          this.renderTable(components, scale, columns && columns.map((column, index) => ({ column, label: labelOf(column, index), describedby: ids.get(column.name) }))),
-          rules.length
-            ? [
-                h("p", {}, h("strong", {}, this.t("grading.rules"))),
-                h(
-                  "ul",
-                  { class: "uc-grading__rules" },
-                  rules.map(({ rule, item }) =>
-                    h("li", {}, rule ? [h("span", { class: "uc-mono" }, grading.printRule(rule, fn, alias)), item && described(item) ? [" ", described(item)] : null] : Array.from(item.cloneNode(true).childNodes)),
-                  ),
-                ),
-              ]
-            : null,
+          formulas ? renderFormulas(formulas, formulaItems, ids, flag(this, "no-formula")) : fallback || flag(this, "no-formula") ? null : h("p", { class: "uc-grading__formula" }, formula(components, scale)),
+          renderBars(components, scale, columns, labels),
+          this.renderTable(components, scale, columns && columns.map((column, index) => ({ column, label: labels[index], describedby: ids.get(column.name) }))),
+          renderRules(rules, alias),
           flag(this, "calculator") && !fallback ? this.renderCalculator(components, scale) : null,
           this.extra,
         ),
@@ -351,13 +366,7 @@
         const bonus = components.reduce((sum, component) => sum + (component.bonus !== null ? values.get(component) : 0), 0);
         const grade = Math.min(scale, components.reduce((sum, component) => sum + (component.bonus === null ? coefficient(component, scale) * gradeOf(component, values) : 0), 0) + bonus);
         result = this.t("grading.calculator.result", { grade: fmt(grade, 1) });
-        const below = [];
-        const check = (list) =>
-          list.forEach((component) => {
-            if (Number.isFinite(component.min) && gradeOf(component, values) < component.min) below.push(component);
-            check(component.parts);
-          });
-        check(components);
+        const below = flatten(components).filter((component) => Number.isFinite(component.min) && gradeOf(component, values) < component.min);
         const pass = number(this, "pass", null);
         if (below.length) status = this.t("grading.calculator.belowMin", { code: below[0].code, min: fmt(below[0].min), scale: fmt(below[0].scale) });
         else if (pass !== null) status = grade < pass ? this.t("grading.calculator.belowPass", { pass: fmt(pass) }) : this.t("grading.calculator.pass");
@@ -368,7 +377,7 @@
     }
 
     /** Formula mode (grading-api.md 9): fills the branches line and the checks, returns [result line, state line]. */
-    simulate({ model, rules, all, fn, alias, labels }, components, scale, values) {
+    simulate({ model, rules, all, alias, labels }, components, scale, values) {
       const t = (key, data) => this.t(`grading.calculator.${key}`, data);
       const own = new Map();
       const value = (name) => (own.has(name) ? own.get(name) : gradeOf(all.find((component) => component.code === name), values));

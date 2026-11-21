@@ -10,7 +10,9 @@
    Change it in its own pull request before changing code that depends on it.
 3. **One component, one file.** `kit/src/components/uc-<name>.js` and
    `kit/src/css/components/uc-<name>.css`, plus a test page
-   `tests/pages/uc-<name>.html` showing every state.
+   `tests/pages/uc-<name>.html` showing every state. A component too big for
+   one file gets a folder split by concern, listed in order in the manifest:
+   `kit/src/code/` (`<uc-code>`), `kit/src/grading/`, `kit/src/search/`.
 4. **Light DOM, classic scripts.** Components render into the light DOM so
    global CSS applies to teacher content, and are loaded as classic scripts
    (not ES modules) so pages work from `file://`.

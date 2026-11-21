@@ -8,7 +8,7 @@ Para quem mantém o kit ou quer propor uma alteração: como o repositório est�
 
 1. **Nada a instalar para quem usa.** Um professor usa o kit com duas linhas no `<head>`. As ferramentas (testes, minificação) são só para quem mantém.
 2. **O contrato primeiro.** O `docs/api.md` define componentes, atributos, campos, tokens, classes e a API JavaScript. Muda-se num pull request próprio, antes do código que depende dele.
-3. **Um componente, um ficheiro.** `kit/src/components/uc-<nome>.js`, `kit/src/css/components/uc-<nome>.css` e uma página de teste em `tests/pages/` com todos os estados.
+3. **Um componente, um ficheiro.** `kit/src/components/uc-<nome>.js`, `kit/src/css/components/uc-<nome>.css` e uma página de teste em `tests/pages/` com todos os estados. Um componente grande demais para um ficheiro tem uma pasta, dividida por assunto: `kit/src/code/` (`<uc-code>`), `kit/src/grading/`, `kit/src/search/`.
 4. **Light DOM e scripts clássicos**, para o CSS da página se aplicar e tudo funcionar a partir de `file://`.
 5. **Acessível por omissão:** WCAG 2.1 AA, teclado, foco visível, alvos de 44 px, nada transmitido só pela cor.
 6. **Nunca partir uma versão publicada.** Ver [Versões](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/versoes.md).

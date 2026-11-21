@@ -171,7 +171,7 @@
         <ol>
           <li><strong>Nada a instalar para quem usa.</strong> Um professor usa o kit com duas linhas no <code>&lt;head&gt;</code>. As ferramentas (testes, minificação) são só para quem mantém.</li>
           <li><strong>O contrato primeiro.</strong> O <code>docs/api.md</code> define componentes, atributos, campos, tokens, classes e a API JavaScript. Muda-se num pull request próprio, antes do código que depende dele.</li>
-          <li><strong>Um componente, um ficheiro.</strong> <code>kit/src/components/uc-&lt;nome&gt;.js</code>, <code>kit/src/css/components/uc-&lt;nome&gt;.css</code> e uma página de teste em <code>tests/pages/</code> com todos os estados.</li>
+          <li><strong>Um componente, um ficheiro.</strong> <code>kit/src/components/uc-&lt;nome&gt;.js</code>, <code>kit/src/css/components/uc-&lt;nome&gt;.css</code> e uma página de teste em <code>tests/pages/</code> com todos os estados. Um componente grande demais para um ficheiro tem uma pasta, dividida por assunto: <code>kit/src/code/</code> (<code>&lt;uc-code&gt;</code>), <code>kit/src/grading/</code>, <code>kit/src/search/</code>.</li>
           <li><strong>Light DOM e scripts clássicos</strong>, para o CSS da página se aplicar e tudo funcionar a partir de <code>file://</code>.</li>
           <li><strong>Acessível por omissão:</strong> WCAG 2.1 AA, teclado, foco visível, alvos de 44 px, nada transmitido só pela cor.</li>
           <li><strong>Nunca partir uma versão publicada.</strong> Ver <a href="versoes.html">Versões</a>.</li>

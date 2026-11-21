@@ -121,20 +121,22 @@
       this.prepend(this.track(h("p", { class: "uc-weeks__actions" }, link)));
     }
 
+    /** "22 dez – 2 jan · Férias de Natal, sem aulas": the dates and label of a break. */
+    breakText(item) {
+      const label = item.label ? this.text(item.label) : "";
+      return [
+        h("time", { class: "uc-weeks__break-date", datetime: toISO(item.start) }, UC.formatDateRange(item.start, item.end)),
+        " · ",
+        label ? `${label}, ${this.t("weeks.noClasses")}` : this.t("weeks.noClasses"),
+      ];
+    }
+
     renderBreaks(weeks, breaks, written) {
       // Last node placed after each week, so consecutive breaks keep their order.
       const lastAfter = new Map();
       mergeBreaks(breaks).forEach((item) => {
-        const label = item.label ? this.text(item.label) : "";
-        const range = UC.formatDateRange(item.start, item.end);
         const panel = this.track(
-          h(
-            "p",
-            { class: "uc-weeks__break" },
-            h("time", { class: "uc-weeks__break-date", datetime: toISO(item.start) }, range),
-            " · ",
-            label ? `${label}, ${this.t("weeks.noClasses")}` : this.t("weeks.noClasses"),
-          ),
+          h("p", { class: "uc-weeks__break" }, this.breakText(item)),
         );
         const previous = lastAfter.get(item.afterWeek) || weeks.find((week) => Number(week.getAttribute("n")) === item.afterWeek);
         if (previous) previous.after(panel);
@@ -183,27 +185,21 @@
     }
 
     /** view="compact": one table row per week, breaks as full-width rows. */
+    /** view="compact": one table with a row per week and the breaks between them. */
     renderTable(weeks, breaks, showDeadlines) {
       const columns = ["week", "dates", "topic", "status"];
-      const rows = [];
+      // Break rows, grouped by the week they follow.
       const breakRows = new Map();
       mergeBreaks(this.hasAttribute("no-breaks") ? [] : breaks).forEach((item) => {
-        const label = item.label ? this.text(item.label) : "";
         const row = h(
           "tr",
           { class: "uc-weeks__break-row" },
-          h(
-            "td",
-            { colspan: columns.length },
-            h("time", { class: "uc-weeks__break-date", datetime: toISO(item.start) }, UC.formatDateRange(item.start, item.end)),
-            " · ",
-            label ? `${label}, ${this.t("weeks.noClasses")}` : this.t("weeks.noClasses"),
-            showDeadlines ? this.deadlineLines(item.from, item.to) : null,
-          ),
+          h("td", { colspan: columns.length }, this.breakText(item), showDeadlines ? this.deadlineLines(item.from, item.to) : null),
         );
         if (!breakRows.has(item.afterWeek)) breakRows.set(item.afterWeek, []);
         breakRows.get(item.afterWeek).push(row);
       });
+      const rows = [];
       const placed = new Set();
       const placeBreaks = (upTo) =>
         breakRows.forEach((list, after) => {
@@ -212,33 +208,9 @@
             rows.push(...list);
           }
         });
-
       weeks.forEach((week) => {
-        const n = week.getAttribute("n");
-        placeBreaks(Number(n) - 1);
-        const span = weekSpan(week);
-        const state = weekStateOf(span);
-        const title = typeof week.weekTitle === "string" ? week.weekTitle : week.getAttribute(`title-${UC.lang}`) || week.getAttribute("title") || "";
-        const href = week.getAttribute("href");
-        rows.push(
-          h(
-            "tr",
-            {
-              id: n !== null ? `week-${n}` : null,
-              class: state ? `uc-weeks__row uc-weeks__row--${state}` : "uc-weeks__row",
-              "aria-current": state === "current" ? "date" : null,
-            },
-            h("th", { scope: "row" }, n),
-            h("td", { class: "uc-weeks__dates" }, span ? h("time", { datetime: toISO(span.start) }, UC.formatDateRange(span.start, span.end)) : ""),
-            h(
-              "td",
-              { class: "uc-weeks__topic" },
-              href ? h("a", { href }, title) : title,
-              showDeadlines && span ? this.deadlineLines(span.from, span.to) : null,
-            ),
-            h("td", { class: "uc-weeks__status" }, state ? h("span", { class: state === "current" ? "uc-tag uc-tag--accent" : null }, this.t(`weeks.status.${STATUS[state]}`)) : ""),
-          ),
-        );
+        placeBreaks(Number(week.getAttribute("n")) - 1);
+        rows.push(this.weekRow(week, showDeadlines));
       });
       placeBreaks(Infinity);
 
@@ -256,6 +228,32 @@
             ),
           ),
         ),
+      );
+    }
+
+    /** A week's row of the compact table: number, dates, topic (and its deadlines), status. */
+    weekRow(week, showDeadlines) {
+      const n = week.getAttribute("n");
+      const span = weekSpan(week);
+      const state = weekStateOf(span);
+      const title = typeof week.weekTitle === "string" ? week.weekTitle : week.getAttribute(`title-${UC.lang}`) || week.getAttribute("title") || "";
+      const href = week.getAttribute("href");
+      return h(
+        "tr",
+        {
+          id: n !== null ? `week-${n}` : null,
+          class: state ? `uc-weeks__row uc-weeks__row--${state}` : "uc-weeks__row",
+          "aria-current": state === "current" ? "date" : null,
+        },
+        h("th", { scope: "row" }, n),
+        h("td", { class: "uc-weeks__dates" }, span ? h("time", { datetime: toISO(span.start) }, UC.formatDateRange(span.start, span.end)) : ""),
+        h(
+          "td",
+          { class: "uc-weeks__topic" },
+          href ? h("a", { href }, title) : title,
+          showDeadlines && span ? this.deadlineLines(span.from, span.to) : null,
+        ),
+        h("td", { class: "uc-weeks__status" }, state ? h("span", { class: state === "current" ? "uc-tag uc-tag--accent" : null }, this.t(`weeks.status.${STATUS[state]}`)) : ""),
       );
     }
 
