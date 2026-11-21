@@ -218,7 +218,7 @@ grep -rn "2025\|2026" --include="*.html" .</code></pre></uc-code>
 
         <h2 id="kit">5. Versão do kit</h2>
         <p>Com <code>kit/v1/</code> nos endereços não há nada a fazer: o site usa sempre a versão 1 mais recente. Se o site fixou uma versão exata (<code>kit/v1.0.0/</code>), o início do ano é a altura certa para passar à mais recente, trocando o número nos três endereços do <code>&lt;head&gt;</code> de cada página:</p>
-        <uc-code lang="bash" no-download><pre><code>grep -rl "kit/v1.0.0/" --include="*.html" . | xargs sed -i "s#kit/v1.0.0/#kit/v1.2.0/#g"</code></pre></uc-code>
+        <uc-code lang="bash" no-download><pre><code>grep -rl "kit/v1.0.0/" --include="*.html" . | xargs sed -i "s#kit/v1.0.0/#kit/v1.1.0/#g"</code></pre></uc-code>
         <p>Ver <a href="publicar.html#versao">Versão do kit</a>. Em macOS, <code>sed -i ""</code> em vez de <code>sed -i</code>.</p>
 
         <h2 id="verificar">6. Verificar e publicar</h2>

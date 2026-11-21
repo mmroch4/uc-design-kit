@@ -68,7 +68,7 @@ Todas as páginas começam da mesma forma. A ordem importa: o `course.js` vem an
 | `course.js` | Sim | A configuração. Antes do kit, sem `defer`. |
 | `uc-kit.js` | Sim | Os componentes. Com `defer` (ou no fim do `<body>`). |
 
-O `v1` nos três endereços é sempre a versão 1 mais recente. Para fixar uma versão exata durante o semestre troca-se por, por exemplo, `v1.0.0`; ver [Versão do kit](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md#versao).
+O `v1` nos três endereços é sempre a versão 1 mais recente. Para fixar uma versão exata durante o semestre troca-se por, por exemplo, `v1.1.0`; ver [Versão do kit](https://uc-design-kit.miguelrocha.dev/docs/pt/publicar.md#versao).
 
 ## O corpo de uma página
 

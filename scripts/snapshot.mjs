@@ -96,5 +96,5 @@ async function snapshotWidgets() {
 
   await cp(source, target, { recursive: true });
   await writeFile(path.join(target, CHECKSUMS), await checksums(target));
-  console.log(`widgets/${name} created. Commit it together with the version bump and tag widgets-${name}.`);
+  console.log(`widgets/${name} created. Commit it together with the version bump and tag ${name} (the kit's tag).`);
 }
