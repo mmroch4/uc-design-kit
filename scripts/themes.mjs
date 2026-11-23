@@ -1,9 +1,14 @@
 /**
- * Ready-made themes and the starter theme.css (docs/api.md 8.1 and 8.2).
+ * Ready-made themes, layout style sheets and the starter theme.css
+ * (docs/api.md 8.1 to 8.3, docs/architecture/themes-layouts.md 5).
  *
  *   - Minifies every kit/src/themes/<name>.css into kit/v1/themes/<name>.css.
  *     The names must be the THEMES list of kit/src/core/themes.js, which
- *     `theme` in course.js is checked against.
+ *     `theme` in course.js is checked against. Each of its LAYOUT_THEMES must
+ *     declare --uc-layout, and every @import of a theme must name a file of
+ *     kit/src/layouts/ (kept as written: "../layouts/<name>.css").
+ *   - Minifies every kit/src/layouts/<name>.css into kit/v1/layouts/<name>.css.
+ *     The names must be the FILE_LAYOUTS list of kit/src/core/layouts.js.
  *   - Writes the starter theme.css from kit/src/css/base/tokens.css: every
  *     token, commented out, with the kit's value, grouped as in tokens.css.
  *     It goes to template/theme.css (the theme.css of a new site),
@@ -20,6 +25,21 @@ import { writeOutputs } from "./lib/budgets.mjs";
 import { ROOT } from "./lib/server.mjs";
 
 const SOURCE = path.join(ROOT, "kit/src/themes");
+const LAYOUTS = path.join(ROOT, "kit/src/layouts");
+
+/** The names of the .css files of `dir` (none when it does not exist), sorted. */
+async function cssNames(dir) {
+  const files = await readdir(dir).catch(() => []);
+  return files.filter((file) => file.endsWith(".css")).map((file) => file.replace(/\.css$/, "")).sort();
+}
+
+/** The array literal `const <name> = [...]` of a kit source file, or null. */
+async function listIn(file, name) {
+  const match = new RegExp(`const ${name} = (\\[[^\\]]*\\])`).exec(await readFile(path.join(ROOT, file), "utf8"));
+  return match ? JSON.parse(match[1]) : null;
+}
+
+const sameNames = (list, names) => Array.isArray(list) && JSON.stringify(list.slice().sort()) === JSON.stringify(names);
 
 /** Portuguese titles for the groups of tokens.css (its comments are in English). */
 const GROUPS = {
@@ -69,34 +89,49 @@ export function starterTheme(tokensCss, version) {
   return `${out.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd()}\n\n/* Nível 2: CSS livre. */\n`;
 }
 
-async function minify(name, content, version) {
+async function minify(name, content, version, kind = "theme") {
   const result = await transform(content, {
     loader: "css",
     minify: true,
     target: "esnext",
     charset: "utf8",
     legalComments: "none",
-    banner: `/*! UC Design Kit ${version} | theme "${name}" | MIT License | https://github.com/mmroch4/uc-design-kit */`,
+    banner: `/*! UC Design Kit ${version} | ${kind} "${name}" | MIT License | https://github.com/mmroch4/uc-design-kit */`,
   });
   return result.code;
 }
 
-/** Builds the themes and the starter file. Returns the number of problems (or, with `check`, out-of-date files). */
+/** Builds the themes, the layouts and the starter file. Returns the number of problems (or, with `check`, out-of-date files). */
 export async function buildThemes({ check = false } = {}) {
   const { version } = JSON.parse(await readFile(path.join(ROOT, "package.json"), "utf8"));
-  const files = (await readdir(SOURCE)).filter((file) => file.endsWith(".css")).sort();
-  const names = files.map((file) => file.replace(/\.css$/, ""));
-  const listed = /const THEMES = (\[[^\]]*\])/.exec(await readFile(path.join(ROOT, "kit/src/core/themes.js"), "utf8"));
+  const names = await cssNames(SOURCE);
+  const layouts = await cssNames(LAYOUTS);
   let problems = 0;
-  if (!listed || JSON.stringify(JSON.parse(listed[1]).slice().sort()) !== JSON.stringify(names)) {
-    console.error(`kit/src/core/themes.js: THEMES must list the files of kit/src/themes (${names.join(", ")}).`);
+  const problem = (message) => {
+    console.error(message);
     problems += 1;
-  }
+  };
+  if (!sameNames(await listIn("kit/src/core/themes.js", "THEMES"), names)) problem(`kit/src/core/themes.js: THEMES must list the files of kit/src/themes (${names.join(", ")}).`);
+  if (!sameNames(await listIn("kit/src/core/layouts.js", "FILE_LAYOUTS"), layouts)) problem(`kit/src/core/layouts.js: FILE_LAYOUTS must list the files of kit/src/layouts (${layouts.join(", ") || "none"}).`);
+  const layoutThemes = (await listIn("kit/src/core/themes.js", "LAYOUT_THEMES")) || [];
+
   const themes = {};
-  for (const file of files) {
-    themes[file] = await minify(file.replace(/\.css$/, ""), await readFile(path.join(SOURCE, file), "utf8"), version);
+  for (const name of names) {
+    const source = await readFile(path.join(SOURCE, `${name}.css`), "utf8");
+    if (layoutThemes.includes(name) && !/--uc-layout\s*:/.test(source)) problem(`kit/src/themes/${name}.css: a theme with a layout must declare --uc-layout.`);
+    for (const [, url] of source.matchAll(/@import\s+(?:url\()?["']([^"']+)["']/g)) {
+      const match = /^\.\.\/layouts\/([a-z0-9-]+)\.css$/.exec(url);
+      if (!match || !layouts.includes(match[1])) problem(`kit/src/themes/${name}.css: @import "${url}" must be "../layouts/<name>.css" with a file in kit/src/layouts.`);
+    }
+    themes[`${name}.css`] = await minify(name, source, version);
   }
   problems += await writeOutputs(themes, "kit/v1/themes", { check });
+
+  const layoutFiles = {};
+  for (const name of layouts) {
+    layoutFiles[`${name}.css`] = await minify(name, await readFile(path.join(LAYOUTS, `${name}.css`), "utf8"), version, "layout");
+  }
+  if (layouts.length) problems += await writeOutputs(layoutFiles, "kit/v1/layouts", { check });
 
   const starter = starterTheme(await readFile(path.join(ROOT, "kit/src/css/base/tokens.css"), "utf8"), version);
   const script = `/* Built by scripts/themes.mjs from kit/src/css/base/tokens.css. Do not edit by hand. */\nwindow.UC_DOCS_THEME_STARTER = ${JSON.stringify(starter)};\n`;

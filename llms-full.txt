@@ -499,7 +499,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `Minutes` | Um número inteiro de minutos. | `120` (duas horas) |
 | `Weekday` | Dia da semana em número: `1` = segunda-feira … `7` = domingo (como em `semester.teachingDays`). | `2` (terça-feira) |
 | `HTMLText` | Um `LocalizedText` que pode ter HTML simples (links, `<strong>`, `<em>`, `<code>`). É inserido como HTML: as aspas dentro do texto escrevem-se `\"`. | `"Ver <a href=\"avaliacao.html\">regras</a>"` |
-| `ThemeName` | O nome de um tema pronto do kit: `"compact"`, `"serif"` ou `"high-contrast"` (ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos)). | `"compact"` |
+| `ThemeName` | O nome de um tema do kit: `"classic"`, `"compact"`, `"serif"` ou `"high-contrast"` (ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos)). | `"compact"` |
 
 ## Campos
 
@@ -513,7 +513,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `edition`texto | Recomendado | — | Ano letivo ao lado do título, por exemplo `"2025/26"`. |
 | `institution``{ name, url? }` | Opcional | — | Departamento ou faculdade, no cabeçalho. |
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
-| `theme``ThemeName` ou lista | Opcional | nenhum | Tema pronto do kit: `"compact"`, `"serif"` ou `"high-contrast"`, ou vários numa lista (`["compact", "serif"]`). O `theme.css` do site continua a ganhar. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). |
+| `theme``ThemeName` ou lista | Opcional | como `"classic"` | Tema do kit. `"classic"` é o aspeto do kit, vem no modelo e não descarrega nada. `"compact"`, `"serif"` e `"high-contrast"` só mudam tokens e juntam-se a ele numa lista (`["classic", "compact"]`). Uma lista só pode ter um tema que escolhe o layout: se tiver dois, ganha o último e a consola avisa. O `theme.css` do site continua a ganhar. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). |
 | `logo`URL, SVG, objeto ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho: um caminho relativo ao `course.js`, um `"<svg …>"` escrito no próprio campo ou `{ src, alt }`; `null` esconde-a. Ver [Logótipo](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#logotipo). |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
 | `source``{ author, url? }` | Opcional | — | De onde vem o conteúdo, num site copiado de outro: "Conteúdo de `author` (`HTMLText`), a partir do site original" no rodapé, com ligação a `url` ou ao [`source` da página](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#nota-de-origem). |
@@ -540,7 +540,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | Campo e tipo | Necessário | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `pages`lista | Recomendado | `["home"]` | Páginas da navegação, por ordem. Ver [Páginas](#paginas). |
-| `layout`texto | Opcional | `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho) ou `"full"` (sem navegação). Uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). |
+| `layout`texto | Opcional | o do tema, senão `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho), `"full"` (sem navegação) ou um layout próprio do site (`UC.registerLayout`). Ganha ao layout do tema ([`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), e uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). Um nome que o kit não conhece é ignorado com um aviso na consola. |
 | `platforms``Platform[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação (ver [Plataformas](#plataformas)). A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
 
 ### Equipa, horário, prazos e avisos
@@ -1700,7 +1700,7 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar`, `top` ou `full` | `layout` do `course.js`, senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. |
+| `layout` | `sidebar`, `top`, `full` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
@@ -9466,6 +9466,19 @@ A escala de espaço anda de 4 em 4 px e não tem os passos 9 e 11. Ver [Espaço 
 
 Os pontos de quebra (760 e 960 px) não são tokens: as variáveis CSS não podem ser usadas em `@media`.
 
+## Propriedades de escolha
+
+Não são tokens: nenhum CSS do kit as usa e o `uc-kit.css` não as define. Um tema ou o `theme.css` do site escreve-as em `:root`, e o JavaScript do kit lê cada uma uma vez, depois de os temas carregarem. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+| Propriedade | Valores | Para quê e onde |
+| --- | --- | --- |
+| `--uc-layout` | um nome de layout | Layout de `<uc-page>` quando nem a página nem o `course.js` escolhem um. O atributo `layout` e o `layout` do `course.js` ganham-lhe. |
+
+```css
+/* theme.css */
+:root { --uc-layout: top; }
+```
+
 ## Tokens locais
 
 Não estão definidos em `:root`: o kit lê-os com um valor de recurso. Definem-se em `:root` para o site inteiro ou num só elemento para mudar só esse bloco.
@@ -10583,6 +10596,8 @@ O kit traz três temas prontos em `kit/v1/themes/`. Cada um é um ficheiro peque
 | `compact` | Letra a 15 px, menos espaço entre blocos, cantos menores, cabeçalho mais baixo. Os alvos de toque continuam com 44 px. | Sites com muito conteúdo por página: listas longas de problemas, sumários, tabelas. |
 | `serif` | Texto na letra com serifa do sistema (Charter, Cambria, Georgia), sem nada para descarregar, e um pouco mais de espaço entre linhas. O código mantém a letra monoespaçada. | Um aspeto mais clássico, ou páginas com muito texto corrido. |
 | `high-contrast` | Texto preto, cinzentos e bordas mais escuros, cores de estado mais fortes, cor de destaque azul-escura (10:1) e anel de foco mais grosso. | Projetar nas aulas, ecrãs com pouca qualidade, leitores com baixa visão (próximo do nível AAA). |
+
+O modelo do site já vem com `theme: "classic"` no `course.js`. É o aspeto do kit, que já está no `uc-kit.css`, por isso não descarrega nada; os temas acima juntam-se a ele numa lista: `theme: ["classic", "compact"]`. Um tema pode também escolher o layout das páginas, com a propriedade [`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas); o `layout` do `course.js` e o atributo da página ganham-lhe sempre.
 
 A mesma semana e o mesmo cartão, primeiro com o aspeto do kit e depois com cada tema:
 
@@ -13050,6 +13065,7 @@ Estes são os membros públicos. Os nomes e o comportamento descritos aqui não 
 | `UC.define(name, class)` | nada | Regista um componente uma só vez: uma segunda chamada com o mesmo nome é ignorada, sem erro. |
 | `UC.addTranslations(lang, dict)` | nada | Acrescenta ou substitui textos da interface de uma língua. Se for a língua ativa, os componentes já desenhados voltam a ser desenhados. |
 | `UC.registerRunner(name, runner)` | nada | Acrescenta ou substitui um runner de código. Ver [Runners](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/runners.md). |
+| `UC.registerLayout(name, { extends, css })` | nada | Acrescenta um layout próprio do site: a estrutura do layout `extends` (por omissão `sidebar`) e a folha de estilos `css`, escrita relativa ao `course.js` e carregada só quando uma página usa o layout. A página fica com a classe do layout de base (`uc-page--top`, por exemplo) e com `uc-page--` seguido do nome novo. Chama-se num script depois do `uc-kit.js`; um nome inválido ou já usado pelo kit é recusado com um aviso na consola. |
 | `UC.search.available()` | `Promise<boolean>` | Se o site tem índice de pesquisa. Pergunta ao servidor se ainda não o fez nesta visita; `false` sem `search` no `course.js`. |
 | `UC.search.open(query?)` | nada | Abre a pesquisa do site, com `query` já escrita se for dada. Sem índice, não faz nada. |
 
@@ -14025,7 +14041,7 @@ pages, which the first run of the script replaces.
 | `Weekday` | ISO weekday number: `1` = Monday … `7` = Sunday (as `semester.teachingDays`). |
 | `Minutes` | A whole number of minutes, e.g. `120` for two hours. |
 | `HTMLText` | A `LocalizedText` whose values may contain inline HTML (links, `<strong>`, `<em>`, `<code>`). It is written by the teacher and inserted as HTML. |
-| `ThemeName` | The name of a ready-made theme in `kit/v1/themes/` (8.1): `"compact"`, `"serif"` or `"high-contrast"`. |
+| `ThemeName` | The name of a ready-made theme in `kit/v1/themes/`: a theme with a layout (8.3), `"classic"`, or a token theme (8.1), `"compact"`, `"serif"` or `"high-contrast"`. |
 
 ### 2.2 Fields
 
@@ -14038,8 +14054,8 @@ pages, which the first run of the script replaces.
 | `languages` | string[] | no | `[<html lang>]` | BCP 47 codes. First is the default. More than one enables the language switch. |
 | `institution` | `{ name, url? }` | no | — | Shown in the header. |
 | `accentColor` | CSS colour | no | `#1D4ED8` | Sets `--uc-color-accent`; soft and strong variants are derived. Must reach 4.5:1 contrast on white. |
-| `theme` | `ThemeName` \| `ThemeName[]` | no | — | Ready-made themes (8.1): `"compact"`, `"serif"`, `"high-contrast"`. The kit adds `kit/v1/themes/<name>.css` (next to `uc-kit.js`) right after the `uc-kit.css` link, in order, unless the page already links it, and shows the page once they loaded (within the 300 ms wait of 3.1). Unknown names are ignored with a console warning. |
-| `layout` | `"sidebar"` \| `"top"` \| `"full"` | no | `"sidebar"` | Default `layout` of every `<uc-page>` (3.1); a page's own attribute wins. Unknown values are ignored with a warning. Normalised to `UC.course.layout` (or `null`). |
+| `theme` | `ThemeName` \| `ThemeName[]` | no | — (as `"classic"`) | Ready-made themes: `"classic"` (8.3; the template sets it), `"compact"`, `"serif"`, `"high-contrast"` (8.1). A list holds at most one theme with a layout (the last one wins, with a console warning) and any token themes. `"classic"` is the kit's own look and downloads nothing. For the others the kit adds `kit/v1/themes/<name>.css` (next to `uc-kit.js`) right after the `uc-kit.css` link, in order, unless the page already links it, and shows the page once they loaded (within the 300 ms wait of 3.1). Unknown names are ignored with a console warning. |
+| `layout` | a layout name (8.3) | no | the theme's, else `"sidebar"` | Default `layout` of every `<uc-page>` (3.1): a page's own attribute wins over it, and it wins over the theme's `--uc-layout` (8.3). Kept as written in `UC.course.layout` (or `null` when missing or not a string, with a warning), since a site layout may be registered later; a name that is not a known layout is skipped with a warning when the page is drawn. |
 | `logo` | URL \| SVG string \| `{ src \| svg, alt? }` \| `null` | no | built-in tree icon | Header mark, shown 28 × 28 px. A string starting with `<` is inline SVG (it inherits the accent colour through `currentColor`; give it a `viewBox`). `alt` (`LocalizedText`) makes the mark an image with that name; without it the mark is decorative (`alt=""` / `aria-hidden`), since the course title is next to it. `null` hides it. |
 | `semester.start` | `ISODate` | for week features | — | First day of classes; week 1 is the calendar week containing it. |
 | `semester.weeks` | number | no | `14` | Number of teaching weeks (breaks not counted). |
@@ -14273,7 +14289,7 @@ with JavaScript disabled it is shown at once.
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
-| `layout` | `sidebar` \| `top` \| `full` | `layout` of `course.js`, else `sidebar` | `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). |
+| `layout` | `sidebar` \| `top` \| `full` \| a site layout (8.3) | `layout` of `course.js`, else the theme's `--uc-layout`, else `sidebar` | An unknown name is skipped with a warning (the next of those decides). `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). |
 | `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
 | `source` | URL | `source.url` of `course.js` | Address of this page on the original site: the link of the footer line "Conteúdo de …, a partir do site original" (2.1, `source`). Ignored when `course.js` has no `source`. |
 | `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
@@ -15175,6 +15191,14 @@ fallback, so they can be set on `:root` for the whole site or on one element
 | `--uc-summaries-date-width` | `10rem` | Date column of `<uc-summaries>` on wide screens. |
 | `--uc-links-min` | `260px` | Column width of `uc-links--grid`. |
 
+**Choice properties.** Not tokens: no CSS uses them and `uc-kit.css` does
+not define them. A theme or `theme.css` sets them on `:root`, and the kit's
+JavaScript reads each one once, after the themes have loaded (8.3).
+
+| Token | Values | Use |
+| --- | --- | --- |
+| `--uc-layout` | a layout name | Layout of `<uc-page>` when neither the page nor `course.js` names one (8.3). |
+
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the
 system font and skips downloading Inter, if a course prefers.
@@ -15232,6 +15256,7 @@ system font and skips downloading Inter, if a course prefers.
 | `UC.define(name, class)` | Registers a component once (safe to call twice). |
 | `UC.addTranslations(lang, dict)` | Adds or overrides interface strings. |
 | `UC.registerRunner(name, runner)` | Adds or replaces a code runner (7.1). |
+| `UC.registerLayout(name, { extends, css })` | Adds a site layout: the structure of the layout `extends` (default `sidebar`) plus the style sheet `css`, relative to `course.js` (8.3). Call it after `uc-kit.js`. |
 | `UC.search.available()` | `Promise<boolean>`: whether the site has a search index (asks the server if this visit has not yet; `false` without `search`). |
 | `UC.search.open(query?)` | Opens the site search, optionally with a query. Does nothing without an index. |
 
@@ -15405,7 +15430,7 @@ Strings are `widget.core.*` and `widget.<name>.*`, added with
 | 0 | `course.js` | `accentColor`, `theme`, `layout`, `logo`, `pages`, `languages`. |
 | 1 | Tokens in `theme.css` | `:root { --uc-color-accent: #0F766E; --uc-radius-lg: 4px; }` |
 | 2 | Any CSS in `theme.css` | `.uc-week__title { text-transform: uppercase; }` — classes listed in the component reference are stable. |
-| 3 | Own components | `UC.define("uc-my-widget", …)` in a local script. |
+| 3 | Own components and layouts | `UC.define("uc-my-widget", …)` or `UC.registerLayout("poster", …)` in a local script. |
 | 4 | Free HTML | Any markup anywhere, with or without kit components. |
 
 Kit CSS uses `:where()` so its selectors have zero specificity and any
@@ -15413,8 +15438,9 @@ teacher rule wins.
 
 ### 8.1 Ready-made themes
 
-`kit/v1/themes/<name>.css` are small style sheets that only redefine tokens
-(section 5) on `:root`, built from `kit/src/themes/` (minified, no source map).
+The token themes of `kit/v1/themes/<name>.css` are small style sheets that
+only redefine tokens (section 5) on `:root`, built from `kit/src/themes/`
+(minified, no source map). They combine with any theme with a layout (8.3).
 A page uses one with a `<link>` between `uc-kit.css` and `theme.css`, or with
 `theme` in `course.js` (2.2). Cascade order: `uc-kit.css`, the themes, the
 site's `theme.css`, then `accentColor` (inline on `<html>`).
@@ -15438,6 +15464,46 @@ file there: themes never change token names, only values.
 `kit/src/css/base/tokens.css`: every token of section 5 commented out with
 the kit's value, under Portuguese group titles, followed by a place for level 2
 CSS. It changes nothing until a line is uncommented.
+
+### 8.3 Themes with a layout
+
+A theme with a layout also chooses the layout of `<uc-page>`: it declares the
+choice property `--uc-layout` (section 5) and `@import`s the file of its
+layout. Layouts other than `sidebar`, `top` and `full` are files of
+`kit/v1/layouts/`, downloaded only when a page uses them. Full contract:
+`docs/architecture/themes-layouts.md`.
+
+| Name | Layout | Changes |
+| --- | --- | --- |
+| `classic` | `sidebar` | Nothing: the kit's own look, already in `uc-kit.css`. The default; naming it downloads nothing. |
+
+Order of precedence of a page's layout: the `layout` attribute, then
+`layout` in `course.js`, then `--uc-layout` on `:root` (the theme, then the
+site's `theme.css`), then `sidebar`. A value that is not a known layout, or
+whose style sheet failed to load, is skipped with a console warning. The kit
+reads `--uc-layout` once the themes have loaded and shows the page after the
+layout files have loaded too, within the 300 ms wait of 3.1.
+
+A list in `theme` holds at most one theme with a layout. The token themes
+(8.1) combine with it: `theme: ["classic", "high-contrast"]`.
+
+**Site layouts.** `UC.registerLayout(name, { extends, css })`, called in a
+script after `uc-kit.js`, adds a layout with the structure of `extends` (a
+kit layout or another site layout; default `sidebar`) and the style sheet
+`css`, written relative to `course.js` and loaded when a page uses it. The
+page gets the classes of both, `.uc-page--<kit layout>` (none for `sidebar`)
+and `.uc-page--<name>`, so it inherits everything and only changes what its
+CSS says. `name` is lower-case letters, digits and `-`, and cannot be a kit
+layout. `--uc-layout: <name>` in `theme.css` works too.
+
+```js
+UC.registerLayout("poster", { extends: "top", css: "layouts/poster.css" });
+```
+
+```css
+/* layouts/poster.css */
+:where(.uc-page--poster .uc-header) { border-bottom: 4px solid var(--uc-color-accent); }
+```
 
 ## 9. Versioning
 

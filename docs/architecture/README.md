@@ -11,6 +11,7 @@ them by section ("`grading-api.md` 2.2"): keep the section numbers stable.
 | [`search-api.md`](search-api.md) | The site search: `uc-site.py`, `search-index.js`, `<uc-search>` and the search dialog. |
 | [`widgets-api.md`](widgets-api.md) | The algorithm widget library (`widgets/v1/`). |
 | [`grading-api.md`](grading-api.md) | `<uc-grading>` with formulas and rules, and the lazily loaded modules. |
+| [`themes-layouts.md`](themes-layouts.md) | Themes that choose a layout, the layout files of `kit/v1/layouts/`, the precedence of the layout and `UC.registerLayout`. |
 
 The public contract for teachers is [`docs/api.md`](../api.md); when the two
 differ, `docs/api.md` wins. The phase plans and handoff notes that went with

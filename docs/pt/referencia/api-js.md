@@ -44,6 +44,7 @@ Estes são os membros públicos. Os nomes e o comportamento descritos aqui não 
 | `UC.define(name, class)` | nada | Regista um componente uma só vez: uma segunda chamada com o mesmo nome é ignorada, sem erro. |
 | `UC.addTranslations(lang, dict)` | nada | Acrescenta ou substitui textos da interface de uma língua. Se for a língua ativa, os componentes já desenhados voltam a ser desenhados. |
 | `UC.registerRunner(name, runner)` | nada | Acrescenta ou substitui um runner de código. Ver [Runners](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/runners.md). |
+| `UC.registerLayout(name, { extends, css })` | nada | Acrescenta um layout próprio do site: a estrutura do layout `extends` (por omissão `sidebar`) e a folha de estilos `css`, escrita relativa ao `course.js` e carregada só quando uma página usa o layout. A página fica com a classe do layout de base (`uc-page--top`, por exemplo) e com `uc-page--` seguido do nome novo. Chama-se num script depois do `uc-kit.js`; um nome inválido ou já usado pelo kit é recusado com um aviso na consola. |
 | `UC.search.available()` | `Promise<boolean>` | Se o site tem índice de pesquisa. Pergunta ao servidor se ainda não o fez nesta visita; `false` sem `search` no `course.js`. |
 | `UC.search.open(query?)` | nada | Abre a pesquisa do site, com `query` já escrita se for dada. Sem índice, não faz nada. |
 

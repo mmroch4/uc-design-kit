@@ -319,6 +319,22 @@
         </div>
         <p>Os pontos de quebra (760 e 960 px) não são tokens: as variáveis CSS não podem ser usadas em <code>@media</code>.</p>
 
+        <h2 id="escolhas">Propriedades de escolha</h2>
+        <p>Não são tokens: nenhum CSS do kit as usa e o <code>uc-kit.css</code> não as define. Um tema ou o <code>theme.css</code> do site escreve-as em <code>:root</code>, e o JavaScript do kit lê cada uma uma vez, depois de os temas carregarem. Ver <a href="../personalizar/criar-tema.html#temas-prontos">Temas prontos</a>.</p>
+        <div class="uc-table docs-tokens">
+          <table>
+            <caption class="uc-visually-hidden">Propriedades de escolha</caption>
+            <thead>
+              <tr><th scope="col">Propriedade</th><th scope="col">Valores</th><th scope="col">Para quê e onde</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-layout</code></td><td>um nome de layout</td><td>Layout de <code>&lt;uc-page&gt;</code> quando nem a página nem o <code>course.js</code> escolhem um. O atributo <code>layout</code> e o <code>layout</code> do <code>course.js</code> ganham-lhe.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" no-download><pre><code>/* theme.css */
+:root { --uc-layout: top; }</code></pre></uc-code>
+
         <h2 id="tokens-locais">Tokens locais</h2>
         <p>Não estão definidos em <code>:root</code>: o kit lê-os com um valor de recurso. Definem-se em <code>:root</code> para o site inteiro ou num só elemento para mudar só esse bloco.</p>
         <div class="uc-table docs-tokens">
@@ -391,6 +407,7 @@
           <li><a href="#tipografia">Tipografia</a></li>
           <li><a href="#espaco-e-forma">Espaço e forma</a></li>
           <li><a href="#layout">Layout</a></li>
+          <li><a href="#escolhas">Propriedades de escolha</a></li>
           <li><a href="#tokens-locais">Tokens locais</a></li>
           <li><a href="#internas">Variáveis internas</a></li>
         </ul>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout precedence · test</title>
+  <!-- course.js says "top" and the CSS says "full": course.js wins; an attribute wins over both. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <style>:root { --uc-layout: full; }</style>
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.layout = "top";</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <h1>Precedência do layout</h1>
+    <p>Atributo, depois <code>course.js</code>, depois <code>--uc-layout</code>, depois <code>sidebar</code>. Esta página não tem atributo: ganha o <code>layout: "top"</code> do <code>course.js</code> ao <code>--uc-layout: full</code> do CSS.</p>
+    <ol id="results"></ol>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const { resolve, classes } = UC.internal.layouts;
+      const page = document.querySelector("uc-page");
+      test("course.js wins over the CSS", () => equal(resolve(page), "top"));
+      test("the page is drawn with it", () => equal([page.classList.contains("uc-page--top"), Boolean(page.querySelector(".uc-topnav"))], [true, true]));
+      test("the attribute wins over course.js", () => equal(resolve(fakePage("full")), "full"));
+      test("an unknown attribute falls to course.js", () => equal(resolve(fakePage("nope")), "top"));
+      test("the CSS value is read", () => equal(UC.internal.themeValue("layout"), "full"));
+      test("sidebar has no class", () => equal(classes("sidebar"), []));
+      test("course.js keeps the name", () => equal(UC.course.layout, "top"));
+    }));
+  </script>
+</body>
+</html>

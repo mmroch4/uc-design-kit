@@ -1,0 +1,9 @@
+/*
+ * Theme "classic" (docs/api.md 8.3): the kit's own look, the default theme.
+ * Everything it needs is already in uc-kit.css, so `theme: "classic"` in
+ * course.js downloads nothing; this file exists so the name can be linked
+ * and listed like the other themes with a layout.
+ */
+:root {
+  --uc-layout: sidebar;
+}

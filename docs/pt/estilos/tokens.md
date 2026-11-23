@@ -115,6 +115,19 @@ A escala de espaço anda de 4 em 4 px e não tem os passos 9 e 11. Ver [Espaço 
 
 Os pontos de quebra (760 e 960 px) não são tokens: as variáveis CSS não podem ser usadas em `@media`.
 
+## Propriedades de escolha
+
+Não são tokens: nenhum CSS do kit as usa e o `uc-kit.css` não as define. Um tema ou o `theme.css` do site escreve-as em `:root`, e o JavaScript do kit lê cada uma uma vez, depois de os temas carregarem. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos).
+
+| Propriedade | Valores | Para quê e onde |
+| --- | --- | --- |
+| `--uc-layout` | um nome de layout | Layout de `<uc-page>` quando nem a página nem o `course.js` escolhem um. O atributo `layout` e o `layout` do `course.js` ganham-lhe. |
+
+```css
+/* theme.css */
+:root { --uc-layout: top; }
+```
+
 ## Tokens locais
 
 Não estão definidos em `:root`: o kit lê-os com um valor de recurso. Definem-se em `:root` para o site inteiro ou num só elemento para mudar só esse bloco.

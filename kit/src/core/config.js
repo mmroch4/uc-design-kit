@@ -123,11 +123,15 @@
   }
   UC.internal.normalizeLogo = normalizeLogo;
 
-  /** `layout` (docs/api.md 2.2): the default <uc-page layout> of every page. */
+  /**
+   * `layout` (docs/api.md 2.2): the default <uc-page layout> of every page.
+   * Any name is kept: a site layout may be registered later
+   * (UC.registerLayout), so core/layouts.js checks it when a page is drawn.
+   */
   function normalizeLayout(value) {
     if (value === undefined || value === null) return null;
-    if (["sidebar", "top", "full"].includes(value)) return value;
-    warn(`unknown layout "${value}" (layouts: sidebar, top, full)`);
+    if (typeof value === "string" && value.trim()) return value.trim();
+    warn(`layout must be the name of a layout, not ${JSON.stringify(value)}`);
     return null;
   }
 

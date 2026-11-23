@@ -113,10 +113,14 @@
     render() {
       const current = UC.internal.currentPage();
       const restoreFocus = Boolean(document.activeElement && document.activeElement.closest && document.activeElement.closest(".uc-lang-switch"));
-      // The attribute wins over course.js `layout` (docs/api.md 3.1).
-      const layout = this.getAttribute("layout") || this.course.layout;
-      this.classList.toggle("uc-page--full", layout === "full");
-      this.classList.toggle("uc-page--top", layout === "top");
+      // Attribute, then course.js, then --uc-layout, then sidebar (core/layouts.js).
+      const layouts = UC.internal.layouts;
+      this.layout = layouts.resolve(this);
+      layouts.load(this.layout);
+      (this.layoutClasses || []).forEach((name) => this.classList.remove(name));
+      this.layoutClasses = layouts.classes(this.layout);
+      this.classList.add(...this.layoutClasses);
+      const layout = layouts.base(this.layout);
       const navigation = layout === "full" ? null : this.renderNavigation(current);
       const top = layout === "top";
 
