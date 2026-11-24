@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout docs, short page and toc="off" · test</title>
+  <!-- layout: "docs" in course.js; a page with one section shows no list; toc="off" removes the column. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.layout = "docs";</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page current="about">
+    <h1>Sobre a UC</h1>
+    <section class="uc-section" aria-labelledby="objetivos">
+      <h2 id="objetivos">Objetivos</h2>
+      <p class="uc-prose">Uma página curta, com uma só secção.</p>
+    </section>
+    <section class="uc-section" aria-labelledby="checks" data-nav="off">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const wide = !matchMedia("(max-width: 1200px)").matches;
+      test("the layout comes from course.js", () => equal(UC.internal.layouts.resolve(page), "docs"));
+      test("one section: the list and the button are hidden", () =>
+        equal([page.querySelectorAll(".uc-toc__link").length, page.querySelector(".uc-toc-toggle").hidden, page.querySelector(".uc-toc__nav").hidden, getComputedStyle(page.querySelector(".uc-toc-toggle")).display], [1, true, true, "none"]));
+      page.setAttribute("toc", "off");
+      page.render();
+      page.updateToc();
+      test("toc=\"off\": no column", () => equal([page.querySelector(".uc-toc"), page.querySelector(".uc-shell").children.length], [null, 2]));
+      if (wide) test("toc=\"off\" on a wide screen: two columns", () => equal(getComputedStyle(page.querySelector(".uc-shell")).gridTemplateColumns.split(" ").length, 2));
+    }));
+  </script>
+</body>
+</html>

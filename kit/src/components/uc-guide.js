@@ -22,13 +22,7 @@
   if (UC.__duplicate) return;
 
   const { h, uid, number, anchors, isHiddenByLanguage, visibleText, exercisesIn, isExerciseDone } = UC.internal;
-  const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-  /** A heading is "current" once its top passes this fraction of the viewport height. */
-  const ACTIVE_LINE = 0.3;
-
-  function prefersReducedMotion() {
-    return Boolean(window.matchMedia && window.matchMedia(REDUCED_MOTION_QUERY).matches);
-  }
+  const { scrollspy } = UC.internal;
 
   function weeksPage() {
     return UC.course.pages.find((page) => page.id === "weeks") || null;
@@ -42,15 +36,14 @@
       this.layout = h("div", { class: "uc-guide__layout" }, this.aside, this.content);
       this.tocLabelId = uid("uc-guide-toc");
       this.progressLabelId = uid("uc-guide-progress");
-      this.activeId = null;
 
       this.addEventListener("uc:exercisechange", () => this.updateProgress());
     }
 
     disconnectedCallback() {
       super.disconnectedCallback();
-      if (this.observer) this.observer.disconnect();
-      this.observer = null;
+      if (this.spy) this.spy.disconnect();
+      this.spy = null;
     }
 
     render() {
@@ -61,9 +54,15 @@
         if (!heading.id) heading.id = anchors.uniqueId(anchors.slugify(visibleText(heading)));
       });
 
+      // Layout "docs": the page's "On this page" column lists the headings, and
+      // the progress goes to its top (themes-layouts.md 6.2).
+      const page = this.closest("uc-page");
+      this.column = page && page.tocColumn && page.tocColumn.isConnected ? page.tocColumn : null;
+      if (this.progress) this.progress.remove();
       this.progress = this.renderProgress();
-      this.toc = this.hasAttribute("no-toc") ? null : this.renderToc();
-      this.aside.replaceChildren(...[this.progress, this.toc].filter(Boolean));
+      this.toc = this.hasAttribute("no-toc") || this.column ? null : this.renderToc();
+      if (this.column) this.column.prepend(this.progress);
+      this.aside.replaceChildren(...[this.column ? null : this.progress, this.toc].filter(Boolean));
 
       // Only the breadcrumbs are replaced: the layout (and the teacher content) never leaves the DOM.
       const crumbs = this.renderCrumbs();
@@ -74,8 +73,8 @@
       this.crumbs = crumbs;
       if (crumbs) this.prepend(crumbs);
       this.updateProgress();
-      this.updateActive();
-      if (this.isConnected) this.observeHeadings();
+      if (this.spy) this.spy.disconnect();
+      this.spy = this.toc && this.isConnected ? scrollspy(this.headings, (heading) => scrollspy.markCurrent(this.toc.querySelectorAll(".uc-guide__toc-link"), heading)) : null;
     }
 
     /* ---------- Breadcrumbs ---------- */
@@ -161,7 +160,7 @@
       const total = exercises.length;
       const done = exercises.filter(isExerciseDone).length;
       this.progress.hidden = total === 0;
-      this.classList.toggle("uc-guide--no-aside", total === 0 && !this.toc);
+      this.classList.toggle("uc-guide--no-aside", (total === 0 || Boolean(this.column)) && !this.toc);
       if (!total) return;
       const text = this.progress.querySelector(".uc-guide__progress-text");
       text.replaceChildren(
@@ -192,55 +191,13 @@
               { class: "uc-guide__toc-item" },
               h(
                 "a",
-                { class: "uc-guide__toc-link", href: `#${heading.id}`, onClick: (event) => this.goTo(event, heading) },
+                { class: "uc-guide__toc-link", href: `#${heading.id}`, onClick: (event) => scrollspy.goTo(event, heading) },
                 visibleText(heading),
               ),
             ),
           ),
         ),
       );
-    }
-
-    /** Scrolls to a section (smoothly unless reduced motion is preferred) and moves focus to it. */
-    goTo(event, heading) {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      heading.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "start" });
-      if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
-      heading.focus({ preventScroll: true });
-      try {
-        window.history.pushState(null, "", `#${heading.id}`);
-      } catch (error) {
-        /* Some browsers refuse history changes on file:// URLs. */
-      }
-    }
-
-    /** Highlights the section in view. Uses IntersectionObserver only (no scroll listeners). */
-    observeHeadings() {
-      if (this.observer) this.observer.disconnect();
-      this.observer = null;
-      if (!this.toc || !("IntersectionObserver" in window)) return;
-      const bottomMargin = `-${Math.round((1 - ACTIVE_LINE) * 100)}%`;
-      this.observer = new IntersectionObserver(() => this.updateActive(), {
-        rootMargin: `0px 0px ${bottomMargin} 0px`,
-        threshold: [0, 1],
-      });
-      this.headings.forEach((heading) => this.observer.observe(heading));
-    }
-
-    updateActive() {
-      if (!this.toc) return;
-      const line = window.innerHeight * ACTIVE_LINE;
-      let active = null;
-      for (const heading of this.headings) {
-        if (heading.getBoundingClientRect().top <= line) active = heading;
-        else break;
-      }
-      this.activeId = active ? active.id : null;
-      this.toc.querySelectorAll(".uc-guide__toc-link").forEach((link) => {
-        if (link.getAttribute("href") === `#${this.activeId}`) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
     }
   }
 

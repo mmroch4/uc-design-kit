@@ -11,8 +11,8 @@ It runs in phases L0–L8, one pull request each. Every phase updates this file
 [`docs/api.md`](../api.md), which wins when the two differ. Code comments cite
 this file by section number: keep the numbers stable.
 
-Status: **L0 and L1 done** (mechanism; layout `banner` and theme
-`institutional`). Sections marked
+Status: **L0, L1 and L2 done** (mechanism; layout `banner` and theme
+`institutional`; layout `docs` and theme `handbook`). Sections marked
 *(planned, Ln)* describe what a later phase adds; until then the kit does
 not know those names.
 
@@ -124,7 +124,7 @@ it in `course.js` downloads nothing.
 | --- | --- | --- | --- |
 | `classic` | Clássico | `sidebar` | L0 |
 | `institutional` | Institucional | `banner` | L1 |
-| `handbook` | Manual | `docs` | *(planned, L2)* |
+| `handbook` | Manual | `docs` | L2 |
 | `editorial` | Editorial | `centered` | *(planned, L3)* |
 | `modern` | Moderno | `top` | *(planned, L3)* |
 
@@ -164,7 +164,7 @@ A component attribute always wins over a choice property.
 | `top` | `uc-kit.css` | Navigation in a bar under the header | `.uc-page--top`, `.uc-topnav` | 1.1 |
 | `full` | `uc-kit.css` | No navigation | `.uc-page--full` | 1.0 |
 | `banner` | `layouts/banner.css` | Band in the course colour with the header, the first `<uc-hero>` and tabs (6.1) | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | L1 |
-| `docs` | `layouts/docs.css` | Navigation, content, "Nesta página" | `.uc-page--docs`, `.uc-toc` | *(planned, L2)* |
+| `docs` | `layouts/docs.css` | Navigation, content, "Nesta página" (6.2) | `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc__nav`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__link` | L2 |
 | `centered` | `layouts/centered.css` | Centred header and navigation, reading column `--uc-reading-max` | `.uc-page--centered` | *(planned, L3)* |
 | `panel` | `layouts/panel.css` | Full-height bar with name, search, navigation and timetable; no header | `.uc-page--panel`, `.uc-panel__brand`, `.uc-panel__info` | *(planned, L4)* |
 | `aside` | `layouts/aside.css` | Navigation, content and blocks on the right on every page | `.uc-page--aside`, `.uc-aside` | *(planned, L4)* |
@@ -203,17 +203,62 @@ scrolling bar. `<uc-page>` gets `.uc-page--<layout>` for every layout but
   Up to 960 px: the "Menu" button and the open list are inside the band.
 - Print: no colour on the band, no navigation (uc-kit.css hides it).
 
+### 6.2 docs
+
+```
+.uc-skip-link
+.uc-header
+.uc-shell                        3 columns from 1201 px: navigation | main | .uc-toc
+  .uc-sidebar                    (the usual navigation, a line on its right)
+  .uc-toc                        only without toc="off"; before main in reading order
+    .uc-guide__progress          moved here by a <uc-guide> of the page, if any
+    button.uc-toc-toggle         "Nesta página · N secções" (1200 px and down)
+    nav.uc-toc__nav              named by p.uc-toc__label "Nesta página"
+      ol.uc-toc__list > li.uc-toc__item(.uc-toc__item--sub) > a.uc-toc__link
+  main.uc-main
+.uc-footer
+```
+
+- Entries: the `<h2>`/`<h3>` of `<main>` with an id (`core/anchors.js` gives
+  one to each), without those that are, or are inside, `[data-nav="off"]`,
+  `[hidden]`, `dialog` or `template`, those of another language, and empty
+  ones; `h3` entries get `--sub`. Built in a microtask after each render of
+  the page, so headings written by the components inside (`<uc-this-week>`,
+  `<uc-deadlines>`…) are listed. The list and its button are `hidden` with
+  fewer than 2 entries.
+- `core/scrollspy.js` marks the entry in view with `aria-current="location"`
+  (IntersectionObserver, the line at 30 % of the viewport, as `<uc-guide>`
+  did); a click scrolls (smoothly unless reduced motion), moves focus to the
+  heading and closes the list on small screens. The anchor bar of `onepage`
+  (L5) is meant to use the same module.
+- `<uc-guide>`: when its `<uc-page>` has a `.uc-toc` (`page.tocColumn`), the
+  guide makes no list of its own and puts its progress at the top of the
+  column; the guide gets `.uc-guide--no-aside`. The page draws its guides again
+  after each render, so the progress follows the column (and goes back to the
+  guide with another layout or `toc="off"`).
+- Width: `--uc-docs-max` = `--uc-content-max` + 240 px (1440 px by default)
+  for the header, the shell and the footer; `--uc-toc-width` 220 px.
+- 1201 px and up: the list is open and sticky. 961–1200 px: the navigation
+  on the left, and on the right the column (progress, then the button) above
+  the content. Up to 960 px: one column, "Menu", the column, the content. The
+  button has `aria-expanded`/`aria-controls`; Escape closes it.
+  `.uc-page--toc-open` while open. The plan hid the list between 960 and
+  1200 px; the button was kept there instead, so the progress and the list
+  stay reachable.
+- Print: no `.uc-toc`.
+
 Planned attributes and fields, added to `docs/api.md` by their phase:
-`<uc-page toc="off">` (L2), `<uc-page aside="off">` and `aside`/`panel` in
-`course.js` (L4), `data-nav="off"` on a heading (L2, L5), `pages[].description`
-and `<uc-tiles>` (L5).
+`<uc-page aside="off">` and `aside`/`panel` in `course.js` (L4),
+`data-nav="off"` for the anchor bar (L5), `pages[].description` and
+`<uc-tiles>` (L5). Done in L2: `<uc-page toc="off">`, `data-nav="off"` for
+the "Nesta página" list.
 
 ## 7. Size
 
 All the JavaScript of the layouts lives in `uc-kit.js` (decision D3). Its
 budget goes from 48 KB to **50 KB** gzipped (`scripts/lib/budgets.mjs`).
 Estimate for the whole plan: about +2 KB (layouts 1.2, `<uc-tiles>` 0.5,
-variants 0.2). L0 measured 47.4 KB (+0.4 KB). `uc-kit.css` only grows with
+variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc and the scroll spy). `uc-kit.css` only grows with
 `<uc-tiles>`. Each layout file is expected at 0.4–0.8 KB and each theme at
 0.3–1 KB, downloaded only when used.
 
@@ -231,6 +276,15 @@ variants 0.2). L0 measured 47.4 KB (+0.4 KB). `uc-kit.css` only grows with
   layout and into the band again.
 - `tests/pages/layouts/banner-no-hero.html` (L1): `layout: "banner"` in
   `course.js`, no hero, the page's own `h1` stays in `<main>`.
+- `tests/pages/layouts/docs.html` (L2): `layout="docs"` from the attribute,
+  shell order, entries (h2/h3, `data-nav="off"`, other language), the nav's
+  name, the guide's progress in the column and back, the button at 1200 px
+  and down (opens, Escape closes), the scroll spy.
+- `tests/pages/layouts/docs-short.html` (L2): `layout: "docs"` in
+  `course.js`; one section hides the list; `toc="off"` removes the column.
+- `tests/pages/themes/handbook.html` (L2): theme from `course.js`, layout
+  from the CSS, `layouts/docs.css` by `@import` only, compact tokens,
+  `--uc-weeks-view`.
 - `tests/pages/themes/institutional.html` (L1): theme from `course.js` with
   `high-contrast`; layout from the CSS; `layouts/banner.css` arrives by
   `@import` only (no extra `<link>`); tokens and underlined `h2`.
@@ -299,3 +353,23 @@ UC.registerLayout("poster", { extends: "banner", css: "layouts/poster.css" });
   layout); `template/course.js` (commented `theme: "institutional"`).
 - `uc-kit.js` 47.6 KB gzipped (+0.2 KB); `layouts/banner.css` and
   `themes/institutional.css` are separate files.
+
+### L2 — layout `docs`, theme `handbook`
+
+- `kit/src/layouts/docs.css` (`FILE_LAYOUTS = ["banner", "docs"]`), section
+  6.2.
+- `core/scrollspy.js` (new): `UC.internal.scrollspy(headings, onChange)`,
+  `.markCurrent(links, heading)`, `.goTo(event, heading)`. `<uc-guide>` uses
+  it instead of its own copy (same behaviour, same DOM).
+- `uc-page.js`: `toc` attribute, `.uc-toc` column (`renderTocColumn`,
+  `updateToc`, `setTocOpen`), Escape closes the list.
+- `uc-guide.js`: progress into the page's column in the layout `docs`.
+- i18n: `toc.sections` ("{count} secções" / "{count} sections").
+- `kit/src/themes/handbook.css`: `@import "../layouts/docs.css"`,
+  `--uc-layout: docs`, the tokens of `compact`, `--uc-weeks-view: compact`
+  (read from L6). Added to `THEMES` and `LAYOUT_THEMES`.
+- Docs: `docs/api.md` 2.1, 2.2, 3.1, 8.3; `componentes/uc-page.html` "Três
+  colunas" with the demo `docs/demos/uc-page/docs.html`; `uc-guide.html`;
+  `course-js.html`; `criar-tema.html`; classes; `template/course.js`.
+- `uc-kit.js` 48.3 KB gzipped (+0.7 KB); `layouts/docs.css` 3.7 KB and
+  `themes/handbook.css` 0.4 KB are separate files.

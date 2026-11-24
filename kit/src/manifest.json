@@ -14,6 +14,7 @@
     "core/clipboard.js",
     "core/announce.js",
     "core/anchors.js",
+    "core/scrollspy.js",
     "core/modules.js",
     "core/themes.js",
     "core/layouts.js",

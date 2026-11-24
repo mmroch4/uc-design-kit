@@ -1,0 +1,25 @@
+/*
+ * Theme "handbook" (Manual, docs/api.md 8.3): for sites with long lab guides
+ * and notes. Layout "docs": the navigation, the content and "On this page".
+ * The type and spacing of "compact", up to 1440 px, and <uc-weeks> compact
+ * by default (read from L6 on).
+ */
+@import "../layouts/docs.css";
+
+:root {
+  --uc-layout: docs;
+  --uc-weeks-view: compact;
+  --uc-font-size-base: 93.75%;
+  --uc-line-height: 1.55;
+  --uc-radius-sm: 4px;
+  --uc-radius-md: 6px;
+  --uc-radius-lg: 8px;
+  --uc-space-5: 16px;
+  --uc-space-6: 20px;
+  --uc-space-7: 24px;
+  --uc-space-8: 24px;
+  --uc-space-10: 32px;
+  --uc-space-12: 36px;
+  --uc-sidebar-width: 200px;
+  --uc-header-height: 56px;
+}

@@ -115,6 +115,43 @@ Exemplo (página com a faixa institucional), [demonstração ao vivo](https://uc
 </uc-page>
 ```
 
+### Três colunas com "Nesta página"
+
+`layout="docs"` tem três colunas: a navegação, o conteúdo e, à direita, "Nesta página", com os títulos `h2` e `h3` da página. Ao percorrer a página, a secção à vista fica marcada. Serve para sites com guiões e apontamentos longos. A lista só aparece quando a página tem duas ou mais secções; um título com `data-nav="off"` (ou dentro de um elemento com ele) fica de fora, e `toc="off"` tira a coluna a uma página.
+
+Num guião ([`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md)), o progresso dos exercícios passa para o topo da coluna da direita, por cima da lista, e o guião deixa de ter o seu próprio índice. Abaixo de 1200 px a lista vira um botão "Nesta página · N secções" por cima do conteúdo, que a abre como o "Menu"; no telemóvel fica por baixo do "Menu". Na impressão, a coluna não aparece.
+
+É o layout do tema [Manual](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos) (`theme: "handbook"`), mas funciona sem ele. O estilo está em `kit/v1/layouts/docs.css`, descarregado só quando uma página o usa. A largura máxima é a do conteúdo mais 240 px (1440 px sem tema).
+
+Exemplo (guião com a coluna Nesta página), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/docs.html):
+
+```html
+<uc-page layout="docs" current="weeks">
+  <uc-guide week="3">
+    <h1>Aula 3 · Introdução a classes</h1>
+    <section class="uc-section" aria-labelledby="classes">
+      <h2 id="classes">1. Introdução às classes</h2>
+      <p>Os títulos da página aparecem na coluna da direita, e a secção à vista fica marcada.</p>
+      <uc-exercise id="demo-ponto" title="Classe Ponto" level="easy">
+        <p>Escreve uma classe <code>Point</code> com dois campos inteiros.</p>
+      </uc-exercise>
+    </section>
+    <section class="uc-section" aria-labelledby="geometricos">
+      <h2 id="geometricos">2. Objetos geométricos</h2>
+      <h3 id="retangulos">Retângulos</h3>
+      <p>Um <code>h3</code> fica como subentrada.</p>
+      <uc-exercise id="demo-area" title="Área do retângulo" level="medium">
+        <p>Acrescenta o método <code>area</code>.</p>
+      </uc-exercise>
+    </section>
+    <section class="uc-section" aria-labelledby="extra">
+      <h2 id="extra">3. Exercícios extra</h2>
+      <p>O progresso dos exercícios fica no topo da coluna da direita.</p>
+    </section>
+  </uc-guide>
+</uc-page>
+```
+
 ### Mudar de língua
 
 Quando `languages` tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com `?lang=en`). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com `lang` mostra só a língua ativa.
@@ -200,7 +237,8 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar`, `top`, `full`, `banner` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `layout` | `sidebar`, `top`, `full`, `banner`, `docs` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `toc` | `off` | — | Com o layout `docs`, tira a coluna "Nesta página" desta página. Ver [Três colunas](#tres-colunas). |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
@@ -291,6 +329,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-topnav` | Com `layout="top"`, a faixa por baixo do cabeçalho que contém a `.uc-sidebar`. |
 | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | Com `layout="banner"`: a página, a faixa da cor do curso (com o `.uc-header` dentro), a sua parte centrada com a apresentação e a `.uc-sidebar`, e o lugar do `<uc-hero>`. |
+| `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc-toggle__label`, `.uc-toc-toggle__count`, `.uc-toc-toggle__chevron`, `.uc-page--toc-open` | Com `layout="docs"`: a página, a coluna "Nesta página" (com o progresso de um `<uc-guide>` no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta. |
+| `.uc-toc__nav`, `.uc-toc__label`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__item--sub`, `.uc-toc__link` | O `<nav>` "Nesta página", o seu rótulo, a lista, cada entrada (`--sub` para um `h3`) e a ligação (a da secção à vista tem `aria-current="location"`). |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |

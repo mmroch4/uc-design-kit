@@ -24,6 +24,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 - Theme `institutional` (Institucional): layout `banner`, squarer corners and
   underlined section headings. `theme: "institutional"`, alone or with a
   token theme.
+- Layout `docs` (`<uc-page layout="docs">`, file `kit/v1/layouts/docs.css`):
+  the navigation, the content and "Nesta página" (`.uc-toc`), the page's
+  `<h2>`/`<h3>` with the one in view marked; a `<uc-guide>` puts its progress
+  at the top of that column. From 1200 px down the list is a second button
+  above the content. `<uc-page toc="off">` removes it; `data-nav="off"` on a
+  heading leaves it out.
+- Theme `handbook` (Manual): layout `docs`, the type and spacing of
+  `compact`, up to 1440 px.
 
 ### Changed
 - `layout` in `course.js` keeps any name (a site layout may be registered

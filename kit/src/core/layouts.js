@@ -27,7 +27,7 @@
   /** Layouts styled by uc-kit.css. "sidebar" is the default and has no class. */
   const BUILT_IN = ["sidebar", "top", "full"];
   /** Layouts with a file kit/v1/layouts/<name>.css (built from kit/src/layouts/ by scripts/themes.mjs). */
-  const FILE_LAYOUTS = ["banner"];
+  const FILE_LAYOUTS = ["banner", "docs"];
   const LAYOUTS = BUILT_IN.concat(FILE_LAYOUTS);
   const DEFAULT = "sidebar";
   const NAME = /^[a-z][a-z0-9-]*$/;

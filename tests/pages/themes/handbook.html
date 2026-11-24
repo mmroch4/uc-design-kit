@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>theme handbook · test</title>
+  <!-- The theme is named in course.js only: it brings --uc-layout: docs and @imports layouts/docs.css. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.theme = "handbook";</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../layouts/check.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <uc-hero></uc-hero>
+    <uc-this-week></uc-this-week>
+    <uc-deadlines view="table" filter="all" limit="3"></uc-deadlines>
+    <uc-notices></uc-notices>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      const root = getComputedStyle(document.documentElement);
+      test("the layout comes from the theme's CSS", () => equal([UC.internal.themeValue("layout"), UC.internal.layouts.resolve(page)], ["docs", "docs"]));
+      test("layouts/docs.css arrives by @import only", () => equal([sheets(), root.getPropertyValue("--uc-layout-docs-loaded").trim()], [["uc-kit.css", "themes/handbook.css"], "1"]));
+      test("compact type and spacing", () => equal([root.getPropertyValue("--uc-font-size-base").trim(), root.getPropertyValue("--uc-sidebar-width").trim()], ["93.75%", "200px"]));
+      test("weeks compact by default", () => equal(UC.internal.themeValue("weeks-view"), "compact"));
+      test("the page's sections are listed", () => equal(page.querySelectorAll(".uc-toc__link").length >= 2, true));
+    }));
+  </script>
+</body>
+</html>

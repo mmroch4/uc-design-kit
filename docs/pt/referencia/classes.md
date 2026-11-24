@@ -42,6 +42,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-topnav` | Com `layout="top"`, a faixa por baixo do cabeçalho que contém a `.uc-sidebar`. |
 | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | Com `layout="banner"`: a página, a faixa da cor do curso (com o `.uc-header` dentro), a sua parte centrada com a apresentação e a `.uc-sidebar`, e o lugar do `<uc-hero>`. |
+| `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc-toggle__label`, `.uc-toc-toggle__count`, `.uc-toc-toggle__chevron`, `.uc-page--toc-open` | Com `layout="docs"`: a página, a coluna "Nesta página" (com o progresso de um `<uc-guide>` no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta. |
+| `.uc-toc__nav`, `.uc-toc__label`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__item--sub`, `.uc-toc__link` | O `<nav>` "Nesta página", o seu rótulo, a lista, cada entrada (`--sub` para um `h3`) e a ligação (a da secção à vista tem `aria-current="location"`). |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
