@@ -35,14 +35,17 @@ window.UC_COURSE = {
   // theme: ["classic", "compact"],        // letra mais pequena, menos espaço
   // theme: ["classic", "serif"],          // letra com serifa
   // theme: ["classic", "high-contrast"],  // mais contraste, para projetar
+  // theme: "modern",                     // Moderno: navegação no topo, cartões com sombra
   // theme: "institutional",              // Institucional: faixa da cor do curso
   // theme: "handbook",                   // Manual: três colunas com "Nesta página"
+  // theme: "editorial",                  // Editorial: centrado, letra com serifa
 
   // Navegação: "sidebar" (barra lateral, a do tema "classic"), "top" (barra
-  // por baixo do cabeçalho), "banner" (faixa da cor do curso, a do tema
-  // "institutional"), "docs" (três colunas com "Nesta página", a do tema
-  // "handbook") ou "full" (sem navegação). Se estiver aqui, ganha
-  // ao layout do tema; uma página pode mudar com <uc-page layout="…">.
+  // por baixo do cabeçalho, a do tema "modern"), "banner" (faixa da cor do
+  // curso, a do tema "institutional"), "docs" (três colunas com "Nesta
+  // página", a do tema "handbook"), "centered" (centrado, a do tema
+  // "editorial") ou "full" (sem navegação). Se estiver aqui, ganha ao
+  // layout do tema; uma página pode mudar com <uc-page layout="…">.
   // layout: "top",
 
   // Pesquisa no site: o botão «Pesquisar» aparece quando existe o search-index.js,

@@ -1,0 +1,35 @@
+/*
+ * Theme "modern" (Moderno, docs/api.md 8.3): the look of an app, with blocks
+ * well apart. Layout "top" (in uc-kit.css, so no @import): a grey page with
+ * the header and the navigation in white, the navigation as pills (the
+ * current page filled with the course colour), white cards with a soft
+ * shadow, rounder corners and a larger hero title.
+ */
+:root {
+  --uc-layout: top;
+  --uc-color-surface-sunken: #F6F7F9;
+  --uc-radius-md: 10px;
+  --uc-radius-lg: 16px;
+}
+
+:where(uc-page.uc-page--top) { background: var(--uc-color-surface-sunken); }
+:where(.uc-page--top .uc-header, .uc-page--top .uc-topnav) { background: var(--uc-color-surface); }
+
+/* Pills; the current one filled (accent-strong keeps 4.5:1 with white). */
+:where(.uc-page--top .uc-nav__link) { border-radius: 999px; }
+:where(.uc-page--top .uc-nav__link[aria-current="page"]) {
+  background: var(--uc-color-accent-strong);
+  color: var(--uc-color-on-accent);
+}
+
+/* White cards with a soft shadow. */
+:where(.uc-page--top) :where(.uc-card, .uc-this-week__card, uc-notices:not(:empty), uc-deadlines:not(:empty)) {
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-lg);
+  background: var(--uc-color-surface);
+  box-shadow: 0 1px 2px rgb(16 24 40 / 4%), 0 4px 12px rgb(16 24 40 / 5%);
+}
+:where(.uc-page--top) :where(uc-notices:not(:empty), uc-deadlines:not(:empty)) { padding: var(--uc-space-5) var(--uc-space-6); }
+:where(.uc-page--top) :where(.uc-card, .uc-this-week__card) :where(uc-notices, uc-deadlines) { border: 0; padding: 0; box-shadow: none; }
+
+:where(.uc-page--top .uc-hero__title) { font-size: calc(var(--uc-font-size-display) * 1.2); }

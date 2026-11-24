@@ -152,6 +152,21 @@ Exemplo (guião com a coluna Nesta página), [demonstração ao vivo](https://uc
 </uc-page>
 ```
 
+### Centrado
+
+`layout="centered"` dá à página um aspeto de livro: o cabeçalho é uma coluna centrada com o título da cadeira em letra grande, a navegação fica centrada por baixo, entre duas linhas, com a página atual sublinhada, e o conteúdo ocupa uma só coluna de leitura de `--uc-reading-max` (760 px). Os blocos lado a lado (`.uc-split`) ficam um por baixo do outro. A pesquisa e as línguas ficam no canto do cabeçalho; abaixo de 960 px, o botão "Menu" fica centrado por cima do conteúdo. Na impressão, a navegação não aparece.
+
+É o layout do tema [Editorial](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos) (`theme: "editorial"`), mas funciona sem ele. O estilo está em `kit/v1/layouts/centered.css`, descarregado só quando uma página o usa. Serve para cadeiras com muito texto corrido; para tabelas largas (horários, sumários) é melhor `top`.
+
+Exemplo (página centrada com coluna de leitura), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/centered.html):
+
+```html
+<uc-page layout="centered" current="about">
+  <h1>Sobre a UC</h1>
+  <p>O cabeçalho e a navegação ficam centrados, com o título da cadeira em letra grande, e o conteúdo ocupa uma coluna de leitura estreita. A pesquisa e as línguas ficam no canto; em ecrãs estreitos, o botão "Menu" fica centrado por cima do conteúdo.</p>
+</uc-page>
+```
+
 ### Mudar de língua
 
 Quando `languages` tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com `?lang=en`). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com `lang` mostra só a língua ativa.
@@ -237,7 +252,7 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar`, `top`, `full`, `banner`, `docs` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `layout` | `sidebar`, `top`, `full`, `banner`, `docs`, `centered` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Com `centered`, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver [Centrado](#centrado)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
 | `toc` | `off` | — | Com o layout `docs`, tira a coluna "Nesta página" desta página. Ver [Três colunas](#tres-colunas). |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
@@ -331,6 +346,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | Com `layout="banner"`: a página, a faixa da cor do curso (com o `.uc-header` dentro), a sua parte centrada com a apresentação e a `.uc-sidebar`, e o lugar do `<uc-hero>`. |
 | `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc-toggle__label`, `.uc-toc-toggle__count`, `.uc-toc-toggle__chevron`, `.uc-page--toc-open` | Com `layout="docs"`: a página, a coluna "Nesta página" (com o progresso de um `<uc-guide>` no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta. |
 | `.uc-toc__nav`, `.uc-toc__label`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__item--sub`, `.uc-toc__link` | O `<nav>` "Nesta página", o seu rótulo, a lista, cada entrada (`--sub` para um `h3`) e a ligação (a da secção à vista tem `aria-current="location"`). |
+| `.uc-page--centered` | Com `layout="centered"`: a página. A estrutura é a do `top` (`.uc-topnav` por baixo do `.uc-header`), com o cabeçalho e a navegação centrados e o conteúdo numa coluna de `--uc-reading-max`. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |

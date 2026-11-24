@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>theme modern · test</title>
+  <!-- The theme is named in course.js only: --uc-layout: top, which is in uc-kit.css, so no layout file. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.theme = "modern";</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../layouts/check.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <uc-hero></uc-hero>
+    <uc-this-week></uc-this-week>
+    <div class="uc-split">
+      <uc-notices></uc-notices>
+      <uc-deadlines filter="all" limit="3"></uc-deadlines>
+    </div>
+    <div class="uc-grid">
+      <a class="uc-card" href="#checks"><b>Um cartão</b><span>Com uma frase.</span></a>
+      <a class="uc-card" href="#checks"><b>Outro cartão</b><span>Com outra frase.</span></a>
+    </div>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const wide = !matchMedia("(max-width: 960px)").matches;
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      const style = (selector) => getComputedStyle(page.querySelector(selector));
+      test("the layout comes from the theme's CSS", () => equal([UC.internal.themeValue("layout"), UC.internal.layouts.resolve(page), Array.from(page.classList).filter((name) => name.startsWith("uc-page--"))], ["top", "top", ["uc-page--top"]]));
+      test("no layout file", () => equal(sheets(), ["uc-kit.css", "themes/modern.css"]));
+      test("grey page, white header", () => equal([getComputedStyle(page).backgroundColor, style(".uc-header").backgroundColor], ["rgb(246, 247, 249)", "rgb(255, 255, 255)"]));
+      test("white cards with a shadow", () => {
+        const cards = [".uc-this-week__card", "uc-notices", ".uc-card"].map((selector) => style(selector));
+        equal(cards.map((card) => [card.backgroundColor, card.boxShadow !== "none"]), [["rgb(255, 255, 255)", true], ["rgb(255, 255, 255)", true], ["rgb(255, 255, 255)", true]]);
+      });
+      test("the current page is a filled pill", () => {
+        const current = style('.uc-nav__link[aria-current="page"]');
+        equal([current.color, current.borderRadius, current.backgroundColor !== "rgba(0, 0, 0, 0)"], ["rgb(255, 255, 255)", "999px", true]);
+      });
+      if (wide) test("the navigation is a bar", () => equal(style(".uc-nav").display, "flex"));
+    }));
+  </script>
+</body>
+</html>

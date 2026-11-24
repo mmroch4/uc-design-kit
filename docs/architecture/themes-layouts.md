@@ -11,8 +11,9 @@ It runs in phases L0–L8, one pull request each. Every phase updates this file
 [`docs/api.md`](../api.md), which wins when the two differ. Code comments cite
 this file by section number: keep the numbers stable.
 
-Status: **L0, L1 and L2 done** (mechanism; layout `banner` and theme
-`institutional`; layout `docs` and theme `handbook`). Sections marked
+Status: **L0–L3 done** (mechanism; layout `banner` and theme
+`institutional`; layout `docs` and theme `handbook`; layout `centered` and
+themes `editorial` and `modern`). Sections marked
 *(planned, Ln)* describe what a later phase adds; until then the kit does
 not know those names.
 
@@ -125,8 +126,8 @@ it in `course.js` downloads nothing.
 | `classic` | Clássico | `sidebar` | L0 |
 | `institutional` | Institucional | `banner` | L1 |
 | `handbook` | Manual | `docs` | L2 |
-| `editorial` | Editorial | `centered` | *(planned, L3)* |
-| `modern` | Moderno | `top` | *(planned, L3)* |
+| `editorial` | Editorial | `centered` | L3 |
+| `modern` | Moderno | `top` (in `uc-kit.css`: no `@import`) | L3 |
 
 ### 5.2 Shape of a theme with a layout
 
@@ -150,9 +151,9 @@ define them.
 | Property | Values | Read by | Phase |
 | --- | --- | --- | --- |
 | `--uc-layout` | a layout name | `<uc-page>` (section 2, level 3) | L0 |
-| `--uc-hero-align` | `start` \| `center` | `<uc-hero>` | *(planned, L6)* |
+| `--uc-hero-align` | `start` \| `center` | `<uc-hero>` | *(planned, L6; `editorial` declares `center` since L3 and centres the hero with CSS)* |
 | `--uc-weeks-view` | `list` \| `compact` | `<uc-weeks>` without `view` | *(planned, L6)* |
-| `--uc-team-view` | `cards` \| `table` | `<uc-team>` without `view` | *(planned, L6)* |
+| `--uc-team-view` | `cards` \| `table` | `<uc-team>` without `view` | *(planned, L6; `editorial` declares `table` since L3)* |
 
 A component attribute always wins over a choice property.
 
@@ -165,7 +166,7 @@ A component attribute always wins over a choice property.
 | `full` | `uc-kit.css` | No navigation | `.uc-page--full` | 1.0 |
 | `banner` | `layouts/banner.css` | Band in the course colour with the header, the first `<uc-hero>` and tabs (6.1) | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | L1 |
 | `docs` | `layouts/docs.css` | Navigation, content, "Nesta página" (6.2) | `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc__nav`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__link` | L2 |
-| `centered` | `layouts/centered.css` | Centred header and navigation, reading column `--uc-reading-max` | `.uc-page--centered` | *(planned, L3)* |
+| `centered` | `layouts/centered.css` | Centred header and navigation, reading column `--uc-reading-max` (6.3) | `.uc-page--centered`, with the structure of `top` (`.uc-topnav`) | L3 |
 | `panel` | `layouts/panel.css` | Full-height bar with name, search, navigation and timetable; no header | `.uc-page--panel`, `.uc-panel__brand`, `.uc-panel__info` | *(planned, L4)* |
 | `aside` | `layouts/aside.css` | Navigation, content and blocks on the right on every page | `.uc-page--aside`, `.uc-aside` | *(planned, L4)* |
 | `onepage` | `layouts/onepage.css` | Sticky bar with the page's sections, then the other pages | `.uc-page--onepage`, `.uc-anchors` | *(planned, L5)* |
@@ -247,6 +248,31 @@ scrolling bar. `<uc-page>` gets `.uc-page--<layout>` for every layout but
   stay reachable.
 - Print: no `.uc-toc`.
 
+### 6.3 centered
+
+```
+.uc-skip-link
+.uc-header                       a centred column: brand (logo, title in --uc-font-size-display, edition)
+  .uc-header__meta               absolute in the top corner from 961 px; in the flow, centred, below
+.uc-topnav > .uc-sidebar         as in top; centred, a --uc-color-text line above
+.uc-shell > main.uc-main         one column, max-width --uc-reading-max (760 px) + gutters
+.uc-footer                       centred
+```
+
+- The structure is exactly the one of `top` (`uc-page.js` draws `.uc-topnav`
+  for both), so `centered.css` only adds styles; it repeats the few rules of
+  `top` it needs under `.uc-page--centered` instead of giving the page the
+  class `.uc-page--top`, so a site's styles for `top` never reach it.
+- The current page is underlined (`box-shadow` inset 2 px in the accent), not
+  filled; on phones the open list marks it with a line on the left.
+- `.uc-split` is one column in the layout (the plan had it in the theme
+  `editorial`): two columns do not fit in 760 px.
+- `--uc-reading-max` is a token of `uc-kit.css` (760 px), so a site can change
+  it in its `theme.css`.
+- Below 960 px: the title in `--uc-font-size-h1`, the "Menu" button centred
+  with the width of the reading column.
+- Print: like `full` (uc-kit.css hides `.uc-topnav`).
+
 Planned attributes and fields, added to `docs/api.md` by their phase:
 `<uc-page aside="off">` and `aside`/`panel` in `course.js` (L4),
 `data-nav="off"` for the anchor bar (L5), `pages[].description` and
@@ -258,7 +284,7 @@ the "Nesta página" list.
 All the JavaScript of the layouts lives in `uc-kit.js` (decision D3). Its
 budget goes from 48 KB to **50 KB** gzipped (`scripts/lib/budgets.mjs`).
 Estimate for the whole plan: about +2 KB (layouts 1.2, `<uc-tiles>` 0.5,
-variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc and the scroll spy). `uc-kit.css` only grows with
+variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc and the scroll spy), L3 48.3 KB (one condition). `uc-kit.css` only grows with
 `<uc-tiles>`. Each layout file is expected at 0.4–0.8 KB and each theme at
 0.3–1 KB, downloaded only when used.
 
@@ -285,6 +311,17 @@ variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc an
 - `tests/pages/themes/handbook.html` (L2): theme from `course.js`, layout
   from the CSS, `layouts/docs.css` by `@import` only, compact tokens,
   `--uc-weeks-view`.
+- `tests/pages/layouts/centered.html` (L3): `layout="centered"` from the
+  attribute, the file linked after the kit, the structure of `top`, the
+  centred header, the reading column, `.uc-split` stacked, and by width the
+  centred open navigation with the current page underlined (≥ 961 px) or the
+  menu button (≤ 960 px).
+- `tests/pages/themes/editorial.html` (L3): layout from the CSS,
+  `layouts/centered.css` by `@import` only, serif and 1.7, the choice
+  properties, the hero centred with its title visually hidden.
+- `tests/pages/themes/modern.html` (L3): layout `top` from the CSS and no
+  layout file, grey page and white header, white cards with a shadow, the
+  current page a filled pill.
 - `tests/pages/themes/institutional.html` (L1): theme from `course.js` with
   `high-contrast`; layout from the CSS; `layouts/banner.css` arrives by
   `@import` only (no extra `<link>`); tokens and underlined `h2`.
@@ -373,3 +410,27 @@ UC.registerLayout("poster", { extends: "banner", css: "layouts/poster.css" });
   `course-js.html`; `criar-tema.html`; classes; `template/course.js`.
 - `uc-kit.js` 48.3 KB gzipped (+0.7 KB); `layouts/docs.css` 3.7 KB and
   `themes/handbook.css` 0.4 KB are separate files.
+
+### L3 — layout `centered`, themes `editorial` and `modern`
+
+- `kit/src/layouts/centered.css` (`FILE_LAYOUTS = ["banner", "docs",
+  "centered"]`), section 6.3. Token `--uc-reading-max` (760 px) in
+  `uc-kit.css`.
+- `uc-page.js`: `centered` draws the structure of `top`.
+- `kit/src/themes/editorial.css`: `@import "../layouts/centered.css"`,
+  `--uc-layout: centered`, `--uc-hero-align: center`, `--uc-team-view: table`
+  (both read from L6), the serif stack, line spacing 1.7, the hero centred
+  with its title visually hidden and the tagline in italics (scoped to
+  `.uc-page--centered`).
+- `kit/src/themes/modern.css`: `--uc-layout: top`, no `@import` (the build
+  accepts a theme with a layout that imports nothing), `--uc-color-surface-sunken`
+  #F6F7F9 as the page background, white header and bar, pills with the
+  current page in `--uc-color-accent-strong`, white cards with a shadow
+  (`.uc-card`, `.uc-this-week__card`, non-empty `<uc-notices>` and
+  `<uc-deadlines>`), radii 10/16 px, hero title × 1.2 (scoped to
+  `.uc-page--top`). Both added to `THEMES` and `LAYOUT_THEMES`.
+- Docs: `docs/api.md` 2.1, 2.2, 3.1, 8.3; `componentes/uc-page.html`
+  "Centrado" with the demo `docs/demos/uc-page/centered.html`;
+  `course-js.html`; `criar-tema.html`; `tokens.html`; classes;
+  `template/course.js`.
+- `uc-kit.js` 48.3 KB gzipped (unchanged to the tenth).

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout centered (attribute) · test</title>
+  <!-- layout="centered" without a theme: the kit adds layouts/centered.css; the structure is the one of "top". -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page layout="centered" current="home">
+    <uc-hero></uc-hero>
+    <div class="uc-split">
+      <uc-notices></uc-notices>
+      <uc-deadlines filter="all" limit="3"></uc-deadlines>
+    </div>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const wide = !matchMedia("(max-width: 960px)").matches;
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      const style = (selector) => getComputedStyle(page.querySelector(selector));
+      test("the layout comes from the attribute", () => equal(UC.internal.layouts.resolve(page), "centered"));
+      test("its class", () => equal(Array.from(page.classList).filter((name) => name.startsWith("uc-page--")), ["uc-page--centered"]));
+      test("its style sheet is added after the kit", () => equal(sheets(), ["uc-kit.css", "layouts/centered.css"]));
+      test("header, then the navigation bar, then the shell with main only", () =>
+        equal([Array.from(page.children, (node) => node.className), page.querySelector(".uc-shell").children.length], [["uc-skip-link", "uc-header", "uc-topnav", "uc-shell", "uc-footer"], 1]));
+      test("one h1, skip link to main", () => equal([page.querySelectorAll("h1").length, page.querySelector(".uc-skip-link").getAttribute("href")], [1, "#uc-main"]));
+      test("the header is a centred column", () => equal([style(".uc-header__inner").flexDirection, style(".uc-header__inner").textAlign], ["column", "center"]));
+      test("one reading column of --uc-reading-max", () => {
+        const shell = page.querySelector(".uc-shell");
+        const padding = parseFloat(getComputedStyle(shell).paddingLeft) + parseFloat(getComputedStyle(shell).paddingRight);
+        equal([getComputedStyle(shell).gridTemplateColumns.split(" ").length, shell.clientWidth - padding <= 760], [1, true]);
+      });
+      test("blocks side by side stack", () => equal(style(".uc-split").gridTemplateColumns.split(" ").length, 1));
+      if (wide) {
+        test("the navigation is centred and open", () => equal([style(".uc-nav").justifyContent, style(".uc-nav").display, style(".uc-nav-toggle").display], ["center", "flex", "none"]));
+        test("the current page is underlined, not filled", () => {
+          const current = style('.uc-nav__link[aria-current="page"]');
+          equal([current.backgroundColor, current.boxShadow.includes("inset")], ["rgba(0, 0, 0, 0)", true]);
+        });
+        test("search and languages in the corner", () => equal(style(".uc-header__meta").position, "absolute"));
+      } else {
+        test("the menu button, the list closed", () => equal([style(".uc-nav-toggle").display, style(".uc-nav").display], ["flex", "none"]));
+        test("the button opens the list", () => {
+          page.querySelector(".uc-nav-toggle").click();
+          const open = style(".uc-nav").display;
+          page.querySelector(".uc-nav-toggle").click();
+          equal(open, "block");
+        });
+        test("search and languages in the flow", () => equal(style(".uc-header__meta").position, "static"));
+      }
+    }));
+  </script>
+</body>
+</html>

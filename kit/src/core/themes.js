@@ -15,8 +15,8 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const THEMES = ["classic", "institutional", "handbook", "compact", "serif", "high-contrast"];
-  const LAYOUT_THEMES = ["classic", "institutional", "handbook"];
+  const THEMES = ["classic", "modern", "institutional", "handbook", "editorial", "compact", "serif", "high-contrast"];
+  const LAYOUT_THEMES = ["classic", "modern", "institutional", "handbook", "editorial"];
   const DEFAULT_THEME = "classic";
 
   const known = [].concat(UC.course.theme || []).filter((name) => {

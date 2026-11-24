@@ -32,6 +32,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   heading leaves it out.
 - Theme `handbook` (Manual): layout `docs`, the type and spacing of
   `compact`, up to 1440 px.
+- Layout `centered` (`<uc-page layout="centered">`, file
+  `kit/v1/layouts/centered.css`): a centred header with the course title in
+  large type, the navigation centred under it, and one reading column of the
+  new token `--uc-reading-max` (760 px).
+- Theme `editorial` (Editorial): layout `centered`, the serif stack with line
+  spacing 1.7, the hero centred with its title for screen readers only.
+- Theme `modern` (Moderno): layout `top`, a grey page, navigation as pills,
+  white cards with a soft shadow, rounder corners.
 
 ### Changed
 - `layout` in `course.js` keeps any name (a site layout may be registered

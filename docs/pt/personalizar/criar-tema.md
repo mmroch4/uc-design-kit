@@ -46,8 +46,10 @@ Os temas que escolhem o layout substituem o `classic` (não se juntam a ele) e t
 | Tema | Layout | O que muda |
 | --- | --- | --- |
 | `classic` (Clássico) | `sidebar` | Nada: é o aspeto do kit e o tema do modelo. |
+| `modern` (Moderno) | [`top`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#navegacao-no-topo) | Fundo cinzento claro com o cabeçalho e a navegação a branco, a navegação em pílulas (a página atual a cheio), avisos, datas, "Esta semana" e cartões em blocos brancos com sombra, cantos mais redondos e o título da apresentação maior. Aspeto de aplicação. |
 | `institutional` (Institucional) | [`banner`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional) | Cabeçalho, apresentação da cadeira e separadores numa faixa da cor do curso, cantos mais retos e os títulos das secções sublinhados. Ar de página oficial da faculdade. |
 | `handbook` (Manual) | [`docs`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas) | Navegação, conteúdo e "Nesta página" em três colunas, até 1440 px, com a letra e os espaços do `compact`. Para sites com guiões e apontamentos longos. |
+| `editorial` (Editorial) | [`centered`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#centrado) | Cabeçalho e navegação centrados, uma coluna de leitura de 760 px, letra com serifa (a do `serif`) e entrelinha 1,7; a apresentação centrada, com a frase em itálico (o título já está no cabeçalho e fica só para leitores de ecrã). Para cadeiras com muito texto corrido. |
 
 A mesma semana e o mesmo cartão, primeiro com o aspeto do kit e depois com cada tema:
 
