@@ -123,10 +123,20 @@ Não são tokens: nenhum CSS do kit as usa e o `uc-kit.css` não as define. Um t
 | Propriedade | Valores | Para quê e onde |
 | --- | --- | --- |
 | `--uc-layout` | um nome de layout | Layout de `<uc-page>` quando nem a página nem o `course.js` escolhem um. O atributo `layout` e o `layout` do `course.js` ganham-lhe. |
+| `--uc-hero-align` | `start` ou `center` | Alinhamento de `<uc-hero>` sem o atributo `align`. O tema Editorial usa `center`. |
+| `--uc-weeks-view` | `full` ou `compact` | Vista de `<uc-weeks>` sem o atributo `view`. O tema Manual usa `compact`. |
+| `--uc-team-view` | `cards` ou `table` | Vista de `<uc-team>` sem o atributo `view`. O tema Editorial usa `table`. |
 
 ```css
 /* theme.css */
 :root { --uc-layout: top; }
+```
+
+O atributo do componente ganha sempre: num tema com `--uc-team-view: table`, um `<uc-team view="cards">` mostra cartões. Um valor que não esteja na lista conta como o valor por omissão do componente.
+
+```css
+/* theme.css: por cima do tema Manual, as semanas voltam à vista completa */
+:root { --uc-weeks-view: full; }
 ```
 
 ## Tokens locais

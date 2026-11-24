@@ -81,7 +81,9 @@ O código do curso é um texto simples e não muda com a língua. O conteúdo es
 
 ## Atributos
 
-Não tem atributos.
+| Atributo | Valores | Por omissão | Para quê |
+| --- | --- | --- | --- |
+| `align` | `start` ou `center` | o do tema ([`--uc-hero-align`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), senão `start` | Com `center`, o código, o nome, a descrição e o conteúdo escrito dentro ficam centrados. O tema Editorial centra-o; `align="start"` encosta-o à esquerda nesse tema. |
 
 ## Configuração usada
 
@@ -106,6 +108,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-hero__code` | O código do curso. |
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
+| `.uc-hero--center` | O bloco centrado (`align="center"` ou `--uc-hero-align: center` no tema). |
 
 `theme.css`:
 

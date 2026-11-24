@@ -1,6 +1,7 @@
 /**
  * <uc-hero> — course heading: code, title (h1) and tagline from course.js.
- * Teacher-written children are kept below the tagline.
+ * Teacher-written children are kept below the tagline. align="center" (or
+ * --uc-hero-align: center in the theme) centres it.
  */
 (function (UC) {
   "use strict";
@@ -18,6 +19,7 @@
       const course = this.course;
       // h() skips null children; the native replaceChildren() would print "null".
       this.replaceChildren();
+      this.classList.toggle("uc-hero--center", UC.internal.variant(this, "align", "hero-align") === "center");
       UC.internal.append(this, [
         course.code ? h("p", { class: "uc-hero__code" }, course.code) : null,
         h("h1", { class: "uc-hero__title" }, this.text(course.title)),

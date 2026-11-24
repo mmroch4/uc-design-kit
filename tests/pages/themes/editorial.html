@@ -33,7 +33,7 @@
       test("the layout comes from the theme's CSS", () => equal([UC.internal.themeValue("layout"), UC.internal.layouts.resolve(page)], ["centered", "centered"]));
       test("layouts/centered.css arrives by @import only", () => equal([sheets(), root.getPropertyValue("--uc-layout-centered-loaded").trim()], [["uc-kit.css", "themes/editorial.css"], "1"]));
       test("serif text, line spacing 1.7", () => equal([root.getPropertyValue("--uc-font-sans").trim().startsWith("Charter"), root.getPropertyValue("--uc-line-height").trim()], [true, "1.7"]));
-      test("choices for later phases", () => equal([UC.internal.themeValue("hero-align"), UC.internal.themeValue("team-view")], ["center", "table"]));
+      test("choice properties: hero centred, team as a table", () => equal([UC.internal.themeValue("hero-align"), UC.internal.themeValue("team-view"), page.querySelector("uc-hero").classList.contains("uc-hero--center"), Boolean(page.querySelector("uc-team table"))], ["center", "table", true, true]));
       test("the hero is centred; its title is for screen readers only", () => {
         const title = page.querySelector(".uc-hero__title");
         equal([getComputedStyle(page.querySelector("uc-hero")).textAlign, title.getBoundingClientRect().width <= 1, page.querySelectorAll("h1").length], ["center", true, 1]);

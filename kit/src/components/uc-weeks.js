@@ -90,8 +90,14 @@
       const calendar = UC.internal.calendar();
       const showDeadlines = !this.hasAttribute("no-deadlines");
       const written = writtenEventIds(this);
-      const compact = this.getAttribute("view") === "compact";
-      weeks.forEach((week) => (week.hidden = compact));
+      const compact = UC.internal.variant(this, "view", "weeks-view") === "compact";
+      // A theme's view arrives after the weeks were drawn: draw them again (their #week-<n> ids).
+      const changed = this.compact !== undefined && this.compact !== compact;
+      this.compact = compact;
+      weeks.forEach((week) => {
+        week.hidden = compact;
+        if (changed && week.__ucSetupDone) week.render();
+      });
 
       if (compact) {
         this.renderTable(weeks, calendar.breaks, showDeadlines);

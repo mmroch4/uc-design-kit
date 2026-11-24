@@ -18,6 +18,8 @@ O código não traz o `<head>`, que é o mesmo em todas as páginas (ver [Estrut
 
 Em cada página da galeria, "Tema das pré-visualizações" mostra as secções com um dos [temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). O código não muda: o tema escolhe-se uma vez para o site todo, com `theme` no `course.js`. A escolha fica guardada neste browser enquanto percorre a galeria.
 
+Os temas com layout (Moderno, Institucional, Manual e Editorial) também mudam a forma de alguns blocos quando a página não a escolhe: no Manual as semanas aparecem numa tabela compacta, no Editorial a equipa aparece numa tabela e a apresentação da cadeira fica centrada. Um atributo na página ganha sempre ao tema, por exemplo `<uc-team view="cards">`.
+
 ## Os grupos
 
 - [**Cabeçalhos**: Título e introdução, com localização e ações, página inicial, mosaico de secções, calendário primeiro.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md)

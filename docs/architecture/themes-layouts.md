@@ -11,10 +11,10 @@ It runs in phases L0–L8, one pull request each. Every phase updates this file
 [`docs/api.md`](../api.md), which wins when the two differ. Code comments cite
 this file by section number: keep the numbers stable.
 
-Status: **L0–L5 done** (mechanism; layout `banner` and theme
+Status: **L0–L6 done** (mechanism; layout `banner` and theme
 `institutional`; layout `docs` and theme `handbook`; layout `centered` and
 themes `editorial` and `modern`; layouts `panel` and `aside`; layout
-`onepage`, `<uc-tiles>` and the home-page patterns). Sections marked
+`onepage`, `<uc-tiles>` and the home-page patterns; component variants). Sections marked
 *(planned, Ln)* describe what a later phase adds; until then the kit does
 not know those names.
 
@@ -152,11 +152,17 @@ define them.
 | Property | Values | Read by | Phase |
 | --- | --- | --- | --- |
 | `--uc-layout` | a layout name | `<uc-page>` (section 2, level 3) | L0 |
-| `--uc-hero-align` | `start` \| `center` | `<uc-hero>` | *(planned, L6; `editorial` declares `center` since L3 and centres the hero with CSS)* |
-| `--uc-weeks-view` | `list` \| `compact` | `<uc-weeks>` without `view` | *(planned, L6)* |
-| `--uc-team-view` | `cards` \| `table` | `<uc-team>` without `view` | *(planned, L6; `editorial` declares `table` since L3)* |
+| `--uc-hero-align` | `start` \| `center` | `<uc-hero>` without `align` (`.uc-hero--center`) | L6 (`editorial`: `center`) |
+| `--uc-weeks-view` | `full` \| `compact` | `<uc-weeks>` without `view` | L6 (`handbook`: `compact`) |
+| `--uc-team-view` | `cards` \| `table` | `<uc-team>` without `view` | L6 (`editorial`: `table`) |
 
-A component attribute always wins over a choice property.
+A component attribute always wins over a choice property; any other value
+means the component's default. Components read them with
+`UC.internal.variant(element, attribute, name)` (`core/layouts.js`): the
+attribute, else `themeValue(name)`. A component drawn before the themes have
+loaded is drawn again once they have, only if the value it read changed (a
+`<uc-weeks>` that changes view draws its `<uc-week>` children again, so the
+`#week-<n>` ids move between the weeks and the table rows).
 
 ## 6. Layouts
 
@@ -411,7 +417,8 @@ budget goes from 48 KB to **50 KB** gzipped (`scripts/lib/budgets.mjs`).
 Estimate for the whole plan: about +2 KB (layouts 1.2, `<uc-tiles>` 0.5,
 variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc and the scroll spy), L3 48.3 KB (one condition), L4 49.2 KB (+0.9 KB: the panel summary and the
 aside blocks), L5 49.7 KB (+0.5 KB: the anchor bar, which reuses the toc code,
-and `<uc-tiles>`; about 0.3 KB left for L6). `uc-kit.css` only grows with
+and `<uc-tiles>`), L6 49.9 KB (+0.2 KB: `UC.internal.variant` and the
+second drawing; about 0.15 KB left). `uc-kit.css` only grows with
 `<uc-tiles>`. Each layout file is expected at 0.4–0.8 KB and each theme at
 0.3–1 KB, downloaded only when used.
 
@@ -473,8 +480,17 @@ and `<uc-tiles>`; about 0.3 KB left for L6). `uc-kit.css` only grows with
 - `tests/pages/themes/institutional.html` (L1): theme from `course.js` with
   `high-contrast`; layout from the CSS; `layouts/banner.css` arrives by
   `@import` only (no extra `<link>`); tokens and underlined `h2`.
+- `tests/pages/themes/variants.html` (L6): `handbook` from `course.js`
+  (loaded after the first drawing) and a `<style>` standing for `theme.css`;
+  `<uc-weeks>` drawn again as the compact table with the `#week-<n>` ids on
+  the rows, `view="full"` wins; `<uc-team>` as a table, `view="cards"` wins;
+  `<uc-hero align="start">` wins over `--uc-hero-align: center`, and without
+  it the hero is centred.
 - `check-pages` runs axe on all of them at 1280 and 390 px (contrast on the
-  band) and from `file://`.
+  band) and from `file://`. From L6 it also opens every demo of
+  `docs/demos/sections/` once per ready-made theme but `classic`
+  (`?theme=<name>`, read by `docs/demos/course.js`), checking console errors,
+  that the theme loaded, and axe.
 - The record of `npm run test:dom` must not change for any page that existed
   before; new layouts get their own test pages.
 
@@ -624,3 +640,28 @@ UC.registerLayout("poster", { extends: "banner", css: "layouts/poster.css" });
   `template/course.js`.
 - `uc-kit.js` 49.7 KB gzipped (+0.5 KB); `uc-kit.css` +0.3 KB;
   `layouts/onepage.css` is a separate file.
+
+### L6 — component variants
+
+- `core/layouts.js`: `UC.internal.variant(element, attribute, name)` (section
+  5.3); components that read a choice property before the themes loaded are
+  drawn again once they have, only when the value changed.
+- `<uc-weeks>` (`view`, `--uc-weeks-view`; keeps `compact` as a property so
+  its `<uc-week>` children know where their id goes, and draws them again
+  when it changes), `<uc-team>` (`view`, `--uc-team-view`), `<uc-hero>`
+  (new attribute `align`, `--uc-hero-align`, class `.uc-hero--center` in
+  `uc-hero.css`). `editorial.css` no longer centres the hero itself.
+- Values of `--uc-weeks-view` are `full` | `compact`, as the attribute (the
+  plan said `list`).
+- The section gallery's theme picker lists the five themes with a layout;
+  `?theme=` is now read by `docs/demos/course.js` (it sets `theme`, so the kit
+  loads it and waits for it) instead of `docs/demos/demo.js` adding a
+  `<link>` the kit did not wait for.
+- `check-pages`: every section demo × every theme (axe, console errors, the
+  theme loaded). New test page `tests/pages/themes/variants.html`; the
+  editorial test checks the table and the centred hero.
+- Docs: `docs/api.md` 3.1 (`<uc-hero>` `align`, `<uc-weeks>` and `<uc-team>`
+  `view` defaults), 5 (choice properties), 8.3; `estilos/tokens.html`
+  "Propriedades de escolha"; `componentes/uc-hero.html`, `uc-weeks.html`,
+  `uc-team.html`; `seccoes/index.html` "Ver com outro tema"; CHANGELOG.
+- `uc-kit.js` 49.9 KB gzipped (+0.2 KB).

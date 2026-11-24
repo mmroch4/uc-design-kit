@@ -6,7 +6,15 @@ O que os alunos procuram primeiro: o que mudou, o que há esta semana e os próx
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 

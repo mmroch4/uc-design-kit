@@ -106,7 +106,7 @@
       const headingAttr = this.getAttribute("heading");
       const headingText = headingAttr && headingAttr !== "none" ? headingAttr : this.t("team.heading");
       const showHeading = headingAttr !== "none";
-      const view = this.getAttribute("view") === "table" ? this.renderTable(members) : this.renderCards(members);
+      const view = UC.internal.variant(this, "view", "team-view") === "table" ? this.renderTable(members) : this.renderCards(members);
 
       this.replaceChildren(
         h(

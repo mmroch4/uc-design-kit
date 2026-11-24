@@ -2071,7 +2071,9 @@ O código do curso é um texto simples e não muda com a língua. O conteúdo es
 
 ## Atributos
 
-Não tem atributos.
+| Atributo | Valores | Por omissão | Para quê |
+| --- | --- | --- | --- |
+| `align` | `start` ou `center` | o do tema ([`--uc-hero-align`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), senão `start` | Com `center`, o código, o nome, a descrição e o conteúdo escrito dentro ficam centrados. O tema Editorial centra-o; `align="start"` encosta-o à esquerda nesse tema. |
 
 ## Configuração usada
 
@@ -2096,6 +2098,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-hero__code` | O código do curso. |
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
+| `.uc-hero--center` | O bloco centrado (`align="center"` ou `--uc-hero-align: center` no tema). |
 
 `theme.css`:
 
@@ -3202,7 +3205,7 @@ Exemplo (semanas sem prazos), [demonstração ao vivo](https://uc-design-kit.mig
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
-| `view` | `full` ou `compact` | `full` | Com `compact`, mostra as semanas numa tabela, uma linha por semana ([vista compacta](#vista-compacta)). |
+| `view` | `full` ou `compact` | o do tema ([`--uc-weeks-view`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), senão `full` | Com `compact`, mostra as semanas numa tabela, uma linha por semana ([vista compacta](#vista-compacta)). O tema Manual usa a vista compacta; `view="full"` ganha ao tema. |
 | `no-breaks` | booleano | ausente | Não mostra as interrupções de `semester.breaks`. |
 | `no-deadlines` | booleano | ausente | Não acrescenta prazos do `course.js`, nem dentro das semanas nem fora delas. |
 | `kind` | tipos separados por espaços | todos | Só acrescenta prazos destes tipos, por exemplo `kind="assessment exam"`. |
@@ -4182,7 +4185,7 @@ Exemplo (tabela da equipa com uma nota sobre o atendimento), [demonstração ao 
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
-| `view` | `cards` ou `table` | `cards` | Cartões numa grelha ou uma tabela com uma linha por pessoa. |
+| `view` | `cards` ou `table` | o do tema ([`--uc-team-view`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), senão `cards` | Cartões numa grelha ou uma tabela com uma linha por pessoa. O tema Editorial mostra a tabela; o atributo ganha ao tema. |
 | `role` | funções separadas por espaços | todas | Mostra só as pessoas com uma destas funções, por exemplo `role="assistant"`. Depois de o kit carregar passa para `data-role` (ver [abaixo](#atributo-role)). |
 | `heading` | texto ou `none` | "Equipa docente" | Título da secção, num `<h2>`. Com `none`, não há título visível. |
 | `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |
@@ -6265,6 +6268,8 @@ O código não traz o `<head>`, que é o mesmo em todas as páginas (ver [Estrut
 
 Em cada página da galeria, "Tema das pré-visualizações" mostra as secções com um dos [temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). O código não muda: o tema escolhe-se uma vez para o site todo, com `theme` no `course.js`. A escolha fica guardada neste browser enquanto percorre a galeria.
 
+Os temas com layout (Moderno, Institucional, Manual e Editorial) também mudam a forma de alguns blocos quando a página não a escolhe: no Manual as semanas aparecem numa tabela compacta, no Editorial a equipa aparece numa tabela e a apresentação da cadeira fica centrada. Um atributo na página ganha sempre ao tema, por exemplo `<uc-team view="cards">`.
+
 ## Os grupos
 
 - [**Cabeçalhos**: Título e introdução, com localização e ações, página inicial, mosaico de secções, calendário primeiro.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md)
@@ -6292,7 +6297,15 @@ O topo de uma página: o título e uma frase, com localização, etiquetas e bot
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 
@@ -6409,7 +6422,15 @@ O que os alunos procuram primeiro: o que mudou, o que há esta semana e os próx
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 
@@ -6484,7 +6505,15 @@ Como se calcula a nota, quando e onde são as provas e as regras, prontos a cola
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 
@@ -6580,7 +6609,15 @@ Quando e onde são as aulas, quando há atendimento e quem dá a cadeira. Tudo v
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 
@@ -6673,7 +6710,15 @@ Os slides e o código de cada aula, o programa da cadeira, a bibliografia e as l
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 
@@ -6783,7 +6828,15 @@ As respostas às dúvidas de todos os semestres e a quem perguntar o resto.
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 
@@ -9779,10 +9832,20 @@ Não são tokens: nenhum CSS do kit as usa e o `uc-kit.css` não as define. Um t
 | Propriedade | Valores | Para quê e onde |
 | --- | --- | --- |
 | `--uc-layout` | um nome de layout | Layout de `<uc-page>` quando nem a página nem o `course.js` escolhem um. O atributo `layout` e o `layout` do `course.js` ganham-lhe. |
+| `--uc-hero-align` | `start` ou `center` | Alinhamento de `<uc-hero>` sem o atributo `align`. O tema Editorial usa `center`. |
+| `--uc-weeks-view` | `full` ou `compact` | Vista de `<uc-weeks>` sem o atributo `view`. O tema Manual usa `compact`. |
+| `--uc-team-view` | `cards` ou `table` | Vista de `<uc-team>` sem o atributo `view`. O tema Editorial usa `table`. |
 
 ```css
 /* theme.css */
 :root { --uc-layout: top; }
+```
+
+O atributo do componente ganha sempre: num tema com `--uc-team-view: table`, um `<uc-team view="cards">` mostra cartões. Um valor que não esteja na lista conta como o valor por omissão do componente.
+
+```css
+/* theme.css: por cima do tema Manual, as semanas voltam à vista completa */
+:root { --uc-weeks-view: full; }
 ```
 
 ## Tokens locais
@@ -13646,6 +13709,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-hero__code` | O código do curso. |
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
+| `.uc-hero--center` | O bloco centrado (`align="center"` ou `--uc-hero-align: center` no tema). |
 
 ### [`<uc-tiles>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md)
 
@@ -14699,6 +14763,13 @@ moves focus to it. Matching rules: `<uc-search>`. Stable classes: the
 Course heading block: code, title (as `<h1>`) and tagline from the
 configuration. Children, if any, are appended below the tagline.
 
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `align` | `start` \| `center` | the theme's `--uc-hero-align` (5), else `start` |
+
+Centred, the element has the class `.uc-hero--center` (text and children
+centred).
+
 #### `<uc-tiles>`
 
 Mosaic for the home page: a list (`ul.uc-tiles__list`) with one card per page
@@ -14814,7 +14885,7 @@ after the last week.
 
 | Attribute | Values | Default |
 | --- | --- | --- |
-| `view` | `full` \| `compact` | `full` |
+| `view` | `full` \| `compact` | the theme's `--uc-weeks-view` (5), else `full` |
 | `no-breaks` | boolean | breaks are inserted |
 | `no-deadlines` | boolean | deadlines are shown inside their week |
 | `kind` | space-separated kinds | all kinds; e.g. `kind="assessment exam"` leaves quizzes to the weeks' own rows |
@@ -14943,7 +15014,7 @@ Renders `UC_COURSE.team`.
 
 | Attribute | Values | Default |
 | --- | --- | --- |
-| `view` | `cards` \| `table` | `cards` |
+| `view` | `cards` \| `table` | the theme's `--uc-team-view` (5), else `cards` |
 | `role` | space-separated roles | all |
 | `heading` | text \| `none` | localised "Teaching team" |
 | `heading-level` | `2`–`6` | `2` |
@@ -15554,6 +15625,13 @@ JavaScript reads each one once, after the themes have loaded (8.3).
 | Token | Values | Use |
 | --- | --- | --- |
 | `--uc-layout` | a layout name | Layout of `<uc-page>` when neither the page nor `course.js` names one (8.3). |
+| `--uc-hero-align` | `start` \| `center` | Alignment of `<uc-hero>` without `align`. |
+| `--uc-weeks-view` | `full` \| `compact` | View of `<uc-weeks>` without `view`. |
+| `--uc-team-view` | `cards` \| `table` | View of `<uc-team>` without `view`. |
+
+A component's attribute always wins over a choice property:
+`<uc-team view="cards">` shows cards in a theme that declares
+`--uc-team-view: table`. Any other value means the default.
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the
@@ -15840,8 +15918,11 @@ layout. Layouts other than `sidebar`, `top` and `full` are files of
 Order of precedence of a page's layout: the `layout` attribute, then
 `layout` in `course.js`, then `--uc-layout` on `:root` (the theme, then the
 site's `theme.css`), then `sidebar`. A value that is not a known layout, or
-whose style sheet failed to load, is skipped with a console warning. The kit
-reads `--uc-layout` once the themes have loaded and shows the page after the
+whose style sheet failed to load, is skipped with a console warning. A
+theme can also choose the default view of a few components with the choice
+properties `--uc-hero-align`, `--uc-weeks-view` and `--uc-team-view`
+(section 5); the component's attribute always wins. The kit
+reads `--uc-layout` and those properties once the themes have loaded and shows the page after the
 layout files have loaded too, within the 300 ms wait of 3.1.
 
 A list in `theme` holds at most one theme with a layout. The token themes

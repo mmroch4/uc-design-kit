@@ -11,3 +11,5 @@
   font-size: var(--uc-font-size-lg);
   color: var(--uc-color-text-secondary);
 }
+/* align="center", or --uc-hero-align: center in the theme. */
+:where(.uc-hero--center) { align-items: center; text-align: center; }

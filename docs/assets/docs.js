@@ -133,7 +133,7 @@
 
   const THEME_KEY = "uc-docs:section-theme";
 
-  /** Adds ?theme=name to a demo URL (docs/demos/demo.js reads it), or removes it. */
+  /** Adds ?theme=name to a demo URL (docs/demos/course.js reads it), or removes it. */
   function withTheme(url, theme) {
     const target = new URL(url, location.href);
     if (theme) target.searchParams.set("theme", theme);

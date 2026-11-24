@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>theme variants · test</title>
+  <!--
+    Choice properties (docs/architecture/themes-layouts.md 5.3): the theme
+    "handbook", named in course.js and loaded after the components were first
+    drawn, brings --uc-weeks-view: compact; the <style> below stands for the
+    site's theme.css with the other two. An attribute always wins.
+  -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <style>:root { --uc-team-view: table; --uc-hero-align: center; }</style>
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.theme = "handbook";</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../layouts/check.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks" layout="full">
+    <uc-hero align="start"></uc-hero>
+
+    <uc-weeks id="themed" no-deadlines>
+      <uc-week n="9" title="Árvores binárias" title-en="Binary trees"></uc-week>
+      <uc-week n="10" title="Árvores binárias de pesquisa" title-en="Binary search trees"></uc-week>
+    </uc-weeks>
+    <uc-weeks id="own" view="full" no-deadlines no-breaks>
+      <uc-week n="11" title="Filas de prioridade" title-en="Priority queues"></uc-week>
+    </uc-weeks>
+
+    <uc-team id="team-themed" heading="Equipa (tabela do tema)"></uc-team>
+    <uc-team id="team-own" view="cards" heading="Equipa (cartões do atributo)"></uc-team>
+
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const hero = document.querySelector("uc-hero");
+      const themed = document.getElementById("themed");
+      const own = document.getElementById("own");
+      test("the choice properties are read", () => equal(["weeks-view", "team-view", "hero-align"].map(UC.internal.themeValue), ["compact", "table", "center"]));
+      test("weeks: the theme's view, drawn again once the theme loaded", () => equal([themed.querySelectorAll(".uc-weeks__table").length, Array.from(themed.querySelectorAll("uc-week"), (week) => week.hidden)], [1, [true, true]]));
+      test("weeks: #week-<n> is the table row, not the hidden week", () => equal([document.getElementById("week-9").localName, document.getElementById("week-10").localName, document.querySelectorAll("[id='week-9']").length], ["tr", "tr", 1]));
+      test("weeks: view=\"full\" wins over the theme", () => equal([own.querySelectorAll(".uc-weeks__table").length, own.querySelector("uc-week").hidden, document.getElementById("week-11").localName], [0, false, "uc-week"]));
+      test("team: the theme's table; view=\"cards\" wins", () => equal([Boolean(document.querySelector("#team-themed table")), Boolean(document.querySelector("#team-own table"))], [true, false]));
+      test("hero: align=\"start\" wins over --uc-hero-align", () => equal([hero.classList.contains("uc-hero--center"), getComputedStyle(hero).textAlign], [false, "start"]));
+      test("hero: without align, the theme centres it", () => {
+        hero.removeAttribute("align");
+        hero.render();
+        equal([hero.classList.contains("uc-hero--center"), getComputedStyle(hero).textAlign], [true, "center"]);
+        hero.setAttribute("align", "start");
+        hero.render();
+      });
+    }));
+  </script>
+</body>
+</html>

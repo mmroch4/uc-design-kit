@@ -6,7 +6,15 @@ Como se calcula a nota, quando e onde são as provas e as regras, prontos a cola
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 
