@@ -83,7 +83,7 @@ async function newContext(browser, origin, root) {
  * the machine (CI and a laptop measure text differently): the Tab stop, role
  * and label of a table or <pre> while it overflows (core/tables.js), the Tab
  * stop of a read-only <uc-code> that overflows, and the "Nesta página" link
- * of the section in view (<uc-guide>). Runs in the page; returns whether it
+ * of the section in view (<uc-guide>, and the layout "docs"). Runs in the page; returns whether it
  * removed anything.
  */
 function forgetLayout() {
@@ -97,7 +97,7 @@ function forgetLayout() {
     found = true;
     scroller.removeAttribute("tabindex");
   }
-  for (const link of document.querySelectorAll(".uc-guide__toc-link[aria-current]")) {
+  for (const link of document.querySelectorAll(".uc-guide__toc-link[aria-current], .uc-toc__link[aria-current]")) {
     found = true;
     link.removeAttribute("aria-current");
   }
@@ -146,6 +146,10 @@ async function capture(browser, key, origin, root) {
       await page.waitForFunction(() => document.documentElement.dataset.compat, null, { timeout: 10000 }).catch(() => {});
     }
     await page.waitForLoadState("networkidle").catch(() => {});
+    // Layout and theme test pages run their checks after the page shows (tests/pages/layouts/check.js).
+    await page
+      .waitForFunction(() => !document.querySelector('script[src$="layouts/check.js"]') || document.documentElement.dataset.layoutTests, null, { timeout: 5000 })
+      .catch(() => {});
     // Widgets build when they come near the screen (widgets-api.md 2.4) and
     // every widget builds before printing: "beforeprint" builds them all, so
     // the record does not depend on how far the page scrolled or how fast.

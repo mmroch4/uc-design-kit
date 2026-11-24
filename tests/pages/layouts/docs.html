@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout docs (attribute) · test</title>
+  <!-- layout="docs" without a theme: the kit adds layouts/docs.css, lists the page's h2/h3 in .uc-toc and moves the guide's progress there. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page layout="docs" current="weeks">
+    <uc-guide week="3">
+      <h1>Aula 3 · Introdução a classes</h1>
+      <section class="uc-section" aria-labelledby="submeter">
+        <h2 id="submeter">Exercícios para submissão</h2>
+        <p class="uc-prose">Contam para a nota dos exercícios das aulas.</p>
+        <h3 id="problemas">Problemas da aula 3</h3>
+        <p class="uc-prose">Três problemas no Mooshak.</p>
+      </section>
+      <section class="uc-section" aria-labelledby="classes">
+        <h2 id="classes">1. Introdução às classes</h2>
+        <h3 lang="en" id="english-only">Only in English</h3>
+        <uc-exercise id="ponto" title="Classe Ponto" level="easy">
+          <p>Escreve uma classe <code>Point</code> com dois campos inteiros.</p>
+        </uc-exercise>
+        <uc-exercise id="distancia" title="Distância" level="easy">
+          <p>Acrescenta o método <code>distance</code>.</p>
+        </uc-exercise>
+      </section>
+      <section class="uc-section" aria-labelledby="geometricos">
+        <h2 id="geometricos">2. Objetos geométricos</h2>
+        <p class="uc-prose" style="min-height: 120vh">Retângulos e círculos.</p>
+      </section>
+      <section class="uc-section" aria-labelledby="notas">
+        <h2 id="notas" data-nav="off">Notas do professor</h2>
+        <p class="uc-prose" style="min-height: 120vh">Fora do índice.</p>
+      </section>
+    </uc-guide>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks" data-nav="off">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const guide = page.querySelector("uc-guide");
+      const wide = !matchMedia("(max-width: 1200px)").matches;
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      const links = () => Array.from(page.querySelectorAll(".uc-toc__link"), (link) => link.getAttribute("href"));
+      test("the layout comes from the attribute", () => equal(UC.internal.layouts.resolve(page), "docs"));
+      test("its class", () => equal(Array.from(page.classList).filter((name) => /^uc-page--(?!toc-open)/.test(name)), ["uc-page--docs"]));
+      test("its style sheet is added after the kit", () => equal(sheets(), ["uc-kit.css", "layouts/docs.css"]));
+      test("shell: navigation, then the toc column, then main", () => equal(Array.from(page.querySelector(".uc-shell").children, (node) => node.className), ["uc-sidebar", "uc-toc", "uc-main"]));
+      test("the toc lists the h2/h3 with an id, without data-nav=off and other languages", () => equal(links(), ["#submeter", "#problemas", "#classes", "#geometricos"]));
+      test("h3 entries are sub-items", () => equal(Array.from(page.querySelectorAll(".uc-toc__item--sub a"), (link) => link.getAttribute("href")), ["#problemas"]));
+      test("the toc is a nav named \"Nesta página\"", () => {
+        const nav = page.querySelector("nav.uc-toc__nav");
+        equal([nav.id, document.getElementById(nav.getAttribute("aria-labelledby")).textContent, page.querySelector(".uc-toc-toggle").getAttribute("aria-controls") === nav.id], [nav.id, "Nesta página", true]);
+      });
+      test("the button counts the sections", () => equal(page.querySelector(".uc-toc-toggle").textContent, "Nesta página· 4 secções"));
+      test("the guide's progress is at the top of the column, the guide has no toc of its own", () =>
+        equal([page.querySelector(".uc-toc").firstElementChild.className, guide.querySelector(".uc-guide__toc"), guide.classList.contains("uc-guide--no-aside"), page.querySelector(".uc-guide__progress-text").textContent], ["uc-guide__progress", null, true, "0 de 2 exercícios feitos"]));
+      test("the progress follows the exercises", () => {
+        guide.querySelector("#ponto").setDone(true);
+        const count = page.querySelector(".uc-toc .uc-guide__progress-count").textContent;
+        guide.querySelector("#ponto").setDone(false);
+        equal(count, "1");
+      });
+      if (wide) {
+        test("wide: three columns, the list open, no button", () =>
+          equal([getComputedStyle(page.querySelector(".uc-shell")).gridTemplateColumns.split(" ").length, getComputedStyle(page.querySelector(".uc-toc-toggle")).display, getComputedStyle(page.querySelector(".uc-toc__nav")).display], [3, "none", "block"]));
+      } else {
+        test("narrow: the button opens and closes the list", () => {
+          const toggle = page.querySelector(".uc-toc-toggle");
+          const nav = page.querySelector(".uc-toc__nav");
+          const before = [toggle.getAttribute("aria-expanded"), getComputedStyle(nav).display];
+          toggle.click();
+          const open = [toggle.getAttribute("aria-expanded"), getComputedStyle(nav).display];
+          toggle.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+          equal([before, open, toggle.getAttribute("aria-expanded"), getComputedStyle(nav).display], [["false", "none"], ["true", "block"], "false", "none"]);
+        });
+      }
+      test("the section in view is marked with aria-current=location", () => {
+        document.getElementById("geometricos").scrollIntoView();
+        page.spy.update();
+        const current = Array.from(page.querySelectorAll('.uc-toc__link[aria-current="location"]'), (link) => link.getAttribute("href"));
+        window.scrollTo(0, 0);
+        page.spy.update();
+        equal(current, ["#geometricos"]);
+      });
+      // Drawn with another layout the guide gets its own toc and progress back; then docs again.
+      page.setAttribute("layout", "sidebar");
+      page.render();
+      page.updateToc();
+      test("with another layout the guide has its toc and progress again", () =>
+        equal([page.querySelector(".uc-toc"), Boolean(guide.querySelector(".uc-guide__aside > .uc-guide__progress")), Boolean(guide.querySelector(".uc-guide__aside > .uc-guide__toc"))], [null, true, true]));
+      page.setAttribute("layout", "docs");
+      page.render();
+      page.updateToc();
+      test("and the column again", () => equal([links().length, page.querySelector(".uc-toc").firstElementChild.className, guide.querySelector(".uc-guide__toc")], [4, "uc-guide__progress", null]));
+    }));
+  </script>
+</body>
+</html>

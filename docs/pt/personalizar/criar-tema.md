@@ -47,6 +47,7 @@ Os temas que escolhem o layout substituem o `classic` (não se juntam a ele) e t
 | --- | --- | --- |
 | `classic` (Clássico) | `sidebar` | Nada: é o aspeto do kit e o tema do modelo. |
 | `institutional` (Institucional) | [`banner`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional) | Cabeçalho, apresentação da cadeira e separadores numa faixa da cor do curso, cantos mais retos e os títulos das secções sublinhados. Ar de página oficial da faculdade. |
+| `handbook` (Manual) | [`docs`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas) | Navegação, conteúdo e "Nesta página" em três colunas, até 1440 px, com a letra e os espaços do `compact`. Para sites com guiões e apontamentos longos. |
 
 A mesma semana e o mesmo cartão, primeiro com o aspeto do kit e depois com cada tema:
 

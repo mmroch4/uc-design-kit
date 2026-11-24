@@ -36,10 +36,12 @@ window.UC_COURSE = {
   // theme: ["classic", "serif"],          // letra com serifa
   // theme: ["classic", "high-contrast"],  // mais contraste, para projetar
   // theme: "institutional",              // Institucional: faixa da cor do curso
+  // theme: "handbook",                   // Manual: três colunas com "Nesta página"
 
   // Navegação: "sidebar" (barra lateral, a do tema "classic"), "top" (barra
   // por baixo do cabeçalho), "banner" (faixa da cor do curso, a do tema
-  // "institutional") ou "full" (sem navegação). Se estiver aqui, ganha
+  // "institutional"), "docs" (três colunas com "Nesta página", a do tema
+  // "handbook") ou "full" (sem navegação). Se estiver aqui, ganha
   // ao layout do tema; uma página pode mudar com <uc-page layout="…">.
   // layout: "top",
 

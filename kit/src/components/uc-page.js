@@ -6,7 +6,7 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, uid, externalMark } = UC.internal;
+  const { h, icon, uid, externalMark, isHiddenByLanguage, visibleText, scrollspy } = UC.internal;
   const MOBILE_QUERY = "(max-width: 960px)";
 
   /** Resolves a page's href for the active language. */
@@ -89,6 +89,7 @@
       this.main.append(...Array.from(this.childNodes));
       this.navId = uid("uc-nav");
       this.navOpen = false;
+      this.tocOpen = false;
       this.mediaQuery = window.matchMedia ? window.matchMedia(MOBILE_QUERY) : null;
       this.onKeydown = (event) => {
         if (event.key === "Escape" && this.editionsOpen) {
@@ -97,6 +98,9 @@
         } else if (event.key === "Escape" && this.navOpen) {
           this.setNavOpen(false);
           this.querySelector(".uc-nav-toggle")?.focus();
+        } else if (event.key === "Escape" && this.tocOpen) {
+          this.setTocOpen(false);
+          this.querySelector(".uc-toc-toggle")?.focus();
         }
       };
       this.addEventListener("keydown", this.onKeydown);
@@ -126,6 +130,9 @@
       const banner = layout === "banner";
       const hero = this.placeHero(banner);
       const header = this.renderHeader();
+      // docs: an "On this page" column (.uc-toc) unless toc="off"; filled once the components have rendered.
+      const wasDocs = Boolean(this.tocColumn);
+      this.tocColumn = layout === "docs" && this.getAttribute("toc") !== "off" ? this.renderTocColumn() : null;
 
       const parts = [
         h("a", { class: "uc-skip-link", href: "#uc-main" }, this.t("a11y.skipToContent")),
@@ -134,11 +141,16 @@
           ? h("div", { class: "uc-banner" }, header, h("div", { class: "uc-banner__inner" }, hero ? h("div", { class: "uc-banner__hero" }, hero) : null, navigation))
           : header,
         top ? h("div", { class: "uc-topnav" }, navigation) : null,
-        h("div", { class: "uc-shell" }, top || banner ? null : navigation, this.main),
+        h("div", { class: "uc-shell" }, top || banner ? null : navigation, this.tocColumn, this.main),
         this.renderFooter(),
       ];
       this.replaceChildren(...parts.filter(Boolean));
       this.setNavOpen(this.navOpen);
+      if (this.tocColumn || wasDocs) {
+        this.setTocOpen(this.tocOpen);
+        // After the components inside have rendered (they are defined in the same task).
+        queueMicrotask(() => this.updateToc());
+      }
       if (editions) this.renderEditions();
       if (restoreFocus) this.querySelector(".uc-lang-switch__button")?.focus();
     }
@@ -162,6 +174,60 @@
         this.hero.before(this.heroMark);
       }
       return this.hero;
+    }
+
+    /** Layout "docs": the progress of a <uc-guide> (moved here by the guide), the phone toggle and the "On this page" list. */
+    renderTocColumn() {
+      // Created on first use, so pages of other layouts keep the ids they had.
+      this.tocId = this.tocId || uid("uc-toc");
+      const labelId = `${this.tocId}-label`;
+      return h(
+        "div",
+        { class: "uc-toc" },
+        h(
+          "button",
+          { type: "button", class: "uc-toc-toggle", "aria-controls": this.tocId, "aria-expanded": "false", onClick: () => this.setTocOpen(!this.tocOpen) },
+          h("span", { class: "uc-toc-toggle__label" }, h("span", {}, this.t("guide.onThisPage")), h("span", { class: "uc-toc-toggle__count" })),
+          h("span", { class: "uc-toc-toggle__chevron" }, icon("chevronDown")),
+        ),
+        h("nav", { class: "uc-toc__nav", id: this.tocId, "aria-labelledby": labelId }, h("p", { class: "uc-toc__label", id: labelId }, this.t("guide.onThisPage")), h("ol", { class: "uc-toc__list" })),
+      );
+    }
+
+    /**
+     * Fills the .uc-toc list with the <h2>/<h3> of <main> that have an id
+     * (core/anchors.js gives one to each), without those marked
+     * data-nav="off" or hidden; shown with 2 or more. Marks the section in
+     * view with aria-current="location". Also draws the guides again, so their
+     * progress moves into (or out of) the column.
+     */
+    updateToc() {
+      if (this.spy) this.spy.disconnect();
+      this.spy = null;
+      this.main.querySelectorAll("uc-guide").forEach((guide) => guide.__ucSetupDone && guide.render());
+      const column = this.tocColumn;
+      if (!column || !column.isConnected) return;
+      const headings = Array.from(this.main.querySelectorAll("h2[id], h3[id]")).filter(
+        (heading) => !heading.closest('[data-nav="off"], [hidden], dialog, template') && !isHiddenByLanguage(heading) && visibleText(heading),
+      );
+      const list = column.querySelector(".uc-toc__list");
+      list.replaceChildren(
+        ...headings.map((heading) =>
+          h(
+            "li",
+            { class: heading.localName === "h3" ? "uc-toc__item uc-toc__item--sub" : "uc-toc__item" },
+            h("a", { class: "uc-toc__link", href: `#${heading.id}`, onClick: (event) => {
+              scrollspy.goTo(event, heading);
+              this.setTocOpen(false);
+            } }, visibleText(heading)),
+          ),
+        ),
+      );
+      column.querySelector(".uc-toc-toggle__count").textContent = `· ${this.t("toc.sections", { count: headings.length })}`;
+      const shown = headings.length >= 2;
+      column.querySelector(".uc-toc-toggle").hidden = !shown;
+      column.querySelector(".uc-toc__nav").hidden = !shown;
+      if (shown) this.spy = scrollspy(headings, (heading) => scrollspy.markCurrent(list.querySelectorAll(".uc-toc__link"), heading));
     }
 
     renderHeader() {
@@ -384,6 +450,13 @@
       if (!box) return;
       box.querySelector("button").setAttribute("aria-expanded", String(this.editionsOpen));
       box.querySelector("ul").hidden = !this.editionsOpen;
+    }
+
+    setTocOpen(open) {
+      this.tocOpen = open;
+      const toggle = this.querySelector(".uc-toc-toggle");
+      if (toggle) toggle.setAttribute("aria-expanded", String(open));
+      this.classList.toggle("uc-page--toc-open", open);
     }
 
     setNavOpen(open) {

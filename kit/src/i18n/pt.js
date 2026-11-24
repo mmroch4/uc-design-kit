@@ -132,6 +132,9 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     officeHours: "Atendimento",
     roles: { coordinator: "Regente", lecturer: "Docente", assistant: "Práticas" },
   },
+  toc: {
+    sections: "{count} secções",
+  },
   guide: {
     onThisPage: "Nesta página",
     progress: "{done} de {total} exercícios feitos",

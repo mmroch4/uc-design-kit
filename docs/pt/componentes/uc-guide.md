@@ -89,6 +89,8 @@ Sem `week`, o caminho fica "Semanas / título do guião". Se o `course.js` não 
 
 ### Sem índice
 
+Numa página com o layout [`docs`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas) (tema Manual), o índice é o da página, na coluna da direita, e o progresso passa para o topo dessa coluna; o guião ocupa toda a largura do conteúdo.
+
 Com `no-toc`, o índice das secções não é gerado e a coluna da direita fica só com o progresso. Convém num guião curto, com uma ou duas secções, em que o índice não ajuda. Se também não houver exercícios, o guião ocupa toda a largura.
 
 ```html

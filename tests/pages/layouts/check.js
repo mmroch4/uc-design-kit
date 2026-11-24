@@ -8,7 +8,20 @@
   "use strict";
   window.layoutTests = function (run) {
     // After the kit drew the page (uc:ready), as core/bootstrap.js does.
-    const go = () => UC.internal.layoutsReady().then(() => {
+    // Every style sheet applied: under load a <link> added by the kit may still be parsing.
+    const sheetsApplied = () => new Promise((resolve) => {
+      const started = Date.now();
+      const check = () => {
+        const pending = Array.from(document.querySelectorAll("link[rel~=stylesheet]")).some((link) => !link.sheet);
+        if (!pending || Date.now() - started > 3000) resolve();
+        else setTimeout(check, 20);
+      };
+      check();
+    });
+    // Then two frames: with prefers-reduced-motion (scripts/check-dom.mjs) uc-kit.css makes every
+    // change a 0.01 ms transition, and a style read in the same frame gets its starting value.
+    const frames = () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(resolve, 20))));
+    const go = () => UC.internal.layoutsReady().then(sheetsApplied).then(frames).then(() => {
       const results = document.getElementById("results");
       const test = (name, fn) => {
         let detail = "";
@@ -28,6 +41,8 @@
         if (a !== e) throw new Error(`expected ${e}, got ${a}`);
       };
       run(test, equal);
+      // scripts/check-dom.mjs waits for this, so the record never catches a page halfway through its checks.
+      document.documentElement.dataset.layoutTests = "done";
     });
     if (document.documentElement.classList.contains("uc-ready")) go();
     else document.addEventListener("uc:ready", go);

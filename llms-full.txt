@@ -499,7 +499,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `Minutes` | Um número inteiro de minutos. | `120` (duas horas) |
 | `Weekday` | Dia da semana em número: `1` = segunda-feira … `7` = domingo (como em `semester.teachingDays`). | `2` (terça-feira) |
 | `HTMLText` | Um `LocalizedText` que pode ter HTML simples (links, `<strong>`, `<em>`, `<code>`). É inserido como HTML: as aspas dentro do texto escrevem-se `\"`. | `"Ver <a href=\"avaliacao.html\">regras</a>"` |
-| `ThemeName` | O nome de um tema do kit: `"classic"`, `"institutional"`, `"compact"`, `"serif"` ou `"high-contrast"` (ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos)). | `"compact"` |
+| `ThemeName` | O nome de um tema do kit: `"classic"`, `"institutional"`, `"handbook"`, `"compact"`, `"serif"` ou `"high-contrast"` (ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos)). | `"compact"` |
 
 ## Campos
 
@@ -513,7 +513,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `edition`texto | Recomendado | — | Ano letivo ao lado do título, por exemplo `"2025/26"`. |
 | `institution``{ name, url? }` | Opcional | — | Departamento ou faculdade, no cabeçalho. |
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
-| `theme``ThemeName` ou lista | Opcional | como `"classic"` | Tema do kit. `"classic"` é o aspeto do kit, vem no modelo e não descarrega nada. `"institutional"` (Institucional) põe o cabeçalho, a apresentação e a navegação numa faixa da cor do curso. `"compact"`, `"serif"` e `"high-contrast"` só mudam tokens e juntam-se a ele numa lista (`["classic", "compact"]`). Uma lista só pode ter um tema que escolhe o layout: se tiver dois, ganha o último e a consola avisa. O `theme.css` do site continua a ganhar. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). |
+| `theme``ThemeName` ou lista | Opcional | como `"classic"` | Tema do kit. `"classic"` é o aspeto do kit, vem no modelo e não descarrega nada. `"institutional"` (Institucional) põe o cabeçalho, a apresentação e a navegação numa faixa da cor do curso. `"handbook"` (Manual) tem três colunas, com "Nesta página" à direita. `"compact"`, `"serif"` e `"high-contrast"` só mudam tokens e juntam-se a ele numa lista (`["classic", "compact"]`). Uma lista só pode ter um tema que escolhe o layout: se tiver dois, ganha o último e a consola avisa. O `theme.css` do site continua a ganhar. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). |
 | `logo`URL, SVG, objeto ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho: um caminho relativo ao `course.js`, um `"<svg …>"` escrito no próprio campo ou `{ src, alt }`; `null` esconde-a. Ver [Logótipo](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#logotipo). |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
 | `source``{ author, url? }` | Opcional | — | De onde vem o conteúdo, num site copiado de outro: "Conteúdo de `author` (`HTMLText`), a partir do site original" no rodapé, com ligação a `url` ou ao [`source` da página](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#nota-de-origem). |
@@ -540,7 +540,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | Campo e tipo | Necessário | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `pages`lista | Recomendado | `["home"]` | Páginas da navegação, por ordem. Ver [Páginas](#paginas). |
-| `layout`texto | Opcional | o do tema, senão `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho), `"banner"` (faixa da cor do curso, ver [Faixa institucional](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional)), `"full"` (sem navegação) ou um layout próprio do site (`UC.registerLayout`). Ganha ao layout do tema ([`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), e uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). Um nome que o kit não conhece é ignorado com um aviso na consola. |
+| `layout`texto | Opcional | o do tema, senão `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho), `"banner"` (faixa da cor do curso, ver [Faixa institucional](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional)), `"docs"` (três colunas com "Nesta página", ver [Três colunas](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas)), `"full"` (sem navegação) ou um layout próprio do site (`UC.registerLayout`). Ganha ao layout do tema ([`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), e uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). Um nome que o kit não conhece é ignorado com um aviso na consola. |
 | `platforms``Platform[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação (ver [Plataformas](#plataformas)). A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
 
 ### Equipa, horário, prazos e avisos
@@ -1630,6 +1630,43 @@ Exemplo (página com a faixa institucional), [demonstração ao vivo](https://uc
 </uc-page>
 ```
 
+### Três colunas com "Nesta página"
+
+`layout="docs"` tem três colunas: a navegação, o conteúdo e, à direita, "Nesta página", com os títulos `h2` e `h3` da página. Ao percorrer a página, a secção à vista fica marcada. Serve para sites com guiões e apontamentos longos. A lista só aparece quando a página tem duas ou mais secções; um título com `data-nav="off"` (ou dentro de um elemento com ele) fica de fora, e `toc="off"` tira a coluna a uma página.
+
+Num guião ([`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md)), o progresso dos exercícios passa para o topo da coluna da direita, por cima da lista, e o guião deixa de ter o seu próprio índice. Abaixo de 1200 px a lista vira um botão "Nesta página · N secções" por cima do conteúdo, que a abre como o "Menu"; no telemóvel fica por baixo do "Menu". Na impressão, a coluna não aparece.
+
+É o layout do tema [Manual](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos) (`theme: "handbook"`), mas funciona sem ele. O estilo está em `kit/v1/layouts/docs.css`, descarregado só quando uma página o usa. A largura máxima é a do conteúdo mais 240 px (1440 px sem tema).
+
+Exemplo (guião com a coluna Nesta página), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/docs.html):
+
+```html
+<uc-page layout="docs" current="weeks">
+  <uc-guide week="3">
+    <h1>Aula 3 · Introdução a classes</h1>
+    <section class="uc-section" aria-labelledby="classes">
+      <h2 id="classes">1. Introdução às classes</h2>
+      <p>Os títulos da página aparecem na coluna da direita, e a secção à vista fica marcada.</p>
+      <uc-exercise id="demo-ponto" title="Classe Ponto" level="easy">
+        <p>Escreve uma classe <code>Point</code> com dois campos inteiros.</p>
+      </uc-exercise>
+    </section>
+    <section class="uc-section" aria-labelledby="geometricos">
+      <h2 id="geometricos">2. Objetos geométricos</h2>
+      <h3 id="retangulos">Retângulos</h3>
+      <p>Um <code>h3</code> fica como subentrada.</p>
+      <uc-exercise id="demo-area" title="Área do retângulo" level="medium">
+        <p>Acrescenta o método <code>area</code>.</p>
+      </uc-exercise>
+    </section>
+    <section class="uc-section" aria-labelledby="extra">
+      <h2 id="extra">3. Exercícios extra</h2>
+      <p>O progresso dos exercícios fica no topo da coluna da direita.</p>
+    </section>
+  </uc-guide>
+</uc-page>
+```
+
 ### Mudar de língua
 
 Quando `languages` tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com `?lang=en`). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com `lang` mostra só a língua ativa.
@@ -1715,7 +1752,8 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar`, `top`, `full`, `banner` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `layout` | `sidebar`, `top`, `full`, `banner`, `docs` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `toc` | `off` | — | Com o layout `docs`, tira a coluna "Nesta página" desta página. Ver [Três colunas](#tres-colunas). |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
@@ -1806,6 +1844,8 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-topnav` | Com `layout="top"`, a faixa por baixo do cabeçalho que contém a `.uc-sidebar`. |
 | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | Com `layout="banner"`: a página, a faixa da cor do curso (com o `.uc-header` dentro), a sua parte centrada com a apresentação e a `.uc-sidebar`, e o lugar do `<uc-hero>`. |
+| `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc-toggle__label`, `.uc-toc-toggle__count`, `.uc-toc-toggle__chevron`, `.uc-page--toc-open` | Com `layout="docs"`: a página, a coluna "Nesta página" (com o progresso de um `<uc-guide>` no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta. |
+| `.uc-toc__nav`, `.uc-toc__label`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__item--sub`, `.uc-toc__link` | O `<nav>` "Nesta página", o seu rótulo, a lista, cada entrada (`--sub` para um `h3`) e a ligação (a da secção à vista tem `aria-current="location"`). |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
@@ -4276,6 +4316,8 @@ Exemplo (caminho de navegação de um guião da semana 9), [demonstração ao vi
 Sem `week`, o caminho fica "Semanas / título do guião". Se o `course.js` não tiver a página `weeks` nem o guião tiver `week`, não há caminho de navegação.
 
 ### Sem índice
+
+Numa página com o layout [`docs`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas) (tema Manual), o índice é o da página, na coluna da direita, e o progresso passa para o topo dessa coluna; o guião ocupa toda a largura do conteúdo.
 
 Com `no-toc`, o índice das secções não é gerado e a coluna da direita fica só com o progresso. Convém num guião curto, com uma ou duas secções, em que o índice não ajuda. Se também não houver exercícios, o guião ocupa toda a largura.
 
@@ -10621,6 +10663,7 @@ Os temas que escolhem o layout substituem o `classic` (não se juntam a ele) e t
 | --- | --- | --- |
 | `classic` (Clássico) | `sidebar` | Nada: é o aspeto do kit e o tema do modelo. |
 | `institutional` (Institucional) | [`banner`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional) | Cabeçalho, apresentação da cadeira e separadores numa faixa da cor do curso, cantos mais retos e os títulos das secções sublinhados. Ar de página oficial da faculdade. |
+| `handbook` (Manual) | [`docs`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas) | Navegação, conteúdo e "Nesta página" em três colunas, até 1440 px, com a letra e os espaços do `compact`. Para sites com guiões e apontamentos longos. |
 
 A mesma semana e o mesmo cartão, primeiro com o aspeto do kit e depois com cada tema:
 
@@ -13332,6 +13375,8 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-topnav` | Com `layout="top"`, a faixa por baixo do cabeçalho que contém a `.uc-sidebar`. |
 | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | Com `layout="banner"`: a página, a faixa da cor do curso (com o `.uc-header` dentro), a sua parte centrada com a apresentação e a `.uc-sidebar`, e o lugar do `<uc-hero>`. |
+| `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc-toggle__label`, `.uc-toc-toggle__count`, `.uc-toc-toggle__chevron`, `.uc-page--toc-open` | Com `layout="docs"`: a página, a coluna "Nesta página" (com o progresso de um `<uc-guide>` no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta. |
+| `.uc-toc__nav`, `.uc-toc__label`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__item--sub`, `.uc-toc__link` | O `<nav>` "Nesta página", o seu rótulo, a lista, cada entrada (`--sub` para um `h3`) e a ligação (a da secção à vista tem `aria-current="location"`). |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
@@ -14065,7 +14110,7 @@ pages, which the first run of the script replaces.
 | `Weekday` | ISO weekday number: `1` = Monday … `7` = Sunday (as `semester.teachingDays`). |
 | `Minutes` | A whole number of minutes, e.g. `120` for two hours. |
 | `HTMLText` | A `LocalizedText` whose values may contain inline HTML (links, `<strong>`, `<em>`, `<code>`). It is written by the teacher and inserted as HTML. |
-| `ThemeName` | The name of a ready-made theme in `kit/v1/themes/`: a theme with a layout (8.3), `"classic"` or `"institutional"`, or a token theme (8.1), `"compact"`, `"serif"` or `"high-contrast"`. |
+| `ThemeName` | The name of a ready-made theme in `kit/v1/themes/`: a theme with a layout (8.3), `"classic"`, `"institutional"` or `"handbook"`, or a token theme (8.1), `"compact"`, `"serif"` or `"high-contrast"`. |
 
 ### 2.2 Fields
 
@@ -14078,7 +14123,7 @@ pages, which the first run of the script replaces.
 | `languages` | string[] | no | `[<html lang>]` | BCP 47 codes. First is the default. More than one enables the language switch. |
 | `institution` | `{ name, url? }` | no | — | Shown in the header. |
 | `accentColor` | CSS colour | no | `#1D4ED8` | Sets `--uc-color-accent`; soft and strong variants are derived. Must reach 4.5:1 contrast on white. |
-| `theme` | `ThemeName` \| `ThemeName[]` | no | — (as `"classic"`) | Ready-made themes: `"classic"` (8.3; the template sets it), `"institutional"` (8.3), `"compact"`, `"serif"`, `"high-contrast"` (8.1). A list holds at most one theme with a layout (the last one wins, with a console warning) and any token themes. `"classic"` is the kit's own look and downloads nothing. For the others the kit adds `kit/v1/themes/<name>.css` (next to `uc-kit.js`) right after the `uc-kit.css` link, in order, unless the page already links it, and shows the page once they loaded (within the 300 ms wait of 3.1). Unknown names are ignored with a console warning. |
+| `theme` | `ThemeName` \| `ThemeName[]` | no | — (as `"classic"`) | Ready-made themes: `"classic"` (8.3; the template sets it), `"institutional"`, `"handbook"` (8.3), `"compact"`, `"serif"`, `"high-contrast"` (8.1). A list holds at most one theme with a layout (the last one wins, with a console warning) and any token themes. `"classic"` is the kit's own look and downloads nothing. For the others the kit adds `kit/v1/themes/<name>.css` (next to `uc-kit.js`) right after the `uc-kit.css` link, in order, unless the page already links it, and shows the page once they loaded (within the 300 ms wait of 3.1). Unknown names are ignored with a console warning. |
 | `layout` | a layout name (8.3) | no | the theme's, else `"sidebar"` | Default `layout` of every `<uc-page>` (3.1): a page's own attribute wins over it, and it wins over the theme's `--uc-layout` (8.3). Kept as written in `UC.course.layout` (or `null` when missing or not a string, with a warning), since a site layout may be registered later; a name that is not a known layout is skipped with a warning when the page is drawn. |
 | `logo` | URL \| SVG string \| `{ src \| svg, alt? }` \| `null` | no | built-in tree icon | Header mark, shown 28 × 28 px. A string starting with `<` is inline SVG (it inherits the accent colour through `currentColor`; give it a `viewBox`). `alt` (`LocalizedText`) makes the mark an image with that name; without it the mark is decorative (`alt=""` / `aria-hidden`), since the course title is next to it. `null` hides it. |
 | `semester.start` | `ISODate` | for week features | — | First day of classes; week 1 is the calendar week containing it. |
@@ -14313,7 +14358,8 @@ with JavaScript disabled it is shown at once.
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
-| `layout` | `sidebar` \| `top` \| `full` \| `banner` \| a site layout (8.3) | `layout` of `course.js`, else the theme's `--uc-layout`, else `sidebar` | An unknown name is skipped with a warning (the next of those decides). `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). `banner` (file `kit/v1/layouts/banner.css`, added by the kit when needed) puts the header, the first `<uc-hero>` written directly in the page and the navigation as tabs in one band of `--uc-color-accent-strong` (`.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero`); the hero is moved, not copied, so the page keeps one `h1`, and without one the band only has the header and the tabs. Below 960 px the "Menu" button is inside the band. Prints without colour. |
+| `layout` | `sidebar` \| `top` \| `full` \| `banner` \| `docs` \| a site layout (8.3) | `layout` of `course.js`, else the theme's `--uc-layout`, else `sidebar` | An unknown name is skipped with a warning (the next of those decides). `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). `banner` (file `kit/v1/layouts/banner.css`, added by the kit when needed) puts the header, the first `<uc-hero>` written directly in the page and the navigation as tabs in one band of `--uc-color-accent-strong` (`.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero`); the hero is moved, not copied, so the page keeps one `h1`, and without one the band only has the header and the tabs. Below 960 px the "Menu" button is inside the band. Prints without colour. `docs` (file `kit/v1/layouts/docs.css`) has three columns, up to `--uc-content-max` + 240 px: the navigation, the content and "Nesta página" (`.uc-toc`), a `<nav>` listing the `<h2>`/`<h3>` of the page that have an id (every one has, `core/anchors.js`), without those marked `data-nav="off"` (or inside such an element) and those of another language; the one in view has `aria-current="location"`. The list only shows with two or more entries. A `<uc-guide>` in the page puts its progress at the top of that column and makes no list of its own. From 1200 px down the list is a button "Nesta página · N secções" above the content that opens it, like "Menu"; Escape closes it. Prints like `full`. |
+| `toc` | `off` | — | Layout `docs`: no "Nesta página" column on this page (a `<uc-guide>` keeps its own list and progress). |
 | `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
 | `source` | URL | `source.url` of `course.js` | Address of this page on the original site: the link of the footer line "Conteúdo de …, a partir do site original" (2.1, `source`). Ignored when `course.js` has no `source`. |
 | `updated` | `ISODate` \| `auto` | `updated` of `course.js` | Date shown in the footer for this page ("Atualizado a 20 nov 2025"). `auto` uses `document.lastModified`, but only when the server sent a `Last-Modified` header (a value more than 5 s before the page started loading; browsers report "now" otherwise) or the page is opened from `file://`; otherwise the footer shows no date. |
@@ -15494,13 +15540,14 @@ CSS. It changes nothing until a line is uncommented.
 A theme with a layout also chooses the layout of `<uc-page>`: it declares the
 choice property `--uc-layout` (section 5) and `@import`s the file of its
 layout. Layouts other than `sidebar`, `top` and `full` are files of
-`kit/v1/layouts/` (`banner.css`), downloaded only when a page uses them. Full contract:
+`kit/v1/layouts/` (`banner.css`, `docs.css`), downloaded only when a page uses them. Full contract:
 `docs/architecture/themes-layouts.md`.
 
 | Name | Layout | Changes |
 | --- | --- | --- |
 | `classic` | `sidebar` | Nothing: the kit's own look, already in `uc-kit.css`. The default; naming it downloads nothing. |
 | `institutional` | `banner` | Institucional: the header, the course heading and the tabs in one band in the course colour; squarer corners (`--uc-radius-*` 3/4/6 px); the `h2` of the page's sections underlined. |
+| `handbook` | `docs` | Manual: the navigation, the content and "Nesta página"; the type and spacing of `compact`; up to 1440 px; `--uc-weeks-view: compact`. |
 
 Order of precedence of a page's layout: the `layout` attribute, then
 `layout` in `course.js`, then `--uc-layout` on `:root` (the theme, then the
