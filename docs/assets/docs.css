@@ -782,6 +782,25 @@ a.landing-window:hover { border-color: var(--uc-color-text-subtle); }
   padding-bottom: var(--uc-space-5);
   border-bottom: 1px solid var(--uc-color-border);
 }
+/* Layout: a labelled select, as tall as a row of options. */
+.docs-theme-label {
+  display: block;
+  margin-bottom: var(--uc-space-2);
+  color: var(--uc-color-text);
+  font-size: var(--uc-font-size-md);
+  font-weight: 600;
+}
+.docs-theme-select {
+  min-height: var(--uc-target-min);
+  padding: 0 var(--uc-space-3);
+  border: 1px solid var(--uc-color-border);
+  border-radius: var(--uc-radius-md);
+  background: var(--uc-color-surface);
+  color: var(--uc-color-text);
+  font: inherit;
+  font-size: var(--uc-font-size-md);
+}
+.docs-theme-select:focus-visible { outline: var(--uc-focus-ring); outline-offset: 2px; }
 .docs-theme-reset { margin-left: auto; }
 .docs-theme-reset .uc-button { min-width: 96px; }
 

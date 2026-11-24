@@ -28,10 +28,12 @@ window.UC_COURSE = {
   // um '<svg …>' ou null para nenhum. Sem este campo aparece o ícone do kit.
   // logo: "logo.svg",
 
-  // Tema: "classic" é o aspeto do kit (não descarrega nada). Os temas que só
-  // mudam letra e espaços juntam-se numa lista: ["classic", "compact"].
-  // O theme.css do site continua a ganhar sobre o tema.
-  theme: "classic",
+  // Tema: "classic" é o aspeto do kit (não descarrega nada). Para trocar,
+  // comentar esta linha e tirar o comentário de outra. Os temas que só mudam
+  // letra e espaços juntam-se numa lista: ["classic", "compact"].
+  // O theme.css do site continua a ganhar sobre o tema. Os temas lado a lado:
+  // https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.html
+  theme: "classic",                       // Clássico: navegação à esquerda
   // theme: ["classic", "compact"],        // letra mais pequena, menos espaço
   // theme: ["classic", "serif"],          // letra com serifa
   // theme: ["classic", "high-contrast"],  // mais contraste, para projetar

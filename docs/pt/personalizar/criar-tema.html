@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Criar um tema · UC Design Kit</title>
-  <meta name="description" content="Guia passo a passo: cor do curso, temas prontos, theme.css inicial com todos os tokens, personalizador e contraste.">
+  <meta name="description" content="Guia passo a passo: cor do curso, temas prontos, theme.css inicial com todos os tokens, personalizador e contraste; ajustar um tema pronto, mudar o seu layout e criar um tema com layout.">
   <link rel="icon" href="../../../favicon.ico">
   <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
   <link rel="stylesheet" href="../../assets/docs.css">
@@ -139,7 +139,9 @@
         <p class="docs-sidebar__title" id="docs-nav-6">Personalizar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
           <li><a href="index.html">Visão geral</a></li>
+          <li><a href="temas.html">Escolher um tema</a></li>
           <li><a href="criar-tema.html" aria-current="page">Criar um tema</a></li>
+          <li><a href="criar-layout.html">Criar um layout</a></li>
           <li><a href="course-js.html">Nível 0: course.js</a></li>
           <li><a href="tokens.html">Nível 1: tokens</a></li>
           <li><a href="css.html">Nível 2: CSS livre</a></li>
@@ -189,6 +191,7 @@
           <li><a href="#personalizador">O personalizador</a>, para experimentar e exportar o ficheiro.</li>
           <li><a href="#contraste">Verificar o contraste</a> de cada cor nova.</li>
         </ol>
+        <p>Depois dos passos: <a href="#ajustar-tema">ajustar um tema pronto</a>, <a href="#mudar-layout">mudar o layout de um tema</a> e <a href="#tema-com-layout">criar um tema com layout</a>. Para só escolher um dos temas do kit, basta <a href="temas.html">Escolher um tema</a>.</p>
         <p>A ordem de aplicação é sempre a mesma: o <code>uc-kit.css</code>, depois os temas prontos, depois o <code>theme.css</code> do site e, por cima de tudo, o <code>accentColor</code> do <code>course.js</code>. Cada camada só precisa de dizer o que muda.</p>
 
         <h2 id="cor">1. A cor do curso</h2>
@@ -200,7 +203,7 @@
         <p>A cor é usada como texto sobre branco e como fundo de texto branco, por isso precisa de um contraste de pelo menos 4.5:1 com o branco. Se não tiver, o kit aplica-a na mesma e avisa na consola do navegador, com a razão calculada. Mais em <a href="course-js.html#cor">Nível 0: course.js</a>.</p>
 
         <h2 id="temas-prontos">2. Escolher um tema pronto</h2>
-        <p>O kit traz três temas prontos em <code>kit/v1/themes/</code>. Cada um é um ficheiro pequeno que só redefine tokens, por isso combina com tudo o resto: a cor do <code>course.js</code> e o <code>theme.css</code> continuam a funcionar por cima dele.</p>
+        <p>Os cinco temas com layout (Clássico, Moderno, Institucional, Manual e Editorial) estão lado a lado em <a href="temas.html">Escolher um tema</a>. Além deles, o kit traz três temas prontos em <code>kit/v1/themes/</code> que só mudam tokens. Cada um é um ficheiro pequeno que só redefine tokens, por isso combina com tudo o resto: a cor do <code>course.js</code> e o <code>theme.css</code> continuam a funcionar por cima dele.</p>
         <div class="uc-table">
           <table>
             <caption class="uc-visually-hidden">Temas prontos do kit</caption>
@@ -410,9 +413,9 @@
         <!-- /docs:file -->
 
         <h2 id="personalizador">4. Experimentar no personalizador</h2>
-        <p>O <a href="tema.html">Personalizador de tema</a> mostra o curso de demonstração com as escolhas aplicadas: tema pronto, cor de destaque, cantos, tamanho e tipo de letra, largura do conteúdo. O resultado sai em dois separadores:</p>
+        <p>O <a href="tema.html">Personalizador de tema</a> mostra o curso de demonstração com as escolhas aplicadas: tema, layout, tema de tokens, cor de destaque, cantos, tamanho e tipo de letra, largura do conteúdo. O resultado sai em dois separadores:</p>
         <ul>
-          <li><strong>course.js</strong>: a linha <code>accentColor</code> e, com um tema pronto, a linha <code>theme</code>.</li>
+          <li><strong>course.js</strong>: as linhas <code>accentColor</code> e <code>theme</code> e, com um layout que não é o do tema, a linha <code>layout</code>.</li>
           <li><strong>theme.css</strong>: só os tokens que mudaram, ou, com a opção <strong>Ficheiro completo</strong>, o <code>theme.css</code> inicial inteiro com esses tokens já descomentados. O botão "Descarregar theme.css" guarda o que estiver no separador.</li>
         </ul>
         <p>As escolhas ficam no endereço da página, que pode ser enviado a um colega.</p>
@@ -441,6 +444,97 @@
         </ul>
         <p>Os temas prontos já cumprem estes mínimos: a verificação automática do kit corre o axe-core sobre páginas com cada um deles. Mais em <a href="../estilos/acessibilidade.html">Acessibilidade</a>.</p>
 
+        <h2 id="ajustar-tema">Ajustar um tema pronto</h2>
+        <p>Um tema pronto é o ponto de partida; o <code>theme.css</code> do site carrega depois dele e ganha-lhe, por isso só precisa do que muda. Três coisas se ajustam ali:</p>
+        <ul>
+          <li><strong>Tokens</strong>, como com o Clássico: <code>--uc-radius-lg</code>, <code>--uc-font-sans</code>, <code>--uc-content-max</code>…</li>
+          <li><strong>Propriedades de escolha</strong>: a vista por omissão de alguns componentes, que o tema define e o <code>theme.css</code> pode trocar (ver <a href="../estilos/tokens.html#escolhas">Propriedades de escolha</a>).</li>
+          <li><strong>Decoração</strong>, com as classes do layout do tema: <code>.uc-page--banner …</code>, <code>.uc-page--docs …</code>.</li>
+        </ul>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>theme: "handbook",</code></pre></uc-code>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>:root {
+  --uc-weeks-view: full;          /* o Manual mostra as semanas em tabela compacta; aqui, completas */
+  --uc-font-size-base: 100%;      /* a letra de 16 px em vez dos 15 px do Manual */
+}
+/* "Nesta página" com letra um pouco maior. */
+.uc-page--docs .uc-toc__link { font-size: var(--uc-font-size-body-sm); }</code></pre></uc-code>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Propriedades de escolha</caption>
+            <thead>
+              <tr><th scope="col">Propriedade</th><th scope="col">Valores</th><th scope="col">Muda</th><th scope="col">Nos temas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--uc-layout</code></td><td>um layout</td><td>O layout das páginas (ver a secção seguinte)</td><td>Todos</td></tr>
+              <tr><td><code>--uc-weeks-view</code></td><td><code>full</code> | <code>compact</code></td><td><code>&lt;uc-weeks&gt;</code> sem <code>view</code></td><td>Manual: <code>compact</code></td></tr>
+              <tr><td><code>--uc-team-view</code></td><td><code>cards</code> | <code>table</code></td><td><code>&lt;uc-team&gt;</code> sem <code>view</code></td><td>Editorial: <code>table</code></td></tr>
+              <tr><td><code>--uc-hero-align</code></td><td><code>start</code> | <code>center</code></td><td><code>&lt;uc-hero&gt;</code> sem <code>align</code></td><td>Editorial: <code>center</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O kit lê estas propriedades uma vez, quando a página abre: mudá-las depois (nas ferramentas do browser, por exemplo) não tem efeito até recarregar. O atributo do componente ganha sempre, numa página.</p>
+
+        <h2 id="mudar-layout">Mudar o layout de um tema</h2>
+        <p>Cada tema escolhe um layout com <code>--uc-layout</code>. Para ficar com o resto do tema e outro layout, há três sítios, do mais largo para o mais estreito; o mais estreito ganha:</p>
+        <ul>
+          <li><code>--uc-layout</code> no <code>theme.css</code>, que carrega depois do tema: <code>:root { --uc-layout: sidebar; }</code>.</li>
+          <li><code>layout</code> no <code>course.js</code>, para todas as páginas: <code>layout: "sidebar"</code>. É o mais simples de ler no ano seguinte.</li>
+          <li>O atributo de uma página: <code>&lt;uc-page layout="full"&gt;</code>.</li>
+        </ul>
+        <p>A decoração que o tema dá ao seu layout (as pílulas do Moderno, os títulos sublinhados do Institucional) está presa às classes desse layout, por isso não aparece com outro: o Moderno com <code>layout: "sidebar"</code> fica com o fundo de cor, os cartões e os cantos, mas a navegação é a lateral de sempre. Ver também <a href="temas.html#layout">Escolher um tema</a>.</p>
+
+        <h2 id="tema-com-layout">Criar um tema com layout</h2>
+        <p>Um tema com layout é um ficheiro CSS como os outros, com três partes: as escolhas em <code>:root</code> (o layout e as variantes), os tokens, e as regras de decoração presas à classe do layout. Num site, é o próprio <code>theme.css</code>; o kit descarrega sozinho o ficheiro do layout que <code>--uc-layout</code> nomeia.</p>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Um tema "caderno": três colunas, letra com serifa, títulos com uma linha da cor do curso. */
+:root {
+  /* Escolhas */
+  --uc-layout: docs;
+  --uc-weeks-view: compact;
+
+  /* Tokens */
+  --uc-font-sans: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --uc-line-height: 1.65;
+  --uc-radius-sm: 2px;
+  --uc-radius-md: 3px;
+  --uc-radius-lg: 4px;
+}
+
+/* Decoração, só neste layout */
+.uc-page--docs .uc-main > h2 {
+  padding-bottom: var(--uc-space-2);
+  border-bottom: 2px solid var(--uc-color-accent);
+}
+.uc-page--docs .uc-toc__link[aria-current="location"] { background: var(--uc-color-accent-soft); }</code></pre></uc-code>
+        <ul>
+          <li>Para escolher um tema do kit e mudar pouco, é melhor <a href="#ajustar-tema">ajustá-lo</a> do que copiar o ficheiro dele: o kit continua a corrigi-lo nas versões seguintes.</li>
+          <li>As regras de decoração usam só <a href="../referencia/classes.html">classes estáveis</a>, sempre começadas pela classe do layout (<code>.uc-page--docs</code>), para nada mudar se uma página usar outro layout.</li>
+          <li>Nunca <code>!important</code>: as regras do kit têm especificidade zero, por isso qualquer seletor de classe já lhes ganha.</li>
+          <li>Um tema pode também escolher um <a href="criar-layout.html">layout próprio</a> do site (<code>--uc-layout: cartaz</code>).</li>
+          <li>Verificar o contraste das cores novas (<a href="#contraste">passo 5</a>) e percorrer a <a href="criar-layout.html#acessibilidade">lista de verificação dos layouts</a>.</li>
+        </ul>
+        <p>Os temas do kit têm a mesma forma. O Institucional, por exemplo, importa o seu layout (num tema do kit, o ficheiro do layout chega assim ao mesmo tempo que o tema):</p>
+        <!-- docs:file src="../../../kit/src/themes/institutional.css" lang="css" -->
+        <uc-code lang="css" filename="institutional.css"><pre><code>/*
+ * Theme &quot;institutional&quot; (Institucional, docs/api.md 8.3): the look of an
+ * official faculty page. Layout &quot;banner&quot;: the header, the course heading and
+ * the tabs in one band in the course colour. Squarer corners, and the
+ * headings of the page's sections underlined.
+ */
+@import &quot;../layouts/banner.css&quot;;
+
+:root {
+  --uc-layout: banner;
+  --uc-radius-sm: 3px;
+  --uc-radius-md: 4px;
+  --uc-radius-lg: 6px;
+}
+
+:where(.uc-page--banner .uc-main &gt; h2, .uc-page--banner .uc-main &gt; section &gt; h2, .uc-page--banner .uc-main &gt; .uc-section &gt; h2) {
+  padding-bottom: var(--uc-space-2);
+  border-bottom: 2px solid var(--uc-color-border);
+}</code></pre></uc-code>
+        <!-- /docs:file -->
+
         <h2 id="exemplo">Exemplo completo</h2>
         <p>Um site compacto, verde-azulado, com cantos retos nos cartões e títulos das semanas em maiúsculas:</p>
         <uc-code lang="js" filename="course.js" no-download><pre><code>accentColor: "#0F766E",
@@ -457,19 +551,21 @@ theme: "compact",</code></pre></uc-code>
           <li><a href="tema.html">Personalizador de tema</a>: escolher a ver o resultado.</li>
           <li><a href="tokens.html">Nível 1: tokens</a>: o <code>theme.css</code>, a ordem de carregamento e os tokens locais.</li>
           <li><a href="../estilos/tokens.html">Tokens</a>: a lista completa, com o uso de cada um.</li>
-          <li><a href="../componentes/uc-page.html#navegacao-no-topo">uc-page</a>: a disposição da página (navegação lateral, no topo ou nenhuma), com <code>layout</code>.</li>
+          <li><a href="temas.html">Escolher um tema</a>: os cinco temas com layout, lado a lado.</li>
+          <li><a href="criar-layout.html">Criar um layout</a>: um layout próprio, a partir de um do kit.</li>
+          <li><a href="../componentes/uc-page.html#exemplos">uc-page</a>: os nove layouts, com <code>layout</code>.</li>
         </ul>
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
         <nav class="docs-pager" aria-label="Anterior / Seguinte">
-          <a class="docs-pager__link docs-pager__link--previous" href="index.html" rel="prev">
+          <a class="docs-pager__link docs-pager__link--previous" href="temas.html" rel="prev">
             <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
-            <span class="docs-pager__title">Visão geral</span>
+            <span class="docs-pager__title">Escolher um tema</span>
           </a>
-          <a class="docs-pager__link docs-pager__link--next" href="course-js.html" rel="next">
+          <a class="docs-pager__link docs-pager__link--next" href="criar-layout.html" rel="next">
             <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="docs-pager__title">Nível 0: course.js</span>
+            <span class="docs-pager__title">Criar um layout</span>
           </a>
         </nav>
         <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/personalizar/criar-tema.html">Editar esta página no GitHub</a> · <a href="criar-tema.md" type="text/markdown">Ver esta página em Markdown</a></p>
@@ -490,6 +586,9 @@ theme: "compact",</code></pre></uc-code>
           <li class="docs-toc__sub"><a href="#temas-como-exemplo">Os temas prontos como exemplo</a></li>
           <li><a href="#personalizador">4. Experimentar no personalizador</a></li>
           <li><a href="#contraste">5. Verificar o contraste</a></li>
+          <li><a href="#ajustar-tema">Ajustar um tema pronto</a></li>
+          <li><a href="#mudar-layout">Mudar o layout de um tema</a></li>
+          <li><a href="#tema-com-layout">Criar um tema com layout</a></li>
           <li><a href="#exemplo">Exemplo completo</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>
         </ul>

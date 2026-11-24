@@ -6,7 +6,7 @@ O kit pode ser adaptado em cinco níveis, do mais simples (mudar um campo no `co
 
 ## Os cinco níveis
 
-1. 0 [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md)Cor, tema pronto, logótipo, páginas, línguas.
+1. 0 [course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md)Cor, tema e layout, logótipo, páginas, línguas.
 2. 1 [Tokens no theme.css](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tokens.md)Cores, cantos, tipo de letra.
 3. 2 [CSS livre no theme.css](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md)Regras sobre as classes estáveis e classes próprias.
 4. 3 [Componentes próprios](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/componentes.md)Um elemento novo em `extensions/`.
@@ -61,6 +61,7 @@ O [site de Estruturas de Dados](https://uc-design-kit.miguelrocha.dev/examples/e
 
 ## Ver também
 
+- [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md): os cinco temas com layout, lado a lado; [Criar um layout](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md): um layout próprio.
 - [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md): todos os campos.
 - [Princípios de design](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/index.md) e [Tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md).
 - [Componentes](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/index.md): cada página tem uma secção "Personalizar" com as classes estáveis.

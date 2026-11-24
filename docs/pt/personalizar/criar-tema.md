@@ -12,6 +12,8 @@ Um tema é a cor do curso, um tema pronto do kit (opcional) e um `theme.css` com
 4. [O personalizador](#personalizador), para experimentar e exportar o ficheiro.
 5. [Verificar o contraste](#contraste) de cada cor nova.
 
+Depois dos passos: [ajustar um tema pronto](#ajustar-tema), [mudar o layout de um tema](#mudar-layout) e [criar um tema com layout](#tema-com-layout). Para só escolher um dos temas do kit, basta [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md).
+
 A ordem de aplicação é sempre a mesma: o `uc-kit.css`, depois os temas prontos, depois o `theme.css` do site e, por cima de tudo, o `accentColor` do `course.js`. Cada camada só precisa de dizer o que muda.
 
 ## 1. A cor do curso
@@ -31,7 +33,7 @@ A cor é usada como texto sobre branco e como fundo de texto branco, por isso pr
 
 ## 2. Escolher um tema pronto
 
-O kit traz três temas prontos em `kit/v1/themes/`. Cada um é um ficheiro pequeno que só redefine tokens, por isso combina com tudo o resto: a cor do `course.js` e o `theme.css` continuam a funcionar por cima dele.
+Os cinco temas com layout (Clássico, Moderno, Institucional, Manual e Editorial) estão lado a lado em [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md). Além deles, o kit traz três temas prontos em `kit/v1/themes/` que só mudam tokens. Cada um é um ficheiro pequeno que só redefine tokens, por isso combina com tudo o resto: a cor do `course.js` e o `theme.css` continuam a funcionar por cima dele.
 
 | Tema | O que muda | Para quê |
 | --- | --- | --- |
@@ -242,9 +244,9 @@ Os temas prontos são ficheiros deste mesmo formato: um bloco `:root` só com os
 
 ## 4. Experimentar no personalizador
 
-O [Personalizador de tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md) mostra o curso de demonstração com as escolhas aplicadas: tema pronto, cor de destaque, cantos, tamanho e tipo de letra, largura do conteúdo. O resultado sai em dois separadores:
+O [Personalizador de tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md) mostra o curso de demonstração com as escolhas aplicadas: tema, layout, tema de tokens, cor de destaque, cantos, tamanho e tipo de letra, largura do conteúdo. O resultado sai em dois separadores:
 
-- **course.js**: a linha `accentColor` e, com um tema pronto, a linha `theme`.
+- **course.js**: as linhas `accentColor` e `theme` e, com um layout que não é o do tema, a linha `layout`.
 - **theme.css**: só os tokens que mudaram, ou, com a opção **Ficheiro completo**, o `theme.css` inicial inteiro com esses tokens já descomentados. O botão "Descarregar theme.css" guarda o que estiver no separador.
 
 As escolhas ficam no endereço da página, que pode ser enviado a um colega.
@@ -266,6 +268,111 @@ Cada cor nova tem de manter o contraste mínimo do WCAG 2.1 (nível AA) com o fu
 - **A cor não é a única pista.** Estados como "concluído" e "próximo" têm também texto ou ícone; um tema não deve esconder esse texto.
 
 Os temas prontos já cumprem estes mínimos: a verificação automática do kit corre o axe-core sobre páginas com cada um deles. Mais em [Acessibilidade](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/acessibilidade.md).
+
+## Ajustar um tema pronto
+
+Um tema pronto é o ponto de partida; o `theme.css` do site carrega depois dele e ganha-lhe, por isso só precisa do que muda. Três coisas se ajustam ali:
+
+- **Tokens**, como com o Clássico: `--uc-radius-lg`, `--uc-font-sans`, `--uc-content-max`…
+- **Propriedades de escolha**: a vista por omissão de alguns componentes, que o tema define e o `theme.css` pode trocar (ver [Propriedades de escolha](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)).
+- **Decoração**, com as classes do layout do tema: `.uc-page--banner …`, `.uc-page--docs …`.
+
+`course.js`:
+
+```js
+theme: "handbook",
+```
+
+`theme.css`:
+
+```css
+:root {
+  --uc-weeks-view: full;          /* o Manual mostra as semanas em tabela compacta; aqui, completas */
+  --uc-font-size-base: 100%;      /* a letra de 16 px em vez dos 15 px do Manual */
+}
+/* "Nesta página" com letra um pouco maior. */
+.uc-page--docs .uc-toc__link { font-size: var(--uc-font-size-body-sm); }
+```
+
+| Propriedade | Valores | Muda | Nos temas |
+| --- | --- | --- | --- |
+| `--uc-layout` | um layout | O layout das páginas (ver a secção seguinte) | Todos |
+| `--uc-weeks-view` | `full` \| `compact` | `<uc-weeks>` sem `view` | Manual: `compact` |
+| `--uc-team-view` | `cards` \| `table` | `<uc-team>` sem `view` | Editorial: `table` |
+| `--uc-hero-align` | `start` \| `center` | `<uc-hero>` sem `align` | Editorial: `center` |
+
+O kit lê estas propriedades uma vez, quando a página abre: mudá-las depois (nas ferramentas do browser, por exemplo) não tem efeito até recarregar. O atributo do componente ganha sempre, numa página.
+
+## Mudar o layout de um tema
+
+Cada tema escolhe um layout com `--uc-layout`. Para ficar com o resto do tema e outro layout, há três sítios, do mais largo para o mais estreito; o mais estreito ganha:
+
+- `--uc-layout` no `theme.css`, que carrega depois do tema: `:root { --uc-layout: sidebar; }`.
+- `layout` no `course.js`, para todas as páginas: `layout: "sidebar"`. É o mais simples de ler no ano seguinte.
+- O atributo de uma página: `<uc-page layout="full">`.
+
+A decoração que o tema dá ao seu layout (as pílulas do Moderno, os títulos sublinhados do Institucional) está presa às classes desse layout, por isso não aparece com outro: o Moderno com `layout: "sidebar"` fica com o fundo de cor, os cartões e os cantos, mas a navegação é a lateral de sempre. Ver também [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md#layout).
+
+## Criar um tema com layout
+
+Um tema com layout é um ficheiro CSS como os outros, com três partes: as escolhas em `:root` (o layout e as variantes), os tokens, e as regras de decoração presas à classe do layout. Num site, é o próprio `theme.css`; o kit descarrega sozinho o ficheiro do layout que `--uc-layout` nomeia.
+
+`theme.css`:
+
+```css
+/* Um tema "caderno": três colunas, letra com serifa, títulos com uma linha da cor do curso. */
+:root {
+  /* Escolhas */
+  --uc-layout: docs;
+  --uc-weeks-view: compact;
+
+  /* Tokens */
+  --uc-font-sans: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --uc-line-height: 1.65;
+  --uc-radius-sm: 2px;
+  --uc-radius-md: 3px;
+  --uc-radius-lg: 4px;
+}
+
+/* Decoração, só neste layout */
+.uc-page--docs .uc-main > h2 {
+  padding-bottom: var(--uc-space-2);
+  border-bottom: 2px solid var(--uc-color-accent);
+}
+.uc-page--docs .uc-toc__link[aria-current="location"] { background: var(--uc-color-accent-soft); }
+```
+
+- Para escolher um tema do kit e mudar pouco, é melhor [ajustá-lo](#ajustar-tema) do que copiar o ficheiro dele: o kit continua a corrigi-lo nas versões seguintes.
+- As regras de decoração usam só [classes estáveis](https://uc-design-kit.miguelrocha.dev/docs/pt/referencia/classes.md), sempre começadas pela classe do layout (`.uc-page--docs`), para nada mudar se uma página usar outro layout.
+- Nunca `!important`: as regras do kit têm especificidade zero, por isso qualquer seletor de classe já lhes ganha.
+- Um tema pode também escolher um [layout próprio](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md) do site (`--uc-layout: cartaz`).
+- Verificar o contraste das cores novas ([passo 5](#contraste)) e percorrer a [lista de verificação dos layouts](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md#acessibilidade).
+
+Os temas do kit têm a mesma forma. O Institucional, por exemplo, importa o seu layout (num tema do kit, o ficheiro do layout chega assim ao mesmo tempo que o tema):
+
+`institutional.css`:
+
+```css
+/*
+ * Theme "institutional" (Institucional, docs/api.md 8.3): the look of an
+ * official faculty page. Layout "banner": the header, the course heading and
+ * the tabs in one band in the course colour. Squarer corners, and the
+ * headings of the page's sections underlined.
+ */
+@import "../layouts/banner.css";
+
+:root {
+  --uc-layout: banner;
+  --uc-radius-sm: 3px;
+  --uc-radius-md: 4px;
+  --uc-radius-lg: 6px;
+}
+
+:where(.uc-page--banner .uc-main > h2, .uc-page--banner .uc-main > section > h2, .uc-page--banner .uc-main > .uc-section > h2) {
+  padding-bottom: var(--uc-space-2);
+  border-bottom: 2px solid var(--uc-color-border);
+}
+```
 
 ## Exemplo completo
 
@@ -294,4 +401,6 @@ theme: "compact",
 - [Personalizador de tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md): escolher a ver o resultado.
 - [Nível 1: tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tokens.md): o `theme.css`, a ordem de carregamento e os tokens locais.
 - [Tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md): a lista completa, com o uso de cada um.
-- [uc-page](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#navegacao-no-topo): a disposição da página (navegação lateral, no topo ou nenhuma), com `layout`.
+- [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md): os cinco temas com layout, lado a lado.
+- [Criar um layout](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md): um layout próprio, a partir de um do kit.
+- [uc-page](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#exemplos): os nove layouts, com `layout`.

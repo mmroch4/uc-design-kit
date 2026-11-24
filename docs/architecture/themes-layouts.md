@@ -11,10 +11,11 @@ It runs in phases L0–L8, one pull request each. Every phase updates this file
 [`docs/api.md`](../api.md), which wins when the two differ. Code comments cite
 this file by section number: keep the numbers stable.
 
-Status: **L0–L6 done** (mechanism; layout `banner` and theme
+Status: **L0–L7 done** (mechanism; layout `banner` and theme
 `institutional`; layout `docs` and theme `handbook`; layout `centered` and
 themes `editorial` and `modern`; layouts `panel` and `aside`; layout
-`onepage`, `<uc-tiles>` and the home-page patterns; component variants). Sections marked
+`onepage`, `<uc-tiles>` and the home-page patterns; component variants;
+the guides). Sections marked
 *(planned, Ln)* describe what a later phase adds; until then the kit does
 not know those names.
 
@@ -665,3 +666,34 @@ UC.registerLayout("poster", { extends: "banner", css: "layouts/poster.css" });
   "Propriedades de escolha"; `componentes/uc-hero.html`, `uc-weeks.html`,
   `uc-team.html`; `seccoes/index.html` "Ver com outro tema"; CHANGELOG.
 - `uc-kit.js` 49.9 KB gzipped (+0.2 KB).
+
+### L7 — documentation
+
+- Guides (Portuguese): `personalizar/temas.html` "Escolher um tema" (the five
+  themes side by side, with screenshots of the demo course in
+  `docs/assets/img/themes/` and links to it with `?theme=`; token themes;
+  changing a theme's layout), `personalizar/criar-layout.html` "Criar um
+  layout" (when a site layout is needed, the parts of every layout, the
+  `cartaz` example built on `banner` with the demo
+  `docs/demos/customize/layout-cartaz.html`, an accessibility checklist), and
+  in `personalizar/criar-tema.html` the sections "Ajustar um tema pronto",
+  "Mudar o layout de um tema" and "Criar um tema com layout".
+- Theme customiser (`personalizar/tema.html`, `docs/assets/theme-editor.js`):
+  controls "Tema" (the five themes with a layout) and "Layout" (the theme's,
+  or any of the nine), the old "Tema pronto" renamed "Tema de tokens";
+  corners 16 px added (the radius of `modern`). The themes and the layout go
+  in the preview's URL (`?theme=a,b&layout=x`, read by
+  `docs/demos/theme/preview.js` before the kit starts and kept in the links of
+  its navigation), so changing them loads the preview again; tokens still go
+  by `postMessage`. The `course.js` result always has `theme` (a list with a
+  token theme) and `layout` only when it is not the theme's. The hash gains
+  `style` and `layout`; `theme` keeps meaning the token theme, so links shared
+  before still work.
+- `criar-site.html` ("A cor e o tema"), `migrar.html` ("Mudar o tema de um
+  site", and the theme in the request), `llm.html` (a rule on themes and
+  layouts, which `llms.txt` copies, and a request to change the theme),
+  `template/AGENTS.md` (rule 7, and the theme in the migration steps),
+  `template/course.js` (how to switch, link to the guide), `course-js.html`,
+  `componentes/uc-page.html`, `personalizar/index.html`.
+- No change to the kit's code or size; the examples stay on `classic`.
+

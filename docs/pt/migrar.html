@@ -139,7 +139,9 @@
         <p class="docs-sidebar__title" id="docs-nav-6">Personalizar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
           <li><a href="personalizar/index.html">Visão geral</a></li>
+          <li><a href="personalizar/temas.html">Escolher um tema</a></li>
           <li><a href="personalizar/criar-tema.html">Criar um tema</a></li>
+          <li><a href="personalizar/criar-layout.html">Criar um layout</a></li>
           <li><a href="personalizar/course-js.html">Nível 0: course.js</a></li>
           <li><a href="personalizar/tokens.html">Nível 1: tokens</a></li>
           <li><a href="personalizar/css.html">Nível 2: CSS livre</a></li>
@@ -226,7 +228,9 @@ UC Design Kit. O site antigo está na pasta [site-antigo/]. Não o alteres.
 
 Informação que não está no site antigo:
 [ano letivo, início do semestre, interrupções, mudanças na equipa ou na
-avaliação]</code></pre></uc-code>
+avaliação]
+Tema: [classic, modern, institutional, handbook ou editorial]</code></pre></uc-code>
+        <p>O tema escolhe o aspeto e o layout de todas as páginas; os cinco estão lado a lado em <a href="personalizar/temas.html">Escolher um tema</a>. Na dúvida, <code>classic</code>: muda-se depois numa linha, como em <a href="#mudar-tema">Mudar o tema de um site</a>.</p>
         <p>Se o assistente não tiver acesso à Internet, descarregar antes o <a href="../../llms-full.txt"><code>llms-full.txt</code></a> e o <a href="../downloads/uc-template.zip">modelo inicial</a> para a pasta de trabalho e trocar os endereços dos pontos 1 e 2 pelos nomes dos ficheiros.</p>
 
         <h2 id="mapa">Para onde vai cada conteúdo</h2>
@@ -277,6 +281,17 @@ avaliação]</code></pre></uc-code>
           <li>Guardar o site antigo até o novo estar publicado.</li>
         </ul>
 
+        <h2 id="mudar-tema">Mudar o tema de um site</h2>
+        <p>Um site feito com o kit muda de tema sem tocar no HTML das páginas: a estrutura (cabeçalho, navegação, colunas) é desenhada pelo kit a partir do <code>&lt;uc-page&gt;</code>. O mesmo vale para um site migrado com a versão 1.1 ou anterior.</p>
+        <ol>
+          <li><strong>Escolher o tema</strong> em <a href="personalizar/temas.html">Escolher um tema</a>, ou experimentá-lo primeiro no <a href="personalizar/tema.html">personalizador</a>.</li>
+          <li><strong>Mudar a linha <code>theme</code></strong> do <code>course.js</code>, por exemplo para <code>theme: "handbook"</code>. Num site anterior à versão 1.2, que ainda não tem a linha, acrescenta-se a seguir ao <code>accentColor</code>; os temas de tokens que o site já usava juntam-se numa lista, <code>theme: ["handbook", "high-contrast"]</code>.</li>
+          <li><strong>Procurar o que ganha ao tema</strong>: um <code>layout</code> no <code>course.js</code> (tirá-lo, para ficar o layout do tema), <code>layout="…"</code> nas páginas (só as que devem mesmo ser diferentes, como um enunciado com <code>layout="full"</code>) e <code>--uc-layout</code> no <code>theme.css</code>.</li>
+          <li><strong>Rever o <code>theme.css</code></strong>, que continua a ganhar ao tema. Tokens que o site mudou para o aspeto antigo (larguras, cantos, letra) podem já não fazer sentido: o Editorial, por exemplo, tem uma coluna de 760 px que um <code>--uc-content-max</code> antigo não muda. Regras de CSS livre presas à barra lateral (<code>.uc-sidebar</code>, <code>.uc-nav</code>) podem precisar de ficar só para esse layout.</li>
+          <li><strong>Percorrer o site</strong> como em <a href="#rever">Rever o resultado</a>: a página inicial, as semanas e um guião, no computador e no telemóvel, com a consola aberta (sem avisos <code>[uc-kit]</code>).</li>
+        </ol>
+        <p>Com um assistente de programação, basta pedir "muda o site para o tema Manual, seguindo o AGENTS.md": as regras do <code>AGENTS.md</code> do modelo dizem-lhe para mudar só o <code>course.js</code> e o <code>theme.css</code>.</p>
+
         <h2 id="ver-tambem">Ver também</h2>
         <ul>
           <li><a href="exemplos/edados.html">EDados 2025/26</a>: um site migrado, página a página. A <a href="exemplos/pc.html">PC</a>, a <a href="exemplos/ip.html">IP</a> e a <a href="exemplos/pi.html">PI</a> foram migradas da mesma forma, com o registo em <code>MIGRACAO.md</code>.</li>
@@ -311,6 +326,7 @@ avaliação]</code></pre></uc-code>
           <li><a href="#mapa">Para onde vai cada conteúdo</a></li>
           <li><a href="#agents">O ficheiro AGENTS.md</a></li>
           <li><a href="#rever">Rever o resultado</a></li>
+          <li><a href="#mudar-tema">Mudar o tema de um site</a></li>
           <li><a href="#ver-tambem">Ver também</a></li>
         </ul>
       </nav>

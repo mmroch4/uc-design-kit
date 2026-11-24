@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240">
+  <!-- Cover image of the "cartaz" layout demo (docs/pt/personalizar/criar-layout.html): a tree of nodes on a dark ground. -->
+  <rect width="480" height="240" fill="#0B1F3A"/>
+  <g stroke="#5B8DEF" stroke-width="2" fill="none" opacity=".55">
+    <path d="M240 30 L150 90 M240 30 L330 90 M150 90 L100 150 M150 90 L200 150 M330 90 L290 150 M330 90 L380 150 M100 150 L70 210 M100 150 L130 210 M380 150 L410 210"/>
+  </g>
+  <g fill="#0B1F3A" stroke="#93B4F5" stroke-width="2" opacity=".7">
+    <circle cx="240" cy="30" r="12"/><circle cx="150" cy="90" r="12"/><circle cx="330" cy="90" r="12"/>
+    <circle cx="100" cy="150" r="12"/><circle cx="200" cy="150" r="12"/><circle cx="290" cy="150" r="12"/><circle cx="380" cy="150" r="12"/>
+    <circle cx="70" cy="210" r="12"/><circle cx="130" cy="210" r="12"/><circle cx="410" cy="210" r="12"/>
+  </g>
+</svg>

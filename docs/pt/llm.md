@@ -48,6 +48,23 @@ avaliação e prazos, programa, avisos, ou o texto do site antigo]
 
 Para alterar um site que já existe, basta trocar os pontos 2 e 5: "Vou colar o `course.js` e a página X. Faz esta alteração e devolve só os ficheiros que mudaram."
 
+Um exemplo, para mudar o tema de um site que já existe:
+
+`pedido-tema.txt`:
+
+```text
+Muda o site para o tema Manual do UC Design Kit (theme: "handbook"),
+seguindo a documentação: https://uc-design-kit.miguelrocha.dev/llms-full.txt
+(páginas "Escolher um tema" e "Criar um tema").
+
+- Muda só o course.js e, se for preciso, o theme.css. Não mexas no HTML das
+  páginas nem escrevas a navegação ou as colunas à mão.
+- Mantém o tema de tokens que o site já usa, numa lista.
+- Diz-me que linhas do theme.css deixaram de fazer sentido com o tema novo.
+
+Vou colar o course.js e o theme.css.
+```
+
 ## Regras
 
 O assistente tem de seguir estas regras, que também estão no início do `llms.txt` e do `llms-full.txt`.
@@ -58,13 +75,14 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `schedule`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
 5. **Só o que está documentado.** Nenhum elemento, atributo, campo do `course.js` ou classe `uc-…` inventado. Para um comportamento que o kit não tem, um componente próprio em `extensions/` com `UC.define` e `UC.Element` (Nível 3).
 6. **Light DOM.** Os componentes do kit e os próprios não usam shadow DOM; o conteúdo escrito pelo professor fica no HTML, legível sem JavaScript.
-7. **Personalizar por níveis**: `accentColor` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
-8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; o topo de uma página vai num `uc-page-header` (com `uc-crumbs` nas páginas fora do menu), os exemplos de um enunciado num `uc-samples`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
-9. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
-10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
-11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
-12. **Sem dados de estudantes**: notas, números ou listas de turnos ficam fora do site público.
-13. **Pesquisa**: o `search-index.js` é gerado pelo `uc-site.py` e nunca se edita. Para tirar texto dos resultados, `data-search-ignore` no elemento; para pesquisar só numa pasta, [`<uc-search scope="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md).
+7. **Personalizar por níveis**: `accentColor` e `theme` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
+8. **Temas e layouts no `course.js`.** O aspeto e o layout de todas as páginas mudam-se com `theme` (`"classic"`, `"modern"`, `"institutional"`, `"handbook"`, `"editorial"`, mais `"compact"`, `"serif"` ou `"high-contrast"` numa lista) e, se for preciso, `layout` no `course.js` ou `<uc-page layout="…">` numa página. Nunca escrever à mão o cabeçalho, a navegação ou as colunas: o `<uc-page>` desenha-os. Um layout próprio é um `UC.registerLayout` com CSS (ver [Criar um layout](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md)).
+9. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; o topo de uma página vai num `uc-page-header` (com `uc-crumbs` nas páginas fora do menu), os exemplos de um enunciado num `uc-samples`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
+10. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
+11. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
+12. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
+13. **Sem dados de estudantes**: notas, números ou listas de turnos ficam fora do site público.
+14. **Pesquisa**: o `search-index.js` é gerado pelo `uc-site.py` e nunca se edita. Para tirar texto dos resultados, `data-search-ignore` no elemento; para pesquisar só numa pasta, [`<uc-search scope="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md).
 
 ## Verificar o resultado
 

@@ -15,13 +15,14 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 4. **O que muda todos os anos vai para o `course.js`**: `semester`, `team`, `schedule`, `deadlines`, `notices`, `pages`. Datas em ISO (`AAAA-MM-DD`). As datas das semanas nunca se escrevem: o kit calcula-as a partir de `semester.start`, e cada `<uc-week>` só leva `n` e `title`.
 5. **Só o que está documentado.** Nenhum elemento, atributo, campo do `course.js` ou classe `uc-…` inventado. Para um comportamento que o kit não tem, um componente próprio em `extensions/` com `UC.define` e `UC.Element` (Nível 3).
 6. **Light DOM.** Os componentes do kit e os próprios não usam shadow DOM; o conteúdo escrito pelo professor fica no HTML, legível sem JavaScript.
-7. **Personalizar por níveis**: `accentColor` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
-8. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; o topo de uma página vai num `uc-page-header` (com `uc-crumbs` nas páginas fora do menu), os exemplos de um enunciado num `uc-samples`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
-9. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
-10. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
-11. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
-12. **Sem dados de estudantes**: notas, números ou listas de turnos ficam fora do site público.
-13. **Pesquisa**: o `search-index.js` é gerado pelo `uc-site.py` e nunca se edita. Para tirar texto dos resultados, `data-search-ignore` no elemento; para pesquisar só numa pasta, [`<uc-search scope="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md).
+7. **Personalizar por níveis**: `accentColor` e `theme` no `course.js`; tokens `--uc-…` no `theme.css`; regras com as classes estáveis. Nunca editar nem copiar os ficheiros do kit, e nunca usar `!important` (as regras do kit têm especificidade zero).
+8. **Temas e layouts no `course.js`.** O aspeto e o layout de todas as páginas mudam-se com `theme` (`"classic"`, `"modern"`, `"institutional"`, `"handbook"`, `"editorial"`, mais `"compact"`, `"serif"` ou `"high-contrast"` numa lista) e, se for preciso, `layout` no `course.js` ou `<uc-page layout="…">` numa página. Nunca escrever à mão o cabeçalho, a navegação ou as colunas: o `<uc-page>` desenha-os. Um layout próprio é um `UC.registerLayout` com CSS (ver [Criar um layout](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md)).
+9. **Blocos antes de CSS novo.** Para dar forma ao conteúdo, primeiro `uc-section`, `uc-stack`, `uc-grid`, `uc-card`, `uc-callout`, `uc-table`, `uc-button`, `uc-tag`, `uc-links`; o topo de uma página vai num `uc-page-header` (com `uc-crumbs` nas páginas fora do menu), os exemplos de um enunciado num `uc-samples`; as listas de sumários, materiais, problemas e componentes da nota vão dentro de `<uc-summaries>`, `<uc-materials>`, `<uc-problems>` e `<uc-grading>`; HTML antigo sem classes vai dentro de `uc-content`.
+10. **Links relativos com o nome do ficheiro** (`semanas.html`, `guioes/aula01.html`), nunca `/` no início, para o site funcionar em qualquer servidor e do disco.
+11. **Acessível**: texto alternativo nas imagens, títulos sem saltar níveis, texto de ligação que diga para onde vai, tabelas com cabeçalhos.
+12. **Línguas**: para um site bilingue, `languages` no `course.js` e o mesmo conteúdo duas vezes com `lang="pt"` e `lang="en"`, ou um ficheiro por língua.
+13. **Sem dados de estudantes**: notas, números ou listas de turnos ficam fora do site público.
+14. **Pesquisa**: o `search-index.js` é gerado pelo `uc-site.py` e nunca se edita. Para tirar texto dos resultados, `data-search-ignore` no elemento; para pesquisar só numa pasta, [`<uc-search scope="…">`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md).
 
 ## Começar
 
@@ -112,13 +113,15 @@ O assistente tem de seguir estas regras, que também estão no início do `llms.
 ## Personalizar
 
 - [Visão geral](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/index.md): Os cinco níveis de personalização do kit, quando usar cada um e o que se perde.
-- [Criar um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md): Guia passo a passo: cor do curso, temas prontos, theme.css inicial com todos os tokens, personalizador e contraste.
+- [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md): Os cinco temas do UC Design Kit lado a lado (Clássico, Moderno, Institucional, Manual e Editorial), a linha do course.js a copiar, como juntar um tema de tokens e mudar o layout de um tema.
+- [Criar um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md): Guia passo a passo: cor do curso, temas prontos, theme.css inicial com todos os tokens, personalizador e contraste; ajustar um tema pronto, mudar o seu layout e criar um tema com layout.
+- [Criar um layout](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md): Criar um layout próprio a partir de um dos layouts do kit com UC.registerLayout: as partes de cada layout, um exemplo passo a passo e a lista de verificação de acessibilidade.
 - [Nível 0: course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md): Cor, logótipo, páginas e línguas a partir do course.js.
 - [Nível 1: tokens](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tokens.md): Criar o theme.css e mudar cor, cantos e letra com tokens.
 - [Nível 2: CSS livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/css.md): Regras CSS próprias sobre as classes estáveis do kit.
 - [Nível 3: componentes próprios](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/componentes.md): Escrever um componente próprio com UC.define.
 - [Nível 4: HTML livre](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/html.md): Misturar HTML próprio com o kit sem partir o layout.
-- [Personalizador de tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md): Escolher cor, cantos, letra e largura com pré-visualização no curso de demonstração e copiar o course.js e o theme.css.
+- [Personalizador de tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md): Escolher o tema, o layout, a cor, os cantos, a letra e a largura com pré-visualização no curso de demonstração e copiar o course.js e o theme.css.
 - [Execução de código](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/execucao.md): Trocar o serviço que executa o código dos blocos uc-code run, ou escrever um runner.
 
 ## Exemplos
