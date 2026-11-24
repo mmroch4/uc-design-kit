@@ -10,6 +10,11 @@
  *   - no serious or critical accessibility violations (axe-core, WCAG 2.1 A/AA)
  *   - content is still present with JavaScript disabled
  *
+ * Every demo of the section gallery (docs/demos/sections/) is also opened
+ * once per ready-made theme (?theme=name, as the gallery's theme picker does)
+ * and checked for console errors and with axe
+ * (docs/architecture/themes-layouts.md 8).
+ *
  * It also opens tests/widgets/compat.html once for widgets/v1/ and once for
  * every frozen widgets release (docs/architecture/widgets-api.md 18.3 item 6).
  *
@@ -21,7 +26,7 @@
  * --concurrency=n checks n pages at the same time (default: CPU count, max 4).
  * Set TEST_TODAY=YYYY-MM-DD to change the frozen date (default 2025-11-27).
  */
-import { mkdir } from "node:fs/promises";
+import { mkdir, readdir } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { AXE_TAGS, injectAxe, loadAxe, waitForGrading, waitForReveal, withBrowser, withToday } from "./lib/browser.mjs";
@@ -36,6 +41,26 @@ const VIEWPORTS = [
 ];
 const NARROW_WIDTH = 360;
 const BLOCKING_IMPACTS = new Set(["serious", "critical"]);
+const SECTION_DEMOS = "docs/demos/sections/";
+/** The ready-made themes but the default (the files of kit/v1/themes/). */
+const THEMES = (await readdir(path.join(ROOT, "kit/v1/themes")))
+  .filter((name) => name.endsWith(".css") && name !== "classic.css")
+  .map((name) => name.slice(0, -4))
+  .sort();
+
+/** Runs axe on the page; serious and critical violations go to `problems`, the rest to `warnings`. */
+async function runAxe(page, axeSource, prefix, problems, warnings) {
+  await injectAxe(page, axeSource);
+  const axe = await page.evaluate(async (tags) => {
+    // eslint-disable-next-line no-undef
+    const report = await axe.run(document, { runOnly: { type: "tag", values: tags } });
+    return report.violations.map((v) => ({ id: v.id, impact: v.impact, help: v.help, count: v.nodes.length }));
+  }, AXE_TAGS);
+  for (const violation of axe) {
+    const line = `${prefix} ${violation.impact}: ${violation.id} (${violation.count}) ${violation.help}`;
+    (BLOCKING_IMPACTS.has(violation.impact) ? problems : warnings).push(line);
+  }
+}
 
 /**
  * A browser context whose requests to the public kit URL are answered from
@@ -96,22 +121,27 @@ async function checkPage(browser, item, origin, axeSource, options) {
       if (compat !== "ok") problems.push(`[compat ${query || "release=v1"}] ${compat} (see the console errors above)`);
     }
 
-    if (viewport.name === "desktop") {
-      await injectAxe(result.page, axeSource);
-      const axe = await result.page.evaluate(async (tags) => {
-        // eslint-disable-next-line no-undef
-        const report = await axe.run(document, { runOnly: { type: "tag", values: tags } });
-        return report.violations.map((v) => ({ id: v.id, impact: v.impact, help: v.help, count: v.nodes.length }));
-      }, AXE_TAGS);
-      for (const violation of axe) {
-        const line = `[axe] ${violation.impact}: ${violation.id} (${violation.count}) ${violation.help}`;
-        (BLOCKING_IMPACTS.has(violation.impact) ? problems : warnings).push(line);
-      }
-    }
+    if (viewport.name === "desktop") await runAxe(result.page, axeSource, "[axe]", problems, warnings);
 
     if (options.screenshots) {
       const name = `${relative.replace(/\.html$/, "")}${query ? `-${query.replace(/\W+/g, "-")}` : ""}`.replace(/[\\/]/g, "__");
       await result.page.screenshot({ path: path.join(SCREENSHOT_DIR, `${name}--${viewport.name}.png`), fullPage: true });
+    }
+    await context.close();
+  }
+
+  if (relative.startsWith(SECTION_DEMOS)) {
+    // Each section in each theme, as the gallery shows it.
+    const context = await newContext(browser, { viewport: { width: 1280, height: 900 } });
+    for (const theme of THEMES) {
+      const url = withToday(`${origin}/${relative}?theme=${theme}`);
+      const result = await openPage(context, url, origin);
+      const linked = await result.page.evaluate((name) => Array.from(document.querySelectorAll("link[rel~=stylesheet]")).some((link) => link.href.includes(`/themes/${name}.css`)), theme);
+      if (!linked) result.problems.push("the theme was not loaded");
+      problems.push(...result.problems.map((p) => `[theme ${theme}] ${p}`));
+      warnings.push(...result.warnings.map((w) => `[theme ${theme}] ${w}`));
+      await runAxe(result.page, axeSource, `[theme ${theme}] [axe]`, problems, warnings);
+      await result.page.close();
     }
     await context.close();
   }

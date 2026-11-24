@@ -6,7 +6,15 @@ Os slides e o código de cada aula, o programa da cadeira, a bibliografia e as l
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 

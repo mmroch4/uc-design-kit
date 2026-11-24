@@ -110,3 +110,10 @@ window.UC_COURSE = {
   footer: { pt: "© 2025 Universidade Exemplo · curso fictício", en: "© 2025 Universidade Exemplo · fictional course" },
   updated: "2025-11-27",
 };
+
+// ?theme=name (the section gallery's "Tema das pré-visualizações") shows the
+// demo with a ready-made theme, chosen as a teacher would, with `theme`.
+{
+  const theme = new URLSearchParams(location.search).get("theme");
+  if (theme) window.UC_COURSE.theme = theme;
+}

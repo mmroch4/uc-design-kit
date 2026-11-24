@@ -6,7 +6,15 @@ As respostas às dúvidas de todos os semestres e a quem perguntar o resto.
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 

@@ -6,7 +6,15 @@ O topo de uma página: o título e uma frase, com localização, etiquetas e bot
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 

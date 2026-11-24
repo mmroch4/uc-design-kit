@@ -61,6 +61,15 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   orders the cards.
 - Section gallery: "Mosaico de secções" and "Calendário primeiro" (the weeks
   table as the home page).
+- Component variants chosen by the theme: the choice properties
+  `--uc-hero-align` (`start` | `center`), `--uc-weeks-view` (`full` |
+  `compact`) and `--uc-team-view` (`cards` | `table`) set the default of
+  `<uc-hero>`, `<uc-weeks>` and `<uc-team>`; the component's attribute always
+  wins. `handbook` shows the weeks as the compact table, `editorial` the team
+  as a table and the hero centred. New attribute `<uc-hero align>` and class
+  `.uc-hero--center`.
+- Section gallery: the theme picker lists the five themes with a layout too,
+  and `check-pages` runs axe on every section in every theme.
 
 ### Changed
 - `layout` in `course.js` keeps any name (a site layout may be registered

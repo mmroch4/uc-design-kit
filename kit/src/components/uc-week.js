@@ -92,7 +92,7 @@
 
     get inCompactView() {
       const container = this.closest("uc-weeks");
-      return Boolean(container && container.getAttribute("view") === "compact");
+      return Boolean(container && (container.compact ?? container.getAttribute("view") === "compact"));
     }
 
     /** "Página da aula" as the first line of the body (links are not allowed inside <summary>). */

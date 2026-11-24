@@ -253,7 +253,17 @@ tagline: {
         <p>O código do curso é um texto simples e não muda com a língua. O conteúdo escrito dentro do componente segue as regras habituais: marcado com <code>lang</code>, aparece só na sua língua (ver <a href="../linguas.html#mesma-pagina">Línguas</a>).</p>
 
         <h2 id="atributos">Atributos</h2>
-        <p>Não tem atributos.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-hero</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Valores</th><th scope="col">Por omissão</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>align</code></td><td><code>start</code> ou <code>center</code></td><td>o do tema (<a href="../estilos/tokens.html#escolhas"><code>--uc-hero-align</code></a>), senão <code>start</code></td><td>Com <code>center</code>, o código, o nome, a descrição e o conteúdo escrito dentro ficam centrados. O tema Editorial centra-o; <code>align="start"</code> encosta-o à esquerda nesse tema.</td></tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="configuracao">Configuração usada</h2>
         <p>Campos do <code>course.js</code> que o componente lê. Só <code>title</code> é obrigatório no <code>course.js</code>; os outros dois são opcionais.</p>
@@ -286,6 +296,7 @@ tagline: {
               <tr><td><code>.uc-hero__code</code></td><td>O código do curso.</td></tr>
               <tr><td><code>.uc-hero__title</code></td><td>O <code>&lt;h1&gt;</code> com o nome.</td></tr>
               <tr><td><code>.uc-hero__tagline</code></td><td>A descrição, com no máximo 640 px de largura.</td></tr>
+              <tr><td><code>.uc-hero--center</code></td><td>O bloco centrado (<code>align="center"</code> ou <code>--uc-hero-align: center</code> no tema).</td></tr>
             </tbody>
           </table>
         </div>

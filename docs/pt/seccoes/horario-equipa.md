@@ -6,7 +6,15 @@ Quando e onde são as aulas, quando há atendimento e quem dá a cadeira. Tudo v
 
 Tema das pré-visualizações
 
-Padrão
+Clássico (padrão)
+
+Moderno (modern)
+
+Institucional (institutional)
+
+Manual (handbook)
+
+Editorial (editorial)
 
 Compacto (compact)
 

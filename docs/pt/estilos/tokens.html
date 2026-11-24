@@ -331,11 +331,17 @@
             </thead>
             <tbody>
               <tr><td><code>--uc-layout</code></td><td>um nome de layout</td><td>Layout de <code>&lt;uc-page&gt;</code> quando nem a página nem o <code>course.js</code> escolhem um. O atributo <code>layout</code> e o <code>layout</code> do <code>course.js</code> ganham-lhe.</td></tr>
+              <tr><td><code>--uc-hero-align</code></td><td><code>start</code> ou <code>center</code></td><td>Alinhamento de <code>&lt;uc-hero&gt;</code> sem o atributo <code>align</code>. O tema Editorial usa <code>center</code>.</td></tr>
+              <tr><td><code>--uc-weeks-view</code></td><td><code>full</code> ou <code>compact</code></td><td>Vista de <code>&lt;uc-weeks&gt;</code> sem o atributo <code>view</code>. O tema Manual usa <code>compact</code>.</td></tr>
+              <tr><td><code>--uc-team-view</code></td><td><code>cards</code> ou <code>table</code></td><td>Vista de <code>&lt;uc-team&gt;</code> sem o atributo <code>view</code>. O tema Editorial usa <code>table</code>.</td></tr>
             </tbody>
           </table>
         </div>
         <uc-code lang="css" no-download><pre><code>/* theme.css */
 :root { --uc-layout: top; }</code></pre></uc-code>
+        <p>O atributo do componente ganha sempre: num tema com <code>--uc-team-view: table</code>, um <code>&lt;uc-team view="cards"&gt;</code> mostra cartões. Um valor que não esteja na lista conta como o valor por omissão do componente.</p>
+        <uc-code lang="css" no-download><pre><code>/* theme.css: por cima do tema Manual, as semanas voltam à vista completa */
+:root { --uc-weeks-view: full; }</code></pre></uc-code>
 
         <h2 id="tokens-locais">Tokens locais</h2>
         <p>Não estão definidos em <code>:root</code>: o kit lê-os com um valor de recurso. Definem-se em <code>:root</code> para o site inteiro ou num só elemento para mudar só esse bloco.</p>

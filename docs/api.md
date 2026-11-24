@@ -491,6 +491,13 @@ moves focus to it. Matching rules: `<uc-search>`. Stable classes: the
 Course heading block: code, title (as `<h1>`) and tagline from the
 configuration. Children, if any, are appended below the tagline.
 
+| Attribute | Values | Default |
+| --- | --- | --- |
+| `align` | `start` \| `center` | the theme's `--uc-hero-align` (5), else `start` |
+
+Centred, the element has the class `.uc-hero--center` (text and children
+centred).
+
 #### `<uc-tiles>`
 
 Mosaic for the home page: a list (`ul.uc-tiles__list`) with one card per page
@@ -606,7 +613,7 @@ after the last week.
 
 | Attribute | Values | Default |
 | --- | --- | --- |
-| `view` | `full` \| `compact` | `full` |
+| `view` | `full` \| `compact` | the theme's `--uc-weeks-view` (5), else `full` |
 | `no-breaks` | boolean | breaks are inserted |
 | `no-deadlines` | boolean | deadlines are shown inside their week |
 | `kind` | space-separated kinds | all kinds; e.g. `kind="assessment exam"` leaves quizzes to the weeks' own rows |
@@ -735,7 +742,7 @@ Renders `UC_COURSE.team`.
 
 | Attribute | Values | Default |
 | --- | --- | --- |
-| `view` | `cards` \| `table` | `cards` |
+| `view` | `cards` \| `table` | the theme's `--uc-team-view` (5), else `cards` |
 | `role` | space-separated roles | all |
 | `heading` | text \| `none` | localised "Teaching team" |
 | `heading-level` | `2`–`6` | `2` |
@@ -1346,6 +1353,13 @@ JavaScript reads each one once, after the themes have loaded (8.3).
 | Token | Values | Use |
 | --- | --- | --- |
 | `--uc-layout` | a layout name | Layout of `<uc-page>` when neither the page nor `course.js` names one (8.3). |
+| `--uc-hero-align` | `start` \| `center` | Alignment of `<uc-hero>` without `align`. |
+| `--uc-weeks-view` | `full` \| `compact` | View of `<uc-weeks>` without `view`. |
+| `--uc-team-view` | `cards` \| `table` | View of `<uc-team>` without `view`. |
+
+A component's attribute always wins over a choice property:
+`<uc-team view="cards">` shows cards in a theme that declares
+`--uc-team-view: table`. Any other value means the default.
 
 Fonts (Inter, JetBrains Mono) are served with the kit from `kit/v1/fonts/` and declared in `uc-kit.css`; no third-party request is made. Preload `fonts/inter-latin.woff2` from the page (section 1) so it downloads in parallel with the CSS.
 Setting `--uc-font-sans: system-ui, sans-serif` in `theme.css` uses the
@@ -1632,8 +1646,11 @@ layout. Layouts other than `sidebar`, `top` and `full` are files of
 Order of precedence of a page's layout: the `layout` attribute, then
 `layout` in `course.js`, then `--uc-layout` on `:root` (the theme, then the
 site's `theme.css`), then `sidebar`. A value that is not a known layout, or
-whose style sheet failed to load, is skipped with a console warning. The kit
-reads `--uc-layout` once the themes have loaded and shows the page after the
+whose style sheet failed to load, is skipped with a console warning. A
+theme can also choose the default view of a few components with the choice
+properties `--uc-hero-align`, `--uc-weeks-view` and `--uc-team-view`
+(section 5); the component's attribute always wins. The kit
+reads `--uc-layout` and those properties once the themes have loaded and shows the page after the
 layout files have loaded too, within the 300 ms wait of 3.1.
 
 A list in `theme` holds at most one theme with a layout. The token themes

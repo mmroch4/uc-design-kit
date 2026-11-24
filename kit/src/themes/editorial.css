@@ -3,8 +3,8 @@
  * running text, the look of a book. Layout "centered": a centred header with
  * the course title, the navigation under it, one reading column. Text in the
  * system's serif font (the stack of "serif", no download) with line spacing
- * 1.7; the hero centred, its title kept for screen readers only (the header
- * already shows the name); <uc-team> as a table (read from L6 on).
+ * 1.7; the hero centred (--uc-hero-align), its title kept for screen readers
+ * only (the header already shows the name); <uc-team> as a table.
  */
 @import "../layouts/centered.css";
 
@@ -17,7 +17,6 @@
 }
 
 :where(.uc-page--centered .uc-brand__title) { font-weight: 700; }
-:where(.uc-page--centered uc-hero) { align-items: center; text-align: center; }
 :where(.uc-page--centered .uc-hero__title) {
   position: absolute;
   width: 1px;

@@ -107,6 +107,21 @@
     return value;
   }
 
+  /** Components that read a choice property before the themes settled, with what they read. */
+  const early = new Map();
+  /**
+   * A component's variant (section 5.3): its attribute, else the choice
+   * property --uc-<prop> of the theme. A component that reads the property
+   * before the themes have loaded is drawn again once they have, if it changed.
+   */
+  UC.internal.variant = function variant(element, attribute, prop) {
+    const own = element.getAttribute(attribute);
+    if (own) return own;
+    const value = themeValue(prop);
+    if (!settled) early.set(element, [prop, value]);
+    return value;
+  };
+
   /** The layout of a <uc-page> (or of the site, without one), by the precedence above. */
   function resolve(page) {
     const levels = [
@@ -188,6 +203,13 @@
         .then(() => {
           settled = true;
           rerenderPages();
+          early.forEach(([prop, value], element) => {
+            if (element.isConnected && themeValue(prop) !== value) {
+              element.render();
+              UC.internal.enhance(element);
+            }
+          });
+          early.clear();
         });
     }
     return ready;

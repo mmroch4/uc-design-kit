@@ -63,6 +63,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-hero__code` | O código do curso. |
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
+| `.uc-hero--center` | O bloco centrado (`align="center"` ou `--uc-hero-align: center` no tema). |
 
 ### [`<uc-tiles>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md)
 

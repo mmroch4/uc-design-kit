@@ -106,7 +106,7 @@ Exemplo (tabela da equipa com uma nota sobre o atendimento), [demonstração ao 
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
-| `view` | `cards` ou `table` | `cards` | Cartões numa grelha ou uma tabela com uma linha por pessoa. |
+| `view` | `cards` ou `table` | o do tema ([`--uc-team-view`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), senão `cards` | Cartões numa grelha ou uma tabela com uma linha por pessoa. O tema Editorial mostra a tabela; o atributo ganha ao tema. |
 | `role` | funções separadas por espaços | todas | Mostra só as pessoas com uma destas funções, por exemplo `role="assistant"`. Depois de o kit carregar passa para `data-role` (ver [abaixo](#atributo-role)). |
 | `heading` | texto ou `none` | "Equipa docente" | Título da secção, num `<h2>`. Com `none`, não há título visível. |
 | `heading-level` | `2` a `6` | `2` | Nível do título gerado: `3` dá um `<h3>`, para quando o componente está dentro de uma secção que já tem um `<h2>`. O aspeto não muda; muda só a estrutura que os leitores de ecrã usam para navegar. |

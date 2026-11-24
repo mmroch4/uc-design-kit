@@ -288,7 +288,7 @@ Exemplo (semanas sem prazos), [demonstração ao vivo](https://uc-design-kit.mig
 
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
-| `view` | `full` ou `compact` | `full` | Com `compact`, mostra as semanas numa tabela, uma linha por semana ([vista compacta](#vista-compacta)). |
+| `view` | `full` ou `compact` | o do tema ([`--uc-weeks-view`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), senão `full` | Com `compact`, mostra as semanas numa tabela, uma linha por semana ([vista compacta](#vista-compacta)). O tema Manual usa a vista compacta; `view="full"` ganha ao tema. |
 | `no-breaks` | booleano | ausente | Não mostra as interrupções de `semester.breaks`. |
 | `no-deadlines` | booleano | ausente | Não acrescenta prazos do `course.js`, nem dentro das semanas nem fora delas. |
 | `kind` | tipos separados por espaços | todos | Só acrescenta prazos destes tipos, por exemplo `kind="assessment exam"`. |
