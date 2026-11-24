@@ -214,6 +214,19 @@
           </table>
         </div>
         <p>O modelo do site já vem com <code>theme: "classic"</code> no <code>course.js</code>. É o aspeto do kit, que já está no <code>uc-kit.css</code>, por isso não descarrega nada; os temas acima juntam-se a ele numa lista: <code>theme: ["classic", "compact"]</code>. Um tema pode também escolher o layout das páginas, com a propriedade <a href="../estilos/tokens.html#escolhas"><code>--uc-layout</code></a>; o <code>layout</code> do <code>course.js</code> e o atributo da página ganham-lhe sempre.</p>
+        <p>Os temas que escolhem o layout substituem o <code>classic</code> (não se juntam a ele) e também combinam com os temas acima: <code>theme: ["institutional", "high-contrast"]</code>.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Temas do kit que escolhem o layout</caption>
+            <thead>
+              <tr><th scope="col">Tema</th><th scope="col">Layout</th><th scope="col">O que muda</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>classic</code> (Clássico)</td><td><code>sidebar</code></td><td>Nada: é o aspeto do kit e o tema do modelo.</td></tr>
+              <tr><td><code>institutional</code> (Institucional)</td><td><a href="../componentes/uc-page.html#faixa-institucional"><code>banner</code></a></td><td>Cabeçalho, apresentação da cadeira e separadores numa faixa da cor do curso, cantos mais retos e os títulos das secções sublinhados. Ar de página oficial da faculdade.</td></tr>
+            </tbody>
+          </table>
+        </div>
         <p>A mesma semana e o mesmo cartão, primeiro com o aspeto do kit e depois com cada tema:</p>
         <!-- docs:demo src="../../demos/themes/padrao.html" title="semana e cartão sem tema pronto" height="420" -->
         <div class="docs-demo" id="demo-themes-padrao">

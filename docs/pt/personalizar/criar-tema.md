@@ -41,6 +41,13 @@ O kit traz três temas prontos em `kit/v1/themes/`. Cada um é um ficheiro peque
 
 O modelo do site já vem com `theme: "classic"` no `course.js`. É o aspeto do kit, que já está no `uc-kit.css`, por isso não descarrega nada; os temas acima juntam-se a ele numa lista: `theme: ["classic", "compact"]`. Um tema pode também escolher o layout das páginas, com a propriedade [`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas); o `layout` do `course.js` e o atributo da página ganham-lhe sempre.
 
+Os temas que escolhem o layout substituem o `classic` (não se juntam a ele) e também combinam com os temas acima: `theme: ["institutional", "high-contrast"]`.
+
+| Tema | Layout | O que muda |
+| --- | --- | --- |
+| `classic` (Clássico) | `sidebar` | Nada: é o aspeto do kit e o tema do modelo. |
+| `institutional` (Institucional) | [`banner`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional) | Cabeçalho, apresentação da cadeira e separadores numa faixa da cor do curso, cantos mais retos e os títulos das secções sublinhados. Ar de página oficial da faculdade. |
+
 A mesma semana e o mesmo cartão, primeiro com o aspeto do kit e depois com cada tema:
 
 Exemplo (semana e cartão sem tema pronto), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/themes/padrao.html):

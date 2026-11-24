@@ -100,6 +100,21 @@ Exemplo (página com a navegação numa barra no topo), [demonstração ao vivo]
 </uc-page>
 ```
 
+### Faixa institucional
+
+`layout="banner"` junta o cabeçalho, a apresentação da cadeira e a navegação numa só faixa da cor do curso, com ar de página oficial da faculdade. O primeiro `<uc-hero>` escrito diretamente na página passa para dentro da faixa (é movido, não copiado, por isso a página continua com um só `h1`). Numa página sem `<uc-hero>`, a faixa fica baixa, só com o cabeçalho e os separadores. Num ecrã largo, as páginas são separadores no fundo da faixa, com a atual a branco; abaixo de 960 px, o botão "Menu" fica dentro da faixa. Na impressão, a faixa sai sem cor.
+
+É o layout do tema [Institucional](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos) (`theme: "institutional"`), mas funciona sem ele. O estilo está num ficheiro à parte, `kit/v1/layouts/banner.css`, que o kit só descarrega quando uma página o usa. A cor da faixa é `--uc-color-accent-strong`, a versão escura da cor do curso, que tem sempre contraste suficiente com o texto branco.
+
+Exemplo (página com a faixa institucional), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/banner.html):
+
+```html
+<uc-page layout="banner" current="home">
+  <uc-hero></uc-hero>
+  <p>O cabeçalho, a apresentação da cadeira e a navegação ficam numa faixa da cor do curso. Num ecrã largo, as páginas são separadores no fundo da faixa; em ecrãs estreitos, o botão "Menu" fica dentro dela.</p>
+</uc-page>
+```
+
 ### Mudar de língua
 
 Quando `languages` tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com `?lang=en`). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com `lang` mostra só a língua ativa.
@@ -185,7 +200,7 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar`, `top`, `full` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `layout` | `sidebar`, `top`, `full`, `banner` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
@@ -275,6 +290,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-shell` | A grelha com a navegação e o conteúdo. |
 | `.uc-sidebar`, `.uc-nav` | A coluna da navegação e o `<nav>` dentro dela. |
 | `.uc-topnav` | Com `layout="top"`, a faixa por baixo do cabeçalho que contém a `.uc-sidebar`. |
+| `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | Com `layout="banner"`: a página, a faixa da cor do curso (com o `.uc-header` dentro), a sua parte centrada com a apresentação e a `.uc-sidebar`, e o lugar do `<uc-hero>`. |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |

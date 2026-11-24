@@ -27,7 +27,7 @@
   /** Layouts styled by uc-kit.css. "sidebar" is the default and has no class. */
   const BUILT_IN = ["sidebar", "top", "full"];
   /** Layouts with a file kit/v1/layouts/<name>.css (built from kit/src/layouts/ by scripts/themes.mjs). */
-  const FILE_LAYOUTS = [];
+  const FILE_LAYOUTS = ["banner"];
   const LAYOUTS = BUILT_IN.concat(FILE_LAYOUTS);
   const DEFAULT = "sidebar";
   const NAME = /^[a-z][a-z0-9-]*$/;
@@ -48,7 +48,9 @@
   function sheetsOf(name) {
     const site = registered.get(name);
     const base = site ? site.base : name;
-    const urls = FILE_LAYOUTS.includes(base) ? [UC.internal.kitUrl(`layouts/${base}.css`)] : [];
+    // A kit layout file is not linked when it is already there (imported by a theme): it sets --uc-layout-<name>-loaded.
+    const present = getComputedStyle(document.documentElement).getPropertyValue(`--uc-layout-${base}-loaded`).trim();
+    const urls = FILE_LAYOUTS.includes(base) && !present ? [UC.internal.kitUrl(`layouts/${base}.css`)] : [];
     if (site) site.chain.forEach((part) => registered.get(part).css && urls.push(registered.get(part).css));
     return urls;
   }

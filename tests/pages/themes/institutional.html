@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>theme institutional + high-contrast · test</title>
+  <!-- The theme is named in course.js only: it brings --uc-layout: banner and @imports layouts/banner.css. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.theme = ["institutional", "high-contrast"];</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../layouts/check.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <uc-hero></uc-hero>
+    <uc-this-week></uc-this-week>
+    <uc-deadlines view="table" filter="all" limit="3"></uc-deadlines>
+    <uc-notices></uc-notices>
+    <section class="uc-section" aria-labelledby="blocks">
+      <h2 id="blocks">Blocos</h2>
+      <div class="uc-callout"><p>Um aviso com <a href="#blocks">uma ligação</a> e <code>código</code>.</p></div>
+      <p><span class="uc-tag">etiqueta</span> <span class="uc-tag uc-tag--warning">aviso</span> <span class="uc-tag uc-tag--success">feito</span></p>
+      <pre><code>int[] v = new int[10];</code></pre>
+    </section>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      test("the theme is a theme with a layout", () => equal(UC.internal.layoutThemes.includes("institutional"), true));
+      test("its layout comes from the CSS", () => equal([UC.internal.themeValue("layout"), UC.internal.layouts.resolve(page)], ["banner", "banner"]));
+      test("only the themes are linked (the layout arrives by @import)", () => equal(sheets(), ["uc-kit.css", "themes/institutional.css", "themes/high-contrast.css"]));
+      test("the page is drawn as a banner, hero inside", () => equal([page.classList.contains("uc-page--banner"), Boolean(page.querySelector(".uc-banner__hero h1"))], [true, true]));
+      test("squarer corners", () => equal(getComputedStyle(document.documentElement).getPropertyValue("--uc-radius-md").trim(), "4px"));
+      test("section headings are underlined", () => equal(getComputedStyle(document.getElementById("blocks")).borderBottomStyle, "solid"));
+    }));
+  </script>
+</body>
+</html>

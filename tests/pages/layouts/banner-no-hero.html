@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout banner without uc-hero (course.js) · test</title>
+  <!-- layout: "banner" in course.js, no <uc-hero>: a low band with the header and the tabs. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.layout = "banner";</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <h1>Semanas</h1>
+    <p>Página sem <code>&lt;uc-hero&gt;</code>: a faixa fica baixa, só com o cabeçalho e os separadores.</p>
+    <uc-weeks></uc-weeks>
+    <ol id="results"></ol>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      test("course.js chooses banner", () => equal(UC.internal.layouts.resolve(page), "banner"));
+      test("band without a hero", () => equal([Boolean(page.querySelector(".uc-banner .uc-banner__inner > .uc-sidebar")), page.querySelector(".uc-banner__hero")], [true, null]));
+      test("the page's own h1 stays in main", () => equal([page.querySelectorAll("h1").length, Boolean(page.querySelector(".uc-main > h1"))], [1, true]));
+      test("the current tab is marked", () => equal(page.querySelector('.uc-banner .uc-nav__link[aria-current="page"]').getAttribute("href").split("/").pop(), "uc-weeks.html"));
+    }));
+  </script>
+</body>
+</html>
