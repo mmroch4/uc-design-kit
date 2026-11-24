@@ -107,6 +107,7 @@ A escala de espaço anda de 4 em 4 px e não tem os passos 9 e 11. Ver [Espaço 
 | Token | Valor | Para quê e onde |
 | --- | --- | --- |
 | `--uc-content-max` | `1200px` | Largura máxima da página em `<uc-page>`. |
+| `--uc-reading-max` | `760px` | Largura da coluna de leitura do layout `centered` (tema Editorial). |
 | `--uc-sidebar-width` | `216px` | Coluna da navegação de `<uc-page>` (a partir de 960 px). |
 | `--uc-header-height` | `64px` | Barra de topo de `<uc-page>`; a navegação fixa começa por baixo dela. |
 | `--uc-gutter` | `32px` | Margem lateral da página em `<uc-page>`. Abaixo de 760 px passa a 16px. |

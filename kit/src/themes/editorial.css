@@ -1,0 +1,30 @@
+/*
+ * Theme "editorial" (Editorial, docs/api.md 8.3): for courses with a lot of
+ * running text, the look of a book. Layout "centered": a centred header with
+ * the course title, the navigation under it, one reading column. Text in the
+ * system's serif font (the stack of "serif", no download) with line spacing
+ * 1.7; the hero centred, its title kept for screen readers only (the header
+ * already shows the name); <uc-team> as a table (read from L6 on).
+ */
+@import "../layouts/centered.css";
+
+:root {
+  --uc-layout: centered;
+  --uc-hero-align: center;
+  --uc-team-view: table;
+  --uc-font-sans: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --uc-line-height: 1.7;
+}
+
+:where(.uc-page--centered .uc-brand__title) { font-weight: 700; }
+:where(.uc-page--centered uc-hero) { align-items: center; text-align: center; }
+:where(.uc-page--centered .uc-hero__title) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+:where(.uc-page--centered .uc-hero__tagline) { font-size: 1.25rem; font-style: italic; }

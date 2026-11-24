@@ -126,7 +126,8 @@
       this.classList.add(...this.layoutClasses);
       const layout = layouts.base(this.layout);
       const navigation = layout === "full" ? null : this.renderNavigation(current);
-      const top = layout === "top";
+      // centered has the structure of top (a bar under the header); layouts/centered.css styles it.
+      const top = layout === "top" || layout === "centered";
       const banner = layout === "banner";
       const hero = this.placeHero(banner);
       const header = this.renderHeader();

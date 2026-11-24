@@ -338,6 +338,24 @@
         </div>
         <!-- /docs:demo -->
 
+        <h3 id="centrado">Centrado</h3>
+        <p><code>layout="centered"</code> dá à página um aspeto de livro: o cabeçalho é uma coluna centrada com o título da cadeira em letra grande, a navegação fica centrada por baixo, entre duas linhas, com a página atual sublinhada, e o conteúdo ocupa uma só coluna de leitura de <code>--uc-reading-max</code> (760 px). Os blocos lado a lado (<code>.uc-split</code>) ficam um por baixo do outro. A pesquisa e as línguas ficam no canto do cabeçalho; abaixo de 960 px, o botão "Menu" fica centrado por cima do conteúdo. Na impressão, a navegação não aparece.</p>
+        <p>É o layout do tema <a href="../personalizar/criar-tema.html#temas-prontos">Editorial</a> (<code>theme: "editorial"</code>), mas funciona sem ele. O estilo está em <code>kit/v1/layouts/centered.css</code>, descarregado só quando uma página o usa. Serve para cadeiras com muito texto corrido; para tabelas largas (horários, sumários) é melhor <code>top</code>.</p>
+        <!-- docs:demo src="../../demos/uc-page/centered.html" title="página centrada com coluna de leitura" height="440" -->
+        <div class="docs-demo" id="demo-uc-page-centered">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/centered.html" title="Demonstração: página centrada com coluna de leitura" loading="lazy" style="height: 440px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page layout=&quot;centered&quot; current=&quot;about&quot;&gt;
+  &lt;h1&gt;Sobre a UC&lt;/h1&gt;
+  &lt;p&gt;O cabeçalho e a navegação ficam centrados, com o título da cadeira em letra grande, e o conteúdo ocupa uma coluna de leitura estreita. A pesquisa e as línguas ficam no canto; em ecrãs estreitos, o botão &quot;Menu&quot; fica centrado por cima do conteúdo.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/centered.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
         <h3 id="mudar-de-lingua">Mudar de língua</h3>
         <p>Quando <code>languages</code> tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com <code>?lang=en</code>). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com <code>lang</code> mostra só a língua ativa.</p>
         <!-- docs:demo src="../../demos/uc-page/languages.html?lang=en" title="página em inglês com o botão para português" height="516" -->
@@ -419,7 +437,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
             </thead>
             <tbody>
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
-              <tr><td><code>layout</code></td><td><code>sidebar</code>, <code>top</code>, <code>full</code>, <code>banner</code>, <code>docs</code> ou um layout próprio do site</td><td><code>layout</code> do <code>course.js</code>, senão o do tema (<code>--uc-layout</code>), senão <code>sidebar</code></td><td>Com <code>top</code>, a navegação fica numa barra por baixo do cabeçalho; com <code>full</code>, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com <code>banner</code>, o cabeçalho, o primeiro <code>&lt;uc-hero&gt;</code> e a navegação ficam numa faixa da cor do curso (ver <a href="#faixa-institucional">Faixa institucional</a>). Com <code>docs</code>, a página tem três colunas com "Nesta página" à direita (ver <a href="#tres-colunas">Três colunas</a>). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o <code>course.js</code> ou o tema.</td></tr>
+              <tr><td><code>layout</code></td><td><code>sidebar</code>, <code>top</code>, <code>full</code>, <code>banner</code>, <code>docs</code>, <code>centered</code> ou um layout próprio do site</td><td><code>layout</code> do <code>course.js</code>, senão o do tema (<code>--uc-layout</code>), senão <code>sidebar</code></td><td>Com <code>top</code>, a navegação fica numa barra por baixo do cabeçalho; com <code>full</code>, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com <code>banner</code>, o cabeçalho, o primeiro <code>&lt;uc-hero&gt;</code> e a navegação ficam numa faixa da cor do curso (ver <a href="#faixa-institucional">Faixa institucional</a>). Com <code>docs</code>, a página tem três colunas com "Nesta página" à direita (ver <a href="#tres-colunas">Três colunas</a>). Com <code>centered</code>, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver <a href="#centrado">Centrado</a>). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o <code>course.js</code> ou o tema.</td></tr>
               <tr><td><code>toc</code></td><td><code>off</code></td><td>—</td><td>Com o layout <code>docs</code>, tira a coluna "Nesta página" desta página. Ver <a href="#tres-colunas">Três colunas</a>.</td></tr>
               <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa. <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
               <tr><td><code>source</code></td><td>endereço</td><td><code>source.url</code> do <code>course.js</code></td><td>Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com <code>source</code> no <code>course.js</code>. Ver <a href="#nota-de-origem">Nota de origem</a>.</td></tr>
@@ -519,6 +537,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>.uc-page--banner</code>, <code>.uc-banner</code>, <code>.uc-banner__inner</code>, <code>.uc-banner__hero</code></td><td>Com <code>layout="banner"</code>: a página, a faixa da cor do curso (com o <code>.uc-header</code> dentro), a sua parte centrada com a apresentação e a <code>.uc-sidebar</code>, e o lugar do <code>&lt;uc-hero&gt;</code>.</td></tr>
               <tr><td><code>.uc-page--docs</code>, <code>.uc-toc</code>, <code>.uc-toc-toggle</code>, <code>.uc-toc-toggle__label</code>, <code>.uc-toc-toggle__count</code>, <code>.uc-toc-toggle__chevron</code>, <code>.uc-page--toc-open</code></td><td>Com <code>layout="docs"</code>: a página, a coluna "Nesta página" (com o progresso de um <code>&lt;uc-guide&gt;</code> no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta.</td></tr>
               <tr><td><code>.uc-toc__nav</code>, <code>.uc-toc__label</code>, <code>.uc-toc__list</code>, <code>.uc-toc__item</code>, <code>.uc-toc__item--sub</code>, <code>.uc-toc__link</code></td><td>O <code>&lt;nav&gt;</code> "Nesta página", o seu rótulo, a lista, cada entrada (<code>--sub</code> para um <code>h3</code>) e a ligação (a da secção à vista tem <code>aria-current="location"</code>).</td></tr>
+              <tr><td><code>.uc-page--centered</code></td><td>Com <code>layout="centered"</code>: a página. A estrutura é a do <code>top</code> (<code>.uc-topnav</code> por baixo do <code>.uc-header</code>), com o cabeçalho e a navegação centrados e o conteúdo numa coluna de <code>--uc-reading-max</code>.</td></tr>
               <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
               <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
               <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
@@ -589,6 +608,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           <li class="docs-toc__sub"><a href="#navegacao-no-topo">Navegação no topo</a></li>
           <li class="docs-toc__sub"><a href="#faixa-institucional">Faixa institucional</a></li>
           <li class="docs-toc__sub"><a href="#tres-colunas">Três colunas com &quot;Nesta página&quot;</a></li>
+          <li class="docs-toc__sub"><a href="#centrado">Centrado</a></li>
           <li class="docs-toc__sub"><a href="#mudar-de-lingua">Mudar de língua</a></li>
           <li class="docs-toc__sub"><a href="#outros-anos">Outros anos</a></li>
           <li class="docs-toc__sub"><a href="#data-da-pagina">Data de atualização de uma página</a></li>

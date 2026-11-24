@@ -63,6 +63,7 @@
 
   /* Layout */
   --uc-content-max: 1200px;
+  --uc-reading-max: 760px; /* reading column of the layout "centered" */
   --uc-sidebar-width: 216px;
   --uc-header-height: 64px;
   --uc-gutter: var(--uc-space-8);
