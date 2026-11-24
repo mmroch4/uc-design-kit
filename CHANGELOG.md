@@ -50,6 +50,17 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   like Moodle, from `aside` in `course.js` (by default the next dates and the
   notices; also `this-week`, `office-hours`, `platforms`). A block the page
   already shows is not repeated; `<uc-page aside="off">` removes the column.
+- Layout `onepage` (`<uc-page layout="onepage">`, file
+  `kit/v1/layouts/onepage.css`): the course site on one page. A bar under the
+  header stays at the top with the page's sections (its `<h2>`, the one in
+  view marked; `data-nav="off"` leaves one out), then the other pages; on
+  phones it scrolls sideways instead of a "Menu" button.
+- `<uc-tiles>`: a mosaic for the home page, one card per page of `course.js`
+  (without the current one) with the new field `pages[].description`; the
+  weeks card shows the current week. `pages="weeks, assessment"` picks and
+  orders the cards.
+- Section gallery: "Mosaico de secções" and "Calendário primeiro" (the weeks
+  table as the home page).
 
 ### Changed
 - `layout` in `course.js` keeps any name (a site layout may be registered

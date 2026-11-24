@@ -212,9 +212,13 @@ pages: [
   "home",                                         // built-in: href "index.html", label "Início"/"Home"
   { id: "weeks", href: "semanas.html" },          // built-in id, custom file name
   { id: "contests", href: "contests.html", label: { pt: "Concursos", en: "Contests" } },
-  { id: "about", href: { pt: "sobre.html", en: "about.html" } }   // one file per language
+  { id: "about", href: { pt: "sobre.html", en: "about.html" } },  // one file per language
+  { id: "assessment", href: "avaliacao.html", description: "Componentes, datas e regras." }
 ]
 ```
+
+`description` (`HTMLText`, optional) is one sentence about the page, shown
+under its name on its card in `<uc-tiles>` (3.1). Nothing else reads it.
 
 A page that is not in `pages` (a lab guide, a problem statement) and has one
 file per language names its translations in its `<head>`, with
@@ -416,7 +420,7 @@ with JavaScript disabled it is shown at once.
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
-| `layout` | `sidebar` \| `top` \| `full` \| `banner` \| `docs` \| `centered` \| `panel` \| `aside` \| a site layout (8.3) | `layout` of `course.js`, else the theme's `--uc-layout`, else `sidebar` | An unknown name is skipped with a warning (the next of those decides). `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). `banner` (file `kit/v1/layouts/banner.css`, added by the kit when needed) puts the header, the first `<uc-hero>` written directly in the page and the navigation as tabs in one band of `--uc-color-accent-strong` (`.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero`); the hero is moved, not copied, so the page keeps one `h1`, and without one the band only has the header and the tabs. Below 960 px the "Menu" button is inside the band. Prints without colour. `docs` (file `kit/v1/layouts/docs.css`) has three columns, up to `--uc-content-max` + 240 px: the navigation, the content and "Nesta página" (`.uc-toc`), a `<nav>` listing the `<h2>`/`<h3>` of the page that have an id (every one has, `core/anchors.js`), without those marked `data-nav="off"` (or inside such an element) and those of another language; the one in view has `aria-current="location"`. The list only shows with two or more entries. A `<uc-guide>` in the page puts its progress at the top of that column and makes no list of its own. From 1200 px down the list is a button "Nesta página · N secções" above the content that opens it, like "Menu"; Escape closes it. Prints like `full`. `centered` (file `kit/v1/layouts/centered.css`) has the structure of `top` (`.uc-topnav` under the header) styled as a book: the header is a centred column with the course title in large type, the search and language buttons in its top corner (above 960 px), the navigation centred between two lines with the current page underlined, and the content is one column of `--uc-reading-max` (760 px) where `.uc-split` stacks. Below 960 px the "Menu" button is centred above the content. Prints like `full`. `panel` (file `kit/v1/layouts/panel.css`) has no header band: the header (with the class `.uc-panel__brand`), the navigation and a timetable summary (`.uc-panel__info`) form one full-height bar on the left (`.uc-panel`, `--uc-panel-width` 272 px) that stays in place while the content scrolls. The summary lists the lectures of `schedule` (entries with the same time and room merge their days: "3.ª e 5.ª · 14:00–15:00 · FC4 0.41") and the coordinator's office hours, under "Teóricas" and "Atendimento"; `panel: false` in `course.js` leaves it out. Below 960 px the page looks like `sidebar` (header on top, then "Menu") and the summary is hidden. Prints like `full`. `aside` (file `kit/v1/layouts/aside.css`) adds, on every page, a column of blocks after `<main>`: an `<aside class="uc-aside">` named "Destaques", with the blocks of `aside` in `course.js` (2.2) as cards, up to `--uc-content-max` + 200 px. From 1200 px down the blocks go below the content; on phones they come last. Prints without them. |
+| `layout` | `sidebar` \| `top` \| `full` \| `banner` \| `docs` \| `centered` \| `panel` \| `aside` \| `onepage` \| a site layout (8.3) | `layout` of `course.js`, else the theme's `--uc-layout`, else `sidebar` | An unknown name is skipped with a warning (the next of those decides). `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). `banner` (file `kit/v1/layouts/banner.css`, added by the kit when needed) puts the header, the first `<uc-hero>` written directly in the page and the navigation as tabs in one band of `--uc-color-accent-strong` (`.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero`); the hero is moved, not copied, so the page keeps one `h1`, and without one the band only has the header and the tabs. Below 960 px the "Menu" button is inside the band. Prints without colour. `docs` (file `kit/v1/layouts/docs.css`) has three columns, up to `--uc-content-max` + 240 px: the navigation, the content and "Nesta página" (`.uc-toc`), a `<nav>` listing the `<h2>`/`<h3>` of the page that have an id (every one has, `core/anchors.js`), without those marked `data-nav="off"` (or inside such an element) and those of another language; the one in view has `aria-current="location"`. The list only shows with two or more entries. A `<uc-guide>` in the page puts its progress at the top of that column and makes no list of its own. From 1200 px down the list is a button "Nesta página · N secções" above the content that opens it, like "Menu"; Escape closes it. Prints like `full`. `centered` (file `kit/v1/layouts/centered.css`) has the structure of `top` (`.uc-topnav` under the header) styled as a book: the header is a centred column with the course title in large type, the search and language buttons in its top corner (above 960 px), the navigation centred between two lines with the current page underlined, and the content is one column of `--uc-reading-max` (760 px) where `.uc-split` stacks. Below 960 px the "Menu" button is centred above the content. Prints like `full`. `panel` (file `kit/v1/layouts/panel.css`) has no header band: the header (with the class `.uc-panel__brand`), the navigation and a timetable summary (`.uc-panel__info`) form one full-height bar on the left (`.uc-panel`, `--uc-panel-width` 272 px) that stays in place while the content scrolls. The summary lists the lectures of `schedule` (entries with the same time and room merge their days: "3.ª e 5.ª · 14:00–15:00 · FC4 0.41") and the coordinator's office hours, under "Teóricas" and "Atendimento"; `panel: false` in `course.js` leaves it out. Below 960 px the page looks like `sidebar` (header on top, then "Menu") and the summary is hidden. Prints like `full`. `aside` (file `kit/v1/layouts/aside.css`) adds, on every page, a column of blocks after `<main>`: an `<aside class="uc-aside">` named "Destaques", with the blocks of `aside` in `course.js` (2.2) as cards, up to `--uc-content-max` + 200 px. From 1200 px down the blocks go below the content; on phones they come last. Prints without them. `onepage` (file `kit/v1/layouts/onepage.css`) is the course site on one page: no sidebar; under the header, a `<nav class="uc-anchors">` (named like the navigation) that stays at the top while the page scrolls, with the page's sections, the `<h2>` of `<main>` that have an id, without those marked `data-nav="off"` (or inside such an element) and those of another language, then the other pages of `pages` (not the current one). The section in view has `aria-current="location"`; a heading reached from the bar is not hidden under it (`scroll-margin-top`). The bar is one line at every width and scrolls sideways when it does not fit, keeping the marked section in sight; there is no "Menu" button. Platforms are not in the bar. The content takes the whole width. Prints like `full`. |
 | `toc` | `off` | — | Layout `docs`: no "Nesta página" column on this page (a `<uc-guide>` keeps its own list and progress). |
 | `aside` | `off` | — | Layout `aside`: no column of blocks on this page. |
 | `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
@@ -486,6 +490,21 @@ moves focus to it. Matching rules: `<uc-search>`. Stable classes: the
 
 Course heading block: code, title (as `<h1>`) and tagline from the
 configuration. Children, if any, are appended below the tagline.
+
+#### `<uc-tiles>`
+
+Mosaic for the home page: a list (`ul.uc-tiles__list`) with one card per page
+of `pages` (2.3), without the current page, each a link
+(`a.uc-card.uc-tiles__link`) with the page's name (`.uc-tiles__title`) and
+its `description` (`.uc-tiles__text`) when it has one. During the semester
+the card of the `weeks` page also shows the current teaching week and its
+dates ("Semana 10 · 25–28 nov", `.uc-tiles__meta`) and stands out with the
+soft accent background (`.uc-tiles__link--now`). Pages without an `href` are
+left out. Names and descriptions follow the active language.
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `pages` | page ids, separated by commas or spaces | every page but the current one | Picks the cards and their order (the current page too, when listed). An id that is not in `pages` is skipped with a console warning. |
 
 #### `<uc-search>`
 
@@ -1599,7 +1618,7 @@ CSS. It changes nothing until a line is uncommented.
 A theme with a layout also chooses the layout of `<uc-page>`: it declares the
 choice property `--uc-layout` (section 5) and `@import`s the file of its
 layout. Layouts other than `sidebar`, `top` and `full` are files of
-`kit/v1/layouts/` (`banner.css`, `docs.css`, `centered.css`, `panel.css`, `aside.css`), downloaded only when a page uses them. Full contract:
+`kit/v1/layouts/` (`banner.css`, `docs.css`, `centered.css`, `panel.css`, `aside.css`, `onepage.css`), downloaded only when a page uses them. Full contract:
 `docs/architecture/themes-layouts.md`.
 
 | Name | Layout | Changes |

@@ -25,9 +25,10 @@ window.UC_COURSE = {
 
   pages: [
     "home",
-    { id: "weeks", href: "semanas.html" },
-    { id: "assessment", href: "avaliacao.html" },
-    { id: "about", href: "sobre.html" },
+    // `description`: the sentence of the page's card in <uc-tiles>.
+    { id: "weeks", href: "semanas.html", description: "Guiões, slides e exercícios de cada semana." },
+    { id: "assessment", href: "avaliacao.html", description: "Componentes, datas e regras da nota final." },
+    { id: "about", href: "sobre.html", description: "Objetivos, programa, horário e equipa docente." },
   ],
 
   // `id` names a platform in <uc-problems data-judge>; `hidden` keeps it out of the navigation.

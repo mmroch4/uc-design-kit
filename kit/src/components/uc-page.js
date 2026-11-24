@@ -19,6 +19,7 @@
   function pageLabel(page) {
     return page.label ? UC.text(page.label) : UC.t(`pages.${page.id}`);
   }
+  UC.internal.pageLabel = pageLabel;
 
   function fileName(path) {
     const name = decodeURIComponent(path.split(/[?#]/)[0].split("/").pop() || "");
@@ -127,7 +128,9 @@
       this.layoutClasses = layouts.classes(this.layout);
       this.classList.add(...this.layoutClasses);
       const layout = layouts.base(this.layout);
-      const navigation = layout === "full" ? null : this.renderNavigation(current);
+      // onepage: no sidebar; a sticky bar of the page's sections, then the other pages (.uc-anchors).
+      const onepage = layout === "onepage";
+      const navigation = layout === "full" || onepage ? null : this.renderNavigation(current);
       // centered has the structure of top (a bar under the header); layouts/centered.css styles it.
       const top = layout === "top" || layout === "centered";
       const banner = layout === "banner";
@@ -137,8 +140,9 @@
       const header = this.renderHeader();
       if (panel) header.classList.add("uc-panel__brand");
       // docs: an "On this page" column (.uc-toc) unless toc="off"; filled once the components have rendered.
-      const wasDocs = Boolean(this.tocColumn);
+      const hadToc = Boolean(this.tocColumn || this.anchors);
       this.tocColumn = layout === "docs" && this.getAttribute("toc") !== "off" ? this.renderTocColumn() : null;
+      this.anchors = onepage ? this.renderAnchors(current) : null;
 
       const parts = [
         h("a", { class: "uc-skip-link", href: "#uc-main" }, this.t("a11y.skipToContent")),
@@ -146,7 +150,7 @@
         banner
           ? h("div", { class: "uc-banner" }, header, h("div", { class: "uc-banner__inner" }, hero ? h("div", { class: "uc-banner__hero" }, hero) : null, navigation))
           : panel ? null : header,
-        top ? h("div", { class: "uc-topnav" }, navigation) : null,
+        top ? h("div", { class: "uc-topnav" }, navigation) : this.anchors,
         h(
           "div",
           { class: "uc-shell" },
@@ -160,7 +164,7 @@
       ];
       this.replaceChildren(...parts.filter(Boolean));
       this.setNavOpen(this.navOpen);
-      if (this.tocColumn || wasDocs) {
+      if (this.tocColumn || this.anchors || hadToc) {
         this.setTocOpen(this.tocOpen);
         // After the components inside have rendered (they are defined in the same task).
         queueMicrotask(() => this.updateToc());
@@ -268,39 +272,62 @@
     }
 
     /**
-     * Fills the .uc-toc list with the <h2>/<h3> of <main> that have an id
-     * (core/anchors.js gives one to each), without those marked
-     * data-nav="off" or hidden; shown with 2 or more. Marks the section in
-     * view with aria-current="location". Also draws the guides again, so their
+     * Layout "onepage": the sticky bar. The sections (filled by updateToc),
+     * then the other pages of course.js.
+     */
+    renderAnchors(current) {
+      return h(
+        "nav",
+        { class: "uc-anchors", "aria-label": this.t("nav.label") },
+        h("ul", { class: "uc-anchors__list", "aria-label": this.t("guide.onThisPage") }),
+        h("ul", { class: "uc-anchors__pages" }, this.course.pages.filter((page) => page !== current).map((page) => h("li", {}, h("a", { class: "uc-anchors__link", href: pageHref(page) }, pageLabel(page))))),
+      );
+    }
+
+    /**
+     * Fills the .uc-toc list (layout "docs") with the <h2>/<h3> of <main>
+     * that have an id (core/anchors.js gives one to each), or the sections of
+     * the .uc-anchors bar (layout "onepage") with its <h2>, without those
+     * marked data-nav="off" or hidden. The .uc-toc list is shown with 2 or
+     * more. Marks the section in view with aria-current="location" (the bar
+     * scrolls to keep it in sight). Also draws the guides again, so their
      * progress moves into (or out of) the column.
      */
     updateToc() {
       if (this.spy) this.spy.disconnect();
       this.spy = null;
       this.main.querySelectorAll("uc-guide").forEach((guide) => guide.__ucSetupDone && guide.render());
-      const column = this.tocColumn;
+      const column = this.tocColumn || this.anchors;
       if (!column || !column.isConnected) return;
-      const headings = Array.from(this.main.querySelectorAll("h2[id], h3[id]")).filter(
+      const bar = column === this.anchors;
+      const name = bar ? "uc-anchors" : "uc-toc";
+      const headings = Array.from(this.main.querySelectorAll(bar ? "h2[id]" : "h2[id], h3[id]")).filter(
         (heading) => !heading.closest('[data-nav="off"], [hidden], dialog, template') && !isHiddenByLanguage(heading) && visibleText(heading),
       );
-      const list = column.querySelector(".uc-toc__list");
+      const list = column.querySelector(`.${name}__list`);
       list.replaceChildren(
         ...headings.map((heading) =>
           h(
             "li",
-            { class: heading.localName === "h3" ? "uc-toc__item uc-toc__item--sub" : "uc-toc__item" },
-            h("a", { class: "uc-toc__link", href: `#${heading.id}`, onClick: (event) => {
+            { class: heading.localName === "h3" ? "uc-toc__item uc-toc__item--sub" : `${name}__item` },
+            h("a", { class: `${name}__link`, href: `#${heading.id}`, onClick: (event) => {
               scrollspy.goTo(event, heading);
               this.setTocOpen(false);
             } }, visibleText(heading)),
           ),
         ),
       );
-      column.querySelector(".uc-toc-toggle__count").textContent = `· ${this.t("toc.sections", { count: headings.length })}`;
-      const shown = headings.length >= 2;
-      column.querySelector(".uc-toc-toggle").hidden = !shown;
-      column.querySelector(".uc-toc__nav").hidden = !shown;
-      if (shown) this.spy = scrollspy(headings, (heading) => scrollspy.markCurrent(list.querySelectorAll(".uc-toc__link"), heading));
+      const shown = bar || headings.length >= 2;
+      if (!bar) {
+        column.querySelector(".uc-toc-toggle__count").textContent = `· ${this.t("toc.sections", { count: headings.length })}`;
+        column.querySelector(".uc-toc-toggle").hidden = !shown;
+        column.querySelector(".uc-toc__nav").hidden = !shown;
+      }
+      if (shown) this.spy = scrollspy(headings, (heading) => {
+        scrollspy.markCurrent(list.querySelectorAll("a"), heading);
+        const link = bar && list.querySelector("[aria-current]");
+        if (link) column.scrollLeft = link.offsetLeft - (column.clientWidth - link.offsetWidth) / 2;
+      });
     }
 
     renderHeader() {

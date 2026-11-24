@@ -11,9 +11,10 @@ It runs in phases L0–L8, one pull request each. Every phase updates this file
 [`docs/api.md`](../api.md), which wins when the two differ. Code comments cite
 this file by section number: keep the numbers stable.
 
-Status: **L0–L4 done** (mechanism; layout `banner` and theme
+Status: **L0–L5 done** (mechanism; layout `banner` and theme
 `institutional`; layout `docs` and theme `handbook`; layout `centered` and
-themes `editorial` and `modern`; layouts `panel` and `aside`). Sections marked
+themes `editorial` and `modern`; layouts `panel` and `aside`; layout
+`onepage`, `<uc-tiles>` and the home-page patterns). Sections marked
 *(planned, Ln)* describe what a later phase adds; until then the kit does
 not know those names.
 
@@ -169,7 +170,7 @@ A component attribute always wins over a choice property.
 | `centered` | `layouts/centered.css` | Centred header and navigation, reading column `--uc-reading-max` (6.3) | `.uc-page--centered`, with the structure of `top` (`.uc-topnav`) | L3 |
 | `panel` | `layouts/panel.css` | Full-height bar with the header, the navigation and a timetable summary; no header band (6.4) | `.uc-page--panel`, `.uc-panel`, `.uc-panel__brand`, `.uc-panel__info`, `.uc-panel__label`, `.uc-panel__list` | L4 |
 | `aside` | `layouts/aside.css` | Navigation, content and blocks on the right on every page (6.5) | `.uc-page--aside`, `.uc-aside`, `.uc-aside__heading`, `.uc-aside__office-hours`, `.uc-aside__platforms` | L4 |
-| `onepage` | `layouts/onepage.css` | Sticky bar with the page's sections, then the other pages | `.uc-page--onepage`, `.uc-anchors` | *(planned, L5)* |
+| `onepage` | `layouts/onepage.css` | Sticky bar with the page's sections, then the other pages (6.6) | `.uc-page--onepage`, `.uc-anchors`, `.uc-anchors__list`, `.uc-anchors__item`, `.uc-anchors__pages`, `.uc-anchors__link` | L5 |
 
 Every layout keeps the skip link, one `header`/`nav`/`main`/`footer`, one `h1`
 and `aria-current`; prints like `full`; below 960 px has a menu button or a
@@ -336,11 +337,72 @@ scrolling bar. `<uc-page>` gets `.uc-page--<layout>` for every layout but
   in its column. Not sticky: a tall column of blocks would be cut.
 - Print: no `.uc-aside`.
 
-Planned attributes and fields, added to `docs/api.md` by their phase:
-`data-nav="off"` for the anchor bar (L5), `pages[].description` and
-`<uc-tiles>` (L5). Done in L2: `<uc-page toc="off">`, `data-nav="off"` for
-the "Nesta página" list. Done in L4: `<uc-page aside="off">`, `aside` and
-`panel` in `course.js`.
+### 6.6 onepage
+
+```
+.uc-skip-link
+.uc-header
+nav.uc-anchors                   named like the navigation ("Secções da cadeira"); sticky, top 0
+  ul.uc-anchors__list            aria-label "Nesta página"; filled after each render
+    li.uc-anchors__item > a.uc-anchors__link
+  ul.uc-anchors__pages           the other pages of `pages` (not the current one)
+    li > a.uc-anchors__link
+.uc-shell > main.uc-main         one column
+.uc-footer
+```
+
+- No `.uc-sidebar` and no "Menu" button: the bar is the navigation. Platforms
+  are not in it (the plan lists sections, then pages).
+- Sections: the `<h2>` of `<main>` with an id, with the same filters as the
+  `.uc-toc` of `docs` (6.2): not `[data-nav="off"]` or inside one, not hidden,
+  not of another language, not empty. `updateToc()` fills both lists (the
+  `.uc-toc` one or this one) in a microtask after each render, and
+  `core/scrollspy.js` marks the section in view with `aria-current="location"`.
+  A click scrolls (smoothly unless reduced motion) and moves focus to the
+  heading. Unlike `.uc-toc`, the bar shows with any number of sections; the
+  line before the pages only shows when there is one (`:not(:empty)`).
+- The bar is one line at every width (`overflow-x: auto`, links
+  `white-space: nowrap`). When the marked link changes, the bar's
+  `scrollLeft` centres it, so on phones the current section stays in sight;
+  the window's scroll is never touched. Its inline padding lines its first
+  link up with the content (`--uc-content-max`).
+- Height `--uc-anchors-height` (48 px); headings of `<main>` get
+  `scroll-margin-top` of that plus `--uc-space-4`, so a heading reached from
+  the bar (or from a `#hash`) is not hidden under it.
+- Print: no `.uc-anchors`.
+
+### 6.7 `<uc-tiles>` and the home-page patterns
+
+`<uc-tiles>` is a component of `uc-kit.js` (not a layout), with its CSS in
+`uc-kit.css`; full contract in `docs/api.md` 3.1.
+
+```
+uc-tiles.uc-tiles
+  ul.uc-tiles__list                        grid, columns of at least 240 px
+    li.uc-tiles__item > a.uc-card.uc-tiles__link(.uc-tiles__link--now)
+      span.uc-tiles__title                 the page's label
+      span.uc-tiles__meta                  weeks card only: "Semana 10 · 25–28 nov"
+      span.uc-tiles__text                  pages[].description (HTMLText)
+```
+
+- Cards: every page of `pages` but the current one, or the ids of
+  `pages="…"` in that order (unknown ids warned). Pages without `href` are
+  skipped.
+- The weeks card shows the current teaching week from `UC.weekOf()` (the
+  calendar of `core/dates.js`) and gets `--now` (the soft accent background of
+  `<uc-this-week>`). The plan asked for "the matter of the week"; that title
+  lives in the weeks page, which only `<uc-this-week>` fetches, so the card
+  shows the week number and dates instead (no fetch, about 0.1 KB).
+- Each card is a `.uc-card`, so the themes that restyle cards (`modern`)
+  restyle the tiles too.
+- Home-page patterns in the section gallery (`docs/pt/seccoes/cabecalhos.html`):
+  "Mosaico de secções" (`<uc-hero>` + `<uc-tiles>`) and "Calendário primeiro"
+  (`<uc-weeks view="compact">` as the home page).
+
+Done in L2: `<uc-page toc="off">`, `data-nav="off"` for the "Nesta página"
+list. Done in L4: `<uc-page aside="off">`, `aside` and `panel` in
+`course.js`. Done in L5: `data-nav="off"` for the anchor bar,
+`pages[].description`, `<uc-tiles>`.
 
 ## 7. Size
 
@@ -348,7 +410,8 @@ All the JavaScript of the layouts lives in `uc-kit.js` (decision D3). Its
 budget goes from 48 KB to **50 KB** gzipped (`scripts/lib/budgets.mjs`).
 Estimate for the whole plan: about +2 KB (layouts 1.2, `<uc-tiles>` 0.5,
 variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc and the scroll spy), L3 48.3 KB (one condition), L4 49.2 KB (+0.9 KB: the panel summary and the
-aside blocks; about 0.8 KB left for L5 and L6). `uc-kit.css` only grows with
+aside blocks), L5 49.7 KB (+0.5 KB: the anchor bar, which reuses the toc code,
+and `<uc-tiles>`; about 0.3 KB left for L6). `uc-kit.css` only grows with
 `<uc-tiles>`. Each layout file is expected at 0.4–0.8 KB and each theme at
 0.3–1 KB, downloaded only when used.
 
@@ -398,6 +461,15 @@ aside blocks; about 0.8 KB left for L5 and L6). `uc-kit.css` only grows with
   the content, or last.
 - `tests/pages/layouts/aside-off.html` (L4): `layout: "aside"` in
   `course.js`, the default blocks, `aside="off"` removes the column.
+- `tests/pages/layouts/onepage.html` (L5): `layout="onepage"` from the
+  attribute, the file linked after the kit, header, bar, shell with `main`
+  only, no sidebar or menu button, the nav's name, the sections (h2 only,
+  `data-nav="off"`, other language), the other pages without the current one,
+  sticky, one line, a heading reached is below the bar, the section in view
+  marked, and on narrow screens the bar scrolled to it.
+- `tests/pages/uc-tiles.html` (L5): one card per page but the current one,
+  hrefs, descriptions (HTML kept, none when missing), the weeks card with the
+  week, `.uc-card`, `pages="…"` order, English labels and descriptions.
 - `tests/pages/themes/institutional.html` (L1): theme from `course.js` with
   `high-contrast`; layout from the CSS; `layouts/banner.css` arrives by
   `@import` only (no extra `<link>`); tokens and underlined `h2`.
@@ -530,3 +602,25 @@ UC.registerLayout("poster", { extends: "banner", css: "layouts/poster.css" });
   classes; `template/course.js`.
 - `uc-kit.js` 49.2 KB gzipped (+0.9 KB); `layouts/panel.css` 2.3 KB and
   `layouts/aside.css` 1.2 KB are separate files.
+
+### L5 — layout `onepage`, `<uc-tiles>`, home-page patterns
+
+- `kit/src/layouts/onepage.css` (`FILE_LAYOUTS = ["banner", "docs",
+  "centered", "panel", "aside", "onepage"]`), section 6.6.
+- `uc-page.js`: `renderAnchors()`; `updateToc()` now fills the `.uc-toc` list
+  or the bar's sections (same filters, same scroll spy) and centres the marked
+  link in the bar. `UC.internal.pageLabel`.
+- `components/uc-tiles.js` and `css/components/uc-tiles.css` (section 6.7);
+  `pages[].description` (kept by `config.js` as written).
+- No new i18n strings (`nav.label`, `guide.onThisPage`, `weeks.week`).
+- Docs: `docs/api.md` 2.3 (`description`), 3.1 (`onepage`, `<uc-tiles>`), 8.3;
+  `componentes/uc-page.html` "Página única" with the demo
+  `docs/demos/uc-page/onepage.html`; `componentes/uc-tiles.html` (new) with
+  the demos `docs/demos/uc-tiles/basic.html` and `pages.html`;
+  `course-js.html` (`description`, `onepage`); the section gallery
+  `seccoes/cabecalhos.html` "Mosaico de secções" and "Calendário primeiro"
+  (demos `docs/demos/sections/home-tiles.html` and `home-calendar.html`);
+  `docs/demos/course.js` gives the demo pages a `description`; classes;
+  `template/course.js`.
+- `uc-kit.js` 49.7 KB gzipped (+0.5 KB); `uc-kit.css` +0.3 KB;
+  `layouts/onepage.css` is a separate file.

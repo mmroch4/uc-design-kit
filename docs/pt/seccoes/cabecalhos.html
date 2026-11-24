@@ -60,6 +60,7 @@
           <li><a href="../componentes/index.html">Visão geral</a></li>
           <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
           <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-tiles.html"><code>uc-tiles</code></a></li>
           <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
           <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
@@ -263,6 +264,59 @@
         <ul>
           <li>Componente: <a href="../componentes/uc-hero.html"><code>&lt;uc-hero&gt;</code></a>.</li>
         </ul>
+
+        <h2 id="mosaico">Mosaico de secções</h2>
+        <p>Uma página inicial que é um ponto de partida: a seguir ao título, um cartão por página da cadeira, com uma frase. É o padrão do MIT OpenCourseWare e de muitas páginas iniciais do Canvas. Os cartões vêm de <code>pages</code> do <code>course.js</code>; o das semanas diz em que semana estamos.</p>
+        <!-- docs:demo src="../../demos/sections/home-tiles.html" title="página inicial com um mosaico das páginas" height="420" copy="true" -->
+        <div class="docs-demo" id="demo-sections-home-tiles">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/sections/home-tiles.html" title="Demonstração: página inicial com um mosaico das páginas" loading="lazy" style="height: 420px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-hero&gt;&lt;/uc-hero&gt;
+&lt;uc-tiles pages=&quot;weeks, assessment, about&quot;&gt;&lt;/uc-tiles&gt;</code></pre></uc-code>
+          </div>
+          <button class="docs-demo__copy" type="button" data-copied="Código copiado" hidden>Copiar código</button>
+          <a class="docs-demo__open" href="../../demos/sections/home-tiles.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <ul>
+          <li>Na página inicial, sem <code>pages</code>, o <code>&lt;uc-tiles&gt;</code> mostra todas as outras páginas, pela ordem do <code>course.js</code>; aqui <code>pages</code> escolhe três.</li>
+          <li>A frase de cada cartão é o campo <code>description</code> da página. Componente: <a href="../componentes/uc-tiles.html"><code>&lt;uc-tiles&gt;</code></a>.</li>
+        </ul>
+
+        <h2 id="calendario-primeiro">Calendário primeiro</h2>
+        <p>Uma página inicial que é o calendário das aulas, como a do CS61A em Berkeley e as de muitas cadeiras de Stanford: cada semana numa linha, com a matéria e a ligação para o guião, e a semana atual marcada. Serve para cadeiras em que o aluno volta ao site sobretudo para saber o que há esta semana.</p>
+        <!-- docs:demo src="../../demos/sections/home-calendar.html" title="página inicial com a tabela das semanas" height="560" copy="true" -->
+        <div class="docs-demo" id="demo-sections-home-calendar">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/sections/home-calendar.html" title="Demonstração: página inicial com a tabela das semanas" loading="lazy" style="height: 560px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;header class=&quot;uc-page-header&quot;&gt;
+  &lt;h1&gt;Algoritmos e Programação&lt;/h1&gt;
+  &lt;p class=&quot;uc-prose&quot;&gt;O calendário das aulas é a página inicial: cada semana, a matéria e o guião.&lt;/p&gt;
+&lt;/header&gt;
+&lt;uc-weeks view=&quot;compact&quot;&gt;
+  &lt;uc-week n=&quot;5&quot; title=&quot;Listas e cadeias de caracteres&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Listas e cadeias de caracteres&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;6&quot; title=&quot;Complexidade e notação O&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Complexidade e notação O&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;7&quot; title=&quot;Recursão&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Recursão&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;8&quot; title=&quot;Ordenação simples: seleção e inserção&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Ordenação simples: seleção e inserção&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;9&quot; title=&quot;Ordenação por fusão e quicksort&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Ordenação por fusão e quicksort&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;10&quot; title=&quot;Dicionários e conjuntos&quot; href=&quot;#&quot;&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Dicionários e conjuntos&lt;/a&gt;&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;11&quot; title=&quot;Árvores binárias&quot;&gt;&lt;p&gt;Árvores binárias&lt;/p&gt;&lt;/uc-week&gt;
+  &lt;uc-week n=&quot;12&quot; title=&quot;Revisões&quot;&gt;&lt;p&gt;Revisões&lt;/p&gt;&lt;/uc-week&gt;
+&lt;/uc-weeks&gt;</code></pre></uc-code>
+          </div>
+          <button class="docs-demo__copy" type="button" data-copied="Código copiado" hidden>Copiar código</button>
+          <a class="docs-demo__open" href="../../demos/sections/home-calendar.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <ul>
+          <li><code>&lt;uc-weeks view="compact"&gt;</code> mostra uma linha por semana; as datas vêm de <code>semester</code> no <code>course.js</code>. Componente: <a href="../componentes/uc-weeks.html"><code>&lt;uc-weeks&gt;</code></a>.</li>
+          <li>Cada semana é um <code>&lt;uc-week n&gt;</code> com <code>title</code> e, quando o guião já existe, <code>href</code>; as semanas sem <code>href</code> aparecem sem ligação.</li>
+        </ul>
+
       </article>
       <!-- docs:pager -->
       <footer class="docs-footer">
@@ -288,6 +342,8 @@
           <li><a href="#simples">Título e introdução</a></li>
           <li><a href="#localizacao">Com localização e ações</a></li>
           <li><a href="#inicial">Página inicial</a></li>
+          <li><a href="#mosaico">Mosaico de secções</a></li>
+          <li><a href="#calendario-primeiro">Calendário primeiro</a></li>
         </ul>
       </nav>
       <!-- /docs:toc -->

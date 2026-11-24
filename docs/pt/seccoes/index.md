@@ -4,7 +4,7 @@ Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.html
 
 Secções prontas a copiar para as páginas da sua cadeira, cada uma com pré-visualização, código e o aspeto em cada tema.
 
-Uma secção é um pedaço de página de tamanho médio, como a fórmula da nota ou as perguntas frequentes. Há 22 secções em seis grupos, todas feitas com os componentes e os blocos do kit e com o curso fictício das demonstrações.
+Uma secção é um pedaço de página de tamanho médio, como a fórmula da nota ou as perguntas frequentes. Há 24 secções em seis grupos, todas feitas com os componentes e os blocos do kit e com o curso fictício das demonstrações.
 
 ## Como usar
 
@@ -20,7 +20,7 @@ Em cada página da galeria, "Tema das pré-visualizações" mostra as secções 
 
 ## Os grupos
 
-- [**Cabeçalhos**: Título e introdução, com localização e ações, página inicial.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md)
+- [**Cabeçalhos**: Título e introdução, com localização e ações, página inicial, mosaico de secções, calendário primeiro.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md)
 - [**Avisos e datas**: Avisos e próximas datas, esta semana, com um aviso, aviso fixo.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avisos.md)
 - [**Avaliação**: Fórmula da nota, cartão de uma prova, datas e regras.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avaliacao.md)
 - [**Horário e equipa**: Horário, atendimento, equipa.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/horario-equipa.md)
