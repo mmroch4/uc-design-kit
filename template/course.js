@@ -28,13 +28,17 @@ window.UC_COURSE = {
   // um '<svg …>' ou null para nenhum. Sem este campo aparece o ícone do kit.
   // logo: "logo.svg",
 
-  // Tema pronto (opcional): "compact", "serif" ou "high-contrast"; vários com
-  // ["compact", "serif"]. O theme.css do site continua a ganhar sobre o tema.
-  // theme: "compact",
+  // Tema: "classic" é o aspeto do kit (não descarrega nada). Os temas que só
+  // mudam letra e espaços juntam-se numa lista: ["classic", "compact"].
+  // O theme.css do site continua a ganhar sobre o tema.
+  theme: "classic",
+  // theme: ["classic", "compact"],        // letra mais pequena, menos espaço
+  // theme: ["classic", "serif"],          // letra com serifa
+  // theme: ["classic", "high-contrast"],  // mais contraste, para projetar
 
-  // Navegação: "sidebar" (barra lateral, por omissão), "top" (barra por baixo
-  // do cabeçalho) ou "full" (sem navegação). Uma página pode mudar com
-  // <uc-page layout="…">.
+  // Navegação: "sidebar" (barra lateral, a do tema "classic"), "top" (barra
+  // por baixo do cabeçalho) ou "full" (sem navegação). Se estiver aqui, ganha
+  // ao layout do tema; uma página pode mudar com <uc-page layout="…">.
   // layout: "top",
 
   // Pesquisa no site: o botão «Pesquisar» aparece quando existe o search-index.js,

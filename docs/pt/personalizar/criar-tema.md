@@ -39,6 +39,8 @@ O kit traz três temas prontos em `kit/v1/themes/`. Cada um é um ficheiro peque
 | `serif` | Texto na letra com serifa do sistema (Charter, Cambria, Georgia), sem nada para descarregar, e um pouco mais de espaço entre linhas. O código mantém a letra monoespaçada. | Um aspeto mais clássico, ou páginas com muito texto corrido. |
 | `high-contrast` | Texto preto, cinzentos e bordas mais escuros, cores de estado mais fortes, cor de destaque azul-escura (10:1) e anel de foco mais grosso. | Projetar nas aulas, ecrãs com pouca qualidade, leitores com baixa visão (próximo do nível AAA). |
 
+O modelo do site já vem com `theme: "classic"` no `course.js`. É o aspeto do kit, que já está no `uc-kit.css`, por isso não descarrega nada; os temas acima juntam-se a ele numa lista: `theme: ["classic", "compact"]`. Um tema pode também escolher o layout das páginas, com a propriedade [`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas); o `layout` do `course.js` e o atributo da página ganham-lhe sempre.
+
 A mesma semana e o mesmo cartão, primeiro com o aspeto do kit e depois com cada tema:
 
 Exemplo (semana e cartão sem tema pronto), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/themes/padrao.html):

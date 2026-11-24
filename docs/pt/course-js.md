@@ -73,7 +73,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `Minutes` | Um número inteiro de minutos. | `120` (duas horas) |
 | `Weekday` | Dia da semana em número: `1` = segunda-feira … `7` = domingo (como em `semester.teachingDays`). | `2` (terça-feira) |
 | `HTMLText` | Um `LocalizedText` que pode ter HTML simples (links, `<strong>`, `<em>`, `<code>`). É inserido como HTML: as aspas dentro do texto escrevem-se `\"`. | `"Ver <a href=\"avaliacao.html\">regras</a>"` |
-| `ThemeName` | O nome de um tema pronto do kit: `"compact"`, `"serif"` ou `"high-contrast"` (ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos)). | `"compact"` |
+| `ThemeName` | O nome de um tema do kit: `"classic"`, `"compact"`, `"serif"` ou `"high-contrast"` (ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos)). | `"compact"` |
 
 ## Campos
 
@@ -87,7 +87,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | `edition`texto | Recomendado | — | Ano letivo ao lado do título, por exemplo `"2025/26"`. |
 | `institution``{ name, url? }` | Opcional | — | Departamento ou faculdade, no cabeçalho. |
 | `accentColor`cor CSS | Opcional | `"#1D4ED8"` | Cor de destaque (links, semana atual, botões); as variantes clara e escura são calculadas. Precisa de contraste de pelo menos 4.5:1 com o branco. |
-| `theme``ThemeName` ou lista | Opcional | nenhum | Tema pronto do kit: `"compact"`, `"serif"` ou `"high-contrast"`, ou vários numa lista (`["compact", "serif"]`). O `theme.css` do site continua a ganhar. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). |
+| `theme``ThemeName` ou lista | Opcional | como `"classic"` | Tema do kit. `"classic"` é o aspeto do kit, vem no modelo e não descarrega nada. `"compact"`, `"serif"` e `"high-contrast"` só mudam tokens e juntam-se a ele numa lista (`["classic", "compact"]`). Uma lista só pode ter um tema que escolhe o layout: se tiver dois, ganha o último e a consola avisa. O `theme.css` do site continua a ganhar. Ver [Temas prontos](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-tema.md#temas-prontos). |
 | `logo`URL, SVG, objeto ou `null` | Opcional | ícone de árvore | Imagem no cabeçalho: um caminho relativo ao `course.js`, um `"<svg …>"` escrito no próprio campo ou `{ src, alt }`; `null` esconde-a. Ver [Logótipo](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#logotipo). |
 | `footer``HTMLText` | Opcional | título e instituição | Lado esquerdo do rodapé. |
 | `source``{ author, url? }` | Opcional | — | De onde vem o conteúdo, num site copiado de outro: "Conteúdo de `author` (`HTMLText`), a partir do site original" no rodapé, com ligação a `url` ou ao [`source` da página](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#nota-de-origem). |
@@ -114,7 +114,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | Campo e tipo | Necessário | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `pages`lista | Recomendado | `["home"]` | Páginas da navegação, por ordem. Ver [Páginas](#paginas). |
-| `layout`texto | Opcional | `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho) ou `"full"` (sem navegação). Uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). |
+| `layout`texto | Opcional | o do tema, senão `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho), `"full"` (sem navegação) ou um layout próprio do site (`UC.registerLayout`). Ganha ao layout do tema ([`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), e uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). Um nome que o kit não conhece é ignorado com um aviso na consola. |
 | `platforms``Platform[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação (ver [Plataformas](#plataformas)). A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
 
 ### Equipa, horário, prazos e avisos

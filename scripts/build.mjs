@@ -26,7 +26,7 @@
  * (VERSION) and template/uc-site.py (VERSION) before anything else; with
  * --check it fails when one of them says something else.
  *
- * It fails when uc-kit.js (48 KB gzipped), uc-grading.js (8 KB) or
+ * It fails when uc-kit.js (50 KB gzipped), uc-grading.js (8 KB) or
  * uc-search.js (6 KB) is over its size budget (scripts/lib/budgets.mjs) and
  * prints the sizes on every run.
  *

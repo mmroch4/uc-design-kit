@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UC.registerLayout · test</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+  <script src="register-layouts.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks" layout="poster">
+    <h1>Layout próprio</h1>
+    <p>Um layout registado com <code>UC.registerLayout("poster", { extends: "top", css })</code>: a estrutura do <code>top</code> e uma linha da cor do curso por baixo do cabeçalho.</p>
+    <ol id="results"></ol>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const { resolve, classes, base } = UC.internal.layouts;
+      const page = document.querySelector("uc-page");
+      test("the attribute names the site layout", () => equal(resolve(page), "poster"));
+      test("the page has the classes of both layouts", () => equal([page.classList.contains("uc-page--top"), page.classList.contains("uc-page--poster")], [true, true]));
+      test("the structure is the base layout's", () => equal(Boolean(page.querySelector(".uc-topnav")), true));
+      test("its style sheet is linked once, relative to course.js", () => equal(Array.from(document.querySelectorAll('link[href$="layouts/poster.css"]')).length, 1));
+      test("its style sheet applies", () => equal(getComputedStyle(page.querySelector(".uc-header")).borderBottomWidth, "4px"));
+      test("a layout built on a site layout", () => equal([base("big-poster"), classes("big-poster")], ["top", ["uc-page--top", "uc-page--poster", "uc-page--big-poster"]]));
+      test("a kit layout cannot be replaced", () => equal(classes("top"), ["uc-page--top"]));
+      test("refused names are unknown", () => equal([resolve(fakePage("orphan")), resolve(fakePage("Bad Name"))], ["sidebar", "sidebar"]));
+    }));
+  </script>
+</body>
+</html>

@@ -6,6 +6,23 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Themes with a layout, first part (mechanism, nothing looks different): a
+  theme can choose the layout of `<uc-page>` with the property
+  `--uc-layout`, and layouts other than `sidebar`, `top` and `full` will be
+  files of `kit/v1/layouts/`, downloaded only when a page uses them. Order:
+  the page's `layout`, then `course.js`, then the theme, then `sidebar`; an
+  unknown name is skipped with a warning.
+- Theme `classic`, the kit's own look and the default. The template's
+  `course.js` now sets `theme: "classic"`; naming it downloads nothing.
+- `UC.registerLayout(name, { extends, css })`: a site's own layout, with the
+  structure of a kit layout and its own style sheet.
+
+### Changed
+- `layout` in `course.js` keeps any name (a site layout may be registered
+  later); unknown names are reported when the page is drawn.
+- Size budget of `uc-kit.js` raised from 48 to 50 KB gzipped.
+
 ## [1.1.0] - 2026-11-21
 
 Frozen as `kit/v1.1.0/` and `widgets/v1.1.0/` (tag `v1.1.0`). From this

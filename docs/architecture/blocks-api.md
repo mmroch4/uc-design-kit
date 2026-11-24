@@ -113,7 +113,8 @@ audit, PR #35) and `scripts/check-pages.mjs`:
 
 `kit/v1/uc-kit.js` was 27 KB gzipped before the blocks. All blocks together
 must keep it at **48 KB gzipped or less** (37 KB until phase 3; Miguel
-approved raising it on 17 Nov 2026, see 16.1). Phase 1 added the check to
+approved raising it on 17 Nov 2026, see 16.1; raised again to 50 KB for the
+themes with a layout, `themes-layouts.md` 7). Phase 1 added the check to
 `scripts/build.mjs`, with the limit in `scripts/lib/budgets.mjs` (the build fails above the limit and prints the size).
 
 ### 1.6 Versioning

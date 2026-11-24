@@ -15,7 +15,7 @@ export const KB = 1024;
 
 /** Gzip budgets of the kit's bundles in kit/v1/. */
 export const KIT_BUDGETS = [
-  { name: "uc-kit.js", budget: 48 * KB, where: "docs/architecture/blocks-api.md 1.5" },
+  { name: "uc-kit.js", budget: 50 * KB, where: "docs/architecture/themes-layouts.md 7" },
   { name: "uc-grading.js", budget: 8 * KB, where: "docs/architecture/grading-api.md 2.3" },
   { name: "uc-search.js", budget: 6 * KB, where: "docs/architecture/search-api.md 11.1" },
 ];

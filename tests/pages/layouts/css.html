@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout from the CSS, themes classic + compact · test</title>
+  <!-- No attribute and no course.js layout: --uc-layout of the site's CSS decides. "classic" downloads nothing. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <style>:root { --uc-layout: "top"; }</style>
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.theme = ["classic", "compact"];</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page current="weeks">
+    <h1>Layout escolhido pelo CSS</h1>
+    <p>Sem atributo nem <code>layout</code> no <code>course.js</code>: vale o <code>--uc-layout</code> do CSS do site. O tema <code>classic</code> não descarrega nada; o <code>compact</code> sim.</p>
+    <ol id="results"></ol>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      test("--uc-layout (quoted) decides without attribute or course.js", () => equal(UC.internal.layouts.resolve(page), "top"));
+      test("the page is drawn with it", () => equal([page.classList.contains("uc-page--top"), Boolean(page.querySelector(".uc-topnav"))], [true, true]));
+      test("classic adds no file, compact does", () => equal(sheets(), ["uc-kit.css", "themes/compact.css"]));
+      test("classic is a theme with a layout", () => equal(UC.internal.layoutThemes.includes("classic"), true));
+    }));
+  </script>
+</body>
+</html>

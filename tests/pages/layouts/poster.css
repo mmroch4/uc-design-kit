@@ -1,0 +1,2 @@
+/* A site layout for tests/pages/layouts/register.html (UC.registerLayout). */
+:where(.uc-page--poster .uc-header) { border-bottom: 4px solid var(--uc-color-accent); }
