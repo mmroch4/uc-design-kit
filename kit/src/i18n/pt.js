@@ -132,6 +132,9 @@ window.UC && !window.UC.__duplicate && window.UC.addTranslations("pt", {
     officeHours: "Atendimento",
     roles: { coordinator: "Regente", lecturer: "Docente", assistant: "Práticas" },
   },
+  aside: {
+    label: "Destaques",
+  },
   toc: {
     sections: "{count} secções",
   },

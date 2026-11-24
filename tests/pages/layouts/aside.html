@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout aside (attribute) · test</title>
+  <!-- layout="aside" without a theme: the kit adds layouts/aside.css and a column of blocks; a block the page already has is not repeated. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>
+    window.UC_COURSE.aside = ["deadlines", "notices", "office-hours", "platforms"];
+    window.UC_COURSE.team = window.UC_COURSE.team.map((member) => member.role === "coordinator" ? { ...member, officeHours: [{ day: 2, start: "16:00", end: "18:00" }, { day: 4, start: "16:00", end: "18:00" }] } : member);
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page layout="aside" current="home">
+    <uc-hero></uc-hero>
+    <uc-notices></uc-notices>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const aside = page.querySelector(".uc-aside");
+      const wide = !matchMedia("(max-width: 1200px)").matches;
+      const phone = matchMedia("(max-width: 960px)").matches;
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      const box = (node) => node.getBoundingClientRect();
+      test("the layout comes from the attribute", () => equal(UC.internal.layouts.resolve(page), "aside"));
+      test("its class", () => equal(Array.from(page.classList).filter((name) => name.startsWith("uc-page--")), ["uc-page--aside"]));
+      test("its style sheet is added after the kit", () => equal(sheets(), ["uc-kit.css", "layouts/aside.css"]));
+      test("navigation, main, then the aside", () => equal(Array.from(page.querySelector(".uc-shell").children, (node) => node.localName), ["div", "main", "aside"]));
+      test("the aside is named", () => equal([aside.getAttribute("aria-label"), page.querySelectorAll("aside").length], ["Destaques", 1]));
+      test("the blocks of course.js, without the notices that main already has", () =>
+        equal(Array.from(aside.children, (node) => node.localName === "div" ? node.className : node.localName), ["uc-deadlines", "uc-aside__office-hours", "uc-aside__platforms"]));
+      test("one deadline of each kind", () => equal(aside.querySelector("uc-deadlines").getAttribute("per-kind"), "1"));
+      test("every block has a heading", () => equal(Array.from(aside.querySelectorAll("h2"), (node) => node.textContent), ["Próximas datas", "Atendimento", "Plataformas"]));
+      test("office hours, days merged", () => equal(aside.querySelector(".uc-panel__list li").textContent.replace(/terça-feira|quinta-feira/g, "").trim(), "3.ª e 5.ª · 16:00–18:00 · Gab. 1.25"));
+      test("platforms, external links marked", () => equal(aside.querySelectorAll(".uc-links a .uc-visually-hidden").length, 2));
+      if (wide) {
+        test("three columns, the blocks on the right", () => equal([getComputedStyle(page.querySelector(".uc-shell")).gridTemplateColumns.split(" ").length, box(aside).left > box(page.querySelector("main")).right], [3, true]));
+      } else if (!phone) {
+        test("961–1200 px: the blocks below the content, in its column", () =>
+          equal([box(aside).top >= box(page.querySelector("main")).bottom, Math.round(box(aside).left) === Math.round(box(page.querySelector("main")).left)], [true, true]));
+      } else {
+        test("phones: the blocks last", () => equal(box(aside).top >= box(page.querySelector("main")).bottom, true));
+      }
+    }));
+  </script>
+</body>
+</html>

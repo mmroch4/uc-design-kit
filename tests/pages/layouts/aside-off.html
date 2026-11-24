@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout aside, aside="off" · test</title>
+  <!-- layout: "aside" in course.js (default blocks); aside="off" on the page removes the column. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>window.UC_COURSE.layout = "aside";</script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page aside="off" current="about">
+    <h1>Sobre a UC</h1>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const wide = !matchMedia("(max-width: 1200px)").matches;
+      test("the layout comes from course.js", () => equal(UC.internal.layouts.resolve(page), "aside"));
+      test("the default blocks", () => equal(UC.course.aside, ["deadlines", "notices"]));
+      test("aside=\"off\": no column of blocks", () => equal(page.querySelectorAll(".uc-aside, aside").length, 0));
+      if (wide) test("two columns", () => equal(getComputedStyle(page.querySelector(".uc-shell")).gridTemplateColumns.split(" ").length, 2));
+    }));
+  </script>
+</body>
+</html>

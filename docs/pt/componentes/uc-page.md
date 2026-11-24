@@ -167,6 +167,42 @@ Exemplo (página centrada com coluna de leitura), [demonstração ao vivo](https
 </uc-page>
 ```
 
+### Painel lateral
+
+`layout="panel"` tira a faixa do cabeçalho: o nome da cadeira, o ano letivo, a instituição, a pesquisa, as línguas e a navegação ficam numa barra de altura total à esquerda (`.uc-panel`), com fundo cinzento claro, que fica no lugar enquanto o conteúdo desliza. No fundo da barra, `.uc-panel__info` resume o horário: as teóricas de `schedule` (as aulas com a mesma hora e sala juntam os dias, "3.ª e 5.ª · 14:00–15:00 · FC4 0.41") e o atendimento do regente (`team[].officeHours` do membro com `role: "coordinator"`, senão do primeiro que tenha). Com `panel: false` no `course.js` esse resumo não aparece. Abaixo de 960 px a página fica como a `sidebar`: o cabeçalho em cima e o botão "Menu"; o resumo do horário não aparece. Na impressão, a navegação e o resumo não aparecem.
+
+O cabeçalho é o mesmo elemento nas duas larguras (há um só `<header>`): no computador está dentro da barra, com a classe `.uc-panel__brand`. O estilo está em `kit/v1/layouts/panel.css`, descarregado só quando uma página o usa; a largura da barra é `--uc-panel-width` (272 px). Vem do modelo "Just the Class", usado em muitas cadeiras americanas: parece uma aplicação e o conteúdo tem mais altura útil.
+
+Exemplo (página com painel lateral), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/panel.html):
+
+```html
+<uc-page layout="panel" current="about">
+  <h1>Sobre a UC</h1>
+  <p>Não há faixa de cabeçalho: o nome da cadeira, a pesquisa, a navegação e, no fundo, o horário das teóricas e o atendimento ficam numa barra de altura total à esquerda, que não se mexe quando a página desliza. Em ecrãs estreitos, volta o cabeçalho com o botão "Menu".</p>
+</uc-page>
+```
+
+### Blocos laterais
+
+`layout="aside"` tem três colunas, como o Moodle: a navegação, o conteúdo e, em **todas** as páginas, uma coluna de blocos à direita (`<aside class="uc-aside">`, com o nome "Destaques"). Os blocos vêm da lista `aside` do `course.js`, pela ordem dada:
+
+- `"deadlines"`: as próximas datas, uma de cada tipo (`<uc-deadlines per-kind="1">`);
+- `"notices"`: os três avisos mais recentes (`<uc-notices limit="3">`);
+- `"this-week"`: o cartão "Esta semana" (`<uc-this-week>`);
+- `"office-hours"`: o atendimento do regente (como no [painel lateral](#painel-lateral));
+- `"platforms"`: as plataformas.
+
+Sem `aside`, a lista é `["deadlines", "notices"]`, o que o Moodle e o Canvas mostram do lado direito. Um bloco que a página já tem no conteúdo não se repete: na página inicial com `<uc-notices>` e `<uc-deadlines>`, a coluna não aparece. `aside="off"` numa página tira a coluna só dessa página. Entre 961 e 1200 px os blocos passam para baixo do conteúdo; no telemóvel ficam no fim da página. Na impressão não aparecem. O estilo está em `kit/v1/layouts/aside.css`; a largura da coluna é `--uc-aside-width` (300 px).
+
+Exemplo (página com blocos laterais), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/aside.html):
+
+```html
+<uc-page layout="aside" current="about">
+  <h1>Sobre a UC</h1>
+  <p>Como no Moodle: a navegação à esquerda, o conteúdo ao centro e, à direita, em todas as páginas, os blocos de <code>aside</code> do <code>course.js</code> (por omissão, as próximas datas e os avisos). Abaixo de 1200 px os blocos passam para baixo do conteúdo.</p>
+</uc-page>
+```
+
 ### Mudar de língua
 
 Quando `languages` tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com `?lang=en`). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com `lang` mostra só a língua ativa.
@@ -252,8 +288,9 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar`, `top`, `full`, `banner`, `docs`, `centered` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Com `centered`, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver [Centrado](#centrado)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `layout` | `sidebar`, `top`, `full`, `banner`, `docs`, `centered`, `panel`, `aside` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Com `centered`, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver [Centrado](#centrado)). Com `panel`, o cabeçalho, a navegação e o horário ficam numa barra de altura total (ver [Painel lateral](#painel-lateral)). Com `aside`, a página tem uma coluna de blocos à direita (ver [Blocos laterais](#blocos-laterais)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
 | `toc` | `off` | — | Com o layout `docs`, tira a coluna "Nesta página" desta página. Ver [Três colunas](#tres-colunas). |
+| `aside` | `off` | — | Com o layout `aside`, tira a coluna de blocos desta página. Ver [Blocos laterais](#blocos-laterais). |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
 | `source` | endereço | `source.url` do `course.js` | Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com `source` no `course.js`. Ver [Nota de origem](#nota-de-origem). |
 | `updated` | data `AAAA-MM-DD` ou `auto` | `updated` do `course.js` | Data do rodapé só nesta página. `auto` usa a data do ficheiro que o servidor envia (`Last-Modified`); sem ela, não mostra data. Ver [Data de atualização de uma página](#data-da-pagina). |
@@ -347,6 +384,9 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc-toggle__label`, `.uc-toc-toggle__count`, `.uc-toc-toggle__chevron`, `.uc-page--toc-open` | Com `layout="docs"`: a página, a coluna "Nesta página" (com o progresso de um `<uc-guide>` no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta. |
 | `.uc-toc__nav`, `.uc-toc__label`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__item--sub`, `.uc-toc__link` | O `<nav>` "Nesta página", o seu rótulo, a lista, cada entrada (`--sub` para um `h3`) e a ligação (a da secção à vista tem `aria-current="location"`). |
 | `.uc-page--centered` | Com `layout="centered"`: a página. A estrutura é a do `top` (`.uc-topnav` por baixo do `.uc-header`), com o cabeçalho e a navegação centrados e o conteúdo numa coluna de `--uc-reading-max`. |
+| `.uc-page--panel`, `.uc-panel`, `.uc-panel__brand` | Com `layout="panel"`: a página, a barra de altura total (o primeiro filho da `.uc-shell`, com o cabeçalho, a `.uc-sidebar` e o resumo do horário) e o `.uc-header` dentro dela. |
+| `.uc-panel__info`, `.uc-panel__label`, `.uc-panel__list` | O resumo do horário no fundo da barra: cada título ("Teóricas", "Atendimento") e a lista de horas. O bloco "office-hours" do layout `aside` usa as mesmas classes. |
+| `.uc-page--aside`, `.uc-aside`, `.uc-aside__heading`, `.uc-aside__office-hours`, `.uc-aside__platforms` | Com `layout="aside"`: a página, a coluna de blocos (um `<aside>` depois do `<main>`; cada filho é um cartão), o título dos blocos que o kit escreve e os blocos "office-hours" e "platforms". |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |

@@ -40,6 +40,16 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   spacing 1.7, the hero centred with its title for screen readers only.
 - Theme `modern` (Moderno): layout `top`, a grey page, navigation as pills,
   white cards with a soft shadow, rounder corners.
+- Layout `panel` (`<uc-page layout="panel">`, file
+  `kit/v1/layouts/panel.css`): no header band; the header, the navigation and
+  a summary of the timetable (the lectures of `schedule` and the
+  coordinator's office hours) in one full-height bar on the left. Like
+  `sidebar` on phones. `panel: false` in `course.js` removes the summary.
+- Layout `aside` (`<uc-page layout="aside">`, file
+  `kit/v1/layouts/aside.css`): a column of blocks on the right of every page,
+  like Moodle, from `aside` in `course.js` (by default the next dates and the
+  notices; also `this-week`, `office-hours`, `platforms`). A block the page
+  already shows is not repeated; `<uc-page aside="off">` removes the column.
 
 ### Changed
 - `layout` in `course.js` keeps any name (a site layout may be registered

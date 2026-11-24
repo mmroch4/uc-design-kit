@@ -356,6 +356,47 @@
         </div>
         <!-- /docs:demo -->
 
+        <h3 id="painel-lateral">Painel lateral</h3>
+        <p><code>layout="panel"</code> tira a faixa do cabeçalho: o nome da cadeira, o ano letivo, a instituição, a pesquisa, as línguas e a navegação ficam numa barra de altura total à esquerda (<code>.uc-panel</code>), com fundo cinzento claro, que fica no lugar enquanto o conteúdo desliza. No fundo da barra, <code>.uc-panel__info</code> resume o horário: as teóricas de <code>schedule</code> (as aulas com a mesma hora e sala juntam os dias, "3.ª e 5.ª · 14:00–15:00 · FC4 0.41") e o atendimento do regente (<code>team[].officeHours</code> do membro com <code>role: "coordinator"</code>, senão do primeiro que tenha). Com <code>panel: false</code> no <code>course.js</code> esse resumo não aparece. Abaixo de 960 px a página fica como a <code>sidebar</code>: o cabeçalho em cima e o botão "Menu"; o resumo do horário não aparece. Na impressão, a navegação e o resumo não aparecem.</p>
+        <p>O cabeçalho é o mesmo elemento nas duas larguras (há um só <code>&lt;header&gt;</code>): no computador está dentro da barra, com a classe <code>.uc-panel__brand</code>. O estilo está em <code>kit/v1/layouts/panel.css</code>, descarregado só quando uma página o usa; a largura da barra é <code>--uc-panel-width</code> (272 px). Vem do modelo "Just the Class", usado em muitas cadeiras americanas: parece uma aplicação e o conteúdo tem mais altura útil.</p>
+        <!-- docs:demo src="../../demos/uc-page/panel.html" title="página com painel lateral" height="440" -->
+        <div class="docs-demo" id="demo-uc-page-panel">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/panel.html" title="Demonstração: página com painel lateral" loading="lazy" style="height: 440px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page layout=&quot;panel&quot; current=&quot;about&quot;&gt;
+  &lt;h1&gt;Sobre a UC&lt;/h1&gt;
+  &lt;p&gt;Não há faixa de cabeçalho: o nome da cadeira, a pesquisa, a navegação e, no fundo, o horário das teóricas e o atendimento ficam numa barra de altura total à esquerda, que não se mexe quando a página desliza. Em ecrãs estreitos, volta o cabeçalho com o botão &quot;Menu&quot;.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/panel.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <h3 id="blocos-laterais">Blocos laterais</h3>
+        <p><code>layout="aside"</code> tem três colunas, como o Moodle: a navegação, o conteúdo e, em <b>todas</b> as páginas, uma coluna de blocos à direita (<code>&lt;aside class="uc-aside"&gt;</code>, com o nome "Destaques"). Os blocos vêm da lista <code>aside</code> do <code>course.js</code>, pela ordem dada:</p>
+        <ul>
+          <li><code>"deadlines"</code>: as próximas datas, uma de cada tipo (<code>&lt;uc-deadlines per-kind="1"&gt;</code>);</li>
+          <li><code>"notices"</code>: os três avisos mais recentes (<code>&lt;uc-notices limit="3"&gt;</code>);</li>
+          <li><code>"this-week"</code>: o cartão "Esta semana" (<code>&lt;uc-this-week&gt;</code>);</li>
+          <li><code>"office-hours"</code>: o atendimento do regente (como no <a href="#painel-lateral">painel lateral</a>);</li>
+          <li><code>"platforms"</code>: as plataformas.</li>
+        </ul>
+        <p>Sem <code>aside</code>, a lista é <code>["deadlines", "notices"]</code>, o que o Moodle e o Canvas mostram do lado direito. Um bloco que a página já tem no conteúdo não se repete: na página inicial com <code>&lt;uc-notices&gt;</code> e <code>&lt;uc-deadlines&gt;</code>, a coluna não aparece. <code>aside="off"</code> numa página tira a coluna só dessa página. Entre 961 e 1200 px os blocos passam para baixo do conteúdo; no telemóvel ficam no fim da página. Na impressão não aparecem. O estilo está em <code>kit/v1/layouts/aside.css</code>; a largura da coluna é <code>--uc-aside-width</code> (300 px).</p>
+        <!-- docs:demo src="../../demos/uc-page/aside.html" title="página com blocos laterais" height="440" -->
+        <div class="docs-demo" id="demo-uc-page-aside">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/aside.html" title="Demonstração: página com blocos laterais" loading="lazy" style="height: 440px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page layout=&quot;aside&quot; current=&quot;about&quot;&gt;
+  &lt;h1&gt;Sobre a UC&lt;/h1&gt;
+  &lt;p&gt;Como no Moodle: a navegação à esquerda, o conteúdo ao centro e, à direita, em todas as páginas, os blocos de &lt;code&gt;aside&lt;/code&gt; do &lt;code&gt;course.js&lt;/code&gt; (por omissão, as próximas datas e os avisos). Abaixo de 1200 px os blocos passam para baixo do conteúdo.&lt;/p&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/aside.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
         <h3 id="mudar-de-lingua">Mudar de língua</h3>
         <p>Quando <code>languages</code> tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com <code>?lang=en</code>). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com <code>lang</code> mostra só a língua ativa.</p>
         <!-- docs:demo src="../../demos/uc-page/languages.html?lang=en" title="página em inglês com o botão para português" height="516" -->
@@ -437,8 +478,9 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
             </thead>
             <tbody>
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
-              <tr><td><code>layout</code></td><td><code>sidebar</code>, <code>top</code>, <code>full</code>, <code>banner</code>, <code>docs</code>, <code>centered</code> ou um layout próprio do site</td><td><code>layout</code> do <code>course.js</code>, senão o do tema (<code>--uc-layout</code>), senão <code>sidebar</code></td><td>Com <code>top</code>, a navegação fica numa barra por baixo do cabeçalho; com <code>full</code>, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com <code>banner</code>, o cabeçalho, o primeiro <code>&lt;uc-hero&gt;</code> e a navegação ficam numa faixa da cor do curso (ver <a href="#faixa-institucional">Faixa institucional</a>). Com <code>docs</code>, a página tem três colunas com "Nesta página" à direita (ver <a href="#tres-colunas">Três colunas</a>). Com <code>centered</code>, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver <a href="#centrado">Centrado</a>). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o <code>course.js</code> ou o tema.</td></tr>
+              <tr><td><code>layout</code></td><td><code>sidebar</code>, <code>top</code>, <code>full</code>, <code>banner</code>, <code>docs</code>, <code>centered</code>, <code>panel</code>, <code>aside</code> ou um layout próprio do site</td><td><code>layout</code> do <code>course.js</code>, senão o do tema (<code>--uc-layout</code>), senão <code>sidebar</code></td><td>Com <code>top</code>, a navegação fica numa barra por baixo do cabeçalho; com <code>full</code>, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com <code>banner</code>, o cabeçalho, o primeiro <code>&lt;uc-hero&gt;</code> e a navegação ficam numa faixa da cor do curso (ver <a href="#faixa-institucional">Faixa institucional</a>). Com <code>docs</code>, a página tem três colunas com "Nesta página" à direita (ver <a href="#tres-colunas">Três colunas</a>). Com <code>centered</code>, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver <a href="#centrado">Centrado</a>). Com <code>panel</code>, o cabeçalho, a navegação e o horário ficam numa barra de altura total (ver <a href="#painel-lateral">Painel lateral</a>). Com <code>aside</code>, a página tem uma coluna de blocos à direita (ver <a href="#blocos-laterais">Blocos laterais</a>). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o <code>course.js</code> ou o tema.</td></tr>
               <tr><td><code>toc</code></td><td><code>off</code></td><td>—</td><td>Com o layout <code>docs</code>, tira a coluna "Nesta página" desta página. Ver <a href="#tres-colunas">Três colunas</a>.</td></tr>
+              <tr><td><code>aside</code></td><td><code>off</code></td><td>—</td><td>Com o layout <code>aside</code>, tira a coluna de blocos desta página. Ver <a href="#blocos-laterais">Blocos laterais</a>.</td></tr>
               <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa. <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
               <tr><td><code>source</code></td><td>endereço</td><td><code>source.url</code> do <code>course.js</code></td><td>Endereço desta página no site original, para a ligação da nota de origem do rodapé. Só funciona com <code>source</code> no <code>course.js</code>. Ver <a href="#nota-de-origem">Nota de origem</a>.</td></tr>
               <tr><td><code>updated</code></td><td>data <code>AAAA-MM-DD</code> ou <code>auto</code></td><td><code>updated</code> do <code>course.js</code></td><td>Data do rodapé só nesta página. <code>auto</code> usa a data do ficheiro que o servidor envia (<code>Last-Modified</code>); sem ela, não mostra data. Ver <a href="#data-da-pagina">Data de atualização de uma página</a>.</td></tr>
@@ -538,6 +580,9 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>.uc-page--docs</code>, <code>.uc-toc</code>, <code>.uc-toc-toggle</code>, <code>.uc-toc-toggle__label</code>, <code>.uc-toc-toggle__count</code>, <code>.uc-toc-toggle__chevron</code>, <code>.uc-page--toc-open</code></td><td>Com <code>layout="docs"</code>: a página, a coluna "Nesta página" (com o progresso de um <code>&lt;uc-guide&gt;</code> no topo), o botão que a abre a 1200 px ou menos (texto, número de secções e seta) e a classe da página enquanto a lista está aberta.</td></tr>
               <tr><td><code>.uc-toc__nav</code>, <code>.uc-toc__label</code>, <code>.uc-toc__list</code>, <code>.uc-toc__item</code>, <code>.uc-toc__item--sub</code>, <code>.uc-toc__link</code></td><td>O <code>&lt;nav&gt;</code> "Nesta página", o seu rótulo, a lista, cada entrada (<code>--sub</code> para um <code>h3</code>) e a ligação (a da secção à vista tem <code>aria-current="location"</code>).</td></tr>
               <tr><td><code>.uc-page--centered</code></td><td>Com <code>layout="centered"</code>: a página. A estrutura é a do <code>top</code> (<code>.uc-topnav</code> por baixo do <code>.uc-header</code>), com o cabeçalho e a navegação centrados e o conteúdo numa coluna de <code>--uc-reading-max</code>.</td></tr>
+              <tr><td><code>.uc-page--panel</code>, <code>.uc-panel</code>, <code>.uc-panel__brand</code></td><td>Com <code>layout="panel"</code>: a página, a barra de altura total (o primeiro filho da <code>.uc-shell</code>, com o cabeçalho, a <code>.uc-sidebar</code> e o resumo do horário) e o <code>.uc-header</code> dentro dela.</td></tr>
+              <tr><td><code>.uc-panel__info</code>, <code>.uc-panel__label</code>, <code>.uc-panel__list</code></td><td>O resumo do horário no fundo da barra: cada título ("Teóricas", "Atendimento") e a lista de horas. O bloco "office-hours" do layout <code>aside</code> usa as mesmas classes.</td></tr>
+              <tr><td><code>.uc-page--aside</code>, <code>.uc-aside</code>, <code>.uc-aside__heading</code>, <code>.uc-aside__office-hours</code>, <code>.uc-aside__platforms</code></td><td>Com <code>layout="aside"</code>: a página, a coluna de blocos (um <code>&lt;aside&gt;</code> depois do <code>&lt;main&gt;</code>; cada filho é um cartão), o título dos blocos que o kit escreve e os blocos "office-hours" e "platforms".</td></tr>
               <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
               <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
               <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
@@ -609,6 +654,8 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           <li class="docs-toc__sub"><a href="#faixa-institucional">Faixa institucional</a></li>
           <li class="docs-toc__sub"><a href="#tres-colunas">Três colunas com &quot;Nesta página&quot;</a></li>
           <li class="docs-toc__sub"><a href="#centrado">Centrado</a></li>
+          <li class="docs-toc__sub"><a href="#painel-lateral">Painel lateral</a></li>
+          <li class="docs-toc__sub"><a href="#blocos-laterais">Blocos laterais</a></li>
           <li class="docs-toc__sub"><a href="#mudar-de-lingua">Mudar de língua</a></li>
           <li class="docs-toc__sub"><a href="#outros-anos">Outros anos</a></li>
           <li class="docs-toc__sub"><a href="#data-da-pagina">Data de atualização de uma página</a></li>

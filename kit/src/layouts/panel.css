@@ -1,0 +1,87 @@
+/*
+ * Layout "panel" of <uc-page> (docs/architecture/themes-layouts.md 6.4): no
+ * header band. The header (name, edition, institution, search, languages),
+ * the navigation and a summary of the timetable (lectures and the
+ * coordinator's office hours, from course.js) form one full-height bar on the
+ * left, which stays in place while the content scrolls. Below 960 px the page
+ * looks like "sidebar": the header on top, then "Menu". Prints like "full".
+ *
+ * Structure (uc-page.js): .uc-shell > .uc-panel > header.uc-header.uc-panel__brand,
+ * .uc-sidebar, .uc-panel__info (p.uc-panel__label, ul.uc-panel__list); then
+ * main. Every rule is :where(), so a site's theme.css wins.
+ */
+/* Tells the kit this file is loaded, so it adds no <link> when a theme imports it. */
+:root { --uc-layout-panel-loaded: 1; }
+
+:where(.uc-page--panel) { --uc-panel-width: 272px; }
+
+/* Timetable summary at the bottom of the bar. */
+:where(.uc-panel__info) {
+  margin-top: auto;
+  padding: var(--uc-space-3) var(--uc-space-3) 0;
+  border-top: 1px solid var(--uc-color-border);
+  color: var(--uc-color-text-muted);
+  font-size: var(--uc-font-size-sm);
+  line-height: 1.5;
+}
+:where(.uc-panel__label) { margin: 0; color: var(--uc-color-text); font-weight: 600; }
+:where(.uc-panel__list) { margin: 0 0 var(--uc-space-2); padding: 0; list-style: none; }
+:where(.uc-panel__list > li) { margin: 0; }
+
+@media screen and (min-width: 961px) {
+  :where(.uc-page--panel .uc-shell) {
+    grid-template-columns: var(--uc-panel-width) minmax(0, 1fr);
+    gap: 0;
+    max-width: none;
+    padding: 0;
+  }
+  :where(.uc-panel) {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--uc-space-4);
+    height: 100vh;
+    overflow-y: auto;
+    padding: var(--uc-space-5) var(--uc-space-4);
+    border-right: 1px solid var(--uc-color-border);
+    background: var(--uc-color-surface-sunken);
+  }
+  /* The header as a column at the top of the bar. */
+  :where(.uc-page--panel .uc-header) { border-bottom: 0; }
+  :where(.uc-page--panel .uc-header__inner) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--uc-space-3);
+    min-height: 0;
+    padding: 0;
+  }
+  :where(.uc-page--panel .uc-brand) { flex-wrap: wrap; column-gap: var(--uc-space-3); row-gap: 0; padding: 0 var(--uc-space-3); }
+  :where(.uc-page--panel .uc-page__editions) { margin: 0 var(--uc-space-3); }
+  :where(.uc-page--panel .uc-header__meta) { flex-wrap: wrap; gap: var(--uc-space-2); }
+  :where(.uc-page--panel .uc-header__institution) { flex-basis: 100%; padding: 0 var(--uc-space-3); font-size: var(--uc-font-size-sm); }
+  :where(.uc-page--panel .uc-search-button) { flex: 1; background: var(--uc-color-surface); }
+  :where(.uc-page--panel .uc-sidebar) { position: static; }
+  :where(.uc-page--panel .uc-main) {
+    width: 100%;
+    max-width: calc(var(--uc-content-max) - var(--uc-panel-width));
+    padding: var(--uc-space-10) var(--uc-space-12) 64px;
+  }
+  :where(.uc-page--panel .uc-footer__inner) {
+    max-width: calc(var(--uc-content-max) - var(--uc-panel-width));
+    margin-left: var(--uc-panel-width);
+    padding-inline: var(--uc-space-12);
+  }
+}
+
+/* Phones and small tablets: as "sidebar", the header across the top, then "Menu". */
+@media (max-width: 960px) {
+  :where(.uc-page--panel .uc-shell) { padding-top: 0; }
+  :where(.uc-panel) { display: contents; }
+  :where(.uc-page--panel .uc-header) { margin: 0 calc(-1 * var(--uc-gutter)); }
+  :where(.uc-panel__info) { display: none; }
+}
+
+@media print {
+  :where(.uc-panel__info) { display: none; }
+}

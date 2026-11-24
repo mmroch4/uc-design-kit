@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout panel, panel: false · test</title>
+  <!-- layout: "panel" and panel: false in course.js: the bar has no timetable summary. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script>
+    window.UC_COURSE.layout = "panel";
+    window.UC_COURSE.panel = false;
+    window.UC_COURSE.schedule = [{ type: "lecture", class: "T1", day: 2, start: "14:00", end: "15:00", room: "FC4 0.41" }];
+  </script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page current="about">
+    <h1>Sobre a UC</h1>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      test("the layout comes from course.js", () => equal(UC.internal.layouts.resolve(page), "panel"));
+      test("panel: false leaves the bar without the summary", () =>
+        equal([Array.from(page.querySelector(".uc-panel").children, (node) => node.className), page.querySelectorAll(".uc-panel__info").length], [["uc-header uc-panel__brand", "uc-sidebar"], 0]));
+      test("the page's own h1 stays in main", () => equal([page.querySelectorAll("h1").length, page.querySelector("h1").closest("main") !== null], [1, true]));
+    }));
+  </script>
+</body>
+</html>
