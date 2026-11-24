@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "kit": ">=1.0",
   "widgets": [
     {
@@ -28,7 +28,7 @@
         "ops"
       ],
       "predict": true,
-      "gzip": 6494
+      "gzip": 6495
     },
     {
       "name": "uc-widget-backtracking",
@@ -63,7 +63,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 6375
+      "gzip": 6372
     },
     {
       "name": "uc-widget-bst",
@@ -97,7 +97,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 5621
+      "gzip": 5622
     },
     {
       "name": "uc-widget-complexity",
@@ -333,7 +333,7 @@
         "algorithms"
       ],
       "predict": true,
-      "gzip": 7142
+      "gzip": 7143
     },
     {
       "name": "uc-widget-recursion",
@@ -365,7 +365,7 @@
         "algorithm"
       ],
       "predict": true,
-      "gzip": 3222
+      "gzip": 3223
     },
     {
       "name": "uc-widget-search",
@@ -399,7 +399,7 @@
         "algorithm"
       ],
       "predict": true,
-      "gzip": 3240
+      "gzip": 3241
     },
     {
       "name": "uc-widget-shortest-path",

@@ -107,13 +107,13 @@ jsDelivr serves any tagged version of a public GitHub repository, with no
 setup. Every release is therefore also available at:
 
 ```
-https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.1.0/kit/v1.1.0/uc-kit.css
-https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.1.0/kit/v1.1.0/uc-kit.js
+https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.2.0/kit/v1.2.0/uc-kit.css
+https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.2.0/kit/v1.2.0/uc-kit.js
 ```
 
 It is not faster than Cloudflare Pages (both are global CDNs, and browsers no
 longer share caches between sites), so the kit's own domain stays the
 default. Use the mirror only if that domain is unavailable: replace
-`https://uc-design-kit.miguelrocha.dev/kit/v1.1.0/` with the URL above in the
+`https://uc-design-kit.miguelrocha.dev/kit/v1.2.0/` with the URL above in the
 page `<head>`. The fonts load from the same place because `uc-kit.css` refers
 to them by relative path.

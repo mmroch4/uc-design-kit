@@ -115,7 +115,7 @@ Com `editable`, por baixo do leitor aparece um campo com os dados (nos widgets d
 A biblioteca tem a mesma versão do kit e é lançada com ele. `widgets/v1/` recebe só mudanças compatíveis (widgets, atributos e textos novos); cada versão lançada (a primeira é a 1.0.0, lançada com o kit 1.0.0) fica congelada em `widgets/vX.Y.Z/` para quem quiser fixar a versão durante o semestre:
 
 ```html
-<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1.1.0/uc-widget-sort.js" defer></script>
+<script src="https://uc-design-kit.miguelrocha.dev/widgets/v1.2.0/uc-widget-sort.js" defer></script>
 ```
 
 Uma versão congelada nunca muda (o build verifica o `SHA256SUMS` de cada uma). A [página de compatibilidade](https://github.com/mmroch4/uc-design-kit/blob/main/tests/widgets/compat.html) usa os atributos, os métodos e os eventos de todos os widgets como estavam na 1.0.0 e corre contra `widgets/v1/` e contra cada versão congelada em todas as alterações: uma página escrita para a 1.0.0 continua a funcionar com `widgets/v1/`. Para usar sem rede, copia-se a pasta `widgets/v1/` inteira para junto do site e usa-se um caminho relativo: os ficheiros encontram-se uns aos outros na mesma pasta, também a partir de `file://`.

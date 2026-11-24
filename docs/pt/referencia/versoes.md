@@ -42,8 +42,8 @@ Os ficheiros publicados estão minificados e têm *source maps* (`uc-kit.js.map`
 Cada versão exata também está disponível no jsDelivr, que serve qualquer etiqueta de um repositório público do GitHub. Só vale a pena usá-lo se o domínio do kit estiver indisponível:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.1.0/kit/v1.1.0/uc-kit.css">
-<script src="https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.1.0/kit/v1.1.0/uc-kit.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.2.0/kit/v1.2.0/uc-kit.css">
+<script src="https://cdn.jsdelivr.net/gh/mmroch4/uc-design-kit@v1.2.0/kit/v1.2.0/uc-kit.js" defer></script>
 ```
 
 ## Ver também
