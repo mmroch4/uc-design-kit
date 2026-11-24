@@ -32,26 +32,34 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
    `uc-…` inventados. Um comportamento que o kit não tem vai para um componente
    próprio em `extensions/`, com `UC.define`.
 6. Nunca editar nem copiar os ficheiros do kit; nunca usar `!important`.
-   Personalizar com `accentColor` e `theme` (tema pronto) no `course.js`,
-   depois tokens `--uc-…` no `theme.css`.
-7. Links relativos com o nome do ficheiro (`semanas.html`), nunca `/` no início.
-8. Acessível: texto alternativo nas imagens, títulos sem saltar níveis, texto
+   Personalizar com `accentColor` e `theme` no `course.js`, depois tokens
+   `--uc-…` no `theme.css`.
+7. O aspeto e o layout de todas as páginas mudam-se com `theme` no
+   `course.js` (`"classic"`, `"modern"`, `"institutional"`, `"handbook"`,
+   `"editorial"`, mais `"compact"`, `"serif"` ou `"high-contrast"` numa lista)
+   e, se for preciso outro layout, `layout` no `course.js` ou
+   `<uc-page layout="…">` numa página. Nunca escrever à mão a estrutura da
+   página (cabeçalho, navegação, colunas, barras laterais): o `<uc-page>`
+   desenha-a. Um layout próprio é um `UC.registerLayout(nome, { extends, css })`
+   num script do site, com CSS preso a `.uc-page--<nome>`.
+8. Links relativos com o nome do ficheiro (`semanas.html`), nunca `/` no início.
+9. Acessível: texto alternativo nas imagens, títulos sem saltar níveis, texto
    de ligação que diga para onde vai, tabelas com cabeçalhos.
-9. Sem dados de estudantes: notas, números, nomes em listas de turnos ou
+10. Sem dados de estudantes: notas, números, nomes em listas de turnos ou
    presenças ficam fora do site público. Um link para uma página que pede
    login (pautas, SIGARRA) leva `data-auth` (ou `data-auth="SIGARRA"`), sem
    imagem de cadeado: o kit acrescenta-a.
-10. Se faltar uma informação, escrever `<!-- TODO: … -->` em vez de a inventar.
-11. O `course.js` só tem valores: comentários, constantes (`const NOME = …;`)
+11. Se faltar uma informação, escrever `<!-- TODO: … -->` em vez de a inventar.
+12. O `course.js` só tem valores: comentários, constantes (`const NOME = …;`)
     e uma única atribuição `window.UC_COURSE = { … };`. Objetos, listas,
     textos, números, `true`, `false`, `null`; uma constante, `+` entre textos
     e `${NOME}` dentro de `` ` ``. Nada de funções, `new Date()`, chamadas,
     `...` nem outras atribuições: o `uc-site.py` lê-o sem o executar.
-12. Depois de mexer no site, correr `python3 uc-site.py check` nesta pasta e
+13. Depois de mexer no site, correr `python3 uc-site.py check` nesta pasta e
     corrigir todos os `ERRO` (e os `AVISO` que forem do que se alterou). Nunca
     editar o `uc-site.py` nem o `search-index.js` (é gerado: com
     `search: true` no `course.js`, `python3 uc-site.py` reescreve-o).
-13. Para mostrar um algoritmo ou uma estrutura de dados passo a passo
+14. Para mostrar um algoritmo ou uma estrutura de dados passo a passo
     (ordenação, pesquisa, árvore binária de pesquisa, lista ligada, pilha e
     fila, recursão, heap, árvore AVL, tabela de dispersão, BFS e DFS,
     caminhos mais curtos, crescimento de funções, árvores mínimas de
@@ -66,7 +74,7 @@ elementos, atributos, campos do `course.js` e classes estão nessa documentaçã
     Para um algoritmo que não está no catálogo: `<uc-widget-trace>` com os
     passos escritos em JSON, ou um widget próprio a partir de
     `widgets/template/my-widget-gcd.js` (guia «Criar um widget»).
-14. Pesquisa: com `search: true` no `course.js` o cabeçalho tem o botão
+15. Pesquisa: com `search: true` no `course.js` o cabeçalho tem o botão
     «Pesquisar» sobre o `search-index.js`. Para pesquisar só numa parte do
     site, dentro de uma página, `<uc-search scope="problemas/">` (o caminho é
     relativo ao `course.js`). Partes de uma página que não devem aparecer nos
@@ -87,12 +95,13 @@ Quando o professor pede para passar um site existente para esta pasta:
    porquê.
 3. **Perguntar antes de decidir.** Juntar numa única mensagem as dúvidas que
    mudam o resultado: o ano letivo e o início do semestre, se não forem
-   claros; páginas que parecem desatualizadas; o que fazer com páginas com
-   dados de estudantes; links externos que já não funcionam. Esperar pela
-   resposta.
+   claros; o tema, se não o disse; páginas que parecem desatualizadas; o que
+   fazer com páginas com dados de estudantes; links externos que já não
+   funcionam. Esperar pela resposta.
 4. **`course.js` primeiro**: código, título, edição, `semester` (início, fim,
    interrupções), `team` (com `officeHours`), `schedule`, `deadlines`,
-   `notices`, `pages`, `platforms`.
+   `notices`, `pages`, `platforms`, e `theme` com o tema que o professor
+   escolheu (`"classic"` se não disse; regra 7).
 5. **Reescrever com componentes** só as páginas que os estudantes usam todas
    as semanas:
    - página inicial → `index.html` (`uc-hero`, `uc-this-week`, `uc-notices`,

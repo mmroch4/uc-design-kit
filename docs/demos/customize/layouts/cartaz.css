@@ -1,0 +1,18 @@
+/*
+ * The site layout "cartaz" of the guide "Criar um layout"
+ * (docs/pt/personalizar/criar-layout.html): the band of the layout banner
+ * with a cover image behind a dark veil, and a larger course title.
+ * Registered by ../extensions/cartaz.js with UC.registerLayout.
+ */
+.uc-page--cartaz .uc-banner {
+  background:
+    linear-gradient(rgb(11 31 58 / 78%), rgb(11 31 58 / 92%)),
+    url("../img/capa.svg") center / cover,
+    var(--uc-color-accent-strong);
+}
+.uc-page--cartaz .uc-banner__hero { padding-block: var(--uc-space-10) var(--uc-space-12); }
+.uc-page--cartaz .uc-banner__hero .uc-hero__title { font-size: calc(var(--uc-font-size-display) * 1.2); }
+
+@media print {
+  .uc-page--cartaz .uc-banner { background: none; }
+}

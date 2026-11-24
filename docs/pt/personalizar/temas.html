@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escolher um tema · UC Design Kit</title>
+  <meta name="description" content="Os cinco temas do UC Design Kit lado a lado (Clássico, Moderno, Institucional, Manual e Editorial), a linha do course.js a copiar, como juntar um tema de tokens e mudar o layout de um tema.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K /" data-label="Pesquisar na documentação" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../exemplos/index.html">Exemplos</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../exemplos/index.html">Exemplos</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../manter.html">Manter o site</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="../componentes/index.html">Visão geral</a></li>
+          <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-tiles.html"><code>uc-tiles</code></a></li>
+          <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
+          <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="../componentes/uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="../componentes/uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="../componentes/uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="../componentes/uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="../componentes/uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="../componentes/uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="../componentes/uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="../componentes/uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="../componentes/uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="../componentes/uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="../componentes/uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="../componentes/uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="../componentes/uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="../componentes/uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="../componentes/uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="../componentes/uc-problems.html"><code>uc-problems</code></a></li>
+          <li><a href="../componentes/uc-problem.html"><code>uc-problem</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Secções</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../seccoes/index.html">Galeria</a></li>
+          <li><a href="../seccoes/cabecalhos.html">Cabeçalhos</a></li>
+          <li><a href="../seccoes/avisos.html">Avisos e datas</a></li>
+          <li><a href="../seccoes/avaliacao.html">Avaliação</a></li>
+          <li><a href="../seccoes/horario-equipa.html">Horário e equipa</a></li>
+          <li><a href="../seccoes/materiais.html">Materiais e programa</a></li>
+          <li><a href="../seccoes/perguntas.html">Perguntas e contactos</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Widgets</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../widgets/index.html">Catálogo</a></li>
+          <li><a href="../widgets/usar.html">Usar widgets</a></li>
+          <li><a href="../widgets/uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="../widgets/uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="../widgets/uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="../widgets/uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="../widgets/uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="../widgets/uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+          <li><a href="../widgets/uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
+          <li><a href="../widgets/uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
+          <li><a href="../widgets/uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
+          <li><a href="../widgets/uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
+          <li><a href="../widgets/uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="../widgets/uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="../widgets/uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="../widgets/uc-widget-union-find.html"><code>uc-widget-union-find</code></a></li>
+          <li><a href="../widgets/uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="../widgets/uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="../widgets/uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="../widgets/uc-widget-trace.html"><code>uc-widget-trace</code></a></li>
+          <li><a href="../widgets/criar.html">Criar um widget</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="temas.html" aria-current="page">Escolher um tema</a></li>
+          <li><a href="criar-tema.html">Criar um tema</a></li>
+          <li><a href="criar-layout.html">Criar um layout</a></li>
+          <li><a href="course-js.html">Nível 0: course.js</a></li>
+          <li><a href="tokens.html">Nível 1: tokens</a></li>
+          <li><a href="css.html">Nível 2: CSS livre</a></li>
+          <li><a href="componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="html.html">Nível 4: HTML livre</a></li>
+          <li><a href="tema.html">Personalizador de tema</a></li>
+          <li><a href="execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-7">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-7">
+          <li><a href="../exemplos/index.html">Visão geral</a></li>
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/pc.html">PC 2026/27</a></li>
+          <li><a href="../exemplos/ip.html">IP 2025/26</a></li>
+          <li><a href="../exemplos/pi.html">PI 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-8">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-8">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Personalizar</p>
+          <h1>Escolher um tema</h1>
+          <p class="docs-lead">O modelo do site já vem com um tema escolhido, o Clássico, e só se descarrega o tema que se escolhe. Mudar de tema é mudar uma linha do <code>course.js</code>: o HTML das páginas fica igual.</p>
+        </header>
+
+        <h2 id="como">Como se escolhe</h2>
+        <p>O <code>course.js</code> do <a href="../criar-site.html">modelo</a> traz o tema ativo e os outros comentados, um por linha. Para trocar, comenta-se a linha ativa e tira-se o comentário da do tema que se quer:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>window.UC_COURSE = {
+  // …
+  theme: "classic",              // Clássico: navegação à esquerda (o aspeto do kit)
+  // theme: "modern",            // Moderno: navegação no topo, cartões com sombra
+  // theme: "institutional",     // Institucional: faixa da cor do curso
+  // theme: "handbook",          // Manual: três colunas com "Nesta página"
+  // theme: "editorial",         // Editorial: centrado, letra com serifa
+};</code></pre></uc-code>
+        <p>Cada tema é um ficheiro de <code>kit/v1/themes/</code> e cada layout novo um de <code>kit/v1/layouts/</code>. O kit acrescenta o ficheiro do tema escolhido (e o do seu layout) a seguir ao <code>uc-kit.css</code>, espera por ele antes de mostrar a página e não descarrega os outros. O Clássico já está no <code>uc-kit.css</code>, por isso não descarrega nada. Um site sem <code>theme</code> fica com o Clássico, como antes.</p>
+        <p>Um tema escolhe três coisas:</p>
+        <ul>
+          <li><strong>O layout</strong> de todas as páginas: onde fica a navegação, quantas colunas há e como é o cabeçalho (ver os <a href="../componentes/uc-page.html#exemplos">layouts do <code>&lt;uc-page&gt;</code></a>).</li>
+          <li><strong>Tokens</strong>: cantos, letra, espaços, fundo.</li>
+          <li><strong>Variantes de alguns componentes</strong>: as semanas em tabela, a equipa em tabela, a apresentação centrada. O atributo do componente ganha sempre ao tema.</li>
+        </ul>
+
+        <h2 id="temas">Os cinco temas</h2>
+        <p>As imagens são a página inicial do curso de demonstração num ecrã de 1280 px, com cada tema e nada mais. Cada uma abre o curso com esse tema, para o percorrer e ver no telemóvel.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Os temas com layout do kit</caption>
+            <thead>
+              <tr><th scope="col">Tema</th><th scope="col"><code>theme</code></th><th scope="col">Layout</th><th scope="col">Para quem</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="#classico">Clássico</a></td><td><code>"classic"</code></td><td><code>sidebar</code></td><td>Sites com muitas páginas e plataformas; o aspeto que o kit sempre teve.</td></tr>
+              <tr><td><a href="#moderno">Moderno</a></td><td><code>"modern"</code></td><td><code>top</code></td><td>Poucas páginas e tabelas largas, com um aspeto de aplicação.</td></tr>
+              <tr><td><a href="#institucional">Institucional</a></td><td><code>"institutional"</code></td><td><code>banner</code></td><td>Uma página com ar de site oficial da faculdade, na cor do curso.</td></tr>
+              <tr><td><a href="#manual">Manual</a></td><td><code>"handbook"</code></td><td><code>docs</code></td><td>Guiões e apontamentos longos, que se leem por secções.</td></tr>
+              <tr><td><a href="#editorial">Editorial</a></td><td><code>"editorial"</code></td><td><code>centered</code></td><td>Muito texto corrido (sumários, apontamentos), com aspeto de livro.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="classico">Clássico</h3>
+        <figure class="docs-figure">
+          <a href="../../demos/theme/index.html?theme=classic"><img src="../../assets/img/themes/classic.webp" width="1600" height="1000" loading="lazy" alt="Tema Clássico: cabeçalho fino, navegação à esquerda, a apresentação do curso, o cartão Esta semana e as próximas datas."></a>
+          <figcaption><code>theme: "classic"</code>. Abrir o curso de demonstração com este tema.</figcaption>
+        </figure>
+        <p>Navegação vertical à esquerda, que no telemóvel passa a um botão "Menu". É o tema do modelo e o aspeto dos sites feitos antes da versão 1.2.</p>
+
+        <h3 id="moderno">Moderno</h3>
+        <figure class="docs-figure">
+          <a href="../../demos/theme/index.html?theme=modern"><img src="../../assets/img/themes/modern.webp" width="1600" height="1000" loading="lazy" alt="Tema Moderno: fundo cinzento claro, navegação em pílulas por baixo do cabeçalho com a página atual a azul cheio e cartões brancos com sombra."></a>
+          <figcaption><code>theme: "modern"</code>. Abrir o curso de demonstração com este tema.</figcaption>
+        </figure>
+        <p>A navegação numa faixa por baixo do cabeçalho, em pílulas, com a página atual a cheio. Fundo cinzento claro, cartões brancos com sombra suave (o "Esta semana", os avisos, as datas, os cartões <code>.uc-card</code> e o <a href="../componentes/uc-tiles.html">mosaico</a>), cantos mais redondos e o título da apresentação maior.</p>
+
+        <h3 id="institucional">Institucional</h3>
+        <figure class="docs-figure">
+          <a href="../../demos/theme/index.html?theme=institutional"><img src="../../assets/img/themes/institutional.webp" width="1600" height="1000" loading="lazy" alt="Tema Institucional: uma faixa azul-escura com o cabeçalho, o título e a descrição do curso e os separadores da navegação no fundo; o separador atual é branco."></a>
+          <figcaption><code>theme: "institutional"</code>. Abrir o curso de demonstração com este tema.</figcaption>
+        </figure>
+        <p>O cabeçalho, a apresentação da cadeira (o primeiro <code>&lt;uc-hero&gt;</code> da página) e a navegação numa faixa da cor do curso, com as páginas em separadores. Nas páginas sem <code>&lt;uc-hero&gt;</code> a faixa só tem o cabeçalho e os separadores. Cantos mais retos e os títulos das secções sublinhados.</p>
+        <p>A faixa usa a versão escura da cor do curso, com texto branco. Uma cor que já passa no contraste com o branco (ver <a href="criar-tema.html#contraste">Verificar o contraste</a>) passa também aqui.</p>
+
+        <h3 id="manual">Manual</h3>
+        <figure class="docs-figure">
+          <a href="../../demos/theme/index.html?theme=handbook"><img src="../../assets/img/themes/handbook.webp" width="1600" height="1000" loading="lazy" alt="Tema Manual: três colunas, com a navegação à esquerda, o conteúdo ao centro e, à direita, a lista Nesta página com Esta semana, Próximas datas e Avisos, a primeira marcada."></a>
+          <figcaption><code>theme: "handbook"</code>. Abrir o curso de demonstração com este tema.</figcaption>
+        </figure>
+        <p>Três colunas: a navegação, o conteúdo e "Nesta página", com as secções da página e a que está à vista marcada. Abaixo de 1200 px, "Nesta página" passa a um botão por cima do conteúdo. Num <a href="../componentes/uc-guide.html">guião</a>, o progresso dos exercícios fica no topo dessa coluna. A letra e os espaços são os do <code>compact</code> e a página de semanas aparece como tabela compacta.</p>
+
+        <h3 id="editorial">Editorial</h3>
+        <figure class="docs-figure">
+          <a href="../../demos/theme/index.html?theme=editorial"><img src="../../assets/img/themes/editorial.webp" width="1600" height="1000" loading="lazy" alt="Tema Editorial: o título do curso grande e centrado, com letra com serifa, a navegação centrada por baixo com a página atual sublinhada e uma coluna de texto estreita."></a>
+          <figcaption><code>theme: "editorial"</code>. Abrir o curso de demonstração com este tema.</figcaption>
+        </figure>
+        <p>O cabeçalho e a navegação centrados, o título do curso em letra grande e o conteúdo numa coluna de leitura de 760 px. Letra com serifa (a do <code>serif</code>) com mais espaço entre linhas. A apresentação fica centrada, com a descrição em itálico (o título já está no cabeçalho e fica só para leitores de ecrã), e a equipa aparece em tabela.</p>
+
+        <h2 id="tokens">Juntar um tema de tokens</h2>
+        <p>Os temas <code>compact</code>, <code>serif</code> e <code>high-contrast</code> só mudam tokens, por isso juntam-se a qualquer um dos cinco numa lista. O tema com layout vai primeiro:</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>theme: ["institutional", "high-contrast"],</code></pre></uc-code>
+        <p>Só pode haver um tema com layout de cada vez. Se a lista tiver dois, fica o último e a consola avisa. O que cada tema de tokens muda está em <a href="criar-tema.html#temas-prontos">Criar um tema</a>.</p>
+
+        <h2 id="layout">Mudar o layout de um tema</h2>
+        <p>O tema escolhe o layout, mas quem escreve o site ganha sempre. Pela ordem em que o kit decide:</p>
+        <ol>
+          <li><strong>O atributo de uma página</strong>, só para essa página: <code>&lt;uc-page layout="full"&gt;</code> num enunciado que vai ser projetado.</li>
+          <li><strong>O <code>layout</code> do <code>course.js</code></strong>, para todas as páginas: o Institucional com a barra lateral de sempre.</li>
+          <li><strong>O layout do tema</strong> (a propriedade <code>--uc-layout</code> do ficheiro do tema, ou a do <code>theme.css</code> do site, que carrega depois).</li>
+          <li><code>sidebar</code>, sem nada disto.</li>
+        </ol>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>theme: "institutional",
+layout: "sidebar",   // as cores e os cantos do Institucional, com a navegação à esquerda</code></pre></uc-code>
+        <p>Os layouts que nenhum tema usa (<code>panel</code>, <code>aside</code> e <code>onepage</code>) escolhem-se assim, com qualquer tema. Um layout que não existe é ignorado com um aviso na consola, e decide o nível seguinte.</p>
+        <p>As variantes também se desligam numa página: <code>&lt;uc-weeks view="full"&gt;</code> mostra as semanas completas no Manual, <code>&lt;uc-team view="cards"&gt;</code> a equipa em cartões no Editorial, <code>&lt;uc-hero align="start"&gt;</code> a apresentação alinhada à esquerda. Para todo o site, ver <a href="criar-tema.html#ajustar-tema">Ajustar um tema pronto</a>.</p>
+
+        <h2 id="experimentar">Experimentar antes de escolher</h2>
+        <ul>
+          <li>O <a href="tema.html">personalizador de tema</a> mostra o curso de demonstração com o tema, o layout e os tokens escolhidos e dá as linhas a copiar para o <code>course.js</code> e o <code>theme.css</code>.</li>
+          <li>A <a href="../seccoes/index.html">galeria de secções</a> mostra cada bloco com cada tema, no seletor "Tema das pré-visualizações".</li>
+          <li>No próprio site: muda-se a linha <code>theme</code> do <code>course.js</code>, recarrega-se a página e volta-se atrás se não ficar bem. Nada mais muda.</li>
+        </ul>
+
+        <h2 id="mudar-site">Mudar o tema de um site que já existe</h2>
+        <p>Os passos estão em <a href="../migrar.html#mudar-tema">Migrar um site existente</a>. Em resumo: muda-se a linha <code>theme</code> do <code>course.js</code> (ou acrescenta-se, num site anterior à versão 1.2), revê-se o <code>theme.css</code> do site, que continua a ganhar ao tema, e percorrem-se as páginas com o layout novo.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="criar-tema.html">Criar um tema</a>: ajustar um tema pronto e escrever um tema próprio, com ou sem layout.</li>
+          <li><a href="criar-layout.html">Criar um layout</a>: um layout próprio a partir de um layout do kit.</li>
+          <li><a href="../componentes/uc-page.html#exemplos">uc-page</a>: os nove layouts, com uma demonstração de cada.</li>
+          <li><a href="../course-js.html#campos-curso">O ficheiro course.js</a>: os campos <code>theme</code>, <code>layout</code>, <code>aside</code> e <code>panel</code>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="index.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title">Visão geral</span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="criar-tema.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title">Criar um tema</span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/personalizar/temas.html">Editar esta página no GitHub</a> · <a href="temas.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#como">Como se escolhe</a></li>
+          <li><a href="#temas">Os cinco temas</a></li>
+          <li class="docs-toc__sub"><a href="#classico">Clássico</a></li>
+          <li class="docs-toc__sub"><a href="#moderno">Moderno</a></li>
+          <li class="docs-toc__sub"><a href="#institucional">Institucional</a></li>
+          <li class="docs-toc__sub"><a href="#manual">Manual</a></li>
+          <li class="docs-toc__sub"><a href="#editorial">Editorial</a></li>
+          <li><a href="#tokens">Juntar um tema de tokens</a></li>
+          <li><a href="#layout">Mudar o layout de um tema</a></li>
+          <li><a href="#experimentar">Experimentar antes de escolher</a></li>
+          <li><a href="#mudar-site">Mudar o tema de um site que já existe</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

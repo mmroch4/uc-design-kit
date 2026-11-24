@@ -139,7 +139,9 @@
         <p class="docs-sidebar__title" id="docs-nav-6">Personalizar</p>
         <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
           <li><a href="personalizar/index.html">Visão geral</a></li>
+          <li><a href="personalizar/temas.html">Escolher um tema</a></li>
           <li><a href="personalizar/criar-tema.html">Criar um tema</a></li>
+          <li><a href="personalizar/criar-layout.html">Criar um layout</a></li>
           <li><a href="personalizar/course-js.html">Nível 0: course.js</a></li>
           <li><a href="personalizar/tokens.html">Nível 1: tokens</a></li>
           <li><a href="personalizar/css.html">Nível 2: CSS livre</a></li>
@@ -261,6 +263,19 @@ python3 -m http.server 8000
         </div>
         <!-- /docs:demo -->
         <p>Se algo não aparecer, abrir a consola do browser (F12): o kit avisa, com mensagens começadas por <code>[uc-kit]</code>, quando falta um campo ou uma data não é válida. Os erros mais comuns estão em <a href="course-js.html#erros-comuns">Erros comuns</a>.</p>
+        <h3 id="cor-e-tema">A cor e o tema</h3>
+        <p>Mais abaixo no <code>course.js</code> do modelo estão a cor do curso e o tema. A cor (<code>accentColor</code>) muda as ligações, a semana atual e os botões e tem de ter contraste com o branco (ver <a href="personalizar/course-js.html#cor">Nível 0</a>). O tema escolhido é o Clássico, com a navegação à esquerda; os outros estão nas linhas comentadas por baixo, um por linha, com o que mudam. Para trocar, comenta-se a linha ativa e tira-se o comentário da do tema que se quer. Só se descarrega o tema escolhido.</p>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>accentColor: "#1D4ED8",
+// …
+theme: "classic",                       // Clássico: navegação à esquerda
+// theme: ["classic", "compact"],        // letra mais pequena, menos espaço
+// theme: ["classic", "serif"],          // letra com serifa
+// theme: ["classic", "high-contrast"],  // mais contraste, para projetar
+// theme: "modern",                     // Moderno: navegação no topo, cartões com sombra
+// theme: "institutional",              // Institucional: faixa da cor do curso
+// theme: "handbook",                   // Manual: três colunas com "Nesta página"
+// theme: "editorial",                  // Editorial: centrado, letra com serifa</code></pre></uc-code>
+        <p>Os cinco temas estão lado a lado, com imagens, em <a href="personalizar/temas.html">Escolher um tema</a>; o <a href="personalizar/tema.html">personalizador</a> mostra o curso com cada um antes de escolher. O tema pode mudar-se a qualquer momento sem mexer nas páginas.</p>
 
         <h2 id="primeira-semana">4. Escrever a primeira semana</h2>
         <p>Em <code>semanas.html</code> cada semana é uma <a href="componentes/uc-week.html"><code>&lt;uc-week&gt;</code></a> com o número e o título. As datas não se escrevem: calculam-se a partir de <code>semester.start</code>. Dentro, o HTML é livre; um <code>&lt;dl&gt;</code> aparece como linhas de etiqueta e valor.</p>
@@ -332,6 +347,7 @@ python3 -m http.server 8000
           <li><a href="#descarregar">1. Descarregar o modelo</a></li>
           <li><a href="#abrir">2. Abrir no browser</a></li>
           <li><a href="#configurar">3. Editar o course.js</a></li>
+          <li class="docs-toc__sub"><a href="#cor-e-tema">A cor e o tema</a></li>
           <li><a href="#primeira-semana">4. Escrever a primeira semana</a></li>
           <li><a href="#ver-no-browser">5. Ver no browser</a></li>
           <li><a href="#publicar">6. Publicar</a></li>

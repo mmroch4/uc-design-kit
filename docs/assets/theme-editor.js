@@ -2,32 +2,46 @@
  * Theme customiser (docs/pt/personalizar/tema.html). Loaded only by that page,
  * after docs.js (which turns the result block into "course.js / theme.css" tabs).
  *
- *   - controls: ready-made theme, accent colour, corners, base font size, font,
- *     content width. A ready-made theme moves the controls it sets to its own
- *     values (THEME_VALUES); the tokens written are the ones that differ from
- *     the kit with that theme.
- *   - preview: an iframe of the demo course (docs/demos/theme/), with the theme
- *     and the tokens set on its <html> (by postMessage) as the controls change
- *     and after each navigation
+ *   - controls: theme (with its layout), layout, token theme, accent colour,
+ *     corners, base font size, font, content width. A theme moves the controls
+ *     it sets to its own values (STYLE_VALUES, THEME_VALUES); the tokens
+ *     written are the ones that differ from the kit with those themes.
+ *   - preview: an iframe of the demo course (docs/demos/theme/). The themes and
+ *     the layout go in its URL (?theme=a,b&layout=x, read by preview.js before
+ *     the kit starts), so changing them loads the page again; the tokens are
+ *     set on its <html> (by postMessage) as the controls change and after each
+ *     navigation
  *   - contrast of the accent against white and against its soft background
- *   - result: the accentColor (and theme) lines and a theme.css with only the
+ *   - result: the accentColor, theme (and layout) lines and a theme.css with only the
  *     changed tokens, or the complete starter file (docs/assets/theme-starter.js,
  *     built from tokens.css) with those tokens uncommented
- *   - state in the URL hash, e.g. #theme=compact&accent=0F766E&radius=4&size=16&font=system&width=1200&file=full
+ *   - state in the URL hash, e.g. #style=handbook&layout=auto&theme=compact&accent=0F766E&radius=4&size=16&font=system&width=1200&file=full
  */
 (function () {
   "use strict";
 
-  const DEFAULTS = { theme: "none", accent: "1D4ED8", radius: 12, size: 16, font: "inter", width: 1200, file: "changed" };
+  const DEFAULTS = { style: "classic", layout: "auto", theme: "none", accent: "1D4ED8", radius: 12, size: 16, font: "inter", width: 1200, file: "changed" };
   const OPTIONS = {
+    style: ["classic", "modern", "institutional", "handbook", "editorial"],
+    layout: ["auto", "sidebar", "top", "full", "banner", "docs", "centered", "panel", "aside", "onepage"],
     theme: ["none", "compact", "serif", "high-contrast"],
-    radius: [0, 4, 6, 8, 12],
+    radius: [0, 4, 6, 8, 12, 16],
     size: [15, 16, 17],
     font: ["inter", "system", "serif"],
     width: [960, 1080, 1200, 1320],
     file: ["changed", "full"],
   };
-  /** The controls each ready-made theme sets (kit/src/themes/*.css). */
+  /** The layout of each theme with a layout (--uc-layout in kit/src/themes/*.css). */
+  const STYLE_LAYOUT = { classic: "sidebar", modern: "top", institutional: "banner", handbook: "docs", editorial: "centered" };
+  /** The controls each theme with a layout sets (kit/src/themes/*.css). */
+  const STYLE_VALUES = {
+    classic: {},
+    modern: { radius: 16 },
+    institutional: { radius: 6 },
+    handbook: { radius: 8, size: 15 },
+    editorial: { font: "serif" },
+  };
+  /** The controls each token theme sets (kit/src/themes/*.css). */
   const THEME_VALUES = {
     none: {},
     compact: { radius: 8, size: 15 },
@@ -39,7 +53,7 @@
     system: "system-ui, sans-serif",
     serif: 'Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif',
   };
-  /** The controls that are tokens (theme and file are not). */
+  /** The controls that are tokens (style, layout, theme and file are not). */
   const TOKEN_KEYS = ["accent", "radius", "size", "font", "width"];
   const MIN_CONTRAST = 4.5;
   // The soft accent background is the accent mixed with white (tokens.css: accent-soft).
@@ -115,22 +129,37 @@
     ];
   }
 
-  /** The controls of the kit with `theme` applied: what the page shows without a theme.css. */
-  function baseline(theme) {
-    return { ...DEFAULTS, ...THEME_VALUES[theme], theme };
+  /** The controls of the kit with the two themes applied: what the page shows without a theme.css. */
+  function baseline(style, theme) {
+    return { ...DEFAULTS, ...STYLE_VALUES[style], ...THEME_VALUES[theme], style, theme };
   }
 
-  /** The tokens whose value differs from the kit's with the chosen theme. */
+  /** The tokens whose value differs from the kit's with the chosen themes. */
   function changedTokens(values) {
-    const defaults = new Map(tokens(baseline(values.theme)));
+    const defaults = new Map(tokens(baseline(values.style, values.theme)));
     return tokens(values).filter(([name, value]) => value !== defaults.get(name));
   }
 
   /* ---------- generated files ---------- */
 
+  /** The themes for `theme` in course.js: the theme with a layout, then the token theme. */
+  function themeList(values) {
+    return values.theme === "none" ? [values.style] : [values.style, values.theme];
+  }
+
+  /** The layout to write in course.js: only when it is not the theme's own. */
+  function ownLayout(values) {
+    return values.layout === "auto" || values.layout === STYLE_LAYOUT[values.style] ? null : values.layout;
+  }
+
   function courseLine(values) {
-    const accent = `accentColor: "#${values.accent}",`;
-    return values.theme === "none" ? accent : `${accent}\ntheme: "${values.theme}",`;
+    const list = themeList(values);
+    const lines = [
+      `accentColor: "#${values.accent}",`,
+      list.length === 1 ? `theme: "${list[0]}",` : `theme: [${list.map((name) => `"${name}"`).join(", ")}],`,
+    ];
+    if (ownLayout(values)) lines.push(`layout: "${ownLayout(values)}",`);
+    return lines.join("\n");
   }
 
   /**
@@ -152,7 +181,7 @@
   function themeCss(values) {
     const changed = changedTokens(values);
     if (values.file === "full" && window.UC_DOCS_THEME_STARTER) return fullThemeCss(changed);
-    if (!changed.length) return "/* Os valores escolhidos são os do kit (e do tema pronto): não é preciso theme.css. */\n";
+    if (!changed.length) return "/* Os valores escolhidos são os do kit com o tema escolhido: não é preciso theme.css. */\n";
     const lines = ["/* theme.css: tokens escolhidos no personalizador de tema do UC Design Kit. */", ":root {"];
     changed.forEach(([name, value]) => {
       if (name === "--uc-color-accent") lines.push("  /* O accentColor do course.js, se existir, prevalece sobre esta linha. */");
@@ -166,9 +195,9 @@
 
   function readHash() {
     const params = new URLSearchParams(window.location.hash.slice(1));
-    const theme = OPTIONS.theme.includes(params.get("theme")) ? params.get("theme") : DEFAULTS.theme;
-    const values = baseline(theme);
-    ["font", "file"].forEach((key) => {
+    const pick = (key) => (OPTIONS[key].includes(params.get(key)) ? params.get(key) : DEFAULTS[key]);
+    const values = baseline(pick("style"), pick("theme"));
+    ["layout", "font", "file"].forEach((key) => {
       if (OPTIONS[key].includes(params.get(key))) values[key] = params.get(key);
     });
     const accent = normalizeHex(params.get("accent"));
@@ -181,11 +210,13 @@
   }
 
   function hasStateInHash() {
-    return /(^|&)(theme|accent|radius|size|font|width|file)=/.test(window.location.hash.slice(1));
+    return /(^|&)(style|layout|theme|accent|radius|size|font|width|file)=/.test(window.location.hash.slice(1));
   }
 
   function writeHash(values) {
     const params = new URLSearchParams({
+      style: values.style,
+      layout: values.layout,
       theme: values.theme,
       accent: values.accent,
       radius: values.radius,
@@ -224,7 +255,8 @@
     const hex = $("docs-theme-hex");
     if (normalizeHex(hex.value) !== values.accent) hex.value = `#${values.accent}`;
     check("swatch", values.accent);
-    ["theme", "radius", "size", "font", "width", "file"].forEach((key) => check(key, values[key]));
+    $("docs-theme-layout").value = values.layout;
+    ["style", "theme", "radius", "size", "font", "width", "file"].forEach((key) => check(key, values[key]));
   }
 
   /* ---------- contrast readout ---------- */
@@ -269,7 +301,30 @@
     // Unchanged tokens are removed, so the theme's (or the kit's) value shows.
     const changed = new Map(changedTokens(values));
     const list = tokens(values).map(([name]) => [name, changed.has(name) ? changed.get(name) : null]);
-    if (target) target.postMessage({ type: "uc-docs:theme", theme: values.theme, tokens: list }, "*");
+    if (target) target.postMessage({ type: "uc-docs:theme", tokens: list }, "*");
+  }
+
+  /** The query of the preview pages: the themes and the layout, as course.js would set them. */
+  function frameQuery(values) {
+    const query = new URLSearchParams({ theme: themeList(values).join(",") });
+    if (values.layout !== "auto") query.set("layout", values.layout);
+    return `?${query}`;
+  }
+
+  /** The query the preview was last loaded with (the one in the page's HTML at first). */
+  let loadedQuery = null;
+
+  /**
+   * Loads `file` of the demo course with the chosen themes and layout; without
+   * `file`, loads the page shown again only when the themes or the layout changed.
+   */
+  function loadFrame(file) {
+    const frame = $("docs-theme-frame");
+    const query = frameQuery(state);
+    if (loadedQuery === null) loadedQuery = new URL(frame.getAttribute("src"), window.location.href).search;
+    if (!file && query === loadedQuery) return;
+    loadedQuery = query;
+    frame.src = `../../demos/theme/${file || checkedValue("page") || "index.html"}${query}`;
   }
 
   /** A preview page started (also after a link followed inside it): send the tokens, update "Página". */
@@ -368,6 +423,7 @@
     else check("swatch", state.accent);
     updateContrast(state);
     updateResult(state);
+    loadFrame();
     applyToFrame(state);
     if (url === "write") writeHash(state);
     else if (url === "clear") clearHash();
@@ -396,11 +452,11 @@
     setState({ ...state, accent: hex });
   }
 
-  /** A new ready-made theme: every control still at the old theme's value moves to the new one's. */
-  function setTheme(theme) {
-    const before = baseline(state.theme);
-    const after = baseline(theme);
-    const values = { ...state, theme };
+  /** A new theme (`key` "style" or "theme"): every control still at the old themes' value moves to the new one's. */
+  function setTheme(key, name) {
+    const values = { ...state, [key]: name };
+    const before = baseline(state.style, state.theme);
+    const after = baseline(values.style, values.theme);
     TOKEN_KEYS.forEach((key) => {
       if (state[key] === before[key]) values[key] = after[key];
     });
@@ -409,7 +465,7 @@
 
   function onRadio(input) {
     if (input.name === "swatch") setState({ ...state, accent: input.value }, { syncInputs: true });
-    else if (input.name === "theme") setTheme(input.value);
+    else if (input.name === "theme" || input.name === "style") setTheme(input.name, input.value);
     else if (input.name in OPTIONS) {
       const value = ["font", "file"].includes(input.name) ? input.value : Number(input.value);
       setState({ ...state, [input.name]: value });
@@ -430,6 +486,7 @@
     });
     form.addEventListener("change", (event) => {
       if (event.target === hexField) commitHex(hexField);
+      else if (event.target.id === "docs-theme-layout") setState({ ...state, layout: event.target.value });
       else if (event.target.id === "docs-theme-picker") onPicker(event.target);
       else if (event.target.type === "radio") onRadio(event.target);
     });
@@ -442,11 +499,7 @@
       setState(DEFAULTS, { syncInputs: true, url: "clear" });
     });
 
-    radios("page").forEach((input) =>
-      input.addEventListener("change", () => {
-        frame.src = `../../demos/theme/${input.value}`;
-      }),
-    );
+    radios("page").forEach((input) => input.addEventListener("change", () => loadFrame(input.value)));
     radios("device").forEach((input) => input.addEventListener("change", layoutPreview));
     // "Ficheiro" is next to the result, outside the form.
     radios("file").forEach((input) => input.addEventListener("change", () => onRadio(input)));

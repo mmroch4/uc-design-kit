@@ -55,7 +55,10 @@ UC Design Kit. O site antigo está na pasta [site-antigo/]. Não o alteres.
 Informação que não está no site antigo:
 [ano letivo, início do semestre, interrupções, mudanças na equipa ou na
 avaliação]
+Tema: [classic, modern, institutional, handbook ou editorial]
 ```
+
+O tema escolhe o aspeto e o layout de todas as páginas; os cinco estão lado a lado em [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md). Na dúvida, `classic`: muda-se depois numa linha, como em [Mudar o tema de um site](#mudar-tema).
 
 Se o assistente não tiver acesso à Internet, descarregar antes o [`llms-full.txt`](https://uc-design-kit.miguelrocha.dev/llms-full.txt) e o [modelo inicial](https://uc-design-kit.miguelrocha.dev/docs/downloads/uc-template.zip) para a pasta de trabalho e trocar os endereços dos pontos 1 e 2 pelos nomes dos ficheiros.
 
@@ -101,6 +104,18 @@ Pode acrescentar-se no fim o que o assistente deve saber sobre a cadeira, como "
 - Confirmar que não foi copiado nenhum ficheiro com dados de alunos (folhas de notas, pautas, listas de turnos).
 - Correr `python3 uc-site.py` na pasta nova: verifica os links e imagens e escreve o índice da [pesquisa](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#pesquisa) com as páginas migradas. Um site com muitos enunciados ou guiões ganha uma caixa [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md) na página que os lista, como a dos problemas de [Programação Competitiva](https://uc-design-kit.miguelrocha.dev/docs/pt/exemplos/pc.md).
 - Guardar o site antigo até o novo estar publicado.
+
+## Mudar o tema de um site
+
+Um site feito com o kit muda de tema sem tocar no HTML das páginas: a estrutura (cabeçalho, navegação, colunas) é desenhada pelo kit a partir do `<uc-page>`. O mesmo vale para um site migrado com a versão 1.1 ou anterior.
+
+1. **Escolher o tema** em [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md), ou experimentá-lo primeiro no [personalizador](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md).
+2. **Mudar a linha `theme`** do `course.js`, por exemplo para `theme: "handbook"`. Num site anterior à versão 1.2, que ainda não tem a linha, acrescenta-se a seguir ao `accentColor`; os temas de tokens que o site já usava juntam-se numa lista, `theme: ["handbook", "high-contrast"]`.
+3. **Procurar o que ganha ao tema**: um `layout` no `course.js` (tirá-lo, para ficar o layout do tema), `layout="…"` nas páginas (só as que devem mesmo ser diferentes, como um enunciado com `layout="full"`) e `--uc-layout` no `theme.css`.
+4. **Rever o `theme.css`**, que continua a ganhar ao tema. Tokens que o site mudou para o aspeto antigo (larguras, cantos, letra) podem já não fazer sentido: o Editorial, por exemplo, tem uma coluna de 760 px que um `--uc-content-max` antigo não muda. Regras de CSS livre presas à barra lateral (`.uc-sidebar`, `.uc-nav`) podem precisar de ficar só para esse layout.
+5. **Percorrer o site** como em [Rever o resultado](#rever): a página inicial, as semanas e um guião, no computador e no telemóvel, com a consola aberta (sem avisos `[uc-kit]`).
+
+Com um assistente de programação, basta pedir "muda o site para o tema Manual, seguindo o AGENTS.md": as regras do `AGENTS.md` do modelo dizem-lhe para mudar só o `course.js` e o `theme.css`.
 
 ## Ver também
 

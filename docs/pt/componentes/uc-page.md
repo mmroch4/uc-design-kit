@@ -462,4 +462,5 @@ Com o JavaScript desligado, o conteúdo aparece logo, numa coluna centrada, sem 
 - [`<uc-guide>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-guide.md): um guião de aula, que costuma usar `current="weeks"`.
 - [Estrutura de um site](https://uc-design-kit.miguelrocha.dev/docs/pt/estrutura.md#pagina): o `<head>`, a lista de páginas e as subpastas.
 - [Línguas](https://uc-design-kit.miguelrocha.dev/docs/pt/linguas.md): conteúdo bilingue e um ficheiro por língua.
+- [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md): os temas que escolhem o layout de todas as páginas; [Criar um layout](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/criar-layout.md): um layout próprio a partir de um destes.
 - Uso real: [a página inicial de Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html) e [um guião numa subpasta](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/guioes/aula01.html).

@@ -127,7 +127,9 @@
           "title": "Personalizar",
           "pages": [
             { "title": "Visão geral", "path": "pt/personalizar/index.html" },
+            { "title": "Escolher um tema", "path": "pt/personalizar/temas.html" },
             { "title": "Criar um tema", "path": "pt/personalizar/criar-tema.html" },
+            { "title": "Criar um layout", "path": "pt/personalizar/criar-layout.html" },
             { "title": "Nível 0: course.js", "path": "pt/personalizar/course-js.html" },
             { "title": "Nível 1: tokens", "path": "pt/personalizar/tokens.html" },
             { "title": "Nível 2: CSS livre", "path": "pt/personalizar/css.html" },

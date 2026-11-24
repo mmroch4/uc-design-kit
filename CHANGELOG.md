@@ -6,6 +6,14 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+Draft of 1.2.0, "themes with a layout": a theme can now choose the layout of
+every page and a few component variants, and only the chosen theme is
+downloaded. Five themes with a layout (Clássico, the default and the look of
+1.1.0; Moderno; Institucional; Manual; Editorial), six new layouts
+(`banner`, `docs`, `centered`, `panel`, `aside`, `onepage`), `<uc-tiles>`
+and the guides to choose, adjust and extend them. Nothing changes for a site
+that does not set `theme` or `layout`.
+
 ### Added
 - Themes with a layout, first part (mechanism, nothing looks different): a
   theme can choose the layout of `<uc-page>` with the property
@@ -70,6 +78,18 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `.uc-hero--center`.
 - Section gallery: the theme picker lists the five themes with a layout too,
   and `check-pages` runs axe on every section in every theme.
+- Documentation: "Escolher um tema" (the five themes side by side, with
+  screenshots and the demo course in each), "Criar um layout" (a site layout
+  with `UC.registerLayout`, the parts of every layout, an example and an
+  accessibility checklist), and in "Criar um tema" the sections "Ajustar um
+  tema pronto", "Mudar o layout de um tema" and "Criar um tema com layout".
+- Theme customiser: "Tema" and "Layout" controls; the preview changes layout
+  and the `course.js` result has `theme` (and `layout` when it is not the
+  theme's). The former "Tema pronto" is now "Tema de tokens".
+- Documentation: choosing the theme when creating a site, changing the theme
+  of an existing site ("Migrar um site existente"), a rule on themes and
+  layouts for assistants (`llm.html`, `llms.txt`, the template's
+  `AGENTS.md`) and a request to change the theme.
 
 ### Changed
 - `layout` in `course.js` keeps any name (a site layout may be registered

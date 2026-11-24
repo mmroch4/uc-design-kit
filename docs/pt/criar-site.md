@@ -93,6 +93,27 @@ Exemplo (título e próximos prazos a partir do course.js), [demonstração ao v
 
 Se algo não aparecer, abrir a consola do browser (F12): o kit avisa, com mensagens começadas por `[uc-kit]`, quando falta um campo ou uma data não é válida. Os erros mais comuns estão em [Erros comuns](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#erros-comuns).
 
+### A cor e o tema
+
+Mais abaixo no `course.js` do modelo estão a cor do curso e o tema. A cor (`accentColor`) muda as ligações, a semana atual e os botões e tem de ter contraste com o branco (ver [Nível 0](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/course-js.md#cor)). O tema escolhido é o Clássico, com a navegação à esquerda; os outros estão nas linhas comentadas por baixo, um por linha, com o que mudam. Para trocar, comenta-se a linha ativa e tira-se o comentário da do tema que se quer. Só se descarrega o tema escolhido.
+
+`course.js`:
+
+```js
+accentColor: "#1D4ED8",
+// …
+theme: "classic",                       // Clássico: navegação à esquerda
+// theme: ["classic", "compact"],        // letra mais pequena, menos espaço
+// theme: ["classic", "serif"],          // letra com serifa
+// theme: ["classic", "high-contrast"],  // mais contraste, para projetar
+// theme: "modern",                     // Moderno: navegação no topo, cartões com sombra
+// theme: "institutional",              // Institucional: faixa da cor do curso
+// theme: "handbook",                   // Manual: três colunas com "Nesta página"
+// theme: "editorial",                  // Editorial: centrado, letra com serifa
+```
+
+Os cinco temas estão lado a lado, com imagens, em [Escolher um tema](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/temas.md); o [personalizador](https://uc-design-kit.miguelrocha.dev/docs/pt/personalizar/tema.md) mostra o curso com cada um antes de escolher. O tema pode mudar-se a qualquer momento sem mexer nas páginas.
+
 ## 4. Escrever a primeira semana
 
 Em `semanas.html` cada semana é uma [`<uc-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-week.md) com o número e o título. As datas não se escrevem: calculam-se a partir de `semester.start`. Dentro, o HTML é livre; um `<dl>` aparece como linhas de etiqueta e valor.
