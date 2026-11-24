@@ -1,0 +1,2 @@
+/*! UC Design Kit 1.1.0 | theme "institutional" | MIT License | https://github.com/mmroch4/uc-design-kit */
+@import"../layouts/banner.css";:root{--uc-layout: banner;--uc-radius-sm: 3px;--uc-radius-md: 4px;--uc-radius-lg: 6px}:where(.uc-page--banner .uc-main>h2,.uc-page--banner .uc-main>section>h2,.uc-page--banner .uc-main>.uc-section>h2){padding-bottom:var(--uc-space-2);border-bottom:2px solid var(--uc-color-border)}

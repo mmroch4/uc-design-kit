@@ -11,7 +11,8 @@ It runs in phases L0–L8, one pull request each. Every phase updates this file
 [`docs/api.md`](../api.md), which wins when the two differ. Code comments cite
 this file by section number: keep the numbers stable.
 
-Status: **L0 done** (mechanism, no visible change). Sections marked
+Status: **L0 and L1 done** (mechanism; layout `banner` and theme
+`institutional`). Sections marked
 *(planned, Ln)* describe what a later phase adds; until then the kit does
 not know those names.
 
@@ -66,7 +67,9 @@ layout registered by a script after the kit is never reported.
 - `FILE_LAYOUTS` and the files of `kit/src/layouts/` differ;
 - a theme of `LAYOUT_THEMES` does not declare `--uc-layout`;
 - a theme's `@import` is not `"../layouts/<name>.css"` with an existing layout
-  file. The import is kept relative as written, so it works from
+  file;
+- a layout file does not declare `--uc-layout-<name>-loaded: 1` on `:root`
+  (section 4). The import is kept relative as written, so it works from
   `kit/v1/`, a frozen `kit/vX.Y.Z/` and a copied folder alike.
 
 Every rule of a layout file is wrapped in `:where()` and scoped to
@@ -80,7 +83,10 @@ Every rule of a layout file is wrapped in `:where()` and scoped to
 2. Each `<uc-page>` resolves its layout at every render. When it names a file
    layout or a site layout with a style sheet, `UC.internal.layouts.load()`
    adds that `<link>` after the kit's and the themes' links (before the site's
-   `theme.css`, which still wins).
+   `theme.css`, which still wins). A kit layout file that is already there
+   (imported by a theme) is not linked again: every layout file sets
+   `--uc-layout-<name>-loaded: 1` on `:root`, and the kit looks for it. So the
+   layout of a theme keeps its place in the cascade, right where the theme is.
 3. `UC.internal.layoutsReady()` waits for the themes and for the document to be
    parsed (so scripts after the kit, which may call `UC.registerLayout`, have
    run), then loads what the CSS level (`--uc-layout`) and the pages ask for,
@@ -117,7 +123,7 @@ it in `course.js` downloads nothing.
 | Theme | Name in the docs | Layout | Phase |
 | --- | --- | --- | --- |
 | `classic` | Clássico | `sidebar` | L0 |
-| `institutional` | Institucional | `banner` | *(planned, L1)* |
+| `institutional` | Institucional | `banner` | L1 |
 | `handbook` | Manual | `docs` | *(planned, L2)* |
 | `editorial` | Editorial | `centered` | *(planned, L3)* |
 | `modern` | Moderno | `top` | *(planned, L3)* |
@@ -157,7 +163,7 @@ A component attribute always wins over a choice property.
 | `sidebar` | `uc-kit.css` | Navigation on the left | none (default) | 1.0 |
 | `top` | `uc-kit.css` | Navigation in a bar under the header | `.uc-page--top`, `.uc-topnav` | 1.1 |
 | `full` | `uc-kit.css` | No navigation | `.uc-page--full` | 1.0 |
-| `banner` | `layouts/banner.css` | Band in the course colour with the header, the first `<uc-hero>` and tabs | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | *(planned, L1)* |
+| `banner` | `layouts/banner.css` | Band in the course colour with the header, the first `<uc-hero>` and tabs (6.1) | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | L1 |
 | `docs` | `layouts/docs.css` | Navigation, content, "Nesta página" | `.uc-page--docs`, `.uc-toc` | *(planned, L2)* |
 | `centered` | `layouts/centered.css` | Centred header and navigation, reading column `--uc-reading-max` | `.uc-page--centered` | *(planned, L3)* |
 | `panel` | `layouts/panel.css` | Full-height bar with name, search, navigation and timetable; no header | `.uc-page--panel`, `.uc-panel__brand`, `.uc-panel__info` | *(planned, L4)* |
@@ -168,6 +174,34 @@ Every layout keeps the skip link, one `header`/`nav`/`main`/`footer`, one `h1`
 and `aria-current`; prints like `full`; below 960 px has a menu button or a
 scrolling bar. `<uc-page>` gets `.uc-page--<layout>` for every layout but
 `sidebar` (so the pages of 1.1.0 keep their exact DOM).
+
+### 6.1 banner
+
+```
+.uc-skip-link
+.uc-banner                      background --uc-color-accent-strong
+  .uc-header                    (the usual header, light text and buttons)
+  .uc-banner__inner             max-width --uc-content-max
+    .uc-banner__hero > uc-hero  only when the page has one (see below)
+    .uc-sidebar                 toggle + nav.uc-nav: tabs, the current one white
+.uc-shell > main.uc-main        one column
+.uc-footer
+```
+
+- The hero is the first `<uc-hero>` that is a direct child of `<uc-page>`
+  (so of `<main>`). It is **moved**, not copied, so the page keeps one `h1`;
+  a comment keeps its place in `<main>`, and it goes back there when the page
+  is drawn with another layout (`uc-page.js`, `placeHero`). Without one the
+  band has only the header and the tabs.
+- Light colours on the band are local properties of `.uc-page--banner`:
+  `--uc-banner-text` (`--uc-color-on-accent`), `--uc-banner-text-muted`,
+  `--uc-banner-line`, `--uc-banner-fill`. `--uc-focus-ring` is redefined
+  inside `.uc-banner` so focus is visible on the band. The band uses
+  `--uc-color-accent-strong`, which is darker than the accent, so white text
+  keeps at least 4.5:1 whenever `accentColor` does (config.js warns otherwise).
+- 961 px and up: the navigation is a row of tabs at the bottom of the band.
+  Up to 960 px: the "Menu" button and the open list are inside the band.
+- Print: no colour on the band, no navigation (uc-kit.css hides it).
 
 Planned attributes and fields, added to `docs/api.md` by their phase:
 `<uc-page toc="off">` (L2), `<uc-page aside="off">` and `aside`/`panel` in
@@ -191,6 +225,17 @@ variants 0.2). L0 measured 47.4 KB (+0.4 KB). `uc-kit.css` only grows with
   `classic` adds no file, `compact` does.
 - `tests/pages/layouts/register.html`: `UC.registerLayout` from a script after
   the kit, a layout built on a site layout, refused names.
+- `tests/pages/layouts/banner.html` (L1): `layout="banner"` from the
+  attribute, the file linked after the kit, band with header, hero and
+  navigation, one `h1`, colours, the hero back in `<main>` with another
+  layout and into the band again.
+- `tests/pages/layouts/banner-no-hero.html` (L1): `layout: "banner"` in
+  `course.js`, no hero, the page's own `h1` stays in `<main>`.
+- `tests/pages/themes/institutional.html` (L1): theme from `course.js` with
+  `high-contrast`; layout from the CSS; `layouts/banner.css` arrives by
+  `@import` only (no extra `<link>`); tokens and underlined `h2`.
+- `check-pages` runs axe on all of them at 1280 and 390 px (contrast on the
+  band) and from `file://`.
 - The record of `npm run test:dom` must not change for any page that existed
   before; new layouts get their own test pages.
 
@@ -235,3 +280,22 @@ UC.registerLayout("poster", { extends: "banner", css: "layouts/poster.css" });
 - `template/course.js`: `theme: "classic"` active, the token themes
   commented. Each later phase adds the line of its theme.
 - Budget 50 KB.
+
+### L1 — layout `banner`, theme `institutional`
+
+- `kit/src/layouts/banner.css` (`FILE_LAYOUTS = ["banner"]`), section 6.1.
+- `uc-page.js`: the banner structure; `placeHero()` moves the first direct
+  `<uc-hero>` into the band and back.
+- `kit/src/themes/institutional.css`: `@import "../layouts/banner.css"`,
+  `--uc-layout: banner`, radii 3/4/6 px, `h2` of the page's sections
+  underlined (scoped to `.uc-page--banner`). Added to `THEMES` and
+  `LAYOUT_THEMES`.
+- `core/layouts.js`: no `<link>` for a kit layout file that is already
+  loaded (`--uc-layout-<name>-loaded`, section 4); `scripts/themes.mjs`
+  checks the property.
+- Docs: `docs/api.md` 2.2, 3.1, 8.3; `componentes/uc-page.html` "Faixa
+  institucional" with the demo `docs/demos/uc-page/banner.html`;
+  `course-js.html`; `personalizar/criar-tema.html` (table of themes with a
+  layout); `template/course.js` (commented `theme: "institutional"`).
+- `uc-kit.js` 47.6 KB gzipped (+0.2 KB); `layouts/banner.css` and
+  `themes/institutional.css` are separate files.

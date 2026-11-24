@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout banner (attribute) · test</title>
+  <!-- layout="banner" without a theme: the kit adds layouts/banner.css and moves the first direct <uc-hero> into the band. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+</head>
+<body>
+  <uc-page layout="banner" current="home">
+    <p id="before">Um parágrafo antes do cabeçalho do curso.</p>
+    <uc-hero><p>Texto do professor por baixo da frase de apresentação.</p></uc-hero>
+    <uc-this-week></uc-this-week>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      const where = () => {
+        const band = page.querySelector(".uc-banner");
+        return {
+          band: Boolean(band),
+          header: Boolean(band && band.querySelector(":scope > .uc-header")),
+          hero: Boolean(band && band.querySelector(".uc-banner__inner > .uc-banner__hero > uc-hero > h1")),
+          nav: Boolean(band && band.querySelector(".uc-banner__inner > .uc-sidebar > nav.uc-nav")),
+          h1: page.querySelectorAll("h1").length,
+          inMain: page.querySelector(".uc-main").querySelectorAll(":scope > uc-hero").length,
+        };
+      };
+      test("the layout comes from the attribute", () => equal(UC.internal.layouts.resolve(page), "banner"));
+      test("its class", () => equal(Array.from(page.classList).filter((name) => name.startsWith("uc-page--")), ["uc-page--banner"]));
+      test("its style sheet is added after the kit", () => equal(sheets(), ["uc-kit.css", "layouts/banner.css"]));
+      test("band with the header, the first hero and the navigation; one h1", () => equal(where(), { band: true, header: true, hero: true, nav: true, h1: 1, inMain: 0 }));
+      test("the teacher's text stays in the hero", () => equal(Boolean(page.querySelector(".uc-banner__hero uc-hero > p")), true));
+      test("no navigation inside the shell, skip link to main", () => equal([page.querySelector(".uc-shell > .uc-sidebar"), page.querySelector(".uc-skip-link").getAttribute("href")], [null, "#uc-main"]));
+      test("the band is the strong accent colour", () => {
+        const probe = document.createElement("div");
+        probe.style.background = "var(--uc-color-accent-strong)";
+        document.body.append(probe);
+        const expected = getComputedStyle(probe).backgroundColor;
+        probe.remove();
+        equal(getComputedStyle(page.querySelector(".uc-banner")).backgroundColor, expected);
+      });
+      test("the current tab is white", () => equal(getComputedStyle(page.querySelector('.uc-nav__link[aria-current="page"]')).backgroundColor, "rgb(255, 255, 255)"));
+      test("the shell has one column", () => equal(getComputedStyle(page.querySelector(".uc-shell")).gridTemplateColumns.split(" ").length, 1));
+      // Drawn with another layout, the hero goes back to its place in <main>; then into the band again.
+      page.setAttribute("layout", "sidebar");
+      page.render();
+      test("with another layout the hero goes back to its place", () => equal([page.querySelector(".uc-banner"), page.querySelector("#before").nextElementSibling.localName], [null, "uc-hero"]));
+      page.setAttribute("layout", "banner");
+      page.render();
+      test("and into the band again", () => equal(where(), { band: true, header: true, hero: true, nav: true, h1: 1, inMain: 0 }));
+    }));
+  </script>
+</body>
+</html>

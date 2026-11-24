@@ -8,7 +8,8 @@
  *     declare --uc-layout, and every @import of a theme must name a file of
  *     kit/src/layouts/ (kept as written: "../layouts/<name>.css").
  *   - Minifies every kit/src/layouts/<name>.css into kit/v1/layouts/<name>.css.
- *     The names must be the FILE_LAYOUTS list of kit/src/core/layouts.js.
+ *     The names must be the FILE_LAYOUTS list of kit/src/core/layouts.js, and
+ *     each file must declare --uc-layout-<name>-loaded: 1 on :root.
  *   - Writes the starter theme.css from kit/src/css/base/tokens.css: every
  *     token, commented out, with the kit's value, grouped as in tokens.css.
  *     It goes to template/theme.css (the theme.css of a new site),
@@ -129,7 +130,10 @@ export async function buildThemes({ check = false } = {}) {
 
   const layoutFiles = {};
   for (const name of layouts) {
-    layoutFiles[`${name}.css`] = await minify(name, await readFile(path.join(LAYOUTS, `${name}.css`), "utf8"), version, "layout");
+    const source = await readFile(path.join(LAYOUTS, `${name}.css`), "utf8");
+    // The kit adds no <link> for a layout whose file is already there (a theme's @import): it looks for this property.
+    if (!new RegExp(`--uc-layout-${name}-loaded\\s*:\\s*1\\s*;`).test(source)) problem(`kit/src/layouts/${name}.css: must declare --uc-layout-${name}-loaded: 1 on :root.`);
+    layoutFiles[`${name}.css`] = await minify(name, source, version, "layout");
   }
   if (layouts.length) problems += await writeOutputs(layoutFiles, "kit/v1/layouts", { check });
 

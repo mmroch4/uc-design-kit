@@ -17,6 +17,13 @@ and the kit uses [Semantic Versioning](https://semver.org/).
   `course.js` now sets `theme: "classic"`; naming it downloads nothing.
 - `UC.registerLayout(name, { extends, css })`: a site's own layout, with the
   structure of a kit layout and its own style sheet.
+- Layout `banner` (`<uc-page layout="banner">`, file
+  `kit/v1/layouts/banner.css`): the header, the page's first `<uc-hero>` and
+  the navigation as tabs in one band of the course colour; the "Menu" button
+  inside the band on phones; prints without colour.
+- Theme `institutional` (Institucional): layout `banner`, squarer corners and
+  underlined section headings. `theme: "institutional"`, alone or with a
+  token theme.
 
 ### Changed
 - `layout` in `course.js` keeps any name (a site layout may be registered

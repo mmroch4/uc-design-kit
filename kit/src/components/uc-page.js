@@ -123,18 +123,45 @@
       const layout = layouts.base(this.layout);
       const navigation = layout === "full" ? null : this.renderNavigation(current);
       const top = layout === "top";
+      const banner = layout === "banner";
+      const hero = this.placeHero(banner);
+      const header = this.renderHeader();
 
       const parts = [
         h("a", { class: "uc-skip-link", href: "#uc-main" }, this.t("a11y.skipToContent")),
-        this.renderHeader(),
+        // banner: one band in the course colour with the header, the hero and the tabs.
+        banner
+          ? h("div", { class: "uc-banner" }, header, h("div", { class: "uc-banner__inner" }, hero ? h("div", { class: "uc-banner__hero" }, hero) : null, navigation))
+          : header,
         top ? h("div", { class: "uc-topnav" }, navigation) : null,
-        h("div", { class: "uc-shell" }, top ? null : navigation, this.main),
+        h("div", { class: "uc-shell" }, top || banner ? null : navigation, this.main),
         this.renderFooter(),
       ];
       this.replaceChildren(...parts.filter(Boolean));
       this.setNavOpen(this.navOpen);
       if (editions) this.renderEditions();
       if (restoreFocus) this.querySelector(".uc-lang-switch__button")?.focus();
+    }
+
+    /**
+     * The banner layout shows the first <uc-hero> written directly in the page
+     * inside the band: the element is moved (not copied, so the page keeps one
+     * h1) and a comment keeps its place in <main>, where it goes back when the
+     * page is drawn with another layout. Returns the hero for the band, or null.
+     */
+    placeHero(banner) {
+      if (!banner) {
+        if (this.heroMark) this.heroMark.replaceWith(this.hero);
+        this.heroMark = null;
+        return null;
+      }
+      if (!this.heroMark) {
+        this.hero = Array.from(this.main.children).find((node) => node.localName === "uc-hero");
+        if (!this.hero) return null;
+        this.heroMark = document.createComment("uc-hero");
+        this.hero.before(this.heroMark);
+      }
+      return this.hero;
     }
 
     renderHeader() {

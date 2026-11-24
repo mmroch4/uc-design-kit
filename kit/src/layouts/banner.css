@@ -1,0 +1,102 @@
+/*
+ * Layout "banner" of <uc-page> (docs/architecture/themes-layouts.md 6):
+ * one band in the course colour (--uc-color-accent-strong, which the kit keeps
+ * at 4.5:1 or more with white) holding the header, the page's first <uc-hero>
+ * and the navigation as tabs; the current page is a white tab joined to the
+ * content. Below 960 px the band keeps the "Menu" button. Prints without
+ * colour, like "full".
+ *
+ * Structure (uc-page.js): .uc-banner > .uc-header, .uc-banner__inner >
+ * (.uc-banner__hero > uc-hero), .uc-sidebar. Every rule is :where(), so a
+ * site's theme.css wins.
+ */
+/* Tells the kit this file is loaded, so it adds no <link> when a theme imports it. */
+:root { --uc-layout-banner-loaded: 1; }
+
+:where(.uc-page--banner) {
+  --uc-banner-text: var(--uc-color-on-accent);
+  --uc-banner-text-muted: color-mix(in srgb, var(--uc-color-on-accent) 82%, transparent);
+  --uc-banner-line: color-mix(in srgb, var(--uc-color-on-accent) 32%, transparent);
+  --uc-banner-fill: color-mix(in srgb, var(--uc-color-on-accent) 12%, transparent);
+}
+:where(.uc-banner) {
+  /* A light focus ring on the band. */
+  --uc-focus-ring: 2px solid var(--uc-banner-text);
+  background: var(--uc-color-accent-strong);
+  color: var(--uc-banner-text);
+}
+
+/* Header: light text and light buttons on the band. */
+:where(.uc-banner .uc-header) { border-bottom: 0; }
+:where(.uc-banner .uc-brand, .uc-banner .uc-brand > svg, .uc-banner .uc-brand__logo) { color: var(--uc-banner-text); }
+:where(.uc-banner .uc-brand__edition, .uc-banner .uc-header__institution) { color: var(--uc-banner-text-muted); }
+:where(.uc-banner a.uc-header__institution:hover) { color: var(--uc-banner-text); text-decoration: underline; }
+:where(.uc-banner .uc-search-button, .uc-banner .uc-lang-switch__button, .uc-banner .uc-page__editions-button) {
+  border-color: var(--uc-banner-line);
+  background: var(--uc-banner-fill);
+  color: var(--uc-banner-text);
+}
+:where(.uc-banner .uc-search-button:hover, .uc-banner .uc-lang-switch__button:hover, .uc-banner .uc-page__editions-button:hover) {
+  border-color: var(--uc-banner-text);
+  color: var(--uc-banner-text);
+}
+:where(.uc-banner .uc-search-button__hint) { border-color: var(--uc-banner-line); }
+
+/* The hero and the tabs share the width of the header. */
+:where(.uc-banner__inner) {
+  max-width: var(--uc-content-max);
+  margin: 0 auto;
+  padding: 0 var(--uc-gutter);
+}
+:where(.uc-banner__hero) { padding: var(--uc-space-4) 0 var(--uc-space-8); }
+:where(.uc-banner__hero .uc-hero__code) { color: var(--uc-banner-text-muted); }
+:where(.uc-banner__hero .uc-hero__title) { color: var(--uc-banner-text); }
+:where(.uc-banner__hero .uc-hero__tagline) { color: var(--uc-banner-text-muted); }
+:where(.uc-banner__hero a) { color: var(--uc-banner-text); }
+
+/* Navigation */
+:where(.uc-page--banner .uc-shell) { grid-template-columns: minmax(0, 1fr); }
+:where(.uc-page--banner .uc-sidebar) { position: static; }
+:where(.uc-page--banner .uc-nav__link) { color: var(--uc-banner-text-muted); font-weight: 500; }
+:where(.uc-page--banner .uc-nav__link:hover) { background: var(--uc-banner-fill); color: var(--uc-banner-text); }
+:where(.uc-page--banner .uc-nav__link[aria-current="page"]) {
+  background: var(--uc-color-surface);
+  color: var(--uc-color-accent-strong);
+  font-weight: 600;
+}
+:where(.uc-page--banner .uc-nav__group) { color: var(--uc-banner-text-muted); }
+:where(.uc-page--banner .uc-nav-toggle) { color: var(--uc-banner-text); }
+:where(.uc-page--banner .uc-nav-toggle__current) { color: var(--uc-banner-text-muted); }
+
+/* Wide screens: tabs at the bottom of the band. */
+@media not all and (max-width: 960px) {
+  :where(.uc-page--banner .uc-banner__inner) { padding-top: var(--uc-space-2); }
+  :where(.uc-page--banner .uc-banner__hero) { padding-top: var(--uc-space-2); }
+  :where(.uc-page--banner .uc-nav) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    column-gap: var(--uc-space-4);
+  }
+  :where(.uc-page--banner .uc-nav__list) { flex-direction: row; flex-wrap: wrap; align-items: flex-end; }
+  :where(.uc-page--banner .uc-nav__link) { border-radius: var(--uc-radius-md) var(--uc-radius-md) 0 0; }
+  :where(.uc-page--banner .uc-nav__group) { align-self: center; margin: 0; }
+}
+
+/* Phones and small tablets: the "Menu" button inside the band. */
+@media (max-width: 960px) {
+  :where(.uc-page--banner .uc-banner__hero) { padding-bottom: var(--uc-space-5); }
+  :where(.uc-page--banner .uc-sidebar) {
+    margin-bottom: var(--uc-space-5);
+    border-color: var(--uc-banner-line);
+    background: var(--uc-banner-fill);
+  }
+  :where(.uc-page--banner .uc-nav) { border-top-color: var(--uc-banner-line); }
+}
+
+@media print {
+  :where(.uc-banner) { background: none; color: var(--uc-color-text); }
+  :where(.uc-banner .uc-brand, .uc-banner .uc-brand > svg, .uc-banner__hero .uc-hero__title) { color: var(--uc-color-text); }
+  :where(.uc-banner .uc-brand__edition, .uc-banner .uc-header__institution, .uc-banner__hero .uc-hero__code, .uc-banner__hero .uc-hero__tagline) { color: var(--uc-color-text-muted); }
+  :where(.uc-banner__inner) { padding-bottom: var(--uc-space-6); }
+}
