@@ -11,9 +11,9 @@ It runs in phases L0–L8, one pull request each. Every phase updates this file
 [`docs/api.md`](../api.md), which wins when the two differ. Code comments cite
 this file by section number: keep the numbers stable.
 
-Status: **L0–L3 done** (mechanism; layout `banner` and theme
+Status: **L0–L4 done** (mechanism; layout `banner` and theme
 `institutional`; layout `docs` and theme `handbook`; layout `centered` and
-themes `editorial` and `modern`). Sections marked
+themes `editorial` and `modern`; layouts `panel` and `aside`). Sections marked
 *(planned, Ln)* describe what a later phase adds; until then the kit does
 not know those names.
 
@@ -167,8 +167,8 @@ A component attribute always wins over a choice property.
 | `banner` | `layouts/banner.css` | Band in the course colour with the header, the first `<uc-hero>` and tabs (6.1) | `.uc-page--banner`, `.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero` | L1 |
 | `docs` | `layouts/docs.css` | Navigation, content, "Nesta página" (6.2) | `.uc-page--docs`, `.uc-toc`, `.uc-toc-toggle`, `.uc-toc__nav`, `.uc-toc__list`, `.uc-toc__item`, `.uc-toc__link` | L2 |
 | `centered` | `layouts/centered.css` | Centred header and navigation, reading column `--uc-reading-max` (6.3) | `.uc-page--centered`, with the structure of `top` (`.uc-topnav`) | L3 |
-| `panel` | `layouts/panel.css` | Full-height bar with name, search, navigation and timetable; no header | `.uc-page--panel`, `.uc-panel__brand`, `.uc-panel__info` | *(planned, L4)* |
-| `aside` | `layouts/aside.css` | Navigation, content and blocks on the right on every page | `.uc-page--aside`, `.uc-aside` | *(planned, L4)* |
+| `panel` | `layouts/panel.css` | Full-height bar with the header, the navigation and a timetable summary; no header band (6.4) | `.uc-page--panel`, `.uc-panel`, `.uc-panel__brand`, `.uc-panel__info`, `.uc-panel__label`, `.uc-panel__list` | L4 |
+| `aside` | `layouts/aside.css` | Navigation, content and blocks on the right on every page (6.5) | `.uc-page--aside`, `.uc-aside`, `.uc-aside__heading`, `.uc-aside__office-hours`, `.uc-aside__platforms` | L4 |
 | `onepage` | `layouts/onepage.css` | Sticky bar with the page's sections, then the other pages | `.uc-page--onepage`, `.uc-anchors` | *(planned, L5)* |
 
 Every layout keeps the skip link, one `header`/`nav`/`main`/`footer`, one `h1`
@@ -273,18 +273,82 @@ scrolling bar. `<uc-page>` gets `.uc-page--<layout>` for every layout but
   with the width of the reading column.
 - Print: like `full` (uc-kit.css hides `.uc-topnav`).
 
+### 6.4 panel
+
+```
+.uc-skip-link
+.uc-shell                        2 columns from 961 px: --uc-panel-width (272 px) | main
+  .uc-panel                      sticky, 100vh, its own scroll, --uc-color-surface-sunken
+    header.uc-header.uc-panel__brand   the usual header, its inner part a column
+    .uc-sidebar                  toggle + nav.uc-nav, as in sidebar
+    .uc-panel__info              unless panel: false; only when there is something to show
+      p.uc-panel__label "Teóricas"     ul.uc-panel__list > li
+      p.uc-panel__label "Atendimento"  ul.uc-panel__list > li
+  main.uc-main                   max-width --uc-content-max − --uc-panel-width
+.uc-footer                       its inner part aligned with main
+```
+
+- There is **one** `<header>`: in this layout `uc-page.js` puts it inside the
+  bar instead of above the shell, so the brand, "Outros anos", the
+  institution, the search button and the language switch all move with it
+  and nothing is drawn twice. The plan had a second brand block in the bar;
+  moving the header keeps one banner landmark and one search button.
+- Lines: `slotList(slots, office)` in `uc-page.js` groups slots with the same
+  start, end and room, merges their days ("3.ª e 5.ª · 14:00–15:00 ·
+  FC4 0.41", the weekdays as in `<uc-timetable>`: short for the eye, long for
+  screen readers) and keeps the order of `course.js`. Lectures are the
+  `schedule` entries with `type: "lecture"`; office hours are those of the
+  member with `role: "coordinator"` and `officeHours`, else of the first
+  member with `officeHours`, the room falling back to the member's `office`.
+  Labels reuse `timetable.type.lecture` and `team.officeHours`.
+- Below 960 px `.uc-panel` is `display: contents`, so the header goes back
+  across the top (negative margins over the shell's gutter) and the
+  navigation is the usual "Menu"; the summary is hidden. Print: no summary
+  (and no navigation, as everywhere).
+
+### 6.5 aside
+
+```
+.uc-skip-link
+.uc-header
+.uc-shell                        3 columns from 1201 px: navigation | main | --uc-aside-width (300 px)
+  .uc-sidebar
+  main.uc-main
+  aside.uc-aside                 aria-label "Destaques"; unless aside="off" and only with a block
+    uc-deadlines[per-kind=1] | uc-notices[limit=3] | uc-this-week
+    div.uc-aside__office-hours > h2.uc-aside__heading, (p.uc-panel__label), ul.uc-panel__list
+    div.uc-aside__platforms > h2.uc-aside__heading, ul.uc-links
+.uc-footer
+```
+
+- The blocks come from `UC.course.aside` (`config.js` keeps the known names,
+  warns about the others, default `["deadlines", "notices"]`), in order. A
+  block is skipped when `<main>` already has its element: `<uc-deadlines>`,
+  `<uc-notices>`, `<uc-this-week>`, and `<uc-team>` or `<uc-timetable>` for
+  `office-hours` (decision D6: never the same block twice on a page). With
+  no block left there is no `<aside>` and the shell keeps two columns
+  (`:has()`).
+- The aside comes after `<main>` in the DOM, so on phones the blocks are last
+  and the reading order is the visual one. It is rebuilt at every render of
+  the page (the components inside render themselves).
+- Width: `--uc-aside-max` = `--uc-content-max` + 200 px for the header, the
+  shell and the footer. 961–1200 px: two columns, the blocks below the content
+  in its column. Not sticky: a tall column of blocks would be cut.
+- Print: no `.uc-aside`.
+
 Planned attributes and fields, added to `docs/api.md` by their phase:
-`<uc-page aside="off">` and `aside`/`panel` in `course.js` (L4),
 `data-nav="off"` for the anchor bar (L5), `pages[].description` and
 `<uc-tiles>` (L5). Done in L2: `<uc-page toc="off">`, `data-nav="off"` for
-the "Nesta página" list.
+the "Nesta página" list. Done in L4: `<uc-page aside="off">`, `aside` and
+`panel` in `course.js`.
 
 ## 7. Size
 
 All the JavaScript of the layouts lives in `uc-kit.js` (decision D3). Its
 budget goes from 48 KB to **50 KB** gzipped (`scripts/lib/budgets.mjs`).
 Estimate for the whole plan: about +2 KB (layouts 1.2, `<uc-tiles>` 0.5,
-variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc and the scroll spy), L3 48.3 KB (one condition). `uc-kit.css` only grows with
+variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc and the scroll spy), L3 48.3 KB (one condition), L4 49.2 KB (+0.9 KB: the panel summary and the
+aside blocks; about 0.8 KB left for L5 and L6). `uc-kit.css` only grows with
 `<uc-tiles>`. Each layout file is expected at 0.4–0.8 KB and each theme at
 0.3–1 KB, downloaded only when used.
 
@@ -322,6 +386,18 @@ variants 0.2). L0 measured 47.4 KB (+0.4 KB), L1 47.6 KB, L2 48.3 KB (the toc an
 - `tests/pages/themes/modern.html` (L3): layout `top` from the CSS and no
   layout file, grey page and white header, white cards with a shadow, the
   current page a filled pill.
+- `tests/pages/layouts/panel.html` (L4): `layout="panel"` from the
+  attribute, the file linked after the kit, one header inside the bar, the
+  lines of the summary (days merged, the coordinator's office hours), by
+  width the sticky full-height bar or the header across the top with "Menu".
+- `tests/pages/layouts/panel-off.html` (L4): `layout: "panel"` and
+  `panel: false` in `course.js`: no summary.
+- `tests/pages/layouts/aside.html` (L4): `layout="aside"` from the
+  attribute, the named `<aside>` after `<main>`, the blocks of `aside` without
+  the notices the page already has, headings, by width three columns, below
+  the content, or last.
+- `tests/pages/layouts/aside-off.html` (L4): `layout: "aside"` in
+  `course.js`, the default blocks, `aside="off"` removes the column.
 - `tests/pages/themes/institutional.html` (L1): theme from `course.js` with
   `high-contrast`; layout from the CSS; `layouts/banner.css` arrives by
   `@import` only (no extra `<link>`); tokens and underlined `h2`.
@@ -434,3 +510,23 @@ UC.registerLayout("poster", { extends: "banner", css: "layouts/poster.css" });
   `course-js.html`; `criar-tema.html`; `tokens.html`; classes;
   `template/course.js`.
 - `uc-kit.js` 48.3 KB gzipped (unchanged to the tenth).
+
+### L4 — layouts `panel` and `aside`
+
+- `kit/src/layouts/panel.css` and `kit/src/layouts/aside.css`
+  (`FILE_LAYOUTS = ["banner", "docs", "centered", "panel", "aside"]`),
+  sections 6.4 and 6.5.
+- `uc-page.js`: `panel` puts the header in `.uc-panel` with the navigation and
+  `renderPanelInfo()`; `aside` adds `renderAside()` after `<main>`;
+  `officeHoursList()` and `slotList()` are shared by both. `aside` attribute.
+- `config.js`: `aside` normalised (known names, default
+  `["deadlines", "notices"]`); `panel` kept as written.
+- i18n: `aside.label` ("Destaques" / "Highlights").
+- No theme uses these layouts (the plan gives none); they are chosen with
+  `layout`.
+- Docs: `docs/api.md` 2.2 (`aside`, `panel`, `schedule`), 3.1, 8.3;
+  `componentes/uc-page.html` "Painel lateral" and "Blocos laterais" with the
+  demos `docs/demos/uc-page/panel.html` and `aside.html`; `course-js.html`;
+  classes; `template/course.js`.
+- `uc-kit.js` 49.2 KB gzipped (+0.9 KB); `layouts/panel.css` 2.3 KB and
+  `layouts/aside.css` 1.2 KB are separate files.

@@ -6,8 +6,10 @@
   "use strict";
   if (UC.__duplicate) return;
 
-  const { h, icon, uid, externalMark, isHiddenByLanguage, visibleText, scrollspy } = UC.internal;
+  const { h, icon, uid, externalMark, isHiddenByLanguage, visibleText, scrollspy, dayNode, timeRangeNode, joinNodes, parseTime } = UC.internal;
   const MOBILE_QUERY = "(max-width: 960px)";
+  /** Blocks of the layout "aside" (course.js `aside`) → the elements of <main> that already show them. */
+  const ASIDE_BLOCKS = { deadlines: "uc-deadlines", notices: "uc-notices", "this-week": "uc-this-week", "office-hours": "uc-team,uc-timetable", platforms: ".uc-aside__platforms" };
 
   /** Resolves a page's href for the active language. */
   function pageHref(page) {
@@ -129,8 +131,11 @@
       // centered has the structure of top (a bar under the header); layouts/centered.css styles it.
       const top = layout === "top" || layout === "centered";
       const banner = layout === "banner";
+      // panel: the header, the navigation and a summary of the timetable in one full-height bar (.uc-panel).
+      const panel = layout === "panel";
       const hero = this.placeHero(banner);
       const header = this.renderHeader();
+      if (panel) header.classList.add("uc-panel__brand");
       // docs: an "On this page" column (.uc-toc) unless toc="off"; filled once the components have rendered.
       const wasDocs = Boolean(this.tocColumn);
       this.tocColumn = layout === "docs" && this.getAttribute("toc") !== "off" ? this.renderTocColumn() : null;
@@ -140,9 +145,17 @@
         // banner: one band in the course colour with the header, the hero and the tabs.
         banner
           ? h("div", { class: "uc-banner" }, header, h("div", { class: "uc-banner__inner" }, hero ? h("div", { class: "uc-banner__hero" }, hero) : null, navigation))
-          : header,
+          : panel ? null : header,
         top ? h("div", { class: "uc-topnav" }, navigation) : null,
-        h("div", { class: "uc-shell" }, top || banner ? null : navigation, this.tocColumn, this.main),
+        h(
+          "div",
+          { class: "uc-shell" },
+          panel ? h("div", { class: "uc-panel" }, header, navigation, this.course.panel === false ? null : this.renderPanelInfo()) : top || banner ? null : navigation,
+          this.tocColumn,
+          this.main,
+          // aside: blocks after the content (so last on phones) unless aside="off".
+          layout === "aside" && this.getAttribute("aside") !== "off" ? this.renderAside() : null,
+        ),
         this.renderFooter(),
       ];
       this.replaceChildren(...parts.filter(Boolean));
@@ -175,6 +188,65 @@
         this.hero.before(this.heroMark);
       }
       return this.hero;
+    }
+
+    /**
+     * Layout "panel": the lectures of `schedule` and the coordinator's office
+     * hours, at the bottom of the bar. Null when there is neither.
+     */
+    renderPanelInfo() {
+      const schedule = Array.isArray(this.course.schedule) ? this.course.schedule : [];
+      const groups = [
+        ["timetable.type.lecture", this.slotList(schedule.filter((entry) => entry && entry.type === "lecture"))],
+        ["team.officeHours", this.officeHoursList()],
+      ].filter((group) => group[1]);
+      return groups.length ? h("div", { class: "uc-panel__info" }, groups.map(([key, list]) => [h("p", { class: "uc-panel__label" }, this.t(key)), list])) : null;
+    }
+
+    /** The office hours of the coordinator (else of the first member with some), as a list; null when nobody has any. */
+    officeHoursList() {
+      const hours = (member) => (Array.isArray(member.officeHours) ? member.officeHours : []);
+      const member = this.course.team.find((person) => person.role === "coordinator" && hours(person).length) || this.course.team.find((person) => hours(person).length);
+      return member ? this.slotList(hours(member), member.office) : null;
+    }
+
+    /**
+     * "3.ª e 5.ª · 14:00–15:00 · FC4 0.41": one line per time and room of
+     * `slots` (schedule entries or office hours), in their order, days merged.
+     * Null when none is valid.
+     */
+    slotList(slots, office) {
+      const rows = {};
+      for (const slot of slots) {
+        const room = (slot && this.text(slot.room)) || office || "";
+        const key = slot && slot.day >= 1 && slot.day <= 7 && parseTime(slot.start) && parseTime(slot.end) && [slot.start, slot.end, room];
+        if (key) (rows[key] = rows[key] || { ...slot, room, days: new Set() }).days.add(Number(slot.day));
+      }
+      const items = Object.values(rows).map((row) =>
+        h("li", {}, joinNodes([...row.days].sort().map(dayNode)), " · ", timeRangeNode(row.start, row.end), row.room ? [" · ", h("span", { html: row.room })] : null),
+      );
+      return items.length ? h("ul", { class: "uc-panel__list" }, items) : null;
+    }
+
+    /**
+     * Layout "aside": the blocks of course.js `aside` (default deadlines and
+     * notices) in an <aside>, without those <main> already shows. Null when none is left.
+     */
+    renderAside() {
+      const blocks = this.course.aside
+        .filter((name) => !this.main.querySelector(ASIDE_BLOCKS[name]))
+        .map((name) => {
+          if (name === "deadlines") return h("uc-deadlines", { "per-kind": "1" });
+          if (name === "notices") return h("uc-notices", { limit: "3" });
+          if (name === "this-week") return h("uc-this-week");
+          const listed = this.course.platforms.filter((platform) => !platform.hidden);
+          const content = name === "platforms"
+            ? listed.length && h("ul", { class: "uc-links" }, listed.map((platform) => h("li", {}, h("a", { href: platform.url }, this.text(platform.label), externalMark(platform.url)))))
+            : this.officeHoursList();
+          return content && h("div", { class: `uc-aside__${name}` }, h("h2", { class: "uc-aside__heading" }, this.t(name === "platforms" ? "nav.platforms" : "team.officeHours")), content);
+        })
+        .filter(Boolean);
+      return blocks.length ? h("aside", { class: "uc-aside", "aria-label": this.t("aside.label") }, blocks) : null;
     }
 
     /** Layout "docs": the progress of a <uc-guide> (moved here by the guide), the phone toggle and the "On this page" list. */

@@ -135,6 +135,13 @@
     return null;
   }
 
+  /** `aside` (docs/api.md 2.2): the blocks of the layout "aside"; unknown names are dropped with a warning. */
+  const ASIDE_BLOCKS = ["deadlines", "notices", "this-week", "office-hours", "platforms"];
+  function normalizeAside(value) {
+    if (value === undefined) return ["deadlines", "notices"];
+    return asArray(value).filter((name) => ASIDE_BLOCKS.includes(name) || warn(`aside: unknown block ${JSON.stringify(name)}`));
+  }
+
   function normalize(raw) {
     const htmlLang = (document.documentElement.getAttribute("lang") || "pt").trim();
     const languages = asArray(raw.languages).length ? raw.languages.slice() : [htmlLang];
@@ -177,6 +184,7 @@
       search: normalizeSearch(raw.search),
       logo: normalizeLogo(raw.logo, resolve),
       layout: normalizeLayout(raw.layout),
+      aside: normalizeAside(raw.aside),
     });
   }
 

@@ -44,9 +44,13 @@ window.UC_COURSE = {
   // por baixo do cabeçalho, a do tema "modern"), "banner" (faixa da cor do
   // curso, a do tema "institutional"), "docs" (três colunas com "Nesta
   // página", a do tema "handbook"), "centered" (centrado, a do tema
-  // "editorial") ou "full" (sem navegação). Se estiver aqui, ganha ao
-  // layout do tema; uma página pode mudar com <uc-page layout="…">.
+  // "editorial"), "panel" (barra de altura total com o nome, a navegação e
+  // o horário), "aside" (blocos à direita em todas as páginas) ou "full"
+  // (sem navegação). Se estiver aqui, ganha ao layout do tema; uma página
+  // pode mudar com <uc-page layout="…">.
   // layout: "top",
+  // aside: ["deadlines", "notices"],     // blocos do layout "aside"; também "this-week", "office-hours", "platforms"
+  // panel: false,                        // layout "panel" sem o horário no fundo da barra
 
   // Pesquisa no site: o botão «Pesquisar» aparece quando existe o search-index.js,
   // que o uc-site.py reescreve. Correr python3 uc-site.py depois de cada alteração.
