@@ -48,6 +48,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-page--panel`, `.uc-panel`, `.uc-panel__brand` | Com `layout="panel"`: a página, a barra de altura total (o primeiro filho da `.uc-shell`, com o cabeçalho, a `.uc-sidebar` e o resumo do horário) e o `.uc-header` dentro dela. |
 | `.uc-panel__info`, `.uc-panel__label`, `.uc-panel__list` | O resumo do horário no fundo da barra: cada título ("Teóricas", "Atendimento") e a lista de horas. O bloco "office-hours" do layout `aside` usa as mesmas classes. |
 | `.uc-page--aside`, `.uc-aside`, `.uc-aside__heading`, `.uc-aside__office-hours`, `.uc-aside__platforms` | Com `layout="aside"`: a página, a coluna de blocos (um `<aside>` depois do `<main>`; cada filho é um cartão), o título dos blocos que o kit escreve e os blocos "office-hours" e "platforms". |
+| `.uc-page--onepage`, `.uc-anchors`, `.uc-anchors__list`, `.uc-anchors__item`, `.uc-anchors__pages`, `.uc-anchors__link` | Com `layout="onepage"`: a página, a barra (o `<nav>` entre o `.uc-header` e a `.uc-shell`), a lista das secções e cada entrada, a lista das outras páginas e cada ligação das duas listas (a da secção à vista tem `aria-current="location"`). A altura da barra é `--uc-anchors-height` (48 px). |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
@@ -62,6 +63,15 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-hero__code` | O código do curso. |
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
+
+### [`<uc-tiles>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-tiles` | O próprio `<uc-tiles>`. |
+| `.uc-tiles__list`, `.uc-tiles__item` | A lista (uma grelha de colunas de pelo menos 240 px) e cada item. |
+| `.uc-tiles__link`, `.uc-tiles__link--now` | O cartão, uma ligação com a classe `uc-card`; `--now` no cartão das semanas durante o semestre. |
+| `.uc-tiles__title`, `.uc-tiles__meta`, `.uc-tiles__text` | O nome da página, a semana atual (só no cartão das semanas) e a frase de `description`. |
 
 ### [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
 

@@ -1,0 +1,64 @@
+/*
+ * Layout "onepage" of <uc-page> (docs/architecture/themes-layouts.md 6.6): the
+ * classic course site on one page. Under the header, a bar that stays at the
+ * top (.uc-anchors) with the page's sections (its <h2>, the one in view
+ * marked), then the other pages of course.js. The content takes the whole
+ * width. The bar is one line at every width and scrolls sideways when it does
+ * not fit (no "Menu" button). Prints like "full".
+ *
+ * Structure (uc-page.js): .uc-header, nav.uc-anchors > ul.uc-anchors__list >
+ * li.uc-anchors__item > a.uc-anchors__link, ul.uc-anchors__pages > li >
+ * a.uc-anchors__link; .uc-shell > main. Every rule is :where(), so a site's
+ * theme.css wins.
+ */
+/* Tells the kit this file is loaded, so it adds no <link> when a theme imports it. */
+:root { --uc-layout-onepage-loaded: 1; }
+
+:where(.uc-page--onepage) { --uc-anchors-height: 48px; }
+:where(.uc-page--onepage .uc-shell) { grid-template-columns: minmax(0, 1fr); }
+/* A heading reached from the bar is not hidden under it. */
+:where(.uc-page--onepage .uc-main) :where(h2, h3) { scroll-margin-top: calc(var(--uc-anchors-height) + var(--uc-space-4)); }
+
+/* The bar: the width of the content, sticky, one line that scrolls sideways. */
+:where(.uc-anchors) {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  overflow-x: auto;
+  padding: 0 max(var(--uc-gutter), (100% - var(--uc-content-max)) / 2 + var(--uc-gutter));
+  border-bottom: 1px solid var(--uc-color-border);
+  background: var(--uc-color-surface);
+  scrollbar-width: thin;
+}
+:where(.uc-anchors ul) { display: flex; flex: none; margin: 0; padding: 0; list-style: none; }
+:where(.uc-anchors li) { margin: 0; }
+/* The other pages, after a line (when the page has sections). */
+:where(.uc-anchors__list:not(:empty) + .uc-anchors__pages) {
+  margin-left: var(--uc-space-3);
+  padding-left: var(--uc-space-3);
+  border-left: 1px solid var(--uc-color-border);
+}
+:where(.uc-anchors__link) {
+  display: flex;
+  align-items: center;
+  min-height: var(--uc-anchors-height);
+  padding: 0 var(--uc-space-3);
+  border-bottom: 2px solid transparent;
+  color: var(--uc-color-text-secondary);
+  font-size: var(--uc-font-size-body-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+:where(.uc-anchors__pages .uc-anchors__link) { color: var(--uc-color-text-muted); }
+:where(.uc-anchors__link:hover) { color: var(--uc-color-text); }
+:where(.uc-anchors__link[aria-current="location"]) {
+  border-bottom-color: var(--uc-color-accent);
+  color: var(--uc-color-accent);
+  font-weight: 600;
+}
+:where(.uc-anchors__link:focus-visible) { outline-offset: -3px; }
+
+@media print {
+  :where(.uc-anchors) { display: none; }
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-tiles · test</title>
+  <!-- One card per page of course.js (without the current one), with pages[].description; the weeks card shows the week. -->
+  <link rel="stylesheet" href="../../kit/v1/uc-kit.css">
+  <script src="course.js"></script>
+  <script>
+    const descriptions = {
+      weeks: { pt: "Guiões e problemas de cada semana.", en: "Lab guides and problems for each week." },
+      assessment: { pt: "Componentes, datas e <strong>regras</strong>.", en: "Components, dates and <strong>rules</strong>." },
+      schedule: "Horários das aulas e atendimento.",
+    };
+    window.UC_COURSE.pages = window.UC_COURSE.pages.map((page) => descriptions[page.id] ? { ...page, description: descriptions[page.id] } : page);
+  </script>
+  <script src="../../kit/v1/uc-kit.js" defer></script>
+  <script src="layouts/check.js" defer></script>
+</head>
+<body>
+  <uc-page current="home">
+    <uc-hero></uc-hero>
+    <uc-tiles id="all"></uc-tiles>
+    <section class="uc-section" aria-labelledby="chosen">
+      <h2 id="chosen">Escolhidas</h2>
+      <uc-tiles id="some" pages="assessment, about"></uc-tiles>
+    </section>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const all = document.getElementById("all");
+      const cards = (tiles) => Array.from(tiles.querySelectorAll(".uc-tiles__link"), (link) => [
+        link.querySelector(".uc-tiles__title").textContent,
+        link.getAttribute("href"),
+        link.querySelector(".uc-tiles__text")?.innerHTML || null,
+      ]);
+      test("a list of links, one per page but the current one", () =>
+        equal([all.firstElementChild.localName, cards(all).map((card) => card[0])], ["ul", ["Semanas", "Avaliação", "Materiais", "Horários e equipa", "Sobre a UC"]]));
+      test("hrefs from course.js", () => equal(cards(all)[0][1], "uc-weeks.html"));
+      test("descriptions, HTML kept, none when missing", () =>
+        equal(cards(all).map((card) => card[2]), ["Guiões e problemas de cada semana.", "Componentes, datas e <strong>regras</strong>.", null, "Horários das aulas e atendimento.", null]));
+      test("the weeks card shows the current week and stands out", () => {
+        const now = all.querySelectorAll(".uc-tiles__link--now");
+        equal([now.length, now[0] && now[0].querySelector(".uc-tiles__meta").textContent.startsWith("Semana 10 · ")], [1, true]);
+      });
+      test("cards are .uc-card", () => equal(all.querySelectorAll("a.uc-card").length, 5));
+      test("pages=\"…\" picks and orders", () => equal(cards(document.getElementById("some")).map((card) => card[0]), ["Avaliação", "Sobre a UC"]));
+      test("bilingual: English labels and descriptions", () => {
+        UC.setLanguage("en");
+        try {
+          equal(cards(all).slice(0, 2).map((card) => [card[0], card[2]]), [["Weeks", "Lab guides and problems for each week."], ["Assessment", "Components, dates and <strong>rules</strong>."]]);
+        } finally {
+          UC.setLanguage("pt");
+        }
+      });
+    }));
+  </script>
+</body>
+</html>

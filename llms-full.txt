@@ -540,7 +540,7 @@ Além de texto, números e listas, os campos usam quatro tipos:
 | Campo e tipo | Necessário | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `pages`lista | Recomendado | `["home"]` | Páginas da navegação, por ordem. Ver [Páginas](#paginas). |
-| `layout`texto | Opcional | o do tema, senão `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho), `"banner"` (faixa da cor do curso, ver [Faixa institucional](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional)), `"docs"` (três colunas com "Nesta página", ver [Três colunas](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas)), `"centered"` (cabeçalho e navegação centrados, ver [Centrado](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#centrado)), `"panel"` (barra de altura total com o nome, a navegação e o horário, ver [Painel lateral](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#painel-lateral)), `"aside"` (blocos à direita em todas as páginas, ver [Blocos laterais](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#blocos-laterais)), `"full"` (sem navegação) ou um layout próprio do site (`UC.registerLayout`). Ganha ao layout do tema ([`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), e uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). Um nome que o kit não conhece é ignorado com um aviso na consola. |
+| `layout`texto | Opcional | o do tema, senão `"sidebar"` | Onde fica a navegação em todas as páginas: `"sidebar"` (barra lateral), `"top"` (barra por baixo do cabeçalho), `"banner"` (faixa da cor do curso, ver [Faixa institucional](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#faixa-institucional)), `"docs"` (três colunas com "Nesta página", ver [Três colunas](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#tres-colunas)), `"centered"` (cabeçalho e navegação centrados, ver [Centrado](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#centrado)), `"panel"` (barra de altura total com o nome, a navegação e o horário, ver [Painel lateral](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#painel-lateral)), `"aside"` (blocos à direita em todas as páginas, ver [Blocos laterais](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#blocos-laterais)), `"onepage"` (tudo numa página, com uma barra para as secções, ver [Página única](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#pagina-unica)), `"full"` (sem navegação) ou um layout próprio do site (`UC.registerLayout`). Ganha ao layout do tema ([`--uc-layout`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/tokens.md#escolhas)), e uma página muda com [`<uc-page layout>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#atributos). Um nome que o kit não conhece é ignorado com um aviso na consola. |
 | `aside`lista | Opcional | `["deadlines", "notices"]` | Com o layout `"aside"`: os blocos da coluna da direita, por ordem, entre `"deadlines"` (próximas datas), `"notices"` (avisos), `"this-week"` (esta semana), `"office-hours"` (atendimento do regente) e `"platforms"` (plataformas). Um bloco que a página já tem não se repete; `[]` tira a coluna. Ver [Blocos laterais](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#blocos-laterais). |
 | `panel`sim/não | Opcional | `true` | Com o layout `"panel"`, `false` tira o resumo do horário (teóricas e atendimento) do fundo da barra. Ver [Painel lateral](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md#painel-lateral). |
 | `platforms``Platform[]` | Opcional | `[]` | Links externos (Moodle, Mooshak, SIGARRA) no grupo "Plataformas" da navegação (ver [Plataformas](#plataformas)). A plataforma chamada "Mooshak" dá também o link dos exercícios ([`<uc-exercise mooshak>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-exercise.md#problema-no-mooshak)). |
@@ -575,12 +575,14 @@ pages: [
   { id: "weeks", href: "semanas.html" },           // identificador do kit, ficheiro próprio
   { id: "projects", href: "projetos.html", label: { pt: "Projetos", en: "Projects" } },
   { id: "about", href: { pt: "sobre.html", en: "about.html" } },   // um ficheiro por língua
+  { id: "assessment", href: "avaliacao.html", description: "Componentes, datas e regras." },
 ],
 ```
 
 - **`id`** identifica a página; é o valor de [`<uc-page current>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md).
 - **`href`** é relativo ao `course.js`, por isso funciona igual em páginas de subpastas. Um `LocalizedText` indica um ficheiro por língua.
 - **`label`** é o nome na navegação; obrigatório para identificadores que não são do kit.
+- **`description`** (opcional) é uma frase sobre a página, com HTML e um texto por língua se quiser. Aparece por baixo do nome no cartão da página no mosaico [`<uc-tiles>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md); nada mais a usa.
 
 Os identificadores do kit já têm ficheiro e nome:
 
@@ -1452,6 +1454,7 @@ A moldura de cada página e o título do curso.
 
 - [**`<uc-page>`**: Cabeçalho, navegação entre páginas, rodapé e seletor de língua, tudo a partir do course.js.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-page.md)
 - [**`<uc-hero>`**: Código, título e descrição do curso no topo da página inicial.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md)
+- [**`<uc-tiles>`**: Mosaico da página inicial: um cartão por página da cadeira, com uma frase.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md)
 - [**`<uc-search>`**: Um campo de pesquisa no meio da página, sobre o índice do site.](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
 
 ## Datas e avisos
@@ -1720,6 +1723,39 @@ Exemplo (página com blocos laterais), [demonstração ao vivo](https://uc-desig
 </uc-page>
 ```
 
+### Página única
+
+`layout="onepage"` é o site clássico de uma cadeira numa só página (programa, horário, avaliação, bibliografia), como em muitas páginas do DCC, de Stanford ou da CMU. Não há barra lateral: por baixo do cabeçalho fica uma barra (`<nav class="uc-anchors">`) que se mantém no topo ao percorrer a página, com:
+
+- as secções da página: os `<h2>` do conteúdo, sem os marcados com `data-nav="off"` (ou dentro de um elemento assim) e sem os de outra língua. A secção à vista fica marcada (`aria-current="location"`), e um título a que se chega pela barra não fica escondido por baixo dela;
+- depois de uma linha, as outras páginas do `course.js` (sem a atual). As plataformas não entram na barra; ponha-as numa secção da página, por exemplo com `.uc-links`.
+
+A barra tem sempre uma só linha. Quando não cabe, como no telemóvel, desliza na horizontal e acompanha a secção marcada; não há botão "Menu". O conteúdo ocupa toda a largura. Na impressão a barra não aparece. O estilo está em `kit/v1/layouts/onepage.css`.
+
+Exemplo (página única com a barra de secções), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-page/onepage.html):
+
+```html
+<uc-page layout="onepage" current="home">
+  <h1>Algoritmos e Programação</h1>
+  <section class="uc-section" aria-labelledby="programa">
+    <h2 id="programa">Programa</h2>
+    <p>Tudo numa página: a barra por baixo do cabeçalho leva a cada secção (os <code>&lt;h2&gt;</code>) e depois às outras páginas do <code>course.js</code>. Fica no topo ao percorrer a página e marca a secção à vista.</p>
+  </section>
+  <section class="uc-section" aria-labelledby="horario">
+    <h2 id="horario">Horário</h2>
+    <p>Teóricas à segunda e à quarta, práticas à sexta.</p>
+  </section>
+  <section class="uc-section" aria-labelledby="avaliacao">
+    <h2 id="avaliacao">Avaliação</h2>
+    <p>Dois testes e um exame.</p>
+  </section>
+  <section class="uc-section" aria-labelledby="bibliografia">
+    <h2 id="bibliografia">Bibliografia</h2>
+    <p>No telemóvel, a barra desliza na horizontal.</p>
+  </section>
+</uc-page>
+```
+
 ### Mudar de língua
 
 Quando `languages` tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com `?lang=en`). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com `lang` mostra só a língua ativa.
@@ -1805,7 +1841,7 @@ source: {
 | Atributo | Tipo | Por omissão | Descrição |
 | --- | --- | --- | --- |
 | `current` | id de página | pelo nome do ficheiro | Item da navegação marcado como ativo, por exemplo `current="weeks"`. Tem de ser um `id` de `pages`. |
-| `layout` | `sidebar`, `top`, `full`, `banner`, `docs`, `centered`, `panel`, `aside` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Com `centered`, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver [Centrado](#centrado)). Com `panel`, o cabeçalho, a navegação e o horário ficam numa barra de altura total (ver [Painel lateral](#painel-lateral)). Com `aside`, a página tem uma coluna de blocos à direita (ver [Blocos laterais](#blocos-laterais)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
+| `layout` | `sidebar`, `top`, `full`, `banner`, `docs`, `centered`, `panel`, `aside`, `onepage` ou um layout próprio do site | `layout` do `course.js`, senão o do tema (`--uc-layout`), senão `sidebar` | Com `top`, a navegação fica numa barra por baixo do cabeçalho; com `full`, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com `banner`, o cabeçalho, o primeiro `<uc-hero>` e a navegação ficam numa faixa da cor do curso (ver [Faixa institucional](#faixa-institucional)). Com `docs`, a página tem três colunas com "Nesta página" à direita (ver [Três colunas](#tres-colunas)). Com `centered`, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver [Centrado](#centrado)). Com `panel`, o cabeçalho, a navegação e o horário ficam numa barra de altura total (ver [Painel lateral](#painel-lateral)). Com `aside`, a página tem uma coluna de blocos à direita (ver [Blocos laterais](#blocos-laterais)). Com `onepage`, uma barra no topo leva às secções da página e às outras páginas (ver [Página única](#pagina-unica)). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o `course.js` ou o tema. |
 | `toc` | `off` | — | Com o layout `docs`, tira a coluna "Nesta página" desta página. Ver [Três colunas](#tres-colunas). |
 | `aside` | `off` | — | Com o layout `aside`, tira a coluna de blocos desta página. Ver [Blocos laterais](#blocos-laterais). |
 | `search` | `off` ou `noindex` | — | Para sites com pesquisa. `off`: esta página não mostra o botão «Pesquisar». `noindex`: o `uc-site.py` deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver [Pesquisa no site](#pesquisa). |
@@ -1904,6 +1940,7 @@ Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As
 | `.uc-page--panel`, `.uc-panel`, `.uc-panel__brand` | Com `layout="panel"`: a página, a barra de altura total (o primeiro filho da `.uc-shell`, com o cabeçalho, a `.uc-sidebar` e o resumo do horário) e o `.uc-header` dentro dela. |
 | `.uc-panel__info`, `.uc-panel__label`, `.uc-panel__list` | O resumo do horário no fundo da barra: cada título ("Teóricas", "Atendimento") e a lista de horas. O bloco "office-hours" do layout `aside` usa as mesmas classes. |
 | `.uc-page--aside`, `.uc-aside`, `.uc-aside__heading`, `.uc-aside__office-hours`, `.uc-aside__platforms` | Com `layout="aside"`: a página, a coluna de blocos (um `<aside>` depois do `<main>`; cada filho é um cartão), o título dos blocos que o kit escreve e os blocos "office-hours" e "platforms". |
+| `.uc-page--onepage`, `.uc-anchors`, `.uc-anchors__list`, `.uc-anchors__item`, `.uc-anchors__pages`, `.uc-anchors__link` | Com `layout="onepage"`: a página, a barra (o `<nav>` entre o `.uc-header` e a `.uc-shell`), a lista das secções e cada entrada, a lista das outras páginas e cada ligação das duas listas (a da secção à vista tem `aria-current="location"`). A altura da barra é `--uc-anchors-height` (48 px). |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
@@ -2090,6 +2127,118 @@ Se o kit não carregar, o código, o nome e a descrição não aparecem, porque 
 - [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md): o cartão "Esta semana", que costuma vir logo a seguir na página inicial.
 - [Criar o meu site](https://uc-design-kit.miguelrocha.dev/docs/pt/criar-site.md#configurar): o passo em que se mudam o nome e a descrição no `course.js`.
 - Uso real: [a página inicial de Estruturas de Dados 2025/26](https://uc-design-kit.miguelrocha.dev/examples/edados-2526/index.html).
+
+---
+
+<!-- https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md -->
+
+# `<uc-tiles>`
+
+Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.html
+
+Um mosaico para a página inicial: um cartão por página da cadeira, com o nome e uma frase, lidos do `course.js`. O cartão das semanas diz em que semana estamos.
+
+Exemplo (um cartão por página do curso), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-tiles/basic.html):
+
+```html
+<uc-tiles></uc-tiles>
+```
+
+Os nomes e as ligações vêm de `pages` e as frases do campo `description` de cada página. A demonstração não é nenhuma das páginas do curso, por isso mostra todas, incluindo "Início"; na página inicial, o cartão dela não aparece. O cartão "Semanas" mostra a semana de aulas atual (o dia está fixo em 27 de novembro nas demonstrações) e tem o fundo da cor do curso, como o cartão "Esta semana".
+
+## Utilização
+
+O `<uc-tiles>` vai na página inicial, normalmente a seguir ao `<uc-hero>`. É o padrão do MIT OpenCourseWare e de muitas páginas iniciais do Canvas: em vez de uma página longa, um ponto de partida para cada parte do site.
+
+`index.html`:
+
+```html
+<uc-page>
+  <uc-hero></uc-hero>
+  <uc-tiles></uc-tiles>
+  …
+</uc-page>
+```
+
+`course.js`:
+
+```js
+pages: [
+  "home",
+  { id: "weeks", href: "semanas.html", description: "Guiões, slides e exercícios de cada semana." },
+  { id: "assessment", href: "avaliacao.html", description: "Componentes, datas e regras da nota final." },
+  { id: "about", href: "sobre.html" },   // sem description: o cartão só tem o nome
+],
+```
+
+A página atual (a página inicial, onde o mosaico costuma estar) não tem cartão. Uma página sem `description` tem um cartão só com o nome. Num site bilingue, a frase escreve-se com um texto por língua, como o `label`: `description: { pt: "…", en: "…" }`.
+
+## Exemplos
+
+### Escolher as páginas
+
+Com `pages`, o mosaico mostra só as páginas indicadas, pela ordem escrita. Serve para destacar duas ou três páginas, ou para pôr o mosaico noutra página que não a inicial.
+
+Exemplo (dois cartões escolhidos, pela ordem dada), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/uc-tiles/pages.html):
+
+```html
+<uc-tiles pages="assessment, weeks"></uc-tiles>
+```
+
+## Atributos
+
+| Atributo | Valores | Por omissão | Descrição |
+| --- | --- | --- | --- |
+| `pages` | `id` de páginas, separados por vírgulas ou espaços | todas as páginas menos a atual | Os cartões a mostrar e a sua ordem, por exemplo `pages="weeks, assessment"`. Um `id` que não está em `pages` do `course.js` é ignorado com um aviso na consola. |
+
+## Configuração usada
+
+| Campo | Para quê |
+| --- | --- |
+| [`pages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas) | Um cartão por página, com o `label` (ou o nome do kit), o `href` e a `description`. |
+| [`semester`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-semestre) | A semana de aulas atual no cartão da página `weeks`. |
+| [`languages`](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#campos-linguas) | Escolher o nome e a frase na língua ativa. |
+
+A referência completa dos campos está em [O ficheiro course.js](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas).
+
+## Personalizar
+
+Estas classes são estáveis na versão 1 e podem ser usadas num `theme.css`. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. Cada cartão é também um `.uc-card`, por isso muda com os temas que mudam os cartões.
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-tiles` | O próprio `<uc-tiles>`. |
+| `.uc-tiles__list`, `.uc-tiles__item` | A lista (uma grelha de colunas de pelo menos 240 px) e cada item. |
+| `.uc-tiles__link`, `.uc-tiles__link--now` | O cartão, uma ligação com a classe `uc-card`; `--now` no cartão das semanas durante o semestre. |
+| `.uc-tiles__title`, `.uc-tiles__meta`, `.uc-tiles__text` | O nome da página, a semana atual (só no cartão das semanas) e a frase de `description`. |
+
+`theme.css`:
+
+```css
+/* Duas colunas no máximo. */
+.uc-tiles__list { grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); }
+```
+
+## Acessibilidade
+
+### O que o componente faz
+
+Escreve uma lista de ligações, uma por cartão, por isso um leitor de ecrã anuncia quantos cartões há. O nome da ligação é o nome da página seguido da semana e da frase. O cartão inteiro é a área de clique e o foco do teclado contorna-o.
+
+### O que cabe a quem escreve
+
+Frases curtas, que digam o que há na página, e nomes de páginas distintos. O mosaico não tem título: se a página precisar de um, ponha um `<h2>` antes dele.
+
+## Sem JavaScript
+
+Se o kit não carregar, o mosaico fica vazio, porque os cartões vêm do `course.js`, tal como a navegação do site. Para uma página inicial que tenha de funcionar sem JavaScript, escreva as ligações no HTML, por exemplo com [`.uc-shortcuts`](https://uc-design-kit.miguelrocha.dev/docs/pt/estilos/superficies.md#shortcuts).
+
+## Ver também
+
+- [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md): o título da página inicial, que costuma vir antes.
+- [`<uc-this-week>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-this-week.md): o cartão "Esta semana", com a matéria e as datas da semana.
+- [Galeria de secções: Mosaico](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md#mosaico), pronto a copiar.
+- [O ficheiro course.js: Páginas](https://uc-design-kit.miguelrocha.dev/docs/pt/course-js.md#paginas), com o campo `description`.
 
 ---
 
@@ -6102,7 +6251,7 @@ Fonte: https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/index.html
 
 Secções prontas a copiar para as páginas da sua cadeira, cada uma com pré-visualização, código e o aspeto em cada tema.
 
-Uma secção é um pedaço de página de tamanho médio, como a fórmula da nota ou as perguntas frequentes. Há 22 secções em seis grupos, todas feitas com os componentes e os blocos do kit e com o curso fictício das demonstrações.
+Uma secção é um pedaço de página de tamanho médio, como a fórmula da nota ou as perguntas frequentes. Há 24 secções em seis grupos, todas feitas com os componentes e os blocos do kit e com o curso fictício das demonstrações.
 
 ## Como usar
 
@@ -6118,7 +6267,7 @@ Em cada página da galeria, "Tema das pré-visualizações" mostra as secções 
 
 ## Os grupos
 
-- [**Cabeçalhos**: Título e introdução, com localização e ações, página inicial.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md)
+- [**Cabeçalhos**: Título e introdução, com localização e ações, página inicial, mosaico de secções, calendário primeiro.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/cabecalhos.md)
 - [**Avisos e datas**: Avisos e próximas datas, esta semana, com um aviso, aviso fixo.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avisos.md)
 - [**Avaliação**: Fórmula da nota, cartão de uma prova, datas e regras.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/avaliacao.md)
 - [**Horário e equipa**: Horário, atendimento, equipa.](https://uc-design-kit.miguelrocha.dev/docs/pt/seccoes/horario-equipa.md)
@@ -6207,6 +6356,46 @@ Exemplo (cabeçalho da página inicial), [demonstração ao vivo](https://uc-des
 ```
 
 - Componente: [`<uc-hero>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-hero.md).
+
+## Mosaico de secções
+
+Uma página inicial que é um ponto de partida: a seguir ao título, um cartão por página da cadeira, com uma frase. É o padrão do MIT OpenCourseWare e de muitas páginas iniciais do Canvas. Os cartões vêm de `pages` do `course.js`; o das semanas diz em que semana estamos.
+
+Exemplo (página inicial com um mosaico das páginas), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/home-tiles.html):
+
+```html
+<uc-hero></uc-hero>
+<uc-tiles pages="weeks, assessment, about"></uc-tiles>
+```
+
+- Na página inicial, sem `pages`, o `<uc-tiles>` mostra todas as outras páginas, pela ordem do `course.js`; aqui `pages` escolhe três.
+- A frase de cada cartão é o campo `description` da página. Componente: [`<uc-tiles>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md).
+
+## Calendário primeiro
+
+Uma página inicial que é o calendário das aulas, como a do CS61A em Berkeley e as de muitas cadeiras de Stanford: cada semana numa linha, com a matéria e a ligação para o guião, e a semana atual marcada. Serve para cadeiras em que o aluno volta ao site sobretudo para saber o que há esta semana.
+
+Exemplo (página inicial com a tabela das semanas), [demonstração ao vivo](https://uc-design-kit.miguelrocha.dev/docs/demos/sections/home-calendar.html):
+
+```html
+<header class="uc-page-header">
+  <h1>Algoritmos e Programação</h1>
+  <p class="uc-prose">O calendário das aulas é a página inicial: cada semana, a matéria e o guião.</p>
+</header>
+<uc-weeks view="compact">
+  <uc-week n="5" title="Listas e cadeias de caracteres" href="#"><p><a href="#">Listas e cadeias de caracteres</a></p></uc-week>
+  <uc-week n="6" title="Complexidade e notação O" href="#"><p><a href="#">Complexidade e notação O</a></p></uc-week>
+  <uc-week n="7" title="Recursão" href="#"><p><a href="#">Recursão</a></p></uc-week>
+  <uc-week n="8" title="Ordenação simples: seleção e inserção" href="#"><p><a href="#">Ordenação simples: seleção e inserção</a></p></uc-week>
+  <uc-week n="9" title="Ordenação por fusão e quicksort" href="#"><p><a href="#">Ordenação por fusão e quicksort</a></p></uc-week>
+  <uc-week n="10" title="Dicionários e conjuntos" href="#"><p><a href="#">Dicionários e conjuntos</a></p></uc-week>
+  <uc-week n="11" title="Árvores binárias"><p>Árvores binárias</p></uc-week>
+  <uc-week n="12" title="Revisões"><p>Revisões</p></uc-week>
+</uc-weeks>
+```
+
+- `<uc-weeks view="compact">` mostra uma linha por semana; as datas vêm de `semester` no `course.js`. Componente: [`<uc-weeks>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-weeks.md).
+- Cada semana é um `<uc-week n>` com `title` e, quando o guião já existe, `href`; as semanas sem `href` aparecem sem ligação.
 
 ---
 
@@ -13442,6 +13631,7 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-page--panel`, `.uc-panel`, `.uc-panel__brand` | Com `layout="panel"`: a página, a barra de altura total (o primeiro filho da `.uc-shell`, com o cabeçalho, a `.uc-sidebar` e o resumo do horário) e o `.uc-header` dentro dela. |
 | `.uc-panel__info`, `.uc-panel__label`, `.uc-panel__list` | O resumo do horário no fundo da barra: cada título ("Teóricas", "Atendimento") e a lista de horas. O bloco "office-hours" do layout `aside` usa as mesmas classes. |
 | `.uc-page--aside`, `.uc-aside`, `.uc-aside__heading`, `.uc-aside__office-hours`, `.uc-aside__platforms` | Com `layout="aside"`: a página, a coluna de blocos (um `<aside>` depois do `<main>`; cada filho é um cartão), o título dos blocos que o kit escreve e os blocos "office-hours" e "platforms". |
+| `.uc-page--onepage`, `.uc-anchors`, `.uc-anchors__list`, `.uc-anchors__item`, `.uc-anchors__pages`, `.uc-anchors__link` | Com `layout="onepage"`: a página, a barra (o `<nav>` entre o `.uc-header` e a `.uc-shell`), a lista das secções e cada entrada, a lista das outras páginas e cada ligação das duas listas (a da secção à vista tem `aria-current="location"`). A altura da barra é `--uc-anchors-height` (48 px). |
 | `.uc-nav__list`, `__link`, `__group` | As listas de links, cada link e o título "Plataformas". |
 | `.uc-nav-toggle` | O botão "Menu" dos ecrãs estreitos. |
 | `.uc-main` | O `<main>` com o conteúdo do professor. |
@@ -13456,6 +13646,15 @@ Uma tabela por componente, igual à da secção "Personalizar" da sua página (o
 | `.uc-hero__code` | O código do curso. |
 | `.uc-hero__title` | O `<h1>` com o nome. |
 | `.uc-hero__tagline` | A descrição, com no máximo 640 px de largura. |
+
+### [`<uc-tiles>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-tiles.md)
+
+| Classe | Elemento |
+| --- | --- |
+| `.uc-tiles` | O próprio `<uc-tiles>`. |
+| `.uc-tiles__list`, `.uc-tiles__item` | A lista (uma grelha de colunas de pelo menos 240 px) e cada item. |
+| `.uc-tiles__link`, `.uc-tiles__link--now` | O cartão, uma ligação com a classe `uc-card`; `--now` no cartão das semanas durante o semestre. |
+| `.uc-tiles__title`, `.uc-tiles__meta`, `.uc-tiles__text` | O nome da página, a semana atual (só no cartão das semanas) e a frase de `description`. |
 
 ### [`<uc-search>`](https://uc-design-kit.miguelrocha.dev/docs/pt/componentes/uc-search.md)
 
@@ -14221,9 +14420,13 @@ pages: [
   "home",                                         // built-in: href "index.html", label "Início"/"Home"
   { id: "weeks", href: "semanas.html" },          // built-in id, custom file name
   { id: "contests", href: "contests.html", label: { pt: "Concursos", en: "Contests" } },
-  { id: "about", href: { pt: "sobre.html", en: "about.html" } }   // one file per language
+  { id: "about", href: { pt: "sobre.html", en: "about.html" } },  // one file per language
+  { id: "assessment", href: "avaliacao.html", description: "Componentes, datas e regras." }
 ]
 ```
+
+`description` (`HTMLText`, optional) is one sentence about the page, shown
+under its name on its card in `<uc-tiles>` (3.1). Nothing else reads it.
 
 A page that is not in `pages` (a lab guide, a problem statement) and has one
 file per language names its translations in its `<head>`, with
@@ -14425,7 +14628,7 @@ with JavaScript disabled it is shown at once.
 | Attribute | Values | Default | Notes |
 | --- | --- | --- | --- |
 | `current` | a page id | inferred from the file name | Marks the active navigation item. |
-| `layout` | `sidebar` \| `top` \| `full` \| `banner` \| `docs` \| `centered` \| `panel` \| `aside` \| a site layout (8.3) | `layout` of `course.js`, else the theme's `--uc-layout`, else `sidebar` | An unknown name is skipped with a warning (the next of those decides). `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). `banner` (file `kit/v1/layouts/banner.css`, added by the kit when needed) puts the header, the first `<uc-hero>` written directly in the page and the navigation as tabs in one band of `--uc-color-accent-strong` (`.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero`); the hero is moved, not copied, so the page keeps one `h1`, and without one the band only has the header and the tabs. Below 960 px the "Menu" button is inside the band. Prints without colour. `docs` (file `kit/v1/layouts/docs.css`) has three columns, up to `--uc-content-max` + 240 px: the navigation, the content and "Nesta página" (`.uc-toc`), a `<nav>` listing the `<h2>`/`<h3>` of the page that have an id (every one has, `core/anchors.js`), without those marked `data-nav="off"` (or inside such an element) and those of another language; the one in view has `aria-current="location"`. The list only shows with two or more entries. A `<uc-guide>` in the page puts its progress at the top of that column and makes no list of its own. From 1200 px down the list is a button "Nesta página · N secções" above the content that opens it, like "Menu"; Escape closes it. Prints like `full`. `centered` (file `kit/v1/layouts/centered.css`) has the structure of `top` (`.uc-topnav` under the header) styled as a book: the header is a centred column with the course title in large type, the search and language buttons in its top corner (above 960 px), the navigation centred between two lines with the current page underlined, and the content is one column of `--uc-reading-max` (760 px) where `.uc-split` stacks. Below 960 px the "Menu" button is centred above the content. Prints like `full`. `panel` (file `kit/v1/layouts/panel.css`) has no header band: the header (with the class `.uc-panel__brand`), the navigation and a timetable summary (`.uc-panel__info`) form one full-height bar on the left (`.uc-panel`, `--uc-panel-width` 272 px) that stays in place while the content scrolls. The summary lists the lectures of `schedule` (entries with the same time and room merge their days: "3.ª e 5.ª · 14:00–15:00 · FC4 0.41") and the coordinator's office hours, under "Teóricas" and "Atendimento"; `panel: false` in `course.js` leaves it out. Below 960 px the page looks like `sidebar` (header on top, then "Menu") and the summary is hidden. Prints like `full`. `aside` (file `kit/v1/layouts/aside.css`) adds, on every page, a column of blocks after `<main>`: an `<aside class="uc-aside">` named "Destaques", with the blocks of `aside` in `course.js` (2.2) as cards, up to `--uc-content-max` + 200 px. From 1200 px down the blocks go below the content; on phones they come last. Prints without them. |
+| `layout` | `sidebar` \| `top` \| `full` \| `banner` \| `docs` \| `centered` \| `panel` \| `aside` \| `onepage` \| a site layout (8.3) | `layout` of `course.js`, else the theme's `--uc-layout`, else `sidebar` | An unknown name is skipped with a warning (the next of those decides). `top` puts the navigation (pages, then platforms) in a bar under the header, wrapped in `.uc-topnav`, and gives the content the whole width; below 960 px it is the same collapsible menu as the sidebar. `full` hides the navigation (single-page sites, guides). `banner` (file `kit/v1/layouts/banner.css`, added by the kit when needed) puts the header, the first `<uc-hero>` written directly in the page and the navigation as tabs in one band of `--uc-color-accent-strong` (`.uc-banner`, `.uc-banner__inner`, `.uc-banner__hero`); the hero is moved, not copied, so the page keeps one `h1`, and without one the band only has the header and the tabs. Below 960 px the "Menu" button is inside the band. Prints without colour. `docs` (file `kit/v1/layouts/docs.css`) has three columns, up to `--uc-content-max` + 240 px: the navigation, the content and "Nesta página" (`.uc-toc`), a `<nav>` listing the `<h2>`/`<h3>` of the page that have an id (every one has, `core/anchors.js`), without those marked `data-nav="off"` (or inside such an element) and those of another language; the one in view has `aria-current="location"`. The list only shows with two or more entries. A `<uc-guide>` in the page puts its progress at the top of that column and makes no list of its own. From 1200 px down the list is a button "Nesta página · N secções" above the content that opens it, like "Menu"; Escape closes it. Prints like `full`. `centered` (file `kit/v1/layouts/centered.css`) has the structure of `top` (`.uc-topnav` under the header) styled as a book: the header is a centred column with the course title in large type, the search and language buttons in its top corner (above 960 px), the navigation centred between two lines with the current page underlined, and the content is one column of `--uc-reading-max` (760 px) where `.uc-split` stacks. Below 960 px the "Menu" button is centred above the content. Prints like `full`. `panel` (file `kit/v1/layouts/panel.css`) has no header band: the header (with the class `.uc-panel__brand`), the navigation and a timetable summary (`.uc-panel__info`) form one full-height bar on the left (`.uc-panel`, `--uc-panel-width` 272 px) that stays in place while the content scrolls. The summary lists the lectures of `schedule` (entries with the same time and room merge their days: "3.ª e 5.ª · 14:00–15:00 · FC4 0.41") and the coordinator's office hours, under "Teóricas" and "Atendimento"; `panel: false` in `course.js` leaves it out. Below 960 px the page looks like `sidebar` (header on top, then "Menu") and the summary is hidden. Prints like `full`. `aside` (file `kit/v1/layouts/aside.css`) adds, on every page, a column of blocks after `<main>`: an `<aside class="uc-aside">` named "Destaques", with the blocks of `aside` in `course.js` (2.2) as cards, up to `--uc-content-max` + 200 px. From 1200 px down the blocks go below the content; on phones they come last. Prints without them. `onepage` (file `kit/v1/layouts/onepage.css`) is the course site on one page: no sidebar; under the header, a `<nav class="uc-anchors">` (named like the navigation) that stays at the top while the page scrolls, with the page's sections, the `<h2>` of `<main>` that have an id, without those marked `data-nav="off"` (or inside such an element) and those of another language, then the other pages of `pages` (not the current one). The section in view has `aria-current="location"`; a heading reached from the bar is not hidden under it (`scroll-margin-top`). The bar is one line at every width and scrolls sideways when it does not fit, keeping the marked section in sight; there is no "Menu" button. Platforms are not in the bar. The content takes the whole width. Prints like `full`. |
 | `toc` | `off` | — | Layout `docs`: no "Nesta página" column on this page (a `<uc-guide>` keeps its own list and progress). |
 | `aside` | `off` | — | Layout `aside`: no column of blocks on this page. |
 | `search` | `off` \| `noindex` | — | `off`: no search button on this page. `noindex`: `uc-site.py` leaves the page out of the search index (the button still shows). |
@@ -14495,6 +14698,21 @@ moves focus to it. Matching rules: `<uc-search>`. Stable classes: the
 
 Course heading block: code, title (as `<h1>`) and tagline from the
 configuration. Children, if any, are appended below the tagline.
+
+#### `<uc-tiles>`
+
+Mosaic for the home page: a list (`ul.uc-tiles__list`) with one card per page
+of `pages` (2.3), without the current page, each a link
+(`a.uc-card.uc-tiles__link`) with the page's name (`.uc-tiles__title`) and
+its `description` (`.uc-tiles__text`) when it has one. During the semester
+the card of the `weeks` page also shows the current teaching week and its
+dates ("Semana 10 · 25–28 nov", `.uc-tiles__meta`) and stands out with the
+soft accent background (`.uc-tiles__link--now`). Pages without an `href` are
+left out. Names and descriptions follow the active language.
+
+| Attribute | Values | Default | Notes |
+| --- | --- | --- | --- |
+| `pages` | page ids, separated by commas or spaces | every page but the current one | Picks the cards and their order (the current page too, when listed). An id that is not in `pages` is skipped with a console warning. |
 
 #### `<uc-search>`
 
@@ -15608,7 +15826,7 @@ CSS. It changes nothing until a line is uncommented.
 A theme with a layout also chooses the layout of `<uc-page>`: it declares the
 choice property `--uc-layout` (section 5) and `@import`s the file of its
 layout. Layouts other than `sidebar`, `top` and `full` are files of
-`kit/v1/layouts/` (`banner.css`, `docs.css`, `centered.css`, `panel.css`, `aside.css`), downloaded only when a page uses them. Full contract:
+`kit/v1/layouts/` (`banner.css`, `docs.css`, `centered.css`, `panel.css`, `aside.css`, `onepage.css`), downloaded only when a page uses them. Full contract:
 `docs/architecture/themes-layouts.md`.
 
 | Name | Layout | Changes |

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout onepage (attribute) · test</title>
+  <!-- layout="onepage" without a theme: the kit adds layouts/onepage.css and a sticky bar with the page's sections, then the other pages. -->
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="check.js" defer></script>
+  <style>.tall { min-height: 70vh; }</style>
+</head>
+<body>
+  <uc-page layout="onepage" current="about">
+    <h1>Estruturas de Dados</h1>
+    <section class="uc-section" aria-labelledby="checks">
+      <h2 id="checks">Verificações</h2>
+      <ol id="results"></ol>
+    </section>
+    <section class="uc-section tall">
+      <h2>Programa</h2>
+      <p>Listas, pilhas, filas, árvores e grafos.</p>
+      <h3>Bibliografia</h3>
+      <p>Um subtítulo não entra na barra.</p>
+    </section>
+    <section class="uc-section tall">
+      <h2>Horário</h2>
+      <p>Teóricas à terça e à sexta.</p>
+    </section>
+    <section class="uc-section tall" data-nav="off">
+      <h2>Notas internas</h2>
+      <p>Fora da barra (data-nav="off").</p>
+    </section>
+    <section class="uc-section tall">
+      <h2 lang="en">Assessment (English only)</h2>
+      <p lang="en">Not listed while the page is in Portuguese.</p>
+    </section>
+    <section class="uc-section tall">
+      <h2>Avaliação</h2>
+      <p>Duas avaliações práticas e um exame.</p>
+    </section>
+  </uc-page>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => layoutTests((test, equal) => {
+      const page = document.querySelector("uc-page");
+      const bar = page.querySelector(".uc-anchors");
+      const sections = () => Array.from(bar.querySelectorAll(".uc-anchors__list a"));
+      const sheets = () => Array.from(document.querySelectorAll("link[rel~=stylesheet]"), (link) => link.getAttribute("href").replace(/^.*kit\/v1\//, ""));
+      test("the layout comes from the attribute", () => equal(UC.internal.layouts.resolve(page), "onepage"));
+      test("its class", () => equal(Array.from(page.classList).filter((name) => name.startsWith("uc-page--")), ["uc-page--onepage"]));
+      test("its style sheet is added after the kit", () => equal(sheets(), ["uc-kit.css", "layouts/onepage.css"]));
+      test("header, the bar, then the shell with main only", () =>
+        equal([Array.from(page.children, (node) => node.className.split(" ")[0]).slice(1, 4), Array.from(page.querySelector(".uc-shell").children, (node) => node.localName)], [["uc-header", "uc-anchors", "uc-shell"], ["main"]]));
+      test("no sidebar and no menu button", () => equal(page.querySelectorAll(".uc-sidebar, .uc-nav-toggle").length, 0));
+      test("the bar is a named nav", () => equal([bar.localName, bar.getAttribute("aria-label"), page.querySelectorAll("nav").length], ["nav", "Secções da cadeira", 1]));
+      test("the sections: the h2 with an id, without data-nav=\"off\" and other languages", () =>
+        equal(sections().map((link) => [link.textContent, link.getAttribute("href")]), [["Verificações", "#checks"], ["Programa", "#programa"], ["Horário", "#horario"], ["Avaliação", "#avaliacao"]]));
+      test("then the other pages, without the current one", () =>
+        equal(Array.from(bar.querySelectorAll(".uc-anchors__pages a"), (link) => link.textContent), ["Início", "Semanas", "Avaliação", "Materiais", "Horários e equipa"]));
+      test("the bar stays at the top", () => equal([getComputedStyle(bar).position, getComputedStyle(bar).top], ["sticky", "0px"]));
+      test("one line", () => equal(bar.getBoundingClientRect().height < 60, true));
+      const target = page.querySelector("#horario");
+      target.scrollIntoView();
+      page.spy.update();
+      test("a heading reached from the bar is below it", () => equal(target.getBoundingClientRect().top >= bar.getBoundingClientRect().bottom, true));
+      test("the section in view is marked", () => equal(sections().filter((link) => link.getAttribute("aria-current") === "location").map((link) => link.textContent), ["Horário"]));
+      if (bar.scrollWidth > bar.clientWidth) {
+        page.querySelector("#avaliacao").scrollIntoView();
+        page.spy.update();
+        test("narrow screens: the bar scrolls sideways to the marked section", () => {
+          const link = bar.querySelector("[aria-current]");
+          const left = link.getBoundingClientRect().left - bar.getBoundingClientRect().left;
+          equal([link.textContent, bar.scrollLeft > 0, left >= 0 && left + link.offsetWidth <= bar.clientWidth], ["Avaliação", true, true]);
+        });
+      }
+      window.scrollTo(0, 0);
+      page.spy.update();
+    }));
+  </script>
+</body>
+</html>

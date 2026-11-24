@@ -1,0 +1,19 @@
+/* <uc-tiles>: one card per page of the course, for the home page (docs/api.md, section 3.1). */
+
+:where(uc-tiles) { display: block; }
+:where(.uc-tiles__list) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  gap: var(--uc-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where(.uc-tiles__item) { display: flex; margin: 0; }
+:where(.uc-tiles__link) { flex: 1; gap: var(--uc-space-2); }
+:where(.uc-tiles__title) { color: var(--uc-color-text); font-size: var(--uc-font-size-lg); font-weight: 600; line-height: var(--uc-line-height-tight); }
+:where(.uc-tiles__link:hover .uc-tiles__title) { color: var(--uc-color-accent); }
+:where(.uc-tiles__text) { color: var(--uc-color-text-secondary); font-size: var(--uc-font-size-body-sm); }
+:where(.uc-tiles__meta) { color: var(--uc-color-accent); font-family: var(--uc-font-mono); font-size: var(--uc-font-size-md); }
+/* The weeks page during the semester, like <uc-this-week>: a soft accent background. */
+:where(.uc-tiles__link--now) { border-color: transparent; background: var(--uc-color-accent-soft); }

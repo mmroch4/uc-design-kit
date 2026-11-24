@@ -60,6 +60,7 @@
           <li><a href="../componentes/index.html">Visão geral</a></li>
           <li><a href="../componentes/uc-page.html"><code>uc-page</code></a></li>
           <li><a href="../componentes/uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="../componentes/uc-tiles.html"><code>uc-tiles</code></a></li>
           <li><a href="../componentes/uc-search.html"><code>uc-search</code></a></li>
           <li><a href="../componentes/uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="../componentes/uc-deadlines.html"><code>uc-deadlines</code></a></li>
@@ -224,6 +225,7 @@
               <tr><td><code>.uc-page--panel</code>, <code>.uc-panel</code>, <code>.uc-panel__brand</code></td><td>Com <code>layout="panel"</code>: a página, a barra de altura total (o primeiro filho da <code>.uc-shell</code>, com o cabeçalho, a <code>.uc-sidebar</code> e o resumo do horário) e o <code>.uc-header</code> dentro dela.</td></tr>
               <tr><td><code>.uc-panel__info</code>, <code>.uc-panel__label</code>, <code>.uc-panel__list</code></td><td>O resumo do horário no fundo da barra: cada título ("Teóricas", "Atendimento") e a lista de horas. O bloco "office-hours" do layout <code>aside</code> usa as mesmas classes.</td></tr>
               <tr><td><code>.uc-page--aside</code>, <code>.uc-aside</code>, <code>.uc-aside__heading</code>, <code>.uc-aside__office-hours</code>, <code>.uc-aside__platforms</code></td><td>Com <code>layout="aside"</code>: a página, a coluna de blocos (um <code>&lt;aside&gt;</code> depois do <code>&lt;main&gt;</code>; cada filho é um cartão), o título dos blocos que o kit escreve e os blocos "office-hours" e "platforms".</td></tr>
+              <tr><td><code>.uc-page--onepage</code>, <code>.uc-anchors</code>, <code>.uc-anchors__list</code>, <code>.uc-anchors__item</code>, <code>.uc-anchors__pages</code>, <code>.uc-anchors__link</code></td><td>Com <code>layout="onepage"</code>: a página, a barra (o <code>&lt;nav&gt;</code> entre o <code>.uc-header</code> e a <code>.uc-shell</code>), a lista das secções e cada entrada, a lista das outras páginas e cada ligação das duas listas (a da secção à vista tem <code>aria-current="location"</code>). A altura da barra é <code>--uc-anchors-height</code> (48 px).</td></tr>
               <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
               <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
               <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
@@ -247,6 +249,24 @@
               <tr><td><code>.uc-hero__code</code></td><td>O código do curso.</td></tr>
               <tr><td><code>.uc-hero__title</code></td><td>O <code>&lt;h1&gt;</code> com o nome.</td></tr>
               <tr><td><code>.uc-hero__tagline</code></td><td>A descrição, com no máximo 640 px de largura.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /docs:classes -->
+
+        <h3 id="uc-tiles"><a href="../componentes/uc-tiles.html"><code>&lt;uc-tiles&gt;</code></a></h3>
+        <!-- docs:classes src="../componentes/uc-tiles.html" -->
+        <div class="uc-table docs-compact">
+          <table>
+            <caption class="uc-visually-hidden">Classes estáveis de &lt;uc-tiles&gt;</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-tiles</code></td><td>O próprio <code>&lt;uc-tiles&gt;</code>.</td></tr>
+              <tr><td><code>.uc-tiles__list</code>, <code>.uc-tiles__item</code></td><td>A lista (uma grelha de colunas de pelo menos 240 px) e cada item.</td></tr>
+              <tr><td><code>.uc-tiles__link</code>, <code>.uc-tiles__link--now</code></td><td>O cartão, uma ligação com a classe <code>uc-card</code>; <code>--now</code> no cartão das semanas durante o semestre.</td></tr>
+              <tr><td><code>.uc-tiles__title</code>, <code>.uc-tiles__meta</code>, <code>.uc-tiles__text</code></td><td>O nome da página, a semana atual (só no cartão das semanas) e a frase de <code>description</code>.</td></tr>
             </tbody>
           </table>
         </div>
@@ -798,6 +818,7 @@
           <li><a href="#componentes">Componentes</a></li>
           <li class="docs-toc__sub"><a href="#uc-page">&lt;uc-page&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-hero">&lt;uc-hero&gt;</a></li>
+          <li class="docs-toc__sub"><a href="#uc-tiles">&lt;uc-tiles&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-search">&lt;uc-search&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-notices">&lt;uc-notices&gt;</a></li>
           <li class="docs-toc__sub"><a href="#uc-deadlines">&lt;uc-deadlines&gt;</a></li>

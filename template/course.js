@@ -45,8 +45,9 @@ window.UC_COURSE = {
   // curso, a do tema "institutional"), "docs" (três colunas com "Nesta
   // página", a do tema "handbook"), "centered" (centrado, a do tema
   // "editorial"), "panel" (barra de altura total com o nome, a navegação e
-  // o horário), "aside" (blocos à direita em todas as páginas) ou "full"
-  // (sem navegação). Se estiver aqui, ganha ao layout do tema; uma página
+  // o horário), "aside" (blocos à direita em todas as páginas), "onepage"
+  // (tudo numa página, com uma barra para as secções) ou "full" (sem
+  // navegação). Se estiver aqui, ganha ao layout do tema; uma página
   // pode mudar com <uc-page layout="…">.
   // layout: "top",
   // aside: ["deadlines", "notices"],     // blocos do layout "aside"; também "this-week", "office-hours", "platforms"
@@ -67,6 +68,7 @@ window.UC_COURSE = {
   },
 
   // Navegação, por esta ordem. Os nomes dos ficheiros são relativos a este ficheiro.
+  // description: uma frase sobre a página, mostrada no mosaico <uc-tiles>.
   pages: [
     "home",
     { id: "weeks", href: "semanas.html" },

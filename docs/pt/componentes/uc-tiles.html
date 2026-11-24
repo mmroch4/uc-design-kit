@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-tiles · UC Design Kit</title>
+  <meta name="description" content="Documentação do componente uc-tiles do UC Design Kit: um mosaico para a página inicial, com um cartão por página da cadeira lido do course.js.">
+  <link rel="icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../../assets/docs.css">
+  <script>document.documentElement.classList.add("docs-js");</script>
+  <script src="../../assets/course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="docs">
+  <!-- docs:header -->
+  <a class="docs-skip" href="#content">Saltar para o conteúdo</a>
+  <header class="docs-header">
+    <div class="docs-header__inner">
+      <button class="docs-header__menu" type="button" aria-expanded="false" aria-controls="docs-sidebar" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="uc-visually-hidden">Menu</span></button>
+      <a class="docs-brand" href="../../../index.html"><svg class="docs-brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="currentColor"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>UC Design Kit</span></a>
+      <button class="docs-search-button" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K /" data-label="Pesquisar na documentação" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="docs-search-button__label">Pesquisar</span><kbd class="docs-search-button__kbd" aria-hidden="true">Ctrl K</kbd></button>
+      <nav class="docs-header__nav" aria-label="Principal">
+        <a href="../index.html" aria-current="true">Documentação</a>
+        <a href="../exemplos/index.html">Exemplos</a>
+        <a class="docs-header__icon" href="https://github.com/mmroch4/uc-design-kit"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg><span class="uc-visually-hidden">GitHub</span></a>
+      </nav>
+    </div>
+  </header>
+  <!-- /docs:header -->
+  <div class="docs-layout">
+    <!-- docs:sidebar -->
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Secções da documentação">
+      <div class="docs-sidebar__group docs-sidebar__group--site">
+        <ul class="docs-sidebar__list" aria-label="Site">
+          <li><a href="../index.html">Documentação</a></li>
+          <li><a href="../exemplos/index.html">Exemplos</a></li>
+          <li><a href="https://github.com/mmroch4/uc-design-kit">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-1">Começar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-1">
+          <li><a href="../index.html">Introdução</a></li>
+          <li><a href="../criar-site.html">Criar o meu site</a></li>
+          <li><a href="../estrutura.html">Estrutura de um site</a></li>
+          <li><a href="../course-js.html">O ficheiro course.js</a></li>
+          <li><a href="../linguas.html">Línguas</a></li>
+          <li><a href="../novo-ano.html">Novo ano letivo</a></li>
+          <li><a href="../publicar.html">Publicar</a></li>
+          <li><a href="../manter.html">Manter o site</a></li>
+          <li><a href="../llm.html">Usar com uma LLM</a></li>
+          <li><a href="../migrar.html">Migrar um site existente</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-2">Componentes</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-2">
+          <li><a href="index.html">Visão geral</a></li>
+          <li><a href="uc-page.html"><code>uc-page</code></a></li>
+          <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-tiles.html" aria-current="page"><code>uc-tiles</code></a></li>
+          <li><a href="uc-search.html"><code>uc-search</code></a></li>
+          <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
+          <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
+          <li><a href="uc-date.html"><code>uc-date</code></a></li>
+          <li><a href="uc-weeks.html"><code>uc-weeks</code></a></li>
+          <li><a href="uc-week.html"><code>uc-week</code></a></li>
+          <li><a href="uc-event.html"><code>uc-event</code></a></li>
+          <li><a href="uc-this-week.html"><code>uc-this-week</code></a></li>
+          <li><a href="uc-summaries.html"><code>uc-summaries</code></a></li>
+          <li><a href="uc-team.html"><code>uc-team</code></a></li>
+          <li><a href="uc-timetable.html"><code>uc-timetable</code></a></li>
+          <li><a href="uc-guide.html"><code>uc-guide</code></a></li>
+          <li><a href="uc-exercise.html"><code>uc-exercise</code></a></li>
+          <li><a href="uc-code.html"><code>uc-code</code></a></li>
+          <li><a href="uc-question.html"><code>uc-question</code></a></li>
+          <li><a href="uc-grading.html"><code>uc-grading</code></a></li>
+          <li><a href="uc-assessment-info.html"><code>uc-assessment-info</code></a></li>
+          <li><a href="uc-materials.html"><code>uc-materials</code></a></li>
+          <li><a href="uc-problems.html"><code>uc-problems</code></a></li>
+          <li><a href="uc-problem.html"><code>uc-problem</code></a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-3">Secções</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-3">
+          <li><a href="../seccoes/index.html">Galeria</a></li>
+          <li><a href="../seccoes/cabecalhos.html">Cabeçalhos</a></li>
+          <li><a href="../seccoes/avisos.html">Avisos e datas</a></li>
+          <li><a href="../seccoes/avaliacao.html">Avaliação</a></li>
+          <li><a href="../seccoes/horario-equipa.html">Horário e equipa</a></li>
+          <li><a href="../seccoes/materiais.html">Materiais e programa</a></li>
+          <li><a href="../seccoes/perguntas.html">Perguntas e contactos</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-4">Widgets</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-4">
+          <li><a href="../widgets/index.html">Catálogo</a></li>
+          <li><a href="../widgets/usar.html">Usar widgets</a></li>
+          <li><a href="../widgets/uc-widget-sort.html"><code>uc-widget-sort</code></a></li>
+          <li><a href="../widgets/uc-widget-search.html"><code>uc-widget-search</code></a></li>
+          <li><a href="../widgets/uc-widget-bst.html"><code>uc-widget-bst</code></a></li>
+          <li><a href="../widgets/uc-widget-list.html"><code>uc-widget-list</code></a></li>
+          <li><a href="../widgets/uc-widget-stack-queue.html"><code>uc-widget-stack-queue</code></a></li>
+          <li><a href="../widgets/uc-widget-recursion.html"><code>uc-widget-recursion</code></a></li>
+          <li><a href="../widgets/uc-widget-heap.html"><code>uc-widget-heap</code></a></li>
+          <li><a href="../widgets/uc-widget-avl.html"><code>uc-widget-avl</code></a></li>
+          <li><a href="../widgets/uc-widget-hash.html"><code>uc-widget-hash</code></a></li>
+          <li><a href="../widgets/uc-widget-graph.html"><code>uc-widget-graph</code></a></li>
+          <li><a href="../widgets/uc-widget-shortest-path.html"><code>uc-widget-shortest-path</code></a></li>
+          <li><a href="../widgets/uc-widget-complexity.html"><code>uc-widget-complexity</code></a></li>
+          <li><a href="../widgets/uc-widget-mst.html"><code>uc-widget-mst</code></a></li>
+          <li><a href="../widgets/uc-widget-union-find.html"><code>uc-widget-union-find</code></a></li>
+          <li><a href="../widgets/uc-widget-toposort.html"><code>uc-widget-toposort</code></a></li>
+          <li><a href="../widgets/uc-widget-dp.html"><code>uc-widget-dp</code></a></li>
+          <li><a href="../widgets/uc-widget-backtracking.html"><code>uc-widget-backtracking</code></a></li>
+          <li><a href="../widgets/uc-widget-trace.html"><code>uc-widget-trace</code></a></li>
+          <li><a href="../widgets/criar.html">Criar um widget</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-5">Estilos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-5">
+          <li><a href="../estilos/index.html">Princípios de design</a></li>
+          <li><a href="../estilos/cor.html">Cor</a></li>
+          <li><a href="../estilos/tipografia.html">Tipografia</a></li>
+          <li><a href="../estilos/espaco.html">Espaço e forma</a></li>
+          <li><a href="../estilos/tokens.html">Tokens</a></li>
+          <li><a href="../estilos/layout.html">Blocos: layout</a></li>
+          <li><a href="../estilos/superficies.html">Blocos: superfícies e listas</a></li>
+          <li><a href="../estilos/elementos.html">Blocos: elementos</a></li>
+          <li><a href="../estilos/acessibilidade.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-6">Personalizar</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-6">
+          <li><a href="../personalizar/index.html">Visão geral</a></li>
+          <li><a href="../personalizar/criar-tema.html">Criar um tema</a></li>
+          <li><a href="../personalizar/course-js.html">Nível 0: course.js</a></li>
+          <li><a href="../personalizar/tokens.html">Nível 1: tokens</a></li>
+          <li><a href="../personalizar/css.html">Nível 2: CSS livre</a></li>
+          <li><a href="../personalizar/componentes.html">Nível 3: componentes próprios</a></li>
+          <li><a href="../personalizar/html.html">Nível 4: HTML livre</a></li>
+          <li><a href="../personalizar/tema.html">Personalizador de tema</a></li>
+          <li><a href="../personalizar/execucao.html">Execução de código</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-7">Exemplos</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-7">
+          <li><a href="../exemplos/index.html">Visão geral</a></li>
+          <li><a href="../exemplos/edados.html">EDados 2025/26</a></li>
+          <li><a href="../exemplos/pc.html">PC 2026/27</a></li>
+          <li><a href="../exemplos/ip.html">IP 2025/26</a></li>
+          <li><a href="../exemplos/pi.html">PI 2025/26</a></li>
+          <li><a href="../exemplos/padroes.html">Padrões de página</a></li>
+        </ul>
+      </div>
+      <div class="docs-sidebar__group">
+        <p class="docs-sidebar__title" id="docs-nav-8">Referência</p>
+        <ul class="docs-sidebar__list" aria-labelledby="docs-nav-8">
+          <li><a href="../referencia/api-js.html">API JavaScript</a></li>
+          <li><a href="../referencia/runners.html">Runners</a></li>
+          <li><a href="../referencia/classes.html">Classes CSS estáveis</a></li>
+          <li><a href="../referencia/versoes.html">Versões</a></li>
+          <li><a href="../referencia/browsers.html">Browsers e limites</a></li>
+          <li><a href="../referencia/contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /docs:sidebar -->
+    <main class="docs-main" id="content">
+      <article class="docs-article">
+        <header class="docs-page-header">
+          <p class="docs-eyebrow">Componentes · Estrutura</p>
+          <h1><code>&lt;uc-tiles&gt;</code></h1>
+          <p class="docs-lead">Um mosaico para a página inicial: um cartão por página da cadeira, com o nome e uma frase, lidos do <code>course.js</code>. O cartão das semanas diz em que semana estamos.</p>
+          <p class="docs-badges"><span class="uc-tag uc-tag--accent">Lê o course.js</span></p>
+        </header>
+
+        <!-- docs:demo src="../../demos/uc-tiles/basic.html" title="um cartão por página do curso" height="300" -->
+        <div class="docs-demo" id="demo-uc-tiles-basic">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-tiles/basic.html" title="Demonstração: um cartão por página do curso" loading="lazy" style="height: 300px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-tiles&gt;&lt;/uc-tiles&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-tiles/basic.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+        <p>Os nomes e as ligações vêm de <code>pages</code> e as frases do campo <code>description</code> de cada página. A demonstração não é nenhuma das páginas do curso, por isso mostra todas, incluindo "Início"; na página inicial, o cartão dela não aparece. O cartão "Semanas" mostra a semana de aulas atual (o dia está fixo em 27 de novembro nas demonstrações) e tem o fundo da cor do curso, como o cartão "Esta semana".</p>
+
+        <h2 id="utilizacao">Utilização</h2>
+        <p>O <code>&lt;uc-tiles&gt;</code> vai na página inicial, normalmente a seguir ao <code>&lt;uc-hero&gt;</code>. É o padrão do MIT OpenCourseWare e de muitas páginas iniciais do Canvas: em vez de uma página longa, um ponto de partida para cada parte do site.</p>
+        <uc-code lang="html" filename="index.html" no-download><pre><code>&lt;uc-page&gt;
+  &lt;uc-hero&gt;&lt;/uc-hero&gt;
+  &lt;uc-tiles&gt;&lt;/uc-tiles&gt;
+  …
+&lt;/uc-page&gt;</code></pre></uc-code>
+        <uc-code lang="js" filename="course.js" no-download><pre><code>pages: [
+  "home",
+  { id: "weeks", href: "semanas.html", description: "Guiões, slides e exercícios de cada semana." },
+  { id: "assessment", href: "avaliacao.html", description: "Componentes, datas e regras da nota final." },
+  { id: "about", href: "sobre.html" },   // sem description: o cartão só tem o nome
+],</code></pre></uc-code>
+        <p>A página atual (a página inicial, onde o mosaico costuma estar) não tem cartão. Uma página sem <code>description</code> tem um cartão só com o nome. Num site bilingue, a frase escreve-se com um texto por língua, como o <code>label</code>: <code>description: { pt: "…", en: "…" }</code>.</p>
+
+        <h2 id="exemplos">Exemplos</h2>
+
+        <h3 id="escolher-paginas">Escolher as páginas</h3>
+        <p>Com <code>pages</code>, o mosaico mostra só as páginas indicadas, pela ordem escrita. Serve para destacar duas ou três páginas, ou para pôr o mosaico noutra página que não a inicial.</p>
+        <!-- docs:demo src="../../demos/uc-tiles/pages.html" title="dois cartões escolhidos, pela ordem dada" height="200" -->
+        <div class="docs-demo" id="demo-uc-tiles-pages">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-tiles/pages.html" title="Demonstração: dois cartões escolhidos, pela ordem dada" loading="lazy" style="height: 200px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-tiles pages=&quot;assessment, weeks&quot;&gt;&lt;/uc-tiles&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-tiles/pages.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
+
+        <h2 id="atributos">Atributos</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Atributos de uc-tiles</caption>
+            <thead>
+              <tr><th scope="col">Atributo</th><th scope="col">Valores</th><th scope="col">Por omissão</th><th scope="col">Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>pages</code></td><td><code>id</code> de páginas, separados por vírgulas ou espaços</td><td>todas as páginas menos a atual</td><td>Os cartões a mostrar e a sua ordem, por exemplo <code>pages="weeks, assessment"</code>. Um <code>id</code> que não está em <code>pages</code> do <code>course.js</code> é ignorado com um aviso na consola.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="configuracao">Configuração usada</h2>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Campos do course.js lidos por uc-tiles</caption>
+            <thead>
+              <tr><th scope="col">Campo</th><th scope="col">Para quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="../course-js.html#paginas"><code>pages</code></a></td><td>Um cartão por página, com o <code>label</code> (ou o nome do kit), o <code>href</code> e a <code>description</code>.</td></tr>
+              <tr><td><a href="../course-js.html#campos-semestre"><code>semester</code></a></td><td>A semana de aulas atual no cartão da página <code>weeks</code>.</td></tr>
+              <tr><td><a href="../course-js.html#campos-linguas"><code>languages</code></a></td><td>Escolher o nome e a frase na língua ativa.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A referência completa dos campos está em <a href="../course-js.html#paginas">O ficheiro course.js</a>.</p>
+
+        <h2 id="personalizar">Personalizar</h2>
+        <p>Estas classes são estáveis na versão 1 e podem ser usadas num <code>theme.css</code>. As regras do kit têm especificidade zero, por isso qualquer regra do professor ganha. Cada cartão é também um <code>.uc-card</code>, por isso muda com os temas que mudam os cartões.</p>
+        <div class="uc-table">
+          <table>
+            <caption class="uc-visually-hidden">Classes CSS de uc-tiles</caption>
+            <thead>
+              <tr><th scope="col">Classe</th><th scope="col">Elemento</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.uc-tiles</code></td><td>O próprio <code>&lt;uc-tiles&gt;</code>.</td></tr>
+              <tr><td><code>.uc-tiles__list</code>, <code>.uc-tiles__item</code></td><td>A lista (uma grelha de colunas de pelo menos 240 px) e cada item.</td></tr>
+              <tr><td><code>.uc-tiles__link</code>, <code>.uc-tiles__link--now</code></td><td>O cartão, uma ligação com a classe <code>uc-card</code>; <code>--now</code> no cartão das semanas durante o semestre.</td></tr>
+              <tr><td><code>.uc-tiles__title</code>, <code>.uc-tiles__meta</code>, <code>.uc-tiles__text</code></td><td>O nome da página, a semana atual (só no cartão das semanas) e a frase de <code>description</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <uc-code lang="css" filename="theme.css" no-download><pre><code>/* Duas colunas no máximo. */
+.uc-tiles__list { grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); }</code></pre></uc-code>
+
+        <h2 id="acessibilidade">Acessibilidade</h2>
+        <div class="docs-grid-2">
+          <div class="uc-card">
+            <h3>O que o componente faz</h3>
+            <p>Escreve uma lista de ligações, uma por cartão, por isso um leitor de ecrã anuncia quantos cartões há. O nome da ligação é o nome da página seguido da semana e da frase. O cartão inteiro é a área de clique e o foco do teclado contorna-o.</p>
+          </div>
+          <div class="uc-card">
+            <h3>O que cabe a quem escreve</h3>
+            <p>Frases curtas, que digam o que há na página, e nomes de páginas distintos. O mosaico não tem título: se a página precisar de um, ponha um <code>&lt;h2&gt;</code> antes dele.</p>
+          </div>
+        </div>
+
+        <h2 id="sem-javascript">Sem JavaScript</h2>
+        <p>Se o kit não carregar, o mosaico fica vazio, porque os cartões vêm do <code>course.js</code>, tal como a navegação do site. Para uma página inicial que tenha de funcionar sem JavaScript, escreva as ligações no HTML, por exemplo com <a href="../estilos/superficies.html#shortcuts"><code>.uc-shortcuts</code></a>.</p>
+
+        <h2 id="ver-tambem">Ver também</h2>
+        <ul>
+          <li><a href="uc-hero.html"><code>&lt;uc-hero&gt;</code></a>: o título da página inicial, que costuma vir antes.</li>
+          <li><a href="uc-this-week.html"><code>&lt;uc-this-week&gt;</code></a>: o cartão "Esta semana", com a matéria e as datas da semana.</li>
+          <li><a href="../seccoes/cabecalhos.html#mosaico">Galeria de secções: Mosaico</a>, pronto a copiar.</li>
+          <li><a href="../course-js.html#paginas">O ficheiro course.js: Páginas</a>, com o campo <code>description</code>.</li>
+        </ul>
+      </article>
+      <!-- docs:pager -->
+      <footer class="docs-footer">
+        <nav class="docs-pager" aria-label="Anterior / Seguinte">
+          <a class="docs-pager__link docs-pager__link--previous" href="uc-hero.html" rel="prev">
+            <span class="docs-pager__label"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anterior</span>
+            <span class="docs-pager__title"><code>uc-hero</code></span>
+          </a>
+          <a class="docs-pager__link docs-pager__link--next" href="uc-search.html" rel="next">
+            <span class="docs-pager__label">Seguinte<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="docs-pager__title"><code>uc-search</code></span>
+          </a>
+        </nav>
+        <p class="docs-footer__edit"><a href="https://github.com/mmroch4/uc-design-kit/edit/main/docs/pt/componentes/uc-tiles.html">Editar esta página no GitHub</a> · <a href="uc-tiles.md" type="text/markdown">Ver esta página em Markdown</a></p>
+      </footer>
+      <!-- /docs:pager -->
+    </main>
+    <aside class="docs-aside">
+      <!-- docs:toc -->
+      <nav class="docs-toc" aria-labelledby="docs-toc-title">
+        <p class="docs-toc__title" id="docs-toc-title">Nesta página</p>
+        <ul class="docs-toc__list">
+          <li><a href="#utilizacao">Utilização</a></li>
+          <li><a href="#exemplos">Exemplos</a></li>
+          <li class="docs-toc__sub"><a href="#escolher-paginas">Escolher as páginas</a></li>
+          <li><a href="#atributos">Atributos</a></li>
+          <li><a href="#configuracao">Configuração usada</a></li>
+          <li><a href="#personalizar">Personalizar</a></li>
+          <li><a href="#acessibilidade">Acessibilidade</a></li>
+          <li><a href="#sem-javascript">Sem JavaScript</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+        </ul>
+      </nav>
+      <!-- /docs:toc -->
+    </aside>
+  </div>
+</body>
+</html>

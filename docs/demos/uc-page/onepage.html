@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uc-page: página única · Demonstração · UC Design Kit</title>
+  <link rel="stylesheet" href="../../../kit/v1/uc-kit.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>
+    /* The page shell is the whole demo: no demo padding, and no full-viewport height inside the frame. */
+    body { padding: 0; }
+    uc-page { min-height: 0; }
+  </style>
+  <script src="../course.js"></script>
+  <script src="../../../kit/v1/uc-kit.js" defer></script>
+  <script src="../demo.js" defer></script>
+</head>
+<body>
+  <!-- demo:start -->
+  <uc-page layout="onepage" current="home">
+    <h1>Algoritmos e Programação</h1>
+    <section class="uc-section" aria-labelledby="programa">
+      <h2 id="programa">Programa</h2>
+      <p>Tudo numa página: a barra por baixo do cabeçalho leva a cada secção (os <code>&lt;h2&gt;</code>) e depois às outras páginas do <code>course.js</code>. Fica no topo ao percorrer a página e marca a secção à vista.</p>
+    </section>
+    <section class="uc-section" aria-labelledby="horario">
+      <h2 id="horario">Horário</h2>
+      <p>Teóricas à segunda e à quarta, práticas à sexta.</p>
+    </section>
+    <section class="uc-section" aria-labelledby="avaliacao">
+      <h2 id="avaliacao">Avaliação</h2>
+      <p>Dois testes e um exame.</p>
+    </section>
+    <section class="uc-section" aria-labelledby="bibliografia">
+      <h2 id="bibliografia">Bibliografia</h2>
+      <p>No telemóvel, a barra desliza na horizontal.</p>
+    </section>
+  </uc-page>
+  <!-- demo:end -->
+</body>
+</html>

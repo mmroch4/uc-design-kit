@@ -60,6 +60,7 @@
           <li><a href="index.html">Visão geral</a></li>
           <li><a href="uc-page.html" aria-current="page"><code>uc-page</code></a></li>
           <li><a href="uc-hero.html"><code>uc-hero</code></a></li>
+          <li><a href="uc-tiles.html"><code>uc-tiles</code></a></li>
           <li><a href="uc-search.html"><code>uc-search</code></a></li>
           <li><a href="uc-notices.html"><code>uc-notices</code></a></li>
           <li><a href="uc-deadlines.html"><code>uc-deadlines</code></a></li>
@@ -397,6 +398,42 @@
           <a class="docs-demo__open" href="../../demos/uc-page/aside.html">Abrir demo</a>
         </div>
         <!-- /docs:demo -->
+        <h3 id="pagina-unica">Página única</h3>
+        <p><code>layout="onepage"</code> é o site clássico de uma cadeira numa só página (programa, horário, avaliação, bibliografia), como em muitas páginas do DCC, de Stanford ou da CMU. Não há barra lateral: por baixo do cabeçalho fica uma barra (<code>&lt;nav class="uc-anchors"&gt;</code>) que se mantém no topo ao percorrer a página, com:</p>
+        <ul>
+          <li>as secções da página: os <code>&lt;h2&gt;</code> do conteúdo, sem os marcados com <code>data-nav="off"</code> (ou dentro de um elemento assim) e sem os de outra língua. A secção à vista fica marcada (<code>aria-current="location"</code>), e um título a que se chega pela barra não fica escondido por baixo dela;</li>
+          <li>depois de uma linha, as outras páginas do <code>course.js</code> (sem a atual). As plataformas não entram na barra; ponha-as numa secção da página, por exemplo com <code>.uc-links</code>.</li>
+        </ul>
+        <p>A barra tem sempre uma só linha. Quando não cabe, como no telemóvel, desliza na horizontal e acompanha a secção marcada; não há botão "Menu". O conteúdo ocupa toda a largura. Na impressão a barra não aparece. O estilo está em <code>kit/v1/layouts/onepage.css</code>.</p>
+        <!-- docs:demo src="../../demos/uc-page/onepage.html" title="página única com a barra de secções" height="480" -->
+        <div class="docs-demo" id="demo-uc-page-onepage">
+          <div class="docs-demo__panel docs-demo__panel--preview" data-label="Pré-visualização">
+            <iframe class="docs-demo__frame" src="../../demos/uc-page/onepage.html" title="Demonstração: página única com a barra de secções" loading="lazy" style="height: 480px"></iframe>
+          </div>
+          <div class="docs-demo__panel docs-demo__panel--code" data-label="Código">
+            <uc-code lang="html" no-download><pre><code>&lt;uc-page layout=&quot;onepage&quot; current=&quot;home&quot;&gt;
+  &lt;h1&gt;Algoritmos e Programação&lt;/h1&gt;
+  &lt;section class=&quot;uc-section&quot; aria-labelledby=&quot;programa&quot;&gt;
+    &lt;h2 id=&quot;programa&quot;&gt;Programa&lt;/h2&gt;
+    &lt;p&gt;Tudo numa página: a barra por baixo do cabeçalho leva a cada secção (os &lt;code&gt;&amp;lt;h2&amp;gt;&lt;/code&gt;) e depois às outras páginas do &lt;code&gt;course.js&lt;/code&gt;. Fica no topo ao percorrer a página e marca a secção à vista.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;uc-section&quot; aria-labelledby=&quot;horario&quot;&gt;
+    &lt;h2 id=&quot;horario&quot;&gt;Horário&lt;/h2&gt;
+    &lt;p&gt;Teóricas à segunda e à quarta, práticas à sexta.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;uc-section&quot; aria-labelledby=&quot;avaliacao&quot;&gt;
+    &lt;h2 id=&quot;avaliacao&quot;&gt;Avaliação&lt;/h2&gt;
+    &lt;p&gt;Dois testes e um exame.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;uc-section&quot; aria-labelledby=&quot;bibliografia&quot;&gt;
+    &lt;h2 id=&quot;bibliografia&quot;&gt;Bibliografia&lt;/h2&gt;
+    &lt;p&gt;No telemóvel, a barra desliza na horizontal.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/uc-page&gt;</code></pre></uc-code>
+          </div>
+          <a class="docs-demo__open" href="../../demos/uc-page/onepage.html">Abrir demo</a>
+        </div>
+        <!-- /docs:demo -->
         <h3 id="mudar-de-lingua">Mudar de língua</h3>
         <p>Quando <code>languages</code> tem mais de uma língua, o cabeçalho ganha um botão por cada outra língua ("PT" na demonstração, que abre em inglês com <code>?lang=en</code>). Os nomes das páginas do kit, o grupo "Platforms", o rodapé e a data passam para a língua ativa, e o conteúdo marcado com <code>lang</code> mostra só a língua ativa.</p>
         <!-- docs:demo src="../../demos/uc-page/languages.html?lang=en" title="página em inglês com o botão para português" height="516" -->
@@ -478,7 +515,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
             </thead>
             <tbody>
               <tr><td><code>current</code></td><td>id de página</td><td>pelo nome do ficheiro</td><td>Item da navegação marcado como ativo, por exemplo <code>current="weeks"</code>. Tem de ser um <code>id</code> de <code>pages</code>.</td></tr>
-              <tr><td><code>layout</code></td><td><code>sidebar</code>, <code>top</code>, <code>full</code>, <code>banner</code>, <code>docs</code>, <code>centered</code>, <code>panel</code>, <code>aside</code> ou um layout próprio do site</td><td><code>layout</code> do <code>course.js</code>, senão o do tema (<code>--uc-layout</code>), senão <code>sidebar</code></td><td>Com <code>top</code>, a navegação fica numa barra por baixo do cabeçalho; com <code>full</code>, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com <code>banner</code>, o cabeçalho, o primeiro <code>&lt;uc-hero&gt;</code> e a navegação ficam numa faixa da cor do curso (ver <a href="#faixa-institucional">Faixa institucional</a>). Com <code>docs</code>, a página tem três colunas com "Nesta página" à direita (ver <a href="#tres-colunas">Três colunas</a>). Com <code>centered</code>, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver <a href="#centrado">Centrado</a>). Com <code>panel</code>, o cabeçalho, a navegação e o horário ficam numa barra de altura total (ver <a href="#painel-lateral">Painel lateral</a>). Com <code>aside</code>, a página tem uma coluna de blocos à direita (ver <a href="#blocos-laterais">Blocos laterais</a>). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o <code>course.js</code> ou o tema.</td></tr>
+              <tr><td><code>layout</code></td><td><code>sidebar</code>, <code>top</code>, <code>full</code>, <code>banner</code>, <code>docs</code>, <code>centered</code>, <code>panel</code>, <code>aside</code>, <code>onepage</code> ou um layout próprio do site</td><td><code>layout</code> do <code>course.js</code>, senão o do tema (<code>--uc-layout</code>), senão <code>sidebar</code></td><td>Com <code>top</code>, a navegação fica numa barra por baixo do cabeçalho; com <code>full</code>, a página não tem navegação. Nos dois casos o conteúdo ocupa toda a largura. Com <code>banner</code>, o cabeçalho, o primeiro <code>&lt;uc-hero&gt;</code> e a navegação ficam numa faixa da cor do curso (ver <a href="#faixa-institucional">Faixa institucional</a>). Com <code>docs</code>, a página tem três colunas com "Nesta página" à direita (ver <a href="#tres-colunas">Três colunas</a>). Com <code>centered</code>, o cabeçalho e a navegação ficam centrados e o conteúdo numa coluna de leitura (ver <a href="#centrado">Centrado</a>). Com <code>panel</code>, o cabeçalho, a navegação e o horário ficam numa barra de altura total (ver <a href="#painel-lateral">Painel lateral</a>). Com <code>aside</code>, a página tem uma coluna de blocos à direita (ver <a href="#blocos-laterais">Blocos laterais</a>). Com <code>onepage</code>, uma barra no topo leva às secções da página e às outras páginas (ver <a href="#pagina-unica">Página única</a>). Um nome que o kit não conhece é ignorado com um aviso na consola, e decide o <code>course.js</code> ou o tema.</td></tr>
               <tr><td><code>toc</code></td><td><code>off</code></td><td>—</td><td>Com o layout <code>docs</code>, tira a coluna "Nesta página" desta página. Ver <a href="#tres-colunas">Três colunas</a>.</td></tr>
               <tr><td><code>aside</code></td><td><code>off</code></td><td>—</td><td>Com o layout <code>aside</code>, tira a coluna de blocos desta página. Ver <a href="#blocos-laterais">Blocos laterais</a>.</td></tr>
               <tr><td><code>search</code></td><td><code>off</code> ou <code>noindex</code></td><td>—</td><td>Para sites com pesquisa. <code>off</code>: esta página não mostra o botão «Pesquisar». <code>noindex</code>: o <code>uc-site.py</code> deixa a página fora do índice de pesquisa; o botão continua a aparecer. Ver <a href="#pesquisa">Pesquisa no site</a>.</td></tr>
@@ -583,6 +620,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
               <tr><td><code>.uc-page--panel</code>, <code>.uc-panel</code>, <code>.uc-panel__brand</code></td><td>Com <code>layout="panel"</code>: a página, a barra de altura total (o primeiro filho da <code>.uc-shell</code>, com o cabeçalho, a <code>.uc-sidebar</code> e o resumo do horário) e o <code>.uc-header</code> dentro dela.</td></tr>
               <tr><td><code>.uc-panel__info</code>, <code>.uc-panel__label</code>, <code>.uc-panel__list</code></td><td>O resumo do horário no fundo da barra: cada título ("Teóricas", "Atendimento") e a lista de horas. O bloco "office-hours" do layout <code>aside</code> usa as mesmas classes.</td></tr>
               <tr><td><code>.uc-page--aside</code>, <code>.uc-aside</code>, <code>.uc-aside__heading</code>, <code>.uc-aside__office-hours</code>, <code>.uc-aside__platforms</code></td><td>Com <code>layout="aside"</code>: a página, a coluna de blocos (um <code>&lt;aside&gt;</code> depois do <code>&lt;main&gt;</code>; cada filho é um cartão), o título dos blocos que o kit escreve e os blocos "office-hours" e "platforms".</td></tr>
+              <tr><td><code>.uc-page--onepage</code>, <code>.uc-anchors</code>, <code>.uc-anchors__list</code>, <code>.uc-anchors__item</code>, <code>.uc-anchors__pages</code>, <code>.uc-anchors__link</code></td><td>Com <code>layout="onepage"</code>: a página, a barra (o <code>&lt;nav&gt;</code> entre o <code>.uc-header</code> e a <code>.uc-shell</code>), a lista das secções e cada entrada, a lista das outras páginas e cada ligação das duas listas (a da secção à vista tem <code>aria-current="location"</code>). A altura da barra é <code>--uc-anchors-height</code> (48 px).</td></tr>
               <tr><td><code>.uc-nav__list</code>, <code>__link</code>, <code>__group</code></td><td>As listas de links, cada link e o título "Plataformas".</td></tr>
               <tr><td><code>.uc-nav-toggle</code></td><td>O botão "Menu" dos ecrãs estreitos.</td></tr>
               <tr><td><code>.uc-main</code></td><td>O <code>&lt;main&gt;</code> com o conteúdo do professor.</td></tr>
@@ -656,6 +694,7 @@ footer: { pt: "© 2025 … · curso fictício", en: "© 2025 … · fictional co
           <li class="docs-toc__sub"><a href="#centrado">Centrado</a></li>
           <li class="docs-toc__sub"><a href="#painel-lateral">Painel lateral</a></li>
           <li class="docs-toc__sub"><a href="#blocos-laterais">Blocos laterais</a></li>
+          <li class="docs-toc__sub"><a href="#pagina-unica">Página única</a></li>
           <li class="docs-toc__sub"><a href="#mudar-de-lingua">Mudar de língua</a></li>
           <li class="docs-toc__sub"><a href="#outros-anos">Outros anos</a></li>
           <li class="docs-toc__sub"><a href="#data-da-pagina">Data de atualização de uma página</a></li>
