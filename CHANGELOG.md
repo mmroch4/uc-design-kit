@@ -6,7 +6,11 @@ and the kit uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-Draft of 1.2.0, "themes with a layout": a theme can now choose the layout of
+## [1.2.0] - 2026-11-24
+
+Frozen as `kit/v1.2.0/` and `widgets/v1.2.0/` (tag `v1.2.0`).
+
+"Themes with a layout": a theme can now choose the layout of
 every page and a few component variants, and only the chosen theme is
 downloaded. Five themes with a layout (Clássico, the default and the look of
 1.1.0; Moderno; Institucional; Manual; Editorial), six new layouts
@@ -232,6 +236,11 @@ release on the kit and the widgets share one version and one tag.
   `UC.internal.hasText`.
 - The phase plans and handoff notes in `docs/plan/` (history in git); the
   four design contracts moved to `docs/architecture/`.
+
+## Widgets [1.2.0] - 2026-11-24
+
+Released with kit 1.2.0, same tag `v1.2.0`; needs kit 1.0 or later. No
+changes in the widgets: the new release only follows the kit's version.
 
 ## Widgets [1.1.0] - 2026-11-21
 

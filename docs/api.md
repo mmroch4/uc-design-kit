@@ -5,7 +5,7 @@ documentation follow it. Anything listed here is stable within major
 version 1; changing it requires its own pull request.
 
 - Status: **draft for review** (milestone M0.2)
-- Kit version: 1.1.0
+- Kit version: 1.2.0
 - Documentation for teachers (Portuguese), which explains every item of this
   contract with live demos: <https://uc-design-kit.miguelrocha.dev/docs/pt/>.
   `npm test` checks that both cover the same components, attributes,
@@ -48,7 +48,7 @@ Rules:
   first visit. Keep `crossorigin` (fonts are always fetched in CORS mode) and
   use the same folder as `uc-kit.css`. Use the absolute `https://` URL: with a
   relative path the preload fails when the page is opened from `file://`.
-- `v1` can be replaced by an exact release such as `v1.1.0` (all three URLs),
+- `v1` can be replaced by an exact release such as `v1.2.0` (all three URLs),
   see section 9.
 - `<html lang>` is the language the page is written in by default.
 - The kit never requires a build step, a server or a package manager.

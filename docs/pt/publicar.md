@@ -90,7 +90,7 @@ As páginas carregam o kit de `https://uc-design-kit.miguelrocha.dev/kit/v1/`. H
 | Endereço | O que se recebe | Quando usar |
 | --- | --- | --- |
 | `kit/v1/` | Sempre a versão 1 mais recente. Recebe correções e novidades sem mudar nada, e nunca muda de forma incompatível. | Por omissão. É o que o modelo usa. |
-| `kit/v1.1.0/` | Uma versão exata, que nunca muda. O browser guarda-a durante um ano sem voltar a perguntar, por isso as visitas seguintes são as mais rápidas. | Para ter o mesmo kit durante todo o semestre. Atualiza-se no início do ano (ver [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#kit)). |
+| `kit/v1.2.0/` | Uma versão exata, que nunca muda. O browser guarda-a durante um ano sem voltar a perguntar, por isso as visitas seguintes são as mais rápidas. | Para ter o mesmo kit durante todo o semestre. Atualiza-se no início do ano (ver [Novo ano letivo](https://uc-design-kit.miguelrocha.dev/docs/pt/novo-ano.md#kit)). |
 
 Para fixar a versão troca-se `v1` pelo número nos três endereços do `<head>` (o `preload` da letra, o CSS e o JavaScript). As versões publicadas e o que mudou em cada uma estão no [CHANGELOG](https://github.com/mmroch4/uc-design-kit/blob/main/CHANGELOG.md).
 
